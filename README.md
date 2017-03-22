@@ -1,10 +1,12 @@
 # Documentation
 
-Dokumentasjon av fram og NIRD.
+Documentation of Fram and NIRD.
 
-Nå skriver Hans noe...
+## Fram
 
-...og det jeg skrev havnet etter ca 10 min her: [http://documentation.sigma2.no/]
+### Queue system
 
-Dette kan jo bare gå bra...
+* [Getting started](slurm/slurm_introduction.md)
+
+## NIRD
 
