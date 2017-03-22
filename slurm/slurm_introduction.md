@@ -102,13 +102,13 @@ Jobs:
 
 -   All job info: `scontrol show job` *jobid* (Add `-v` for more details, `-vv` for job script)
 
--   After job has finished: `sacct -j` *jobid* (se man page!)
+-   After job has finished: `sacct -j` *jobid* (se man page)
 
--   Updating job: `scontrol update jobid=` <jobid> <field>=<value>
+-   Updating job: `scontrol update jobid=<jobid>`
 
 Queue:
 
--   Job queue: `squeue` (se man page!)
+-   Job queue: `squeue` (se man page)
 
 -   Pending jobs: `pending` (our script)
 
