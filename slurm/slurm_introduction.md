@@ -111,7 +111,8 @@ directory, *even if the job crashes*, one should use the `copyback` command
 
 Alternatively, one can use the personal scratch area,
 `/cluster/work/users/$USER`, where files will not be deleted after the job
-finishes, but they *will be deleted* after **FIXME** days.
+finishes, but they *will be deleted* after (currently) 42 days.  Note that
+there is **no backup** on `/cluster/work/users/$USER` (or `$SCRATCH`).
 
 See `man sbatch` for more details about job specifications.
 
@@ -135,8 +136,8 @@ special cases:
 ### "bigmem" Jobs
 
 To use the bigmem nodes, `--partition=bigmem`, wall time limit, cpus and
-memory must be specified.  There are **FIXME** nodes with **FIXME: check!**)
-256 GiB memory and two with 6 TiB.  A bigmem job gets the requested cpus and
+memory must be specified.  There are eight nodes with
+512 GiB memory and two with 6 TiB.  A bigmem job gets the requested cpus and
 memory exclusively, but shares nodes with other jobs.  If a bigmem job tries
 to use more (residen) memory than requested, it gets killed.  The maximal wall
 time limit for bigmem jobs is 14 days.
