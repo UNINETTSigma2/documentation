@@ -83,8 +83,9 @@ Here is an example job script which specifies "everyting":
     set -o nounset # Treat unset variables as errors
     
     ## Software modules
-    module purge   # Clear any inherited modules
+    module restore system   # Restore loaded modules to the default
     module load mysoftware
+	module list             # List loaded modules, for easier debugging
 
     ## Prepare input files
     cp inputfiles $SCRATCH
@@ -134,58 +135,82 @@ special cases:
 ### "bigmem" Jobs
 
 To use the bigmem nodes (**FIXME: how many and how big**),
-`--partition=bigmem`, cpus and memory must be specified.  A bigmem job gets
-the requested cpus and memory exclusively, but shares
-nodes with other jobs.
+`--partition=bigmem`, wall time limit, cpus and memory must be specified.  A
+bigmem job gets the requested cpus and memory exclusively, but shares nodes
+with other jobs.  If a bigmem job tries to use more (residen) memory than
+requested, it gets killed.  The maximal wall time limit for bigmem jobs is
+**FIXME** days.
+
+Here is an example that asks for 2 nodes, 2 tasks per node, and 4 cpus per
+task:
 
     #SBATCH --account=nn9999k --partition=bigmem
     #SBATCH --time=1-0:0:0
     #SBATCH --nodes=2 --ntasks-per-node=2 --cpus-per-task=4
     #SBATCH --mem-per-cpu=32G
 
+Note that even though the memory specification is called `--mem-per-cpu`, the
+memory limit the job gets on the node is for the total usage by all processes
+on the node, so in the above example, it would get a limit of 2 * 4 * 32 GiB =
+256 GiB.  The queue system doesn't care how the memory usage is divided
+between the processes or threads, as long as the total usage is below the
+limit.
+
+Also note that contrary to "normal" jobs, "bigmem" jobs will be bound to the
+cpu cores they get allocated, so the above job will have access to 8 cores on
+each node.  However, the two tasks are free to use all cores the job has
+access to on the node (8 in this example).
+
 ### "preproc" Jobs
 
-There is a special QoS set up for preprocessing jobs (`--qos=preproc`). A preproc job gets 1 node, exclusively.
+There is a special QoS set up for preprocessing jobs (`--qos=preproc`). A
+"preproc" job gets 1 node, exclusively.  Otherwise, it is the same as a "normal"
+job.  The idea is that preprocessing or similar doesn't need to use many
+nodes.  Note that there is a limit of how many "preproc" jobs a project can
+run at the same time.
 
-General (1 node, 4 tasks with 8 cpus/task):
+To run a preproc job, one has to specify `--qos=preproc`.  Also, one does not
+have to specify the number of nodes.  (If specified, it must be 1.)
+
+Example of a general preproc specifcation (1 node, 4 tasks with 8 cpus/task):
 
     #SBATCH --account=nn9999k --qos=preproc
     #SBATCH --time=1:0:0
     #SBATCH --ntasks-per-node=4 --cpus-per-task=8
 
-Simpler (one task on one node):
+Here is a simpler preproc job (one task on one node):
 
     #SBATCH --account=nn9999k --qos=preproc
     #SBATCH --time=1:0:0
 
 ## Job and Queue Info
 
-Commands to get more information about jobs:
+There are a few commands to get information about jobs:
 
--   All job info: `scontrol show job` *jobid* (Add `-v` for more details, `-vv` for job script)
+- Display "all" info about pending or running job: `scontrol show job` *jobid*
+  (Add `-v` for more details, and `-vv` for listing job script as well)
+- After job has finished: `sacct -j` *jobid*.  This command has many options
+  for selecting fields to output.  See `man sacct`.
 
--   After job has finished: `sacct -j` *jobid*
+The job queue can be inspected with the following commands:
 
--   Updating job: `scontrol update jobid=<jobid>`
+- List all jobs in the queue: `squeue`.  This command has many options
+  for selecting fields to output.  See `man squeue`.
+- List of all pending jobs: `pending`
+- List of pending jobs for one project: `pending nnNNNNk`
+- **Not implemented yet:** Total cpu usage per project: `qsumm`
 
-Commands to get more information about the job queue:
-
--   Job queue: `squeue`
-
--   Pending jobs: `pending`
-
--   Total cpu usage per project: `qsumm`
-
-To get and overview of how much your project(s) have used:
-
--   Project usage: `cost`
+**Not implemented yet:** To get and overview of how much your project(s) have
+used, one can use `cost`.
 
 ## Info about nodes
 
--   All nodes, all partitions: `sinfo`
+There are a few commands for getting information about nodes:
 
--   Nodes in `normal` partition: `sinfo -p normal`
+- List all nodes in all partitions: `sinfo`
+- List nodes in `normal` partition: `sinfo -p normal`
+- List a specific node: `sinfo -n` *nodename*
+- See all info about a node: `scontrol show node` *nodename*
 
--   One node: `sinfo -n` *nodename*
-
--   All info about node: `scontrol show node` *nodename*
+`sinfo` has a lot of options for selecting output fields; see `man sinfo` for
+details.
