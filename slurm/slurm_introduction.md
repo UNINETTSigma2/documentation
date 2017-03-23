@@ -59,8 +59,8 @@ name can also be specified.
 
 All normal jobs gets exclusive access to whole nodes (all cpus and memory).
 If a job tries to use more (resident) memory than is configured on the nodes,
-it will be killed. **FIXME: what is the limit?** The maximal wall time limit
-for normal jobs is two days (48 hours).
+it will be killed. Currently, this limit is 60.5 GiB, *but that might be
+changed*.  The maximal wall time limit for normal jobs is two days (48 hours).
 
 Here is an example job script which specifies "everyting":
 
@@ -134,12 +134,12 @@ special cases:
 
 ### "bigmem" Jobs
 
-To use the bigmem nodes (**FIXME: how many and how big**),
-`--partition=bigmem`, wall time limit, cpus and memory must be specified.  A
-bigmem job gets the requested cpus and memory exclusively, but shares nodes
-with other jobs.  If a bigmem job tries to use more (residen) memory than
-requested, it gets killed.  The maximal wall time limit for bigmem jobs is
-**FIXME** days.
+To use the bigmem nodes, `--partition=bigmem`, wall time limit, cpus and
+memory must be specified.  There are **FIXME** nodes with **FIXME: check!**)
+256 GiB memory and two with 6 TiB.  A bigmem job gets the requested cpus and
+memory exclusively, but shares nodes with other jobs.  If a bigmem job tries
+to use more (residen) memory than requested, it gets killed.  The maximal wall
+time limit for bigmem jobs is 14 days.
 
 Here is an example that asks for 2 nodes, 2 tasks per node, and 4 cpus per
 task:
