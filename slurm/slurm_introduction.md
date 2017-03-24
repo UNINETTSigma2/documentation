@@ -68,7 +68,7 @@ Here is an example job script which specifies "everyting":
     ## Project:
     #SBATCH --account=nnNNNNk
 	## Job name:
-	#SBATCH --jobname=myjob
+	#SBATCH --job-name=myjob
 	## Wall time limit:
 	#SBATCH --time=1-0:0:0
 	## Number of nodes:
@@ -96,8 +96,6 @@ Here is an example job script which specifies "everyting":
     
     ## Do some work
     srun mysoftware
-    ## or
-    mpirun mysoftware
 
 Note that `--cpus-per-task` does *not* bind the tasks to the given number of
 cpus for normal jobs; it merely sets `$OMP_NUM_THREADS` so that OpenMP jobs by
@@ -183,6 +181,30 @@ Here is a simpler preproc job (one task on one node):
 
     #SBATCH --account=nn9999k --qos=preproc
     #SBATCH --time=1:0:0
+
+## MPI
+
+Currently, the supported MPI implementation on Fram is Intel MPI, and is
+accessed with
+
+	module load intel/2017a
+
+Intel MPI jobs can be launced in several ways.  Inside Slurm jobs, the
+recommended way is to use `srun`:
+
+	module reset system  # For a known state
+	module load intel/2017a
+
+	srun MyProgram
+
+`srun` will start the number of tasks (ranks) on each node that has been
+specified by `--ntasks-per-node` or `--ntasks`, and defaults to 1 task per
+node.
+
+It is also possible to use `mpirun` in jobs, but this is currently not
+recommended, and one has to first to unset the environment variable
+`I_MPI_PMI_LIBRARY` (it is set in job scripts), otherwise `mpirun` will fail.
+Using `mpiexec` in jobs is currently not supported.
 
 ## Job and Queue Info
 
