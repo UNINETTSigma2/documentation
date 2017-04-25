@@ -59,7 +59,7 @@ name can also be specified.
 
 All normal jobs gets exclusive access to whole nodes (all cpus and memory).
 If a job tries to use more (resident) memory than is configured on the nodes,
-it will be killed. Currently, this limit is 60.5 GiB, *but that might be
+it will be killed. Currently, this limit is 60 GiB, *but that might be
 changed*.  The maximal wall time limit for normal jobs is two days (48 hours).
 
 Here is an example job script which specifies "everyting":
