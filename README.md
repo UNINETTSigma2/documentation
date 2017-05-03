@@ -3,6 +3,7 @@
 Documentation of Fram and NIRD.
 
 ## Fram
+---------------------------------------
 
 ### Queue system
 
@@ -37,4 +38,5 @@ Documentation of Fram and NIRD.
 * [Debugging](code_development/debugging.md)
 
 ## NIRD
+---------------------------------------
 
