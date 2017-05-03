@@ -2,6 +2,7 @@
 
 Documentation of Fram and NIRD.
 
+
 ## Fram
 ---------------------------------------
 
@@ -36,6 +37,7 @@ Documentation of Fram and NIRD.
 * [Compilers](code_development/compilers.md)
 * [Profiling and optimization](code_development/profiling_and_optimization.md)
 * [Debugging](code_development/debugging.md)
+
 
 ## NIRD
 ---------------------------------------
