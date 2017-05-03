@@ -28,7 +28,7 @@ Documentation of Fram and NIRD.
 
 ### Storage
 * [Storage and backup](storage/storage_and_backup.md)
-* [Transferring files to/from](storage/transferring_files_to_from.md)
+* [Transferring files to/from Fram](storage/transferring_files_to_from_fram.md)
 * [Lustre FS performance tips](storage/lustre_FS_performance_tips.md)
 
 ### Code development
