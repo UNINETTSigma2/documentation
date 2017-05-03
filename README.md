@@ -10,7 +10,7 @@ Documentation of Fram and NIRD.
  
 ### Getting help
 * [Contact](support/contact.md)
-* How to write good support requests
+* [How to write good support requests](support/how_to_write_good_support_requests.md)
 
 ### Jobs
 * Dos and dont's
