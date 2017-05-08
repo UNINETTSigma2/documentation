@@ -2,7 +2,7 @@
 
 All support requests should go to
 
-    support@metacenter.no
+    [mailto:support@metacenter.no](support@metacenter.no)
 
 This is a issue tracker (ticket system) that is staffed with skilled operators.
 You should receive a respons within hours during normal work-hours, or at the latest the following working day.
