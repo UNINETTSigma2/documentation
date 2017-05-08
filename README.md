@@ -29,6 +29,7 @@ Documentation of Fram and NIRD.
 * [New scheme modules](software/new_scheme_modules.md)
 
 ### Storage
+* [Important notice about scratch storage] (storage/scratch-file-system-policy.md)
 * [Storage and backup](storage/storage_and_backup.md)
 * [Transferring files to/from Fram](storage/transferring_files_to_from_fram.md)
 * [Lustre FS performance tips](storage/lustre_FS_performance_tips.md)
