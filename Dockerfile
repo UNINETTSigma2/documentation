@@ -3,7 +3,7 @@ FROM nginx:latest
 ENV GITBOOK_VERSION="3.2.2"
 
 RUN apt-get update \
-    && apt-get install -y curl git bzip2 libfontconfig1-dev xz-utils
+    && apt-get install -y curl git bzip2 libfontconfig1-dev xz-utils gnupg
 RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
 RUN apt-get install -y nodejs
 
