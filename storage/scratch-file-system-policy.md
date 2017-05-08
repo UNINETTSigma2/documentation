@@ -1,11 +1,11 @@
-# IMPORTANT:
--------------------------------------------------------------------------------
+# IMPORTANT
+
  - Scratch space for each user MUST go under /cluster/work/user/$USER.
- - This is a scratch filesystem without any backup and subject to automatic
-   deletion!
+ - The /cluster file-system is a scratch file-system without any backup and files
+are subject to automatic deletion based on the policies below!
 
 
-## POLICIES:
+## POLICIES
 -------------------------------------------------------------------------------
 
  - /cluster file system structure
