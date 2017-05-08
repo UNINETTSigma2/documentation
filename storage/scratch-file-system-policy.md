@@ -19,7 +19,7 @@ are subject to automatic deletion based on the policies below!
         * /cluster/work/users:	semi-permanent scratch space for each user that will be cleaned up following specific deletion rules
 
  - Automatic deletion policies for /cluster/work
-   o Deletion depends on newest of the creation-, modification- and access time and the total usage of the file system.
-   o The oldest files will be deleted first.
-   o Weekly scan removes files older than 42 days.
-   o When file system usage reaches 70%, files older than 21 days become subject for automatic deletion.
+    - Deletion depends on newest of the creation-, modification- and access time and the total usage of the file system.
+    - The oldest files will be deleted first.
+    - Weekly scan removes files older than 42 days.
+    - When file system usage reaches 70%, files older than 21 days become subject for automatic deletion.
