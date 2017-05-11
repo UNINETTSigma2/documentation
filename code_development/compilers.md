@@ -60,9 +60,9 @@ The Open MPI compiler wrapper scripts listed in the table below add in all relev
 
 <table>
 <thead>
-<th align="left">Language></th>
-<th align="left">Wrapper script></th>
-<th align="left">Environment variable></th>
+<th align="left">Language</th>
+<th align="left">Wrapper script</th>
+<th align="left">Environment variable</th>
 </thead>
 <tbody>
 <tr>
@@ -82,3 +82,5 @@ The Open MPI compiler wrapper scripts listed in the table below add in all relev
 </tr>
 </tbody>
 </table>
+
+Use the option `-showme` to see the underlying compiler, the compile and link flags, and the libraries that are linked.
