@@ -61,7 +61,7 @@ The Open MPI compiler wrapper scripts listed in the table below add in all relev
 <table>
 <thead>
 <th align="left">Language></th>
-<th align="left">Wrapper script>/th>
+<th align="left">Wrapper script></th>
 <th align="left">Environment variable></th>
 </thead>
 <tbody>
@@ -69,6 +69,16 @@ The Open MPI compiler wrapper scripts listed in the table below add in all relev
 <td>C</th>
 <td><code class="code">mpicc</code></th>
 <td>OMPI_CC</th>
+</tr>
+<tr>
+<td>C++</td>
+<th><code class="code">mpiCC, mpicxx, mpic++</code></th>
+<th>OMPI_CXX</th>
+</tr>
+<tr>
+<th>Fortran</th>
+<td><code class="code">mpifort</code></th>
+<th>OMPI_FC</th>
 </tr>
 </tbody>
 </table>
