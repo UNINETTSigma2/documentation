@@ -16,7 +16,7 @@ The following table shows available Intel MPI compiler commands, the underlying 
 </thead>
 <tbody>
 <tr>
-<td rowspan="2" >C</td>
+<td rowspan="2" valign="middle">C</td>
 <td><code class="code">mpiicc</code></td>
 <td>`icc`</td>
 <td rowspan="2">I_MPI_CC</td>
