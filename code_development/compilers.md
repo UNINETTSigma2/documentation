@@ -83,4 +83,4 @@ The Open MPI compiler wrapper scripts listed in the table below add in all relev
 </tbody>
 </table>
 
-Use the option `-showme` to see the underlying compiler, the compile and link flags, and the libraries that are linked.
+It is possible to change the underlying compiler invoked when calling the compiler wrappers using the environment variables listed in the table. Use the option `-showme` to see the underlying compiler, the compile and link flags, and the libraries that are linked.
