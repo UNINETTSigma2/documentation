@@ -18,35 +18,35 @@ The following table shows available Intel MPI compiler commands, the underlying 
 <tr>
 <td rowspan="2" align="left" valign="middle">C</td>
 <td><code class="code">mpiicc</code></td>
-<td><code class="code">icc`</code></td>
+<td><code class="code">icc</code></td>
 <td rowspan="2">I_MPI_CC</td>
-<td rowspan="2">`-cc`=&lt;compiler&gt;</td>
+<td rowspan="2"><class="code">-cc</code>=&lt;compiler&gt;</td>
 </tr>
 <tr>
-<td>`mpigcc`</td>
-<td>`gcc`</td>
+<td><code class="code">mpigcc</code></td>
+<td><code class="code">gcc</code></td>
 </tr>
 <tr>
 <td rowspan="2">C++</td>
-<td>`mpiicpc`</td>
-<td>`icpc`</td>
+<td><code class="code">mpiicpc</code></td>
+<td><code class="code">icpc</code></td>
 <td rowspan="2">I_MPI_CXX</td>
-<td rowspan="2">`-cxx`=&lt;compiler&gt;</td>
+<td rowspan="2"><code class="code">-cxx</code>=&lt;compiler&gt;</td>
 </tr>
 <tr>
-<td>`mpigxx`</td>
-<td>`g++`</td>
+<td><code class="code">mpigxx</code></td>
+<td><code class="code">g++</code></td>
 </tr>
 <tr>
 <td rowspan="2">Fortran 77 / Fortran 95</td>
-<td>`mpiifort`</td>
-<td>`ifort`</td>
+<td><code class="code">mpiifort</code></td>
+<td><code class="code">ifort</code></td>
 <td rowspan="2">I_MPI_FC</td>
-<td rowspan="2">`-fc`=&lt;compiler&gt;</td>
+<td rowspan="2"><code class="code">-fc</code>=&lt;compiler&gt;</td>
 </tr>
 <tr>
-<td>`mpifc`</td>
-<td>`gfortran`</td>
+<td><code class="code">mpifc</code></td>
+<td><code class="code">gfortran</code></td>
 </tr>
 </tbody>
 </table>
