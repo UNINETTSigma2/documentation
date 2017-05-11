@@ -38,7 +38,7 @@ The following table shows available Intel MPI compiler commands, the underlying 
 <td><code class="code">g++</code></td>
 </tr>
 <tr>
-<td rowspan="2">Fortran 77 / Fortran 95</td>
+<td rowspan="2">Fortran</td>
 <td><code class="code">mpiifort</code></td>
 <td><code class="code">ifort</code></td>
 <td rowspan="2">I_MPI_FC</td>
