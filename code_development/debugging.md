@@ -81,19 +81,19 @@ Once inside the GDB environment, indicated by the `(gdb)` prompt, you can issue
 commands. The following shows a list of selected GDB commands:
 
 
-* `help`     – display a list of named classes of commands
-* `run`	     – start the program
-* `attach`   – attach to a running process outside GDB
-* `step`     - go to the next source line, will step into a function/subroutine
-* `next`     – go to the next source line, function/subroutine calls are executed without stepping into them
-* `continue` – continue executing 
-* `break`    – set breakpoint 
-* `watch`    – set a watchpoint to stop execution when the value of a variable or an expression changes 
-* `list`     – display (default 10) lines of source surrounding the current line
-* `print`    – print value of a variable
+* `help`      – display a list of named classes of commands
+* `run`	      – start the program
+* `attach`    – attach to a running process outside GDB
+* `step`      - go to the next source line, will step into a function/subroutine
+* `next`      – go to the next source line, function/subroutine calls are executed without stepping into them
+* `continue`  – continue executing 
+* `break`     – set breakpoint 
+* `watch`     – set a watchpoint to stop execution when the value of a variable or an expression changes 
+* `list`      – display (default 10) lines of source surrounding the current line
+* `print`     – print value of a variable
 * `backtrace` - display a stack frame for each active subroutine
-* `detach`   – detach from a process
-* `quit`     – exit GDB
+* `detach`    – detach from a process
+* `quit`      – exit GDB
 
 Commands can be abbreviated to one or the first few letters of the command
 name if that abbreviation is unambiguous or in some cases where a single
