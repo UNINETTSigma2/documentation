@@ -31,7 +31,7 @@ compilers.
 </tr>
 <tr>
 <td>Intel</td>
-<td><code class="code">-check=uninit</code> *(C/C++)* <br/> <code class="code">-check uninit</code> *(Fortran)*</td>
+<td><code class="code">-check=uninit</code> <i>(C/C++)</i> <br/> <code class="code">-check uninit</code> <i>(Fortran)</i></td>
 <td rowspan="2">Check for uninitialized variables</td>
 </tr>
 <tr>
@@ -40,7 +40,7 @@ compilers.
 </tr>
 <tr>
 <td>Intel</td>
-<td><code class="code">-fp-trap-all=common</code> *(C/C++)* <br/> <code class="code">-fpe-all=0</code> *(Fortran)*</td>
+<td><code class="code">-fp-trap-all=common</code> <i>(C/C++)</i> <br/> <code class="code">-fpe-all=0</code> <i>(Fortran)</i></td>
 <td rowspan="2">Trap floating point exceptions: <br/>
  - divide by zero <br/>
  - invalid operands <br/>
@@ -48,7 +48,7 @@ compilers.
 </tr>
 <tr>
 <td>GCC</td>
-<td><code class="code">-ffpe-trap=zero,invalid,overflow</code> *(Fortran only)*</td>
+<td><code class="code">-ffpe-trap=zero,invalid,overflow</code> <i>(Fortran only)</i></td>
 </tr>
 <tr>
 <td>Intel</td>
@@ -57,7 +57,7 @@ compilers.
 </tr>
 <tr>
 <td>GCC</td>
-<td><code class="code">-fbacktrace</code> *(Fortran only)*</td>
+<td><code class="code">-fbacktrace</code> <i>(Fortran only)</i></td>
 </tr>
 </tbody>
 </table>
