@@ -52,3 +52,23 @@ The following table shows available Intel MPI compiler commands, the underlying 
 </table>
 
 Specify option `-show` with one of the compiler wrapper scripts to see the underlying compiler together with compiler options, link flags and libraries.
+
+
+### Open MPI
+
+The Open MPI compiler wrapper scripts listed in the table below add in all relevant compiler and link flags, and the invoke the underlying compiler, i.e. the compiler the Open MPI installation was built with.
+
+<table>
+<thead>
+<th align="left">Language></th>
+<th align="left">Wrapper script>/th>
+<th align="left">Environment variable></th>
+</thead>
+<tbody>
+<tr>
+<td>C</th>
+<td><code class="code">mpicc</code></th>
+<td>OMPI_CC</th>
+</tr>
+</tbody>
+</table>
