@@ -9,10 +9,10 @@ practices.
 Never send support requests to staff members directly
 -----------------------------------------------------
 
-Always send them to <support-uit@notur.no> and staff members will pick
-them up there. On <support-uit@notur.no> they get tracked and have
+Always send them to <support@metacenter.no> and staff members will pick
+them up there. On <support@metacenter.no> they get tracked and have
 higher visibility. Some staff members work on the support line only part
-time. Sending the request to <support-uit@notur.no> makes sure that
+time. Sending the request to <support@metacenter.no> makes sure that
 somebody will pick it up.
 
 Give descriptive subject
