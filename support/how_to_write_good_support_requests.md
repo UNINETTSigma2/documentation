@@ -18,7 +18,7 @@ somebody will pick it up.
 Give descriptive subject
 ------------------------
 
-Your subject line should be descriptive. "Problem on Stallo" is not a
+Your subject line should be descriptive. "Problem on Fram" is not a
 good subject line since it could be valid for basically every support
 email we get. The support staff is a team. The subjects are the first
 thing that we see. We would like to be able to classify emails according
