@@ -22,12 +22,12 @@ compilers.
 </tr>
 <tr>
 <td>Intel</td>
-<td><code class="code">-check bounds</code></td>
-<td rowspan="2">Add runtime array bounds checking <i>(Fortran only)</i></td>
+<td><code class="code">-check bounds</code><i>(Fortran only</i></td>
+<td rowspan="2">Add runtime array bounds checking</td>
 </tr>
 <tr>
 <td>GCC</td>
-<td><code class="code">-fcheck=bounds</code></td>
+<td><code class="code">-fcheck=bounds</code><i>(Fortran only)</i></td>
 </tr>
 <tr>
 <td>Intel</td>
