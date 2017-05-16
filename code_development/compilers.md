@@ -66,19 +66,19 @@ The Open MPI compiler wrapper scripts listed in the table below add in all relev
 </thead>
 <tbody>
 <tr>
-<td>C</th>
-<td><code class="code">mpicc</code></th>
-<td>OMPI_CC</th>
+<td>C</td>
+<td><code class="code">mpicc</code></td>
+<td>OMPI_CC</td>
 </tr>
 <tr>
 <td>C++</td>
-<th><code class="code">mpiCC, mpicxx, mpic++</code></th>
-<th>OMPI_CXX</th>
+<td><code class="code">mpiCC, mpicxx, mpic++</code></td>
+<td>OMPI_CXX</td>
 </tr>
 <tr>
-<th>Fortran</th>
-<td><code class="code">mpifort</code></th>
-<th>OMPI_FC</th>
+<td>Fortran</td>
+<td><code class="code">mpifort</code></td>
+<td>OMPI_FC</td>
 </tr>
 </tbody>
 </table>
