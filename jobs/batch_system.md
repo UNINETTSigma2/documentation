@@ -1,15 +1,15 @@
 Batch system
 ============
 
-The Stallo system is a resource that is shared between many of users and
+The Fram system is a resource that is shared between many of users and
 to ensure fair use everyone must do their computations by submitting
 jobs through a batch system that will execute the applications on the
 available resources.
 
-The batch system on Stallo is [SLURM](http://slurm.schedmd.com/) (Simple
+The batch system on Fram is [SLURM](http://slurm.schedmd.com/) (Simple
 Linux Utility for Resource Management.)
 
-If you are already used to Torque/Maui, but not SLURM, you might find this [Quick Guide to translate PBS/Torque to SLURM](torque_slurm_table)
+If you are already used to Torque/Maui, but not SLURM, you might find this [Quick Guide to translate PBS/Torque to SLURM](jobs/torque_slurm_table.md)
 useful.
 
 Creating a job script
