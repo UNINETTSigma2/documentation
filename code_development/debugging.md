@@ -22,7 +22,7 @@ compilers.
 </tr>
 <tr>
 <td>Intel</td>
-<td><code class="code">-check bounds</code><i>(Fortran only</i></td>
+<td><code class="code">-check bounds</code><i>(Fortran only)</i></td>
 <td rowspan="2">Add runtime array bounds checking</td>
 </tr>
 <tr>
