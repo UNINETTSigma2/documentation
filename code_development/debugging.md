@@ -1,10 +1,20 @@
 # Debugging
 
-* [Compiler Debug Options] (#comp_opt)
-* [GNU GDB] (#GDB)
-    * [GDB commands] (#commands)
-    * [Attaching to running processes] (#attach)
-    * [Examining core files] (#core)
+<ul class='toc-indentation'>
+<li><a href='#comp_opt'>Compiler Debug Options</a></li>
+<li><a href='#GDB'>GNU GDB</a>
+<ul class='toc-indentation'>
+<li><a href='#commands'>GDB Commands</a></li>
+<li><a href='#attach'>Attaching to running processes</a></li>
+<li><a href='#core'>Examining Core Files</a></li>
+</ul>
+</li>
+<li><a href='#Totalview'>Totalview</a>
+<ul class='toc-indentation'>
+<li><a href='#StartingTotalview'>Starting Totalview</a></li>
+</ul>
+</li>
+</ul>
 
 <a name="comp_opt"></a>
 ## Compiler Debug Options
