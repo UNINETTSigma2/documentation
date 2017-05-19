@@ -1,4 +1,4 @@
-# Debugging
+<h1>Debugging</h1>
 
 <ul class='toc-indentation'>
 <li><a href='#comp_opt'>Compiler Debug Options</a></li>
@@ -16,8 +16,7 @@
 </li>
 </ul>
 
-<a name="comp_opt"></a>
-## Compiler Debug Options
+<h2 id="comp_opt">Compiler Debug Options</h2>
 
 The table below shows a list of debugging options for the Intel and GCC
 compilers.
@@ -79,16 +78,14 @@ compilers.
 </tbody>
 </table>
 
-<a name="GDB"></a>
-## GNU GDB
+<h2 id="GDB">GNU GDB</h2>
 
 GDB, the GNU Project debugger, is a free software debugger that supports
 several programming languages including C, C++ and Fortran. GDB has a
 command-line interface and do not contain its own graphical user interface
 (GUI).
 
-<a name="commands"></a>
-### GDB commands
+<h4 id="commands">GDB commands</h4>
 
 To begin a debug session compile the code with the `-g` option to add
 debugging information, and start GDB by running the `gdb` command adding the
@@ -126,8 +123,7 @@ the command, e.g.
 
        (gdb) shell ls -l
 
-<a name="attach"></a>
-### Attaching to running processes
+<h4 id="attach">Attaching to running processes</h4>
 
 
 GDB can attach to already running processes using the attach *[process-id]* command. After attaching to a process GDB will stop it from running. This allows you to prepare the debug session using GDB commands, e.g. setting breakpoints or watchpoints. Then use the `continue` command to let the process continue running.
@@ -199,8 +195,7 @@ comments):
 	 
 	(gdb) quit
 
-<a name="core"></a>
-### Examining core files
+<h4 id="core">Examining core files</h4>
 
 Core files can be examined specifying both an executable program and the core
 file:
