@@ -1,4 +1,4 @@
-image: registry.uninett.no/system/kubernetes-deploy:v0.3
+image: registry.uninett.no/system/kubernetes-deploy:v0.8
 
 variables:
   KUBE_PROD_DOMAIN: documentation.sigma2.no # The main domain for your application.
