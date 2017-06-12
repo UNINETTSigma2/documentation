@@ -11,13 +11,9 @@ commands:
 
 You can also hold the start of a job:
 
-scontrol hold &lt;job\_id&gt;
-
-:   Put a hold on the job. A job on hold will not start or block other
+**scontrol hold &lt;job\_id&gt;** Put a hold on the job. A job on hold will not start or block other
     jobs from starting until you release the hold.
 
-scontrol release &lt;job\_id&gt;
-
-:   Release the hold on a job.
+**scontrol release &lt;job\_id&gt;** Release the hold on a job.
 
 

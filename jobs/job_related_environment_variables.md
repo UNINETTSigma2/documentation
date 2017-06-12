@@ -14,7 +14,7 @@ List of nodes used in a job:
 
     SLURM_NODELIST
 
-Scratch directory:
+Scratch directory: OBS! CHANGE FROM STALLO-ADM.UIT.NO TO RIGHT FRAM ADDRESS
 
     SCRATCH  # defaults to /global/work/${USER}/${SLURM_JOBID}.stallo-adm.uit.no
 
