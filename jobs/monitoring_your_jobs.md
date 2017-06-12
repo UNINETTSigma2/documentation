@@ -3,36 +3,32 @@ Monitoring your jobs
 
 For details run the command with the --help option.
 
-scontrol show jobid -dd &lt;jobid&gt;
+List detailed information for a job (useful for troubleshooting):
 
-:   List detailed information for a job (useful for troubleshooting).
+    scontrol show jobid -dd <jobid>
 
-sacct -j &lt;jobid&gt; --format=JobID,JobName,MaxRSS,Elapsed
+To get statistics on completed jobs by jobID. Once your job has
+completed, you can get additional information that was not available
+during the run. This includes run time, memory used, etc:
 
-:   To get statistics on completed jobs by jobID. Once your job has
-    completed, you can get additional information that was not available
-    during the run. This includes run time, memory used, etc.
+    sacct -j <jobid> --format=JobID,JobName,MaxRSS,Elapsed
 
-From our monitoring tool Ganglia, you can watch live status information
-on Stallo:
+From our monitoring tool <?????>, you can watch live status information
+on Fram:
 
--   [Load situation](http://stallo-adm.uit.no/ganglia/)
--   [Job
-    queue](http://stallo-login2.uit.no/slurmbrowser/html/squeue.html)
+-   Link to live monitoring
 
 CPU load and memory consumption of your job
 -------------------------------------------
 
 In order to find out the CPU load and memory consumption of your running
 jobs or jobs which have finished less than 48 hours ago, please use the
-[job browser](http://stallo-login2.uit.no/slurmbrowser/html/squeue.html)
-(accessible from within the UNINETT network).
+<???> LINK MISSING
 
 Understanding your job status
 -----------------------------
 
-When you look at the job queue through the [job
-browser](http://stallo-login2.uit.no/slurmbrowser/html/squeue.html), or
+When you look at the job queue through <???> a link to live monitoring page, or
 you use the `squeue` command, you will see that the queue is divided in
 3 parts: Active jobs, Idle jobs, and Blocked jobs.
 

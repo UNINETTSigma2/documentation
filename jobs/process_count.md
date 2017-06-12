@@ -4,7 +4,7 @@ Process count
 We strongly advice all users to ask for a given set of cores when
 submitting multi-core jobs. To make sure that you utilize full nodes,
 you should ask for sets that adds up to both 16 and 20 (80, 160 etc) due
-to the hardware specifics of Stallo i.e. submit the job with
+to the hardware specifics of Fram i.e. submit the job with
 `--ntasks=80` **if** your application scales to this number of tasks.
 
 This will make the best use of the resources and give the most

@@ -16,7 +16,7 @@ List of nodes used in a job:
 
 Scratch directory: OBS! CHANGE FROM STALLO-ADM.UIT.NO TO RIGHT FRAM ADDRESS
 
-    SCRATCH  # defaults to /global/work/${USER}/${SLURM_JOBID}.stallo-adm.uit.no
+    SCRATCH  # defaults to /global/work/${USER}/${SLURM_JOBID}.STALLO-ADM.UIT.NO
 
 We recommend to **not** use \$SCRATCH but to construct a variable
 yourself and use that in your script, e.g.:
