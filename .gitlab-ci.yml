@@ -1,9 +1,10 @@
-image: registry.uninett.no/system/kubernetes-deploy:v0.3
+image: registry.uninett.no/system/kubernetes-deploy:v0.8
 
 variables:
   KUBE_PROD_DOMAIN: documentation.sigma2.no # The main domain for your application.
   HTTP_PORT: '80' # The port number of the web server.
   KUBE_TEST_DOMAIN: sigma2-eksterndoc.paas2.uninett.no
+  REPLICAS: '1'
 
 stages:
   - build
@@ -17,11 +18,13 @@ build:
     - branches
 production:
   stage: production
+  variables:
+    CI_ENVIRONMENT_URL: https://$KUBE_PROD_DOMAIN
   script:
-    - deploy
+    - deploy kubernetes/deployment.yaml
   environment:
     name: production
-    url: http://$KUBE_PROD_DOMAIN
+    url: https://$KUBE_PROD_DOMAIN
   only:
     - master
 review:
