@@ -11,9 +11,11 @@ commands:
 
 You can also hold the start of a job:
 
-**scontrol hold &lt;job\_id&gt;** Put a hold on the job. A job on hold will not start or block other
-    jobs from starting until you release the hold.
+	sbatch --hold <script_name>
 
-**scontrol release &lt;job\_id&gt;** Release the hold on a job.
+or use `scontrol hold <job_id>` after the job has been submitted.  A job on
+hold will not start or block other jobs from starting until you release the hold.
 
+To release the job:
 
+	scontrol release <job_id>

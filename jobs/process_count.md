@@ -1,3 +1,7 @@
+**FIXME: This page does not apply to Fram.  On Fram, we only allocate whole
+  nodes (except for bigmem jobs), and the minimum number of nodes is 4 (except
+  for preproc jobs).**
+
 Process count
 =============
 

@@ -7,36 +7,44 @@ documentation for a complete list.
 
 Job number:
 
-    SLURM_JOBID
+    SLURM_JOB_ID
     SLURM_ARRAY_TASK_ID  # relevant when you are using job arrays
 
 List of nodes used in a job:
 
-    SLURM_NODELIST
+    SLURM_JOB_NODELIST
 
-Scratch directory: OBS! CHANGE FROM STALLO-ADM.UIT.NO TO RIGHT FRAM ADDRESS
+Scratch directories:
 
-    SCRATCH  # defaults to /global/work/${USER}/${SLURM_JOBID}.STALLO-ADM.UIT.NO
+    SCRATCH
 
-We recommend to **not** use \$SCRATCH but to construct a variable
-yourself and use that in your script, e.g.:
+This is an automatically created scratch directory for each job (currently
+`/cluster/work/jobs/$SLURM_JOB_ID`), that is automatically deleted when the
+job has finished.
 
-    SCRATCH_DIRECTORY=/global/work/${USER}/my-example/${SLURM_JOBID}
+	USERWORK
 
-The reason for this is that if you forget to sbatch your job script,
-then \$SCRATCH may suddenly be undefined and you risk erasing your
-entire /global/work/\${USER}.
+A permanent work area (`/cluster/work/users/$USER`).  It is advisable to use a
+sub directory of this unless you use `$SCRATCH`.
 
-Submit directory (this is the directory where you have sbatched your
-job):
+Submit directory (this is the directory where you ran `sbatch`):
 
-    SUBMITDIR
     SLURM_SUBMIT_DIR
+    SUBMITDIR (for backward compatibility)
 
 Default number of threads:
 
-    OMP_NUM_THREADS=1
+    OMP_NUM_THREADS
+
+This is automatically set to the value specified in `--cpus-per-task`, (or 1 if
+`--cpus-per-task` is not specified).
 
 Task count:
 
     SLURM_NTASKS
+
+Note that this is only set if `--ntasks` or `--ntasks-per-node` has been
+specified.  (If neither is specified, Slurm runs one task per allocated node,
+but `SLURM_NTASKS` is not set.  In such cases, one can use
+`SLURM_JOB_NUM_NODES` instead.)
+

@@ -5,7 +5,7 @@
 Information on available CPU-hours in your accounts:
 
 ```
-$ sbank balance statement -u
+$ cost
 ```
 
 ## How to set the account in your job script
