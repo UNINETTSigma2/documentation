@@ -8,7 +8,7 @@
 * [Contact](support/contact.md)
     * [How to write good support requests](support/how_to_write_good_support_requests.md)
 
-### Jobs (Warning: these subpages are not consistent with the setup on Fram yet)
+### Jobs
 * [Dos and dont's](jobs/dos_and_donts.md)
 * [Accounts](jobs/accounts.md)
 * [Batch system](jobs/batch_system.md)
