@@ -2,9 +2,22 @@
 
 ## Structure
 
+### /nird/home
+
 * User's home directories are meant to be personal and must **not** be shared with anyone else, no matter of it's the content.
-* Temporary, scratch space for each user MUST go under /cluster/work/user/$USER.
+* Home should be used for storing tools, scripts, application sources or other relevant data which must have a backup.
+
+### /nird/projects
+
 * Files between groups/projects can be shared in the project area.
+
+### /cluster/work
+
+* Temporary, scratch space for each user.
+* /cluster/work/user/$USER should be used for running jobs, as a main storage during data processing. All data after processing must be moved out from this area or deleted after use.
+* We highly encourage users to keep this area tidy, since both high disk
+	usage and automatic deletion process takes away disk performance. The best
+	solution is to clean up any unnecessary data after each job.
 
 ## Automatic clean-up
 
