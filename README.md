@@ -29,7 +29,7 @@ Documentation of Fram and NIRD.
 * [New scheme modules](software/new_scheme_modules.md)
 
 ### Storage
-* [Available file systems](storge/file-systems.md)
+* [Available file systems](storage/file-systems.md)
 * [Backup](storage/backup.md)
 * [Performance tips](storage/performance-tips.md)
 * [Storage policies](storage/storage-policies.md)
