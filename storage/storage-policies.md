@@ -10,9 +10,9 @@
 
 * Scratch area (/cluster/work) is subject for automatic deletion:
   - Deletion depends on newest of the creation-, modification- and access time and the total usage of the file system.
-	- The oldest files will be deleted first.
-	- Weekly scan removes files older than 42 days.
-	- When file system usage reaches 70%, files older than 21 days become subject for automatic deletion.
+  - The oldest files will be deleted first.
+  - Weekly scan removes files older than 42 days.
+  - When file system usage reaches 70%, files older than 21 days become subject for automatic deletion.
 
 ## Quotas
 

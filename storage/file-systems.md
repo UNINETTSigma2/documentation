@@ -42,11 +42,11 @@ file system with a total storage space of 2.3PB.
 Contains two subdirectories: *jobs* and *users*.
 * /cluster/work/jobs
   - scratch space for each job
-	- automatically created and deleted by the queue system
+  - automatically created and deleted by the queue system
 * /cluster/work/users
   - semi-permanent scratch space for each user
-	- it is subject to [**automatic deletion**](storage-policies.md)
-	- has [**no backup**](backup.md)
+  - it is subject to [**automatic deletion**](storage-policies.md)
+  - has [**no backup**](backup.md)
 
 For performance optimizations, please consult [this](performance-tips.md) page.
 
