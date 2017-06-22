@@ -6,21 +6,35 @@ client access pattern to optimally load the object storage targets (OSTs).
 On Lustre, the OSTs are referring to disks or storage volumes constructing the
 whole file system.
 
-**Note**: striping will only take affect *only* on new files, created or copied into the specified directory or file name.
+**Note**: striping will only take affect *only* on new files, created or copied
+ into the specified directory or file name.
 
 For more detailed information on striping, please consult the
 [Lustre](http://lustre.org) documentation.
 
+## Check out current striping
+
+To see current stripe size, use `lfs getsripe [file_system, dir, file]`
+command. e.g.:
+
+```
+lfs getstripe /cluster/tmp/test
+/cluster/tmp/test
+stripe_count:   1 stripe_size:    1048576 stripe_offset:  -1
+```
+**Note**: stripe size is shown in bytes.
+
 ## Large files
 
 For large files it is advisable to increase stripe count and perhaps chunk size
-too. e.g:
+too. e.g.:
 
 ```
 # stripe huge file across 8 OSTs
 lfs setstripe --count 8 "my_file"
+
 # stripe across 4 OSTs using 8MB chunks.
-lfs setstripe --size 8M --count 4 "my_dir" 
+lfs setstripe --size 8M --count 4 "my_dir"
 ```
 
 ## Small files
