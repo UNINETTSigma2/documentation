@@ -40,6 +40,8 @@ lfs setstripe --size 8M --count 4 "my_dir"
 ## Small files
 
 For many small files and one client accessing each file, change stripe count to 1.
+Avoid having small files with large stripe counts. This negatively impacts the 
+performance due to the unnecessary communication to multiple OSTs.
 
     lfs setstripe --count 1 "my_dir"
 
