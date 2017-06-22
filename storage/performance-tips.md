@@ -16,10 +16,12 @@ For more detailed information on striping, please consult the
 For large files it is advisable to increase stripe count and perhaps chunk size
 too. e.g:
 
-    # stripe huge file across 8 OSTs
-		lfs setstripe --count 8 "my_file"
-		# stripe across 4 OSTs using 8MB chunks.
-    lfs setstripe --size 8M --count 4 "my_dir" 
+```
+# stripe huge file across 8 OSTs
+lfs setstripe --count 8 "my_file"
+# stripe across 4 OSTs using 8MB chunks.
+lfs setstripe --size 8M --count 4 "my_dir" 
+```
 
 ## Small files
 
