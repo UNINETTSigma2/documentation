@@ -9,7 +9,7 @@
 
 ### /nird/projects
 
-* The project areas can be used to whare files within the projects.
+* The project areas can be used to share files within the projects.
 
 ### /cluster/work
 
