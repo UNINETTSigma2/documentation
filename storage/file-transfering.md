@@ -10,21 +10,23 @@ please check out NIRD documentation [here](nird.md).
 ## Basic tools (scp, sftp)
 
 * scp - secure copy files between hosts on a network
-
+```
     # copy single file to home folder on Fram
 		# note that folder is ommitted, home folder being default
     scp my_file.tar.gz <username>@fram.sigma2.no:
 
 		# copy a directory to work area
 		scp -r my_dir/ <username>@fram.sigma2.no:/cluster/work/users/<username>/
+```
 
 * sftp - interactive secure file transfer program (secure ftp)
 
+```
    # copy all logs named starting with "out" from project1 folder to 
 	 # /nird/projects/project1
    sftp <username>@fram.sigma2.no
 	 sftp> lcd project1
 	 sftp> cd /nird/projects/project1
 	 sftp> put out*.log
-
+```
 
