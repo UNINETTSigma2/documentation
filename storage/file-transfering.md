@@ -10,6 +10,7 @@ please check out NIRD documentation [here](nird.md).
 ## Basic tools (scp, sftp)
 
 * scp - secure copy files between hosts on a network
+
 ```
 # copy single file to home folder on Fram
 # note that folder is ommitted, home folder being default
