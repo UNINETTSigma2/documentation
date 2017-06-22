@@ -31,4 +31,4 @@
 
 Default quotas are the following:
 * /nird/home			- 20GB
-* /nird/projects	- 10TB
+* /nird/projects	- 2TB
