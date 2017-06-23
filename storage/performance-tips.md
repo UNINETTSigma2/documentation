@@ -60,3 +60,15 @@ performance due to the unnecessary communication to multiple OSTs.
     lfs setstripe --count 1 "my_dir"
 
 
+## DON'Ts
+
+* Avoid having a large number of files in a single directory and rather split
+	files in multiple sub-directories.
+* Avoid accessing small files. Use `/node/scratch` whenever possible instead
+	of `/cluster/work` for small files.
+* Avoid repetitive `stat` operations because it creates a significant load on
+	the file system.
+* Do not use `ls -l` on whole directory because it issues RPCs to the MDS for
+	each file and directory it lists. Use rather `ls` and run `ls -l` only for
+	the specific file you need extended information such as: permissions,
+	ownership, etc.
