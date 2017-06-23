@@ -12,6 +12,13 @@ Snapshots are taken with the following frequencies:
   - daily snapshots for the last 7 days
 	- weekly snapshots for the last 5 weeks
 
-
 Scratch areas (`/cluster/work` and `/node/scratch`) does *not* have any backup.
+
+## List snapshots
+
+Documentation to be added
+
+## Restore data
+
+Documentation to be added
 
