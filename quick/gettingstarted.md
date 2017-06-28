@@ -100,4 +100,5 @@ $ cost
 ```
 
 ##More Information
--links to other pages
+
+The menu on the left list the pages with more information about developing and running applications.
