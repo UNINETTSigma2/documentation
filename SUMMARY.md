@@ -1,14 +1,19 @@
-### Quick help
-* [Introduction](README.md)
-* [Queuing system (Slurm)](slurm/README.md)
-    * [Getting started](slurm/slurm_introduction.md)
-    * [Concepts and Fram setup](slurm/slurm_concepts_and_setup_fram.md)
- 
-### Getting help
-* [Contact](support/contact.md)
-    * [How to write good support requests](support/how_to_write_good_support_requests.md)
 
-### Jobs
+## HPC Software Resources
+* [Introduction](README.md)
+* [Getting Started](quick/gettingstarted.md)
+* [Abel Documentation](http://www.uio.no/english/services/it/research/hpc/abel/)
+* [Stallo Documentation](https://hpc-uit.readthedocs.io)
+* [Contact](support/contact.md)
+    * [Writing Support Requests](support/how_to_write_good_support_requests.md)
+
+
+## Code Development
+* [Installed Software](development/which_software_is_installed.md)
+* [Compilers](development/compilers.md)
+* [Debugging](development/debugging.md)
+
+## Jobs
 * [Dos and dont's](jobs/dos_and_donts.md)
 * [Accounts](jobs/accounts.md)
 * [Batch system](jobs/batch_system.md)
@@ -18,19 +23,9 @@
     * [Process count](jobs/process_count.md)
     * [Monitoring your jobs](jobs/monitoring_your_jobs.md)
 
-### Software
-* [Which software is installed](software/which_software_is_installed.md)
-* [New scheme modules](software/new_scheme_modules.md)
-
-### Storage
+## Files and Storage
 * [Available file systems](storage/file-systems.md)
 * [Backup](storage/backup.md)
 * [Performance tips](storage/performance-tips.md)
 * [Storage policies](storage/storage-policies.md)
 * [Transferring files](storage/file-transfering.md)
-
-### Code development
-* [Compilers](code_development/compilers.md)
-* [Profiling and optimization](code_development/profiling_and_optimization.md)
-* [Debugging](code_development/debugging.md)
-
