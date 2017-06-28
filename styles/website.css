@@ -1,3 +1,8 @@
 .book-summary ul.summary li a, .book-summary ul.summary li span {
     padding: 2px 15px;
 }
+
+a[href^="http://"]:not([href*="sigma2.no"]):after,
+a[href^="https://"]:not([href*="sigma2.no"]):after{
+    content: " " url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);
+}
