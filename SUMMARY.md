@@ -5,7 +5,7 @@
 * [Abel Documentation](http://www.uio.no/english/services/it/research/hpc/abel/)
 * [Stallo Documentation](https://hpc-uit.readthedocs.io)
 * [Contact](support/contact.md)
-    * [Writing Support Requests](support/how_to_write_good_support_requests.md)
+    * [Writing Support Requests](support/support_requests.md)
 
 
 ## Code Development
