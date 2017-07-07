@@ -1,0 +1,5 @@
+gitbook directory:
+
+-contains images, styles and other assets for
+ the external documentation
+-gitbook copies contents into _book/ to maintain relative links

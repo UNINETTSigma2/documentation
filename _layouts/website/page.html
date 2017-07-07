@@ -1,0 +1,15 @@
+{% extends template.self %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ "styles/website.css"|resolveAsset }}">
+{% endblock %}
+
+{% block body %}
+    <div class="navbar-brand">
+        <a class="logo" href="https://www.sigma2.no">
+            <img src="{{ "images/UNINETT_Sigma2_logo_H.png"|resolveAsset }}" alt="UNINETT Sigma2">
+        </a>
+    </div>
+    {{ super() }}
+{% endblock %}
