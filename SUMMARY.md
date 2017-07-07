@@ -17,7 +17,8 @@
 
 * [Dos and dont's](jobs/dos_and_donts.md)
 * [Accounts](jobs/accounts.md)
-* [Batch System (SLURM)](slurm/slurm_introduction.md)
+* [Batch System (Slurm)](slurm/slurm_introduction.md)
+    * [Setup on Fram](slurm/slurm_concepts_and_setup_fram.md)
     * [Job related environment variables](jobs/job_related_environment_variables.md)
     * [Managing jobs](jobs/managing_jobs.md)
     * [Walltime](jobs/walltime.md)
