@@ -14,9 +14,10 @@
 * [Debugging](development/debugging.md)
 
 ## Jobs
+
 * [Dos and dont's](jobs/dos_and_donts.md)
 * [Accounts](jobs/accounts.md)
-* [Batch system](jobs/batch_system.md)
+* [Batch System (SLURM)](slurm/slurm_introduction.md)
     * [Job related environment variables](jobs/job_related_environment_variables.md)
     * [Managing jobs](jobs/managing_jobs.md)
     * [Walltime](jobs/walltime.md)
