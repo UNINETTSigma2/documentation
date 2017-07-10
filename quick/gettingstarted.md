@@ -12,7 +12,7 @@ is explained at the [User Access](https://www.sigma2.no/node/36) page.
 
 Logging into the machine involves the use of Secure Shell (SSH) in a terminal.
 SSH login is available natively to Linux or Mac OSX (or any UNIX-based systems).
-On Windows machines an SSH client is needed, for example, [http://putty.org](PuTTY).
+On Windows machines an SSH client is needed, for example, [PuTTY](http://putty.org).
 
 ```
 ssh <username>@<machinename>
@@ -34,15 +34,14 @@ Abel, Stallo and Fram runs CentOS Linux distributions as operating system. The m
 
 It is expected that the user is familiar with command-line interfaces (CLIs), but for those who are not familiar with commands, the UiB and UiT pages have several tutorials on the CLI environment:
 
-* Introduction to Unix CLI - UiB
-* Linux Command Line - UiT
+* [Introduction to Unix CLI](https://docs.hpc.uib.no/wiki/Introduction_to_Unix_CLI) - UiB
 
 To copy files from your machine to the HPC machines, use SSH File Transfer Protocol (SFTP) and Secure Copy (SCP). They are available as command-line tools for Linux and MacOS X but Windows users need to download a separate SCP or FTP client, such as WinSCP.
 
-For example, to copy projectfiles.tar.gz to the home directory of myusername to Vilje, type:
+For example, to copy projectfiles.tar.gz to the home directory of myusername to Fram, type:
 
 ```
-scp projectfiles.tar.gz myusername@vilje.hpc.ntnu.no:
+scp projectfiles.tar.gz myusername@fram.sigma2.no:
 ```
 
 ###Modules
