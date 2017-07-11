@@ -15,7 +15,7 @@ To load the default NCO module, run in the terminal
 
 ## License Information
 
-NCO is available under the [https://www.gnu.org/licenses/gpl.html](GNU General Public License (GPLv3)).
+NCO is available under the [GNU General Public License (GPLv3)](https://www.gnu.org/licenses/gpl.html).
 
 It is the user's responsibility to make sure they adhere to the license agreements.
 
