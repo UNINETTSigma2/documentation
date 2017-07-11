@@ -6,11 +6,12 @@
 * [Stallo Documentation](https://hpc-uit.readthedocs.io)
 * [License Information](quick/license.md)
 * [Contact](support/contact.md)
-    * [Writing Support Requests](support/support_requests.md)
+    * [Writing Support Requests](support/how_to_write_good_support_requests.md)
 
 
 ## Code Development
 * [Installed Software](development/which_software_is_installed.md)
+
 * [Compilers](development/compilers.md)
 * [Debugging](development/debugging.md)
 
