@@ -2,6 +2,7 @@
     "plugins": [
         "-sharing",
         "-fontsettings",
-        "theme-default"
+        "theme-default",
+        "toggle-chapters"
     ]
 }
