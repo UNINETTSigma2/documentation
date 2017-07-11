@@ -11,9 +11,9 @@ NWChem is available on these machines:
 
 TODO: insert table
 
-To load the default NWChem module, run:
+To load the default NWChem module, run in the terminal
 
-    $ module load NWChem
+    module load NWChem
 
 ## Citation
 

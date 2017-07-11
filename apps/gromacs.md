@@ -11,9 +11,9 @@ GROMACS is available on these machines:
 
 TODO: insert version table
 
-To load the default GROMACS module, run:
+To load the default GROMACS module, run in the terminal
 
-    $ module load GROMACS
+    module load GROMACS
 
 The [GROMACS example](https://source.uit.no/cpe/examplescripts/tree/master/gromacs) shows how to set up an application.
 

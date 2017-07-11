@@ -10,7 +10,7 @@ PROJ is available on these machines:
 
 TODO: insert table
 
-To load the default PROJ module, run
+To load the default PROJ module, run in the terminal
 
     module load PROJ
 

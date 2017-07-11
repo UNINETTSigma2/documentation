@@ -10,7 +10,7 @@ Ncview is available on these machines:
 
 TODO: insert table
 
-To load the default Ncview module, run
+To load the default Ncview module, run in the terminal
 
     module load ncview
 

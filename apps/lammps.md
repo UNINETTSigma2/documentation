@@ -13,9 +13,9 @@ LAMMPS is available on these machines:
 
 TODO: insert table
 
-To load the default LAAMPS module, run:
+To load the default LAAMPS module, run in the terminal
 
-    $ module load LAAMPS
+    module load LAAMPS
 
 ## License Information
 

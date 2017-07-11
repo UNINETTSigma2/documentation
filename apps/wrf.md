@@ -10,7 +10,7 @@ WRF is available on these machines:
 
 TODO: insert table
 
-To load the default WRF module, run
+To load the default WRF module, run in the terminal
 
     module load wrf
 

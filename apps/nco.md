@@ -9,7 +9,7 @@ NCO is available on these machines:
 
 TODO: insert table
 
-To load the default NCO module, run
+To load the default NCO module, run in the terminal
 
     module load NCO
 

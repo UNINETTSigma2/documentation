@@ -10,7 +10,7 @@ CESM is available on these machines:
 
 TODO: insert table
 
-To load the default CESM module, run
+To load the default CESM module, run in the terminal
 
     module load CESM
 

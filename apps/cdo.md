@@ -10,7 +10,7 @@ CDO is available on these machines:
 
 TODO: insert table
 
-To load the default CDO module, run
+To load the default CDO module, run in the terminal
 
     module load CDO
 
