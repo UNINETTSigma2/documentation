@@ -7,7 +7,7 @@ LAMMPS runs on single processors or in parallel using message-passing techniques
 LAMMPS is distributed as an open source code under the terms of the GPL.
 For more information, please visit http://lammps.sandia.gov
 
-# LAMMPS on Notur systems
+## Running LAMMPS
 
 LAMMPS is available on these machines:
 
@@ -17,12 +17,12 @@ To load the default LAAMPS module, run:
 
     $ module load LAAMPS
 
-# License Information
+## License Information
 
 LAMMPS is available under the GNU Public License (GPLv3). For more information, visit http://lammps.sandia.gov/open_source.html
 
 It is the user's responsibility to make sure they adhere to the license agreements.
 
-# Citation
+## Citation
 
 When publishing results obtained with the software referred to, please do check the developers web page in order to find the correct citation(s).

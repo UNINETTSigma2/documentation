@@ -8,13 +8,19 @@
 * [Contact](support/contact.md)
     * [Writing Support Requests](support/how_to_write_good_support_requests.md)
 
-
 ## Code Development
 * [Installed Software](development/which_software_is_installed.md)
+    * [CDO](apps/cdo.md)
+    * [CESM](apps/cesm.md)
+    * [GDAL](apps/gdal.md)
     * [Gromacs](apps/gromacs.md)
     * [LAMMPS](apps/lammps.md)
     * [NAMD](apps/namd.md)
+    * [NCO](apps/nco.md)
+    * [Ncview](apps/ncview.md)
     * [NWChem](apps/nwchem.md)
+    * [PROJ](apps/proj.md)
+    * [WRF](apps/wrf.md)
 * [Compilers](development/compilers.md)
 * [Debugging](development/debugging.md)
 
