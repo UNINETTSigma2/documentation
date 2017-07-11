@@ -19,6 +19,7 @@
     * [NCO](apps/nco.md)
     * [Ncview](apps/ncview.md)
     * [NWChem](apps/nwchem.md)
+    * [OpenFOAM](apps/openfoam.md)
     * [PROJ](apps/proj.md)
     * [WRF](apps/wrf.md)
 * [Compilers](development/compilers.md)
