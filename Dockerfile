@@ -15,8 +15,12 @@ RUN npm install --global gitbook-cli \
 COPY . /gitbook
 WORKDIR /gitbook
 
-RUN gitbook install && gitbook build 
+RUN gitbook install
+
+#modified plugin contains additional style
+COPY _layouts/plugins/gitbook-plugin-toggle-chapters node_modules
+
+RUN gitbook build
 
 RUN rm -rf /usr/share/nginx/html/*
 RUN cp -r ./_book/* /usr/share/nginx/html/
-
