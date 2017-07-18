@@ -12,7 +12,7 @@ COPY . /var/www/gitbook
 WORKDIR /var/www/gitbook
 
 RUN gitbook install
-COPY _layouts/plugins/* node_modules/
+COPY _layouts/plugins node_modules/
 RUN gitbook build
 
 RUN npm cache clear
