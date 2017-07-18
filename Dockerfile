@@ -13,6 +13,7 @@ WORKDIR /var/www/gitbook
 
 RUN gitbook install
 COPY _layouts/plugins/gitbook-plugin-toggle-chapters node_modules
+COPY _layouts/plugins/gitbook-plugin-theme-default node_modules
 RUN gitbook build
 
 RUN npm cache clear
