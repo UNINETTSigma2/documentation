@@ -10,9 +10,10 @@ RUN gitbook fetch ${GITBOOK_VERSION}
 
 COPY . /var/www/gitbook
 WORKDIR /var/www/gitbook
-COPY _layouts/plugins/gitbook-plugin-toggle-chapters node_modules
 
-RUN gitbook install && gitbook build
+RUN gitbook install
+COPY _layouts/plugins/gitbook-plugin-toggle-chapters node_modules
+RUN gitbook build
 
 RUN npm cache clear
 COPY lighttpd.conf /var/www/gitbook.lighttpd.conf
