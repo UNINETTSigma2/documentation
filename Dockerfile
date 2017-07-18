@@ -1,26 +1,20 @@
-FROM nginx:latest
+FROM centos:7
+
+RUN yum install -y epel-release
+RUN yum update -y
+RUN yum install -y lighttpd npm
+RUN npm install --global gitbook-cli
 
 ENV GITBOOK_VERSION="3.2.2"
+RUN gitbook fetch ${GITBOOK_VERSION}
 
-RUN apt-get update \
-    && apt-get install -y curl git bzip2 libfontconfig1-dev xz-utils gnupg
-RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
-RUN apt-get install -y nodejs
-
-RUN npm install --global gitbook-cli \
-    && gitbook fetch ${GITBOOK_VERSION} \
-    && npm cache clear \
-    && rm -rf /tmp/*
-
-COPY . /gitbook
-WORKDIR /gitbook
-
-RUN gitbook install
-
-#modified plugin contains additional style
+COPY . /var/www/gitbook
+WORKDIR /var/www/gitbook
 COPY _layouts/plugins/gitbook-plugin-toggle-chapters node_modules
 
-RUN gitbook build
+RUN ls
+RUN gitbook install && gitbook build
 
-RUN rm -rf /usr/share/nginx/html/*
-RUN cp -r ./_book/* /usr/share/nginx/html/
+RUN npm cache clear
+COPY lighttpd.conf /var/www/gitbook.lighttpd.conf
+ENTRYPOINT ["/usr/sbin/lighttpd", "-D", "-f", "/var/www/gitbook.lighttpd.conf"]
