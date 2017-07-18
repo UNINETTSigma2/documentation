@@ -10,6 +10,12 @@
         <a class="logo" href="https://www.sigma2.no">
             <img src="{{ "images/UNINETT_Sigma2_logo_H.png"|resolveAsset }}" alt="UNINETT Sigma2">
         </a>
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="{{ 'SEARCH_PLACEHOLDER'|t }}" />
+        </div>
     </div>
     {{ super() }}
+{% endblock %}
+
+{% block search_input %}
 {% endblock %}

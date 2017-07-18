@@ -10,10 +10,23 @@ a[href^="https://"]:not([href*="sigma2.no"]):after{
 .navbar-brand {
     max-height: 137px;
     border: 10px;
+    background-color: white;
+    padding: 15px;
+    display: inline-block;
+    width:100%;
+    position: fixed;
+    z-index: 2;
 }
 
 .navbar-brand img {
     height: 39px;
+}
+
+.logo {
+    height: 100%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 .down {
@@ -40,4 +53,33 @@ a[href^="https://"]:not([href*="sigma2.no"]):after{
 }
 .book-summary ul.summary {
     padding-left: 15px;
+}
+
+#book-search-input {
+    display: inline-block;
+    width: 15%;
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    text-align: right;
+    margin: 0px !important;
+    padding: 0px !important;
+    border: 1px solid rgba(0,0,0,0.09);
+    border-radius: 7px;
+}
+
+.book-summary {
+    top: auto !important;
+    bottom: 0% !important;
+    overflow-y: auto !important;
+    z-index: 0 !important;
+    top: 60px !important;
+}
+
+.book-body {
+    overflow-y: auto !important;
+}
+
+.book {
+    overflow-y: auto !important;
 }
