@@ -1,6 +1,6 @@
 # Sample Batch Script
 
-Here is a sample batch script that demonstrates usage of various variables and processes.
+Here is a sample batch script that demonstrates usage of various variables and processes for a **normal** job.
 
 ```
 #!/bin/bash

@@ -25,19 +25,17 @@
     * [R](apps/r.md)
     * [WRF](apps/wrf.md)
 * [Compilers](development/compilers.md)
+* [MPI](development/mpi.md)
 * [Debugging](development/debugging.md)
 
 ## Jobs
 
-* [Queue System](slurm/slurm_introduction.md)
+* [Fram Setup](jobs/framsetup.md)
+* [Quality of Service](jobs/qos.md)
 * [Job Scripts](jobs/jobscripts.md)
     * [Sample Batch Script](jobs/samplescript.md)
-* [Setup on Fram](slurm/slurm_concepts_and_setup_fram.md)
-* [Accounts](jobs/accounts.md)
 * [Managing Jobs](jobs/managing_jobs.md)
-* [Walltime](jobs/walltime.md)
-* [Process Count](jobs/process_count.md)
-* [Dos and Dont's](jobs/dos_and_donts.md)
+* [Best Practices](jobs/bestpractices.md)
 
 ## Files and Storage
 * [Available file systems](storage/file-systems.md)

@@ -30,9 +30,10 @@ To see which state the job is in, use `scontrol show`, for example:
 
 These commands give information about the status of jobs:
 
-1. squeue - information about jobs in the queue system
-2. sacct - statistics and accounting about a completed job
-3. sinfo - information about Slurm nodes and partitions. See [Info about nodes](../slurm/slurm_introduction.md#nodeinfo).
+1. `squeue` - information about jobs in the queue system
+2. `sacct` - statistics and accounting about a completed job
+3. `sinfo` - information about Slurm nodes and partitions. See [Info about nodes](../slurm/slurm_introduction.md#nodeinfo).
+4. `pending` - list of pending jobs
 
 For details run the commands with the `--help` option or visit the Slurm documentation at https://slurm.schedmd.com
 
