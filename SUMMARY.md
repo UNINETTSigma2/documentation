@@ -25,7 +25,6 @@
     * [R](apps/r.md)
     * [WRF](apps/wrf.md)
 * [Compilers](development/compilers.md)
-* [MPI](development/mpi.md)
 * [Debugging](development/debugging.md)
 
 ## Jobs
