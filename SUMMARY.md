@@ -29,15 +29,15 @@
 
 ## Jobs
 
-* [Batch System (Slurm)](slurm/slurm_introduction.md)
+* [Queue System](slurm/slurm_introduction.md)
+* [Job Scripts](jobs/jobscripts.md)
+    * [Sample Batch Script](jobs/samplescript.md)
 * [Setup on Fram](slurm/slurm_concepts_and_setup_fram.md)
-    * [Accounts](jobs/accounts.md)
-    * [Job related environment variables](jobs/job_related_environment_variables.md)
-    * [Managing jobs](jobs/managing_jobs.md)
-    * [Walltime](jobs/walltime.md)
-    * [Process count](jobs/process_count.md)
-    * [Monitoring your jobs](jobs/monitoring_your_jobs.md)
-    * [Dos and dont's](jobs/dos_and_donts.md)
+* [Accounts](jobs/accounts.md)
+* [Managing Jobs](jobs/managing_jobs.md)
+* [Walltime](jobs/walltime.md)
+* [Process Count](jobs/process_count.md)
+* [Dos and Dont's](jobs/dos_and_donts.md)
 
 ## Files and Storage
 * [Available file systems](storage/file-systems.md)

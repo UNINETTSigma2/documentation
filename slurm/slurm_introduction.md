@@ -77,11 +77,11 @@ Here is an example job script which specifies "everyting":
 	#SBATCH --ntasks-per-node=2
 	## Set OMP_NUM_THREADS
 	#SBATCH --cpus-per-task=16
-    
+
     ## Recommended safety settings:
     set -o errexit # Make bash exit on any error
     set -o nounset # Treat unset variables as errors
-    
+
     ## Software modules
     module restore system   # Restore loaded modules to the default
     module load mysoftware
@@ -90,10 +90,10 @@ Here is an example job script which specifies "everyting":
     ## Prepare input files
     cp inputfiles $SCRATCH
     cd $SCRATCH
-    
+
     ## Make sure output is copied back after job finishes
     copyback outputfile1 outputfile2
-    
+
     ## Do some work
     srun mysoftware
 
@@ -226,7 +226,7 @@ The job queue can be inspected with the following commands:
 **Not implemented yet:** To get and overview of how much your project(s) have
 used, one can use `cost`.
 
-## Info about nodes
+## Info about nodes  {#nodeinfo}
 
 There are a few commands for getting information about nodes:
 
