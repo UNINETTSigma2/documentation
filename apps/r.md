@@ -5,15 +5,18 @@ To find out more, visit the R website at: https://www.r-project.org
 
 ## Running R
 
-R is available on these machines:
-
-TODO: insert table
-
 To load the default R module, run in the terminal
 
     module load R
 
-# License Information
+Run `module avail` to see the complete list of available versions. The table below lists the
+available versions. If there are more than one, the default is marked with `*`.
+
+| Module     | Version     |
+| :------------- | :------------- |
+| R |3.3.1-foss-2016b <br>3.3.1-intel-2017a * <br>|
+
+## License Information
 
 R is available under several open-source licenses. For more information, visit https://www.r-project.org/Licenses/
 

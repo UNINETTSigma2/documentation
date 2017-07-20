@@ -9,13 +9,16 @@ For more information, please visit http://lammps.sandia.gov
 
 ## Running LAMMPS
 
-LAMMPS is available on these machines:
-
-TODO: insert table
-
 To load the default LAAMPS module, run in the terminal
 
     module load LAAMPS
+
+Run `module avail` to see the complete list of available versions. The table below lists the
+available versions. If there are more than one, the default is marked with `*`.
+
+| Module     | Version     |
+| :------------- | :------------- |
+| LAMMPS |31Mar2017-foss-2016b|
 
 ## License Information
 

@@ -6,13 +6,16 @@ To find out more, visit the Ncview website at: http://meteora.ucsd.edu/~pierce/n
 
 ## Running Ncview
 
-Ncview is available on these machines:
-
-TODO: insert table
-
 To load the default Ncview module, run in the terminal
 
     module load ncview
+
+Run `module avail` to see the complete list of available versions. The table below lists the
+available versions. If there are more than one, the default is marked with `*`.
+
+| Module     | Version     |
+| :------------- | :------------- |
+| ncview |2.1.7-intel-2016b|
 
 ## License Information
 

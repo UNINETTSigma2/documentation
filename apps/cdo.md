@@ -6,13 +6,18 @@ To find out more, visit the CDO website at: https://code.zmaw.de/projects/cdo
 
 ## Running CDO
 
-CDO is available on these machines:
-
-TODO: insert table
-
 To load the default CDO module, run in the terminal
 
     module load CDO
+
+
+Run `module avail` to see the complete list of available versions. The table below lists the
+available versions. If there are more than one, the default is marked with `*`.
+
+| Module     | Version     |
+| :------------- | :------------- |
+| CDO |1.7.2-intel-2016b|
+
 
 ## License Information
 

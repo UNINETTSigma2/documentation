@@ -5,15 +5,16 @@ More information: http://www.ks.uiuc.edu/Research/namd/
 
 ## Running NAMD
 
-NAMD is available on these machines:
-
-TODO: insert table
-
 To load the default NAMD module, run in the terminal
 
     module load NAMD
 
-These pages show how to configure NAMD on each machine:
+Run `module avail` to see the complete list of available versions. The table below lists the
+available versions. If there are more than one, the default is marked with `*`.
+
+| Module     | Version     |
+| :------------- | :------------- |
+| NAMD |2.9-intel-2016b-ibverbs <br>2.10-intel-2016b-ibverbs <br>2.12-intel-2017a-ibverbs <br>2.12-intel-2017a-mpi * <br>|
 
 ## Citation
 

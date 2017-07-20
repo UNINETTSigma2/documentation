@@ -5,13 +5,16 @@ To find out more, visit the NCO website at: http://nco.sourceforge.net/
 
 ## Running NCO
 
-NCO is available on these machines:
-
-TODO: insert table
-
 To load the default NCO module, run in the terminal
 
     module load NCO
+
+Run `module avail` to see the complete list of available versions. The table below lists the
+available versions. If there are more than one, the default is marked with `*`.
+
+| Module     | Version     |
+| :------------- | :------------- |
+| NCO |4.6.5-foss-2016b|
 
 ## License Information
 

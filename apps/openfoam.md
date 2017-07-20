@@ -7,13 +7,16 @@ To find out more, visit the OpenFOAM website at: http://www.openfoam.com/
 
 # Running OpenFOAM
 
-OpenFOAM is available on these machines:
-
-TODO: insert table
-
 To load the default OopenFOAM module, run in the terminal
 
     module load OpenFOAM
+
+Run `module avail` to see the complete list of available versions. The table below lists the
+available versions. If there are more than one, the default is marked with `*`.
+
+| Module     | Version     |
+| :------------- | :------------- |
+| OpenFOAM |3.0.0-foss-2016a|
 
 # License Information
 

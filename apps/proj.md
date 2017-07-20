@@ -6,13 +6,16 @@ To find out more, visit the PROJ website at: https://trac.osgeo.org/proj/
 
 ## Running PROJ
 
-PROJ is available on these machines:
-
-TODO: insert table
-
 To load the default PROJ module, run in the terminal
 
     module load PROJ
+
+Run `module avail` to see the complete list of available versions. The table below lists the
+available versions. If there are more than one, the default is marked with `*`.
+
+| Module     | Version     |
+| :------------- | :------------- |
+| PROJ |4.9.2-foss-2016b <br>4.9.2-intel-2016b <br>4.9.2-intel-2017a * <br>|
 
 ## License Information
 

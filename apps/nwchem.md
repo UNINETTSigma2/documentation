@@ -7,13 +7,16 @@ More information: http://www.nwchem-sw.org
 
 ## Running NWChem
 
-NWChem is available on these machines:
-
-TODO: insert table
-
 To load the default NWChem module, run in the terminal
 
     module load NWChem
+
+Run `module avail` to see the complete list of available versions. The table below lists the
+available versions. If there are more than one, the default is marked with `*`.
+
+| Module     | Version     |
+| :------------- | :------------- |
+| NWChem |6.6.revision27746-iomkl-2017a-2015-10-20-Python-2.7.12|
 
 ## Citation
 
