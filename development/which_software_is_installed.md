@@ -1,7 +1,34 @@
 # Software on Fram
 
+The `module` command is for loading or listing available modules.
+
+```
+module [options] [module name]
+```
+
+To view the full list of options, enter `man module` in the command line. Here is a brief list of common module options:
+
+* _avail_ - list the available modules
+* _list_ - list the currently loaded modules
+* _load  <module name>_ - load the module called modulename
+* _unload  <module name>_ - unload the module called module name
+* _show <module name>_  - display dependencies and environment variables
+* _spider <module name>_  - print module description
+
+For example, to display all available modules and load the Intel toolchain on Fram, enter:
+
+```
+module avail
+module load intel/2017a
+```
+
+Modules may load other modules as part of its dependency. For example, loading the Intel version loads related modules to satisfy the module's dependency.
+The `module show` command displays the other modules loaded by a module. The `module spider` command displays the module's description.
 
 ## Libraries
+
+These are some of the main libraries and tools available.
+
 **Library**        | **GCC 4.9.3** | **GCC 5.4.0** | **GCC 6.3.0** | **Intel 16.0.1** | **Intel 16.0.3** | **Intel 17.0.1**
 ---|---|---|---|---|---|---
 **FFTW**           | 3.3.4         | 3.3.4         | 3.3.6         |                  | 3.3.5            | 3.3.6
