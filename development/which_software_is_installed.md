@@ -1,4 +1,4 @@
-# Software on Fram
+# Installed Software
 
 The `module` command is for loading or listing available modules.
 
