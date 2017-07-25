@@ -2,16 +2,39 @@
 
 ## Slurm Commands
 
-Here is a list of the commands for controlling and monitoring jobs:
+This page lists the main commands for controlling and monitoring jobs:
+For more details, run the commands with the `--help` option or visit the Slurm documentation at https://slurm.schedmd.com
 
-1. `scontrol` - controls the execution of jobs
-2. `scancel` - cancels jobs
-3. `squeue` - displays information about the queue
-4. `sinfo` - information about nodes and partitions
-5. `sacct` - statistics and accounting information
+## Monitoring Jobs
+
+These commands give information about the status of jobs:
+
+1. `scontrol show job <jobID>` - show information about a job
+2. `squeue` - information about jobs in the queue system
+3. `sacct` - statistics and accounting about a completed job in the accounting log file or Slurm database
+4. `sinfo` - information about Slurm nodes and partitions. See [Info about nodes](../slurm/slurm_introduction.md#nodeinfo).
+5. `pending` - list of pending jobs
 
 For details run the commands with the `--help` option or visit the Slurm documentation at https://slurm.schedmd.com
 
+Once your job has completed, you can get additional information that was not
+available during the run. This includes run time, memory used, etc:
+
+    sacct -j <jobid> --format=JobID,JobName,MaxRSS,Elapsed
+
+#### Job Status
+
+The queue is divided in 3 parts: **Running** jobs, **Pending** jobs or **Held** jobs.
+
+Running jobs are the jobs that are running at the moment. Pending jobs are
+next in line to start running, when the needed resources become available.
+Held jobs are jobs that are put on hold by you, a staff member or the system.
+
+To see a list of pending or held jobs, use the `pending command.` The `REASON` field when using
+`pending` or `scontrol show job` will indicate why a job is held.
+
+Please contact the support staff, if you don't understand why your job
+has a hold state.
 
 ## Controlling Job Execution
 
@@ -26,36 +49,7 @@ To see which state the job is in, use `scontrol show`, for example:
 
     scontrol show <jobid> -dd <jobid>
 
-## Information about Jobs
-
-These commands give information about the status of jobs:
-
-1. `squeue` - information about jobs in the queue system
-2. `sacct` - statistics and accounting about a completed job
-3. `sinfo` - information about Slurm nodes and partitions. See [Info about nodes](../slurm/slurm_introduction.md#nodeinfo).
-4. `pending` - list of pending jobs
-
-For details run the commands with the `--help` option or visit the Slurm documentation at https://slurm.schedmd.com
-
-Once your job has completed, you can get additional information that was not
-available during the run. This includes run time, memory used, etc:
-
-    sacct -j <jobid> --format=JobID,JobName,MaxRSS,Elapsed
-
-## Job Status
-
-The queue is divided in 3 parts: **Running** jobs, **Pending** jobs or **Held** jobs.
-
-Running jobs are the jobs that are running at the moment. Pending jobs are
-next in line to start running, when the needed resources become available.
-Held jobs are jobs that are put on hold by you, a staff member or the system.
-The `Reason` field of `pending` or `scontrol show job` will indicate why a job
-is held.
-
-Please contact the support staff, if you don't understand why your job
-has a hold state.
-
-## Holding and Releasing Jobs
+#### Holding and Releasing Jobs
 
 A job on hold will not start or block other jobs from starting until you release the hold.
 There are several ways of holding a job:
