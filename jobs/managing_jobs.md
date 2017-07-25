@@ -30,20 +30,29 @@ Running jobs are the jobs that are running at the moment. Pending jobs are
 next in line to start running, when the needed resources become available.
 Held jobs are jobs that are put on hold by you, a staff member or the system.
 
-To see a list of pending or held jobs, use the `pending command.` The `REASON` field when using
+To see a list of pending or held jobs, use the `pending` command. The `REASON` field when using
 `pending` or `scontrol show job` will indicate why a job is held.
+
+Here are some common job REASON codes:
+
+1. `Resources` - waiting for resources
+2. `Priority` -  waiting for higher priority jobs to run
+3. `JobHeldAdmin` - job has been put to hold (scontrol hold jobid) by an admin.
+4. `ReqNodeNotAvail` - job has requested nodes that are (currently) not available.  It also lists all unavailable nodes (not only the ones the job has requested).
+
+The squeue documentation has the list of Slurm job REASON codes: [REASON codes](https://slurm.schedmd.com/squeue.html#lbAF).
 
 Please contact the support staff, if you don't understand why your job
 has a hold state.
 
 ## Controlling Job Execution
 
-The **scontrol** is for viewing and controlling Slurm states. **scancel** is the command to cancel a job.
+The **scontrol** command is for viewing and controlling Slurm states. **scancel** is the command to cancel a job.
 
-1. Requeue a job: `scontrol requeue <jobid> `
-2. Hold job in pending: `scontrol hold <jobid> `
-3. Release a held job: `scontrol release <jobid> `
-4. Cancel a job: `scancel <jobid>`
+1. `scontrol requeue <jobid> ` - requeue a job
+2. `scontrol hold <jobid> ` - hold job in pending
+3. `scontrol release <jobid> ` - release a held job
+4. `scancel <jobid>` - cancel a job
 
 To see which state the job is in, use `scontrol show`, for example:
 

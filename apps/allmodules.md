@@ -168,7 +168,6 @@ For more information, visit [Installed Software](../development/which_software_i
 | Tk |8.6.4-foss-2016a-no-X11 <br>8.6.4-intel-2015b-no-X11 <br>8.6.4-intel-2016a-no-X11 <br>8.6.5-foss-2016b <br>8.6.5-GCCcore-6.3.0 <br>8.6.5-intel-2016b <br>8.6.5-intel-2017a * <br>|
 | TotalView |2017.0.12|
 | UDUNITS |2.2.20-foss-2016a <br>2.2.20-intel-2016b <br>2.2.24-foss-2016b <br>2.2.24-intel-2016b * <br>|
-| Where: |*|
 | WPS |3.8.1 * <br>3.8.1-no_leap_calendar <br>|
 | WRF |3.8.1 * <br>3.8.1-no_leap_calendar <br>|
 | X11 |20160819-foss-2016b <br>20160819-intel-2016b * <br>|
