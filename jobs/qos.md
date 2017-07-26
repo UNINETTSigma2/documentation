@@ -11,6 +11,8 @@ These are the main types:
 
 To set QoS levels, walltime, and numbers of nodes or CPUs, set the appropriate sbatch variables in the batch script file.
 
+For more information, visit Slurm's [Quality of Service](https://slurm.schedmd.com/qos.html) documentation.
+
 ### **normal** Jobs
 
 Normal jobs must specify account, walltime limit and number of nodes. By
@@ -81,7 +83,7 @@ Here is a simpler preproc job (one task on one node):
     #SBATCH --account=nn9999k --qos=preproc
     #SBATCH --time=1:0:0
 
-## Info about nodes  {#nodeinfo}
+## Node Information  {#nodeinfo}
 
 There are a few commands for getting information about nodes:
 

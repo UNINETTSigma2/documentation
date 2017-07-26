@@ -12,7 +12,7 @@ These commands give information about the status of jobs:
 1. `scontrol show job <jobID>` - show information about a job
 2. `squeue` - information about jobs in the queue system
 3. `sacct` - statistics and accounting about a completed job in the accounting log file or Slurm database
-4. `sinfo` - information about Slurm nodes and partitions. See [Info about nodes](../slurm/slurm_introduction.md#nodeinfo).
+4. `sinfo` - information about Slurm nodes and partitions. See [Node Information](qos.md#nodeinfo).
 5. `pending` - list of pending jobs
 
 For details run the commands with the `--help` option or visit the Slurm documentation at https://slurm.schedmd.com
