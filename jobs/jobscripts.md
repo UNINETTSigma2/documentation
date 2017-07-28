@@ -19,8 +19,11 @@ To submit a job, use the __sbatch__ command followed by the batch script.
 
     sbatch <scriptfile>
 
-It is also possible to set arguments after the sbatch command. For more information
-about sbatch, visit the *sbatch* documentation at: https://slurm.schedmd.com/sbatch.html
+The sbatch command returns a **jobid**, an id number that identifies the submitted job. The job will be waiting in the job queue until there are free compute resources it can use. A job in that state is said to be pending (PD). When it has started, it is called running (R). Any output (stdout or stderr) of the job script will be written to a file called *slurm-jobid.out* in the directory where you ran sbatch, unless otherwise specified.
+
+All commands in the job script are performed on the compute-node(s) allocated by the queue system. The script also specifies a number of requirements (memory usage, number of CPUs, run-time, etc.), used by the queue system to find one or more suitable machines for your job.
+
+For more information about sbatch, visit the *sbatch* documentation at: https://slurm.schedmd.com/sbatch.html
 
 ## sbatch variables
 
@@ -38,6 +41,10 @@ All batch scripts must contain the following sbatch variables:
 
     #Memory usage per core
     #SBATCH --mem-per-cpu=<size_megabytes>
+
+* `--account` - specifies the project the job will run in.
+* `--time` - specifies the maximal wall clock time of the job. Do not specify the limit too low, because the job will be killed if it has not finished within this time. On the other hand, shorter jobs will be started sooner, so do not specify longer than you need. The default maximum allowed --time specification is 1 week; see details here.
+* `--mem-per-cpu` - specifies how much RAM each task (default is 1 task) of the job needs.
 
 Here are a couple of examples for how to specify nodes and tasks for some
 special cases:
