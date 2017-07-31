@@ -34,6 +34,7 @@
 * [Quality of Service](jobs/qos.md)
 * [Job Scripts](jobs/jobscripts.md)
     * [Sample Batch Script](jobs/samplescript.md)
+    * [Porting from PBS/TORQUE](jobs/porting.md)
 * [Managing Jobs](jobs/managing_jobs.md)
 * [Best Practices](jobs/bestpractices.md)
 
