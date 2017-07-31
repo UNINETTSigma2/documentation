@@ -49,19 +49,19 @@ All batch scripts must contain the following sbatch variables:
 Here are a couple of examples for how to specify nodes and tasks for some
 special cases:
 
-1. 10 nodes, one task per cpu (typically single-threaded applications):
+* 10 nodes, one task per cpu (typically single-threaded applications):
 
 ```
 #SBATCH --nodes=10 --ntasks-per-node=32
 ```
 
-2. 10 nodes, one task per node:
+* 10 nodes, one task per node:
 
 ```
 #SBATCH --nodes=10
 ```
 
-3. 10 nodes, four tasks per node, one cpu per task (`$OMP_NUM_THREADS=1`):
+* 10 nodes, four tasks per node, one cpu per task (`$OMP_NUM_THREADS=1`):
 
 ```
 #SBATCH --nodes=10 --ntasks-per-node=4
