@@ -25,6 +25,20 @@ To print information on available CPU-hours in your accounts type in the termina
 
     $ cost
 
+A sample output might be:
+
+    ============================================
+    Account                            Cpu hours
+    --------------------------------------------
+    nnXXXXk  Quota (pri)                 1002.00
+    nnXXXXk  Quota (nonpri)              1000.00
+    nnXXXXk  Used                      112088.75
+    nnXXXXk  Running                        0.00
+    nnXXXXk  Pending                        0.00
+    nnXXXXk  Available                -110086.75
+
+
+
 **Not implemented yet:** Total cpu usage per project: `qsumm`
 
 ## Job priority
