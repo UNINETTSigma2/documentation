@@ -23,7 +23,9 @@ The sbatch command returns a **jobid**, an id number that identifies the submitt
 
 All commands in the job script are performed on the compute-node(s) allocated by the queue system. The script also specifies a number of requirements (memory usage, number of CPUs, run-time, etc.), used by the queue system to find one or more suitable machines for your job.
 
-For more information about sbatch, visit the *sbatch* documentation at: https://slurm.schedmd.com/sbatch.html
+To see the status of the submitted job, use the command `pending` and for related commands, read the [Managing Jobs](managing_jobs.md)
+
+For more information about *sbatch*, visit the sbatch documentation at: https://slurm.schedmd.com/sbatch.html
 
 ## sbatch variables
 
