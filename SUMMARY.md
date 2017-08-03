@@ -31,7 +31,7 @@
 ## Jobs
 
 * [Fram Setup](jobs/framsetup.md)
-* [Quality of Service](jobs/qos.md)
+* [Job Types](jobs/jobtypes.md)
 * [Job Scripts](jobs/jobscripts.md)
     * [Sample Batch Script](jobs/samplescript.md)
     * [Porting from PBS/TORQUE](jobs/porting.md)

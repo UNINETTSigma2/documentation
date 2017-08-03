@@ -1,15 +1,23 @@
-# Quality of Service
+# Job Types
 
-To ensure the efficient use of the compute nodes the jobs set their **quality of service** (QoS). Different QoSes
-allocate different nodes, partitions, and other settings to jobs.
-These are the main types:
+To ensure the efficient use of the compute nodes, jobs can ask which partition it should be run on, the memory size, and set a running time expectation.
+Slurm then uses these information to assign and allocate resources.
+
+## Partitions
+
+Partitions are logical groupings of resources so that each partition can be set up specific to a job type. The partition can be thought of
+as queues and different queues are meant to run different job types. A job that requires more memory can be in a different partition than a job that does not require a large amount of memory.
+
+These are the main job partitions:
 
 1. **normal**: Most production jobs, runs on all standard compute nodes.
 2. **bigmem**: Jobs on the _bigmem_ nodes.
 3. **optimist**: Low priority jobs that can be requeued when higher priority jobs need their nodes. They must implement checkpointing.
 4. **accel**: Jobs on compute nodes with GPU cards. **Not implemented yet**
 
-To set QoS levels, walltime, and numbers of nodes or CPUs, set the appropriate sbatch variables in the batch script file.
+To set the partition, use `--partition=` in the job script file. For example:
+
+    #SBATCH --partition=normal
 
 For more information, visit Slurm's [Quality of Service](https://slurm.schedmd.com/qos.html) documentation.
 
@@ -18,9 +26,7 @@ For more information, visit Slurm's [Quality of Service](https://slurm.schedmd.c
 Normal jobs must specify account, walltime limit and number of nodes. By
 default, jobs must use between 4 and 30 nodes, but a project can be allowed to
 use more nodes if needed. It can also specify how many tasks should run per
-node and how many cpus should be used by each task.
-
-The [Sample Batch Script](samplescript.md) page has an example of a normal job.
+node and how many CPUs should be used by each task.
 
 All normal jobs gets exclusive access to whole nodes (all CPUs and memory).
 If a job tries to use more (resident) memory than is configured on the nodes,
@@ -31,6 +37,8 @@ Note that setting `--cpus-per-task` does *not* bind the tasks to the given numbe
 CPUs for normal jobs; it merely sets `$OMP_NUM_THREADS` so that OpenMP jobs by
 default will use the right number of threads. It is possible to override this
 number by setting `$OMP_NUM_THREADS` in the job script.
+
+The [Sample Batch Script](samplescript.md) page has an example of a normal job.
 
 ### **bigmem** Jobs
 
@@ -63,24 +71,24 @@ access to on the node (8 in this example).
 
 ### **preproc** Jobs
 
-**preproc** is a special QoS set up for preprocessing jobs (set `--qos=preproc` in job script file). A
+**preproc** is a special partition set up for preprocessing jobs (set `--partition=preproc` in job script file). A
 preproc job is allocated 1 node, exclusively. Otherwise, it is the same as a normal
 job. The idea is that preprocessing or similar doesn't need to use many
 nodes. Note that there is a limit of how many preproc jobs a project can
 run at the same time.
 
-To run a preproc job, set `--qos=preproc` in the script file. It is not necessary
+To run a preproc job, set `--partition=preproc` in the script file. It is not necessary
 to specify the number of nodes but if specified, it must be 1.)
 
 Example of a general preproc specification (1 node, 4 tasks with 8 CPUs/task):
 
-    #SBATCH --account=nn9999k --qos=preproc
+    #SBATCH --account=nn9999k --partition=preproc
     #SBATCH --time=1:0:0
     #SBATCH --ntasks-per-node=4 --cpus-per-task=8
 
 Here is a simpler preproc job (one task on one node):
 
-    #SBATCH --account=nn9999k --qos=preproc
+    #SBATCH --account=nn9999k --partition=preproc
     #SBATCH --time=1:0:0
 
 ## Node Information  {#nodeinfo}
@@ -94,3 +102,21 @@ There are a few commands for getting information about nodes:
 
 `sinfo` has a lot of options for selecting output fields; see `man sinfo` for
 details.
+
+## Job priority
+
+The priority setup has been designed to be predictable and easy to
+understand, and to try and maximize the utilisation of the cluster.
+
+-   Principle: *Time-to-reservation*
+-   Priority increases 1 point/minute
+-   When priority is >= 20,000, job gets a reservation
+-   **Devel** jobs start with 19,990, so reservation in 10 min
+-   **Normal** jobs start with 19,940, so reservation in 60 min
+-   **Normal unpri** jobs start with 19,400, so reservation in 10 hrs
+-   **Optimist** jobs start with 1, ends at 10,080, so never reservation
+
+The idea is that once a job has been in the queue long enough to get a
+reservation, no other job should delay it. But before it gets a reservation,
+the queue system backfiller is free to start any other job that can start now,
+even if that will delay the job.

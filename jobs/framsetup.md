@@ -8,12 +8,22 @@ The [Job Scripts](jobscripts.md) page has more information about creating job sc
 
 ## The General Setup
 
-Projects are administered and allocated resources based on the following:
-1. **Partitions**: `normal`, `bigmem`, `accel` (later), `optimist`
-2. **Account** "nn9999k" per project, with CPU hour quota. "nn9999x" are *optimist* jobs, with a **QoS** `optimist`
-and separate CPU hour quotas.
-3. **QoS** (Quality of Service). QoSes are administered to `normal`, `bigmem`
+Jobs are administered and allocated resources based on the following:
+1. **Partitions** - logical groupings of nodes that can be thought of as queues.  `normal`, `bigmem`, `accel` (later), `optimist` partitions.
+2. **QoS** (Quality of Service). QoSes are administered to `normal`, `bigmem`
     and `accel` partitions. Special QoSes are `devel`, `preproc`.
+3. **Account** "nn9999k" per project, with CPU hour quota. "nn9999x" are *optimist* jobs, with a **QoS** `optimist`
+and separate CPU hour quotas.
+
+
+For an overview of the Slurm concepts, Slurm has an excellent beginners guide: [Quick Start](https://slurm.schedmd.com/quickstart.html).
+
+## Job Types
+Slurm accepts options to decide how to run applications. For example, setting the `--partition` option tells Slurm on which partition the job runs.
+Mostly, the types correspond to the partition types, but other options give Slurm an idea about the resources applications need.
+
+For information about setting the options, visit the [Job Types](jobtypes.md) page.
+
 
 ## Account information
 
@@ -41,6 +51,45 @@ A sample output might be:
 
 **Not implemented yet:** Total cpu usage per project: `qsumm`
 
+## Project Environment {#projenvironment}
+
+Jobs have access to storage for storing temporary files and error output.
+
+#### Work Directory
+
+All jobs get a scratch area `$SCRATCH` that is created for the job and deleted
+afterwards.
+
+This is especially important if the job uses a lot of files, or does much random access on the files (repeatedly read and write to different places of the files).
+
+There are several reasons for using $SCRATCH:
+
+* $SCRATCH is on a faster file system than user home directories.
+* There is less risk of interfering with running jobs by accidentally modifying or deleting the jobs' input or output files.
+* Temporary files are automatically cleaned up, because the scratch directory is removed when the job finishes.
+* It avoids taking unneeded backups of temporary and partial files, because $SCRATCH is not backed up.
+
+The directory where you ran sbatch is stored in the environment variable `$SLURM_SUBMIT_DIR`.
+The $SCRATCH directory is removed upon job exit (after copying back chkfiled files).
+
+#### Prolog and Epilog
+
+Slurm has several *Prolog* and *Epilog* programs that perform setup and cleanup
+tasks, when a job or job step is run. On Fram, the Prolog and Epilog programs handle
+the environment variables and cleanup of temporary files.
+
+* Prolog sets environment variables like `$SCRATCH`, `$OMP_NUM_THREADS`
+* Prolog creates `$SCRATCH` (`/cluster/work/jobs/<jobid>`), deleted later by Epilog
+* Epilog deletes private `/tmp` and `/var/tmp`
+* Epilog copies files marked with `copyback` *file* back to submit directory
+* Epilog prints usage statistics in the job stdout file
+* Epilog run commands registered with `cleanup <*command*>`
+
+You can also use the command `cleanup` instead. It is used to specify commands to run when your job exits (before the $SCRATCH directory is removed).
+For instance:
+
+cleanup "cp $SCRATCH/outputfile /some/other/directory/newName"
+
 ## Job priority
 
 The priority setup has been designed to be predictable and easy to
@@ -58,29 +107,3 @@ The idea is that once a job has been in the queue long enough to get a
 reservation, no other job should delay it. But before it gets a reservation,
 the queue system backfiller is free to start any other job that can start now,
 even if that will delay the job.
-
-## Quality of Service (QoS)
-
-A job's quality of service sets the partitions and different allocated resources to ensure efficient use of the machines.
-For information about how to set the quality of service, visit the [Quality of Service](qos.md) page.
-
-## Project Environment {#projenvironment}
-
--   Job gets private `/tmp` and `/var/tmp`, deleted by job epilog
--   Job prolog creates `$SCRATCH` (`/cluster/work/jobs/<jobid>`), deleted by epilog
--   Files marked with `copyback` *file* get copied back to submit directory by epilog
--   Commands registered with `cleanup` *command* get run by epilog
--   Prolog sets environment variables like `$SCRATCH`, `$OMP_NUM_THREADS`
--   Epilog prints usage statistics in the job stdout file
-
-All jobs get a scratch area `$SCRATCH` that is created for the job and deleted
-afterwards. To ensure that output files are copied back to the submit
-directory, *even if the job crashes*, one should use the `copyback` command
-*prior* to the main computation.
-
-Alternatively, one can use the personal scratch area,
-`/cluster/work/users/$USER`, where files will not be deleted after the job
-finishes, but they *will be deleted* after 42 days. Note that
-there is **no backup** on `/cluster/work/users/$USER` (or `$SCRATCH` directory).
-
-For more information about storage options, click on the articles under the **Files and Storage** section on the menu to the left.
