@@ -68,9 +68,17 @@ There are several ways of holding a job:
 
 To release the job, use `scontrol release`:
 
-	scontrol release <job_id>
+    scontrol release <job_id>
 
 ## Splitting A Job into Tasks (Array Jobs)
+
+***FIXME: This section needs rewrite:*** `arrayrun` is a local hack
+implemented on Abel, from the time when Slurm didn't have array jobs. Now it
+does, and so `arrayrun` has not been installed on Fram.  (The only reason it
+has not been removed on Abel is for backward compatibility.) Use `sbatch
+--array from-to jobscript.sm` (or `-a`).  This submits N copies of
+`jobscript.sm`, each getting their own value of `$SLURM_ARRAY_TASK_ID`.  See
+`man sbatch` for details.
 
 To run many instances of the same job, use the __arrayrun__ command. This is useful if you have a lot of data-sets which you want to process in the same way with the same job-script. arrayrun works very similarly to mpirun:
 
