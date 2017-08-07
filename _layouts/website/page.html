@@ -7,9 +7,17 @@
 
 {% block body %}
     <div class="navbar-brand">
-        <a class="logo" href="https://www.sigma2.no">
+        <a class="logo" href="/">
             <img src="{{ "images/UNINETT_Sigma2_logo_H.png"|resolveAsset }}" alt="UNINETT Sigma2">
         </a>
+        <div class="header-menu">
+            <a class="doc header-menu-item" href="/">
+                Documentation
+            </a>
+            <a class="home header-menu-item" href="https://www.sigma2.no">
+                Sigma2
+            </a>
+        </div>
         <div id="book-search-input" role="search">
             <input type="text" placeholder="{{ 'SEARCH_PLACEHOLDER'|t }}" />
         </div>

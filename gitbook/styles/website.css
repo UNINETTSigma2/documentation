@@ -8,7 +8,7 @@ a[href^="https://"]:not([href*="sigma2.no"]):after{
 }
 
 .navbar-brand {
-    max-height: 137px;
+    max-height: 70px;
     border: 10px;
     background-color: white;
     padding: 15px;
@@ -23,10 +23,27 @@ a[href^="https://"]:not([href*="sigma2.no"]):after{
 }
 
 .logo {
-    height: 100%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    -webkit-transform: translateY(-75%);
+    -ms-transform: translateY(-75%);
+    transform: translateY(-75%);
+}
+
+.header-menu {
+    display: inline-block;
+    width: 20%;
+    text-align: left;
+    vertical-align: 75%;
+    padding-left: 20px;
+}
+
+.header-menu-item{
+    display: inline-block;
+    text-align: center;
+    padding: 0 10px 0 10px !important;
+    margin: 0px !important;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:20px;
+    color:#7e888b;background:0 0;
 }
 
 .down {
