@@ -54,7 +54,7 @@ The machines may have different module names for the same compiler toolchain or 
 used in Fram.
 
 * `intel` - loads the compiler and the MPI toolchain. Previously, a separate MPI or MPT module needed to be loaded.
-* `ÒpenMPI` - loads the OpenMPI toolchain including the Intel compiler.
+* `OpenMPI` - loads the OpenMPI toolchain including the Intel compiler.
 
 ## MPI Tasks
 
