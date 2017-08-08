@@ -22,12 +22,6 @@ a[href^="https://"]:not([href*="sigma2.no"]):after{
     height: 39px;
 }
 
-.logo {
-    -webkit-transform: translateY(-75%);
-    -ms-transform: translateY(-75%);
-    transform: translateY(-75%);
-}
-
 .header-menu {
     display: inline-block;
     width: 20%;
@@ -42,7 +36,7 @@ a[href^="https://"]:not([href*="sigma2.no"]):after{
     padding: 0 10px 0 10px !important;
     margin: 0px !important;
     font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size:20px;
+    font-size:18px;
     color:#7e888b;background:0 0;
 }
 
@@ -76,7 +70,7 @@ a[href^="https://"]:not([href*="sigma2.no"]):after{
     display: inline-block;
     width: 15%;
     position: absolute;
-    right: 10px;
+    right: 20px;
     top: 20px;
     text-align: right;
     margin: 0px !important;
