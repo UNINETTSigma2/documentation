@@ -1,8 +1,10 @@
 # Porting Batch Scripts from PBS/TORQUE
 
-It is quite simple to convert PBS/TORQUE script files to Slurm. Most of the commands
-have a direct equivalent. The application code such as compiling and copying of files
+Converting a PBS/TORQUE script files to Slurm is simple because most of the commands
+have direct equivalents in Slurm. The shell commands, variables, and some of the module names
+need to be changed but the application code such as compiling and copying of files
 can remain the same.
+
 This page lists some ways to convert batch scripts from PBS/TORQUE to Slurm.
 
 ## Shell Commands
@@ -45,3 +47,19 @@ to <*sbatch*.
 | Standard Error File |  	-e <*file_name*> |  	--error=<*file_name*> OR -e <*file_name*> |
 | Combine stdout/stderr |  	-j oe (both to stdout) |  	(Default if you don’t specify --error) |
 | Delay Job Start |  	-a <*time*> |  	--begin=<*time*> |
+
+## Module Names
+
+The machines may have different module names for the same compiler toolchain or different version number. Check the latest [Installed Software](../development/which_software_is_installed.md) page to see the module name and version. Below are some common module names that are
+used in Fram.
+
+* `intel` - loads the compiler and the MPI toolchain. Previously, a separate MPI or MPT module needed to be loaded.
+* `ÒpenMPI` - loads the OpenMPI toolchain including the Intel compiler.
+
+## MPI Tasks
+
+On Fram, MPI tasks are run using Slurm's srun command. When porting to Fram, change the command that executes the application.
+
+| Action     | Other HPC Machines     | Fram     |
+| :------------- | :------------- | :------------- |
+| Run MPI job |  	mpirun <*application*> or mpiexec <*application*> |  	srun <*application*> |
