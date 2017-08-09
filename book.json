@@ -2,7 +2,8 @@
     "plugins": [
         "-sharing",
         "-fontsettings",
-	"theme-default",
+	    "theme-default",
         "toggle-chapters"
-    ]
+    ],
+    "title": "Fram Documentation | Sigma2"
 }
