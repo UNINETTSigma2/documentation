@@ -3,3 +3,6 @@ These plugins are modified to accommodate custom classes and scripts
 
 to use:
 -copy the plugins to node_modules
+
+special notes:
+-plugins/gitbook-plugin-theme-default/_assets/website/images/favicon.ico is from sigma2.no
