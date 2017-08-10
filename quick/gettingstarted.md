@@ -14,9 +14,7 @@ Logging into the machine involves the use of Secure Shell (SSH) in a terminal.
 SSH login is available natively to Linux or Mac OSX (or any UNIX-based systems).
 On Windows machines an SSH client is needed, for example, [PuTTY](http://putty.org).
 
-```
-ssh <username>@<machinename>
-```
+    ssh <username>@<machinename>
 
 Replace _<username>_ with your registered username and _<machinename>_ with the specific machine name.
 
@@ -40,17 +38,15 @@ To copy files from your machine to the HPC machines, use SSH File Transfer Proto
 
 For example, to copy projectfiles.tar.gz to the home directory of myusername to Fram, type:
 
-```
-scp projectfiles.tar.gz myusername@fram.sigma2.no:
-```
+    scp projectfiles.tar.gz myusername@fram.sigma2.no:
+
+The [Transferring Files](../storage/file-transfering.md) page has more information about transferring files to Fram.
 
 ###Modules
 
 Modules enable applications to run different environment configurations. For example, an application may run with either the Intel compiler or the GNU compiler by loading different modules. The module command is for loading or listing available modules.
 
-```
-module [options] [module name]
-```
+    module [options] [module name]
 
 To view the full list of options, enter man module in the command line. Here is a brief list of common module options:
 
@@ -62,24 +58,16 @@ To view the full list of options, enter man module in the command line. Here is 
 
 For example, to load the Intel toolchain on Fram, enter:
 
-```
-module load intel/2017a
-```
+    module load intel/2017a
 
 
 ##Processes as Jobs
 
 The HPC machines provide compute nodes for executing applications. To ensure fair access to projects and to take advantage of compute node performance, the HPC machines use a queue system to delegate the compute nodes to a project. The HPC machines run applications as jobs in the queuing system which schedules the tasks and process to run on compute nodes. Abel, Stallo, and Fram use Simple Linux Utility for Resource Management (Slurm).
 
-To submit a job, use the _sbatch_ command followed by the batch script.
+How to compile and run jobs are placed in batch script files, which is a text file containing commands and sbatch options.
+All batch scripts must contain the following sbatch options:
 
-```
-sbatch <scriptfile>
-```
-
-All batch scripts must contain the following sbatch commands:
-
-    ```
     #Project name as seen in the queue
     #SBATCH --account=<project_name>
 
@@ -88,15 +76,22 @@ All batch scripts must contain the following sbatch commands:
 
     #Memory usage per core
     #SBATCH --mem-per-cpu=<size_megabytes>
-    ```
+
+To submit a job, use the _sbatch_ command followed by the batch script's name.
+
+    sbatch <scriptfile>
+
+These pages are about creating batch scripts and how to manage them in the queue system.
+* [Job Scripts](../jobs/jobscripts.md)
+* [Managing Jobs](../jobs/managing_jobs.md)
+* [Sample Batch Script](../jobs/samplescript.md)
+* [Porting from PBS/TORQUE](../jobs/porting.md)
 
 ##Account information
 
 Information on available CPU-hours in your accounts:
 
-```
-$ cost
-```
+    $ cost
 
 ##More Information
 
