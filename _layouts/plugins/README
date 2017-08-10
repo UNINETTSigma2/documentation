@@ -5,4 +5,5 @@ to use:
 -copy the plugins to node_modules
 
 special notes:
--plugins/gitbook-plugin-theme-default/_assets/website/images/favicon.ico is from sigma2.no
+-gitbook-plugin-theme-default/_assets/website/images/favicon.ico is from sigma2.no
+-gitbook-plugin-theme-default/_assets/website/images/apple-touch-icon-precomposed-152.png is from sigma2.no
