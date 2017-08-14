@@ -1,41 +1,48 @@
-#HPC Software resources
+#HPC Resources
+
+The current Norwegian academic HPC infrastructure consists of four systems, located in Tromsø ([Stallo](http://hpc-uit.readthedocs.io/en/latest/help/faq.html), Fram), Trondheim ([Vilje](https://www.hpc.ntnu.no/display/hpc/User+Guide)), Bergen ([Hexagon](https://docs.hpc.uib.no/wiki/Job_execution_(Hexagon))) and Oslo (Abel).
+
+Each of the facilities consists of a compute resource (a number of compute nodes each with a number of processors and internal shared-memory, plus an interconnect that connects the nodes), a central storage resource that is accessible by all the nodes, and a secondary storage resource for back-up (and in few cases also for archiving). All facilities use variants of the UNIX operating system (Linux, AIX, etc.).
+
+## Comparison between current hardware
+
+The table below attempts to compare the available systems with respect to the type of applications they are suited for.
+
+|Resource |	Job types |	Memory |	Cores/Node |
+| :------------- | :------------- | :------------- | :------------- |
+| Abel |	P   S   L |	60/1024 |	16/32 |
+| Stallo |	P   S   L |	32/128 |	16/20 |
+| Hexagon |	P&ensp;&ensp;&ensp;L |	32 |	32 |
+| Vilje |	P&ensp;&ensp;&ensp;L |	32 |	16 |
+| Fram |	P&ensp;&ensp;&ensp;L |	64/512 |	32 |
+
+**P** means the resource supports parallel jobs, **S** means the system supports serial jobs, and **L** means that large I/O jobs are supported.
+The **Memory** column specifies physical node memory in Gigabytes (GiB). Abel and Stallo provides a few large memory nodes.
+The **Cores** column is the number of physical cores in each node.
+
+The resource allocation committee (RFK) manages a part of the total cores on the resources for national allocations. The national share is 8723 cores on Abel, 11736 cores on Hexagon, 13796 cores on Stallo, 12901 cores on Vilje and approximately 31600 cores on Fram.
 
 
-### Fram
 
-Named after the Norwegian arctic expedition ship [Fram](http://en.wikipedia.org/wiki/Fram),
-the new Linux cluster hosted at [University of Tromsø](https://uit.no/startsida)
-(UiT) is a shared resource for research computing capable of 1.1 PFLOP/s
-theoretical peak performance. It will enter production during the 2017.1
-computing period (starting 1 April 2017).
+The following considerations should be kept in mind when selecting a system to execute applications:
 
-Fram is a distributed memory system which consists of 1004 dual socket and 2
-quad socket nodes, interconnected with a high-bandwidth low-latency Infiniband
-network. The interconnect network is organized in an island topology, with 9216
-cores in each island. Each standard compute node has two 16-core Intel Broadwell
-chips (2.1 GHz) and 64 GiB memory. In addition, 8 larger memory nodes with 512
-GiB RAM and 2 huge memory quad socket nodes with 6 TiB of memory is provided.
-Additional GPU nodes are planned provided during first half of 2017. The total
-number of compute cores is 32256.
+* Abel and Stallo are throughput systems. These systems can be used for sequential (single-threaded) as well as parallel applications.
 
-| Details     | Fram     |
-| :------------- | :------------- |
-| System     |Lenovo NeXtScale nx360  |
-| Number of Cores     |	32256  |
-| Number of nodes     |	1006  |
-| CPU type     |	Intel E5-2683v4 2.1 GHz <br>Intel E7-4850v4 2.1 GHz (hugemem)  |
-| Max Floating point performance, double     |	1.1 Petaflop/s  |
-| Total memory     |	78 TiB  |
-| Total disc capacity     |	2.5 PB  |
+* Hexagon, Vilje and Fram are systems for large scale parallel (distributed-memory) applications. Applications that use less than 128 cores (or 32 nodes) are discouraged. Requests for access to execute applications that use fewer cores are often rejected or moved to other systems.
+
+* Abel, Stallo and Fram runs CentOS Linux distributions as operating system, while Hexagon and Vilje runs SUSE Linux Enterprise. In case you need to install a specific software package, please make sure that you know for which environments the software is supported, before choosing a system.
 
 
-The following give new users information about running applications on Fram:
+## Developing HPC Applications
+
+The following give new users information about running applications on the HPC machines:
 
 * [Getting Started](quick/gettingstarted.md)
 * [Porting from PBS/TORQUE to Slurm](jobs/porting.md)
+* [Fram Setup](quick/fram.md)
+* [Abel Documentation](http://www.uio.no/english/services/it/research/hpc/abel/)
+* [Stallo Documentation](https://hpc-uit.readthedocs.io)
 
-To find more about specific information, visit the individual pages from the
-menu on the left.
 
 ### About UNINETT Sigma2
 

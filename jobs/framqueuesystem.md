@@ -1,4 +1,4 @@
-# Fram Setup
+# Queue System on Fram
 
 The HPC machines use Slurm as its queue system. Slurm runs **jobs** from the
 **queue**. The jobs contain steps and other set up information as defined

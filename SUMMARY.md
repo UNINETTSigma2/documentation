@@ -1,12 +1,15 @@
 
-## HPC Software Resources
+## Quick Information
 * [Introduction](README.md)
 * [Getting Started](quick/gettingstarted.md)
-* [Abel Documentation](http://www.uio.no/english/services/it/research/hpc/abel/)
-* [Stallo Documentation](https://hpc-uit.readthedocs.io)
 * [License Information](quick/license.md)
 * [Contact](support/contact.md)
     * [Writing Support Requests](support/how_to_write_good_support_requests.md)
+
+## HPC Machines
+* [Fram](quick/fram.md)
+* [Abel Documentation](http://www.uio.no/english/services/it/research/hpc/abel/)
+* [Stallo Documentation](https://hpc-uit.readthedocs.io)
 
 ## Code Development
 * [Installed Software](development/which_software_is_installed.md)
@@ -30,7 +33,7 @@
 
 ## Jobs
 
-* [Fram Setup](jobs/framsetup.md)
+* [Queue System on Fram](jobs/framqueuesystem.md)
 * [Job Types](jobs/jobtypes.md)
 * [Job Scripts](jobs/jobscripts.md)
     * [Sample Batch Script](jobs/samplescript.md)
@@ -39,8 +42,9 @@
 * [Best Practices](jobs/bestpractices.md)
 
 ## Files and Storage
+* [Storage Services](storage/storageservices.md)
 * [Transferring files](storage/file-transfering.md)
-* [Available file systems](storage/file-systems.md)
+* [File Systems on Fram](storage/file-systems.md)
 * [Backup](storage/backup.md)
 * [Performance tips](storage/performance-tips.md)
 * [Storage policies](storage/storage-policies.md)
