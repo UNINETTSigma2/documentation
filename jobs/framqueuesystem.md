@@ -72,6 +72,8 @@ There are several reasons for using $SCRATCH:
 The directory where you ran sbatch is stored in the environment variable `$SLURM_SUBMIT_DIR`.
 The $SCRATCH directory is removed upon job exit (after copying back chkfiled files).
 
+For more information about storing files on Fram, visit [Storage Systems on Fram](../storage/storagesystems.md).
+
 #### Prolog and Epilog
 
 Slurm has several *Prolog* and *Epilog* programs that perform setup and cleanup

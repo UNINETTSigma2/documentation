@@ -44,6 +44,6 @@
 ## Files and Storage
 * [Storage Services](storage/storageservices.md)
 * [Transferring files](storage/file-transfering.md)
-* [File Systems on Fram](storage/file-systems.md)
+* [Storage Systems on Fram](storage/storagesystems.md)
 * [Backup](storage/backup.md)
 * [Performance tips](storage/performance-tips.md)
