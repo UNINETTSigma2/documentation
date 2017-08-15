@@ -24,6 +24,8 @@ The machine names are:
 * stallo.uit.no - Stallo
 * fram.sigma2.no - Fram
 
+For the storage services, the login nodes are listed at [Storage Services](../storage/storageservices.md).
+
 ##Development environment
 
 Abel, Stallo and Fram runs CentOS Linux distributions as operating system. The machines can run C/C++ or Fortran OpenMP and MPI applications, and depending on the machine, various open-source and third party applications. The Programming Environment page has more information about third-party applications.

@@ -9,6 +9,7 @@ The table below contains a limited overview of the current storage hardware reso
 | norstore-osl-tape | 	Serves project area and data archive | 	Spectra Logic T-finity | 	TS1140 tape | 	4.0 PiB | 	command line and integrated |
 | norstore-tos | 	Serves project area and data archive | 	Hitachi Unified Storage System | 	HNAS disk | 	0.5 PiB | 	command line and integrated |
 
+For more information about the system overview of the resources, visit the [Astrastore - teknisk systembeskrivelse](http://www.uio.no/tjenester/it/hosting/storage/mer-om/astrastore-teknisk.html) page.
 # Getting Access
 
 To gain access to the storage services, a formal application is needed. The process
