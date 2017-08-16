@@ -43,6 +43,7 @@
 
 ## Files and Storage
 * [Storage Services](storage/storageservices.md)
+* [NIRD](storage/nird.md)
 * [Transferring files](storage/file-transfering.md)
 * [Storage Systems on Fram](storage/storagesystems.md)
 * [Backup](storage/backup.md)
