@@ -1,6 +1,6 @@
 #HPC Resources
 
-The current Norwegian academic HPC infrastructure consists of four systems, located in Tromsø ([Stallo](http://hpc-uit.readthedocs.io/en/latest/help/faq.html), Fram), Trondheim ([Vilje](https://www.hpc.ntnu.no/display/hpc/User+Guide)), Bergen ([Hexagon](https://docs.hpc.uib.no/wiki/Job_execution_(Hexagon))) and Oslo (Abel).
+The current Norwegian academic HPC infrastructure consists of four systems, located in Tromsø ([Stallo](http://hpc-uit.readthedocs.io/en/latest/help/faq.html), Fram), and Oslo (Abel).
 
 Each of the facilities consists of a compute resource (a number of compute nodes each with a number of processors and internal shared-memory, plus an interconnect that connects the nodes), a central storage resource that is accessible by all the nodes, and a secondary storage resource for back-up (and in few cases also for archiving). All facilities use variants of the UNIX operating system (Linux, AIX, etc.).
 
@@ -12,15 +12,13 @@ The table below attempts to compare the available systems with respect to the ty
 | :------------- | :------------- | :------------- | :------------- |
 | Abel |	P   S   L |	60/1024 |	16/32 |
 | Stallo |	P   S   L |	32/128 |	16/20 |
-| Hexagon |	P&ensp;&ensp;&ensp;L |	32 |	32 |
-| Vilje |	P&ensp;&ensp;&ensp;L |	32 |	16 |
 | Fram |	P&ensp;&ensp;&ensp;L |	64/512 |	32 |
 
 **P** means the resource supports parallel jobs, **S** means the system supports serial jobs, and **L** means that large I/O jobs are supported.
 The **Memory** column specifies physical node memory in Gigabytes (GiB). Abel and Stallo provides a few large memory nodes.
 The **Cores** column is the number of physical cores in each node.
 
-The resource allocation committee (RFK) manages a part of the total cores on the resources for national allocations. The national share is 8723 cores on Abel, 11736 cores on Hexagon, 13796 cores on Stallo, 12901 cores on Vilje and approximately 31600 cores on Fram.
+The resource allocation committee (RFK) manages a part of the total cores on the resources for national allocations. The national share is 8723 cores on Abel, 13796 cores on Stallo, and approximately 31600 cores on Fram.
 
 
 
@@ -28,9 +26,9 @@ The following considerations should be kept in mind when selecting a system to e
 
 * Abel and Stallo are throughput systems. These systems can be used for sequential (single-threaded) as well as parallel applications.
 
-* Hexagon, Vilje and Fram are systems for large scale parallel (distributed-memory) applications. Applications that use less than 128 cores (or 32 nodes) are discouraged. Requests for access to execute applications that use fewer cores are often rejected or moved to other systems.
+* Fram is a system for large scale parallel (distributed-memory) applications. Applications that use less than 128 cores (or 32 nodes) are discouraged. Requests for access to execute applications that use fewer cores are often rejected or moved to other systems.
 
-* Abel, Stallo and Fram runs CentOS Linux distributions as operating system, while Hexagon and Vilje runs SUSE Linux Enterprise. In case you need to install a specific software package, please make sure that you know for which environments the software is supported, before choosing a system.
+* Abel, Stallo and Fram runs CentOS Linux distributions. In case you need to install a specific software package, please make sure that you know for which environments the software is supported, before choosing a system.
 
 
 ## Developing HPC Applications
