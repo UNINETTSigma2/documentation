@@ -10,6 +10,7 @@
 * [Fram](quick/fram.md)
 * [Abel Documentation](http://www.uio.no/english/services/it/research/hpc/abel/)
 * [Stallo Documentation](https://hpc-uit.readthedocs.io)
+* [Live Status](https://www.sigma2.no/hardware/status)
 
 ## Code Development
 * [Installed Software](development/which_software_is_installed.md)
