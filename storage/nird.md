@@ -9,15 +9,14 @@ resources, NIRD forms the backbone of the national e-infrastructure for research
 and education in Norway, connecting data and computing resources for efficient
 provisioning of services.
 
-The national e-infrastructure is adopting a data-centric architecture and the
-new storage system from SGI/DDN marks the beginning of a new era. The demands
-for performance are significantly increased for NIRD, compared to its predecessor
-Norstore, due to the fact the new HPC systems and future on-demand services such
-as data analytics and visualization now will be directly connected to the
-storage infrastructure.
+The NIRD storage system consists of SFA14K controllers, 10TB NL-SAS drives with
+a total capacity of 12PiB in addition to a centralized file system
+(IBM GridScaler) supporting multiple file, block and object protocols. Sigma2
+will provide the storage infrastructure with resources for the next 4 – 5 years
+through multiple upgrades and is expected to triple in capacity during its life-time.
 
 There are two main uses for NIRD and visit the following pages for more information.
 1. [Research Data](https://www.sigma2.no/content/data-storage)
 2. [Storage of scientific project data](https://www.sigma2.no/content/storage-scientific-project-data)
 
-Fram has a NIRD directory `/nird` directory that projects can use. For more information, visit the [Storage Systems on Fram](storagesystems.md) page.
+Fram has a NIRD directory `/nird` that projects can use. For more information, visit the [Storage Systems on Fram](storagesystems.md) page.

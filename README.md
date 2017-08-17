@@ -20,8 +20,6 @@ The **Cores** column is the number of physical cores in each node.
 
 The resource allocation committee (RFK) manages a part of the total cores on the resources for national allocations. The national share is 8723 cores on Abel, 13796 cores on Stallo, and approximately 31600 cores on Fram.
 
-
-
 The following considerations should be kept in mind when selecting a system to execute applications:
 
 * Abel and Stallo are throughput systems. These systems can be used for sequential (single-threaded) as well as parallel applications.
@@ -41,6 +39,11 @@ The following give new users information about running applications on the HPC m
 * [Abel Documentation](http://www.uio.no/english/services/it/research/hpc/abel/)
 * [Stallo Documentation](https://hpc-uit.readthedocs.io)
 
+
+## NIRD Storage
+
+Fram uses the NIRD storage system for storing archives for other research data. NOTUR projects have access
+to this geo-replicated storage through various methods. Visit the [NIRD](storage/nird.md) page for more information.
 
 ### About UNINETT Sigma2
 
