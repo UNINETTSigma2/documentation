@@ -51,30 +51,22 @@ A sample output might be:
 
 **Not implemented yet:** Total cpu usage per project: `qsumm`
 
-## Project Environment {#projenvironment}
+## Project Environment
 
-Jobs have access to storage for storing temporary files and error output.
+Jobs have access to temporary storage, backedup storage, environment variables, and
+software modules (read [Installed Software](../development/which_software_is_installed.md)) for use during execution.
 
 #### Work Directory
 
-All jobs get a scratch area `$SCRATCH` that is created for the job and deleted
-afterwards.
+All jobs can use a work area (`$SCRATCH` and `$USERWORK` variables) that is created for the job and deleted
+afterwards. The work area is mounted on a fast file system that can handle large amounts of input and output.
 
-This is especially important if the job uses a lot of files, or does much random access on the files (repeatedly read and write to different places of the files).
-
-There are several reasons for using $SCRATCH:
-
-* $SCRATCH is on a faster file system than user home directories.
-* There is less risk of interfering with running jobs by accidentally modifying or deleting the jobs' input or output files.
-* Temporary files are automatically cleaned up, because the scratch directory is removed when the job finishes.
-* It avoids taking unneeded backups of temporary and partial files, because $SCRATCH is not backed up.
-
-The directory where you ran sbatch is stored in the environment variable `$SLURM_SUBMIT_DIR`.
-The $SCRATCH directory is removed upon job exit (after copying back chkfiled files).
+The directory where you ran sbatch is stored in the environment variable `$SLURM_SUBMIT_DIR`. This variable is suitable for
+copying files relative to the current directory.
 
 For more information about storing files on Fram, visit [Storage Systems on Fram](../storage/storagesystems.md).
 
-#### Prolog and Epilog
+#### Prolog and Epilog {#prolog_epilog}
 
 Slurm has several *Prolog* and *Epilog* programs that perform setup and cleanup
 tasks, when a job or job step is run. On Fram, the Prolog and Epilog programs handle

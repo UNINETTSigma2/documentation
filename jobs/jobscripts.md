@@ -92,6 +92,6 @@ In addition, these are additional environment variables set in the HPC machines.
 
 | Variable | Description     |
 | :------------- | :------------- |
-| `SCRATCH`       | Scratch directory for each job. Read more at [Work Area](../storage/storagesystems.md#workarea)|
+| `SCRATCH`       | Scratch directory for each job. Read more at [Work Area](../storage/storagesystems.md)|
 | `USERWORK`      | Temporary work area (`/cluster/work/users/$USER`). Used for sharing data across jobs. Read more at [Work Area](../storage/storagesystems.md#workarea)
 | `OMP_NUM_THREADS`       | The value specified in `--cpus-per-task`.Read more at [Quality of Service](qos.md).   |

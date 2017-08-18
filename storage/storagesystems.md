@@ -1,15 +1,16 @@
-# Storage Systems on Fram
+# Work Area and Storage on Fram
 
-Projects and users receive different file systems to store files and other data.
+Projects and users receive different file systems to store files and other data. Some areas are used for temporary files during job execution while others are
+for storing project data.
 
-The following table summarizes the different storage areas. Read the following sections for specific details.
+The following table summarizes the different temporary and project storage options. Read the following sections for specific details.
 
 | Directory     | Purpose     | Quota | Backup |
 | :------------- | :------------- | :------------- | :------------- |
-| /cluster/work/jobs/$SLURM_JOB_ID       | Job data. Set to `$SCRATCH`       | N/A**       | No       |
-| /cluster/work/users/$USER       | Staging and cross-job data. Set to `$USERWORK`       | N/A**       | No       |
-| /nird/projects/<project_name>       | Project data       | 10TB       | Yes       |
-| /nird/home/<username>       | User data. Set to `$HOME`       | 20TB       | Yes       |
+| `/cluster/work/jobs/$SLURM_JOB_ID`       | Job data. Set to `$SCRATCH`       | N/A**       | No       |
+| `/cluster/work/users/$USER`      | Staging and cross-job data. Set to `$USERWORK`       | N/A**       | No       |
+| `/nird/projects/<project_name>`       | Project data       | 10TB       | Yes       |
+| `/nird/home/<username>`       | User data. Set to `$HOME`       | 20TB       | Yes       |
 
 ** $SCRATCH contents are deleted after the job finishes execution and $USERWORK
 content is deleted after a couple of weeks. See the policies about both in the sections below.
@@ -20,13 +21,20 @@ The **/cluster/work** is used as a temporary work area for storing files during 
 is a high-performance parallel - [Lustre](http://lustre.org) -
 file system with a total storage space of 2.3PB. The work area is not backed up. See [Backup](backup.md)
 
-The work area contains two subdirectories: *jobs* and *users*.
+There are several reasons why the work areas are suitable for jobs:
+* Work areas are on a faster file system than user home directories.
+* There is less risk of interference from other jobs because every job ID has its own scratch directory
+* Because the scratch directory is removed when the job finishes, the scripts do not need to clean up temporary files.
+* It avoids taking unneeded backups of temporary and partial files, because $SCRATCH is not backed up.
+More information about the automatic cleanup is found at the [Prolog and Epilog](../jobs/framqueuesystem.md##prolog_epilog).
 
- **1. `/cluster/work/jobs/$SLURM_JOB_ID`**
+The work area contains two subdirectories: *jobs* ($SCRATCH) and *users* ($USERWORK).
+
+ **1. `/cluster/work/jobs/$SLURM_JOB_ID`** also known as the **`$SCRATCH`** directory
 
 This area is automatically created when a job starts and deleted when the
 job finishes. There are special commands (e.g., `savefile`) one can use in the job
-script to ensure that files are copied back to the submit directory (where you executed `sbatch`).
+script to ensure that files are copied back to the submit directory `$SLURM_SUBMIT_DIR` (where `sbatch` was run).
 
 **Notes:**
 
@@ -37,7 +45,7 @@ script to ensure that files are copied back to the submit directory (where you e
 **2. `/cluster/work/users/$USER`**
     This directory is meant for staging files that are used by one or more jobs.
     All data after processing must be moved out from this area or deleted after
-    use, otherwise it will be automatically deleted after a while. We highly
+    use, otherwise it will be automatically deleted after a while (see notes below). We highly
     encourage users to keep this area tidy, since both high disk usage
     and automatic deletion process takes away disk performance. The best
     solution is to clean up any unnecessary data after each job.
@@ -46,10 +54,10 @@ script to ensure that files are copied back to the submit directory (where you e
 
 * set to the `$USERWORK` variable
 * file deletion depends on the newest of the *creation-*, *modification-* and *access* time and the total usage of the file system. The oldest files will be deleted first and a weekly scan removes files older than 42 days.
-* when file system usage reaches 70%, files older than 21 days become subject for automatic deletion.
+* when file system usage reaches 70%, files older than 21 days are subject to automatic deletion.
 * it is not backed up. See [Backup](backup.md).
 
-For performance optimizations, please consult [this](performance-tips.md) page.
+For performance optimizations, consult [Performance Tips](performance-tips.md) page.
 
 ## Project Area
 
@@ -59,12 +67,13 @@ mounted to **/nird/projects/<project_name>**.
 The project area is quota controlled and the default project quota for NOTUR projects is
 10TB. The total file system size for projects is 4.5PB.
 
-Geo-replication is set up between Tromsø and Trondheim.
-For backup, snapshots are taken with the following frequency:
-* daily snapshots of the last 7 days and weekly snapshots of the last 5 weeks. See [Backup](backup.md).
+**Notes:**
+* Geo-replication is set up between Tromsø and Trondheim.
+* For backup, snapshots are taken with the following frequency:
+    * daily snapshots of the last 7 days and weekly snapshots of the last 5 weeks. See [Backup](backup.md).
 * the total size of the project area is 4.5PB and the default size for Notur projects is 10TB.
 
-## User area (home directories)
+## User Area ($HOME)
 
 The user area is mounted to **/nird/home/<username>**. This file system is small
 and is **not** suitable for running jobs. A quota is enabled on home directories
