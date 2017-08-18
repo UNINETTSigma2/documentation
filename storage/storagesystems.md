@@ -30,7 +30,7 @@ More information about the automatic cleanup is found at the [Prolog and Epilog]
 
 The work area contains two subdirectories: *jobs* ($SCRATCH) and *users* ($USERWORK).
 
- **1. `/cluster/work/jobs/$SLURM_JOB_ID`** also known as the **`$SCRATCH`** directory
+ #### 1. `/cluster/work/jobs/$SLURM_JOB_ID` ($SCRATCH) Directory
 
 This area is automatically created when a job starts and deleted when the
 job finishes. There are special commands (e.g., `savefile`) one can use in the job
@@ -42,7 +42,8 @@ script to ensure that files are copied back to the submit directory `$SLURM_SUBM
 * it is automatically deleted as soon as the job finishes.  Use `savefile` or `cleanup` in the batch script to
   ensure files are copied back before the directory is deleted.
 
-**2. `/cluster/work/users/$USER`**
+#### 2. `/cluster/work/users/$USER` ($USERWORK) Directory
+
     This directory is meant for staging files that are used by one or more jobs.
     All data after processing must be moved out from this area or deleted after
     use, otherwise it will be automatically deleted after a while (see notes below). We highly
