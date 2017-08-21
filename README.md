@@ -1,4 +1,4 @@
-#HPC Resources
+#HPC Documentation
 
 The current Norwegian academic HPC infrastructure consists of four systems, located in Tromsø ([Stallo](http://hpc-uit.readthedocs.io/en/latest/help/faq.html), Fram), and Oslo (Abel).
 
