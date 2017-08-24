@@ -33,6 +33,6 @@ cd $SCRATCH
 ## Make sure output is copied back after job finishes
 copyback outputfile1 outputfile2
 
-## Run the appliction
+## Run the application
 srun mysoftware
 ```
