@@ -40,7 +40,6 @@
     * [Sample Batch Script](jobs/samplescript.md)
     * [Porting from PBS/TORQUE](jobs/porting.md)
 * [Managing Jobs](jobs/managing_jobs.md)
-* [Best Practices](jobs/bestpractices.md)
 
 ## Files and Storage
 * [Storage Services](storage/storageservices.md)
