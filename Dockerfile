@@ -6,7 +6,7 @@ RUN yum update -y
 RUN yum install -y lighttpd npm
 RUN npm install --global gitbook-cli
 
-ENV GITBOOK_VERSION="3.2.2"
+ENV GITBOOK_VERSION="3.2"
 RUN gitbook fetch ${GITBOOK_VERSION}
 
 COPY . /var/www/gitbook
