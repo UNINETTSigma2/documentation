@@ -1,7 +1,6 @@
 FROM centos:7
 
 RUN yum install -y epel-release
-RUN yum-config-manager --enable cr
 RUN yum update -y
 RUN yum install -y lighttpd npm
 RUN npm install --global gitbook-cli
