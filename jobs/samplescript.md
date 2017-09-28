@@ -34,5 +34,9 @@ cd $SCRATCH
 copyback outputfile1 outputfile2
 
 ## Run the application
-srun mysoftware
+export SLURM_CPU_BIND=none
+mpirun mysoftware
 ```
+
+The actual startup of MPI application differs for different MPI libraries. Since
+this part is crucial for application performance, please read about [how to start MPI jobs on Fram](mpi_jobs.md).

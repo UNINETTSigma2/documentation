@@ -58,8 +58,4 @@ used in Fram.
 
 ## MPI Tasks
 
-On Fram, MPI tasks are run using Slurm's srun command. When porting to Fram, change the command that executes the application.
-
-| Action     | Other HPC Machines     | Fram     |
-| :------------- | :------------- | :------------- |
-| Run MPI job |  	mpirun <*application*> or mpiexec <*application*> |  	srun <*application*> |
+Please read about how to [start MPI applications on Fram](mpi_jobs.md)

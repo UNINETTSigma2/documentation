@@ -88,6 +88,7 @@ These pages are about creating batch scripts and how to manage them in the queue
 * [Managing Jobs](../jobs/managing_jobs.md)
 * [Sample Batch Script](../jobs/samplescript.md)
 * [Porting from PBS/TORQUE](../jobs/porting.md)
+* [Running MPI applications](../jobs/mpi_jobs.md)
 
 ##Account information
 
