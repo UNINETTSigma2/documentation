@@ -63,23 +63,25 @@ For example, to load the Intel toolchain on Fram, enter:
     module load intel/2017a
 
 
-##Processes as Jobs
+##Running Applications
 
-The HPC machines provide compute nodes for executing applications. To ensure fair access to projects and to take advantage of compute node performance, the HPC machines use a queue system to delegate the compute nodes to a project. The HPC machines run applications as jobs in the queuing system which schedules the tasks and process to run on compute nodes. Abel, Stallo, and Fram use Simple Linux Utility for Resource Management (Slurm).
+The HPC machines provide compute nodes for executing applications. To ensure
+fair access to the resources, the HPC machines run applications as _jobs_ in a
+_queue system_, which schedules the tasks and process to run on compute
+nodes. Abel, Stallo, and Fram use the Slurm queue system.
 
-How to compile and run jobs are placed in batch script files, which is a text file containing commands and sbatch options.
-All batch scripts must contain the following sbatch options:
+A job is described by a _batch script_, which is a shell script (a text file)
+with `SBATCH` options to specify the needed resources and commands to perform
+the calculations.  All batch scripts must contain at least the following
+`SBATCH` options:
 
-    #Project name as seen in the queue
+    #Project name
     #SBATCH --account=<project_name>
 
-    #Application running time. The wall clock time helps the scheduler assess priorities and tasks.
+    #Max running time. The wall clock time helps the scheduler assess priorities and tasks.
     #SBATCH --time=<wall_clock_time>
 
-    #Memory usage per core
-    #SBATCH --mem-per-cpu=<size_megabytes>
-
-To submit a job, use the _sbatch_ command followed by the batch script's name.
+To submit a job, use the `sbatch` command followed by the batch script's name:
 
     sbatch <scriptfile>
 
@@ -94,7 +96,7 @@ These pages are about creating batch scripts and how to manage them in the queue
 
 Information on available CPU-hours in your accounts:
 
-    $ cost
+    cost
 
 ##More Information
 
