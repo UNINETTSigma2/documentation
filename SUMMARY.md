@@ -38,6 +38,7 @@
 * [Job Types](jobs/jobtypes.md)
 * [Job Scripts](jobs/jobscripts.md)
     * [Sample Batch Script](jobs/samplescript.md)
+	* [MPI Jobs](jobs/mpi_jobs.md)
     * [Porting from PBS/TORQUE](jobs/porting.md)
 * [Managing Jobs](jobs/managing_jobs.md)
 
