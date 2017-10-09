@@ -28,7 +28,7 @@ number of compute cores is 32256.
 
 The following give new users information about running applications on Fram:
 
-* [Getting Started](quick/gettingstarted.md)
+* [Getting Started](gettingstarted.md)
 * [Porting from PBS/TORQUE to Slurm](../jobs/porting.md)
 
 To find more about specific information, visit the individual pages from the
