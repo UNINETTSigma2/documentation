@@ -32,7 +32,7 @@ binding:
 
 ```
 export SLURM_CPU_BIND=none
-mpirun /path/to/app
+mpirun -bootstrap ssh /path/to/app
 ```
 
 If not done, all MPI ranks will be executed on one CPU core only. This
