@@ -31,7 +31,7 @@ These are some of the main libraries and tools available.
 
 **Library**        | **GCC 6.3.0** | **Intel 17.0.1**
 ---|---|---
-**arpack-ng**      |               | 3.5.0
+**arpack-ng**      | 3.5.0         | 3.5.0
 **Boost**          | 1.63.0        | 1.63.0
 **FFTW**           | 3.3.6         | 3.3.6
 **GDAL**           |               | 2.2.0
