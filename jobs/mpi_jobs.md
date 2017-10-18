@@ -25,19 +25,13 @@ compiled against the two supported MPI environments.
 
 ### `mpirun`
 At this moment, for performance reasons `mpirun` is the preferred way
-to start applicatoins that use Intel MPI. However, due to the fact that
-SLURM and IMPI use conflicting  *process-to-core* binding procedures,
-before one can use `mpirun` it is ***crucial*** to turn off SLURM's
-binding:
+to start applicatoins that use Intel MPI:
 
 ```
-export SLURM_CPU_BIND=none
-mpirun -bootstrap ssh /path/to/app
+mpirun /path/to/app
 ```
 
-If not done, all MPI ranks will be executed on one CPU core only. This
-***has to be done manually*** by the user in the job script, before 
-executing `mpirun`. As a result, `app` is subject to `mpirun`'s
+In the above, `app` is subject to `mpirun`'s
 internal mapping and binding algorithms. Intel's `mpirun` uses default
 binding settings, which can be modified either by [command line
 parameters](https://software.intel.com/en-us/node/589999), or by
@@ -54,7 +48,7 @@ With `srun`, Intel MPI applications have to be started as follows:
 srun --mpi=pmi2 /path/to/app
 ```
 
-`srun` uses SLURM's default binding and mapping algorithms (currently
+Note that you must explicitly specify `--mpi=pmi2`. `srun` uses SLURM's default binding and mapping algorithms (currently
 `--cpu_bind=cores`), [which can be changed](https://slurm.schedmd.com/srun.html) using either command-line
 parameters, or envirronment variables.
 
