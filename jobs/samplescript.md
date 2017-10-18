@@ -34,8 +34,7 @@ cd $SCRATCH
 copyback outputfile1 outputfile2
 
 ## Run the application
-export SLURM_CPU_BIND=none
-mpirun -bootstrap ssh mysoftware
+srun mysoftware
 ```
 
 The actual startup of MPI application differs for different MPI libraries. Since
