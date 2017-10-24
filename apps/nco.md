@@ -14,7 +14,7 @@ available versions. If there are more than one, the default is marked with `*`.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| NCO |4.6.5-foss-2016b|
+| NCO |4.6.6-intel-2017a|
 
 ## License Information
 
