@@ -46,7 +46,7 @@ These are some of the main libraries and tools available.
 **OpenBLAS**       | 0.2.19        | 
 **ParMETIS**       | 4.0.3         | 4.0.3
 **PETSc**          | 3.8.0         | 3.8.0
-**PnetCDF**        |               | 1.8.1
+**PnetCDF**        | 1.8.1         | 1.8.1
 **ScaLAPACK**      | 2.0.2         |
 **UDUNITS**        | 2.2.24        | 2.2.24
 
