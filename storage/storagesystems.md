@@ -10,7 +10,7 @@ The following table summarizes the different temporary and project storage optio
 | `/cluster/work/jobs/$SLURM_JOB_ID`       | Job data. Set to `$SCRATCH`       | N/A**       | No       |
 | `/cluster/work/users/$USER`      | Staging and cross-job data. Set to `$USERWORK`       | N/A**       | No       |
 | `/nird/projects/<project_name>`       | Project data       | 10TB       | Yes       |
-| `/nird/home/<username>`       | User data. Set to `$HOME`       | 20TB       | Yes       |
+| `/nird/home/<username>`       | User data. Set to `$HOME`       | 20GB       | Yes       |
 
 ** $SCRATCH contents are deleted after the job finishes execution and $USERWORK
 content is deleted after a couple of weeks. See the policies about both in the sections below.
