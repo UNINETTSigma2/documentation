@@ -58,6 +58,7 @@ These are some of the main libraries and tools available.
 **git**            | 2.14.2        | 2.14.2
 **NCL**            |               | 6.4.0
 **NCO**            |               | 4.6.6
+**ncview**         |               | 2.1.7
 **Perl**           | 5.24.1        | 5.24.1
 **PROJ**           | 4.9.3         | 4.9.3
 **Python2**        | 2.7.13        | 2.7.13
