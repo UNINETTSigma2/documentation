@@ -15,4 +15,4 @@ available versions. If there are more than one, the default is marked with `*`.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| MATLAB |2016b <br>2017a * <br>|
+| MATLAB |2017a|
