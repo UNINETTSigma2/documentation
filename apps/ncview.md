@@ -15,7 +15,7 @@ available versions. If there are more than one, the default is marked with `*`.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| ncview |2.1.7-intel-2016b|
+| ncview |2.1.7-intel-2017a|
 
 ## License Information
 
