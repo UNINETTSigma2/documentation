@@ -15,7 +15,7 @@ available versions. If there are more than one, the default is marked with `*`.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| PROJ |4.9.2-foss-2016b <br>4.9.2-intel-2016b <br>4.9.2-intel-2017a * <br>|
+| PROJ |4.9.3-foss-2017a <br>4.9.3-intel-2017a|
 
 ## License Information
 
