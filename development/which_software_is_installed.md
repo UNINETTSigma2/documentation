@@ -37,15 +37,15 @@ These are some of the main libraries and tools available.
 **GDAL**           |               | 2.2.0
 **GSL**            | 2.3           | 2.3
 **HDF5-1.8**       | 1.8.18        | 1.8.18
-**HDF5-1.10**      |               | 1.10.1
+**HDF5-1.10**      | 1.10.1        | 1.10.1
 **Hypre**          | 2.11.2        | 2.11.2
 **METIS**          | 5.1.0         | 5.1.0
 **netCDF**         | 4.4.1.1       | 4.4.1.1
 **netCDF-Fortran** | 4.4.4         | 4.4.4
 **netCDF-C++4**    | 4.3.0         | 4.3.0
 **OpenBLAS**       | 0.2.19        | 
-**PETSc**          | 3.8.0         | 3.8.0
 **ParMETIS**       | 4.0.3         | 4.0.3
+**PETSc**          | 3.8.0         | 3.8.0
 **PnetCDF**        |               | 1.8.1
 **ScaLAPACK**      | 2.0.2         |
 **UDUNITS**        | 2.2.24        | 2.2.24
@@ -55,6 +55,10 @@ These are some of the main libraries and tools available.
 **Tool**           | **GCC 6.3.0** | **Intel 17.0.1**
 ---|---|---
 **CDO**            |               | 1.8.2
+**git**            | 2.14.2        | 2.14.2
+**NCL**            |               | 6.4.0
+**NCO**            |               | 4.6.6
+**Perl**           | 5.24.1        | 5.24.1
 **PROJ**           | 4.9.3         | 4.9.3
 **Python2**        | 2.7.13        | 2.7.13
 **Python3**        | 3.6.1         | 3.6.1
