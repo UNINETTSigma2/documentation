@@ -15,7 +15,7 @@ available versions. If there are more than one, the default is marked with `*`.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| CESM |1.2.2.1|
+| CESM |1.2.2.1-intel-2017a|
 
 ## License Information
 
