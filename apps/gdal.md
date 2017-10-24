@@ -15,7 +15,7 @@ available versions. If there are more than one, the default is marked with `*`.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| GDAL |2.2.0-intel-2019a-Python-2.7.13-HDF5-1.8.18 |
+| GDAL |2.2.0-intel-2017a-Python-2.7.13-HDF5-1.8.18 |
 
 
 ## License Information
