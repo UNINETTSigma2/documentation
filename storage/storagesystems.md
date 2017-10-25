@@ -5,11 +5,11 @@ for storing project data.
 
 The following table summarizes the different temporary and project storage options. Read the following sections for specific details.
 
-| Directory     | Purpose     | Quota | Backup |
+| Directory     | Purpose     | Default quota | Backup |
 | :------------- | :------------- | :------------- | :------------- |
 | `/cluster/work/jobs/$SLURM_JOB_ID`       | Job data. Set to `$SCRATCH`       | N/A**       | No       |
 | `/cluster/work/users/$USER`      | Staging and cross-job data. Set to `$USERWORK`       | N/A**       | No       |
-| `/nird/projects/<project_name>`       | Project data       | 10TB       | Yes       |
+| `/nird/projects/fram/<project_name>`       | Project data       | 1TB       | Yes       |
 | `/nird/home/<username>`       | User data. Set to `$HOME`       | 20GB       | Yes       |
 
 ** $SCRATCH contents are deleted after the job finishes execution and $USERWORK
@@ -63,10 +63,11 @@ For performance optimizations, consult [Performance Tips](performance-tips.md) p
 ## Project Area
 
 This is the file system for shared space for each project. Project area is
-mounted to **/nird/projects/<project_name>**.
+mounted to **/nird/projects/fram/<project_name>**.
 
 The project area is quota controlled and the default project quota for NOTUR projects is
-10TB. The total file system size for projects is 4.5PB.
+1TB, but projects can apply for more during the application process or at a later
+point in time if needed.
 
 **Notes:**
 * Geo-replication is set up between Tromsø and Trondheim.
