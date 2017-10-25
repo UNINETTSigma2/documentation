@@ -19,8 +19,6 @@ To set the partition, use `--partition=` in the job script file. For example:
 
     #SBATCH --partition=normal
 
-For more information, visit Slurm's [Quality of Service](https://slurm.schedmd.com/qos.html) documentation.
-
 ### **normal** Jobs
 
 Normal jobs must specify account, walltime limit and number of nodes. By
@@ -69,26 +67,28 @@ CPU cores they are allocated, so the above sample job will have access to 8 core
 each node. However, the two tasks are free to use all cores the job has
 access to on the node (8 in this example).
 
+## Quality of Service
+
 ### **preproc** Jobs
 
-**preproc** is a special partition set up for preprocessing jobs (set `--partition=preproc` in job script file). A
+**preproc** is a special QoS (Quality of Service) set up for preprocessing jobs (set `--qos=preproc` in job script file). A
 preproc job is allocated 1 node, exclusively. Otherwise, it is the same as a normal
 job. The idea is that preprocessing or similar doesn't need to use many
 nodes. Note that there is a limit of how many preproc jobs a project can
 run at the same time.
 
-To run a preproc job, set `--partition=preproc` in the script file. It is not necessary
+To run a preproc job, set `--qos=preproc` in the script file. It is not necessary
 to specify the number of nodes but if specified, it must be 1.)
 
 Example of a general preproc specification (1 node, 4 tasks with 8 CPUs/task):
 
-    #SBATCH --account=nn9999k --partition=preproc
+    #SBATCH --account=nn9999k --qos=preproc
     #SBATCH --time=1:0:0
     #SBATCH --ntasks-per-node=4 --cpus-per-task=8
 
 Here is a simpler preproc job (one task on one node):
 
-    #SBATCH --account=nn9999k --partition=preproc
+    #SBATCH --account=nn9999k --qos=preproc
     #SBATCH --time=1:0:0
 
 ## Node Information  {#nodeinfo}
