@@ -10,8 +10,10 @@ The `stripe_count` indicates how many OSTs to use.
 The `stripe_size` indicates how much data to write to one OST before moving to 
 the next OST.
 
-**Note**: striping will only take affect *only* on new files, created or copied
- into the specified directory or file name.
+**Note**: 
+* striping will only take affect *only* on new files, created or copied
+ into the specified directory or file name;
+* default stripe_count on /cluster is 1.
 
 For more detailed information on striping, please consult the
 [Lustre](http://lustre.org) documentation.
