@@ -72,8 +72,9 @@ point in time if needed.
 **Notes:**
 * Geo-replication is set up between Tromsø and Trondheim.
 * For backup, snapshots are taken with the following frequency:
-    * daily snapshots of the last 7 days and weekly snapshots of the last 5 weeks. See [Backup](backup.md).
-* the total size of the project area is 4.5PB and the default size for Notur projects is 10TB.
+    * daily snapshots of the last 7 days
+    * weekly snapshots of the last 5 weeks. 
+* See [Backup](backup.md).
 
 ## User Area ($HOME)
 
