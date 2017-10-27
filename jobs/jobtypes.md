@@ -72,7 +72,7 @@ access to on the node (8 in this example).
 ### **preproc** Jobs
 
 **preproc** is a special QoS (Quality of Service) set up for preprocessing jobs (set `--qos=preproc` in job script file). A
-preproc job is allocated 1 node, exclusively. Otherwise, it is the same as a normal
+preproc job is allocated 1 node, exclusively, and has a maximum walltime of 1 day. Otherwise, it is the same as a normal
 job. The idea is that preprocessing or similar doesn't need to use many
 nodes. Note that there is a limit of how many preproc jobs a project can
 run at the same time.
