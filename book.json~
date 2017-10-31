@@ -3,8 +3,7 @@
         "-sharing",
         "-fontsettings",
 	    "theme-default",
-        "toggle-chapters",
-	"include",
+        "toggle-chapters"
     ],
     "title": "Fram Documentation | Sigma2"
 }
