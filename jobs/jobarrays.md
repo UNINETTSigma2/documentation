@@ -5,9 +5,9 @@
 
 In this example we wish to run many similar sequential jobs in parallel using job arrays. We take Python as an example but this does not matter for the job arrays:
 
-```
-!INCLUDE "files/test.py"
-```
+
+[include](files/test.py)
+
 
 Save this to a file called “test.py” and try it out:
 
@@ -19,11 +19,10 @@ sleep for 10 seconds ...
 stop at 15:23:58
 ```
 
-Good. Now we would like to run this script 16 times at the same time. For this we use the following script:
+Good. Now we would like to run this script 16 times at the same time. For this we use the following 
 
-```
-!INCLUDE "files/slurm-job-array.sh"
-```
+
+[include](files/slurm-job-array.sh)
 
 
 Sumbit the script and after a short while you should see 16 output files in your submit directory:
