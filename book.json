@@ -4,7 +4,7 @@
         "-fontsettings",
 	    "theme-default",
         "toggle-chapters",
-	"include",
+	"include"
     ],
     "title": "Fram Documentation | Sigma2"
 }
