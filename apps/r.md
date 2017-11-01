@@ -14,7 +14,7 @@ available versions. If there are more than one, the default is marked with `*`.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| R |3.3.1-foss-2016b <br>3.3.1-intel-2017a * <br>|
+| R |3.4.0-intel-2017a-X11-20170314|
 
 ## License Information
 
