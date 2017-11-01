@@ -16,7 +16,7 @@ available versions. If there are more than one, the default is marked with `*`.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| OpenFOAM |3.0.0-foss-2016a|
+| OpenFOAM |4.1-intel-2017a|
 
 # License Information
 
