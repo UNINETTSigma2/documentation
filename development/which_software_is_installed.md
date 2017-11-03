@@ -35,6 +35,7 @@ These are some of the main libraries and tools available.
 **Boost**          | 1.63.0        | 1.63.0
 **FFTW**           | 3.3.6         | 3.3.6
 **GDAL**           |               | 2.2.0
+**grib_api**       | 1.24.0        | 1.24.0
 **GSL**            | 2.3           | 2.3
 **HDF5-1.8**       | 1.8.18        | 1.8.18
 **HDF5-1.10**      | 1.10.1        | 1.10.1
@@ -56,6 +57,7 @@ These are some of the main libraries and tools available.
 ---|---|---
 **CDO**            |               | 1.8.2
 **git**            | 2.14.2        | 2.14.2
+**Mercurial**      |               | 4.3.3
 **NCL**            |               | 6.4.0
 **NCO**            |               | 4.6.6
 **ncview**         |               | 2.1.7
