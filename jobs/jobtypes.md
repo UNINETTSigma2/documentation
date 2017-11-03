@@ -29,7 +29,7 @@ node and how many CPUs should be used by each task.
 All normal jobs gets exclusive access to whole nodes (all CPUs and memory).
 If a job tries to use more (resident) memory than is configured on the nodes,
 it will be killed. Currently, this limit is 60 GiB, *but could change*. The
-maximal wall time limit for normal jobs is two days (48 hours).
+maximal wall time limit for normal jobs is 7 days (168 hours).
 
 Note that setting `--cpus-per-task` does *not* bind the tasks to the given number of
 CPUs for normal jobs; it merely sets `$OMP_NUM_THREADS` so that OpenMP jobs by
