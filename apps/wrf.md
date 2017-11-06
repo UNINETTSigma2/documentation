@@ -1,4 +1,4 @@
-# WRF
+# WRF / WPS
 
 Weather Research and Forecasting Model (WRF) is a mesoscale numerical weather prediction system.
 
@@ -6,16 +6,16 @@ To find out more, visit the WRF website at: http://www.wrf-model.org/
 
 ## Running WRF
 
-To load the default WRF module, run in the terminal
+To load WRF module, run in the terminal
 
-    module load wrf
+    module load WRF/(version)
 
 Run `module avail` to see the complete list of available versions. The table below lists the
-available versions. If there are more than one, the default is marked with `*`.
+available versions. 
 
 | Module     | Version     |
 | :------------- | :------------- |
-| WRF |3.8.1 * <br>3.8.1-no_leap_calendar <br>|
+| WRF <br> WPS|3.8.0-intel-2016a-dmpar  <br>3.9.1-intel-2017a-dmpar <br>|
 
 ## License Information
 
