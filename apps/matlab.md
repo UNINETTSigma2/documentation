@@ -25,7 +25,7 @@ Add the link in you job script or in .bashrc as:
 export MLM_LICENSE_FILE=link-to-matlab-licens-server
 
 ## Job script
-Standard matlab program
+Standard matlab program (eg. myprogram.m)
 
 ```
 #!/bin/bash
