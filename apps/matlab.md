@@ -18,7 +18,7 @@ available versions. If there are more than one, the default is marked with `*`.
 | MATLAB |2017a|
 
 ## License
-You need a link to the Matlab licence server for your university (UiB,UiT,UiO and NTNU).
+You need a link to a Matlab licence server for your university (UiB,UiT,UiO and NTNU).
 Send an email to support@metacenter.no and ask for this link.
 Add the link in you job script or in .bashrc as:
 
