@@ -21,4 +21,5 @@ available versions. If there are more than one, the default is marked with `*`.
 You need a link to the Matlab licence server for your university (UiB,UiT,UiO and NTNU).
 Send an email to support@metacenter.no and ask for this link.
 Add the link in you job script or in .bashrc as:
+
 export MLM_LICENSE_FILE=link-to-matlab-licens-server
