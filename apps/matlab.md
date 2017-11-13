@@ -23,3 +23,21 @@ Send an email to support@metacenter.no and ask for this link.
 Add the link in you job script or in .bashrc as:
 
 export MLM_LICENSE_FILE=link-to-matlab-licens-server
+
+## Job script
+Standard matlab program
+
+```
+#!/bin/bash
+#SBATCH --account=my_account
+#SBATCH --job-name=jobname
+#SBATCH --time=0:30:0
+#SBATCH --nodes=1
+## Software modules
+module restore system
+module load MATLAB/2017a
+module list
+export MLM_LICENSE_FILE=link-to-license-server
+matlab -nodisplay -nodesktop -nojvm -r "myprogram"
+
+```
