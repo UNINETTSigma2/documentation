@@ -9,9 +9,9 @@ The [Job Scripts](jobscripts.md) page has more information about creating job sc
 ## The General Setup
 
 Jobs are administered and allocated resources based on the following:
-1. **Partitions** - logical groupings of nodes that can be thought of as queues.  `normal`, `bigmem`, `accel` (later), `optimist` partitions.
-2. **QoS** (Quality of Service). QoSes are administered to `normal`, `bigmem`
-    and `accel` partitions. Special QoSes are `devel`, `preproc`.
+1. **Partitions** - logical groupings of nodes that can be thought of as queues.  `normal`, `bigmem`, `optimist` partitions.
+2. **QoS** (Quality of Service). QoSes are administered to `normal` and `bigmem`
+	partitions. Special QoSes are `devel`, `preproc`.
 3. **Account** "nn9999k" per project, with CPU hour quota. "nn9999x" are *optimist* jobs, with a **QoS** `optimist`
 and separate CPU hour quotas.
 

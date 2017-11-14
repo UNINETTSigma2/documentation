@@ -13,7 +13,6 @@ These are the main job partitions:
 1. **normal**: Most production jobs, runs on all standard compute nodes.
 2. **bigmem**: Jobs on the _bigmem_ nodes.
 3. **optimist**: Low priority jobs that can be requeued when higher priority jobs need their nodes. They must implement checkpointing.
-4. **accel**: Jobs on compute nodes with GPU cards. **Not implemented yet**
 
 To set the partition, use `--partition=` in the job script file. For example:
 

@@ -12,8 +12,7 @@ network. The interconnect network is organized in an island topology, with 9216
 cores in each island. Each standard compute node has two 16-core Intel Broadwell
 chips (2.1 GHz) and 64 GiB memory. In addition, 8 larger memory nodes with 512
 GiB RAM and 2 huge memory quad socket nodes with 6 TiB of memory is provided.
-Additional GPU nodes are planned provided during first half of 2017. The total
-number of compute cores is 32256.
+The total number of compute cores is 32256.
 
 | Details     | Fram     |
 | :------------- | :------------- |
