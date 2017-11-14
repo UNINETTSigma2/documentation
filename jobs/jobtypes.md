@@ -22,7 +22,7 @@ To set the partition, use `--partition=` in the job script file. For example:
 ### **normal** Jobs
 
 Normal jobs must specify account, walltime limit and number of nodes. By
-default, jobs must use between 4 and 30 nodes, but a project can be allowed to
+default, jobs must use between 4 and 32 nodes, but a project can be allowed to
 use more nodes if needed. It can also specify how many tasks should run per
 node and how many CPUs should be used by each task.
 
