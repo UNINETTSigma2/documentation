@@ -25,7 +25,7 @@ Add the link in you job script or in .bashrc as:
 export MLM_LICENSE_FILE=link-to-matlab-licens-server
 
 ## Job script
-Job script for standard matlab program (eg. myprogram.m)
+Job script for standard matlab program for 1 compute node (eg. myprogram.m)
 ( Copy the text below into a file (named eg job.sh) ):
 
 ```
@@ -34,6 +34,7 @@ Job script for standard matlab program (eg. myprogram.m)
 #SBATCH --job-name=jobname
 #SBATCH --time=0:30:0
 #SBATCH --nodes=1
+#SBATCH --qos=preproc
 ## Software modules
 module restore system
 module load MATLAB/2017a
