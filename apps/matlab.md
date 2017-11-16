@@ -30,7 +30,7 @@ export MLM_LICENSE_FILE=link-to-matlab-licens-server
 Add this enviroment variable setting into your job script or .bashrc
 
 ## Job script
-Job script for standard Matlab program for 1 compute node (eg. myprogram.m)
+Job script for standard Matlab program for 1 compute node (eg myprogram.m).
 Copy the text below into a file (named eg job.sh), and change --account and --job-name
 
 ```
