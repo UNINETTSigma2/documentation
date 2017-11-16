@@ -13,20 +13,25 @@ To load the default MATLAB module, run in the terminal
 Run `module avail` to see the complete list of available versions. The table below lists the
 available versions. If there are more than one, the default is marked with `*`.
 
+To start Matlab on a login node, do as: matlab -nodisplay -nodesktop -nojvm
+(Remember the license link (see License))
+
 | Module     | Version     |
 | :------------- | :------------- |
 | MATLAB |2017a|
 
 ## License
-You need a link to a Matlab licence server for your university (UiB,UiT,UiO and NTNU).
-Send an email to support@metacenter.no and ask for this link.
-Add the link in you job script or in .bashrc as:
+You need a link to a Matlab licence server for your university (UiB,UiT,UiO or NTNU).
+Send an email to support@metacenter.no and ask for the link to your university.
 
+Add this link to the enviroment variabel MLM_LICENCE_FILE as:
 export MLM_LICENSE_FILE=link-to-matlab-licens-server
 
+Add this enviroment variable setting into your job script or .bashrc
+
 ## Job script
-Job script for standard matlab program for 1 compute node (eg. myprogram.m)
-( Copy the text below into a file (named eg job.sh) ):
+Job script for standard Matlab program for 1 compute node (eg. myprogram.m)
+Copy the text below into a file (named eg job.sh), and change --account and --job-name
 
 ```
 #!/bin/bash
