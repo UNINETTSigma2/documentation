@@ -8,7 +8,7 @@ To find out more, visit the MATLAB website at: http://se.mathworks.com/help/matl
 
 To load the default MATLAB module, run in the terminal
 
-    module load MATLAB
+    module load MATLAB/2017a
 
 Run `module avail` to see the complete list of available versions. The table below lists the
 available versions. If there are more than one, the default is marked with `*`.
