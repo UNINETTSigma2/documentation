@@ -25,7 +25,7 @@ Good. Now we would like to run this script 16 times at the same time. For this w
 [include](files/slurm-job-array.sh)
 
 
-Sumbit the script and after a short while you should see 16 output files in your submit directory:
+Submit the script and after a short while you should see 16 output files in your submit directory:
 
 ```
 $ ls -l output*txt

@@ -35,7 +35,7 @@ srun /path/to/openmpi_app
 
 Executed as above, `srun` uses SLURM's default binding and mapping algorithms (currently
 `--cpu_bind=cores`), [which can be changed](https://slurm.schedmd.com/srun.html) using either command-line
-parameters, or envirronment variables. Parameters specific to OpenMPI can be set using [environment variables](https://www.open-mpi.org/faq/?category=tuning#setting-mca-params).
+parameters, or environment variables. Parameters specific to OpenMPI can be set using [environment variables](https://www.open-mpi.org/faq/?category=tuning#setting-mca-params).
 
 ### `mpirun`
 
