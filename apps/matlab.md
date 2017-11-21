@@ -51,7 +51,7 @@ matlab -nodisplay -nodesktop -nojvm -r "myprogram"
 To run the job: sbatch job.sh
 
 ## MPI for Matlab
-MPI for Matlab is installed on Fram. 
+MPI for Matlab is installed on Fra (for parallelizing over many compute nodes)
 
 User guide:
 
