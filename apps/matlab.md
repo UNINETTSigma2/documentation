@@ -21,16 +21,16 @@ To start Matlab on a login node, do as: matlab -nodisplay -nodesktop -nojvm
 | MATLAB |2017a|
 
 ## License
-Accademic users:
-You need a link to a Matlab licence server for your university (UiB,UiT,UiO or NTNU).
+# Accademic users:
+Accademic users need a link to a Matlab licence server for your university (UiB,UiT,UiO or NTNU).
 Users from other univerities can also use Matlab on Fram.
 Send an email to support@metacenter.no and ask for the link to your university.
 Add this link to the environment variabel MLM_LICENCE_FILE as:
 export MLM_LICENSE_FILE=link-to-matlab-licens-server
 Add this enviroment variable setting into your job script or .bashrc
 
-Commercial users:
-commercial users need to sign a Hosting Provider agreement allowing. Contact Sigma2: sigma2@uninett.no
+# Commercial users:
+Commercial users need to sign a Hosting Provider agreement allowing. Contact Sigma2: sigma2@uninett.no
 
 ## Job script
 Example job script for standard Matlab program; 1 compute node (eg myprogram.m).
