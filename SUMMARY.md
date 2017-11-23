@@ -1,4 +1,3 @@
-
 ## Quick Information
 * [Introduction](README.md)
 * [Getting Started](quick/gettingstarted.md)
@@ -50,3 +49,8 @@
 * [Work Area and Storage on Fram](storage/storagesystems.md)
 * [Backup](storage/backup.md)
 * [Performance tips](storage/performance-tips.md)
+* 
+
+## Using graphical user interfaces
+ * [emacs ](storage/support/emacs.md)
+ 
