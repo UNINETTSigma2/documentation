@@ -22,7 +22,7 @@ To start Matlab on a login node, do as: matlab -nodisplay -nodesktop -nojvm
 
 ## License
 ### Academic users:
-Academic users need a link to a Matlab licence server for your university (UiB,UiT,UiO or NTNU).
+Academic users need a link to a Matlab licence server for your university (UiB, UiT, UiO or NTNU).
 Users from other universities can also use Matlab on Fram.
 Send an email to support@metacenter.no and ask for the link to your university.
 Add this link to the environment variabel MLM_LICENCE_FILE as:
