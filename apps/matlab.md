@@ -26,7 +26,9 @@ Academic users need a link to a Matlab licence server for your university (UiB,U
 Users from other universities can also use Matlab on Fram.
 Send an email to support@metacenter.no and ask for the link to your university.
 Add this link to the environment variabel MLM_LICENCE_FILE as:
-export MLM_LICENSE_FILE=link-to-matlab-licens-server
+
+export MLM_LICENSE_FILE=link-to-matlab-licens-server.
+
 Add this enviroment variable setting into your job script or .bashrc
 
 ### Commercial users:
