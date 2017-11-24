@@ -77,6 +77,9 @@ There are several ways to package smaller parallel jobs into one large parallel 
 
 In this example we imagine that we wish to run 5 MPI jobs at the same time, each using 4 tasks, thus totalling to 20 tasks. Once they finish, we wish to do a post-processing step and then resubmit another set of 5 jobs with 4 tasks each:
 
+***WARNING: Currently, this does not work in the `normal` partition, only for
+`bigmem` jobs.  We are trying to figure out why and if it can be fixed.***
+
 ```
 #!/bin/bash
 
