@@ -52,5 +52,5 @@
 * 
 
 ## Using graphical user interfaces
- * [emacs ](storage/support/emacs.md)
+ * [emacs ](support/emacs.md)
  
