@@ -75,7 +75,7 @@ the environment variables and cleanup of temporary files.
 * Prolog sets environment variables like `$SCRATCH`, `$OMP_NUM_THREADS`
 * Prolog creates `$SCRATCH` (`/cluster/work/jobs/<jobid>`), deleted later by Epilog
 * Epilog deletes private `/tmp` and `/var/tmp`
-* Epilog copies files marked with `copyback` *file* back to submit directory
+* Epilog copies files marked with `savefile` *file* back to submit directory
 * Epilog prints usage statistics in the job stdout file
 * Epilog run commands registered with `cleanup <*command*>`
 

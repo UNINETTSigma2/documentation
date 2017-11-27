@@ -31,7 +31,7 @@ cp inputfiles $SCRATCH
 cd $SCRATCH
 
 ## Make sure output is copied back after job finishes
-copyback outputfile1 outputfile2
+savefile outputfile1 outputfile2
 
 ## Run the application
 srun mysoftware
