@@ -20,3 +20,38 @@ There are two main uses for NIRD and visit the following pages for more informat
 2. [Storage of scientific project data](https://www.sigma2.no/content/storage-scientific-project-data)
 
 Fram has a NIRD directory `/nird` that projects can use. For more information, visit the [Storage Systems on Fram](storagesystems.md) page.
+
+## Project data storage
+
+### Getting Access
+
+To gain access to the storage services, a formal application is needed. The process
+is explained at the [User Access](https://www.sigma2.no/node/36) page.
+
+### Logging In
+
+Access to the Project data storage area is through front-end (login) node:
+
+    login.nird.sigma2.no
+    
+Users must be registered and authorized by the project responsible before obtaining access.
+
+To access or transfer data to one of these resources, use the following tools: ssh, scp or stfp. Visit the [Transferring files](storage/file-transfering.md) page for details.
+
+### Project area
+
+Project areas are located in `/nird/projects/<project_ID>`.
+
+The project area is quota controlled and current usage is obtained by running the command:
+
+    dusage -p <project_ID>
+
+
+**Notes:**
+* Geo-replication is set up between Tromsø and Trondheim.
+* For backup, snapshots are taken with the following frequency:
+    * daily snapshots of the last 7 days
+    * weekly snapshots of the last 5 weeks. 
+* See [Backup](backup.md).
+
+
