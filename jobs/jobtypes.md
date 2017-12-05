@@ -11,7 +11,7 @@ and how they are run.  The different types are
 - **preproc**: Short, 1-node jobs for things like preprocessing and
   postprocessing, that don't need many cpus.
 - **devel**: Short jobs, meant for quick development and testing.  They get
-  higher priority to start sooner, but can only use upt 10 nodes in total.
+  higher priority to start sooner, but can only use upto 10 nodes in total.
 - **optimist**: Low priority jobs that can start whenever there are free
   resources, but will be requeued when other jobs need the resources.  Meant
   for jobs that use checkpointing.
@@ -96,7 +96,7 @@ higher priority than other jobs, in order to start as soon as possible.
 ## `optimist` Jobs
 
 `optimist` jobs must specify `--qos=optimist`, and should specify the number
-of nodes needed (between 4 and 32), but theys should *not* specify wall time
+of nodes needed (between 4 and 32), but they should *not* specify wall time
 limit.  They run on the same nodes as `normal` jobs.  They get lower priority
 than other jobs, but can start as soon as there are free resources.  However,
 when any other job needs its resources, the `optimist` job is stopped and put
@@ -107,10 +107,10 @@ demonstrate that they can use checkpointing.
 # Job Priorities
 
 The priority setup has been designed to be as predictable and easy to
-understand as possible, while tring to maximize the utilisation of the
+understand as possible, while trying to maximize the utilisation of the
 cluster.
 
-The principle is that a job's increases 1 point per minute it is waiting in
+The principle is that a job increases 1 point per minute it is waiting in
 the queue, and once it reaches 20,000, it gets a reservation in the future.
 It can start before that, and before it gets a reservation, but only if it
 does not delay any jobs with reservations.
