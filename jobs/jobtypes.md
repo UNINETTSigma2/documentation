@@ -63,7 +63,7 @@ limit.
 
 Also note that contrary to `normal` jobs, `bigmem` jobs will be bound to the
 CPU cores they are allocated, so the above sample job will have access to 12
-cores on each node. However, the two tasks are free to use all cores the job
+cores on each node. However, the three tasks are free to use all cores the job
 has access to on the node (12 in this example).
 
 ## `preproc` Jobs
@@ -110,10 +110,10 @@ The priority setup has been designed to be as predictable and easy to
 understand as possible, while trying to maximize the utilisation of the
 cluster.
 
-The principle is that a job increases 1 point per minute it is waiting in
-the queue, and once it reaches 20,000, it gets a reservation in the future.
-It can start before that, and before it gets a reservation, but only if it
-does not delay any jobs with reservations.
+The principle is that a job's priority increases 1 point per minute the job is
+waiting in the queue, and once the priority reaches 20,000, the job gets a
+reservation in the future.  It can start before that, and before it gets a
+reservation, but only if it does not delay any jobs with reservations.
 
 The different job types start with different priorities:
 
