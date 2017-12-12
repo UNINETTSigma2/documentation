@@ -53,6 +53,8 @@ export MLM_LICENSE_FILE=link-to-license-server
 matlab -nodisplay -nodesktop -nojvm -r "myprogram"
 
 ```
+(Note! If you are using Parallel Computing Toolbox, remove -nojvm)
+
 To run the job: sbatch job.sh
 
 ## MPI for Matlab
