@@ -13,7 +13,10 @@ To load the default MATLAB module, run in the terminal
 Run `module avail` to see the complete list of available versions. The table below lists the
 available versions. If there are more than one, the default is marked with `*`.
 
-To start Matlab on a login node, do as: matlab -nodisplay -nodesktop -nojvm
+To start Matlab on a login node, do as: 
+
+matlab -nodisplay -nodesktop -nojvm
+
 (Remember the license link (see License))
 
 | Module     | Version     |
