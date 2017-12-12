@@ -39,7 +39,7 @@ Commercial users need to sign a Hosting Provider agreement. Contact: sigma2@unin
 
 ## Job script
 Example job script for standard Matlab program; 1 compute node (eg myprogram.m).
-Copy the text below into a file (named eg job.sh), and change --account, --job-name and license link
+Copy the text below into a file (named eg job.sh), and change --account, --job-name and --time
 
 ```
 #!/bin/bash
