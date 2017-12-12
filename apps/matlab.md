@@ -32,7 +32,7 @@ Add this link to the environment variabel MLM_LICENCE_FILE as:
 
 export MLM_LICENSE_FILE=link-to-matlab-licens-server.
 
-Add this enviroment variable setting into your job script or .bashrc
+Add this enviroment variable setting into .bashrc
 
 ### Commercial users:
 Commercial users need to sign a Hosting Provider agreement. Contact: sigma2@uninett.no
@@ -52,7 +52,6 @@ Copy the text below into a file (named eg job.sh), and change --account, --job-n
 module restore system
 module load MATLAB/2017a
 module list
-export MLM_LICENSE_FILE=link-to-license-server
 matlab -nodisplay -nodesktop -nojvm -r "myprogram"
 
 ```
