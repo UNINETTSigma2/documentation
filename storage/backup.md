@@ -17,7 +17,11 @@ Scratch areas (`/cluster/work` and `/node/scratch`) does *not* have any backup.
 
 ## List snapshots
 
-Documentation to be added
+Snapshots are available at the following places:
+* `/nird/home`: 
+  - /nird/home/u1/.snapshots
+* `/nird/projects`:
+  - /nird/projects/nird/NSxxxxK/.snapshots
 
 ## Restore data
 
