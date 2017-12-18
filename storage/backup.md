@@ -7,10 +7,11 @@ backup in the form of snapshots and geo-replication.
 
 Snapshots are taken with the following frequencies:
 * `/nird/home`: 
-  - daily snapshots for the last 365 days
+  - daily snapshots for the last 7 days
+  - weekly snapshots for the last 6 weeks
 * `/nird/projects`:
   - daily snapshots for the last 7 days
-  - weekly snapshots for the last 5 weeks
+  - weekly snapshots for the last 6 weeks
 
 Scratch areas (`/cluster/work` and `/node/scratch`) does *not* have any backup.
 
