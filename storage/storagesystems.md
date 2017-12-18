@@ -72,7 +72,7 @@ point in time if needed.
 * Daily backup is taken to NIRD.
 * For backup, snapshots are taken with the following frequency:
     * daily snapshots of the last 7 days
-    * weekly snapshots of the last 5 weeks. 
+    * weekly snapshots of the last 6 weeks. 
 * See [Backup](backup.md).
 
 ## User Area ($HOME)
@@ -82,7 +82,8 @@ and is **not** suitable for running jobs. A quota is enabled on home directories
 which is by default 20GB per user. It is advisable to store `stderr` and `stdout`
 logs from your batch jobs in `$HOME` so they are available for reviewing in case
 of issues with it. The user area is geo-replicated between Tromsø and Trondheim.
-Additionally daily snapshots are taken and kept for the last 365 days.
+Additionally daily snapshots are taken and kept for the last 7 days 
+and weekly snapshots for the last 6 weeks.
 
 **Notes**
 * set to the `$HOME` variable
@@ -91,4 +92,5 @@ Additionally daily snapshots are taken and kept for the last 365 days.
 with anyone else, no matter its content.
 * The home directory should be used for storing tools, scripts, application
 sources or other relevant data which must have a backup.
-* backed up with daily snapshots for the last 365 days.See [Backup](backup.md).
+* backed up with daily snapshots for the last 7 days and weekly snapshots
+for the last 6 weeks. See [Backup](backup.md).
