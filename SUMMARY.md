@@ -30,7 +30,7 @@
     * [WRF](apps/wrf.md)
 * [Compilers](development/compilers.md)
 * [Debugging](development/debugging.md)
-* [Performance](development/performance.md)
+* [Performance Tools](development/performance.md)
 
 ## Jobs
 
