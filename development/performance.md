@@ -12,7 +12,7 @@
 
 Performance Reports needs to compile a library that is pre-loaded before you program is run. In order to compile this library, the Intel compiler library must be loaded as well, regardless of whether the program to be evaluated has been compiled with the Intel compiler:
 
-<code class="code">module load Allinea-PerfReports/7.0.6 intel/2017a </code>
+    $ module load Allinea-PerfReports/7.0.6 intel/2017a
 
 Remember that you must also load these modules in job scripts, when you run your program.
 
@@ -20,7 +20,7 @@ Remember that you must also load these modules in job scripts, when you run your
 
 When you compile your program then you should use optimizations flag like -O2, -O3 and -xAVX, because Performance Reports will then be able to tell you if your program manages to use vectorized instructions. You must also link with the special libraries, such as in:
 
-<code class="code">make-profiler-libraries</code>
+    $ make-profiler-libraries
 
 The output of this command will give you instructions on what to add to your link-line, in order to link your program with the Performance Reports libraries.
 
@@ -28,7 +28,7 @@ The output of this command will give you instructions on what to add to your lin
 
 If your program only runs for a short while using few processes, then you can analyze it while running it on a login node:
 
-<code class="code">perf-report mpirun -np 4 rank</code>
+    $ perf-report mpirun -np 4 rank
 
 After your program has run, you can find the produced performance report in an HTML file with a name similar to interFoam_4p_2014-06-20_13-34.html. Copy this file to your local pc and view it there.
 
@@ -36,6 +36,6 @@ After your program has run, you can find the produced performance report in an H
 
 In batch jobs, you must call your program link this:
 
-<code class="code">perf-report mpirun rank</code>
+    perf-report mpirun rank
 
 After your program has run, you can find the produced performance report in an HTML file with a name similar to rank_4p_2014-06-20_13-34.html. Copy this file to your local pc and view it there.
