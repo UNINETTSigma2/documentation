@@ -18,7 +18,7 @@ Remember that you must also load these modules in job scripts, when you run your
 
 <h3>Compile your program</h3>
 
-When you compile your program then you should use optimizations flag like -O2, -O3 and -xAVX, because Performance Reports will then be able to tell you if your program manages to use vectorized instructions. You must also link with the special libraries, such as in:
+When you compile your program then you should use optimizations flag like <code class="code">-O2</code>, <code class="code">-O3</code> and <code class="code">-xAVX</code>, because Performance Reports will then be able to tell you if your program manages to use vectorized instructions. You must also link with the special libraries, such as in:
 
     $ make-profiler-libraries
 
