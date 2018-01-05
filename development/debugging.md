@@ -248,13 +248,13 @@ batch job session:
 
     $ salloc --account=<my_account> --time <HH:MM> -N <no_of_nodes>
     
-Start TotalView with the executable:
+Start TotalView with the executable
 
-<h6>Open MPI</h6>
+<h6>Open MPI:</h6>
 
     $ mpirun -tv ./mpi_prog
     
-<h6>Intel MPI</h6>
+<h6>Intel MPI:</h6>
 
     $ totalview srun -a --ntasks-per-node=<ntasks> ./mpi_prog
     
