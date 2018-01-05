@@ -223,7 +223,7 @@ several MPI implementations including Open MPI and Intel MPI.
 <h4 id="debugging-startingTotalview">Starting Totalview</h4>
 
 After compiling your MPI code with the `-g` flag, load the TotalView module and
-start *totalview* with your executable, e.g. *mpi_prog*, by issuing the command
+start `totalview` with your executable, e.g. *mpi_prog*, by issuing the command
 
 <h6>Open MPI:</h6>
 
@@ -262,7 +262,7 @@ Start TotalView with the executable
 Your program will now execute within TotalView on the number of nodes specified
 in the Slurm job allocation.
 
-**Note:** Be sure to exit the shell created by the salloc command when
+**Note:** Be sure to exit the shell created by the `salloc` command when
 finishing the debugging session
 
     $ exit
