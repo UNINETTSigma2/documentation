@@ -12,6 +12,8 @@
 <li><a href='#debugging-Totalview'>TotalView</a>
 <ul class='toc-indentation'>
 <li><a href='#debugging-startingTotalview'>Starting TotalView</a></li>
+<li><a href='#debugging-interactive'>Interactive Batch System Debugging</a></li>
+<li><a href='#Totalview-doc'>Further Information</a></li>
 </ul>
 </li>
 </ul>
@@ -236,5 +238,29 @@ the Process Window, will appear. Click the **OK** button in the Startup
 Parameters Dialog Box. Now click the **Go** button from the execution control
 commands in the Process Window. A popup window will ask whether you want to
 start the job in a stopped state. Click **Yes**, and the source code of your
-program will show in the sourec pane of the Process Window. You are now ready
+program will show in the source pane of the Process Window. You are now ready
 to start the debugging session.
+
+<h4 id="debugging-interactive">Interactive Batch System Debugging</h4>
+
+When running TotalView in the batch system, first start an interactive Slurm
+batch job session:
+
+    $ salloc --account=<my_account> --time <HH:MM> -N <no_of_nodes>
+    
+Start TotalView with the executable:
+
+<h5>Open MPI</h5>
+
+    $ mpirun -tv ./mpi_prog
+    
+<h5>Intel MPI</h5>
+
+    $ totalview srun -a --ntasks-per-node=<ntasks> ./mpi_prog
+    
+Your program will now execute within TotalView on the number of nodes specified
+in the Slurm job allocation.
+
+<h4 id="Totalview-doc">Further Information</h4>
+
+* For more information see the [TotalView Documentation](https://www.roguewave.com/help-support/documentation/totalview) page
