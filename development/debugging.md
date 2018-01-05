@@ -11,7 +11,7 @@
 </li>
 <li><a href='#debugging-Totalview'>Totalview</a>
 <ul class='toc-indentation'>
-<li><a href='#debugging-StartingTotalview'>Starting Totalview</a></li>
+<li><a href='#debugging-startingTotalview'>Starting Totalview</a></li>
 </ul>
 </li>
 </ul>
@@ -206,3 +206,35 @@ One can also produce a core file from within the GDB session to preserve a
 snapshot of a program’s state using the command:
 
 	(gdb) generate-core-file
+	
+<h2 id="debugging-Totalview">TotalView</h2>
+
+TotalView is a GUI-based cource code debugger from [Rogue Wave Software](https://www.roguewave.com)
+It allows for debugging of serial and parallel codes. Program execution is
+controlled by stepping line by line through the code, setting breakpoints, or
+by setting watchpoints on variables. It is also efficient for debugging of 
+memory errors and leaks, and diagnostic problems like deadlocks.
+
+Totalviw works with C, C++ and Fortran applications, and supports OpenMP and
+several MPI implementations including Open MPI and Intel MPI.
+
+<h4 id="debugging-startingTotalview">Starting Totalview</h4>
+
+After compiling your MPI code with the `-g` flag, load the TotalView module and
+start *totalview* with your executable, e.g. *mpi_prog*, by issuing the command:
+
+<h5>Open MPI</h5>
+
+    $ mpirun -tv -np <no_of_processes> ./mpi_prog
+    
+<h5>Intel MPI</h5>
+
+    $ totalview mpiexec -a -n <no_of_processes> ./mpi_prog
+    
+Three windows, the TotalView Root window, the Startup Parameters Dialog Box and
+the Process Window, will appear. Click the **OK** button in the Startup 
+Parameters Dialog Box. Now click the **Go** button from the execution control
+commands in the Process Window. A popup window will ask whether you want to
+start the job in a stopped state. Click **Yes**, and the source code of your
+program will show in the sourec pane of the Process Window. You are now ready
+to start the debugging session.
