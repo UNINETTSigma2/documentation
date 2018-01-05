@@ -247,6 +247,7 @@ When running TotalView in the batch system, first start an interactive Slurm
 batch job session:
 
     $ salloc --account=<my_account> --time <HH:MM> -N <no_of_nodes>
+    salloc: Granted job allocation <jobid>
     
 Start TotalView with the executable
 
@@ -260,6 +261,12 @@ Start TotalView with the executable
     
 Your program will now execute within TotalView on the number of nodes specified
 in the Slurm job allocation.
+
+**Note:** Be sure to exit the shell created by the salloc command when
+finishing the debugging session
+
+    $ exit
+    salloc: Relinquishing job allocation <jobid>
 
 <h4 id="Totalview-doc">Further Information</h4>
 
