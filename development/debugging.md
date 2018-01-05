@@ -9,9 +9,9 @@
 <li><a href='#debugging-core'>Examining Core Files</a></li>
 </ul>
 </li>
-<li><a href='#debugging-Totalview'>Totalview</a>
+<li><a href='#debugging-Totalview'>TotalView</a>
 <ul class='toc-indentation'>
-<li><a href='#debugging-startingTotalview'>Starting Totalview</a></li>
+<li><a href='#debugging-startingTotalview'>Starting TotalView</a></li>
 </ul>
 </li>
 </ul>
@@ -215,7 +215,7 @@ controlled by stepping line by line through the code, setting breakpoints, or
 by setting watchpoints on variables. It is also efficient for debugging of 
 memory errors and leaks, and diagnostic problems like deadlocks.
 
-Totalviw works with C, C++ and Fortran applications, and supports OpenMP and
+TotalView works with C, C++ and Fortran applications, and supports OpenMP and
 several MPI implementations including Open MPI and Intel MPI.
 
 <h4 id="debugging-startingTotalview">Starting Totalview</h4>
