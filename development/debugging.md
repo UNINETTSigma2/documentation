@@ -250,11 +250,11 @@ batch job session:
     
 Start TotalView with the executable:
 
-<h5>Open MPI</h5>
+<h6>Open MPI</h6>
 
     $ mpirun -tv ./mpi_prog
     
-<h5>Intel MPI</h5>
+<h6>Intel MPI</h6>
 
     $ totalview srun -a --ntasks-per-node=<ntasks> ./mpi_prog
     
