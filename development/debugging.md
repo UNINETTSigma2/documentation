@@ -223,13 +223,13 @@ several MPI implementations including Open MPI and Intel MPI.
 <h4 id="debugging-startingTotalview">Starting Totalview</h4>
 
 After compiling your MPI code with the `-g` flag, load the TotalView module and
-start *totalview* with your executable, e.g. *mpi_prog*, by issuing the command:
+start *totalview* with your executable, e.g. *mpi_prog*, by issuing the command
 
-<h5>Open MPI</h5>
+<h6>Open MPI:</h6>
 
     $ mpirun -tv -np <no_of_processes> ./mpi_prog
     
-<h5>Intel MPI</h5>
+<h6>Intel MPI:</h6>
 
     $ totalview mpiexec -a -n <no_of_processes> ./mpi_prog
     
