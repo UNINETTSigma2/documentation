@@ -1,9 +1,11 @@
-# Work Area and Storage on Fram
+# Storage areas on Fram
 
 Projects and users receive different file systems to store files and other data. Some areas are used for temporary files during job execution while others are
 for storing project data.
 
-The following table summarizes the different temporary and project storage options. Read the following sections for specific details.
+The following table summarizes the different temporary storage and project storage options. Read the following sections for specific details.
+
+Data handling and storage policy is documented [here](data-usage-policy.md).
 
 | Directory     | Purpose     | Default quota | Backup |
 | :------------- | :------------- | :------------- | :------------- |
@@ -12,8 +14,11 @@ The following table summarizes the different temporary and project storage optio
 | `/cluster/projects/<project_name>`       | Project data       | 1TB       | Yes       |
 | `/nird/home/<username>`       | User data. Set to `$HOME`       | 20GB       | Yes       |
 
-** $SCRATCH contents are deleted after the job finishes execution and $USERWORK
-content is deleted after a couple of weeks. See the policies about both in the sections below.
+**Notes:**
+* $SCRATCH contents are deleted after the job finishes execution.
+* $USERWORK is subject to automatic file deletion.
+* See file deletion policies for both in the sections below.
+
 
 ## Work Area
 
@@ -88,8 +93,6 @@ and weekly snapshots for the last 6 weeks.
 **Notes**
 * set to the `$HOME` variable
 * The total size of /nird/home is 0.5PB and a quota per user is set to 20GB.
-* Users' home directory are meant to be personal and must **not** be shared
-with anyone else, no matter its content.
 * The home directory should be used for storing tools, scripts, application
 sources or other relevant data which must have a backup.
 * backed up with daily snapshots for the last 7 days and weekly snapshots

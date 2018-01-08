@@ -44,13 +44,13 @@
 * [Managing Jobs](jobs/managing_jobs.md)
 
 ## Files and Storage
-* [Storage Services](storage/storageservices.md)
+* [Storage services](storage/storageservices.md)
 * [NIRD](storage/nird.md)
-* [Transferring files](storage/file-transfering.md)
-* [Work Area and Storage on Fram](storage/storagesystems.md)
+* [Storage areas on Fram](storage/storagesystems.md)
 * [Backup](storage/backup.md)
+* [Data handling and storage policy](storage/data-usage-policy.md) 
 * [Performance tips](storage/performance-tips.md)
-* 
+* [Transferring files](storage/file-transfering.md)
 
 ## Using graphical user interfaces
  * [emacs ](support/emacs.md)
