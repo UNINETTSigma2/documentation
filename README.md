@@ -47,6 +47,11 @@ The following give new users information about running applications on the HPC m
 Fram uses the NIRD storage system for storing archives for other research data. NOTUR projects have access
 to this geo-replicated storage through various methods. Visit the [NIRD](storage/nird.md) page for more information.
 
+## Storage areas on Fram
+
+You can find details about the storage systems available on Fram
+[here](storage/storagesystems.md).
+
 ### About UNINETT Sigma2
 
 UNINETT Sigma2 AS manages the national infrastructure for computational science in Norway, and offers services in high performance computing and data storage.
