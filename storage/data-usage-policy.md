@@ -32,7 +32,7 @@ Group ownership is regularly controlled for each project directory and reset in
 case needed. This is required for storage accounting purposes.
 
 
-### Project collaborations
+### Project Collaborations
 
 In special cases there might be a need for sharing data between projects for 
 collaboration and possibly preventing data duplication.
