@@ -37,10 +37,10 @@ too. e.g.:
 
 ```
 # stripe huge file across 8 OSTs
-lfs setstripe --count 8 "my_file"
+lfs setstripe --stripe-count 8 "my_file"
 
 # stripe across 4 OSTs using 8MB chunks.
-lfs setstripe --size 8M --count 4 "my_dir"
+lfs setstripe --stripe-size 8M --stripe-count 4 "my_dir"
 ```
 
 It is advisable to use higher stripe count for scientific application that 
@@ -59,7 +59,7 @@ For many small files and one client accessing each file, change stripe count to 
 Avoid having small files with large stripe counts. This negatively impacts the 
 performance due to the unnecessary communication to multiple OSTs.
 
-    lfs setstripe --count 1 "my_dir"
+    lfs setstripe --stripe-count 1 "my_dir"
 
 
 ## DON'Ts
