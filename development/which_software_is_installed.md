@@ -42,7 +42,7 @@ The `module show` command displays the other modules loaded by a module. The `mo
 **OpenFOAM-Extend**|               | 4.0              |
 **QuantumESPRESSO**|               | 6.1              |
 **VASP**           |               | 5.4.4            |
-** WPS/WRF**       |               | 3.9.1            |
+**WPS / WRF**      |               | 3.9.1            |
 
 ## Libraries
 
