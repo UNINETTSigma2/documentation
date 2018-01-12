@@ -7,16 +7,16 @@ More information: http://www.nwchem-sw.org
 
 ## Running NWChem
 
-To load the default NWChem module, run in the terminal
+To load the NWChem module, run in the terminal
 
-    module load NWChem
+    module load NWChem/6.6.revision27746-intel-2017a-2015-10-20-patches-20170814-Python-2.7.13
 
 Run `module avail` to see the complete list of available versions. The table below lists the
-available versions. If there are more than one, the default is marked with `*`.
+available versions.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| NWChem |6.6.revision27746-iomkl-2017a-2015-10-20-Python-2.7.12|
+| NWChem |6.6.revision27746-intel-2017a-2015-10-20-patches-20170814-Python-2.7.13|
 
 ## Citation
 
