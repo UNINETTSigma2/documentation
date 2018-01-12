@@ -7,16 +7,17 @@ To find out more, visit the OpenFOAM website at: http://www.openfoam.com/
 
 # Running OpenFOAM
 
-To load the default OopenFOAM module, run in the terminal
+Load one of the available OpenFOAM modules, e.g.
 
-    module load OpenFOAM
+    module load OpenFOAM/5.0-intel-2017a
 
 Run `module avail` to see the complete list of available versions. The table below lists the
-available versions. If there are more than one, the default is marked with `*`.
+available versions.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| OpenFOAM |4.1-intel-2017a|
+| OpenFOAM |4.1-intel-2017a <br>5.0-intel-2017a <br>|
+| OpenFOAM-Extend |4.0-intel-2017a |
 
 # License Information
 
