@@ -6,16 +6,17 @@ To find out more, visit the WRF website at: http://www.wrf-model.org/
 
 ## Running WRF
 
-To load WRF module, run in the terminal
+To load a WRF module, run in the terminal
 
-    module load WRF/(version)
+    module load WRF/<version>
 
 Run `module avail` to see the complete list of available versions. The table below lists the
 available versions. 
 
 | Module     | Version     |
 | :------------- | :------------- |
-| WRF <br> WPS|3.8.0-intel-2016a-dmpar  <br>3.9.1-intel-2017a-dmpar <br>|
+| WRF | 3.9.1-intel-2017a-dmpar |
+| WPS | 3.9.1-intel-2017a-dmpar |
 
 ## License Information
 
