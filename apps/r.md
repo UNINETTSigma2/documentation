@@ -5,12 +5,12 @@ To find out more, visit the R website at: https://www.r-project.org
 
 ## Running R
 
-To load the default R module, run in the terminal
+To load the R module, run in the terminal
 
-    module load R
+    module load R/3.4.0-intel-2017a-X11-20170314
 
 Run `module avail` to see the complete list of available versions. The table below lists the
-available versions. If there are more than one, the default is marked with `*`.
+available versions.
 
 | Module     | Version     |
 | :------------- | :------------- |
