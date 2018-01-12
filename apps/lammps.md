@@ -9,16 +9,16 @@ For more information, please visit http://lammps.sandia.gov
 
 ## Running LAMMPS
 
-To load the default LAAMPS module, run in the terminal
+To load the LAMMPS module, run in the terminal
 
-    module load LAAMPS
+    module load LAAMPS/11Aug17-foss-2017a
 
 Run `module avail` to see the complete list of available versions. The table below lists the
-available versions. If there are more than one, the default is marked with `*`.
+available versions.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| LAMMPS |31Mar2017-foss-2016b|
+| LAMMPS |11Aug17-foss-2017a|
 
 ## License Information
 
