@@ -7,9 +7,9 @@ To find out more, visit the OpenFOAM website at: http://www.openfoam.com/
 
 # Running OpenFOAM
 
-Load one of the available OpenFOAM modules, e.g.
+To load a OpenFOAM module, run in the terminal
 
-    module load OpenFOAM/5.0-intel-2017a
+    module load OpenFOAM/<version>
 
 Run `module avail` to see the complete list of available versions. The table below lists the
 available versions.
