@@ -36,7 +36,7 @@ The `module show` command displays the other modules loaded by a module. The `mo
 **GROMACS**        | 2016.3        | 2016.3           |
 **LAMMPS**         | 11Aug17       |                  |
 **MATLAB**         |               |                  | 2017a
-**NAMD**           | 2.12, 2017-11-06 | 2.12, 2017-11-06 |
+**NAMD**           | 2.12 <br>2017-11-06 <br> | 2.12 <br>2017-11-06 <br> |
 **NWChem**         |               | 6.6              |
 **OpenFOAM**       |               | 4.1, 5.0         |
 **OpenFOAM-Extend**|               | 4.0              |
