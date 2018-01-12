@@ -6,13 +6,13 @@ To find out more, visit the CDO website at: https://code.zmaw.de/projects/cdo
 
 ## Running CDO
 
-To load the default CDO module, run in the terminal
+To load the CDO module, run in the terminal
 
-    module load CDO
+    module load CDO/1.8.2-intel-2017a
 
 
 Run `module avail` to see the complete list of available versions. The table below lists the
-available versions. If there are more than one, the default is marked with `*`.
+available versions.
 
 | Module     | Version     |
 | :------------- | :------------- |
