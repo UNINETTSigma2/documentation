@@ -5,9 +5,9 @@ More information: http://www.ks.uiuc.edu/Research/namd/
 
 ## Running NAMD
 
-Load one of the available NAMD modules, e.g.
+To load a NAMD module, run in the terminal
 
-    module load NAMD/2.12-intel-2017a-mpi
+    module load NAMD/<version>
 
 Run `module avail` to see the complete list of available versions. The table below lists the
 available versions.
