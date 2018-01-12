@@ -5,16 +5,16 @@ More information: http://www.ks.uiuc.edu/Research/namd/
 
 ## Running NAMD
 
-To load the default NAMD module, run in the terminal
+Load one of the available NAMD modules, e.g.
 
-    module load NAMD
+    module load NAMD/2.12-intel-2017a-mpi
 
 Run `module avail` to see the complete list of available versions. The table below lists the
-available versions. If there are more than one, the default is marked with `*`.
+available versions.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| NAMD |2.9-intel-2016b-ibverbs <br>2.10-intel-2016b-ibverbs <br>2.12-intel-2017a-ibverbs <br>2.12-intel-2017a-mpi * <br>|
+| NAMD |2.12-foss-2017a-mpi <br>2.12-intel-2017a-mpi <br>2017-11-06-foss-2017a-mpi <br>2017-11-06-intel-2017a-mpi * <br>|
 
 ## Citation
 
