@@ -6,9 +6,9 @@ To find out more, visit the MATLAB website at: http://se.mathworks.com/help/matl
 
 ## Running MATLAB
 
-To load the MATLAB module, run in the terminal
+To load a MATLAB module, run in the terminal
 
-    module load MATLAB/2017a
+    module load MATLAB/<version>
 
 Run `module avail` to see the complete list of available versions. The table below lists the
 available versions.
