@@ -6,9 +6,9 @@ To find out more, visit the GDAL website at: http://www.gdal.org/
 
 ## Running GDAL
 
-Load one of the available GDAL modules, e.g.
+To load a GDAL module, run in the terminal
 
-    module load GDAL/2.2.0-intel-2017a-Python-2.7.13-HDF5-1.8.18
+    module load GDAL/<version>
 
 Run `module avail` to see the complete list of available versions. The table below lists the
 available versions.
