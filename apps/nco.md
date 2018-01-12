@@ -5,9 +5,9 @@ To find out more, visit the NCO website at: http://nco.sourceforge.net/
 
 ## Running NCO
 
-To load the NCO module, run in the terminal
+To load a NCO module, run in the terminal
 
-    module load NCO/4.6.6-intel-2017a
+    module load NCO/<version>
 
 Run `module avail` to see the complete list of available versions. The table below lists the
 available versions.
