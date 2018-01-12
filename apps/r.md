@@ -5,9 +5,9 @@ To find out more, visit the R website at: https://www.r-project.org
 
 ## Running R
 
-To load the R module, run in the terminal
+To load a R module, run in the terminal
 
-    module load R/3.4.0-intel-2017a-X11-20170314
+    module load R/<version>
 
 Run `module avail` to see the complete list of available versions. The table below lists the
 available versions.
