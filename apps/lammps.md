@@ -9,9 +9,9 @@ For more information, please visit http://lammps.sandia.gov
 
 ## Running LAMMPS
 
-To load the LAMMPS module, run in the terminal
+To load a LAMMPS module, run in the terminal
 
-    module load LAAMPS/11Aug17-foss-2017a
+    module load LAAMPS/<version>
 
 Run `module avail` to see the complete list of available versions. The table below lists the
 available versions.
