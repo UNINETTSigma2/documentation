@@ -6,16 +6,16 @@ To find out more, visit the GDAL website at: http://www.gdal.org/
 
 ## Running GDAL
 
-To load the default GDAL module, run in the terminal
+Load one of the available GDAL modules, e.g.
 
-    module load GDAL
+    module load GDAL/2.2.0-intel-2017a-Python-2.7.13-HDF5-1.8.18
 
 Run `module avail` to see the complete list of available versions. The table below lists the
-available versions. If there are more than one, the default is marked with `*`.
+available versions.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| GDAL |2.2.0-intel-2017a-Python-2.7.13-HDF5-1.8.18 |
+| GDAL |2.2.0-foss-2017a-Python-2.7.13-HDF5-1.8.18 <br>2.2.0-intel-2017a-Python-2.7.13-HDF5-1.8.18 <br> |
 
 
 ## License Information
