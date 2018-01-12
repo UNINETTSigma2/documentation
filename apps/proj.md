@@ -6,9 +6,9 @@ To find out more, visit the PROJ website at: https://trac.osgeo.org/proj/
 
 ## Running PROJ
 
-Load one of the available PROJ modules, e.g.
+To load a PROJ module, run in the terminal
 
-    module load PROJ/4.9.3-intel-2017a
+    module load PROJ/<version>
 
 Run `module avail` to see the complete list of available versions. The table below lists the
 available versions.
