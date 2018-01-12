@@ -7,9 +7,9 @@ Visit www.gromacs.org for more information.
 
 ## Running GROMACS
 
-Load one of the available GROMACS modules, e.g.
+To load a GROMACS module, run in the terminal
 
-    module load GROMACS/2016.3-intel-2017a
+    module load GROMACS/<version>
 
 
 Run `module avail` to see the complete list of available versions. The table below lists the
