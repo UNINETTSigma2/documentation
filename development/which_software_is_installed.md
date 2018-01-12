@@ -33,6 +33,16 @@ The `module show` command displays the other modules loaded by a module. The `mo
 **CP2K**           |               | 4.1              |
 **ESMF**           |               | 6.3.0rp1         |
 **Fluent**         |               |                  | 18.2
+**GROMACS**        | 2016.3        | 2016.3           |
+**LAMMPS**         | 11Aug17       |                  |
+**MATLAB**         |               |                  | 2017a
+**NAMD**           | 2.12, 2017-11-06 | 2.12, 2017-11-06 |
+**NWChem**         |               | 6.6              |
+**OpenFOAM**       |               | 4.1, 5.0         |
+**OpenFOAM-Extend**|               | 4.0              |
+**QuantumESPRESSO**|               | 6.1              |
+**VASP**           |               | 5.4.4            |
+** WPS / WRF**     |               | 3.9.1            |
 
 ## Libraries
 
@@ -42,7 +52,7 @@ The `module show` command displays the other modules loaded by a module. The `mo
 **arpack-ng**      | 3.5.0         | 3.5.0
 **Boost**          | 1.63.0        | 1.63.0
 **FFTW**           | 3.3.6         | 3.3.6
-**GDAL**           |               | 2.2.0
+**GDAL**           | 2.2.0         | 2.2.0
 **grib_api**       | 1.24.0        | 1.24.0
 **GSL**            | 2.3           | 2.3
 **HDF5-1.8**       | 1.8.18        | 1.8.18
@@ -65,13 +75,17 @@ The `module show` command displays the other modules loaded by a module. The `mo
 ---|---|---
 **CDO**            |               | 1.8.2
 **Ferret**         | 7.2           |
+**GEOS**           | 3.6.1         | 3.6.1
 **git**            | 2.14.2        | 2.14.2
 **Mercurial**      |               | 4.3.3
 **NCL**            |               | 6.4.0
 **NCO**            |               | 4.6.6
 **ncview**         |               | 2.1.7
+**OpenBabel**      | 2.4.1         |
+**ParaView**       |               | 5.2.0
 **Perl**           | 5.24.1        | 5.24.1
 **PROJ**           | 4.9.3         | 4.9.3
 **Python2**        | 2.7.13        | 2.7.13
 **Python3**        | 3.6.1         | 3.6.1
 **R**              |               | 3.4.0
+**Valgrind**       | 3.13.0        | 3.13.0
