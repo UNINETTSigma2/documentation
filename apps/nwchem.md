@@ -7,9 +7,9 @@ More information: http://www.nwchem-sw.org
 
 ## Running NWChem
 
-To load the NWChem module, run in the terminal
+To load a NWChem module, run in the terminal
 
-    module load NWChem/6.6.revision27746-intel-2017a-2015-10-20-patches-20170814-Python-2.7.13
+    module load NWChem/<version>
 
 Run `module avail` to see the complete list of available versions. The table below lists the
 available versions.
