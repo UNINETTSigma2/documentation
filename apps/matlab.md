@@ -6,12 +6,12 @@ To find out more, visit the MATLAB website at: http://se.mathworks.com/help/matl
 
 ## Running MATLAB
 
-To load the default MATLAB module, run in the terminal
+To load the MATLAB module, run in the terminal
 
     module load MATLAB/2017a
 
 Run `module avail` to see the complete list of available versions. The table below lists the
-available versions. If there are more than one, the default is marked with `*`.
+available versions.
 
 To start Matlab on a login node, do as: 
 
