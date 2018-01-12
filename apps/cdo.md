@@ -6,9 +6,9 @@ To find out more, visit the CDO website at: https://code.zmaw.de/projects/cdo
 
 ## Running CDO
 
-To load the CDO module, run in the terminal
+To load a CDO module, run in the terminal
 
-    module load CDO/1.8.2-intel-2017a
+    module load CDO/<version>
 
 
 Run `module avail` to see the complete list of available versions. The table below lists the
