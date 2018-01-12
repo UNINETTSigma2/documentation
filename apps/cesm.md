@@ -6,9 +6,9 @@ To find out more, visit the CESM website at: http://www2.cesm.ucar.edu
 
 ## Running CESM
 
-To load the CESM module, run in the terminal
+To load a CESM module, run in the terminal
 
-    module load CESM/1.2.2.1-intel-2017a
+    module load CESM/<version>
 
 Run `module avail` to see the complete list of available versions. The table below lists the
 available versions.
