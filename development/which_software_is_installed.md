@@ -25,12 +25,20 @@ module load intel/2017a
 Modules may load other modules as part of its dependency. For example, loading the Intel version loads related modules to satisfy the module's dependency.
 The `module show` command displays the other modules loaded by a module. The `module spider` command displays the module's description.
 
-## Libraries
+## Applications
 
-These are some of the main libraries and tools available.
+**Application**    | **GCC 6.3.0** | **Intel 17.0.1** | **Core**
+---|---|---|---
+**CESM**           |               | 1.2.2.1          |
+**CP2K**           |               | 4.1              |
+**ESMF**           |               | 6.3.0rp1         |
+**Fluent**         |               |                  | 18.2
+
+## Libraries
 
 **Library**        | **GCC 6.3.0** | **Intel 17.0.1**
 ---|---|---
+**Armadillo**      | 8.300.0       | 8.300.0
 **arpack-ng**      | 3.5.0         | 3.5.0
 **Boost**          | 1.63.0        | 1.63.0
 **FFTW**           | 3.3.6         | 3.3.6
@@ -56,6 +64,7 @@ These are some of the main libraries and tools available.
 **Tool**           | **GCC 6.3.0** | **Intel 17.0.1**
 ---|---|---
 **CDO**            |               | 1.8.2
+**Ferret**         | 7.2           |
 **git**            | 2.14.2        | 2.14.2
 **Mercurial**      |               | 4.3.3
 **NCL**            |               | 6.4.0
