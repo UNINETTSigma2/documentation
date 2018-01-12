@@ -6,12 +6,12 @@ To find out more, visit the PROJ website at: https://trac.osgeo.org/proj/
 
 ## Running PROJ
 
-To load the default PROJ module, run in the terminal
+Load one of the available PROJ modules, e.g.
 
-    module load PROJ
+    module load PROJ/4.9.3-intel-2017a
 
 Run `module avail` to see the complete list of available versions. The table below lists the
-available versions. If there are more than one, the default is marked with `*`.
+available versions.
 
 | Module     | Version     |
 | :------------- | :------------- |
