@@ -52,6 +52,6 @@
 * [Performance tips](storage/performance-tips.md)
 * [Transferring files](storage/file-transfering.md)
 
-## Using graphical user interfaces
- * [emacs ](support/emacs.md)
+## Frequently Asked Questions
+ * [emacs ](faq/emacs.md)
  
