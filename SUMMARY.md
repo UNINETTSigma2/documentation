@@ -52,6 +52,6 @@
 * [Performance tips](storage/performance-tips.md)
 * [Transferring files](storage/file-transfering.md)
 
-## Frequently Asked Questions
- * [emacs ](faq/emacs.md)
- 
+## Short Guides and FAQs
+ * [Emacs ](faq/emacs.md)
+ * [FAQ](faq/README.md)
