@@ -252,7 +252,7 @@ You are now ready to start the debugging session doing different actions, e.g.:
 
 * Click the **_Step_** or **_Next_** buttons to go through the code statement by statement. For function calls **_Step_** goes into the function, while **_Next_** executes the function.
 * Create a breakpoint by clicking the the line number displayed to the left in the Process Window. Click the **_Go_** button to run to this line.
-* Monitor a variable's value by creating a watchpoint, select **_Action Points_** -> **_Create Watchpoint_**. A watchpoint stops execution when the variable's data changes. 
+* Monitor a variable's value by creating a watchpoint, select **_Action Points_** &rarr; **_Create Watchpoint_**. A watchpoint stops execution when the variable's data changes. 
 
 <h4 id="debugging-interactive">Interactive Batch System Debugging</h4>
 
