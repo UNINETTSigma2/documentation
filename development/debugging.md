@@ -248,7 +248,9 @@ program will show in the source pane of the Process Window.
 </figure>
 </p>
 
-You are now ready to start the debugging session.
+You are now ready to start the debugging session doing different actions, e.g.:
+
+* Click the **_Step_** or **_Next_** buttons to go through the code statement by statement. For function calls **_Step_** goes into the function while **_Next_** executes the function
 
 <h4 id="debugging-interactive">Interactive Batch System Debugging</h4>
 
