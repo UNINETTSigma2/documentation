@@ -238,8 +238,17 @@ the Process Window, will appear. Click the **OK** button in the Startup
 Parameters Dialog Box. Now click the **Go** button from the execution control
 commands in the Process Window. A popup window will ask whether you want to
 start the job in a stopped state. Click **Yes**, and the source code of your
-program will show in the source pane of the Process Window. You are now ready
-to start the debugging session.
+program will show in the source pane of the Process Window.
+
+<br>
+<p>
+<figure>
+<figcaption>**Fig.1 - TotalView Process Window**</figcaption>
+<img src="./process.png" vspace="20">
+</figure>
+</p>
+
+You are now ready to start the debugging session.
 
 <h4 id="debugging-interactive">Interactive Batch System Debugging</h4>
 
