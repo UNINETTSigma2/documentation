@@ -243,7 +243,7 @@ program will show in the source pane of the Process Window.
 <br>
 <p>
 <figure>
-<figcaption>**Fig.1 - TotalView Process Window**</figcaption>
+<figcaption><b>Fig.1 - TotalView Process Window</b></figcaption>
 <img src="./process.png" vspace="20">
 </figure>
 </p>
