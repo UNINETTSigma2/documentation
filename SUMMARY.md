@@ -55,3 +55,4 @@
 ## Short Guides and FAQs
  * [Emacs ](faq/emacs.md)
  * [FAQ](faq/README.md)
+ * [SSH](faq/ssh.md)
