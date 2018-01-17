@@ -234,10 +234,10 @@ start `totalview` with your executable, e.g. *mpi_prog*, by issuing the command
     $ totalview mpiexec -a -n <no_of_processes> ./mpi_prog
     
 Three windows, the TotalView Root window, the Startup Parameters Dialog Box and
-the Process Window, will appear. Click the **OK** button in the Startup 
-Parameters Dialog Box. Now click the **Go** button from the execution control
+the Process Window, will appear. Click the **_OK_** button in the Startup 
+Parameters Dialog Box. Now click the **_Go_** button from the execution control
 commands in the Process Window. A popup window will ask whether you want to
-start the job in a stopped state. Click **Yes**, and the source code of your
+start the job in a stopped state. Click **_Yes_**, and the source code of your
 program will show in the source pane of the Process Window.
 
 <br>
@@ -252,7 +252,18 @@ You are now ready to start the debugging session doing different actions, e.g.:
 
 * Click the **_Step_** or **_Next_** buttons to go through the code statement by statement. For function calls **_Step_** goes into the function, while **_Next_** executes the function.
 * Create a breakpoint by clicking the the line number displayed to the left in the Process Window. Click the **_Go_** button to run to this line.
-* Monitor a variable's value by creating a watchpoint, select **_Action Points_** &rarr; **_Create Watchpoint_**. A watchpoint stops execution when the variable's data changes. 
+* Monitor a variable's value by creating a watchpoint, select **_Action Points_**  &rarr;  **_Create Watchpoint_**. A watchpoint stops execution when the variable's data changes.
+* Examine variables: Dive into a variable by clicking **_View_**  &rarr;  **_Lookup_** or double-click the variable name using the left mpiuse button. The Variable Window appears.
+* Visualize variable across processes by diving into a variable and click **_Viw_**  &rarr;  **_Show Across_**  &rarr;  **_Processes_** in the Variable Window
+* Examine array data: Dive into an arrray variable. Display array subsections by editing the slice field in the array Varible Window. Show statistics information about array (or slice of array) by clicking **_Tools_** in the Variable Window.
+
+<br>
+<p>
+<figure>
+<figcaption><b>Fig.2 - Examining Data</b></figcaption>
+<img src=""
+</figure>
+</p>
 
 <h4 id="debugging-interactive">Interactive Batch System Debugging</h4>
 
