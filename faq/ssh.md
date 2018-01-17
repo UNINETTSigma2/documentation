@@ -29,12 +29,12 @@ ForwardX11        no               # disable X11 forwarding
 ForwardX11Trusted no               # do not trust remote X11 clients
 
 # per-host based settings
-Host fram                          # alias, you may run "ssh fram" only
+Host fram                            # alias, you may run "ssh fram" only
 	HostName fram.sigma2.no          # actual hostname for Fram
 	User my_username                 # replace with your username on Fram
 	IdentityFile ~/.ssh/id_rsa_fram  # pointer to your private SSH key
-	ForwardX11        yes            # enable X11 forwarding
-	ForwardX11Trusted	no             # do not trust remote X11 clients
+	ForwardX11          yes          # enable X11 forwarding
+	ForwardX11Trusted	no           # do not trust remote X11 clients
 ```
 
 ## Poor connection
