@@ -7,8 +7,8 @@ For more in-depth details, other options, please consult the man pages:
 ## X11 forwarding
 
 X11 forwarding should be used with caution due to security implications. Please
-note that if someone can read your X authorization database, that person would 
-be able to access the local X11 display through the forwarded connection.
+note that if someone can read your X authorization database [^1], that person 
+would be able to access the local X11 display through the forwarded connection.
 
 We suggest switching it on *only* when needed, with the use of options (`-X` or 
 `-Y`)  passed to the `ssh` command. Whenever possible, use `-X` option to mark
@@ -46,3 +46,9 @@ compression by using the `-C` option.
 Please note that the compression uses the CPU to compress-decompress all data
 sent over ssh and will actually have negative impact, slow down things on a 
 fast network.
+
+
+
+[^1]: By default your X authority database is stored in the `~/.Xauthority`
+	file. This file contains records with authorization information used in
+	connecting to the X server.
