@@ -253,9 +253,9 @@ You are now ready to start the debugging session doing different actions, e.g.:
 * Click the **_Step_** or **_Next_** buttons to go through the code statement by statement. For function calls **_Step_** goes into the function, while **_Next_** executes the function.
 * Create a breakpoint by clicking the the line number displayed to the left in the Process Window. Click the **_Go_** button to run to this line.
 * Monitor a variable's value by creating a watchpoint, select **_Action Points_**  &rarr;  **_Create Watchpoint_**. A watchpoint stops execution when the variable's data changes.
-* Examine variables: Dive into a variable by clicking **_View_**  &rarr;  **_Lookup_** or double-click the variable name using the left mpiuse button. The Variable Window appears.
-* Visualize variable across processes by diving into a variable and click **_Viw_**  &rarr;  **_Show Across_**  &rarr;  **_Processes_** in the Variable Window
-* Examine array data: Dive into an arrray variable. Display array subsections by editing the slice field in the array Varible Window. Show statistics information about array (or slice of array) by clicking **_Tools_** in the Variable Window.
+* Examine variables: Dive into a variable by clicking **_View_**  &rarr;  **_Lookup_** or double-click the variable name using the left mouse button. The Variable Window appears.
+* Visualize variable across processes by diving into a variable and click **_View_**  &rarr;  **_Show Across_**  &rarr;  **_Processes_** in the Variable Window.
+* Examine array data: Dive into an arrray variable. Display array subsections by editing the slice field in the array Varible Window. Show statistics information about the array (or a slice of the array) by clicking **_Tools_**  &rarr;  **_Statistics_** in the Variable Window.
 
 <br>
 <p>
