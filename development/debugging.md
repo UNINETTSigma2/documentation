@@ -261,7 +261,7 @@ You are now ready to start the debugging session doing different actions, e.g.:
 <p>
 <figure>
 <figcaption><b>Fig.2 - Examining Data</b></figcaption>
-<img src=""
+<img src="./statistics.png vspace="20">
 </figure>
 </p>
 
