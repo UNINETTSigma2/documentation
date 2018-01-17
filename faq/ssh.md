@@ -49,6 +49,4 @@ fast network.
 
 
 
-[^1]: By default your X authority database is stored in the `~/.Xauthority`
-	file. This file contains records with authorization information used in
-	connecting to the X server.
+[^1]: By default your X authority database is stored in the `~/.Xauthority` file. This file contains records with authorization information used in connecting to the X server.
