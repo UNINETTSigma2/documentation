@@ -38,8 +38,8 @@
 * [Job Types](jobs/jobtypes.md)
 * [Job Scripts](jobs/jobscripts.md)
     * [Sample Batch Script](jobs/samplescript.md)
-	* [MPI Jobs](jobs/mpi_jobs.md)
-	* [JobArray](jobs/jobarrays.md)
+    * [MPI Jobs](jobs/mpi_jobs.md)
+    * [JobArray](jobs/jobarrays.md)
     * [Porting from PBS/TORQUE](jobs/porting.md)
 * [Managing Jobs](jobs/managing_jobs.md)
 
@@ -53,7 +53,7 @@
 * [Transferring files](storage/file-transfering.md)
 
 ## Short Guides and FAQs
- * [General FAQ](faq/README.md)
-    * [Jobs](faq/jobs.md)
-    * [Emacs](faq/emacs.md)
-    * [SSH](faq/ssh.md)
+* [General FAQ](faq/README.md)
+* [Jobs](faq/jobs.md)
+* [Emacs](faq/emacs.md)
+* [SSH](faq/ssh.md)
