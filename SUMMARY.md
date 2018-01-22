@@ -53,6 +53,7 @@
 * [Transferring files](storage/file-transfering.md)
 
 ## Short Guides and FAQs
- * [Emacs ](faq/emacs.md)
- * [FAQ](faq/README.md)
- * [SSH](faq/ssh.md)
+ * [General FAQ](faq/README.md)
+    * [Jobs](faq/jobs.md)
+    * [Emacs](faq/emacs.md)
+    * [SSH](faq/ssh.md)
