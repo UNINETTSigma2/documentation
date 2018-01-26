@@ -41,6 +41,7 @@
     * [MPI Jobs](jobs/mpi_jobs.md)
     * [JobArray](jobs/jobarrays.md)
     * [Porting from PBS/TORQUE](jobs/porting.md)
+* [Interactive Jobs](jobs/interactive.md)
 * [Managing Jobs](jobs/managing_jobs.md)
 
 ## Files and Storage
