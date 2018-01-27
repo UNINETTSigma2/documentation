@@ -19,13 +19,14 @@ sleep for 10 seconds ...
 stop at 15:23:58
 ```
 
-Good. Now we would like to run this script 16 times at the same time. For this we use the following 
+Good. Now we would like to run this script 16 times at (more or less) the same
+time. For this we use the following
 
 
 [include](files/slurm-job-array.sh)
 
 
-Submit the script and after a short while you should see 16 output files in your submit directory:
+Submit the script with `sbatch` and after a while you should see 16 output files in your submit directory:
 
 ```
 $ ls -l output*txt
@@ -51,7 +52,7 @@ $ ls -l output*txt
 Observe that they all started (approximately) at the same time:
 
 ```
-$ grep start *txt
+$ grep start output*txt
 
 output_1.txt:start at 14:43:58
 output_10.txt:start at 14:44:00
@@ -83,15 +84,16 @@ In this example we imagine that we wish to run 5 MPI jobs at the same time, each
 ```
 #!/bin/bash
 
+#SBATCH --account=nnNNNNk  # Substitute with your project name
 #SBATCH --job-name=example
 #SBATCH --ntasks=20
 #SBATCH --time=0-00:05:00
-#SBATCH --partition short
-#SBATCH --mem-per-cpu=500MB
+#SBATCH --partition=bigmem
+#SBATCH --mem-per-cpu=500M
 
-cd ${SLURM_SUBMIT_DIR}
-
-# first set of parallel runs
+# first set of parallel runs, using Intel MPI
+module purge
+module load intel/2018a
 mpirun -n 4 ./my-binary &
 mpirun -n 4 ./my-binary &
 mpirun -n 4 ./my-binary &
@@ -103,12 +105,49 @@ wait
 # here a post-processing step
 # ...
 
+# another set of parallel runs, using OpenMPI
+module purge
+#SBATCH --job-name=example
+#SBATCH --ntasks=20
+#SBATCH --time=0-00:05:00
+#SBATCH --partition=bigmem
+#SBATCH --mem-per-cpu=500M
+
+module purge
+
+# first set of parallel runs
+echo plain srun
+srun -n 4 ./my-binary &
+srun -n 4 ./my-binary &
+srun -n 4 ./my-binary &
+srun -n 4 ./my-binary &
+srun -n 4 ./my-binary &
+
+wait
+
+# here a post-processing step
+# ...
+
+echo intel mpirun
+module load intel/2018a
+
 # another set of parallel runs
 mpirun -n 4 ./my-binary &
 mpirun -n 4 ./my-binary &
 mpirun -n 4 ./my-binary &
 mpirun -n 4 ./my-binary &
 mpirun -n 4 ./my-binary &
+
+wait
+
+echo openmpi srun
+module purge
+module load OpenMPI/2.1.1-GCC-6.4.0-2.28
+srun -n 4 ./my-binary &
+srun -n 4 ./my-binary &
+srun -n 4 ./my-binary &
+srun -n 4 ./my-binary &
+srun -n 4 ./my-binary &
 
 wait
 
