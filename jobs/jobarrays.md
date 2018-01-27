@@ -107,41 +107,6 @@ wait
 
 # another set of parallel runs, using OpenMPI
 module purge
-#SBATCH --job-name=example
-#SBATCH --ntasks=20
-#SBATCH --time=0-00:05:00
-#SBATCH --partition=bigmem
-#SBATCH --mem-per-cpu=500M
-
-module purge
-
-# first set of parallel runs
-echo plain srun
-srun -n 4 ./my-binary &
-srun -n 4 ./my-binary &
-srun -n 4 ./my-binary &
-srun -n 4 ./my-binary &
-srun -n 4 ./my-binary &
-
-wait
-
-# here a post-processing step
-# ...
-
-echo intel mpirun
-module load intel/2018a
-
-# another set of parallel runs
-mpirun -n 4 ./my-binary &
-mpirun -n 4 ./my-binary &
-mpirun -n 4 ./my-binary &
-mpirun -n 4 ./my-binary &
-mpirun -n 4 ./my-binary &
-
-wait
-
-echo openmpi srun
-module purge
 module load OpenMPI/2.1.1-GCC-6.4.0-2.28
 srun -n 4 ./my-binary &
 srun -n 4 ./my-binary &
