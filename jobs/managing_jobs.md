@@ -22,7 +22,7 @@ available during the run. This includes run time, memory used, etc:
 
     sacct -j <jobid> --format=JobID,JobName,MaxRSS,Elapsed
 
-#### Job Status
+### Job Status
 
 The queue is divided in 3 parts: **Running** jobs, **Pending** jobs or **Held** jobs.
 
@@ -58,7 +58,7 @@ To see which state the job is in, use `scontrol show`, for example:
 
     scontrol show <jobid> -dd <jobid>
 
-#### Holding and Releasing Jobs
+### Holding and Releasing Jobs
 
 A job on hold will not start or block other jobs from starting until you release the hold.
 There are several ways of holding a job:
@@ -69,23 +69,3 @@ There are several ways of holding a job:
 To release the job, use `scontrol release`:
 
     scontrol release <job_id>
-
-## Splitting A Job into Tasks (Array Jobs)
-
-***FIXME: This section needs rewrite:*** `arrayrun` is a local hack
-implemented on Abel, from the time when Slurm didn't have array jobs. Now it
-does, and so `arrayrun` has not been installed on Fram.  (The only reason it
-has not been removed on Abel is for backward compatibility.) Use `sbatch
---array from-to jobscript.sm` (or `-a`).  This submits N copies of
-`jobscript.sm`, each getting their own value of `$SLURM_ARRAY_TASK_ID`.  See
-`man sbatch` for details.
-
-To run many instances of the same job, use the __arrayrun__ command. This is useful if you have a lot of data-sets which you want to process in the same way with the same job-script. arrayrun works very similarly to mpirun:
-
-    arrayrun [-r] from-to [sbatch switches] YourCommand
-
-Typically, YourCommand is a compiled program or a job script. If it is a compiled program, the arrayrun command line must include the sbatch switches neccessary to submit the program. If it is a script, it can contain `#SBATCH` lines in addition to or instead of switches on the arrayrun command line. `from` and `to` are the first and last task number. Each instance of *YourCommand* can use the environment variable `$TASK_ID` for selecting which data set to use, etc. For instance:
-
-    arrayrun 1-100 MyScript
-
-will run 100 copies of *MyScript*, setting the environment variable `$TASK_ID` to 1, 2, ..., 100 in turn.
