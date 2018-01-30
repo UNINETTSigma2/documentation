@@ -4,6 +4,7 @@
 * [License Information](quick/license.md)
 * [Contact](support/contact.md)
     * [Writing Support Requests](support/how_to_write_good_support_requests.md)
+* [Metacenter OpsLog](https://opslog.sigma2.no)
 
 ## HPC Machines
 * [Fram](quick/fram.md)

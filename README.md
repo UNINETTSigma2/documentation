@@ -56,3 +56,5 @@ You can find details about the storage systems available on Fram
 
 UNINETT Sigma2 AS manages the national infrastructure for computational science in Norway, and offers services in high performance computing and data storage.
 Visit http://sigma2.no for more information.
+
+Latest news and announcements from Metacenter are posted at <a href="https://opslog.sigma2.no" target="_blank">Metacenter OpsLog</a> and the @MetacenterOps Twitter channel.
