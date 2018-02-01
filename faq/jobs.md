@@ -21,7 +21,7 @@ currently that the warning can be ignored.
 Things you should not do or use when running jobs on the HPC clusters
 (currently: Fram).
 
-### `--hint=nomultithread`
+### `#SBATCH --hint=nomultithread`
 Do not use this, at least not with Intel MPI jobs.  If you do, the result is
 that all the tasks (ranks) will be bound to the first CPU core on each compute
 node.
