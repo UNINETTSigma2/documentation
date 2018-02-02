@@ -36,7 +36,7 @@ Access to the Project data storage area is through front-end (login) node:
     
 Users must be registered and authorized by the project responsible before obtaining access.
 
-To access or transfer data use the following tools: ssh, scp or stfp. Visit the [Transferring files](storage/file-transfering.md) page for details.
+To access or transfer data use the following tools: ssh, scp or stfp. Visit the [Transferring files](https://documentation.sigma2.no/storage/file-transfering.html) page for details.
 
 ### Project area
 
