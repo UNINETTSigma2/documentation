@@ -13,5 +13,5 @@ Applications for computing and storage resources should be sent to <sigma2@unine
 
 ## Writing support requests
 
-Please also look at the page for [how to write good support requests](support/how_to_write_good_support_requests.md) on
+Please also look at the page for [how to write good support requests](how_to_write_good_support_requests.md) on
 how to report problems in the most effective way for getting help quickly.
