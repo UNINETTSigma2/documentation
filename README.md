@@ -26,7 +26,7 @@ The following considerations should be kept in mind when selecting a system to e
 
 * Abel and Stallo are throughput systems. These systems can be used for sequential (single-threaded) as well as parallel applications.
 
-* Fram is a system for large scale parallel (distributed-memory) applications. Applications that use less than 128 cores (or 32 nodes) are discouraged. Requests for access to execute applications that use fewer cores are often rejected or moved to other systems.
+* Fram is a system for large scale parallel (distributed-memory) applications. Applications that use less than 128 cores (4 nodes) for production are discouraged. Requests for access to execute applications that use fewer cores are often rejected or moved to other systems.
 
 * Abel, Stallo and Fram runs CentOS Linux distributions. In case you need to install a specific software package, please make sure that you know for which environments the software is supported, before choosing a system.
 
