@@ -15,9 +15,10 @@ a total capacity of 12PiB in addition to a centralized file system
 will provide the storage infrastructure with resources for the next 4 – 5 years
 through multiple upgrades and is expected to triple in capacity during its life-time.
 
-There are two main uses for NIRD and visit the following pages for more information.
-1. [Research Data](https://www.sigma2.no/content/data-storage)
-2. [Storage of scientific project data](https://www.sigma2.no/content/storage-scientific-project-data)
+The NIRD infrastructure offers Storage services, Archiving services and  processing capacity for computing on the stored data.  
+More info here
+
+[Research Data](https://www.sigma2.no/content/data-storage)
 
 Fram has a NIRD directory `/nird` that projects can use. For more information, visit the [Storage Systems on Fram](storagesystems.md) page.
 
