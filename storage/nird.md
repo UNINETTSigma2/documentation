@@ -20,7 +20,6 @@ More info here
 
 [Research Data](https://www.sigma2.no/content/data-storage)
 
-Fram has a NIRD directory `/nird` that projects can use. For more information, visit the [Storage Systems on Fram](storagesystems.md) page.
 
 ## Project data storage
 
@@ -39,16 +38,31 @@ Users must be registered and authorized by the project responsible before obtain
 
 To access or transfer data use the following tools: ssh, scp or stfp. Visit the [Transferring files](https://documentation.sigma2.no/storage/file-transfering.html) page for details.
 
+
+### Home directories
+
+Home directories are located in `/nird/home/<username>`.
+Quota for home is 20GB. To check the disk usage type
+
+     dusage
+     
+Home directories are also visible at /nird/home from FRAM login nodes.   
+Since those are mounted with NFS on FRAM it is very important not to use home directories   
+as storage for jobs running of FRAM.
+
 ### Project area
 
-Project areas are located in `/nird/projects/<project_ID>`.
+NIRD project areas are located in `/nird/projects/<project_ID>`.
 
 The project area is quota controlled and current usage is obtained by running the command:
 
     dusage -p <project_ID>
 
+FRAM projects are only available from FRAM login nodes.   
+For more information, visit the [Storage Systems on Fram](storagesystems.md) page.
 
-**Notes:**
+### Backup
+
 * Geo-replication is set up between Tromsø and Trondheim.
 * For backup, snapshots are taken with the following frequency:
     * daily snapshots of the last 7 days
