@@ -36,6 +36,7 @@
 ## Jobs
 
 * [Queue System on Fram](jobs/framqueuesystem.md)
+    * [Job Placement on Fram](jobs/framjobplacement.md)
 * [Job Types](jobs/jobtypes.md)
 * [Job Scripts](jobs/jobscripts.md)
     * [Sample Batch Script](jobs/samplescript.md)

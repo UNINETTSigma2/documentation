@@ -101,3 +101,13 @@ The idea is that once a job has been in the queue long enough to get a
 reservation, no other job should delay it. But before it gets a reservation,
 the queue system backfiller is free to start any other job that can start now,
 even if that will delay the job.
+
+## Job Placement
+
+The compute nodes on Fram are divided into four groups, or *islands*.  The
+network bandwidth within an island is higher than the throughput between
+islands.  Some jobs need high network throughput between its nodes, and will
+usually run faster if they run within a single island.  Therefore, the queue
+system is configured to run each job within one island, if possible.  See
+[Job Placement on Fram](framjobplacement.md) for details and for how this can
+be overridden.
