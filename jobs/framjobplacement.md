@@ -18,9 +18,11 @@ started on more than one island.
 
 ## Overriding the Setup
 
-Some jobs do not need high network throughput between its nodes.  For such
-jobs, you can override the setup, either for individual jobs or for all
-your jobs.
+The downside of requiring that all nodes belonging to a job should be in the
+same island, is that the job might have to wait longer in the queue,
+especially if the job needs many nodes.  Some jobs do not need high network
+throughput between its nodes.  For such jobs, you can override the setup,
+either for individual jobs or for all your jobs.
 
 ### Individual Jobs
 
