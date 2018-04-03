@@ -27,7 +27,7 @@ The `module show` command displays the other modules loaded by a module. The `mo
 
 ## Applications
 
-**Application**    | **GCC 6.3.0** | **Intel 17.0.1** | *Core**
+**Application**    | **GCC 6.3.0** | **Intel 17.0.1** | **Core**
 ---|---|---|---
 **CESM**           |               | 1.2.2.1          |
 **CP2K**           |               | 4.1              |
