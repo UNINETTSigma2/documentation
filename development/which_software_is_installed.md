@@ -27,8 +27,8 @@ The `module show` command displays the other modules loaded by a module. The `mo
 
 ## Applications
 
-**Application**    | **foss-2017a** | **foss-2017b** | **foss-2018a** | **intel-2017a** | **intel-2017b** | **intel-2018a** | **Core**
----|---|---|---|---|---|---|---
+**Application**    | **GCC 6.3.0** | **Intel 17.0.1** | *Core**
+---|---|---|---
 **CESM**           |               | 1.2.2.1          |
 **CP2K**           |               | 4.1              |
 **ESMF**           |               | 6.3.0rp1         |
