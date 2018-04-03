@@ -15,7 +15,7 @@ available versions.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| ncview |2.1.7-intel-2017a|
+| ncview |2.1.7-intel-2017a <br>2.1.7-intel-2018a <br>|
 
 ## License Information
 
