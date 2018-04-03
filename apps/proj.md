@@ -15,7 +15,7 @@ available versions.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| PROJ |4.9.3-foss-2017a <br>4.9.3-intel-2017a|
+| PROJ |4.9.3-foss-2017a <br>4.9.3-intel-2017a <br>4.9.3-intel-2017b <br>|
 
 ## License Information
 
