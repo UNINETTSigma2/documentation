@@ -9,7 +9,7 @@ For more information about the queue system and how to set the proper priorities
 A job script is a script file that contains commands to be executed by Slurm or
 environment variables. The start of the file should specify the shell environment.
 
-    #!/bin/sh
+    #!/bin/bash
 
 It can contain a mixture of shell commands, variables, and sbatch settings.
 
