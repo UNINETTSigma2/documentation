@@ -31,14 +31,16 @@ set -o nounset # Treat unset variables as errors
 module restore system
 module load NAMD/<version>
 
+case=$SLURM_JOB_NAME
+
 ## Prepare input files
-cp $SLURM_JOB_NAME.* $SCRATCH
+cp $case.* $SCRATCH
 cp par_all27_prot_lipid.inp $SCRATCH
 cd $SCRATCH
 
-mpirun namd2 $SLURM_JOB_NAME.conf
+mpirun namd2 $case.conf
 
-savefile $SLURM_JOB_NAME.*
+savefile $case.*
 ```
 
 ## Citation
