@@ -16,6 +16,11 @@ available versions.
 | :------------- | :------------- |
 | NAMD |2.12-foss-2017a-mpi <br>2.12-intel-2018a-mpi <br>2017-11-06-foss-2017a-mpi <br>2018-02-15-intel-2018a-mpi <br>|
 
+## Sample NAMD Job Script
+´´´
+#!/bin/bash
+´´´
+
 ## Citation
 
 When publishing results obtained with the software referred to, please do check the developers web page in order to find the correct citation(s).
