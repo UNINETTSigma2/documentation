@@ -19,6 +19,26 @@ available versions.
 ## Sample NAMD Job Script
 ```
 #!/bin/bash
+#SBATCH --account=nnNNNNk
+#SBATCH --job-name=ubq_ws
+#SBATCH --time=1-0:0:0
+#SBATCH --nodes=10
+
+## Recommended safety settings:
+set -o errexit # Make bash exit on any error
+set -o nounset # Treat unset variables as errors
+
+module restore system
+module load NAMD/<version>
+
+## Prepare input files
+cp $SLURM_JOB_NAME.* $SCRATCH
+cp par_all27_prot_lipid.inp $SCRATCH
+cd $SCRATCH
+
+mpirun namd2 $SLURM_JOB_NAME.conf
+
+savefile $SLURM_JOB_NAME.*
 ```
 
 ## Citation
