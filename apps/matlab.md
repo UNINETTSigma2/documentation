@@ -29,7 +29,7 @@ Add this link to the environment variabel MLM_LICENCE_FILE:
 
 Add this environment variable setting into .bashrc
 
-### Commercial users:
+#### Commercial users:
 Commercial users need to sign a Hosting Provider agreement. Contact: sigma2@uninett.no
 
 ## Sample MATLAB Job Script
