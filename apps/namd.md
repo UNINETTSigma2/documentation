@@ -9,11 +9,15 @@ More information: http://www.ks.uiuc.edu/Research/namd
 | :------------- | :------------- |
 | NAMD |2.12-foss-2017a-mpi <br>2.12-intel-2018a-mpi <br>2017-11-06-foss-2017a-mpi <br>2018-02-15-intel-2018a-mpi <br>|
 
+To see available versions when logged into Fram issue command
+
+    module spider namd
+
 To use NAMD type
 
     module load NAMD/<version>
 
-specifying one of the available versions in the table above.
+specifying one of the available versions.
 
 ## Sample NAMD Job Script
 ```
