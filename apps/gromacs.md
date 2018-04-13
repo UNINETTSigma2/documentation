@@ -11,7 +11,11 @@ More information: http://www.gromacs.org
 | :------------- | :------------- |
 | GROMACS |2016.3-foss-2017a <br>2016.3-intel-2017a <br>2016.5-intel-2018a <br>|
 
-Load a GROMACS module
+To see available versions when logged into Fram issue command
+
+    module spider gromacs
+
+To use GROMACS type
 
     module load GROMACS/<version>
     
