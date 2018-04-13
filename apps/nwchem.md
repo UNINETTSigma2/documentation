@@ -18,6 +18,35 @@ available versions.
 | :------------- | :------------- |
 | NWChem |6.6.revision27746-intel-2017a-2015-10-20-patches-20170814-Python-2.7.13|
 
+## Sample NWChem Job Script
+```
+#!/bin/bash
+#SBATCH --account=nnNNNNk
+#SBATCH --job-name=tce_benzene_2emet_1
+#SBATCH --time=1-0:0:0
+#SBATCH --nodes=10
+
+## Recommended safety settings:
+set -o errexit # Make bash exit on any error
+set -o nounset # Treat unset variables as errors
+
+module restore system
+module load NWChem/<version>
+
+case=$SLURM_JOB_NAME
+
+## Prepare input files
+cp $case.nw $SCRATCH
+cd $SCRATCH
+mkdir $SCRATCH/tmp
+export SCRATCH_DIR=$SCRATCH/tmp
+
+mpirun nwchem $case.nw
+
+## Copy results back to the submit directory
+cleanup "cp $SCRATCH/* $SLURM_SUBMIT_DIR"
+```
+
 ## Citation
 
 When publishing results obtained with the software referred to, please do check the developers web page in order to find the correct citation(s).
