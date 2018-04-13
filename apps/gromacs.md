@@ -17,9 +17,35 @@ available versions.
 
 | Module     | Version     |
 | :------------- | :------------- |
-| GROMACS |2016.3-foss-2017a <br>2016.3-intel-2017a <br>|
+| GROMACS |2016.3-foss-2017a <br>2016.3-intel-2017a <br>2016.5-intel-2018a <br>|
 
-The [GROMACS example](https://source.uit.no/cpe/examplescripts/tree/master/gromacs) shows how to set up an application.
+## Sample GROMACS Job Script
+
+```
+#!/bin/bash
+#SBATCH --account=nnNNNNk
+#SBATCH --job-name=topol
+#SBATCH --time=1-0:0:0
+#SBATCH --nodes=10
+
+## Recommended safety settings:
+set -o errexit # Make bash exit on any error
+set -o nounset # Treat unset variables as errors
+
+module restore system
+module load GROMACS/<version>
+
+case=$SLURM_JOB_NAME
+
+## Prepare input files
+cp $case.tpr $SCRATCH
+cd $SCRATCH
+
+mpirun gmx_mpi mdrun $case.tpr
+
+## Copy results back to the submit directory
+cleanup "cp $SCRATCH/* $SLURM_SUBMIT_DIR"
+```
 
 ## License Information
 
