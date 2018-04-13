@@ -7,13 +7,6 @@ More information: http://www.nwchem-sw.org
 
 ## Running NWChem
 
-To load a NWChem module, run in the terminal
-
-    module load NWChem/<version>
-
-Run `module avail` to see the complete list of available versions. The table below lists the
-available versions.
-
 | Module     | Version     |
 | :------------- | :------------- |
 | NWChem |6.6.revision27746-intel-2017a-2015-10-20-patches-20170814-Python-2.7.13<br> 6.8.revision-v47-intel-2018a-2017-12-14-Python-2.7.14|
@@ -25,6 +18,8 @@ To see available versions when logged into Fram issue command
 To use NWChem type
 
     module load NWChem/<version>
+    
+specifying one of the available versions.
 
 ### Sample NWChem Job Script
 ```
