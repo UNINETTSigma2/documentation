@@ -5,16 +5,17 @@ To find out more, visit the NCO website at: http://nco.sourceforge.net/
 
 ## Running NCO
 
-To load a NCO module, run in the terminal
-
-    module load NCO/<version>
-
-Run `module avail` to see the complete list of available versions. The table below lists the
-available versions.
-
 | Module     | Version     |
 | :------------- | :------------- |
 | NCO |4.6.6-intel-2017a|
+
+To see available versions when logged into Fram issue command
+
+    module spider nco
+    
+To use NCO type
+
+    module load NCO/<version>
 
 ## License Information
 
