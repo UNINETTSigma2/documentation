@@ -18,7 +18,15 @@ available versions.
 | :------------- | :------------- |
 | NWChem |6.6.revision27746-intel-2017a-2015-10-20-patches-20170814-Python-2.7.13<br> 6.8.revision-v47-intel-2018a-2017-12-14-Python-2.7.14|
 
-## Sample NWChem Job Script
+To see available versions when logged into Fram issue command
+
+    module spider nwchem
+    
+To use NWChem type
+
+    module load NWChem/<version>
+
+### Sample NWChem Job Script
 ```
 #!/bin/bash
 #SBATCH --account=nnNNNNk
