@@ -19,7 +19,7 @@ available versions.
 | MATLAB |2017a|
 
 ## Licensing
-### Academic users:
+#### Academic users:
 Academic users need a link to a MATLAB licence server for their university (UiB, UiT, UiO or NTNU).
 Users from other universities can also use MATLAB on Fram.
 Send an email to support@metacenter.no and ask for the link to your university.
