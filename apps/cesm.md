@@ -2,20 +2,23 @@
 
 Community Earth System Model (CESM) is a software suite for simulating Earth climate.
 
-To find out more, visit the CESM website at: http://www2.cesm.ucar.edu
+More information: http://www2.cesm.ucar.edu
 
 ## Running CESM
-
-To load a CESM module, run in the terminal
-
-    module load CESM/<version>
-
-Run `module avail` to see the complete list of available versions. The table below lists the
-available versions.
 
 | Module     | Version     |
 | :------------- | :------------- |
 | CESM |1.2.2.1-intel-2017a|
+
+To see available versions when logged into Fram issue command
+
+    module spider cesm
+    
+To use CESM type
+
+    module load CESM/<version>
+
+specifying one of the available versions.
 
 ## License Information
 
