@@ -5,20 +5,24 @@ LAMMPS is a classical molecular dynamics code, and an acronym for Large-scale At
 It can be used to model atoms or, more generically, as a parallel particle simulator at the atomic, meso, or continuum scale.
 LAMMPS runs on single processors or in parallel using message-passing techniques and a spatial-decomposition of the simulation domain. The code is designed to be easy to modify or extend with new functionality.
 LAMMPS is distributed as an open source code under the terms of the GPL.
-For more information, please visit http://lammps.sandia.gov
+
+More information: http://lammps.sandia.gov
 
 ## Running LAMMPS
-
-To load a LAMMPS module, run in the terminal
-
-    module load LAAMPS/<version>
-
-Run `module avail` to see the complete list of available versions. The table below lists the
-available versions.
 
 | Module     | Version     |
 | :------------- | :------------- |
 | LAMMPS |11Aug17-foss-2017a|
+
+To see available versions when logged into Fram issue command
+
+    module spider lammps
+    
+To use LAMMPS type
+
+    module load LAMMPS/<version>
+
+specifying one of the available versions.
 
 ## License Information
 
