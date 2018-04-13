@@ -40,7 +40,8 @@ cd $SCRATCH
 
 mpirun namd2 $case.conf
 
-savefile $case.*
+## Copy results back to the submit directory
+cleanup "cp $SCRATCH/* $SLURM_SUBMIT_DIR"
 ```
 
 ## Citation
