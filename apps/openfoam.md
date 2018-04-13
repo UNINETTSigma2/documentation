@@ -5,7 +5,7 @@ embedded software simulation applications.
 
 To find out more, visit the OpenFOAM website at: http://www.openfoam.com/
 
-# Running OpenFOAM
+## Running OpenFOAM
 
 | Module     | Version     |
 | :------------- | :------------- |
@@ -22,7 +22,7 @@ To use OpenFOAM type
 
 specifying one of the available versions.
 
-## Sample OpenFOAM Job Script
+### Sample OpenFOAM Job Script
 ```
 #!/bin/bash
 
@@ -54,7 +54,7 @@ cleanup "cp -r $SCRATCH/constant $SCRATCH/system $SCRATCH/[0-9]* $SLURM_SUBMIT_D
 
 ```
 
-# License Information
+## License Information
 
 OpenFOAM is available under the [GNU General Public License](https://www.gnu.org/licenses/gpl.html) (GPL). For more information, visit http://www.openfoam.com/legal/open-source.php
 
