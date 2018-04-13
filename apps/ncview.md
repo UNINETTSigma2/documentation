@@ -2,20 +2,23 @@
 
 Ncview is a visual browser for NetCDF files.
 
-To find out more, visit the Ncview website at: http://meteora.ucsd.edu/~pierce/ncview_home_page.html
+Mor information: http://meteora.ucsd.edu/~pierce/ncview_home_page.html
 
 ## Running Ncview
-
-To load a Ncview module, run in the terminal
-
-    module load ncview/<version>
-
-Run `module avail` to see the complete list of available versions. The table below lists the
-available versions.
 
 | Module     | Version     |
 | :------------- | :------------- |
 | ncview |2.1.7-intel-2017a <br>2.1.7-intel-2018a <br>|
+
+To see available versions when logged into Fram issue command
+
+    module spider ncview
+    
+To use ncview type
+
+    module load ncview/<version>
+
+specifying one of the available versions.
 
 ## License Information
 
