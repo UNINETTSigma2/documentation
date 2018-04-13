@@ -6,16 +6,19 @@ To find out more, visit the PROJ website at: https://trac.osgeo.org/proj/
 
 ## Running PROJ
 
-To load a PROJ module, run in the terminal
-
-    module load PROJ/<version>
-
-Run `module avail` to see the complete list of available versions. The table below lists the
-available versions.
-
 | Module     | Version     |
 | :------------- | :------------- |
 | PROJ |4.9.3-foss-2017a <br>4.9.3-intel-2017a <br>4.9.3-intel-2017b <br>|
+
+To see available versions when logged into Fram issue command
+
+    module spider proj
+    
+To use PROJ type
+
+    module load PROJ/<version>
+
+specifying one of the available versions.
 
 ## License Information
 
