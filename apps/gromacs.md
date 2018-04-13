@@ -17,7 +17,7 @@ Load a GROMACS module
     
 specifying one of the available versions in the table above.
 
-## Sample GROMACS Job Script
+### Sample GROMACS Job Script
 
 ```
 #!/bin/bash
