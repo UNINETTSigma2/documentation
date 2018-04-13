@@ -2,22 +2,23 @@
 
 CDO is a collection of tools for analyzing Climate and NWP model Data.
 
-To find out more, visit the CDO website at: https://code.zmaw.de/projects/cdo
+Mor information: https://code.zmaw.de/projects/cdo
 
 ## Running CDO
-
-To load a CDO module, run in the terminal
-
-    module load CDO/<version>
-
-
-Run `module avail` to see the complete list of available versions. The table below lists the
-available versions.
 
 | Module     | Version     |
 | :------------- | :------------- |
 | CDO |1.8.2-intel-2017a|
 
+To see available versions when logged into Fram issue command
+
+    module spider cdo
+    
+To use CDO type
+
+    module load CDO/<version>
+    
+specifying one of the available versions.
 
 ## License Information
 
