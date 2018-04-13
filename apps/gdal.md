@@ -6,17 +6,19 @@ To find out more, visit the GDAL website at: http://www.gdal.org/
 
 ## Running GDAL
 
-To load a GDAL module, run in the terminal
-
-    module load GDAL/<version>
-
-Run `module avail` to see the complete list of available versions. The table below lists the
-available versions.
-
 | Module     | Version     |
 | :------------- | :------------- |
 | GDAL |2.2.0-foss-2017a-Python-2.7.13-HDF5-1.8.18 <br>2.2.0-intel-2017a-Python-2.7.13-HDF5-1.8.18 <br> |
 
+To see available versions when logged into Fram issue command
+
+    module spider gdal
+    
+To use GDAL type
+
+    module load GDAL/<version>
+
+specifying one of the available versions.
 
 ## License Information
 
