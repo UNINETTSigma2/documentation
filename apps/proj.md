@@ -8,7 +8,7 @@ To find out more, visit the PROJ website at: https://trac.osgeo.org/proj/
 
 | Module     | Version     |
 | :------------- | :------------- |
-| PROJ |4.9.3-foss-2017a <br>4.9.3-intel-2017a <br>4.9.3-intel-2017b <br>|
+| PROJ |4.9.3-foss-2017a <br>4.9.3-intel-2017a <br>4.9.3-foss-2017b <br>4.9.3-intel-2017b <br>5.0.0-foss-2018a <br>5.0.0-intel-2018a <br>|
 
 To see available versions when logged into Fram issue command
 
