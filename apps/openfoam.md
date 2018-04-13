@@ -7,17 +7,20 @@ To find out more, visit the OpenFOAM website at: http://www.openfoam.com/
 
 # Running OpenFOAM
 
-To load a OpenFOAM module, run in the terminal
+| Module     | Version     |
+| :------------- | :------------- |
+| OpenFOAM |4.1-intel-2017a <br>5.0-intel-2017a <br>1712-foss-2018a <br>|
+| OpenFOAM-Extend |4.0-intel-2017a |
+
+To see available versions when logged into Fram issue command
+
+    module spider openfoam
+    
+To use OpenFOAM type
 
     module load OpenFOAM/<version>
 
-Run `module avail` to see the complete list of available versions. The table below lists the
-available versions.
-
-| Module     | Version     |
-| :------------- | :------------- |
-| OpenFOAM |4.1-intel-2017a <br>5.0-intel-2017a <br>|
-| OpenFOAM-Extend |4.0-intel-2017a |
+specifying one of the available versions.
 
 ## Sample OpenFOAM Job Script
 ```
