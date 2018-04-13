@@ -7,17 +7,15 @@ More information: http://www.gromacs.org
 
 ## Running GROMACS
 
-To load a GROMACS module, run in the terminal
-
-    module load GROMACS/<version>
-
-
-Run `module avail` to see the complete list of available versions. The table below lists the
-available versions.
-
 | Module     | Version     |
 | :------------- | :------------- |
 | GROMACS |2016.3-foss-2017a <br>2016.3-intel-2017a <br>2016.5-intel-2018a <br>|
+
+Load a GROMACS module
+
+    module load GROMACS/<version>
+    
+specifying one of the available versions in the table above.
 
 ## Sample GROMACS Job Script
 
