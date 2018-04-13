@@ -12,7 +12,7 @@
 
 Performance Reports needs to compile a library that is pre-loaded before you program is run. In order to compile this library, the Intel compiler library must be loaded as well, regardless of whether the program to be evaluated has been compiled with the Intel compiler:
 
-    $ module load Allinea-PerfReports/7.0.6 intel/2017a
+    $ module load Arm-PerfReports/18.1.2 intel/2018a
 
 Remember that you must also load these modules in job scripts, when you run your program.
 
