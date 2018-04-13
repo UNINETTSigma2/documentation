@@ -19,7 +19,7 @@ To use NAMD type
 
 specifying one of the available versions.
 
-## Sample NAMD Job Script
+### Sample NAMD Job Script
 ```
 #!/bin/bash
 #SBATCH --account=nnNNNNk
