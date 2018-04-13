@@ -35,21 +35,23 @@ Commercial users need to sign a Hosting Provider agreement. Contact: sigma2@unin
 ## Sample MATLAB Job Script
 ```
 #!/bin/bash
-#SBATCH --account=my_account
+#SBATCH --account=nnNNNNk
 #SBATCH --job-name=jobname
-#SBATCH --time=0:30:0
+#SBATCH --time=1-0:0:0
 #SBATCH --nodes=1
-#SBATCH --qos=preproc
-## Software modules
+
+## Recommended safety settings:
+set -o errexit # Make bash exit on any error
+set -o nounset # Treat unset variables as errors
+
 module restore system
-module load MATLAB/2017a
-module list
+module load MATLAB/<version>
+
 matlab -nodisplay -nodesktop -nojvm -r "myprogram"
 
-```
-(Note! If you are using Parallel Computing Toolbox, remove -nojvm)
+## Note: if you are using the Parallel Computing Toolbox, remove -nojvm
 
-To run the job: sbatch job.sh
+```
 
 ## MPI for Matlab
 MPI for Matlab is installed on Fram (for parallelizing of many compute nodes)
