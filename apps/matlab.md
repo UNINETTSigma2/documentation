@@ -4,7 +4,7 @@ MATLAB is a platform for solving engineering, mathematical, and graphical proble
 
 To find out more, visit the MATLAB website at: http://se.mathworks.com/help/matlab
 
-## Licensing
+## License Information
 #### Academic users
 Academic users need a link to a MATLAB licence server for their university (UiB, UiT, UiO or NTNU).
 Users from other universities can also use MATLAB on Fram. Send an email to support@metacenter.no 
