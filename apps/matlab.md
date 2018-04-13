@@ -19,14 +19,6 @@ Commercial users need to sign a Hosting Provider agreement. Contact: sigma2@unin
 
 ## Running MATLAB
 
-To load a MATLAB module, run in the terminal
-
-    module load MATLAB/<version>
-
-Run `module avail` to see the complete list of available versions. The table below lists the
-available versions.
-
-
 | Module     | Version     |
 | :------------- | :------------- |
 | MATLAB |2017a|
