@@ -1,4 +1,4 @@
-#!/bin/bash -l
+#!/bin/bash
 
 # job name
 #SBATCH --job-name=example
