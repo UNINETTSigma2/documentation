@@ -8,7 +8,7 @@ Mor information: https://code.zmaw.de/projects/cdo
 
 | Module     | Version     |
 | :------------- | :------------- |
-| CDO |1.8.2-intel-2017a|
+| CDO |1.8.2-intel-2017a <br>1.9.3-intel-2018a|
 
 To see available versions when logged into Fram issue command
 
