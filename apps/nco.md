@@ -7,7 +7,7 @@ To find out more, visit the NCO website at: http://nco.sourceforge.net/
 
 | Module     | Version     |
 | :------------- | :------------- |
-| NCO |4.6.6-intel-2017a|
+| NCO |4.6.6-intel-2017a <br>4.7.2-intel-2018a|
 
 To see available versions when logged into Fram issue command
 
