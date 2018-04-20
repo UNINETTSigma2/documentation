@@ -42,6 +42,7 @@
     * [Sample Batch Script](jobs/samplescript.md)
     * [MPI Jobs](jobs/mpi_jobs.md)
     * [JobArray](jobs/jobarrays.md)
+    * [Cleanup at timeout](jobs/cleanup.md)
     * [Porting from PBS/TORQUE](jobs/porting.md)
 * [Interactive Jobs](jobs/interactive.md)
 * [Managing Jobs](jobs/managing_jobs.md)
