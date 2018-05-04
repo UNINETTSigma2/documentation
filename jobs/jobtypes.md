@@ -11,7 +11,8 @@ and how they are run.  The different types are
 - **preproc**: Short, 1-node jobs for things like preprocessing and
   postprocessing, that don't need many cpus.
 - **devel**: Short jobs, meant for quick development and testing.  They get
-  higher priority to start sooner, but can only use upto 10 nodes in total.
+  higher priority to start sooner, but can only use upto 10 nodes each, and 16
+  in total.
 - **optimist**: Low priority jobs that can start whenever there are free
   resources, but will be requeued when other jobs need the resources.  Meant
   for jobs that use checkpointing.
@@ -89,7 +90,7 @@ Here is a simpler `preproc` job (one task on one node):
 
 `devel` jobs must specify `--qos=devel`.  A `devel` job is like a `normal`
 job, except that it can use between 1 and 10 nodes, and there is a limit of
-how many nodes `devel` jobs can use at the same time (currently 10).  `devel`
+how many nodes `devel` jobs can use at the same time (currently 16).  `devel`
 jobs also have a maximum walltime of 1 hour.  On the other hand, they get
 higher priority than other jobs, in order to start as soon as possible.
 
@@ -117,15 +118,18 @@ reservation, but only if it does not delay any jobs with reservations.
 
 The different job types start with different priorities:
 
-- `devel` jobs start with 19,990, so get a reservation in 10 min
-- `normal`, `bigmem` and `preproc` jobs start with 19,940, so get a reservation in 60 min
-- "Unpri" `normal`, `bigmem` and `preproc` jobs(*) start with 19,400, so get a reservation in 10 hrs
+- `devel` jobs start with 20,000, so get a reservation directly
+- `normal`, `bigmem` and `preproc` jobs start with 19,760, so get a
+  reservation in 4 hours
+- "Unpri" `normal`, `bigmem` and `preproc` jobs(*) start with 19,040, so get a reservation in 16 hrs
 - `optimist` jobs start with 1 and end at 10,080, so they never get a reservation
 
 The idea is that once a job has been in the queue long enough to get a
-reservation, no other job should delay it. But before it gets a reservation,
-the queue system backfiller is free to start any other job that can start now,
-even if that will delay the job.
+reservation, no other lower priority job should be able delay it. But before
+it gets a reservation, the queue system backfiller is free to start any other
+job that can start now, even if that will delay the job.  Note that there are
+still factors that can change the estimated start time, for instance running
+jobs that exit sooner than expected, or nodes failing.
 
 (*) In some cases when a project applies for extra CPU hours because it has
 spent its allocation, it will get "unprioritized" hours, meaning their jobs

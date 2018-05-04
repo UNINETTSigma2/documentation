@@ -92,9 +92,9 @@ understand, and to try and maximize the utilisation of the cluster.
 -   Principle: *Time-to-reservation*
 -   Priority increases 1 point/minute
 -   When priority is >= 20,000, job gets a reservation
--   **Devel** jobs start with 19,990, so reservation in 10 min
--   **Normal** jobs start with 19,940, so reservation in 60 min
--   **Normal unpri** jobs start with 19,400, so reservation in 10 hrs
+-   **Devel** jobs start with 20,000, so reservation directly
+-   **Normal** jobs start with 19,760, so reservation in 4 hours
+-   **Normal unpri** jobs start with 19,040, so reservation in 16 hrs
 -   **Optimist** jobs start with 1, ends at 10,080, so never reservation
 
 The idea is that once a job has been in the queue long enough to get a
