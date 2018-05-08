@@ -80,10 +80,10 @@ For performance optimizations, consult [Performance Tips](performance-tips.md) p
 
 ## <a name="project-area"></a>Project Area
 
-NOTUR projects have a dedicated local space to share data between project
+HPC projects have a dedicated local space to share data between project
 members, located at **/cluster/projects/<project_name>**.
 
-The project area is quota controlled and the default project quota for NOTUR
+The project area is quota controlled and the default project quota for HPC
 projects is 1TB, but projects can apply for more during the application
 process or at a later point in time if needed.
 
