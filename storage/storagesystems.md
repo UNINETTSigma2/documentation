@@ -21,6 +21,7 @@ Data handling and storage policy is documented [here](data-usage-policy.md).
 * `$SCRATCH` contents are deleted after the job finishes execution.
 * `$USERWORK` is subject to automatic file deletion.
 * See file deletion policies for both in the sections below.
+* Users may request larger quota on the Project area (see Project are below)
 
 
 ## Work Area
@@ -80,12 +81,14 @@ For performance optimizations, consult [Performance Tips](performance-tips.md) p
 
 ## <a name="project-area"></a>Project Area
 
-HPC projects have a dedicated local space to share data between project
+All HPC projects have a dedicated local space to share data between project
 members, located at **/cluster/projects/<project_name>**.
 
 The project area is quota controlled and the default project quota for HPC
 projects is 1TB, but projects can apply for more during the application
-process or at a later point in time if needed.
+process or request at a later point in time if needed. The maximum quota for
+the project area is 10TB. Greater needs will require a separate application for
+NIRD project area.
 
 **Notes:**
 
