@@ -94,6 +94,10 @@ how many nodes `devel` jobs can use at the same time (currently 16).  `devel`
 jobs also have a maximum walltime of 1 hour.  On the other hand, they get
 higher priority than other jobs, in order to start as soon as possible.
 
+If you have temporary development needs that cannot be fulfilled by the devel 
+QoS, please contact us at <support@metacenter.no>.
+
+
 ## `optimist` Jobs
 
 `optimist` jobs must specify `--qos=optimist`, and should specify the number
