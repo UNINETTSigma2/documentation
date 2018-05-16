@@ -30,12 +30,15 @@ for the [HPCX communication libraries](http://www.mellanox.com/page/products_dyn
 With OpenMPI, `srun` is the preferred way to start MPI programs due to good integration with the Slurm scheduler environment:
 
 ```
-srun /path/to/openmpi_app
+srun -n <num ranks> /path/to/openmpi_app
 ```
 
 Executed as above, `srun` uses SLURM's default binding and mapping algorithms (currently
 `--cpu_bind=cores`), [which can be changed](https://slurm.schedmd.com/srun.html) using either command-line
 parameters, or environment variables. Parameters specific to OpenMPI can be set using [environment variables](https://www.open-mpi.org/faq/?category=tuning#setting-mca-params).
+
+Note that with `srun` it is necessary to explicitly specify the number of ranks to start with the `-n` parameter. Otherwise
+SLURM will by default start one rank per compute node.
 
 ### `mpirun`
 
@@ -76,7 +79,7 @@ this is your case, please refer to the documentation regarding
 With `srun`, Intel MPI applications cab be started as follows:
 
 ```
-srun --mpi=pmi2 /path/to/app
+srun -n <num ranks> --mpi=pmi2 /path/to/app
 ```
 
 Note that you must explicitly specify `--mpi=pmi2`.
@@ -89,4 +92,5 @@ code executed with `mpirun`. Until this is resolved, to start applicationswe sug
 
 Note that when executing `mpirun` from within a SLURM allocation there
 is no need to provide neither the number of MPI ranks (`-np`), nor the host file
-(`-hostfile`): those are obtained automatically by `mpirun`.
+(`-hostfile`): those are obtained automatically by `mpirun`. When using `srun` one has to explicitly add
+the `-n <num ranks>` parameter, otherwise SLURM will by default start one rank per compute node.
