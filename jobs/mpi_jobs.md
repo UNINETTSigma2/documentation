@@ -7,9 +7,9 @@ foss/2017a`
 * Intel MPI environment is provided by the `intel` module, e.g.,
 `module load intel/2017a` 
 
-SLURM is used as the [queuing system and the resource
+Slurm is used as the [queuing system and the resource
 manager](jobscripts.md), and the native way to start MPI applications 
-with SLURM is to use the [`srun`](https://slurm.schedmd.com/srun.html)
+with Slurm is to use the [`srun`](https://slurm.schedmd.com/srun.html)
 command. On the other hand, both MPI implementations provide their own
 mechanisms to start application in the form of the `mpirun`
 command.
@@ -17,7 +17,7 @@ command.
 One of the most important factors when running large MPI jobs is
 mapping of the MPI ranks to compute nodes, and *binding* (or
 *pinning*) them to CPU cores. Neglecting to do that, or doing that in
-an inoptimal way can severely affect the performance. In this regard
+an suboptimal way can severely affect the performance. In this regard
 there are some differences when it comes to running applications
 compiled against the two supported MPI environments.
 
@@ -33,12 +33,12 @@ With OpenMPI, `srun` is the preferred way to start MPI programs due to good inte
 srun -n <num ranks> /path/to/openmpi_app
 ```
 
-Executed as above, `srun` uses SLURM's default binding and mapping algorithms (currently
+Executed as above, `srun` uses Slurm's default binding and mapping algorithms (currently
 `--cpu_bind=cores`), [which can be changed](https://slurm.schedmd.com/srun.html) using either command-line
 parameters, or environment variables. Parameters specific to OpenMPI can be set using [environment variables](https://www.open-mpi.org/faq/?category=tuning#setting-mca-params).
 
 Note that with `srun` it is necessary to explicitly specify the number of ranks to start with the `-n` parameter. Otherwise
-SLURM will by default start one rank per compute node.
+Slurm will by default start one rank per compute node.
 
 ### `mpirun`
 
@@ -76,7 +76,7 @@ this is your case, please refer to the documentation regarding
 [Interoperability between MPI and OpenMP](https://software.intel.com/en-us/mpi-developer-reference-windows-interoperability-with-openmp-api).
 
 ### `srun`
-With `srun`, Intel MPI applications cab be started as follows:
+With `srun`, Intel MPI applications can be started as follows:
 
 ```
 srun -n <num ranks> --mpi=pmi2 /path/to/app
@@ -86,11 +86,11 @@ Note that you must explicitly specify `--mpi=pmi2`.
 
 We have observed that in the current setup some applications compiled against Intel MPI and executed
 with `srun` achieve inferior performance compared to the same
-code executed with `mpirun`. Until this is resolved, to start applicationswe suggest using `mpirun`.
+code executed with `mpirun`. Until this is resolved, we suggest using `mpirun` to start applications.
 
 ## Final remarks
 
-Note that when executing `mpirun` from within a SLURM allocation there
+Note that when executing `mpirun` from within a Slurm allocation there
 is no need to provide neither the number of MPI ranks (`-np`), nor the host file
 (`-hostfile`): those are obtained automatically by `mpirun`. When using `srun` one has to explicitly add
-the `-n <num ranks>` parameter, otherwise SLURM will by default start one rank per compute node.
+the `-n <num ranks>` parameter, otherwise Slurm will by default start one rank per compute node.
