@@ -6,7 +6,7 @@ on the HPC machines.
 ##Getting Access
 
 To gain access to the HPC machines, a formal application is needed. The process
-is explained at the [User Access](https://www.sigma2.no/node/36) page.
+is explained at our page for [how to apply for user account](https://www.sigma2.no/content/how-apply-user-account).
 
 ##Logging In
 
