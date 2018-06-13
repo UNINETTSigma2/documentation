@@ -25,6 +25,9 @@ nodes, but a project can be allowed to use more nodes if needed.  The jobs can
 specify how many tasks should run per node and how many CPUs should be used by
 each task.
 
+If more than 32 nodes is needed, and the application in question can actually 
+scale more than 32 nodes, please send a request to <support@metacenter.no>.
+
 All normal jobs gets exclusive access to whole nodes (all CPUs and memory).
 If a job tries to use more (resident) memory than is configured on the nodes,
 it will be killed.  Currently, this limit is 60 GiB, *but it can change*. The
