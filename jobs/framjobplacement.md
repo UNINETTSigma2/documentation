@@ -31,7 +31,7 @@ when submitting the job, where *N* is the maximal number of islands to
 use (1, 2, 3 or 4), and *time* (optional) is the maximum time to wait.
 See ```man sbatch``` for details.  Two examples:
 
-    --swithces=2          # Allow two islands
+    --switches=2          # Allow two islands
     --switches=1@4-0:0:0  # Change max wait time to 4 days
 
 The maximal possible wait time to specify is 28 days[^1].  *A longer time
