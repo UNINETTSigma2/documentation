@@ -102,7 +102,7 @@ NIRD project area.
 
 The user area is mounted to **/nird/home/<username>**. This file system is
 small and is **not** suitable for running jobs. A quota is enabled on home
-directories which is by default 20GB per user. It is advisable to store
+directories which is by default 20GB and 100000 files per user. It is advisable to store
 `stderr` and `stdout` logs from your batch jobs in `$HOME` so they are
 available for reviewing in case of issues with it. The user area is
 geo-replicated between Tromsø and Trondheim.  Additionally daily snapshots are
