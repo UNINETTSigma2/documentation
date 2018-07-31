@@ -111,7 +111,7 @@ taken and kept for the last 7 days and weekly snapshots for the last 6 weeks.
 **Notes**
 
 * set to the `$HOME` variable
-* The total size of /nird/home is 0.5PB and a quota per user is set to 20GB.
+* The total size of /nird/home is 0.5PB and a quota per user is set to 20GB and 100000 files.
 * The home directory should be used for storing tools, scripts, application
 sources or other relevant data which must have a backup.
 * backed up with daily snapshots for the last 7 days and weekly snapshots for
