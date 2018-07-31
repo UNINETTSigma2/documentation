@@ -42,7 +42,7 @@ To access or transfer data use the following tools: ssh, scp or stfp. Visit the 
 ### Home directories
 
 Home directories are located in `/nird/home/<username>`.
-Quota for home is 20GB. To check the disk usage type
+Quota for home is 20GB and 100000 files. To check the disk usage type
 
      dusage
      
