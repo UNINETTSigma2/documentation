@@ -22,6 +22,7 @@ Commercial users need to sign a Hosting Provider agreement. Contact: sigma2@unin
 | Module     | Version     |
 | :------------- | :------------- |
 | MATLAB |2017a|
+| MATLAB |2018a|
 
 To see available versions when logged into Fram issue command
 
