@@ -43,7 +43,8 @@ set to get the default behaviour)!
 
 On the other hand, you might want to guarantee that your job never,
 ever, starts on more than one island.  The easiest way to do that is to
-specify `--constraint=[island1|island2|island3|island4]` instead.
+specify `--constraint=[island1|island2|island3|island4]` instead (this option
+can be used either on the command line or in the job script).
 
 ### Changing the Defaults
 
