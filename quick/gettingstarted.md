@@ -1,22 +1,24 @@
-#Getting Started
+# Getting Started
 
 This page lists information about how to get started with running applications
 on the HPC machines.
 
-##Getting Access
+## Getting Access
 
 To gain access to the HPC machines, a formal application is needed. The process
 is explained at our page for [how to apply for user account](https://www.sigma2.no/content/how-apply-user-account).
 
-##Logging In
+## Logging In
 
 Logging into the machine involves the use of Secure Shell (SSH) in a terminal.
 SSH login is available natively to Linux or Mac OSX (or any UNIX-based systems).
 On Windows machines an SSH client is needed, for example, [PuTTY](http://putty.org).
 
+```shell
     ssh <username>@<machinename>
+```
 
-Replace _<username>_ with your registered username and _<machinename>_ with the specific machine name.
+Replace `<username>` with your registered username and `<machinename>` with the specific machine name.
 
 The machine names are:
 
@@ -26,7 +28,7 @@ The machine names are:
 
 For the storage services, the login nodes are listed at [Storage Services](../storage/storageservices.md).
 
-##Development environment
+## Development environment
 
 Abel, Stallo and Fram runs CentOS Linux distributions as operating system. The machines can run C/C++ or Fortran OpenMP and MPI applications, and depending on the machine, various open-source and third party applications. The Programming Environment page has more information about third-party applications.
 
@@ -44,7 +46,7 @@ For example, to copy projectfiles.tar.gz to the home directory of myusername to 
 
 The [Transferring Files](../storage/file-transfering.md) page has more information about transferring files to Fram.
 
-###Modules
+### Modules
 
 Modules enable applications to run different environment configurations. For example, an application may run with either the Intel compiler or the GNU compiler by loading different modules. The module command is for loading or listing available modules.
 
@@ -52,18 +54,17 @@ Modules enable applications to run different environment configurations. For exa
 
 To view the full list of options, enter man module in the command line. Here is a brief list of common module options:
 
-* _avail_ - list the available modules
-* _list_ - list the currently loaded modules
-* _load  <module name>_ - load the module called modulename
-* _unload  <module name>_ - unload the module called module name
-* _show <module name>_  - display configuration settings for module name
+* `avail` - list the available modules
+* `list` - list the currently loaded modules
+* `load  <modulename>` - load the module called `modulename`
+* `unload  <modulename>` - unload the module called `modulename`
+* `show <modulename>`  - display configuration settings for `modulename`
 
 For example, to load the Intel toolchain on Fram, enter:
 
     module load intel/2017a
 
-
-##Running Applications
+## Running Applications
 
 The HPC machines provide compute nodes for executing applications. To ensure
 fair access to the resources, the HPC machines run applications as _jobs_ in a
@@ -86,18 +87,19 @@ To submit a job, use the `sbatch` command followed by the batch script's name:
     sbatch <scriptfile>
 
 These pages are about creating batch scripts and how to manage them in the queue system.
+
 * [Job Scripts](../jobs/jobscripts.md)
 * [Managing Jobs](../jobs/managing_jobs.md)
 * [Sample Batch Script](../jobs/samplescript.md)
 * [Porting from PBS/TORQUE](../jobs/porting.md)
 * [Running MPI applications](../jobs/mpi_jobs.md)
 
-##Account information
+## Account information
 
 Information on available CPU-hours in your accounts:
 
     cost
 
-##More Information
+## More Information
 
 The menu on the left list the pages with more information about developing and running applications.
