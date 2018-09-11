@@ -13,9 +13,9 @@ and how they are run.  The different types are
 - **devel**: Short jobs, meant for quick development and testing.  They get
   higher priority to start sooner, but can only use upto 10 nodes each, and 16
   in total.
-- **optimist**: Low priority jobs that can start whenever there are free
+- **optimist** (not yet available on fram): Low priority jobs that can start whenever there are free
   resources, but will be requeued when other jobs need the resources.  Meant
-  for jobs that use checkpointing.
+  for jobs that use checkpointing .
 
 ## `normal` Jobs
 
@@ -101,7 +101,7 @@ If you have temporary development needs that cannot be fulfilled by the devel
 QoS, please contact us at <support@metacenter.no>.
 
 
-## `optimist` Jobs
+## `optimist` Jobs (not yet available on fram)
 
 `optimist` jobs must specify `--qos=optimist`, and should specify the number
 of nodes needed (between 4 and 32), but they should *not* specify wall time
