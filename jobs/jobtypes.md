@@ -13,9 +13,10 @@ and how they are run.  The different types are
 - **devel**: Short jobs, meant for quick development and testing.  They get
   higher priority to start sooner, but can only use upto 10 nodes each, and 16
   in total.
-- **optimist**: Low priority jobs that can start whenever there are free
+- **optimist** : Low priority jobs that can start whenever there are free
   resources, but will be requeued when other jobs need the resources.  Meant
-  for jobs that use checkpointing.
+  for jobs that use checkpointing. projects need to make a request for 
+  optimist quotas to use this feature. 
 
 ## `normal` Jobs
 
