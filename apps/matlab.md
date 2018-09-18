@@ -46,6 +46,7 @@ specifying one of the available versions.
 #SBATCH --job-name=jobname
 #SBATCH --time=1-0:0:0
 #SBATCH --nodes=1
+#SBATCH --qos=preproc
 
 ## Recommended safety settings:
 set -o errexit # Make bash exit on any error
