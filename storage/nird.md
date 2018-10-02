@@ -70,7 +70,7 @@ One can use *scp* and *sftp* to upload or download data from NIRD.
 * scp - secure copy files between hosts on a network
 
 ```
-# copy single file to home folder on Fram
+# copy single file to home folder on NIRD
 # note that folder is ommitted, home folder being default
 scp my_file.tar.gz <username>@login.nird.sigma2.no:
 
@@ -81,11 +81,11 @@ scp -r my_dir/ <username>@login.nird.sigma2.no:/projects/<projectname>/
 * sftp - interactive secure file transfer program (Secure FTP)
 
 ```
-# copy all logs named starting with "out" from /projects/project1
-# to project1 folder
+# copy all logs named starting with "out" from project1 folder
+# to /projects/project1
 sftp <username>@login.nird.sigma2.no
-sftp> lcd /projects/project1
-sftp> cd project1
+sftp> cd /projects/project1
+sftp> lcd project1
 sftp> put out*.log
 ```
 
