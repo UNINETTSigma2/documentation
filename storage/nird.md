@@ -61,6 +61,37 @@ The project area is quota controlled and current usage is obtained by running th
 FRAM projects are only available from FRAM login nodes.   
 For more information, visit the [Storage Systems on Fram](storagesystems.md) page.
 
+Access to Fram is permitted only trough SSH.
+One can use *scp* and *sftp* to upload or download data from Fram.
+
+### File transfering
+To transfer files between NIRD and Fram, regular *cp*/*mv* commands can be
+used, since NIRD file systems are mounted on Fram.
+
+#### Basic tools (scp, sftp)
+
+* scp - secure copy files between hosts on a network
+
+```
+# copy single file to home folder on Fram
+# note that folder is ommitted, home folder being default
+scp my_file.tar.gz <username>@login.nird.sigma2.no:
+
+# copy a directory to project area
+scp -r my_dir/ <username>@login.nird.sigma2.no:/projects/<projectname>/
+```
+
+* sftp - interactive secure file transfer program (Secure FTP)
+
+```
+# copy all logs named starting with "out" from /projects/project1
+# to project1 folder
+sftp <username>@login.nird.sigma2.no
+sftp> lcd /projects/project1
+sftp> cd project1
+sftp> put out*.log
+```
+
 ### Backup
 
 * Geo-replication is set up between Tromsø and Trondheim.
