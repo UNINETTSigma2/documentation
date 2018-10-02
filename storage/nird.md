@@ -61,12 +61,11 @@ The project area is quota controlled and current usage is obtained by running th
 FRAM projects are only available from FRAM login nodes.   
 For more information, visit the [Storage Systems on Fram](storagesystems.md) page.
 
-Access to Fram is permitted only trough SSH.
-One can use *scp* and *sftp* to upload or download data from Fram.
+
 
 ### File transfering
-To transfer files between NIRD and Fram, regular *cp*/*mv* commands can be
-used, since NIRD file systems are mounted on Fram.
+Access to NIRD is permitted only through SSH.
+One can use *scp* and *sftp* to upload or download data from NIRD.
 
 #### Basic tools (scp, sftp)
 
