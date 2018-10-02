@@ -67,8 +67,6 @@ For more information, visit the [Storage Systems on Fram](storagesystems.md) pag
 Access to NIRD is permitted only through SSH.
 One can use *scp* and *sftp* to upload or download data from NIRD.
 
-#### Basic tools (scp, sftp)
-
 * scp - secure copy files between hosts on a network
 
 ```
