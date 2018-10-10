@@ -4,8 +4,8 @@ Gaussian is a computational chemistry software program system initially released
 
 ## Online info from vendor
 
-* Homepage: [http://www.gaussian.com] (http://www.gaussian.com)
-* Documentation: [http://gaussian.com/man] (http://gaussian.com/man)
+* Homepage: http://www.gaussian.com
+* Documentation: http://gaussian.com/man
 
 ## Running Gaussian on Fram
 
@@ -19,8 +19,8 @@ To use Gaussian, type
     
 specifying one of the available versions.
 
-* Download run script example here: <a href="files/run_g16.sh" download>run_g16.sh</a>
-* Download water input example: <a href="files/water.com" download>water.com</a>
+* Download run script example here: <a href="run_g16.sh" download>run_g16.sh</a>
+* Download water input example: <a href="water.com" download>water.com</a>
 
 ### Important aspects of Gaussian setup on Fram:
 
