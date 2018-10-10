@@ -41,7 +41,7 @@ Syntax is shown here:
 Please inspect the run script example carefully before submitting Gaussian jobs on Fram!
 
 
-## Usage of Gaussian on Fram:
+## About Gaussian on Fram:
 
 After thorough testing, we would generally advice user to run 4-8 nodes with heap-size 20 GB (see above) and 2 Linda instances per node for running Gaussian on Fram. Note that due to the "two-Lindas-per-node" policy, memory demand is approximately the double as similar jobs on Stallo. 
 
