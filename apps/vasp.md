@@ -30,7 +30,7 @@ For more information on available versions, type:
 
 ## About VASP on Fram
 
-For simplicity we have compiled a page on specifics about the VASP install on Fram: [About VASP on Fram](vasponfram.md)
+For simplicity we have compiled a page on specifics about the VASP install on Fram: files/vasponfram.md
 
 ## Citation
 
