@@ -74,12 +74,10 @@ output_9.txt:start at 14:43:59
 
 ## Packaging smaller parallel jobs into one large 
 
-There are several ways to package smaller parallel jobs into one large parallel job. The preferred way is to use Job Arrays. Browse the web for many examples on how to do it. Here we want to present a more pedestrian alternative which can give a lot of flexibility.
+There are several ways to package smaller parallel jobs into one large
+parallel job. The preferred way is to use job arrays as above.  Browse the web for many examples on how to do it. Here we want to present a more pedestrian alternative which can give a lot of flexibility.
 
-In this example we imagine that we wish to run 5 MPI jobs at the same time, each using 4 tasks, thus totalling to 20 tasks. Once they finish, we wish to do a post-processing step and then resubmit another set of 5 jobs with 4 tasks each:
-
-***WARNING: Currently, this does not work in the `normal` partition, only for
-`bigmem` jobs.  We are trying to figure out why and if it can be fixed.***
+In this example we imagine that we wish to run a `bigmem` job with 5 MPI jobs at the same time, each using 4 tasks, thus totalling to 20 tasks. Once they finish, we wish to do a post-processing step:
 
 ```
 #!/bin/bash
@@ -89,34 +87,40 @@ In this example we imagine that we wish to run 5 MPI jobs at the same time, each
 #SBATCH --ntasks=20
 #SBATCH --time=0-00:05:00
 #SBATCH --partition=bigmem
-#SBATCH --mem-per-cpu=500M
+#SBATCH --mem-per-cpu=5000M
 
-# first set of parallel runs, using Intel MPI
+# Load MPI module
 module purge
-module load intel/2018a
-mpirun -n 4 ./my-binary &
-mpirun -n 4 ./my-binary &
-mpirun -n 4 ./my-binary &
-mpirun -n 4 ./my-binary &
-mpirun -n 4 ./my-binary &
+module load OpenMPI/2.1.1-GCC-6.4.0-2.28
+module list
+
+# The set of parallel runs:
+srun -n 4 ./my-binary &
+srun -n 4 ./my-binary &
+srun -n 4 ./my-binary &
+srun -n 4 ./my-binary &
+srun -n 4 ./my-binary &
 
 wait
 
 # here a post-processing step
 # ...
 
-# another set of parallel runs, using OpenMPI
-module purge
-module load OpenMPI/2.1.1-GCC-6.4.0-2.28
-srun -n 4 ./my-binary &
-srun -n 4 ./my-binary &
-srun -n 4 ./my-binary &
-srun -n 4 ./my-binary &
-srun -n 4 ./my-binary &
-
-wait
-
 exit 0
 ```
 
-The wait commands are important here - the run script will only continue once all commands started with & have completed.
+A couple of notes:
+
+- The wait command is important here - the run script will only continue once
+  all commands started with & have completed.
+- It is also possible to use `mpirun` instead of `srun`, although `srun` is
+  recommended for OpenMPI.
+- The above example is for `bigmem` jobs.  In order to use this techniqueue
+  for `normal` or `optimist` jobs, you have to add a line `export
+  SLURM_MEM_PER_CPU=1920` prior to the `srun` (or `mpirun`) lines.  This gives
+  up to 32 tasks per node.  If each task needs more than 1920 MiB per cpu, the
+  number must be increased (and the number of tasks per node will be reduced).
+  Alternatively, you can add `--mem-per-cpu=1920` or similar to the `srun`
+  command lines (this only works with `srun`).
+- This technique does **not** work with IntelMPI, at least not when using
+  `mpirun`, which is currently the recommended way of running IntelMPI jobs.
