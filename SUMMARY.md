@@ -1,6 +1,7 @@
 ## Quick Information
 * [Introduction](README.md)
 * [Getting Started](quick/gettingstarted.md)
+    * [Remote Desktop](quick/remote-desktop.md)
 * [License Information](quick/license.md)
 * [Contact](support/contact.md)
     * [Writing Support Requests](support/how_to_write_good_support_requests.md)
