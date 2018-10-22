@@ -14,9 +14,9 @@ Start TigerVNC and give `desktop.fram.sigma2.no:5901` as the server to connect t
 
 ## Short video tutorial.
 
-Direct link <https://www.youtube.com/watch?v=spGUNvBPsGw>
+Direct link <https://www.youtube.com/watch?v=tjOQ39DRUdc>
 
-<iframe width="765" height="430" src="https://www.youtube.com/embed/spGUNvBPsGw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tjOQ39DRUdc?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Troubleshooting
 
