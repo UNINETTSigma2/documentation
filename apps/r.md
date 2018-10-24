@@ -7,7 +7,7 @@ To find out more, visit the R website at: https://www.r-project.org
 
 | Module     | Version     |
 | :------------- | :------------- |
-| R |3.4.0-intel-2017a-X11-20170314 <br> 3.4.3-intel-2017b-X11-20171023 <br>|
+| R |3.4.0-intel-2017a-X11-20170314 <br> 3.4.3-intel-2017b-X11-20171023 <br> 3.4.4-intel-2018a-X11-20180132 <br>|
 
 To see available versions when logged into Fram issue command
 
