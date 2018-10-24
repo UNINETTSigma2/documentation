@@ -12,7 +12,7 @@ More information: http://lammps.sandia.gov
 
 | Module     | Version     |
 | :------------- | :------------- |
-| LAMMPS |11Aug17-foss-2017a|
+| LAMMPS |11Aug17-foss-2017a <br> 13Mar18-foss-2018a <br>|
 
 To see available versions when logged into Fram issue command
 
