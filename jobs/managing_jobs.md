@@ -17,6 +17,10 @@ These commands give information about the status of jobs:
 
 For details run the commands with the `--help` option or visit the Slurm documentation at https://slurm.schedmd.com
 
+When the job starts, it creates a file `slurn-<jobid>.out` where stdout and
+stderr of the commands are logged (unless overridden by `sbatch` options).
+While the job is running, you can check its progress with `cat slurn-<jobid>.out`.
+
 Once your job has completed, you can get additional information that was not
 available during the run. This includes run time, memory used, etc:
 
