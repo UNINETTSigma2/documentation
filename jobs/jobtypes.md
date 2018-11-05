@@ -111,7 +111,8 @@ than other jobs, but can start as soon as there are free resources.  However,
 when any other job needs its resources, the `optimist` job is stopped and put
 back on the job queue.  Therefore, all `optimist` jobs must use checkpointing,
 and access to run `optimist` jobs will only be given to projects that
-demonstrate that they can use checkpointing.
+demonstrate that they can use checkpointing. To be able submit `optimist` jobs 
+user has to send request to Sigma2 to get access to the special quota.
 
 # Job Priorities
 
