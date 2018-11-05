@@ -95,11 +95,11 @@ module load OpenMPI/2.1.1-GCC-6.4.0-2.28
 module list
 
 # The set of parallel runs:
-srun -n 4 ./my-binary &
-srun -n 4 ./my-binary &
-srun -n 4 ./my-binary &
-srun -n 4 ./my-binary &
-srun -n 4 ./my-binary &
+srun -n 4 --exclusive ./my-binary &
+srun -n 4 --exclusive ./my-binary &
+srun -n 4 --exclusive ./my-binary &
+srun -n 4 --exclusive ./my-binary &
+srun -n 4 --exclusive ./my-binary &
 
 wait
 
