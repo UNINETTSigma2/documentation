@@ -14,7 +14,7 @@ Data handling and storage policy is documented [here](data-usage-policy.md).
 | `/cluster/work/jobs/$SLURM_JOB_ID` | Job data. Set to `$SCRATCH` | N/A                   | No  |
 | `/cluster/work/users/$USER`        | Staging and cross-job data. Set to `$USERWORK` | N/A | No |
 | `/cluster/projects/<project_name>` | Project data                | 1TB[*](#project-area) | Yes |
-| `/nird/home/$USER`                 | User data. Set to `$HOME`   | 20GB                  | Yes |
+| `/cluster/home/$USER`                 | User data. Set to `$HOME`   | 20GB                  | Yes |
 
 **Notes:**
 
@@ -101,7 +101,7 @@ NIRD project area.
 
 ## User Area (`$HOME`)
 
-The user area is mounted to **/nird/home/<username>**. This file system is
+The user area is mounted to **/cluster/home/<username>**. This file system is
 small and is **not** suitable for running jobs. A quota is enabled on home
 directories which is by default 20GB and 100000 files per user. It is advisable to store
 `stderr` and `stdout` logs from your batch jobs in `$HOME` so they are
@@ -112,8 +112,6 @@ taken and kept for the last 7 days and weekly snapshots for the last 6 weeks.
 **Notes**
 
 * set to the `$HOME` variable
-* The total size of /nird/home is 0.5PB and a quota per user is set to 20GB and 100000 files.
-  * To see disk usage and quota information for your user, use the `dusage` command.
 * The home directory should be used for storing tools, scripts, application
 sources or other relevant data which must have a backup.
 * backed up with daily snapshots for the last 7 days and weekly snapshots for
