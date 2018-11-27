@@ -95,11 +95,11 @@ module load OpenMPI/2.1.1-GCC-6.4.0-2.28
 module list
 
 # The set of parallel runs:
-srun -n 4 --exclusive ./my-binary &
-srun -n 4 --exclusive ./my-binary &
-srun -n 4 --exclusive ./my-binary &
-srun -n 4 --exclusive ./my-binary &
-srun -n 4 --exclusive ./my-binary &
+srun --ntasks=4 --exclusive ./my-binary &
+srun --ntasks=4 --exclusive ./my-binary &
+srun --ntasks=4 --exclusive ./my-binary &
+srun --ntasks=4 --exclusive ./my-binary &
+srun --ntasks=4 --exclusive ./my-binary &
 
 wait
 
@@ -109,18 +109,57 @@ wait
 exit 0
 ```
 
+Similarly, here is an example to run a `normal` job with 8 MPI jobs at
+the same time, each using 16 tasks, thus totalling 128 tasks:
+
+```
+#!/bin/bash
+
+#SBATCH --account=nnNNNNk  # Substitute with your project name
+#SBATCH --job-name=example
+#SBATCH --nodes=4
+#SBATCH --time=00:05:00
+
+# Load MPI module
+module purge
+module load OpenMPI/3.1.1-GCC-7.3.0-2.30
+module list
+
+# Needed for jobs in normal or optimist partition:
+export SLURM_MEM_PER_CPU=1920
+
+# The set of parallel runs:
+srun --ntasks=16 --exclusive ./my-binary &
+srun --ntasks=16 --exclusive ./my-binary &
+srun --ntasks=16 --exclusive ./my-binary &
+srun --ntasks=16 --exclusive ./my-binary &
+srun --ntasks=16 --exclusive ./my-binary &
+srun --ntasks=16 --exclusive ./my-binary &
+srun --ntasks=16 --exclusive ./my-binary &
+srun --ntasks=16 --exclusive ./my-binary &
+
+wait
+
+# here a post-processing step
+# ...
+
+exit 0
+```
+
+
 A couple of notes:
 
-- The wait command is important here - the run script will only continue once
-  all commands started with & have completed.
-- It is also possible to use `mpirun` instead of `srun`, although `srun` is
+- The wait command is important - the run script will only continue once
+  all commands started with `&` have completed.
+- It is possible to use `mpirun` instead of `srun`, although `srun` is
   recommended for OpenMPI.
-- The above example is for `bigmem` jobs.  In order to use this techniqueue
-  for `normal` or `optimist` jobs, you have to add a line `export
-  SLURM_MEM_PER_CPU=1920` prior to the `srun` (or `mpirun`) lines.  This gives
-  up to 32 tasks per node.  If each task needs more than 1920 MiB per cpu, the
-  number must be increased (and the number of tasks per node will be reduced).
-  Alternatively, you can add `--mem-per-cpu=1920` or similar to the `srun`
-  command lines (this only works with `srun`).
+- The `export SLURM_MEM_PER_CPU=1920` prior to the `srun` lines is
+  needed for jobs in the `normal` or `optimist` partitions, because it
+  is not possible to specify this to `sbatch` for such jobs.
+  Alternatively, you can add `--mem-per-cpu=1920` or to the `srun`
+  command lines (this only works with `srun`).  (1920 gives up to 32
+  tasks per node.  If each task needs more than 1920 MiB per cpu, the
+  number must be increased (and the number of tasks per node will be
+  reduced).
 - This technique does **not** work with IntelMPI, at least not when using
   `mpirun`, which is currently the recommended way of running IntelMPI jobs.
