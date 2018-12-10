@@ -29,7 +29,7 @@ The service is blocked outside the academic network in Norway, e.g. UNINETT, uni
 Open cmd.exe to get a DOS prompt and run
 
 ```shell
-plink.exe -L 5901:localhost:5901 USERNAME@desktop.fram.uit.no
+plink.exe -L 5901:localhost:5901 USERNAME@desktop.fram.sigma2.no
 ```
 
 and use `localhost:5901` as the server address. (The space after -L must be there) If you want to avoid typing you can create a .bat script with the correct plink command. ([Example](./ssh-tunnel-fram.bat) edit in Notepad and save it to a location where you can click on it, e.g the desktop. DO NOT USE WORD TO EDIT THIS!)
@@ -39,7 +39,7 @@ and use `localhost:5901` as the server address. (The space after -L must be ther
 Run the command
 
 ```shell
-ssh -L5901:localhost:5901 USERNAME@desktop.fram.uit.no
+ssh -L5901:localhost:5901 USERNAME@desktop.fram.sigma2.no
 ```
 
 and use `localhost:5901` as the server address.
