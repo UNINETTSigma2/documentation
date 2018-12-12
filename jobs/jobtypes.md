@@ -13,10 +13,11 @@ and how they are run.  The different types are
 - **devel**: Short jobs, meant for quick development and testing.  They get
   higher priority to start sooner, but can only use upto 10 nodes each, and 16
   in total.
-- **optimist** : Low priority jobs that can start whenever there are free
-  resources, but will be requeued when other jobs need the resources.  Meant
-  for jobs that use checkpointing. projects need to make a request for 
-  optimist quotas to use this feature. 
+- **optimist** : Low priority jobs that can start whenever there are
+  free resources, but will be requeued when other jobs need the
+  resources.  Meant for jobs that use checkpointing.  Projects need to
+  make a request for using this job type, and will get a separate
+  quota for it.
 
 ## `normal` Jobs
 
@@ -104,15 +105,26 @@ QoS, please contact us at <support@metacenter.no>.
 
 ## `optimist` Jobs
 
-`optimist` jobs must specify `--qos=optimist`, and should specify the number
-of nodes needed (between 4 and 32), but they should *not* specify wall time
-limit.  They run on the same nodes as `normal` jobs.  They get lower priority
-than other jobs, but can start as soon as there are free resources.  However,
-when any other job needs its resources, the `optimist` job is stopped and put
-back on the job queue.  Therefore, all `optimist` jobs must use checkpointing,
-and access to run `optimist` jobs will only be given to projects that
-demonstrate that they can use checkpointing. To be able submit `optimist` jobs 
-user has to send request to Sigma2 to get access to the special quota.
+`optimist` jobs must specify `--qos=optimist`, and should specify the
+number of nodes needed (between 4 and 32), but they should *not*
+specify wall time limit.  They run on the same nodes as `normal` jobs.
+They get lower priority than other jobs, but can start as soon as
+there are free resources.  However, when any other job needs its
+resources, the `optimist` job is stopped and put back on the job
+queue.  Therefore, all `optimist` jobs must use checkpointing, and
+access to run `optimist` jobs will only be given to projects that
+demonstrate that they can use checkpointing.
+
+An `optimist` job will only be scheduled if there are free resources
+at least 30 minutes when the job is considered for scheduling.
+However, it can be requeued before 30 minutes have passed, so there is
+no gurarantee of a minimum run time.  When an `optimist` job is
+requeued, it is first sent a `SIGTERM` signal.  This can be trapped in
+order to trigger a checkpoint.  After 30 seconds, the job receives a
+`SIGKILL` signal, which cannot be trapped.
+
+To be able submit `optimist` jobs the project has to send a request to
+Sigma2 to get an optimist quota.
 
 # Job Priorities
 
