@@ -22,7 +22,7 @@
     * [GDAL](apps/gdal.md)
     * [Gromacs](apps/gromacs.md)
     * [LAMMPS](apps/lammps.md)
-    * [MATLAB](apps/matlab.md)
+    * [MATLAB](apps/matlab.md) 
     * [NAMD](apps/namd.md)
     * [NCO](apps/nco.md)
     * [Ncview](apps/ncview.md)
@@ -35,6 +35,7 @@
 * [Compilers](development/compilers.md)
 * [Debugging](development/debugging.md)
 * [Performance Tools](development/performance.md)
+* [Tuning tools](development/tuning.md)
 
 ## Jobs
 
