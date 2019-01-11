@@ -70,12 +70,14 @@ solution is to clean up any unnecessary data after each job.
 **Notes:**
 
 * set to the `$USERWORK` variable
-* file deletion depends on the newest of the *creation-*, *modification-* and
+* File deletion depends on the newest of the *creation-*, *modification-* and
   *access* time and the total usage of the file system. The oldest files will
   be deleted first and a weekly scan removes files older than 42 days.
-* when file system usage reaches 70%, files older than 21 days are subject to
+* When file system usage reaches 70%, files older than 21 days are subject to
   automatic deletion.
-* it is not backed up. See [Backup](backup.md).
+* It is **not** allowed to try to circumvent the automatic deletion by
+  for instance running scripts that touch all files.
+* It is not backed up. See [Backup](backup.md).
 
 For performance optimizations, consult [Performance Tips](performance-tips.md) page.
 
