@@ -140,10 +140,10 @@ More information at the Best Practice Guide  :
 [http://www.prace-ri.eu/best-practice-guide-knights-landing-january-2017/#id-1.8.3.9]
 
 To get access to the Vtune Amplifier load the corresponding module, like:
+
 ```
-amplxe-gui &
+ml load VTune/2018_update3
 ```
-Using it with X11 might be somewhat slow. 
 
 
 
