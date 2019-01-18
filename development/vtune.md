@@ -1,4 +1,4 @@
-# VTune Analysis of Example Code
+# Example VTune Analysis
 
 As an example we use VTune Amplifier to analyze the performance of the
 original, and the optimized software package ART - a 3D radiative
