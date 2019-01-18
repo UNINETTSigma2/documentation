@@ -127,7 +127,7 @@ only analyze a single MPI rank. The stack collection is enabled. Once
 the sampling results are opened in the VTune Amplifier GUI, the
 performance summary is presented:
 
-![VTune Summary](vtune_summary.png "VTune Summary")
+![VTune Summary](vtune/vtune_summary.png "VTune Summary")
 
 The CPU Utilization section shows the total percentage of all
 available cores used. Since a single ART process was executed, this
@@ -146,7 +146,7 @@ functions it becomes clear that the time is spent in calls to `libm`
 A closer look at the Bottom-up section of the performance report
 reveals the heaviest parts of the code.
 
-![VTune Bottom-up](vtune_bottomup.png "VTune Bottom-up")
+![VTune Bottom-up](vtune/vtune_bottomup.png "VTune Bottom-up")
 
 This confirms the previous finding (and adds `pow` to the list of
 computationally heavy functions). From the above reports we can
@@ -195,11 +195,11 @@ bottlenecks once the existing ones have been optimized. Below is the
 final VTune report of the optimized code compiled using the GCC 8
 compiler:
 
-![VTune Summary - Optimized GCC](vtune_opt_gcc.png "VTune Summary - Optimized GCC")
+![VTune Summary - Optimized GCC](vtune/vtune_opt_gcc.png "VTune Summary - Optimized GCC")
 
 and using the Intel 18 compiler:
 
-![VTune Summary - Optimized ICC](vtune_opt_intel.png "VTune Summary - Optimized ICC")
+![VTune Summary - Optimized ICC](vtune/vtune_opt_intel.png "VTune Summary - Optimized ICC")
 
 Notably, the optimized code utilizes the vector (AVX) units for 87% of
 the total FP instructions with GCC, and for 94% of the FP instructions
