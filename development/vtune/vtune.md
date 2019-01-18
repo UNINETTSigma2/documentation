@@ -17,7 +17,11 @@ Cartesian grids. The two kernels described above are executed
 independently for each grid point, with no communication required by
 the neighbor cells. In this sense the code is trivially
 parallelizable and to find opportunities for optimization we look at
-the per-core (call it "sequential") performance.
+the per-core (call it "sequential") performance. The optimization
+effort has been done within the PRACE Preparatory Access project type
+D. For more details about the optimizatoin techniques [consult the
+white paper.](http://www.prace-ri.eu/IMG/pdf/WP271.pdf)
+
 
 ## Using VTune on Fram
 
@@ -89,13 +93,13 @@ analyze-openmp
 [...]
 ```
 
-The `enable-stack-collection`, disabled by default, gives detailed
+The `enable-stack-collection` knob, disabled by default, provides detailed
 caller / callee information for each profiled function. It can be very
 useful, but might introduce some overhead. We will use it in the
 following example.
 
 Collected performance statistics are saved in a subdirectory, by
-default in the directory you are running from. For the above example,
+default in the directory you are running from. For the above example
 the results are stored in `r000hpc/`. They can then be compressed and
 moved to, e.g., a desktop computer, or they can be analyzed on one of
 the Fram login nodes using the VTune Amplifier GUI:
@@ -106,7 +110,7 @@ $ ml load VTune/2018_update3
 $ amplxe-gui
 ```
 
-Note that running this directly on Fram migh feel sluggish depending
+Note that running the GUI directly on Fram migh feel sluggish depending
 on your network connection.
 
 ## Initial VTune analysis
@@ -127,14 +131,14 @@ performance summary is presented:
 
 The CPU Utilization section shows the total percentage of all
 available cores used. Since a single ART process was executed, this
-metric is very low (1 out of 64 logical cores are used). The memory
-statistics show that ART is compute bound: there is almost no
-references to the global memory (DRAM bound 0%). Also the caches are
-not very busy. It is clear that most of the run time goes into CPU
-instructions.
+metric is very low (1 out of 64 logical cores are used), but that is
+expected. The memory statistics show that ART is compute bound: there
+is almost no references to the global memory (DRAM bound 0%). Also the
+caches are not very busy. It is clear that most of the run time goes
+into CPU instructions.
 
 The FPU utilization report is hence the most interesting one in this
-case. Namely, 90% of the floating point instructions are scalar, i.e.,
+case. It reveals that 90% of the floating point instructions are scalar, i.e.,
 the vector units (AVX) are mostly unused. Looking at the top most busy
 functions it becomes clear that the time is spent in calls to `libm`
 `exp` and `log`. 
@@ -155,8 +159,8 @@ roughly scetch the optimization directions:
 ## The optimized code
 
 Both GCC and ICC provide an interface to a vectorized math library with
-platform-optimized implementations of amongst others `exp,pow,log`,
-which are the relevant functions for this project. Intel compiler uses
+platform-optimized implementations of amongst others
+`exp,pow,log`. Intel compiler uses 
 its own Short Vector Math Library (SVML). The library comes together
 with the compiler installation, and there is nothing system-specific
 that needs to be done to use it. GCC on the other hand relies on
@@ -184,15 +188,16 @@ strict`. With ART the high accuracy is not required, hence we compile
 the code with the most relaxed settings.
 
 Vectorization of the code has been performed using `#pragma simd`
-defined by the OpenMP standard. All the heaviest ART functions have
-been vectorized using this method, and VTune was used throughout the
-process to find new bottlenecks once the existing ones have been
-optimized. Below is the final VTune report of the optimized code
-compiled using the GCC 8 compiler
+defined by the OpenMP standard. All the heaviest ART functions, and
+all floating-point intensive loops have been vectorized using this
+method, and VTune was used throughout the process to find new
+bottlenecks once the existing ones have been optimized. Below is the
+final VTune report of the optimized code compiled using the GCC 8
+compiler:
 
 ![VTune Summary - Optimized GCC](vtune_opt_gcc.png "VTune Summary - Optimized GCC")
 
-and using the Intel 18 compiler
+and using the Intel 18 compiler:
 
 ![VTune Summary - Optimized ICC](vtune_opt_intel.png "VTune Summary - Optimized ICC")
 
@@ -204,4 +209,5 @@ with the Intel compiler. The capacity of the vector units is used in
 Compared to the original code, the performance tests have shown that
 on a Broadwell-based architecture the optimized code works from 2.5 
 times faster (RT solver) to 13 times faster (EOS solver) on a single
-core.
+core. All optimizatoin techniques employed have been described in
+detail in [the white paper](http://www.prace-ri.eu/IMG/pdf/WP271.pdf).

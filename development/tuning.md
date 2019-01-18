@@ -145,6 +145,7 @@ To get access to the Vtune Amplifier load the corresponding module, like:
 ml load VTune/2018_update3
 ```
 
+For a run-through example see [a VTune case study.](vtune/vtune.md)
 
 
 ### Intel Trace Analyzer

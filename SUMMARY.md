@@ -35,6 +35,7 @@
 * [Compilers](development/compilers.md)
 * [Debugging](development/debugging.md)
 * [Performance Tools](development/performance.md)
+    * [VTune - a case study](development/vtune/vtune.md)
 * [Tuning tools](development/tuning.md)
 
 ## Jobs
