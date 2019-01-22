@@ -90,7 +90,7 @@ The priority setup has been designed to be predictable and easy to
 understand, and to try and maximize the utilisation of the cluster.
 
 -   Principle: *Time-to-reservation*
--   Priority increases 1 point/minute
+-   Priority increases 1 point/minute[^1]
 -   When priority is >= 20,000, job gets a reservation
 -   **Devel** jobs start with 20,000, so reservation directly
 -   **Normal** jobs start with 19,760, so reservation in 4 hours
@@ -101,6 +101,15 @@ The idea is that once a job has been in the queue long enough to get a
 reservation, no other job should delay it. But before it gets a reservation,
 the queue system backfiller is free to start any other job that can start now,
 even if that will delay the job.
+
+[^1]: Currently, only the priority of 10 jobs for each user
+    within each project increase with time.  As jobs start, more
+    priorities start to increase.  This is done in order to avoid
+    problems if a user submits a large amount of jobs over a short
+    time.  Note that the limit is per user and project, so if a user
+    has jobs in several projects, 10 of the user's jobs from each
+    project will increase in priority at the same time.  This limit
+    might change in the future.
 
 ## Job Placement
 
