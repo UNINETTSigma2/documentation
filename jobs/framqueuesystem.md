@@ -102,14 +102,7 @@ reservation, no other job should delay it. But before it gets a reservation,
 the queue system backfiller is free to start any other job that can start now,
 even if that will delay the job.
 
-[^1]: Currently, only the priority of 10 jobs for each user
-    within each project increase with time.  As jobs start, more
-    priorities start to increase.  This is done in order to avoid
-    problems if a user submits a large amount of jobs over a short
-    time.  Note that the limit is per user and project, so if a user
-    has jobs in several projects, 10 of the user's jobs from each
-    project will increase in priority at the same time.  This limit
-    might change in the future.
+[^1]: Currently, only the priority of 10 jobs for each user within each project increase with time.  As jobs start, more priorities start to increase.  This is done in order to avoid problems if a user submits a large amount of jobs over a short time.  Note that the limit is per user and project, so if a user has jobs in several projects, 10 of the user's jobs from each project will increase in priority at the same time.  This limit might change in the future.
 
 ## Job Placement
 
