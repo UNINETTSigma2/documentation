@@ -29,8 +29,8 @@ the profiler on three benchmark codes to show how a typical analysis
 looks like.
 
 * [STREAM benchmark](#stream-benchmark)
-* [LINPACK benchmark](#user-content-linpack-benchmark)
-* [OSU benchmark](#user-content-osu-benchmark)
+* [LINPACK benchmark](#linpack-benchmark)
+* [OSU benchmark](#osu-benchmark)
 
 We demonstrate some pitfalls of profiling, and show how
 one can use profiling to reason about the performance of real-world
@@ -180,7 +180,7 @@ which is correct: STREAM is trivially parallel, with no explicit data
 exchange between the threads.
 
 
-### LINPACK benchmark
+### LINPACK benchmark {#linpack-benchmark}
 The [LINPACK sourcecode](http://www.netlib.org/benchmark/hpl/) is
 compiled using the Intel `icc` compiler as follows:
 
@@ -253,7 +253,7 @@ CPU. Hence it is sometimes difficult to say, which class of
 instructions is the bottleneck. That's why such a performance report
 should be treated with a grain of salt.
 
-### OSU benchmark
+### OSU benchmark {#osu-benchmark}
 
 The [OSU benchmark
 suite](http://mvapich.cse.ohio-state.edu/benchmarks/) measures the
@@ -317,7 +317,7 @@ $ time perf-report mpirun <program>
 Remember that, in addition to the profiling overhead, there is the
 profiling startup and data collection costs, which 
 can be by far larger than the application run time (see the discussion
-in the [LINPACK benchmark](#user-content-linpack-benchmark) section).
+in the [LINPACK benchmark](#linpack-benchmark) section).
 To overcome this problem one needs to include some time measurement
 facilities inside the profiled application using, e.g., the C `printf`
 statements. Alternatively, `perf-report` should be started to profile
@@ -336,9 +336,9 @@ overheads, which can affect the performance of the inspected
 code. This may be an important aspect, which the users must be aware
 of when using any performance evaluation tool. The overhead is problem
 specific, as demonstrated by the example analyses: from little to no
-overhead ([STREAM benchmark](#user-content-stream-benchmark), [LINPACK
-benchmark](#user-content-linpack-benchmark)) to factor 26 slowdown
-([OSU benchmark](#user-content-osu-benchmark)).
+overhead ([STREAM benchmark](#stream-benchmark), [LINPACK
+benchmark](#linpack-benchmark)) to factor 26 slowdown
+([OSU benchmark](#osu-benchmark)).
 
 To understand how ARM Performance Reports affects the MPI performance 
 we investigate the performance of `osu_barrier` with and without
