@@ -28,7 +28,7 @@ First, we show how to use ARM Performance Reports on Fram. Next, we use
 the profiler on three benchmark codes to show how a typical analysis
 looks like.
 
-* [STREAM benchmark](#user-content-stream-benchmark)
+* [STREAM benchmark](#stream-benchmark)
 * [LINPACK benchmark](#user-content-linpack-benchmark)
 * [OSU benchmark](#user-content-osu-benchmark)
 
@@ -98,7 +98,7 @@ which cover a large subset of typical HPC applications
   measures the _interconnect performance_ using a range of MPI-based
   programs. We will consider `osu_barrier` and `osu_alltoall` tests.
 
-### STREAM benchmark
+### STREAM benchmark {#stream-benchmark}
 
 The purpose of STREAM is to measure the effective memory bandwidth of
 modern CPU-based architectures. This is done by measuring the time
