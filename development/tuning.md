@@ -1,8 +1,4 @@
-# Tuning tools
-
-Only Intel tuning tools are covered so far.
-
-## Intel tuning tools
+# Intel tuning tools
 
 Intel provide a set of tuning tools that can be quite useful. The
 following sections will give an overview of the tools and provide a
@@ -34,7 +30,7 @@ by the Intel documentation. Even with the documentation it can be hard to
 start using the tools in an effective way. Attending Intel training is advised. 
 
 
-### Intel compiler - optimization report
+## Intel compiler - optimization report
 
 Compiler flags provide a mean of controlling the optimization done by
 the compiler. There are a rich set of compiler flags and directives
@@ -58,7 +54,7 @@ module load intel/2018b
 ```
 
 
-### Intel MPI library
+## Intel MPI library
 
 The MPI Perf Snapshot is a built in lightweight tool that will provide
 some helpful information with little effort from the user. Link your
@@ -76,7 +72,7 @@ More information at the Best Practice Guide  :
 
 
 
-### Intel XE-Advisor
+## Intel XE-Advisor
 
 Vectorization Advisor is an analysis tool that lets you identify if
 loops utilize modern SIMD instructions or not, what prevents
@@ -100,7 +96,7 @@ Then launch the advisor in GUI or text version.
 Using the GUI X11 version over long distances might be somewhat slow.
 
 
-### Intel XE-Inspector
+## Intel XE-Inspector
 
 Intel Inspector is a dynamic memory and threading error checking tool
 for users developing serial and multithreaded applications.  The
@@ -121,7 +117,7 @@ To launch the GUI:
 inspxe-gui &
 ```
 
-### Intel VTune Amplifier
+## Intel VTune Amplifier
 
 Intel VTune Amplifier provides a rich set of performance insight into
 CPU performance, threading performance and scaleability, bandwidth,
@@ -148,7 +144,7 @@ ml load VTune/2018_update3
 For a run-through example see [a VTune case study.](vtune/vtune.md)
 
 
-### Intel Trace Analyzer
+## Intel Trace Analyzer
 Intel Trace Analyzer and Collector is a graphical tool for
 understanding MPI application behavior, quickly finding bottlenecks,
 improving correctness, and achieving high performance for parallel

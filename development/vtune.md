@@ -2,8 +2,10 @@
 
 As an example we use VTune Amplifier to analyze the performance of the
 original, and the optimized software package ART - a 3D radiative
-transfer solver developed within the SolarALMA project. The code is
-written in C++ and consists of two major computational parts:
+transfer solver developed within the [SolarALMA
+  project](https://www.mn.uio.no/astro/english/research/projects/solaralma/). The
+  code is written in C++ and consists of two major computational
+  parts:
 
 * An equation of state (EOS) solver, which - based on various types of
 input data - computes electron density, gas pressure, and
@@ -113,7 +115,7 @@ $ amplxe-gui
 Note that running the GUI directly on Fram migh feel sluggish depending
 on your network connection.
 
-## Initial VTune analysis
+## VTune analysis
 
 The performance characteristics of the original code are obtained as
 follows

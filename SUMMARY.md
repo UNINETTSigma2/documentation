@@ -34,9 +34,10 @@
     * [WRF](apps/wrf.md)
 * [Compilers](development/compilers.md)
 * [Debugging](development/debugging.md)
-* [Performance Tools](development/performance.md)
-    * [VTune case study](development/vtune.md)
-* [Tuning tools](development/tuning.md)
+* [Performance Analysis and Tuning](development/performance.md)
+    * [ARM Performance Reports](development/arm_perf.md)
+    * [VTune Amplifier](development/vtune.md)
+    * [Other Intel Tuning Tools](development/tuning.md)
 
 ## Jobs
 

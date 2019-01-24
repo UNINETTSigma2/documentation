@@ -1,41 +1,31 @@
-<h1>Performance Tools</h1>
+# Performance Analysis and Tuning
 
-<ul class='toc-indentation'>
-<li><a href='#performance-reports'>ARM Performance Reports</a></li>
-</ul>
+Understanding application performance on modern HPC architectures
+is a very complex task. There are a number of factors that can limit
+performance: IO speed, CPU speed, memory latency and bandwidth, thread
+binding and correct memory allocation on NUMA architectures,
+communication cost in both threaded shared-memory applications, and
+in MPI-based codes.
 
-<h2 id="performance-reports">ARM Performance Reports</h2>
+Sometimes the performance can be improved without recompiling the code,
+e.g., by arranging the working threads or MPI ranks in a more
+efficient way, or by using more / less CPU cores. In other cases it
+might be required to perform an in-depth investigation into
+the hardware performance counters and re-writing (parts of) the
+code. Either way, identifying the bottlenecks and deciding on what
+needs to be done can be made simpler by using specialized tools. Here
+we describe some of the tools available on Fram. 
 
-<a href='https://www.arm.com/products/development-tools/hpc-tools/cross-platform/performance-reports'>ARM Performance Reports</a> (former Allinea Performance Reports) is a performance evaluation tool that as result produces a single HTML page with a characterisation of the problems that the evaluated program has. It divides the characterization into the categories CPU, MPI, I/O, and memory and it produces evaluations like: "The per-core performance is memory-bound" and "Little time is spent in vectorized instructions".
-
-<h4>Load the module</h4>
-
-Performance Reports needs to compile a library that is pre-loaded before you program is run. In order to compile this library, the Intel compiler library must be loaded as well, regardless of whether the program to be evaluated has been compiled with the Intel compiler:
-
-    $ module load Arm-PerfReports/18.1.2 intel/2018a
-
-Remember that you must also load these modules in job scripts, when you run your program.
-
-<h4>Compile your program</h4>
-
-When you compile your program then you should use optimizations flag like <code class="code">-O2</code>, <code class="code">-O3</code> and <code class="code">-xAVX</code>, because Performance Reports will then be able to tell you if your program manages to use vectorized instructions. You must also link with the special libraries, such as in:
-
-    $ make-profiler-libraries
-
-The output of this command will give you instructions on what to add to your link-line, in order to link your program with the Performance Reports libraries.
-
-<h4>Analysing your program on login nodes</h4>
-
-If your program only runs for a short while using few processes, then you can analyze it while running it on a login node:
-
-    $ perf-report mpirun -np 4 rank
-
-After your program has run, you can find the produced performance report in an HTML file with a name similar to interFoam_4p_2014-06-20_13-34.html. Copy this file to your local pc and view it there.
-
-<h4>Analysing your program in batch jobs</h4>
-
-In batch jobs, you must call your program link this:
-
-    perf-report mpirun rank
-
-After your program has run, you can find the produced performance report in an HTML file with a name similar to rank_4p_2014-06-20_13-34.html. Copy this file to your local pc and view it there.
+* [ARM Performance Reports](arm_perf.md). An in-depth analysis of
+  three synthetic benchmarks. We demonstrate some pitfalls of
+  profiling, and show how one can use profiling to reason about the
+  performance of real-world codes.
+  
+* [VTune Amplifier](vtune.md). Performance analysis of the
+  original, and the optimized software package ART - a 3D radiative
+  transfer solver developed within the [SolarALMA
+  project](https://www.mn.uio.no/astro/english/research/projects/solaralma/). 
+  
+* [Other (Intel) tools](tuning.md). An overview of the tools and
+  a quick guide to which type of tuning, and to what kind of programming
+  model they are applicable.
