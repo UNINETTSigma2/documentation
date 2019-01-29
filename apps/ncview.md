@@ -2,7 +2,7 @@
 
 Ncview is a visual browser for NetCDF files.
 
-Mor information: http://meteora.ucsd.edu/~pierce/ncview_home_page.html
+More information: http://meteora.ucsd.edu/~pierce/ncview_home_page.html
 
 ## Running Ncview
 

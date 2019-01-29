@@ -13,9 +13,10 @@
 * [Stallo Documentation](https://hpc-uit.readthedocs.io)
 * [Live Status](https://www.sigma2.no/hardware/status)
 
-## Code Development
-* [Installed Software](development/which_software_is_installed.md)
-    * [All Modules](apps/allmodules.md)
+## SOFTWARE
+* [Installed Software](software/which_software_is_installed.md)
+	* [List of installed software](apps/allmodules.md)
+* [Application guides](software/appguides.md)    
     * [CDO](apps/cdo.md)
     * [CESM](apps/cesm.md)
     * [Gaussian](apps/gaussian.md)
@@ -32,6 +33,10 @@
     * [R](apps/r.md)
     * [VASP](apps/vasp.md)
     * [WRF](apps/wrf.md)
+* [Installing software as user](software/userinstallsw.md)
+* [Licenses and access policies](software/licenses.md) 
+
+## Code Development
 * [Compilers](development/compilers.md)
 * [Debugging](development/debugging.md)
 * [Performance Analysis and Tuning](development/performance.md)

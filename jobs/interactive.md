@@ -3,8 +3,7 @@
 Sometimes you might want to test or debug a calculation interactively but
 running interactively on the login node is discouraged and not an option.
 
-What you can do instead is to ask the batch system to allocate a node for you
-and once it is assigned to you, you can run interactively on the node for up to 1 hour:
+What you can do instead is to ask the batch system to allocate compute resources for you and once assigned, you can run the job(s) interactively for as long as requested: The example below covers the development quality of service, but this procedure also holds for the other job types (see [Job Types](jobtypes.md) for more info)
 
     $ srun --nodes=1 --time=01:00:00 --account=nnXXXXk --qos=devel --pty bash -i
 
@@ -12,6 +11,8 @@ The arguments between `srun` and `--pty` could
 be any arguments you would have given to `sbatch` when submitting a
 non-interactive job. However, `--qos=devel` is probably a good idea to avoid
 waiting too long in the queue.
+
+**Note that interactive jobs dies when you log out from the machine**, so unless you have very long days in office (or elsewhere, for that matter), specifying more than 6-8 hrs runtime is not very useful. 
 
 ## GUI Commands
 

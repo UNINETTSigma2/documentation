@@ -22,6 +22,17 @@ specifying one of the available versions.
 * Download run script example here: <a href="files/run_g16.sh" download>run_g16.sh</a>
 * Download water input example: <a href="files/water.com" download>water.com</a>
 
+* showing files: inlining:
+
+<iframe src="files/run_g16.sh">
+</iframe>
+
+* New fram:
+
+<iframe src="files/water.com">
+</iframe>
+
+
 ### Important aspects of Gaussian setup on Fram:
 
 On Fram, we have not allocated swap space, that means the heap size for the linda processes in Gaussian is very important for making parallell jobs work. The line 
