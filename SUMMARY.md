@@ -14,9 +14,9 @@
 * [Live Status](https://www.sigma2.no/hardware/status)
 
 ## SOFTWARE
+* [Software Module Scheme](apps/modulescheme.md)
 * [Installed Software](apps/which_software_is_installed.md)
   * [List of installed software](apps/allmodules.md)
-* [Software Module Scheme](apps/modulescheme.md)
 * [Application guides](apps/appguides.md)    
   * [CDO](apps/cdo.md)
   * [CESM](apps/cesm.md)
@@ -35,7 +35,9 @@
   * [VASP](apps/vasp.md)
   * [WRF](apps/wrf.md)
 * [Installing software as user](apps/userinstallsw.md)
-* [Licenses and access policies](apps/licenses.md)
+* [Licenses and access policies](apps/licpolicy.md)
+	* [Licensed software](apps/licenses.md)
+	* [License funding policy](apps/licfunding.md)
 
 ## Code Development
 * [Compilers](development/compilers.md)
