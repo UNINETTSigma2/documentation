@@ -5,7 +5,7 @@ Listed on this page is a table of all modules on Fram. To load a module run `mod
     module load CMake/3.5.2-intel-2017a
 
 Note: The module list is updated summer 2017. For the most recent version, run `module avail`.
-For more information, visit [Installed Software](../development/which_software_is_installed.md).
+For more information, visit [Installed Software](apps/which_software_is_installed.md).
 
 `*` indicates the default version.
 
