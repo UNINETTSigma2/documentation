@@ -31,6 +31,10 @@ Choose 3.8.0 in this case. Now, we advice to do an install in two steps, first d
 
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --fetch
 
+It may be a good idea to get an overview of what will be installed with the command you are planning to use, this you get by the command
+
+	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun
+
 if this proves sucessfull, then type:
 
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb -r
@@ -51,8 +55,10 @@ Do as described above regarding login, loading of the EasyBuild module and consi
 
 Then do as follows:
 
-	mkdir -p -prefix=/cluster/projects/nnXXXXk/easybuild 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --fetch --prefix=/cluster/projects/nnXXXXk/easybuild
-
+	mkdir -p -prefix=/cluster/projects/nnXXXXk/easybuild
+	eb rjags-4-6-intel-2017b-R-3.4.3.eb --fetch --prefix=/cluster/projects/nnXXXXk/easybuild
+	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun --prefix=/cluster/projects/nnXXXXk/easybuild #For checking what will be installed, as mentioned above.
+	
 where XXXX is your project id number. When a suksessfull download of sources is made, then type:
 
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --prefix=/cluster/projects/nnXXXXk/easybuild
