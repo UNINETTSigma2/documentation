@@ -1,4 +1,4 @@
-#How can I, as a user, install software for myself or my project with EasyBuild?
+# How can I, as a user, install software for myself or my project with EasyBuild?
 
 Currently, the software-team in the Metacenter is using the [EasyBuild system](https://easybuild.readthedocs.io/en/latest/) for installing system-wide software and scientific applications. It is, actually, quite easy (hence the name) and straigt forward for users to do install with the same tool.
 
