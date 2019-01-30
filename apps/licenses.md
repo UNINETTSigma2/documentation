@@ -23,7 +23,7 @@
 | IDL                         | Stallo                    | UiT/Dept. math users                      | Group                   | Mathematics/Data analysis  |
 | Intel Parallel Studio XE    | Abel, Stallo, Fram        | All users                                 | National HPC            | Code development           |
 | Mathematica                 | Stallo                    | UiT/Dept. math users                      | Group                   | Mathematics/Data analysis  |
-| MATLAB                      | Abel, Stallo, Fram        | Members of institutions with site license | Site/Department         | Mathematics/Data analysis  |
+| MATLAB                      | Abel, Stallo, Fram, Vilje | Members of institutions with site license | Site/Department         | Mathematics/Data analysis  |
 | Molpro                      | Stallo                    | Members of license holding groups         | Group                   | Chemistry/Material science |
 | NBO6                        | Abel, Stallo              | All users on given machine                | Computer Center license | Chemistry/Material science |
 | ProMax                      | Stallo                    | Members of license holding groups         | Department/Group        | Geology                    |
