@@ -55,9 +55,9 @@ Do as described above regarding login, loading of the EasyBuild module and consi
 
 Then do as follows:
 
-	mkdir -p -prefix=/cluster/projects/nnXXXXk/easybuild
+	mkdir -p /cluster/projects/nnXXXXk/easybuild
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --fetch --prefix=/cluster/projects/nnXXXXk/easybuild
-	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun --prefix=/cluster/projects/nnXXXXk/easybuild #For checking what will be installed, as mentioned above.
+	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun --prefix=/cluster/projects/nnXXXXk/easybuild #as mentioned above.
 	
 where XXXX is your project id number. When a suksessfull download of sources is made, then type:
 
@@ -65,6 +65,12 @@ where XXXX is your project id number. When a suksessfull download of sources is 
 
 Note the easybuild folder in the path, this is a tip for housekeeping and not strictly required. This will give the path structure as for the local case, with the software and modulefiles installed in **cluster/projects/nnXXXXk/easybuild**. 
 
+A bit more elegant, since the long and horrid path is used thrice, you may do this:
+
+	projsw=/cluster/projects/nnXXXXk/easybuild
+	mkdir -p $projsw
+	eb rjags-4-6-intel-2017b-R-3.4.3.eb --fetch --prefix=$projsw
+	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun --prefix=$projsw 	
 ###For more advanced settings:
 
 Please check upon options with

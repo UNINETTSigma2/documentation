@@ -16,6 +16,7 @@
 ## SOFTWARE
 * [Installed Software](apps/which_software_is_installed.md)
   * [List of installed software](apps/allmodules.md)
+* [Software Module Scheme](apps/modulescheme.md)
 * [Application guides](apps/appguides.md)    
   * [CDO](apps/cdo.md)
   * [CESM](apps/cesm.md)
