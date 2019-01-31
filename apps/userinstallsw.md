@@ -35,7 +35,7 @@ To download the source of software, type:
 
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --fetch
 
-It may be a good idea to get an overview of what will be installed with the command you are planning to use, this you get by the command
+It may be a good idea to get an overview of what will be installed with the command you are planning to use, this you get by the command:
 
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun
 

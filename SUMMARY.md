@@ -74,4 +74,4 @@
 * [General FAQ](faq/README.md)
 * [Jobs](faq/jobs.md)
 * [Emacs](faq/emacs.md)
-* [SSH](faq/ssh.md)
+* [SSH/Putty](faq/ssh.md)
