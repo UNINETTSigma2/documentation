@@ -76,9 +76,11 @@ $ perf-report mpirun ./my-program
 An HTML and a text file with a summary of the gathered information are
 written in the startup directory. 
 
-**NOTE:** Due to a bug in OpenMPI, ARM Performance Reports currently do not work
-with OpenMPI installations found on Fram. Until this is fixed, only
-applications compiled with Intel MPI can be analyzed. 
+**NOTE:** Due to a bug in older versions of OpenMPI, on Fram ARM Performance
+Reports works only with OpenMPI version 3.1.3 and newer. If you've
+compiled your application with OpenMPI 3.1.1, you don't need to
+recompile it. Simply load the 3.1.3 module - those versions are
+compatible.
 
 ## Example Performace Analysis
 
@@ -259,9 +261,9 @@ The [OSU benchmark
 suite](http://mvapich.cse.ohio-state.edu/benchmarks/) measures the
 communication speed using a number of tests implemented using MPI,
 OpenSHMEM, UCP, and UPCXX. To compile it on Fram you can use either
-OpenMPI (recommended for best MPI performance), or Intel MPI. Here,
-since ARM Performance Reports currently don't work with OpenMPI on
-Fram, we use the Intel MPI library:
+OpenMPI (recommended for best MPI performance), or Intel MPI. At the
+time of writing ARM Performance Reports did not work with OpenMPI on
+Fram. Results using Intel MPI are presented instead:
 
 ```
 $ ml load intel/2018b
@@ -303,9 +305,9 @@ profiling overhead is very large and can have impact on actual performance
 of real-world applications, and hence on the applicability of the
 entire analysis.
 
-In practice, the significance of this overhead **cannot be observed** by
-simply measuring the total execution time of profiled and non-profiled
-runs to see how much the profiling slowed down our application:
+In practice, this overhead **cannot be estimated** by simply measuring
+the total execution time of profiled and non-profiled runs to see how
+much the profiling slowed down our application: 
 
 ```
 $ time mpirun <program>
