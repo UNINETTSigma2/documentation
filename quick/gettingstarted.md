@@ -28,7 +28,7 @@ First time you log in, and everytime there is a change in the *ssh-server*, OS o
 
     The authenticity of host 'fram.sigma2.no (158.39.114.72)' can't be established.
     
-The procedure then is to check the stated `ECDSA key fingerprint` with the one printed here: [Fram ssh SHA256 fingerprint](faq/ssh.md#sha256-fingerprint)
+The procedure then is to check the stated `ECDSA key fingerprint` with the one printed here: [Fram ssh SHA256 fingerprint](../faq/ssh.md#sha256-fingerprint)
 
 For the storage services, the login nodes are listed at [Storage Services](../storage/storageservices.md).
 
