@@ -31,5 +31,6 @@
 | Schrodinger                 | Stallo, Abel              | Members of license holding groups         | Group                   | Chemistry, Life-science    |
 | STAR-CCM+                   | Stallo, Vilje             | Members of license holding groups         | Group                   | Multi-physics/CFD          |
 | Stata                       | Stallo                    | UiT users                                 | Site/Department         | Data analysis              |
+| TotalView                   | Abel, Stallo, Fram, Vilje | All users on given machine                | National HPC            | Code development           |
 | Turbomole                   | Abel, Stallo, Fram        | All users on given machine                | Computer Center license | Chemistry/Material science |
 | VASP                        | Abel, Stallo, Fram        | Members of license holding groups         | Group                   | Chemistry/Material science |
