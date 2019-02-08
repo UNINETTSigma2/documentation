@@ -12,6 +12,7 @@ For more details follow the documentation from
 Go to [MAS](https://www.metacenter.no/user/reset/) and fill in your username. 
 An activation key will be sent to you to the mobile number associated with your username.
 
+**NB: The same procedure is used when a password is expired and the user (aka you) need a new one.**
 
 ## I typed my password wrong several times, now it seems I can not log in. Has my account been closed?
 
