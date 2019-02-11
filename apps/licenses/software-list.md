@@ -1,7 +1,8 @@
-# List of software with licensed access in the Metacenter.
 
 
-| Licensed SW                 | Where (Machine)           | Availabe for whom                         | License type            | Field of science           |
+# List of software with licensed access in the Metacenter
+
+| Software                    | Machines                  | Availabe for whom                         | License type            | Field                      |
 |-----------------------------|---------------------------|-------------------------------------------|-------------------------|----------------------------|
 | Abaqus                      | Vilje                     | Members of license holding groups         | Group                   | Multiphysics/FEA           |
 | ADF                         | Abel, Stallo, Fram        | All users                                 | National HPC            | Chemistry/Material science |
