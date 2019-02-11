@@ -18,6 +18,6 @@ And, of course, you have the pool of software with access limitation of more tec
 
 **Users are responsible for having the correct credentials and agreements in terms of license access in general**; for all software with access limitations on group- and research-project level may have to be provided to the Metacenter before being granted access to software installed on Metacenter controlled machines. 
 
-## For more info, see [List of installed licensed software in the Metacenter](licenses.md).
+## For more info, see [List of installed licensed software in the Metacenter](software-list.md).
 
 

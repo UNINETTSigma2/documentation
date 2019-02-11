@@ -35,9 +35,9 @@
   * [VASP](apps/vasp.md)
   * [WRF](apps/wrf.md)
 * [Installing software as user](apps/userinstallsw.md)
-* [Licenses and access policies](apps/licpolicy.md)
-	* [Licensed software](apps/licenses.md)
-	* [License funding policy](apps/licfunding.md)
+* [Licenses and access policies](apps/licenses/general.md)
+	* [Licensed software](apps/licenses/software-list.md)
+	* [License funding policy](apps/licenses/funding.md)
 
 ## Code Development
 * [Compilers](development/compilers.md)
