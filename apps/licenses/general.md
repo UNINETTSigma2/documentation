@@ -7,7 +7,7 @@ for scientific software.
 
 I will only address licenses with a certain access limitation. For free, open
 source codes without any limitations, I refrain from commenting, apart from the
-fact that the reader should be aware that “free” not allways means
+fact that the reader should be aware that “free” not always means
 “unrestricted access”.
 
 Also, due to a choice of policy, this document is only about academic access to
