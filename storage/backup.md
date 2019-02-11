@@ -13,6 +13,17 @@ Snapshots are taken with the following frequencies:
 
 Scratch areas (`/cluster/work` and `/node/scratch`) does *not* have any backup.
 
+---
+
+Note `/nird/nome` and `/nird/projects` are no longer mounted on `fram`. To access the snapshot directories
+you will need to login into NIRD - `login.nird.sigma2.no`.
+
+If you have not accessed NIRD before, you will need to enable your accout by asking for activation key and
+temporary password at `https://www.metacenter.no` (select  User Login (Passwords)).
+
+---
+
+
 ## List snapshots
 
 Snapshots are available at the following places:
