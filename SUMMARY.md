@@ -75,3 +75,9 @@
 * [Jobs](faq/jobs.md)
 * [Emacs](faq/emacs.md)
 * [SSH/Putty](faq/ssh.md)
+
+
+## Training 
+[Training calendar] (https://www.sigma2.no/content/training) 
+[HPC carpentry] (support/hpc_carpentry.md)
+
