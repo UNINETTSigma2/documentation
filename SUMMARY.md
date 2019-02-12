@@ -78,6 +78,6 @@
 
 
 ## Training 
-[Training calendar] (https://www.sigma2.no/content/training) 
-[HPC carpentry] (support/hpc_carpentry.md)
+* [Training calendar] (https://www.sigma2.no/content/training) 
+* [HPC carpentry] (support/hpc_carpentry.md)
 
