@@ -1,3 +1,5 @@
+
+
 # Licence Information
 
 Most applications on the HPC machines have their own license based on the usage
@@ -11,6 +13,8 @@ In general, the application and tool licenses fall under these types:
 3. Commercial license - may be granted to an individual, project, or organization.
 
 It is the user's responsibility to make sure they adhere to the license agreements.
+
+Please also consult [our license policies and list of software licenses we maintain](../apps/licenses/general.md).
 
 
 # Citation
