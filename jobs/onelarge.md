@@ -1,4 +1,4 @@
-# Packaging smaller parallel jobs into one large parallel job
+# Packaging smaller parallel jobs into one large job
 
 There are several ways to package smaller jobs into one large parallel job. The preferred way is to use [Job Arrays](jobarrays.md). Here we want to present a more pedestrian alternative which can give a lot of flexibility.
 
