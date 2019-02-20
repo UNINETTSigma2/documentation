@@ -19,18 +19,17 @@ To use Gaussian, type
     
 specifying one of the available versions.
 
-* Download run script example here: <a href="files/run_g16.sh" download>run_g16.sh</a>
-* Download water input example: <a href="files/water.com" download>water.com</a>
+* Run script example:
 
-* showing files: inlining:
+[include](files/run_g16.sh)
 
-<iframe src="files/run_g16.sh">
-</iframe>
+Download run script example here: <a href="files/run_g16.sh" download>run_g16.sh</a>
 
-* New fram:
+* Water input example:
 
-<iframe src="files/water.com">
-</iframe>
+[include](files/water.com)
+
+Download water input example: <a href="files/water.com" download>water.com</a>
 
 
 ### Important aspects of Gaussian setup on Fram:

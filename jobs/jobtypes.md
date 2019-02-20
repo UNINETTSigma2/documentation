@@ -32,15 +32,24 @@ scale more than 32 nodes, please send a request to <support@metacenter.no>.
 
 All normal jobs gets exclusive access to whole nodes (all CPUs and memory).
 If a job tries to use more (resident) memory than is configured on the nodes,
-it will be killed.  Currently, this limit is 60 GiB, *but it can change*. The
-maximal wall time limit for normal jobs is 7 days (168 hours).
+it will be killed.  Currently, this limit is 60 GiB, *but it can change*. 
+If a job would require more memory per core than the given 60GiB split by 32 cores, the trick is to limit the number of cores/node the following way:
+
+
+	#SBATCH --account=nn9999k 
+	#SBATCH --time=1-0:0:0
+	#SBATCH --nodes=10 --ntasks-per-node=4
+
+The example above will use only 4 cores/node, giving each core 15GiB/core to the relevant job. If your job needs more than 60GiB/core, the only option on Fram is `--partition=bigmem`(see below). 
+
+Maximal wall time limit for normal jobs is 7 days (168 hours). **With respect to walltime settings we recommend you to be as precise as you can when specifying the parameters as they will inflict on how fast your jobs will start to run. But: too long is better than too short due to lost work!**
 
 Note that setting `--cpus-per-task` does *not* bind the tasks to the given number of
 CPUs for normal jobs; it merely sets `$OMP_NUM_THREADS` so that OpenMP jobs by
 default will use the right number of threads. (It is possible to override this
 number by setting `$OMP_NUM_THREADS` in the job script.)
 
-The [Sample Batch Script](samplescript.md) page has an example of a normal job.
+The [Sample MPI Batch Script](sample_mpi_script.md) page has an example of a normal MPI job.
 
 ## `bigmem` Jobs
 
