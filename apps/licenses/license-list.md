@@ -1,4 +1,3 @@
-
 # List of software with licensed access in the Metacenter
 
 | Software                    | Machines                  | Availabe for whom                         | License type            | Field                      | Source of funding  |
@@ -30,5 +29,6 @@
 | Schrodinger                 | Stallo, Abel              | Members of license holding groups         | Group                   | Chemistry, Life-science    | Split Users/Sigma2 |
 | STAR-CCM+                   | Stallo, Vilje             | Members of license holding groups         | Group                   | Multi-physics/CFD          | Users              |
 | Stata                       | Stallo                    | UiT users                                 | Site/Department         | Data analysis              | Users              |
+| TotalView                   | Stallo, Vilje, Fram, Abel | All users                                 | National HPC            | Code development           | National/Sigma2    |
 | Turbomole                   | Abel, Stallo, Fram        | All users on given machine                | Computer Center license | Chemistry/Material science | National/Sigma2    |
 | VASP                        | Abel, Stallo, Fram        | Members of license holding groups         | Group                   | Chemistry/Material science | Users              |
