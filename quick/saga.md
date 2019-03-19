@@ -10,7 +10,7 @@ theoretical peak performance. It is scheduled to enter full production during fa
 Saga is a distributed memory system which consists of 244 dual/quad socket nodes,
 interconnected with a high-bandwidth low-latency InfiniBand
 network. Saga contains 200 standard, 28 mediummem, 8 largemem and 8 gpu compute nodes.
-Each standard (mediummem) compute node has two 20-core Intel Skylake
+Each standard (or mediummem) compute node has two 20-core Intel Skylake
 chips (2.0 GHz), 192 GiB memory (mediummem: 384 GiB) and a fast local NVMe disk (400 GB).
 Each largemem compute node
 contains four 16-core Intel Skylake chips (2.1 GHz) and 3072 GiB memory. Each GPU node
