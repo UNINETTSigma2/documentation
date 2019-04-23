@@ -17,14 +17,43 @@ These commands give information about the status of jobs:
 
 For details run the commands with the `--help` option or visit the Slurm documentation at https://slurm.schedmd.com
 
-When the job starts, it creates a file `slurn-<jobid>.out` where stdout and
+When the job starts, it creates a file `slurm-<jobid>.out` where stdout and
 stderr of the commands are logged (unless overridden by `sbatch` options).
-While the job is running, you can check its progress with `cat slurn-<jobid>.out`.
+While the job is running, you can check its progress with `cat slurm-<jobid>.out`.
 
 Once your job has completed, you can get additional information that was not
 available during the run. This includes run time, memory used, etc:
 
     sacct -j <jobid> --format=JobID,JobName,MaxRSS,Elapsed
+
+### Interpreting the Slurm output file
+
+Slurm will collect some CPU/memory/disk statistics regarding each job when it
+completes. This information is printed to stdout, which means that it ends
+up in the `slurm-<jobid>.out` file. The exact same information can be obtained
+manually by the following Slurm commands:
+
+    sacct -j <jobid> --format=Jobid,JobName,AllocCPUS,NTasks,MinCPU,MinCPUTask,AveCPU,Elapsed,ExitCode
+    sacct -j <jobid> --format=Jobid,MaxRSS,MaxRSSTask,AveRSS,MaxPages,MaxPagesTask,AvePages
+    sacct -j <jobid> --format=Jobid,MaxDiskRead,MaxDiskReadTask,AveDiskRead,MaxDiskWrite,MaxDiskWriteTask,AveDiskWrite
+
+A lot more information is available by changing the `--format` keywords, see the
+[slurm](https://slurm.schedmd.com/sacct.html#lbAF) documentation for further
+details, under the "JOB ACCOUNTING FIELDS" section.
+
+The printed output should be interpreted *by task*. E.g. the `MaxRSS` is the
+maximum amount of memory used by any single task (not node, not core, but task)
+during the execution, while `AveRSS` is the average over all tasks. If your
+application runs in shared memory or hybrid parallel (e.g. MPI + OpenMP), note
+that the shared memory threads do *not* count as individual tasks, as all
+threads are sharing the resourses within each MPI task.
+
+If you are debugging an "out of memory" issue, note that a single MPI task is
+allowed to exceed its "share" of memory if there are more than one task per
+node, as long as the *total* memory used by all tasks on a given node does not
+exceed the allocated resources. This applies even if the memory was allocated
+as `--mem-per-cpu`, since all resouces are anyway pooled together for all task
+within a node.
 
 ### Job Status
 
