@@ -6,6 +6,7 @@
 * [Contact](support/contact.md)
     * [Writing Support Requests](support/how_to_write_good_support_requests.md)
 * [Metacenter OpsLog](https://opslog.sigma2.no)
+* [General FAQ](faq/README.md)
 
 ## HPC Machines
 * [Fram](quick/fram.md)
@@ -72,8 +73,7 @@
 * [Performance tips](storage/performance-tips.md)
 * [Transferring files](storage/file-transfering.md)
 
-## Short Guides and FAQs
-* [General FAQ](faq/README.md)
+## Short Guides
 * [Jobs](faq/jobs.md)
 * [Emacs](faq/emacs.md)
 * [SSH/Putty](faq/ssh.md)
