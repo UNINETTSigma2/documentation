@@ -1,0 +1,3 @@
+[submodule "NIRD_doc"]
+	path = NIRD_doc
+	url = https://github.com/SIOS-Svalbard/NIRD_doc.git
