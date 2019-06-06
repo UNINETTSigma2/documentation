@@ -104,7 +104,7 @@ Here is a simpler `preproc` job (one task on one node):
 
 `devel` jobs must specify `--qos=devel`.  A `devel` job is like a `normal`
 job, except that it can use between 1 and 4 nodes, and there is a limit of
-how many nodes `devel` jobs can use at the same time (currently 4),each user is
+how many nodes `devel` jobs can use at the same time (currently 4), each user is
 allowed to run only 1 `devel` job simultaneously.  `devel` jobs also have a 
 maximum walltime of 30 minutes. On the other hand, they get higher priority than
 other jobs, in order to start as soon as possible.
@@ -112,6 +112,14 @@ other jobs, in order to start as soon as possible.
 If you have temporary development needs that cannot be fulfilled by the devel 
 QoS, please contact us at <support@metacenter.no>.
 
+## `short` Jobs
+
+`short` jobs must specify `--qos=short`.  A `short` job is like a `normal`
+job, except that it can use between 1 and 10 nodes, and there is a limit of
+how many nodes `short` jobs can use at the same time (currently 16), each user is
+allowed to run 2 `short` job simultaneously.  `short` jobs also have a 
+maximum walltime of 2 hours. On the other hand, they get slightly higher priority 
+than other jobs, in order to start reasonably faster.
 
 ## `optimist` Jobs
 
