@@ -104,7 +104,7 @@ Here is a simpler `preproc` job (one task on one node):
 
 `devel` jobs must specify `--qos=devel`.  A `devel` job is like a `normal`
 job, except that it can use between 1 and 4 nodes, and there is a limit of
-how many nodes `devel` jobs can use at the same time (currently 4),each users is
+how many nodes `devel` jobs can use at the same time (currently 4),each user is
 allowed to run ony 1 `devel` job simultaneously.  `devel`
 jobs also have a maximum walltime of 00:30 hour.  On the other hand, they get
 higher priority than other jobs, in order to start as soon as possible.
