@@ -67,7 +67,7 @@
 ## Files and Storage
 * [Storage services](storage/storageservices.md)
 * [NIRD](storage/nird.md)
-    * [Using WinSCP on NIRD](NIRD_doc/WinSCP.md)
+    * [Using WinSCP on NIRD](storage/WinSCP.md)
 * [Storage areas on Fram](storage/storagesystems.md)
 * [Backup](storage/backup.md)
 * [Data handling and storage policy](storage/data-usage-policy.md) 
