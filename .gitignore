@@ -2,6 +2,3 @@
 .*.swp
 .*.swo
 
-# Softlink to ../NIRD_doc/WinSCP.md
-# It is necessary for getting the user contributed content
-05_winscp.md
