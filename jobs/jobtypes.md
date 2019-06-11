@@ -10,9 +10,12 @@ and how they are run.  The different types are
   special nodes with more RAM.
 - **preproc**: Short, 1-node jobs for things like preprocessing and
   postprocessing, that don't need many cpus.
-- **devel**: Short jobs, meant for quick development and testing.  They get
-  higher priority to start sooner, but can only use upto 10 nodes each, and 16
-  in total.
+- **devel**: Shorter jobs, meant for quick development and testing.  They get
+  higher priority to start sooner, and there is also dedicated nodes for this type of job
+  during the working hours (07:00-21:00). There is also 1 job per user limit.
+- **short**: This is same as devel jobs but without dedicated nodes, and user can use more nodes compare to 
+  devel jobs, currently 16, it gets higher priory then normal jobs but less priority then devel jobs. there is 
+  2 job per user limit for short jobs.
 - **optimist** : Low priority jobs that can start whenever there are
   free resources, but will be requeued when other jobs need the
   resources.  Meant for jobs that use checkpointing.  Projects need to
