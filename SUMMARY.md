@@ -12,6 +12,7 @@
 * [Fram](quick/fram.md)
 * [Abel Documentation](http://www.uio.no/english/services/it/research/hpc/abel/)
 * [Stallo Documentation](https://hpc-uit.readthedocs.io)
+* [Saga](quick/saga.md)
 * [Live Status](https://www.sigma2.no/hardware/status)
 
 ## SOFTWARE
