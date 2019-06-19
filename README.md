@@ -40,6 +40,7 @@ The following give new users information about running applications on the HPC m
 * [Fram Setup](quick/fram.md)
 * [Abel Documentation](http://www.uio.no/english/services/it/research/hpc/abel/)
 * [Stallo Documentation](https://hpc-uit.readthedocs.io)
+* [Saga Setup](quick/saga.md)
 
 
 ## NIRD Storage
