@@ -35,3 +35,33 @@ The total number of compute cores is 9824. Total memory is 75 TiB.
 
 More information on how to use Saga
 will be added here when the system becomes ready for production.
+
+# Saga primer for pilot users
+
+In general, the user environment on Saga is designed to be as similar as possible
+to the one on Fram. Below are key information listed and links to existing
+documentation for Fram provided.
+
+## Getting support
+Please, contact support via `support@metacenter.no` and clearly mention that you
+are a pilot user on Saga.
+
+## Access
+Login to Saga with your Notur account and password. The login machine's name is `saga.sigma2.no`. For example, using `ssh` do
+
+`ssh YOUR_USERNAME@saga.sigma2.no`
+
+## File systems
+Saga has one parallel file system mounted under `/cluster`. While its layout is
+identical to that on [Fram](storage/storagesystems.md), it is based on BeeGFS
+(vs Lustre on Fram), hence has slightly different features, and was designed to
+handle I/O-intensive workloads.
+
+## Scientific software
+Saga uses `lmod` and `EasyBuild`, so commands to work with modules are identical.
+At the start, Saga may have only limited number of modules installed.
+
+## Queuing system
+Saga uses Slurm. Basic commands are the same, however the configuration (queues,
+QoS, limits, etc.) differs from Fram.
+
