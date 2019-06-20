@@ -8,13 +8,11 @@ date: 2019-06-20
 ---
 
 ###Advisor  
-<details><summary> <u>Description</u> </summary>
-
 **Description:** Vectorization Optimization and Thread Prototyping
   
 **Homepage:** https://software.intel.com/intel-advisor-xe  
-</details>
-<details><summary> <u>Installed versions</u> </summary>
+<details><summary> <u>Installed versions:</u> </summary>
+
  - 2017\_update1  
  - 2018\_update1  
  - 2018\_update3  
@@ -22,12 +20,13 @@ date: 2019-06-20
 </details>
 
 ###Allinea-MAP  
-<details><summary> <u>Installed versions:</u> </summary>
 **Description:** Profiler for parallel, multithreaded or single threaded C, C++, Fortran and F90 codes.  
 **Homepage:** https://www.allinea.com/products/develop-allinea-forge  
+<details><summary> <u>Installed versions:</u> </summary>
 
  - 7.0.6  
 </details>
+
 ###Allinea-PerfReports  
 **Description:** Single page HTML profiler for parallel programs.  
 **Homepage:** https://www.allinea.com/products/allinea-performance-reports  
@@ -35,6 +34,7 @@ date: 2019-06-20
 
  - 7.0.6  
 </details>
+
 ###Anaconda2  
 **Description:** Built to complement the rich, open source Python community,
 the Anaconda platform provides an enterprise-ready data analytics platform 
@@ -46,6 +46,7 @@ that empowers companies to adopt a modern open data science analytics architectu
  - 5.0.1  
  - 2018.12  
 </details>
+
 ###ANTLR  
 **Description:** ANTLR, ANother Tool for Language Recognition, (formerly PCCTS)
  is a language tool that provides a framework for constructing recognizers,
@@ -54,23 +55,32 @@ that empowers companies to adopt a modern open data science analytics architectu
 **Homepage:** http://www.antlr2.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.7.7  
+ - 2.7.7-intel-2016a  
+ - 2.7.7-intel-2017a-Python-2.7.13  
+ - 2.7.7-intel-2018a  
+ - 2.7.7-intel-2018b  
 </details>
+
 ###APR  
 **Description:** Apache Portable Runtime (APR) libraries.  
 **Homepage:** http://apr.apache.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.6.3  
- - 1.7.0  
+ - 1.6.3-GCCcore-7.3.0  
+ - 1.6.3-foss-2018a  
+ - 1.7.0-GCCcore-8.2.0  
 </details>
+
 ###APR-util  
 **Description:** Apache Portable Runtime (APR) util libraries.  
 **Homepage:** http://apr.apache.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.6.1  
+ - 1.6.1-GCCcore-7.3.0  
+ - 1.6.1-GCCcore-8.2.0  
+ - 1.6.1-foss-2018a  
 </details>
+
 ###Arm-MAP  
 **Description:** Profiler for parallel, multithreaded or single threaded C, C++, Fortran and F90 codes.  
 **Homepage:** https://developer.arm.com/products/software-development-tools/hpc  
@@ -78,6 +88,7 @@ that empowers companies to adopt a modern open data science analytics architectu
 
  - 18.1.2  
 </details>
+
 ###Arm-PerfReports  
 **Description:** Single page HTML profiler for parallel programs.  
 **Homepage:** https://developer.arm.com/products/software-development-tools/hpc  
@@ -86,6 +97,7 @@ that empowers companies to adopt a modern open data science analytics architectu
  - 18.1.2  
  - 19.0.5  
 </details>
+
 ###Armadillo  
 **Description:** Armadillo is an open-source C++ linear algebra library (matrix maths) aiming towards
  a good balance between speed and ease of use. Integer, floating point and complex numbers are supported,
@@ -93,23 +105,28 @@ that empowers companies to adopt a modern open data science analytics architectu
 **Homepage:** http://arma.sourceforge.net/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 8.300.0  
+ - 8.300.0-foss-2017a-Python-2.7.13  
+ - 8.300.0-intel-2017a-Python-2.7.13  
 </details>
+
 ###arpack-ng  
 **Description:** ARPACK is a collection of Fortran77 subroutines designed to solve large scale eigenvalue problems.  
 **Homepage:** http://forge.scilab.org/index.php/p/arpack-ng/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.5.0  
+ - 3.5.0-foss-2017a  
+ - 3.5.0-intel-2017a  
 </details>
+
 ###ASE  
 **Description:** ASE is a python package providing an open source Atomic Simulation Environment
  in the Python scripting language.  
 **Homepage:** https://wiki.fysik.dtu.dk/ase  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.17.0  
+ - 3.17.0-intel-2018b-Python-3.6.6  
 </details>
+
 ###ATK  
 **Description:** ATK provides the set of accessibility interfaces that are implemented by other
  toolkits and applications. Using the ATK interfaces, accessibility tools have
@@ -118,8 +135,9 @@ that empowers companies to adopt a modern open data science analytics architectu
 **Homepage:** https://developer.gnome.org/ATK/stable/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.28.1  
+ - 2.28.1-intel-2018a  
 </details>
+
 ###Autoconf  
 **Description:** Autoconf is an extensible package of M4 macros that produce shell scripts
  to automatically configure software source code packages. These scripts can adapt the
@@ -130,16 +148,33 @@ that empowers companies to adopt a modern open data science analytics architectu
 <details><summary> <u>Installed versions:</u> </summary>
 
  - 2.69  
+ - 2.69-GCCcore-4.9.3  
+ - 2.69-GCCcore-6.3.0  
+ - 2.69-GCCcore-6.4.0  
+ - 2.69-GCCcore-7.3.0  
+ - 2.69-GCCcore-8.2.0  
+ - 2.69-intel-2016a  
+ - 2.69-intel-2017a  
 </details>
+
 ###Automake  
 **Description:** Automake: GNU Standards-compliant Makefile generator  
 **Homepage:** http://www.gnu.org/software/automake/automake.html  
 <details><summary> <u>Installed versions:</u> </summary>
 
  - 1.15  
- - 1.15.1  
- - 1.16.1  
+ - 1.15-GCCcore-4.9.3  
+ - 1.15-GCCcore-6.3.0  
+ - 1.15-GCCcore-7.3.0  
+ - 1.15-intel-2016a  
+ - 1.15-intel-2017a  
+ - 1.15.1-GCCcore-6.3.0  
+ - 1.15.1-GCCcore-6.4.0  
+ - 1.15.1-GCCcore-7.3.0  
+ - 1.16.1-GCCcore-7.3.0  
+ - 1.16.1-GCCcore-8.2.0  
 </details>
+
 ###Autotools  
 **Description:** This bundle collect the standard GNU build tools: Autoconf, Automake
  and libtool
@@ -148,53 +183,76 @@ that empowers companies to adopt a modern open data science analytics architectu
 <details><summary> <u>Installed versions:</u> </summary>
 
  - 20150215  
- - 20170619  
- - 20180311  
+ - 20150215-GCCcore-4.9.3  
+ - 20150215-GCCcore-6.3.0  
+ - 20150215-GCCcore-7.3.0  
+ - 20150215-intel-2016a  
+ - 20150215-intel-2017a  
+ - 20170619-GCCcore-6.3.0  
+ - 20170619-GCCcore-6.4.0  
+ - 20170619-GCCcore-7.3.0  
+ - 20180311-GCCcore-7.3.0  
+ - 20180311-GCCcore-8.2.0  
 </details>
+
 ###Avogadro  
 **Description:** Avogadro is an advanced molecular editor.  
 **Homepage:** https://sourceforge.net/projects/avogadro/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.2.0  
+ - 1.2.0-intel-2017a-Python-2.7.13  
 </details>
+
 ###basemap  
 **Description:** The matplotlib basemap toolkit is a library for plotting 2D data on maps in Python  
 **Homepage:** http://matplotlib.org/basemap/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.0.7  
+ - 1.0.7-intel-2017a-Python-2.7.13  
 </details>
+
 ###Bazel  
 **Description:** Bazel is a build tool that builds code quickly and reliably. 
 It is used to build the majority of Google's software.  
 **Homepage:** http://bazel.io/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.11.0  
- - 0.11.1  
- - 0.12.0  
+ - 0.11.0-GCCcore-6.4.0  
+ - 0.11.1-GCCcore-6.4.0  
+ - 0.12.0-GCCcore-6.4.0  
 </details>
+
 ###BEEF  
 **Description:** libbeef is a package providing the class of BEEF-vdW functionals and Bayesian error estimates to Fortran- or C-based DFT codes.  
 **Homepage:** https://github.com/vossjo/libbeef  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.1.1  
- - 0.1.3  
+ - 0.1.1-r16-intel-2017a  
+ - 0.1.1-r16-intel-2018b  
+ - 0.1.3-2822afe-intel-2018a  
+ - 0.1.3-2822afe-intel-2018b  
 </details>
+
 ###binutils  
 **Description:** binutils: GNU binary utilities  
 **Homepage:** http://directory.fsf.org/project/binutils/  
 <details><summary> <u>Installed versions:</u> </summary>
 
  - 2.25  
+ - 2.25-GCCcore-4.9.3  
  - 2.27  
+ - 2.27-GCCcore-6.3.0  
  - 2.28  
+ - 2.28-GCCcore-6.3.0  
+ - 2.28-GCCcore-6.4.0  
  - 2.29  
+ - 2.29-GCCcore-7.2.0  
  - 2.30  
+ - 2.30-GCCcore-7.3.0  
  - 2.31.1  
+ - 2.31.1-GCCcore-8.2.0  
 </details>
+
 ###Bison  
 **Description:** Bison is a general-purpose parser generator that converts an annotated
  context-free grammar into a deterministic LR or generalized LR (GLR) parser
@@ -204,8 +262,18 @@ It is used to build the majority of Google's software.
 <details><summary> <u>Installed versions:</u> </summary>
 
  - 3.0.4  
+ - 3.0.4-GCCcore-4.9.3  
+ - 3.0.4-GCCcore-6.3.0  
+ - 3.0.4-GCCcore-6.4.0  
+ - 3.0.4-GCCcore-7.2.0  
+ - 3.0.4-GCCcore-7.3.0  
+ - 3.0.4-intel-2016a  
+ - 3.0.4-intel-2017a  
  - 3.0.5  
+ - 3.0.5-GCCcore-7.3.0  
+ - 3.0.5-GCCcore-8.2.0  
 </details>
+
 ###BLAST+  
 **Description:** Basic Local Alignment Search Tool, or BLAST, is an algorithm
  for comparing primary biological sequence information, such as the amino-acid
@@ -213,19 +281,30 @@ It is used to build the majority of Google's software.
 **Homepage:** http://blast.ncbi.nlm.nih.gov/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.7.1  
+ - 2.7.1-foss-2018a  
 </details>
+
 ###Boost  
 **Description:** Boost provides free peer-reviewed portable C++ source libraries.  
 **Homepage:** http://www.boost.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.63.0  
- - 1.65.1  
- - 1.66.0  
- - 1.67.0  
- - 1.68.0  
+ - 1.63.0-foss-2017a-Python-2.7.13  
+ - 1.63.0-intel-2017a-Python-2.7.13  
+ - 1.65.1-intel-2018a-Python-2.7.14  
+ - 1.65.1-intel-2018a-Python-3.6.4  
+ - 1.66.0-foss-2018a  
+ - 1.66.0-foss-2018a-Python-2.7.14  
+ - 1.66.0-foss-2018a-Python-3.6.4  
+ - 1.66.0-intel-2018a-Python-2.7.14  
+ - 1.66.0-intel-2018a-Python-3.6.4  
+ - 1.67.0-foss-2018b  
+ - 1.68.0-foss-2018b-Python-2.7.15  
+ - 1.68.0-foss-2018b-Python-3.6.6  
+ - 1.68.0-intel-2018b-Python-2.7.15  
+ - 1.68.0-intel-2018b-Python-3.6.6  
 </details>
+
 ###bzip2  
 **Description:** bzip2 is a freely available, patent free, high-quality data compressor. It typically
  compresses files to within 10% to 15% of the best available techniques (the PPM family of statistical
@@ -233,8 +312,14 @@ It is used to build the majority of Google's software.
 **Homepage:** https://sourceware.org/bzip2  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.0.6  
+ - 1.0.6-GCCcore-6.3.0  
+ - 1.0.6-GCCcore-6.4.0  
+ - 1.0.6-GCCcore-7.3.0  
+ - 1.0.6-GCCcore-8.2.0  
+ - 1.0.6-intel-2016a  
+ - 1.0.6-intel-2018a  
 </details>
+
 ###cairo  
 **Description:** Cairo is a 2D graphics library with support for multiple output devices.
  Currently supported output targets include the X Window System (via both Xlib and XCB), Quartz, Win32, image buffers,
@@ -242,43 +327,52 @@ It is used to build the majority of Google's software.
 **Homepage:** http://cairographics.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.14.8  
- - 1.14.10  
- - 1.14.12  
+ - 1.14.8-intel-2017a  
+ - 1.14.10-GCCcore-6.4.0  
+ - 1.14.10-intel-2017b  
+ - 1.14.12-GCCcore-6.4.0  
+ - 1.14.12-GCCcore-7.3.0  
 </details>
+
 ###CDO  
 **Description:** CDO is a collection of command line Operators to manipulate and analyse Climate and NWP model Data.  
 **Homepage:** https://code.zmaw.de/projects/cdo  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.7.2  
- - 1.8.2  
- - 1.9.3  
- - 1.9.5  
+ - 1.7.2-intel-2016a  
+ - 1.8.2-intel-2017a  
+ - 1.9.3-intel-2018a  
+ - 1.9.5-intel-2018b  
 </details>
+
 ###CESM  
 **Description:** Community Earth System Model  
 **Homepage:** http://www.cesm.ucar.edu/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.2.2.1  
+ - 1.2.2.1-intel-2017a  
 </details>
+
 ###CFITSIO  
 **Description:** CFITSIO is a library of C and Fortran subroutines for reading and writing data files in
 FITS (Flexible Image Transport System) data format.  
 **Homepage:** http://heasarc.gsfc.nasa.gov/fitsio/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.42  
+ - 3.42-GCCcore-6.4.0  
 </details>
+
 ###cftime  
 **Description:** Time-handling functionality from netcdf4-python  
 **Homepage:** https://github.com/Unidata/cftime  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.0.0  
- - 1.0.1  
+ - 1.0.0-intel-2018a-Python-2.7.14  
+ - 1.0.0-intel-2018a-Python-3.6.4  
+ - 1.0.1-intel-2018b-Python-2.7.15  
+ - 1.0.1-intel-2018b-Python-3.6.6  
 </details>
+
 ###CFX  
 **Description:**   
 **Homepage:** https://www.ansys.com/products/fluids/ansys-cfx  
@@ -287,37 +381,42 @@ FITS (Flexible Image Transport System) data format.
  - 19.0  
  - 19.2  
 </details>
+
 ###CGAL  
 **Description:** The goal of the CGAL Open Source Project is to provide easy access to efficient
  and reliable geometric algorithms in the form of a C++ library.  
 **Homepage:** http://www.cgal.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.9  
- - 4.11  
- - 4.11.1  
+ - 4.9-intel-2017a-Python-2.7.13  
+ - 4.11-intel-2018a-Python-2.7.14  
+ - 4.11.1-foss-2018b-Python-2.7.15  
 </details>
+
 ###CMake  
 **Description:** CMake, the cross-platform, open-source build system.
  CMake is a family of tools designed to build, test and package software.  
 **Homepage:** http://www.cmake.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.4.3  
- - 3.5.2  
- - 3.7.2  
- - 3.8.0  
- - 3.8.2  
+ - 3.4.3-intel-2016a  
+ - 3.5.2-intel-2016a  
+ - 3.7.2-GCCcore-6.3.0  
+ - 3.8.0-GCCcore-6.3.0  
+ - 3.8.2-GCCcore-6.3.0  
  - 3.9.1  
- - 3.9.5  
+ - 3.9.1-GCCcore-6.3.0  
+ - 3.9.1-GCCcore-6.4.0  
+ - 3.9.5-GCCcore-6.4.0  
  - 3.9.6  
- - 3.10.0  
- - 3.10.1  
- - 3.10.2  
- - 3.11.4  
+ - 3.10.0-GCCcore-6.4.0  
+ - 3.10.1-GCCcore-6.4.0  
+ - 3.10.2-GCCcore-6.4.0  
+ - 3.11.4-GCCcore-7.3.0  
  - 3.12.1  
- - 3.13.3  
+ - 3.13.3-GCCcore-8.2.0  
 </details>
+
 ###CP2K  
 **Description:** CP2K is a freely available (GPL) program, written in Fortran 95, to perform atomistic and molecular
  simulations of solid state, liquid, molecular and biological systems. It provides a general framework for different
@@ -326,17 +425,26 @@ FITS (Flexible Image Transport System) data format.
 **Homepage:** http://www.cp2k.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.1  
- - 5.1  
- - 6.1  
+ - 4.1-intel-2017a  
+ - 5.1-intel-2018a  
+ - 6.1-intel-2017b  
+ - 6.1-intel-2017b-psmp  
+ - 6.1-intel-2018a  
+ - 6.1-intel-2018b  
+ - 6.1-intel-2018b-psmp  
+ - 6.1-manual-17b  
+ - 6.1-manual-18a  
 </details>
+
 ###CppUnit  
 **Description:** CppUnit is the C++ port of the famous JUnit framework for unit testing.  
 **Homepage:** http://sourceforge.net/projects/cppunit/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.14.0  
+ - 1.14.0-intel-2017a  
+ - 1.14.0-intel-2018a  
 </details>
+
 ###cURL  
 **Description:** libcurl is a free and easy-to-use client-side URL transfer library,
  supporting DICT, FILE, FTP, FTPS, Gopher, HTTP, HTTPS, IMAP, IMAPS, LDAP,
@@ -349,23 +457,27 @@ FITS (Flexible Image Transport System) data format.
 **Homepage:** http://curl.haxx.se  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 7.47.0  
- - 7.53.1  
- - 7.54.0  
- - 7.56.0  
- - 7.56.1  
- - 7.58.0  
- - 7.60.0  
- - 7.63.0  
+ - 7.47.0-intel-2016a  
+ - 7.53.1-GCCcore-6.3.0  
+ - 7.54.0-GCCcore-6.3.0  
+ - 7.56.0-GCCcore-6.4.0  
+ - 7.56.0-foss-2017a  
+ - 7.56.0-intel-2017a  
+ - 7.56.1-GCCcore-6.4.0  
+ - 7.58.0-GCCcore-6.4.0  
+ - 7.60.0-GCCcore-7.3.0  
+ - 7.63.0-GCCcore-8.2.0  
 </details>
+
 ###DOLFIN  
 **Description:** DOLFIN is the C++/Python interface of FEniCS, providing a consistent PSE
   (Problem Solving Environment) for ordinary and partial differential equations.  
 **Homepage:** https://bitbucket.org/fenics-project/dolfin  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2017.1.0  
+ - 2017.1.0-intel-2018a-Python-2.7.14  
 </details>
+
 ###Doxygen  
 **Description:** Doxygen is a documentation system for C++, C, Java, Objective-C, Python,
  IDL (Corba and Microsoft flavors), Fortran, VHDL, PHP, C#, and to some
@@ -374,11 +486,13 @@ FITS (Flexible Image Transport System) data format.
 **Homepage:** http://www.doxygen.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.8.11  
- - 1.8.13  
- - 1.8.14  
- - 1.8.15  
+ - 1.8.11-intel-2016a  
+ - 1.8.13-GCCcore-6.3.0  
+ - 1.8.13-GCCcore-6.4.0  
+ - 1.8.14-GCCcore-7.3.0  
+ - 1.8.15-GCCcore-8.2.0  
 </details>
+
 ###EasyBuild  
 **Description:** EasyBuild is a software build and installation framework
  written in Python that allows you to install software in a structured,
@@ -399,6 +513,7 @@ FITS (Flexible Image Transport System) data format.
  - 3.9.1  
  - 3.9.2  
 </details>
+
 ###ecCodes  
 **Description:** ecCodes is a package developed by ECMWF which provides an application programming interface and
  a set of tools for decoding and encoding messages in the following formats: WMO FM-92 GRIB edition 1 and edition 2,
@@ -406,8 +521,9 @@ FITS (Flexible Image Transport System) data format.
 **Homepage:** https://software.ecmwf.int/wiki/display/ECC/ecCodes+Home  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.9.0  
+ - 2.9.0-intel-2018b  
 </details>
+
 ###Eigen  
 **Description:** Eigen is a C++ template library for linear algebra:
  matrices, vectors, numerical solvers, and related algorithms.
@@ -415,21 +531,26 @@ FITS (Flexible Image Transport System) data format.
 **Homepage:** http://eigen.tuxfamily.org/index.php?title=Main_Page  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.0.17  
- - 3.3.3  
+ - 2.0.17-GCCcore-6.3.0  
+ - 3.3.3-GCCcore-6.3.0  
  - 3.3.4  
+ - 3.3.4-intel-2018a  
 </details>
+
 ###ELPA  
 **Description:** Eigenvalue SoLvers for Petaflop-Applications .  
 **Homepage:** http://elpa.rzg.mpg.de  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2016.11.001.pre  
- - 2017.05.002  
- - 2017.05.003  
- - 2017.11.001  
- - 2018.11.001  
+ - 2016.11.001.pre-intel-2018b  
+ - 2017.05.002-intel-2017b  
+ - 2017.05.003-intel-2018a  
+ - 2017.11.001-intel-2017b  
+ - 2017.11.001-intel-2018a  
+ - 2017.11.001-intel-2018b  
+ - 2018.11.001-intel-2019a  
 </details>
+
 ###Emacs  
 **Description:** GNU Emacs is an extensible, customizable text editor--and more.
  At its core is an interpreter for Emacs Lisp, a dialect of the Lisp programming
@@ -437,19 +558,23 @@ FITS (Flexible Image Transport System) data format.
 **Homepage:** http://www.gnu.org/software/emacs/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 25.1  
- - 25.3  
+ - 25.1-foss-2017a  
+ - 25.3-GCCcore-6.4.0  
+ - 25.3-GCCcore-7.3.0  
 </details>
+
 ###ESMF  
 **Description:** The Earth System Modeling Framework (ESMF) is software for building and coupling weather,
  climate, and related models.  
 **Homepage:** http://sourceforge.net/projects/esmf  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 6.3.0rp1  
- - 7.0.2  
- - 7.1.0r  
+ - 6.3.0rp1-intel-2017a-HDF5-1.8.18  
+ - 7.0.2-intel-2017b  
+ - 7.1.0r-intel-2018a  
+ - 7.1.0r-intel-2018b  
 </details>
+
 ###expat  
 **Description:** Expat is an XML parser library written in C. It is a stream-oriented parser
  in which an application registers handlers for things the parser might find
@@ -458,40 +583,60 @@ FITS (Flexible Image Transport System) data format.
 **Homepage:** http://expat.sourceforge.net/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.1.1  
- - 2.2.0  
- - 2.2.4  
- - 2.2.5  
- - 2.2.6  
+ - 2.1.1-intel-2016a  
+ - 2.2.0-GCCcore-4.9.3  
+ - 2.2.0-GCCcore-6.3.0  
+ - 2.2.0-GCCcore-7.3.0  
+ - 2.2.4-GCCcore-6.4.0  
+ - 2.2.5-GCCcore-6.4.0  
+ - 2.2.5-GCCcore-7.3.0  
+ - 2.2.6-GCCcore-8.2.0  
 </details>
+
 ###Ferret  
 **Description:** Ferret is an interactive computer visualization and analysis environment
 designed to meet the needs of oceanographers and meteorologists analyzing large and complex gridded data sets.  
 **Homepage:** http://ferret.pmel.noaa.gov/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 7.2  
+ - 7.2-foss-2017a  
 </details>
+
 ###FFC  
 **Description:** FEniCS Form Compiler (FFC) works as a compiler for multilinear forms by generating
  code (C++) for the evaluation of a multilinear form given in mathematical notation.  
 **Homepage:** https://bitbucket.org/fenics-project/ffc  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2016.1.0  
- - 2017.1.0  
+ - 2016.1.0-intel-2017a-Python-2.7.13  
+ - 2017.1.0-intel-2017a-Python-2.7.13  
+ - 2017.1.0-intel-2018a-Python-2.7.14  
+ - 2017.1.0-intel-2018a-Python-3.6.4  
 </details>
+
 ###FFTW  
 **Description:** FFTW is a C subroutine library for computing the discrete Fourier transform (DFT)
  in one or more dimensions, of arbitrary input size, and of both real and complex data.  
 **Homepage:** http://www.fftw.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.3.4  
- - 3.3.6  
- - 3.3.7  
- - 3.3.8  
+ - 3.3.4-intel-2016a  
+ - 3.3.6-foss-2017a  
+ - 3.3.6-gompi-2017a  
+ - 3.3.6-gompi-2017b  
+ - 3.3.6-intel-2017a  
+ - 3.3.6-intel-2017b  
+ - 3.3.7-gompi-2018a  
+ - 3.3.7-intel-2017a  
+ - 3.3.7-intel-2017b  
+ - 3.3.7-intel-2018a  
+ - 3.3.7-intel-2018b  
+ - 3.3.8-gompi-2018b  
+ - 3.3.8-gompi-2019a  
+ - 3.3.8-intel-2018b  
+ - 3.3.8-intel-2019a  
 </details>
+
 ###FIAT  
 **Description:** The FInite element Automatic Tabulator FIAT supports generation of arbitrary order
  instances of the Lagrange elements on lines, triangles, and tetrahedra. It is also capable of generating
@@ -499,17 +644,24 @@ designed to meet the needs of oceanographers and meteorologists analyzing large 
 **Homepage:** https://bitbucket.org/fenics-project/fiat  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.6.0  
- - 2016.1.0  
- - 2017.1.0  
+ - 1.6.0-foss-2017a-Python-2.7.13  
+ - 1.6.0-foss-2018a-Python-2.7.14  
+ - 1.6.0-intel-2017a-Python-2.7.13  
+ - 2016.1.0-intel-2017a-Python-2.7.13  
+ - 2017.1.0-foss-2018a-Python-2.7.14  
+ - 2017.1.0-intel-2017a-Python-2.7.13  
+ - 2017.1.0-intel-2018a-Python-2.7.14  
+ - 2017.1.0-intel-2018a-Python-3.6.4  
 </details>
+
 ###fixesproto  
 **Description:** X.org FixesProto protocol headers.  
 **Homepage:** http://www.freedesktop.org/wiki/Software/xlibs  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 5.0  
+ - 5.0-intel-2018a  
 </details>
+
 ###flex  
 **Description:** Flex (Fast Lexical Analyzer) is a tool for generating scanners. A scanner,
  sometimes called a tokenizer, is a program which recognizes lexical patterns
@@ -519,10 +671,20 @@ designed to meet the needs of oceanographers and meteorologists analyzing large 
 <details><summary> <u>Installed versions:</u> </summary>
 
  - 2.5.39  
+ - 2.5.39-GCCcore-4.9.3  
  - 2.6.0  
+ - 2.6.0-intel-2016a  
+ - 2.6.0-intel-2017a  
  - 2.6.3  
+ - 2.6.3-GCCcore-6.3.0  
  - 2.6.4  
+ - 2.6.4-GCCcore-6.3.0  
+ - 2.6.4-GCCcore-6.4.0  
+ - 2.6.4-GCCcore-7.2.0  
+ - 2.6.4-GCCcore-7.3.0  
+ - 2.6.4-GCCcore-8.2.0  
 </details>
+
 ###Fluent  
 **Description:** ANSYS FLUENT software contains the broad physical modeling capabilities needed
 to model flow, turbulence, heat transfer, and reactions for industrial applications ranging from
@@ -534,6 +696,7 @@ from blood flow to semiconductor manufacturing, and from clean room design to wa
  - 18.2  
  - 19.0  
 </details>
+
 ###FLUENT  
 **Description:** ANSYS FLUENT software contains the broad physical modeling capabilities needed
 to model flow, turbulence, heat transfer, and reactions for industrial applications ranging from
@@ -545,6 +708,7 @@ from blood flow to semiconductor manufacturing, and from clean room design to wa
  - 19.0  
  - 19.2  
 </details>
+
 ###fontconfig  
 **Description:** Fontconfig is a library designed to provide system-wide font configuration,
  customization and application access.
@@ -552,12 +716,15 @@ from blood flow to semiconductor manufacturing, and from clean room design to wa
 **Homepage:** http://www.freedesktop.org/software/fontconfig  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.12.1  
- - 2.12.4  
- - 2.12.6  
- - 2.13.0  
- - 2.13.1  
+ - 2.12.1-GCCcore-6.3.0-libpng-1.6.29  
+ - 2.12.1-GCCcore-7.3.0-libpng-1.6.29  
+ - 2.12.1-intel-2016a  
+ - 2.12.4-GCCcore-6.4.0  
+ - 2.12.6-GCCcore-6.4.0  
+ - 2.13.0-GCCcore-7.3.0  
+ - 2.13.1-GCCcore-8.2.0  
 </details>
+
 ###foss  
 **Description:** GNU Compiler Collection (GCC) based compiler toolchain, including
  OpenMPI for MPI support, OpenBLAS (BLAS and LAPACK support), FFTW and ScaLAPACK.  
@@ -570,13 +737,15 @@ from blood flow to semiconductor manufacturing, and from clean room design to wa
  - 2018b  
  - 2019a  
 </details>
+
 ###freeglut  
 **Description:** freeglut is a completely OpenSourced alternative to the OpenGL Utility Toolkit (GLUT) library.  
 **Homepage:** http://freeglut.sourceforge.net/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.0.0  
+ - 3.0.0-intel-2018a  
 </details>
+
 ###freetype  
 **Description:** FreeType 2 is a software font engine that is designed to be small, efficient,
  highly customizable, and portable while capable of producing high-quality
@@ -587,13 +756,17 @@ from blood flow to semiconductor manufacturing, and from clean room design to wa
 **Homepage:** http://freetype.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.6.1  
- - 2.6.3  
- - 2.7.1  
- - 2.8  
- - 2.9  
- - 2.9.1  
+ - 2.6.1-intel-2018a  
+ - 2.6.3-intel-2016a  
+ - 2.7.1-GCCcore-6.3.0  
+ - 2.7.1-GCCcore-6.3.0-libpng-1.6.29  
+ - 2.7.1-GCCcore-7.3.0-libpng-1.6.29  
+ - 2.8-GCCcore-6.4.0  
+ - 2.9-GCCcore-6.4.0  
+ - 2.9.1-GCCcore-7.3.0  
+ - 2.9.1-GCCcore-8.2.0  
 </details>
+
 ###FriBidi  
 **Description:** FriBidi is a free implementation of the Unicode Bidirectional (BiDi) Algorithm. It also provides
 utility functions to aid in the development of interactive editors and widgets that implement BiDi functionality.
@@ -602,30 +775,38 @@ Thaana.
 **Homepage:** https://directory.fsf.org/wiki/Fribidi  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.0.1  
+ - 1.0.1-intel-2018a  
 </details>
+
 ###g2clib  
 **Description:** Library contains GRIB2 encoder/decoder ('C' version).  
 **Homepage:** http://www.nco.ncep.noaa.gov/pmb/codes/GRIB2/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.6.0  
+ - 1.6.0-intel-2017a  
+ - 1.6.0-intel-2018a  
+ - 1.6.0-intel-2018b  
 </details>
+
 ###g2lib  
 **Description:** Library contains GRIB2 encoder/decoder and search/indexing routines.  
 **Homepage:** http://www.nco.ncep.noaa.gov/pmb/codes/GRIB2/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.4.0  
- - 3.1.0  
+ - 1.4.0-intel-2017a  
+ - 1.4.0-intel-2018a  
+ - 3.1.0-intel-2018b  
 </details>
+
 ###Gaussian  
 **Description:** The Gaussian series of electronic structure programs provides a wide-ranging suite of the most advanced modeling capabilities available. You can use it to investigate the real-world chemical problems that interest you, in all of their complexity, even on modest computer hardware.  
 **Homepage:** http://gaussian.com  
 <details><summary> <u>Installed versions:</u> </summary>
 
  - g16\_B.01  
+ - g16\_B.01-eth  
 </details>
+
 ###GaussView  
 **Description:** The Gaussian series of electronic structure programs provides a wide-ranging suite of the most advanced modeling capabilities available. You can use it to investigate the real-world chemical problems that interest you, in all of their complexity, even on modest computer hardware.  
 **Homepage:** http://gaussian.com  
@@ -633,6 +814,7 @@ Thaana.
 
  - 6.0.16  
 </details>
+
 ###gc  
 **Description:** The Boehm-Demers-Weiser conservative garbage collector can be used as a
  garbage collecting replacement for C malloc or C++ new.
@@ -640,21 +822,24 @@ Thaana.
 **Homepage:** http://hboehm.info/gc/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 7.6.0  
- - 7.6.4  
+ - 7.6.0-GCCcore-6.3.0  
+ - 7.6.0-GCCcore-6.4.0  
+ - 7.6.4-GCCcore-7.3.0  
 </details>
+
 ###GCC  
 **Description:** The GNU Compiler Collection includes front ends for C, C++, Objective-C, Fortran, Java, and Ada,
  as well as libraries for these languages (libstdc++, libgcj,...).  
 **Homepage:** http://gcc.gnu.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 6.3.0  
- - 6.4.0  
- - 7.2.0  
- - 7.3.0  
- - 8.2.0  
+ - 6.3.0-2.27  
+ - 6.4.0-2.28  
+ - 7.2.0-2.29  
+ - 7.3.0-2.30  
+ - 8.2.0-2.31.1  
 </details>
+
 ###GCCcore  
 **Description:** The GNU Compiler Collection includes front ends for C, C++, Objective-C, Fortran, Java, and Ada,
  as well as libraries for these languages (libstdc++, libgcj,...).  
@@ -668,6 +853,7 @@ Thaana.
  - 7.3.0  
  - 8.2.0  
 </details>
+
 ###GDAL  
 **Description:** GDAL is a translator library for raster geospatial data formats that is released under an X/MIT style
  Open Source license by the Open Source Geospatial Foundation. As a library, it presents a single abstract data model
@@ -676,12 +862,14 @@ Thaana.
 **Homepage:** http://www.gdal.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.1.3  
- - 2.2.0  
- - 2.2.2  
- - 2.2.3  
- - 2.3.1  
+ - 2.1.3-intel-2017a-Python-2.7.13  
+ - 2.2.0-foss-2017a-Python-2.7.13-HDF5-1.8.18  
+ - 2.2.0-intel-2017a-Python-2.7.13-HDF5-1.8.18  
+ - 2.2.2-intel-2017b-Python-2.7.14-HDF5-1.8.19  
+ - 2.2.3-intel-2018a-Python-2.7.14-HDF5-1.8.19  
+ - 2.3.1-intel-2018b-Python-3.6.6  
 </details>
+
 ###Gdk-Pixbuf  
 **Description:** The Gdk Pixbuf is a toolkit for image loading and pixel buffer manipulation.
  It is used by GTK+ 2 and GTK+ 3 to load and manipulate images. In the past it
@@ -691,17 +879,21 @@ Thaana.
 **Homepage:** https://developer.gnome.org/gdk-pixbuf/stable/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.36.11  
+ - 2.36.11-intel-2018a  
 </details>
+
 ###GEOS  
 **Description:** GEOS (Geometry Engine  
 **Homepage:** http://trac.osgeo.org/geos  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.6.1  
- - 3.6.2  
- - 3.6.3  
+ - 3.6.1-foss-2017a-Python-2.7.13  
+ - 3.6.1-intel-2017a-Python-2.7.13  
+ - 3.6.2-intel-2017b-Python-2.7.14  
+ - 3.6.2-intel-2018a-Python-2.7.14  
+ - 3.6.3-intel-2018b-Python-3.6.6  
 </details>
+
 ###gettext  
 **Description:** GNU 'gettext' is an important step for the GNU Translation Project, as it is an asset on which we may
 build many other steps. This package offers to programmers, translators, and even users, a well integrated set of tools
@@ -709,46 +901,60 @@ and documentation
 **Homepage:** http://www.gnu.org/software/gettext/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.19.2  
+ - 0.19.2-intel-2018a  
  - 0.19.6  
  - 0.19.8  
+ - 0.19.8-GCCcore-4.9.3  
  - 0.19.8.1  
+ - 0.19.8.1-GCCcore-6.3.0  
+ - 0.19.8.1-GCCcore-6.4.0  
+ - 0.19.8.1-GCCcore-6.4.0-libxml2-2.9.7  
+ - 0.19.8.1-GCCcore-7.3.0  
+ - 0.19.8.1-GCCcore-8.2.0  
 </details>
+
 ###Ghostscript  
 **Description:** Ghostscript is a versatile processor for PostScript data with the ability to render PostScript to
  different targets. It used to be part of the cups printing stack, but is no longer used for that.  
 **Homepage:** http://ghostscript.com  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 9.22  
+ - 9.22-GCCcore-6.4.0  
 </details>
+
 ###git  
 **Description:** Git is a free and open source distributed version control system designed
 to handle everything from small to very large projects with speed and efficiency.  
 **Homepage:** http://git-scm.com/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.14.1  
- - 2.14.2  
- - 2.18.0  
+ - 2.14.1-GCCcore-6.4.0  
+ - 2.14.2-foss-2017a  
+ - 2.14.2-intel-2017a  
+ - 2.18.0-GCCcore-7.3.0  
 </details>
+
 ###GL2PS  
 **Description:** GL2PS: an OpenGL to PostScript printing library  
 **Homepage:** http://www.geuz.org/gl2ps/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.4.0  
+ - 1.4.0-intel-2018a  
 </details>
+
 ###GLib  
 **Description:** GLib is one of the base libraries of the GTK+ project  
 **Homepage:** http://www.gtk.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.52.0  
- - 2.53.5  
- - 2.54.2  
- - 2.54.3  
+ - 2.52.0-foss-2017a  
+ - 2.52.0-intel-2017a  
+ - 2.53.5-GCCcore-6.4.0  
+ - 2.54.2-GCCcore-6.4.0  
+ - 2.54.3-GCCcore-6.4.0  
+ - 2.54.3-GCCcore-7.3.0  
 </details>
+
 ###GMP  
 **Description:** GMP is a free library for arbitrary precision arithmetic, operating on signed
  integers, rational numbers, and floating point numbers.
@@ -756,17 +962,24 @@ to handle everything from small to very large projects with speed and efficiency
 **Homepage:** http://gmplib.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 6.1.0  
- - 6.1.1  
- - 6.1.2  
+ - 6.1.0-intel-2016a  
+ - 6.1.1-GCCcore-6.3.0  
+ - 6.1.1-intel-2017a  
+ - 6.1.2-GCCcore-6.3.0  
+ - 6.1.2-GCCcore-6.4.0  
+ - 6.1.2-GCCcore-7.3.0  
+ - 6.1.2-GCCcore-8.2.0  
 </details>
+
 ###gmsh  
 **Description:** Gmsh is a 3D finite element grid generator with a build-in CAD engine and post-processor.  
 **Homepage:** http://geuz.org/gmsh  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.0.5  
+ - 3.0.5-foss-2017a  
+ - 3.0.5-intel-2017a  
 </details>
+
 ###Go  
 **Description:** Go is an open source programming language that makes it easy to build
  simple, reliable, and efficient software.  
@@ -775,6 +988,7 @@ to handle everything from small to very large projects with speed and efficiency
 
  - 1.11.2  
 </details>
+
 ###GObject-Introspection  
 **Description:** GObject introspection is a middleware layer between C libraries
  (using GObject) and language bindings. The C library can be scanned at
@@ -784,8 +998,9 @@ to handle everything from small to very large projects with speed and efficiency
 **Homepage:** https://wiki.gnome.org/GObjectIntrospection/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.54.1  
+ - 1.54.1-intel-2018a-Python-2.7.14  
 </details>
+
 ###gompi  
 **Description:** GNU Compiler Collection (GCC) based compiler toolchain,
  including OpenMPI for MPI support.  
@@ -798,6 +1013,7 @@ to handle everything from small to very large projects with speed and efficiency
  - 2018b  
  - 2019a  
 </details>
+
 ###GPAW  
 **Description:** GPAW is a density-functional theory (DFT) Python code based on the projector-augmented wave (PAW)
  method and the atomic simulation environment (ASE). It uses real-space uniform grids and multigrid methods or
@@ -805,8 +1021,9 @@ to handle everything from small to very large projects with speed and efficiency
 **Homepage:** https://wiki.fysik.dtu.dk/gpaw/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.5.1  
+ - 1.5.1-intel-2018b-Python-3.6.6  
 </details>
+
 ###GPAW-setups  
 **Description:** PAW setup for the GPAW Density Functional Theory package.  
 Users can install setups manually using 'gpaw install-data' or use setups from this package.  
@@ -816,6 +1033,7 @@ The versions of GPAW and GPAW-setups can be intermixed.
 
  - 0.9.9672  
 </details>
+
 ###gperf  
 **Description:** GNU gperf is a perfect hash function generator. For a given list of strings,
  it produces a hash function and hash table, in form of C or C++ code, for
@@ -826,8 +1044,11 @@ The versions of GPAW and GPAW-setups can be intermixed.
 **Homepage:** http://www.gnu.org/software/gperf/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.1  
+ - 3.1-GCCcore-6.4.0  
+ - 3.1-GCCcore-7.3.0  
+ - 3.1-GCCcore-8.2.0  
 </details>
+
 ###grib_api  
 **Description:** The ECMWF GRIB API is an application program interface accessible from C, FORTRAN and Python
  programs developed for encoding and decoding WMO FM-92 GRIB edition 1 and edition 2 messages. A useful set of
@@ -835,10 +1056,12 @@ The versions of GPAW and GPAW-setups can be intermixed.
 **Homepage:** https://software.ecmwf.int/wiki/display/GRIB/Home  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.16.0  
- - 1.24.0  
- - 1.25.0  
+ - 1.16.0-intel-2016a  
+ - 1.24.0-foss-2017a  
+ - 1.24.0-intel-2017a  
+ - 1.25.0-intel-2018a  
 </details>
+
 ###GROMACS  
 **Description:** GROMACS is a versatile package to perform molecular dynamics,
  i.e. simulate the Newtonian equations of motion for systems with hundreds to millions of particles.
@@ -848,12 +1071,15 @@ This is a CPU only build, containing both MPI and threadMPI builds.
 **Homepage:** http://www.gromacs.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2016.3  
- - 2016.5  
- - 2018.3  
- - 2019  
- - 2019.2  
+ - 2016.3-foss-2017a  
+ - 2016.3-intel-2017a  
+ - 2016.5-intel-2018a  
+ - 2018.3-foss-2018b  
+ - 2018.3-intel-2018b  
+ - 2019-foss-2018b  
+ - 2019.2-foss-2019a  
 </details>
+
 ###GSL  
 **Description:** The GNU Scientific Library (GSL) is a numerical library for C and C++ programmers.
  The library provides a wide range of mathematical routines such as random number generators, special functions
@@ -861,26 +1087,33 @@ This is a CPU only build, containing both MPI and threadMPI builds.
 **Homepage:** http://www.gnu.org/software/gsl/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.1  
- - 2.3  
- - 2.4  
- - 2.5  
+ - 2.1-intel-2016a  
+ - 2.3-foss-2017a  
+ - 2.3-intel-2017a  
+ - 2.4-GCCcore-6.3.0  
+ - 2.4-GCCcore-6.4.0  
+ - 2.4-GCCcore-7.3.0  
+ - 2.5-GCCcore-7.3.0  
+ - 2.5-iccifort-2018.3.222-GCC-7.3.0-2.30  
 </details>
+
 ###GTK+  
 **Description:** The GTK+ 2 package contains libraries used for creating graphical user interfaces for applications.
   
 **Homepage:** https://developer.gnome.org/gtk+/stable/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.24.32  
+ - 2.24.32-intel-2018a  
 </details>
+
 ###gtkglext  
 **Description:** GtkGLExt is an OpenGL extension to GTK+.  
 **Homepage:** https://projects.gnome.org/gtkglext  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.2.0  
+ - 1.2.0-intel-2018a  
 </details>
+
 ###Guile  
 **Description:** Guile is a programming language, designed to help programmers create flexible
  applications that can be extended by users or other programmers with plug-ins,
@@ -889,9 +1122,13 @@ This is a CPU only build, containing both MPI and threadMPI builds.
 **Homepage:** https://www.gnu.org/software/guile/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.8.8  
- - 2.2.2  
+ - 1.8.8-GCCcore-6.4.0  
+ - 1.8.8-GCCcore-7.3.0  
+ - 1.8.8-foss-2017a  
+ - 1.8.8-intel-2017a  
+ - 2.2.2-GCCcore-6.3.0  
 </details>
+
 ###h5py  
 **Description:** HDF5 for Python (h5py) is a general-purpose Python interface to the Hierarchical Data Format library,
  version 5. HDF5 is a versatile, mature scientific software library designed for the fast, flexible storage of enormous
@@ -899,17 +1136,24 @@ This is a CPU only build, containing both MPI and threadMPI builds.
 **Homepage:** http://www.h5py.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.7.1  
- - 2.8.0  
- - 2.9.0  
+ - 2.7.1-foss-2018a-Python-3.6.4  
+ - 2.7.1-intel-2017a-Python-2.7.13  
+ - 2.7.1-intel-2017a-Python-3.6.1  
+ - 2.7.1-intel-2018a-Python-2.7.14  
+ - 2.7.1-intel-2018a-Python-3.6.4  
+ - 2.8.0-intel-2018b-Python-2.7.15  
+ - 2.8.0-intel-2018b-Python-3.6.6  
+ - 2.9.0-intel-2019a  
 </details>
+
 ###HarfBuzz  
 **Description:** HarfBuzz is an OpenType text shaping engine.  
 **Homepage:** http://www.freedesktop.org/wiki/Software/HarfBuzz  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.7.5  
+ - 1.7.5-intel-2018a  
 </details>
+
 ###HDF  
 **Description:** HDF (also known as HDF4) is a library and multi-object file format for
  storing and managing data between machines.
@@ -917,9 +1161,11 @@ This is a CPU only build, containing both MPI and threadMPI builds.
 **Homepage:** http://www.hdfgroup.org/products/hdf4/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.2.12  
- - 4.2.14  
+ - 4.2.12-intel-2017a  
+ - 4.2.14-GCCcore-6.4.0  
+ - 4.2.14-GCCcore-7.3.0  
 </details>
+
 ###HDF5  
 **Description:** HDF5 is a data model, library, and file format for storing and managing data.
  It supports an unlimited variety of datatypes, and is designed for flexible
@@ -927,22 +1173,43 @@ This is a CPU only build, containing both MPI and threadMPI builds.
 **Homepage:** https://support.hdfgroup.org/HDF5/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.8.16  
- - 1.8.18  
- - 1.8.19  
- - 1.10.0  
- - 1.10.1  
- - 1.10.2  
- - 1.10.5  
+ - 1.8.16-intel-2016a  
+ - 1.8.18-foss-2017a  
+ - 1.8.18-intel-2017a  
+ - 1.8.18-iomkl-2017a  
+ - 1.8.19-foss-2017b  
+ - 1.8.19-foss-2018a  
+ - 1.8.19-intel-2017b  
+ - 1.8.19-intel-2018a  
+ - 1.8.19-iomkl-2018a  
+ - 1.10.0-patch1-intel-2017a  
+ - 1.10.1-foss-2017a  
+ - 1.10.1-foss-2018a  
+ - 1.10.1-intel-2016a  
+ - 1.10.1-intel-2017a  
+ - 1.10.1-intel-2017b  
+ - 1.10.1-intel-2018a  
+ - 1.10.1-iomkl-2018a  
+ - 1.10.2-foss-2018b  
+ - 1.10.2-intel-2018b  
+ - 1.10.2-iomkl-2018b  
+ - 1.10.5-gompi-2019a  
+ - 1.10.5-iimpi-2019a  
 </details>
+
 ###help2man  
 **Description:** help2man produces simple manual pages from the '--help' and '--version' output of other commands.  
 **Homepage:** https://www.gnu.org/software/help2man/  
 <details><summary> <u>Installed versions:</u> </summary>
 
  - 1.47.4  
- - 1.47.7  
+ - 1.47.4-GCCcore-6.3.0  
+ - 1.47.4-GCCcore-6.4.0  
+ - 1.47.4-GCCcore-7.2.0  
+ - 1.47.4-GCCcore-7.3.0  
+ - 1.47.7-GCCcore-8.2.0  
 </details>
+
 ###HPL  
 **Description:** HPL is a software package that solves a (random) dense linear system in double precision (64 bits)
  arithmetic on distributed-memory computers. It can thus be regarded as a portable as well as freely available
@@ -950,8 +1217,9 @@ This is a CPU only build, containing both MPI and threadMPI builds.
 **Homepage:** http://www.netlib.org/benchmark/hpl/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.3  
+ - 2.3-intel-2019a  
 </details>
+
 ###hwloc  
 **Description:** The Portable Hardware Locality (hwloc) software package provides a portable
  abstraction (across OS, versions, architectures, ...) of the hierarchical
@@ -965,10 +1233,13 @@ This is a CPU only build, containing both MPI and threadMPI builds.
 **Homepage:** http://www.open-mpi.org/projects/hwloc/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.11.5  
- - 1.11.7  
- - 1.11.8  
+ - 1.11.5-GCC-6.3.0-2.27  
+ - 1.11.5-iccifort-2017.1.132-GCC-6.3.0-2.27  
+ - 1.11.7-GCCcore-6.4.0  
+ - 1.11.8-GCCcore-6.4.0  
+ - 1.11.8-intel-2017a  
 </details>
+
 ###Hypre  
 **Description:** Hypre is a library for solving large, sparse linear systems of equations on massively
  parallel computers. The problems of interest arise in the simulation codes being developed at LLNL
@@ -976,73 +1247,86 @@ This is a CPU only build, containing both MPI and threadMPI builds.
 **Homepage:** https://computation.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.11.2  
- - 2.15.0  
- - 2.15.1  
+ - 2.11.2-foss-2017a  
+ - 2.11.2-foss-2018a  
+ - 2.11.2-intel-2017a  
+ - 2.11.2-intel-2018a  
+ - 2.15.0-foss-2018b  
+ - 2.15.0-intel-2018b  
+ - 2.15.1-foss-2019a  
+ - 2.15.1-intel-2019a  
 </details>
+
 ###icc  
 **Description:** Intel C and C++ compilers  
 **Homepage:** http://software.intel.com/en-us/intel-compilers/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2016.1.150  
- - 2017.1.132  
- - 2017.4.196  
- - 2018.1.163  
- - 2018.3.222  
- - 2019.1.144  
+ - 2016.1.150-GCC-4.9.3-2.25  
+ - 2017.1.132-GCC-6.3.0-2.27  
+ - 2017.4.196-GCC-6.4.0-2.28  
+ - 2018.1.163-GCC-6.4.0-2.28  
+ - 2018.3.222-GCC-7.3.0-2.30  
+ - 2019.1.144-GCC-8.2.0-2.31.1  
 </details>
+
 ###iccifort  
 **Description:** Intel C, C++ & Fortran compilers  
 **Homepage:** http://software.intel.com/en-us/intel-cluster-toolkit-compiler/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2016.1.150  
- - 2017.1.132  
- - 2017.4.196  
- - 2018.1.163  
- - 2018.3.222  
- - 2019.1.144  
+ - 2016.1.150-GCC-4.9.3-2.25  
+ - 2017.1.132-GCC-6.3.0-2.27  
+ - 2017.4.196-GCC-6.4.0-2.28  
+ - 2018.1.163-GCC-6.4.0-2.28  
+ - 2018.3.222-GCC-7.3.0-2.30  
+ - 2019.1.144-GCC-8.2.0-2.31.1  
 </details>
+
 ###ICU  
 **Description:** ICU is a mature, widely used set of C/C++ and Java libraries providing Unicode and Globalization
  support for software applications.  
 **Homepage:** http://site.icu-project.org/home  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 61.1  
+ - 61.1-GCCcore-6.4.0  
+ - 61.1-GCCcore-7.3.0  
 </details>
+
 ###ifort  
 **Description:** Intel Fortran compiler  
 **Homepage:** http://software.intel.com/en-us/intel-compilers/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2016.1.150  
- - 2017.1.132  
- - 2017.4.196  
- - 2018.1.163  
- - 2018.3.222  
- - 2019.1.144  
+ - 2016.1.150-GCC-4.9.3-2.25  
+ - 2017.1.132-GCC-6.3.0-2.27  
+ - 2017.4.196-GCC-6.4.0-2.28  
+ - 2018.1.163-GCC-6.4.0-2.28  
+ - 2018.3.222-GCC-7.3.0-2.30  
+ - 2019.1.144-GCC-8.2.0-2.31.1  
 </details>
+
 ###iimpi  
 **Description:** Intel C/C++ and Fortran compilers, alongside Intel MPI.  
 **Homepage:** http://software.intel.com/en-us/intel-cluster-toolkit-compiler/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 8.1.5  
+ - 8.1.5-GCC-4.9.3-2.25  
  - 2017a  
  - 2017b  
  - 2018a  
  - 2018b  
  - 2019a  
 </details>
+
 ###ImageMagick  
 **Description:** ImageMagick is a software suite to create, edit, compose, or convert bitmap images  
 **Homepage:** http://www.imagemagick.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 7.0.7  
+ - 7.0.7-28-GCCcore-6.4.0  
 </details>
+
 ###imkl  
 **Description:** Intel Math Kernel Library is a library of highly optimized,
  extensively threaded math routines for science, engineering, and financial
@@ -1051,13 +1335,18 @@ This is a CPU only build, containing both MPI and threadMPI builds.
 **Homepage:** http://software.intel.com/en-us/intel-mkl/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 11.3.1.150  
- - 2017.1.132  
- - 2017.3.196  
- - 2018.1.163  
- - 2018.3.222  
- - 2019.1.144  
+ - 11.3.1.150-iimpi-8.1.5-GCC-4.9.3-2.25  
+ - 2017.1.132-iimpi-2017a  
+ - 2017.1.132-iompi-2017a  
+ - 2017.3.196-iimpi-2017b  
+ - 2017.3.196-iompi-2017b  
+ - 2018.1.163-iimpi-2018a  
+ - 2018.1.163-iompi-2018a  
+ - 2018.3.222-iimpi-2018b  
+ - 2018.3.222-iompi-2018b  
+ - 2019.1.144-iimpi-2019a  
 </details>
+
 ###impi  
 **Description:** The Intel(R) MPI Library for Linux* OS is a multi-fabric message
  passing library based on ANL MPICH2 and OSU MVAPICH2. The Intel MPI Library for
@@ -1065,13 +1354,14 @@ This is a CPU only build, containing both MPI and threadMPI builds.
 **Homepage:** http://software.intel.com/en-us/intel-mpi-library/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 5.1.2.150  
- - 2017.1.132  
- - 2017.3.196  
- - 2018.1.163  
- - 2018.3.222  
- - 2018.4.274  
+ - 5.1.2.150-iccifort-2016.1.150-GCC-4.9.3-2.25  
+ - 2017.1.132-iccifort-2017.1.132-GCC-6.3.0-2.27  
+ - 2017.3.196-iccifort-2017.4.196-GCC-6.4.0-2.28  
+ - 2018.1.163-iccifort-2018.1.163-GCC-6.4.0-2.28  
+ - 2018.3.222-iccifort-2018.3.222-GCC-7.3.0-2.30  
+ - 2018.4.274-iccifort-2019.1.144-GCC-8.2.0-2.31.1  
 </details>
+
 ###Inspector  
 **Description:** Intel Inspector XE is an easy to use memory error checker and thread checker for serial
  and parallel applications  
@@ -1083,15 +1373,19 @@ This is a CPU only build, containing both MPI and threadMPI builds.
  - 2018\_update3  
  - 2019\_update3  
 </details>
+
 ###Instant  
 **Description:** Instant is a Python module that allows for instant inlining of C and C++ code in Python.
  It is a small Python module built on top of SWIG and Distutils.  
 **Homepage:** https://bitbucket.org/fenics-project/instant  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2016.1.0  
- - 2017.1.0  
+ - 2016.1.0-intel-2017a-Python-2.7.13  
+ - 2017.1.0-intel-2017a-Python-2.7.13  
+ - 2017.1.0-intel-2018a-Python-2.7.14  
+ - 2017.1.0-intel-2018a-Python-3.6.4  
 </details>
+
 ###intel  
 **Description:** Compiler toolchain including Intel compilers, Intel MPI and Intel Math Kernel Library (MKL).  
 **Homepage:** https://easybuild.readthedocs.io/en/master/Common-toolchains.html#intel-toolchain  
@@ -1104,14 +1398,20 @@ This is a CPU only build, containing both MPI and threadMPI builds.
  - 2018b  
  - 2019a  
 </details>
+
 ###intltool  
 **Description:** intltool is a set of tools to centralize translation of
  many different file formats using GNU gettext-compatible PO files.  
 **Homepage:** http://freedesktop.org/wiki/Software/intltool/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.51.0  
+ - 0.51.0-GCCcore-4.9.3-Perl-5.24.0  
+ - 0.51.0-GCCcore-6.4.0-Perl-5.26.0  
+ - 0.51.0-GCCcore-6.4.0-Perl-5.26.1  
+ - 0.51.0-GCCcore-7.3.0-Perl-5.28.0  
+ - 0.51.0-GCCcore-8.2.0  
 </details>
+
 ###iomkl  
 **Description:** Intel Cluster Toolchain Compiler Edition provides Intel C/C++ and Fortran compilers, Intel MKL &
  OpenMPI.  
@@ -1123,6 +1423,7 @@ This is a CPU only build, containing both MPI and threadMPI builds.
  - 2018a  
  - 2018b  
 </details>
+
 ###iompi  
 **Description:** Intel C/C++ and Fortran compilers, alongside Open MPI.  
 **Homepage:** http://software.intel.com/en-us/intel-cluster-toolkit-compiler/  
@@ -1133,6 +1434,7 @@ This is a CPU only build, containing both MPI and threadMPI builds.
  - 2018a  
  - 2018b  
 </details>
+
 ###ipp  
 **Description:** Intel Integrated Performance Primitives (Intel IPP) is an extensive library
  of multicore-ready, highly optimized software functions for multimedia, data processing,
@@ -1143,6 +1445,7 @@ This is a CPU only build, containing both MPI and threadMPI builds.
 
  - 2017.1.132  
 </details>
+
 ###itac  
 **Description:** The Intel Trace Collector is a low-overhead tracing library that performs
  event-based tracing in applications. The Intel Trace Analyzer provides a convenient way to monitor application
@@ -1152,14 +1455,17 @@ This is a CPU only build, containing both MPI and threadMPI builds.
 
  - 2019.4.036  
 </details>
+
 ###JAGS  
 **Description:** JAGS is Just Another Gibbs Sampler.  It is a program for analysis 
  of Bayesian hierarchical models using Markov Chain Monte Carlo (MCMC) simulation    
 **Homepage:** http://mcmc-jags.sourceforge.net/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.3.0  
+ - 4.3.0-foss-2017b  
+ - 4.3.0-intel-2017b  
 </details>
+
 ###JasPer  
 **Description:** The JasPer Project is an open-source initiative to provide a free
  software-based reference implementation of the codec specified in
@@ -1168,10 +1474,15 @@ This is a CPU only build, containing both MPI and threadMPI builds.
 **Homepage:** http://www.ece.uvic.ca/~frodo/jasper/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.900.1  
- - 2.0.12  
- - 2.0.14  
+ - 1.900.1-GCCcore-6.4.0  
+ - 1.900.1-foss-2017a  
+ - 1.900.1-intel-2016a  
+ - 1.900.1-intel-2017a  
+ - 2.0.12-intel-2017a  
+ - 2.0.14-GCCcore-6.4.0  
+ - 2.0.14-GCCcore-7.3.0  
 </details>
+
 ###Java  
 **Description:** Java Platform, Standard Edition (Java SE) lets you develop and deploy
  Java applications on desktops and servers.  
@@ -1183,6 +1494,7 @@ This is a CPU only build, containing both MPI and threadMPI builds.
  - 1.8.0\_162  
  - 1.8.0\_192  
 </details>
+
 ###Julia  
 **Description:** Julia as an open source high performance programming language.  
 **Homepage:** https://julialang.org/  
@@ -1190,22 +1502,26 @@ This is a CPU only build, containing both MPI and threadMPI builds.
 
  - 1.1.0  
 </details>
+
 ###Keras  
 **Description:** Keras is a minimalist, highly modular neural networks library, written in Python and
 capable of running on top of either TensorFlow or Theano.  
 **Homepage:** https://keras.io/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.2.0  
+ - 2.2.0-foss-2018a-Python-3.6.4  
+ - 2.2.0-intel-2018a-Python-3.6.4  
 </details>
+
 ###LAMMPS  
 **Description:** LAMMPS (Large-scale Atomic/Molecular Massively Parallel Simulator) is a classical molecular dynamics simulation code designed to run efficiently on parallel computers.  
 **Homepage:** http://lammps.sandia.gov/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 11Aug17  
- - 13Mar18  
+ - 11Aug17-foss-2017a  
+ - 13Mar18-foss-2018a  
 </details>
+
 ###LAPACK  
 **Description:** LAPACK is written in Fortran90 and provides routines for solving systems of
  simultaneous linear equations, least-squares solutions of linear systems of equations, eigenvalue
@@ -1213,8 +1529,9 @@ capable of running on top of either TensorFlow or Theano.
 **Homepage:** http://www.netlib.org/lapack/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.8.0  
+ - 3.8.0-foss-2018b  
 </details>
+
 ###libdap  
 **Description:** A C++ SDK which contains an implementation of DAP 2.0
  and the development versions of DAP3, up to 3.4.
@@ -1222,73 +1539,100 @@ capable of running on top of either TensorFlow or Theano.
 **Homepage:** http://opendap.org/download/libdap  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.18.1  
- - 3.19.1  
- - 3.20.1  
+ - 3.18.1-intel-2016a  
+ - 3.18.1-intel-2017a  
+ - 3.19.1-intel-2018a  
+ - 3.20.1-intel-2018b  
 </details>
+
 ###libdrm  
 **Description:** Direct Rendering Manager runtime library.  
 **Homepage:** http://dri.freedesktop.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.4.76  
- - 2.4.88  
- - 2.4.91  
- - 2.4.92  
+ - 2.4.76-GCCcore-6.3.0  
+ - 2.4.76-intel-2017a  
+ - 2.4.88-GCCcore-6.4.0  
+ - 2.4.91-GCCcore-6.4.0  
+ - 2.4.92-GCCcore-7.3.0  
 </details>
+
 ###libffi  
 **Description:** The libffi library provides a portable, high level programming interface to various calling
 conventions. This allows a programmer to call any function specified by a call interface description at run-time.  
 **Homepage:** http://sourceware.org/libffi/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.1  
- - 3.2.1  
+ - 3.1-intel-2018a  
+ - 3.2.1-GCCcore-6.3.0  
+ - 3.2.1-GCCcore-6.4.0  
+ - 3.2.1-GCCcore-7.3.0  
+ - 3.2.1-GCCcore-8.2.0  
+ - 3.2.1-intel-2017a  
+ - 3.2.1-intel-2018b  
 </details>
+
 ###libgeotiff  
 **Description:** Library for reading and writing coordinate system information from/to GeoTIFF files  
 **Homepage:** https://directory.fsf.org/wiki/Libgeotiff  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.4.2  
+ - 1.4.2-intel-2018b  
 </details>
+
 ###libGLU  
 **Description:** The OpenGL Utility Library (GLU) is a computer graphics library for OpenGL.   
 **Homepage:** ftp://ftp.freedesktop.org/pub/mesa/glu/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 9.0.0  
+ - 9.0.0-foss-2017a  
+ - 9.0.0-foss-2018a  
+ - 9.0.0-foss-2018b  
+ - 9.0.0-intel-2017a  
+ - 9.0.0-intel-2017b  
+ - 9.0.0-intel-2018a  
+ - 9.0.0-intel-2018b  
 </details>
+
 ###libibumad  
 **Description:** libibumad is the umad kernel interface library.  
 **Homepage:** http://www.openfabrics.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.3.10.2  
+ - 1.3.10.2-intel-2017a  
 </details>
+
 ###libibverbs  
 **Description:** libibverbs is a library that allows programs to use RDMA "verbs" for
  direct access to RDMA (currently InfiniBand and iWARP) hardware from userspace.  
 **Homepage:** http://www.openfabrics.org/downloads/libibverbs/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.1.4  
+ - 1.1.4-intel-2017a  
 </details>
+
 ###libiconv  
 **Description:** Libiconv converts from one character encoding to another through Unicode conversion  
 **Homepage:** https://www.gnu.org/software/libiconv  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.15  
+ - 1.15-GCCcore-6.3.0  
+ - 1.15-GCCcore-6.4.0  
+ - 1.15-GCCcore-7.3.0  
 </details>
+
 ###Libint  
 **Description:** Libint library is used to evaluate the traditional (electron repulsion) and certain novel two-body
  matrix elements (integrals) over Cartesian Gaussian functions used in modern atomic and molecular theory.  
 **Homepage:** https://sourceforge.net/p/libint/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.1.6  
+ - 1.1.6-intel-2017a  
+ - 1.1.6-intel-2017b  
+ - 1.1.6-intel-2018a  
+ - 1.1.6-intel-2018b  
 </details>
+
 ###libjpeg-turbo  
 **Description:** libjpeg-turbo is a fork of the original IJG libjpeg which uses SIMD to
  accelerate baseline JPEG compression and decompression. libjpeg is a library
@@ -1297,41 +1641,52 @@ conventions. This allows a programmer to call any function specified by a call i
 **Homepage:** http://sourceforge.net/projects/libjpeg-turbo/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.4.0  
- - 1.5.1  
- - 1.5.2  
- - 1.5.3  
- - 2.0.0  
+ - 1.4.0-intel-2018a  
+ - 1.5.1-foss-2017a  
+ - 1.5.1-intel-2017a  
+ - 1.5.2-GCCcore-6.3.0  
+ - 1.5.2-GCCcore-6.4.0  
+ - 1.5.3-GCCcore-6.4.0  
+ - 2.0.0-GCCcore-7.3.0  
 </details>
+
 ###libmatheval  
 **Description:** GNU libmatheval is a library (callable from C and Fortran) to parse
  and evaluate symbolic expressions input as text.  
 **Homepage:** http://www.gnu.org/software/libmatheval/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.1.11  
+ - 1.1.11-GCCcore-6.4.0  
+ - 1.1.11-GCCcore-7.3.0  
+ - 1.1.11-foss-2017a  
+ - 1.1.11-intel-2017a  
 </details>
+
 ###libpng  
 **Description:** libpng is the official PNG reference library  
 **Homepage:** http://www.libpng.org/pub/png/libpng.html  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.6.18  
- - 1.6.21  
- - 1.6.28  
- - 1.6.29  
- - 1.6.32  
- - 1.6.34  
- - 1.6.36  
+ - 1.6.18-intel-2018a  
+ - 1.6.21-intel-2016a  
+ - 1.6.28-GCCcore-6.3.0  
+ - 1.6.29-GCCcore-6.3.0  
+ - 1.6.29-GCCcore-7.3.0  
+ - 1.6.32-GCCcore-6.4.0  
+ - 1.6.34-GCCcore-6.4.0  
+ - 1.6.34-GCCcore-7.3.0  
+ - 1.6.36-GCCcore-8.2.0  
 </details>
+
 ###libpthread-stubs  
 **Description:** The X protocol C-language Binding (XCB) is a replacement for Xlib featuring a small footprint,
 latency hiding, direct access to the protocol, improved threading support, and extensibility.  
 **Homepage:** http://xcb.freedesktop.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.3  
+ - 0.3-intel-2018a  
 </details>
+
 ###libreadline  
 **Description:** The GNU Readline library provides a set of functions for use by applications
  that allow users to edit command lines as they are typed in. Both Emacs and
@@ -1343,36 +1698,51 @@ latency hiding, direct access to the protocol, improved threading support, and e
 **Homepage:** http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 6.3  
- - 7.0  
- - 8.0  
+ - 6.3-GCCcore-6.3.0  
+ - 6.3-intel-2016a  
+ - 6.3-intel-2017a  
+ - 6.3-intel-2018a  
+ - 7.0-GCCcore-6.3.0  
+ - 7.0-GCCcore-6.4.0  
+ - 7.0-GCCcore-7.3.0  
+ - 8.0-GCCcore-8.2.0  
 </details>
+
 ###libsndfile  
 **Description:** Libsndfile is a C library for reading and writing files containing sampled sound
  (such as MS Windows WAV and the Apple/SGI AIFF format) through one standard library interface.  
 **Homepage:** http://www.mega-nerd.com/libsndfile  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.0.28  
+ - 1.0.28-GCCcore-6.4.0  
+ - 1.0.28-GCCcore-7.3.0  
+ - 1.0.28-intel-2017a  
 </details>
+
 ###libspatialindex  
 **Description:** C++ implementation of R*-tree, an MVR-tree and a TPR-tree with C API
   
 **Homepage:** http://libspatialindex.github.io  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.8.5  
+ - 1.8.5-GCCcore-6.3.0  
+ - 1.8.5-GCCcore-6.4.0  
 </details>
+
 ###LibTIFF  
 **Description:** tiff: Library and tools for reading and writing TIFF data files  
 **Homepage:** http://www.remotesensing.org/libtiff/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.0.3  
- - 4.0.7  
- - 4.0.8  
- - 4.0.9  
+ - 4.0.3-intel-2018a  
+ - 4.0.7-foss-2017a  
+ - 4.0.7-intel-2017a  
+ - 4.0.8-intel-2017b  
+ - 4.0.9-GCCcore-6.4.0  
+ - 4.0.9-GCCcore-7.3.0  
+ - 4.0.9-intel-2018b  
 </details>
+
 ###libtool  
 **Description:** GNU libtool is a generic library support script. Libtool hides the complexity of using shared libraries
  behind a consistent, portable interface.  
@@ -1380,7 +1750,15 @@ latency hiding, direct access to the protocol, improved threading support, and e
 <details><summary> <u>Installed versions:</u> </summary>
 
  - 2.4.6  
+ - 2.4.6-GCCcore-4.9.3  
+ - 2.4.6-GCCcore-6.3.0  
+ - 2.4.6-GCCcore-6.4.0  
+ - 2.4.6-GCCcore-7.3.0  
+ - 2.4.6-GCCcore-8.2.0  
+ - 2.4.6-intel-2016a  
+ - 2.4.6-intel-2017a  
 </details>
+
 ###libunistring  
 **Description:** This library provides functions for manipulating Unicode strings and for
  manipulating C strings according to the Unicode standard.
@@ -1388,44 +1766,57 @@ latency hiding, direct access to the protocol, improved threading support, and e
 **Homepage:** http://www.gnu.org/software/libunistring/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.9.6  
- - 0.9.7  
- - 0.9.10  
+ - 0.9.6-foss-2017a  
+ - 0.9.6-intel-2017a  
+ - 0.9.7-GCCcore-6.3.0  
+ - 0.9.7-GCCcore-6.4.0  
+ - 0.9.10-GCCcore-7.3.0  
 </details>
+
 ###LibUUID  
 **Description:** Portable uuid C library  
 **Homepage:** http://sourceforge.net/projects/libuuid/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.0.3  
+ - 1.0.3-GCCcore-6.4.0  
+ - 1.0.3-GCCcore-7.3.0  
+ - 1.0.3-intel-2016a  
+ - 1.0.3-intel-2017a  
 </details>
+
 ###libXau  
 **Description:** The libXau package contains a library implementing the X11 Authorization Protocol.
 This is useful for restricting client access to the display.  
 **Homepage:** http://www.freedesktop.org/wiki/Software/xlibs  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.0.8  
+ - 1.0.8-intel-2018a  
 </details>
+
 ###libxc  
 **Description:** Libxc is a library of exchange-correlation functionals for density-functional theory.
  The aim is to provide a portable, well tested and reliable set of exchange and correlation functionals.  
 **Homepage:** http://www.tddft.org/programs/octopus/wiki/index.php/Libxc  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.2.3  
- - 3.0.1  
- - 4.0.3  
- - 4.2.3  
- - 4.3.4  
+ - 2.2.3-intel-2017a  
+ - 3.0.1-intel-2018a  
+ - 3.0.1-intel-2018b  
+ - 4.0.3-intel-2017b  
+ - 4.2.3-intel-2017b  
+ - 4.2.3-intel-2018a  
+ - 4.2.3-intel-2018b  
+ - 4.3.4-iccifort-2019.1.144-GCC-8.2.0-2.31.1  
 </details>
+
 ###libXfixes  
 **Description:** X Fixes extension library  
 **Homepage:** http://www.freedesktop.org/wiki/Software/xlibs  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 5.0.1  
+ - 5.0.1-intel-2018a  
 </details>
+
 ###libxml2  
 **Description:** Libxml2 is the XML C parser and toolchain developed for the Gnome project
  (but usable outside of the Gnome platform).
@@ -1433,28 +1824,41 @@ This is useful for restricting client access to the display.
 **Homepage:** http://xmlsoft.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.9.2  
- - 2.9.4  
- - 2.9.7  
- - 2.9.8  
+ - 2.9.2-intel-2018a  
+ - 2.9.4-GCCcore-4.9.3  
+ - 2.9.4-GCCcore-6.3.0  
+ - 2.9.4-GCCcore-6.4.0  
+ - 2.9.4-GCCcore-7.3.0  
+ - 2.9.4-intel-2016a  
+ - 2.9.4-intel-2017a-Python-2.7.13  
+ - 2.9.7-GCCcore-6.4.0  
+ - 2.9.7-intel-2018a-Python-2.7.14  
+ - 2.9.8-GCCcore-7.3.0  
+ - 2.9.8-GCCcore-8.2.0  
+ - 2.9.8-foss-2018a-Python-2.7.14  
 </details>
+
 ###libxsmm  
 **Description:** LIBXSMM is a library for small dense and small sparse matrix-matrix multiplications
 targeting Intel Architecture (x86).  
 **Homepage:** https://github.com/hfp/libxsmm  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.6.4  
- - 1.8.3  
- - 1.10  
+ - 1.6.4-intel-2017a  
+ - 1.8.3-intel-2017b  
+ - 1.8.3-intel-2018a  
+ - 1.8.3-intel-2018b  
+ - 1.10-intel-2018b  
 </details>
+
 ###libyaml  
 **Description:** LibYAML is a YAML parser and emitter written in C.  
 **Homepage:** http://pyyaml.org/wiki/LibYAML  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.1.7  
+ - 0.1.7-GCCcore-6.4.0  
 </details>
+
 ###LittleCMS  
 **Description:** Little CMS intends to be an OPEN SOURCE small-footprint color management
  engine, with special focus on accuracy and performance.
@@ -1462,8 +1866,9 @@ targeting Intel Architecture (x86).
 **Homepage:** http://www.littlecms.com/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.8  
+ - 2.8-GCCcore-6.4.0  
 </details>
+
 ###LLVM  
 **Description:** The LLVM Core libraries provide a modern source- and target-independent
  optimizer, along with code generation support for many popular CPUs
@@ -1475,28 +1880,32 @@ targeting Intel Architecture (x86).
 **Homepage:** http://llvm.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.0.0  
- - 5.0.0  
- - 5.0.1  
- - 6.0.0  
+ - 4.0.0-foss-2017a  
+ - 4.0.0-intel-2017a  
+ - 5.0.0-intel-2017b  
+ - 5.0.1-GCCcore-6.4.0  
+ - 6.0.0-GCCcore-7.3.0  
 </details>
+
 ###LMDB  
 **Description:** LMDB is a fast, memory-efficient database. With memory-mapped files, it has the read performance
  of a pure in-memory database while retaining the persistence of standard disk-based databases.  
 **Homepage:** https://symas.com/lmdb  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.9.21  
+ - 0.9.21-GCCcore-6.4.0  
 </details>
+
 ###lz4  
 **Description:** LZ4 is lossless compression algorithm, providing compression speed at 400 MB/s per core. 
  It features an extremely fast decoder, with speed in multiple GB/s per core.  
 **Homepage:** https://lz4.github.io/lz4/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.8.2  
- - 1.9.1  
+ - 1.8.2-GCCcore-7.3.0  
+ - 1.9.1-GCCcore-8.2.0  
 </details>
+
 ###M4  
 **Description:** GNU M4 is an implementation of the traditional Unix macro processor. It is
  mostly SVR4 compatible although it has some extensions (for example, handling
@@ -1507,24 +1916,41 @@ targeting Intel Architecture (x86).
 <details><summary> <u>Installed versions:</u> </summary>
 
  - 1.4.17  
+ - 1.4.17-GCCcore-4.9.3  
+ - 1.4.17-intel-2016a  
+ - 1.4.17-intel-2017a  
  - 1.4.18  
+ - 1.4.18-GCCcore-6.3.0  
+ - 1.4.18-GCCcore-6.4.0  
+ - 1.4.18-GCCcore-7.2.0  
+ - 1.4.18-GCCcore-7.3.0  
+ - 1.4.18-GCCcore-8.2.0  
 </details>
+
 ###makedepend  
 **Description:** The makedepend package contains a C-preprocessor like utility to determine build-time dependencies.  
 **Homepage:** http://www.linuxfromscratch.org/blfs/view/svn/x/makedepend.html  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.0.5  
- - 1.0.6  
+ - 1.0.5-GCCcore-6.3.0  
+ - 1.0.5-GCCcore-6.4.0  
+ - 1.0.6-GCCcore-7.3.0  
 </details>
+
 ###Mako  
 **Description:** A super-fast templating language that borrows the best ideas from the existing templating languages  
 **Homepage:** http://www.makotemplates.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.0.6  
- - 1.0.7  
+ - 1.0.6-foss-2017a-Python-2.7.13  
+ - 1.0.6-intel-2017a-Python-2.7.13  
+ - 1.0.7-foss-2018a-Python-2.7.14  
+ - 1.0.7-foss-2018b-Python-2.7.15  
+ - 1.0.7-intel-2017b-Python-2.7.14  
+ - 1.0.7-intel-2018a-Python-2.7.14  
+ - 1.0.7-intel-2018b-Python-2.7.15  
 </details>
+
 ###MATLAB  
 **Description:** MATLAB is a high-level language and interactive environment
  that enables you to perform computationally intensive tasks faster than with
@@ -1537,6 +1963,7 @@ targeting Intel Architecture (x86).
  - 2018b  
  - 2019a  
 </details>
+
 ###matplotlib  
 **Description:** matplotlib is a python 2D plotting library which produces publication quality figures in a variety of
  hardcopy formats and interactive environments across platforms. matplotlib can be used in python scripts, the python
@@ -1544,12 +1971,17 @@ targeting Intel Architecture (x86).
 **Homepage:** http://matplotlib.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.0.2  
- - 2.1.2  
- - 2.2.3  
- - 3.0.0  
- - 3.0.3  
+ - 2.0.2-foss-2017a-Python-2.7.13  
+ - 2.0.2-intel-2017a-Python-2.7.13  
+ - 2.0.2-intel-2017a-Python-2.7.13-libpng-1.6.29  
+ - 2.1.2-foss-2018a-Python-3.6.4  
+ - 2.1.2-intel-2018a-Python-2.7.14  
+ - 2.1.2-intel-2018a-Python-3.6.4  
+ - 2.2.3-intel-2018b-Python-2.7.15  
+ - 3.0.0-intel-2018b-Python-3.6.6  
+ - 3.0.3-intel-2019a-Python-3.7.2  
 </details>
+
 ###Mercurial  
 **Description:** Mercurial is a free, distributed source control management tool. It efficiently handles projects
 of any size and offers an easy and intuitive interface.
@@ -1557,27 +1989,33 @@ of any size and offers an easy and intuitive interface.
 **Homepage:** https://www.mercurial-scm.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.3.3  
+ - 4.3.3-intel-2017a-Python-2.7.13  
 </details>
+
 ###Mesa  
 **Description:** Mesa is an open-source implementation of the OpenGL specification -
  a system for rendering interactive 3D graphics.  
 **Homepage:** http://www.mesa3d.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 17.0.2  
- - 17.2.4  
- - 17.2.5  
- - 17.3.6  
- - 18.1.1  
+ - 17.0.2-foss-2017a  
+ - 17.0.2-intel-2017a  
+ - 17.2.4-intel-2017b  
+ - 17.2.5-foss-2018a  
+ - 17.2.5-intel-2018a  
+ - 17.3.6-intel-2018a  
+ - 18.1.1-foss-2018b  
+ - 18.1.1-intel-2018b  
 </details>
+
 ###Mesquite  
 **Description:** Mesh-Quality Improvement Library  
 **Homepage:** https://software.sandia.gov/mesquite/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.3.0  
+ - 2.3.0-intel-2017a  
 </details>
+
 ###METIS  
 **Description:** METIS is a set of serial programs for partitioning graphs, partitioning finite element meshes,
  and producing fill reducing orderings for sparse matrices. The algorithms implemented in METIS are based on the
@@ -1585,8 +2023,15 @@ of any size and offers an easy and intuitive interface.
 **Homepage:** http://glaros.dtc.umn.edu/gkhome/metis/metis/overview  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 5.1.0  
+ - 5.1.0-GCCcore-8.2.0  
+ - 5.1.0-foss-2017a  
+ - 5.1.0-foss-2018a  
+ - 5.1.0-foss-2018b  
+ - 5.1.0-intel-2017a  
+ - 5.1.0-intel-2018a  
+ - 5.1.0-intel-2018b  
 </details>
+
 ###Molden  
 **Description:** Molden is a package for displaying Molecular Density from the
  Ab Initio packages GAMESS-UK, GAMESS-US and GAUSSIAN and the Semi-Empirical
@@ -1594,9 +2039,11 @@ of any size and offers an easy and intuitive interface.
 **Homepage:** http://www.cmbi.ru.nl/molden/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 5.2  
- - 5.7  
+ - 5.2-foss-2018a  
+ - 5.2-intel-2018a  
+ - 5.7-intel-2017a  
 </details>
+
 ###MPFR  
 **Description:** The MPFR library is a C library for multiple-precision floating-point
  computations with correct rounding.
@@ -1604,10 +2051,11 @@ of any size and offers an easy and intuitive interface.
 **Homepage:** http://www.mpfr.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.1.5  
- - 3.1.6  
- - 4.0.1  
+ - 3.1.5-intel-2017a  
+ - 3.1.6-GCCcore-6.4.0  
+ - 4.0.1-GCCcore-7.3.0  
 </details>
+
 ###mpmath  
 **Description:** mpmath can be used as an arbitrary-precision substitute for Python's float/complex 
  types and math/cmath modules, but also does much more advanced mathematics. Almost any calculation
@@ -1617,9 +2065,14 @@ of any size and offers an easy and intuitive interface.
 **Homepage:** http://mpmath.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.19  
- - 1.0.0  
+ - 0.19-foss-2017a-Python-2.7.13  
+ - 0.19-foss-2018a-Python-2.7.14  
+ - 0.19-intel-2017a-Python-2.7.13  
+ - 1.0.0-foss-2018a-Python-2.7.14  
+ - 1.0.0-intel-2018a-Python-2.7.14  
+ - 1.0.0-intel-2018a-Python-3.6.4  
 </details>
+
 ###MTL4  
 **Description:** The Matrix Template Library 4 incorporates the most modern programming techniques
  to provide an easy and intuitive interface to users while enabling optimal performance. The natural
@@ -1630,60 +2083,76 @@ of any size and offers an easy and intuitive interface.
 
  - 4.0.9555  
 </details>
+
 ###MUMPS  
 **Description:** A parallel sparse direct solver  
 **Homepage:** http://graal.ens-lyon.fr/MUMPS/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 5.1.2  
+ - 5.1.2-foss-2018a  
+ - 5.1.2-foss-2018b  
+ - 5.1.2-intel-2018a  
+ - 5.1.2-intel-2018b  
 </details>
+
 ###NAMD  
 **Description:** NAMD is a parallel molecular dynamics code designed for high-performance simulation of
  large biomolecular systems.  
 **Homepage:** http://www.ks.uiuc.edu/Research/namd/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.12  
- - 2.13  
- - 2017  
- - 2018  
+ - 2.12-foss-2017a-mpi  
+ - 2.12-intel-2017a-mpi  
+ - 2.12-intel-2018a-mpi  
+ - 2.13-foss-2018b-mpi  
+ - 2017-11-06-foss-2017a-mpi  
+ - 2017-11-06-intel-2017a-mpi  
+ - 2018-02-15-intel-2018a-mpi  
 </details>
+
 ###NASM  
 **Description:** NASM: General-purpose x86 assembler  
 **Homepage:** http://www.nasm.us/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.11.06  
- - 2.12.02  
- - 2.13.01  
- - 2.13.03  
+ - 2.11.06-intel-2018a  
+ - 2.12.02-foss-2017a  
+ - 2.12.02-intel-2017a  
+ - 2.13.01-GCCcore-6.3.0  
+ - 2.13.01-GCCcore-6.4.0  
+ - 2.13.03-GCCcore-6.4.0  
+ - 2.13.03-GCCcore-7.3.0  
 </details>
+
 ###NBO7  
 **Description:** NBO7 is the most recent version of a program suite aimed at analysing natural bond order in different outputs: The NBO program performs the analysis of a many-electron molecular wavefunction in terms of localized electron-pair bonding units.  
 **Homepage:** http://nbo6.chem.wisc.edu  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 28  
+ - 28-Mar-2019-intel-2018b  
 </details>
+
 ###NCL  
 **Description:** NCL is an interpreted language designed specifically for scientific data analysis and visualization.  
 **Homepage:** http://www.ncl.ucar.edu  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 6.4.0  
- - 6.5.0  
- - 6.6.2  
+ - 6.4.0-intel-2017a  
+ - 6.5.0-intel-2018a  
+ - 6.6.2-intel-2018b  
 </details>
+
 ###NCO  
 **Description:** manipulates and analyzes data stored in netCDF-accessible formats, including DAP, HDF4, and HDF5  
 **Homepage:** http://nco.sourceforge.net  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.6.0  
- - 4.6.6  
- - 4.7.2  
- - 4.7.7  
+ - 4.6.0-intel-2016a  
+ - 4.6.6-intel-2017a  
+ - 4.7.2-intel-2018a  
+ - 4.7.7-intel-2018b  
 </details>
+
 ###ncurses  
 **Description:** The Ncurses (new curses) library is a free software emulation of curses in
  System V Release 4.0, and more. It uses Terminfo format, supports pads and
@@ -1693,10 +2162,18 @@ of any size and offers an easy and intuitive interface.
 **Homepage:** http://www.gnu.org/software/ncurses/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 5.9  
+ - 5.9-intel-2018a  
  - 6.0  
- - 6.1  
+ - 6.0-GCCcore-4.9.3  
+ - 6.0-GCCcore-6.3.0  
+ - 6.0-GCCcore-6.4.0  
+ - 6.0-intel-2016a  
+ - 6.0-intel-2017a  
+ - 6.0-intel-2018b  
+ - 6.1-GCCcore-7.3.0  
+ - 6.1-GCCcore-8.2.0  
 </details>
+
 ###ncview  
 **Description:** Ncview is a visual browser for netCDF format files. 
 Typically you would use ncview to get a quick and easy, push-button 
@@ -1706,8 +2183,12 @@ change color maps, invert the data, etc.
 **Homepage:** http://meteora.ucsd.edu/~pierce/ncview_home_page.html  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.1.7  
+ - 2.1.7-intel-2016a  
+ - 2.1.7-intel-2017a  
+ - 2.1.7-intel-2018a  
+ - 2.1.7-intel-2018b  
 </details>
+
 ###netCDF  
 **Description:** NetCDF (network Common Data Form) is a set of software libraries 
  and machine-independent data formats that support the creation, access, and sharing of array-oriented 
@@ -1715,11 +2196,23 @@ change color maps, invert the data, etc.
 **Homepage:** http://www.unidata.ucar.edu/software/netcdf/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.4.0  
- - 4.4.1.1  
- - 4.6.1  
- - 4.6.2  
+ - 4.4.0-intel-2016a  
+ - 4.4.1.1-foss-2017a-HDF5-1.8.18  
+ - 4.4.1.1-foss-2018a-HDF5-1.8.19  
+ - 4.4.1.1-intel-2017a  
+ - 4.4.1.1-intel-2017a-HDF5-1.8.18  
+ - 4.4.1.1-intel-2017a-HDF5-1.10.1  
+ - 4.4.1.1-intel-2017b-HDF5-1.8.19  
+ - 4.4.1.1-intel-2018a-HDF5-1.8.19  
+ - 4.4.1.1-iomkl-2017a-HDF5-1.8.18  
+ - 4.4.1.1-iomkl-2018a-HDF5-1.8.19  
+ - 4.6.1-foss-2018b  
+ - 4.6.1-intel-2018b  
+ - 4.6.1-iomkl-2018b  
+ - 4.6.2-gompi-2019a  
+ - 4.6.2-iimpi-2019a  
 </details>
+
 ###netCDF-C++4  
 **Description:** NetCDF (network Common Data Form) is a set of software libraries
  and machine-independent data formats that support the creation, access, and sharing of array-oriented
@@ -1727,8 +2220,19 @@ change color maps, invert the data, etc.
 **Homepage:** http://www.unidata.ucar.edu/software/netcdf/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.3.0  
+ - 4.3.0-foss-2017a-HDF5-1.8.18  
+ - 4.3.0-foss-2018a-HDF5-1.8.19  
+ - 4.3.0-foss-2018b  
+ - 4.3.0-intel-2017a  
+ - 4.3.0-intel-2017a-HDF5-1.8.18  
+ - 4.3.0-intel-2017b-HDF5-1.8.19  
+ - 4.3.0-intel-2018a-HDF5-1.8.19  
+ - 4.3.0-intel-2018b  
+ - 4.3.0-iomkl-2017a-HDF5-1.8.18  
+ - 4.3.0-iomkl-2018a-HDF5-1.8.19  
+ - 4.3.0-iomkl-2018b  
 </details>
+
 ###netCDF-Fortran  
 **Description:** NetCDF (network Common Data Form) is a set of software libraries
  and machine-independent data formats that support the creation, access, and sharing of array-oriented
@@ -1736,20 +2240,35 @@ change color maps, invert the data, etc.
 **Homepage:** http://www.unidata.ucar.edu/software/netcdf/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.4.3  
- - 4.4.4  
- - 4.4.5  
+ - 4.4.3-intel-2016a  
+ - 4.4.4-foss-2017a-HDF5-1.8.18  
+ - 4.4.4-foss-2018a-HDF5-1.8.19  
+ - 4.4.4-foss-2018b  
+ - 4.4.4-intel-2017a  
+ - 4.4.4-intel-2017a-HDF5-1.8.18  
+ - 4.4.4-intel-2017b-HDF5-1.8.19  
+ - 4.4.4-intel-2018a-HDF5-1.8.19  
+ - 4.4.4-intel-2018b  
+ - 4.4.4-iomkl-2017a-HDF5-1.8.18  
+ - 4.4.4-iomkl-2018a-HDF5-1.8.19  
+ - 4.4.4-iomkl-2018b  
+ - 4.4.5-gompi-2019a  
+ - 4.4.5-iimpi-2019a  
 </details>
+
 ###netcdf4-python  
 **Description:** Python/numpy interface to netCDF.  
 **Homepage:** https://unidata.github.io/netcdf4-python/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.2.9  
- - 1.3.1  
- - 1.4.0  
- - 1.4.1  
+ - 1.2.9-intel-2017a-Python-2.7.13  
+ - 1.3.1-intel-2018a-Python-2.7.14  
+ - 1.4.0-intel-2018a-Python-2.7.14  
+ - 1.4.0-intel-2018a-Python-3.6.4  
+ - 1.4.1-intel-2018b-Python-2.7.15  
+ - 1.4.1-intel-2018b-Python-3.6.6  
 </details>
+
 ###nettle  
 **Description:** Nettle is a cryptographic library that is designed to fit easily
  in more or less any context: In crypto toolkits for object-oriented
@@ -1758,9 +2277,14 @@ change color maps, invert the data, etc.
 **Homepage:** http://www.lysator.liu.se/~nisse/nettle/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.3  
- - 3.4  
+ - 3.3-GCCcore-6.3.0  
+ - 3.3-GCCcore-6.4.0  
+ - 3.3-intel-2017a  
+ - 3.4-foss-2018b  
+ - 3.4-intel-2018a  
+ - 3.4-intel-2018b  
 </details>
+
 ###NLopt  
 **Description:** NLopt is a free/open-source library for nonlinear optimization,
  providing a common interface for a number of different free optimization routines
@@ -1768,8 +2292,12 @@ change color maps, invert the data, etc.
 **Homepage:** http://ab-initio.mit.edu/wiki/index.php/NLopt  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.4.2  
+ - 2.4.2-GCCcore-7.3.0  
+ - 2.4.2-intel-2017a  
+ - 2.4.2-intel-2017b  
+ - 2.4.2-intel-2018a  
 </details>
+
 ###numactl  
 **Description:** The numactl program allows you to run your application program on specific
  cpu's and memory nodes. It does this by supplying a NUMA memory policy to
@@ -1779,8 +2307,12 @@ change color maps, invert the data, etc.
 **Homepage:** http://oss.sgi.com/projects/libnuma/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.0.11  
+ - 2.0.11-GCC-6.3.0-2.27  
+ - 2.0.11-GCCcore-6.3.0  
+ - 2.0.11-GCCcore-6.4.0  
+ - 2.0.11-GCCcore-7.3.0  
 </details>
+
 ###NWChem  
 **Description:** NWChem aims to provide its users with computational chemistry tools that are scalable both in
  their ability to treat large scientific computational chemistry problems efficiently, and in their use of available
@@ -1791,9 +2323,11 @@ change color maps, invert the data, etc.
 **Homepage:** http://www.nwchem-sw.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 6.6.revision27746  
- - 6.8.revision  
+ - 6.6.revision27746-intel-2017a-2015-10-20-patches-20170814-Python-2.7.13  
+ - 6.6.revision27746-intel-2018a-2015-10-20-patches-20170814-Python-2.7.14  
+ - 6.8.revision-v47-intel-2018a-2017-12-14-Python-2.7.14  
 </details>
+
 ###OpenBabel  
 **Description:** Open Babel is a chemical toolbox designed to speak the many
  languages of chemical data. It's an open, collaborative project allowing anyone
@@ -1802,18 +2336,20 @@ change color maps, invert the data, etc.
 **Homepage:** http://openbabel.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.4.1  
+ - 2.4.1-intel-2017a-Python-2.7.13  
 </details>
+
 ###OpenBLAS  
 **Description:** OpenBLAS is an optimized BLAS library based on GotoBLAS2 1.13 BSD version.  
 **Homepage:** http://xianyi.github.com/OpenBLAS/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.2.19  
- - 0.2.20  
- - 0.3.1  
- - 0.3.5  
+ - 0.2.19-GCC-6.3.0-2.27-LAPACK-3.7.0  
+ - 0.2.20-GCC-6.4.0-2.28  
+ - 0.3.1-GCC-7.3.0-2.30  
+ - 0.3.5-GCC-8.2.0-2.31.1  
 </details>
+
 ###OpenFOAM  
 **Description:** OpenFOAM is a free, open source CFD software package.
  OpenFOAM has an extensive range of features to solve anything from complex fluid flows
@@ -1822,12 +2358,13 @@ change color maps, invert the data, etc.
 **Homepage:** http://www.openfoam.com/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.1  
- - 5.0  
- - 6  
- - 1712  
- - v1806  
+ - 4.1-intel-2017a  
+ - 5.0-intel-2017a  
+ - 6-foss-2018b  
+ - 1712-foss-2018a  
+ - v1806-foss-2018b  
 </details>
+
 ###OpenFOAM-Extend  
 **Description:** OpenFOAM is a free, open source CFD software package. 
 OpenFOAM has an extensive range of features to solve anything from complex fluid flows
@@ -1836,19 +2373,27 @@ to solid dynamics and electromagnetics.
 **Homepage:** http://www.extend-project.de/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.0  
+ - 4.0-intel-2017a  
 </details>
+
 ###OpenMPI  
 **Description:** The Open MPI Project is an open source MPI-3 implementation.  
 **Homepage:** http://www.open-mpi.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.0.2  
- - 2.1.1  
- - 2.1.2  
- - 3.1.1  
- - 3.1.3  
+ - 2.0.2-GCC-6.3.0-2.27  
+ - 2.0.2-PGI-17.9-GCC-6.3.0-2.27  
+ - 2.0.2-iccifort-2017.1.132-GCC-6.3.0-2.27  
+ - 2.1.1-GCC-6.4.0-2.28  
+ - 2.1.1-iccifort-2017.4.196-GCC-6.4.0-2.28  
+ - 2.1.2-GCC-6.4.0-2.28  
+ - 2.1.2-iccifort-2018.1.163-GCC-6.4.0-2.28  
+ - 3.1.1-GCC-7.3.0-2.30  
+ - 3.1.1-PGI-18.7-GCC-7.3.0-2.30  
+ - 3.1.1-iccifort-2018.3.222-GCC-7.3.0-2.30  
+ - 3.1.3-GCC-8.2.0-2.31.1  
 </details>
+
 ###OpenSSL  
 **Description:** The OpenSSL Project is a collaborative effort to develop a robust, commercial-grade, full-featured,
  and Open Source toolchain implementing the Secure Sockets Layer (SSL v2/v3) and Transport Layer Security (TLS v1) 
@@ -1856,8 +2401,10 @@ to solid dynamics and electromagnetics.
 **Homepage:** http://www.openssl.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.1.0f  
+ - 1.1.0f-foss-2017a  
+ - 1.1.0f-intel-2017a  
 </details>
+
 ###Pandoc  
 **Description:** If you need to convert files from one markup format into another, pandoc is your swiss-army knife  
 **Homepage:** http://pandoc.org  
@@ -1865,6 +2412,7 @@ to solid dynamics and electromagnetics.
 
  - 2.5  
 </details>
+
 ###Pango  
 **Description:** Pango is a library for laying out and rendering of text, with an emphasis on internationalization.
 Pango can be used anywhere that text layout is needed, though most of the work on Pango so far has been done in the
@@ -1872,23 +2420,27 @@ context of the GTK+ widget toolkit. Pango forms the core of text and font handli
 **Homepage:** http://www.pango.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.41.1  
+ - 1.41.1-intel-2018a  
 </details>
+
 ###pangox-compat  
 **Description:** PangoX compatibility library  
 **Homepage:** https://github.com/GNOME/pangox-compat  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.0.2  
+ - 0.0.2-intel-2018a-Pango-1.41.1  
 </details>
+
 ###ParaView  
 **Description:** ParaView is a scientific parallel visualizer.  
 **Homepage:** http://www.paraview.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 5.2.0  
- - 5.4.1  
+ - 5.2.0-intel-2017a-mpi  
+ - 5.4.1-foss-2018a-mpi  
+ - 5.4.1-foss-2018b-mpi  
 </details>
+
 ###ParMETIS  
 **Description:** ParMETIS is an MPI-based parallel library that implements a variety of algorithms for partitioning
  unstructured graphs, meshes, and for computing fill-reducing orderings of sparse matrices. ParMETIS extends the
@@ -1898,8 +2450,17 @@ context of the GTK+ widget toolkit. Pango forms the core of text and font handli
 **Homepage:** http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.0.3  
+ - 4.0.3-foss-2017a  
+ - 4.0.3-foss-2018a  
+ - 4.0.3-foss-2018b  
+ - 4.0.3-gompi-2019a  
+ - 4.0.3-iimpi-2019a  
+ - 4.0.3-intel-2017a  
+ - 4.0.3-intel-2017b  
+ - 4.0.3-intel-2018a  
+ - 4.0.3-intel-2018b  
 </details>
+
 ###ParMGridGen  
 **Description:** ParMGridGen is an MPI-based parallel library that is based on the serial package MGridGen,
  that implements (serial) algorithms for obtaining a sequence of successive coarse grids that are well-suited
@@ -1907,15 +2468,18 @@ context of the GTK+ widget toolkit. Pango forms the core of text and font handli
 **Homepage:** http://www-users.cs.umn.edu/~moulitsa/software.html  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.0  
+ - 1.0-intel-2017a  
 </details>
+
 ###patchelf  
 **Description:** PatchELF is a small utility to modify the dynamic linker and RPATH of ELF executables.  
 **Homepage:** http://nixos.org/patchelf.html  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.9  
+ - 0.9-GCCcore-6.3.0  
+ - 0.9-GCCcore-6.4.0  
 </details>
+
 ###PCRE  
 **Description:** The PCRE library is a set of functions that implement regular expression
  pattern matching using the same syntax and semantics as Perl 5.
@@ -1923,47 +2487,61 @@ context of the GTK+ widget toolkit. Pango forms the core of text and font handli
 **Homepage:** http://www.pcre.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 8.40  
- - 8.41  
- - 8.43  
+ - 8.40-GCCcore-6.3.0  
+ - 8.40-intel-2017a  
+ - 8.40-intel-2018b  
+ - 8.41-GCCcore-6.4.0  
+ - 8.41-GCCcore-7.3.0  
+ - 8.43-GCCcore-8.2.0  
 </details>
+
 ###Perl  
 **Description:** Larry Wall's Practical Extraction and Report Language  
 **Homepage:** https://www.perl.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 5.24.0  
- - 5.24.1  
- - 5.26.0  
- - 5.26.1  
- - 5.28.0  
- - 5.28.1  
+ - 5.24.0-GCCcore-4.9.3  
+ - 5.24.1-foss-2017a  
+ - 5.24.1-intel-2017a  
+ - 5.26.0-GCCcore-6.4.0  
+ - 5.26.1-GCCcore-6.4.0  
+ - 5.28.0-GCCcore-7.3.0  
+ - 5.28.1-GCCcore-8.2.0  
 </details>
+
 ###PETSc  
 **Description:** PETSc, pronounced PET-see (the S is silent), is a suite of data structures and routines for the
  scalable (parallel) solution of scientific applications modeled by partial differential equations.  
 **Homepage:** http://www.mcs.anl.gov/petsc  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.8.0  
- - 3.8.3  
- - 3.10.1  
+ - 3.8.0-foss-2017a-Python-2.7.13  
+ - 3.8.0-intel-2017a-Python-2.7.13  
+ - 3.8.3-foss-2018a-Python-2.7.14  
+ - 3.8.3-foss-2018a-Python-2.7.14-bare  
+ - 3.8.3-intel-2018a-Python-2.7.14  
+ - 3.10.1-foss-2018b  
+ - 3.10.1-intel-2018b  
 </details>
+
 ###petsc4py  
 **Description:** petsc4py are Python bindings for PETSc, the Portable, Extensible Toolchain for Scientific Computation.  
 **Homepage:** https://bitbucket.org/petsc/petsc4py  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.8.0  
+ - 3.8.0-intel-2017a-Python-2.7.13  
+ - 3.8.0-intel-2018a-Python-2.7.14  
 </details>
+
 ###PGI  
 **Description:** C, C++ and Fortran compilers from The Portland Group  
 **Homepage:** http://www.pgroup.com/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 17.9  
- - 18.7  
+ - 17.9-GCC-6.3.0-2.27  
+ - 18.7-GCC-7.3.0-2.30  
 </details>
+
 ###pigz  
 **Description:** pigz, which stands for parallel implementation of gzip, is a fully
  functional replacement for gzip that exploits multiple processors and multiple
@@ -1973,16 +2551,18 @@ context of the GTK+ widget toolkit. Pango forms the core of text and font handli
 **Homepage:** http://zlib.net/pigz/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.4  
+ - 2.4-GCCcore-8.2.0  
 </details>
+
 ###PIL  
 **Description:** The Python Imaging Library (PIL) adds image processing capabilities to your Python interpreter.
  This library supports many file formats, and provides powerful image processing and graphics capabilities.  
 **Homepage:** http://www.pythonware.com/products/pil  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.1.7  
+ - 1.1.7-intel-2017a-Python-2.7.13  
 </details>
+
 ###pixman  
 **Description:** Pixman is a low-level software library for pixel manipulation, providing
  features such as image compositing and trapezoid rasterization. Important
@@ -1991,8 +2571,11 @@ context of the GTK+ widget toolkit. Pango forms the core of text and font handli
 **Homepage:** http://www.pixman.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.34.0  
+ - 0.34.0-GCCcore-6.3.0  
+ - 0.34.0-GCCcore-6.4.0  
+ - 0.34.0-GCCcore-7.3.0  
 </details>
+
 ###pkg-config  
 **Description:** pkg-config is a helper tool used when compiling applications and libraries. It helps you insert the
  correct compiler options on the command line so an application can use
@@ -2001,18 +2584,34 @@ context of the GTK+ widget toolkit. Pango forms the core of text and font handli
 **Homepage:** http://www.freedesktop.org/wiki/Software/pkg-config/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.29.1  
- - 0.29.2  
+ - 0.29.1-GCCcore-6.3.0  
+ - 0.29.1-GCCcore-7.3.0  
+ - 0.29.1-foss-2017a  
+ - 0.29.1-intel-2016a  
+ - 0.29.1-intel-2017a  
+ - 0.29.2-GCCcore-6.3.0  
+ - 0.29.2-GCCcore-6.4.0  
+ - 0.29.2-GCCcore-7.3.0  
+ - 0.29.2-GCCcore-8.2.0  
+ - 0.29.2-intel-2017a  
+ - 0.29.2-intel-2018b  
 </details>
+
 ###pkgconfig  
 **Description:** pkgconfig is a Python module to interface with the pkg-config command line tool  
 **Homepage:** http://github.com/matze/pkgconfig  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.2.2  
- - 1.3.1  
- - 1.5.1  
+ - 1.2.2-intel-2017a-Python-2.7.13  
+ - 1.2.2-intel-2017a-Python-3.6.1  
+ - 1.2.2-intel-2018a-Python-2.7.14  
+ - 1.2.2-intel-2018a-Python-3.6.4  
+ - 1.3.1-foss-2018a-Python-3.6.4  
+ - 1.3.1-intel-2018b-Python-2.7.15  
+ - 1.3.1-intel-2018b-Python-3.6.6  
+ - 1.5.1-GCCcore-8.2.0-python  
 </details>
+
 ###PLUMED  
 **Description:** PLUMED is an open source library for free energy calculations in molecular systems which
  works together with some of the most popular molecular dynamics engines. Free energy calculations can be
@@ -2023,27 +2622,36 @@ context of the GTK+ widget toolkit. Pango forms the core of text and font handli
 **Homepage:** http://www.plumed-code.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.3.0  
- - 2.4.0  
- - 2.4.2  
- - 2.5.0  
+ - 2.3.0-foss-2017a  
+ - 2.3.0-intel-2017a  
+ - 2.4.0-intel-2017b  
+ - 2.4.0-intel-2018a  
+ - 2.4.2-intel-2018b  
+ - 2.5.0-intel-2018b  
 </details>
+
 ###PLY  
 **Description:** PLY is yet another implementation of lex and yacc for Python.  
 **Homepage:** http://www.dabeaz.com/ply/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.10  
- - 3.11  
+ - 3.10-intel-2017a-Python-2.7.13  
+ - 3.11-intel-2018a-Python-2.7.14  
+ - 3.11-intel-2018a-Python-3.6.4  
 </details>
+
 ###PnetCDF  
 **Description:** Parallel netCDF: A Parallel I/O Library for NetCDF File Access  
 **Homepage:** https://trac.mcs.anl.gov/projects/parallel-netcdf  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.8.1  
- - 1.9.0  
+ - 1.8.1-intel-2016a  
+ - 1.8.1-intel-2017a  
+ - 1.8.1-intel-2018a  
+ - 1.9.0-intel-2018a  
+ - 1.9.0-intel-2018b  
 </details>
+
 ###pompi  
 **Description:** Toolchain with PGI C, C++ and Fortran compilers, alongside OpenMPI.  
 **Homepage:** http://www.pgroup.com/index.htm  
@@ -2052,61 +2660,96 @@ context of the GTK+ widget toolkit. Pango forms the core of text and font handli
  - 2017.09  
  - 2018.07  
 </details>
+
 ###PROJ  
 **Description:** Program proj is a standard Unix filter function which converts 
 geographic longitude and latitude coordinates into cartesian coordinates  
 **Homepage:** http://trac.osgeo.org/proj/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.9.3  
- - 5.0.0  
- - 5.1.0  
- - 6.0.0  
+ - 4.9.3-foss-2017a  
+ - 4.9.3-foss-2017b  
+ - 4.9.3-intel-2017a  
+ - 4.9.3-intel-2017b  
+ - 5.0.0-foss-2018a  
+ - 5.0.0-intel-2018a  
+ - 5.1.0-foss-2018b  
+ - 5.1.0-intel-2018b  
+ - 6.0.0-GCCcore-8.2.0  
 </details>
+
 ###protobuf  
 **Description:** Google Protocol Buffers  
 **Homepage:** https://github.com/google/protobuf/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.6.1  
+ - 3.6.1-GCCcore-7.3.0  
 </details>
+
 ###Python  
 **Description:** Python is a programming language that lets you work more quickly and integrate your systems
  more effectively.  
 **Homepage:** http://python.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.7.11  
- - 2.7.13  
- - 2.7.14  
- - 2.7.15  
- - 3.6.1  
- - 3.6.2  
- - 3.6.4  
- - 3.6.6  
- - 3.7.2  
+ - 2.7.11-intel-2016a  
+ - 2.7.13-foss-2017a  
+ - 2.7.13-intel-2017a  
+ - 2.7.13-iomkl-2017a  
+ - 2.7.14-GCCcore-6.4.0-bare  
+ - 2.7.14-foss-2017b  
+ - 2.7.14-foss-2018a  
+ - 2.7.14-intel-2017b  
+ - 2.7.14-intel-2018a  
+ - 2.7.14-iomkl-2017b  
+ - 2.7.14-iomkl-2018a  
+ - 2.7.15-GCCcore-7.3.0-bare  
+ - 2.7.15-GCCcore-8.2.0  
+ - 2.7.15-foss-2018b  
+ - 2.7.15-intel-2018b  
+ - 2.7.15-iomkl-2018b  
+ - 3.6.1-foss-2017a  
+ - 3.6.1-intel-2017a  
+ - 3.6.1-iomkl-2017a  
+ - 3.6.2-foss-2017b  
+ - 3.6.2-intel-2017b  
+ - 3.6.2-iomkl-2017b  
+ - 3.6.4-foss-2018a  
+ - 3.6.4-intel-2018a  
+ - 3.6.4-iomkl-2018a  
+ - 3.6.6-foss-2018b  
+ - 3.6.6-intel-2018b  
+ - 3.6.6-iomkl-2018b  
+ - 3.7.2-GCCcore-8.2.0  
 </details>
+
 ###PyYAML  
 **Description:** PyYAML is a YAML parser and emitter for the Python programming language.  
 **Homepage:** https://pypi.python.org/pypi/PyYAML/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.12  
+ - 3.12-foss-2018a-Python-3.6.4  
+ - 3.12-intel-2018a-Python-3.6.4  
 </details>
+
 ###Qt  
 **Description:** Qt is a comprehensive cross-platform C++ application framework.  
 **Homepage:** http://qt.io/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.8.7  
+ - 4.8.7-foss-2018a  
+ - 4.8.7-intel-2017a  
+ - 4.8.7-intel-2018a  
 </details>
+
 ###Qt5  
 **Description:** Qt is a comprehensive cross-platform C++ application framework.  
 **Homepage:** http://qt.io/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 5.10.1  
+ - 5.10.1-foss-2018b  
 </details>
+
 ###QuantumESPRESSO  
 **Description:** Quantum ESPRESSO  is an integrated suite of computer codes
  for electronic-structure calculations and materials modeling at the nanoscale.
@@ -2116,28 +2759,31 @@ geographic longitude and latitude coordinates into cartesian coordinates
 **Homepage:** https://www.quantum-espresso.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 6.1  
- - 6.3  
- - 6.4.1  
+ - 6.1-intel-2017a  
+ - 6.3-intel-2018b  
+ - 6.4.1-intel-2019a  
 </details>
+
 ###R  
 **Description:** R is a free software environment for statistical computing and graphics.  
 **Homepage:** http://www.r-project.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.4.0  
- - 3.4.3  
- - 3.4.4  
- - 3.5.1  
+ - 3.4.0-intel-2017a-X11-20170314  
+ - 3.4.3-intel-2017b-X11-20171023  
+ - 3.4.4-intel-2018a-X11-20180131  
+ - 3.5.1-intel-2018b  
 </details>
+
 ###ROOT  
 **Description:** The ROOT system provides a set of OO frameworks with all the functionality
     needed to handle and analyze large amounts of data in a very efficient way.  
 **Homepage:** http://root.cern.ch/drupal/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 6.12.06  
+ - 6.12.06-intel-2018a-Python-2.7.14  
 </details>
+
 ###Rosetta  
 **Description:** Rosetta is the premier software suite for modeling macromolecular structures. As a flexible,
 multi-purpose application, it includes tools for structure prediction, design, and remodeling of proteins and
@@ -2145,17 +2791,23 @@ nucleic acids.
 **Homepage:** https://www.rosettacommons.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.9  
- - 2018.21.60230  
+ - 3.9-foss-2018a  
+ - 2018.21.60230-foss-2018a  
 </details>
+
 ###ScaLAPACK  
 **Description:** The ScaLAPACK (or Scalable LAPACK) library includes a subset of LAPACK routines
  redesigned for distributed memory MIMD parallel computers.  
 **Homepage:** http://www.netlib.org/scalapack/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.0.2  
+ - 2.0.2-gompi-2017a-OpenBLAS-0.2.19-LAPACK-3.7.0  
+ - 2.0.2-gompi-2017b-OpenBLAS-0.2.20  
+ - 2.0.2-gompi-2018a-OpenBLAS-0.2.20  
+ - 2.0.2-gompi-2018b-OpenBLAS-0.3.1  
+ - 2.0.2-gompi-2019a-OpenBLAS-0.3.5  
 </details>
+
 ###ScientificPython  
 **Description:** ScientificPython is a collection of Python modules for scientific computing.
  It contains support for geometry, mathematical functions, statistics, physical units, IO, visualization,
@@ -2163,41 +2815,56 @@ nucleic acids.
 **Homepage:** https://sourcesup.cru.fr/projects/scientific-py/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.9.4  
+ - 2.9.4-foss-2017a-Python-2.7.13  
+ - 2.9.4-foss-2018a-Python-2.7.14  
+ - 2.9.4-intel-2017a-Python-2.7.13  
+ - 2.9.4-intel-2018a-Python-2.7.14  
 </details>
+
 ###SciPy-bundle  
 **Description:** Bundle of Python packages for scientific software  
 **Homepage:** http://python.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2019.03  
+ - 2019.03-foss-2019a  
+ - 2019.03-intel-2019a  
 </details>
+
 ###SCons  
 **Description:** SCons is a software construction tool.  
 **Homepage:** http://www.scons.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.0.1  
- - 3.0.5  
+ - 3.0.1-GCCcore-7.3.0  
+ - 3.0.1-foss-2018a-Python-2.7.14  
+ - 3.0.5-GCCcore-8.2.0  
 </details>
+
 ###SCOTCH  
 **Description:** Software package and libraries for sequential and parallel graph partitioning,
 static mapping, and sparse matrix block ordering, and sequential mesh and hypergraph partitioning.  
 **Homepage:** http://gforge.inria.fr/projects/scotch/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 6.0.4  
- - 6.0.5  
- - 6.0.6  
+ - 6.0.4-foss-2018a  
+ - 6.0.4-intel-2017a  
+ - 6.0.4-intel-2018a  
+ - 6.0.5-foss-2018b  
+ - 6.0.6-foss-2018b  
+ - 6.0.6-intel-2018b  
 </details>
+
 ###Serf  
 **Description:** The serf library is a high performance C-based HTTP client library
  built upon the Apache Portable Runtime (APR) library  
 **Homepage:** http://serf.apache.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.3.9  
+ - 1.3.9-GCCcore-7.3.0  
+ - 1.3.9-GCCcore-8.2.0  
+ - 1.3.9-foss-2018a  
 </details>
+
 ###SLEPc  
 **Description:** SLEPc (Scalable Library for Eigenvalue Problem Computations) is a software library for the solution
  of large scale sparse eigenvalue problems on parallel computers. It is an extension of PETSc and can be used for
@@ -2206,16 +2873,19 @@ static mapping, and sparse matrix block ordering, and sequential mesh and hyperg
 **Homepage:** http://www.grycap.upv.es/slepc/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.8.0  
- - 3.8.2  
+ - 3.8.0-intel-2017a-Python-2.7.13  
+ - 3.8.2-intel-2018a-Python-2.7.14  
 </details>
+
 ###slepc4py  
 **Description:** Python bindings for SLEPc, the Scalable Library for Eigenvalue Problem Computations.  
 **Homepage:** https://bitbucket.org/slepc/slepc4py  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.8.0  
+ - 3.8.0-intel-2017a-Python-2.7.13  
+ - 3.8.0-intel-2018a-Python-2.7.14  
 </details>
+
 ###Sphinx  
 **Description:** Sphinx is a tool that makes it easy to create intelligent and beautiful documentation.
  It was originally created for the new Python documentation, and it has excellent facilities for the 
@@ -2224,21 +2894,26 @@ static mapping, and sparse matrix block ordering, and sequential mesh and hyperg
 **Homepage:** http://sphinx.pocoo.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.6.3  
+ - 1.6.3-intel-2017a-Python-2.7.13  
+ - 1.6.3-intel-2018a-Python-2.7.14  
+ - 1.6.3-intel-2018a-Python-3.6.4  
 </details>
+
 ###SQLite  
 **Description:** SQLite: SQL Database Engine in a C Library  
 **Homepage:** http://www.sqlite.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.8.8.1  
- - 3.9.2  
- - 3.17.0  
- - 3.20.1  
- - 3.21.0  
- - 3.24.0  
- - 3.27.2  
+ - 3.8.8.1-intel-2018a  
+ - 3.9.2-intel-2016a  
+ - 3.17.0-GCCcore-6.3.0  
+ - 3.17.0-GCCcore-7.3.0  
+ - 3.20.1-GCCcore-6.4.0  
+ - 3.21.0-GCCcore-6.4.0  
+ - 3.24.0-GCCcore-7.3.0  
+ - 3.27.2-GCCcore-8.2.0  
 </details>
+
 ###STAR-CCM+  
 **Description:** STAR-CCM+ is a complete multidisciplinary platform for the simulation
 of products and designs operating under real-world conditions.
@@ -2248,30 +2923,43 @@ of products and designs operating under real-world conditions.
 
  - 13.02.011  
 </details>
+
 ###Subversion  
 **Description:** Subversion is an open source version control system.  
 **Homepage:** http://subversion.apache.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.10.2  
- - 1.12.0  
+ - 1.10.2-GCCcore-7.3.0  
+ - 1.10.2-foss-2018a  
+ - 1.12.0-GCCcore-8.2.0  
 </details>
+
 ###SuiteSparse  
 **Description:** SuiteSparse is a collection of libraries manipulate sparse matrices.  
 **Homepage:** http://faculty.cse.tamu.edu/davis/suitesparse.html  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 4.5.5  
- - 5.2.0  
+ - 4.5.5-foss-2018a-ParMETIS-4.0.3  
+ - 4.5.5-intel-2017a-ParMETIS-4.0.3  
+ - 4.5.5-intel-2018a-ParMETIS-4.0.3  
+ - 5.2.0-foss-2018b-ParMETIS-4.0.3  
+ - 5.2.0-intel-2018b-ParMETIS-4.0.3  
 </details>
+
 ###SWIG  
 **Description:** SWIG is a software development tool that connects programs written in C and C++ with
  a variety of high-level programming languages.  
 **Homepage:** http://www.swig.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.0.12  
+ - 3.0.12-foss-2017a-Python-2.7.13  
+ - 3.0.12-intel-2017a-Python-2.7.13  
+ - 3.0.12-intel-2017b-Python-2.7.14  
+ - 3.0.12-intel-2018a-Python-2.7.14  
+ - 3.0.12-intel-2018a-Python-3.6.4  
+ - 3.0.12-intel-2018b-Python-3.6.6  
 </details>
+
 ###sympy  
 **Description:** SymPy is a Python library for symbolic mathematics. It aims to
  become a full-featured computer algebra system (CAS) while keeping the code as
@@ -2280,18 +2968,30 @@ of products and designs operating under real-world conditions.
 **Homepage:** http://sympy.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.0  
- - 1.1  
+ - 1.0-foss-2017a-Python-2.7.13  
+ - 1.0-foss-2018a-Python-2.7.14  
+ - 1.0-intel-2017a-Python-2.7.13  
+ - 1.1-foss-2018a-Python-2.7.14  
+ - 1.1-intel-2018a-Python-2.7.14  
+ - 1.1-intel-2018a-Python-3.6.4  
 </details>
+
 ###Szip  
 **Description:** Szip compression software, providing lossless compression of scientific data
   
 **Homepage:** http://www.hdfgroup.org/doc_resource/SZIP/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.1  
- - 2.1.1  
+ - 2.1-foss-2017a  
+ - 2.1-intel-2016a  
+ - 2.1-intel-2017a  
+ - 2.1-iomkl-2017a  
+ - 2.1.1-GCCcore-6.3.0  
+ - 2.1.1-GCCcore-6.4.0  
+ - 2.1.1-GCCcore-7.3.0  
+ - 2.1.1-GCCcore-8.2.0  
 </details>
+
 ###tbb  
 **Description:** Intel Threading Building Blocks (Intel TBB) is a widely used,
  award-winning C++ template library for creating reliable, portable, and
@@ -2310,6 +3010,7 @@ of products and designs operating under real-world conditions.
  - 2018.1.163  
  - 2018.4.222  
 </details>
+
 ###Tcl  
 **Description:** Tcl (Tool Command Language) is a very powerful but easy to learn dynamic
  programming language, suitable for a very wide range of uses, including web
@@ -2318,55 +3019,67 @@ of products and designs operating under real-world conditions.
 **Homepage:** http://www.tcl.tk/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 8.5.19  
- - 8.6.3  
- - 8.6.4  
- - 8.6.6  
- - 8.6.7  
- - 8.6.8  
- - 8.6.9  
+ - 8.5.19-foss-2017a  
+ - 8.6.3-intel-2018a  
+ - 8.6.4-intel-2016a  
+ - 8.6.6-GCCcore-6.3.0  
+ - 8.6.6-GCCcore-7.3.0  
+ - 8.6.7-GCCcore-6.4.0  
+ - 8.6.8-GCCcore-6.4.0  
+ - 8.6.8-GCCcore-7.3.0  
+ - 8.6.9-GCCcore-8.2.0  
 </details>
+
 ###TensorFlow  
 **Description:** An open-source software library for Machine Intelligence  
 **Homepage:** https://www.tensorflow.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.6.0  
- - 1.8.0  
+ - 1.6.0-intel-2018a-Python-3.6.4  
+ - 1.8.0-foss-2018a-Python-3.6.4  
+ - 1.8.0-intel-2018a-Python-3.6.4  
 </details>
+
 ###Theano  
 **Description:** Theano is a Python library that allows you to define, optimize,
 and evaluate mathematical expressions involving multi-dimensional arrays efficiently.  
 **Homepage:** http://deeplearning.net/software/theano  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.0.2  
+ - 1.0.2-foss-2018a-Python-3.6.4  
+ - 1.0.2-intel-2018a-Python-3.6.4  
 </details>
+
 ###Tk  
 **Description:** Tk is an open source, cross-platform widget toolchain that provides a library of basic elements for
  building a graphical user interface (GUI) in many different programming languages.  
 **Homepage:** http://www.tcl.tk/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 8.6.3  
- - 8.6.4  
- - 8.6.6  
- - 8.6.7  
- - 8.6.8  
- - 8.6.9  
+ - 8.6.3-intel-2018a-no-X11  
+ - 8.6.4-intel-2016a-no-X11  
+ - 8.6.6-intel-2017a  
+ - 8.6.7-intel-2017b  
+ - 8.6.8-GCCcore-6.4.0  
+ - 8.6.8-GCCcore-7.3.0  
+ - 8.6.8-foss-2018a  
+ - 8.6.9-GCCcore-8.2.0  
 </details>
+
 ###Tkinter  
 **Description:** Tkinter module, built with the Python buildsystem  
 **Homepage:** http://python.org/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.7.13  
- - 2.7.14  
- - 2.7.15  
- - 3.6.4  
- - 3.6.6  
- - 3.7.2  
+ - 2.7.13-intel-2017a-Python-2.7.13  
+ - 2.7.14-intel-2018a-Python-2.7.14  
+ - 2.7.15-intel-2018b-Python-2.7.15  
+ - 3.6.4-foss-2018a-Python-3.6.4  
+ - 3.6.4-intel-2018a-Python-3.6.4  
+ - 3.6.6-intel-2018b-Python-3.6.6  
+ - 3.7.2-GCCcore-8.2.0  
 </details>
+
 ###TotalView  
 **Description:** TotalView is a GUI-based source code defect analysis tool that gives you unprecedented
  control over processes and thread execution and visibility into program state and variables. It allows
@@ -2382,6 +3095,7 @@ and evaluate mathematical expressions involving multi-dimensional arrays efficie
  - 2018.3.8  
  - 2019.1.4  
 </details>
+
 ###Trilinos  
 **Description:** The Trilinos Project is an effort to develop algorithms and enabling technologies
  within an object-oriented software framework for the solution of large-scale, complex multi-physics
@@ -2389,9 +3103,10 @@ and evaluate mathematical expressions involving multi-dimensional arrays efficie
 **Homepage:** http://trilinos.sandia.gov/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 12.10.1  
- - 12.12.1  
+ - 12.10.1-intel-2017a-Python-2.7.13  
+ - 12.12.1-intel-2018a-Python-2.7.14  
 </details>
+
 ###TURBOMOLE  
 **Description:** TURBOMOLE is a quantum chemical program package, initially developed in the group of Prof. Dr. Reinhart Ahlrichs 
 at the University of Karlsruhe and at the Forschungszentrum Karlsruhe. Presently TURBOMOLE is one of the fastest 
@@ -2406,16 +3121,23 @@ requirements.
  - 7.3.bare  
  - 7.3.fixed  
 </details>
+
 ###UDUNITS  
 **Description:** UDUNITS supports conversion of unit specifications between formatted and binary forms,
  arithmetic manipulation of units, and conversion of values between compatible scales of measurement.  
 **Homepage:** http://www.unidata.ucar.edu/software/udunits/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.2.20  
- - 2.2.24  
- - 2.2.26  
+ - 2.2.20-intel-2016a  
+ - 2.2.24-foss-2017a  
+ - 2.2.24-intel-2017a  
+ - 2.2.26-GCCcore-8.2.0  
+ - 2.2.26-foss-2018a  
+ - 2.2.26-foss-2018b  
+ - 2.2.26-intel-2018a  
+ - 2.2.26-intel-2018b  
 </details>
+
 ###UFL  
 **Description:** The Unified Form Language (UFL) is a domain specific language 
  for declaration of finite element discretizations of variational forms. 
@@ -2425,36 +3147,45 @@ requirements.
 **Homepage:** https://launchpad.net/ufl  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2016.1.0  
- - 2017.1.0  
+ - 2016.1.0-intel-2017a-Python-2.7.13  
+ - 2017.1.0-intel-2017a-Python-2.7.13  
+ - 2017.1.0-intel-2018a-Python-2.7.14  
+ - 2017.1.0-intel-2018a-Python-3.6.4  
 </details>
+
 ###utf8proc  
 **Description:** utf8proc is a small, clean C library that provides Unicode normalization, case-folding, 
 and other operations for data in the UTF-8 encoding.  
 **Homepage:** https://github.com/JuliaStrings/utf8proc  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.3.0  
+ - 2.3.0-GCCcore-8.2.0  
 </details>
+
 ###util-linux  
 **Description:** Set of Linux utilities  
 **Homepage:** http://www.kernel.org/pub/linux/utils/util-linux  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.28  
- - 2.29.2  
- - 2.31  
- - 2.31.1  
- - 2.32  
- - 2.33  
+ - 2.28-intel-2016a  
+ - 2.29.2-GCCcore-6.3.0  
+ - 2.29.2-intel-2017a  
+ - 2.29.2-intel-2018b  
+ - 2.31-GCCcore-6.4.0  
+ - 2.31.1-GCCcore-6.4.0  
+ - 2.32-GCCcore-7.3.0  
+ - 2.33-GCCcore-8.2.0  
 </details>
+
 ###Valgrind  
 **Description:** Valgrind: Debugging and profiling tools  
 **Homepage:** http://valgrind.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.13.0  
+ - 3.13.0-foss-2017a  
+ - 3.13.0-intel-2017a  
 </details>
+
 ###VASP  
 **Description:** The Vienna Ab initio Simulation Package (VASP) is a computer program for atomic scale
 materials modelling, e.g. electronic structure calculations and quantum-mechanical molecular dynamics,
@@ -2462,24 +3193,29 @@ from first principles.
 **Homepage:** http://www.vasp.at  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 5.4.4  
+ - 5.4.4-intel-2017a  
+ - 5.4.4-intel-2018a  
+ - 5.4.4-intel-2018b  
 </details>
+
 ###Vim  
 **Description:** Vim is an advanced text editor that seeks to provide the power 
  of the de-facto Unix editor 'Vi', with a more complete feature set.   
 **Homepage:** http://www.vim.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 8.1.0483  
- - 8.1.1209  
+ - 8.1.0483-foss-2018b-Python-2.7.15  
+ - 8.1.1209-GCCcore-8.2.0-Python-3.7.2  
 </details>
+
 ###VisIt  
 **Description:** VisIt is an Open Source, interactive, scalable, visualization, animation and analysis tool.  
 **Homepage:** https://wci.llnl.gov/simulation/computer-codes/visit/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.13.0  
+ - 2.13.0-intel-2017a  
 </details>
+
 ###VTK  
 **Description:** The Visualization Toolkit (VTK) is an open-source, freely available software system for
  3D computer graphics, image processing and visualization. VTK consists of a C++ class library and several
@@ -2489,9 +3225,10 @@ from first principles.
 **Homepage:** http://www.vtk.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 7.1.1  
- - 8.0.1  
+ - 7.1.1-intel-2017a-Python-2.7.13  
+ - 8.0.1-intel-2018a-Python-2.7.14  
 </details>
+
 ###VTune  
 **Description:** Intel VTune Amplifier XE is the premier performance profiler for C, C++, C#, Fortran,
  Assembly and Java.  
@@ -2504,21 +3241,26 @@ from first principles.
  - 2019\_update2  
  - 2019\_update3  
 </details>
+
 ###Wannier90  
 **Description:** A tool for obtaining maximally-localised Wannier functions  
 **Homepage:** http://www.wannier.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.1.0  
+ - 2.1.0-intel-2017a  
+ - 2.1.0-intel-2018a  
+ - 2.1.0-intel-2018b  
 </details>
+
 ###wheel  
 **Description:** A built-package format for Python.  
 **Homepage:** https://pypi.python.org/pypi/wheel  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.30.0  
- - 0.31.0  
+ - 0.30.0-intel-2018a-Python-3.6.4  
+ - 0.31.0-foss-2018a-Python-3.6.4  
 </details>
+
 ###WPS  
 **Description:** WRF Preprocessing System (WPS) for WRF. The Weather Research and Forecasting (WRF) Model is 
  a next-generation mesoscale numerical weather prediction system designed to serve both operational 
@@ -2526,11 +3268,12 @@ from first principles.
 **Homepage:** http://www.wrf-model.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.8.0  
- - 3.8.1  
- - 3.9.1  
- - .3.9.1  
+ - 3.8.0-intel-2016a-dmpar  
+ - 3.8.1-DCLWRFGHG-DNO\_LEAP\_CALENDAR-intel-2016a-dmpar  
+ - 3.9.1-intel-2016a-dmpar  
+ - .3.9.1-intel-2017a-dmpar  
 </details>
+
 ###WRF  
 **Description:** The Weather Research and Forecasting (WRF) Model is a next-generation mesoscale
  numerical weather prediction system designed to serve both operational forecasting and atmospheric
@@ -2538,52 +3281,67 @@ from first principles.
 **Homepage:** http://www.wrf-model.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 3.8.0  
- - 3.8.1  
- - 3.9.1  
+ - 3.8.0-intel-2016a-dmpar  
+ - 3.8.1-DCLWRFGHG-DNO\_LEAP\_CALENDAR-intel-2016a-dmpar  
+ - 3.8.1-DCLWRFGHG-intel-2016a-dmpar  
+ - 3.9.1-intel-2016a-dmpar  
+ - 3.9.1-intel-2017a-dmpar  
 </details>
+
 ###X11  
 **Description:** The X Window System (X11) is a windowing system for bitmap displays  
 **Homepage:** https://www.x.org  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 20160819  
- - 20170314  
- - 20171023  
- - 20180131  
- - 20180604  
- - 20190311  
+ - 20160819-intel-2016a  
+ - 20170314-GCCcore-6.3.0  
+ - 20170314-GCCcore-7.3.0  
+ - 20171023-GCCcore-6.4.0  
+ - 20180131-GCCcore-6.4.0  
+ - 20180604-GCCcore-7.3.0  
+ - 20190311-GCCcore-8.2.0  
 </details>
+
 ###xextproto  
 **Description:** XExtProto protocol headers.  
 **Homepage:** http://www.freedesktop.org/wiki/Software/xlibs  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 7.3.0  
+ - 7.3.0-intel-2018a  
 </details>
+
 ###XML-Parser  
 **Description:** This is a Perl extension interface to James Clark's XML parser, expat.  
 **Homepage:** http://search.cpan.org/~toddr/XML-Parser-2.41/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 2.44\_01  
+ - 2.44\_01-GCCcore-4.9.3-Perl-5.24.0  
+ - 2.44\_01-GCCcore-6.4.0-Perl-5.26.0  
+ - 2.44\_01-GCCcore-6.4.0-Perl-5.26.1  
+ - 2.44\_01-GCCcore-7.3.0-Perl-5.28.0  
 </details>
+
 ###xorg-macros  
 **Description:** X.org macros utilities.  
 **Homepage:** http://cgit.freedesktop.org/xorg/util/macros  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.19.1  
- - 1.19.2  
+ - 1.19.1-GCCcore-6.3.0  
+ - 1.19.1-GCCcore-6.4.0  
+ - 1.19.2-GCCcore-7.3.0  
 </details>
+
 ###xproto  
 **Description:** X protocol and ancillary headers  
 **Homepage:** http://www.freedesktop.org/wiki/Software/xlibs  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 7.0.27  
- - 7.0.31  
+ - 7.0.27-intel-2018a  
+ - 7.0.31-GCCcore-6.3.0  
+ - 7.0.31-GCCcore-6.4.0  
+ - 7.0.31-GCCcore-7.3.0  
 </details>
+
 ###xtrans  
 **Description:** xtrans includes a number of routines to make X implementations transport-independent;
  at time of writing, it includes support for UNIX sockets, IPv4, IPv6, and DECnet.
@@ -2591,25 +3349,34 @@ from first principles.
 **Homepage:** http://www.freedesktop.org/wiki/Software/xlibs  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 1.3.5  
+ - 1.3.5-intel-2018a  
 </details>
+
 ###XZ  
 **Description:** xz: XZ utilities  
 **Homepage:** https://tukaani.org/xz/  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 5.2.2  
- - 5.2.3  
- - 5.2.4  
+ - 5.2.2-GCCcore-4.9.3  
+ - 5.2.2-intel-2016a  
+ - 5.2.3-GCCcore-6.3.0  
+ - 5.2.3-GCCcore-6.4.0  
+ - 5.2.3-GCCcore-7.3.0  
+ - 5.2.4-GCCcore-7.3.0  
+ - 5.2.4-GCCcore-8.2.0  
 </details>
+
 ###YAXT  
 **Description:** Yet Another eXchange Tool  
 **Homepage:** https://www.dkrz.de/redmine/projects/yaxt  
 <details><summary> <u>Installed versions:</u> </summary>
 
- - 0.5.1  
- - 0.6.0  
+ - 0.5.1-intel-2016a  
+ - 0.5.1-intel-2017a  
+ - 0.5.1-intel-2018a  
+ - 0.6.0-intel-2018b  
 </details>
+
 ###zlib  
 **Description:** zlib is designed to be a free, general-purpose, legally unencumbered -- that is,
  not covered by any patents -- lossless data-compression library for use on virtually any
@@ -2618,5 +3385,16 @@ from first principles.
 <details><summary> <u>Installed versions:</u> </summary>
 
  - 1.2.8  
+ - 1.2.8-GCCcore-4.9.3  
+ - 1.2.8-GCCcore-6.3.0  
+ - 1.2.8-intel-2016a  
+ - 1.2.8-intel-2017a  
+ - 1.2.8-intel-2018a  
  - 1.2.11  
+ - 1.2.11-GCCcore-6.3.0  
+ - 1.2.11-GCCcore-6.4.0  
+ - 1.2.11-GCCcore-7.2.0  
+ - 1.2.11-GCCcore-7.3.0  
+ - 1.2.11-GCCcore-8.2.0  
 </details>
+
