@@ -2,6 +2,8 @@
 
 *Note! Saga is scheduled to enter full production during fall 2019.*
 
+**[Info for pilot users below](# Primer for pilor users)**
+
 In norse mythology [Saga](https://en.wikipedia.org/wiki/S%C3%A1ga_and_S%C3%B6kkvabekkr) is the goddess associated with wisdom.
 The new Linux cluster hosted at [Norwegian University of Science and Technology](https://www.ntnu.edu)
 (NTNU) is a shared resource for research computing capable of 645 TFLOP/s
@@ -36,10 +38,12 @@ The total number of compute cores is 9824. Total memory is 75 TiB.
 More information on how to use Saga
 will be added here when the system becomes ready for production.
 
-# Saga primer for pilot users
-
+## Primer for pilot users
 In general, the user environment on Saga is designed to be as similar as possible
-to the one on Fram. Below are key information listed and links to existing
+to the one on Fram. Users coming from Abel will need to adopt a bit to the different
+queuing setup and to the newer software module system.
+
+Below are key information listed and links to existing
 documentation for Fram provided.
 
 ## Getting support
@@ -59,9 +63,13 @@ handle I/O-intensive workloads.
 
 ## Scientific software
 Saga uses `lmod` and `EasyBuild`, so commands to work with modules are identical.
-At the start, Saga may have only limited number of modules installed.
+At the start, Saga may have only limited number of modules installed. Most useful
+commands are `module avail` (list available modules), `module load <MODULE>`(to
+load a module), `module list` (to list currently loaded modules) and
+`module purge` (to unload all modules). For more details, please
+see documentation about [software modules on Fram](apps/modulescheme.md).
 
 ## Queuing system
 Saga uses Slurm. Basic commands are the same, however the configuration (queues,
-QoS, limits, etc.) differs from Fram.
+QoS, limits, etc.) differs from Fram. 
 
