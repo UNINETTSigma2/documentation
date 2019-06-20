@@ -2,7 +2,7 @@
 
 *Note! Saga is scheduled to enter full production during fall 2019.*
 
-**[Info for pilot users below](# Primer for pilor users)**
+**[Info for pilot users below](#primer-for-pilot-users)**
 
 In norse mythology [Saga](https://en.wikipedia.org/wiki/S%C3%A1ga_and_S%C3%B6kkvabekkr) is the goddess associated with wisdom.
 The new Linux cluster hosted at [Norwegian University of Science and Technology](https://www.ntnu.edu)
