@@ -70,6 +70,9 @@ load a module), `module list` (to list currently loaded modules) and
 see documentation about [software modules on Fram](apps/modulescheme.md).
 
 ## Queuing system
-Saga uses Slurm. Basic commands are the same, however the configuration (queues,
-QoS, limits, etc.) differs from Fram. 
+Saga uses Slurm. For users coming from Fram, Abel or Stallo, basic commands are
+the same or similar, however the configuration (queues, QoS, limits, etc.) differs
+from Fram. For general information, see our documentation on the
+[queuing system](jobs/framqueuesystem.md), [job types](jobs/jobtypes.md) and
+[job scripts](jobs/jobscripts.md).
 
