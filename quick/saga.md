@@ -73,7 +73,7 @@ see documentation about [software modules on Fram](apps/modulescheme.md).
 Saga uses Slurm. For users coming from Fram, Abel or Stallo, basic commands are
 the same or similar, however the configuration (partitions, QoS, limits, etc.) differs
 from the other systems. For general information, see our documentation on the
-[queuing system](jobs/framqueuesystem.md), [job types](jobs/jobtypes.md) and
+[queue system](jobs/framqueuesystem.md), [job types](jobs/jobtypes.md) and
 [job scripts](jobs/jobscripts.md).
 
 #### Normal jobs
@@ -81,7 +81,7 @@ This is the default type of job.  These jobs run on the ordinary
 compute nodes, which have 40 cpus (cores) and ~ 185 GiB RAM.  A subset
 of the nodes have ~ 370 GiB RAM.
 
-Note users from Fram: on Saga, the queue system only hands out cpus
+A note for users from Fram: on Saga, the queue system only hands out cpus
 and memory, not whole node, so one _must_ specify `--mem-per-cpu` (or
 `--mem`) for all types of jobs.
 
