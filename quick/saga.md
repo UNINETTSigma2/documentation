@@ -57,7 +57,7 @@ Login to Saga with your Notur account and password. The login machine's name is 
 
 ### File systems
 Saga has one parallel file system mounted under `/cluster`. While its layout is
-identical to that on [Fram](https://documentation.sigma2.no/storage/storagesystems.html), it is based on BeeGFS
+identical to that on [Fram](../storage/storagesystems.md), it is based on BeeGFS
 (vs Lustre on Fram), hence has slightly different features, and was designed to
 handle I/O-intensive workloads.
 
@@ -67,14 +67,14 @@ At the start, Saga may have only limited number of modules installed. Most usefu
 commands are `module avail` (list available modules), `module load <MODULE>`(to
 load a module), `module list` (to list currently loaded modules) and
 `module purge` (to unload all modules). For more details, please
-see documentation about [software modules on Fram](https://documentation.sigma2.no/apps/modulescheme.html).
+see documentation about [software modules on Fram](../apps/modulescheme.md).
 
 ### Queue system
 Saga uses Slurm. For users coming from Fram, Abel or Stallo, basic commands are
 the same or similar, however the configuration (partitions, QoS, limits, etc.) differs
 from the other systems. For general information, see our documentation on the
-[queue system](https://documentation.sigma2.no/jobs/framqueuesystem.html), [job types](https://documentation.sigma2.no/jobs/jobtypes.html) and
-[job scripts](https://documentation.sigma2.no/jobs/jobscripts.html).
+[queue system](../jobs/framqueuesystem.md), [job types](../jobs/jobtypes.md) and
+[job scripts](../jobs/jobscripts.md).
 
 #### Normal jobs
 This is the default type of job.  These jobs run on the ordinary
