@@ -6,7 +6,7 @@ sidebar:
   nav: "docs"
 date: 2019-06-20
 ---
-
+<details><summary> <u>Software in cat all:</u> </summary>
 ###Advisor  
 **Description:** Vectorization Optimization and Thread Prototyping
   
@@ -125,6 +125,7 @@ that empowers companies to adopt a modern open data science analytics architectu
 <details><summary> <u>Installed versions:</u> </summary>
 
  - 3.17.0-intel-2018b-Python-3.6.6  
+</details>
 </details>
 
 ###ATK  

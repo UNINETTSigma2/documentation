@@ -16,7 +16,7 @@
 | Crystal14                   | Stallo                    | Members of license holding groups         | Group                   | Chemistry/Material science | National/Sigma2     |
 | FINE™/Marine                | Vilje                     | Members of license holding groups         | Group                   | CFD for Marine tech. field | Users               |
 | Gaussian                    | Abel, Stallo, Fram        | Only NTNU, UiB, UiO, and UiT users        | Site                    | Chemistry/Material science | NTNU, UiB, UiO, UiT |
-| GaussView                   | Stallo, Fram              | Only NTNU, UiB, UiO, and UiT users        | Site                    | Chemistry/Material science | NTNU, UiB, UiO, UiT |
+| GaussView                   | Stallo, Fram              | Only UiT users        | Site                    | Chemistry/Material science | NTNU, UiB, UiO, UiT |
 | ICM-Pro                     | Stallo                    | Members of license holding groups         | Group                   | Life science               | Users               |
 | IDL                         | Stallo                    | UiT/Dept. math users                      | Group                   | Mathematics/Data analysis  | Users               |
 | Intel Parallel Studio XE    | Abel, Stallo, Fram        | All users                                 | National HPC            | Code development           | National/Sigma2     |
