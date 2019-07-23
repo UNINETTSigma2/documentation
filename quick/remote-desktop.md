@@ -34,7 +34,7 @@ plink.exe -L 5901:localhost:5901 USERNAME@desktop.fram.sigma2.no
 
 and use `localhost:5901` as the server address. (The space after -L must be there) If you want to avoid typing you can create a .bat script with the correct plink command. ([Example](./ssh-tunnel-fram.bat) edit in Notepad and save it to a location where you can click on it, e.g the desktop. DO NOT USE WORD TO EDIT THIS!)
 
-#### Linux/MAC
+#### Linux/MAC/Windows with OpenSSH
 
 Run the command
 
@@ -43,6 +43,16 @@ ssh -L5901:localhost:5901 USERNAME@desktop.fram.sigma2.no
 ```
 
 and use `localhost:5901` as the server address.
+
+#### Incompatible VNC-clients
+
+As stated above we recommend to use the TigerVNC client for performance and security reasons. If you cannot use this client you can connect to the remote desktop using another port number, 6901, on fram that is blocked by the firewall and only allows connections from within the Fram cluster:
+
+```shell
+ssh -L6901:localhost:6901 USERNAME@desktop.fram.sigma2.no
+```
+
+Then you can connect to `localhost:6901` with your VNC-client.
 
 ### Slurm jobs with DISPLAY export (`srun -x`) doesn't work
 
