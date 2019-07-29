@@ -51,8 +51,8 @@ Default quota for home is 20GB and 100000 files. To check the disk usage type
 
      dusage
      
-Home directories do also contain a backup of FRAM home directories (when relevant)
-in '/nird/home/<username>/backup'. To account for this default quota has been doubled (when relevant).
+Home directories do also contain a backup of FRAM home directories (when relevant) in `/nird/home/<username>/backup`.   
+To account for this default quota has been doubled (when relevant).
 
 ### Project area
 
