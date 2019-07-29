@@ -47,13 +47,12 @@ To access or transfer data use the following tools: ssh, scp or stfp. Visit the 
 ### Home directories
 
 Home directories are located in `/nird/home/<username>`.
-Quota for home is 20GB and 100000 files. To check the disk usage type
+Default quota for home is 20GB and 100000 files. To check the disk usage type
 
      dusage
      
-Home directories are also visible at /nird/home from FRAM login nodes.   
-Since those are mounted with NFS on FRAM it is very important not to use home directories   
-as storage for jobs running of FRAM.
+Home directories do also contain a backup of FRAM home directories (when relevant)
+in /nird/home/<username>/backup. To account for this default quota has been doubled (when relevant).
 
 ### Project area
 
