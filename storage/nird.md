@@ -37,7 +37,7 @@ Access to the Project data storage area is through front-end (login) node:
 Note that this hostname is actually a DNS alias for:   
 login1.nird.sigma2.no, login2.nird.sigma2.no, login3.nird.sigma2.no, login4.nird.sigma2.no   
 those are containers each one running the image of a login node.   
-A login container offers resources for a maximum of 16 cpus and 128MB of memory.
+A login container offers resources for a maximum of 16 cpus and 128GB of memory.
 
 Users must be registered and authorized by the project responsible before obtaining access.
 
