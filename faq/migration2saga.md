@@ -102,10 +102,113 @@ and specifying that it should run on three nodes (parameter `--nodes`).
 terminates? Does the job continue to run (as a batch job would do) or is it
 terminating (as a shell would do)?
 
-## Installing software
-
 ## Batch jobs
+Most production jobs are run as batch jobs. You specify how many resources the job
+needs, for how long, against which project account it should be billed for, and what
+commands the job should run. After you submitted a job, you don't need to do anything
+to launch it - it may start at any time when the resources it requests become available.
+When this sounds familiar to you being a user on Abel or Fram, then you're right.
+
+However, there are a few changes you have to apply to your existing job scripts.
+
+### Porting job scripts from Abel
+A typical job script on Abel looks like (taken from [A Simple Serial Job](https://www.uio.no/english/services/it/research/hpc/abel/help/user-guide/job-scripts.html#A_Simple_Serial_Job))
+
+    #!/bin/bash
+
+    # Job name:
+    #SBATCH --job-name=YourJobname
+    #
+    # Project:
+    #SBATCH --account=YourProject
+    #
+    # Wall clock limit:
+    #SBATCH --time=hh:mm:ss
+    #
+    # Max memory usage:
+    #SBATCH --mem-per-cpu=Size
+
+    ## Set up job environment:
+    source /cluster/bin/jobsetup
+    module purge   # clear any inherited modules
+    set -o errexit # exit on errors
+
+    ## Copy input files to the work directory:
+    cp MyInputFile $SCRATCH
+
+    ## Make sure the results are copied back to the submit directory:
+    chkfile MyResultFile
+
+    ## Do some work:
+    cd $SCRATCH
+    YourCommands
+
+This job ported for Saga would be (with some additions taken from [Sample MPI Batch Script](jobs/sample_mpi_batch_script.md))
+
+    #!/bin/bash
+
+    # Job name:
+    #SBATCH --job-name=YourJobname
+    #
+    # Project:
+    #SBATCH --account=YourProject
+    #
+    # Wall clock limit:
+    #SBATCH --time=hh:mm:ss
+    #
+    # Max memory usage:
+    #SBATCH --mem-per-cpu=Size
+
+    ## Set up job environment: (this is done automatically behind the scenes)
+    ## (make sure to comment '#' or remove the following line 'source ...')
+    # source /cluster/bin/jobsetup
+    
+    module restore system   # instead of 'module purge' rather set module environment to the system default
+    module load SoftWare/Versions #nb: 'Versions' is mandatory! There are no default versions of modules as on Abel!
+
+    # It is also recommended to to list loaded modules, for easier debugging:
+    module list  
+
+    set -o errexit # exit on errors
+    set -o nounset # Treat unset variables as errors (added for more easily discovering issues in your batch script)
+
+    ## Copy input files to the work directory:
+    cp MyInputFile $SCRATCH
+
+    ## Make sure the results are copied back to the submit directory (see Work Directory below):
+    # chkfile MyResultFile
+    # chkfile is replaced by 'savefile' on Saga
+    savefile outputfile1 outputfile2
+
+    ## Do some work:
+    cd $SCRATCH
+    YourCommands
+
+**Exercise 8:**
+**Exercise 9:**
 
 ## Transferring files to Saga
+The recommended way to transfer files is `rsync`. In case a transfer is
+interrupted or when you have changed files at the origin, you can synchronise files
+on Saga by simply rerunning `rsync`. A typical rsync command line looks as follows
+
+`rsync -a -v all_my_scripts_for_paper_x YOUR_USERNAME@saga.sigma2.no:from_abel/.`
+
+Parameter `-a` instructs rsync to copy the whole directory tree starting with
+`all_my_scripts_for_paper_x`. Parameter `-v` instructs rsync to be verbose, i.e.,
+it will print what it is doing.
+
+**Exercise 10:** On Abel or your own Linux-based machine create a sample directory
+tree (for example, by running
+`mkdir -p rsync10/A; mkdir -p rsync10/B; touch rsync10/foo rsync10/A/bar rsync10/B/foobar`)
+and rsync this to your `$HOME` on Saga.
+
+**Exercise 11:** Rsync this to another directory you have access to, e.g.,
+`$USERWORK` or a project directory.
+
+**Exercise 12:** Rsync a larger directory tree to Saga, interrupt it (press `CTRL+C`)
+and rerun the rsync command.
+
+## Installing software
 
 ## Backing up data
