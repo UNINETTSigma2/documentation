@@ -46,18 +46,27 @@ queue system setup and to the newer software module system.
 Below are key information listed and links to existing
 documentation for Fram provided.
 
+### Important !
+Currently, there is NO BACKUP of anything on Saga, e.g., not for $HOME folders, project
+folders, shared folders. Make sure to make copies of precious scripts, setups, and data.
+We hope to have backup available soon.
+
+Note, while [**defaults for quota**](#file-systems-and-quota) have been defined,
+these are not yet enforced. Make sure to not use more than the quota or you will
+run into problems once we are going to enforce them.
+
 ### Getting support
 Please, contact support via `support@metacenter.no` and clearly mention that you
 are a user on Saga.
 
 Please be as specific as possible with your support requests,
-i.e.,
+i.e., include
 
 * job ids,
 * job scripts (path to a specific script, not just a directory containing lots of scripts),
 * command used to submit a job and the directory from where you submitted a job,
 * modules loaded (use `module list`),
-* add terminal sequences (commands + outputs),
+* terminal sequences (commands you used + outputs they produced),
 * paths to data used, *and*
 * any other information that you think could be useful (*same script worked last week*, *same script works for my colleague*, etc.)
 
@@ -66,11 +75,16 @@ Login to Saga with your Notur account and password. The login machine's name is 
 
 `ssh YOUR_USERNAME@saga.sigma2.no`
 
-### File systems
+### File systems and quota
 Saga has one parallel file system mounted under `/cluster`. While its layout is
 identical to that on [Fram](../storage/storagesystems.md), it is based on BeeGFS
 (vs Lustre on Fram), hence has slightly different features, and was designed to
 handle I/O-intensive workloads.
+
+**Default quota on $HOME folders is 20 GiB.** Quota for project folders are according
+to the grant you have received (based on what you asked for in your application for
+compute time). Quota for shared folders is according to agreements by several projects
+and Sigma2.
 
 ### Scientific software
 Saga uses `lmod` and `EasyBuild`, so commands to work with modules are identical.
