@@ -2,8 +2,6 @@
 
 *Note! Saga is scheduled to enter full production during fall 2019.*
 
-**[Info for pilot users below](#primer-for-pilot-users)**
-
 In norse mythology [Saga](https://en.wikipedia.org/wiki/S%C3%A1ga_and_S%C3%B6kkvabekkr) is the goddess associated with wisdom.
 The new Linux cluster hosted at [Norwegian University of Science and Technology](https://www.ntnu.edu)
 (NTNU) is a shared resource for research computing capable of 645 TFLOP/s
@@ -11,12 +9,13 @@ theoretical peak performance. It is scheduled to enter full production during fa
 
 Saga is a distributed memory system which consists of 244 dual/quad socket nodes,
 interconnected with a high-bandwidth low-latency InfiniBand
-network. Saga contains 200 standard, 28 mediummem, 8 largemem and 8 gpu compute nodes.
-Each standard (or mediummem) compute node has two 20-core Intel Skylake
-chips (2.0 GHz), 192 GiB memory (mediummem: 384 GiB) and a fast local NVMe disk (400 GB).
-Each largemem compute node
-contains four 16-core Intel Skylake chips (2.1 GHz) and 3072 GiB memory. Each GPU node
-contains two 12-core Intel Skylake chips (2.6 GHz), 384 GiB memory, 4 NVIDIA P100 GPUs
+network. Saga contains 200 `normal`, 36 `bigmem` and 8 `accel` compute nodes.
+Each normal compute node has two 20-core Intel Skylake
+chips (2.0 GHz), 192 GiB memory (186 GiB available for jobs) and a fast local NVMe disk (ca 300 GB shared by jobs).
+There are two kinds of bigmem compute nodes: 28 contain two 20-core Intel Skylake chips (2.0 GHz), 384 GiB memory
+(377 GiB available for jobs) and a fast local NVMe disk (ca 300 GB shared by jobs); 8 contain four 16-core Intel
+Skylake chips (2.1 GHz) and 3072 GiB memory (3021 GiB available for jobs). Each GPU node
+contains two 12-core Intel Skylake chips (2.6 GHz), 384 GiB memory (377 GiB available for jobs), 4 NVIDIA P100 GPUs
 and fast local SSD-based disk RAID (about 8 TB in RAID1).
 
 The total number of compute cores is 9824. Total memory is 75 TiB.
@@ -27,18 +26,19 @@ The total number of compute cores is 9824. Total memory is 75 TiB.
 | System     |Hewlett Packard Enterprise - Apollo 2000/6500 Gen10  |
 | Number of Cores     |	9824  |
 | Number of nodes     |	244  |
-| CPU type     |	Intel Xeon-Gold 6138 2.0 GHz (standard & mediummem)<br> Intel Xeon-Gold 6130 2.1 GHz (largemem)<br> Intel Xeon-Gold 6126 2.6 GHz (gpu)  |
-| Max Floating point performance, double     |	645 Teraflop/s  |
+| Number of GPUs | 32 |
+| CPU type     |	Intel Xeon-Gold 6138 2.0 GHz (normal)<br> Intel Xeon-Gold 6130 2.1 GHz (bigmem)<br> Intel Xeon-Gold 6126 2.6 GHz (accel)  |
+| GPU type     |    NVIDIA P100, 16 GiB RAM (accel) |
+| Total max floating point performance, double     |	645 Teraflop/s (CPUs) + 150 Teraflop/s (GPUs) |
 | Total memory     |	75 TiB  |
 | Total NVMe+SSD local disc | 89 TiB + 60 TiB |
-| Total number of GPUs | 32 NVIDIA P100, 16 GiB RAM |
-| Total disc capacity     |	1 PB  |
-
+| Total parallel filesystem capacity     |	1 PB  |
 
 More information on how to use Saga
-will be added here when the system becomes ready for production.
+will be included in the existing sections, e.g,
+SOFTWARE, CODE DEVELOPMENT, JOBS, FILES AND STORAGE, etc.
 
-## Primer for pilot users
+## Primer for early users
 In general, the user environment on Saga is designed to be as similar as possible
 to the one on Fram. Users coming from Abel will need to adopt a bit to the different
 queue system setup and to the newer software module system.
@@ -47,8 +47,19 @@ Below are key information listed and links to existing
 documentation for Fram provided.
 
 ### Getting support
-Please contact support via `support@metacenter.no` and clearly mention that you
-are a pilot user on Saga.
+Please, contact support via `support@metacenter.no` and clearly mention that you
+are a user on Saga.
+
+Please be as specific as possible with your support requests,
+i.e.,
+
+* job ids,
+* job scripts (path to a specific script, not just a directory containing lots of scripts),
+* command used to submit a job and the directory from where you submitted a job,
+* modules loaded (use `module list`),
+* add terminal sequences (commands + outputs),
+* paths to data used, *and*
+* any other information that you think could be useful (*same script worked last week*, *same script works for my colleague*, etc.)
 
 ### Access
 Login to Saga with your Notur account and password. The login machine's name is `saga.sigma2.no`. For example, using `ssh` do
@@ -77,9 +88,8 @@ from the other systems. For general information, see our documentation on the
 [job scripts](../jobs/jobscripts.md).
 
 #### Normal jobs
-This is the default type of job.  These jobs run on the ordinary
-compute nodes, which have 40 cpus (cores) and ~ 185 GiB RAM.  A subset
-of the nodes have ~ 370 GiB RAM.
+This is the default type of job.  These jobs run on the `normal`
+compute nodes, which have 40 cpus (cores) and ~ 186 GiB RAM.
 
 A note for users from Fram: on Saga, the queue system only hands out cpus
 and memory, not whole node, so one _must_ specify `--mem-per-cpu` (or
@@ -111,7 +121,9 @@ threads per task.  This will set the `$OMP_NUM_THREADS` environment
 variable, which OpenMP programs use.
 
 #### Bigmem jobs
-Saga has 8 `bigmem` nodes with 24 cpus and ~ 3 TiB RAM.
+Saga has 36 `bigmem` nodes in two configurations. Twenty eight (28) nodes
+have 40 cpus (cores) and ~ 377 GiB RAM. Eight (8) nodes have 64 cpus and
+~ 3 TiB RAM.
 
 Example job script:
 
@@ -132,11 +144,11 @@ Example job script:
     
 	YourCommand
 
-Se "Normal jobs" above for description of `--ntasks-per-node`,
+See "Normal jobs" above for description of `--ntasks-per-node`,
 `--nodes` and `--cpus-per-task`.
 
 #### GPU jobs
-Saga has 8 nodes with 24 cpus, ~ 185 GiB RAM and 4 GPU cards.
+Saga has 8 nodes with 24 cpus, ~ 377 GiB RAM and 4 GPU cards.
 
 Example job script:
 
