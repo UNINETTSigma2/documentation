@@ -64,8 +64,9 @@ i.e., include
 
 * job ids,
 * job scripts (path to a specific script, not just a directory containing lots of scripts),
+* job output files (by default named `slurm-JOBID.out` and stored in the directory from where you submitted the job)
 * command used to submit a job and the directory from where you submitted a job,
-* modules loaded (use `module list`),
+* modules loaded (use `module list` to show them),
 * terminal sequences (commands you used + outputs they produced),
 * paths to data used, *and*
 * any other information that you think could be useful (*same script worked last week*, *same script works for my colleague*, etc.)
