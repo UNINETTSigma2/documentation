@@ -87,6 +87,10 @@ to the grant you have received (based on what you asked for in your application 
 compute time). Quota for shared folders is according to agreements by several projects
 and Sigma2.
 
+On your `$USERWORK` (`/cluster/work/users/...`), files and directories older than 42 days are automatically
+removed unless total disk usage is above 70 %. Then files and directories older than
+21 days are automatically removed. Note, currently these limits are not enforced.
+
 ### Scientific software
 Saga uses `lmod` and `EasyBuild`, so commands to work with modules are identical.
 At the start, Saga may have only limited number of modules installed. Most useful
