@@ -4,7 +4,8 @@ This page summarizes major steps you need to do when you migrate to Saga.
 
 ## Getting familiar with Saga
 
-Please, read the [introduction about Saga](quick/saga.md) to inform yourself about its.
+Please, read the [introduction about Saga](quick/saga.md) to inform yourself about its
+characteristics.
 
 ## Account and projects
 
