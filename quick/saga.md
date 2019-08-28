@@ -144,7 +144,7 @@ Example job script:
     
 	YourCommand
 
-See "Normal jobs" above for description of `--ntasks-per-node`,
+See [Normal jobs](#normal-jobs) above for description of `--ntasks-per-node`,
 `--nodes` and `--cpus-per-task`.
 
 #### GPU jobs
@@ -173,5 +173,5 @@ Example job script:
 Use `--gres=gpu:N` to select how many GPU cards the job will get (N = 1,
 2, 3 or 4).
 
-Se "Normal jobs" above for description of `--ntasks-per-node`,
+See [Normal jobs](#normal-jobs) above for description of `--ntasks-per-node`,
 `--nodes` and `--cpus-per-task`.
