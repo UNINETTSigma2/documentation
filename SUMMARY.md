@@ -22,7 +22,7 @@
 * [Application guides](apps/appguides.md)    
   * [CDO](apps/cdo.md)
   * [CESM](apps/cesm.md)
-  * [Gaussian](apps/gaussian.md)
+  * [Gaussian](apps/Gaussian/about_gaussian.md)
   * [GDAL](apps/gdal.md)
   * [Gromacs](apps/gromacs.md)
   * [LAMMPS](apps/lammps.md)
