@@ -21,10 +21,14 @@ export GAUSS_LFLAGS2="--LindaOptions -s 20000000"
 export GAUSS_SCRDIR=/cluster/work/users/$USER/$SLURM_JOB_ID
 mkdir -p $GAUSS_SCRDIR
 
-# Creating aliases and moving files to scratch:                                                                                             
+# Creating aliases:
 submitdir=$SLURM_SUBMIT_DIR
 tempdir=$GAUSS_SCRDIR
 
+# split large temporary files into smaller parts:
+lfs setstripe –c 8 $tempdir
+
+# Moving files to scratch:
 cd $submitdir
 cp $input.com $tempdir
 cd $tempdir
