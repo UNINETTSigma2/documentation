@@ -85,3 +85,16 @@
 * [Training calendar](https://www.sigma2.no/content/training) 
 * [HPC carpentry](support/hpc_carpentry.md)
 
+## Test
+* [testdoc](newjobs/jobs.md)
+    * [Queue System](newjobs/queue_system.md)
+        * [Queue System Concepts](newjobs/queue_system_concepts.md)
+    * [Job Types](newjobs/job_types.md)
+    * [Job Scripts](newjobs/job_scripts.md)
+    * [Interactive Jobs](newjobs/interactive_jobs.md)
+    * [Managing Jobs](newjobs/managing_jobs.md)
+	    * [Job Statuses](newjobs/job_statuses.md)
+    * [Software Modules](newjobs/modules.md)
+    * [Projects](newjobs/projects.md)
+    * [Dos and Don'ts](newjobs/dos_and_donts.md)
+    * Guides
