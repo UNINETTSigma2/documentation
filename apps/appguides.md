@@ -4,7 +4,7 @@ For a general explanation on how to make an application available for use, the m
 * List of documented software (so far):
     * [CDO](cdo.md)
     * [CESM](cesm.md)
-    * [Gaussian](gaussian.md)
+    * [Gaussian](Gaussian/about_gaussian.md)
     * [GDAL](gdal.md)
     * [Gromacs](gromacs.md)
     * [LAMMPS](lammps.md)
