@@ -1,7 +1,5 @@
 # Queue System
 
-{:toc}
-
 The HPC clusters are resources that are shared between many users, and
 to ensure fair use everyone must do their computations by submitting
 jobs through a queue system (batch system) that will execute the
@@ -16,9 +14,9 @@ Note that it is _not_ allowed to run jobs directly on the login nodes.
 
 ## Jobs
 
-To run a job on the cluster, you submit a [job script](job_scripts.md)
-into a _job queue_, and the job is started when one or more suitable
-_compute nodes_ are available.
+To run a computations on the cluster, you submit a [job
+script](job_scripts.md) into a _job queue_, and the job is started
+when one or more suitable _compute nodes_ are available.
 
 The job queue is managed by a queue system called
 [Slurm](https://slurm.schedmd.com/).  A more detailed description of

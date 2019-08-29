@@ -101,3 +101,4 @@
     * [Projects](newjobs/projects.md)
     * [Dos and Don'ts](newjobs/dos_and_donts.md)
     * Guides
+        * [Porting From PBS/Torque](newjobs/porting_from_pbs.md)
