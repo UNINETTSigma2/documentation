@@ -12,6 +12,7 @@ of minutes), submitting jobs, checking job status, etc.
 
 Note that it is _not_ allowed to run jobs directly on the login nodes.
 
+
 ## Jobs
 
 To run a computations on the cluster, you submit a [job
@@ -43,15 +44,9 @@ allocated by the queue system.  The script also specifies a number of
 requirements (memory usage, number of CPUs, run-time, etc.), used by
 the queue system to find one or more suitable machines for the job.
 
-FIXME: Remove?
-You can cancel running or pending (waiting) jobs with [scancel](https://slurm.schedmd.com/scancel.html):
-
-    scancel JobId                # Cancel job with id JobId (as returned from sbatch)
-    scancel --user=MyUsername    # Cancel all your jobs
-    scancel --account=MyProject  # Cancel all jobs in MyProject
-
 For more information about managing jobs, see [Managing
 Jobs](managing_jobs.md).
+
 
 ## Job Queue
 

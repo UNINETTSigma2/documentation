@@ -18,3 +18,9 @@ where JobId is the job id number that sbatch returns.  To see more details about
 scontrol show job JobId
 
 See man squeue and man scontrol for details about these commands.
+
+You can cancel running or pending (waiting) jobs with [scancel](https://slurm.schedmd.com/scancel.html):
+
+    scancel JobId                # Cancel job with id JobId (as returned from sbatch)
+    scancel --user=MyUsername    # Cancel all your jobs
+    scancel --account=MyProject  # Cancel all jobs in MyProject
