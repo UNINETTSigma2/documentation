@@ -283,7 +283,7 @@ Now you should see it
        SAMtools/1.9-foss-2018b    SAMtools/1.9-intel-2018b
     ...
 
-**Exercise 14:** Install the easyconfig `snakemake-5.2.4-intel-2018b-Python-3.6.6.eb`. Load it and find out what it provides.
+**Exercise 14:** Install the easyconfig `SAGE-6.4.eb`. Load it and find out what it provides.
 
 ## Transferring files back home
 Sometimes you may need to transfer files out of Saga, e.g., to your laptop or
