@@ -1,41 +1,46 @@
 # Migration to Saga
 
-This page summarizes major steps you need to do when you migrate to Saga.
+Before you move existing scripts, jobs, etc to Saga, we recommend that you make
+yourself familiar with Saga by reading this page, work on the exercises listed and
+explore Sagas capabilities by trying out new commands and options.
 
 ## Getting familiar with Saga
 
-Please, read the [introduction about Saga](quick/saga.md) to inform yourself about its
+Please, read the [introduction about Saga](quick/saga.md) to inform yourself about Saga's
 characteristics.
 
 ## Account and projects
 
-You need an account and a project on Saga before you can start using it. Obtaining
-an account and a project on Saga works as for the other systems (except that for
-the Notur period 2019.2 one could not directly apply for quota on Saga).
+You need a user account (say `USER`) and a project account on Saga before you can start using it. Obtaining
+a user account and a project account on Saga works as for the other systems (except that for
+the Notur period 2019.2 one could not directly apply for compute time on Saga - instead
+you or your PI will be informed when you can start migrating to Saga). For details see
+[Get User Account](https://www.metacenter.no/user/application/) and
+[Apply for e-infrastructure resources](https://www.sigma2.no/content/apply-e-infrastructure-resources).
 
 ## Login
 
-Use your favourite login tool, e.g., ssh or Putty, to login with your Notur username
+Use your favourite login tool, e.g., ssh or Putty, to login with your user account
 into Saga. The machine name for Saga is `saga.sigma2.no`. An example command to login
 with ssh is
 
-`ssh me@saga.sigma2.no`
+`ssh USER@saga.sigma2.no`
 
-For more information
-see [Getting Started](quick/gettingstarted.md). Note, on Saga there is no support
-for remote desktop configured yet.
+For more information see [Getting Started](quick/gettingstarted.md). Note, on
+Saga there is no support for remote desktops configured yet.
 
 ## Module system
 
-Saga uses lmod as module system. One major difference to Abel's older module
-system is that it is case-insensitive. Will come back to this below.
+Saga uses **lmod** as module system - the same as on Fram. One major difference
+to Abel's older module system is that it is case-insensitive. We will come back
+to this below.
 
 Use
 
 `module avail`
 
-to list all available modules. If you want to check which versions of a specific package
-are available do
+to list all available modules. If you want to check which versions of a specific
+package are available do
 
 `module avail SAM`
 
@@ -44,18 +49,20 @@ which shows all packages whose name/version matches `SAM`.
 **Exercise 1:** Play around with `module avail` to identify all packages built with the
 Intel compiler.
 
-**Exercise 2:** Try `module avail NETCDF` and `module avail netCDF` on both Saga and Abel and compare the differences. 
+**Exercise 2:** Try `module avail NETCDF` and `module avail netCDF` on both Saga
+and Abel and compare the differences. 
 
 You may notice that the `name/version` identifiers for modules on Saga differ from
 other systems, particularly when you're used to the module system on Abel.
-On Saga (and Fram) the *version*
-(part following the `/`) decodes both the version of the software package and the
-tool chain (decodes a compiler version and supporting libraries) used to build the package.
+On Saga (and Fram) the *version* (the part following the `/`) decodes both the
+version of the software package and the tool chain (decodes a compiler version and
+supporting libraries) used to build the package.
 The structure of these identifiers is the same on Saga and Fram. While the modules
 system on Abel is following a similar concept (`name/version`) as identifier, the *tool chain*
-part usually contains only a brief keyword for the compiler being used. As an example,
+part usually contains only a brief keyword for the compiler being used.
 
 ## Project accounts and compute hour usage
+
 The commands `projects` and `cost` work in the same manner as on Fram and Abel.
 The former lists all *project* accounts (don't confuse with your user account)
 you have access to. The latter provides details about allocated, used, running,
@@ -68,6 +75,7 @@ these commands check their usage information `projects --help` and `cost --help`
 you have access to.
 
 ## Interactive jobs
+
 Interactive jobs provide you a shell prompt on one of the compute nodes where
 you can run any commands interactively. This is useful for several scenarios
 such as debugging issues, exploring/developing complex jobs composed of several
@@ -95,7 +103,7 @@ You may also check the manual page for srun with the command `man srun`.
 **Exercise 5:** Determine the compute node on which the job runs and list all modules
 which are loaded once the job has started.
 
-**Exercise 6:** Play with the srun command changing the wall time limit (`--time`)
+**Exercise 6:** Play with the `srun` command changing the wall time limit (`--time`)
 and specifying that it should run on three nodes (parameter `--nodes`).
 
 **Exercise 7:** What happens to your interactive job if your connection to Saga
@@ -103,8 +111,9 @@ terminates? Does the job continue to run (as a batch job would do) or is it
 terminating (as a shell would do)?
 
 ## Batch jobs
+
 Most production jobs are run as batch jobs. You specify how many resources the job
-needs, for how long, against which project account it should be billed for, and what
+needs, for how long, on which project account it should be billed for, and what
 commands the job should run. After you submitted a job, you don't need to do anything
 to launch it - it may start at any time when the resources it requests become available.
 When this sounds familiar to you being a user on Abel or Fram, then you're right.
@@ -112,7 +121,9 @@ When this sounds familiar to you being a user on Abel or Fram, then you're right
 However, there are a few changes you have to apply to your existing job scripts.
 
 ### Porting job scripts from Abel
-A typical job script on Abel looks like (taken from [A Simple Serial Job](https://www.uio.no/english/services/it/research/hpc/abel/help/user-guide/job-scripts.html#A_Simple_Serial_Job))
+
+A typical job script on Abel looks like (taken from
+[A Simple Serial Job](https://www.uio.no/english/services/it/research/hpc/abel/help/user-guide/job-scripts.html#A_Simple_Serial_Job))
 
     #!/bin/bash
 
@@ -156,8 +167,11 @@ This job ported for Saga would be (with some additions taken from [Sample MPI Ba
     # Wall clock limit:
     #SBATCH --time=hh:mm:ss
     #
-    # Max memory usage:
+    # Max memory usage: Size is a number plus M (megabyte) or G (gigabyte), e.g., 3M or 5G
     #SBATCH --mem-per-cpu=Size
+    #
+    # Number of tasks (cores): this is added to make it easier for you to do exercises
+    #SBATCH --ntasks=1
 
     ## Set up job environment: (this is done automatically behind the scenes)
     ## (make sure to comment '#' or remove the following line 'source ...')
@@ -184,10 +198,23 @@ This job ported for Saga would be (with some additions taken from [Sample MPI Ba
     cd $SCRATCH
     YourCommands
 
-**Exercise 8:**
-**Exercise 9:**
+**Exercise 8:** Explore job limits (what amount of resources you can request and
+for how long) by adapting the above job script's walltime limit (`--time`), amount
+of memory (`--mem-per-cpu`) and number of cores (`--ntasks`). You can change the values
+in a script and submit it with just `sbatch SCRIPTNAME` or if you don't want to edit
+the script for all trials, add the parameters to the sbatch command, for example,
+
+`sbatch --time=00:01:00 --ntasks=2 --mem-per-cpu=2G SCRIPTNAME`
+
+**Exercise 9:** Add commands to your job script which print environment variables (`env`),
+the current date (`date`), sleeps for a while (`sleep 300`) or calculates disk usage
+of various directories your job has access to (`du -sh $HOME $USERWORK $SCRATCH`).
+
+**Exercise 10:** Add parameters to get notified when your job is started, ends,
+etc. (`#SBATCH --mail-type=ALL` and `#SBATCH --mail-user=YOUR_EMAIL_ADDRESS`).
 
 ## Transferring files to Saga
+
 The recommended way to transfer files is `rsync`. In case a transfer is
 interrupted or when you have changed files at the origin, you can synchronise files
 on Saga by simply rerunning `rsync`. A typical rsync command line looks as follows
