@@ -225,15 +225,15 @@ Parameter `-a` instructs rsync to copy the whole directory tree starting with
 `all_my_scripts_for_paper_x`. Parameter `-v` instructs rsync to be verbose, i.e.,
 it will print what it is doing.
 
-**Exercise 10:** On Abel or your own Linux-based machine create a sample directory
+**Exercise 11:** On Abel or your own Linux-based machine create a sample directory
 tree (for example, by running
 `mkdir -p rsync10/A; mkdir -p rsync10/B; touch rsync10/foo rsync10/A/bar rsync10/B/foobar`)
 and rsync this to your `$HOME` on Saga.
 
-**Exercise 11:** Rsync this to another directory you have access to, e.g.,
+**Exercise 12:** Rsync this to another directory you have access to, e.g.,
 `$USERWORK` or a project directory.
 
-**Exercise 12:** Rsync a larger directory tree to Saga, interrupt it (press `CTRL+C`)
+**Exercise 13:** Rsync a larger directory tree to Saga, interrupt it (press `CTRL+C`)
 and rerun the rsync command.
 
 ## Installing software
@@ -282,6 +282,8 @@ Now you should see it
     ------------------------------ /cluster/modulefiles/all ------------------------------
        SAMtools/1.9-foss-2018b    SAMtools/1.9-intel-2018b
     ...
+
+**Exercise 14:** Install the easyconfig `snakemake-5.2.4-intel-2018b-Python-3.6.6.eb`. Load it and find out what it provides.
 
 ## Transferring files back home
 Sometimes you may need to transfer files out of Saga, e.g., to your laptop or
