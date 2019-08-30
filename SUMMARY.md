@@ -92,6 +92,7 @@
 * [testdoc](newjobs/jobs.md)
     * [Queue System](newjobs/queue_system.md)
         * [Queue System Concepts](newjobs/queue_system_concepts.md)
+        * [Job States](newjobs/job_states.md)
     * [Job Types](newjobs/job_types.md)
     * [Job Scripts](newjobs/job_scripts.md)
     * [Interactive Jobs](newjobs/interactive_jobs.md)
