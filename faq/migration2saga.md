@@ -210,5 +210,60 @@ and rsync this to your `$HOME` on Saga.
 and rerun the rsync command.
 
 ## Installing software
+Installing software in folders accessible to users, e.g., $HOME, can be relatively
+easy with EasyBuild which is also used for system-wide installations. We illustrate
+how you can do this for the software package SAMtools for which Saga does not provide
+all the versions you would find on Abel (0.1.18, 0.1.19, 1.0, 1.1, 1.2, 1.3.1, 1.4, 1.9).
 
-## Backing up data
+We are going to demonstrate how to install version 1.3.1 which is the current default on Abel.
+
+On a login node, run `screen -S samtools`. Then, start an interactive job (see details
+[above](#interactive-jobs)) with
+
+`srun --account=nnXXXXk --time=08:00:00 --nodes=1 --ntasks-per-node=40 --mem=185G --pty bash -i`
+
+Restore a clean module environment
+
+`module restore system`
+
+Load the module for EasyBuild
+
+`module load EasyBuild/3.9.3`
+
+Download an easyconfig file for SAMtool 1.3.1
+
+`eb SAMtools-1.3.1-foss-2016b.eb --fetch`
+
+Do a dry run
+
+`eb SAMtools-1.3.1-foss-2016b.eb --dry-run`
+
+Assuming that is successful, i.e., no errors reported, build the software - this
+may take very long (hours) particularly when many dependencies are built.
+
+`eb SAMtools-1.3.1-foss-2016b.eb -r`
+
+When you run `module avail SAM` it may not be shown yet. That's because the
+module system doesn't search your $HOME for modules. Do
+
+`module use $HOME/.local/easybuild/modules/all`
+
+Now you should see it
+
+    module avail SAM
+    
+    ------------------------------ /cluster/modulefiles/all ------------------------------
+       SAMtools/1.9-foss-2018b    SAMtools/1.9-intel-2018b
+    ...
+
+## Transferring files back home
+Sometimes you may need to transfer files out of Saga, e.g., to your laptop or
+another server or cluster. The easiest way to do that is to use again `rsync`. If
+you can login to the destination machine, then you can simply do
+
+`rsync -a -v my_folder_on_Saga YOUR_USERNAME_ON_YOUR_MACHINE@YOUR_MACHINE:from_saga`
+
+In case you cannot login into machine from Saga, you can initiate the transfer from
+your machine. On your machine do
+
+`rsync -a -v YOUR_USERNAME_ON_SAGA@saga.sigma2.no:my_folder_on_Saga from_saga`
