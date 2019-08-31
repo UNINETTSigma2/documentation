@@ -94,6 +94,8 @@
         * [Queue System Concepts](newjobs/queue_system_concepts.md)
         * [Job States](newjobs/job_states.md)
     * [Job Types](newjobs/job_types.md)
+	    * [Fram](newjobs/fram_job_types.md)
+	    * [Saga](newjobs/saga_job_types.md)
     * [Job Scripts](newjobs/job_scripts.md)
     * [Interactive Jobs](newjobs/interactive_jobs.md)
     * [Managing Jobs](newjobs/managing_jobs.md)
