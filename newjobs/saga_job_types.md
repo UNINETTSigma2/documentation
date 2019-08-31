@@ -7,11 +7,11 @@ is a better choice.
 The basic allocation units on Saga are cpu and memory.
 
 Most jobs on Saga are *normal* jobs.  Jobs requiring a lot of memory
-(FIXME: how much?) should run as *bigmem* jobs.  Jobs that are very
+(FIXME: > 8 GiB/cpu?) should run as *bigmem* jobs.  Jobs that are very
 short, or implement checkpointing, can run as *optimist* jobs, which
 means they can use resources that are idle for a short time before
 they are requeued by a non-*optimist* job.  For development or
-testing, use a *devel* job.
+testing, use a *devel* or *short* job.
 
 Here is a more detailed description of the different job types on
 Saga:
@@ -43,9 +43,8 @@ Saga:
 	    - (none)
 	- __Maximum walltime__: 14 days
 	- __Priority__: normal
-	- __Available resources__: 8 nodes with 32 cpus, 60 GiB RAM and 4
-      GPUs, in total 192 cpus, FIXME GiB RAM and 32 GPUs.
-      (shared with *normal*)
+	- __Available resources__: 8 nodes with 24 cpus, 377 GiB RAM and 4
+      GPUs, in total 192 cpus, 3019 GiB RAM and 32 GPUs.
 - <a name="optimist"></a>__optimist__
     - __Description__: Meant for jobs with checkpointing, or very
       short jobs.  *optimist* jobs will be started as soon as there
