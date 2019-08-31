@@ -23,29 +23,30 @@ Saga:
         - maximum 256 cpus
     - __Maximum walltime__: 7 days
     - __Priority__: normal
-	- __Available resources__: FIXME 996 nodes with 32 cpus and 60 GiB RAM
+	- __Available resources__: 200 nodes with 40 cpus and 186 GiB RAM,
+      in total 8000 cpus and 36.4 TiB RAM.
 - __bigmem__
     - __Description__: Meant for jobs that need a lot of memory (RAM)
 	- __Allocation units__: cpus and memory
     - __Job Limits__:
-	    - FIXME
+	    - (none)
 	- __Maximum walltime__: 14 days
 	- __Priority__: normal
 	- __Available resources__:
-	    - 8 nodes with 32 cpus and 501 GiB RAM
-	    - 2 nodes with 64 cpus and 6045 GiB RAM
-- __preproc__
-    - __Description__: Meant for small preprocessing or postprocessing
-      jobs.  If the job is single-threaded, one can use a *bigmem* job
-      instead, asking for 1 cpu.
-	- __Allocation units__: cpus and memory
+	    - 28 nodes with 40 cpus and 377 GiB RAM
+	    - 8 nodes with 64 cpus and 3021 GiB RAM
+		- In total 1632 cpus and 33.9 TiB RAM.
+- __accel__
+    - __Description__: Meant for jobs needing GPUs
+	- __Allocation units__: cpus, memory and GPUs
 	- __Job Limits__:
-	    - min/max 1 node
-	- __Maximum walltime__: 1 day
-	- __Priority__: normal 
-	- __Available resources__: 996 nodes with 32 cpus and 60 GiB RAM
+	    - (none)
+	- __Maximum walltime__: 14 days
+	- __Priority__: normal
+	- __Available resources__: 8 nodes with 32 cpus, 60 GiB RAM and 4
+      GPUs, in total 192 cpus, FIXME GiB RAM and 32 GPUs.
       (shared with *normal*)
-- __optimist__
+- <a name="optimist"></a>__optimist__
     - __Description__: Meant for jobs with checkpointing, or very
       short jobs.  *optimist* jobs will be started as soon as there
       are idle resources for at least 30 minutes, but will be requeued
@@ -53,35 +54,29 @@ Saga:
       run 30 minutes).
     - __Allocation units__: cpus and memory
 	- __Job Limits__:
-	    - minimum 4 nodes, maximum 32 nodes (can be increased)
+	    - maximum 256 cpus
 	- __Maximum Walltime__: None.  The jobs will start as soon as
       resources are available for at least 30 minutes, but can be
       requeued at any time, so there is no guaranteed minimum run time.
     - __Priority__: low
-	- __Available resources__: 996 nodes with 32 cpus and 60 GiB RAM
-      (shared with *normal*)
+	- __Available resources__: *optimist* jobs can run on any node on Saga
 - __devel__
-    - __Description__: meant for small, short development or test jobs.  Has
-      access to a set of dedicated nodes on daytime in weekdays to
-      make the jobs start as soon as possible.
-    - __Allocation units__: cpus and memory  FIXME: Can one use bigmem?
+    - __Description__: meant for small, short development or test jobs.
+    - __Allocation units__: cpus and memory and GPUs
     - __Job Limits__:
-	    - minimum 1 nodes, maximum 4 nodes per job
-	    - maximum 4 nodes in use at the same time
+	    - maximum 64 cpus per job
+	    - maximum 64 cpus in use at the same time
     - __Maximum walltime__: 30 minutes
     - __Priority__: high
-	- __Available resources__: 4 nodes with 32 cpus and 60 GiB RAM between
-      07:00 and 21:00 on weekdays
+	- __Available resources__: *devel* jobs can run on any node on Saga
 - __short__
     - __Description__: meant for development or test jobs.  Allows
       slightly longer and wider jobs than *devel*, but has slightly
-      lower priority, and no dedicated resources.
-    - __Allocation units__: cpus and memory  FIXME: Can one use bigmem?
+      lower priority.
+    - __Allocation units__: cpus and memory and GPUs
 	- __Job Limits__:
-	    - minimum 1 nodes, maximum 10 nodes per job
-	    - maximum 16 nodes in use at the same time
+	    - maximum 128 cpus per job
+	    - maximum 256 cpus in use at the same time
     - __Maximum walltime__: 2 hours
     - __Priority__: high (slightly lower than *devel*)
-	- __Available resources__: 16 nodes with 32 cpus and 60 GiB RAM
-      (shared with *normal*)
-
+	- __Available resources__: *devel* jobs can run on any node on Saga
