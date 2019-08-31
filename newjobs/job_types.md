@@ -9,34 +9,31 @@ the job types and their purposes.
 ## Fram
 
 
-| Name     | Description                                          | Units        | Job limits  | Max walltime | Priority |
-|----------|------------------------------------------------------|--------------|-------------|--------------|----------|
-| normal   | default job type                                     | node         | 4--32 nodes | 7 days       | normal   |
-| preproc  | small pre-/postprocessing jobs                       | node         | 1 node      | 1 day        | normal   |
-| bigmem   | jobs needing more memory                             | cpu + memory | FIXME       | 14 days      | normal   |
-| optimist | jobs w/checkpointing,                                | node         | 4--32 nodes | see below    | low      |
-|          | or very short jobs                                   |              |             |              |          |
-| optimist | <p>jobs w/checkpointing,<br/> or very short jobs</p> | node         | 4--32 nodes | see below    | low      |
-| devel    | development jobs                                     | nodes        | 1--4 nodes  | 3 mins       | high     |
-| short    | development jobs                                     | nodes        | 1--10 nodes | 2 hours      | high     |
+| Name     | Description                                          | Units        | Job limits  | Max walltime                 | Priority |
+|:--------:|------------------------------------------------------|:------------:|:-----------:|:----------------------------:|:--------:|
+| normal   | default job type                                     | node         | 4--32 nodes | 7 days                       | normal   |
+| preproc  | pre-/postprocessing jobs                             | node         | 1 node      | 1 day                        | normal   |
+| bigmem   | jobs needing more memory                             | cpu + memory | FIXME       | 14 days                      | normal   |
+| optimist | <p>jobs w/checkpointing,<br/> or very short jobs</p> | node         | 4--32 nodes | [details](fram_job_types.md) | low      |
+| devel    | development jobs                                     | nodes        | 1--4 nodes  | 30 mins                      | high     |
+| short    | development jobs                                     | nodes        | 1--10 nodes | 2 hours                      | high     |
 
 [Fram Job Types](fram_job_types.md).
 
 ## Saga
 
-- normal
-    - default job type
-- bigmem
-    - for jobs needing more memory
-- accel
-    - for jobs needing GPUs
-- optimist
-    - for jobs with checkpointing, or very short jobs
-- devel
-    - for development jobs
+| Name     | Description                                          | Units              | Job limits  | Max walltime                 | Priority |
+|:--------:|------------------------------------------------------|:------------------:|:-----------:|:----------------------------:|:--------:|
+| normal   | default job type                                     | cpu + memory       | 1--256 cpus | 7 days                       | normal   |
+| bigmem   | jobs needing more memory                             | cpu + memory       | FIXME       | 14 days                      | normal   |
+| accel    | jobs needing GPUs                                    | cpu + memory + GPU | FIXME       | FIXME                        | normal   |
+| optimist | <p>jobs w/checkpointing,<br/> or very short jobs</p> | cpu + memory       | 1-256 cpus  | [details](saga_job_types.md) | low      |
+| devel    | development jobs                                     | nodes              | FIXME       | 30 mins                      | high     |
+
+[Saga Job Types](fram_job_types.md).
 
 
-
+# Notes:
 
 Describe the different types of jobs on each cluster, what they are supposed
 to be used for, and which limits they have.  Perhaps in a separate page for
