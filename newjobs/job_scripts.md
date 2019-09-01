@@ -67,7 +67,7 @@ All in all, a generic job script might look like this:
 
 [include](files/generic_job_script.sh)
 
-Download the script: <a href="files/generic_job_script.sh">generic_job_script.sh</a>.
+Download the script: <a href="generic_job_script.sh">generic_job_script.sh</a>.
 
 ## Footnotes
 
