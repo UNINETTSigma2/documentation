@@ -23,20 +23,20 @@ scripts](http://www.linuxconfig.org/Bash_scripting_Tutorial).
 A job script consists of a couple of parts, in this order:
 
 - The first line, which is always `#!/bin/bash`[^1]
-- Instruction paremeters to the queue system
+- Paremeters to the queue system
 - Commands to set up the execution environment
 - The actual commands you want to be run
 
-Instruction parameters to the queue system may be specified on the
-`sbatch` command line and/or in `#SBATCH` lines in the job script.
-There can be as many `#SBATCH` lines as you want, and you can combine
-several parameters on the same line.  If a parameter is specified both
-on the command line and in the job script, the parameter specified on
-the command line takes precedence.  The `#SBATCH` lines must precede
-any commands in the script.  Which parameters are allowed or
-compulsory depends the job type.  One parameter must be present in any
-job: `--account`, which specifies the *project* the job will run in.
-The other parameters will be described in the sub pages for each cluster.
+Parameters to the queue system may be specified on the `sbatch`
+command line and/or in `#SBATCH` lines in the job script.  There can
+be as many `#SBATCH` lines as you want, and you can combine several
+parameters on the same line.  If a parameter is specified both on the
+command line and in the job script, the parameter specified on the
+command line takes precedence.  The `#SBATCH` lines must precede any
+commands in the script.  Which parameters are allowed or compulsory
+depends the job type.  One parameter must be present in any job:
+`--account`, which specifies the *project* the job will run in.  The
+other parameters will be described in the sub pages for each cluster.
 
 It is recommended to start the commands to set up the environment with
 
