@@ -67,7 +67,9 @@ All in all, a generic job script might look like this:
 
 [include](files/generic_job_script.sh)
 
-Download the script: <a href="generic_job_script.sh">generic_job_script.sh</a>.
+Download the script: <a
+href="files/generic_job_script.sh">generic_job_script.sh</a> (you might have
+to right-click and select `Save Link As...` or similar).
 
 ## Footnotes
 
@@ -109,3 +111,10 @@ http://hpc.uit.no/en/latest/jobs/batch.html
   For Fram: job placement.
   http://hpc.uit.no/en/latest/jobs/examples.html
 
+## Questions
+
+- Some examples use `#!/bin/bash -l`.  Why? and Should we recommend/use
+  that?
+- Should we recommend/use an explicit `exit 0` at the end?
+- I have to right-click and select `Save Link As...` to download
+  script.  Is that just me?
