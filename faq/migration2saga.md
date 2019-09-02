@@ -29,6 +29,19 @@ with ssh is
 For more information see [Getting Started](quick/gettingstarted.md). Note, on
 Saga there is no support for remote desktops configured yet.
 
+## File systems and storage quota
+
+**Note! There is no backup of any file system currently (sept 2019)!**
+
+Users on Saga have access to the following file systems and usage policies:
+
+| Filesystem | Access | Usage policy (quota, removal) |
+| ------ | ------ |
+| home folder | `$HOME` | 20 GiB quota |
+| user specific work folder | `$USERWORK` | any file older than 21/42 days will be removed automatically | 
+| project folder | `/cluster/projects/nnXXXk` | quota depending on grant |
+| job scratch | `$SCRATCH` | specific to each running job, will be removed at end of job |
+
 ## Module system
 
 Saga uses **lmod** as module system - the same as on Fram. One major difference
