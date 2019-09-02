@@ -15,7 +15,7 @@ The major steps in migrating to Saga are:
 
 ## Current (major) differences of Saga
 
-*  **NO backup of any file system, neither $HOME, $USERWORK, project folders - please, backup important data yourself until we've implemented it!**
+*  **NO backup of any file system, neither $HOME, shared folders, project folders - please, backup important data yourself until we've implemented it!**
 *  **NIRD storage is not mounted on Saga's login nodes!**
 *  **Quota/disk usage policies are not enforced yet! We strongly recommend to not use more!**
 
