@@ -4,6 +4,15 @@ Before you move existing scripts, jobs, etc to Saga, we recommend that you make
 yourself familiar with Saga by reading this page, work on the exercises listed and
 explore Sagas capabilities by trying out new commands and options.
 
+The major steps in migrating to Saga are:
+
+*  Getting an account and project quota on Saga.
+*  Getting aware of differences (disk quota, module system, job types, running jobs, how to get help, no backup currently).
+*  Transfering data, scripts etc from other machines to Saga.
+*  Modifying scripts & routines to match differences on Saga.
+*  **Verifying that your jobs run efficiently and produce the same results as on other systems!**
+*  Be patient with user support, but don't hesitate to ask questions!
+
 ## Getting familiar with Saga
 
 Please, read the [introduction about Saga](quick/saga.md) to inform yourself about Saga's
