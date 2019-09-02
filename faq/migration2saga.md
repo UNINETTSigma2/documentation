@@ -299,7 +299,11 @@ module system doesn't search your $HOME for modules. Do
 
 Now you should see it
 
-    module avail SAM
+    $ module avail SAM
+
+    ------------- /cluster/home/YOUR_USERNAME/.local/easybuild/modules/all --------------
+       SAMtools/1.3.1-foss-2016b
+
     
     ------------------------------ /cluster/modulefiles/all ------------------------------
        SAMtools/1.9-foss-2018b    SAMtools/1.9-intel-2018b
