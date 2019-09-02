@@ -13,6 +13,12 @@ The major steps in migrating to Saga are:
 *  **Verifying that your jobs run efficiently and produce the same results as on other systems!**
 *  Be patient with user support [(support@metacenter.no)](mailto:support@metacenter.no), but don't hesitate to ask questions!
 
+## Current (major) differences of Saga
+
+*  **No backup of anything!**
+*  **NIRD storage is not mounted on Saga's login nodes!**
+*  **Quota/disk usage policies are not enforced!**
+
 ## Getting familiar with Saga
 
 Please, read the [introduction about Saga](quick/saga.md) to inform yourself about Saga's
@@ -47,7 +53,7 @@ Users on Saga have access to the following file systems and usage policies:
 | Filesystem | Access | Usage policy (quota, removal) |
 | ------ | ------ |
 | home folder | `$HOME` | 20 GiB quota |
-| user specific work folder | `$USERWORK` | any file older than 21/42 days will be removed automatically | 
+| user specific work folder | `$USERWORK` | any file older than 21/42 days will be removed automatically, 21 days when total disk usage (do `df -h /cluster` to check) is above 69 % | 
 | project folder | `/cluster/projects/nnXXXk` | quota depending on grant |
 | job scratch | `$SCRATCH` | specific to each running job, will be removed at end of job |
 
