@@ -57,10 +57,15 @@ Users on Saga have access to the following file systems and usage policies:
 | project folder | `/cluster/projects/nnXXXk` | quota depending on grant |
 | job scratch | `$SCRATCH` | specific to each running job, will be removed at end of job |
 
+Check your disk usage with `du -sh $HOME`. Replace `$HOME` with any other folder
+you want to check.
+
+**Exercise 1:** Check your disk usage of `$HOME` and `$USERWORK`.
+
 ## Module system
 
 Saga uses **lmod** as module system - the same as on Fram. One major difference
-to Abel's older module system is that it is case-insensitive (see Exercise 2 below).
+to Abel's older module system is that it is case-insensitive (see Exercise 3 below).
 
 Use
 
@@ -73,10 +78,10 @@ package are available do
 
 which shows all packages whose name/version matches `SAM`.
 
-**Exercise 1:** Play around with `module avail` to identify all packages built with the
+**Exercise 2:** Play around with `module avail` to identify all packages built with the
 Intel compiler.
 
-**Exercise 2:** Try `module avail NETCDF` and `module avail netCDF` on both Saga
+**Exercise 3:** Try `module avail NETCDF` and `module avail netCDF` on both Saga
 and Abel and compare the differences. 
 
 You may notice that the `name/version` identifiers for modules on Saga differ from
@@ -96,9 +101,9 @@ you have access to. The latter provides details about allocated, used, running,
 pending and available cpu hours for your project accounts. For details of
 these commands check their usage information `projects --help` and `cost --help`.
 
-**Exercise 3:** Determine all projects you have access to on Saga and Abel/Fram.
+**Exercise 4:** Determine all projects you have access to on Saga and Abel/Fram.
 
-**Exercise 4:** Check how many cpu hours are available in the project accounts
+**Exercise 5:** Check how many cpu hours are available in the project accounts
 you have access to.
 
 ## Interactive jobs
@@ -127,13 +132,13 @@ The parameters before `--pty bash -i` could also be used to submit a batch job
 Our documentation provides additional information about [interactive jobs](jobs/interactivejobs.md).
 You may also check the manual page for srun with the command `man srun`.
 
-**Exercise 5:** Determine the compute node on which the job runs and list all modules
+**Exercise 6:** Determine the compute node on which the job runs and list all modules
 which are loaded once the job has started.
 
-**Exercise 6:** Play with the `srun` command changing the wall time limit (`--time`)
+**Exercise 7:** Play with the `srun` command changing the wall time limit (`--time`)
 and specifying that it should run on three nodes (parameter `--nodes`).
 
-**Exercise 7:** What happens to your interactive job if your connection to Saga
+**Exercise 8:** What happens to your interactive job if your connection to Saga
 terminates? Does the job continue to run (as a batch job would do) or is it
 terminating (as a shell would do)?
 
@@ -225,7 +230,7 @@ This job ported for Saga would be (with some additions taken from [Sample MPI Ba
     cd $SCRATCH
     YourCommands
 
-**Exercise 8:** Explore job limits (what amount of resources you can request and
+**Exercise 9:** Explore job limits (what amount of resources you can request and
 for how long) by adapting the above job script's walltime limit (`--time`), amount
 of memory (`--mem-per-cpu`) and number of cores (`--ntasks`). You can change the values
 in a script and submit it with just `sbatch SCRIPTNAME` or if you don't want to edit
@@ -233,11 +238,11 @@ the script for all trials, add the parameters to the sbatch command, for example
 
 `sbatch --time=00:01:00 --ntasks=2 --mem-per-cpu=2G SCRIPTNAME`
 
-**Exercise 9:** Add commands to your job script which print environment variables (`env`),
+**Exercise 10:** Add commands to your job script which print environment variables (`env`),
 the current date (`date`), sleeps for a while (`sleep 300`) or calculates disk usage
 of various directories your job has access to (`du -sh $HOME $USERWORK $SCRATCH`).
 
-**Exercise 10:** Add parameters to get notified when your job is started, ends,
+**Exercise 11:** Add parameters to get notified when your job is started, ends,
 etc. (`#SBATCH --mail-type=ALL` and `#SBATCH --mail-user=YOUR_EMAIL_ADDRESS`).
 
 ## Transferring files to Saga
@@ -256,15 +261,15 @@ it will print what it is doing.
 other systems. That makes it easier to keep an original version and lowers the risk
 of overwriting other things you have on Saga.**
 
-**Exercise 11:** On Abel or your own Linux-based machine create a sample directory
+**Exercise 12:** On Abel or your own Linux-based machine create a sample directory
 tree (for example, by running
 `mkdir -p rsync10/A; mkdir -p rsync10/B; touch rsync10/foo rsync10/A/bar rsync10/B/foobar`)
 and rsync this to your `$HOME` on Saga.
 
-**Exercise 12:** Rsync this to another directory you have access to, e.g.,
+**Exercise 13:** Rsync this to another directory you have access to, e.g.,
 `$USERWORK` or a project directory.
 
-**Exercise 13:** Rsync a larger directory tree to Saga, interrupt it (press `CTRL+C`)
+**Exercise 14:** Rsync a larger directory tree to Saga, interrupt it (press `CTRL+C`)
 and rerun the rsync command.
 
 ## Installing software
@@ -323,7 +328,7 @@ Now you should see it
        SAMtools/1.9-foss-2018b    SAMtools/1.9-intel-2018b
     ...
 
-**Exercise 14:** Install the easyconfig `SAGE-6.4.eb`. Load it and find out what it provides.
+**Exercise 15:** Install the easyconfig `SAGE-6.4.eb`. Load it and find out what it provides.
 
 ## Transferring files back home
 Sometimes you may need to transfer files out of Saga, e.g., to your laptop or
