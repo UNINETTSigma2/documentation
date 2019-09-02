@@ -17,7 +17,7 @@ The major steps in migrating to Saga are:
 
 *  **NO backup of any file system, neither $HOME, shared folders, project folders - please, backup important data yourself until we've implemented it!**
 *  **NIRD storage is not mounted on Saga's login nodes!**
-*  **Quota/disk usage policies are not enforced yet! We strongly recommend to not use more!**
+*  **Quota/disk usage policies are not enforced yet! We strongly recommend to not use more than the quota of 20 GiB on $HOME or you may run into problems later on!**
 
 ## Getting familiar with Saga
 
