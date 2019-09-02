@@ -40,7 +40,7 @@ Saga there is no support for remote desktops configured yet.
 
 ## File systems and storage quota
 
-**Note! There is no backup of any file system currently (sept 2019)!**
+**Note! Currently (september 2019), there is no backup of any file system on Saga!**
 
 Users on Saga have access to the following file systems and usage policies:
 
