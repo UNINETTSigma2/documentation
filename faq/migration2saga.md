@@ -54,8 +54,7 @@ Users on Saga have access to the following file systems and usage policies:
 ## Module system
 
 Saga uses **lmod** as module system - the same as on Fram. One major difference
-to Abel's older module system is that it is case-insensitive. We will come back
-to this below.
+to Abel's older module system is that it is case-insensitive (see Exercise 2 below).
 
 Use
 
@@ -247,6 +246,10 @@ Parameter `-a` instructs rsync to copy the whole directory tree starting with
 `all_my_scripts_for_paper_x`. Parameter `-v` instructs rsync to be verbose, i.e.,
 it will print what it is doing.
 
+**We recommend that you use a specific folder on Saga for files originating from
+other systems. That makes it easier to keep an original version and lowers the risk
+of overwriting other things you have on Saga.**
+
 **Exercise 11:** On Abel or your own Linux-based machine create a sample directory
 tree (for example, by running
 `mkdir -p rsync10/A; mkdir -p rsync10/B; touch rsync10/foo rsync10/A/bar rsync10/B/foobar`)
@@ -265,6 +268,11 @@ how you can do this for the software package SAMtools for which Saga does not pr
 all the versions you would find on Abel (0.1.18, 0.1.19, 1.0, 1.1, 1.2, 1.3.1, 1.4, 1.9).
 
 We are going to demonstrate how to install version 1.3.1 which is the current default on Abel.
+
+**Note! Installing version 1.3.1 may fail out of the box (as it did for us). It
+works with some changes -- but these changes and particularly their implications
+are tricky to manage. Hence, we're looking for an easier example. Feel free to
+try your favourite software!**
 
 On a login node, run `screen -S samtools`. Then, start an interactive job (see details
 [above](#interactive-jobs)) with
