@@ -79,6 +79,7 @@
 * [Transferring files](storage/file-transfering.md)
 
 ## Short Guides
+* [Migration to Saga](faq/migration2saga.md)
 * [Jobs](faq/jobs.md)
 * [Emacs](faq/emacs.md)
 * [SSH/Putty](faq/ssh.md)
