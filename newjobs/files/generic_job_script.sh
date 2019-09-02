@@ -6,6 +6,9 @@
 # Project:
 #SBATCH --account=nnXXXXk
 #
+# Wall time limit:
+#SBATCH --walltime=DD-HH:MM:SS
+#
 # Other parameters:
 #SBATCH ...
 

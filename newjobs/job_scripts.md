@@ -33,10 +33,18 @@ be as many `#SBATCH` lines as you want, and you can combine several
 parameters on the same line.  If a parameter is specified both on the
 command line and in the job script, the parameter specified on the
 command line takes precedence.  The `#SBATCH` lines must precede any
-commands in the script.  Which parameters are allowed or compulsory
-depends the job type.  One parameter must be present in any job:
-`--account`, which specifies the *project* the job will run in.  The
-other parameters will be described in the sub pages for each cluster.
+commands in the script.
+
+Which parameters are allowed or required depends the job type and
+cluster, but two parameters must be present in (almost) any job:
+
+- `--account`, which specifies the *project* the job will run in.
+  Required by all jobs.
+- `--walltime`, which specifies how long a job should be allowed to
+  run.  If it has not finished within that time, it will be cancelled.
+  Required by all jobs except *optimist* jobs, where it is forbidden.
+
+The other parameters will be described in the sub pages for each cluster.
 
 It is recommended to start the commands to set up the environment with
 
@@ -71,6 +79,32 @@ Download the script: <a
 href="files/generic_job_script.sh">generic_job_script.sh</a> (you might have
 to right-click and select `Save Link As...` or similar).
 
+## Wall Time Limit
+The wall time limit (`--walltime`) is required for all jobs except
+*optimist* jobs.  *Optimist* jobs don't have any fixed wall time
+limit, so `--walltime` is not allowed for them.
+
+The most used formats for the walltime specification is `DD-HH:MM:SS`
+and `HH:MM:SS`, where *DD* is days, *HH* hours, *MM* minutes and *SS*
+seconds.  For instance:
+
+- `3-12:00:00`: 3.5 days
+- `7:30:00`: 7.5 hours
+
+We recommend you to be as precise as you can when specifying the wall
+time limit as it will inflict on how fast your jobs will start to
+run:  It is easier for a short job to get started between two larger,
+higher priority jobs (so-called *backfilling*).  On the other hand, if
+the job has not finished before the wall time limit, it will be cancelled.
+
+## Sub pages
+(FIXME: remove?)
+
+- [Environment variables available in job scripts](environment_variables.md)
+- [Job work directory](work_directory.md)
+- [Array jobs](array_jobs.md)
+- [Porting Job Scripts from PBS/Torque](porting_from_pbs.md)
+
 ## Footnotes
 
 [^1] Technically, any script language that uses `#` as a comment
@@ -78,23 +112,8 @@ character can be used, but the recommended, and the only one supported
 by the Metacenter, is bash.
 
 ## Notes
-
-http://hpc.uit.no/en/latest/jobs/batch.html
-
-- Basic, common info
-  Describe available env. variables
-  http://hpc.uit.no/en/latest/jobs/environment-variables.html
-
-- work directory (scratch, userwork, project area, copyback, cleanup,
-  alternative with signal before timout)
-
-- wall time?
-  http://hpc.uit.no/en/latest/jobs/batch.html#walltime
-
-- job dependencies
-
-- array jobs
-  http://hpc.uit.no/en/latest/jobs/examples.html
+  
+- arguments to job scripts?
 
 - parallel tasks (perhaps per cluster)
   http://hpc.uit.no/en/latest/jobs/examples.html
@@ -104,7 +123,7 @@ http://hpc.uit.no/en/latest/jobs/batch.html
 
 - checkpointing
 
-- link to porting from pbs/torque tutorial
+- job dependencies
 
 - A sub page for each cluster, showing all details and examples for each job
   type.
