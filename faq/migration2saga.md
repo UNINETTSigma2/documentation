@@ -1,4 +1,4 @@
-# Migration to Saga
+# Migration to Saga (beta version, use with care!)
 
 Before you move existing scripts, jobs, etc to Saga, we recommend that you make
 yourself familiar with Saga by reading this page, work on the exercises listed and
