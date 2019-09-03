@@ -62,6 +62,8 @@ Fram:
       requeued at any time, so there is no guaranteed minimum run time.
     - __Priority__: low
 	- __Available resources__: *optimist* jobs run on the *normal* nodes.
+    - __Notes__: Projects need to make a request for using this job
+      type, and will get a separate quota for it.
 - __devel__
     - __Description__: meant for small, short development or test jobs.  Has
       access to a set of dedicated nodes on daytime in weekdays to

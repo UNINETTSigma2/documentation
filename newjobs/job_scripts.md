@@ -52,13 +52,13 @@ It is recommended to start the commands to set up the environment with
 set -o errexit  # Exit the script on any error
 set -o nounset  # Treat any unset variables as an error
 
-module purge    # Reset the modules to the system default (FIXME: what is the lmod way of saying this?)
+module restore system  # Reset the modules to the system default
 ```
 
 and will most likely include one or more
 
 ```bash
-module load <em>SomeProgram/SomeVersion</em>
+module load SomeProgram/SomeVersion
 ```
 
 to set up environment variables like `$PATH` to get access to the
@@ -73,10 +73,10 @@ after the `module load` commands.
 
 All in all, a generic job script might look like this:
 
-[include](files/generic_job_script.sh)
+[include](files/generic_job.sh)
 
 Download the script: <a
-href="files/generic_job_script.sh">generic_job_script.sh</a> (you might have
+href="files/generic_job.sh">generic_job.sh</a> (you might have
 to right-click and select `Save Link As...` or similar).
 
 ## Wall Time Limit
@@ -95,7 +95,8 @@ We recommend you to be as precise as you can when specifying the wall
 time limit as it will inflict on how fast your jobs will start to
 run:  It is easier for a short job to get started between two larger,
 higher priority jobs (so-called *backfilling*).  On the other hand, if
-the job has not finished before the wall time limit, it will be cancelled.
+the job has not finished before the wall time limit, it will be
+cancelled, so too long is better than too short due to lost work!
 
 ## Sub pages
 (FIXME: remove?)
