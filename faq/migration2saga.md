@@ -2,7 +2,7 @@
 
 Before you move existing scripts, jobs, etc to Saga, we recommend that you make
 yourself familiar with Saga by reading this page, work on the exercises listed and
-explore Sagas capabilities by trying out new commands and options.
+explore Saga's capabilities by trying out new commands and options.
 
 The major steps in migrating to Saga are:
 
@@ -186,7 +186,7 @@ A typical job script on Abel looks like (taken from
     cd $SCRATCH
     YourCommands
 
-This job ported for Saga would be (with some additions taken from [Sample MPI Batch Script](jobs/sample_mpi_batch_script.md))
+This job ported to Saga would be (with some additions taken from [Sample MPI Batch Script](jobs/sample_mpi_batch_script.md))
 
     #!/bin/bash
 
@@ -224,7 +224,7 @@ This job ported for Saga would be (with some additions taken from [Sample MPI Ba
     ## Make sure the results are copied back to the submit directory (see Work Directory below):
     # chkfile MyResultFile
     # chkfile is replaced by 'savefile' on Saga
-    savefile outputfile1 outputfile2
+    savefile MyResultFile
 
     ## Do some work:
     cd $SCRATCH
