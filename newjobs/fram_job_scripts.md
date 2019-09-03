@@ -5,7 +5,9 @@ different job types on Fram.  See [Fram Job Types](fram_job_types.md)
 for information about the different job types on Fram.
 
 ## Normal
-The basic type of job on Fram is the *normal* job.
+
+The basic type of job on Fram is the *normal* job.  Most of the other
+job types are "variants" of a *normal* job.
 
 *Normal* jobs must specify account (`--account`), walltime limit
 (`--time`) and number of nodes (`--nodes`).  Maximal wall time limit
@@ -56,21 +58,125 @@ the right number of cpus to each task.  For instance:
 	#SBATCH --nodes=4 --ntasks-per-node=2 --cpus-per-task=16
 
 Note that setting `--cpus-per-task` does *not* bind the tasks to the
-given number of cpus; it merely sets `$OMP_NUM_THREADS` so that OpenMP
-jobs by default will use the right number of threads.  (It is possible
-to override this number by setting `$OMP_NUM_THREADS` in the job
-script.)
+given number of cpus for _normal_ jobs; it merely sets
+`$OMP_NUM_THREADS` so that OpenMP jobs by default will use the right
+number of threads.  (It is possible to override this number by setting
+`$OMP_NUM_THREADS` in the job script.)
 
 The [Fram Sample MPI Job](fram_sample_mpi_job.md) page has an example
 of a normal MPI job.
 
-
 ## Preproc
+
+_Preproc_ jobs are specified just like _normal_ jobs, except that they
+also must specify `--qos=preproc`, and they are only allocated 1 node
+(so there is no need to specify `--nodes`).  The maximum walltime is 1
+day.  Otherwise, they are just like *normal* jobs.  The idea is that
+preprocessing, postprocessing or similar doesn't need to use many nodes.
+
+Example of a general _preproc_ specification (1 node, 4 tasks with 8 CPUs/task):
+
+    #SBATCH --account=MyProject --job-name=MyJob
+	#SBATCH --qos=preproc
+    #SBATCH --time=1:0:0
+    #SBATCH --ntasks-per-node=4 --cpus-per-task=8
+
+Here is a simpler _preproc_ job (one task on one node):
+
+    #SBATCH --account=MyProject --job-name=MyJob
+    #SBATCH --qos=preproc
+    #SBATCH --time=1:0:0
 
 ## Bigmem
 
+There are eight nodes with 512 GiB memory and two nodes with 6 TiB on
+Fram.  To use the large memory nodes, jobs must specify
+`--partition=bigmem`.  In addition, they must specify wall time limit,
+the number of tasks and the amount of memory memory per cpu.  A
+_bigmem_ job is assigned the requested cpus and memory exclusively,
+but shares nodes with other jobs.  If a _bigmem_ job tries to use more
+resident memory than requested, it gets killed.  The maximal wall time
+limit for bigmem jobs is 14 days.
+
+Here is an example that asks for 2 nodes, 3 tasks per node, 4 cpus per
+task, and 32 GiB RAM per cpu:
+
+    #SBATCH --account=MyProject --job-name=MyJob
+    #SBATCH --partition=bigmem
+    #SBATCH --time=1-0:0:0
+    #SBATCH --nodes=2 --ntasks-per-node=3 --cpus-per-task=4
+    #SBATCH --mem-per-cpu=32G
+
+Note that even though the memory specification is called `--mem-per-cpu`, the
+memory limit the job gets on the node is for the total usage by all processes
+on the node, so in the above example, it would get a limit of 3 * 4 * 32 GiB =
+384 GiB. The queue system doesn't care how the memory usage is divided between
+the processes or threads, as long as the total usage on the node is below the
+limit.
+
+Also note that contrary to *normal* jobs, *bigmem* jobs _will_ be bound to the
+cpu cores they are allocated, so the above sample job will have access to 12
+cores on each node. However, the three tasks are free to use all cores the job
+has access to on the node (12 in this example).
+
+Here is a simpler example, which only asks for 16 tasks (of 1 cpu
+each) and 32 GiB RAM per task; it does not care how the tasks are
+allocated on the nodes:
+
+    #SBATCH --account=MyProject --job-name=MyJob
+    #SBATCH --partition=bigmem
+    #SBATCH --time=1-0:0:0
+    #SBATCH --ntasks=16
+    #SBATCH --mem-per-cpu=32G
+
 ## Optimist
+
+_Optimist_ jobs are specified just like _normal_ jobs, except that
+they also must must specify `--qos=optimist`, and should *not*
+specify wall time limit.  They run on the same nodes as *normal* jobs.
+They get lower priority than other jobs, but can start as soon as
+there are free resources.  However, when any other job needs its
+resources, the _optimist_ job is stopped and put back on the job
+queue.  Therefore, all _optimist_ jobs must use checkpointing, and
+access to run _optimist_ jobs will only be given to projects that
+demonstrate that they can use checkpointing.
+
+An _optimist_ job will only be scheduled if there are free resources
+at least 30 minutes when the job is considered for scheduling.
+However, it can be requeued before 30 minutes have passed, so there is
+no gurarantee of a minimum run time.  When an _optimist_ job is
+requeued, it is first sent a `SIGTERM` signal.  This can be trapped in
+order to trigger a checkpoint.  After 30 seconds, the job receives a
+`SIGKILL` signal, which cannot be trapped.
+
+To be able submit `optimist` jobs the project has to send a request to
+Sigma2 to get an optimist quota.
+
+A simple _optimist_ job specification might be:
+
+	#SBATCH --account=MyProject
+	#SBATCH --job-name=MyJob
+	#SBATCH --nodes=4 --ntasks-per-node=32
 
 ## Devel
 
+FIXME: Update!
+
+_devel_ jobs must specify `--qos=devel`.  A _devel_ job is like a _normal_
+job, except that it can use between 1 and 4 nodes, and there is a limit of
+how many nodes _devel_ jobs can use at the same time (currently 4), each user is
+allowed to run only 1 _devel_ job simultaneously.  _devel_ jobs also have a 
+maximum walltime of 30 minutes. On the other hand, they get higher priority than
+other jobs, in order to start as soon as possible.
+
+If you have temporary development needs that cannot be fulfilled by the devel 
+QoS, please contact us at <support@metacenter.no>.
+
 ## Short
+
+_short_ jobs must specify `--qos=short`.  A _short_ job is like a _normal_
+job, except that it can use between 1 and 10 nodes, and there is a limit of
+how many nodes _short_ jobs can use at the same time (currently 16), each user is
+allowed to run 2 _short_ job simultaneously.  _short_ jobs also have a 
+maximum walltime of 2 hours. On the other hand, they get slightly higher priority 
+than other jobs, in order to start reasonably faster.

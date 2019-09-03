@@ -69,7 +69,9 @@ in the `module load` command.  We also recommend adding a
 module list    # For easier debugging
 ```
 
-after the `module load` commands.
+after the `module load` commands.  See [Software Module
+Scheme](../apps/modulescheme.md) for more information about software
+modules.
 
 All in all, a generic job script might look like this:
 

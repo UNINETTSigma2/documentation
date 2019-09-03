@@ -106,7 +106,6 @@
     * [Interactive Jobs](newjobs/interactive_jobs.md)
     * [Managing Jobs](newjobs/managing_jobs.md)
 	    * [Job Statuses](newjobs/job_statuses.md)
-    * [Software Modules](newjobs/modules.md)
     * [Projects](newjobs/projects.md)
     * [Dos and Don'ts](newjobs/dos_and_donts.md)
     * Guides
