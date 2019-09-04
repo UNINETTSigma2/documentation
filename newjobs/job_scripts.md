@@ -115,8 +115,6 @@ character can be used, but the recommended, and the only one supported
 by the Metacenter, is bash.
 
 ## Notes
-  
-- arguments to job scripts?
 
 - parallel tasks (perhaps per cluster)
   http://hpc.uit.no/en/latest/jobs/examples.html
@@ -128,15 +126,10 @@ by the Metacenter, is bash.
 
 - job dependencies
 
-- A sub page for each cluster, showing all details and examples for each job
-  type.
-  For Fram: job placement.
-  http://hpc.uit.no/en/latest/jobs/examples.html
-
 ## Questions
 
 - Some examples use `#!/bin/bash -l`.  Why? and Should we recommend/use
-  that?
+  that?  My suggestion: Not unless it is needed on Fram and Saga.
 - Should we recommend/use an explicit `exit 0` at the end?
 - I have to right-click and select `Save Link As...` to download
   script.  Is that just me?

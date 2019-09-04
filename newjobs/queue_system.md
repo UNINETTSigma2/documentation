@@ -39,6 +39,14 @@ Any output (stdout or stderr) of the job script will be written to a
 file called `slurm-<jobid>.out` in the directory where you ran
 `sbatch`, unless otherwise specified.
 
+It is also possible to pass arguments to the job script, like this:
+
+    sbatch YourJobscript arg1 arg2
+
+These will be available as the variables `$1`, `$2`, etc. in the job
+script, so in this example, `$1` would have the value `arg1` and `$2`
+the value `arg2`.
+
 All commands in the job script are performed on the compute-node(s)
 allocated by the queue system.  The script also specifies a number of
 requirements (memory usage, number of CPUs, run-time, etc.), used by

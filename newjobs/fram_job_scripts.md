@@ -64,7 +64,10 @@ number of threads.  (It is possible to override this number by setting
 `$OMP_NUM_THREADS` in the job script.)
 
 The [Fram Sample MPI Job](fram_sample_mpi_job.md) page has an example
-of a normal MPI job.
+of a _normal_ MPI job.
+
+See [Fram Job Placement](fram_job_placement.md) for optional
+parameters for controlling which nodes a _normal_ job is run on.
 
 ## Preproc
 
