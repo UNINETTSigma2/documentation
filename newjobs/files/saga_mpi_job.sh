@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###############################################
-# Script example for a normal MPI job on Fram #
+# Script example for a normal MPI job on Saga #
 ###############################################
 
 ## Project: replace XXXX with your project ID
@@ -9,11 +9,10 @@
 
 ## Job name:
 #SBATCH --job-name=MyJob
-## Allocating amount of resources:
-#SBATCH --nodes=10
-## Number of tasks (aka processes) to start on each node: Pure mpi, one task per core
-#SBATCH --ntasks-per-node=32
-## No memory pr task since this option is turned off on Fram in QOS normal.
+## Number of tasks (aka processes) to start: Pure mpi, one cpu per task
+#SBATCH --ntasks=16
+## Amount of memory per cpu (= per task, since we get 1 cpu per task):
+#SBATCH --mem-per-cpu=4G
 ## Run for 10 minutes, syntax is d-hh:mm:ss
 #SBATCH --time=0-00:10:00 
 

@@ -159,6 +159,7 @@ A simple _optimist_ job specification might be:
 
 	#SBATCH --account=MyProject
 	#SBATCH --job-name=MyJob
+    #SBATCH --partition=optimist
 	#SBATCH --nodes=4 --ntasks-per-node=32
 
 ## Devel
@@ -172,8 +173,9 @@ allowed to run only 1 _devel_ job simultaneously.  _devel_ jobs also have a
 maximum walltime of 30 minutes. On the other hand, they get higher priority than
 other jobs, in order to start as soon as possible.
 
-If you have temporary development needs that cannot be fulfilled by the devel 
-QoS, please contact us at <support@metacenter.no>.
+If you have _temporary_ development needs that cannot be fulfilled by
+the _devel_ or _short_ job types, please contact us at
+<support@metacenter.no>.
 
 ## Short
 
