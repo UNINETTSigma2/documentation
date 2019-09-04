@@ -100,21 +100,12 @@ higher priority jobs (so-called *backfilling*).  On the other hand, if
 the job has not finished before the wall time limit, it will be
 cancelled, so too long is better than too short due to lost work!
 
-## Sub pages
-(FIXME: remove?)
+## Further Topics
 
 - [Environment variables available in job scripts](environment_variables.md)
 - [Job work directory](work_directory.md)
 - [Array jobs](array_jobs.md)
 - [Porting Job Scripts from PBS/Torque](porting_from_pbs.md)
-
-## Footnotes
-
-[^1] Technically, any script language that uses `#` as a comment
-character can be used, but the recommended, and the only one supported
-by the Metacenter, is bash.
-
-## Notes
 
 - parallel tasks (perhaps per cluster)
   http://hpc.uit.no/en/latest/jobs/examples.html
@@ -122,9 +113,11 @@ by the Metacenter, is bash.
 - mpi jobs (perhaps per cluster)
   http://hpc.uit.no/en/latest/jobs/running_mpi_jobs.html
 
-- checkpointing
+## Footnotes
 
-- job dependencies
+[^1] Technically, any script language that uses `#` as a comment
+character can be used, but the recommended, and the only one supported
+by the Metacenter, is bash.
 
 ## Questions
 

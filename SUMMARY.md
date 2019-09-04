@@ -111,5 +111,5 @@
 	    * [Job Statuses](newjobs/job_statuses.md)
     * [Projects](newjobs/projects.md)
     * [Dos and Don'ts](newjobs/dos_and_donts.md)
-    * Guides
+    * [Guides](newjobs/guides.md)
         * [Porting From PBS/Torque](newjobs/porting_from_pbs.md)
