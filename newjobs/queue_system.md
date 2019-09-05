@@ -79,6 +79,13 @@ All specifications can be comma separated lists.  Examples:
     squeue -u foo -t PD      # shows pending jobs belonging to user 'foo'
     squeue -A bar            # shows all jobs in the project 'bar'
 
+To see all pending jobs, in priority order, you can use `pending`,
+which is a small wrapper for `squeue`.  See `pending --help` for
+details and options.
+
 For a description of common job states, see [Job States](job_states.md).
 
 __FIXME: qsumm (when implemented)__
+
+On Fram (and Saga?), there is also the web tool _Job Broswser_ that
+can be used to inspect many aspects of a job.  FIXME: URL
