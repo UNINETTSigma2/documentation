@@ -13,8 +13,7 @@ to right-click and select `Save Link As...` or similar).
 Try it out:
 
 ```bash
-python array_test.py
-
+$ python array_test.py
 start at 15:23:48
 sleep for 10 seconds ...
 stop at 15:23:58
@@ -35,8 +34,8 @@ easily be changed to run on Fram or use a different job type.
 Submit the script with `sbatch` and after a while you should see 16
 output files in your submit directory:
 
-```
-ls -l output*txt
+```bash
+$ ls -l output*txt
 -rw------- 1 user user 60 Oct 14 14:44 output_1.txt
 -rw------- 1 user user 60 Oct 14 14:44 output_10.txt
 -rw------- 1 user user 60 Oct 14 14:44 output_11.txt
@@ -57,8 +56,8 @@ ls -l output*txt
 
 Observe that they all started (approximately) at the same time:
 
-```
-grep start output*txt
+```bash
+$ grep start output*txt
 output_1.txt:start at 14:43:58
 output_10.txt:start at 14:44:00
 output_11.txt:start at 14:43:59
