@@ -108,7 +108,7 @@
 		    * [Sample MPI Job](newjobs/saga_sample_mpi_job.md)
     * [Interactive Jobs](newjobs/interactive_jobs.md)
     * [Managing Jobs](newjobs/managing_jobs.md)
-	    * [Job Statuses](newjobs/job_statuses.md)
+	    * [Job States](newjobs/job_states.md)
     * [Projects](newjobs/projects.md)
     * [Dos and Don'ts](newjobs/dos_and_donts.md)
     * [Guides](newjobs/guides.md)
