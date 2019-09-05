@@ -1,6 +1,6 @@
 # Job States
 
-Commands like `squeue`, `sacct` and `scontro show job` will show a
+Commands like `squeue`, `sacct` and `scontrol show job` will show a
 _state_ of each job.  All job states are explained in the [JOB STATE
 CODES section of the squeue documentation
 page](https://slurm.schedmd.com/squeue.html#lbAG).
