@@ -37,7 +37,6 @@ output files in your submit directory:
 
 ```
 ls -l output*txt
-
 -rw------- 1 user user 60 Oct 14 14:44 output_1.txt
 -rw------- 1 user user 60 Oct 14 14:44 output_10.txt
 -rw------- 1 user user 60 Oct 14 14:44 output_11.txt
@@ -60,7 +59,6 @@ Observe that they all started (approximately) at the same time:
 
 ```
 grep start output*txt
-
 output_1.txt:start at 14:43:58
 output_10.txt:start at 14:44:00
 output_11.txt:start at 14:43:59
