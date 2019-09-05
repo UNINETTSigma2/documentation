@@ -113,3 +113,4 @@
     * [Dos and Don'ts](newjobs/dos_and_donts.md)
     * [Guides](newjobs/guides.md)
         * [Porting From PBS/Torque](newjobs/porting_from_pbs.md)
+		* [Job Array Howto](newjobs/job_array_howto.md)
