@@ -103,7 +103,7 @@
 		* [Array Jobs](newjobs/array_jobs.md)
 	    * [Fram](newjobs/fram_job_scripts.md)
 		    * [Sample MPI Job](newjobs/fram_sample_mpi_job.md)
-            * [Fram Job Placement](fram_job_placement.md)
+            * [Fram Job Placement](newjobs/fram_job_placement.md)
 	    * [Saga](newjobs/saga_job_scripts.md)
 		    * [Sample MPI Job](newjobs/saga_sample_mpi_job.md)
     * [Interactive Jobs](newjobs/interactive_jobs.md)
