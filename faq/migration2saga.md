@@ -316,7 +316,7 @@ may take very long (hours) particularly when many dependencies are built.
 
 `eb SPAdes-3.12.0-foss-2018b.eb -r`
 
-When you run `module avail SPA` it may not be shown yet. That's because the
+When you run `module avail SPAdes` it may not be shown yet. That's because the
 module system doesn't search your $HOME for modules. Do
 
 `module use $HOME/.local/easybuild/modules/all`
