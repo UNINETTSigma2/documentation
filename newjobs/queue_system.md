@@ -87,5 +87,7 @@ For a description of common job states, see [Job States](job_states.md).
 
 __FIXME: qsumm (when implemented)__
 
-On Fram (and Saga?), there is also the web tool _Job Broswser_ that
-can be used to inspect many aspects of a job.  FIXME: URL
+On Fram, there is also the web tool [Job
+Browser](https://desktop.fram.sigma2.no/slurmbrowser/html/squeue.html)
+that can be used to inspect many aspects of the job queue.  (This will
+later be added to Saga as well.)

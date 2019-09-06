@@ -13,4 +13,4 @@ download>saga_mpi_job.sh</a> (you might have to right-click and select
 
 The actual startup of MPI application differs for different MPI
 libraries.  Since this part is crucial for application performance,
-please read about FIXME [how to start MPI jobs on Saga](mpi_jobs.md).
+please read about [how to run MPI jobs](running_mpi_jobs.md).

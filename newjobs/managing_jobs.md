@@ -39,8 +39,10 @@ available fields and what they mean.
 When a job has finished, the output file `slurm-JobId.out` will
 contain some usage statistics from `sstat` and `sacct`.
 
-On Fram (and Saga?), there is also the web tool _Job Broswser_ that
-can be used to inspect many aspects of a job.  FIXME: URL
+On Fram, there is also the web tool [Job
+Browser](https://desktop.fram.sigma2.no/slurmbrowser/html/squeue.html)
+that can be used to inspect many aspects of the jobs.  (This will
+later be added to Saga as well.)
 
 ## Inspecting Job Queue
 
