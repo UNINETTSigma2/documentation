@@ -1,4 +1,4 @@
-# Migration to Saga (beta version, use with care!)
+# Migration to Saga
 
 Before you move existing scripts, jobs, etc to Saga, we recommend that you make
 yourself familiar with Saga by reading this page, work on the exercises listed and
@@ -275,17 +275,19 @@ and rerun the rsync command.
 ## Installing software
 Installing software in folders accessible to users, e.g., $HOME, can be relatively
 easy with EasyBuild which is also used for system-wide installations. We illustrate
-how you can do this for the software package SAMtools for which Saga does not provide
-all the versions you would find on Abel (0.1.18, 0.1.19, 1.0, 1.1, 1.2, 1.3.1, 1.4, 1.9).
+how you can do this for the software package SPAdes for which Saga does not provide
+all the versions you would find on Abel (3.1.1, 3.5.0, 3.6.0, 3.7.0, 3.8.0, 3.9.0, 3.10.0, 3.10.1, 3.11.0, 3.11.1, 3.12.0, 3.13.0).
 
-We are going to demonstrate how to install version 1.3.1 which is the current default on Abel.
+We are going to demonstrate how to install version 3.12.0 which is the last version before the current default on Abel.
 
-**Note! Installing version 1.3.1 may fail out of the box (as it did for us). It
-works with some changes -- but these changes and particularly their implications
-are tricky to manage. Hence, we're looking for an easier example. Feel free to
-try your favourite software!**
+On a login node, run `screen -S spades_eb` - see Exercise 16 below for working
+with screens. With screens you can detach from and reattach to a running
+session, which is particularly useful when your network connection to Saga could
+be lost. If that happens, you just have to login to the machine where you started
+`screen` and reattach to a session. Without screens (or similar tools) your session
+would terminate, which means that also your interactive job would terminate.
 
-On a login node, run `screen -S samtools`. Then, start an interactive job (see details
+Next, start an interactive job (see details
 [above](#interactive-jobs)) with
 
 `srun --account=nnXXXXk --time=08:00:00 --nodes=1 --ntasks-per-node=40 --mem=185G --pty bash -i`
@@ -298,37 +300,43 @@ Load the module for EasyBuild
 
 `module load EasyBuild/3.9.3`
 
-Download an easyconfig file for SAMtool 1.3.1
+Download an easyconfig file for SPAdes 3.12.0
 
-`eb SAMtools-1.3.1-foss-2016b.eb --fetch`
+`eb SPAdes-3.12.0-foss-2018b.eb --fetch`
+
+You may check which easyconfig files are available at [EasyBuild config files](https://github.com/easybuilders/easybuild-easyconfigs/tree/master/easybuild/easyconfigs) and which have been downloaded to Saga at the local directory
+`/cluster/software/EasyBuild/3.9.3/lib/python2.7/site-packages/easybuild_easyconfigs-3.9.3-py2.7.egg/easybuild/easyconfigs/`.
 
 Do a dry run
 
-`eb SAMtools-1.3.1-foss-2016b.eb --dry-run`
+`eb SPAdes-3.12.0-foss-2018b.eb --dry-run`
 
 Assuming that is successful, i.e., no errors reported, build the software - this
 may take very long (hours) particularly when many dependencies are built.
 
-`eb SAMtools-1.3.1-foss-2016b.eb -r`
+`eb SPAdes-3.12.0-foss-2018b.eb -r`
 
-When you run `module avail SAM` it may not be shown yet. That's because the
+When you run `module avail SPA` it may not be shown yet. That's because the
 module system doesn't search your $HOME for modules. Do
 
 `module use $HOME/.local/easybuild/modules/all`
 
 Now you should see it
 
-    $ module avail SAM
+    $ module avail SPAdes
 
     ------------- /cluster/home/YOUR_USERNAME/.local/easybuild/modules/all --------------
-       SAMtools/1.3.1-foss-2016b
+       SPAdes/3.12.0-foss-2018b
 
     
     ------------------------------ /cluster/modulefiles/all ------------------------------
-       SAMtools/1.9-foss-2018b    SAMtools/1.9-intel-2018b
+       SPAdes/3.13.0-foss-2018b    SAMtools/3.13.1-GCC-8.2.0-2.31.1
     ...
 
 **Exercise 15:** Install the easyconfig `SAGE-6.4.eb`. Load it and find out what it provides.
+
+**Exercise 16:** Detach from the screen (type `CTRL+a` and `d`), list running
+screens `screen -list` and reattach to screen `spades_eb` with the command `screen -dR spades_eb`.
 
 ## Transferring files back home
 Sometimes you may need to transfer files out of Saga, e.g., to your laptop or
