@@ -9,11 +9,10 @@ for information about the different job types on Saga.
 The basic type of job on Saga is the *normal* job.
 
 _Normal_ jobs must specify account (`--account`), walltime limit
-(`--time`) and how much memory is needed.  Maximal wall time limit for
-normal jobs is 7 days (168 hours).  Usually, they will also specify
-the number of tasks (i.e., processes) to run (`--ntasks` - the default
-is 1), and they can also specify how many cpus each task should get
-(`--cpus-per-task` - the default is 1).
+(`--time`) and how much memory is needed.  Usually, they will also
+specify the number of tasks (i.e., processes) to run (`--ntasks` - the
+default is 1), and they can also specify how many cpus each task
+should get (`--cpus-per-task` - the default is 1).
 
 The jobs can also specify how man tasks should be run per node
 (`--ntasks-per-node`), or how many nodes the tasks should be
@@ -22,10 +21,7 @@ specifications, the tasks will be distributed on any available
 resources.
 
 Memory usage is specified with `--mem-per-cpu`, in _MiB_
-(`--mem-per-cpu=3600M`) or _GiB_ (`--mem-per-cpu=4G`).  The _normal_
-nodes on Saga have 186 GiB RAM and 40 cpus, which corresponds to 4.66
-GiB per cpu.  If your program needs a lot of memory per cpu (more than
-FIXME 8 GiB), then you should run it as a _bigmem_ job.
+(`--mem-per-cpu=3600M`) or _GiB_ (`--mem-per-cpu=4G`).
 
 If a job tries to use more (resident) memory on a compute node than it
 requested, it will be killed.  Note that it is the _total_ memory
@@ -64,10 +60,10 @@ This job will get 2 nodes, and run 4 processes on each of them, each
 process getting 10 cpus.  All in all, that will be two whole nodes on
 Saga.
 
-A _normal_ job is allocated the requested cpus and memory exclusively,
-but shares nodes with other jobs.  Also note that they are bound to
-the cpu cores they are allocated.  However, the tasks and threads are
-free to use all cores the job has access to on the node.
+All jobs on Saga are allocated the requested cpus and memory
+exclusively, but share nodes with other jobs.  Also note that they are
+bound to the cpu cores they are allocated.  However, the tasks and
+threads are free to use all cores the job has access to on the node.
 
 Note that the more restrictive one is in specifying how tasks are
 placed on nodes, the longer the job might have to wait in the job
@@ -81,12 +77,8 @@ of a _normal_ MPI job.
 
 ## Bigmem
 
-Saga has 28 nodes with twice the amount of memory as the _normal_ node
-(377 GiB RAM on 40 cpus) and 8 nodes with 3021 GiB RAM and 64 cpus.
-_bigmem_ jobs run on these nodes, and are specified exactly like the
-_normal_ jobs except that you also have to specify
-`--partition=bigmem`.  The maximal wall time limit for bigmem jobs is
-14 days.
+_Bigmem_ jobs are specified exactly like the _normal_ jobs except that
+you also have to specify `--partition=bigmem`.
 
 Here is an example that asks for 2 tasks, 4 cpus per task, and 32 GiB
 RAM per cpu:
@@ -102,23 +94,14 @@ RAM per cpu:
 _Optimist_ jobs are specified just like _normal_ jobs, except that
 they also must must specify `--qos=optimist`, and should *not*
 specify wall time limit.  They can on any node on Saga.
-They get lower priority than other jobs, but can start as soon as
-there are free resources.  However, when any other job needs its
-resources, the _optimist_ job is stopped and put back on the job
-queue.  Therefore, all _optimist_ jobs must use checkpointing, and
-access to run _optimist_ jobs will only be given to projects that
-demonstrate that they can use checkpointing.
 
-An _optimist_ job will only be scheduled if there are free resources
-at least 30 minutes when the job is considered for scheduling.
-However, it can be requeued before 30 minutes have passed, so there is
-no gurarantee of a minimum run time.  When an _optimist_ job is
-requeued, it is first sent a `SIGTERM` signal.  This can be trapped in
-order to trigger a checkpoint.  After 30 seconds, the job receives a
-`SIGKILL` signal, which cannot be trapped.
-
-To be able submit `optimist` jobs the project has to send a request to
-Sigma2 to get an optimist quota.
+An _optimist_ job can be scheduled if there are free resources at
+least 30 minutes when the job is considered for scheduling.  However,
+it can be requeued before 30 minutes have passed, so there is no
+gurarantee of a minimum run time.  When an _optimist_ job is requeued,
+it is first sent a `SIGTERM` signal.  This can be trapped in order to
+trigger a checkpoint.  After 30 seconds, the job receives a `SIGKILL`
+signal, which cannot be trapped.
 
 A simple _optimist_ job specification might be:
 
@@ -130,25 +113,13 @@ A simple _optimist_ job specification might be:
 
 ## Devel
 
-FIXME: Update!
+_Devel_ jobs must specify `--qos=devel`.  A _devel_ job is like a _normal_
+job, except that it has restrictions on job length and size.
 
-_devel_ jobs must specify `--qos=devel`.  A _devel_ job is like a _normal_
-job, except that it can use at most FIXME cpus, and there is a limit of
-how many nodes _devel_ jobs can use at the same time (currently 4), each user is
-allowed to run only 1 _devel_ job simultaneously.  _devel_ jobs also have a 
-maximum walltime of 30 minutes. On the other hand, they get higher priority than
-other jobs, in order to start as soon as possible.
+For instance:
 
-If you have _temporary_ development needs that cannot be fulfilled by the _devel_
-job type, please contact us at <support@metacenter.no>.
-
-## Short
-
-FIXME: Remove(?)
-
-_short_ jobs must specify `--qos=short`.  A _short_ job is like a _normal_
-job, except that it can use between 1 and 10 nodes, and there is a limit of
-how many nodes _short_ jobs can use at the same time (currently 16), each user is
-allowed to run 2 _short_ job simultaneously.  _short_ jobs also have a 
-maximum walltime of 2 hours. On the other hand, they get slightly higher priority 
-than other jobs, in order to start reasonably faster.
+	#SBATCH --account=MyProject
+	#SBATCH --job-name=MyJob
+    #SBATCH --qos=devel
+	#SBATCH --time=00:30:00
+	#SBATCH --ntasks=16

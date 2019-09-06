@@ -29,9 +29,5 @@ description of the job types and their purposes.
 | accel    | jobs needing GPUs                                    | cpu + memory + GPU | (none)      | 14 days                                   | normal   |
 | optimist | <p>jobs w/checkpointing,<br/> or very short jobs</p> | cpu + memory       | 1-256 cpus  | [see details](saga_job_types.md#optimist) | low      |
 | devel    | development jobs                                     | cpu + memory + GPU | 1--64 cpus  | 30 mins                                   | high     |
-| short    | development jobs                                     | cpu + memory + GPU | 1--128 cpus | 2 hours                                   | high     |
-
-FIXME: Do we really need the *short* job type on Saga?  Are the limits
-for *devel* ok?
 
 [Saga Job Types](saga_job_types.md).
