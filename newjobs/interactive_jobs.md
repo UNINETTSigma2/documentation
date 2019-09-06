@@ -1,5 +1,3 @@
-  http://hpc.uit.no/en/latest/jobs/interactive.html
-
 # Interactive Jobs
 
 Sometimes you might want to test or debug a calculation interactively,
