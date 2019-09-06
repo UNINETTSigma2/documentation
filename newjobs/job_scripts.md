@@ -105,10 +105,8 @@ cancelled, so too long is better than too short due to lost work!
 - [Environment variables available in job scripts](environment_variables.md)
 - [Job work directory](work_directory.md)
 - [Array jobs](array_jobs.md)
+- [Running Job Steps in Parallel](parallel_steps.md)
 - [Porting Job Scripts from PBS/Torque](porting_from_pbs.md)
-
-- parallel tasks (perhaps per cluster)
-  http://hpc.uit.no/en/latest/jobs/examples.html
 
 - mpi jobs (perhaps per cluster)
   http://hpc.uit.no/en/latest/jobs/running_mpi_jobs.html
