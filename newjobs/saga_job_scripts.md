@@ -89,6 +89,21 @@ RAM per cpu:
     #SBATCH --ntasks=2 --cpus-per-task=4
     #SBATCH --mem-per-cpu=32G
 
+## Accel
+
+*Accel* jobs are specified just like *normal* jobs except that they
+also have to specify `--partition=accel`.  Also, they must also
+specify how many GPUs to use, with `--gres=gpu:N`, where `N` is 1, 2,
+3 or 4.
+
+Here is an example that asks for 2 tasks and 2 gpus on one gpu node:
+
+    #SBATCH --account=MyProject --job-name=MyJob
+    #SBATCH --partition=accel --gres=gpu:2
+    #SBATCH --time=1-0:0:0
+    #SBATCH --ntasks-per-node=2 --nodes=1
+    #SBATCH --mem-per-cpu=8G
+
 ## Optimist
 
 _Optimist_ jobs are specified just like _normal_ jobs, except that
