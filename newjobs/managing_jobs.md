@@ -43,7 +43,6 @@ On Fram (and Saga?), there is also the web tool _Job Broswser_ that
 can be used to inspect many aspects of a job.  FIXME: URL
 
 ## Inspecting Job Queue
-FIXME: Remove?
 
 Tools for inspecting the job queue are described in [Queue System](queue_system.md).
 

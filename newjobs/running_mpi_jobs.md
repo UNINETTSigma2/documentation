@@ -1,6 +1,6 @@
-# Running MPI Applications on Fram
+# Running MPI Applications
 
-On Fram users have access to two MPI implementations:
+On Fram and Saga users have access to two MPI implementations:
 
 * OpenMPI is provided by the foss - and iomkl toolchains; and may also
   be loaded directly. For available versions, type `module avail

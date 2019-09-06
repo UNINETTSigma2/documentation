@@ -21,10 +21,11 @@ run in different ways:
 
 See `cost --man` for other options, and explanation of the output.
 The `cost` command only shows usage in the current _allocation
-period_.  Historical usage can be found in metacenter.no FIXME: URL
-
+period_.  Historical usage can be found in
+<https://www.metacenter.no/mas/projects>.
 
 ## Accounting
+
 The term "cpu hour" above is an over-simplification.  Jobs are
 accounted for both cpu and memory usage, as well as usage of GPUs.
 (Currently, jobs on Fram ar only accounted for their cpu usage, but

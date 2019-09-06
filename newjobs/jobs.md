@@ -9,7 +9,9 @@ it!__
 
 - OpenMP example(s)
 - MPI + OpenMP example(s)
-- how to run mpi jobs on Saga
+- how to run mpi jobs on Saga - Same as on Fram.
+- qsumm - must be rewritten first
+- scheduling.  Should be linked from queue_system.md
 
 ### Needs more work
 
@@ -19,4 +21,12 @@ it!__
   modify https://documentation.sigma2.no/storage/storagesystems.html ?
   (Perhaps modify, if possible.)
 - Lots of details and FIXMEs here and there; smaller decisions, etc.
+
+### Questions
+
+- For how much mem/cpu should we recommend using bigmem?  Suggestion:
+  Fram: > 4 GiB/cpu, Saga: > 8 GiB/cpu
+- Perhaps use **bold** instead of *italics* for terms?
+- Roy: Should we mention the job browser?  Is it available on Saga as
+  well?
 
