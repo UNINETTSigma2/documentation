@@ -10,15 +10,9 @@ The basic type of job on Fram is the *normal* job.  Most of the other
 job types are "variants" of a *normal* job.
 
 *Normal* jobs must specify account (`--account`), walltime limit
-(`--time`) and number of nodes (`--nodes`).  Maximal wall time limit
-for normal jobs is 7 days (168 hours).  By default, they must use
-between 4 and 32 nodes, but a project can be allowed to use more nodes
-if needed. The jobs can specify how many tasks should run per node and
-how many CPUs should be used by each task.
-
-If more than 32 nodes is needed, and the application in question can
-actually scale more than 32 nodes, please send a request to
-<support@metacenter.no>.
+(`--time`) and number of nodes (`--nodes`).  The jobs can specify how
+many tasks should run per node and how many CPUs should be used by
+each task.
 
 A typical job specification for a normal job would be
 
@@ -73,9 +67,8 @@ parameters for controlling which nodes a _normal_ job is run on.
 
 _Preproc_ jobs are specified just like _normal_ jobs, except that they
 also must specify `--qos=preproc`, and they are only allocated 1 node
-(so there is no need to specify `--nodes`).  The maximum walltime is 1
-day.  Otherwise, they are just like *normal* jobs.  The idea is that
-preprocessing, postprocessing or similar doesn't need to use many nodes.
+(so there is no need to specify `--nodes`).  Otherwise, they are just
+like *normal* jobs.
 
 Example of a general _preproc_ specification (1 node, 4 tasks with 8 CPUs/task):
 
@@ -92,14 +85,12 @@ Here is a simpler _preproc_ job (one task on one node):
 
 ## Bigmem
 
-There are eight nodes with 512 GiB memory and two nodes with 6 TiB on
-Fram.  To use the large memory nodes, jobs must specify
-`--partition=bigmem`.  In addition, they must specify wall time limit,
-the number of tasks and the amount of memory memory per cpu.  A
-_bigmem_ job is assigned the requested cpus and memory exclusively,
-but shares nodes with other jobs.  If a _bigmem_ job tries to use more
-resident memory than requested, it gets killed.  The maximal wall time
-limit for bigmem jobs is 14 days.
+_Bigmem_ jobs must specify `--partition=bigmem`.  In addition, they
+must specify wall time limit, the number of tasks and the amount of
+memory memory per cpu.  A _bigmem_ job is assigned the requested cpus
+and memory exclusively, but shares nodes with other jobs.  If a
+_bigmem_ job tries to use more resident memory than requested, it gets
+killed.  The maximal wall time limit for bigmem jobs is 14 days.
 
 Here is an example that asks for 2 nodes, 3 tasks per node, 4 cpus per
 task, and 32 GiB RAM per cpu:
@@ -137,23 +128,14 @@ allocated on the nodes:
 _Optimist_ jobs are specified just like _normal_ jobs, except that
 they also must must specify `--qos=optimist`, and should *not*
 specify wall time limit.  They run on the same nodes as *normal* jobs.
-They get lower priority than other jobs, but can start as soon as
-there are free resources.  However, when any other job needs its
-resources, the _optimist_ job is stopped and put back on the job
-queue.  Therefore, all _optimist_ jobs must use checkpointing, and
-access to run _optimist_ jobs will only be given to projects that
-demonstrate that they can use checkpointing.
 
-An _optimist_ job will only be scheduled if there are free resources
-at least 30 minutes when the job is considered for scheduling.
-However, it can be requeued before 30 minutes have passed, so there is
-no gurarantee of a minimum run time.  When an _optimist_ job is
-requeued, it is first sent a `SIGTERM` signal.  This can be trapped in
-order to trigger a checkpoint.  After 30 seconds, the job receives a
-`SIGKILL` signal, which cannot be trapped.
-
-To be able submit `optimist` jobs the project has to send a request to
-Sigma2 to get an optimist quota.
+An _optimist_ job can be scheduled if there are free resources at
+least 30 minutes when the job is considered for scheduling.  However,
+it can be requeued before 30 minutes have passed, so there is no
+gurarantee of a minimum run time.  When an _optimist_ job is requeued,
+it is first sent a `SIGTERM` signal.  This can be trapped in order to
+trigger a checkpoint.  After 30 seconds, the job receives a `SIGKILL`
+signal, which cannot be trapped.
 
 A simple _optimist_ job specification might be:
 
@@ -164,24 +146,29 @@ A simple _optimist_ job specification might be:
 
 ## Devel
 
-FIXME: Update!
-
 _devel_ jobs must specify `--qos=devel`.  A _devel_ job is like a _normal_
-job, except that it can use between 1 and 4 nodes, and there is a limit of
-how many nodes _devel_ jobs can use at the same time (currently 4), each user is
-allowed to run only 1 _devel_ job simultaneously.  _devel_ jobs also have a 
-maximum walltime of 30 minutes. On the other hand, they get higher priority than
-other jobs, in order to start as soon as possible.
+job, except that it has restrictions on job length and size.
 
-If you have _temporary_ development needs that cannot be fulfilled by
-the _devel_ or _short_ job types, please contact us at
-<support@metacenter.no>.
+For instance:
+
+	#SBATCH --account=MyProject
+	#SBATCH --job-name=MyJob
+    #SBATCH --qos=devel
+	#SBATCH --time=00:30:00
+	#SBATCH --nodes=2 --ntasks-per-node=32
 
 ## Short
 
 _short_ jobs must specify `--qos=short`.  A _short_ job is like a _normal_
-job, except that it can use between 1 and 10 nodes, and there is a limit of
-how many nodes _short_ jobs can use at the same time (currently 16), each user is
-allowed to run 2 _short_ job simultaneously.  _short_ jobs also have a 
-maximum walltime of 2 hours. On the other hand, they get slightly higher priority 
-than other jobs, in order to start reasonably faster.
+job, except that it has restrictions on job length and size.  It
+differs from _devel_ jobs in that it allows somewhat longer and larger
+jobs, but typically have longer wait time.
+
+For instance:
+
+	#SBATCH --account=MyProject
+	#SBATCH --job-name=MyJob
+    #SBATCH --qos=short
+	#SBATCH --time=2:00:00
+	#SBATCH --nodes=8 --ntasks-per-node=32
+
