@@ -107,20 +107,11 @@ cancelled, so too long is better than too short due to lost work!
 - [Array jobs](array_jobs.md)
 - [Running Job Steps in Parallel](parallel_steps.md)
 - [Porting Job Scripts from PBS/Torque](porting_from_pbs.md)
-
-- mpi jobs (perhaps per cluster)
-  http://hpc.uit.no/en/latest/jobs/running_mpi_jobs.html
+- [Running MPI Jobs on Fram](fram_mpi_jobs.md)
+- FIXME: Running MPI Jobs on Saga (or perhaps intergrate to the above).
 
 ## Footnotes
 
 [^1] Technically, any script language that uses `#` as a comment
 character can be used, but the recommended, and the only one supported
 by the Metacenter, is bash.
-
-## Questions
-
-- Some examples use `#!/bin/bash -l`.  Why? and Should we recommend/use
-  that?  My suggestion: Not unless it is needed on Fram and Saga.
-- Should we recommend/use an explicit `exit 0` at the end?
-- I have to right-click and select `Save Link As...` to download
-  script.  Is that just me?
