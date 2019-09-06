@@ -46,10 +46,10 @@ compute nodes when there are enough resources available.
 
 ### Job step
 A job is divided into one or more _job steps_.  Each time a job runs
-`srun` or `mpirun`, a new job step is created.  Job steps are normally
-executed sequentially, one after each other (See FIXME for an
-exception).  In addition to these, the batch job script itself, which
-runs on the first of the allocated nodes, is considered a job step
+`srun` or `mpirun`, a new job step is created.  Job steps are
+[normally](parallel_steps.md) executed sequentially, one after each
+other.  In addition to these, the batch job script itself, which runs
+on the first of the allocated nodes, is considered a job step
 (`batch`).
 
 `sacct` will show the job steps.  For instance:
