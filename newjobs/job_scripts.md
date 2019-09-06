@@ -107,8 +107,7 @@ cancelled, so too long is better than too short due to lost work!
 - [Array jobs](array_jobs.md)
 - [Running Job Steps in Parallel](parallel_steps.md)
 - [Porting Job Scripts from PBS/Torque](porting_from_pbs.md)
-- [Running MPI Jobs on Fram](fram_mpi_jobs.md)
-- FIXME: Running MPI Jobs on Saga (or perhaps intergrate to the above).
+- [Running MPI Jobs](running_mpi_jobs.md)
 
 ## Footnotes
 

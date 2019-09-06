@@ -112,7 +112,7 @@
     * [Projects](newjobs/projects.md)
     * [Dos and Don'ts](newjobs/dos_and_donts.md)
     * [Guides](newjobs/guides.md)
-        * [Running MPI Jobs on Fram](newjobs/fram_mpi_jobs.md)
+        * [Running MPI Jobs](newjobs/running_mpi_jobs.md)
         * [Porting From PBS/Torque](newjobs/porting_from_pbs.md)
 		* [Job Array Howto](newjobs/job_array_howto.md)
 		* [Running Job Steps in Parallel](newjobs/parallel_steps.md)

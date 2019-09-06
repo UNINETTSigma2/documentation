@@ -9,7 +9,6 @@ it!__
 
 - OpenMP example(s)
 - MPI + OpenMP example(s)
-- how to run mpi jobs on Saga - Same as on Fram.
 - qsumm - must be rewritten first
 - scheduling.  Should be linked from queue_system.md
 
