@@ -1,53 +1,74 @@
-#!/bin/bash -l
+#!/bin/bash
 
 #######################################
 # example for a hybrid MPI OpenMP job #
 #######################################
 
-#SBATCH --job-name=example
+## Project: replace XXXX with your account ID
+#SBATCH --account=nnXXXXk 
 
-# we ask for 4 MPI tasks with 10 cores each
-#SBATCH --nodes=2
+## Job name:
+#SBATCH --job-name=MyHybridJob
+## Allocating amount of resources:
+#SBATCH --nodes=10
+## Number of tasks (aka processes) to start on each node: 
 #SBATCH --ntasks-per-node=2
-#SBATCH --cpus-per-task=10
+## Set OMP_NUM_THREADS
+#SBATCH --cpus-per-task=16
+## Run for a day, syntax is d-hh:mm:ss
+#SBATCH --time=1-0:0:0 
 
-# run for five minutes
-#              d-hh:mm:ss
-#SBATCH --time=0-00:05:00
-
-# short partition should do it
-#SBATCH --partition short
-
-# 500MB memory per core
-# this is a hard limit 
-#SBATCH --mem-per-cpu=500MB
-
-# turn on all mail notification
+# turn on all mail notification, and also provide mail address:
 #SBATCH --mail-type=ALL
+#SBATCH -M my.email@institution.no
 
 # you may not place bash commands before the last SBATCH directive
+######################################################
+## Setting variables and prepare runtime environment:
+##----------------------------------------------------
+## Recommended safety settings:
+set -o errexit # Make bash exit on any error
+set -o nounset # Treat unset variables as errors
 
-# define and create a unique scratch directory
-SCRATCH_DIRECTORY=/global/work/${USER}/example/${SLURM_JOBID}
-mkdir -p ${SCRATCH_DIRECTORY}
-cd ${SCRATCH_DIRECTORY}
-
-# we copy everything we need to the scratch directory
-# ${SLURM_SUBMIT_DIR} points to the path where this script was submitted from
-cp ${SLURM_SUBMIT_DIR}/my_binary.x ${SCRATCH_DIRECTORY}
-
-# we set OMP_NUM_THREADS to the number cpu cores per MPI task
+# This may or may not be necessary, should be set by SLURM:
 export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
 
-# we execute the job and time it
-time mpirun -np $SLURM_NTASKS ./my_binary.x > my_output
+# Loading Software modules
+# Allways be explicit on loading modules and setting run time environment!!!
+module restore system   # Restore loaded modules to the default
+module load MySoftWare/Versions #nb: Versions is important!
 
-# after the job is done we copy our output back to $SLURM_SUBMIT_DIR
-cp ${SCRATCH_DIRECTORY}/my_output ${SLURM_SUBMIT_DIR}
+# Type "module avail MySoftware" to find available modules and versions
+# It is also recommended to to list loaded modules, for easier debugging:
+module list  
 
-# we step out of the scratch directory and remove it
-cd ${SLURM_SUBMIT_DIR}
-rm -rf ${SCRATCH_DIRECTORY}
+#######################################################
+## Prepare jobs, moving input files and making sure 
+# output is copied back and taken care of
+##-----------------------------------------------------
 
-# happy end
+# Prepare input files
+cp inputfiles $SCRATCH
+cd $SCRATCH
+
+# Make sure output is copied back after job finishes
+savefile outputfile1 outputfile2
+
+########################################################
+# Run the application, and we typically time it:
+##------------------------------------------------------
+ 
+# Run the application  - please add hash in front of srun and remove 
+# hash in front of mpirun if using intel-toolchain 
+
+# For OpenMPI (foss and iomkl toolchains), srun is recommended:
+time srun MySoftWare-exec
+
+## For IntelMPI (intel toolchain), mpirun is recommended:
+#time mpirun MySoftWare-exec
+
+#########################################################
+# That was about all this time; lets call it a day...
+##-------------------------------------------------------
+# Finish the script
 exit 0

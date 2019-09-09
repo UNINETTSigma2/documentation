@@ -65,6 +65,17 @@ script, one should execute
 $ perf-report mpirun ./my-program
 ```
 
+This way of launching Performance Reports is called "express launch mode" and it makes 
+it easy to modify your existing queue submission script. However, this can sometimes
+fail. If this happens then try to run Performance Reports in "compatibility mode":
+
+```
+$ perf-report -n 256 ./my-program
+```
+
+That is: without "mpirun" and by specifying the number of processes that you use on
+the command line.
+
 To run interactive tests one needs to submit [an interactive job to
 SLURM](../jobs/interactive.md) using `srun` (*not* `salloc`), e.g.:
 

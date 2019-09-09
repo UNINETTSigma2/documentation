@@ -35,9 +35,9 @@ Access to the Project data storage area is through front-end (login) node:
     login.nird.sigma2.no
 
 Note that this hostname is actually a DNS alias for:   
-login1.nird.sigma2.no, login2.nird.sigma2.no, login3.nird.sigma2.no, login4.nird.sigma2.no   
+login0.nird.sigma2.no, login1.nird.sigma2.no, login2.nird.sigma2.no, login3.nird.sigma2.no   
 those are containers each one running the image of a login node.   
-A login container offers resources for a maximum of 16 cpus and 128MB of memory.
+A login container offers resources for a maximum of 16 cpus and 128GB of memory.
 
 Users must be registered and authorized by the project responsible before obtaining access.
 
@@ -47,13 +47,12 @@ To access or transfer data use the following tools: ssh, scp or stfp. Visit the 
 ### Home directories
 
 Home directories are located in `/nird/home/<username>`.
-Quota for home is 20GB and 100000 files. To check the disk usage type
+Default quota for home is 20GB and 100000 files. To check the disk usage type
 
      dusage
      
-Home directories are also visible at /nird/home from FRAM login nodes.   
-Since those are mounted with NFS on FRAM it is very important not to use home directories   
-as storage for jobs running of FRAM.
+Home directories do also contain a backup of FRAM home directories (when relevant) in `/nird/home/<username>/backup/fram`.   
+To account for this default quota is doubled when relevant.
 
 ### Project area
 

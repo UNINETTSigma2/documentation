@@ -1,50 +1,70 @@
-#!/bin/bash -l
+#!/bin/bash
 
-##########################
-# example for an MPI job #
-##########################
+#################################
+# Script example for an MPI job #
+#################################
 
-#SBATCH --job-name=example
+## Project: replace XXXX with your account ID
+#SBATCH --account=nnXXXXk 
 
-# 80 MPI tasks in total
-# Stallo has 16 or 20 cores/node and therefore we take
-# a number that is divisible by both
-#SBATCH --ntasks=80
+## Job name:
+#SBATCH --job-name=MyJob
+## Allocating amount of resources:
+#SBATCH --nodes=10
+## Number of tasks (aka processes) to start on each node: Pure mpi, one task per core
+#SBATCH --ntasks-per-node=32
+## No memory pr task since this option is turned off on Fram in QOS normal.
+## Run for 10 minutes, syntax is d-hh:mm:ss
+#SBATCH --time=0-00:10:00 
 
-# run for five minutes
-#              d-hh:mm:ss
-#SBATCH --time=0-00:05:00
-
-# short partition should do it
-#SBATCH --partition short
-
-# 500MB memory per core
-# this is a hard limit 
-#SBATCH --mem-per-cpu=500MB
-
-# turn on all mail notification
+# turn on all mail notification, and also provide mail address:
 #SBATCH --mail-type=ALL
+#SBATCH -M my.email@institution.no
 
 # you may not place bash commands before the last SBATCH directive
+######################################################
+## Setting variables and prepare runtime environment:
+##----------------------------------------------------
+## Recommended safety settings:
+set -o errexit # Make bash exit on any error
+set -o nounset # Treat unset variables as errors
 
-# define and create a unique scratch directory
-SCRATCH_DIRECTORY=/global/work/${USER}/example/${SLURM_JOBID}
-mkdir -p ${SCRATCH_DIRECTORY}
-cd ${SCRATCH_DIRECTORY}
+# Loading Software modules
+# Allways be explicit on loading modules and setting run time environment!!!
+module restore system   # Restore loaded modules to the default
+module load MySoftWare/Versions #nb: Versions is important!
 
-# we copy everything we need to the scratch directory
-# ${SLURM_SUBMIT_DIR} points to the path where this script was submitted from
-cp ${SLURM_SUBMIT_DIR}/my_binary.x ${SCRATCH_DIRECTORY}
+# Type "module avail MySoftware" to find available modules and versions
+# It is also recommended to to list loaded modules, for easier debugging:
+module list  
 
-# we execute the job and time it
-time mpirun -np $SLURM_NTASKS ./my_binary.x > my_output
+#######################################################
+## Prepare jobs, moving input files and making sure 
+# output is copied back and taken care of
+##-----------------------------------------------------
 
-# after the job is done we copy our output back to $SLURM_SUBMIT_DIR
-cp ${SCRATCH_DIRECTORY}/my_output ${SLURM_SUBMIT_DIR}
+# Prepare input files
+cp inputfiles $SCRATCH
+cd $SCRATCH
 
-# we step out of the scratch directory and remove it
-cd ${SLURM_SUBMIT_DIR}
-rm -rf ${SCRATCH_DIRECTORY}
+# Make sure output is copied back after job finishes
+savefile outputfile1 outputfile2
 
-# happy end
+########################################################
+# Run the application, and we typically time it:
+##------------------------------------------------------
+ 
+# Run the application  - please add hash in front of srun and remove 
+# hash in front of mpirun if using intel-toolchain 
+
+# For OpenMPI (foss and iomkl toolchains), srun is recommended:
+time srun MySoftWare-exec
+
+## For IntelMPI (intel toolchain), mpirun is recommended:
+#time mpirun MySoftWare-exec
+
+#########################################################
+# That was about all this time; lets call it a day...
+##-------------------------------------------------------
+# Finish the script
 exit 0

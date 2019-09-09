@@ -10,9 +10,12 @@ and how they are run.  The different types are
   special nodes with more RAM.
 - **preproc**: Short, 1-node jobs for things like preprocessing and
   postprocessing, that don't need many cpus.
-- **devel**: Short jobs, meant for quick development and testing.  They get
-  higher priority to start sooner, but can only use upto 10 nodes each, and 16
-  in total.
+- **devel**: Shorter jobs, meant for quick development and testing.  They get
+  higher priority to start sooner, and there is also dedicated nodes for this type of job
+  during the working hours (07:00-21:00). There is 1 job per user limit.
+- **short**: This is same as devel jobs but without dedicated nodes, and user can use more nodes compare to 
+  devel jobs, currently 16, it gets higher priory then normal jobs but less priority then devel jobs. There is 
+  2 job per user limit for short jobs.
 - **optimist** : Low priority jobs that can start whenever there are
   free resources, but will be requeued when other jobs need the
   resources.  Meant for jobs that use checkpointing.  Projects need to
@@ -32,15 +35,24 @@ scale more than 32 nodes, please send a request to <support@metacenter.no>.
 
 All normal jobs gets exclusive access to whole nodes (all CPUs and memory).
 If a job tries to use more (resident) memory than is configured on the nodes,
-it will be killed.  Currently, this limit is 60 GiB, *but it can change*. The
-maximal wall time limit for normal jobs is 7 days (168 hours).
+it will be killed.  Currently, this limit is 60 GiB, *but it can change*. 
+If a job would require more memory per core than the given 60GiB split by 32 cores, the trick is to limit the number of cores/node the following way:
+
+
+	#SBATCH --account=nn9999k 
+	#SBATCH --time=1-0:0:0
+	#SBATCH --nodes=10 --ntasks-per-node=4
+
+The example above will use only 4 cores/node, giving each core 15GiB/core to the relevant job. If your job needs more than 60GiB/core, the only option on Fram is `--partition=bigmem`(see below). 
+
+Maximal wall time limit for normal jobs is 7 days (168 hours). **With respect to walltime settings we recommend you to be as precise as you can when specifying the parameters as they will inflict on how fast your jobs will start to run. But: too long is better than too short due to lost work!**
 
 Note that setting `--cpus-per-task` does *not* bind the tasks to the given number of
 CPUs for normal jobs; it merely sets `$OMP_NUM_THREADS` so that OpenMP jobs by
 default will use the right number of threads. (It is possible to override this
 number by setting `$OMP_NUM_THREADS` in the job script.)
 
-The [Sample Batch Script](samplescript.md) page has an example of a normal job.
+The [Sample MPI Batch Script](sample_mpi_script.md) page has an example of a normal MPI job.
 
 ## `bigmem` Jobs
 
@@ -94,14 +106,23 @@ Here is a simpler `preproc` job (one task on one node):
 ## `devel` Jobs
 
 `devel` jobs must specify `--qos=devel`.  A `devel` job is like a `normal`
-job, except that it can use between 1 and 10 nodes, and there is a limit of
-how many nodes `devel` jobs can use at the same time (currently 16).  `devel`
-jobs also have a maximum walltime of 1 hour.  On the other hand, they get
-higher priority than other jobs, in order to start as soon as possible.
+job, except that it can use between 1 and 4 nodes, and there is a limit of
+how many nodes `devel` jobs can use at the same time (currently 4), each user is
+allowed to run only 1 `devel` job simultaneously.  `devel` jobs also have a 
+maximum walltime of 30 minutes. On the other hand, they get higher priority than
+other jobs, in order to start as soon as possible.
 
 If you have temporary development needs that cannot be fulfilled by the devel 
 QoS, please contact us at <support@metacenter.no>.
 
+## `short` Jobs
+
+`short` jobs must specify `--qos=short`.  A `short` job is like a `normal`
+job, except that it can use between 1 and 10 nodes, and there is a limit of
+how many nodes `short` jobs can use at the same time (currently 16), each user is
+allowed to run 2 `short` job simultaneously.  `short` jobs also have a 
+maximum walltime of 2 hours. On the other hand, they get slightly higher priority 
+than other jobs, in order to start reasonably faster.
 
 ## `optimist` Jobs
 

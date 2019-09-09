@@ -1,6 +1,6 @@
 # Job Scripts
 
-The HPC machines run applications as jobs in the queuing system which schedules the tasks and process to run on compute nodes. Abel, Stallo, and Fram use the Slurm Workload Manager (Slurm). There is an example script found at [Sample Batch Script](samplescript.md).
+The HPC machines run applications as jobs in the queuing system which schedules the tasks and process to run on compute nodes. Machines in the Metacenter do currently use the [Slurm Workload Manager](https://slurm.schedmd.com/). There is an example script found at [Sample MPI Batch Script](sample_mpi_script.md).
 
 For more information about the queue system and how to set the proper priorities, visit the [Queue System](queuesystem.md) page.
 

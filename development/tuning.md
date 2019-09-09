@@ -159,4 +159,9 @@ time.
 More information at the Best Practice Guide  :
 [http://www.prace-ri.eu/best-practice-guide-knights-landing-january-2017/#id-1.8.3.10]
 
+ To use Intel Trace Analyzer load the corresponding module, e.g.
+ 
+ ```
+ ml load itac/2019.4.036
+ ```
  

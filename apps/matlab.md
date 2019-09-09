@@ -28,6 +28,8 @@ Commercial users need to sign a Hosting Provider agreement. Contact: sigma2@unin
 | :------------- | :------------- |
 | MATLAB |2017a|
 | MATLAB |2018a|
+| MATLAB |2018b|
+| MATLAB |2019a|
 
 To see available versions when logged into Fram issue command
 
@@ -62,7 +64,7 @@ matlab -nodisplay -nodesktop -nojvm -r "myprogram"
 ```
 
 ## MPI for Matlab
-MPI for Matlab is installed on Fram (for parallelizing of many compute nodes)
+MPI for Matlab is installed on Fram (for parallelizing on many compute nodes)
 
 User guide:
 

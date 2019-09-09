@@ -1,3 +1,0 @@
-**Future funding model: commented by someone?**
-
-Here, comments has to be added...

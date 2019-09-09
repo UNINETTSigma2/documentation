@@ -4,15 +4,11 @@ Currently, the software-team in the Metacenter is using the [EasyBuild system](h
 
 There are two distinct scenarios covered in this tutorial; first installations for single user only - placing the software in standard user home folder. Second, installations for a project/group - placing the softeware in a project folder for many to share. 
 
-Note that the software install team at the Norwegian Metacenter **never** do installations in "$HOME" for users, and preferably not in /cluster/projects.
+Note that the software install team at the Norwegian Metacenter **never** do installations in `$HOME` for users, and preferably not in /cluster/projects.
 
-## Installing softeware in home-folder:
+## Installing software in home-folder:
 
-Log in to Fram your preferred way, then type
-
-	module load EasyBuild/3.8.0 
-
-Note that there is, currently at least, no default modules on Fram. Thus you need to be explicit. The easybuild version changes at least a couple of times a year, so do check what is the available version(s) by typing:
+Log in to Fram your preferred way. Note that there is, currently at least, no default modules on Fram. Thus you need to be explicit. The easybuild version changes at least a couple of times a year, so do check what is the available version(s) by typing:
 
 	module avail easybuild
 
@@ -21,17 +17,25 @@ Now, as of January 2019, you will see this:
 	module avail EasyBuild
 
 	----------------------- /cluster/modulefiles/all ------------------------
-	   EasyBuild/3.8.0
+	   EasyBuild/3.8.1
 
 	Use "module spider" to find all possible modules.
 	Use "module keyword key1 key2 ..." to search for all possible modules
 	matching any of the "keys".
 
-Choose 3.8.0 in this case. Now, we advice to do an install in two steps, first download the sources of your software and then do the full install. Say you want to install [rjags 4.6](http://cran.r-project.org/web/packages/rjags), then you type:
+Choose 3.8.1 in this case and load this module by typing:
+
+	module load EasyBuild/3.8.1 
+
+Now, we advice to do an install in three steps, first download the sources of your software, then do a test run where you check what will be installed and then the full install. 
+
+Say you want to install [rjags 4.6](http://cran.r-project.org/web/packages/rjags), you would need to find out which *[easybuild easyconfigs](https://easybuild.readthedocs.io/en/latest/Writing_easyconfig_files.html#what-is-an-easyconfig-file)* that is currently available for that explicit code. This you would find here: <https://github.com/easybuilders/easybuild-easyconfigs/tree/master/easybuild/easyconfigs/r/rjags>. A general overview of all community available *easyconfigs* is available here:<https://github.com/easybuilders/easybuild-easyconfigs/tree/master/easybuild/easyconfigs>. In this example we choose the *easyconfig* for rjags version 4-6 with, compiled with the full intel suite release from second half of 2017 and aimed at R release 3.4.3 (thus the long name of the eb-file).
+
+To download the source of software, type:
 
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --fetch
 
-It may be a good idea to get an overview of what will be installed with the command you are planning to use, this you get by the command
+It may be a good idea to get an overview of what will be installed with the command you are planning to use, this you get by the command:
 
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun
 
@@ -59,7 +63,7 @@ Then do as follows:
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --fetch --prefix=/cluster/projects/nnXXXXk/easybuild
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun --prefix=/cluster/projects/nnXXXXk/easybuild #as mentioned above.
 	
-where XXXX is your project id number. When a suksessfull download of sources is made, then type:
+where XXXX is your project id number. When a sucsessful download of sources is made, then type:
 
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --prefix=/cluster/projects/nnXXXXk/easybuild
 
