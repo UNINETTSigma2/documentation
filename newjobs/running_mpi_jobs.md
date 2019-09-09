@@ -57,6 +57,18 @@ command-line parameters, or environment variables. Parameters specific
 to OpenMPI can be set using [environment
 variables](https://www.open-mpi.org/faq/?category=tuning#setting-mca-params).
 
+In the above scenario `srun` uses the PMI2 interface to launch the MPI
+ranks on the compute nodes, and to exchange the InfiniBand address information between
+the ranks. For large jobs the startup might be faster using OpenMPI's PMIx method:
+
+```
+srun --mpi=pmix /path/to/MySoftWare_exec
+```
+
+The startup time might be improved further using the OpenMPI MCA
+`pmix_base_async_modex` argument (see below). With `srun` this needs to be
+set using an environment variable.
+
 ### `mpirun`
 
 For those familiar with the OpenMPI tools, MPI applications can also
@@ -72,6 +84,18 @@ socket. Please refer to the
 if you need to change those settings. Note that `-report-bindings` is
 a very useful option if you want to inspect the individual MPI ranks
 to see on which nodes, and on which CPU cores they run.
+
+When launching large jobs with sparse communication patterns
+(neighbor to neighbor, local communication) the startup time will be improved
+by using the following command line argument:
+
+```
+mpirun -mca pmix_base_async_modex 1 ...
+```
+In the method above the address information will be exchanged between the ranks on a
+need-to-know basis, i.e., at first data exchange between two ranks, instead of an all to all communication
+step at program startup. Applications with dense communication patterns (peer to peer exchanges
+with all ranks) will likely experience a slowdown.
 
 
 ## Intel MPI
@@ -101,10 +125,8 @@ OpenMP](https://software.intel.com/en-us/mpi-developer-reference-windows-interop
 With `srun`, Intel MPI applications can be started as follows:
 
 ```
-srun --mpi=pmi2 /path/to/MySoftWare_exec
+srun /path/to/MySoftWare_exec
 ```
-
-Note that you must explicitly specify `--mpi=pmi2`.
 
 We have observed that in the current setup some applications compiled
 against Intel MPI and executed with `srun` achieve inferior
