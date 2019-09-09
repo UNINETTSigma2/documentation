@@ -59,7 +59,7 @@ followin environment variables:
 - `SRUN_WAIT4SWITCH`: Max wait time for `srun` jobs.
 
 (`salloc` and `srun` jobs are interactive jobs; see
-[Interactive Jobs](interactive.md).)  As above, the maximal possible wait
+[Interactive Jobs](interactive_jobs.md).)  As above, the maximal possible wait
 time to specify is 28 days[^1], and any time longer than that will *silently be
 truncated*.  The change takes effect for jobs submitted after you change the
 variables.  For instance, to change the default to allow two islands, and wait
