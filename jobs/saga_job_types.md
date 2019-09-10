@@ -97,9 +97,10 @@ send a request to <support@metacenter.no>.
 
 - __Allocation units__: cpus and memory and GPUs
 - __Job Limits__:
-    - maximum 64 cpus per job
-    - maximum 64 cpus in use at the same time
-- __Maximum walltime__: 30 minutes
+    - maximum 128 cpus per job
+    - maximum 256 cpus in use at the same time
+    - maximum 2 running jobs per user
+- __Maximum walltime__: 2 hours
 - __Priority__: high
 - __Available resources__: *devel* jobs can run on any node on Saga
 - __Job Scripts__: [Saga devel Job Scripts](saga_job_scripts.md#devel)

@@ -10,15 +10,13 @@ it!__
 - OpenMP example(s)
 - MPI + OpenMP example(s)
 - qsumm - must be rewritten first
-- scheduling.  Should be linked from queue_system.md
 
 ### Needs more work
 
 - Work directory.  Should we have a separate page inside "JOBS", or
   modify https://documentation.sigma2.no/storage/storagesystems.html ?
   (Perhaps modify, if possible.)
-- Lots of details and FIXMEs here and there; smaller decisions, etc.
-- Saga: Increase limits of devel.  See short.
+- A few details and FIXMEs here and there; smaller decisions, etc.
 
 ### Questions
 
