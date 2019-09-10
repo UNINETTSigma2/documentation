@@ -111,6 +111,4 @@ cancelled, so too long is better than too short due to lost work!
 
 ## Footnotes
 
-[^1] Technically, any script language that uses `#` as a comment
-character can be used, but the recommended, and the only one supported
-by the Metacenter, is bash.
+[^1]: Technically, any script language that uses `#` as a comment character can be used, but the recommended, and the only one supported by the Metacenter, is bash.

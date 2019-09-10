@@ -53,15 +53,6 @@ be overridden.
 
 ## Footnotes
 
-[^1]: Currently, only the priority of 10 jobs for each user within
-each project increase with time.  As jobs start, more priorities start
-to increase.  This is done in order to avoid problems if a user
-submits a large amount of jobs over a short time.  Note that the limit
-is per user and project, so if a user has jobs in several projects, 10
-of the user's jobs from each project will increase in priority at the
-same time.  This limit might change in the future.
+[^1]: Currently, only the priority of 10 jobs for each user within each project increase with time.  As jobs start, more priorities start to increase.  This is done in order to avoid problems if a user submits a large amount of jobs over a short time.  Note that the limit is per user and project, so if a user has jobs in several projects, 10 of the user's jobs from each project will increase in priority at the same time.  This limit might change in the future.
 
-[^2]: In some cases when a project applies for extra CPU hours because
-it has spent its allocation, it will get "unprioritized" hours,
-meaning their jobs will have lower priority than standard jobs (but
-still higher than `optimist` jobs).
+[^2]: In some cases when a project applies for extra CPU hours because it has spent its allocation, it will get "unprioritized" hours, meaning their jobs will have lower priority than standard jobs (but still higher than `optimist` jobs).
