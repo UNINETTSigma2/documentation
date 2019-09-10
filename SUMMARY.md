@@ -55,6 +55,7 @@
 ## Jobs
 * [Queue System](jobs/queue_system.md)
     * [Queue System Concepts](jobs/queue_system_concepts.md)
+    * [Job Scheduling](jobs/job_scheduling.md)
 * [Job Types](jobs/job_types.md)
     * [Fram](jobs/fram_job_types.md)
     * [Saga](jobs/saga_job_types.md)
