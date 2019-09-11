@@ -8,17 +8,21 @@ In addition, all data has to be directly related to the work effectuated and/or
 the research project(s) the user is participating.
 
 
-## User Area
+## User Areas
 
 User's private data (such as keys, sessions, e-mail, etc.) may reside in their
-home directory ($HOME).
-$HOME is **not** a shared area and all data stored there has to be treated as 
+home directory (`$HOME`).
+`$HOME` is **not** a shared area and all data stored there has to be treated as 
 being private, regardless of it's content.
 
-To limit access to $HOME only to the user and designated system administrators,
+To limit access to `$HOME` only to the user and designated system administrators,
 the default directory permissions are set to 0700.
 Permissions are regularly controlled and in case of mismatch reset to defaults.
 
+On the HPC clusters, users also have a *user work area*,
+`/cluster/work/users/$USER` (`$USERWORK`).  This is also a **private**
+area, and the permissions are set so that only the user has access to
+the area.
 
 ## Project Area
 
