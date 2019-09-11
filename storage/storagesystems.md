@@ -1,75 +1,78 @@
 # Storage areas on Fram
 
-Projects and users receive different file systems to store files and other
-data. Some areas are used for temporary files during job execution while
-others are for storing project data.
+Projects and users receive different areas to store files and other
+data. Some areas are used for temporary files during job execution
+while others are for storing project data.
 
-The following table summarizes the different temporary storage and project
-storage options. Read the following sections for specific details.
+The following table summarizes the different storage options.  Read
+the following sections for specific details.
 
 Data handling and storage policy is documented [here](data-usage-policy.md).
 
-| Directory     | Purpose     | Default Quota | Backup |
-| :------------- | :------------- | :------------- | :------------- |
-| `/cluster/work/jobs/$SLURM_JOB_ID` | Job data. Set to `$SCRATCH` | N/A                   | No  |
-| `/cluster/work/users/$USER`        | Staging and cross-job data. Set to `$USERWORK` | N/A | No |
-| `/cluster/projects/<project_name>` | Project data                | 1TB[*](#project-area) | Yes |
-| `/cluster/home/$USER`                 | User data. Set to `$HOME`   | 20GB                  | Yes |
+| Directory                                       | Purpose                     | Default Quota         | Backup |
+| :-------------                                  | :-------------              | :----------:          | :---:  |
+| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Job data.                   | N/A                   | No     |
+| `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and cross-job data. | N/A                   | No     |
+| `/cluster/projects/<project_name>`              | Project data                | 1TB[*](#project-area) | Yes    |
+| `/cluster/home/$USER` (`$HOME`)                 | User data.                  | 20GB                  | Yes    |
 
-**Notes:**
+The **/cluster** file system is a high-performance parallel file
+system ([Lustre](http://lustre.org)) with a total storage space of
+2.3PB.
 
-* `$SCRATCH` contents are deleted after the job finishes execution.
-* `$USERWORK` is subject to automatic file deletion.
-* See file deletion policies for both in the sections below.
-* Users may request larger quota on the Project area (see Project are below)
+For performance optimizations, consult [Performance Tips](performance-tips.md) page.
 
+## Job Scratch Area
 
-## Work Area
+Each job gets an area **/cluster/work/jobs/$SLURM_JOB_ID** that is
+automatically created for the job, and automatically deleted when the
+job finishes.  The location is stored in the environment variable
+`$SCRATCH` available in the job.  `$SCRATCH` is only accessible by the
+user running the job.
 
-The **/cluster/work** is used as a temporary work area for storing files
-during job execution. The work area is a high-performance parallel -
-[Lustre](http://lustre.org) - file system with a total storage space of
-2.3PB. The work area is not backed up. See [Backup](backup.md)
+The area is meant as a temporary scratch area during job
+execution. The area is _not_ backed up. See [Backup](backup.md).
 
-There are several reasons why the work areas are suitable for jobs:
+There are special commands (`savefile` and `cleanup`) one can use in
+the job script to ensure that files are copied back to the submit
+directory `$SLURM_SUBMIT_DIR` (where `sbatch` was run).
 
-* Work areas are on a faster file system than user home directories.
+### Pros
+
 * There is less risk of interference from other jobs because every job ID has
   its own scratch directory
 * Because the scratch directory is removed when the job finishes, the scripts
   do not need to clean up temporary files.
-* It avoids taking unneeded backups of temporary and partial files, because
-`$SCRATCH` is not backed up.  More information about the automatic cleanup is
-found at the [Prolog and Epilog](../jobs/framqueuesystem.md##prolog_epilog).
 
-The work area contains two subdirectories: *jobs* (`$SCRATCH`) and *users* (`$USERWORK`).
+### Cons
 
-### 1. `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) Directory
+* Since the area is removed automatically, it can be hard to debug
+  jobs that fail.
+* One must use the special commands to copy files back in case the job
+  script crashes before it has finished.
+* If the main node of a job crashes (i.e., not the job script, but the
+  node itself), the special commands might not be run, so files might
+  be lost.
 
-This area is automatically created when a job starts and deleted when the job
-finishes. There are special commands (e.g., `savefile`) one can use in the job
-script to ensure that files are copied back to the submit directory
-`$SLURM_SUBMIT_DIR` (where `sbatch` was run).
+## User Work Area
+
+Each user has an area **/cluster/work/users/$USER**.  The location is
+stored in the environment variable `$USERWORK`.  The area is _not_
+backed up. See [Backup](backup.md).  `$USERWORK` is only accessible by
+the user owning the area.
+
+This directory is meant for staging files that are used by one or more
+jobs.  All result files must be moved out from this area after the
+jobs finish, otherwise they will be automatically deleted after a
+while (see notes below). We highly encourage users to keep this area
+tidy, since both high disk usage and automatic deletion process takes
+away disk performance. The best solution is to clean up any
+unnecessary data after each job.  Since `$USERWORK` is only accessible
+by the user, you must move results to the project area if you want to
+share them with other people in the project.
 
 **Notes:**
 
-* set to the `$SCRATCH` variable
-* it is automatically deleted as soon as the job finishes.  Use `savefile` or
-  `cleanup` in the batch script to ensure files are copied back before the
-  directory is deleted.
-
-### 2. `/cluster/work/users/$USER` (`$USERWORK`) Directory
-
-This directory is meant for staging files that are used by one or more jobs.
-All data after processing must be moved out from this area or deleted after
-use, otherwise it will be automatically deleted after a while (see notes
-below). We highly encourage users to keep this area tidy, since both high disk
-usage and automatic deletion process takes away disk performance. The best
-solution is to clean up any unnecessary data after each job.
-
-**Notes:**
-
-* set to the `$USERWORK` variable
 * File deletion depends on the newest of the *creation-*, *modification-* and
   *access* time and the total usage of the file system. The oldest files will
   be deleted first and a weekly scan removes files older than 42 days.
@@ -77,20 +80,34 @@ solution is to clean up any unnecessary data after each job.
   automatic deletion.
 * It is **not** allowed to try to circumvent the automatic deletion by
   for instance running scripts that touch all files.
-* It is not backed up. See [Backup](backup.md).
 
-For performance optimizations, consult [Performance Tips](performance-tips.md) page.
+### Pros
+
+* Since job files are not removed automatically directly when a job
+  finishes, it is easier to debug failing jobs.
+* There is no need to use special commands to copy files back in case
+  the job script crashes before it has finished.
+
+### Cons
+
+* There is a risk of interference from other jobs unless one makes
+  sure to run each job in a separate sub directory inside `$USERWORK`.
+* Because job files are not removed when the job finishes, one has to
+  remember to clean up temporary files afterwards.
+* One has to remember to move result files to the project area if one
+  wants to keep them.  Otherwise they will eventually be deleted by
+  the atuomatic file deletion.
 
 ## <a name="project-area"></a>Project Area
 
 All HPC projects have a dedicated local space to share data between project
 members, located at **/cluster/projects/<project_name>**.
 
-The project area is quota controlled and the default project quota for HPC
-projects is 1TB, but projects can apply for more during the application
-process or request at a later point in time if needed. The maximum quota for
-the project area is 10TB. Greater needs will require a separate application for
-NIRD project area.
+The project area is quota controlled and the default project quota for
+HPC projects is 1TB, but projects can apply for more during the
+application process or request at a later point in time if needed. The
+maximum quota for the project area is 10TB. Greater needs will require
+an application for a separate NIRD project area.
 
 **Notes:**
 
@@ -101,19 +118,23 @@ NIRD project area.
 * To see disk usage and quota information for your project, run `dusage -p <project_name`.
 * See [Backup](backup.md).
 
-## User Area (`$HOME`)
+## Home Directory (`$HOME`)
 
-The user area is mounted to **/cluster/home/<username>**. This file system is
-small and is **not** suitable for running jobs. A quota is enabled on home
-directories which is by default 20GB and 1000000 files per user. It is advisable to store
-`stderr` and `stdout` logs from your batch jobs in `$HOME` so they are
-available for reviewing in case of issues with it. The user area is
-geo-replicated between Tromsø and Trondheim.  Additionally daily snapshots are
-taken and kept for the last 7 days and weekly snapshots for the last 6 weeks.
+The home directory is **/cluster/home/$USER**.  The location is stored
+in the environment variable `$HOME`.  A quota is enabled on home
+directories which is by default 20GB and 1000000 files per user, so it
+is not advisable to run jobs in `$HOME`.  However, it is perfectly
+fine to store `stderr` and `stdout` logs from your batch jobs in
+`$HOME` so they are available for reviewing in case of issues with it.
+Additionally daily snapshots are taken and kept for the last 7 days
+and weekly snapshots for the last 6 weeks.
+
+`$HOME` is only accessible for the user.  Files that should be
+accessible by other uses in a project must be placed in the project
+area.
 
 **Notes**
 
-* set to the `$HOME` variable
 * The home directory should be used for storing tools, scripts, application
 sources or other relevant data which must have a backup.
 * backed up with daily snapshots for the last 7 days and weekly snapshots for
