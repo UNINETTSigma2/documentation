@@ -1,4 +1,6 @@
-image: registry.uninett.no/system/kubernetes-deploy:v0.8
+include:
+  - project: 'asm/gitlab-ci-helpers'
+    file: '/gitlab-ci-helpers.yml'
 
 variables:
   KUBE_PROD_DOMAIN: documentation.sigma2.no # The main domain for your application.
@@ -10,46 +12,31 @@ stages:
   - build
   - review
   - production
+
 build:
   stage: build
   script:
     - build
   only:
     - branches
+    
 production:
+  extends: .production
   stage: production
   variables:
-    CI_ENVIRONMENT_URL: https://$KUBE_PROD_DOMAIN
+    REPLICAS: "2"  
   script:
     - deploy kubernetes/deployment.yaml
-  environment:
-    name: production
-    url: https://$KUBE_PROD_DOMAIN
-  only:
-    - master
+  
 review:
+  extends: .review
   stage: review
+
   script:
-    - build
-  environment:
-    name: review/$CI_BUILD_REF_NAME
-    url: http://$CI_ENVIRONMENT_SLUG.$KUBE_TEST_DOMAIN
-    on_stop: stop_review
-  only:
-    - branches
-  except:
-    - master
+    - deploy kubernetes/deployment.yaml
+
+  
 stop_review:
+  extends: .stop_review
   stage: review
-  variables:
-    GIT_STRATEGY: none
-  script:
-    - destroy
-  environment:
-    name: review/$CI_BUILD_REF_NAME
-    action: stop
-  when: manual
-  only:
-    - branches
-  except:
-    - master
+  
