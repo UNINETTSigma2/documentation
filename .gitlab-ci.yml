@@ -16,8 +16,6 @@ stages:
 build:
   extends: .docker-build
   stage: build
-  script:
-    - build
   only:
     - branches
     
