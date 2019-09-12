@@ -26,6 +26,7 @@ production:
     REPLICAS: "2"  
   script:
     - deploy kubernetes/deployment.yaml
+  when: on_success
   
 review:
   extends: .review
