@@ -102,6 +102,8 @@ These pages are about creating batch scripts and how to manage them in the queue
 * [Managing Jobs](../jobs/managing_jobs.md)
 * [Job scripts on Fram](../jobs/fram_job_scripts.md)
 * [Job scripts on Saga](../jobs/saga_job_scripts.md)
+* [Sample job script on Fram](../jobs/fram_sample_mpi_job.md)
+* [Sample job script on Saga](../jobs/saga_sample_mpi_job.md)
 * [Porting from PBS/TORQUE](../jobs/porting_from_pbs.md)
 * [Running MPI applications](../jobs/running_mpi_jobs.md)
 
