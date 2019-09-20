@@ -98,7 +98,7 @@ To submit a job, use the `sbatch` command followed by the batch script's name:
 
 These pages are about creating batch scripts and how to manage them in the queue system.
 
-* [Job Scripts](../jobs/jobscripts.md)
+* [Job Scripts](../jobs/job_scripts.md)
 * [Managing Jobs](../jobs/managing_jobs.md)
 * [Sample Batch Script](../jobs/samplescript.md)
 * [Porting from PBS/TORQUE](../jobs/porting.md)
