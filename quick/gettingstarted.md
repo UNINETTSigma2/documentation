@@ -98,8 +98,8 @@ To submit a job, use the `sbatch` command followed by the batch script's name:
 
 These pages are about creating batch scripts and how to manage them in the queue system.
 
-* [Job Scripts](../jobs/job_scripts.md)
 * [Managing Jobs](../jobs/managing_jobs.md)
+* [Job Scripts](../jobs/job_scripts.md)
 * [Job scripts on Fram](../jobs/fram_job_scripts.md)
 * [Job scripts on Saga](../jobs/saga_job_scripts.md)
 * [Sample job script on Fram](../jobs/fram_sample_mpi_job.md)
