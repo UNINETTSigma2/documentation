@@ -98,14 +98,14 @@ To submit a job, use the `sbatch` command followed by the batch script's name:
 
 These pages are about creating batch scripts and how to manage them in the queue system.
 
-* [Managing Jobs](../jobs/managing_jobs.md)
-* [Job Scripts](../jobs/job_scripts.md)
-* [Job scripts on Fram](../jobs/fram_job_scripts.md)
-* [Job scripts on Saga](../jobs/saga_job_scripts.md)
-* [Sample job script on Fram](../jobs/fram_sample_mpi_job.md)
-* [Sample job script on Saga](../jobs/saga_sample_mpi_job.md)
-* [Porting from PBS/TORQUE](../jobs/porting_from_pbs.md)
-* [Running MPI applications](../jobs/running_mpi_jobs.md)
+* [Managing Jobs](../jobs/managing_jobs.html)
+* [Job Scripts](../jobs/job_scripts.html)
+* [Job scripts on Fram](../jobs/fram_job_scripts.html)
+* [Job scripts on Saga](../jobs/saga_job_scripts.html)
+* [Sample job script on Fram](../jobs/fram_sample_mpi_job.html)
+* [Sample job script on Saga](../jobs/saga_sample_mpi_job.html)
+* [Porting from PBS/TORQUE](../jobs/porting_from_pbs.html)
+* [Running MPI applications](../jobs/running_mpi_jobs.html)
 
 ## Account information
 
