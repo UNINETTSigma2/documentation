@@ -1,7 +1,5 @@
 # Saga
 
-*Note! Saga is scheduled to enter full production during fall 2019.*
-
 In norse mythology [Saga](https://en.wikipedia.org/wiki/S%C3%A1ga_and_S%C3%B6kkvabekkr) is the goddess associated with wisdom.
 The new Linux cluster hosted at [Norwegian University of Science and Technology](https://www.ntnu.edu)
 (NTNU) is a shared resource for research computing capable of 645 TFLOP/s
@@ -36,18 +34,19 @@ The total number of compute cores is 9824. Total memory is 75 TiB.
 
 More information on how to use Saga
 will be included in the existing sections, e.g,
-SOFTWARE, CODE DEVELOPMENT, JOBS, FILES AND STORAGE, etc.
+SOFTWARE, CODE DEVELOPMENT, JOBS, FILES AND STORAGE, etc.  See also
+the regular documentation in the left hand menueue.
 
 ## Primer for early users
 In general, the user environment on Saga is designed to be as similar as possible
-to the one on Fram. Users coming from Abel will need to adopt a bit to the different
+to the one on Fram. Users coming from Abel or Stallo will need to adopt a bit to the different
 queue system setup and to the newer software module system.
 
 Below are key information listed and links to existing
 documentation for Fram provided.
 
 ### Important !
-Currently, there is NO BACKUP of anything on Saga, e.g., not for $HOME folders, project
+Currently, there is **NO BACKUP** of anything on Saga, e.g., not for `$HOME` folders, project
 folders, shared folders. Make sure to make copies of precious scripts, setups, and data.
 We hope to have backup available soon.
 
@@ -74,7 +73,9 @@ i.e., include
 ### Access
 Login to Saga with your Notur account and password. The login machine's name is `saga.sigma2.no`. For example, using `ssh` do
 
-`ssh YOUR_USERNAME@saga.sigma2.no`
+```
+ssh YOUR_USERNAME@saga.sigma2.no
+```
 
 ### File systems and quota
 Saga has one parallel file system mounted under `/cluster`. While its layout is
@@ -87,7 +88,7 @@ to the grant you have received (based on what you asked for in your application 
 compute time). Quota for shared folders is according to agreements by several projects
 and Sigma2.
 
-On your `$USERWORK` (`/cluster/work/users/...`), files and directories older than 42 days are automatically
+On your `$USERWORK` (`/cluster/work/users/$USER`), files and directories older than 42 days are automatically
 removed unless total disk usage is above 70 %. Then files and directories older than
 21 days are automatically removed. Note, currently these limits are not enforced.
 
@@ -103,16 +104,17 @@ see documentation about [software modules on Fram](../apps/modulescheme.md).
 Saga uses Slurm. For users coming from Fram, Abel or Stallo, basic commands are
 the same or similar, however the configuration (partitions, QoS, limits, etc.) differs
 from the other systems. For general information, see our documentation on the
-[queue system](../jobs/framqueuesystem.md), [job types](../jobs/jobtypes.md) and
-[job scripts](../jobs/jobscripts.md).
+[queue system](../jobs/queue_system.md), [job types](../jobs/job_types.md) and
+[job scripts](../jobs/job_scripts.md).
 
 #### Normal jobs
 This is the default type of job.  These jobs run on the `normal`
 compute nodes, which have 40 cpus (cores) and ~ 186 GiB RAM.
 
-A note for users from Fram: on Saga, the queue system only hands out cpus
-and memory, not whole node, so one _must_ specify `--mem-per-cpu` (or
-`--mem`) for all types of jobs.
+A note for users from Fram: on Saga, the queue system only hands out
+cpus and memory, not whole node, so one _must_ specify `--mem-per-cpu`
+(or `--mem`, but `--mem-per-cpu` is highly recommended) for all types
+of jobs.
 
 Example job script:
 
@@ -123,7 +125,8 @@ Example job script:
 	#SBATCH --ntasks=16        # Default is 1
 	
 	set -o errexit  # Recommended for easier debugging
-    
+	set -o nounset  # Treat any unset variables as an error
+	
 	## Load your modules
 	module purge   # Recommended for reproducibility
 	module load somemodule/version
@@ -154,6 +157,7 @@ Example job script:
 	#SBATCH --ntasks=4
 	
 	set -o errexit  # Recommended for easier debugging
+	set -o nounset  # Treat any unset variables as an error
     
 	## Load your modules
 	module purge   # Recommended for reproducibility
@@ -180,6 +184,7 @@ Example job script:
 	#SBATCH --ntasks=1
 	
 	set -o errexit  # Recommended for easier debugging
+	set -o nounset  # Treat any unset variables as an error
     
 	## Load your modules
 	module purge   # Recommended for reproducibility
