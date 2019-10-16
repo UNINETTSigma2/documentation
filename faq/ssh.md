@@ -55,10 +55,10 @@ you can continue by typing yes and pressing `Enter`. If you connect to Fram, and
 
 login.fram.sigma2.no is a round-robin DNS entry, every time you use this name the round-robin configuration will send you to one of the following two login nodes: 
     login1.fram.sigma2.no 
-or
     login2.fram.sigma2.no 
 
-When you use sshfs, to make sure your authentication is valid, you should always specify one of the real login nodes above. You should not use login.fram.sigma2.no in your sshfs command, otherwise you will risk to get your IP address blacklisted, since your session is authenticad against only one login node not both.
+When you use sshfs, to make sure your authentication is valid, you should always specify one of the real login nodes above. 
+You should not use login.fram.sigma2.no in your sshfs command, otherwise you will risk to get your IP address blacklisted, since your session is authenticad against only one login node not both.
    
 
 ## Poor connection
