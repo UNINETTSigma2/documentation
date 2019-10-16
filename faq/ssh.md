@@ -4,6 +4,31 @@ Some SSH related frequently asked questions are documented down below.
 For more in-depth details, other options, please consult the man pages: 
 `man ssh` and `man ssh_config`.
 
+## Password-Less Login
+
+ To login to a server without typing in your password every time,
+ you can configure ssh to use public key cryptography.
+In case you use a linux system start by generating a pair of keys and
+saving them in the folder `.ssh`:
+```
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_cluster
+```
+You should provide a passphrase to encrypt the key.
+
+To copy and install the public key to the server, for example saga,
+we use:
+```
+ssh-copy-id -i ~/.ssh/id_cluster username@saga.sigma2.no
+```
+
+The passphrase secures the key but can be annoying if it has to be entered every time you use the key. `ssh-agent` is program installed on virtually all linux versions to manage the keys so that you only have to unlock the key once.
+We can add the new key with:
+```
+ssh-add ~/.ssh/id_cluster
+```
+
+For more information see https://www.ssh.com/ssh/keygen/
+
 ## X11 forwarding
 
 X11 forwarding should be used with caution due to security implications. Please
