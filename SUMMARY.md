@@ -95,7 +95,7 @@
 * [Migration to Saga](faq/migration2saga.md)
 * [Jobs](faq/jobs.md)
 * [Emacs](faq/emacs.md)
-* [SSH/Putty](faq/ssh.md)
+* [SSH/SSHFS](faq/ssh.md)
 
 
 ## Training 

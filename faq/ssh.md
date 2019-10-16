@@ -51,9 +51,19 @@ So, if you get this message when yiou log in to Fram via *ssh*:
 
 you can continue by typing yes and pressing `Enter`. If you connect to Fram, and the SHA256 is different than the number above, please contact support@metacenter.no immediately.
 
+## SSHFS 
+
+login.fram.sigma2.no is a round-robin DNS entry, every time you use this name the round-robin configuration will send you to one of the following two login nodes: 
+    login1.fram.sigma2.no 
+or
+    login2.fram.sigma2.no 
+
+When you use sshfs, to make sure your authentication is valid, you should always specify one of the real login nodes above. You should not use login.fram.sigma2.no in your sshfs command, otherwise you will risk to get your IP address blacklisted, since your session is authenticad against only one login node not both.
+   
+
 ## Poor connection
 
-In case of poor connection to the server (likely from a very remote area), 
+In case of poor connection to the server (likely from a very remote area),
 usually noticeable with X11 forwarding enabled, you may request data 
 compression by using the `-C` option.
 
