@@ -29,7 +29,7 @@ WinSCP is a Windows program. If you are on Linux or Mac you need to use a differ
     
     ![Dropdown](images/WinSCP_dropdown.jpg)
 
-   And navigate to the */ &gt;root&lt;* folder.
+   And navigate to the */ &lt;root&gt;* folder.
 7. From the */* folder move into the *projects* folder and select your project.
 8. Navigate to the desired place in the project folder.
 
