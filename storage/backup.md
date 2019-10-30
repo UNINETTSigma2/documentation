@@ -2,11 +2,19 @@
 
 ## Fram
 
-Home directories on the Fram HPC cluster (`/cluster/home`) are backed up each night user's home directory on NIRD (`/nird/home/$USER/backup/fram`).
+Home directories on the Fram HPC cluster (`/cluster/home`) are backed up nightly to user's home directory on NIRD (`/nird/home/$USER/backup/fram`).
 
 `NN*K` project directories (`/cluster/projects`) are backed up nightly to NIRD. To not to be confused with `NS*K` projects in `/nird/projects`.
 
 Meta-project areas (`/cluster/shared`) are *not* backed up to NIRD.
+
+Scratch areas (`/cluster/work` and `/node/scratch`) do *not* have any backup.
+
+## Saga
+
+Home directories on the Saga HPC cluster (`/cluster/home`) are *to be backed up from 04.11.2019* nightly to user's home directory on NIRD (`/nird/home/$USER/backup/saga`).
+
+`NN*K` project directories (`/cluster/projects`) and meta-project areas (`/cluster/shared`) are *not* backed up to NIRD.
 
 Scratch areas (`/cluster/work` and `/node/scratch`) do *not* have any backup.
 
