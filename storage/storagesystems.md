@@ -15,8 +15,8 @@ two clusters.  Read the following sections for specific details.
 | :-------------                                  | :-------------       | :----------:          | :---:  |
 | `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                   | No     |
 | `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                   | No     |
-| `/cluster/projects/<project_name>`              | Project data         | 1TB[*](#project-area) | Yes    |
-| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20GB                  | Yes    |
+| `/cluster/projects/<project_name>`              | Project data         | 1TiB[*](#project-area) | Yes    |
+| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20GiB                  | Yes    |
 
 * Saga
 
@@ -24,8 +24,8 @@ two clusters.  Read the following sections for specific details.
 | :-------------                                  | :-------------       | :----------:          | :---:  |
 | `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                   | No     |
 | `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                   | No     |
-| `/cluster/projects/<project_name>`              | Project data         | 1TB[*](#project-area) | No     |
-| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20GB                  | No     |
+| `/cluster/projects/<project_name>`              | Project data         | 1TiB[*](#project-area) | No     |
+| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20GiB                  | No     |
 
 Note that on __Saga__, backup of `$HOME` and
 `/cluster/projects/<project_name>` has not been set up yet, but will
@@ -139,7 +139,7 @@ an application for a separate NIRD project area.
 
 The home directory is **/cluster/home/$USER**.  The location is stored
 in the environment variable `$HOME`.  A quota is enabled on home
-directories which is by default 20GB and 100,000 files, so it
+directories which is by default 20GiB and 100,000 files, so it
 is not advisable to run jobs in `$HOME`. However, it is perfectly
 fine to store `stderr` and `stdout` logs from your batch jobs in
 `$HOME` so they are available for reviewing in case of issues with it.
