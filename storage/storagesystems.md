@@ -139,8 +139,8 @@ an application for a separate NIRD project area.
 
 The home directory is **/cluster/home/$USER**.  The location is stored
 in the environment variable `$HOME`.  A quota is enabled on home
-directories which is by default 20GB and 1,000,000 files per user, so it
-is not advisable to run jobs in `$HOME`.  However, it is perfectly
+directories which is by default 20GB and 100,000 files, so it
+is not advisable to run jobs in `$HOME`. However, it is perfectly
 fine to store `stderr` and `stdout` logs from your batch jobs in
 `$HOME` so they are available for reviewing in case of issues with it.
 
@@ -155,3 +155,5 @@ sources or other relevant data which must have a backup.
 * **Not implemented on Saga yet** Backed up with daily snapshots for
 the last 7 days and weekly snapshots for the last 6 weeks. See
 [Backup](backup.md).
+* Each user has a limitation of 100,000 files for the `$HOME` folder, but a
+	1,000,000 file limitation per the whole `/cluster` file system.
