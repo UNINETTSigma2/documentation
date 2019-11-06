@@ -22,10 +22,6 @@ When you are done, simply exit the shell (`exit`, `logout` or `^D`) to
 end the job.  (Note to users coming from Abel: there is no `qlogin`
 command on Fram or Saga.)
 
-**Note: Right now, due to a bug in the current version of Slurm, the
-Saga example does not work.  Slurm will be upgraded shortly, fixing
-this bug**
-
 The arguments between `srun` and `--pty` could be any arguments you
 would have given to `sbatch` when submitting a non-interactive
 job. However, `--qos=devel` is probably a good idea to avoid waiting
