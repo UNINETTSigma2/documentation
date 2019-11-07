@@ -61,13 +61,34 @@ performance due to the unnecessary communication to multiple OSTs.
 
     lfs setstripe --stripe-count 1 "my_dir"
 ## BeeGFS filesystem 
-Striping in BeeGFS can be configured on a per-directory and per-file basis. To check current stripe szie, use 
+Striping in BeeGFS can be configured on a per-directory and per-file basis. 
+### Check out current striping
+To check current stripe szie, use 
 
 `beegfs-ctl --getentryinfo [file_system, dir, file]`
  
 For example to check your home folder stripe size on Saga, you can do:
 
 ```beegfs-ctl --getentryinfo /cluster/home/$HOME```
+
+For example to check file tripe szie:
+
+```
+beegfs-ctl --getentryinfo /cluster/tmp/test
+EntryID: 5-5DC49168-19C
+Metadata node: mds4-p1-m2 [ID: 412]
+Stripe pattern details:
++ Type: RAID0
++ Chunksize: 512K
++ Number of storage targets: desired: 4; actual: 4
++ Storage targets:
+  + 4201 @ oss-4-4-stor2 [ID: 42]
+  + 4202 @ oss-4-4-stor2 [ID: 42]
+  + 4203 @ oss-4-4-stor2 [ID: 42]
+  + 1101 @ oss-4-1-stor1 [ID: 11]
+```
+This shows that particular file is striped over 4 OSSes.
+
 ## DON'Ts
 
 * Avoid having a large number of files in a single directory and rather split
