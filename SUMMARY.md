@@ -82,7 +82,6 @@
 
 
 ## Files and Storage
-* [Storage services](storage/storageservices.md)
 * [NIRD](storage/nird.md)
     * [Using WinSCP on NIRD](storage/WinSCP.md)
 * [Fram and Saga](storage/storagesystems.md)
