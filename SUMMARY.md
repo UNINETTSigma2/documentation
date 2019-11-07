@@ -87,7 +87,6 @@
 * [Backup](storage/backup.md)
 * [Data handling and storage policy](storage/data-usage-policy.md) 
 * [Performance tips](storage/performance-tips.md)
-* [Transferring files](storage/file-transfering.md)
 
 ## Short Guides
 * [Migration to Saga](faq/migration2saga.md)
