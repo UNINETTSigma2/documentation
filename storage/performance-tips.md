@@ -1,5 +1,5 @@
 # Performance tuning tips
-
+##Luster Filesystem 
 To get best throughput on the scratch file system (/cluster/work), you may
 need to change the data striping. Striping shall be adjusted based on the
 client access pattern to optimally load the object storage targets (OSTs).
@@ -18,7 +18,7 @@ the next OST.
 For more detailed information on striping, please consult the
 [Lustre](http://lustre.org) documentation.
 
-## Check out current striping
+### Check out current striping
 
 To see current stripe size, use `lfs getsripe [file_system, dir, file]`
 command. e.g.:
@@ -30,7 +30,7 @@ stripe_count:   1 stripe_size:    1048576 stripe_offset:  -1
 ```
 **Note**: stripe size is shown in bytes.
 
-## Large files
+### Large files
 
 For large files it is advisable to increase stripe count and perhaps chunk size
 too. e.g.:
@@ -53,15 +53,21 @@ stripe size may result in performance loss in case of shared files.
 Set the stripe size a multiple of the write() size, if your application is
 writing in a consistent and aligned way.
 
-## Small files
+### Small files
 
 For many small files and one client accessing each file, change stripe count to 1.
 Avoid having small files with large stripe counts. This negatively impacts the 
 performance due to the unnecessary communication to multiple OSTs.
 
     lfs setstripe --stripe-count 1 "my_dir"
+## BeeGFS filesystem 
+Striping in BeeGFS can be configured on a per-directory and per-file basis. To check current stripe szie, use 
 
+`beegfs-ctl --getentryinfo [file_system, dir, file]`
+ 
+For example to check your home folder stripe size on Saga, you can do:
 
+```beegfs-ctl --getentryinfo /cluster/home/$HOME```
 ## DON'Ts
 
 * Avoid having a large number of files in a single directory and rather split
