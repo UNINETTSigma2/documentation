@@ -2,7 +2,6 @@
 
 * [Storage services](storageservices.md)
 * [NIRD](nird.md)
-    * [Using WinSCP on NIRD](WinSCP.md)
 * [Storage areas on Fram](storagesystems.md)
 * [Filesystem Quotas](filesystem-quota.md)
 * [Backup](backup.md)
