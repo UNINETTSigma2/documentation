@@ -1,4 +1,4 @@
-# Storage areas on Fram and Saga
+# Storage areas on HPC clusters 
 
 Projects and users receive different areas to store files and other
 data. Some areas are used for temporary files during job execution
