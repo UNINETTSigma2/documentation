@@ -1,24 +1,32 @@
-# NIRD - National e-Infrastructure for Research Data
+# NIRD - National Infrastructure for Research Data
 
-The new data infrastructure, named **NIRD** (National Infrastructure for Research Data),
-will provide storage resources with yearly capacity upgrades, data security
-through geo-replication (data stored on two physical locations) and adaptable
-application services, multiple storage protocol support, migration to third-party
-cloud providers and much more. Alongside the national high-performance computing
-resources, NIRD forms the backbone of the national e-infrastructure for research
-and education in Norway, connecting data and computing resources for efficient
-provisioning of services.
+**NIRD** is the new National e-Infrastructure for Research Data. It is
+owned and operated by UNINETT Sigma2.  It offers services and
+capacities to any scientific disciplines that require access to
+advanced, large scale or high-end resources for storing, processing,
+publishing research data or searching digital databases and
+collections.
 
-The NIRD storage system consists of SFA14K controllers, 10TB NL-SAS drives with
-a total capacity of 12PiB in addition to a centralized file system
-(IBM GridScaler) supporting multiple file, block and object protocols. Sigma2
-will provide the storage infrastructure with resources for the next 4 – 5 years
-through multiple upgrades and is expected to triple in capacity during its life-time.
+NIRD will provide storage resources with yearly capacity upgrades,
+data security through geo-replication (data stored on two physical
+locations) and adaptable application services, multiple storage
+protocol support, migration to third-party cloud providers and much
+more. Alongside the national high-performance computing resources,
+NIRD forms the backbone of the national e-infrastructure for research
+and education in Norway, connecting data and computing resources for
+efficient provisioning of services.
 
-The NIRD infrastructure offers Storage services, Archiving services and  processing capacity for computing on the stored data.  
-More info here
+The NIRD storage system consists of SFA14K controllers, 10 TB NL-SAS
+drives with a total capacity of 12 PiB in addition to a centralized
+file system (IBM GridScaler) supporting multiple file, block and
+object protocols. Sigma2 will provide the storage infrastructure with
+resources for the next 4 – 5 years through multiple upgrades and is
+expected to triple in capacity during its life-time.
 
-[Research Data](https://www.sigma2.no/content/data-storage)
+The NIRD infrastructure offers Storage services, Archiving services
+and processing capacity for computing on the stored data.  See
+the [Reearch Data](https://www.sigma2.no/content/research-data) page
+for an overview of the services.
 
 
 ## Project data storage
@@ -28,77 +36,55 @@ More info here
 To gain access to the storage services, a formal application is needed. The process
 is explained at the [User Access](https://www.sigma2.no/node/36) page.
 
+
 ### Logging In
 
 Access to the Project data storage area is through front-end (login) node:
 
     login.nird.sigma2.no
 
-Note that this hostname is actually a DNS alias for:   
-login0.nird.sigma2.no, login1.nird.sigma2.no, login2.nird.sigma2.no, login3.nird.sigma2.no   
-those are containers each one running the image of a login node.   
-A login container offers resources for a maximum of 16 cpus and 128GB of memory.
+Note that this hostname is actually a DNS alias for
+`login0.nird.sigma2.no`, `login1.nird.sigma2.no`,
+`login2.nird.sigma2.no` and `login3.nird.sigma2.no`.  Those are
+containers, each one running the image of a login node.  A login
+container offers resources for a maximum of 16 cpus and 128GB of
+memory.
 
-Users must be registered and authorized by the project responsible before obtaining access.
+Users must be registered and authorized by the project responsible
+before getting access.
 
-To access or transfer data use the following tools: ssh, scp or stfp. Visit the [Transferring files](https://documentation.sigma2.no/storage/file-transfering.html) page for details.
+To access or transfer data use the following tools: `ssh`, `scp` or
+`sftp`.  Visit the [Transferring files](file-transfering.md) page for
+details.
 
 
 ### Home directories
 
-Home directories are located in `/nird/home/<username>`.
-Default quota for home is 20GB and 100000 files. To check the disk usage type
+Each user has a home directory `/nird/home/<username>`, where
+`<username>` is the username.  The default quota for home directories
+is 20 GiB and 100,000 files.  To check the disk usage and quotas, type
 
      dusage
      
-Home directories do also contain a backup of FRAM home directories (when relevant) in `/nird/home/<username>/backup/fram`.   
-To account for this default quota is doubled when relevant.
+Home directories on NIRD also contain a backup of Fram home
+directories (when relevant) in `/nird/home/<username>/backup/fram`.
+To account for this default quota is doubled when relevant.  Note that
+this is a _backup_ from Fram; you cannot transfer files to Fram by
+putting them here.
+
 
 ### Project area
 
-NIRD project areas are located in `/nird/projects/<project_ID>`.
+Each project gets a NIRD project area `/nird/projects/NSnnnnK`,
+where `NSnnnnK` is the ID of the project.
 
-The project area is quota controlled and current usage is obtained by running the command:
+The project area has a quota on disk space and the number of files,
+and you can see the quota and the current usage by running
 
-    dusage -p <project_ID>
+    dusage -p NSnnnnK
 
-FRAM projects are only available from FRAM login nodes.   
-For more information, visit the [Storage Systems on Fram](storagesystems.md) page.
-
-
-
-### File transfering
-Access to NIRD is permitted only through SSH.
-One can use *scp* and *sftp* to upload or download data from NIRD.
-
-* scp - secure copy files between hosts on a network
-
-```
-# copy single file to home folder on NIRD
-# note that folder is ommitted, home folder being default
-scp my_file.tar.gz <username>@login.nird.sigma2.no:
-
-# copy a directory to project area
-scp -r my_dir/ <username>@login.nird.sigma2.no:/projects/<projectname>/
-```
-
-* sftp - interactive secure file transfer program (Secure FTP)
-
-```
-# copy all logs named starting with "out" from project1 folder
-# to /projects/project1
-sftp <username>@login.nird.sigma2.no
-sftp> cd /projects/project1
-sftp> lcd project1
-sftp> put out*.log
-```
-
-### Backup
-
-* Geo-replication is set up between Tromsø and Trondheim.
-* For backup, snapshots are taken with the following frequency:
-    * daily snapshots of the last 7 days
-    * weekly snapshots of the last 5 weeks. 
-* See [Backup](backup.md).
-
-
+The NIRD project area is also mounted on the login nodes (but _not_
+the compute nodes) of Fram or Saga, when relevant.  For more
+information, visit the [Fram and Saga](storagesystems.md) page.
+(Note that the mounts on Saga do not exist yet, but will be there
+shortly.)
