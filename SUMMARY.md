@@ -83,7 +83,6 @@
 
 ## Files and Storage
 * [NIRD](storage/nird.md)
-    * [Using WinSCP on NIRD](storage/WinSCP.md)
 * [Fram and Saga](storage/storagesystems.md)
 * [Backup](storage/backup.md)
 * [Data handling and storage policy](storage/data-usage-policy.md) 
@@ -95,7 +94,8 @@
 * [Jobs](faq/jobs.md)
 * [Emacs](faq/emacs.md)
 * [SSH/SSHFS](faq/ssh.md)
-
+* [Using WinSCP on NIRD](faq/WinSCP.md)
+* [Transferring files](faq/file-transfering.md)
 
 ## Training 
 * [Training calendar](https://www.sigma2.no/content/training) 
