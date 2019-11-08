@@ -3,7 +3,7 @@
 ## FAQ
 
 Frequently asked questions related to running jobs in the queue system on the
-HPC clusters (currently: Fram).
+HPC clusters (currently: Fram and Saga).
 
 ### "srun: Warning: can't honor --ntasks-per-node set to _X_ which doesn't match the requested tasks _Y_ with the number of requested nodes _Y_. Ignoring --ntasks-per-node."
 This warning appears when using the `mpirun` command with Intel MPI and
@@ -28,8 +28,7 @@ many nodes.  [It is possible to override this.](../jobs/framjobplacement.md)
 
 ## Things to avoid
 
-Things you should not do or use when running jobs on the HPC clusters
-(currently: Fram).
+Things you should not do or use when running jobs on the HPC clusters.
 
 ### `#SBATCH --hint=nomultithread`
 Do not use this, at least not with Intel MPI jobs.  If you do, the result is

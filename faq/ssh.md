@@ -28,7 +28,7 @@ per-host basis in your `.ssh/config` file.
 ForwardX11        no               # disable X11 forwarding
 ForwardX11Trusted no               # do not trust remote X11 clients
 
-# per-host based settings
+# per-host based settings, example for Fram
 Host fram                            # alias, you may run "ssh fram" only
 	HostName fram.sigma2.no          # actual hostname for Fram
 	User my_username                 # replace with your username on Fram
@@ -53,12 +53,20 @@ you can continue by typing yes and pressing `Enter`. If you connect to Fram, and
 
 ## SSHFS 
 
-login.fram.sigma2.no is a round-robin DNS entry, every time you use this name the round-robin configuration will send you to one of the following two login nodes: 
-    login1.fram.sigma2.no 
-    login2.fram.sigma2.no 
+`fram.sigma2.no` and `login.fram.sigma2.no` are round-robin DNS
+entries, every time you use this name the round-robin configuration
+will send you to one of the following two login nodes:
+`login1.fram.sigma2.no` and `login2.fram.sigma2.no`
 
-When you use sshfs, to make sure your authentication is valid, you should always specify one of the real login nodes above. 
-You should not use login.fram.sigma2.no in your sshfs command, otherwise you will risk to get your IP address blacklisted, since your session is authenticad against only one login node not both.
+When you use `sshfs`, to make sure your authentication is valid, you
+should always specify one of the real login nodes above.  You should
+not use `login.fram.sigma2.no` or `fram.sigma2.no` in your `sshfs`
+command, otherwise you will risk to get your IP address blacklisted,
+since your session is authenticad against only one login node not
+both.
+
+Similarly, `saga.sigma2.no` and `login.saga.sigma2.no` are round-robin
+DNS entries for `login-1.saga.sigma2.no`, `login-2.saga.sigma2.no`.
    
 
 ## Poor connection

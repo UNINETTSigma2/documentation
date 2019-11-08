@@ -46,7 +46,7 @@ The following give new users information about running applications on the HPC m
 
 ## NIRD Storage
 
-Fram uses the NIRD storage system for storing archives for other research data. NOTUR projects have access
+Fram and Saga use the NIRD storage system for storing archives for other research data. NOTUR projects have access
 to this geo-replicated storage through various methods. Visit the [NIRD](storage/nird.md) page for more information.
 
 ## Storage areas on Fram and Saga
