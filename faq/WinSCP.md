@@ -1,7 +1,11 @@
-# Using WinSCP to access NIRD
+# Using WinSCP
 
-To access data on NIRD using a graphical interface, you will need to install and use specialized software.
-As an example, we will here present how to use the program WinSCP to access NIRD. The first step will be to download the program and install it. Thereafter we will look at how to connect to NIRD. Finally we will show you how to download and upload files to NIRD.
+To access data on NIRD or an HPC cluster (Fram and Saga) using a graphical interface, you will need to install and use specialized software.
+
+As an example, we will here present how to use the program WinSCP to
+access NIRD.  The procedure will be similar for Fram and Saga.
+
+The first step will be to download the program and install it. Thereafter we will look at how to connect to NIRD. Finally we will show you how to download and upload files to NIRD.
 
 WinSCP is a Windows program. If you are on Linux or Mac you need to use a different program, like for instance sftp, FileZilla, or Cyberduck.
 
@@ -12,7 +16,7 @@ WinSCP is a Windows program. If you are on Linux or Mac you need to use a differ
 
 ## Connecting to NIRD with WinSCP
 
-0. Make sure you have a NIRD user account. If you do not, you can apply for one at <https://www.metacenter.no/user/application/form/norstore/>. Once it has been accepted, might take a day, you can continue along the steps below.
+0. Make sure you have a NIRD user account. If you do not, you can apply for one at <https://www.metacenter.no/>. Once it has been accepted, might take a day, you can continue along the steps below.
 1. Start WinSCP. You should see something like this:
 
     ![WinSCP startup](images/WinSCP_start.jpg)
