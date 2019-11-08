@@ -1,5 +1,7 @@
 # Performance tuning tips
-##Luster Filesystem 
+
+## Lustre Filesystem (Fram)
+
 To get best throughput on the scratch file system (/cluster/work), you may
 need to change the data striping. Striping shall be adjusted based on the
 client access pattern to optimally load the object storage targets (OSTs).
@@ -60,9 +62,13 @@ Avoid having small files with large stripe counts. This negatively impacts the
 performance due to the unnecessary communication to multiple OSTs.
 
     lfs setstripe --stripe-count 1 "my_dir"
-## BeeGFS filesystem 
+
+## BeeGFS filesystem (Saga)
+
 Striping in BeeGFS can be configured on a per-directory and per-file basis. 
+
 ### Check out current striping
+
 To check current stripe szie, use 
 
 `beegfs-ctl --getentryinfo [file_system, dir, file]`
@@ -91,13 +97,10 @@ This shows that particular file is striped over 4 OSSes.
 
 ## DON'Ts
 
-* Avoid having a large number of files in a single directory and rather split
-	files in multiple sub-directories.
-* Avoid accessing small files. Use `/node/scratch` whenever possible instead
-	of `/cluster/work` for small files.
-* Avoid repetitive `stat` operations because it creates a significant load on
-	the file system.
-* Do not use `ls -l` on whole directory because it issues RPCs to the MDS for
-	each file and directory it lists. Use rather `ls` and run `ls -l` only for
-	the specific file you need extended information such as: permissions,
-	ownership, etc.
+* Avoid having a large number of files in a single directory and
+  rather split files in multiple sub-directories.
+* Avoid repetitive `stat` operations because it creates a significant
+  load on the file system.
+* Do not use `ls -l` on large directories, because it is slow.  Rather
+  use `ls` and run `ls -l` only for the specific files you need
+  extended information about.
