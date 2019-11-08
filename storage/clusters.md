@@ -11,25 +11,30 @@ two clusters.  Read the following sections for specific details.
 
 * Fram
 
-| Directory                                       | Purpose              | Default Quota         | Backup |
-| :-------------                                  | :-------------       | :----------:          | :---:  |
-| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                   | No     |
-| `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                   | No     |
-| `/cluster/projects/<project_name>`              | Project data         | 1TiB[*](#project-area) | Yes    |
-| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20GiB                  | Yes    |
+| Directory                                       | Purpose              | Default Quota                       | Backup |
+| :-------------                                  | :-------------       | :----------:                        | :---:  |
+| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                 | No     |
+| `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                 | No     |
+| `/cluster/projects/<project_name>`              | Project data         | 1 TiB[*](#project-area) / 1 M files | Yes    |
+| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files                | Yes    |
 
 * Saga
 
-| Directory                                       | Purpose              | Default Quota         | Backup |
-| :-------------                                  | :-------------       | :----------:          | :---:  |
-| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                   | No     |
-| `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                   | No     |
-| `/cluster/projects/<project_name>`              | Project data         | 1TiB[*](#project-area) | No     |
-| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20GiB                  | No     |
+| Directory                                       | Purpose              | Default Quota                       | Backup |
+| :-------------                                  | :-------------       | :----------:                        | :---:  |
+| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                 | No     |
+| `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                 | No     |
+| `/cluster/projects/<project_name>`              | Project data         | 1 TiB[*](#project-area) / 1 M files | Soon   |
+| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files                | Soon   |
 
 Note that on __Saga__, backup of `$HOME` and
 `/cluster/projects/<project_name>` has not been set up yet, but will
 soon be implemented.
+
+In addition to the areas in the tables above, both clusters mount the
+NIRD project areas as `/nird/projects/nird/NSnnnnK` on the login nodes
+(but not on the compute nodes).  (This has not been implemented on
+Saga yet, but will happen soon.)
 
 The **/cluster** file system is a high-performance parallel file
 system.  On __Fram__, it is a [Lustre](http://lustre.org) system with
@@ -132,7 +137,7 @@ an application for a separate NIRD project area.
 * For backup, snapshots are taken with the following frequency:
     * daily snapshots of the last 7 days
     * weekly snapshots of the last 6 weeks. 
-* To see disk usage and quota information for your project, run `dusage -p <project_name`.
+* To see disk usage and quota information for your project, run `dusage -p <project_name>`.
 * See [Backup](backup.md).
 
 ## Home Directory (`$HOME`)
@@ -155,5 +160,3 @@ sources or other relevant data which must have a backup.
 * **Not implemented on Saga yet** Backed up with daily snapshots for
 the last 7 days and weekly snapshots for the last 6 weeks. See
 [Backup](backup.md).
-* Each user has a limitation of 100,000 files for the `$HOME` folder, but a
-	1,000,000 file limitation per the whole `/cluster` file system.
