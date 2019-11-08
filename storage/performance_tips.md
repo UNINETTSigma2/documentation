@@ -2,7 +2,7 @@
 
 ## Lustre Filesystem (Fram)
 
-To get best throughput on the scratch file system (/cluster/work), you may
+To get best throughput on the scratch file system (`/cluster/work`), you may
 need to change the data striping. Striping shall be adjusted based on the
 client access pattern to optimally load the object storage targets (OSTs).
 On Lustre, the OSTs are referring to disks or storage volumes constructing the
@@ -65,17 +65,17 @@ performance due to the unnecessary communication to multiple OSTs.
 
 ## BeeGFS filesystem (Saga)
 
-Striping in BeeGFS can be configured on a per-directory and per-file basis. 
+Striping in BeeGFS (`/cluster`) can be configured on a per-directory and per-file basis. 
 
 ### Check out current striping
 
 To check current stripe szie, use 
 
-`beegfs-ctl --getentryinfo [file_system, dir, file]`
+    beegfs-ctl --getentryinfo [file_system, dir, file]
  
 For example to check your home folder stripe size on Saga, you can do:
 
-```beegfs-ctl --getentryinfo /cluster/home/$HOME```
+    beegfs-ctl --getentryinfo /cluster/home/$HOME
 
 For example to check file tripe szie:
 
