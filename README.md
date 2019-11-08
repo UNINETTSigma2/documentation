@@ -49,10 +49,10 @@ The following give new users information about running applications on the HPC m
 Fram uses the NIRD storage system for storing archives for other research data. NOTUR projects have access
 to this geo-replicated storage through various methods. Visit the [NIRD](storage/nird.md) page for more information.
 
-## Storage areas on Fram
+## Storage areas on Fram and Saga
 
-You can find details about the storage systems available on Fram
-[here](storage/storagesystems.md).
+You can find details about the storage systems available on Fram and Saga
+[here](storage/clusters.md).
 
 ### About UNINETT Sigma2
 

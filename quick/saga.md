@@ -79,7 +79,7 @@ ssh YOUR_USERNAME@saga.sigma2.no
 
 ### File systems and quota
 Saga has one parallel file system mounted under `/cluster`. While its layout is
-identical to that on [Fram](../storage/storagesystems.md), it is based on BeeGFS
+identical to that on [Fram](../storage/clusters.md), it is based on BeeGFS
 (vs Lustre on Fram), hence has slightly different features, and was designed to
 handle I/O-intensive workloads.
 

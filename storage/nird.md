@@ -85,6 +85,6 @@ and you can see the quota and the current usage by running
 
 The NIRD project area is also mounted on the login nodes (but _not_
 the compute nodes) of Fram or Saga, when relevant.  For more
-information, visit the [Fram and Saga](storagesystems.md) page.
+information, visit the [Fram and Saga](clusters.md) page.
 (Note that the mounts on Saga do not exist yet, but will be there
 shortly.)
