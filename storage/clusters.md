@@ -17,7 +17,7 @@ two clusters.  Read the following sections for specific details.
 | `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                 | No     |
 | `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                 | No     |
 | `/cluster/projects/<project_name>`              | Project data         | 1 TiB[*](#project-area) / 1 M files | Yes    |
-| `/cluster/shared/<folder_name>`                 | Shared data          | Individual[**](#shared-area)        | No     |
+| `/cluster/shared/<folder_name>`                 | Shared data          | Individual[**](#shared-project-area)        | No     |
 
 * Saga
 
@@ -27,7 +27,7 @@ two clusters.  Read the following sections for specific details.
 | `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                 | No     |
 | `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                 | No     |
 | `/cluster/projects/<project_name>`              | Project data         | 1 TiB[*](#project-area) / 1 M files | Soon   |
-| `/cluster/shared/<folder_name>`                 | Shared data          | Individual[**](#shared-area)        | No     |
+| `/cluster/shared/<folder_name>`                 | Shared data          | Individual[**](#shared-project-area)        | No     |
 
 Note that on __Saga__, backup of `$HOME` and
 `/cluster/projects/<project_name>` has not been set up yet, but will
@@ -143,7 +143,7 @@ them with other people in the project.
   wants to keep them.  Otherwise they will eventually be deleted by
   the atuomatic file deletion.
 
-## <a name="project-area"></a>Project Area
+## Project Area
 
 All HPC projects have a dedicated local space to share data between project
 members, located at **/cluster/projects/<project_name>**.
@@ -163,7 +163,7 @@ an application for a separate NIRD project area.
 * To see disk usage and quota information for your project, run `dusage -p <project_name>`.
 * See [Backup](backup.md).
 
-## <a name="shared-area"></a>Shared Project Areas
+## Shared Project Area
 
 In special cases there might be a need for sharing data between projects for 
 collaboration and possibly preventing data duplication.
