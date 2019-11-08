@@ -36,6 +36,8 @@ Snapshots are taken with the following frequencies:
 * `/nird/home/$HOME`:
   - daily snapshots for the last 7 days
   - weekly snapshots for the last 6 weeks
+  - Note that this also includes snapshots of the Fram and Saga
+    homedir backup
 * `/nird/projects/NSxxxxK`:
   - daily snapshots for the last 7 days
   - weekly snapshots for the last 6 weeks
