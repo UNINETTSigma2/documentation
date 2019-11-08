@@ -75,13 +75,13 @@ putting them here.
 
 ### Project area
 
-Each project gets a NIRD project area `/nird/projects/NSnnnnK`,
-where `NSnnnnK` is the ID of the project.
+Each project gets a NIRD project area `/nird/projects/NSxxxxK`,
+where `NSxxxxK` is the ID of the project.
 
 The project area has a quota on disk space and the number of files,
 and you can see the quota and the current usage by running
 
-    dusage -p NSnnnnK
+    dusage -p NSxxxxK
 
 The NIRD project area is also mounted on the login nodes (but _not_
 the compute nodes) of Fram or Saga, when relevant.  For more

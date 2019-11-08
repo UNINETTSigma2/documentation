@@ -32,7 +32,7 @@ Note that on __Saga__, backup of `$HOME` and
 soon be implemented.
 
 In addition to the areas in the tables above, both clusters mount the
-NIRD project areas as `/nird/projects/nird/NSnnnnK` on the login nodes
+NIRD project areas as `/nird/projects/nird/NSxxxxK` on the login nodes
 (but not on the compute nodes).  (This has not been implemented on
 Saga yet, but will happen soon.)
 
