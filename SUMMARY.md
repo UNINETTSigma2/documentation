@@ -85,7 +85,7 @@
 * [NIRD](storage/nird.md)
 * [Fram and Saga](storage/clusters.md)
 * [Backup](storage/backup.md)
-* [Data handling and storage policy](storage/data-usage-policy.md) 
+* [Data handling and storage policy](storage/data_policy.md) 
 * [Performance tips](storage/performance-tips.md)
 
 ## Short Guides

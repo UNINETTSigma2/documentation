@@ -4,7 +4,7 @@ Projects and users receive different areas to store files and other
 data. Some areas are used for temporary files during job execution
 while others are for storing project data.
 
-Data handling and storage policy is documented [here](data-usage-policy.md).
+Data handling and storage policy is documented [here](data_policy.md).
 
 The following tables summarizes the different storage options for the
 two clusters.  Read the following sections for specific details.
