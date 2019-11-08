@@ -25,19 +25,17 @@ expected to triple in capacity during its life-time.
 
 The NIRD infrastructure offers Storage services, Archiving services
 and processing capacity for computing on the stored data.  See
-the [Reearch Data](https://www.sigma2.no/content/research-data) page
+the [Research Data](https://www.sigma2.no/content/research-data) page
 for an overview of the services.
 
 
-## Project data storage
-
-### Getting Access
+## Getting Access
 
 To gain access to the storage services, a formal application is needed. The process
 is explained at the [User Access](https://www.sigma2.no/node/36) page.
 
 
-### Logging In
+## Logging In
 
 Access to the Project data storage area is through front-end (login) node:
 
@@ -58,7 +56,7 @@ To access or transfer data use the following tools: `ssh`, `scp` or
 details.
 
 
-### Home directories
+## Home directories
 
 Each user has a home directory `/nird/home/<username>`, where
 `<username>` is the username.  The default quota for home directories
@@ -73,7 +71,7 @@ this is a _backup_ from Fram; you cannot transfer files to Fram by
 putting them here.
 
 
-### Project area
+## Project area
 
 Each project gets a NIRD project area `/nird/projects/NSxxxxK`,
 where `NSxxxxK` is the ID of the project.
