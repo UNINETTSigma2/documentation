@@ -64,11 +64,12 @@ is 20 GiB and 100,000 files.  To check the disk usage and quotas, type
 
      dusage
      
-Home directories on NIRD also contain a backup of Fram home
-directories (when relevant) in `/nird/home/<username>/backup/fram`.
-To account for this default quota is doubled when relevant.  Note that
-this is a _backup_ from Fram; you cannot transfer files to Fram by
-putting them here.
+Home directories on NIRD also contain a backup of Fram and Saga home
+directories (when relevant) in `/nird/home/<username>/backup/fram` and
+`/nird/home/<username>/backup/saga` (** not implemented for Saga yet
+**).  To account for this default quota is doubled when relevant.
+Note that this is a _backup_ from the HPC cluster; you cannot transfer
+files to the cluster by putting them here.
 
 
 ## Project area
@@ -84,5 +85,5 @@ and you can see the quota and the current usage by running
 The NIRD project area is also mounted on the login nodes (but _not_
 the compute nodes) of Fram or Saga, when relevant.  For more
 information, visit the [Fram and Saga](clusters.md) page.
-(Note that the mounts on Saga do not exist yet, but will be there
-shortly.)
+(**Note that the mounts on Saga do not exist yet, but will be there
+shortly.**)

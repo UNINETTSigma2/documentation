@@ -9,7 +9,7 @@ To transfer files between an HPC cluster (Fram or Saga) and NIRD, one can use re
 `cp` or `mv` commands on the cluster login nodes to copy or
 move files into or out of the NIRD project areas, since these are
 mounted on the cluster login nodes.  For more information,
-please check out the [Fram and Saga](../clusters.md) storage page.
+please check out the [Fram and Saga](../storage/clusters.md) storage page.
 
 ## Basic tools (scp, sftp)
 

@@ -6,7 +6,7 @@ This page describes the backups taken on NIRD and the HPC clusters.
 
 Home directories on the Fram HPC cluster (`/cluster/home/$USER`) are backed up nightly to user's home directory on NIRD (`/nird/home/$USER/backup/fram`). `$HOME/nobackup` and `$HOME/tmp` directories are excluded from the backup.
 
-The `nn*k` project directories (`/cluster/projects/nnXXXXk`) are backed up
+The `nnXXXXk` project directories (`/cluster/projects/nnXXXXk`) are backed up
 nightly to NIRD.
 
 The shared areas in `/cluster/shared` are *not* backed up to NIRD.
