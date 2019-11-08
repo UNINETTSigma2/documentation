@@ -52,8 +52,8 @@ Users must be registered and authorized by the project responsible
 before getting access.
 
 To access or transfer data use the following tools: `ssh`, `scp` or
-`sftp`.  Visit the [Transferring files](file-transfering.md) page for
-details.
+`sftp`.  Visit the [Transferring files](../faq/file_transfer.md) page
+for details.
 
 
 ## Home directories

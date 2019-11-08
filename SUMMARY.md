@@ -93,8 +93,8 @@
 * [Jobs](faq/jobs.md)
 * [Emacs](faq/emacs.md)
 * [SSH/SSHFS](faq/ssh.md)
-* [Using WinSCP on NIRD](faq/WinSCP.md)
-* [Transferring files](faq/file-transfering.md)
+* [Transferring files](faq/file_transfer.md)
+  * [Using WinSCP](faq/WinSCP.md)
 
 ## Training 
 * [Training calendar](https://www.sigma2.no/content/training) 
