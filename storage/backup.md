@@ -51,7 +51,7 @@ Snapshots are available at the following places:
 
 ### Restore data
 
-To recover the file 
+To recover a file 
 
      /nird/projects/NSxxxxK/dataset1/myfile
 
@@ -59,8 +59,8 @@ inadvertently deleted (or to recover an older version) do
 
     cp /nird/projects/NSxxxxK/.snapshots/DATE/dataset1/myfile /nird/projects/NSxxxxK/dataset1/
     
-select the date accordingly to your case.  Similarly, for a file in
-the home directory
+Select DATE accordingly to your case.  Similarly, for a file in the
+home directory:
 
 	cp /nird/home/u1/.snapshots/DATE/$USER/mydir/myfile /nird/home/$USER/mydir/
 
