@@ -163,6 +163,26 @@ an application for a separate NIRD project area.
 * To see disk usage and quota information for your project, run `dusage -p <project_name>`.
 * See [Backup](backup.md).
 
+### Pros of Running Jobs in Project Area
+
+* Since job files are not removed automatically directly when a job
+  finishes, it is easier to debug failing jobs.
+* There is no need to use special commands to copy files back in case
+  the job script or node crashes before the job has finished.
+* There is no need to move result files to save them permanently or
+  give the rest of the project access to them.
+
+### Cons of Running Jobs in Project Area
+
+* There is a risk of interference from other jobs unless one makes
+  sure to run each job in a separate sub directory inside the project
+  area.
+* Because job files are not removed when the job finishes, one has to
+  remember to clean up temporary files afterwards, otherwise they can
+  fill up the quota.
+* There is a risk of using all of the disk quota if one runs many jobs
+  and/or jobs needing a lot of storage at the same time.
+
 ## Shared Project Area
 
 In special cases there might be a need for sharing data between projects for 
