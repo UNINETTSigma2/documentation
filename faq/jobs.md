@@ -16,16 +16,6 @@ e.g., `mpirun hostname`.  Please let us know if you have an example where
 So, if you get this when using `mpirun` with Intel MPI, our recommendation is
 currently that the warning can be ignored.
 
-### Job start gets postponed
-Note: This is specific for *Fram*.  If the estimated job start gets
-postponed again and again, one reason might be that the queue system
-cannot find idle nodes within the same "island" of Fram.  The network
-on Fram is divided into four "islands", and the network is faster
-within the islands than between them.  The queue system will by
-default delay a job with up to 7 days in order to be able to start it
-on a single island.  This is most likely to happen for jobs asking for
-many nodes.  [It is possible to override this.](../jobs/fram_job_placement.md)
-
 ## Things to avoid
 
 Things you should not do or use when running jobs on the HPC clusters.
