@@ -32,7 +32,7 @@ The total number of compute cores is 9824. Total memory is 75 TiB.
 | Total NVMe+SSD local disc | 89 TiB + 60 TiB |
 | Total parallel filesystem capacity     |	1 PB  |
 
-The following give new users information about running applications on Fram:
+The following give new users information about running applications on Saga:
 
 * [Getting Started](gettingstarted.md)
 * [Migrating to Saga](../faq/migration2saga.md)
