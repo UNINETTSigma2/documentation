@@ -1,5 +1,9 @@
 # Migration to Saga
 
+In general, the user environment on Saga is designed to be as similar as possible
+to the one on Fram. Users coming from Abel or Stallo will need to adopt a little to the different
+queue system setup and to the newer software module system.
+
 Before you move existing scripts, jobs, etc to Saga, we recommend that you make
 yourself familiar with Saga by reading this page, work on the exercises listed and
 explore Saga's capabilities by trying out new commands and options.
