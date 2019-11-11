@@ -99,19 +99,3 @@
 ## Training 
 * [Training calendar](https://www.sigma2.no/content/training) 
 * [HPC carpentry](support/hpc_carpentry.md)
-
-## Test
-* [testdoc](oldjobs/jobs.md)
-	* [Queue System on Fram](oldjobs/framqueuesystem.md)
-		* [Job Placement on Fram](oldjobs/framjobplacement.md)
-	* [Job Types](oldjobs/jobtypes.md)
-	* [Job Scripts](oldjobs/jobscripts.md)
-		* [Sample MPI Batch Script](oldjobs/sample_mpi_script.md)
-		* [Porting from PBS/TORQUE](oldjobs/porting.md)
-		* [MPI Jobs](oldjobs/mpi_jobs.md)
-		* [Hybrid - OpenMP + MPI job example](oldjobs/hybrid.md)
-		* [Packing many small jobs into one large](oldjobs/onelarge.md)
-		* [Submitting many jobs using JobArray](oldjobs/jobarrays.md)
-		* [Cleanup at timeout](oldjobs/cleanup.md)
-	* [Interactive Jobs](oldjobs/interactive.md)
-	* [Managing Jobs](oldjobs/managing_jobs.md)
