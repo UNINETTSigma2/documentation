@@ -24,7 +24,7 @@ on Fram is divided into four "islands", and the network is faster
 within the islands than between them.  The queue system will by
 default delay a job with up to 7 days in order to be able to start it
 on a single island.  This is most likely to happen for jobs asking for
-many nodes.  [It is possible to override this.](../jobs/framjobplacement.md)
+many nodes.  [It is possible to override this.](../jobs/fram_job_placement.md)
 
 ## Things to avoid
 

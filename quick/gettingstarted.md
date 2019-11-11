@@ -22,15 +22,17 @@ Replace `<username>` with your registered username and `<machinename>` with the 
 
 The machine names are:
 
-* fram.sigma2.no - Fram
+* `fram.sigma2.no` - Fram
+* `saga.sigma2.no` - Saga
+* `login.nird.sigma2.no` - NIRD.  See [NIRD](../storage/nird.md) for
+  more about NIRD.
 
-First time you log in, and everytime there is a change in the *ssh-server*, OS or hardware on Fram, you will be asked to confirm the ssh-server fingerprint. Typical message is: 
+First time you log in, and everytime there is a change in the
+*ssh-server*, OS or hardware on the system you log in to, you will be asked to confirm the ssh-server fingerprint. Typical message is:
 
     The authenticity of host 'fram.sigma2.no (158.39.114.72)' can't be established.
     
-The procedure then is to check the stated `ECDSA key fingerprint` with the one printed here: [Fram ssh SHA256 fingerprint](../faq/ssh.md#sha256-fingerprint)
-
-For the storage services, the login nodes are listed at [Storage Services](../storage/storageservices.md).
+The procedure then is to check the stated `ECDSA key fingerprint` with the one printed here: [ssh SHA256 fingerprint](../faq/ssh.md#sha256-fingerprint).
 
 ## Remote desktop
 
@@ -40,7 +42,7 @@ The Fram and Stallo systems provides a remote desktop service. [See here for tut
 
 ## Development environment
 
-Abel, Stallo and Fram runs CentOS Linux distributions as operating system. The machines can run C/C++ or Fortran OpenMP and MPI applications, and depending on the machine, various open-source and third party applications. The Programming Environment page has more information about third-party applications.
+Abel, Stallo, Fram and Saga run CentOS Linux distributions as operating system. The machines can run C/C++ or Fortran OpenMP and MPI applications, and depending on the machine, various open-source and third party applications. The Programming Environment page has more information about third-party applications.
 
 ### Unix CLI
 
@@ -48,7 +50,7 @@ It is expected that the user is familiar with command-line interfaces (CLIs), bu
 
 * [Introduction to Unix CLI](https://docs.hpc.uib.no/wiki/Introduction_to_Unix_CLI) - UiB
 
-To copy files from your machine to the HPC machines, use SSH File Transfer Protocol (SFTP) and Secure Copy (SCP). They are available as command-line tools for Linux and MacOS X but Windows users need to download a separate SCP or FTP client, such as WinSCP.
+To copy files from your machine to the HPC machines, use SSH File Transfer Protocol (SFTP) or Secure Copy (SCP). They are available as command-line tools for Linux and MacOS X but Windows users need to download a separate SCP or FTP client, such as WinSCP.
 
 For example, to copy projectfiles.tar.gz to the home directory of myusername to Fram, type:
 
@@ -83,7 +85,7 @@ nodes. Abel, Stallo, and Fram use the Slurm queue system.
 
 A job is described by a _batch script_, which is a shell script (a text file)
 with `SBATCH` options to specify the needed resources and commands to perform
-the calculations.  All batch scripts must contain at least the following
+the calculations.  All batch scripts must contain _at least_ the following
 `SBATCH` options:
 
     #Project name
@@ -96,16 +98,7 @@ To submit a job, use the `sbatch` command followed by the batch script's name:
 
     sbatch <scriptfile>
 
-These pages are about creating batch scripts and how to manage them in the queue system.
-
-* [Managing Jobs](../jobs/managing_jobs.html)
-* [Job Scripts](../jobs/job_scripts.html)
-* [Job scripts on Fram](../jobs/fram_job_scripts.html)
-* [Job scripts on Saga](../jobs/saga_job_scripts.html)
-* [Sample job script on Fram](../jobs/fram_sample_mpi_job.html)
-* [Sample job script on Saga](../jobs/saga_sample_mpi_job.html)
-* [Porting from PBS/TORQUE](../jobs/porting_from_pbs.html)
-* [Running MPI applications](../jobs/running_mpi_jobs.html)
+See the "JOBS" section in the menue for documentation about jobs and the queue system.
 
 ## Account information
 
@@ -115,4 +108,4 @@ Information on available CPU-hours in your accounts:
 
 ## More Information
 
-The menu on the left list the pages with more information about developing and running applications.
+The menue on the left list the pages with more information about developing and running applications.

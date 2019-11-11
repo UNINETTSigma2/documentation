@@ -58,10 +58,13 @@ For the **Fram** login nodes, the ECDSA SHA256 key fingerprint is
 
 	SHA256:4z8Jipr50TpYTXH/hpAGZVgMAt0zwT9+hz8L3LLrHF8
 
-and for the **Saga** login nodes, it is:
+for the **Saga** login nodes, it is
 
 	SHA256:qirKlTjO9QSXuCAiuDQeDPqq+jorMFarCW+0qhpaAEA
 
+and for the **NIRD** login nodes, it is
+
+	SHA256:ZkBvlcu4b5QMf1o9nKzoPHTmSTAzVhogZxKYvNw9N9I
 
 ## SSHFS 
 

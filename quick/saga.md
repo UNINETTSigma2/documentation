@@ -33,13 +33,12 @@ The total number of compute cores is 9824. Total memory is 75 TiB.
 | Total parallel filesystem capacity     |	1 PB  |
 
 More information on how to use Saga
-will be included in the existing sections, e.g,
-SOFTWARE, CODE DEVELOPMENT, JOBS, FILES AND STORAGE, etc.  See also
-the regular documentation in the left hand menueue.
+can be found in the existing sections of the documentation in the left
+hand menue, e.g, SOFTWARE, CODE DEVELOPMENT, JOBS, FILES AND STORAGE, etc.
 
 ## Primer for early users
 In general, the user environment on Saga is designed to be as similar as possible
-to the one on Fram. Users coming from Abel or Stallo will need to adopt a bit to the different
+to the one on Fram. Users coming from Abel or Stallo will need to adopt a little to the different
 queue system setup and to the newer software module system.
 
 Below are key information listed and links to existing
@@ -48,7 +47,7 @@ documentation for Fram provided.
 ### Important !
 Currently, there is **NO BACKUP** of anything on Saga, e.g., not for `$HOME` folders, project
 folders, shared folders. Make sure to make copies of precious scripts, setups, and data.
-We hope to have backup available soon.
+Backup will be available soon.
 
 Note, while [**defaults for quota**](#file-systems-and-quota) have been defined,
 these are not yet enforced. Make sure to not use more than the quota or you will
@@ -98,12 +97,12 @@ At the start, Saga may have only limited number of modules installed. Most usefu
 commands are `module avail` (list available modules), `module load <MODULE>`(to
 load a module), `module list` (to list currently loaded modules) and
 `module purge` (to unload all modules). For more details, please
-see documentation about [software modules on Fram](../apps/modulescheme.md).
+see documentation about [software modules](../apps/modulescheme.md).
 
 ### Queue system
 Saga uses Slurm. For users coming from Fram, Abel or Stallo, basic commands are
 the same or similar, however the configuration (partitions, QoS, limits, etc.) differs
-from the other systems. For general information, see our documentation on the
+between the systems. For general information, see our documentation on the
 [queue system](../jobs/queue_system.md), [job types](../jobs/job_types.md) and
 [job scripts](../jobs/job_scripts.md).
 
