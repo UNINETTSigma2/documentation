@@ -19,9 +19,11 @@ The major steps in migrating to Saga are:
 *  **NIRD storage is not mounted on Saga's login nodes!**
 *  **Quota/disk usage policies are not enforced yet! We strongly recommend to not use more than the quota of 20 GiB on $HOME or you may run into problems later on!**
 
+All of this will be changed shortly.
+
 ## Getting familiar with Saga
 
-Please, read the [introduction about Saga](quick/saga.md) to inform yourself about Saga's
+Please, read the [introduction about Saga](../quick/saga.md) to inform yourself about Saga's
 characteristics.
 
 ## Account and projects
@@ -41,7 +43,7 @@ with ssh is
 
 `ssh USER@saga.sigma2.no`
 
-For more information see [Getting Started](quick/gettingstarted.md). Note, on
+For more information see [Getting Started](../quick/gettingstarted.md). Note, on
 Saga there is no support for remote desktops configured yet.
 
 ## File systems and storage quota
@@ -123,13 +125,13 @@ or for building software packages it is highly recommended to put such sequences
 into a shell script and execute that as a batch job. An example command to
 submit an interactive job is
 
-`srun --account=nnXXXXk --time=00:01:00 --mem=1G --pty bash -i`
+`srun --account=nnXXXXk --time=00:01:00 --mem-per-cpu=1G --pty bash -i`
 
 The parameters before `--pty bash -i` could also be used to submit a batch job
 (often they are put into a shell script). On Abel you may have used the command
 `qlogin` to submit an interactive job.
 
-Our documentation provides additional information about [interactive jobs](jobs/interactivejobs.md).
+Our documentation provides additional information about [interactive jobs](../jobs/interactive_jobs.md).
 You may also check the manual page for srun with the command `man srun`.
 
 **Exercise 6:** Determine the compute node on which the job runs and list all modules
@@ -171,10 +173,17 @@ A typical job script on Abel looks like (taken from
     # Max memory usage:
     #SBATCH --mem-per-cpu=Size
 
+    ## Recommended safety settings:
+    set -o errexit # Make bash exit on any error
+    set -o nounset # Treat unset variables as errors
+
     ## Set up job environment:
     source /cluster/bin/jobsetup
     module purge   # clear any inherited modules
-    set -o errexit # exit on errors
+    module load SoftWare/Version
+
+    # It is also recommended to to list loaded modules, for easier debugging:
+    module list
 
     ## Copy input files to the work directory:
     cp MyInputFile $SCRATCH
@@ -186,7 +195,7 @@ A typical job script on Abel looks like (taken from
     cd $SCRATCH
     YourCommands
 
-This job ported to Saga would be (with some additions taken from [Sample MPI Batch Script](jobs/sample_mpi_batch_script.md))
+This job ported to Saga would be (with some additions taken from [Sample MPI Batch Script](../jobs/saga_sample_mpi_job.md))
 
     #!/bin/bash
 
@@ -205,23 +214,24 @@ This job ported to Saga would be (with some additions taken from [Sample MPI Bat
     # Number of tasks (cores): this is added to make it easier for you to do exercises
     #SBATCH --ntasks=1
 
+    ## Recommended safety settings:
+    set -o errexit # Make bash exit on any error
+    set -o nounset # Treat unset variables as errors
+
     ## Set up job environment: (this is done automatically behind the scenes)
     ## (make sure to comment '#' or remove the following line 'source ...')
     # source /cluster/bin/jobsetup
     
-    module restore system   # instead of 'module purge' rather set module environment to the system default
-    module load SoftWare/Versions #nb: 'Versions' is mandatory! There are no default versions of modules as on Abel!
+    module purge   # clear any inherited modules
+    module load SoftWare/Version #nb: 'Version' is mandatory! There are no default versions of modules on Saga!
 
     # It is also recommended to to list loaded modules, for easier debugging:
-    module list  
-
-    set -o errexit # exit on errors
-    set -o nounset # Treat unset variables as errors (added for more easily discovering issues in your batch script)
+    module list
 
     ## Copy input files to the work directory:
     cp MyInputFile $SCRATCH
 
-    ## Make sure the results are copied back to the submit directory (see Work Directory below):
+    ## Make sure the results are copied back to the submit directory:
     # chkfile MyResultFile
     # chkfile is replaced by 'savefile' on Saga
     savefile MyResultFile
