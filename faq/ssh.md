@@ -37,19 +37,31 @@ Host fram                            # alias, you may run "ssh fram" only
 	ForwardX11Trusted	no           # do not trust remote X11 clients
 ```
 
+
 ## SHA256 fingerprint
 
-No matter how you login, you will need to confirm that the connection shall be trusted. The ECDSA SHA256 key fingerprint of  `fram.sigma2.no` is:
+No matter how you login, you will need to confirm that the connection
+shall be trusted.  The first time you log in to a machine fia `ssh`, you will
+get a message like
 
-    SHA256:YJpwZ91X5FNXTc/5SE1j9UR1UAAI4FFWVwNSoWoq6Hc
-
-So, if you get this message when yiou log in to Fram via *ssh*:
-
-    The authenticity of host 'fram.sigma2.no (158.39.114.72)' can't be established.
-    ECDSA key fingerprint is SHA256:4z8Jipr50TpYTXH/hpAGZVgMAt0zwT9+hz8L3LLrHF8.
+    The authenticity of host '<hostname>' can't be established.
+    ECDSA key fingerprint is <fingerprint>.
     Are you sure you want to continue connecting (yes/no)?
 
-you can continue by typing yes and pressing `Enter`. If you connect to Fram, and the SHA256 is different than the number above, please contact support@metacenter.no immediately.
+If the `<fingerprint>` matches the fingerprint of the login machine
+you are logging in to (see below), you can confirm by typing `yes` and
+press `Enter`.  (Note that the trailing "." is not part of the
+fingerprint.)  If the fingerprint does _not_ match, please contact
+`support@metacenter.no` immediately.
+
+For the **Fram** login nodes, the ECDSA SHA256 key fingerprint is
+
+	SHA256:4z8Jipr50TpYTXH/hpAGZVgMAt0zwT9+hz8L3LLrHF8
+
+and for the **Saga** login nodes, it is:
+
+	SHA256:qirKlTjO9QSXuCAiuDQeDPqq+jorMFarCW+0qhpaAEA
+
 
 ## SSHFS 
 
