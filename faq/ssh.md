@@ -54,17 +54,32 @@ press `Enter`.  (Note that the trailing "." is not part of the
 fingerprint.)  If the fingerprint does _not_ match, please contact
 `support@metacenter.no` immediately.
 
-For the **Fram** login nodes, the ECDSA SHA256 key fingerprint is
+For the **Fram** login nodes, the ECDSA key fingerprint is
 
 	SHA256:4z8Jipr50TpYTXH/hpAGZVgMAt0zwT9+hz8L3LLrHF8
 
-for the **Saga** login nodes, it is
+Some ssh clients will show it as
+
+	MD5:5b:af:a6:1d:94:1c:64:e1:11:54:0e:1f:7d:d2:cd:80
+
+(possibly without the `MD5:` prefix).
+
+For the **Saga** login nodes, it is
 
 	SHA256:qirKlTjO9QSXuCAiuDQeDPqq+jorMFarCW+0qhpaAEA
 
-and for the **NIRD** login nodes, it is
+sometimes shown as
+
+	MD5:13:4e:ae:66:89:0d:24:27:b8:15:87:24:31:ed:32:af
+
+For the **NIRD** login nodes, it is
 
 	SHA256:ZkBvlcu4b5QMf1o9nKzoPHTmSTAzVhogZxKYvNw9N9I
+
+sometimes shown as
+
+	MD5:02:02:cc:9d:c5:b7:43:42:5b:cd:d2:82:09:48:31:e9
+
 
 ## SSHFS 
 
