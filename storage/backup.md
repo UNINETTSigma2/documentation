@@ -15,8 +15,10 @@ The scratch areas in `/cluster/work/jobs` and `/cluster/work/users` do *not* hav
 
 ## Saga
 
-**Note: Backup on Saga has not been implemented yet, but will be
+**Note: Backup for project areas on Saga has not been implemented yet, but will be
 soon!**
+**ONLY home directories having quotas enabled are being backed up. Any $HOME
+area using more then 20GiB is skipped. To have your $HOME backed up, you need to shrink the disk usage below the 20GiB limit and notify support. `dusage` reporting 0 Bytes limit means, that you do _not_ have disk quotas activated.**
 
 Home directories on the Saga HPC cluster (`/cluster/home/$USER`) are backed up nightly to user's home directory on NIRD (`/nird/home/$USER/backup/saga`). `$HOME/nobackup` and `$HOME/tmp` directories are excluded from the backup.
 
