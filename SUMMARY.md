@@ -97,5 +97,5 @@
   * [Using WinSCP](faq/WinSCP.md)
 
 ## Training 
-* [Training calendar](https://www.sigma2.no/content/training) 
+* [Training calendar](https://www.sigma2.no/events) 
 * [HPC carpentry](support/hpc_carpentry.md)
