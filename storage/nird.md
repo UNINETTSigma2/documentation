@@ -25,14 +25,14 @@ expected to triple in capacity during its life-time.
 
 The NIRD infrastructure offers Storage services, Archiving services
 and processing capacity for computing on the stored data.  See
-the [Research Data](https://www.sigma2.no/content/research-data) page
+the [Research Data](https://www.sigma2.no/services-overview) page
 for an overview of the services.
 
 
 ## Getting Access
 
 To gain access to the storage services, a formal application is needed. The process
-is explained at the [User Access](https://www.sigma2.no/node/36) page.
+is explained at the [User Access](https://www.sigma2.no/how-apply-user-account) page.
 
 
 ## Logging In
