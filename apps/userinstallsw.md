@@ -102,3 +102,33 @@ The default path for modulefiles only contains the centrally installed modules. 
 		
 **For more information about the module system, please see:** <https://lmod.readthedocs.io/en/latest/>
 
+
+# How can I as user install Python packages?
+Users can install Python packages in a virtual Python environment. Here is how
+you create a virtual environment with the command `virtualenv`:
+
+``` sh
+# Create the virtual environment.
+virtualenv my_new_pythonenv
+# Activate the environment.
+source my_new_pythonenv/bin/activate
+# Install packages with pip. Here we install pandas.
+pip install pandas
+```
+## Using the virtual environment in a batch script
+In a batch script you will activate the virtual environment in the same way as
+above. You must just load the python module first:
+```
+## Set up job environment
+set -o errexit # exit on any error
+set -o nounset # treate unset variables as error
+
+# Load modules
+module load Python/3.7.2-GCCcore-8.2.0
+
+# activate the virtual environment
+source my_new_pythonenv/bin/activate
+
+# execute example script
+python pdexample.py
+```
