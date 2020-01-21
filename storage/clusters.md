@@ -4,6 +4,11 @@ Projects and users receive different areas to store files and other
 data. Some areas are used for temporary files during job execution
 while others are for storing project data.
 
+You can see the disk usage and disk quotas of your available areas
+with the command
+
+    dusage
+
 Data handling and storage policy is documented [here](data_policy.md).
 
 The following tables summarizes the different storage options for the
