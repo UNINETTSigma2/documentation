@@ -1,8 +1,8 @@
 # How can I, as a user, install software for myself or my project with EasyBuild?
 
-Currently, the software-team in the Metacenter is using the [EasyBuild system](https://easybuild.readthedocs.io/en/latest/) for installing system-wide software and scientific applications. It is, actually, quite easy (hence the name) and straigt forward for users to do install with the same tool.
+Currently, the software-team in the Metacenter is using the [EasyBuild system](https://easybuild.readthedocs.io/en/latest/) for installing system-wide software and scientific applications. It is, actually, quite easy (hence the name) and straight forward for users to do install with the same tool.
 
-There are two distinct scenarios covered in this tutorial; first installations for single user only - placing the software in standard user home folder. Second, installations for a project/group - placing the softeware in a project folder for many to share. 
+There are two distinct scenarios covered in this tutorial; first installations for single user only - placing the software in standard user home folder. Second, installations for a project/group - placing the software in a project folder for many to share. 
 
 Note that the software install team at the Norwegian Metacenter **never** do installations in `$HOME` for users, and preferably not in /cluster/projects.
 
@@ -39,7 +39,7 @@ It may be a good idea to get an overview of what will be installed with the comm
 
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun
 
-if this proves sucessfull, then type:
+if this proves successful, then type:
 
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb -r
 	
@@ -63,7 +63,7 @@ Then do as follows:
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --fetch --prefix=/cluster/projects/nnXXXXk/easybuild
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun --prefix=/cluster/projects/nnXXXXk/easybuild #as mentioned above.
 	
-where XXXX is your project id number. When a sucsessful download of sources is made, then type:
+where XXXX is your project id number. When a successful download of sources is made, then type:
 
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --prefix=/cluster/projects/nnXXXXk/easybuild
 
@@ -102,3 +102,71 @@ The default path for modulefiles only contains the centrally installed modules. 
 		
 **For more information about the module system, please see:** <https://lmod.readthedocs.io/en/latest/>
 
+
+# How can I as user install Python packages?
+Users can install Python packages in a virtual Python environment. Here is how
+you create a virtual environment with the command `virtualenv`:
+
+``` sh
+# Create the virtual environment.
+virtualenv my_new_pythonenv
+# Activate the environment.
+source my_new_pythonenv/bin/activate
+# Install packages with pip. Here we install pandas.
+pip install pandas
+```
+## Using the virtual environment in a batch script
+In a batch script you will activate the virtual environment in the same way as
+above. You must just load the python module first:
+```
+# Set up job environment
+set -o errexit # exit on any error
+set -o nounset # treat unset variables as error
+
+# Load modules
+module load Python/3.7.2-GCCcore-8.2.0
+
+# activate the virtual environment
+source my_new_pythonenv/bin/activate
+
+# execute example script
+python pdexample.py
+```
+## Using Anaconda and Miniconda in batch
+An alternative to creating virtual environments with virtualenv, is to create
+environment with Anaconda or Miniconda. To able to use the conda
+environment in a batch script, you will need to source a conda environment
+file. First create a environment, here also installing:
+```
+# load Anaconda3
+module load Anaconda3/2019.03
+
+# install pandas as part of creating the environment
+conda create -t testenv pandas
+
+# activate the environment
+conda activate testenv
+```
+
+To be able to use this environment in a batch script, you will need to include
+the following in your batch script, before calling the python program:
+```
+# load the Anaconda3
+module load Anaconda3/2019.03
+
+# Set the ${PS1} (needed in the source of the Anaconda environment)
+export PS1=\$
+
+# Source the conda environment setup
+# The variable ${EBROOTANACONDA3} comes with the
+# module load command
+source ${EBROOTANACONDA3}/etc/profile.d/conda.sh
+
+# Activate the environment by using the full path (not name)
+# to the environment. The full path is listed if you do
+# conda info --envs at the command prompt.
+conda activate /cluster/home/rnl/anaconda3/envs/testenv
+
+# Execute the python program
+python pdexample.py
+```
