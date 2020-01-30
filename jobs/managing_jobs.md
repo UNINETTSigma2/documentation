@@ -10,7 +10,12 @@ Jobs are submitted to the job queue with
 
 ## Inspecting Jobs
 
-To get a quick view of the status of a job, you can use [squeue](https://slurm.schedmd.com/squeue.html):
+To check the job status of all your jobs, you can use
+[squeue](https://slurm.schedmd.com/squeue.html):
+
+    squeue -u MyUsername
+
+You can also get a quick view of the status of a job
 
     squeue -j JobId
 
@@ -19,8 +24,8 @@ details about a job, use
 
     scontrol show job JobId
 
-Both commands will show the job state, and can show a job reason for
-why a job is pending.  [Job States](job_states.md) describes a few
+Both commands will show the job state (**ST**), and can show a job reason for
+why a job is pending. [Job States](job_states.md) describes a few
 of the more common ones.
 
 While a job is running, it is possible to view some of its usage
