@@ -4,7 +4,9 @@ Saga is designed to run serial and small ("narrow") parallel jobs, in
 addition to GPU jobs.  If you need to run "wider" parallel jobs, Fram
 is a better choice.
 
-The basic allocation units on Saga are cpu and memory.
+The basic allocation units on Saga are cpu and memory.  The details of
+how the allocation units are calculated can be found
+[here](projects.md#accounting).
 
 Most jobs on Saga are *normal* jobs.
 
@@ -24,7 +26,7 @@ Saga:
 
 - __Allocation units__: cpus and memory
 - __Job Limits__:
-    - maximum 256 cpus
+    - maximum 256 units
 - __Maximum walltime__: 7 days
 - __Priority__: normal
 - __Available resources__: 200 nodes with 40 cpus and 186 GiB RAM,
@@ -37,7 +39,7 @@ This is the default job type.  Most jobs are *normal* jobs.
 
 - __Allocation units__: cpus and memory
 - __Job Limits__:
-    - (none)
+    - maximum 256 units
 - __Maximum walltime__: 14 days
 - __Priority__: normal
 - __Available resources__:
@@ -56,7 +58,7 @@ slightly more than 4.5 GiB per cpu.)
 
 - __Allocation units__: cpus, memory and GPUs
 - __Job Limits__:
-    - (none)
+    - maximum 256 units
 - __Maximum walltime__: 14 days
 - __Priority__: normal
 - __Available resources__: 8 nodes with 24 cpus, 377 GiB RAM and 4
@@ -69,7 +71,7 @@ slightly more than 4.5 GiB per cpu.)
 
 - __Allocation units__: cpus and memory
 - __Job Limits__:
-    - maximum 256 cpus
+    - maximum 256 units
 - __Maximum Walltime__: None.  The jobs will start as soon as
   resources are available for at least 30 minutes, but can be
   requeued at any time, so there is no guaranteed minimum run time.
@@ -97,8 +99,8 @@ send a request to <support@metacenter.no>.
 
 - __Allocation units__: cpus and memory and GPUs
 - __Job Limits__:
-    - maximum 128 cpus per job
-    - maximum 256 cpus in use at the same time
+    - maximum 128 units per job
+    - maximum 256 units in use at the same time
     - maximum 2 running jobs per user
 - __Maximum walltime__: 2 hours
 - __Priority__: high
