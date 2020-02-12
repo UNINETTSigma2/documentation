@@ -6,11 +6,11 @@ The remote desktop service makes it possible to run graphical applications on th
 
 ## Neccessary client software
 
-Although it is possible to run the desktop in a web-browser (<https://desktop.fram.sigma2.no:6080>)it is recommended to use a VNC client as it gives better performance and user experience. The recommended VNC client is TigerVNC which can be downloaded from <http://www.tigervnc.org> (Many Linux distros have tigervnc in their software repos).
+Although it is possible to run the desktop in a web-browser (<https://desktop.fram.sigma2.no:6080> or <https://desktop.saga.sigma2.no:6080>)it is recommended to use a VNC client as it gives better performance and user experience. The recommended VNC client is TigerVNC which can be downloaded from <http://www.tigervnc.org> (Many Linux distros have tigervnc in their software repos).
 
 ## Using the service
 
-Start TigerVNC and give `desktop.fram.sigma2.no:5901` as the server to connect to. You will then be presented with a graphical login window where you can fill in username and password on Fram.
+Start TigerVNC and give `desktop.fram.sigma2.no:5901` or `desktop.saga.sigma2.no:5901` as the server to connect to. You will then be presented with a graphical login window where you can fill in username and password on Fram.
 
 ## Short video tutorial.
 
@@ -42,7 +42,7 @@ Run the command
 ssh -L5901:localhost:5901 USERNAME@desktop.fram.sigma2.no
 ```
 
-and use `localhost:5901` as the server address.
+(or saga) and use `localhost:5901` as the server address.
 
 #### Incompatible VNC-clients
 

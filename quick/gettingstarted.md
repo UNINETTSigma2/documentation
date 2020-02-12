@@ -36,9 +36,9 @@ The procedure then is to check the stated `ECDSA key fingerprint` with the one p
 
 ## Remote desktop
 
-The Fram and Stallo systems provides a remote desktop service. [See here for tutorial and details.](remote-desktop.md)
+The Fram, Saga and Stallo systems provides a remote desktop service. [See here for tutorial and details.](remote-desktop.md)
 
-**Quickstart**: Use a VNC client to log into `desktop.fram.sigma2.no:5901` (for information on Stallo see here <http://stallo-gui.uit.no>). A web based remote desktop service is also available <https://desktop.fram.sigma2.no:6080>. Access to these services are blocked outside the Norwegian Research network, e.g. only accessible from UNINETT and partner institutions. (workarounds are described in the [tutorial](remote-desktop.md))
+**Quickstart**: Use a VNC client to log into `desktop.fram.sigma2.no:5901` or `desktop.saga.sigma2.no:5901` (for information on Stallo see here <http://stallo-gui.uit.no>). A web based remote desktop service is also available <https://desktop.fram.sigma2.no:6080>. Access to these services are blocked outside the Norwegian Research network, e.g. only accessible from UNINETT and partner institutions. (workarounds are described in the [tutorial](remote-desktop.md))
 
 ## Development environment
 
