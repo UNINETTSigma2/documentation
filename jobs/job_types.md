@@ -24,10 +24,14 @@ description of the job types and their purposes.
 
 | Name     | Description                                          | Units              | Job limits  | Max walltime                              | Priority |
 |:--------:|------------------------------------------------------|:------------------:|:-----------:|:-----------------------------------------:|:--------:|
-| normal   | default job type                                     | cpu + memory       | 1--256 cpus | 7 days                                    | normal   |
-| bigmem   | jobs needing more memory                             | cpu + memory       | (none)      | 14 days                                   | normal   |
-| accel    | jobs needing GPUs                                    | cpu + memory + GPU | (none)      | 14 days                                   | normal   |
-| optimist | <p>jobs w/checkpointing,<br/> or very short jobs</p> | cpu + memory       | 1-256 cpus  | [see details](saga_job_types.md#optimist) | low      |
-| devel    | development jobs                                     | cpu + memory + GPU | 1--128 cpus | 2 hours                                   | high     |
+| normal   | default job type                                     | cpu + memory       | 1--256 units | 7 days                                    | normal   |
+| bigmem   | jobs needing more memory                             | cpu + memory       | 1--256 units | 14 days                                   | normal   |
+| accel    | jobs needing GPUs                                    | cpu + memory + GPU | 1--256 units | 14 days                                   | normal   |
+| optimist | <p>jobs w/checkpointing,<br/> or very short jobs</p> | cpu + memory       | 1--256 units | [see details](saga_job_types.md#optimist) | low      |
+| devel    | development jobs                                     | cpu + memory + GPU | 1--128 units | 2 hours                                   | high     |
+
+For jobs that don't request GPUs or much memory, the units on Saga are
+simply the number of cpus the job requests.  For other jobs, [see
+here](projects.md#accounting) for how the units are calculated.
 
 [Saga Job Types](saga_job_types.md).
