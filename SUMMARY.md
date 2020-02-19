@@ -19,7 +19,7 @@
 * [Software Module Scheme](apps/modulescheme.md)
 * [Installed Software](apps/which_software_is_installed.md)
   * [List of installed software](apps/allmodules.md)
-* [Application guides](apps/appguides.md)    
+* [Application guides](apps/appguides.md)
   * [CDO](apps/cdo.md)
   * [CESM](apps/cesm.md)
   * [Gaussian](apps/Gaussian/about_gaussian.md)
@@ -29,7 +29,7 @@
   * [GDAL](apps/gdal.md)
   * [Gromacs](apps/gromacs.md)
   * [LAMMPS](apps/lammps.md)
-  * [MATLAB](apps/matlab.md) 
+  * [MATLAB](apps/matlab.md)
   * [NAMD](apps/namd.md)
   * [NCO](apps/nco.md)
   * [Ncview](apps/ncview.md)
@@ -97,6 +97,6 @@
 * [Transferring files](faq/file_transfer.md)
   * [Using WinSCP](faq/WinSCP.md)
 
-## Training 
-* [Training calendar](https://www.sigma2.no/events) 
+## Training
+* [Training calendar](https://www.sigma2.no/events)
 * [HPC carpentry](support/hpc_carpentry.md)
