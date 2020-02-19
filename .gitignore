@@ -2,3 +2,6 @@
 .*.swp
 .*.swo
 
+# GitBook
+_book/
+node_modules/
