@@ -31,7 +31,7 @@ for an overview of the services.
 
 ## Getting Access
 
-To gain access to the storage services, a formal application is needed. The process
+To gain access to the storage services, a formal application is required. The process
 is explained at the [User Access](https://www.sigma2.no/how-apply-user-account) page.
 
 
