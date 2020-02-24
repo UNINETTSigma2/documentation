@@ -41,9 +41,11 @@ For more information on available versions, type:
 	
 Users have to supply the necessary input files, inclusing any `POTCAR` files needed. They can be downloaded from the VASP portal you get access to with a valid VASP license. Also, please note that the `POTCAR` files are protected by the license.
 
-## About VASP on Fram
+## Specifics regarding the VASP install on Fram.
 
-For simplicity we have compiled a page on specifics about the VASP install on Fram: files/vasponfram.md
+Note that this is similar to Saga, but we are currently moving to a more automatic deployment system and the naming scheme is thus different on Saga.
+
+
 
 ## Citation
 
