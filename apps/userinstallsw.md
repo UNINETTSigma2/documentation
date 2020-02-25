@@ -126,6 +126,9 @@ set -o nounset # treat unset variables as error
 # Load modules
 module load Python/3.7.2-GCCcore-8.2.0
 
+# Set the ${PS1} (needed in the source of the virtual environment for some Python versions)
+export PS1=\$
+
 # activate the virtual environment
 source my_new_pythonenv/bin/activate
 
