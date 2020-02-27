@@ -1,6 +1,6 @@
 ## News
-* [Metacenter OpsLog](https://opslog.sigma2.no)
-* [Live Status](https://www.sigma2.no/hardware-status)
+* [Latest changes and events](https://opslog.sigma2.no)
+* [Hardware live status](https://www.sigma2.no/hardware-status)
 
 ## Quick Information
 * [Introduction](README.md)
