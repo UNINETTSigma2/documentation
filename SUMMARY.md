@@ -2,14 +2,16 @@
 * [Latest changes and events](https://opslog.sigma2.no)
 * [Hardware live status](https://www.sigma2.no/hardware-status)
 
+## Getting help
+* [Contact](help/contact.md)
+* [Writing good support requests](help/how_to_write_good_support_requests.md)
+* [Frequently asked questions](help/faq.md)
+
 ## Quick Information
 * [Introduction](README.md)
 * [Getting Started](quick/gettingstarted.md)
     * [Remote Desktop](quick/remote-desktop.md)
 * [License Information](quick/license.md)
-* [Contact](support/contact.md)
-    * [Writing Support Requests](support/how_to_write_good_support_requests.md)
-* [General FAQ](faq/README.md)
 
 ## HPC Machines
 * [Fram](quick/fram.md)
