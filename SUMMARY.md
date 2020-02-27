@@ -45,14 +45,6 @@
 	* [Licensed software](apps/licenses/license-list.md)
 	* [License funding policy](apps/licenses/funding.md)
 
-## Code Development
-* [Compilers](development/compilers.md)
-* [Debugging](development/debugging.md)
-* [Performance Analysis and Tuning](development/performance.md)
-  * [ARM Performance Reports](development/arm_perf.md)
-    * [VTune Amplifier](development/vtune.md)
-    * [Other Intel Tuning Tools](development/tuning.md)
-
 ## Jobs
 * [Queue System](jobs/queue_system.md)
     * [Queue System Concepts](jobs/queue_system_concepts.md)
@@ -82,6 +74,13 @@
 	* [Running Job Steps in Parallel](jobs/parallel_steps.md)
     * [Cleanup at Timeout](jobs/timeout_cleanup.md)
 
+## Code Development
+* [Compilers](development/compilers.md)
+* [Debugging](development/debugging.md)
+* [Performance Analysis and Tuning](development/performance.md)
+  * [ARM Performance Reports](development/arm_perf.md)
+    * [VTune Amplifier](development/vtune.md)
+    * [Other Intel Tuning Tools](development/tuning.md)
 
 ## Files and Storage
 * [NIRD](storage/nird.md)
