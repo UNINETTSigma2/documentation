@@ -18,8 +18,9 @@
 ## SOFTWARE
 * [Software Module Scheme](apps/modulescheme.md)
 * [Installed Software](apps/which_software_is_installed.md)
-  * [List of installed software](apps/allmodules.md)
-* [Application guides](apps/appguides.md)
+  * [List of installed software on Fram](apps/fram_modules.md)
+  * [List of installed software on Saga](apps/saga_modules.md)
+* [Application guides](apps/appguides.md)    
   * [CDO](apps/cdo.md)
   * [CESM](apps/cesm.md)
   * [Gaussian](apps/Gaussian/about_gaussian.md)
