@@ -31,7 +31,7 @@ First time you log in, and everytime there is a change in the
 *ssh-server*, OS or hardware on the system you log in to, you will be asked to confirm the ssh-server fingerprint. Typical message is:
 
     The authenticity of host 'fram.sigma2.no (158.39.114.72)' can't be established.
-    
+
 The procedure then is to check the stated `ECDSA key fingerprint` with the one printed here: [ssh SHA256 fingerprint](../faq/ssh.md#sha256-fingerprint).
 
 ## Remote desktop

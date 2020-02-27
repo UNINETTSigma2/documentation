@@ -14,11 +14,11 @@ More information: http://www.nwchem-sw.org
 To see available versions when logged into Fram issue command
 
     module spider nwchem
-    
+
 To use NWChem type
 
     module load NWChem/<version>
-    
+
 specifying one of the available versions.
 
 ### Sample NWChem Job Script

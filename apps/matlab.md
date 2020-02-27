@@ -15,7 +15,7 @@ university and the license name to use when submitting jobs. Add this link to
 the environment variable MLM_LICENSE_FILE:
 
     export MLM_LICENSE_FILE=<link-to-matlab-license-server>
-    
+
 Add this environment variable setting into your `~/.bashrc`.  When submitting
 a job with, e.g., sbatch, use `sbatch --licenses=<license-name>`.
 
@@ -34,7 +34,7 @@ Commercial users need to sign a Hosting Provider agreement. Contact: sigma2@unin
 To see available versions when logged into Fram issue command
 
     module spider matlab
-    
+
 To use MATLAB type
 
     module load MATLAB/<version>

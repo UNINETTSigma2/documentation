@@ -8,7 +8,7 @@ For a general explanation on how to make an application available for use, the m
     * [GDAL](gdal.md)
     * [Gromacs](gromacs.md)
     * [LAMMPS](lammps.md)
-    * [MATLAB](matlab.md) 
+    * [MATLAB](matlab.md)
     * [NAMD](namd.md)
     * [NCO](nco.md)
     * [Ncview](ncview.md)

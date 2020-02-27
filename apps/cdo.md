@@ -13,11 +13,11 @@ Mor information: https://code.zmaw.de/projects/cdo
 To see available versions when logged into Fram issue command
 
     module spider cdo
-    
+
 To use CDO type
 
     module load CDO/<version>
-    
+
 specifying one of the available versions.
 
 ## License Information

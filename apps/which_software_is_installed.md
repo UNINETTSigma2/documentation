@@ -29,4 +29,4 @@ For installed SW on:
 
 * Fram: See [List of installed software on Fram](fram_modules.md)
 * Saga: See [List of installed software on Saga](saga_modules.md)
-* Betzy (currently none, but will come eventually ;-)) 
+* Betzy (currently none, but will come eventually ;-))

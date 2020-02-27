@@ -22,7 +22,7 @@ scales.
 or
 
 > Significant time is spent on memory accesses. Use a profiler
-to identify time-consuming loops and check their cache performance. 
+to identify time-consuming loops and check their cache performance.
 
 First, we show how to use ARM Performance Reports on Fram. Next, we use
 the profiler on three benchmark codes to show how a typical analysis
@@ -34,13 +34,13 @@ looks like.
 
 We demonstrate some pitfalls of profiling, and show how
 one can use profiling to reason about the performance of real-world
-codes. 
+codes.
 
 
 ## Using ARM Performance Reports on Fram
 To use ARM Performance Reports on Fram you need to load the
 corresponding module `Arm-PerfReport`. To list the available
-versions: 
+versions:
 
 ```
 $ ml avail Arm-PerfReports
@@ -59,13 +59,13 @@ the code using the [`perf-report`
 command](https://developer.arm.com/docs/101137/latest/running-with-an-example-program).
 On Fram, MPI jobs can be profiled only when started on one of the compute nodes,
 i.e., **not on the login nodes**. When running from within a job
-script, one should execute  
+script, one should execute
 
 ```
 $ perf-report mpirun ./my-program
 ```
 
-This way of launching Performance Reports is called "express launch mode" and it makes 
+This way of launching Performance Reports is called "express launch mode" and it makes
 it easy to modify your existing queue submission script. However, this can sometimes
 fail. If this happens then try to run Performance Reports in "compatibility mode":
 
@@ -85,7 +85,7 @@ $ perf-report mpirun ./my-program
 ```
 
 An HTML and a text file with a summary of the gathered information are
-written in the startup directory. 
+written in the startup directory.
 
 **NOTE:** Due to a bug in older versions of OpenMPI, on Fram ARM Performance
 Reports works only with OpenMPI version 3.1.3 and newer. If you've
@@ -173,7 +173,7 @@ at the CPU time breakdown: 80% of the time is reported as spent in the
 memory access. Some time is reported as used by numeric
 (floating-point) operations. While it is true that STREAM does use
 FLOPs, when running on all CPU cores the bottleneck is the memory
-access, and the time needed to execute the FP instructions is 
+access, and the time needed to execute the FP instructions is
 fully overlapped by the slow memory instructions. This can be seen when
 comparing the results of *Copy* and *Scale*, or *Add* and *Triad* tests:
 those pairs differ by one floating point operation, but their
@@ -185,7 +185,7 @@ memory and floating point operations are as much as possible
 overlapped by the CPU, it is sometimes difficult to say, which class
 of instructions is the bottleneck. That's why such a performance
 report should be treated as a high level overview and a suggestion,
-rather than a definite optimization guide.  
+rather than a definite optimization guide.
 
 The code is parallelized using OpenMP. In the *Threads* section of
 the report there is no mention of thread synchronization overhead,
@@ -221,7 +221,7 @@ WR11C2R4       50000   192     4     8              86.82             9.5985e+02
 The program reports computing at 960 GFLOP/s. Looking at the nominal
 CPU frequency on Fram (E5-2683 v4 @ 2.1GHz), the peak FLOP/s
 performance is 2.1 GHz*clock/core * 16 FLOP/clock * 32 cores = 1075
-FLOP/s. During the run the cores were actually running at ~2.3-2.4GHz, 
+FLOP/s. During the run the cores were actually running at ~2.3-2.4GHz,
 hence LINPACK achieves between 80% and 90% of the theoretical
 peak. This is a very good result, not often achieved by real-world
 codes. Clearly, the code is compute bound.
@@ -241,13 +241,13 @@ Hence, performance with profiling is roughly 3% lower than
 without. While the profiling overhead is not significant, the entire
 profiled run (together with setup and final data collection and
 interpretation) took much longer than the LINPACK benchmark itself: 15
-minutes with profiling vs. 1.5 minute without profiling. This 
+minutes with profiling vs. 1.5 minute without profiling. This
 extension, which might be different for individual codes and depends on the
 number of MPI ranks, must be accounted for by the user when submiting
 profiled jobs the queuing system.
 
 Below is the HTML performance summary produced by ARM
-`perf-report`: 
+`perf-report`:
 
 ![LINPACK perf-report](arm/perf_report_linpack.png "LINPACK perf-report")
 
@@ -318,7 +318,7 @@ entire analysis.
 
 In practice, this overhead **cannot be estimated** by simply measuring
 the total execution time of profiled and non-profiled runs to see how
-much the profiling slowed down our application: 
+much the profiling slowed down our application:
 
 ```
 $ time mpirun <program>
@@ -328,13 +328,13 @@ $ time perf-report mpirun <program>
 [...]
 ```
 Remember that, in addition to the profiling overhead, there is the
-profiling startup and data collection costs, which 
+profiling startup and data collection costs, which
 can be by far larger than the application run time (see the discussion
 in the [LINPACK benchmark](#linpack-benchmark) section).
 To overcome this problem one needs to include some time measurement
 facilities inside the profiled application using, e.g., the C `printf`
 statements. Alternatively, `perf-report` should be started to profile
-the `time` command itself: 
+the `time` command itself:
 
 ```
 $ perf-report /usr/bin/time mpirun <program>
@@ -353,7 +353,7 @@ overhead ([STREAM benchmark](#stream-benchmark), [LINPACK
 benchmark](#linpack-benchmark)) to factor 26 slowdown
 ([OSU benchmark](#osu-benchmark)).
 
-To understand how ARM Performance Reports affects the MPI performance 
+To understand how ARM Performance Reports affects the MPI performance
 we investigate the performance of `osu_barrier` with and without
 profiling on up to 512 cores and 32 compute nodes (maximum 16 ranks
 per compute node). The following figure shows the run time in

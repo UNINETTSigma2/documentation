@@ -5,7 +5,7 @@ Gaussview is a visualization program that can be used to open Gaussian output fi
 Official documentation: [https://gaussian.com/gaussview6/](https://gaussian.com/gaussview6/)
 
 ## License and access
-The license for Gaussian is commercial/proprietary and currently only UiT holds a site license. Thus GaussView on Sigma2 machines is available for UiT users only, unless a user or a group holds an invividual license to the code. 
+The license for Gaussian is commercial/proprietary and currently only UiT holds a site license. Thus GaussView on Sigma2 machines is available for UiT users only, unless a user or a group holds an invividual license to the code.
 
 ### GaussView on Fram
 To load and run GaussView on Stallo, load the relevant Gaussian module, and then call GaussView:

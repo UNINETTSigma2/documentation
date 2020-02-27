@@ -31,17 +31,17 @@ Gaussian takes care of memory allocation internally. This means that if the subm
 **The `%mem` allocation of memory in the Gaussian input file means two things:**
 
 * In general it means memory/node – for share between nprocshared, and additional to the memory allocated per process. This is also documented by Gaussian.
-* For the main process/node it also represents the network buffer allocated by Linda since the main Gaussian process takes a part and Linda communication process takes a part equally sized – thus you should never ask for more than half of the physical memory on the nodes, unless they have swap space available - which you never should assume. 
+* For the main process/node it also represents the network buffer allocated by Linda since the main Gaussian process takes a part and Linda communication process takes a part equally sized – thus you should never ask for more than half of the physical memory on the nodes, unless they have swap space available - which you never should assume.
 
-Please consider the memory size in your input if jobs fail. Our job example is set up with 500MB (which is actually a bit on the small side), test-jobs were ran with 2000MB. Memory demand also increases with an increasing number of cores, for jobs with 16 nodes or more - doubling the amount of `%mem` would be advicable. But this would also limit the size of problems possible to run at a certain number of cores. 
+Please consider the memory size in your input if jobs fail. Our job example is set up with 500MB (which is actually a bit on the small side), test-jobs were ran with 2000MB. Memory demand also increases with an increasing number of cores, for jobs with 16 nodes or more - doubling the amount of `%mem` would be advicable. But this would also limit the size of problems possible to run at a certain number of cores.
 
-<span style="color:violet"> To top this, the `%mem` tag is also influencing on performance; too high makes the job go slower, too low makes the job fail.</span> 
+<span style="color:violet"> To top this, the `%mem` tag is also influencing on performance; too high makes the job go slower, too low makes the job fail.</span>
 
 The maximum `%mem` limit will always be half of the physical memory pool given on a node. As a rule of thumb, you should also leave a small part for the system. That is why we would actually advise to use not more than 15GB as maximum `%mem` size. **Note that "heap size" is also eating from the memory pool of the node (see below).**
 
 ## Managment of large files
 
-As commented in the [performance-tips section](../../storage/performance_tips.md), there is an issue with very large temporary output files (termed RW files in Gaussian). It is advisable to slice them into smaller parts using the `lfs setstripe` command. 
+As commented in the [performance-tips section](../../storage/performance_tips.md), there is an issue with very large temporary output files (termed RW files in Gaussian). It is advisable to slice them into smaller parts using the `lfs setstripe` command.
 
 Each user can change the default placement of the files it creates by striping files over several storage arrays, pr. folder basis. This is done with the following command:
 
@@ -51,13 +51,13 @@ Note the placement of this command in the [Fram jobscript example](../files/fram
 
 ## Important aspects of Gaussian setup on Fram:
 
-On Fram, we have not allocated swap space on the nodes, meaning that the heap size for the linda processes in Gaussian is very important for making parallell jobs run. The line 
+On Fram, we have not allocated swap space on the nodes, meaning that the heap size for the linda processes in Gaussian is very important for making parallell jobs run. The line
 
 	export GAUSS_LFLAGS2="--LindaOptions -s 20000000"
 
-contains info about the heap size for the linda communication of Gaussian. <span style="color:violet"> 20 GB (the number above) is sufficient for most calculations, but if you plan to run 16 nodes or more, you may need to increase this number to at least 30 GB.</span> 
+contains info about the heap size for the linda communication of Gaussian. <span style="color:violet"> 20 GB (the number above) is sufficient for most calculations, but if you plan to run 16 nodes or more, you may need to increase this number to at least 30 GB.</span>
 
-On Fram, the gXX.ib wrapper does two things: Together with introducing the  explicit IB network adresses into input file, it distributes the jobs onto two linda processes per node and halves the processes per linda compared to processes per node. After thorough testing, we would generally advice users to run 4-8 nodes with heap-size 20 GB (see above) and 2 Linda instances per node for running Gaussian on Fram. Note that due to the "two-Lindas-per-node" policy, memory demand is approximately the double as similar jobs on Stallo. 
+On Fram, the gXX.ib wrapper does two things: Together with introducing the  explicit IB network adresses into input file, it distributes the jobs onto two linda processes per node and halves the processes per linda compared to processes per node. After thorough testing, we would generally advice users to run 4-8 nodes with heap-size 20 GB (see above) and 2 Linda instances per node for running Gaussian on Fram. Note that due to the "two-Lindas-per-node" policy, memory demand is approximately the double as similar jobs on Stallo.
 
 
 

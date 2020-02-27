@@ -55,12 +55,12 @@ on the first of the allocated nodes, is considered a job step
 `sacct` will show the job steps.  For instance:
 
 	$ sacct -j 357055
-		   JobID    JobName  Partition    Account  AllocCPUS      State ExitCode 
-	------------ ---------- ---------- ---------- ---------- ---------- -------- 
-	357055              DFT     normal    nn9180k        256  COMPLETED      0:0 
-	357055.batch      batch               nn9180k         32  COMPLETED      0:0 
-	357055.exte+     extern               nn9180k        256  COMPLETED      0:0 
-	357055.0      pmi_proxy               nn9180k          8  COMPLETED      0:0 
+		   JobID    JobName  Partition    Account  AllocCPUS      State ExitCode
+	------------ ---------- ---------- ---------- ---------- ---------- --------
+	357055              DFT     normal    nn9180k        256  COMPLETED      0:0
+	357055.batch      batch               nn9180k         32  COMPLETED      0:0
+	357055.exte+     extern               nn9180k        256  COMPLETED      0:0
+	357055.0      pmi_proxy               nn9180k          8  COMPLETED      0:0
 
 The first line here is the job allocation.  Then comes the job script
 step (`batch`), and an artificial step that we can ignore here

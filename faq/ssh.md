@@ -1,7 +1,7 @@
 # SSH
 
 Some SSH related frequently asked questions are documented down below.
-For more in-depth details, other options, please consult the man pages: 
+For more in-depth details, other options, please consult the man pages:
 `man ssh` and `man ssh_config`.
 
 ## Password-Less Login
@@ -32,18 +32,18 @@ For more information see https://www.ssh.com/ssh/keygen/
 ## X11 forwarding
 
 X11 forwarding should be used with caution due to security implications. Please
-note that if someone can read your X authorization database [^1], that person 
+note that if someone can read your X authorization database [^1], that person
 would be able to access the local X11 display through the forwarded connection.
 
-We suggest switching it on *only* when needed, with the use of options (`-X` or 
+We suggest switching it on *only* when needed, with the use of options (`-X` or
 `-Y`)  passed to the `ssh` command. Whenever possible, use `-X` option to mark
 remote X11 clients untrusted.
 
-In some cases `-X` will fail to work and either the use of `-Y` option or 
-setting `ForwardX11Trusted` in your ssh config file to "yes" is required. In 
+In some cases `-X` will fail to work and either the use of `-Y` option or
+setting `ForwardX11Trusted` in your ssh config file to "yes" is required. In
 this case remote X11 clients will have full access to the original X11 display.
 
-Alternatively, if X11 forwarding is always needed, you can configure it on a 
+Alternatively, if X11 forwarding is always needed, you can configure it on a
 per-host basis in your `.ssh/config` file.
 
 `.ssh/config` example:
@@ -106,7 +106,7 @@ sometimes shown as
 	MD5:02:02:cc:9d:c5:b7:43:42:5b:cd:d2:82:09:48:31:e9
 
 
-## SSHFS 
+## SSHFS
 
 `fram.sigma2.no` and `login.fram.sigma2.no` are round-robin DNS
 entries, every time you use this name the round-robin configuration
@@ -122,16 +122,16 @@ both.
 
 Similarly, `saga.sigma2.no` and `login.saga.sigma2.no` are round-robin
 DNS entries for `login-1.saga.sigma2.no`, `login-2.saga.sigma2.no`.
-   
+
 
 ## Poor connection
 
 In case of poor connection to the server (likely from a very remote area),
-usually noticeable with X11 forwarding enabled, you may request data 
+usually noticeable with X11 forwarding enabled, you may request data
 compression by using the `-C` option.
 
 Please note that the compression uses the CPU to compress-decompress all data
-sent over ssh and will actually have negative impact, slow down things on a 
+sent over ssh and will actually have negative impact, slow down things on a
 fast network.
 
 

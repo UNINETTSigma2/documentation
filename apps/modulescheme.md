@@ -29,7 +29,7 @@ In order to make, for instance, the NetCDF library available issue the command:
 
 	module load netCDF/4.4.1.1-intel-2018a-HDF5-1.8.19
 
-Note that we currently do **not have** default modules on Metacenter machines, so you need to write full module name when loading! 
+Note that we currently do **not have** default modules on Metacenter machines, so you need to write full module name when loading!
 
 ### How to unload a module
 Keeping with the above example, use the following command to unload the NetCDF module again:
@@ -49,6 +49,6 @@ This, more compact syntax will fortunately also work:
 
 	module switch netCDF netCDF/4.4.0-intel-2016a
 
-**Beware: We are using self-contained modules in the Metacenter**, meaning that a given module loads all dependecies necessary. This is in slight contrast to old policies on for instance Stallo, and also means that you might mess upp quite significantly if you load extra modules in job scripts after loading the main software module. 
+**Beware: We are using self-contained modules in the Metacenter**, meaning that a given module loads all dependecies necessary. This is in slight contrast to old policies on for instance Stallo, and also means that you might mess upp quite significantly if you load extra modules in job scripts after loading the main software module.
 
-We recommend doing *module list* after every load (to inspect) and unloading any conflicting packages, if possible. 
+We recommend doing *module list* after every load (to inspect) and unloading any conflicting packages, if possible.

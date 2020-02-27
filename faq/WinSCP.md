@@ -30,7 +30,7 @@ WinSCP is a Windows program. If you are on Linux or Mac you need to use a differ
 5. If this is your first login, you should see your home folder at NIRD in the right column of the WinSCP window.
    Since data at NIRD is located in projects we need to navigate there.
 6. Use the dropdown menu:
-    
+
     ![Dropdown](images/WinSCP_dropdown.jpg)
 
    And navigate to the */ &lt;root&gt;* folder.

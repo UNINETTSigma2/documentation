@@ -63,7 +63,7 @@ Each user has a home directory `/nird/home/<username>`, where
 is 20 GiB and 100,000 files.  To check the disk usage and quotas, type
 
      dusage
-     
+
 Home directories on NIRD also contain a backup of Fram and Saga home
 directories (when relevant) in `/nird/home/<username>/backup/fram` and
 `/nird/home/<username>/backup/saga` (** not implemented for Saga yet

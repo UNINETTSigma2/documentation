@@ -38,7 +38,7 @@ You load the application by typing:
 For more information on available versions, type:
 
 	$ module avail VASP
-	
+
 Users have to supply the necessary input files, inclusing any `POTCAR` files needed. They can be downloaded from the VASP portal you get access to with a valid VASP license. Also, please note that the `POTCAR` files are protected by the license.
 
 ## Specifics regarding the VASP install on Fram.
@@ -47,20 +47,20 @@ Note as of Febn 2020 that this is similar on Saga, but we are currently moving t
 
 ### VASP Binary naming scheme on Fram
 
-Note that the VASP installation on Fram mainly follows the standard syntax introduced by the VASP team with their new installation scheme. 
+Note that the VASP installation on Fram mainly follows the standard syntax introduced by the VASP team with their new installation scheme.
 
 If you do check the bin directories of the different VASP installs on Fram you will see that there is quite a few binaries - and this might appear confusing. So here is an explanation:
 
 1. All binaries are compiled with support for maximally-localised Wannier functions and the [Wannier90](http://www.wannier.org/) program, library for Bayesian error estimation functionals ([libbeef](https://github.com/vossjo/libbeef)) and also the MPI flag in FPP (-DMPI).
 
 1. The binaries comes with a unmodified and a modified flavour (modifications are done in the file constr\_cell\_relax.F and are for simulating epitaxially constrained thin films (abfix) and for simulting cells with point defects which break the symmetry (noshear)). Basically, modification in this sense means a modification in the original source code without adding additional functionality (aka tools).
- 
+
 1. Support for various tools are added, including [occupation matrix control] (https://github.com/WatsonGroupTCD/Occupation-matrix-control-in-VASP), [transition state tools for VASP](http://theory.cm.utexas.edu/vasp/) and [implicit solvation model for VASP](http://vaspsol.mse.ufl.edu/)(file extensions *ocm*, *tst*, *sol* respectively).
 
 To minimize the number of binaries, they are built in layers:
 First, untooled versions were built - with and without modifications. vasp\_std/gam/ncl is totally unmodified in every way, while vasp\_std/gam/ncl\_abfix/noshear contains the modifications of constr\_cell\_relax.F as mentioned above.
 
-Then, for the tooled binaries - we have assumed that vTST does not harm anything, thus all tooled versions are with this tool. Thus only the one with file extension *tst* has only vTST support and not the other tools mentioned. VASPsol is build on top of vTST - so binaries with the file extesion *sol* has got both vTST and VASPsol support. On top of this again, the binaries with occupation matrix support, with extension *ocm* has both vTST and VASPsol support together with occupation matrix support. 
+Then, for the tooled binaries - we have assumed that vTST does not harm anything, thus all tooled versions are with this tool. Thus only the one with file extension *tst* has only vTST support and not the other tools mentioned. VASPsol is build on top of vTST - so binaries with the file extesion *sol* has got both vTST and VASPsol support. On top of this again, the binaries with occupation matrix support, with extension *ocm* has both vTST and VASPsol support together with occupation matrix support.
 
 Also the tooled binaries are compiled with both unmodified and modified constr\_cell\_relax.F, making the total number of binaries 36 for this setup.
 
@@ -72,9 +72,9 @@ _Short summary:_
 * tooled binaries comes in layers: tst is tst only, sol is tst *and* sol, ocm is tst *and* sol *and* ocm.
 
 ### FPP settings for each binary
- 
+
 The VASP installation on Fram mainly follows the build instructions provided by the VASP team. The makefile.include we use for Fram is the file called *makefile.include.linux_intel* in the *arch* folder in the vasp.5.4.4 distro. On top of this, we have added the line:
- 
+
 	CPP_OPTIONS+= -DVASP2WANNIER90v2 -Dlibbeef
 
 for all our binaries. (for full build setup, feel free to ask)
@@ -91,7 +91,7 @@ VASP is known to be potentially memory demanding. Quite often, you might experie
 
 For relevant core-count, node-count and amounts of memory, see [About Fram](../../quick/fram.md).
 
-For fram, currently the only way of increasing the memory per core available for jobs is to reduce the number of cores per node, please read up in the [Job Scripts](../../jobs/jobstcripts.md) section of the documentation. 
+For fram, currently the only way of increasing the memory per core available for jobs is to reduce the number of cores per node, please read up in the [Job Scripts](../../jobs/jobstcripts.md) section of the documentation.
 
 ## Citation
 

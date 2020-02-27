@@ -18,7 +18,7 @@ To see available versions when logged into Fram issue command
 To use GROMACS type
 
     module load GROMACS/<version>
-    
+
 specifying one of the available versions in the table above.
 
 ### Sample GROMACS Job Script

@@ -14,7 +14,7 @@ To find out more, visit the WRF website at: http://www.wrf-model.org
 To see available versions when logged into Fram issue command
 
     module spider wrf
-    
+
 To use WRF type
 
     module load WRF/<version>

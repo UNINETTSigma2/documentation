@@ -104,9 +104,9 @@ commands. The following shows a list of selected GDB commands:
 * `attach`    – attach to a running process outside GDB
 * `step`      - go to the next source line, will step into a function/subroutine
 * `next`      – go to the next source line, function/subroutine calls are executed without stepping into them
-* `continue`  – continue executing 
-* `break`     – set breakpoint 
-* `watch`     – set a watchpoint to stop execution when the value of a variable or an expression changes 
+* `continue`  – continue executing
+* `break`     – set breakpoint
+* `watch`     – set a watchpoint to stop execution when the value of a variable or an expression changes
 * `list`      – display (default 10) lines of source surrounding the current line
 * `print`     – print value of a variable
 * `backtrace` - display a stack frame for each active subroutine
@@ -137,41 +137,41 @@ processes of a running MPI job for examining data (lines starting with # are
 comments):
 
 	$ gdb
-	 
+
 	(gdb) # List the processes of the MPI program
 	(gdb) shell ps -eo pid,comm | grep mpi_prog
 	14957   mpi_prog
 	14961   mpi_prog
 	14962   mpi_prog
 	...etc.
- 	
+
 	(gdb) # Attach to one of the MPI processes
 	(gdb) attach 14961
 	Attaching to process 14961
 	Reading symbols from /path/to/executable/mpi_prog...done.
 	...etc
-	 
+
 	(gdb) # Set a watchpoint to stop execution when the variable Uc is updated
 	(gdb) watch Uc
 	Hardware watchpoint 1: Uc
-	
+
 	(gdb) # Continue the execution of the program
 	(gdb) continue
 	Continuing.
-	 
+
 	Hardware watchpoint 1: Uc
 	Old value = -3.33545399
 	New value = -2.11184907
 	POTTEMP::ptemp (ldiad=...etc) at ptemp1.f90:298
 	298              Vc= dsdx(2,1,ie2)*u0 + dsdx(2,2,ie2)*v0 +
 	dsdx(2,3,ie2)*w0
-	
+
 	(gdb) # Set the list command to display 16 lines...
 	(gdb) set listsize 16
 	(gdb) # ...and display the source backwards starting 2 lines below the current one
 	(gdb) list +2
 	284              do k= 1, 8
-	285                kp= lnode2(k,ie2)   
+	285                kp= lnode2(k,ie2)
 	286                u0= u0 + u12(kp)
 	287                v0= v0 + u22(kp)
 	288                w0= w0 + u32(kp)
@@ -181,20 +181,20 @@ comments):
 	292              u0= 0.125*u0;  v0= 0.125*v0;  w0= 0.125*w0;  vt= 0.125*vt
 	293
 	294     !
-	295     !----    Contravariant velocity  
+	295     !----    Contravariant velocity
 	296     !
 	297              Uc= dsdx(1,1,ie2)*u0 + dsdx(1,2,ie2)*v0 + dsdx(1,3,ie2)*w0
 	298              Vc= dsdx(2,1,ie2)*u0 + dsdx(2,2,ie2)*v0 + dsdx(2,3,ie2)*w0
 	299              Wc= dsdx(3,1,ie2)*u0 + dsdx(3,2,ie2)*v0 + dsdx(3,3,ie2)*w0
-	 
+
 	(gdb) # Print a 5 element slice of the variable u12
 	(gdb) print u12(3006:3010)
 	$1 = (0.0186802763, 0.0188683271, 0.0145201795, 0.00553302653, -0.00918145757)
-	 
+
 	(gdb) # Release the process from GDB control
 	(gdb) detach
 	Detaching from program: /path/to/executable/mpi_prog, process 14961
-	 
+
 	(gdb) quit
 
 <h4 id="debugging-core">Examining core files</h4>
@@ -208,13 +208,13 @@ One can also produce a core file from within the GDB session to preserve a
 snapshot of a program’s state using the command:
 
 	(gdb) generate-core-file
-	
+
 <h2 id="debugging-Totalview">TotalView</h2>
 
 TotalView is a GUI-based cource code debugger from [Rogue Wave Software](https://www.roguewave.com)
 It allows for debugging of serial and parallel codes. Program execution is
 controlled by stepping line by line through the code, setting breakpoints, or
-by setting watchpoints on variables. It is also efficient for debugging of 
+by setting watchpoints on variables. It is also efficient for debugging of
 memory errors and leaks, and diagnostic problems like deadlocks.
 
 TotalView works with C, C++ and Fortran applications, and supports OpenMP and
@@ -228,13 +228,13 @@ start `totalview` with your executable, e.g. *mpi_prog*, by issuing the command
 <h6>Open MPI:</h6>
 
     $ mpirun -tv -np <no_of_processes> ./mpi_prog
-    
+
 <h6>Intel MPI:</h6>
 
     $ totalview mpiexec -a -n <no_of_processes> ./mpi_prog
-    
+
 Three windows, the TotalView Root window, the Startup Parameters Dialog Box and
-the Process Window, will appear. Click the **_OK_** button in the Startup 
+the Process Window, will appear. Click the **_OK_** button in the Startup
 Parameters Dialog Box. Now click the **_Go_** button from the execution control
 commands in the Process Window. A popup window will ask whether you want to
 start the job in a stopped state. Click **_Yes_**, and the source code of your
@@ -272,17 +272,17 @@ batch job session:
 
     $ salloc --account=<my_account> --time <HH:MM> -N <no_of_nodes>
     salloc: Granted job allocation <jobid>
-    
+
 Start TotalView with the executable
 
 <h6>Open MPI:</h6>
 
     $ mpirun -tv ./mpi_prog
-    
+
 <h6>Intel MPI:</h6>
 
     $ totalview srun -a --ntasks-per-node=<ntasks> ./mpi_prog
-    
+
 Your program will now execute within TotalView on the number of nodes specified
 in the Slurm job allocation.
 
