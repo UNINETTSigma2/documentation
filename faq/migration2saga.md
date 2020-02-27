@@ -12,7 +12,7 @@ The major steps in migrating to Saga are:
 
 *  Getting an account and project quota on Saga.
 *  Getting aware of differences (disk quota, module system, job types, running jobs, how to get help, no backup currently).
-*  Transfering data, scripts etc from other machines to Saga.
+*  Transferring data, scripts etc from other machines to Saga.
 *  Modifying scripts & routines to match differences on Saga.
 *  **Verifying that your jobs run efficiently and produce the same results as on other systems!**
 *  Be patient with user support [(support@metacenter.no)](mailto:support@metacenter.no), but don't hesitate to ask questions!

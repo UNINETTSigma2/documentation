@@ -69,7 +69,7 @@ Striping in BeeGFS (`/cluster`) can be configured on a per-directory and per-fil
 
 ### Check out current striping
 
-To check current stripe szie, use
+To check current stripe size, use
 
     beegfs-ctl --getentryinfo [file_system, dir, file]
 
@@ -77,7 +77,7 @@ For example to check your home folder stripe size on Saga, you can do:
 
     beegfs-ctl --getentryinfo /cluster/home/$HOME
 
-For example to check file tripe szie:
+For example to check file tripe size:
 
 ```
 beegfs-ctl --getentryinfo /cluster/tmp/test
