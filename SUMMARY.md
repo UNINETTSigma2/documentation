@@ -1,3 +1,7 @@
+## News
+* [Metacenter OpsLog](https://opslog.sigma2.no)
+* [Live Status](https://www.sigma2.no/hardware-status)
+
 ## Quick Information
 * [Introduction](README.md)
 * [Getting Started](quick/gettingstarted.md)
@@ -5,7 +9,6 @@
 * [License Information](quick/license.md)
 * [Contact](support/contact.md)
     * [Writing Support Requests](support/how_to_write_good_support_requests.md)
-* [Metacenter OpsLog](https://opslog.sigma2.no)
 * [General FAQ](faq/README.md)
 
 ## HPC Machines
@@ -13,7 +16,6 @@
 * [Abel Documentation](http://www.uio.no/english/services/it/research/hpc/abel/)
 * [Stallo Documentation](https://hpc-uit.readthedocs.io)
 * [Saga](quick/saga.md)
-* [Live Status](https://www.sigma2.no/hardware-status)
 
 ## SOFTWARE
 * [Software Module Scheme](apps/modulescheme.md)
