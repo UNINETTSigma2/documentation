@@ -13,6 +13,7 @@
 * [Overview](README.md)
 * [Getting Started](quick/gettingstarted.md)
     * [Remote Desktop](quick/remote-desktop.md)
+    * [Shell](faq/shell.md)
 * [Editing files](faq/emacs.md)
 * [Transferring files](faq/file_transfer.md)
   * [Using WinSCP](faq/WinSCP.md)
