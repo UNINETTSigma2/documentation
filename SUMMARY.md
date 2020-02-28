@@ -7,7 +7,7 @@
 * [Writing good support requests](help/how_to_write_good_support_requests.md)
 * [Frequently asked questions](help/faq.md)
 
-## Quick Information
+## Getting started
 * [Overview](README.md)
 * [Getting Started](quick/gettingstarted.md)
     * [Remote Desktop](quick/remote-desktop.md)
