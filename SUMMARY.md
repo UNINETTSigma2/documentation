@@ -8,7 +8,7 @@
 * [Frequently asked questions](help/faq.md)
 
 ## Quick Information
-* [Introduction](README.md)
+* [Overview](README.md)
 * [Getting Started](quick/gettingstarted.md)
     * [Remote Desktop](quick/remote-desktop.md)
 
