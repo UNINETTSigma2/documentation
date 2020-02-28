@@ -7,17 +7,21 @@
 * [Writing good support requests](help/how_to_write_good_support_requests.md)
 * [Frequently asked questions](help/faq.md)
 
-## Quick Information
-* [Introduction](README.md)
+## Getting started
+* [Overview](README.md)
 * [Getting Started](quick/gettingstarted.md)
     * [Remote Desktop](quick/remote-desktop.md)
-* [License Information](quick/license.md)
+* [Editing files](faq/emacs.md)
+* [Transferring files](faq/file_transfer.md)
+  * [Using WinSCP](faq/WinSCP.md)
+* [Password-less login](faq/ssh.md)
 
 ## HPC Machines
 * [Fram](quick/fram.md)
 * [Abel Documentation](http://www.uio.no/english/services/it/research/hpc/abel/)
 * [Stallo Documentation](https://hpc-uit.readthedocs.io)
 * [Saga](quick/saga.md)
+  * [Migration to Saga](faq/migration2saga.md)
 
 ## SOFTWARE
 * [Software Module Scheme](apps/modulescheme.md)
@@ -46,8 +50,9 @@
   * [WRF](apps/wrf.md)
 * [Installing software as user](apps/userinstallsw.md)
 * [Licenses and access policies](apps/licenses/general.md)
-	* [Licensed software](apps/licenses/license-list.md)
-	* [License funding policy](apps/licenses/funding.md)
+    * [License types and citation](quick/license.md)
+    * [Licensed software](apps/licenses/license-list.md)
+    * [License funding policy](apps/licenses/funding.md)
 
 ## Jobs
 * [Queue System](jobs/queue_system.md)
@@ -77,6 +82,7 @@
 	* [Job Array Howto](jobs/job_array_howto.md)
 	* [Running Job Steps in Parallel](jobs/parallel_steps.md)
     * [Cleanup at Timeout](jobs/timeout_cleanup.md)
+    * [Frequently asked questions](faq/jobs.md)
 
 ## Code Development
 * [Compilers](development/compilers.md)
@@ -92,14 +98,6 @@
 * [Backup](storage/backup.md)
 * [Performance tips](storage/performance_tips.md)
 * [Data policy](storage/data_policy.md)
-
-## Short Guides
-* [Migration to Saga](faq/migration2saga.md)
-* [Jobs](faq/jobs.md)
-* [Emacs](faq/emacs.md)
-* [SSH/SSHFS](faq/ssh.md)
-* [Transferring files](faq/file_transfer.md)
-  * [Using WinSCP](faq/WinSCP.md)
 
 ## Training
 * [Training calendar](https://www.sigma2.no/events)
