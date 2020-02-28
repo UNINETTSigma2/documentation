@@ -11,6 +11,10 @@
 * [Overview](README.md)
 * [Getting Started](quick/gettingstarted.md)
     * [Remote Desktop](quick/remote-desktop.md)
+* [Editing files](faq/emacs.md)
+* [Transferring files](faq/file_transfer.md)
+  * [Using WinSCP](faq/WinSCP.md)
+* [Password-less login](faq/ssh.md)
 
 ## HPC Machines
 * [Fram](quick/fram.md)
@@ -94,12 +98,6 @@
 * [Backup](storage/backup.md)
 * [Performance tips](storage/performance_tips.md)
 * [Data policy](storage/data_policy.md)
-
-## Short Guides
-* [Emacs](faq/emacs.md)
-* [SSH/SSHFS](faq/ssh.md)
-* [Transferring files](faq/file_transfer.md)
-  * [Using WinSCP](faq/WinSCP.md)
 
 ## Training
 * [Training calendar](https://www.sigma2.no/events)
