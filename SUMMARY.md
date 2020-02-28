@@ -102,4 +102,4 @@
 ## Training
 * [Training calendar](https://www.sigma2.no/events)
 * [HPC carpentry](support/hpc_carpentry.md)
-* [Oslo fork of HPC carpentry](https://sabryr.github.io/hpc-intro/)
+* [Introduction to HPC training material](https://sabryr.github.io/hpc-intro/)
