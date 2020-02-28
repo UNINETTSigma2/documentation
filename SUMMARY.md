@@ -5,6 +5,7 @@
 ## Getting help
 * [Contact](help/contact.md)
 * [Writing good support requests](help/how_to_write_good_support_requests.md)
+* [Applying for resources](help/resources.md)
 * [Frequently asked questions](help/faq.md)
 
 ## Getting started

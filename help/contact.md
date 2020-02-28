@@ -8,8 +8,6 @@ This is an issue tracker (ticket system) that is staffed with skilled operators 
 
 Working hours for all the support staff are **Monday-Friday 08:00-16:00**, except official holidays. Users will receive response within hours during normal work-hours, or at the latest the following working day.
 
-## Applications and allocation
-Applications for computing and storage resources should be sent to <sigma2@uninett.no>, as Sigma2 provides support services for all issues related to administration of the national resource allocation.
 
 ## Writing support requests
 
