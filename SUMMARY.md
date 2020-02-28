@@ -18,6 +18,7 @@
 * [Abel Documentation](http://www.uio.no/english/services/it/research/hpc/abel/)
 * [Stallo Documentation](https://hpc-uit.readthedocs.io)
 * [Saga](quick/saga.md)
+  * [Migration to Saga](faq/migration2saga.md)
 
 ## SOFTWARE
 * [Software Module Scheme](apps/modulescheme.md)
@@ -94,7 +95,6 @@
 * [Data policy](storage/data_policy.md)
 
 ## Short Guides
-* [Migration to Saga](faq/migration2saga.md)
 * [Jobs](faq/jobs.md)
 * [Emacs](faq/emacs.md)
 * [SSH/SSHFS](faq/ssh.md)
