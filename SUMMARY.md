@@ -5,9 +5,9 @@
 ## Getting help
 * [Support line](help/support.md)
 * [Writing good support requests](help/how_to_write_good_support_requests.md)
-* [Applying for resources](help/resources.md)
 * [Lost or expiring password](help/password.md)
-* [Frequently asked questions](help/faq.md)
+* [Applying for user accounts](help/account.md)
+* [Applying for resources](help/resources.md)
 
 ## Getting started
 * [Overview](README.md)
