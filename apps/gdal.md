@@ -13,7 +13,7 @@ To find out more, visit the GDAL website at: http://www.gdal.org/
 To see available versions when logged into Fram issue command
 
     module spider gdal
-    
+
 To use GDAL type
 
     module load GDAL/<version>

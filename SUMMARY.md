@@ -1,25 +1,34 @@
-## Quick Information
-* [Introduction](README.md)
+## News
+* [Latest changes and events](https://opslog.sigma2.no)
+* [Hardware live status](https://www.sigma2.no/hardware-status)
+
+## Getting help
+* [Contact](help/contact.md)
+* [Writing good support requests](help/how_to_write_good_support_requests.md)
+* [Frequently asked questions](help/faq.md)
+
+## Getting started
+* [Overview](README.md)
 * [Getting Started](quick/gettingstarted.md)
     * [Remote Desktop](quick/remote-desktop.md)
-* [License Information](quick/license.md)
-* [Contact](support/contact.md)
-    * [Writing Support Requests](support/how_to_write_good_support_requests.md)
-* [Metacenter OpsLog](https://opslog.sigma2.no)
-* [General FAQ](faq/README.md)
+* [Editing files](faq/emacs.md)
+* [Transferring files](faq/file_transfer.md)
+  * [Using WinSCP](faq/WinSCP.md)
+* [Password-less login](faq/ssh.md)
 
 ## HPC Machines
 * [Fram](quick/fram.md)
 * [Abel Documentation](http://www.uio.no/english/services/it/research/hpc/abel/)
 * [Stallo Documentation](https://hpc-uit.readthedocs.io)
 * [Saga](quick/saga.md)
-* [Live Status](https://www.sigma2.no/hardware-status)
+  * [Migration to Saga](faq/migration2saga.md)
 
 ## SOFTWARE
 * [Software Module Scheme](apps/modulescheme.md)
 * [Installed Software](apps/which_software_is_installed.md)
-  * [List of installed software](apps/allmodules.md)
-* [Application guides](apps/appguides.md)    
+  * [List of installed software on Fram](apps/fram_modules.md)
+  * [List of installed software on Saga](apps/saga_modules.md)
+* [Application guides](apps/appguides.md)
   * [CDO](apps/cdo.md)
   * [CESM](apps/cesm.md)
   * [Gaussian](apps/Gaussian/about_gaussian.md)
@@ -29,7 +38,7 @@
   * [GDAL](apps/gdal.md)
   * [Gromacs](apps/gromacs.md)
   * [LAMMPS](apps/lammps.md)
-  * [MATLAB](apps/matlab.md) 
+  * [MATLAB](apps/matlab.md)
   * [NAMD](apps/namd.md)
   * [NCO](apps/nco.md)
   * [Ncview](apps/ncview.md)
@@ -41,16 +50,9 @@
   * [WRF](apps/wrf.md)
 * [Installing software as user](apps/userinstallsw.md)
 * [Licenses and access policies](apps/licenses/general.md)
-	* [Licensed software](apps/licenses/license-list.md)
-	* [License funding policy](apps/licenses/funding.md)
-
-## Code Development
-* [Compilers](development/compilers.md)
-* [Debugging](development/debugging.md)
-* [Performance Analysis and Tuning](development/performance.md)
-  * [ARM Performance Reports](development/arm_perf.md)
-    * [VTune Amplifier](development/vtune.md)
-    * [Other Intel Tuning Tools](development/tuning.md)
+    * [License types and citation](quick/license.md)
+    * [Licensed software](apps/licenses/license-list.md)
+    * [License funding policy](apps/licenses/funding.md)
 
 ## Jobs
 * [Queue System](jobs/queue_system.md)
@@ -80,7 +82,15 @@
 	* [Job Array Howto](jobs/job_array_howto.md)
 	* [Running Job Steps in Parallel](jobs/parallel_steps.md)
     * [Cleanup at Timeout](jobs/timeout_cleanup.md)
+    * [Frequently asked questions](faq/jobs.md)
 
+## Code Development
+* [Compilers](development/compilers.md)
+* [Debugging](development/debugging.md)
+* [Performance Analysis and Tuning](development/performance.md)
+  * [ARM Performance Reports](development/arm_perf.md)
+    * [VTune Amplifier](development/vtune.md)
+    * [Other Intel Tuning Tools](development/tuning.md)
 
 ## Files and Storage
 * [NIRD](storage/nird.md)
@@ -89,14 +99,6 @@
 * [Performance tips](storage/performance_tips.md)
 * [Data policy](storage/data_policy.md)
 
-## Short Guides
-* [Migration to Saga](faq/migration2saga.md)
-* [Jobs](faq/jobs.md)
-* [Emacs](faq/emacs.md)
-* [SSH/SSHFS](faq/ssh.md)
-* [Transferring files](faq/file_transfer.md)
-  * [Using WinSCP](faq/WinSCP.md)
-
-## Training 
-* [Training calendar](https://www.sigma2.no/events) 
+## Training
+* [Training calendar](https://www.sigma2.no/events)
 * [HPC carpentry](support/hpc_carpentry.md)

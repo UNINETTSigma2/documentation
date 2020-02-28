@@ -2,7 +2,7 @@
 
 Currently, the software-team in the Metacenter is using the [EasyBuild system](https://easybuild.readthedocs.io/en/latest/) for installing system-wide software and scientific applications. It is, actually, quite easy (hence the name) and straight forward for users to do install with the same tool.
 
-There are two distinct scenarios covered in this tutorial; first installations for single user only - placing the software in standard user home folder. Second, installations for a project/group - placing the software in a project folder for many to share. 
+There are two distinct scenarios covered in this tutorial; first installations for single user only - placing the software in standard user home folder. Second, installations for a project/group - placing the software in a project folder for many to share.
 
 Note that the software install team at the Norwegian Metacenter **never** do installations in `$HOME` for users, and preferably not in /cluster/projects.
 
@@ -13,7 +13,7 @@ Log in to Fram your preferred way. Note that there is, currently at least, no de
 	module avail easybuild
 
 Now, as of January 2019, you will see this:
-	
+
 	module avail EasyBuild
 
 	----------------------- /cluster/modulefiles/all ------------------------
@@ -25,9 +25,9 @@ Now, as of January 2019, you will see this:
 
 Choose 3.8.1 in this case and load this module by typing:
 
-	module load EasyBuild/3.8.1 
+	module load EasyBuild/3.8.1
 
-Now, we advice to do an install in three steps, first download the sources of your software, then do a test run where you check what will be installed and then the full install. 
+Now, we advice to do an install in three steps, first download the sources of your software, then do a test run where you check what will be installed and then the full install.
 
 Say you want to install [rjags 4.6](http://cran.r-project.org/web/packages/rjags), you would need to find out which *[easybuild easyconfigs](https://easybuild.readthedocs.io/en/latest/Writing_easyconfig_files.html#what-is-an-easyconfig-file)* that is currently available for that explicit code. This you would find here: <https://github.com/easybuilders/easybuild-easyconfigs/tree/master/easybuild/easyconfigs/r/rjags>. A general overview of all community available *easyconfigs* is available here:<https://github.com/easybuilders/easybuild-easyconfigs/tree/master/easybuild/easyconfigs>. In this example we choose the *easyconfig* for rjags version 4-6 with, compiled with the full intel suite release from second half of 2017 and aimed at R release 3.4.3 (thus the long name of the eb-file).
 
@@ -42,8 +42,8 @@ It may be a good idea to get an overview of what will be installed with the comm
 if this proves successful, then type:
 
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb -r
-	
-Then the process should go absolutely fine, and you will receive a nice little message on the command line stating that installation succeeded. 
+
+Then the process should go absolutely fine, and you will receive a nice little message on the command line stating that installation succeeded.
 
 Now the software and the module(s) you installed are in a folder called ".local". You can inspect it by typing (note the path!)
 
@@ -55,51 +55,51 @@ There you should see the following:
 
 ## Installing software in project folder:
 
-Do as described above regarding login, loading of the EasyBuild module and considerations regarding what to install. 
+Do as described above regarding login, loading of the EasyBuild module and considerations regarding what to install.
 
 Then do as follows:
 
 	mkdir -p /cluster/projects/nnXXXXk/easybuild
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --fetch --prefix=/cluster/projects/nnXXXXk/easybuild
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun --prefix=/cluster/projects/nnXXXXk/easybuild #as mentioned above.
-	
+
 where XXXX is your project id number. When a successful download of sources is made, then type:
 
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --prefix=/cluster/projects/nnXXXXk/easybuild
 
-Note the easybuild folder in the path, this is a tip for housekeeping and not strictly required. This will give the path structure as for the local case, with the software and modulefiles installed in **cluster/projects/nnXXXXk/easybuild**. 
+Note the easybuild folder in the path, this is a tip for housekeeping and not strictly required. This will give the path structure as for the local case, with the software and modulefiles installed in **cluster/projects/nnXXXXk/easybuild**.
 
 A bit more elegant, since the long and horrid path is used thrice, you may do this:
 
 	projsw=/cluster/projects/nnXXXXk/easybuild
 	mkdir -p $projsw
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --fetch --prefix=$projsw
-	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun --prefix=$projsw 	
+	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun --prefix=$projsw
 ###For more advanced settings:
 
 Please check upon options with
 
 	eb --help
 
-or read up on the [EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/) on web. 
+or read up on the [EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/) on web.
 
 ## Using software installed in non-standard path:
 
-The default path for modulefiles only contains the centrally installed modules. Thus, if you want the modulefilesystem to find the software you installed either for your own usage or on behalf of the project group, you need to make the module-system aware of alternative paths. 
+The default path for modulefiles only contains the centrally installed modules. Thus, if you want the modulefilesystem to find the software you installed either for your own usage or on behalf of the project group, you need to make the module-system aware of alternative paths.
 
 **For the case of install in user-home: (still using the rjags example)**
 
-	module use .local/easybuild/modules/all 
+	module use .local/easybuild/modules/all
 	module avail rjags #Just to check if it is found
 	module load rjags/4-6-intel-2017b-R-3.4.3
-	
-	
+
+
 **For the case of installing i group/project folder:**
 
 	module use /cluster/projects/nnXXXXk/easybuild/modules/all
 	module avail rjags #Just to check if it is found
 	module load rjags/4-6-intel-2017b-R-3.4.3
-		
+
 **For more information about the module system, please see:** <https://lmod.readthedocs.io/en/latest/>
 
 
@@ -125,6 +125,9 @@ set -o nounset # treat unset variables as error
 
 # Load modules
 module load Python/3.7.2-GCCcore-8.2.0
+
+# Set the ${PS1} (needed in the source of the virtual environment for some Python versions)
+export PS1=\$
 
 # activate the virtual environment
 source my_new_pythonenv/bin/activate

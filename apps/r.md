@@ -12,7 +12,7 @@ To find out more, visit the R website at: https://www.r-project.org
 To see available versions when logged into Fram issue command
 
     module spider R
-    
+
 To use R type
 
     module load R/<version>

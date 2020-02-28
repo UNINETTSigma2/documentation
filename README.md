@@ -13,7 +13,7 @@ The table below compares the available systems with respect to the type of appli
 |Resource |	Job types |	Memory (min/max) |	Cores/Node |
 | :------------- | :------------- | :------------- | :------------- |
 | Abel |	A   P   S   L |	60/1024 |	16/32 |
-| Saga |    A   P   S   L | 186/3066 |  24/64 | 
+| Saga |    A   P   S   L | 186/3066 |  24/64 |
 | Stallo |	P   S   L |	32/128 |	16/20 |
 | Fram |	P&ensp;&ensp;&ensp;L |	64/512 |	32 |
 

@@ -49,7 +49,7 @@ on the needs, `amplxe-cl` can gather all sorts of performance statistics: FPU
 utilization, usage of vector (SIMD) AVX insturctions, instructions per
 clock, memory bandwidth, cache utilization, threading level, etc. For
 example, to collect general information about the most time-consuming
-parts of the code: 
+parts of the code:
 
 ```
 $ amplxe-cl -collect hotspots ./your-program your-arguments
@@ -77,7 +77,7 @@ $ amplxe-cl -help collect hpc-performance
  follows:
  -collect hpc-performance -knob <knobName>=<knobValue>
  Multiple -knob options are allowed and can be followed by additional collect
- action options, as well as global options, if needed. 
+ action options, as well as global options, if needed.
 
 sampling-interval
 [...]
@@ -143,7 +143,7 @@ The FPU utilization report is hence the most interesting one in this
 case. It reveals that 90% of the floating point instructions are scalar, i.e.,
 the vector units (AVX) are mostly unused. Looking at the top most busy
 functions it becomes clear that the time is spent in calls to `libm`
-`exp` and `log`. 
+`exp` and `log`.
 
 A closer look at the Bottom-up section of the performance report
 reveals the heaviest parts of the code.
@@ -162,7 +162,7 @@ roughly scetch the optimization directions:
 
 Both GCC and ICC provide an interface to a vectorized math library with
 platform-optimized implementations of amongst others
-`exp,pow,log`. Intel compiler uses 
+`exp,pow,log`. Intel compiler uses
 its own Short Vector Math Library (SVML). The library comes together
 with the compiler installation, and there is nothing system-specific
 that needs to be done to use it. GCC on the other hand relies on
@@ -178,7 +178,7 @@ As noted in the [documentation of
 SVML](https://software.intel.com/en-us/node/524289) the vectorized
 math library differs from the scalar functions in accuracy.  Scalar
 implementations are not the same as the vectorized ones with vector
-width of 1. Instead, they follow strict floating-point arithmetic and 
+width of 1. Instead, they follow strict floating-point arithmetic and
 are more computationally demanding. GCC is by default conservative
 wrt. the floating-point optimizations: vectorized math library is only
 enabled with the `-ffast-math` compiletime option. ICC by default uses
@@ -209,7 +209,7 @@ with the Intel compiler. The capacity of the vector units is used in
 85%-90%, which demonstrates that the code is almost fully vectorized.
 
 Compared to the original code, the performance tests have shown that
-on a Broadwell-based architecture the optimized code works from 2.5 
+on a Broadwell-based architecture the optimized code works from 2.5
 times faster (RT solver) to 13 times faster (EOS solver) on a single
 core. All optimizatoin techniques employed have been described in
 detail in [the white paper](http://www.prace-ri.eu/IMG/pdf/WP271.pdf).

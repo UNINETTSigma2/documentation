@@ -13,7 +13,7 @@ More information: http://meteora.ucsd.edu/~pierce/ncview_home_page.html
 To see available versions when logged into Fram issue command
 
     module spider ncview
-    
+
 To use ncview type
 
     module load ncview/<version>

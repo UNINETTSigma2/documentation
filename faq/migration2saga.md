@@ -12,7 +12,7 @@ The major steps in migrating to Saga are:
 
 *  Getting an account and project quota on Saga.
 *  Getting aware of differences (disk quota, module system, job types, running jobs, how to get help, no backup currently).
-*  Transfering data, scripts etc from other machines to Saga.
+*  Transferring data, scripts etc from other machines to Saga.
 *  Modifying scripts & routines to match differences on Saga.
 *  **Verifying that your jobs run efficiently and produce the same results as on other systems!**
 *  Be patient with user support [(support@metacenter.no)](mailto:support@metacenter.no), but don't hesitate to ask questions!
@@ -59,7 +59,7 @@ Users on Saga have access to the following file systems and usage policies:
 | Filesystem | Access | Usage policy (quota, removal) |
 | ------ | ------ |
 | home folder | `$HOME` | 20 GiB quota |
-| user specific work folder | `$USERWORK` | any file older than 21/42 days will be removed automatically, 21 days when total disk usage (do `df -h /cluster` to check) is above 69 % | 
+| user specific work folder | `$USERWORK` | any file older than 21/42 days will be removed automatically, 21 days when total disk usage (do `df -h /cluster` to check) is above 69 % |
 | project folder | `/cluster/projects/nnXXXk` | quota depending on grant |
 | job scratch | `$SCRATCH` | specific to each running job, will be removed at end of job |
 
@@ -88,7 +88,7 @@ which shows all packages whose name/version matches `SAM`.
 Intel compiler.
 
 **Exercise 3:** Try `module avail NETCDF` and `module avail netCDF` on both Saga
-and Abel and compare the differences. 
+and Abel and compare the differences.
 
 You may notice that the `name/version` identifiers for modules on Saga differ from
 other systems, particularly when you're used to the module system on Abel.
@@ -225,7 +225,7 @@ This job ported to Saga would be (with some additions taken from [Sample MPI Bat
     ## Set up job environment: (this is done automatically behind the scenes)
     ## (make sure to comment '#' or remove the following line 'source ...')
     # source /cluster/bin/jobsetup
-    
+
     module purge   # clear any inherited modules
     module load SoftWare/Version #nb: 'Version' is mandatory! There are no default versions of modules on Saga!
 
@@ -342,7 +342,7 @@ Now you should see it
     ------------- /cluster/home/YOUR_USERNAME/.local/easybuild/modules/all --------------
        SPAdes/3.12.0-foss-2018b
 
-    
+
     ------------------------------ /cluster/modulefiles/all ------------------------------
        SPAdes/3.13.0-foss-2018b    SAMtools/3.13.1-GCC-8.2.0-2.31.1
     ...

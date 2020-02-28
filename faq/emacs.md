@@ -17,7 +17,7 @@ Procedure for Fram (Saga and NIRD will be similar):
  * C-x C-f (<kbd>Ctrl</kbd>+<kbd>x</kbd>, then <kbd>Ctrl</kbd>+<kbd>f</kbd> (or Mac equivalent), then you will get a “find file” prompt)
  * ```/ssh:username@fram.sigma2.no:pathname``` (**note the leading slash**)
  * You may get the following message “Offending key for IP in …. Are you sure you want to continue connecting (yes/no)?“ type yes and enter
- * Depending on the network state you might see the message “Waiting for prompt from remote shell” for few seconds to a minute, before the connection opens. 
+ * Depending on the network state you might see the message “Waiting for prompt from remote shell” for few seconds to a minute, before the connection opens.
 
 For example if your user name is “newuser” and if you want to open a file called “myfile.txt”, located in your home area on Fram, you would use the following:
 

@@ -1,4 +1,4 @@
-# Storage areas on HPC clusters 
+# Storage areas on HPC clusters
 
 Projects and users receive different areas to store files and other
 data. Some areas are used for temporary files during job execution
@@ -164,7 +164,7 @@ an application for a separate NIRD project area.
 * Daily backup is taken to NIRD. **Not implemented on Saga yet!**
 * For backup, snapshots are taken with the following frequency:
     * daily snapshots of the last 7 days
-    * weekly snapshots of the last 6 weeks. 
+    * weekly snapshots of the last 6 weeks.
 * To see disk usage and quota information for your project, run `dusage -p <project_name>`.
 * See [Backup](backup.md).
 
@@ -190,7 +190,7 @@ an application for a separate NIRD project area.
 
 ## Shared Project Area
 
-In special cases there might be a need for sharing data between projects for 
+In special cases there might be a need for sharing data between projects for
 collaboration and possibly preventing data duplication.
 
 If such a need is justified, a meta-group and it's according directory

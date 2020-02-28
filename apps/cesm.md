@@ -13,7 +13,7 @@ More information: http://www2.cesm.ucar.edu
 To see available versions when logged into Fram issue command
 
     module spider cesm
-    
+
 To use CESM type
 
     module load CESM/<version>

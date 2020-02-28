@@ -8,13 +8,13 @@ vectorization, threading, MPI.
 
 Below is a list of tools that can be used to analyses the
 application, starting from text analysis of the source code to massive
-parallel MPI runs. 
+parallel MPI runs.
 
-* Intel compiler, analysis of source code. 
-* Intel XE-Advisor, analysis of Vectorization. 
+* Intel compiler, analysis of source code.
+* Intel XE-Advisor, analysis of Vectorization.
 * Intel XE-Inspector, analysis of threads and memory.
-* Intel VTune-Amplifier, analysis and profiling of complete program performance. 
-* Intel MPI, profile the MPI calls. 
+* Intel VTune-Amplifier, analysis and profiling of complete program performance.
+* Intel MPI, profile the MPI calls.
 * Intel Trace Analyzer, analysis of MPI communication.
 
 
@@ -24,10 +24,10 @@ contain a nice review of the Intel tools and how to use them. Chapter 7 is about
 tuning. Only chapters 1 and 2 are specific to the Knights Landing processor.
 
 A short overview is given here with links to the relevant tools.
-The Best Practice Guide provide an overview of the tools with a focus on 
-sampling. The actual usage of the different tools is only covered in depth 
-by the Intel documentation. Even with the documentation it can be hard to 
-start using the tools in an effective way. Attending Intel training is advised. 
+The Best Practice Guide provide an overview of the tools with a focus on
+sampling. The actual usage of the different tools is only covered in depth
+by the Intel documentation. Even with the documentation it can be hard to
+start using the tools in an effective way. Attending Intel training is advised.
 
 
 ## Intel compiler - optimization report
@@ -160,8 +160,8 @@ More information at the Best Practice Guide  :
 [http://www.prace-ri.eu/best-practice-guide-knights-landing-january-2017/#id-1.8.3.10]
 
  To use Intel Trace Analyzer load the corresponding module, e.g.
- 
+
  ```
  ml load itac/2019.4.036
  ```
- 
+

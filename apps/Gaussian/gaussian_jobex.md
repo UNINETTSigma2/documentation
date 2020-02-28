@@ -1,13 +1,13 @@
 # Gaussian job examples
 
-To see which versions are available; type the following command after logged into the machine in question: 
+To see which versions are available; type the following command after logged into the machine in question:
 
     module avail Gaussian
-    
+
 To use Gaussian, type
 
     module load Gaussian/<version>
-    
+
 specifying one of the available versions.
 
 **Please inspect runscript examples carefully before submitting jobs!**

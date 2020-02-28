@@ -15,7 +15,7 @@ To find out more, visit the OpenFOAM website at: http://www.openfoam.com/
 To see available versions when logged into Fram issue command
 
     module spider openfoam
-    
+
 To use OpenFOAM type
 
     module load OpenFOAM/<version>

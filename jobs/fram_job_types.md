@@ -49,7 +49,7 @@ to <support@metacenter.no>.
 - __Job Limits__:
     - min/max 1 node
 - __Maximum walltime__: 1 day
-- __Priority__: normal 
+- __Priority__: normal
 - __Available resources__: *preproc* jobs run on the *normal* nodes
 - __Job Scripts__: [Fram Preproc Job Scripts](fram_job_scripts.md#preproc)
 

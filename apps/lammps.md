@@ -17,7 +17,7 @@ More information: http://lammps.sandia.gov
 To see available versions when logged into Fram issue command
 
     module spider lammps
-    
+
 To use LAMMPS type
 
     module load LAMMPS/<version>

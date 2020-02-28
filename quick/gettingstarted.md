@@ -27,11 +27,11 @@ The machine names are:
 * `login.nird.sigma2.no` - NIRD.  See [NIRD](../storage/nird.md) for
   more about NIRD.
 
-First time you log in, and everytime there is a change in the
+First time you log in, and every time there is a change in the
 *ssh-server*, OS or hardware on the system you log in to, you will be asked to confirm the ssh-server fingerprint. Typical message is:
 
     The authenticity of host 'fram.sigma2.no (158.39.114.72)' can't be established.
-    
+
 The procedure then is to check the stated `ECDSA key fingerprint` with the one printed here: [ssh SHA256 fingerprint](../faq/ssh.md#sha256-fingerprint).
 
 ## Remote desktop
@@ -98,7 +98,7 @@ To submit a job, use the `sbatch` command followed by the batch script's name:
 
     sbatch <scriptfile>
 
-See the "JOBS" section in the menue for documentation about jobs and the queue system.
+See the "JOBS" section in the menu for documentation about jobs and the queue system.
 
 ## Account information
 
@@ -108,4 +108,4 @@ Information on available CPU-hours in your accounts:
 
 ## More Information
 
-The menue on the left list the pages with more information about developing and running applications.
+The menu on the left list the pages with more information about developing and running applications.
