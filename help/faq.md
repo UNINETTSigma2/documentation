@@ -4,7 +4,7 @@
 
 Got to the [User application form](https://www.metacenter.no/user/application).
 For more details follow the documentation from
-[here](https://www.sigma2.no/content/how-apply-user-account).
+[here](https://www.sigma2.no/how-apply-user-account).
 
 
 ## I forgot my password. How can I reset it?
