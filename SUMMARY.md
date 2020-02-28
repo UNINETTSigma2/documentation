@@ -78,6 +78,7 @@
 	* [Job Array Howto](jobs/job_array_howto.md)
 	* [Running Job Steps in Parallel](jobs/parallel_steps.md)
     * [Cleanup at Timeout](jobs/timeout_cleanup.md)
+    * [Frequently asked questions](faq/jobs.md)
 
 ## Code Development
 * [Compilers](development/compilers.md)
@@ -95,7 +96,6 @@
 * [Data policy](storage/data_policy.md)
 
 ## Short Guides
-* [Jobs](faq/jobs.md)
 * [Emacs](faq/emacs.md)
 * [SSH/SSHFS](faq/ssh.md)
 * [Transferring files](faq/file_transfer.md)
