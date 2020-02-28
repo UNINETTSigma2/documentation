@@ -3,14 +3,17 @@
 * [Hardware live status](https://www.sigma2.no/hardware-status)
 
 ## Getting help
-* [Contact](help/contact.md)
+* [Support line](help/support.md)
 * [Writing good support requests](help/how_to_write_good_support_requests.md)
-* [Frequently asked questions](help/faq.md)
+* [Lost or expiring password](help/password.md)
+* [Applying for user accounts](help/account.md)
+* [Applying for resources](help/resources.md)
 
 ## Getting started
 * [Overview](README.md)
 * [Getting Started](quick/gettingstarted.md)
     * [Remote Desktop](quick/remote-desktop.md)
+    * [Shell](faq/shell.md)
 * [Editing files](faq/emacs.md)
 * [Transferring files](faq/file_transfer.md)
   * [Using WinSCP](faq/WinSCP.md)
