@@ -11,7 +11,6 @@
 * [Introduction](README.md)
 * [Getting Started](quick/gettingstarted.md)
     * [Remote Desktop](quick/remote-desktop.md)
-* [License Information](quick/license.md)
 
 ## HPC Machines
 * [Fram](quick/fram.md)
@@ -47,8 +46,9 @@
   * [WRF](apps/wrf.md)
 * [Installing software as user](apps/userinstallsw.md)
 * [Licenses and access policies](apps/licenses/general.md)
-	* [Licensed software](apps/licenses/license-list.md)
-	* [License funding policy](apps/licenses/funding.md)
+    * [License types and citation](quick/license.md)
+    * [Licensed software](apps/licenses/license-list.md)
+    * [License funding policy](apps/licenses/funding.md)
 
 ## Jobs
 * [Queue System](jobs/queue_system.md)
