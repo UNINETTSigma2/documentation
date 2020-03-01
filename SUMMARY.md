@@ -21,10 +21,9 @@
 
 ## HPC Machines
 * [Fram](quick/fram.md)
-* [Abel Documentation](http://www.uio.no/english/services/it/research/hpc/abel/)
-* [Stallo Documentation](https://hpc-uit.readthedocs.io)
 * [Saga](quick/saga.md)
   * [Migration to Saga](faq/migration2saga.md)
+* [Stallo documentation](https://hpc-uit.readthedocs.io)
 
 ## SOFTWARE
 * [Software Module Scheme](apps/modulescheme.md)
