@@ -18,9 +18,6 @@ The scratch areas in `/cluster/work/jobs` and `/cluster/work/users` do *not* hav
 
 ## Saga
 
-**Note: Backup for project areas on Saga has not been implemented yet, but will be
-soon!**
-
 Home directories on the Saga HPC cluster (`/cluster/home/$USER`) are backed up nightly to user's home directory on NIRD (`/nird/home/$USER/backup/saga`). `$HOME/nobackup` and `$HOME/tmp` directories are excluded from the backup.
 
 The `nn*k` project directories (`/cluster/projects/nnXXXXk`) are backed up
