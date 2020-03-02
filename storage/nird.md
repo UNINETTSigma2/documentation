@@ -66,8 +66,8 @@ is 20 GiB and 100,000 files.  To check the disk usage and quotas, type
 
 Home directories on NIRD also contain a backup of Fram and Saga home
 directories (when relevant) in `/nird/home/<username>/backup/fram` and
-`/nird/home/<username>/backup/saga` (** not implemented for Saga yet
-**).  To account for this default quota is doubled when relevant.
+`/nird/home/<username>/backup/saga`.
+To account for this default quota is doubled when relevant.
 Note that this is a _backup_ from the HPC cluster; you cannot transfer
 files to the cluster by putting them here.
 
