@@ -5,7 +5,8 @@
 	    "theme-default",
         "toggle-chapters",
 	"include",
-	"include-codeblock"
+	"include-codeblock",
+	"heading-anchors"
     ],
     "title": "Documentation | Sigma2"
 }
