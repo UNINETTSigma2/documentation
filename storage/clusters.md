@@ -18,7 +18,7 @@ two clusters.  Read the following sections for specific details.
 
 | Directory                                       | Purpose              | Default Quota                       | Backup |
 | :-------------                                  | :-------------       | :----------:                        | :---:  |
-| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files                | Yes    |
+| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files                | If quota enforced    |
 | `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                 | No     |
 | `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                 | No     |
 | `/cluster/projects/<project_name>`              | Project data         | 1 TiB[*](#project-area) / 1 M files | Yes    |
@@ -28,15 +28,11 @@ two clusters.  Read the following sections for specific details.
 
 | Directory                                       | Purpose              | Default Quota                       | Backup |
 | :-------------                                  | :-------------       | :----------:                        | :---:  |
-| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files                | Soon   |
+| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files                | If quota enforced |
 | `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                 | No     |
 | `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                 | No     |
-| `/cluster/projects/<project_name>`              | Project data         | 1 TiB[*](#project-area) / 1 M files | Soon   |
+| `/cluster/projects/<project_name>`              | Project data         | 1 TiB[*](#project-area) / 1 M files | Yes    |
 | `/cluster/shared/<folder_name>`                 | Shared data          | Individual[**](#shared-project-area)        | No     |
-
-Note that on __Saga__, backup of `$HOME` and
-`/cluster/projects/<project_name>` has not been set up yet, but will
-soon be implemented.
 
 In addition to the areas in the tables above, both clusters mount the
 NIRD project areas as `/nird/projects/nird/NSxxxxK` on the login nodes
@@ -161,7 +157,7 @@ an application for a separate NIRD project area.
 
 **Notes:**
 
-* Daily backup is taken to NIRD. **Not implemented on Saga yet!**
+* Daily backup is taken to NIRD.
 * For backup, snapshots are taken with the following frequency:
     * daily snapshots of the last 7 days
     * weekly snapshots of the last 6 weeks.
