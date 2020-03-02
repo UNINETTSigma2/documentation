@@ -36,8 +36,7 @@ two clusters.  Read the following sections for specific details.
 
 In addition to the areas in the tables above, both clusters mount the
 NIRD project areas as `/nird/projects/nird/NSxxxxK` on the login nodes
-(but not on the compute nodes).  (This has not been implemented on
-Saga yet, but will happen soon.)
+(but not on the compute nodes).
 
 The **/cluster** file system is a high-performance parallel file
 system.  On __Fram__, it is a [Lustre](http://lustre.org) system with
