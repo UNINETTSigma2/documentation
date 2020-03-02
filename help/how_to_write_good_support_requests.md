@@ -56,6 +56,18 @@ quickly. It is easier to schedule and debug a problem which crashes after few
 seconds compared to problem that happens after a few hours.
 
 
+## Please send us full paths to examples
+
+Instead of telling us that the example can be found in `~/myexample/` it is
+much easier for us if you give us the full path, e.g.
+`/home/myuser/myexample/`.
+
+The reason is that we don't know where `~` points to in your case. We have
+hundreds of users and we do not remember usernames. For the staff `~` will
+point to a different place (their home folder) and we will have to look up your
+username and it's an annoying extra step.
+
+
 ## Describe the original problem and intent (The XY problem)
 
 Often we know the solution but we don't know the problem. Please read
