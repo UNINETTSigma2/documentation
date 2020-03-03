@@ -1,9 +1,8 @@
 
-
 # Support line
 
-All support requests concerning the e-infrastructure resources should go to
-<support@uninett.no>.
+All support requests concerning the e-infrastructure resources should be sent to
+<support@metacenter.no>.
 
 Behind this address is an issue tracker (ticket system) and you will get an
 automatic reply first and can expect response from our staff within hours
