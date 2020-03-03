@@ -9,9 +9,7 @@ The NIRD infrastructure offers storage services, archiving services, and
 processing capacity for computing on the stored data.  It offers services and
 capacities to any scientific discipline that requires access to advanced, large
 scale, or high-end resources for storing, processing, publishing research data
-or searching digital databases and collections.  See the [research
-data](https://www.sigma2.no/services-overview) page for an overview of the
-services.
+or searching digital databases and collections.
 
 NIRD will provide storage resources with yearly capacity upgrades,
 data security through geo-replication (data stored on two physical
