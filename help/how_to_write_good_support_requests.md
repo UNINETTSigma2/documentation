@@ -1,5 +1,4 @@
 
-
 # Writing good support requests
 
 Writing descriptive and specific support requests helps the support team
@@ -61,6 +60,7 @@ seconds compared to problem that happens after a few hours.
 Instead of telling us that the example can be found in `~/myexample/` it is
 much easier for us if you give us the full path, e.g.
 `/home/myuser/myexample/`.
+Use `pwd`to get the full path for your current folder.
 
 The reason is that we don't know where `~` points to in your case. We have
 hundreds of users and we do not remember usernames. For the staff `~` will
