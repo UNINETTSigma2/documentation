@@ -1,6 +1,6 @@
 #HPC and Storage Documentation
 
-The current Norwegian academic HPC infrastructure consists of four systems, located in Tromsø ([Stallo](http://hpc-uit.readthedocs.io/en/latest/help/faq.html), [Fram](quick/fram.md)) and Trondheim ([Saga](quick/saga.md)).
+The current Norwegian academic HPC infrastructure consists of three systems, located in Tromsø ([Stallo](http://hpc-uit.readthedocs.io/en/latest/help/faq.html), [Fram](quick/fram.md)) and Trondheim ([Saga](quick/saga.md)).
 
 Each of the facilities consists of a compute resource (a number of compute nodes each with a number of processors and internal shared-memory, plus an interconnect that connects the nodes), a central storage resource that is accessible by all the nodes, and a secondary storage resource for back-up (and in few cases also for archiving). All facilities use variants of the UNIX operating system (Linux, AIX, etc.).
 
