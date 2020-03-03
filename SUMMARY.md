@@ -91,7 +91,7 @@
 * [Fram and Saga](storage/clusters.md)
 * [Backup](storage/backup.md)
 * [Sharing files](storage/data_policy.md)
-* Performance tips
+* [Performance tips](storage/performance/overview.md)
     * [Lustre (Fram and Stallo)](storage/performance/lustre.md)
     * [BeeGFS (Saga)](storage/performance/beegfs.md)
     * [What to avoid](storage/performance/what_to_avoid.md)
