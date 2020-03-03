@@ -92,6 +92,7 @@
 * [Backup](storage/backup.md)
 * [Sharing files](storage/data_policy.md)
 * [Performance tips](storage/performance_tips.md)
+    * [What to avoid](storage/performance/what_to_avoid.md)
 
 ## Code Development
 * [Compilers](development/compilers.md)
