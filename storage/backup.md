@@ -1,7 +1,7 @@
 # Backup on Fram, Saga, and NIRD
 
 <div class="alert alert-danger">
-  <h4>Only home directories with enforced quotas are being backed up</h4>
+  <h4>Only home directories with enforced quotas are backed up</h4>
   <p>
     Any $HOME area using more then 20 GiB is not backed up. To have your $HOME backed up,
     you need to shrink the disk usage below the 20 GiB limit and
