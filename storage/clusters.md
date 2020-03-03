@@ -4,75 +4,59 @@ Projects and users receive different areas to store files and other
 data. Some areas are used for temporary files during job execution
 while others are for storing project data.
 
-You can see the disk usage and disk quotas of your available areas
-with the command
 
-    dusage
+## Overview
 
-Data handling and storage policy is documented [here](data_policy.md).
+The following table summarizes the different storage options for **Fram and Saga**.
+Below the table we give recommendations and discuss pros and cons for the various storage areas.
 
-The following tables summarizes the different storage options for the
-two clusters.  Read the following sections for specific details.
+| Directory                                       | Purpose              | Default Quota                      | [Backup](backup.md)                 |
+| :---------------------------------------------- | :------------------- | :--------------------------------- | :---------------------------------: |
+| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files               | [Only if quota enforced](backup.md) |
+| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                | No                                  |
+| `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                | No                                  |
+| `/cluster/projects/<project_name>`              | Project data         | [1 TiB / 1 M files](#project-area) | Yes                                 |
+| `/cluster/shared/<folder_name>`                 | Shared data          | [Individual](#shared-project-area) | No                                  |
 
-* Fram
-
-| Directory                                       | Purpose              | Default Quota                        | Backup            |
-| :-------------                                  | :-------------       | :----------:                         | :---:             |
-| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files                 | If quota enforced |
-| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                  | No                |
-| `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                  | No                |
-| `/cluster/projects/<project_name>`              | Project data         | 1 TiB[*](#project-area) / 1 M files  | Yes               |
-| `/cluster/shared/<folder_name>`                 | Shared data          | Individual[**](#shared-project-area) | No                |
-
-* Saga
-
-| Directory                                       | Purpose              | Default Quota                        | Backup            |
-| :-------------                                  | :-------------       | :----------:                         | :---:             |
-| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files                 | If quota enforced |
-| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                  | No                |
-| `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                  | No                |
-| `/cluster/projects/<project_name>`              | Project data         | 1 TiB[*](#project-area) / 1 M files  | Yes               |
-| `/cluster/shared/<folder_name>`                 | Shared data          | Individual[**](#shared-project-area) | No                |
-
-In addition to the areas in the tables above, both clusters mount the
-NIRD project areas as `/nird/projects/nird/NSxxxxK` on the login nodes
-(but not on the compute nodes).
-
-The **/cluster** file system is a high-performance parallel file
-system.  On __Fram__, it is a [Lustre](http://lustre.org) system with
-a total storage space of 2.3PB, and on __Saga__ it is a
-[BeeGFS](https://www.beegfs.io/) system with a total storage space of
-1.1PB.
-
-For performance optimizations, consult
-[Lustre performance tips](/storage/performance/lustre.md) (Fram)
-and
-[BeeGFS performance tips](/storage/performance/beegfs.md) (Saga)
-pages.
+- You can see the **disk usage and disk quotas** of your available areas with the command `dusage`.
+- **User areas and project areas are private**: Data handling and storage policy is documented [here](data_policy.md).
+- In addition to the areas in the tables above, **both clusters mount the
+  NIRD project areas** as `/nird/projects/nird/NSxxxxK` on the login nodes
+  (but not on the compute nodes).
+- The `/cluster` file system is a high-performance parallel file
+  system.  On Fram, it is a [Lustre](http://lustre.org) system with
+  a total storage space of 2.3PB, and on Saga it is a
+  [BeeGFS](https://www.beegfs.io/) system with a total storage space of
+  1.1PB.
+  For performance optimizations, consult
+  [Lustre performance tips](/storage/performance/lustre.md) (Fram)
+  and
+  [BeeGFS performance tips](/storage/performance/beegfs.md) (Saga)
+  pages.
 
 
-## Home Directory (`$HOME`)
+## Home directory
 
-The home directory is **/cluster/home/$USER**.  The location is stored
+The home directory is **/cluster/home/$USER**. The location is stored
 in the environment variable `$HOME`.  A quota is enabled on home
-directories which is by default 20GiB and 100,000 files, so it
+directories which is by default 20 GiB and 100 000 files, so it
 is not advisable to run jobs in `$HOME`. However, it is perfectly
 fine to store `stderr` and `stdout` logs from your batch jobs in
 `$HOME` so they are available for reviewing in case of issues with it.
 
-`$HOME` is only accessible for the user.  Files that should be
+The home directory should be used for storing tools, scripts, application
+sources or other relevant data which must have a backup.
+
+The home directory is only accessible for the user. Files that should be
 accessible by other uses in a project must be placed in the project
 area.
 
-**Notes**
+Backed up with daily snapshots **only if quota is enforced** for the last 7
+days and weekly snapshots for the last 6 weeks
+([documentation about backup](backup.md)).
 
-* The home directory should be used for storing tools, scripts, application
-sources or other relevant data which must have a backup.
-* **Not implemented on Saga yet** Backed up with daily snapshots for
-the last 7 days and weekly snapshots for the last 6 weeks. See
-[Backup](backup.md).
 
-## Job Scratch Area
+## Job scratch area
 
 Each job gets an area **/cluster/work/jobs/$SLURM_JOB_ID** that is
 automatically created for the job, and automatically deleted when the
@@ -81,34 +65,43 @@ job finishes.  The location is stored in the environment variable
 user running the job.
 
 The area is meant as a temporary scratch area during job
-execution. The area is _not_ backed up. See [Backup](backup.md).
+execution.
+**This area is not backed up** ([documentation about backup](backup.md)).
 
 There are special commands (`savefile` and `cleanup`) one can use in
 the job script to ensure that files are copied back to the submit
 directory `$SLURM_SUBMIT_DIR` (where `sbatch` was run).
 
-### Pros of Running Jobs in `$SCRATCH`
+<div class="alert alert-success">
+  <h4>Pros of running jobs in the job scratch area</h4>
+  <ul>
+    <li> There is less risk of interference from other jobs because every job ID has
+         its own scratch directory.</li>
+    <li> Because the scratch directory is removed when the job finishes, the scripts
+         do not need to clean up temporary files.</li>
+  </ul>
+</div>
 
-* There is less risk of interference from other jobs because every job ID has
-  its own scratch directory
-* Because the scratch directory is removed when the job finishes, the scripts
-  do not need to clean up temporary files.
+<div class="alert alert-danger">
+  <h4>Cons of running jobs in the job scratch area</h4>
+  <ul>
+    <li> Since the area is removed automatically, it can be hard to debug
+         jobs that fail.</li>
+    <li> One must use the special commands to copy files back in case the job
+         script crashes before it has finished.</li>
+    <li> If the main node of a job crashes (i.e., not the job script, but the
+         node itself), the special commands might not be run, so files might
+         be lost.</li>
+  </ul>
+</div>
 
-### Cons of Running Jobs in `$SCRATCH`
 
-* Since the area is removed automatically, it can be hard to debug
-  jobs that fail.
-* One must use the special commands to copy files back in case the job
-  script crashes before it has finished.
-* If the main node of a job crashes (i.e., not the job script, but the
-  node itself), the special commands might not be run, so files might
-  be lost.
-
-## User Work Area
+## User work area
 
 Each user has an area **/cluster/work/users/$USER**.  The location is
-stored in the environment variable `$USERWORK`.  The area is _not_
-backed up. See [Backup](backup.md).  `$USERWORK` is only accessible by
+stored in the environment variable `$USERWORK`.
+**This area is not backed up** ([documentation about backup](backup.md)).
+`$USERWORK` is only accessible by
 the user owning the area.
 
 This directory is meant for files that are used by one or more jobs.
@@ -121,32 +114,39 @@ data after each job.  Since `$USERWORK` is only accessible by the
 user, you must move results to the project area if you want to share
 them with other people in the project.
 
-**Notes:**
+File deletion depends on the newest of the *creation-*, *modification-* and
+*access* time and the total usage of the file system. The oldest files will
+be deleted first and a weekly scan removes files older than 42 days.
 
-* File deletion depends on the newest of the *creation-*, *modification-* and
-  *access* time and the total usage of the file system. The oldest files will
-  be deleted first and a weekly scan removes files older than 42 days.
-* When file system usage reaches 70%, files older than 21 days are subject to
-  automatic deletion.
-* It is **not** allowed to try to circumvent the automatic deletion by
-  for instance running scripts that touch all files.
+When file system usage reaches 70%, files older than 21 days are subject to
+automatic deletion.
 
-### Pros of Running Jobs in `$USERWORK`
+It is **not** allowed to try to circumvent the automatic deletion by
+for instance running scripts that touch all files.
 
-* Since job files are not removed automatically directly when a job
-  finishes, it is easier to debug failing jobs.
-* There is no need to use special commands to copy files back in case
-  the job script or node crashes before the job has finished.
+<div class="alert alert-success">
+  <h4>Pros of running jobs in the user work area</h4>
+  <ul>
+    <li> Since job files are not removed automatically directly when a job
+         finishes, it is easier to debug failing jobs.</li>
+    <li> There is no need to use special commands to copy files back in case
+         the job script or node crashes before the job has finished.</li>
+  </ul>
+</div>
 
-### Cons of Running Jobs in `$USERWORK`
+<div class="alert alert-danger">
+  <h4>Cons of running jobs in the user work area</h4>
+  <ul>
+    <li> There is a risk of interference from other jobs unless one makes
+         sure to run each job in a separate sub directory inside `$USERWORK`.</li>
+    <li> Because job files are not removed when the job finishes, one has to
+         remember to clean up temporary files afterwards.</li>
+    <li> One has to remember to move result files to the project area if one
+         wants to keep them.  Otherwise they will eventually be deleted by
+         the automatic file deletion.</li>
+  </ul>
+</div>
 
-* There is a risk of interference from other jobs unless one makes
-  sure to run each job in a separate sub directory inside `$USERWORK`.
-* Because job files are not removed when the job finishes, one has to
-  remember to clean up temporary files afterwards.
-* One has to remember to move result files to the project area if one
-  wants to keep them.  Otherwise they will eventually be deleted by
-  the atuomatic file deletion.
 
 ## Project Area
 
@@ -154,41 +154,43 @@ All HPC projects have a dedicated local space to share data between project
 members, located at **/cluster/projects/<project_name>**.
 
 The project area is quota controlled and the default project quota for
-HPC projects is 1TB, but projects can apply for more during the
+HPC projects is 1 TB, but projects can apply for more during the
 application process or request at a later point in time if needed. The
 maximum quota for the project area is 10TB. Greater needs will require
 an application for a separate NIRD project area.
 
-**Notes:**
+Daily backup is taken to NIRD ([documentation about backup](backup.md)).
 
-* Daily backup is taken to NIRD.
-* For backup, snapshots are taken with the following frequency:
-    * daily snapshots of the last 7 days
-    * weekly snapshots of the last 6 weeks.
-* To see disk usage and quota information for your project, run `dusage -p <project_name>`.
-* See [Backup](backup.md).
+To see disk usage and quota information for your project, run `dusage -p <project_name>`.
 
-### Pros of Running Jobs in Project Area
+<div class="alert alert-success">
+  <h4>Pros of running jobs in the project area</h4>
+  <ul>
+    <li>Since job files are not removed automatically directly when a job
+        finishes, it is easier to debug failing jobs.</li>
+    <li>There is no need to use special commands to copy files back in case
+        the job script or node crashes before the job has finished.</li>
+    <li>There is no need to move result files to save them permanently or
+        give the rest of the project access to them.</li>
+  </ul>
+</div>
 
-* Since job files are not removed automatically directly when a job
-  finishes, it is easier to debug failing jobs.
-* There is no need to use special commands to copy files back in case
-  the job script or node crashes before the job has finished.
-* There is no need to move result files to save them permanently or
-  give the rest of the project access to them.
+<div class="alert alert-danger">
+  <h4>Cons of running jobs in the project area</h4>
+  <ul>
+    <li>There is a risk of interference from other jobs unless one makes
+        sure to run each job in a separate sub directory inside the project
+        area.</li>
+    <li>Because job files are not removed when the job finishes, one has to
+        remember to clean up temporary files afterwards, otherwise they can
+        fill up the quota.</li>
+    <li>There is a risk of using all of the disk quota if one runs many jobs
+        and/or jobs needing a lot of storage at the same time.</li>
+  </ul>
+</div>
 
-### Cons of Running Jobs in Project Area
 
-* There is a risk of interference from other jobs unless one makes
-  sure to run each job in a separate sub directory inside the project
-  area.
-* Because job files are not removed when the job finishes, one has to
-  remember to clean up temporary files afterwards, otherwise they can
-  fill up the quota.
-* There is a risk of using all of the disk quota if one runs many jobs
-  and/or jobs needing a lot of storage at the same time.
-
-## Shared Project Area
+## Shared project area
 
 In special cases there might be a need for sharing data between projects for
 collaboration and possibly preventing data duplication.
