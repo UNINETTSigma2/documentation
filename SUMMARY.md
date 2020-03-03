@@ -86,6 +86,13 @@
     * [Cleanup at Timeout](jobs/timeout_cleanup.md)
     * [Frequently asked questions](faq/jobs.md)
 
+## Files and Storage
+* [NIRD](storage/nird.md)
+* [Fram and Saga](storage/clusters.md)
+* [Backup](storage/backup.md)
+* [Performance tips](storage/performance_tips.md)
+* [Data policy](storage/data_policy.md)
+
 ## Code Development
 * [Compilers](development/compilers.md)
 * [Debugging](development/debugging.md)
@@ -93,13 +100,6 @@
   * [ARM Performance Reports](development/arm_perf.md)
     * [VTune Amplifier](development/vtune.md)
     * [Other Intel Tuning Tools](development/tuning.md)
-
-## Files and Storage
-* [NIRD](storage/nird.md)
-* [Fram and Saga](storage/clusters.md)
-* [Backup](storage/backup.md)
-* [Performance tips](storage/performance_tips.md)
-* [Data policy](storage/data_policy.md)
 
 ## Training
 * [Training calendar](https://www.sigma2.no/events)
