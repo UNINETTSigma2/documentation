@@ -91,7 +91,7 @@
 * [Fram and Saga](storage/clusters.md)
 * [Backup](storage/backup.md)
 * [Performance tips](storage/performance_tips.md)
-* [Data policy](storage/data_policy.md)
+* [Sharing files](storage/data_policy.md)
 
 ## Code Development
 * [Compilers](development/compilers.md)
