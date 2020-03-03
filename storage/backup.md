@@ -1,31 +1,34 @@
-# Backup
+# Backup on Fram, Saga, and NIRD
 
-This page describes the backups taken on NIRD and the HPC clusters.
+<div class="alert alert-danger">
+  <h4>Only home directories with enforced quotas are being backed up</h4>
+  <p>
+    Any $HOME area using more then 20 GiB is not backed up. To have your $HOME backed up,
+    you need to shrink the disk usage below the 20 GiB limit and
+    <a href="/help/support.htm">notify support</a>.
+  </p>
+  <p>
+    If "dusage" repots 0 Bytes limits, this means that you <b>do not have disk quotas</b>
+    activated and this means that these folders <b>are not backed up</b>.
+  </p>
+</div>
 
-**NOTE:** _ONLY_ home directories having quotas enabled are being backed up. Any $HOME
-area using more then 20GiB is skipped. To have your $HOME backed up, you need to shrink   the disk usage below the 20GiB limit and notify support. `dusage` reporting 0 Bytes limit means, that you do _not_ have disk quotas activated.
 
-## Fram
+## Fram and Saga
 
-Home directories on the Fram HPC cluster (`/cluster/home/$USER`) are backed up nightly to user's home directory on NIRD (`/nird/home/$USER/backup/fram`). `$HOME/nobackup` and `$HOME/tmp` directories are excluded from the backup.
+Home directories on Fram and Saga (`/cluster/home/$USER`) are backed up
+nightly to user's home directory on NIRD
+(`/nird/home/$USER/backup/fram` or `/nird/home/$USER/backup/saga`).
+
+`$HOME/nobackup` and `$HOME/tmp` directories are excluded from the backup.
 
 The `nnXXXXk` project directories (`/cluster/projects/nnXXXXk`) are backed up
 nightly to NIRD.
 
-The shared areas in `/cluster/shared` are *not* backed up to NIRD.
+The shared areas in `/cluster/shared` **are not backed up** to NIRD.
 
-The scratch areas in `/cluster/work/jobs` and `/cluster/work/users` do *not* have any backup.
+The scratch areas in `/cluster/work/jobs` and `/cluster/work/users` **do not have any backup**.
 
-## Saga
-
-Home directories on the Saga HPC cluster (`/cluster/home/$USER`) are backed up nightly to user's home directory on NIRD (`/nird/home/$USER/backup/saga`). `$HOME/nobackup` and `$HOME/tmp` directories are excluded from the backup.
-
-The `nn*k` project directories (`/cluster/projects/nnXXXXk`) are backed up
-nightly to NIRD.
-
-The shared areas in `/cluster/shared` are *not* backed up to NIRD.
-
-The scratch areas in `/cluster/work/jobs` and `/cluster/work/users` do *not* have any backup.
 
 ## NIRD
 
@@ -36,35 +39,32 @@ Snapshots are taken with the following frequencies:
 * `/nird/home/$HOME`:
   - daily snapshots for the last 7 days
   - weekly snapshots for the last 6 weeks
-  - Note that this also includes snapshots of the Fram and Saga
-    homedir backup
+  - this also includes snapshots of the Fram and Saga home directory backup
 * `/nird/projects/NSxxxxK`:
   - daily snapshots for the last 7 days
   - weekly snapshots for the last 6 weeks
 
-
-### List snapshots
-
 Snapshots are available at the following places:
-* `/nird/home`:
-  - /nird/home/u1/.snapshots
-* `/nird/projects/NSxxxxK`:
-  - /nird/projects/NSxxxxK/.snapshots
+- `/nird/home/u1/.snapshots`
+- `/nird/projects/NSxxxxK/.snapshots`
 
-### Restore data
 
-To recover a file
+## How to recover deleted/overwritten data
 
-     /nird/projects/NSxxxxK/dataset1/myfile
+To recover a deleted or overwritten file `/nird/projects/NSxxxxK/dataset1/myfile`,
+you can copy a snapshot back to the folder and restore the deleted/overwritten file:
 
-inadvertently deleted (or to recover an older version) do
+```
+$ cp /nird/projects/NSxxxxK/.snapshots/DATE/dataset1/myfile /nird/projects/NSxxxxK/dataset1/
+```
 
-    cp /nird/projects/NSxxxxK/.snapshots/DATE/dataset1/myfile /nird/projects/NSxxxxK/dataset1/
+Select the DATE accordingly to your case.
 
-Select DATE accordingly to your case.  Similarly, for a file in the
-home directory:
+Similarly, a deleted/overwritten file in the home directory can be recovered like this:
 
-	cp /nird/home/u1/.snapshots/DATE/$USER/mydir/myfile /nird/home/$USER/mydir/
+```
+$ cp /nird/home/u1/.snapshots/DATE/$USER/mydir/myfile /nird/home/$USER/mydir/
+```
 
-Note that snapshots are taken every night only. So file created the
-day of the deletion cannot be recovered with snapshots.
+Note that snapshots are taken every night only. This means that deleted files
+which did not exist yet yesterday cannot be recovered from snapshots.
