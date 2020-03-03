@@ -16,23 +16,23 @@ two clusters.  Read the following sections for specific details.
 
 * Fram
 
-| Directory                                       | Purpose              | Default Quota                       | Backup |
-| :-------------                                  | :-------------       | :----------:                        | :---:  |
-| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files                | If quota enforced    |
-| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                 | No     |
-| `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                 | No     |
-| `/cluster/projects/<project_name>`              | Project data         | 1 TiB[*](#project-area) / 1 M files | Yes    |
-| `/cluster/shared/<folder_name>`                 | Shared data          | Individual[**](#shared-project-area)        | No     |
+| Directory                                       | Purpose              | Default Quota                        | Backup            |
+| :-------------                                  | :-------------       | :----------:                         | :---:             |
+| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files                 | If quota enforced |
+| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                  | No                |
+| `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                  | No                |
+| `/cluster/projects/<project_name>`              | Project data         | 1 TiB[*](#project-area) / 1 M files  | Yes               |
+| `/cluster/shared/<folder_name>`                 | Shared data          | Individual[**](#shared-project-area) | No                |
 
 * Saga
 
-| Directory                                       | Purpose              | Default Quota                       | Backup |
-| :-------------                                  | :-------------       | :----------:                        | :---:  |
-| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files                | If quota enforced |
-| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                 | No     |
-| `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                 | No     |
-| `/cluster/projects/<project_name>`              | Project data         | 1 TiB[*](#project-area) / 1 M files | Yes    |
-| `/cluster/shared/<folder_name>`                 | Shared data          | Individual[**](#shared-project-area)        | No     |
+| Directory                                       | Purpose              | Default Quota                        | Backup            |
+| :-------------                                  | :-------------       | :----------:                         | :---:             |
+| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files                 | If quota enforced |
+| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                  | No                |
+| `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                  | No                |
+| `/cluster/projects/<project_name>`              | Project data         | 1 TiB[*](#project-area) / 1 M files  | Yes               |
+| `/cluster/shared/<folder_name>`                 | Shared data          | Individual[**](#shared-project-area) | No                |
 
 In addition to the areas in the tables above, both clusters mount the
 NIRD project areas as `/nird/projects/nird/NSxxxxK` on the login nodes
