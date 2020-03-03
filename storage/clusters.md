@@ -44,7 +44,12 @@ a total storage space of 2.3PB, and on __Saga__ it is a
 [BeeGFS](https://www.beegfs.io/) system with a total storage space of
 1.1PB.
 
-For performance optimizations, consult [Performance Tips](performance_tips.md) page.
+For performance optimizations, consult
+[Lustre performance tips](/storage/performance/lustre.md) (Fram)
+and
+[BeeGFS performance tips](/storage/performance/beegfs.md) (Saga)
+pages.
+
 
 ## Home Directory (`$HOME`)
 
