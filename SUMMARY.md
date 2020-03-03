@@ -90,8 +90,8 @@
 * [NIRD](storage/nird.md)
 * [Fram and Saga](storage/clusters.md)
 * [Backup](storage/backup.md)
-* [Performance tips](storage/performance_tips.md)
 * [Sharing files](storage/data_policy.md)
+* [Performance tips](storage/performance_tips.md)
 
 ## Code Development
 * [Compilers](development/compilers.md)
