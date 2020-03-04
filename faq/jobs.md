@@ -15,12 +15,3 @@ e.g., `mpirun hostname`.  Please let us know if you have an example where
 
 So, if you get this when using `mpirun` with Intel MPI, our recommendation is
 currently that the warning can be ignored.
-
-## Things to avoid
-
-Things you should not do or use when running jobs on the HPC clusters.
-
-### `#SBATCH --hint=nomultithread`
-Do not use this, at least not with Intel MPI jobs.  If you do, the result is
-that all the tasks (ranks) will be bound to the first CPU core on each compute
-node.
