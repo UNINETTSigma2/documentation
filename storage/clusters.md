@@ -4,6 +4,14 @@ Projects and users receive different areas to store files and other
 data. Some areas are used for temporary files during job execution
 while others are for storing project data.
 
+- [Overview](#overview)
+- [Usage and quota](#usage-and-quota)
+- [Home directory](#home-directory)
+- [Job scratch area](#job-scratch-area)
+- [User work area](#user-work-area)
+- [Project area](#project-area)
+- [Shared project area](#shared-project-area)
+
 
 ## Overview
 
@@ -18,7 +26,6 @@ Below the table we give recommendations and discuss pros and cons for the variou
 | `/cluster/projects/<project_name>`              | Project data         | [1 TiB / 1 M files](#project-area) | Yes                                 |
 | `/cluster/shared/<folder_name>`                 | Shared data          | [Individual](#shared-project-area) | No                                  |
 
-- You can see the **disk usage and disk quotas** of your available areas with the command `dusage`.
 - **User areas and project areas are private**: Data handling and storage policy is documented [here](data_policy.md).
 - In addition to the areas in the tables above, **both clusters mount the
   NIRD project areas** as `/nird/projects/nird/NSxxxxK` on the login nodes
@@ -33,6 +40,41 @@ Below the table we give recommendations and discuss pros and cons for the variou
   and
   [BeeGFS performance tips](/storage/performance/beegfs.md) (Saga)
   pages.
+
+
+## Usage and quota
+
+You can see the **disk usage and disk quotas** of your available areas with:
+```
+$ dusage
+```
+But please note that this command does not show you the number of files and
+there may be a quota on the number of files.
+
+To see the usage **including the number of files**, check:
+```
+$ dusage -i
+```
+
+To see the **project disk usage** (e.g. for nn1234k), use:
+```
+$ beegfs-ctl --getquota --gid nn1234k
+```
+
+<div class="alert alert-warning">
+  <h4>Frequently asked questions</h4>
+  <ul>
+    <li>
+      <b>I cannot copy files although we haven't used up all space</b>:
+      You have probably exceeded the quota on the number of files.
+    </li>
+    <li>
+      <b>I have moved files to the project folder but my home quota usage did not go down</b>:
+      Moving files does not change ownership of the files. You need to also change the ownership of the files
+      in the project folder from you to the group.
+    </li>
+  </ul>
+</div>
 
 
 ## Home directory
@@ -148,7 +190,7 @@ for instance running scripts that touch all files.
 </div>
 
 
-## Project Area
+## Project area
 
 All HPC projects have a dedicated local space to share data between project
 members, located at **/cluster/projects/<project_name>**.
