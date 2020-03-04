@@ -52,14 +52,14 @@ Note that this host name is actually a DNS alias for
 `login0.nird.sigma2.no`, `login1.nird.sigma2.no`,
 `login2.nird.sigma2.no` and `login3.nird.sigma2.no`.  Those are
 containers, each one running the image of a login node. A login
-container offers resources for a maximum of 16 cpus and 128 GB of
+container offers resources for a maximum of 16 CPUs and 128 GB of
 memory.
 
 Users must be registered and authorized by the project responsible
 before getting access.
 
 To access or transfer data use the following tools: `ssh`, `scp` or
-`sftp`.  Visit the [Transferring files](../faq/file_transfer.md) page
+`sftp`.  Visit the [transferring files](file_transfer.md) page
 for details.
 
 

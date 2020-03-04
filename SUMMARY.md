@@ -15,8 +15,6 @@
     * [Remote Desktop](quick/remote-desktop.md)
     * [Shell](faq/shell.md)
 * [Editing files](faq/emacs.md)
-* [Transferring files](faq/file_transfer.md)
-  * [Using WinSCP](faq/WinSCP.md)
 * [Password-less login](faq/ssh.md)
 
 ## HPC Machines
@@ -91,6 +89,8 @@
 * [Fram and Saga](storage/clusters.md)
 * [Backup](storage/backup.md)
 * [Sharing files](storage/data_policy.md)
+* [Transferring files](storage/file_transfer.md)
+  * [Using WinSCP](storage/WinSCP.md)
 * [Performance tips](storage/performance/overview.md)
     * [Lustre (Fram and Stallo)](storage/performance/lustre.md)
     * [BeeGFS (Saga)](storage/performance/beegfs.md)
