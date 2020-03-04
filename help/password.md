@@ -8,10 +8,20 @@
 Go to [this page](https://www.metacenter.no/user/reset/) and fill in your username.
 An activation key will be sent to you to the mobile number associated with your username.
 
+Note that it can take 15 minutes for the change to propagate to the login nodes (up to 1 hour on Vilje).
+
+See also [this page](https://www.sigma2.no/how-reset-passwords) for a step by step guide, which also indicates
+the times it takes for the change to take effect.
+
 
 ## My password is expiring and I am asked to change it.
 
 You can change your password [here](https://www.metacenter.no/user/password/).
+
+Note that it can take 15 minutes for the change to propagate to the login nodes (up to 1 hour on Vilje).
+
+See also [this page](https://www.sigma2.no/how-reset-passwords) for a step by step guide, which also indicates
+the times it takes for the change to take effect.
 
 
 ## I typed my password wrong several times. Now it seems I can not log in. Has my account been closed?
