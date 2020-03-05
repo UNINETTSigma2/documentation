@@ -18,6 +18,7 @@
 * [Password-less login](faq/ssh.md)
 
 ## HPC Machines
+* [Hardware overview](quick/overview-machines.md)
 * [Fram](quick/fram.md)
 * [Saga](quick/saga.md)
   * [Migration to Saga](faq/migration2saga.md)
