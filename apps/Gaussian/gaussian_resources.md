@@ -41,7 +41,7 @@ The maximum `%mem` limit will always be half of the physical memory pool given o
 
 ## Managment of large files
 
-As commented in the [performance-tips section](../../storage/performance_tips.md), there is an issue with very large temporary output files (termed RW files in Gaussian). It is advisable to slice them into smaller parts using the `lfs setstripe` command.
+As commented in the [performance-tips section](/storage/performance/lustre.md), there is an issue with very large temporary output files (termed RW files in Gaussian). It is advisable to slice them into smaller parts using the `lfs setstripe` command.
 
 Each user can change the default placement of the files it creates by striping files over several storage arrays, pr. folder basis. This is done with the following command:
 

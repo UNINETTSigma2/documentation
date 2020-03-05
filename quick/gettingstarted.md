@@ -56,7 +56,7 @@ For example, to copy projectfiles.tar.gz to the home directory of myusername to 
 
     scp projectfiles.tar.gz myusername@fram.sigma2.no:
 
-The [Transferring Files](../faq/file_transfer.md) page has more information about transferring files to Fram.
+The [Transferring Files](/storage/file_transfer.md) page has more information about transferring files to Fram.
 
 ### Modules
 

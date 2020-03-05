@@ -3,25 +3,25 @@
 * [Hardware live status](https://www.sigma2.no/hardware-status)
 
 ## Getting help
-* [Contact](help/contact.md)
+* [Support line](help/support.md)
 * [Writing good support requests](help/how_to_write_good_support_requests.md)
-* [Frequently asked questions](help/faq.md)
+* [Lost or expiring password](help/password.md)
+* [Applying for user accounts](help/account.md)
+* [Applying for resources](help/resources.md)
 
 ## Getting started
 * [Overview](README.md)
 * [Getting Started](quick/gettingstarted.md)
     * [Remote Desktop](quick/remote-desktop.md)
+    * [Shell](faq/shell.md)
 * [Editing files](faq/emacs.md)
-* [Transferring files](faq/file_transfer.md)
-  * [Using WinSCP](faq/WinSCP.md)
 * [Password-less login](faq/ssh.md)
 
 ## HPC Machines
 * [Fram](quick/fram.md)
-* [Abel Documentation](http://www.uio.no/english/services/it/research/hpc/abel/)
-* [Stallo Documentation](https://hpc-uit.readthedocs.io)
 * [Saga](quick/saga.md)
   * [Migration to Saga](faq/migration2saga.md)
+* [Stallo documentation](https://hpc-uit.readthedocs.io)
 
 ## SOFTWARE
 * [Software Module Scheme](apps/modulescheme.md)
@@ -71,9 +71,9 @@
         * [Fram Job Placement](jobs/fram_job_placement.md)
     * [Saga](jobs/saga_job_scripts.md)
 	    * [Sample MPI Job](jobs/saga_sample_mpi_job.md)
-* [Interactive Jobs](jobs/interactive_jobs.md)
 * [Managing Jobs](jobs/managing_jobs.md)
     * [Job States](jobs/job_states.md)
+* [Interactive Jobs](jobs/interactive_jobs.md)
 * [Projects and accounting](jobs/projects.md)
 * [Dos and Don'ts](jobs/dos_and_donts.md)
 * [Guides](jobs/guides.md)
@@ -84,6 +84,18 @@
     * [Cleanup at Timeout](jobs/timeout_cleanup.md)
     * [Frequently asked questions](faq/jobs.md)
 
+## Files and Storage
+* [NIRD](storage/nird.md)
+* [Fram and Saga](storage/clusters.md)
+* [Backup](storage/backup.md)
+* [Sharing files](storage/data_policy.md)
+* [Transferring files](storage/file_transfer.md)
+  * [Using WinSCP](storage/WinSCP.md)
+* [Performance tips](storage/performance/overview.md)
+    * [Lustre (Fram and Stallo)](storage/performance/lustre.md)
+    * [BeeGFS (Saga)](storage/performance/beegfs.md)
+    * [What to avoid](storage/performance/what_to_avoid.md)
+
 ## Code Development
 * [Compilers](development/compilers.md)
 * [Debugging](development/debugging.md)
@@ -92,13 +104,7 @@
     * [VTune Amplifier](development/vtune.md)
     * [Other Intel Tuning Tools](development/tuning.md)
 
-## Files and Storage
-* [NIRD](storage/nird.md)
-* [Fram and Saga](storage/clusters.md)
-* [Backup](storage/backup.md)
-* [Performance tips](storage/performance_tips.md)
-* [Data policy](storage/data_policy.md)
-
 ## Training
 * [Training calendar](https://www.sigma2.no/events)
 * [HPC carpentry](support/hpc_carpentry.md)
+* [Introduction to HPC training material](https://sabryr.github.io/hpc-intro/)
