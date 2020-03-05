@@ -5,14 +5,6 @@
 
 The current Norwegian academic HPC infrastructure is maintained by an organization called the [Metacenter](https://sigma2.no/metacenter), which is a joint collaboration between the four oldest Universities in Norway ([UiO](https://uio.no), [UiB](https://uib.no), [NTNU](https://ntnu.no) and [UiT](https://uit.no)) and [Sigma2](https://www.sigma2.no/).
 
-This documentation aims to be user-friendly, readily available and correct. The future will be our judges in how well we succeed in this.
-
-<u>We also hold a set of ambitions for these pages:</u>
-
-1. They should be used and read.
-2. Users (<b>you</b>) should be able to contribute through pull requests.
-3. They should be relevant for us, you users and for external colleagues.
-
 
 ### Acknowledging use of national HPC infrastructure
 
