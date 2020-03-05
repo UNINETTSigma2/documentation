@@ -1,20 +1,20 @@
 # The Norwegian Academic HPC Services
 
 
-## Introduction:
+## Introduction
 
 The current Norwegian academic HPC infrastructure is maintained by an organization called the [Metacenter](https://sigma2.no/metacenter), which is a joint collaboration between the four oldest Universities in Norway ([UiO](https://uio.no), [UiB](https://uib.no), [NTNU](https://ntnu.no) and [UiT](https://uit.no)) and [Sigma2](https://www.sigma2.no/).
 
 This documentation aims to be user-friendly, readily available and correct. The future will be our judges in how well we succeed in this.
 
-<u>We also holds a set of ambitions for these pages:</u>
+<u>We also hold a set of ambitions for these pages:</u>
 
 1. They should be used and read.
 2. Users (<b>you</b>) should be able to contribute through pull requests.
 3. They should be relevant for us, you users and for external colleagues.
 
 
-### Acknowledging use of national HPC infrastructure:
+### Acknowledging use of national HPC infrastructure
 
 Projects are required to acknowledge the use of the national e-infrastructure resources in their scientific publications. Papers, presentations and other publications that feature work that relied on Sigma2 should include such an acknowledgement. 
 
@@ -25,7 +25,7 @@ UNINETT Sigma2 has defined the following template for such acknowledgements:
 	 Data Storage in Norway"
 
 --------------------------------
-## For the beginner:
+## For the beginner
 If you are new here, you might want to learn the basics first here:
 
 * [Getting started](quick/getttingstarted.md)
@@ -39,7 +39,7 @@ If you are new here, you might want to learn the basics first here:
 * [Introduction to HPC training material](https://sabryr.github.io/hpc-intro/)
 
 
-## Getting help and access:
+## Getting help and access
 * [Support line](help/support.md)
 * [Writing good support requests](help/how_to_write_good_support_requests.md)
 * [Lost or expiring password](help/password.md)
@@ -51,8 +51,8 @@ If you are new here, you might want to learn the basics first here:
 * [Latest changes and events](https://opslog.sigma2.no)
 
 --------------------------------
-## For advanced users:
-#### Jobs:
+## For advanced users
+#### Jobs
 * [Queue System](jobs/queue_system.md)
 * [Job Scripts](jobs/job_scripts.md)
 * [Managing Jobs](jobs/managing_jobs.md)
@@ -60,7 +60,7 @@ If you are new here, you might want to learn the basics first here:
 * [Projects and accounting](jobs/projects.md)
 * [Guides](jobs/guides.md)
 
-#### Software:
+#### Software
 * [Software Module Scheme](apps/modulescheme.md)
 * [Installing software as user](apps/userinstallsw.md)
 * [Installed Software](apps/which_software_is_installed.md)
