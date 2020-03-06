@@ -31,25 +31,25 @@ Data Storage in Norway
 
 If you are new here, you might want to learn the basics first here:
 
-* [Getting started](quick/getttingstarted.md)
+* [Getting started](/quick/getttingstarted.md)
 * [Latest changes and events](https://opslog.sigma2.no)
-* [Editing files](faq/emacs.md)
-* [Password-less login](faq/ssh.md)
+* [Editing files](/faq/emacs.md)
+* [Password-less login](/faq/ssh.md)
 
 ### Training
 
 * [Training calendar](https://www.sigma2.no/events)
-* [HPC carpentry](support/hpc_carpentry.md)
+* [HPC carpentry](/support/hpc_carpentry.md)
 * [Introduction to HPC training material](https://sabryr.github.io/hpc-intro/)
 
 
 ## Getting help and access
 
-* [Support line](help/support.md)
-* [Writing good support requests](help/how_to_write_good_support_requests.md)
-* [Lost or expiring password](help/password.md)
-* [Applying for user accounts](help/account.md)
-* [Applying for resources](help/resources.md)
+* [Support line](/help/support.md)
+* [Writing good support requests](/help/how_to_write_good_support_requests.md)
+* [Lost or expiring password](/help/password.md)
+* [Applying for user accounts](/help/account.md)
+* [Applying for resources](/help/resources.md)
 
 
 ## Current status and announcements
@@ -63,19 +63,19 @@ If you are new here, you might want to learn the basics first here:
 
 #### Jobs
 
-* [Queue System](jobs/queue_system.md)
-* [Job Scripts](jobs/job_scripts.md)
-* [Managing Jobs](jobs/managing_jobs.md)
-* [Interactive Jobs](jobs/interactive_jobs.md)
-* [Projects and accounting](jobs/projects.md)
-* [Guides](jobs/guides.md)
+* [Queue System](/jobs/queue_system.md)
+* [Job Scripts](/jobs/job_scripts.md)
+* [Managing Jobs](/jobs/managing_jobs.md)
+* [Interactive Jobs](/jobs/interactive_jobs.md)
+* [Projects and accounting](/jobs/projects.md)
+* [Guides](/jobs/guides.md)
 
 #### Software
 
-* [Software Module Scheme](apps/modulescheme.md)
-* [Installing software as user](apps/userinstallsw.md)
-* [Installed Software](apps/which_software_is_installed.md)
-* [Application guides](apps/appguides.md)
+* [Software Module Scheme](/apps/modulescheme.md)
+* [Installing software as user](/apps/userinstallsw.md)
+* [Installed Software](/apps/which_software_is_installed.md)
+* [Application guides](/apps/appguides.md)
 
 #### Storage and file managment
 
@@ -83,20 +83,20 @@ Fram and Saga use the NIRD storage system for storing archives for other
 research data. NOTUR projects have access to this geo-replicated storage
 through various methods.
 
-* [NIRD](storage/nird.md)
-* [Fram and Saga](storage/clusters.md)
-* [Backup](storage/backup.md)
-* [Sharing files](storage/data_policy.md)
-* [Transferring files](storage/file_transfer.md)
-* [Performance tips](storage/performance/overview.md)
-    * [Lustre (Fram and Stallo)](storage/performance/lustre.md)
-    * [BeeGFS (Saga)](storage/performance/beegfs.md)
-    * [What to avoid](storage/performance/what_to_avoid.md)
+* [NIRD](/storage/nird.md)
+* [Fram and Saga](/storage/clusters.md)
+* [Backup](/storage/backup.md)
+* [Sharing files](/storage/data_policy.md)
+* [Transferring files](/storage/file_transfer.md)
+* [Performance tips](/storage/performance/overview.md)
+    * [Lustre (Fram and Stallo)](/storage/performance/lustre.md)
+    * [BeeGFS (Saga)](/storage/performance/beegfs.md)
+    * [What to avoid](/storage/performance/what_to_avoid.md)
 
 #### Code developtment
-* [Compilers](development/compilers.md)
-* [Debugging](development/debugging.md)
-* [Performance Analysis and Tuning](development/performance.md)
+* [Compilers](/development/compilers.md)
+* [Debugging](/development/debugging.md)
+* [Performance Analysis and Tuning](/development/performance.md)
 
 ---
 
