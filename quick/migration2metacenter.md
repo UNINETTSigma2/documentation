@@ -21,9 +21,9 @@ In a clearer way, thee major steps in migrating to a Metacenter HPC macines:
 
 ## Read about the current machines operated by the Metacenter:
 
-* [Fram](https://www.sigma2.no/systems#framq)
-* [Saga](https://www.sigma2.no/systems#saga)
-* [Betzy](https://www.sigma2.no/systems#betzy)
+* [Fram](/quick/fram.md)
+* [Saga](/quick/saga.md)
+* [Betzy](/quick/betzy.md)
 
 ## Further reading:
 * [Getting started](/quick/gettingstarted.md)
