@@ -1,7 +1,8 @@
 # Overview over our machines
-The current Norwegian academic HPC infrastructure consists of three systems, located in Tromsø ([Stallo](http://hpc-uit.readthedocs.io/en/latest/help/faq.html), [Fram](https://www.sigma2.no/systems#fram)) and Trondheim ([Saga](https://www.sigma2.no/systems#saga)).
+The current Norwegian academic HPC infrastructure consists of three systems, located in Tromsø ([Stallo](http://hpc-uit.readthedocs.io), [Fram](/quick/fram.md)) and Trondheim ([Saga](/quick/saga.md)).
+We are currently setting up our newest machine [Betzy](/quick/betzy.md) which should go into production this year.
 
-Each of the facilities consists of a compute resource (a number of compute nodes each with a number of processors and internal shared-memory, plus an interconnect that connects the nodes), a central storage resource that is accessible by all the nodes, and a secondary storage resource for back-up (and in few cases also for archiving). All facilities use variants of the UNIX operating system (Linux, AIX, etc.).
+Each of the facilities consists of a compute resource (a number of compute nodes each with a number of processors and internal shared-memory, plus an interconnect that connects the nodes), a central storage resource that is accessible by all the nodes, and a secondary storage resource for back-up (and in few cases also for archiving). All facilities use variants of the UNIX operating system.
 
 Additionally, [NIRD](storage/nird.md) provides storage and archiving services for research data.
 

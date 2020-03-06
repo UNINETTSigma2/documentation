@@ -23,6 +23,7 @@
 * [Saga](quick/saga.md)
   * [Migration to Saga](faq/migration2saga.md)
 * [Stallo documentation](https://hpc-uit.readthedocs.io)
+* [Migrating to our machines](quick/migration2metacenter.md)
 
 ## SOFTWARE
 * [Software Module Scheme](apps/modulescheme.md)

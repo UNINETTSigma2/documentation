@@ -1,25 +1,26 @@
 # Migration to a Metacenter HPC machine
 
-In general, the user environment on all Metacenter machines should be as similar as possible. Thus, for users moving internally between machines run by the Metacenter, they only need to focus on the following:
+In general, the user environment on all Metacenter machines should be as similar as possible.
+Thus, for users moving internally between machines run by the Metacenter, they only need to focus on the following:
 
-* Differences in hardware status; corecount, memory size, GPU-availability, external access from compute.
-* Differences is software status: The list of installed SW (use module avail), type of file-system, access limitation rules to $HOME, same or different filesystem on $TMP and $HOME.
-* Jobtype policy differences in Resource Managment System (currently used SLURM) on different machines. See menu bar links for info about this. 
+* [Hardware differences](/quick/overview-machines.md): number of CPU cores, memory size, GPU-availability, external access from compute nodes.
+* Software differences: [Installed SW](/apps/which_software_is_installed.md), type of file-system, access limitation rules to $HOME, same or different file systems on $TMP and $HOME.
+* Jobtype policy differences in Resource Management System (SLURM) on different machines.
 * Storage options.
 
-For users either being novel to HPC in general, or having experience from outher clusters - either local/private or foreign setup, basically the same rules apply - one must try to identify the critical differences in what one is used to and then adapt behaviour accordingly. 
+For users either being novel to HPC in general, or having experience from other clusters - either local/private or foreign setup, basically the same rules apply - one must try to identify the critical differences in what one is used to and then adapt behaviour accordingly. 
 
-In a clearer way, thee major steps in migrating to a Metacenter HPC macines:
+## Major steps in migrating to a Metacenter HPC machines
 
-* Read this documentation
-* Getting an account and project quota.
-*  Getting aware of differences (disk quota, module system, job types, running jobs, how to get help, sile system policies).
-*  Transferring data, scripts etc from other machines to the new machine.
-*  Modifying scripts & routines to match differences on the new machine.
-*  **Verifying that your jobs run efficiently and produce the same results as on other systems!**
-*  Be patient with user support [(support@metacenter.no)](mailto:support@metacenter.no), but don't hesitate to ask questions!
+* Read this documentation.
+* Get an [account](/help/account.md) and [project](/help/resources.md) quota.
+* Become aware of differences in disk quota, module system, job types, running jobs, how to get help, file system policies.
+* Transfer data, scripts etc from other machines to the new machine.
+* Modify scripts & routines to match differences on the new machine.
+* **Verify that your jobs run efficiently and produce the same results as on other systems!**
+* Be patient with user support [(support@metacenter.no)](mailto:support@metacenter.no), but don't hesitate to ask questions!
 
-## Read about the current machines operated by the Metacenter:
+## Read about the current machines operated by the Metacenter
 
 * [Fram](/quick/fram.md)
 * [Saga](/quick/saga.md)
