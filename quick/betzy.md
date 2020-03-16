@@ -20,7 +20,7 @@ Betzy is a BullSequana XH2000, provided by Atos, and will  give Norwegian resear
 | Total disc capacity     |	2.5 PB  |
 | Interconnect  |	InfiniBand HDR 100, Dragonfly+ topology |
 
-Almost all components are all liquid cooled resulting in a very high cooling efficiency, 95% of heat being captured to water.
+Almost all components are liquid cooled resulting in a very high cooling efficiency, 95% of heat being captured to water.
 
 
 ## Pilot Projects
