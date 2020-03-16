@@ -20,16 +20,15 @@ and mark the case with *Betzy*.
 Betzy uses the SLURM queuing system. 
 During the pilot phase there will be no limitations imposed. For generic information about job submission, please check out our documentation [here](../jobs/queue_system.md).
 
-## Data 
+## Storage
 
-Betzy uses a DDN powered 2.5 PB Lustre parallel file system with 51 GB/s bandwidth and around 500k metadata operations per second.
+Betzy uses a DDN powered 2.5 PB Lustre parallel file system with 51 GB/s bandwidth and 500k+  metadata operations per second.
 The Lustre file system is mounted under `/cluster`.
 
-Please note that *NO BACKUP* is taken during the pilot phase. The `/cluster`
-file system might be reformatted at the end of the pilot phase, before placing
-the machine into production.
+Please note that *NO BACKUP* is taken during the pilot phase.
+The `/cluster` file system might be reformatted at the end of the pilot phase, before machine being placed into production.
 
-NIRD project file systems - `/trd-project[1-4]` will be mounted on the Betzy
+NIRD project file systems - `/trd-project[1-4]` - will be mounted on the Betzy
 login nodes, similarly to Fram and Saga HPC clusters.
 
 ## Software
