@@ -19,6 +19,7 @@
 
 ## HPC Machines
 * [Hardware overview](quick/overview-machines.md)
+* [Betzy](quick/betzy.md)
 * [Fram](quick/fram.md)
 * [Saga](quick/saga.md)
   * [Migration to Saga](faq/migration2saga.md)
