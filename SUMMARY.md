@@ -20,9 +20,9 @@
 ## HPC Machines
 * [Hardware overview](quick/overview-machines.md)
 * [Betzy](quick/betzy.md)
+  * [Betzy Pilot Projects](quick/betzy-pilots.md)
 * [Fram](quick/fram.md)
 * [Saga](quick/saga.md)
-  * [Migration to Saga](faq/migration2saga.md)
 * [Stallo documentation](https://hpc-uit.readthedocs.io)
 
 ## SOFTWARE
