@@ -10,7 +10,7 @@
 * [Applying for resources](help/resources.md)
 
 ## Getting started
-* [Overview](README.md)
+* [Overview](frontpage.md)
 * [Getting Started](quick/gettingstarted.md)
     * [Remote Desktop](quick/remote-desktop.md)
     * [Shell](faq/shell.md)
