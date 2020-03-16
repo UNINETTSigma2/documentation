@@ -17,4 +17,5 @@ Betzy is a BullSequana XH2000, provided by Atos, and will  give Norwegian resear
 | Memory in total    |	336 TiB  |
 | Memory per node    |  256GiB  |
 | Total disc capacity     |	2.5 PB  |
+| Interconnect  |	InfiniBand HDR 100, Dragonfly+ topology |
 
