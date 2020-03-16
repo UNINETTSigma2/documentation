@@ -1,10 +1,8 @@
 # Fram
 
 Named after the Norwegian arctic expedition ship [Fram](http://en.wikipedia.org/wiki/Fram),
-the new Linux cluster hosted at [University of Tromsø](https://uit.no/startsida)
-(UiT) is a shared resource for research computing capable of 1.1 PFLOP/s
-theoretical peak performance. It will enter production during the 2017.1
-computing period (starting 1 April 2017).
+the new Linux cluster hosted at [UiT Arctic University of Norway](https://uit.no/startsida) is a shared resource for research computing capable of 1.1 PFLOP/s
+theoretical peak performance.
 
 Fram is a distributed memory system which consists of 1004 dual socket and 2
 quad socket nodes, interconnected with a high-bandwidth low-latency Infiniband
@@ -24,11 +22,3 @@ The total number of compute cores is 32256.
 | Total memory     |	78 TiB  |
 | Total disc capacity     |	2.5 PB  |
 
-
-The following give new users information about running applications on Fram:
-
-* [Getting Started](gettingstarted.md)
-* [Porting from PBS/TORQUE to Slurm](../jobs/porting_from_pbs.html)
-
-To find more about specific information, visit the individual pages from the
-menu on the left.
