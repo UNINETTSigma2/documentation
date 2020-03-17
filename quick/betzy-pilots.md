@@ -33,9 +33,20 @@ login nodes, similarly to Fram and Saga HPC clusters.
 
 ## Software
 
-### Toolchains
-To be added
+As on Fram and Saga, scientific software on Betzy will be installed using the EasyBuild system, and the Lmod modules tool
+will be used for changing environment setup via modulefiles.
 
-### MPI
-To be added
+The two *common toolchains* `foss` and `intel` will be installed on Betzy.
 
+`foss` toolchain
+
+* GCC compilers (`gcc`, `g++`, `gfortran`)
+* Open MPI library
+* OpenBLAS (including LAPACK) + ScaLAPACK
+* FFTW library
+
+`intel` toolchain
+
+* Intel compilers (`icc`, `icpc`, `ifort`)
+* Intel MPI library
+* Intel MKL library (including BLAS, LAPACK, ScaLAPACK, FFT)
