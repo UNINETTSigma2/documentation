@@ -8,5 +8,8 @@
 	"include-codeblock",
 	"heading-anchors"
     ],
-    "title": "Documentation | Sigma2"
+    "title": "Documentation | Sigma2",
+    "structure":{
+      "readme": "frontpage.md"
+    }
 }

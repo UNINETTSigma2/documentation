@@ -1,111 +1,27 @@
-# The Norwegian Academic HPC Services
+# Public Documentation for Sigma2 HPC Services
+Served via [https://documentation.sigma2.no](https://documentation.sigma2.no/)
 
+## Goals
+This documentation should be
+  1. User centric
+  2. Comprehensive but not overwhelming
+  3. Up to date
 
-## Introduction
+## Contribute
+In order to coordinate our efforts, changes to the documentation should be added by _merge requests_ instead pushing directly to _master_ branch.
 
-The current Norwegian academic HPC infrastructure is maintained by an
-organization called the [Metacenter](https://sigma2.no/metacenter), which is a
-joint collaboration between the four oldest Universities in Norway
-([UiO](https://uio.no), [UiB](https://uib.no), [NTNU](https://ntnu.no) and
-[UiT](https://uit.no)) and [Sigma2](https://www.sigma2.no/).
+This enables easy peer-review by allowing all others to comment and discuss changes.
+Additionally all commits first run through the CI testing pipeline and are only merged upon passing of all tests, reducing the chances of accidental breaking stuff.
 
-
-### Acknowledging use of national HPC infrastructure
-
-Projects are required to acknowledge the use of the national e-infrastructure
-resources in their scientific publications. Papers, presentations and other
-publications that feature work that relied on Sigma2 should include such an
-acknowledgement.
-
-UNINETT Sigma2 has defined the following template for such acknowledgements:
-
-```
-The computations/simulations/[SIMILAR] were performed on resources provided by
-UNINETT Sigma2 - the National Infrastructure for High Performance Computing and
-Data Storage in Norway
-```
-
----
-
-## For the beginner
-
-If you are new here, you might want to learn the basics first here:
-
-* [Getting started](/quick/getttingstarted.md)
-* [Latest changes and events](https://opslog.sigma2.no)
-* [Editing files](/faq/emacs.md)
-* [Password-less login](/faq/ssh.md)
-
-### Training
-
-* [Training calendar](https://www.sigma2.no/events)
-* [HPC carpentry](/support/hpc_carpentry.md)
-* [Introduction to HPC training material](https://sabryr.github.io/hpc-intro/)
-
-
-## Getting help and access
-
-* [Support line](/help/support.md)
-* [Writing good support requests](/help/how_to_write_good_support_requests.md)
-* [Lost or expiring password](/help/password.md)
-* [Applying for user accounts](/help/account.md)
-* [Applying for resources](/help/resources.md)
-
-
-## Current status and announcements
-
-* [Hardware live status](https://www.sigma2.no/hardware-status)
-* [Latest changes and events](https://opslog.sigma2.no)
-
---------------------------------
-
-## For advanced users
-
-#### Jobs
-
-* [Queue System](/jobs/queue_system.md)
-* [Job Scripts](/jobs/job_scripts.md)
-* [Managing Jobs](/jobs/managing_jobs.md)
-* [Interactive Jobs](/jobs/interactive_jobs.md)
-* [Projects and accounting](/jobs/projects.md)
-* [Guides](/jobs/guides.md)
-
-#### Software
-
-* [Software Module Scheme](/apps/modulescheme.md)
-* [Installing software as user](/apps/userinstallsw.md)
-* [Installed Software](/apps/which_software_is_installed.md)
-* [Application guides](/apps/appguides.md)
-
-#### Storage and file managment
-
-Fram and Saga use the NIRD storage system for storing archives for other
-research data. NOTUR projects have access to this geo-replicated storage
-through various methods.
-
-* [NIRD](/storage/nird.md)
-* [Fram and Saga](/storage/clusters.md)
-* [Backup](/storage/backup.md)
-* [Sharing files](/storage/data_policy.md)
-* [Transferring files](/storage/file_transfer.md)
-* [Performance tips](/storage/performance/overview.md)
-    * [Lustre (Fram and Stallo)](/storage/performance/lustre.md)
-    * [BeeGFS (Saga)](/storage/performance/beegfs.md)
-    * [What to avoid](/storage/performance/what_to_avoid.md)
-
-#### Code developtment
-* [Compilers](/development/compilers.md)
-* [Debugging](/development/debugging.md)
-* [Performance Analysis and Tuning](/development/performance.md)
-
----
-
-## About UNINETT Sigma2
-
-UNINETT Sigma2 AS manages the national infrastructure for computational science
-in Norway, and offers services in high performance computing and data storage.
-Visit https://www.sigma2.no for more information.
-
-Latest news and announcements from Metacenter are posted at <a
-href="https://opslog.sigma2.no" target="_blank">Metacenter OpsLog</a> and the
-@MetacenterOps Twitter channel.
+### Workflow
+Assuming we want to add a section describing that no animals are allowed on the server.
+We will call the branch _no-animals_.
+  0. Optionally: Open a _Issue_ on [gitlab](https://scm.uninett.no/sigma2/eksterndokumentasjon/issues) describing the change, especially when not tackled immediately.
+  1. Get an up-to-date _master_ branch: `git pull origin master`
+  2. Create a new branch for your changes. Use a short, descriptive name: `git checkout -b no-animals`
+  3. Edit/add files and do the changes.
+  4. Stage your changes: `git add new_section.md`
+  5. Commit the changes: `git commit -m 'Add new section'`
+  6. Upload your changes to the main repository: `git push origin no-animals`
+  7. Create a new _[merge request](https://scm.uninett.no/sigma2/eksterndokumentasjon/-/merge_requests)_ on gitlab. Select your branch as _source branch_ and _master_ as _target branch_.
+  8. Describe the changes and optionally assign someone to review and approve the commits.
