@@ -66,7 +66,7 @@ Host fram                            # alias, you may run "ssh fram" only
 ## SHA256 fingerprint
 
 No matter how you login, you will need to confirm that the connection
-shall be trusted.  The first time you log in to a machine fia `ssh`, you will
+shall be trusted.  The first time you log in to a machine via `ssh`, you will
 get a message like
 
     The authenticity of host '<hostname>' can't be established.
@@ -89,6 +89,12 @@ Some ssh clients will show it as
 
 (possibly without the `MD5:` prefix).
 
+Putty seems to at least sometimes display the ED25519 key instead
+
+	SHA256:PNlam6vviiHF0V7o4cGMmBfXAo5UEgfOtIkFQgXt9bM
+	MD5:55:ae:4a:0d:a6:05:76:bb:e7:59:1a:4a:b2:a4:87:2b
+
+
 For the **Saga** login nodes, it is
 
 	SHA256:qirKlTjO9QSXuCAiuDQeDPqq+jorMFarCW+0qhpaAEA
@@ -96,6 +102,12 @@ For the **Saga** login nodes, it is
 sometimes shown as
 
 	MD5:13:4e:ae:66:89:0d:24:27:b8:15:87:24:31:ed:32:af
+
+or for ED25519
+
+	SHA256:ryqAxpKDjNLLa5VeUPclQRaZBOIjd2HFgufUEnn4Jrw
+	MD5:55:52:eb:a5:c3:a9:18:be:02:15:ea:60:19:d7:5e:06
+
 
 For the **NIRD** login nodes, it is
 
@@ -105,6 +117,16 @@ sometimes shown as
 
 	MD5:02:02:cc:9d:c5:b7:43:42:5b:cd:d2:82:09:48:31:e9
 
+or for ED25519
+
+	SHA256:sI/YOUiasD/yA/g8UMc2Isg4imXs7l8x/QQK01XfaOQ
+	MD5:bc:c9:a9:44:ca:b5:cb:53:56:68:02:d1:f1:6a:1a:78
+
+
+To display all fingerprints for a certain server, you can use the following
+command on your local machine (Linux or Mac):
+
+	ssh-keygen -lf <(ssh-keyscan **login.nird.sigma2.no** 2>/dev/null)
 
 ## SSHFS
 
