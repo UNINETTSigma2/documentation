@@ -62,6 +62,7 @@
     * [Queue System Concepts](jobs/queue_system_concepts.md)
     * [Job Scheduling](jobs/job_scheduling.md)
 * [Job Types](jobs/job_types.md)
+    * [Betzy](jobs/betzy_job_types.md)
     * [Fram](jobs/fram_job_types.md)
     * [Saga](jobs/saga_job_types.md)
 * [Job Scripts](jobs/job_scripts.md)
