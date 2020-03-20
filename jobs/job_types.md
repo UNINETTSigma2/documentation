@@ -6,8 +6,17 @@ available job types on each cluster, and their main characteristics.
 See the sub pages under the table for each cluster for more detailed
 description of the job types and their purposes.
 
-## Fram
+## Betzy
 
+| Name     | Description                                          | Units        | Job limits   | Max walltime                              | Priority |
+|:--------:|------------------------------------------------------|:------------:|:------------:|:-----------------------------------------:|:--------:|
+| normal   | default job type                                     | node         | 8--256 nodes | 4 days                                    | normal   |
+| preproc  | pre-/postprocessing jobs                             | node         | 1 node       | 1 day                                     | normal   |
+| devel    | development jobs                                     | nodes        | 1--4 nodes   | 20 mins                                   | high     |
+
+[Betzy Job Types](betzy_job_types.md).
+
+## Fram
 
 | Name     | Description                                          | Units        | Job limits  | Max walltime                              | Priority |
 |:--------:|------------------------------------------------------|:------------:|:-----------:|:-----------------------------------------:|:--------:|
@@ -19,6 +28,7 @@ description of the job types and their purposes.
 | short    | development jobs                                     | nodes        | 1--10 nodes | 2 hours                                   | high     |
 
 [Fram Job Types](fram_job_types.md).
+
 
 ## Saga
 
