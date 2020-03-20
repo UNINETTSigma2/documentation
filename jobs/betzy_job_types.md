@@ -2,7 +2,7 @@
 
 Betzy is designed to run highly parallelized jobs.  If you need to run medium-sized jobs, than Fram is a better choice, while for serial jobs you shall use Saga.
 
-For a preprocessing or postprocessing job which only needs one node, use a *preproc* job.
+For a preprocessing or postprocessing job which only needs one or max 32 CPU cores, use a *preproc* job.
 
 For development or testing use the  *devel* queue which is limited to small and short jobs. 
 
@@ -12,10 +12,11 @@ Here is a more detailed description of the different job types on Betzy:
 
 - __Allocation units__: whole nodes
 - __Job Limits__:
-    - minimum 8 nodes, maximum 256 nodes
+    - minimum 8 nodes
+    - maximum 256 nodes
 - __Maximum walltime__: 4 days
 - __Priority__: normal
-- __Available resources__: 1344 nodes with 128 CPU cores and 256 GiB RAM
+- __Available resources__: 1340 nodes with 128 CPU cores and 256 GiB RAM
 
 This is the default job type. In _normal_ jobs, the queue system hands out complete nodes.
 
@@ -24,8 +25,8 @@ This is the default job type. In _normal_ jobs, the queue system hands out compl
 
 - __Allocation units__: shared node between users
 - __Job Limits__:
-    - min 1 CPU core per user
-    - max 32 CPU cores per user
+    - minimum 1 CPU core per user
+    - maximum 32 CPU cores per user
 - __Maximum walltime__: 1 day
 - __Priority__: normal
 - __Available resources__: *preproc* jobs run on a dedicated node with 32 CPU
