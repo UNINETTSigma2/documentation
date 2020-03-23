@@ -38,7 +38,7 @@ The Lustre file system is mounted under `/cluster`.
   </p>
 </div>
 
-For additional information about the file system configuration, follow this [link](../storage/clusters/md).
+For additional information about the file system configuration, follow this [link](/storage/clusters/md).
 File system performance tuning and best practices is listed
 [here](/storage/performance/lustre.md). 
 
