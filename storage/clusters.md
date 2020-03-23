@@ -15,7 +15,7 @@ while others are for storing project data.
 
 ## Overview
 
-The following table summarizes the different storage options for **Fram and Saga**.
+The following table summarizes the different storage options for **Betzy, Fram and Saga**.
 Below the table we give recommendations and discuss pros and cons for the various storage areas.
 
 | Directory                                       | Purpose              | Default Quota                      | [Backup](backup.md)                 |
