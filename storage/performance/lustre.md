@@ -21,7 +21,7 @@ the next OST.
 	size based on file size growth.
 
 <div class="alert alert-info">
-  <h4>Progressive File Layouts</h4>
+  <h4>Betzy: Progressive File Layouts</h4>
   <p>
 	    PFL removes the need to explicitly specify striping for each file, 
 			assigning different Lustre striping characteristics to contiguous 
@@ -33,13 +33,16 @@ the next OST.
 	</p>
 </div>
 
+* Betzy implements another new feature, called data on metadata for small files
+	sith size under 2KB.
+
 <div class="alert alert-info">
   <h4>Betzy: Data on Metadata</h4>
 	<p>
 		 Lustre file system performance is optimized for large files. To balance
 		 that, data on metadata (DoM) is enabled on Betzy to ensure higher
 		 performance in case of frequently accessed small files.
-		 Files accessed with a size of 2KiB or smaller will be stored on a very
+		 Files accessed with a size of 2KB or smaller will be stored on a very
 		 fast NVMe JBOD directly connected to the metadata servers.
   </p>
 </div>
