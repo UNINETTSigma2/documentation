@@ -15,7 +15,7 @@
 
 
 <div class="alert alert-warning">
-  <h4>Only home directories with enforced quotas are backed up</h4>
+  <h4>Betzy: NO NACKUP</h4>
   <p>
     Backup on Betzy will be swtiched on *only* after the pilot period is
 		finished.
