@@ -72,7 +72,7 @@ is 20 GiB and 100 000 files.  To check the disk usage and quotas, type:
 $ dusage
 ```
 
-Home directories on NIRD also contain a backup of Fram and Saga home
+Home directories on NIRD also contain a backup of Betzy, Fram and Saga home
 directories (when relevant) in `/nird/home/<username>/backup/fram` and
 `/nird/home/<username>/backup/saga`.
 To account for this default quota is doubled when relevant.
@@ -92,5 +92,5 @@ $ dusage -p NSxxxxK
 ```
 
 The NIRD project area is also mounted on the login nodes (but _not_
-the compute nodes) of Fram or Saga, when relevant. For more
-information, visit the [Fram and Saga](clusters.md) page.
+the compute nodes) of Betzy, Fram or Saga, when relevant. For more
+information, visit the [Betzy, Fram and Saga](clusters.md) page.
