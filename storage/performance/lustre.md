@@ -33,6 +33,17 @@ the next OST.
 	</p>
 </div>
 
+<div class="alert alert-info">
+  <h4>Betzy: Data on Metadata</h4>
+	<p>
+		 Lustre file system performance is optimized for large files. To balance
+		 that, data on metadata (DoM) is enabled on Betzy to ensure higher
+		 performance in case of frequently accessed small files.
+		 Files accessed with a size of 2KiB or smaller will be stored on a very
+		 fast NVMe JBOD directly connected to the metadata servers.
+  </p>
+</div>
+
 For more detailed information on striping, please consult the
 [Lustre](http://lustre.org) documentation.
 
