@@ -90,13 +90,13 @@
 
 ## Files and Storage
 * [NIRD](storage/nird.md)
-* [Fram and Saga](storage/clusters.md)
+* [Betzy, Fram and Saga](storage/clusters.md)
 * [Backup](storage/backup.md)
 * [Sharing files](storage/data_policy.md)
 * [Transferring files](storage/file_transfer.md)
   * [Using WinSCP](storage/WinSCP.md)
 * [Performance tips](storage/performance/overview.md)
-    * [Lustre (Fram and Stallo)](storage/performance/lustre.md)
+    * [Lustre (Betzy, Fram and Stallo)](storage/performance/lustre.md)
     * [BeeGFS (Saga)](storage/performance/beegfs.md)
     * [What to avoid](storage/performance/what_to_avoid.md)
 

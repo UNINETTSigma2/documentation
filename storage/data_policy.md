@@ -10,7 +10,7 @@
 </div>
 
 All data accessed, stored, communicated, or transferred on any national HPC
-system (Fram, Saga, Stallo, Vilje) or the National e-Infrastructure for Research Data (NIRD),
+system (Betzy, Fram, Saga, Stallo, Vilje) or the National e-Infrastructure for Research Data (NIRD),
 must be handled in compliance to legal and regulatory requirements.
 
 In addition, all data has to be directly related to the work effectuated and/or

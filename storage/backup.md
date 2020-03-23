@@ -1,4 +1,4 @@
-# Backup on Fram, Saga, and NIRD
+# Backup on Betzy, Fram, Saga, and NIRD
 
 <div class="alert alert-danger">
   <h4>Only home directories with enforced quotas are backed up</h4>
@@ -14,9 +14,18 @@
 </div>
 
 
-## Fram and Saga
+<div class="alert alert-warning">
+  <h4>Betzy: NO NACKUP</h4>
+  <p>
+    Backup on Betzy will be swtiched on *only* after the pilot period is
+		finished.
+	</p>
+</div>
 
-Home directories on Fram and Saga (`/cluster/home/$USER`) are backed up
+
+## Betzy, Fram and Saga
+
+Home directories on Betzy, Fram and Saga (`/cluster/home/$USER`) are backed up
 nightly to user's home directory on NIRD
 (`/nird/home/$USER/backup/fram` or `/nird/home/$USER/backup/saga`).
 
@@ -39,7 +48,7 @@ Snapshots are taken with the following frequencies:
 * `/nird/home/$HOME`:
   - daily snapshots for the last 7 days
   - weekly snapshots for the last 6 weeks
-  - this also includes snapshots of the Fram and Saga home directory backup
+  - this also includes snapshots of the Betzy, Fram and Saga home directory backup
 * `/nird/projects/NSxxxxK`:
   - daily snapshots for the last 7 days
   - weekly snapshots for the last 6 weeks
