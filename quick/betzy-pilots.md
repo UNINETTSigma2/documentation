@@ -30,8 +30,17 @@ For generic information about job submission, please check out our documentation
 Betzy uses a DDN powered 2.5 PB Lustre parallel file system with 51 GB/s bandwidth and 500k+  metadata operations per second.
 The Lustre file system is mounted under `/cluster`.
 
-Please note that *NO BACKUP* is taken during the pilot phase.
-The `/cluster` file system might be reformatted at the end of the pilot phase, before machine being placed into production.
+<div class="alert alert-warning">
+  <h4>Betzy: NO NACKUP</h4>
+  <p>
+    Please note that *NO BACKUP* is taken during the pilot phase.
+    The `/cluster` file system might be reformatted at the end of the pilot phase, before machine being placed into production.
+  </p>
+</div>
+
+For additional information about the file system configuration, follow this [link](storage/clusters/md).
+File system performance tuning and best practices is listed
+[here](storage/performance/lustre.md). 
 
 NIRD project file systems - `/trd-project[1-4]` - will be mounted on the Betzy
 login nodes, similarly to Fram and Saga HPC clusters.
