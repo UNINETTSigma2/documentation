@@ -1,16 +1,16 @@
 # File transfer
 
-Access to the systems (Fram, Saga, NIRD) is permitted only trough [secure
+Access to the systems (Betzy, Fram, Saga, NIRD) is permitted only trough [secure
 shell](https://en.wikipedia.org/wiki/Secure_Shell) (ssh).  One can use `scp`
 (secure copy) or `sftp` (secure file transfer protocol) to upload or download
 data. There are graphical frontends for these tools, for instance
 [WinSCP](WinSCP.md) for MS Windows.
 
-To transfer files between an HPC cluster (Fram or Saga) and NIRD, one can use regular
+To transfer files between an HPC cluster (Betzy, Fram or Saga) and NIRD, one can use regular
 `cp` or `mv` commands on the cluster login nodes to copy or
 move files into or out of the NIRD project areas, since these are
 mounted on the cluster login nodes.  For more information,
-please check out the [Fram and Saga](clusters.md) storage page.
+please check out the [Betzy, Fram and Saga](clusters.md) storage page.
 
 
 ### scp: secure copy between hosts on a network
