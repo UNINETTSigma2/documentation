@@ -31,14 +31,16 @@ Betzy uses a DDN powered 2.5 PB Lustre parallel file system with 51 GB/s bandwid
 The Lustre file system is mounted under `/cluster`.
 
 <div class="alert alert-warning">
-  <h4>Betzy: NO NACKUP</h4>
+  <h4>Betzy: NO BACKUP</h4>
   <p>
-    Please note that *NO BACKUP* is taken during the pilot phase.
+    Please note that <strong>NO BACKUP</strong> is taken during the pilot phase.
+	</p>
+	<p>
     The `/cluster` file system might be reformatted at the end of the pilot phase, before machine being placed into production.
   </p>
 </div>
 
-For additional information about the file system configuration, follow this [link](/storage/clusters/md).
+For additional information about the file system configuration, follow this [link](/storage/clusters.md).
 File system performance tuning and best practices is listed
 [here](/storage/performance/lustre.md). 
 

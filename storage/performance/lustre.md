@@ -1,5 +1,4 @@
 
-
 # Storage performance: Lustre file system
 
 ## Betzy, Fram and Stallo
@@ -34,7 +33,7 @@ the next OST.
 </div>
 
 * Betzy implements another new feature, called data on metadata for small files
-	sith size under 2KB.
+	with size under 2KB.
 
 <div class="alert alert-info">
   <h4>Betzy: Data on Metadata</h4>
@@ -63,6 +62,19 @@ $ lfs getstripe /cluster/tmp/test
 stripe_count:   1 stripe_size:    1048576 stripe_offset:  -1
 ```
 
+<div class="alert alert-success">
+  <h4>Rules of thumb for proper stripe counts</h4>
+	<p>For best performance we urge you to always profile the I/O characterstics
+	of your HPC application and tune the I/O behavior.</p>
+	<p>Down below is a list of rules you may apply to properly set stripe count for
+	your files:</p>
+  <ul>
+	  <li><strong>files smaller than 1GB</strong>: default striping;</li>
+	  <li><strong>files size between 1GB - 10GB</strong>: stripe count 2;</li>
+	  <li><strong>files size between 10GB - 1TB</strong>: stripe count 4;</li>
+	  <li><strong>files bigger than 1TB</strong>: stripe count 8.</li>
+	</ul>
+</div>
 
 ### Large files
 
