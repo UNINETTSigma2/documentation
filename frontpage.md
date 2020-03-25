@@ -40,7 +40,9 @@ If you are new here, you might want to learn the basics first here:
 
 * [Training calendar](https://www.sigma2.no/events)
 * [HPC carpentry](/support/hpc_carpentry.md)
-* [Introduction to HPC training material](https://sabryr.github.io/hpc-intro/)
+* [Introduction to HPC training material - UiO](https://sabryr.github.io/hpc-intro/)
+* [Introduction to HPC training and materials - NTNU](https://www.hpc.ntnu.no/ntnu-hpc-group/training/introduction-to-parallel-programming)
+* 
 
 
 ## Getting help and access
