@@ -37,5 +37,6 @@ We will call the branch `no-animals`.
 5. Commit the changes: `git commit -m 'Add new section'`
 6. Upload your changes to the main repository: `git push origin no-animals`
 7. Create a new [merge request](https://scm.uninett.no/sigma2/eksterndokumentasjon/-/merge_requests).
-   Select your branch as _source branch_ and `master` as _target branch_.
+   Select your branch as _source branch_ and `master` as _target branch_. Also mark the source
+   branch to be deleted upon accepted merge request.
 8. Describe the changes and optionally assign someone to review and approve the commits.
