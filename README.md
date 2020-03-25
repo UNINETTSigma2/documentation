@@ -71,3 +71,28 @@ Pull changes from `origin`
 ```
 $ git pull origin master
 ```
+
+
+## How to review a merge request
+
+Open merge requests are listed [here](https://scm.uninett.no/sigma2/eksterndokumentasjon/-/merge_requests).
+
+Every merge request is numbered, e.g. [!62](https://scm.uninett.no/sigma2/eksterndokumentasjon/-/merge_requests/62).
+
+Checklist before approving and merging:
+
+- Have a look at the source branch and target branch ("Request to merge
+  `source-branch` to `target-branch`).
+- Click on "Changes" and scroll through the difference to see whether this
+  makes sense.
+- If you have questions or suggestions, you can write that under "Overview".
+- You can also comment on changes directly at "Changes". You can even suggest
+  changes that the submitter can accept.
+- In doubt ask for clarification or involve somebody else by mentioning them
+  (type "@" and name and select a suggestion).
+- Once you are happy, approve.
+- Check "Delete source branch".
+- After that one can either "Merge" or "Merge when pipeline succeeds" (if the
+  pipeline is not finished yet).
+- After the merge request is merged, the changes should appear on the public
+  website in a minute or two.
