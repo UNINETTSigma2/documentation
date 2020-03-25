@@ -12,18 +12,18 @@ This documentation should be:
 3. Up to date
 
 
-## Contribute
+## All changes should be submitted as merge requests
 
 In order to coordinate our efforts, changes to the documentation should be
-added by _merge requests_ instead pushing directly to _master_ branch.
+added by _merge requests_ instead pushing directly to the _master_ branch.
 
-This enables easy peer-review by allowing all others to comment and discuss
-changes.  Additionally all commits first run through the CI testing pipeline
+This allows us to review, comment, and discuss our changes before they become public.
+Additionally all commits first run through the CI testing pipeline
 and are only merged upon passing of all tests, reducing the chances of
-accidental breaking stuff.
+accidentally breaking stuff.
 
 
-### Workflow
+## How to contribute changes
 
 Assuming we want to add a section describing that no animals are allowed on the server.
 We will call the branch _no-animals_.
