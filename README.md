@@ -46,6 +46,19 @@ We will call the branch `no-animals`.
 8. Describe the changes and optionally assign someone to review and approve the commits.
 
 
+## How to submit a merge request via the web interface
+
+It is possible to suggest changes and file a merge request to the documentation directly from
+the [web interface](https://scm.uninett.no/sigma2/eksterndokumentasjon):
+
+- Browse the [file tree](https://scm.uninett.no/sigma2/eksterndokumentasjon/-/tree/master)
+  and click on the file you wish to edit.
+- Click the blue button "Edit".
+- Make changes to the file.
+- Change the "Commit message" (bottom) to a meaningful message.
+- Click "Commit changes" with "Start a new merge request with these changes" checked.
+
+
 ## How to update your master branch after your changes have been accepted and merged
 
 Switch to your `master` branch:
