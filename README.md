@@ -25,6 +25,10 @@ accidentally breaking stuff.
 
 ## How to contribute changes
 
+We recommend to never commit changes to the `master` branch. Consider the `master` branch
+to be a read-only copy of the public documentation. Always create a new branch before changing
+anything.
+
 Assuming we want to add a section describing that no animals are allowed on the server.
 We will call the branch `no-animals`.
 
