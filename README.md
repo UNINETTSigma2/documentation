@@ -44,3 +44,17 @@ We will call the branch `no-animals`.
    Select your branch as _source branch_ and `master` as _target branch_. Also mark the source
    branch to be deleted upon accepted merge request.
 8. Describe the changes and optionally assign someone to review and approve the commits.
+
+
+## How to update your master branch after your changes have been accepted and merged
+
+Switch to your `master` branch:
+```
+$ git checkout master
+```
+
+Pull changes from `origin`
+(we assume `origin` points at `git@scm.uninett.no:sigma2/eksterndokumentasjon.git`):
+```
+$ git pull origin master
+```
