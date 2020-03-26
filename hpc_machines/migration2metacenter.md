@@ -3,8 +3,8 @@
 In general, the user environment on all Metacenter machines should be as similar as possible.
 Thus, for users moving internally between machines run by the Metacenter, they only need to focus on the following:
 
-* [Hardware differences](/quick/overview-machines.md): number of CPU cores, memory size, GPU-availability, external access from compute nodes.
-* Software differences: [Installed SW](/apps/which_software_is_installed.md), type of file-system, access limitation rules to $HOME, same or different file systems on $TMP and $HOME.
+* [Hardware differences](/hpc_machines/hardware_overview.md): number of CPU cores, memory size, GPU-availability, external access from compute nodes.
+* Software differences: [Installed SW](/software/installed_software.md), type of file-system, access limitation rules to $HOME, same or different file systems on $TMP and $HOME.
 * Jobtype policy differences in Resource Management System (SLURM) on different machines.
 * Storage options.
 
@@ -13,7 +13,7 @@ For users either being novel to HPC in general, or having experience from other 
 ## Major steps in migrating to a Metacenter HPC machines
 
 * Read this documentation.
-* Get an [account](/help/account.md) and [project](/help/resources.md) quota.
+* Get an [account](/getting_help/applying_account.md) and [project](/getting_help/applying_resources.md) quota.
 * Become aware of differences in disk quota, module system, job types, running jobs, how to get help, file system policies.
 * Transfer data, scripts etc from other machines to the new machine.
 * Modify scripts & routines to match differences on the new machine.
@@ -22,14 +22,14 @@ For users either being novel to HPC in general, or having experience from other 
 
 ## Read about the current machines operated by the Metacenter
 
-* [Fram](/quick/fram.md)
-* [Saga](/quick/saga.md)
-* [Betzy](/quick/betzy.md)
+* [Fram](/hpc_machines/fram.md)
+* [Saga](/hpc_machines/saga.md)
+* [Betzy](/hpc_machines/betzy.md)
 
 ## Further reading:
-* [Getting started](/quick/gettingstarted.md)
-* [Transferring files](/storage/file_transfer.md)
+* [Getting started](/getting_started/getting_started.md)
+* [Transferring files](/files_storage/file_transfer.md)
 * [Queue system](/jobs/queue_system.md)
-* [Software module scheme](/apps/modulescheme.md)
+* [Software module scheme](/software/modulescheme.md)
 
 Also see additional links in the left side menu.

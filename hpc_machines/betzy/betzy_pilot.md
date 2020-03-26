@@ -12,17 +12,17 @@ To be added.
 
 ### Support
 
-Please use the regular [support channel](../help/support.md) to submit requests 
+Please use the regular [support channel](/getting_help/support_line.md) to submit requests 
 and mark the case with *Betzy*.
 
 ## Queue System
 
 Betzy uses the SLURM queuing system. For more information the queue system on
-Betzy, please check out [job types](../jobs/job_types.md) page.
+Betzy, please check out [job types](/jobs/job_types.md) page.
 
 **NOTE**: During the pilot phase there will be no CPU core limitations imposed. 
 
-For generic information about job submission, please check out our documentation [here](../jobs/queue_system.md).
+For generic information about job submission, please check out our documentation [here](/jobs/queue_system.md).
 
 
 ## Storage
@@ -40,9 +40,9 @@ The Lustre file system is mounted under `/cluster`.
   </p>
 </div>
 
-For additional information about the file system configuration, follow this [link](/storage/clusters.md).
+For additional information about the file system configuration, follow this [link](/files_storage/clusters.md).
 File system performance tuning and best practices is listed
-[here](/storage/performance/lustre.md). 
+[here](/files_storage/performance/lustre.md). 
 
 NIRD project file systems - `/trd-project[1-4]` - will be mounted on the Betzy
 login nodes, similarly to Fram and Saga HPC clusters.

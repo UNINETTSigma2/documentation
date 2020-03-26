@@ -24,7 +24,7 @@ The machine names are:
 
 * `fram.sigma2.no` - Fram
 * `saga.sigma2.no` - Saga
-* `login.nird.sigma2.no` - NIRD.  See [NIRD](../storage/nird.md) for
+* `login.nird.sigma2.no` - NIRD.  See [NIRD](../files_storage/nird.md) for
   more about NIRD.
 
 First time you log in, and every time there is a change in the
@@ -56,7 +56,7 @@ For example, to copy projectfiles.tar.gz to the home directory of myusername to 
 
     scp projectfiles.tar.gz myusername@fram.sigma2.no:
 
-The [Transferring Files](/storage/file_transfer.md) page has more information about transferring files to Fram.
+The [Transferring Files](/files_storage/file_transfer.md) page has more information about transferring files to Fram.
 
 ### Modules
 

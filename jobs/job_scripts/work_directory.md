@@ -8,7 +8,7 @@ where it does its work:
 - `$SCRATCH` (`/cluster/work/jobs/$SLURM_JOB_ID`)
 
 There are different pros and cons with each of the choices.  See
-[Storage Areas](../storage/clusters.md) for details.
+[Storage Areas](../files_storage/clusters.md) for details.
 
 Currently, the recommended choice is to use the `$USERWORK` area.  It
 provides a nice balance between auto-cleanup and simplicity.  Thus the

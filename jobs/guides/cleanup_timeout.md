@@ -3,7 +3,7 @@
 Possibly you would like to clean up the work directory or recover
 files for restart in case a job times out.  This is perhaps most
 useful when using the `$SCRATCH` work directory (see [Storage
-Areas](../storage/clusters.md)).
+Areas](../files_storage/clusters.md)).
 
 In this example we ask Slurm to send a signal to our script 120
 seconds before it times out to give us a chance to perform clean-up
