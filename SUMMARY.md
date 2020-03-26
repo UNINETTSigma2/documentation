@@ -27,7 +27,7 @@
 * [Migrating to our machines](hpc_machines/migration2metacenter.md)
 
 ## SOFTWARE
-* [Software Module Scheme](software/modulescheme.md)
+* [Using Software](software/modulescheme.md)
 * [Installed Software](software/installed_software.md)
   * [List of installed software on Fram](software/installed_software/fram_modules.md)
   * [List of installed software on Saga](software/installed_software/saga_modules.md)
@@ -86,13 +86,13 @@
     * [Job Array Howto](job/guidess/job_array_howto.md)
     * [Running Job Steps in Parallel](jobs/guides/parallel_steps.md)
     * [Cleanup at Timeout](jobs/guides/timeout_cleanup.md)
-    * [Frequently asked questions](jobs/guides/faq.md)
+    * [Frequently asked questions](faq/jobs.md)
 
 ## Files and Storage
 * [NIRD](files_storage/nird.md)
 * [Betzy, Fram and Saga](files_storage/clusters.md)
 * [Backup](files_storage/backup.md)
-* [Sharing files](files_storage/data_policy.md)
+* [Sharing files](files_storage/sharing_files.md)
 * [Transferring files](files_storage/file_transfer.md)
   * [Using WinSCP](files_storage/file_transfer/WinSCP.md)
 * [Performance tips](files_storage/performance.md)
@@ -101,14 +101,14 @@
     * [What to avoid](files_storage/performance/what_to_avoid.md)
 
 ## Code Development
-* [Compilers](development/compilers.md)
-* [Debugging](development/debugging.md)
-* [Performance Analysis and Tuning](development/performance.md)
-  * [ARM Performance Reports](development/arm_perf.md)
-    * [VTune Amplifier](development/vtune.md)
-    * [Other Intel Tuning Tools](development/tuning.md)
+* [Compilers](code_development/compilers.md)
+* [Debugging](code_development/debugging.md)
+* [Performance Analysis and Tuning](code_development/performance.md)
+  * [ARM Performance Reports](code_development/performance/arm_perf.md)
+    * [VTune Amplifier](code_development/performance/vtune.md)
+    * [Other Intel Tuning Tools](code_development/performance/intel_tuning.md)
 
 ## Training
 * [Training calendar](https://www.sigma2.no/events)
-* [HPC carpentry](support/hpc_carpentry.md)
+* [HPC carpentry](training/hpc_carpentry.md)
 * [Introduction to HPC training material](https://sabryr.github.io/hpc-intro/)

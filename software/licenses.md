@@ -8,7 +8,7 @@ software. Commercial access to licensed software is outside the scope of this
 document.
 
 There are **4 different levels of access limitations** for
-[licensed software at the Metacenter](license-list.md):
+[licensed software at the Metacenter](licenses/license_list.md):
 
 - License access limited on **group level**.
 - License access limited on **institutional level**.

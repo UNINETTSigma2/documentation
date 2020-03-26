@@ -59,19 +59,19 @@ the queue system to find one or more suitable machines for the job.
 
 ### More information about SLURM
 - For more information about the SLURM parameters and job script settings,
-see [SLURM parameter](slurm_parameter.md).
+see [SLURM parameter](job_scripts/slurm_parameter.md).
 
 - A more detailed description of the queue system can be found in
-[Queue System Concepts](queue_system_concepts.md).
+[Queue System Concepts](queue_system/queue_system_concepts.md).
 
 - If you are already used to PBS/Torque, but not Slurm, you might find
-[Porting from PBS/Torque](porting_from_pbs.md) useful.
+[Porting from PBS/Torque](guides/porting_from_pbs.md) useful.
 
 ## Job Queue
 
 Jobs in the job queue are started on a priority basis, and a job gets
 higher priority the longer it has to wait in the queue. A detailed
-description can be found in [Job Scheduling](job_scheduling.md).
+description can be found in [Job Scheduling](queue_system/job_scheduling.md).
 
 To see the list of running or pending jobs in the queue, use the
 command [squeue](https://slurm.schedmd.com/squeue.html). Some useful `squeue` options:
@@ -94,7 +94,7 @@ To see all pending jobs, in priority order, you can use `pending`,
 which is a small wrapper for `squeue`. See `pending --help` for
 details and options.
 
-For a description of common job states, see [Job States](job_states.md).
+For a description of common job states, see [Job States](managing_jobs/job_states.md).
 
 **FIXME: qsumm (when implemented)**
 

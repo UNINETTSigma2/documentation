@@ -31,27 +31,26 @@ Data Storage in Norway
 
 If you are new here, you might want to learn the basics first here:
 
-* [Getting started](/quick/getttingstarted.md)
+* [Getting Started](/getting_started/getting_started.md)
 * [Latest changes and events](https://opslog.sigma2.no)
-* [Editing files](/faq/emacs.md)
-* [Password-less login](/faq/ssh.md)
+* [Editing files](/getting_started/editing_files.md)
+* [Password-less login](/getting_started/passwordless_login.md)
 
 ### Training
 
 * [Training calendar](https://www.sigma2.no/events)
-* [HPC carpentry](/support/hpc_carpentry.md)
+* [HPC carpentry](/training/hpc_carpentry.md)
 * [Introduction to HPC training material - UiO](https://sabryr.github.io/hpc-intro/)
 * [Introduction to HPC training and materials - NTNU](https://www.hpc.ntnu.no/ntnu-hpc-group/training/introduction-to-parallel-programming)
-* 
 
 
 ## Getting help and access
 
-* [Support line](/help/support.md)
-* [Writing good support requests](/help/how_to_write_good_support_requests.md)
-* [Lost or expiring password](/help/password.md)
-* [Applying for user accounts](/help/account.md)
-* [Applying for resources](/help/resources.md)
+* [Support line](getting_help/support_line.md)
+* [Writing good support requests](getting_help/how_to_write_good_support_requests.md)
+* [Lost or expiring password](getting_help/lost_forgotten_password.md)
+* [Applying for user accounts](getting_help/applying_account.md)
+* [Applying for resources](getting_help/applying_resources.md)
 
 
 ## Current status and announcements
@@ -65,40 +64,42 @@ If you are new here, you might want to learn the basics first here:
 
 #### Jobs
 
-* [Queue System](/jobs/queue_system.md)
-* [Job Scripts](/jobs/job_scripts.md)
-* [Managing Jobs](/jobs/managing_jobs.md)
-* [Interactive Jobs](/jobs/interactive_jobs.md)
-* [Projects and accounting](/jobs/projects.md)
-* [Guides](/jobs/guides.md)
+* [Dos and Don'ts](jobs/dos_and_donts.md)
+* [Queue System](jobs/queue_system.md)
+* [Job Scripts](jobs/job_scripts.md)
+* [Managing Jobs](jobs/managing_jobs.md)
+* [Interactive Jobs](jobs/interactive_jobs.md)
+* [Projects and accounting](jobs/projects_accounting.md)
+* [Guides](jobs/guides.md)
 
 #### Software
 
-* [Software Module Scheme](/apps/modulescheme.md)
-* [Installing software as user](/apps/userinstallsw.md)
-* [Installed Software](/apps/which_software_is_installed.md)
-* [Application guides](/apps/appguides.md)
+* [Using Software](software/modulescheme.md)
+* [Installing software as user](software/userinstallsw.md)
+* [Installed Software](software/installed_software.md)
+* [Application guides](software/appguides.md)
 
-#### Storage and file managment
+#### Storage and file management
 
 Fram and Saga use the NIRD storage system for storing archives for other
 research data. NOTUR projects have access to this geo-replicated storage
 through various methods.
 
-* [NIRD](/storage/nird.md)
-* [Fram and Saga](/storage/clusters.md)
-* [Backup](/storage/backup.md)
-* [Sharing files](/storage/data_policy.md)
-* [Transferring files](/storage/file_transfer.md)
-* [Performance tips](/storage/performance/overview.md)
-    * [Lustre (Fram and Stallo)](/storage/performance/lustre.md)
-    * [BeeGFS (Saga)](/storage/performance/beegfs.md)
-    * [What to avoid](/storage/performance/what_to_avoid.md)
+* [NIRD](files_storage/nird.md)
+* [Betzy, Fram and Saga](files_storage/clusters.md)
+* [Backup](files_storage/backup.md)
+* [Sharing files](files_storage/sharing_files.md)
+* [Transferring files](files_storage/file_transfer.md)
+* [Performance tips](files_storage/performance.md)
+    * [Lustre (Betzy, Fram and Stallo)](files_storage/performance/lustre.md)
+    * [BeeGFS (Saga)](files_storage/performance/beegfs.md)
+    * [What to avoid](files_storage/performance/what_to_avoid.md)
 
-#### Code developtment
-* [Compilers](/development/compilers.md)
-* [Debugging](/development/debugging.md)
-* [Performance Analysis and Tuning](/development/performance.md)
+#### Code development
+
+* [Compilers](code_development/compilers.md)
+* [Debugging](code_development/debugging.md)
+* [Performance Analysis and Tuning](code_development/performance.md)
 
 ---
 

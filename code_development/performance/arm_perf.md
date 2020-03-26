@@ -77,7 +77,7 @@ That is: without "mpirun" and by specifying the number of processes that you use
 the command line.
 
 To run interactive tests one needs to submit [an interactive job to
-SLURM](../jobs/interactive.md) using `srun` (*not* `salloc`), e.g.:
+SLURM](/jobs/interactive.md) using `srun` (*not* `salloc`), e.g.:
 
 ```
 $ srun --nodes=1 --time=01:00:00 --account=nnXXXXk --qos=devel --x11 --pty bash -i

@@ -5,7 +5,7 @@
   <p>
     Any $HOME area using more then 20 GiB is not backed up. To have your $HOME backed up,
     you need to shrink the disk usage below the 20 GiB limit and
-    <a href="/help/support.htm">notify support</a>.
+    <a href="/getting_help/support_line.html">notify support</a>.
   </p>
   <p>
     If "dusage" repots 0 Bytes limits, this means that you <b>do not have disk quotas</b>

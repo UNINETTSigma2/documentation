@@ -26,7 +26,7 @@ Below the table we give recommendations and discuss pros and cons for the variou
 | `/cluster/projects/<project_name>`              | Project data         | [1 TiB / 1 M files](#project-area) | Yes                                 |
 | `/cluster/shared/<folder_name>`                 | Shared data          | [Individual](#shared-project-area) | No                                  |
 
-- **User areas and project areas are private**: Data handling and storage policy is documented [here](sharing_files.md).
+- **User areas and project areas are private**: Data handling and storage policy is documented [here](/files_storage/sharing_files.md).
 - In addition to the areas in the tables above, **both clusters mount the
   NIRD project areas** as `/nird/projects/nird/NSxxxxK` on the login nodes
   (but not on the compute nodes).

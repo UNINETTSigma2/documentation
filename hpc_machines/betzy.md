@@ -26,4 +26,4 @@ Almost all components are liquid cooled resulting in a very high cooling efficie
 ## Pilot Projects
 
 For pilot project please check out the short getting started guide
-[here](betzy-pilots.md).
+[here](betzy/betzy_pilot.md).

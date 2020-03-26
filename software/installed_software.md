@@ -27,6 +27,6 @@ The `module show` command displays the other modules loaded by a module. The `mo
 
 For installed SW on:
 
-* Fram: See [List of installed software on Fram](fram_modules.md)
-* Saga: See [List of installed software on Saga](saga_modules.md)
+* Fram: See [List of installed software on Fram](installed_software/fram_modules.md)
+* Saga: See [List of installed software on Saga](installed_software/saga_modules.md)
 * Betzy (currently none, but will come eventually ;-))

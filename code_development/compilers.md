@@ -57,7 +57,7 @@ The Intel MPI toolchain is loaded by using `module load`:
 
 	module load intel/2017a
 
-Please read about [how to start MPI applications on Fram](../jobs/mpi_jobs.md).
+Please read about [how to start MPI applications on Fram](/jobs/guides/running_mpi_jobs.md).
 
 ### Open MPI
 
