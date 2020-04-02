@@ -46,11 +46,17 @@ available fields and what they mean.
 When a job has finished, the output file `slurm-JobId.out` will
 contain some usage statistics from `sstat` and `sacct`.
 
-It is also possible to inspect completed and running jobs using the web based tools slurmbrowser described [here](submitting.md).
 
-## Inspecting Job Queue
+## Job browser
 
-Tools for inspecting the job queue are described [here](submitting.md).
+On Fram and Saga there is also a web tool that can be used to inspect many aspects of the jobs like processes, cpuload, memory consumption and network traffic both for running and completed jobs (last 24 hours)
+
+Fram: <https://desktop.fram.sigma2.no/slurmbrowser/html/squeue.html>
+
+Saga: <https://desktop.saga.sigma2.no/slurmbrowser/html/squeue.html>
+
+**Remark:** The stats are collected on the compute node level. This means that stats will be affected by all jobs running on the same compute node.
+
 
 ## Controlling jobs
 
