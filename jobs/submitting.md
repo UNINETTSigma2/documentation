@@ -96,7 +96,7 @@ To see all pending jobs, in priority order, you can use `pending`,
 which is a small wrapper for `squeue`. See `pending --help` for
 details and options.
 
-For a description of common job states, see [Job States](managing_jobs/job_states.md).
+For a description of common job states, see [Job States](monitoring/job_states.md).
 
 **FIXME: qsumm (when implemented)**
 
