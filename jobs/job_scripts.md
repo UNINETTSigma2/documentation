@@ -102,12 +102,12 @@ cancelled, so too long is better than too short due to lost work!
 
 ## Further Topics
 
-- [Environment variables available in job scripts](environment_variables.md)
-- [Job work directory](work_directory.md)
-- [Array jobs](array_jobs.md)
-- [Running Job Steps in Parallel](parallel_steps.md)
-- [Porting Job Scripts from PBS/Torque](porting_from_pbs.md)
-- [Running MPI Jobs](running_mpi_jobs.md)
+- [Environment variables available in job scripts](/jobs/job_scripts/environment_variables.md)
+- [Job work directory](/jobs/job_scripts/work_directory.md)
+- [Array jobs](/jobs/job_scripts/array_jobs.md)
+- [Running Job Steps in Parallel](/jobs/job_scripts/parallel_steps.md)
+- [Porting Job Scripts from PBS/Torque](/jobs/job_scripts/porting_from_pbs.md)
+- [Running MPI Jobs](/jobs/job_scripts/running_mpi_jobs.md)
 
 ## Footnotes
 
