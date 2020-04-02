@@ -4,7 +4,7 @@ Jobs are scheduled based on their priority.  In addition, lower
 priority jobs can be back-filled if there are idle resources.
 
 Note that job priority is only affected by the [job
-type](job_types.md) and how long the job has been pending in the
+type](choosing_queues.md) and how long the job has been pending in the
 queue.  Notably, job size and fair share usage does _not_ affect the
 priorities.
 

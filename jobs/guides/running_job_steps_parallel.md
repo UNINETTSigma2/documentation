@@ -13,7 +13,7 @@ Download the script: <a
 href="files/parallel_steps_cpu.sh">parallel_steps_cpu.sh</a> (you might have
 to right-click and select `Save Link As...` or similar).
 
-This will work with any [job type](job_types.md) that hands out _cpus
+This will work with any [job type](choosing_queues.md) that hands out _cpus
 and memory_, so that one specifies `--mem-per-cpu`.  For instance
 
     sbatch --partition=bigmem parallel_steps_cpu.sh
