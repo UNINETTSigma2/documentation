@@ -98,7 +98,6 @@ details and options.
 
 For a description of common job states, see [Job States](monitoring/job_states.md).
 
-**FIXME: qsumm (when implemented)**
 
 ### Job Browser
 
