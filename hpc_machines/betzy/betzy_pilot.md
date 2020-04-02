@@ -22,7 +22,7 @@ Betzy, please check out [job types](/jobs/choosing_queues.md) page.
 
 **NOTE**: During the pilot phase there will be no CPU core limitations imposed. 
 
-For generic information about job submission, please check out our documentation [here](/jobs/queue_system.md).
+For generic information about job submission, please check out our documentation [here](/jobs/submitting.md).
 
 
 ## Storage

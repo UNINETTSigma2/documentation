@@ -25,11 +25,3 @@ For users either being novel to HPC in general, or having experience from other 
 * [Fram](/hpc_machines/fram.md)
 * [Saga](/hpc_machines/saga.md)
 * [Betzy](/hpc_machines/betzy.md)
-
-## Further reading:
-* [Getting started](/getting_started/getting_started.md)
-* [Transferring files](/files_storage/file_transfer.md)
-* [Queue system](/jobs/queue_system.md)
-* [Software module scheme](/software/modulescheme.md)
-
-Also see additional links in the left side menu.

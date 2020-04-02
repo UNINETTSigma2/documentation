@@ -12,8 +12,8 @@ may copy or rename files, cd into the proper directory, etc., all
 before doing the "real" work.  The lines in the script file are the
 commands to be executed, in the given order.  Lines starting with a
 `#` are ignored as comments, except lines that start with `#SBATCH`,
-which are not executed, but contain special instructions to the [queue
-system](queue_system.md).
+which are not executed, but contain special instructions to the queue
+system.
 
 If you are not familiar with shell scripts, they are simply a set of
 commands that you could have typed at the command line.  You can find
@@ -102,12 +102,12 @@ cancelled, so too long is better than too short due to lost work!
 
 ## Further Topics
 
-- [Environment variables available in job scripts](environment_variables.md)
-- [Job work directory](work_directory.md)
-- [Array jobs](array_jobs.md)
-- [Running Job Steps in Parallel](parallel_steps.md)
-- [Porting Job Scripts from PBS/Torque](porting_from_pbs.md)
-- [Running MPI Jobs](running_mpi_jobs.md)
+- [Environment variables available in job scripts](/jobs/job_scripts/environment_variables.md)
+- [Job work directory](/jobs/job_scripts/work_directory.md)
+- [Array jobs](/jobs/job_scripts/array_jobs.md)
+- [Running Job Steps in Parallel](/jobs/job_scripts/parallel_steps.md)
+- [Porting Job Scripts from PBS/Torque](/jobs/job_scripts/porting_from_pbs.md)
+- [Running MPI Jobs](/jobs/job_scripts/running_mpi_jobs.md)
 
 ## Footnotes
 

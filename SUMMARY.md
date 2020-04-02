@@ -58,7 +58,7 @@
     * [License funding policy](software/licenses/license_funding.md)
 
 ## Jobs
-* [Queue System](jobs/queue_system.md)
+* [Submitting jobs](jobs/submitting.md)
     * [Queue System Concepts](jobs/queue_system/queue_system_concepts.md)
     * [Job Scheduling](jobs/queue_system/job_scheduling.md)
 * [Choosing the right queue](jobs/choosing_queues.md)
@@ -75,8 +75,8 @@
         * [Fram Job Placement](jobs/job_scripts/fram/fram_job_placement.md)
     * [Saga](jobs/job_scripts/saga_job_scripts.md)
 	    * [Sample MPI Job](jobs/job_scripts/saga/saga_sample_mpi_job.md)
-* [Managing Jobs](jobs/managing_jobs.md)
-    * [Job States](jobs/managing_jobs/job_states.md)
+* [Monitoring jobs](jobs/monitoring.md)
+    * [Job states](jobs/monitoring/job_states.md)
 * [Interactive Jobs](jobs/interactive_jobs.md)
 * [Projects and accounting](jobs/projects_accounting.md)
 * [Dos and Don'ts](jobs/dos_and_donts.md)

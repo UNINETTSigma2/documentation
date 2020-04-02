@@ -1,4 +1,6 @@
-# Queue System
+
+
+# Submitting jobs
 
 The HPC clusters are resources that are shared between many users, and
 to ensure fair use everyone must do their computations by submitting
@@ -94,16 +96,4 @@ To see all pending jobs, in priority order, you can use `pending`,
 which is a small wrapper for `squeue`. See `pending --help` for
 details and options.
 
-For a description of common job states, see [Job States](managing_jobs/job_states.md).
-
-**FIXME: qsumm (when implemented)**
-
-### Job Browser
-
-On Fram and Saga there is also a web tool that can be used to inspect many aspects of the jobs like processes, cpuload, memory consumption and network traffic both for running and completed jobs (last 24 hours)
-
-Fram: <https://desktop.fram.sigma2.no/slurmbrowser/html/squeue.html>
-
-Saga: <https://desktop.saga.sigma2.no/slurmbrowser/html/squeue.html>
-
-**Remark:** The stats are collected on the compute node level. This means that stats will be affected by all jobs running on the same compute node.
+For a description of common job states, see [Job States](monitoring/job_states.md).
