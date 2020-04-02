@@ -2,13 +2,6 @@
 
 # Monitoring jobs
 
-This page documents the tools one can use for working with jobs.
-
-## Submitting Jobs
-
-Jobs are submitted to the job queue with
-[sbatch](https://slurm.schedmd.com/sbatch.html), as described
-[here](submitting.md).
 
 ## Inspecting Jobs
 
