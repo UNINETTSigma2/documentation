@@ -3,7 +3,7 @@
 # Monitoring jobs
 
 
-## Inspecting Jobs
+## How to check whether your job is running
 
 To check the job status of all your jobs, you can use
 [squeue](https://slurm.schedmd.com/squeue.html):
@@ -40,7 +40,7 @@ When a job has finished, the output file `slurm-JobId.out` will
 contain some usage statistics from `sstat` and `sacct`.
 
 
-## Job browser
+## Resource usage of a running job
 
 On Fram and Saga there is also a web tool that can be used to inspect many aspects of the jobs like processes, cpuload, memory consumption and network traffic both for running and completed jobs (last 24 hours)
 
@@ -51,7 +51,7 @@ Saga: <https://desktop.saga.sigma2.no/slurmbrowser/html/squeue.html>
 **Remark:** The stats are collected on the compute node level. This means that stats will be affected by all jobs running on the same compute node.
 
 
-## Controlling jobs
+## Cancelling jobs and putting jobs on hold
 
 You can cancel running or pending (waiting) jobs with [scancel](https://slurm.schedmd.com/scancel.html):
 
