@@ -65,7 +65,7 @@ If you are new here, you might want to learn the basics first here:
 #### Jobs
 
 * [Dos and Don'ts](jobs/dos_and_donts.md)
-* [Queue System](jobs/queue_system.md)
+* [Submitting jobs](jobs/submitting.md)
 * [Job Scripts](jobs/job_scripts.md)
 * [Managing Jobs](jobs/managing_jobs.md)
 * [Interactive Jobs](jobs/interactive_jobs.md)

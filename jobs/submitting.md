@@ -1,4 +1,6 @@
-# Queue System
+
+
+# Submitting jobs
 
 The HPC clusters are resources that are shared between many users, and
 to ensure fair use everyone must do their computations by submitting

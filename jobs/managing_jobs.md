@@ -5,8 +5,8 @@ This page documents the tools one can use for working with jobs.
 ## Submitting Jobs
 
 Jobs are submitted to the job queue with
-[sbatch](https://slurm.schedmd.com/sbatch.html), as described in the
-[Queue System](queue_system.md) page.
+[sbatch](https://slurm.schedmd.com/sbatch.html), as described
+[here](submitting.md).
 
 ## Inspecting Jobs
 
@@ -44,11 +44,11 @@ available fields and what they mean.
 When a job has finished, the output file `slurm-JobId.out` will
 contain some usage statistics from `sstat` and `sacct`.
 
-It is also possible to inspect completed and running jobs using the web based tools slurmbrowser described in [Queue System](queue_system.md).
+It is also possible to inspect completed and running jobs using the web based tools slurmbrowser described [here](submitting.md).
 
 ## Inspecting Job Queue
 
-Tools for inspecting the job queue are described in [Queue System](queue_system.md).
+Tools for inspecting the job queue are described [here](submitting.md).
 
 ## Controlling jobs
 

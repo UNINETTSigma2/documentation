@@ -58,7 +58,7 @@
     * [License funding policy](software/licenses/license_funding.md)
 
 ## Jobs
-* [Queue System](jobs/queue_system.md)
+* [Submitting jobs](jobs/submitting.md)
     * [Queue System Concepts](jobs/queue_system/queue_system_concepts.md)
     * [Job Scheduling](jobs/queue_system/job_scheduling.md)
 * [Job Types](jobs/job_types.md)
