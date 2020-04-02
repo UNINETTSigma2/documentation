@@ -12,8 +12,8 @@ may copy or rename files, cd into the proper directory, etc., all
 before doing the "real" work.  The lines in the script file are the
 commands to be executed, in the given order.  Lines starting with a
 `#` are ignored as comments, except lines that start with `#SBATCH`,
-which are not executed, but contain special instructions to the [queue
-system](queue_system.md).
+which are not executed, but contain special instructions to the queue
+system.
 
 If you are not familiar with shell scripts, they are simply a set of
 commands that you could have typed at the command line.  You can find
