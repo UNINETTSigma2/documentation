@@ -3,8 +3,15 @@
 The clusters are designed for different work loads, and each cluster
 has several types of jobs.  This page gives an overview of the
 available job types on each cluster, and their main characteristics.
-See the sub pages under the table for each cluster for more detailed
-description of the job types and their purposes.
+See the sub pages of each cluster for a more detailed description of
+the job types and their purposes.
+
+You should always choose the job type that fulfils the resource
+requirements of your job best without being excessive as this ensures
+the highest possible priority and therefore the shortest queuing time.
+If for example your job on Saga needs 20GB memory and 5 CPUs for 5 days,
+you shoulf choose a _normal_ instead of a _bigmem_ job.
+If it instead needs 200GB memory you should use _bigmem_.
 
 ## Betzy
 
