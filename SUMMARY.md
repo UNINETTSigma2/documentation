@@ -61,7 +61,7 @@
 * [Submitting jobs](jobs/submitting.md)
     * [Queue System Concepts](jobs/submitting/queue_system_concepts.md)
     * [Job Scheduling](jobs/submitting/job_scheduling.md)
-* [Choosing the right queue](jobs/choosing_queues.md)
+* [Choosing the right job type](jobs/choosing_job_type.md)
     * [Betzy](jobs/job_types/betzy_job_types.md)
     * [Fram](jobs/job_types/fram_job_types.md)
     * [Saga](jobs/job_types/saga_job_types.md)

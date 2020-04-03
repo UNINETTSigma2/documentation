@@ -17,8 +17,8 @@ option**.
 Instead of running on a login node, you can ask the queue system to allocate
 compute resources for you and once assigned, you can run the job(s)
 interactively for as long as requested.  The examples below are for _devel_
-jobs, but the procedure also holds for the [other job types](choosing_queues.md) except _optimist_
-jobs.
+jobs, but the procedure also holds for the [other job types
+](choosing_job_types.md) except _optimist_ jobs.
 
 On **Fram**:
 ```

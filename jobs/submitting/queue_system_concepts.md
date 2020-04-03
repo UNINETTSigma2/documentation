@@ -9,9 +9,9 @@ For an overview of the Slurm concepts, Slurm has a beginners guide:
 The nodes on a cluster is divided into sets, called _partitions_.  The
 partitions can be overlapping.
 
-Several [job types](/jobs/choosing_queues.md) on our clusters are implemented as
-partitions, meaning that one specifies `--partition` to select job
-type -- for instance _bigmem_, _accel_ and _optimist_.
+Several [job types](/jobs/choosing_job_types.md) on our clusters are
+implemented as partitions, meaning that one specifies `--partition` to
+select job type -- for instance _bigmem_, _accel_ and _optimist_.
 
 ## QoS - Quality of Service
 A _QoS_ is a way to assign properties and limitations to jobs.  It can
@@ -19,11 +19,11 @@ be used to give jobs different priority, and add or change the
 limitations on the jobs, for instance the size or lenght of jobs, or
 the number of jobs running at one time.
 
-Several [job types](/jobs/choosing_queues.md) on our clusters are implemented as a
-QoS, meaning that one specifies `--qos` to select job type -- for
-instance _preproc_, _devel_ and _short_.  The jobs will then (by default)
-run in the standard (_normal_) partition, but have different
-properties.
+Several [job types](/jobs/choosing_job_types.md) on our clusters are
+implemented as a QoS, meaning that one specifies `--qos` to select
+job type -- for instance _preproc_, _devel_ and _short_.
+The jobs will then (by default) run in the standard (_normal_) partition,
+but have different properties.
 
 ## Account
 An _account_ is an entity that can be assigned a quota for resource
