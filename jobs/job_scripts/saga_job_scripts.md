@@ -1,7 +1,7 @@
 # Job Scripts on Saga
 
 This page documents how to specify the queue system parameters for the
-different job types on Saga.  See [Saga Job Types](saga_job_types.md)
+different job types on Saga.  See [Saga Job Types](/jobs/job_types/saga_job_types.md)
 for information about the different job types on Saga.
 
 ## Normal
@@ -72,7 +72,7 @@ queue: In this example, for instance, there might be eight nodes with
 `--ntasks-per-node` specification, the job could have started, but
 with the specification, it will have to wait.
 
-The [Saga Sample MPI Job](saga_sample_mpi_job.md) page has an example
+The [Saga Sample MPI Job](saga/saga_sample_mpi_job.md) page has an example
 of a _normal_ MPI job.
 
 ## Bigmem
@@ -104,6 +104,19 @@ Here is an example that asks for 2 tasks and 2 gpus on one gpu node:
     #SBATCH --ntasks-per-node=2 --nodes=1
     #SBATCH --mem-per-cpu=8G
 
+## Devel
+
+_Devel_ jobs must specify `--qos=devel`.  A _devel_ job is like a _normal_
+job, except that it has restrictions on job length and size.
+
+For instance:
+
+	#SBATCH --account=MyProject
+	#SBATCH --job-name=MyJob
+    	#SBATCH --qos=devel
+	#SBATCH --time=00:30:00
+	#SBATCH --ntasks=16
+
 ## Optimist
 
 _Optimist_ jobs are specified just like _normal_ jobs, except that
@@ -124,17 +137,4 @@ A simple _optimist_ job specification might be:
 	#SBATCH --job-name=MyJob
 	#SBATCH --partition=optimist
 	#SBATCH --mem-per-cpu=3G
-	#SBATCH --ntasks=16
-
-## Devel
-
-_Devel_ jobs must specify `--qos=devel`.  A _devel_ job is like a _normal_
-job, except that it has restrictions on job length and size.
-
-For instance:
-
-	#SBATCH --account=MyProject
-	#SBATCH --job-name=MyJob
-    #SBATCH --qos=devel
-	#SBATCH --time=00:30:00
 	#SBATCH --ntasks=16

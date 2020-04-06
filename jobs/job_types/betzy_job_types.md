@@ -17,6 +17,8 @@ Here is a more detailed description of the different job types on Betzy:
 - __Maximum walltime__: 4 days
 - __Priority__: normal
 - __Available resources__: 1340 nodes with 128 CPU cores and 256 GiB RAM
+- __Parameter for sbatch/srun__:
+    - None, _normal_ is the default
 
 This is the default job type. In _normal_ jobs, the queue system hands out complete nodes.
 
@@ -31,6 +33,8 @@ This is the default job type. In _normal_ jobs, the queue system hands out compl
 - __Priority__: normal
 - __Available resources__: *preproc* jobs run on a dedicated node with 32 CPU
 	cores and 256 GiB RAM
+- __Parameter for sbatch/srun__:
+    - `--qos=preproc`
 
 *preproc* jobs are meant for small preprocessing or postprocessing tasks.  Typically, such jobs don't use many CPUs, so requiring them to use 8 nodes would be wasting of resources.
 
@@ -44,6 +48,8 @@ This is the default job type. In _normal_ jobs, the queue system hands out compl
 - __Maximum walltime__: 20 minutes
 - __Priority__: high
 - __Available resources__: 4 nodes with 128 CPU cores and 256 GiB RAM
+- __Parameter for sbatch/srun__: 
+    - `--qos=devel`
 
 This is meant for small, short development or test jobs.  *Devel* jobs have access to a set of dedicated nodes.
 

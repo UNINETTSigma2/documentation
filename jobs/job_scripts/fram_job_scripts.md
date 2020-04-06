@@ -1,7 +1,7 @@
 # Job Scripts on Fram
 
 This page documents how to specify the queue system parameters for the
-different job types on Fram.  See [Fram Job Types](fram_job_types.md)
+different job types on Fram.  See [Fram Job Types](/jobs/job_types/fram_job_types.md)
 for information about the different job types on Fram.
 
 ## Normal
@@ -57,10 +57,10 @@ given number of cpus for _normal_ jobs; it merely sets
 number of threads.  (It is possible to override this number by setting
 `$OMP_NUM_THREADS` in the job script.)
 
-The [Fram Sample MPI Job](fram_sample_mpi_job.md) page has an example
+The [Fram Sample MPI Job](fram/fram_sample_mpi_job.md) page has an example
 of a _normal_ MPI job.
 
-See [Fram Job Placement](fram_job_placement.md) for optional
+See [Fram Job Placement](fram/fram_job_placement.md) for optional
 parameters for controlling which nodes a _normal_ job is run on.
 
 ## Preproc
@@ -123,6 +123,34 @@ allocated on the nodes:
     #SBATCH --ntasks=16
     #SBATCH --mem-per-cpu=32G
 
+## Devel
+
+_devel_ jobs must specify `--qos=devel`.  A _devel_ job is like a _normal_
+job, except that it has restrictions on job length and size.
+
+For instance:
+
+	#SBATCH --account=MyProject
+	#SBATCH --job-name=MyJob
+   	#SBATCH --qos=devel
+	#SBATCH --time=00:30:00
+	#SBATCH --nodes=2 --ntasks-per-node=32
+
+## Short
+
+_short_ jobs must specify `--qos=short`.  A _short_ job is like a _normal_
+job, except that it has restrictions on job length and size.  It
+differs from _devel_ jobs in that it allows somewhat longer and larger
+jobs, but typically have longer wait time.
+
+For instance:
+
+	#SBATCH --account=MyProject
+	#SBATCH --job-name=MyJob
+	#SBATCH --qos=short
+	#SBATCH --time=2:00:00
+	#SBATCH --nodes=8 --ntasks-per-node=32
+
 ## Optimist
 
 _Optimist_ jobs are specified just like _normal_ jobs, except that
@@ -141,34 +169,5 @@ A simple _optimist_ job specification might be:
 
 	#SBATCH --account=MyProject
 	#SBATCH --job-name=MyJob
-    #SBATCH --partition=optimist
+	#SBATCH --partition=optimist
 	#SBATCH --nodes=4 --ntasks-per-node=32
-
-## Devel
-
-_devel_ jobs must specify `--qos=devel`.  A _devel_ job is like a _normal_
-job, except that it has restrictions on job length and size.
-
-For instance:
-
-	#SBATCH --account=MyProject
-	#SBATCH --job-name=MyJob
-    #SBATCH --qos=devel
-	#SBATCH --time=00:30:00
-	#SBATCH --nodes=2 --ntasks-per-node=32
-
-## Short
-
-_short_ jobs must specify `--qos=short`.  A _short_ job is like a _normal_
-job, except that it has restrictions on job length and size.  It
-differs from _devel_ jobs in that it allows somewhat longer and larger
-jobs, but typically have longer wait time.
-
-For instance:
-
-	#SBATCH --account=MyProject
-	#SBATCH --job-name=MyJob
-    #SBATCH --qos=short
-	#SBATCH --time=2:00:00
-	#SBATCH --nodes=8 --ntasks-per-node=32
-
