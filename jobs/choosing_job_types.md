@@ -39,13 +39,13 @@ If it instead needs 200GB memory you should use _bigmem_.
 
 ## Saga
 
-| Name                                             | Description                              | Job limits   | Max walltime                              | Priority |
-|:------------------------------------------------:|------------------------------------------|:------------:|:-----------------------------------------:|:--------:|
-| [normal](job_types/saga_job_types.md#normal)     | default job type                         | 1--256 units | 7 days                                    | normal   |
-| [bigmem](job_types/saga_job_types.md#bigmem)     | jobs needing more memory                 | 1--256 units | 14 days                                   | normal   |
-| [accel](job_types/saga_job_types.md#accel)       | jobs needing GPUs                        | 1--256 units | 14 days                                   | normal   |
-| [devel](job_types/saga_job_types.md#devel) [^1]  | development jobs (compiling, testing)    | 1--128 units | 2 hours                                   | high     |
-| [optimist](job_types/saga_job_types.md#optimist) | jobs w/checkpointing, or very short jobs | 1--256 units | [see details](job_types/saga_job_types.md#optimist) | low      |
+| Name                                             | Description                               | Job limits   | Max walltime                              | Priority |
+|:------------------------------------------------:|-------------------------------------------|:------------:|:-----------------------------------------:|:--------:|
+| [normal](job_types/saga_job_types.md#normal)     | default job type                          | 1--256 units | 7 days                                    | normal   |
+| [bigmem](job_types/saga_job_types.md#bigmem)     | jobs needing more memory                  | 1--256 units | 14 days                                   | normal   |
+| [accel](job_types/saga_job_types.md#accel)       | jobs needing GPUs                         | 1--256 units | 14 days                                   | normal   |
+| [devel](job_types/saga_job_types.md#devel)       | development jobs (compiling, testing)[^1] | 1--128 units | 2 hours                                   | high     |
+| [optimist](job_types/saga_job_types.md#optimist) | jobs w/checkpointing, or very short jobs  | 1--256 units | [see details](job_types/saga_job_types.md#optimist) | low      |
 
 For jobs that don't request GPUs or much memory, the units on Saga are
 simply the number of cpus the job requests.  For other jobs, [see
