@@ -53,4 +53,4 @@ here](projects_accounting.md#accounting) for how the units are calculated.
 
 [Saga Job Types](job_types/saga_job_types.md).
 
-[^1] On Saga it is possible to combine _devel_ with _accel_ or _bigmem_, see [details](job_types/saga_job_types.md#devel).
+[^1]: On Saga it is possible to combine _devel_ with _accel_ or _bigmem_, see [details](job_types/saga_job_types.md#devel).
