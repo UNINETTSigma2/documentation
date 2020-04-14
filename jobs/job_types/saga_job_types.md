@@ -56,6 +56,9 @@ This is the default job type.  Most jobs are *normal* jobs.
 typically more than 8 GiB per cpu.  (The _normal_ nodes on Fram have
 slightly more than 4.5 GiB per cpu.)
 
+Can be combined with `--qos=devel` to get higher priority but maximum wall time (2h) 
+and resource limits of _devel_ apply.
+
 ## Accel
 
 - __Allocation units__: cpus, memory and GPUs
@@ -71,6 +74,9 @@ slightly more than 4.5 GiB per cpu.)
 - __Job Scripts__: [Saga accel Job Scripts](/jobs/job_scripts/saga_job_scripts.md#accel)
 
 *Accel* jobs give access to use the GPUs.
+
+Can be combined with `--qos=devel` to get higher priority but maximum wall time (2h) 
+and resource limits of _devel_ apply.
 
 ## Devel
 
@@ -89,6 +95,9 @@ slightly more than 4.5 GiB per cpu.)
 This is meant for small, short development or test jobs.  *Devel* jobs
 get higher priority for them to run as soon as possible.  On the other
 hand, there are limits on the size and number of _devel_ jobs.
+
+Can be combined with either `--partition=accel` or `--partition=bigmem` to increase
+priority while having max wall time and job limits of _devel_ job.
 
 If you have _temporary_ development needs that cannot be fulfilled by
 the _devel_ or _short_ job types, please contact us at
