@@ -19,7 +19,7 @@
 
 # turn on all mail notification, and also provide mail address:
 #SBATCH --mail-type=ALL
-#SBATCH -M my.email@institution.no
+#SBATCH --mail-user=my.email@institution.no
 
 # you may not place bash commands before the last SBATCH directive
 ######################################################
