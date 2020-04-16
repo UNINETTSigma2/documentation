@@ -132,7 +132,8 @@ $ dusage -p NSxxxxK
 ### Snapshots
 
 In addition to geo-replication NIRD supports snapshots of project areas 
-and home directories. For more information, visit [backup](backup.md) page.
+and home directories allowing for recovery of deleted data.
+For more information, visit [backup](backup.md) page.
 
 
 ### Mounts on HPC
