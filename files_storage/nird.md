@@ -26,7 +26,7 @@ efficient provisioning of services.
 ## Technical specifications
 
 The NIRD storage system consists of DDN SFA14K controllers, 3400 x 10TB NL-SAS
-drives with a total capacity of 2 x 12 PiB.
+drives with a total capacity of 2 x 11 PiB.
 The solution is based on DDN GridScaler® parallel file system, supporting
 multiple file, block and object protocols.
 
@@ -63,7 +63,7 @@ login-trd.nird.sigma2.no
 
 <div class="alert alert-info">
   <p>
-    Note that we run four login container per site. <br />
+    Note that we run four login containers per site. <br />
     If you plan to start a `screen` session on one of the login containers or
     you wish to copy data with the help of `scp` or `WinSCP`, you should log in
     to a specific container.
@@ -71,7 +71,7 @@ login-trd.nird.sigma2.no
   <ul>Addresses are:
     <li>login<strong>X</strong>-tos.nird.sigma2.no</li>
     <li>login<strong>X</strong>-trd.nird.sigma2.no</li>
-    <li><strong>X</strong> - can have values between 0 and 4.
+    <li><strong>X</strong> - can have values between 0 and 3.
   </ul>
 </div>
 
@@ -111,7 +111,7 @@ security and resilience in case of large damage at the primary site. The primary
  data is analysed on Saga or Betzy HPC clusters.
 
  Projects have the possibility to read from and write to the primary site, while
-  they can only read from the replica site.
+ they cannot read from or write to the replica site.
 
 <div class="alert alert-warning">
   <p>
