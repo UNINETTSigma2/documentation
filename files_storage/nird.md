@@ -129,6 +129,12 @@ and you can see the quota and the current usage by running:
 $ dusage -p NSxxxxK
 ```
 
+### Snapshots
+
+In addition to geo-replication NIRD supports snapshots of project areas 
+and home directories. For more information, visit [backup](backup.md) page.
+
+
 ### Mounts on HPC
 
 When relevant, the NIRD Storage project areas are also mounted on the login
