@@ -1,17 +1,15 @@
-
-
 # NIRD - National Infrastructure for Research Data
 
-**NIRD** is the **N**ational e-**I**nfrastructure for **R**esearch **D**ata. It is
-owned and operated by [UNINETT Sigma2](https://www.sigma2.no).
+**NIRD** is the **N**ational e-**I**nfrastructure for **R**esearch **D**ata. It
+ is owned and operated by [UNINETT Sigma2](https://www.sigma2.no).
 
 <div class="alert alert-info">
   <p>
     The NIRD infrastructure offers storage services, archiving services, and
-    processing capacity for computing on the stored data.  It offers services and
-    capacities to any scientific discipline that requires access to advanced, large
-    scale, or high-end resources for storing, processing, publishing research data
-    or searching digital databases and collections.
+    processing capacity for computing on the stored data.  It offers services
+    and capacities to any scientific discipline that requires access to
+    advanced, large scale, or high-end resources for storing, processing,
+    publishing research data or searching digital databases and collections.
   </p>
 </div>
 
@@ -27,40 +25,55 @@ efficient provisioning of services.
 
 ## Technical specifications
 
-The NIRD storage system consists of SFA14K controllers, 10 TB NL-SAS
-drives with a total capacity of 12 PiB in addition to a centralized
-file system (IBM GridScaler) supporting multiple file, block and
-object protocols. Sigma2 will provide the storage infrastructure with
-resources for the next 4 – 5 years through multiple upgrades and is
-expected to triple in capacity during its life-time.
+The NIRD storage system consists of DDN SFA14K controllers, 3400 x 10TB NL-SAS
+drives with a total capacity of 2 x 12 PiB.
+The solution is based on DDN GridScaler® parallel file system, supporting
+multiple file, block and object protocols.
 
 
 ## Getting access
 
-To gain access to the storage services, a formal application is required. The process
-is explained at the [How to apply for a user account](https://www.sigma2.no/how-apply-user-account) page.
+To gain access to the storage services, a formal application is required. The
+process is explained at the
+[How to apply for a user account](https://www.sigma2.no/how-apply-user-account)
+page.
+
+Users must be registered and authorised by the project responsible
+before getting access.
+
+To access or transfer data, you may use the following tools: `ssh`, `scp` or
+`sftp`.  Visit the [transferring files](file_transfer.md) page
+for details.
 
 
 ## Logging in
 
-Access to the project data storage area is through front-end (login) node:
+Access to your $HOME on NIRD and the project data storage area is through the
+login containers.
+Login containers are running on servers directly connected to
+the storage on both sites -that is Tromsø and Trondheim- to facilitate data
+handling right where the primary data resides. Each login container offers a
+maximum of 16 CPU cores and 128GiB of memory.
+
+Login containers can be accessed via following addresses:
 ```
-login.nird.sigma2.no
+login-tos.nird.sigma2.no
+login-trd.nird.sigma2.no
 ```
 
-Note that this host name is actually a DNS alias for
-`login0.nird.sigma2.no`, `login1.nird.sigma2.no`,
-`login2.nird.sigma2.no` and `login3.nird.sigma2.no`.  Those are
-containers, each one running the image of a login node. A login
-container offers resources for a maximum of 16 CPUs and 128 GB of
-memory.
-
-Users must be registered and authorized by the project responsible
-before getting access.
-
-To access or transfer data use the following tools: `ssh`, `scp` or
-`sftp`.  Visit the [transferring files](file_transfer.md) page
-for details.
+<div class="alert alert-info">
+  <p>
+    Note that we run four login container per site. <br />
+    If you plan to start a `screen` session on one of the login containers or
+    you wish to copy data with the help of `scp` or `WinSCP`, you should log in
+    to a specific container.
+  </p>
+  <ul>Addresses are:
+    <li>login<strong>X</strong>-tos.nird.sigma2.no</li>
+    <li>login<strong>X</strong>-trd.nird.sigma2.no</li>
+    <li><strong>X</strong> - can have values between 0 and 4.
+  </ul>
+</div>
 
 
 ## Home directories
@@ -82,8 +95,33 @@ files to the cluster by putting them here.
 
 ## Project area
 
-Each project gets a NIRD project area `/nird/projects/NSxxxxK`,
+Each NIRD Storage project gets a project area `/nird/projects/NSxxxxK`,
 where `NSxxxxK` is the ID of the project.
+
+### Project locality
+
+NIRD Storage projects are -with some exceptions, mutually agreed with the
+project leader- stored on two sites and asynchronously geo-replicated.
+
+For every project storage there is a primary data volume on one site and a full
+replica on the other site. The main purpose for the replica is to ensure
+security and resilience in case of large damage at the primary site. The primary
+ site is chosen for operational convenience to be the one closest to where the
+ data is consumed, namely NIRD-TOS, if data is analysed on Fram or NIRD-TRD if
+ data is analysed on Saga or Betzy HPC clusters.
+
+ Projects have the possibility to read from and write to the primary site, while
+  they can only read from the replica site.
+
+<div class="alert alert-warning">
+  <p>
+    The users should log onto the login container nearest to the primary data
+storage.
+  </p>
+</div>
+
+
+### Disk usage
 
 The project area has a quota on disk space and the number of files,
 and you can see the quota and the current usage by running:
@@ -91,6 +129,16 @@ and you can see the quota and the current usage by running:
 $ dusage -p NSxxxxK
 ```
 
-The NIRD project area is also mounted on the login nodes (but _not_
-the compute nodes) of Betzy, Fram or Saga, when relevant. For more
-information, visit the [Betzy, Fram and Saga](clusters.md) page.
+### Mounts on HPC
+
+When relevant, the NIRD Storage project areas are also mounted on the login
+nodes of Betzy, Fram or Saga HPC clusters.
+
+<div class="alert alert-warning">
+  <p>
+    To avoid performance impact and operational issues, NIRD $HOME and project
+    areas are _not_ mounted on none of the compute nodes of the HPC clusters.
+  </p>
+</div>
+
+For more information, visit the [Betzy, Fram and Saga](clusters.md) page.
