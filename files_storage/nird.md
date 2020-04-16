@@ -131,15 +131,26 @@ $ dusage -p NSxxxxK
 
 ### Snapshots
 
-In addition to geo-replication NIRD supports snapshots of project areas 
+In addition to geo-replication NIRD supports snapshots of project areas
 and home directories allowing for recovery of deleted data.
-For more information, visit [backup](backup.md) page.
+For more information, visit the [backup](backup.md) page.
 
 
 ### Mounts on HPC
 
 When relevant, the NIRD Storage project areas are also mounted on the login
 nodes of Betzy, Fram or Saga HPC clusters.
+
+<div class="alert alert-info">
+  <p>
+    Only the primary data volumes for projects are mounted to the HPC clusters.
+  </p>
+  <ul>i.e.
+    <li>projects from NIRD-TOS to Fram</li>
+    <li>projects from NIRD-TRD to Betzy and Saga</li>
+  </ul>
+</div>
+
 
 <div class="alert alert-warning">
   <p>
