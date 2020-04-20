@@ -155,7 +155,7 @@ nodes of Betzy, Fram or Saga HPC clusters.
 <div class="alert alert-warning">
   <p>
     To avoid performance impact and operational issues, NIRD $HOME and project
-    areas are _not_ mounted on none of the compute nodes of the HPC clusters.
+    areas are _not_ mounted on any of the compute nodes of the HPC clusters.
   </p>
 </div>
 
