@@ -15,7 +15,7 @@
 
 
 <div class="alert alert-warning">
-  <h4>Betzy: NO NACKUP</h4>
+  <h4>Betzy: NO BACKUP</h4>
   <p>
     Backup on Betzy will be swtiched on <strong>only</strong> after the pilot period is
 		finished.
