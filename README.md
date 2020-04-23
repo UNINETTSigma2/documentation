@@ -12,6 +12,28 @@ This documentation should be:
 3. Up to date
 
 
+## Building the documentation locally on your computer
+
+First install `npm` using your package manager, then install `gitbook`:
+```
+$ npm install -g gitbook-cli
+```
+
+Install dependencies:
+```
+$ gitbook install
+```
+
+Serve the documentation pages locally (takes few seconds):
+```
+$ gitbook serve
+```
+
+Finally you can preview the changes on http://localhost:4000.
+
+See also https://github.com/GitbookIO/gitbook-cli.
+
+
 ## All changes should be submitted as merge requests
 
 In order to coordinate our efforts, changes to the documentation should be
