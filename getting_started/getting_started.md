@@ -59,12 +59,16 @@ For example, to copy projectfiles.tar.gz to the home directory of myusername to 
 The [Transferring Files](/files_storage/file_transfer.md) page has more information about transferring files to Fram.
 
 ### Modules
-
-Modules enable applications to run different environment configurations. For example, an application may run with either the Intel compiler or the GNU compiler by loading different modules. The module command is for loading or listing available modules.
+To keep track of the large number of different pieces of software that is typically available on a shared
+HPC cluster, we use something called a software module system. This allows us to have many different versions of compilers,
+libraries and applications available for different users at the same time without conflicting each other. By default
+when you log in to the cluster you will get a clean environment with nothing but standard system compilers and libraries.
+In order to make your favourite software application available to you, you need to load its module into your environment,
+which is done using the `module` command
 
     module [options] [module name]
 
-To view the full list of options, enter man module in the command line. Here is a brief list of common module options:
+Some of the more common options include:
 
 * `avail` - list the available modules
 * `list` - list the currently loaded modules
@@ -72,9 +76,8 @@ To view the full list of options, enter man module in the command line. Here is 
 * `unload  <modulename>` - unload the module called `modulename`
 * `show <modulename>`  - display configuration settings for `modulename`
 
-For example, to load the Intel toolchain on Fram, enter:
-
-    module load intel/2017a
+More details on the module system, as well as a list of currently available software modules, can be found in the
+[Software](/software/modulescheme.md) section.
 
 ## Running Applications
 
