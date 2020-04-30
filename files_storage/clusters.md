@@ -56,7 +56,7 @@ To see the usage **including the number of files**, check:
 $ dusage -i
 ```
 
-To see the **project disk usage** (e.g. for nn1234k), use:
+On **Saga** you can see a **project's disk usage**, e.g., for nn1234k, with:
 ```
 $ beegfs-ctl --getquota --gid nn1234k
 ```
