@@ -86,7 +86,6 @@
     * [Job Array Howto](job/guidess/job_array_howto.md)
     * [Running Job Steps in Parallel](jobs/guides/parallel_steps.md)
     * [Cleanup at Timeout](jobs/guides/timeout_cleanup.md)
-    * [Frequently asked questions](faq/jobs.md)
 
 ## Files and Storage
 * [NIRD](files_storage/nird.md)
