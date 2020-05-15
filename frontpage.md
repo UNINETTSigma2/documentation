@@ -34,7 +34,7 @@ If you are new here, you might want to learn the basics first here:
 * [Getting Started](/getting_started/getting_started.md)
 * [Latest changes and events](https://opslog.sigma2.no)
 * [Editing files](/getting_started/editing_files.md)
-* [Password-less login](/getting_started/passwordless_login.md)
+* [Login using ssh keys](/getting_started/create_ssh_keys.md)
 
 ### Training
 
