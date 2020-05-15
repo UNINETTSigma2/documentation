@@ -15,7 +15,7 @@
     * [Remote Desktop](getting_started/getting_started/remote-desktop.md)
     * [Shell](getting_started/getting_started/shell.md)
 * [Editing files](getting_started/editing_files.md)
-* [Password-less login](getting_started/passwordless_login.md)
+* [Login using ssh keys](getting_started/create_ssh_keys.md)
 
 ## HPC Machines
 * [Hardware overview](hpc_machines/hardware_overview.md)
