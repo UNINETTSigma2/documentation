@@ -83,9 +83,9 @@
 * [Guides](jobs/guides.md)
     * [Running MPI Jobs](jobs/guides/running_mpi_jobs.md)
     * [Porting From PBS/Torque](jobs/guides/porting_from_pbs.md)
-    * [Job Array Howto](job/guidess/job_array_howto.md)
-    * [Running Job Steps in Parallel](jobs/guides/parallel_steps.md)
-    * [Cleanup at Timeout](jobs/guides/timeout_cleanup.md)
+    * [Job Array Howto](job/guides/job_array_howto.md)
+    * [Running Job Steps in Parallel](jobs/guides/running_job_steps_parallel.md)
+    * [Cleanup at Timeout](jobs/guides/cleanup_timeout.md)
 
 ## Files and Storage
 * [NIRD](files_storage/nird.md)
