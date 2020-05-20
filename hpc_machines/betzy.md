@@ -11,12 +11,13 @@ Betzy is a BullSequana XH2000, provided by Atos, and will  give Norwegian resear
 | :------------- | :------------- |
 | System     |BullSequana XH2000  |
 | Max Floating point performance, double     |	6.2 Petaflops  |
-| Number of nodes     |	1344  |
-| CPU type     |	AMD® Epyc™ "Rome" 2.2GHz  |
+| Number of compute nodes     |	1344  |
+| CPU type     |	AMD® Epyc™ 7742 2.25GHz  |
 | CPU cores in total  |	172032  |
 | CPU cores per node  | 128  |
 | Memory in total    |	336 TiB  |
 | Memory per node    |  256 GiB  |
+| Operating System   | Red Hat Enterprise Linux 7 |
 | Total disc capacity     |	2.5 PB  |
 | Interconnect  |	InfiniBand HDR 100, Dragonfly+ topology |
 
