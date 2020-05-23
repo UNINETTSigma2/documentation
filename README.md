@@ -54,8 +54,9 @@ anything.
 Assuming we want to add a section describing that no animals are allowed on the server.
 We will call the branch `no-animals`.
 
-0. Optionally: [Open an issue](https://scm.uninett.no/sigma2/eksterndokumentasjon/issues)
-   describing the change, especially when you don't have time to solve it.
+0. Optionally but recommended: [Open an issue](https://scm.uninett.no/sigma2/eksterndokumentasjon/issues)
+   describing the necessary change. This is useful to either signal a problem if you don't have time to solve it,
+   but it can also be useful to collect feedback for an idea before doing all the writing.
 1. Get an up-to-date `master` branch: `git pull origin master`
 2. Create a new branch for your changes. Use a short, descriptive name: `git checkout -b no-animals`
 3. Edit/add files and do the changes.
