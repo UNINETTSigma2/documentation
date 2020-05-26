@@ -62,7 +62,7 @@ profiled jobs the queuing system.
 Below is the HTML performance summary produced by ARM
 `perf-report`:
 
-![LINPACK perf-report](arm/perf_report_linpack.png "LINPACK perf-report")
+![LINPACK perf-report](img/perf_report_linpack.png "LINPACK perf-report")
 
 As expected, the code is *Compute-bound*, but there is a visible
 communication component. The report correctly suggests that there is
