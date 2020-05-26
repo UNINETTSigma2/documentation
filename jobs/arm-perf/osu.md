@@ -11,7 +11,7 @@ time of writing Arm Performance Reports did not work with OpenMPI on
 Fram. Results using Intel MPI are presented instead:
 
 ```
-$ ml load intel/2018b
+$ module load intel/2018b
 $ cd osu-micro-benchmarks-5.4.4
 $ ./configure CC=mpicc CXX=mpicxx --prefix=$HOME/osu
 $ make install
@@ -55,10 +55,10 @@ the total execution time of profiled and non-profiled runs to see how
 much the profiling slowed down our application:
 
 ```
-$ time mpirun <program>
+$ time mpirun -np N <program>
 [...]
 
-$ time perf-report mpirun <program>
+$ time perf-report -n N <program>
 [...]
 ```
 Remember that, in addition to the profiling overhead, there is the

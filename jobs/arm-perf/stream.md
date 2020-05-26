@@ -19,7 +19,7 @@ The [sourcecode
 compiled using the Intel `icc` compiler as follows:
 
 ```
-$ ml load intel/2018b
+$ module load intel/2018b
 $ icc -shared-intel -mcmodel=medium -O3 -qopt-streaming-stores always -qopenmp -DSTREAM_ARRAY_SIZE=200000000 -o stream stream.c
 ```
 Executing it on Fram without profiling yields the following results:

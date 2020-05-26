@@ -11,7 +11,7 @@ The [LINPACK sourcecode](http://www.netlib.org/benchmark/hpl/) is
 compiled using the Intel `icc` compiler as follows:
 
 ```
-$ ml load intel/2018b
+$ module load intel/2018b
 $ cd hpl-2.3
 $ ./configure CC=mpicc CXX=mpicxx --prefix=/cluster/projects/nn9999k/marcink/hpl LDFLAGS=-lm
 $ make
@@ -23,7 +23,7 @@ To run, the benchmark requires a [configuration file
 single compute node (all communication can be done through shared memory):
 
 ```
-$ mpirun ./xhpl
+$ mpirun -np 32 ./xhpl
 [...]
 T/V                N    NB     P     Q               Time                 Gflops
 --------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ codes. Clearly, the code is compute bound.
 The same run with profiling reports:
 
 ```
-$ perf-report mpirun ./xhpl
+$ perf-report -n 32 ./xhpl
 [...]
 T/V                N    NB     P     Q               Time                 Gflops
 --------------------------------------------------------------------------------
