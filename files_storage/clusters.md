@@ -8,6 +8,7 @@ while others are for storing project data.
 - [Usage and quota](#usage-and-quota)
 - [Home directory](#home-directory)
 - [Job scratch area](#job-scratch-area)
+- [Job scratch area on local disk](#job-scratch-area-on-local-disk)
 - [User work area](#user-work-area)
 - [Project area](#project-area)
 - [Shared project area](#shared-project-area)
@@ -22,11 +23,13 @@ Below the table we give recommendations and discuss pros and cons for the variou
 | :---------------------------------------------- | :------------------- | :--------------------------------- | :---------------------------------: |
 | `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files               | [Only if quota enforced](backup.md) |
 | `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                | No                                  |
+| (Only Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALTMP`)     | Per-job data         | N/A                                | No                                  |
 | `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                | No                                  |
 | `/cluster/projects/<project_name>`              | Project data         | [1 TiB / 1 M files](#project-area) | Yes                                 |
 | `/cluster/shared/<folder_name>`                 | Shared data          | [Individual](#shared-project-area) | No                                  |
 
 - **User areas and project areas are private**: Data handling and storage policy is documented [here](/files_storage/sharing_files.md).
+- **Note that the `$LOCALTMP` area is only implemented on Saga**
 - In addition to the areas in the tables above, **both clusters mount the
   NIRD project areas** as `/nird/projects/nird/NSxxxxK` on the login nodes
   (but not on the compute nodes).
@@ -134,6 +137,63 @@ directory `$SLURM_SUBMIT_DIR` (where `sbatch` was run).
     <li> If the main node of a job crashes (i.e., not the job script, but the
          node itself), the special commands might not be run, so files might
          be lost.</li>
+  </ul>
+</div>
+
+
+## Job scratch area on local disk
+
+**This only exists on Saga.**
+
+A job on **Saga** can request a scratch area on local disk on the node
+it is running on.  This is done by specifying
+`--gres=localtmp:<size>`, where *<size>* is the size of the requested
+area, for instance `20G` for 20 GiB.  Most nodes on Saga have 300 GiB
+disk that can be handed out to local scratch areas; a few of the
+bigmem nodes have 7 TiB and the GPU nodes have 8 TiB.
+
+Jobs that request this, get an area **/localscratch/$SLURM_JOB_ID** that is
+automatically created for the job, and automatically deleted when the
+job finishes.  The location is stored in the environment variable
+`$LOCALTMP` available in the job.  `$LOCALTMP` is only accessible by the
+user running the job.
+
+Note that since this area is on *local disk* on the compute node, it
+is probably not useful for jobs running on more than one node (the job
+would get one independent area on each node).
+
+The area is meant to be used as a temporary scratch area during job
+execution by jobs who do a lot of disk IO operations (either metadata
+operations or read/write operations).  Using it for such jobs will
+speed up the jobs, and reduce the load on the `/cluster` file system.
+
+**This area is not backed up** ([documentation about backup](backup.md)).
+
+Currently, there are *no* special commands to ensure that files are
+copied back automatically, so one has to do that with `cp` commands or
+similar in the job script.
+
+<div class="alert alert-success">
+  <h4>Pros of running jobs in the local disk job scratch area</h4>
+  <ul>
+    <li> IO operations are faster than on the `/cluster` file system.
+    <li> It reduces the load on the `/cluster` file system.
+    <li> There is less risk of interference from other jobs because every job ID has
+         its own scratch directory.</li>
+    <li> Because the scratch directory is removed when the job finishes, the scripts
+         do not need to clean up temporary files.</li>
+  </ul>
+</div>
+
+<div class="alert alert-danger">
+  <h4>Cons of running jobs in the local disk job scratch area</h4>
+  <ul>
+    <li> Since the area is removed automatically, it can be hard to debug
+         jobs that fail.</li>
+    <li> One must make sure to use `cp` commands or similar in the job
+         script to copy files back.</li>
+    <li> If the main node of a job crashes (i.e., not the job script, but the
+         node itself), files might be lost.</li>
   </ul>
 </div>
 
