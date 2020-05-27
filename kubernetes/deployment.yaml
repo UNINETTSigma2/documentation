@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: $CI_ENVIRONMENT_SLUG
@@ -9,6 +9,9 @@ metadata:
     build_id: "$CI_BUILD_ID"
 spec:
   replicas: $REPLICAS
+  selector:
+    matchLabels:
+      app: $CI_ENVIRONMENT_SLUG
   template:
     metadata:
       labels:
