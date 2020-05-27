@@ -9,6 +9,9 @@ metadata:
     build_id: "$CI_BUILD_ID"
 spec:
   replicas: $REPLICAS
+  selector:
+    matchLabels:
+      app: $CI_ENVIRONMENT_SLUG
   template:
     metadata:
       labels:
