@@ -23,13 +23,13 @@ Below the table we give recommendations and discuss pros and cons for the variou
 | :---------------------------------------------- | :------------------- | :--------------------------------- | :---------------------------------: |
 | `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files               | [Only if quota enforced](backup.md) |
 | `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                | No                                  |
-| (Only Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALTMP`)     | Per-job data         | N/A                                | No                                  |
+| (Only Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALSCRATCH`)     | Per-job data         | N/A                                | No                                  |
 | `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                | No                                  |
 | `/cluster/projects/<project_name>`              | Project data         | [1 TiB / 1 M files](#project-area) | Yes                                 |
 | `/cluster/shared/<folder_name>`                 | Shared data          | [Individual](#shared-project-area) | No                                  |
 
 - **User areas and project areas are private**: Data handling and storage policy is documented [here](/files_storage/sharing_files.md).
-- **Note that the `$LOCALTMP` area is only implemented on Saga**
+- **Note that the `$LOCALSCRATCH` area is only implemented on Saga**
 - In addition to the areas in the tables above, **both clusters mount the
   NIRD project areas** as `/nird/projects/nird/NSxxxxK` on the login nodes
   (but not on the compute nodes).
@@ -147,16 +147,16 @@ directory `$SLURM_SUBMIT_DIR` (where `sbatch` was run).
 
 A job on **Saga** can request a scratch area on local disk on the node
 it is running on.  This is done by specifying
-`--gres=localtmp:<size>`, where *<size>* is the size of the requested
+`--gres=localscratch:<size>`, where *<size>* is the size of the requested
 area, for instance `20G` for 20 GiB.  Most nodes on Saga have 300 GiB
 disk that can be handed out to local scratch areas; a few of the
 bigmem nodes have 7 TiB and the GPU nodes have 8 TiB.
 
-Jobs that request this, get an area **/localscratch/$SLURM_JOB_ID** that is
-automatically created for the job, and automatically deleted when the
-job finishes.  The location is stored in the environment variable
-`$LOCALTMP` available in the job.  `$LOCALTMP` is only accessible by the
-user running the job.
+Jobs that request this, get an area **/localscratch/$SLURM_JOB_ID**
+that is automatically created for the job, and automatically deleted
+when the job finishes.  The location is stored in the environment
+variable `$LOCALSCRATCH` available in the job.  `$LOCALSCRATCH` is
+only accessible by the user running the job.
 
 Note that since this area is on *local disk* on the compute node, it
 is probably not useful for jobs running on more than one node (the job
