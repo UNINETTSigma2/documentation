@@ -2,6 +2,6 @@
 
 # Storage performance tuning
 
-- [Lustre (Betzy, Fram and Stallo)](lustre.md)
-- [BeeGFS (Saga)](beegfs.md)
-- [What to avoid](what_to_avoid.md)
+- [Lustre (Betzy, Fram and Stallo)](performance/lustre.md)
+- [BeeGFS (Saga)](performance/beegfs.md)
+- [What to avoid](performance/what_to_avoid.md)
