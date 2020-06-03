@@ -75,3 +75,13 @@ The two *common toolchains* `foss` and `intel` will be installed on Betzy.
 * Intel compilers (`icc`, `icpc`, `ifort`)
 * Intel MPI library
 * Intel MKL library (including BLAS, LAPACK, ScaLAPACK, FFT)
+
+Regarding compiler optimization this needs to be investigated case by case. Aggressive optimization should be added only to files
+where it makes a difference, as it increases the probability of the compiler generating wrong code or exposing
+floating-point issues in the application. A few starting suggestions are:
+* gcc/gfortran : -O3, -O3 -march=znver2 -mtune=znver2 or -O3 -march=znver2 -mtune=znver2 -mfma -mavx2 -m3dnow -fomit-frame-pointer
+* ifort/icc    : -O3, -O3 -march=core-avx2, -O3 -xavx, -O3 -xavx2, -O3 -xcore-avx2
+
+The above applies to GCC 9.3 and Intel 2019b, and the choices are listed in increased performance as obtained with a DGEMM matrix
+multiplication test. Please notice that ifort performs substantially better than gfortran with this test. Also, building the main
+program file with -xcore-avx2 is not recommended.
