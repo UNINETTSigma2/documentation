@@ -257,9 +257,19 @@ members, located at **/cluster/projects/<project_name>**.
 
 The project area is quota controlled and the default project quota for
 HPC projects is 1 TB, but projects can apply for more during the
-application process or request at a later point in time if needed. The
-maximum quota for the project area is 10TB. Greater needs will require
-an application for a separate NIRD project area.
+application process with a maximum quota of 10 TB.
+
+Also after the project has been created, project members can request to increase
+the quota to up to 10 TB by motivating why this is needed.
+
+Requests for more than 10 TB require a motivation from the project leader, submitted
+to <sigma2@uninett.no>.
+
+Even larger needs will require an application for a separate NIRD project area.
+
+Note that unused quota can also be withdrawn for technical reasons (too little
+space) or organisational reasons (less needs/less usage/less members of
+group/less compute hrs).
 
 Daily backup is taken to NIRD ([documentation about backup](backup.md)).
 
