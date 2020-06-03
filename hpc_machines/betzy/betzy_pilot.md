@@ -8,7 +8,17 @@ documentation.
 
 ### Access during pilot
 
-To be added.
+During the pilot phase, access to Betzy is allowed only from the UH-sector.
+
+You may login either by connecting via VPN or SSH tunnel to the university 
+network and from there to Betzy via SSH, or from one of the other HPC machines 
+(Fram or Saga), or NIRD.
+
+Please note that you may need to [reset your password](https://www.metacenter.no/user/).
+For more information, check out the [password policy
+news](https://www.sigma2.no/sigma2-launches-new-password-policy).
+
+The address for Betzy login nodes is `login.betzy.sigma2.no`.
 
 ### Support
 
