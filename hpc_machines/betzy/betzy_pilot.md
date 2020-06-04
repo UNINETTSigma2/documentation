@@ -79,20 +79,31 @@ The two *common toolchains* `foss` and `intel` will be installed on Betzy.
 Regarding compiler optimization this needs to be investigated case by case. Aggressive optimization should be added only to files
 where it makes a difference, as it increases the probability of the compiler generating wrong code or exposing
 floating-point issues in the application. A few starting suggestions are:
-* gcc/gfortran : -O3, -O3 -march=znver2 -mtune=znver2 or -O3 -march=znver2 -mtune=znver2 -mfma -mavx2 -m3dnow -fomit-frame-pointer
-* ifort/icc    : -O3, -O3 -march=core-avx2, -O3 -xavx, -O3 -xavx2, -O3 -xcore-avx2 
+
+`gcc/gfortran`
+*  -O3
+*  -O3 -march=znver2 -mtune=znver2
+*  -O3 -march=znver2 -mtune=znver2 -mfma -mavx2 -m3dnow -fomit-frame-pointer
+
+`ifort/icc` 
+* -O3  
+* -O3 -march=core-avx2 
+* -O3 -xavx
+* -O3 -xavx2
+* -O3 -xcore-avx2 
 
 The above applies to GCC 9.3 and Intel 2019b, and the choices are listed in increased performance as obtained with a DGEMM matrix
-multiplication test, it is also verified using one of the major benchmarks used. Please notice that ifort performs substantially better than 
-gfortran with the dgemm.f test. Also, building the main routine in the program file with -xcore-avx2, -xavx or -xavx2 is not recommended. 
+multiplication test (which show significant performance improvement), it is also verified using one of the major benchmarks used. 
+Please notice that ifort performs substantially better than gfortran with the dgemm.f test. Also, building the main routine in the program 
+file with -xcore-avx2, -xavx or -xavx2 is not recommended. 
 It's known that building the main() (C and Fortran) with these flags trigger the Intel processor run time check, causing the application to abort.
 
-'MPI libraries'
+`MPI libraries`
 Both OpenMPI and Intel MPI are installed. Built both for GNU and Intel. Experience have shown that performance varies. For large applications
 Intel MPI has provided the best results so far. For Intel MPI Setting the I_MPI_PIN=1 and I_MPI_PIN_PROCESSOR_EXCLUDE_LIST=128-255 are a good 
 starting point.
 
-'MKL library'
+`MKL library`
 The MKL perform run time check to select correct code to invoke. This test fail to find any Intel processor and hence select a code compatible with
 all x86-64 processors. Setting the environment flag MKL_DEBUG_CPU_TYPE=5 will force MKL to select code that uses AVX2 instructions,
 hence increase performance significantly. 
