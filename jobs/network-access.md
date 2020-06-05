@@ -8,3 +8,6 @@ install` or `pip install`, updating Git submodules, fetching data from web
 sources, etc., will not work on compute nodes.
 
 Compute nodes are the nodes where your jobs which you have submitted via Slurm are running.
+
+You can run commands like `git clone` etc. on the login nodes (the nodes on which you land
+when you connect to the computer using ssh).
