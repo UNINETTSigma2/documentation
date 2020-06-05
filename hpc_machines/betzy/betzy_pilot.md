@@ -142,11 +142,11 @@ For a correct SLURM job script file the only command needed to launch MPI progra
 
 For hybrid models it's important to set up SLURM to provide access to all vailable cores. An example could look like this:
 
-+ #SBATCH --ntasks=2048
-+ #SBATCH --nodes=64
-+ #SBATCH --ntasks-per-node=32
-+ #SBATCH --cpus-per-task=4
-+ #SBATCH --exclusive
++ \#SBATCH --ntasks=2048
++ \#SBATCH --nodes=64
++ \#SBATCH --ntasks-per-node=32
++ \#SBATCH --cpus-per-task=4
++ \#SBATCH --exclusive
 
 This will request 32 MPI ranks per node, and leave cores for 4 threads per rank, e.g. each of the 32 ranks can shedule 4 threads
 yielding a total of 128 cores which is the maximum number of cores on each compute node.  The *exclusive* is important, if not set
