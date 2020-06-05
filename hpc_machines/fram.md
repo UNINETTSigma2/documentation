@@ -22,3 +22,10 @@ The total number of compute cores is 32256.
 | Total memory     |	78 TiB  |
 | Total disc capacity     |	2.5 PB  |
 
+
+### No network access on compute nodes
+
+According to our security policy, compute nodes shall not have direct access to
+the public internet. This means that commands like `git clone` or `conda
+install` or `pip install`, updating Git submodules, fetching data from web
+sources, etc., will not work on compute nodes.

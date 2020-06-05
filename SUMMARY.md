@@ -86,6 +86,7 @@
     * [Profiling overhead](jobs/arm-perf/overhead.md)
 * [Interactive Jobs](jobs/interactive_jobs.md)
 * [Projects and accounting](jobs/projects_accounting.md)
+* [Network access](jobs/network-access.md)
 * [Dos and Don'ts](jobs/dos_and_donts.md)
 * [Guides](jobs/guides.md)
     * [Running MPI Jobs](jobs/guides/running_mpi_jobs.md)

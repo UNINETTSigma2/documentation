@@ -2,7 +2,8 @@
 
 Named after [Mary Ann Elizabeth (Betzy) Stephansen](https://en.wikipedia.org/wiki/Elizabeth_Stephansen), the first Norwegian women to be awarded a doctorate degree.
 
-## The most powerful supercomputer in Norway
+
+### The most powerful supercomputer in Norway
 
 Betzy is a BullSequana XH2000, provided by Atos, and will  give Norwegian researchers more than 5 times more capacity than previously, with a theoretical peak performance of 6.2  PetaFlops. The supercomputer, which will be placed at NTNU in Trondheim, will be available to users during the second half of 2020.
 
@@ -24,7 +25,15 @@ Betzy is a BullSequana XH2000, provided by Atos, and will  give Norwegian resear
 Almost all components are liquid cooled resulting in a very high cooling efficiency, 95% of heat being captured to water.
 
 
-## Pilot Projects
+### Pilot projects
 
 For pilot project please check out the short getting started guide
 [here](betzy/betzy_pilot.md).
+
+
+### No network access on compute nodes
+
+According to our security policy, compute nodes shall not have direct access to
+the public internet. This means that commands like `git clone` or `conda
+install` or `pip install`, updating Git submodules, fetching data from web
+sources, etc., will not work on compute nodes.
