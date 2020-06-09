@@ -164,3 +164,18 @@ when the runtime for your job starts tailing off. When you start to see
 less than 30% improvement in runtime when doubling the cpu-counts you
 should probably not go any further. Recommendations to a few of the most
 used applications can be found in sw\_guides.
+
+
+### Troubleshooting
+
+#### "srun: Warning: can't honor --ntasks-per-node set to _X_ which doesn't match the requested tasks _Y_ with the number of requested nodes _Y_. Ignoring --ntasks-per-node."
+
+This warning appears when using the `mpirun` command with Intel MPI and
+specifying `--ntasks-per-node` for jobs in the `normal` partition on Fram.  As
+far as we have seen, the job does *not* ignore the `--ntasks-per-node`, and
+will run the specified number of processes per node.  You can test it with,
+e.g., `mpirun hostname`.  Please let us know if you have an example where
+`--ntasks-per-node` is *not* honored!
+
+So, if you get this when using `mpirun` with Intel MPI, our recommendation is
+currently that the warning can be ignored.
