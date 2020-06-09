@@ -109,7 +109,7 @@
 
 ## Code Development
 * [Building scientific software](code_development/building.md)
-* [Compilers](code_development/compilers.md)
+* [Compiling MPI applications](code_development/compilers.md)
 * [Debugging](code_development/debugging.md)
 * [Performance Analysis and Tuning](code_development/performance.md)
   * [VTune Amplifier](code_development/performance/vtune.md)
