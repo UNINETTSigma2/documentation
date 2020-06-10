@@ -25,7 +25,7 @@ The address for Betzy login nodes is `login.betzy.sigma2.no`.
 Each of the compute nodes have *128 cores* (with logical cores it looks like 256). There are two sockets
 each with a 64 core AMD processor. The AMD processors are not recognied by the Intel compiler and 
 this may cause issues (se later). The AMD processors support 256 bits Vector instruction, *AVX* and *AVX2*.
-Each compute node has *256 GiB* of memory. 
+Each compute node has *256 GiB* of memory split up into 8 NUMA nodes (numactl -H).
 
 ### Support
 
@@ -118,7 +118,7 @@ supported. OpenMPI is built with support for GNU compiler and Intel.
 #### OpenMPI
 * mpicc
 * mpicxx
-* mpf90
+* mpif90
 
 For running with OpenMPI the processor binding is beneficial, adding *-bind-to core* is generally a good idea.
 
