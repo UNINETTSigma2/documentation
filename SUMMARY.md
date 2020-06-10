@@ -108,7 +108,8 @@
     * [What to avoid](files_storage/performance/what_to_avoid.md)
 
 ## Code Development
-* [Compilers](code_development/compilers.md)
+* [Building scientific software](code_development/building.md)
+* [Compiling MPI applications](code_development/compilers.md)
 * [Debugging](code_development/debugging.md)
 * [Performance Analysis and Tuning](code_development/performance.md)
   * [VTune Amplifier](code_development/performance/vtune.md)
