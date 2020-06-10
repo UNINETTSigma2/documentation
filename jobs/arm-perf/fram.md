@@ -28,18 +28,6 @@ compute node **never on a login node**:
 - [Profiling a batch script](#profiling-a-batch-script)
 - [Profiling on an interactive compute node](#profiling-on-an-interactive-compute-node)
 
-You can use it on dynamically linked binaries without recompilation.
-However, you may have to recompile statically linked binaries
-(for this please consult the [official documentation](https://developer.arm.com/docs/101137/2003)).
-
-A successful Arm Performance Reports run will produce two files, a HTML summary
-and a text file summary, like in this example:
-
-```
-example_128p_4n_1t_2020-05-23_18-04.html
-example_128p_4n_1t_2020-05-23_18-04.txt
-```
-
 
 ### Profiling a batch script
 
