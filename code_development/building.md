@@ -178,7 +178,7 @@ An example can provide some hints:
 The variable *MKLROOT* is set when the Intel module is loaded.
 
 The following command can be of help when encounter missing symbols:
-`nm -A $MKLROOT/lib/intel64/* | grep <missing symbol>
+`nm -A $MKLROOT/lib/intel64/* | grep <missing symbol>`
 Look for symbols with *T* (T means text,global - e.g. it's available, U means undefined).
 
 
