@@ -28,6 +28,24 @@ or
 to identify time-consuming loops and check their cache performance.
 
 
+### To profile a statically linked binary, you need to recompile
+
+You can use Arm Performance Reports on dynamically linked binaries without recompilation.
+However, you may have to recompile statically linked binaries
+(for this please consult the [official documentation](https://developer.arm.com/docs/101137/2003)).
+
+
+### A successful run will produce two files
+
+A successful Arm Performance Reports run will produce two files, a HTML summary
+and a text file summary, like in this example:
+
+```
+example_128p_4n_1t_2020-05-23_18-04.html
+example_128p_4n_1t_2020-05-23_18-04.txt
+```
+
+
 ### Using Arm Performance Reports on Fram and Saga
 
 - [Fram](arm-perf/fram.md)
