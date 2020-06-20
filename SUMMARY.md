@@ -75,6 +75,7 @@
         * [Fram Job Placement](jobs/job_scripts/fram/fram_job_placement.md)
     * [Saga](jobs/job_scripts/saga_job_scripts.md)
 	    * [Sample MPI Job](jobs/job_scripts/saga/saga_sample_mpi_job.md)
+* [Running scientific software](jobs/running-scientific-software.md)
 * [Monitoring jobs](jobs/monitoring.md)
     * [Job states](jobs/monitoring/job_states.md)
 * [Performance and scaling](jobs/performance.md)
