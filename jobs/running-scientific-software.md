@@ -77,7 +77,7 @@ instruction so these numbers are inflated). This yields a marketing theoretical
 performance of frequency times number of cores times 16, 2.26 GHz * 128 * 16 =
 4608 Gflops/s for a single compute node (or 6.2 Pflops/s for the complete
 Betzy). In any case the vector units are important for floating point
-performance, see the node on environment flag for MKL later.
+performance, see the note on environment flag for MKL later.
 
 
 ## Slurm
@@ -179,7 +179,12 @@ instruct MKL to use a more suitable instruction set a debug variable can be
 set, e.g. `export  MKL_DEBUG_CPU_TYPE=5`.
 
 This flag does not work for Intel compiler distribution 2020 and and newer.
-
+<div class="alert alert-info">                                                   
+  <p>                                                                            
+    The MKL_DEBUG_CPU_TYPE flag does not work for Intel compiler distribution    
+   2020 and and newer.                                                          
+  </p>                                                                           
+</div>
 
 ## Memory architecture
 
@@ -389,7 +394,7 @@ OpenMPI: `--bind-to core`
 For large core count a pure MPI solution is often not optimal. Like HPL (the
 top500 test) the hybrid model is the highest performing case.
 
-Most OpenMPI or threaded programs respond to the environment variable
+Most OpenMP or threaded programs respond to the environment variable
 OMP_NUM_THREADS.  You want to set it or another variable like NPUS etc  set it
 from a Slurm variable : `export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK` or
 `export NCPUS=$SLURM_CPUS_PER_TASK`.
@@ -431,8 +436,8 @@ A more complicated example is a nodelist file for the molecular mechanics applic
 
 ### Transport options OpenMPI
 
-Most of the following is hidden behind som command line options, but in case
-more informations is needed about the subject of transport a few links will
+Most of the following is hidden behind some command line options, but in case
+more information is needed about the subject of transport a few links will
 provide more insight.
 
 For detailed list of settings a good starting point is here :
@@ -462,12 +467,14 @@ From the UCX documentation the list of internode transports include :
 * rc
 * ud
 * dc
+
 The last one is Mellanox scalable offloaded dynamic connection transport.  The
 self is a loopback transport to communicate within the same process, while sm
 is all shared memory transports. There are two shared memory transports
 installed
 * cma
 * knem
+
 Selecting cma or knem might improve performance for applications that uses a
 high number of MPI ranks per node. With 128 cores and possibly 128 MPI ranks
 per node the intra node communication is quite important.
@@ -480,7 +487,7 @@ impact.
 ### Monitoring process/thread placement
 
 To monitor the placement or ranks the `htop` utility is useful, just log in to
-a node running your application and issue the htop command. By default  *htop*
+a node running your application and issue the `htop` command. By default  `htop`
 numbers the cores from 1 through 256. This can be confusing at times (it can be
 changed in htop by pressing F2 and navigate to display options and tick off
 count from zero).
