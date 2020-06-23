@@ -21,6 +21,7 @@ Betzy is a BullSequana XH2000, provided by Atos, and will  give Norwegian resear
 | Operating System   | Red Hat Enterprise Linux 7 |
 | Total disc capacity     |	2.5 PB  |
 | Interconnect  |	InfiniBand HDR 100, Dragonfly+ topology |
+| Top500 June 2020 | 56th place \@ 1250 nodes, 76% efficiency|
 
 Almost all components are liquid cooled resulting in a very high cooling efficiency, 95% of heat being captured to water.
 
