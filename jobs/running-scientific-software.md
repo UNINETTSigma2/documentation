@@ -36,23 +36,50 @@ single rack/cell etc).
 #### Processors and cores
 
 Each compute node contains two sockets with a 64 core AMD processor per socket.
-Each processor has 64 cores, each core supports two threads (SMT see:
-https://en.wikipedia.org/wiki/Simultaneous_multithreading). For applications
-this looks as if every compute node had 256 independent numbered from 0 to 255.
-Due to SMT, however, each pair of seemingly independent cores
-actually shares executing units of a phyiscal core. 
-Running two compute jobs on the two cores of such a pair will therefore only
-yield half of the expected performance. To achieve maximum performance from each
-physical core it is therefore important to pay attention to the mapping of processes
-to cores, that is, any two processes must not share a physical core.
+Every processor has 64 cores each supporting 2-way _simultaneous multithreading_
+(SMT, see https://en.wikipedia.org/wiki/Simultaneous_multithreading for more
+information). To not confuse these _threading_ capabilities in hardware with
+threads in software (e.g., pthreads or OpenMP), we use the term _virtual core_
+from now on.
 
-The following command provides information about the numbering of cores: `cat /proc/cpuinfo |
-sed '/processor\|physical id\|core id/!d' ` The first 128 cores (0-127)
-listed correspond to the first thread on each core. Accordingly, the second 128 cores (128-255) correspond to the second
-thread on each core. So, if one limits the placement of processes to core
-numbers 0-127, no process will share executional units with another process.
+For applications it looks as if every compute node has 256 independent
+_virtual cores_ numbered from 0 to 255. Due to SMT, always two of these seemingly
+independent virtual cores form a pair and share the executing units of a core. If both of
+these two virtual cores are used in parallel by an application, the
+application's performance will be the same as if it used only one virtual core
+(and the other one is left idle) or if two different applications would use one
+virtual core each, each of the two applications would achieve only half of the
+performance of a core. To achieve the maximum performance from each core, it is
+therefore important to pay attention to the mapping of processes to cores, that is,
+**any two processes (or software threads) of an application must not share the
+two virtual cores** or, in other words, one of the two virtual cores in a pair
+shall be kept idle.
 
-Both Intel MPI and OpenMPI provide means to achieve such placements. See examples below.
+The following command provides information about the numbering of virtual cores:
+`cat /proc/cpuinfo | sed '/processor\|physical id\|core id/!d' | sed 'N;N;s/\n/ /g'`
+The first 128 entries (processor 0-127) correspond to the first virtual core.
+Accordingly, the second 128 entries (processor 128-255) correspond to the second
+virtual core. So, if one limits the placement of processes to processor
+numbers 0-127, no process will share executional units with any other process.
+
+Both Intel MPI and OpenMPI provide means to achieve such placements. See
+examples below.
+
+#### Memory - NUMA
+
+Each (standard) compute node have 256 GiB of memory. However, not all memory is
+equal from a core’s point of view. The nature of a processor is such that there
+are four memory controllers in each processor, each with a portion of the
+memory. Since there are two sockets and to processors there is a total of 8
+memory banks. This is referred to as Non Uniform Memory Access (NUMA) memory.
+All these 8 memory banks are connected by either an intra processor network or
+an intra node network. All the memory is cache-coherent so from a programmers
+point of view all the memory is accessible and equivalent.  As the access to
+the memory vary it’s important to place processes close to the memory  being
+used. This is often a challenge. To display the NUMA banks and see more more
+detailed information issue the command `numactl -H`. More details on this
+later.
+
 
 #### Memory - NUMA
 
