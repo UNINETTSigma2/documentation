@@ -66,19 +66,30 @@ Both Intel MPI and OpenMPI provide means to achieve such placements. See
 examples below.
 
 
-#### Memory - NUMA
+#### Memory - NUMA and ccNUMA
 
-Each (standard) compute node have 256 GiB of memory. However, not all memory is
-equal from a core’s point of view. The nature of a processor is such that there
-are four memory controllers in each processor, each with a portion of the
-memory. Since there are two sockets and to processors there is a total of 8
-memory banks. This is referred to as Non Uniform Memory Access (NUMA) memory.
-All these 8 memory banks are connected by either an intra processor network or
-an intra node network. All the memory is cache-coherent so from a programmers
-point of view all the memory is accessible and equivalent.  As the access to
-the memory vary it’s important to place processes close to the memory  being
-used. This is often a challenge. To display the NUMA banks and see more more
-detailed information issue the command `numactl -H`. More details on this
+Each compute node has 256 GiB of memory being organised in 8 banks of 32 GiB
+each. Every processor has four memory controllers each being responsible for
+one bank. Furthermore, every virtual core in a processor is assigned to one memory
+controller which results in different paths to access memory. Memory accesses
+may have to traverse an intra-processor network (another controller within the
+same processor is responsible for the memory address being accessed) or an
+intra-node network (another controller of the other processor is responsible for
+the memory address being accessed). This memory organisation is referred to as
+Non Uniform Memory Access (NUMA) memory. A NUMA node comprises of a memory bank
+and a subset of the virtual cores. The best performance is achieved when
+processes and the memory they access (frequently) are placed close to each other, or
+in other words, within one NUMA node.
+
+Additionally, the compute nodes implement cache coherent NUMA (ccNUMA) memory
+which ensures that programs see a consistent memory image. Cache coherence requires
+intra-node communication if different caches store the same memory location.
+Hence, the best performance is achieved when the same memory location is not
+stored in different caches. Typically this happens when processes need access to
+some shared data, e.g., at boundaries of regions they iterate over. Limiting or even
+avoiding these accesses is often a challenge.
+
+To display information about the NUMA nodes use the command `numactl -H`. More details on this
 later.
 
 
