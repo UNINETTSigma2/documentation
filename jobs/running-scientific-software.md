@@ -65,21 +65,6 @@ numbers 0-127, no process will share executional units with any other process.
 Both Intel MPI and OpenMPI provide means to achieve such placements. See
 examples below.
 
-#### Memory - NUMA
-
-Each (standard) compute node have 256 GiB of memory. However, not all memory is
-equal from a core’s point of view. The nature of a processor is such that there
-are four memory controllers in each processor, each with a portion of the
-memory. Since there are two sockets and to processors there is a total of 8
-memory banks. This is referred to as Non Uniform Memory Access (NUMA) memory.
-All these 8 memory banks are connected by either an intra processor network or
-an intra node network. All the memory is cache-coherent so from a programmers
-point of view all the memory is accessible and equivalent.  As the access to
-the memory vary it’s important to place processes close to the memory  being
-used. This is often a challenge. To display the NUMA banks and see more more
-detailed information issue the command `numactl -H`. More details on this
-later.
-
 
 #### Memory - NUMA
 
