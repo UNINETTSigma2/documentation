@@ -178,7 +178,6 @@ least common instruction set is set is selected yielding lower performance.  To
 instruct MKL to use a more suitable instruction set a debug variable can be
 set, e.g. `export  MKL_DEBUG_CPU_TYPE=5`.
 
-This flag does not work for Intel compiler distribution 2020 and and newer.
 <div class="alert alert-info">                                                   
   <p>                                                                            
     The MKL_DEBUG_CPU_TYPE flag does not work for Intel compiler distribution    
