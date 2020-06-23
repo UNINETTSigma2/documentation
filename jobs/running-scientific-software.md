@@ -4,11 +4,15 @@
 
 ## Introduction
 
-Running scientific software on current modern HPC systems is a rather
-complicated issue. The system is quite complex with interconnects, nodes,
+Running scientific software on current modern HPC systems is a demanding task
+even for experts. The system design is quite complex with interconnects, nodes,
 shared and distributed memory on a range of levels, a large number of both
 cores with threading within a core and not to mention all the software
 libraries and run time settings.
+
+This document provides some background information to better understand details
+of various system compenents, and tries to illustrate how to make use of that
+information for using modern HPC systems in the best possible way.
 
 
 ### Hardware
@@ -16,10 +20,10 @@ libraries and run time settings.
 #### Interconnect - InfiniBand
 
 A cluster (using Betzy as the example) contains a rather large number of nodes
-(Betzy 1344) with an interconnect that enable efficient delivery of messages
+(Betzy 1344) with an interconnect that enables efficient delivery of messages
 (Message Passing Interface, MPI) between the nodes. On Betzy Mellanox
 InfiniBand is used, in a HDR-100 configuration.  The HDR (High Data Rate)
-standard is 200 Gbits/s and HDR 100 is half of this. This is a tradeoff, as
+standard is 200 Gbits/s and HDR-100 is half of this. This is a tradeoff, as
 each switch port can accommodate two compute nodes. All the compute nodes are
 connected in a Dragonfly topology. (While not fully symmetrical, tests have
 shown that the slowdown by spreading the ranks randomly around the compute
@@ -32,24 +36,23 @@ single rack/cell etc).
 #### Processors and cores
 
 Each compute node contains two sockets with a 64 core AMD processor per socket.
-Each processor has 64 cores, each core has two threads (SMT see:
-https://en.wikipedia.org/wiki/Simultaneous_multithreading). This looks
-equivalent to 128 virtual cores per socket and 256 virtual cores per compute
-node. However, each pair of virtual cores is sharing the execution units.
-Running two compute jobs on two virtual cores sharing the same executional
-units will yield on half the performance. Hence mapping the processes and
-threads to the correct cores are very important to attain maximum performance.
-The virtual cores are numbered from 0 to 255.
+Each processor has 64 cores, each core supports two threads (SMT see:
+https://en.wikipedia.org/wiki/Simultaneous_multithreading). For applications
+this looks as if every compute node had 256 independent numbered from 0 to 255.
+Due to SMT, however, each pair of seemingly independent cores
+actually shares executing units of a phyiscal core. 
+Running two compute jobs on the two cores of such a pair will therefore only
+yield half of the expected performance. To achieve maximum performance from each
+physical core it is therefore important to pay attention to the mapping of processes
+to cores, that is, any two processes must not share a physical core.
 
-The following command can give insight on the counting : `cat /proc/cpuinfo |
-sed '/processor\|physical id\|core id/!d' ` It show that the first 128 cores
-listed are the first thread on each core, while from 128 to 255 the second
-thread in each core is listed. So if one limit the placement to only core
-number 0-127 no process will share executional units with another process. The
-Intel MPI has a special environment variable to achieve this, see later about
-running using Intel MPI. For OpenMPI a mapping option will provide the same
-function.
+The following command provides information about the numbering of cores: `cat /proc/cpuinfo |
+sed '/processor\|physical id\|core id/!d' ` The first 128 cores (0-127)
+listed correspond to the first thread on each core. Accordingly, the second 128 cores (128-255) correspond to the second
+thread on each core. So, if one limits the placement of processes to core
+numbers 0-127, no process will share executional units with another process.
 
+Both Intel MPI and OpenMPI provide means to achieve such placements. See examples below.
 
 #### Memory - NUMA
 
