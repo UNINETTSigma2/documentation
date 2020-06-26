@@ -184,7 +184,7 @@ the job script  and all environment variables will be listed.
 
 Most if the times the `mpirun` command can be used. The `mpirun` sets up the
 MPI environment and makes sure that everything is ready for the MPI function
-`init()` when it’s called in the start of any MPI program.
+`MPI_init()` when it’s called in the start of any MPI program.
 
 As Slurm is built with MPI support srun will also set up the MPI environment.
 
@@ -194,6 +194,12 @@ about which one is best. If you do development on small systems like your
 laptop or stand alone system there is generally no Slurm and mpirun is the only
 option, so mpirun will work on everything from Raspberry Pis through laptops to
 Betzy.
+
+Performance testing does not show any significant performance difference when 
+launching jobs in a normal way. There are, however a lot of possible 
+options to mpirun both OpenMPI and Intel MPI. Both environment flags and 
+command line options. 
+
 
 
 ## Library settings
@@ -210,6 +216,11 @@ set, e.g. `export  MKL_DEBUG_CPU_TYPE=5`.
    2020 and and newer.                                                          
   </p>                                                                           
 </div>
+
+Users are adviced to check if there is any performance difference between 
+Intel 2019b and the 2020 versions. It's not adviced to mix the Compiler and
+MLK versions, e.g. building using 2020 and then link with MKL 2019. 
+
 
 ## Memory architecture
 
@@ -414,6 +425,21 @@ For more optimal performance process binding can be introduced, like for
 OpenMPI: `--bind-to core`
 
 
+#### Memory bandwidth sensitive applications
+
+Some applications are very sensitive to memory bandwidth
+and consequently will benefit from having fewer ranks per node than the number 
+of cores, like running only 64 ranks per node. 
+Using `#SBATCH --ntasks-per-node=64` and then lauch using something like:
+```
+mpirun --map-by slot:PE=2 --bind-to core ./a.out
+mpirun --map-by ppr:32:socket:pe=2 --bind-to core ./a.out
+```
+Tests have shown that more than 2x in performance is possible, but using twice 
+as many nodes. Twice the number of nodes will yield twice the aggregated 
+memory bandwith. Needless to say also twice as many core hours.  
+
+
 ### Running  MPI-OpenMP - Hybrid applications
 
 For large core count a pure MPI solution is often not optimal. Like HPL (the
@@ -439,15 +465,16 @@ There are a lot of environment variables to be used with Intel MPI, they all sta
 The variable I_MPI_PIN_DOMAIN is good when running hybrid codes, setting it to
 the number of threads per rank will help the launcher to place the ranks
 correct. Setting I_MPI_PIN_PROCESSOR_EXCLUDE_LIST=128-255 will make sure only
-physical cores 0-127 are used for MPI ranks. This ensures that no two ranks
-share the same physical core
+cores 0-127 are used for MPI ranks. This ensures that no two ranks
+share the same physical core. 
 
 
 #### OpenMPI
 
 There is currently some issues with mapping of threads started by MPI
 processes. These threads are scheduled/placed on the same core as the MPI rank
-itself.
+itself. The issue seems to be an openMP issue with GNU OpenMP. We are working to
+resolve this issue. 
 
 
 ### Create a hostfile or machinefile
