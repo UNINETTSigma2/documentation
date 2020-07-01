@@ -58,7 +58,8 @@ created. Access to the shared project area is at the Project Leader's (PL) sole 
 For example, if the PL of the project owning the file group `acme` wants 
 `/cluster/shared/acme/inventory_db` to be world readable, the project leader is allowed to do this 
 (e.g., by running, `chmod -R o+r /cluster/shared/acme/inventory_db`).
-Note that the shared project areas must contain no private data.
+Note that the shared project areas must contain no private data. Also note that
+you should never set any area to world writable.
 
 For accounting purposes, the group ownerships are regularly controlled, and
 in case needed, reset.
