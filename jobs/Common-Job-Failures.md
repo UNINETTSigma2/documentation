@@ -18,5 +18,5 @@ Since the clusters are shared resources, we have quotas in place to prevent any 
 When a group or user reaches the quota, files cannot  be created due to the cause 'Disk Quota Exceeded'. 
 This will often kill jobs that need to write output or log files.
  
-There could be different quota settings for $HOME, $PROJECT and any other area in addition to a File count quota, please find more details [here.](https://documentation.sigma2.no/files_storage/clusters.html#frequently-asked-questions)
+There could be different quota settings for $HOME, $PROJECT and any other area in addition to a File count quota. If some of the areas are at the maximum capacity, consider deleting or moving some of the files. Please find more details [here.](https://documentation.sigma2.no/files_storage/clusters.html#frequently-asked-questions)
 
