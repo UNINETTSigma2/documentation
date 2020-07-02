@@ -135,6 +135,14 @@ In addition to geo-replication NIRD supports snapshots of project areas
 and home directories allowing for recovery of deleted data.
 For more information, visit the [backup](backup.md) page.
 
+### NIRD Toolkit
+
+The NIRD toolkit allows pre/post processing analysis, 
+data intensive processing, visualization, artificial intelligence and machine learning platform.
+The NIRD toolkit services have access to your NIRD Project area.
+The available services can be found at the documentation of 
+[NIRD Toolkit](https://www.sigma2.no/nird-toolkit) .
+
 
 ### Mounts on HPC
 
