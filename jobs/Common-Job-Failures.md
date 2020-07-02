@@ -20,7 +20,5 @@ This will often kill jobs that need to write output or log files.
  
 There are different quota for $HOME and $PROJECT. Additionally there is a File count quota that 
 restrict the number of files that can be created. If the $HOME is at maximum capacity , please 
-move some files to the $PROJECT or delete unnecessary files.
-It is important to change group ownership from 'username_g' to 'username' while moving your files 
-so that you get the benefit of moving your files.
+move some files to the $PROJECT or delete unnecessary files. For further details please see [here.](https://documentation.sigma2.no/files_storage/clusters.html)
 
