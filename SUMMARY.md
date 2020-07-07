@@ -8,6 +8,7 @@
 * [Lost or expiring password](getting_help/lost_forgotten_password.md)
 * [Applying for user accounts](getting_help/applying_account.md)
 * [Applying for resources](getting_help/applying_resources.md)
+* [Project leader support](getting_help/project_leader_support.md)
 
 ## Getting started
 * [Overview](frontpage.md)
@@ -78,6 +79,7 @@
 * [Running scientific software](jobs/running-scientific-software.md)
 * [Monitoring jobs](jobs/monitoring.md)
     * [Job states](jobs/monitoring/job_states.md)
+* [Common job failures](jobs/Common-Job-Failures.md)
 * [Performance and scaling](jobs/performance.md)
     * [Fram](jobs/arm-perf/fram.md)
     * [Saga](jobs/arm-perf/saga.md)
