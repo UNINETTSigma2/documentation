@@ -1,7 +1,6 @@
 
-
 # Applying for computing and storage
 
-Applications for computing and storage resources should be sent to
-<sigma2@uninett.no>, as Sigma2 provides support services for all issues related
-to administration of the national resource allocation.
+Applications for computing and storage resources should be submitted through Metacenter Administration System (MAS).
+
+Please refer to the information on [this page](https://www.sigma2.no/apply-e-infrastructure-resources) for more details.
