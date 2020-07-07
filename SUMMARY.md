@@ -9,6 +9,7 @@
 * [Applying for user accounts](getting_help/applying_account.md)
 * [Applying for resources](getting_help/applying_resources.md)
 * [Project leader support](getting_help/project_leader_support.md)
+* [Advanced User Support](getting_help/advanced_user_support.md)
 
 ## Getting started
 * [Overview](frontpage.md)
