@@ -80,6 +80,7 @@
 * [Running scientific software](jobs/running-scientific-software.md)
 * [Monitoring jobs](jobs/monitoring.md)
     * [Job states](jobs/monitoring/job_states.md)
+* [Monitor CPU and Memory](jobs/monitor_CPU_and_Memory.md)
 * [Common job failures](jobs/Common-Job-Failures.md)
 * [Performance and scaling](jobs/performance.md)
     * [Fram](jobs/arm-perf/fram.md)
