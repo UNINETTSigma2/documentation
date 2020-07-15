@@ -45,27 +45,16 @@ period_.  Historical usage can be found [here](https://www.metacenter.no/mas/pro
 
 ### Accounting
 
-<div class="alert alert-warning">
-  <h4>Do not ask for a lot more memory than you need</h4>
-  <p>
-    A job that asks for many CPUs but little memory will be billed
-    for its number of CPUs, while a job that asks for a lot of memory but
-    few CPUs, will be billed for its memory requirement.
-  </p>
-  <p>
-    If you ask for a lot more memory than you need, you might be surprised
-    that your job will bill your project a lot more than you expected.
-  </p>
-  <p>
-    If you ask for a lot more memory than you need, your job may queue much
-    longer than it would asking for less memory.
-  </p>
-</div>
-
 The term "CPU hour" above is an over-simplification.  Jobs are
 accounted for both CPU and memory usage, as well as usage of GPUs.
 (Currently, jobs on Fram are only accounted for their CPU usage, but
 this will change soon.)
+
+This also means that it is important that you
+[do not ask for a lot more memory than you need](/jobs/choosing_memory_settings.html),
+otherwise you can get billed
+for a lot more than you use, and your jobs may queue for a lot longer than you
+would like to. In addition this can also block resources for others.
 
 Accounting is done in terms of _billing units_, and the quota is in
 _billing unit hours_.  Each job is assigned a number of billing units
