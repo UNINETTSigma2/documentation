@@ -35,6 +35,10 @@
 Please read the above box, please share this with your colleagues and students.
 A significant portion of resources risks to be wasted if you ask for too much memory.
 
+This is because memory and CPU are not completely independent. If I ask for too
+much memory, I also block the compute resources which carry that memory
+resource at the same time.
+
 A too generous "better safe than sorry" approach to memory allocation leads to these problems:
 - Your compute account gets charged too much (problem for you and your
   allocation group, as well as for the tax payer financing these compute
@@ -58,6 +62,12 @@ Remember to check the [Slurm documentation](https://slurm.schedmd.com/squeue.htm
 and [HPC machines](/hpc_machines/hardware_overview.md)
 to verify that you are submitting the right job to the right partition and
 right hardware.
+
+Speaking of right partition, one way to get more memory if a node is not enough
+is to spread the job over several nodes by asking for more cores than needed. But this comes
+at the price of paying for more resources, queuing longer, and again blocking others.
+A good alternative is often to get access to "highmem" nodes which are designed for jobs
+with high memory demand.
 
 
 ## How to find out how much memory you need
