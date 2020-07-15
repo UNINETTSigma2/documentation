@@ -1,7 +1,6 @@
 
 
-
-# Monitor CPU and Memory
+# How to choose the right amount of memory
 
 ##  General Note
 
