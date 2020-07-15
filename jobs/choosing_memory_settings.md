@@ -20,6 +20,15 @@
   </p>
 </div>
 
+- [Why it matters](#why-it-matters)
+- [How to find out how much memory you need](#how-to-find-out-how-much-memory-you-need)
+   - [By using the Slurm browser](#by-using-the-slurm-browser)
+   - [By checking the Slurm output generated with your job](#by-checking-the-slurm-output-generated-with-your-job)
+   - [By using sacct](#by-using-sacct)
+   - [By prepending your binary with time](#by-prepending-your-binary-with-time)
+   - [By using Arm Performance Reports](#by-using-arm-performance-reports)
+   - [By reducing the memory parameter until a job fails](#by-reducing-the-memory-parameter-until-a-job-fails)
+
 
 ## Why it matters
 
@@ -110,6 +119,64 @@ job is shorter than 30 seconds, it will show that your calculation consumed
 zero memory which is probably wrong.  The sampling rate also means that if your
 job contains short peaks of high memory consumption, the sampling may
 completely miss these.
+
+
+### By using sacct
+
+This creates a short version of the above.
+
+As an example, I want to know this for my job which had the number `999107`:
+```
+$ sacct -j 999107 --format=MaxRSS
+
+    MaxRSS
+----------
+
+  1562896K
+         0
+```
+
+From this I see that the job needed
+`1562896K` memory (1562896 KB), so around 1.5 GB.
+
+
+### By prepending your binary with time
+
+In your job script instead of running `./mybinary` directly, prepend it with `/usr/bin/time -v`:
+```
+# ... rest of the job script
+
+/usr/bin/time -v ./mybinary
+```
+
+Then in the Slurm output we find:
+```
+Command being timed: "./mybinary"
+User time (seconds): 0.18
+System time (seconds): 0.34
+Percent of CPU this job got: 1%
+Elapsed (wall clock) time (h:mm:ss or m:ss): 0:31.54
+Average shared text size (kbytes): 0
+Average unshared data size (kbytes): 0
+Average stack size (kbytes): 0
+Average total size (kbytes): 0
+Maximum resident set size (kbytes): 1563320
+Average resident set size (kbytes): 0
+Major (requiring I/O) page faults: 9
+Minor (reclaiming a frame) page faults: 1525
+Voluntary context switches: 25
+Involuntary context switches: 2
+Swaps: 0
+File system inputs: 1553
+File system outputs: 0
+Socket messages sent: 0
+Socket messages received: 0
+Signals delivered: 0
+Page size (bytes): 4096
+Exit status: 0
+```
+
+The relevant information in this context is `Maximum resident set size (kbytes)`.
 
 
 ### By using Arm Performance Reports
