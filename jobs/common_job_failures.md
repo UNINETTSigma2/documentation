@@ -25,9 +25,12 @@ You can fix this by requesting more memory in you job script:
 #SBATCH --mem-per-cpu=1G
 ```
 
-But don't ask for way too much memory either (we will later here explain why).
+**But don't ask for way too much memory either**, otherwise you can get billed
+for a lot more than you use, and your jobs may queue for a lot longer than you
+would like to. In addition this can also block resources for others.
 
-(Here we will later link to information on how you can find out how much memory your job really needs.)
+[Here](/jobs/choosing_memory_settings.html) you can find out
+how much memory your job really needs.
 
 
 ## Disk quota exceeded
