@@ -81,7 +81,7 @@
 * [Monitoring jobs](jobs/monitoring.md)
     * [Job states](jobs/monitoring/job_states.md)
 * [Monitor CPU and Memory](jobs/monitor_CPU_and_Memory.md)
-* [Common job failures](jobs/Common-Job-Failures.md)
+* [Common job failures](jobs/common_job_failures.md)
 * [Performance and scaling](jobs/performance.md)
     * [Fram](jobs/arm-perf/fram.md)
     * [Saga](jobs/arm-perf/saga.md)
