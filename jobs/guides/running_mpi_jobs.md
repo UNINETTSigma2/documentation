@@ -71,6 +71,15 @@ set using an environment variable.
 
 ### `mpirun`
 
+<div class="alert alert-warning">
+  <h4>On Saga use srun, not mpirun</h4>
+  <p>
+    mpirun can get the number of tasks wrong and also lead to wrong task
+    placement. We don't fully understand why this happens. When using srun
+    instead of mpirun or mpiexec, we observe correct task placement on Saga.
+  </p>
+</div>
+
 For those familiar with the OpenMPI tools, MPI applications can also
 be started using the `mpirun` command:
 
@@ -101,6 +110,15 @@ with all ranks) will likely experience a slowdown.
 ## Intel MPI
 
 ### `mpirun`
+
+<div class="alert alert-warning">
+  <h4>On Saga use srun, not mpirun</h4>
+  <p>
+    mpirun can get the number of tasks wrong and also lead to wrong task
+    placement. We don't fully understand why this happens. When using srun
+    instead of mpirun or mpiexec, we observe correct task placement on Saga.
+  </p>
+</div>
 
 At this moment, for performance reasons `mpirun` is the preferred way
 to start applications that use Intel MPI:
