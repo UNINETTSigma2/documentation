@@ -78,6 +78,7 @@
     * [Saga](jobs/job_scripts/saga_job_scripts.md)
 	    * [Sample MPI Job](jobs/job_scripts/saga/saga_sample_mpi_job.md)
 * [Running scientific software](jobs/running-scientific-software.md)
+* [Singularity and Docker containers](jobs/containers.md)
 * [Monitoring jobs](jobs/monitoring.md)
     * [Job states](jobs/monitoring/job_states.md)
 * [Choosing memory settings](jobs/choosing_memory_settings.md)
