@@ -124,6 +124,9 @@ This is because Singularity needs root rights to build the container.
 We will later
 upload the generated container file to the cluster.
 
+You need to have Singularity installed on your laptop for this to work
+(follow e.g. https://sylabs.io/guides/3.3/user-guide/installation.html).
+
 We start with the following definitions file (`example.def`; this is a simplified
 version based on the example in https://sylabs.io/guides/3.3/user-guide/mpi.html):
 ```
