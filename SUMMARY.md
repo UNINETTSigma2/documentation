@@ -33,6 +33,7 @@
 * [Installed Software](software/installed_software.md)
   * [List of installed software on Fram](software/installed_software/fram_modules.md)
   * [List of installed software on Saga](software/installed_software/saga_modules.md)
+* [Singularity and Docker containers](software/containers.md)
 * [Application guides](software/appguides.md)
   * [CDO](software/application_guides/cdo.md)
   * [CESM](software/application_guides/cesm.md)
