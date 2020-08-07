@@ -49,8 +49,8 @@ If you are new here, you might want to learn the basics first here:
 * [Support line](getting_help/support_line.md)
 * [Writing good support requests](getting_help/how_to_write_good_support_requests.md)
 * [Lost or expiring password](getting_help/lost_forgotten_password.md)
-* [Applying for user accounts](getting_help/applying_account.md)
-* [Applying for resources](getting_help/applying_resources.md)
+* [Applying for user accounts](getting_started/applying_account.md)
+* [Applying for resources](getting_started/applying_resources.md)
 
 
 ## Current status and announcements

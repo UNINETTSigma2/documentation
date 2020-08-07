@@ -6,13 +6,13 @@
 * [Support line](getting_help/support_line.md)
 * [Writing good support requests](getting_help/how_to_write_good_support_requests.md)
 * [Lost or expiring password](getting_help/lost_forgotten_password.md)
-* [Applying for user accounts](getting_help/applying_account.md)
-* [Applying for resources](getting_help/applying_resources.md)
 * [Project leader support](getting_help/project_leader_support.md)
 * [Advanced User Support](getting_help/advanced_user_support.md)
 
 ## Getting started
 * [Overview](frontpage.md)
+* [Applying for user accounts](getting_started/applying_account.md)
+* [Applying for resources](getting_started/applying_resources.md)
 * [Getting Started](getting_started/getting_started.md)
     * [Remote Desktop](getting_started/getting_started/remote-desktop.md)
     * [Shell](getting_started/getting_started/shell.md)

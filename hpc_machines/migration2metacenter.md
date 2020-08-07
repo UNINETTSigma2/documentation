@@ -13,7 +13,7 @@ For users either being novel to HPC in general, or having experience from other 
 ## Major steps in migrating to a Metacenter HPC machines
 
 * Read this documentation.
-* Get an [account](/getting_help/applying_account.md) and [project](/getting_help/applying_resources.md) quota.
+* Get an [account](/getting_started/applying_account.md) and [project](/getting_started/applying_resources.md) quota.
 * Become aware of differences in disk quota, module system, job types, running jobs, how to get help, file system policies.
 * Transfer data, scripts etc from other machines to the new machine.
 * Modify scripts & routines to match differences on the new machine.
