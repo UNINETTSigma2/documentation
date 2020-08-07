@@ -52,7 +52,6 @@ report is generated.
 
 ## Profiling a batch script
 
-
 Let us consider the following example job script as your
 usual computation which you wish to profile:
 
@@ -95,6 +94,7 @@ export ALLINEA_DEBUGGER_USER_FILE=gdbfile
 perf-report srun ./myexample.x
 ```
 
+This works the same way on Saga, Fram, and Betzy.
 In other words, add 3 lines, replace `srun` or `mpirun -n ${SLURM_NTASKS}` by
 `perf-report srun`.
 
@@ -128,6 +128,10 @@ $ srun --nodes=1 --ntasks-per-node=4 --mem-per-cpu=1G --time=00:30:00 --qos=deve
 or Fram:
 ```bash
 $ srun --nodes=1 --ntasks-per-node=32 --time=00:30:00 --qos=devel --account=myaccount --pty bash -i
+```
+or Betzy:
+```bash
+$ srun --nodes=1 --ntasks-per-node=128 --time=00:30:00 --qos=devel --account=myaccount --pty bash -i
 ```
 
 Once you get the interactive node, you can run the profile:
