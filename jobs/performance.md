@@ -32,6 +32,10 @@ example_128p_4n_1t_2020-05-23_18-04.html
 example_128p_4n_1t_2020-05-23_18-04.txt
 ```
 
+Note, however, that the job has to finish within the allocated time for the
+report to be generated.  So if the job times out, there is a risk that no
+report is generated.
+
 
 ## Do I need to recompile the code?
 
