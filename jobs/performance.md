@@ -1,9 +1,6 @@
 
 
-# How to check the performance and scaling
-
-
-## Arm Performance Reports
+# How to check the performance and scaling using Arm Performance Reports
 
 [Arm Performance Reports](https://developer.arm.com/docs/101137/latest/contents)
 is a performance evaluation tool which is simple to use, produces a
@@ -27,16 +24,6 @@ or
 > Significant time is spent on memory accesses. Use a profiler
 to identify time-consuming loops and check their cache performance.
 
-
-### To profile a statically linked binary, you need to recompile
-
-You can use Arm Performance Reports on dynamically linked binaries without recompilation.
-However, you may have to recompile statically linked binaries
-(for this please consult the [official documentation](https://developer.arm.com/docs/101137/2003)).
-
-
-### A successful run will produce two files
-
 A successful Arm Performance Reports run will produce two files, a HTML summary
 and a text file summary, like in this example:
 
@@ -46,13 +33,109 @@ example_128p_4n_1t_2020-05-23_18-04.txt
 ```
 
 
-### Using Arm Performance Reports on Fram and Saga
+## Do I need to recompile the code?
 
-- [Fram](arm-perf/fram.md)
-- [Saga](arm-perf/saga.md)
+- You can use Arm Performance Reports on dynamically linked binaries without
+  recompilation.  However, you may have to recompile statically linked binaries
+  (for this please consult the
+  [official documentation](https://developer.arm.com/docs/101137/2003)).
+- Due to a bug in older versions of OpenMPI, on Fram Arm Performance
+  Reports works only with OpenMPI version 3.1.3 and newer. If you have
+  compiled your application with OpenMPI 3.1.1, you don't need to
+  recompile it. Simply load the 3.1.3 module - those versions are
+  compatible.
 
 
-### Use cases and pitfalls
+## Profiling a batch script
+
+
+Let us consider the following example job script as your
+usual computation which you wish to profile:
+
+```bash
+#!/bin/bash -l
+
+# all your SBATCH directives
+#SBATCH --account=myaccount
+#SBATCH --job-name=without-apr
+#SBATCH --time=0-00:05:00
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=32
+
+# recommended bash safety settings
+set -o errexit  # make bash exit on any error
+set -o nounset  # treat unset variables as errors
+
+srun ./myexample.x  # <- we will need to modify this line
+```
+
+To profile the code you don't need to modify any of the `#SBATCH` part.
+All we need to do is to load the `Arm-PerfReports/20.0.3` module
+and to modify the `srun` command to instead use
+[perf-report](https://developer.arm.com/docs/101137/latest/running-with-an-example-program):
+
+```bash
+#!/bin/bash -l
+
+# ...
+# we kept the top of the script unchanged
+
+# we added this line:
+module load Arm-PerfReports/20.0.3
+
+# we added these two lines:
+echo "set sysroot /" > gdbfile
+export ALLINEA_DEBUGGER_USER_FILE=gdbfile
+
+# we added perf-report in front of srun
+perf-report srun ./myexample.x
+```
+
+In other words, add 3 lines, replace `srun` or `mpirun -n ${SLURM_NTASKS}` by
+`perf-report srun`.
+
+That's it.
+
+Why are these two lines needed?
+```bash
+echo "set sysroot /" > gdbfile
+export ALLINEA_DEBUGGER_USER_FILE=gdbfile
+```
+We have a Slurm plug-in that (deliberately) detaches a job from the global mount
+name space in order to create private versions of `/tmp` and `/var/tmp` (i.e.,
+bind mounted) for each job. This is done both so jobs cannot see other jobs'
+`/tmp` and `/var/tmp`, and also so that we avoid filling up (the global) `/tmp`
+and `/var/tmp` (since we allow more than one job per compute node, we cannot
+clean these directories after each job - we don't know which job created the
+files). However, for `perf-report` to work with this setup we need to set GDB's
+sysroot to `/`.
+
+
+## Profiling on an interactive compute node
+
+To run interactive tests one needs to submit
+[an interactive job](/jobs/interactive_jobs.md)
+to Slurm using `srun` (**not** using `salloc`), e.g.:
+
+First obtain an interactive compute node (adjust "myaccount"), on Saga:
+```bash
+$ srun --nodes=1 --ntasks-per-node=4 --mem-per-cpu=1G --time=00:30:00 --qos=devel --account=myaccount --pty bash -i
+```
+or Fram:
+```bash
+$ srun --nodes=1 --ntasks-per-node=32 --time=00:30:00 --qos=devel --account=myaccount --pty bash -i
+```
+
+Once you get the interactive node, you can run the profile:
+```bash
+$ module load Arm-PerfReports/20.0.3
+$ echo "set sysroot /" > gdbfile
+$ export ALLINEA_DEBUGGER_USER_FILE=gdbfile
+$ perf-report srun ./myexample.x
+```
+
+
+## Use cases and pitfalls
 
 We demonstrate some pitfalls of profiling, and show how
 one can use profiling to reason about the performance of real-world
