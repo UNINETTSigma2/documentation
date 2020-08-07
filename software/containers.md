@@ -119,7 +119,9 @@ nodes.
 
 ### Creating a Singularity container from a definition file
 
-We do this step on our own laptop/computer, not on the cluster. We will later
+**We do this step on our own laptop/computer, not on the cluster**.
+This is because Singularity needs root rights to build the container.
+We will later
 upload the generated container file to the cluster.
 
 We start with the following definitions file (`example.def`; this is a simplified
