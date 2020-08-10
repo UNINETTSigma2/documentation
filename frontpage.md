@@ -10,6 +10,15 @@ joint collaboration between the four oldest Universities in Norway
 [UiT](https://uit.no)) and [Sigma2](https://www.sigma2.no/).
 
 
+### Text is licensed CC-BY
+
+Unless explicitly noted, all text on this website is made available under the
+[Creative Commons Attribution license (CC-BY-4.0)](https://creativecommons.org/licenses/by/4.0/)
+with attribution to the Sigma2/Metacenter.
+
+<img src="/img/cc-by.png" alt="CC-BY icon" width="15%">
+
+
 ### Acknowledging use of national HPC infrastructure
 
 Projects are required to acknowledge the use of the national e-infrastructure
