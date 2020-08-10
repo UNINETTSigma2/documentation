@@ -13,6 +13,7 @@
 * [Overview](frontpage.md)
 * [Applying for user accounts](getting_started/applying_account.md)
 * [Applying for resources](getting_started/applying_resources.md)
+* [Training material](getting_started/training.md)
 * [Getting Started](getting_started/getting_started.md)
     * [Remote Desktop](getting_started/getting_started/remote-desktop.md)
     * [Shell](getting_started/getting_started/shell.md)
@@ -118,8 +119,3 @@
 * [Performance Analysis and Tuning](code_development/performance.md)
   * [VTune Amplifier](code_development/performance/vtune.md)
   * [Other Intel Tuning Tools](code_development/performance/intel_tuning.md)
-
-## Training
-* [Training calendar](https://www.sigma2.no/events)
-* [HPC carpentry](training/hpc_carpentry.md)
-* [Introduction to HPC training material](https://sabryr.github.io/hpc-intro/)
