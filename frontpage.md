@@ -1,121 +1,85 @@
 # The Norwegian Academic HPC Services
 
+The Norwegian academic HPC infrastructure is maintained by the
+[Sigma2 Metacenter](https://sigma2.no/metacenter), which is a
+joint collaboration between
+[UiO](https://uio.no), [UiB](https://uib.no), [NTNU](https://ntnu.no),
+[UiT](https://uit.no), and [UNINETT Sigma2](https://www.sigma2.no/).
 
-## Introduction
+This website (<https://documentation.sigma2.no/>) holds technical documentation about
+the compute and storage resources. For more general information and service overview, please also see
+<https://www.sigma2.no>.
 
-The current Norwegian academic HPC infrastructure is maintained by an
-organization called the [Metacenter](https://sigma2.no/metacenter), which is a
-joint collaboration between the four oldest Universities in Norway
-([UiO](https://uio.no), [UiB](https://uib.no), [NTNU](https://ntnu.no) and
-[UiT](https://uit.no)) and [Sigma2](https://www.sigma2.no/).
+**Latest news and announcements** are posted at
+the [Metacenter OpsLog](https://opslog.sigma2.no)
+and the [@MetacenterOps](https://twitter.com/MetacenterOps) Twitter channel.
+
+---
+
+## Compute, storage, pre/post-processing, visualization, machine learning
+
+We offer compute resources ([Betzy](hpc_machines/betzy.md),
+[Fram](hpc_machines/fram.md), [Saga](hpc_machines/saga.md), and
+[Stallo](https://hpc-uit.readthedocs.io)), storage resources
+([NIRD](files_storage/nird.md)), as well as the [NIRD
+Toolkit](https://www.sigma2.no/nird-toolkit) platform for pre- and post-processing
+analysis, data intensive processing, visualization, artificial intelligence,
+and machine learning.
 
 
-### Text is licensed CC-BY
+## First time on a supercomputer?
 
-Unless explicitly noted, all text on this website is made available under the
-[Creative Commons Attribution license (CC-BY-4.0)](https://creativecommons.org/licenses/by/4.0/)
-with attribution to the Sigma2/Metacenter.
+Please read the **GETTING STARTED** section (left sidebar).  In the sidebar
+overview you will also find technical details about the machines, instructions
+for using installed software, for submitting jobs, storage, and code
+development.
 
-<img src="/img/cc-by.png" alt="CC-BY icon" width="15%">
+Please do not hesitate to write to [support@metacenter.no](mailto:support@metacenter.no)
+if you find documentation sections which are
+not clear enough or have suggestions for improvements. Such a feedback is very
+important to us and will count.
 
 
-### Acknowledging use of national HPC infrastructure
+## How to get the most out of your allocation
+
+We want to support researchers in getting the most out of the high-performance
+computing services.
+When supporting users, we see that these problems are very frequent:
+- **Reusing outdated scripts** from colleagues without adapting them to optimal
+  parameters for the cluster at hand and thus leaving few cores idle.  Please
+  check at least how many cores there are on a particular cluster node.
+- **Requesting too much memory**
+  which leads to longer queuing and less resource usage.
+  Please check [how to choose memory settings](/jobs/choosing_memory_settings.md).
+- Requesting **more cores than the application can effectively use** without
+  studying the scaling of the application.  You will get charged more than
+  needed and others cannot run jobs. If others do this, your own jobs queue.
+- **Submitting jobs to the wrong queue** and then queuing longer than needed.
+  Please take some time to study the different job types.
+
+If you are unsure about these, please contact us via
+[support@metacenter.no](mailto:support@metacenter.no) and we will help
+you to use your allocated resources more efficiently so that you get your
+research results faster.
+
+---
+
+## Acknowledging use of national HPC infrastructure
 
 Projects are required to acknowledge the use of the national e-infrastructure
 resources in their scientific publications. Papers, presentations and other
-publications that feature work that relied on Sigma2 should include such an
-acknowledgement.
-
-UNINETT Sigma2 has defined the following template for such acknowledgements:
-
+publications that feature work that relied on Sigma2 should include an
+acknowledgement following this template:
 ```
 The computations/simulations/[SIMILAR] were performed on resources provided by
 UNINETT Sigma2 - the National Infrastructure for High Performance Computing and
 Data Storage in Norway
 ```
 
----
+## Text is licensed CC-BY
 
-## For the beginner
+Unless explicitly noted, all text on this website is made available under the
+[Creative Commons Attribution license (CC-BY-4.0)](https://creativecommons.org/licenses/by/4.0/)
+with attribution to the Sigma2/Metacenter.
 
-If you are new here, you might want to learn the basics first here:
-
-* [Getting Started](/getting_started/getting_started.md)
-* [Latest changes and events](https://opslog.sigma2.no)
-* [Editing files](/getting_started/editing_files.md)
-* [Login using ssh keys](/getting_started/create_ssh_keys.md)
-
-
-## Training
-
-Our training resources are summarized [here](/getting_started/training.md).
-
-
-## Getting help and access
-
-* [Support line](getting_help/support_line.md)
-* [Writing good support requests](getting_help/how_to_write_good_support_requests.md)
-* [Lost or expiring password](getting_help/lost_forgotten_password.md)
-* [Applying for user accounts](getting_started/applying_account.md)
-* [Applying for resources](getting_started/applying_resources.md)
-
-
-## Current status and announcements
-
-* [Hardware live status](https://www.sigma2.no/hardware-status)
-* [Latest changes and events](https://opslog.sigma2.no)
-
---------------------------------
-
-## For advanced users
-
-#### Jobs
-
-* [Dos and Don'ts](jobs/dos_and_donts.md)
-* [Submitting jobs](jobs/submitting.md)
-* [Job Scripts](jobs/job_scripts.md)
-* [Monitoring jobs](jobs/monitoring.md)
-* [Interactive Jobs](jobs/interactive_jobs.md)
-* [Projects and accounting](jobs/projects_accounting.md)
-* [Guides](jobs/guides.md)
-
-#### Software
-
-* [Using Software](software/modulescheme.md)
-* [Installing software as user](software/userinstallsw.md)
-* [Installed Software](software/installed_software.md)
-* [Application guides](software/appguides.md)
-
-#### Storage and file management
-
-Fram and Saga use the NIRD storage system for storing archives for other
-research data. NOTUR projects have access to this geo-replicated storage
-through various methods.
-
-* [NIRD](files_storage/nird.md)
-* [Betzy, Fram and Saga](files_storage/clusters.md)
-* [Backup](files_storage/backup.md)
-* [Sharing files](files_storage/sharing_files.md)
-* [Transferring files](files_storage/file_transfer.md)
-* [Performance tips](files_storage/performance.md)
-    * [Lustre (Betzy, Fram and Stallo)](files_storage/performance/lustre.md)
-    * [BeeGFS (Saga)](files_storage/performance/beegfs.md)
-    * [What to avoid](files_storage/performance/what_to_avoid.md)
-
-#### Code development
-
-* [Compilers](code_development/compilers.md)
-* [Debugging](code_development/debugging.md)
-* [Performance Analysis and Tuning](code_development/performance.md)
-
----
-
-## About UNINETT Sigma2
-
-UNINETT Sigma2 AS manages the national infrastructure for computational science
-in Norway, and offers services in high performance computing and data storage.
-Visit https://www.sigma2.no for more information.
-
-Latest news and announcements from Metacenter are posted at <a
-href="https://opslog.sigma2.no" target="_blank">Metacenter OpsLog</a> and the
-@MetacenterOps Twitter channel.
+<img src="/img/cc-by.png" alt="CC-BY icon" width="15%">
