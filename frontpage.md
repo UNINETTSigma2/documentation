@@ -45,12 +45,10 @@ If you are new here, you might want to learn the basics first here:
 * [Editing files](/getting_started/editing_files.md)
 * [Login using ssh keys](/getting_started/create_ssh_keys.md)
 
-### Training
 
-* [Training calendar](https://www.sigma2.no/events)
-* [HPC carpentry](/training/hpc_carpentry.md)
-* [Introduction to HPC training material - UiO](https://sabryr.github.io/hpc-intro/)
-* [Introduction to HPC training and materials - NTNU](https://www.hpc.ntnu.no/ntnu-hpc-group/training/introduction-to-parallel-programming)
+## Training
+
+Our training resources are summarized [here](/getting_started/training.md).
 
 
 ## Getting help and access
