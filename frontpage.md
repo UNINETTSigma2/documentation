@@ -3,7 +3,7 @@
 The Norwegian academic HPC infrastructure is maintained by the
 [Sigma2 Metacenter](https://sigma2.no/metacenter), which is a
 joint collaboration between
-[UiO](https://uio.no), [UiB](https://uib.no), [NTNU](https://ntnu.no),
+[UiO](https://www.uio.no), [UiB](https://www.uib.no), [NTNU](https://www.ntnu.no),
 [UiT](https://uit.no), and [UNINETT Sigma2](https://www.sigma2.no/).
 
 This website (<https://documentation.sigma2.no/>) holds technical documentation about
