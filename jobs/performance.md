@@ -32,6 +32,10 @@ example_128p_4n_1t_2020-05-23_18-04.html
 example_128p_4n_1t_2020-05-23_18-04.txt
 ```
 
+Note, however, that the job has to finish within the allocated time for the
+report to be generated.  So if the job times out, there is a risk that no
+report is generated.
+
 
 ## Do I need to recompile the code?
 
@@ -47,7 +51,6 @@ example_128p_4n_1t_2020-05-23_18-04.txt
 
 
 ## Profiling a batch script
-
 
 Let us consider the following example job script as your
 usual computation which you wish to profile:
@@ -91,6 +94,7 @@ export ALLINEA_DEBUGGER_USER_FILE=gdbfile
 perf-report srun ./myexample.x
 ```
 
+This works the same way on Saga, Fram, and Betzy.
 In other words, add 3 lines, replace `srun` or `mpirun -n ${SLURM_NTASKS}` by
 `perf-report srun`.
 
@@ -124,6 +128,10 @@ $ srun --nodes=1 --ntasks-per-node=4 --mem-per-cpu=1G --time=00:30:00 --qos=deve
 or Fram:
 ```bash
 $ srun --nodes=1 --ntasks-per-node=32 --time=00:30:00 --qos=devel --account=myaccount --pty bash -i
+```
+or Betzy:
+```bash
+$ srun --nodes=1 --ntasks-per-node=128 --time=00:30:00 --qos=devel --account=myaccount --pty bash -i
 ```
 
 Once you get the interactive node, you can run the profile:
