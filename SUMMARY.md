@@ -8,6 +8,7 @@
 * [Lost or expiring password](getting_help/lost_forgotten_password.md)
 * [Project leader support](getting_help/project_leader_support.md)
 * [Advanced User Support](getting_help/advanced_user_support.md)
+* [Publish Research data](getting_help/publish_research_data.md)
 
 ## Getting started
 * [Overview](frontpage.md)
