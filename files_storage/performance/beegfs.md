@@ -2,7 +2,8 @@
 
 # Storage performance: BeeGFS filesystem (Saga)
 
-Striping in BeeGFS (`/cluster`) can be configured on a per-directory and per-file basis.
+Striping in BeeGFS (`/cluster`) cannot be re-configured on Saga by users, it can currently
+only be modified by system administrators.
 
 
 ## How to find out the current striping
