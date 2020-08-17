@@ -43,7 +43,8 @@ The maximum `%mem` limit will always be half of the physical memory pool given o
 
 As commented in the [performance-tips section](/files_storage/performance/lustre.md), there is an issue with very large temporary output files (termed RW files in Gaussian). It is advisable to slice them into smaller parts using the `lfs setstripe` command.
 
-Each user can change the default placement of the files it creates by striping files over several storage arrays, pr. folder basis. This is done with the following command:
+On Stallo, each user can change the default placement of the files it creates by striping files over several storage arrays, pr. folder basis (on Saga, file striping cannot be reconfigured by the user).
+This is done with the following command:
 
 	lfs setstripe -c 8 ${GAUSS_SCRDIR}
 
