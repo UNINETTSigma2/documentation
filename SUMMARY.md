@@ -100,6 +100,7 @@
     * [Job Array Howto](jobs/guides/job_array_howto.md)
     * [Running Job Steps in Parallel](jobs/guides/running_job_steps_parallel.md)
     * [Cleanup at Timeout](jobs/guides/cleanup_timeout.md)
+    * [TensorFlow on GPU](jobs/guides/tensorflow_gpu.md)
 
 ## Files and Storage
 * [NIRD](files_storage/nird.md)
