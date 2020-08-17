@@ -5,3 +5,4 @@
 * [Job Array Howto](guides/job_array_howto.md)
 * [Running Job Steps in Parallel](guides/running_job_steps_parallel.md)
 * [Cleanup at Timeout](guides/cleanup_timeout.md)
+* [TensorFlow on GPU](guides/tensorflow_gpu.md)
