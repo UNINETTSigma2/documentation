@@ -29,17 +29,17 @@ minimizing the amount of packages to load.
 <div class="alert alert-success">
 	<h6>Tip:</h6>
 	<p>
-		When loading modules pressing '&lttab&gt' gives you autocomplete
-		options
+		When loading modules pressing <code>&lttab&gt</code> gives you
+		autocomplete options
 	</p>
 </div>
 
 <div class="alert alert-success">
 	<h6>Tip:</h6>
 	<p>
-		It can be useful to do an initial 'module purge' to ensure
-		nothing from previous experiments is loaded before loading
-		modules for the first time.
+		It can be useful to do an initial <code>module purge</code> to
+		ensure nothing from previous experiments is loaded before
+		loading modules for the first time.
 	</p>
 </div>
 
@@ -47,8 +47,8 @@ minimizing the amount of packages to load.
 	<h6>Note:</h6>
 	<p>
 		Modules are regularly updated so if you would like a newer
-		version, than what is listed above, use 'module avail | less' to
-		browse all available packages.
+		version, than what is listed above, use <code>module avail |
+		less</code> to browse all available packages.
 	</p>
 </div>
 
@@ -103,7 +103,7 @@ $ module load Python/3.8.2-GCCcore-9.3.0
 	<h6>Note:</h6>
 	<p>
 		This has to be done on the login node so that we have access to
-		the internet and can download `pip` packages.
+		the internet and can download <code>pip</code> packages.
 	</p>
 </div>
 
@@ -374,9 +374,9 @@ can be accomplished with the [`tf.distribute.MirroredStrategy`][mirrored].
 <div class="alert alert-warning">
 	<h6>Note:</h6>
 	<p>
-		As of writing, the only the `MirroredStrategy` is fully
-		supported by `TensorFlow` which is limited to one node at a
-		time.
+		As of writing, only the <code>MirroredStrategy</code> is fully
+		supported by <code>TensorFlow</code> which is limited to one
+		node at a time.
 	</p>
 </div>
 
@@ -486,6 +486,207 @@ module list
 python $SLURM_SUBMIT_DIR/mnist.py
 ```
 
+## Distributed training on multiple nodes
+To utilize more than four GPUs we will turn to the [`Horovod`][hvd] project
+which supports several different machine learning libraries and is capable of
+utilizing `MPI`. `Horovod` is responsible for communicating between different
+nodes and perform gradient computation, averaged over the different nodes.
+
+Utilizing this library together with `TensorFlow 2` requires minimal changes,
+however, there are a few things to be aware of in regards to scheduling with
+`SLURM`. The following example is based on the [official `TensorFlow`
+example][hvd_tf_ex].
+
+To install `Horovod` you will need to create a `virtualenv` as described above.
+Then once activated install the `Horovod` package with support for
+[`NCCL`][nccl].
+
+```sh
+# This assumes that you have activated a 'virtualenv'
+# $ source tensor_env/bin/activate
+$ HOROVOD_GPU_OPERATIONS=NCCL pip install horovod
+```
+
+Then we can run our training using just a few modifications:
+
+```python
+#!/usr/bin/env python
+
+# Assumed to be 'mnist_hvd.py'
+
+import datetime
+import os
+import tensorflow as tf
+import horovod.tensorflow.keras as hvd
+
+# Initialize Horovod.
+hvd.init()
+
+# Extract number of visible GPUs in order to pin them to MPI process
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if hvd.rank == 0:
+    print(f"Found the following GPUs: '{gpus}'")
+# Allow memory growth on GPU, required by Horovod
+for gpu in gpus:
+    tf.config.experimental.set_memory_growth(gpu, True)
+# Since multiple GPUs might be visible to multiple ranks it is important to
+# bind the rank to a given GPU
+if gpus:
+    print(f"Rank '{hvd.local_rank()}/{hvd.rank()}' using GPU: '{gpus[hvd.local_rank()]}'")
+    tf.config.experimental.set_visible_devices(gpus[hvd.local_rank()], 'GPU')
+else:
+    print(f"No GPU(s) configured for ({hvd.local_rank()}/{hvd.rank()})!")
+
+# Access storage path for '$SLURM_SUBMIT_DIR'
+storage_path = os.path.join(os.environ['SLURM_SUBMIT_DIR'],
+                            os.environ['SLURM_JOB_ID'])
+
+# Load dataset
+mnist = tf.keras.datasets.mnist
+(x_train, y_train), _ = mnist.load_data()
+x_train = x_train / 255.
+
+# Create dataset for batching
+dataset = tf.data.Dataset.from_tensor_slices((x_train, y_train))
+dataset = dataset.repeat().shuffle(10000).batch(128)
+
+# Define learning rate as a function of number of GPUs
+scaled_lr = 0.001 * hvd.size()
+
+
+def create_model():
+    model = tf.keras.models.Sequential([
+        tf.keras.layers.Flatten(input_shape=(28, 28)),
+        tf.keras.layers.Dense(512, activation='relu'),
+        tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.Dense(10, activation='softmax')
+    ])
+    # Horovod: adjust learning rate based on number of GPUs.
+    opt = tf.optimizers.Adam(scaled_lr)
+    model.compile(optimizer=opt,
+                  loss=tf.losses.SparseCategoricalCrossentropy(from_logits=True),
+                  metrics=['accuracy'],
+                  experimental_run_tf_function=False)
+    return model
+
+
+# Create and display summary of model
+model = create_model()
+# Output, such as from the following command, is outputed into the '.out' file
+# produced by 'sbatch'
+if hvd.rank() == 0:
+    model.summary()
+
+# Create list of callback so we can separate callbacks based on rank
+callbacks = [
+    # Horovod: broadcast initial variable states from rank 0 to all other
+    # processes.  This is necessary to ensure consistent initialization of all
+    # workers when training is started with random weights or restored from a
+    # checkpoint.
+    hvd.callbacks.BroadcastGlobalVariablesCallback(0),
+
+    # Horovod: average metrics among workers at the end of every epoch.
+    #
+    # Note: This callback must be in the list before the ReduceLROnPlateau,
+    # TensorBoard or other metrics-based callbacks.
+    hvd.callbacks.MetricAverageCallback(),
+
+    # Horovod: using `lr = 1.0 * hvd.size()` from the very beginning leads to
+    # worse final accuracy. Scale the learning rate `lr = 1.0` ---> `lr = 1.0 *
+    # hvd.size()` during the first three epochs. See
+    # https://arxiv.org/abs/1706.02677 for details.
+    hvd.callbacks.LearningRateWarmupCallback(warmup_epochs=3,
+                                             initial_lr=scaled_lr,
+                                             verbose=1),
+]
+
+# Only perform the following actions on rank 0 to avoid all workers clash
+if hvd.rank() == 0:
+    # Tensorboard support
+    log_dir = os.path.join(os.environ['SLURM_SUBMIT_DIR'],
+                           "logs",
+                           "fit",
+                           datetime.datetime.now().strftime("%Y%m%d-%H%M%S"))
+    tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir,
+                                                          histogram_freq=1)
+    # Save model in TensorFlow format
+    model.save(os.path.join(storage_path, "model"))
+    # Create checkpointing of weights
+    ckpt_path = os.path.join(storage_path,
+                             "checkpoints",
+                             "mnist-{epoch:04d}.ckpt")
+    ckpt_callback = tf.keras.callbacks.ModelCheckpoint(
+        filepath=ckpt_path,
+        save_weights_only=True,
+        verbose=0)
+    # Save initial weights
+    model.save_weights(ckpt_path.format(epoch=0))
+    callbacks.extend([tensorboard_callback, ckpt_callback])
+
+verbose = 1 if hvd.rank() == 0 else 0
+# Train model with checkpointing
+model.fit(x_train, y_train,
+          steps_per_epoch=500 // hvd.size(),
+          epochs=100,
+          callbacks=callbacks,
+          verbose=verbose)
+```
+
+<div class="alert alert-warning">
+	<h6>Note:</h6>
+	<p>
+		When printing information it can be useful to use the <code>if
+		hvd.rank() == 0</code> idiom to avoid the same thing being
+		printed from every process.
+	</p>
+</div>
+
+This can then be scheduled with the following:
+
+```sh
+#!/usr/bin/bash
+
+#SBATCH --account=<your project account>
+#SBATCH --job-name=<fancy name>
+#SBATCH --partition=accel --gres=gpu:4
+#SBATCH --ntasks=6
+#SBATCH --ntasks-per-node=4
+#SBATCH --mem-per-cpu=8G
+#SBATCH --time=00:30:00
+
+# Purge modules and load tensorflow
+module purge
+module load TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4
+source $SLURM_SUBMIT_DIR/tensor_env/bin/activate
+# List loaded modules for reproducibility
+module list
+
+# Export settings expected by Horovod and mpirun
+export OMPI_MCA_pml="ob1"
+export HOROVOD_MPI_THREADS_DISABLE=1
+
+# Run python script
+srun python $SLURM_SUBMIT_DIR/mnist_hvd.py
+```
+
+Note especially the use of `--gress=gpu:4` which means that each node allocated
+for the job will get four GPUs. The `--ntasks-per-node=4` is necessary to force
+`SLURM` to allocate at most four task per available node, which corresponds to
+the number of GPUs per node on Saga. Also note that this means the example above
+will require two nodes without using all available compute - in effect
+oversubscribing. Due to this potential to oversubscribe it is recommended that
+you ask for a multiple of `4` for `--ntasks` to avoid oversubscribing and
+increase scheduling speed.
+
+<div class="alert alert-success">
+	<h6>Tip:</h6>
+	<p>
+		In the future it should be possible to use
+		<code>--gpus-per-task=1</code> instead to simplify and not
+		oversubscribe on GPUs.
+	</p>
+</div>
+
 [sigma2]: https://www.sigma2.no/
 [tensorflow]: https://www.tensorflow.org/
 [contact_sigma]: ../../getting_help/support_line.html
@@ -503,3 +704,6 @@ python $SLURM_SUBMIT_DIR/mnist.py
 [tensorflow_ckpt]: https://www.tensorflow.org/tutorials/keras/save_and_load
 [tensorboard]: https://www.tensorflow.org/tensorboard
 [mirrored]: https://www.tensorflow.org/guide/distributed_training#mirroredstrategy
+[hvd]: https://github.com/horovod/horovod
+[hvd_tf_ex]: https://github.com/horovod/horovod/blob/master/examples/tensorflow2_keras_mnist.py
+[nccl]: https://developer.nvidia.com/nccl
