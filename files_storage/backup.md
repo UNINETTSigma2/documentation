@@ -3,8 +3,9 @@
 <div class="alert alert-danger">
   <h4>Only home directories with enforced quotas are backed up</h4>
   <p>
-    Any $HOME area using more then 20 GiB is not backed up. To have your $HOME backed up,
-    you need to shrink the disk usage below the 20 GiB limit and
+    Any $HOME area using more then 20 GiB or more than 100000 files is
+    not backed up. To have your $HOME backed up, you need to shrink the
+    disk usage below the 20 GiB limit *and* below 100000 files *and*
     <a href="/getting_help/support_line.html">notify support</a>.
   </p>
   <p>
