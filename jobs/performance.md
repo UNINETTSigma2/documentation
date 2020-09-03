@@ -158,7 +158,7 @@ So if the job times out, there is a risk that no report is generated.
 
 If you run a job that always times out by design (in other words the job never
 terminates itself but is terminated by Slurm), there is a workaround **if you
-are running the profile on Fram**:
+are running the profile on Fram on no more than 64 cores**:
 
 As an example let us imagine we profile the following example:
 
