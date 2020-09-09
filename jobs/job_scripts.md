@@ -42,7 +42,6 @@ cluster, but two parameters must be present in (almost) any job:
   Required by all jobs.
 - `--time`, which specifies how long a job should be allowed to
   run.  If it has not finished within that time, it will be cancelled.
-  Required by all jobs except *optimist* jobs, where it is forbidden.
 
 The other parameters will be described in the sub pages for each cluster.
 
@@ -82,9 +81,7 @@ href="files/generic_job.sh">generic_job.sh</a> (you might have
 to right-click and select `Save Link As...` or similar).
 
 ## Wall Time Limit
-The wall time limit (`--time`) is required for all jobs except
-*optimist* jobs.  *Optimist* jobs don't have any fixed wall time
-limit, so `--time` is not allowed for them.
+The wall time limit (`--time`) is required for all jobs.
 
 The most used formats for the time specification is `DD-HH:MM:SS`
 and `HH:MM:SS`, where *DD* is days, *HH* hours, *MM* minutes and *SS*

@@ -123,20 +123,20 @@ For instance:
 
 	#SBATCH --account=MyProject
 	#SBATCH --job-name=MyJob
-    	#SBATCH --qos=devel
+	#SBATCH --qos=devel
 	#SBATCH --time=00:30:00
 	#SBATCH --ntasks=16
 
 ## Optimist
 
 _Optimist_ jobs are specified just like _normal_ jobs, except that
-they also must must specify `--qos=optimist`, and should *not*
-specify wall time limit.  They can on any node on Saga.
+they also must must specify `--qos=optimist`.  They can run on any
+node on Saga.
 
 An _optimist_ job can be scheduled if there are free resources at
 least 30 minutes when the job is considered for scheduling.  However,
 it can be requeued before 30 minutes have passed, so there is no
-gurarantee of a minimum run time.  When an _optimist_ job is requeued,
+_gurarantee_ of a minimum run time.  When an _optimist_ job is requeued,
 it is first sent a `SIGTERM` signal.  This can be trapped in order to
 trigger a checkpoint.  After 30 seconds, the job receives a `SIGKILL`
 signal, which cannot be trapped.
@@ -148,3 +148,4 @@ A simple _optimist_ job specification might be:
 	#SBATCH --partition=optimist
 	#SBATCH --mem-per-cpu=3G
 	#SBATCH --ntasks=16
+	#SBATCH --time=2:00:00

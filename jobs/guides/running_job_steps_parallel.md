@@ -42,7 +42,7 @@ A couple of notes:
 - The `export SLURM_MEM_PER_CPU=1920` prior to the `srun` lines is
   needed for jobs in the `normal` or `optimist` partitions on Fram, because it
   is not possible to specify this to `sbatch` for such jobs.
-  Alternatively, you can add `--mem-per-cpu=1920` or to the `srun`
+  Alternatively, you can add `--mem-per-cpu=1920` to the `srun`
   command lines (this only works with `srun`).  (1920 gives up to 32
   tasks per node.  If each task needs more than 1920 MiB per cpu, the
   number must be increased (and the number of tasks per node will be
