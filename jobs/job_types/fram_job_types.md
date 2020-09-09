@@ -147,7 +147,7 @@ _Optimist_ jobs get lower priority than other jobs, but will start as
 soon as there are free resources for at least 30 minutes.  However,
 when any other non-_optimist_ job needs its resources, the _optimist_
 job is stopped and put back on the job queue.  This can happen before
-the _optimist_ job has run 30 minutes, so there is no guaranteed
+the _optimist_ job has run 30 minutes, so there is no _guaranteed_
 minimum run time.
 
 Therefore, all _optimist_ jobs must use checkpointing, and access to

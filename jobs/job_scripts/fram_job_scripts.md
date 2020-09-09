@@ -154,13 +154,13 @@ For instance:
 ## Optimist
 
 _Optimist_ jobs are specified just like _normal_ jobs, except that
-they also must must specify `--qos=optimist`, and should *not*
-specify wall time limit.  They run on the same nodes as *normal* jobs.
+they also must must specify `--qos=optimist`.  They run on the same
+nodes as *normal* jobs.
 
 An _optimist_ job can be scheduled if there are free resources at
 least 30 minutes when the job is considered for scheduling.  However,
 it can be requeued before 30 minutes have passed, so there is no
-gurarantee of a minimum run time.  When an _optimist_ job is requeued,
+_gurarantee_ of a minimum run time.  When an _optimist_ job is requeued,
 it is first sent a `SIGTERM` signal.  This can be trapped in order to
 trigger a checkpoint.  After 30 seconds, the job receives a `SIGKILL`
 signal, which cannot be trapped.
@@ -171,3 +171,4 @@ A simple _optimist_ job specification might be:
 	#SBATCH --job-name=MyJob
 	#SBATCH --partition=optimist
 	#SBATCH --nodes=4 --ntasks-per-node=32
+	#SBATCH --time=2:00:00
