@@ -32,10 +32,6 @@ example_128p_4n_1t_2020-05-23_18-04.html
 example_128p_4n_1t_2020-05-23_18-04.txt
 ```
 
-Note, however, that the job has to finish within the allocated time for the
-report to be generated.  So if the job times out, there is a risk that no
-report is generated.
-
 
 ## Do I need to recompile the code?
 
@@ -153,3 +149,60 @@ codes.
 - [LINPACK benchmark](arm-perf/linpack.md) (measures the floating-point capabilities)
 - [OSU benchmark](arm-perf/osu.md) (measures the interconnect performance)
 - [Quantifying the profiling overhead](arm-perf/overhead.md)
+
+
+## What if the job timed out?
+
+The job has to finish within the allocated time for the report to be generated.
+So if the job times out, there is a risk that no report is generated.
+
+If you run a job that always times out by design (in other words the job never
+terminates itself but is terminated by Slurm), there is a workaround **if you
+are running the profile on Fram on no more than 64 cores**:
+
+As an example let us imagine we profile the following example:
+
+```bash
+# ...
+#SBATCH --time=0-01:00:00
+# ...
+
+module load Arm-PerfReports/20.0.3
+
+echo "set sysroot /" > gdbfile
+export ALLINEA_DEBUGGER_USER_FILE=gdbfile
+
+perf-report srun ./myexample.x  # <- we will need to change this
+```
+
+Let's imagine the above example code (`./myexample.x`) always times out,
+and we expect it to time out after 1 hour (see `--time` above).
+In this case we get no report.
+
+To get a report on Fram, we can do this instead:
+
+```bash
+# ...
+#SBATCH --time=0-01:00:00
+# ...
+
+module load Arm-MAP/20.0.3  # <- we changed this line
+
+echo "set sysroot /" > gdbfile
+export ALLINEA_DEBUGGER_USER_FILE=gdbfile
+
+# we changed this line and tell map to stop the code after 3500 seconds
+map --profile --stop-after=3500 srun ./myexample.x
+```
+
+We told map to stop the code after 3500 seconds but to still have some time to
+generate a map file. This run will generate a file with a `.map` suffix. From
+this file we can generate the profile reports on the command line (no need to
+run this as a batch script):
+
+```bash
+$ module load Arm-PerfReports/20.0.3
+$ perf-report prefix.map               # <- replace "prefix.map" to the actual map file
+```
+
+The latter command generates the `.txt` and `.html` reports.
