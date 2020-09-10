@@ -45,7 +45,7 @@ This is the default job type. In _normal_ jobs, the queue system hands out compl
     - minimum 1 nodes, maximum 4 nodes per job
     - maximum 1 job per user
     - maximum 20 jobs per *devel* queue
-- __Maximum walltime__: 20 minutes
+- __Maximum walltime__: 30 minutes
 - __Priority__: high
 - __Available resources__: 4 nodes with 128 CPU cores and 256 GiB RAM
 - __Parameter for sbatch/srun__: 

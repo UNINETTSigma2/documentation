@@ -19,7 +19,7 @@ If it instead needs 200GB memory you should use _bigmem_.
 |:-----------------------------------------------:|---------------------------------------|:------------:|:-----------------------------------------:|:--------:|
 | [normal](job_types/betzy_job_types.md#normal)   | default job type                      | 8--256 nodes | 4 days                                    | normal   |
 | [preproc](job_types/betzy_job_types.md#preproc) | pre-/postprocessing jobs              | 1 node       | 1 day                                     | normal   |
-| [devel](job_types/betzy_job_types.md#devel)     | development jobs (compiling, testing) | 1--4 nodes   | 20 mins                                   | high     |
+| [devel](job_types/betzy_job_types.md#devel)     | development jobs (compiling, testing) | 1--4 nodes   | 30 mins                                   | high     |
 
 [Betzy Job Types](job_types/betzy_job_types.md).
 
