@@ -16,7 +16,7 @@ Here is a more detailed description of the different job types on Betzy:
     - maximum 256 nodes
 - __Maximum walltime__: 4 days
 - __Priority__: normal
-- __Available resources__: 1340 nodes with 128 CPU cores and 256 GiB RAM
+- __Available resources__: 1340 nodes with 128 CPU cores and 250 GiB RAM
 - __Parameter for sbatch/srun__:
     - None, _normal_ is the default
 
@@ -27,16 +27,19 @@ This is the default job type. In _normal_ jobs, the queue system hands out compl
 
 - __Allocation units__: shared node between users
 - __Job Limits__:
-    - minimum 1 CPU core per user
-    - maximum 32 CPU cores per user
+    - maximum 8 billing units (CPU cores plus memory) per job
+    - maximum 2 running jobs per user
 - __Maximum walltime__: 1 day
 - __Priority__: normal
-- __Available resources__: *preproc* jobs run on a dedicated node with 32 CPU
-	cores and 256 GiB RAM
+- __Available resources__: *preproc* jobs run on a dedicated node with
+	128 CPU cores and 250 GiB RAM
 - __Parameter for sbatch/srun__:
     - `--qos=preproc`
 
 *preproc* jobs are meant for small preprocessing or postprocessing tasks.  Typically, such jobs don't use many CPUs, so requiring them to use 8 nodes would be wasting of resources.
+
+The details about how the billing units are calculated can be found
+[here](/jobs/projects_accounting.md#accounting).
 
 ## Devel
 
@@ -47,7 +50,7 @@ This is the default job type. In _normal_ jobs, the queue system hands out compl
     - maximum 20 jobs per *devel* queue
 - __Maximum walltime__: 30 minutes
 - __Priority__: high
-- __Available resources__: 4 nodes with 128 CPU cores and 256 GiB RAM
+- __Available resources__: 4 nodes with 128 CPU cores and 250 GiB RAM
 - __Parameter for sbatch/srun__: 
     - `--qos=devel`
 

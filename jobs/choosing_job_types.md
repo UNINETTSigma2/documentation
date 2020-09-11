@@ -18,8 +18,13 @@ If it instead needs 200GB memory you should use _bigmem_.
 | Name                                            | Description                           | Job limits   | Max walltime                              | Priority |
 |:-----------------------------------------------:|---------------------------------------|:------------:|:-----------------------------------------:|:--------:|
 | [normal](job_types/betzy_job_types.md#normal)   | default job type                      | 8--256 nodes | 4 days                                    | normal   |
-| [preproc](job_types/betzy_job_types.md#preproc) | pre-/postprocessing jobs              | 1 node       | 1 day                                     | normal   |
+| [preproc](job_types/betzy_job_types.md#preproc) | pre-/postprocessing jobs              | 1--8 units   | 1 day                                     | normal   |
 | [devel](job_types/betzy_job_types.md#devel)     | development jobs (compiling, testing) | 1--4 nodes   | 30 mins                                   | high     |
+
+For jobs that don't request much memory, the "units" of *preproc* jobs
+are simply the number of cpus the job requests.  For other jobs, [see
+here](projects_accounting.md#accounting) for how the units are
+calculated.
 
 [Betzy Job Types](job_types/betzy_job_types.md).
 
@@ -47,7 +52,7 @@ If it instead needs 200GB memory you should use _bigmem_.
 | [devel](job_types/saga_job_types.md#devel)       | development jobs (compiling, testing)[^1] | 1--128 units | 2 hours                                   | high     |
 | [optimist](job_types/saga_job_types.md#optimist) | jobs w/checkpointing, or very short jobs  | 1--256 units | [see details](job_types/saga_job_types.md#optimist) | low      |
 
-For jobs that don't request GPUs or much memory, the units on Saga are
+For jobs that don't request GPUs or much memory, the "units" on Saga are
 simply the number of cpus the job requests.  For other jobs, [see
 here](projects_accounting.md#accounting) for how the units are calculated.
 
