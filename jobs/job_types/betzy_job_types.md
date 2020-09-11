@@ -25,18 +25,19 @@ This is the default job type. In _normal_ jobs, the queue system hands out compl
 
 ## Preproc
 
-- __Allocation units__: shared node between users
+- __Allocation units__: cpus and memory
 - __Job Limits__:
     - maximum 8 billing units (CPU cores plus memory) per job
     - maximum 2 running jobs per user
 - __Maximum walltime__: 1 day
 - __Priority__: normal
-- __Available resources__: *preproc* jobs run on a dedicated node with
-	128 CPU cores and 250 GiB RAM
+- __Available resources__: 128 CPU cores and 250 GiB RAM on one node
 - __Parameter for sbatch/srun__:
     - `--qos=preproc`
 
-*preproc* jobs are meant for small preprocessing or postprocessing tasks.  Typically, such jobs don't use many CPUs, so requiring them to use 8 nodes would be wasting of resources.
+*preproc* jobs are meant for small preprocessing or postprocessing
+tasks.  Typically, such jobs don't use many CPUs, so requiring them to
+use 8 whole nodes would waste resources.
 
 The details about how the billing units are calculated can be found
 [here](/jobs/projects_accounting.md#accounting).
@@ -45,9 +46,8 @@ The details about how the billing units are calculated can be found
 
 - __Allocation units__: whole nodes
 - __Job Limits__:
-    - minimum 1 nodes, maximum 4 nodes per job
-    - maximum 1 job per user
-    - maximum 20 jobs per *devel* queue
+    - minimum 1 node, maximum 4 nodes per job
+    - maximum 1 running job per user
 - __Maximum walltime__: 30 minutes
 - __Priority__: high
 - __Available resources__: 4 nodes with 128 CPU cores and 250 GiB RAM
