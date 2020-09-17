@@ -1,0 +1,5 @@
+sphinx
+sphinx_rtd_theme
+recommonmark
+mistune==2.0.0a4
+black
