@@ -31,7 +31,7 @@
 * [Stallo documentation](https://hpc-uit.readthedocs.io)
 * [Migrating to our machines](hpc_machines/migration2metacenter.md)
 
-## SOFTWARE
+## Software
 * [Using Software](software/modulescheme.md)
 * [Installed Software](software/installed_software.md)
   * [List of installed software on Fram](software/installed_software/fram_modules.md)
