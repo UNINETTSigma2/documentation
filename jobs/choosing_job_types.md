@@ -35,7 +35,7 @@ calculated.
 | [normal](job_types/fram_job_types.md#normal)     | default job type                         | 4--32 nodes | 7 days                                    | normal   |
 | [preproc](job_types/fram_job_types.md#preproc)   | pre-/postprocessing jobs                 | 1 node      | 1 day                                     | normal   |
 | [bigmem](job_types/fram_job_types.md#bigmem)     | jobs needing more memory                 |             | 14 days                                   | normal   |
-| [devel](job_types/fram_job_types.md#devel)       | development jobs (compiling, testing)    | 1--4 nodes  | 30 mins                                   | high     |
+| [devel](job_types/fram_job_types.md#devel)       | development jobs (compiling, testing)    | 1--8 nodes  | 30 mins                                   | high     |
 | [short](job_types/fram_job_types.md#short)       | short jobs                               | 1--10 nodes | 2 hours                                   | high     |
 | [optimist](job_types/fram_job_types.md#optimist) | jobs w/checkpointing, or very short jobs | 4--32 nodes | [see details](job_types/fram_job_types.md#optimist) | low      |
 
