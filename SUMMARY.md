@@ -5,6 +5,7 @@
 ## Getting help
 * [Support line](getting_help/support_line.md)
 * [Writing good support requests](getting_help/how_to_write_good_support_requests.md)
+* [Q&A sessions](getting_help/hpc-qa-sessions.md)
 * [Lost or expiring password](getting_help/lost_forgotten_password.md)
 * [Project leader support](getting_help/project_leader_support.md)
 * [Advanced User Support](getting_help/advanced_user_support.md)
