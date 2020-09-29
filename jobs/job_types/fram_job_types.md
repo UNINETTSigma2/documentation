@@ -87,11 +87,11 @@ whole nodes.
 
 - __Allocation units__: whole nodes
 - __Job Limits__:
-    - minimum 1 nodes, maximum 4 nodes per job
-    - maximum 4 nodes in use at the same time
+    - minimum 1 nodes, maximum 8 nodes per job
+    - maximum 8 nodes in use at the same time
 - __Maximum walltime__: 30 minutes
 - __Priority__: high
-- __Available resources__: 4 nodes with 32 cpus and 60 GiB RAM between
+- __Available resources__: 8 nodes with 32 cpus and 60 GiB RAM between
   07:00 and 21:00 on weekdays
 - __Parameter for sbatch/srun__: 
     - `--qos=devel`
