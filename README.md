@@ -18,6 +18,9 @@ This documentation should be:
 
 ## Building the documentation locally on your computer
 
+
+### GitBook (we will soon move away from this)
+
 First install `npm` using your package manager, then install `gitbook`:
 ```
 $ npm install -g gitbook-cli
@@ -36,6 +39,24 @@ $ gitbook serve
 Finally you can preview the changes on http://localhost:4000.
 
 See also https://github.com/GitbookIO/gitbook-cli.
+
+
+### Sphinx (we will soon start using this)
+
+Install dependencies:
+```
+$ python -m venv venv
+$ source venv/bin/activate
+$ python -m pip install -r requirements.txt
+```
+
+Build the HTML:
+```
+$ sphinx-build . _build
+```
+
+Now open `_build/index.html` in your browser. After each change
+you need to `sphinx-build` again.
 
 
 ## All changes should be submitted as merge requests
