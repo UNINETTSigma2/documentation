@@ -22,6 +22,7 @@
     * [Shell](getting_started/getting_started/shell.md)
 * [Editing files](getting_started/editing_files.md)
 * [Login using ssh keys](getting_started/create_ssh_keys.md)
+* [Security Policy for Sigma2 infrastructure](getting_started/security-policy.md)
 
 ## HPC Machines
 * [Hardware overview](hpc_machines/hardware_overview.md)
