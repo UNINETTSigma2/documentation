@@ -7,15 +7,6 @@ Unless explicitly noted, all text on this website is made available under the
 with attribution to the Sigma2/Metacenter.
 
 
-## Goals
-
-This documentation should be:
-
-1. User centric
-2. Comprehensive but not overwhelming
-3. Up to date
-
-
 ## Building the documentation locally on your computer
 
 
