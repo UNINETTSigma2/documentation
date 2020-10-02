@@ -7,6 +7,12 @@ Unless explicitly noted, all text on this website is made available under the
 with attribution to the Sigma2/Metacenter.
 
 
+## How the GitHub pages are built
+
+- Repository is mirrored from internal GitLab to GitHub using https://docs.gitlab.com/ee/user/project/repository/repository_mirroring.html#setting-up-a-push-mirror-from-gitlab-to-github.
+- `gh-pages` branch is generated using https://github.com/UNINETTSigma2/documentation/blob/master/.github/workflows/sphinx.yml
+
+
 ## Building the documentation locally on your computer
 
 
