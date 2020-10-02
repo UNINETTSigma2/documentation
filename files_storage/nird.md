@@ -92,6 +92,13 @@ To account for this default quota is doubled when relevant.
 Note that this is a _backup_ from the HPC cluster; you cannot transfer
 files to the cluster by putting them here.
 
+## Scratch directories
+
+The total storage space of `/scratch` is 15TB.
+Each user has a scratch directory `/scratch/<username>`. 
+The area is meant as a temporary scratch area. This area is not backed up.
+When file system usage reaches 75%, files are subject to automatic deletion.
+There is no quota in the scratch area. 
 
 ## Project area
 
