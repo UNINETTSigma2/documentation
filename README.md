@@ -7,16 +7,16 @@ Unless explicitly noted, all text on this website is made available under the
 with attribution to the Sigma2/Metacenter.
 
 
-## Goals
+## How the GitHub pages are built
 
-This documentation should be:
-
-1. User centric
-2. Comprehensive but not overwhelming
-3. Up to date
+- Repository is mirrored from internal GitLab to GitHub using https://docs.gitlab.com/ee/user/project/repository/repository_mirroring.html#setting-up-a-push-mirror-from-gitlab-to-github.
+- `gh-pages` branch is generated using https://github.com/UNINETTSigma2/documentation/blob/master/.github/workflows/sphinx.yml
 
 
 ## Building the documentation locally on your computer
+
+
+### GitBook (we will soon move away from this)
 
 First install `npm` using your package manager, then install `gitbook`:
 ```
@@ -36,6 +36,24 @@ $ gitbook serve
 Finally you can preview the changes on http://localhost:4000.
 
 See also https://github.com/GitbookIO/gitbook-cli.
+
+
+### Sphinx (we will soon start using this)
+
+Install dependencies:
+```
+$ python -m venv venv
+$ source venv/bin/activate
+$ python -m pip install -r requirements.txt
+```
+
+Build the HTML:
+```
+$ sphinx-build . _build
+```
+
+Now open `_build/index.html` in your browser. After each change
+you need to `sphinx-build` again.
 
 
 ## All changes should be submitted as merge requests
