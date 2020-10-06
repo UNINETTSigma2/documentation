@@ -22,7 +22,7 @@ parallelizable and to find opportunities for optimization we look at
 the per-core (call it "sequential") performance. The optimization
 effort has been done within the PRACE Preparatory Access project type
 D. For more details about the optimizatoin techniques [consult the
-white paper.](http://www.prace-ri.eu/IMG/pdf/WP271.pdf)
+white paper.](https://doi.org/10.5281/zenodo.2633704)
 
 
 ## Using VTune on Fram
@@ -212,4 +212,4 @@ Compared to the original code, the performance tests have shown that
 on a Broadwell-based architecture the optimized code works from 2.5
 times faster (RT solver) to 13 times faster (EOS solver) on a single
 core. All optimizatoin techniques employed have been described in
-detail in [the white paper](http://www.prace-ri.eu/IMG/pdf/WP271.pdf).
+detail in [the white paper](https://doi.org/10.5281/zenodo.2633704).
