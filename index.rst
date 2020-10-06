@@ -102,8 +102,8 @@ attribution to the Sigma2/Metacenter.
    :maxdepth: 1
    :caption: News
 
-   https://opslog.sigma2.no
-   https://www.sigma2.no/hardware-status
+   Latest changes and events <https://opslog.sigma2.no>
+   Hardware live status <https://www.sigma2.no/hardware-status>
 
 
 .. toctree::
@@ -141,7 +141,7 @@ attribution to the Sigma2/Metacenter.
    hpc_machines/betzy.md
    hpc_machines/fram.md
    hpc_machines/saga.md
-   https://hpc-uit.readthedocs.io
+   Stallo <https://hpc-uit.readthedocs.io>
    hpc_machines/migration2metacenter.md
 
 
