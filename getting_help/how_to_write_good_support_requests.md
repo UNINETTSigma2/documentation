@@ -7,7 +7,7 @@ understand your request quicker. Below is a list of good practices.
 
 ## Create a ticket
 
-Send an email to <support@metacenter.no> to create a support ticket. Tickets
+Send an email to [support@metacenter.no](mailto:support@metacenter.no) to create a support ticket. Tickets
 are tracked and have higher visibility. Everyone in the support team can see
 the tickets and respond appropriately.
 

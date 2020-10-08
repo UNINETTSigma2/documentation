@@ -57,4 +57,4 @@ The details about how the billing units are calculated can be found
 This is meant for small, short development or test jobs.  *Devel* jobs have access to a set of dedicated nodes.
 
 If you have _temporary_ development needs that cannot be fulfilled by the _devel_ job type, please contact us at
-<support@metacenter.no>.
+[support@metacenter.no](mailto:support@metacenter.no).
