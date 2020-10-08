@@ -110,7 +110,7 @@ priority while having max wall time and job limits of _devel_ job.
 
 If you have _temporary_ development needs that cannot be fulfilled by
 the _devel_ or _short_ job types, please contact us at
-<support@metacenter.no>.
+[support@metacenter.no](mailto:support@metacenter.no).
 
 ## Optimist
 
@@ -140,4 +140,4 @@ minimum run time.
 Therefore, all _optimist_ jobs must use checkpointing, and access to
 run _optimist_ jobs will only be given to projects that demonstrate
 that they can use checkpointing.  If you want to run _optimist_ jobs,
-send a request to <support@metacenter.no>.
+send a request to [support@metacenter.no](mailto:support@metacenter.no).
