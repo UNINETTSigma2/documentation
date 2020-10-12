@@ -4,14 +4,13 @@ Saga is designed to run serial and small ("narrow") parallel jobs, in
 addition to GPU jobs.  If you need to run "wider" parallel jobs, Fram
 is a better choice.
 
-<div class="alert alert-warning">
-  <h4>On Saga use srun, not mpirun</h4>
-  <p>
-    mpirun can get the number of tasks wrong and also lead to wrong task
-    placement. We don't fully understand why this happens. When using srun
-    instead of mpirun or mpiexec, we observe correct task placement on Saga.
-  </p>
-</div>
+```{warning}
+**On Saga use srun, not mpirun**
+     
+mpirun can get the number of tasks wrong and also lead to wrong task    
+placement. We don't fully understand why this happens. When using srun    
+instead of mpirun or mpiexec, we observe correct task placement on Saga.      
+```
 
 The basic allocation units on Saga are cpu and memory.  The details of
 how the allocation units are calculated can be found

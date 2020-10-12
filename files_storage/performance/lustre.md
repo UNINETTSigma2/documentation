@@ -19,32 +19,30 @@ the next OST.
 * Betzy is implementing Progressive File Layouts to dynamically set file stripe
 	size based on file size growth.
 
-<div class="alert alert-info">
-  <h4>Betzy: Progressive File Layouts</h4>
-  <p>
-	    PFL removes the need to explicitly specify striping for each file, 
-			assigning different Lustre striping characteristics to contiguous 
-			segments of a ﬁle as it grows.
-			Dynamic striping allows lower overhead for small files and assures 
-			increased bandwidth for larger files.
-			However, note that for workloads with signiﬁcant random read phases it is
-			best to manually assign stripe size and count.
-	</p>
-</div>
+```{note}
+**Betzy: Progressive File Layouts**
+
+PFL removes the need to explicitly specify striping for each file, 
+assigning different Lustre striping characteristics to contiguous 
+segments of a ﬁle as it grows.
+Dynamic striping allows lower overhead for small files and assures 
+increased bandwidth for larger files.
+However, note that for workloads with signiﬁcant random read phases it is
+best to manually assign stripe size and count.
+```
 
 * Betzy implements another new feature, called data on metadata for small files
 	with size under 2KB.
 
-<div class="alert alert-info">
-  <h4>Betzy: Data on Metadata</h4>
-	<p>
-		 Lustre file system performance is optimized for large files. To balance
-		 that, data on metadata (DoM) is enabled on Betzy to ensure higher
-		 performance in case of frequently accessed small files.
-		 Files accessed with a size of 2KB or smaller will be stored on a very
-		 fast NVMe JBOD directly connected to the metadata servers.
-  </p>
-</div>
+```{note}
+**Betzy: Data on Metadata**
+
+Lustre file system performance is optimized for large files. To balance
+that, data on metadata (DoM) is enabled on Betzy to ensure higher
+performance in case of frequently accessed small files.
+Files accessed with a size of 2KB or smaller will be stored on a very
+fast NVMe JBOD directly connected to the metadata servers.
+```
 
 For more detailed information on striping, please consult the
 [Lustre](http://lustre.org) documentation.
@@ -62,19 +60,21 @@ $ lfs getstripe /cluster/tmp/test
 stripe_count:   1 stripe_size:    1048576 stripe_offset:  -1
 ```
 
-<div class="alert alert-success">
-  <h4>Rules of thumb for proper stripe counts</h4>
-	<p>For best performance we urge you to always profile the I/O characterstics
-	of your HPC application and tune the I/O behavior.</p>
-	<p>Down below is a list of rules you may apply to properly set stripe count for
-	your files:</p>
-  <ul>
-	  <li><strong>files smaller than 1GB</strong>: default striping;</li>
-	  <li><strong>files size between 1GB - 10GB</strong>: stripe count 2;</li>
-	  <li><strong>files size between 10GB - 1TB</strong>: stripe count 4;</li>
-	  <li><strong>files bigger than 1TB</strong>: stripe count 8.</li>
-	</ul>
-</div>
+```{note}
+**Rules of thumb for proper stripe counts**
+
+For best performance we urge you to always profile the I/O characterstics
+of your HPC application and tune the I/O behavior.
+
+Down below is a list of rules you may apply to properly set stripe count for
+your files:
+
+- files smaller than 1GB: default striping
+- files size between 1GB - 10GB: stripe count 2
+- files size between 10GB - 1TB: stripe count 4
+- files bigger than 1TB: stripe count 8
+```
+
 
 ### Large files
 

@@ -1,11 +1,10 @@
 # Data handling and storage policy
 
-<div class="alert alert-warning">
-  <h4>User areas and project areas are private</h4>
-  <p>
-    You can share files with other project members using project areas.
-  </p>
-</div>
+```{warning}
+**User areas and project areas are private**
+
+You can share files with other project members using project areas.
+```
 
 All data accessed, stored, communicated, or transferred on any national HPC
 system (Betzy, Fram, Saga, Stallo, Vilje) or the National e-Infrastructure for Research Data (NIRD),
