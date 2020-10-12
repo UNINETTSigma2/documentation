@@ -2,7 +2,7 @@
 
 Betzy is designed to run highly parallelized jobs.  If you need to run medium-sized jobs, than Fram is a better choice, while for serial jobs you shall use Saga.
 
-For a preprocessing or postprocessing job which only needs one or max 32 CPU cores, use a *preproc* job.
+For a preprocessing or postprocessing job which only needs one or a few CPU cores, use a *preproc* job.
 
 For development or testing use the  *devel* queue which is limited to small and short jobs. 
 
