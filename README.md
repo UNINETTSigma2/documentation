@@ -15,31 +15,6 @@ with attribution to the Sigma2/Metacenter.
 
 ## Building the documentation locally on your computer
 
-
-### GitBook (we will soon move away from this)
-
-First install `npm` using your package manager, then install `gitbook`:
-```
-$ npm install -g gitbook-cli
-```
-
-Install dependencies:
-```
-$ gitbook install
-```
-
-Serve the documentation pages locally (takes few seconds):
-```
-$ gitbook serve
-```
-
-Finally you can preview the changes on http://localhost:4000.
-
-See also https://github.com/GitbookIO/gitbook-cli.
-
-
-### Sphinx (we will soon start using this)
-
 Install dependencies:
 ```
 $ python -m venv venv
