@@ -31,9 +31,10 @@ jobs:
         git config --global user.name "workflow-bot"
         git checkout --orphan gh-pages
         git rm --cached -r .
-        mv _build ..
+        mv CNAME _build ..
         rm -rf *
         mv ../_build/* .
+        mv ../CNAME .
         touch .nojekyll
         git add .
         git commit -m "generated using sphinx-build"
