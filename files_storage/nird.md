@@ -3,15 +3,13 @@
 **NIRD** is the **N**ational e-**I**nfrastructure for **R**esearch **D**ata. It
  is owned and operated by [UNINETT Sigma2](https://www.sigma2.no).
 
-<div class="alert alert-info">
-  <p>
-    The NIRD infrastructure offers storage services, archiving services, and
-    processing capacity for computing on the stored data.  It offers services
-    and capacities to any scientific discipline that requires access to
-    advanced, large scale, or high-end resources for storing, processing,
-    publishing research data or searching digital databases and collections.
-  </p>
-</div>
+```{note}
+The NIRD infrastructure offers storage services, archiving services, and
+processing capacity for computing on the stored data.  It offers services
+and capacities to any scientific discipline that requires access to
+advanced, large scale, or high-end resources for storing, processing,
+publishing research data or searching digital databases and collections.
+```
 
 NIRD will provide storage resources with yearly capacity upgrades,
 data security through geo-replication (data stored on two physical
@@ -61,19 +59,18 @@ login-tos.nird.sigma2.no
 login-trd.nird.sigma2.no
 ```
 
-<div class="alert alert-info">
-  <p>
-    Note that we run four login containers per site. <br />
-    If you plan to start a `screen` session on one of the login containers or
-    you wish to copy data with the help of `scp` or `WinSCP`, you should log in
-    to a specific container.
-  </p>
-  <ul>Addresses are:
-    <li>login<strong>X</strong>-tos.nird.sigma2.no</li>
-    <li>login<strong>X</strong>-trd.nird.sigma2.no</li>
-    <li><strong>X</strong> - can have values between 0 and 3.
-  </ul>
-</div>
+```{note}
+Note that we run four login containers per site.
+
+If you plan to start a `screen` session on one of the login containers or
+you wish to copy data with the help of `scp` or `WinSCP`, you should log in
+to a specific container.
+
+Addresses are:
+- login**X**-tos.nird.sigma2.no
+- login**X**-trd.nird.sigma2.no
+- **X** - can have values between 0 and 3.
+```
 
 
 ## Home directories
@@ -120,12 +117,10 @@ security and resilience in case of large damage at the primary site. The primary
  Projects have the possibility to read from and write to the primary site, while
  they cannot read from or write to the replica site.
 
-<div class="alert alert-warning">
-  <p>
-    The users should log onto the login container nearest to the primary data
+```{warning}
+The users should log onto the login container nearest to the primary data
 storage.
-  </p>
-</div>
+```
 
 
 ### Disk usage
@@ -156,22 +151,15 @@ The available services can be found at the documentation of
 When relevant, the NIRD Storage project areas are also mounted on the login
 nodes of Betzy, Fram or Saga HPC clusters.
 
-<div class="alert alert-info">
-  <p>
-    Only the primary data volumes for projects are mounted to the HPC clusters.
-  </p>
-  <ul>i.e.
-    <li>projects from NIRD-TOS to Fram</li>
-    <li>projects from NIRD-TRD to Betzy and Saga</li>
-  </ul>
-</div>
+```{note}
+Only the primary data volumes for projects are mounted to the HPC clusters:
+- projects from NIRD-TOS to Fram
+- projects from NIRD-TRD to Betzy and Saga
+```
 
-
-<div class="alert alert-warning">
-  <p>
-    To avoid performance impact and operational issues, NIRD $HOME and project
-    areas are _not_ mounted on any of the compute nodes of the HPC clusters.
-  </p>
-</div>
+```{warning}
+To avoid performance impact and operational issues, NIRD $HOME and project
+areas are _not_ mounted on any of the compute nodes of the HPC clusters.
+```
 
 For more information, visit the [Betzy, Fram and Saga](clusters.md) page.

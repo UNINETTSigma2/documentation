@@ -2,23 +2,19 @@
 
 # How to choose the right amount of memory
 
+```{warning}
+**Do not ask for a lot more memory than you need**
 
-<div class="alert alert-warning">
-  <h4>Do not ask for a lot more memory than you need</h4>
-  <p>
-    A job that asks for many CPUs but little memory will be billed
-    for its number of CPUs, while a job that asks for a lot of memory but
-    few CPUs, will be billed for its memory requirement.
-  </p>
-  <p>
-    If you ask for a lot more memory than you need, you might be surprised
-    that your job will bill your project a lot more than you expected.
-  </p>
-  <p>
-    If you ask for a lot more memory than you need, your job may queue much
-    longer than it would asking for less memory.
-  </p>
-</div>
+A job that asks for many CPUs but little memory will be billed
+for its number of CPUs, while a job that asks for a lot of memory but
+few CPUs, will be billed for its memory requirement.
+
+If you ask for a lot more memory than you need, you might be surprised
+that your job will bill your project a lot more than you expected.
+
+If you ask for a lot more memory than you need, your job may queue much
+longer than it would asking for less memory.
+```
 
 - [Why it matters](#why-it-matters)
 - [How to find out how much memory you need](#how-to-find-out-how-much-memory-you-need)

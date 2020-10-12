@@ -1,27 +1,23 @@
 # Backup on Betzy, Fram, Saga, and NIRD
 
-<div class="alert alert-danger">
-  <h4>Only home directories with enforced quotas are backed up</h4>
-  <p>
-    Any $HOME area using more then 20 GiB or more than 100000 files is
-    not backed up. To have your $HOME backed up, you need to shrink the
-    disk usage below the 20 GiB limit *and* below 100000 files *and*
-    <a href="/getting_help/support_line.html">notify support</a>.
-  </p>
-  <p>
-    If "dusage" repots 0 Bytes limits, this means that you <b>do not have disk quotas</b>
-    activated and this means that these folders <b>are not backed up</b>.
-  </p>
-</div>
+```{warning}
+**Only home directories with enforced quotas are backed up**
 
+Any \$HOME area using more then 20 GiB or more than 100000 files is
+not backed up. To have your \$HOME backed up, you need to shrink the
+disk usage below the 20 GiB limit *and* below 100000 files *and*
+[notify support](/getting_help/support_line.html).
 
-<div class="alert alert-warning">
-  <h4>Betzy: NO BACKUP</h4>
-  <p>
-    Backup on Betzy will be swtiched on <strong>only</strong> after the pilot period is
-		finished.
-	</p>
-</div>
+If "dusage" repots 0 Bytes limits, this means that you **do not have disk quotas**
+activated and this means that these folders **are not backed up**.
+```
+
+```{warning}
+**Betzy: NO BACKUP**
+
+Backup on Betzy will be switched on **only** after the pilot period is
+finished.
+```
 
 
 ## Betzy, Fram and Saga

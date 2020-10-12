@@ -26,31 +26,22 @@ minimizing the amount of packages to load.
 - `Theano/1.0.4-fosscuda-2019b-Python-3.7.4`
 - `Keras/2.3.1-fosscuda-2019b-Python-3.7.4`
 
-<div class="alert alert-success">
-	<h6>Tip:</h6>
-	<p>
-		When loading modules pressing <code>&lttab&gt</code> gives you
-		autocomplete options
-	</p>
-</div>
+```{note}
+When loading modules pressing `<tab>` gives you
+autocomplete options.
+```
 
-<div class="alert alert-success">
-	<h6>Tip:</h6>
-	<p>
-		It can be useful to do an initial <code>module purge</code> to
-		ensure nothing from previous experiments is loaded before
-		loading modules for the first time.
-	</p>
-</div>
+```{note}
+It can be useful to do an initial `module purge` to
+ensure nothing from previous experiments is loaded before
+loading modules for the first time.
+```
 
-<div class="alert alert-warning">
-	<h6>Note:</h6>
-	<p>
-		Modules are regularly updated so if you would like a newer
-		version, than what is listed above, use <code>module avail |
-		less</code> to browse all available packages.
-	</p>
-</div>
+```{note}
+Modules are regularly updated so if you would like a newer
+version, than what is listed above, use `module avail |
+less` to browse all available packages.
+```
 
 If you need additional python libraries it is recommended to create a
 [`virtualenv`][virtualenv] environment and install packages there. This
@@ -99,13 +90,10 @@ writing.
 $ module load Python/3.8.2-GCCcore-9.3.0
 ```
 
-<div class="alert alert-warning">
-	<h6>Note:</h6>
-	<p>
-		This has to be done on the login node so that we have access to
-		the internet and can download <code>pip</code> packages.
-	</p>
-</div>
+```{warning}
+This has to be done on the login node so that we have access to
+the internet and can download `pip` packages.
+```
 
 Then create a [virtual environment][virtualenv] which we will install packages
 into.
@@ -371,14 +359,11 @@ Since all of the GPU machines on `Saga` have four GPUs it can be beneficial for
 some workloads to distribute the work over more than one device at a time. This
 can be accomplished with the [`tf.distribute.MirroredStrategy`][mirrored].
 
-<div class="alert alert-warning">
-	<h6>Note:</h6>
-	<p>
-		As of writing, only the <code>MirroredStrategy</code> is fully
-		supported by <code>TensorFlow</code> which is limited to one
-		node at a time.
-	</p>
-</div>
+```{warning}
+As of writing, only the `MirroredStrategy` is fully
+supported by `TensorFlow` which is limited to one
+node at a time.
+```
 
 We will, again, continue to use the MNIST example from above. However, as we
 need some larger changes to the example we will recreate the whole example and
@@ -632,14 +617,11 @@ model.fit(x_train, y_train,
           verbose=verbose)
 ```
 
-<div class="alert alert-warning">
-	<h6>Note:</h6>
-	<p>
-		When printing information it can be useful to use the <code>if
-		hvd.rank() == 0</code> idiom to avoid the same thing being
-		printed from every process.
-	</p>
-</div>
+```{warning}
+When printing information it can be useful to use the `if
+hvd.rank() == 0` idiom to avoid the same thing being
+printed from every process.
+```
 
 This can then be scheduled with the following:
 
@@ -678,14 +660,13 @@ oversubscribing. Due to this potential to oversubscribe it is recommended that
 you ask for a multiple of `4` for `--ntasks` to avoid oversubscribing and
 increase scheduling speed.
 
-<div class="alert alert-success">
-	<h6>Tip:</h6>
-	<p>
-		In the future it should be possible to use
-		<code>--gpus-per-task=1</code> instead to simplify and not
-		oversubscribe on GPUs.
-	</p>
-</div>
+```{note}
+**Tip:**
+
+In the future it should be possible to use
+`--gpus-per-task=1` instead to simplify and not
+oversubscribe on GPUs.
+```
 
 [sigma2]: https://www.sigma2.no/
 [tensorflow]: https://www.tensorflow.org/

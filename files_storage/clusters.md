@@ -64,30 +64,26 @@ On **Saga** you can see a **project's disk usage**, e.g., for nn1234k, with:
 $ beegfs-ctl --getquota --gid nn1234k
 ```
 
-<div class="alert alert-warning">
-  <h4>Frequently asked questions</h4>
-  <ul>
-    <li>
-      <b>I cannot copy files although we haven't used up all space</b>:
-      You have probably exceeded the quota on the number of files.
-    </li>
-    <li>
-      <b>I have moved files to the project folder but my home quota usage did not go down</b>:
-      Moving files does not change ownership of the files. You need to also change the ownership of the files
-      in the project folder from you to the group (change the ownership from 'username_g' to 'username').
-    </li>
-  </ul>
-</div>
+```{warning}
+**Frequently asked questions**
+
+- **I cannot copy files although we haven't used up all space**:
+  You have probably exceeded the quota on the number of files.
+
+- **I have moved files to the project folder but my home quota usage did not go down**:
+  Moving files does not change ownership of the files. You need to also change the ownership of the files
+  in the project folder from you to the group (change the ownership from 'username_g' to 'username').
+```
 
 
 ## Home directory
 
-The home directory is **/cluster/home/$USER**. The location is stored
-in the environment variable `$HOME`.  A quota is enabled on home
+The home directory is **/cluster/home/\$USER**. The location is stored
+in the environment variable `\$HOME`.  A quota is enabled on home
 directories which is by default 20 GiB and 100 000 files, so it
-is not advisable to run jobs in `$HOME`. However, it is perfectly
+is not advisable to run jobs in `\$HOME`. However, it is perfectly
 fine to store `stderr` and `stdout` logs from your batch jobs in
-`$HOME` so they are available for reviewing in case of issues with it.
+`\$HOME` so they are available for reviewing in case of issues with it.
 
 The home directory should be used for storing tools, scripts, application
 sources or other relevant data which must have a backup.
@@ -103,10 +99,10 @@ days and weekly snapshots for the last 6 weeks
 
 ## Job scratch area
 
-Each job gets an area **/cluster/work/jobs/$SLURM_JOB_ID** that is
+Each job gets an area **/cluster/work/jobs/\$SLURM_JOB_ID** that is
 automatically created for the job, and automatically deleted when the
 job finishes.  The location is stored in the environment variable
-`$SCRATCH` available in the job.  `$SCRATCH` is only accessible by the
+`\$SCRATCH` available in the job.  `\$SCRATCH` is only accessible by the
 user running the job.
 
 The area is meant as a temporary scratch area during job
@@ -115,30 +111,28 @@ execution.
 
 There are special commands (`savefile` and `cleanup`) one can use in
 the job script to ensure that files are copied back to the submit
-directory `$SLURM_SUBMIT_DIR` (where `sbatch` was run).
+directory `\$SLURM_SUBMIT_DIR` (where `sbatch` was run).
 
-<div class="alert alert-success">
-  <h4>Pros of running jobs in the job scratch area</h4>
-  <ul>
-    <li> There is less risk of interference from other jobs because every job ID has
-         its own scratch directory.</li>
-    <li> Because the scratch directory is removed when the job finishes, the scripts
-         do not need to clean up temporary files.</li>
-  </ul>
-</div>
+```{note}
+**Pros of running jobs in the job scratch area**
 
-<div class="alert alert-danger">
-  <h4>Cons of running jobs in the job scratch area</h4>
-  <ul>
-    <li> Since the area is removed automatically, it can be hard to debug
-         jobs that fail.</li>
-    <li> One must use the special commands to copy files back in case the job
-         script crashes before it has finished.</li>
-    <li> If the main node of a job crashes (i.e., not the job script, but the
-         node itself), the special commands might not be run, so files might
-         be lost.</li>
-  </ul>
-</div>
+- There is less risk of interference from other jobs because every job ID has
+  its own scratch directory.
+- Because the scratch directory is removed when the job finishes, the scripts
+  do not need to clean up temporary files.
+```
+
+```{warning}
+**Cons of running jobs in the job scratch area**
+
+- Since the area is removed automatically, it can be hard to debug
+  jobs that fail.
+- One must use the special commands to copy files back in case the job
+  script crashes before it has finished.
+- If the main node of a job crashes (i.e., not the job script, but the
+  node itself), the special commands might not be run, so files might
+  be lost.
+```
 
 
 ## Job scratch area on local disk
@@ -155,10 +149,10 @@ to use more space on the area than it requested, it will get a "disk
 quota exceeded" or "no space left on device" error (the exact message
 depends on the program doing the writing).
 
-Jobs that request this, get an area **/localscratch/$SLURM_JOB_ID**
+Jobs that request this, get an area **/localscratch/\$SLURM_JOB_ID**
 that is automatically created for the job, and automatically deleted
 when the job finishes.  The location is stored in the environment
-variable `$LOCALSCRATCH` available in the job.  `$LOCALSCRATCH` is
+variable `\$LOCALSCRATCH` available in the job.  `\$LOCALSCRATCH` is
 only accessible by the user running the job.
 
 Note that since this area is on *local disk* on the compute node, it
@@ -176,37 +170,35 @@ Currently, there are *no* special commands to ensure that files are
 copied back automatically, so one has to do that with `cp` commands or
 similar in the job script.
 
-<div class="alert alert-success">
-  <h4>Pros of running jobs in the local disk job scratch area</h4>
-  <ul>
-    <li> IO operations are faster than on the `/cluster` file system.
-    <li> It reduces the load on the `/cluster` file system.
-    <li> There is less risk of interference from other jobs because every job ID has
-         its own scratch directory.</li>
-    <li> Because the scratch directory is removed when the job finishes, the scripts
-         do not need to clean up temporary files.</li>
-  </ul>
-</div>
+```{note}
+**Pros of running jobs in the local disk job scratch area**
 
-<div class="alert alert-danger">
-  <h4>Cons of running jobs in the local disk job scratch area</h4>
-  <ul>
-    <li> Since the area is removed automatically, it can be hard to debug
-         jobs that fail.</li>
-    <li> One must make sure to use `cp` commands or similar in the job
-         script to copy files back.</li>
-    <li> If the main node of a job crashes (i.e., not the job script, but the
-         node itself), files might be lost.</li>
-  </ul>
-</div>
+- IO operations are faster than on the `/cluster` file system.
+- It reduces the load on the `/cluster` file system.
+- There is less risk of interference from other jobs because every job ID has
+  its own scratch directory.
+- Because the scratch directory is removed when the job finishes, the scripts
+  do not need to clean up temporary files.
+```
+
+```{warning}
+**Cons of running jobs in the local disk job scratch area**
+
+- Since the area is removed automatically, it can be hard to debug
+  jobs that fail.
+- One must make sure to use `cp` commands or similar in the job
+  script to copy files back.
+- If the main node of a job crashes (i.e., not the job script, but the
+  node itself), files might be lost.
+```
 
 
 ## User work area
 
-Each user has an area **/cluster/work/users/$USER**.  The location is
-stored in the environment variable `$USERWORK`.
+Each user has an area **/cluster/work/users/\$USER**.  The location is
+stored in the environment variable `\$USERWORK`.
 **This area is not backed up** ([documentation about backup](backup.md)).
-`$USERWORK` is only accessible by
+`\$USERWORK` is only accessible by
 the user owning the area.
 
 This directory is meant for files that are used by one or more jobs.
@@ -215,7 +207,7 @@ finish, otherwise they will be automatically deleted after a while
 (see notes below). We highly encourage users to keep this area tidy,
 since both high disk usage and automatic deletion process takes away
 disk performance. The best solution is to clean up any unnecessary
-data after each job.  Since `$USERWORK` is only accessible by the
+data after each job.  Since `\$USERWORK` is only accessible by the
 user, you must move results to the project area if you want to share
 them with other people in the project.
 
@@ -229,28 +221,26 @@ automatic deletion.
 It is **not** allowed to try to circumvent the automatic deletion by
 for instance running scripts that touch all files.
 
-<div class="alert alert-success">
-  <h4>Pros of running jobs in the user work area</h4>
-  <ul>
-    <li> Since job files are not removed automatically directly when a job
-         finishes, it is easier to debug failing jobs.</li>
-    <li> There is no need to use special commands to copy files back in case
-         the job script or node crashes before the job has finished.</li>
-  </ul>
-</div>
+```{note}
+**Pros of running jobs in the user work area**
 
-<div class="alert alert-danger">
-  <h4>Cons of running jobs in the user work area</h4>
-  <ul>
-    <li> There is a risk of interference from other jobs unless one makes
-         sure to run each job in a separate sub directory inside `$USERWORK`.</li>
-    <li> Because job files are not removed when the job finishes, one has to
-         remember to clean up temporary files afterwards.</li>
-    <li> One has to remember to move result files to the project area if one
-         wants to keep them.  Otherwise they will eventually be deleted by
-         the automatic file deletion.</li>
-  </ul>
-</div>
+- Since job files are not removed automatically directly when a job
+  finishes, it is easier to debug failing jobs.
+- There is no need to use special commands to copy files back in case
+  the job script or node crashes before the job has finished.
+```
+
+```{warning}
+**Cons of running jobs in the user work area**
+
+- There is a risk of interference from other jobs unless one makes
+  sure to run each job in a separate sub directory inside `\$USERWORK`.
+- Because job files are not removed when the job finishes, one has to
+  remember to clean up temporary files afterwards.
+- One has to remember to move result files to the project area if one
+  wants to keep them.  Otherwise they will eventually be deleted by
+  the automatic file deletion.
+```
 
 
 ## Project area
@@ -278,31 +268,29 @@ Daily backup is taken to NIRD ([documentation about backup](backup.md)).
 
 To see disk usage and quota information for your project, run `dusage -p <project_name>`.
 
-<div class="alert alert-success">
-  <h4>Pros of running jobs in the project area</h4>
-  <ul>
-    <li>Since job files are not removed automatically directly when a job
-        finishes, it is easier to debug failing jobs.</li>
-    <li>There is no need to use special commands to copy files back in case
-        the job script or node crashes before the job has finished.</li>
-    <li>There is no need to move result files to save them permanently or
-        give the rest of the project access to them.</li>
-  </ul>
-</div>
+```{note}
+**Pros of running jobs in the project area**
 
-<div class="alert alert-danger">
-  <h4>Cons of running jobs in the project area</h4>
-  <ul>
-    <li>There is a risk of interference from other jobs unless one makes
-        sure to run each job in a separate sub directory inside the project
-        area.</li>
-    <li>Because job files are not removed when the job finishes, one has to
-        remember to clean up temporary files afterwards, otherwise they can
-        fill up the quota.</li>
-    <li>There is a risk of using all of the disk quota if one runs many jobs
-        and/or jobs needing a lot of storage at the same time.</li>
-  </ul>
-</div>
+- Since job files are not removed automatically directly when a job
+  finishes, it is easier to debug failing jobs.
+- There is no need to use special commands to copy files back in case
+  the job script or node crashes before the job has finished.
+- There is no need to move result files to save them permanently or
+  give the rest of the project access to them.
+```
+
+```{warning}
+**Cons of running jobs in the project area**
+
+- There is a risk of interference from other jobs unless one makes
+  sure to run each job in a separate sub directory inside the project
+  area.
+- Because job files are not removed when the job finishes, one has to
+  remember to clean up temporary files afterwards, otherwise they can
+  fill up the quota.
+- There is a risk of using all of the disk quota if one runs many jobs
+  and/or jobs needing a lot of storage at the same time.
+```
 
 
 ## Shared project area
