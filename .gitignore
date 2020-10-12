@@ -2,12 +2,9 @@
 .*.swp
 .*.swo
 
-# GitBook
-_book/
-node_modules/
-
+# macOS
 .DS_Store
 
+# sphinx
 _build/
-
 venv/
