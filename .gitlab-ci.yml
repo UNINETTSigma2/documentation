@@ -1,43 +1,6 @@
-include:
-  - project: 'asm/gitlab-ci-helpers'
-    file: '/gitlab-ci-helpers.yml'
-
-variables:
-  KUBE_PROD_DOMAIN: documentation.sigma2.no # The main domain for your application.
-  HTTP_PORT: '80' # The port number of the web server.
-  KUBE_TEST_DOMAIN: sigma2-eksterndoc.paas2.uninett.no
-  KUBE_TEST_ID: eksterndoc-test
-  REPLICAS: '2'
-
-stages:
-  - build
-  - review
-  - production
-
-build:
-  extends: .docker-build
-  stage: build
-  only:
-    - branches
-    
-production:
-  extends: .production
-  stage: production
-  variables:
-    REPLICAS: "2"  
+image: python:3.7-alpine
+test:
+  stage: test
   script:
-    - deploy kubernetes/deployment.yaml
-  when: on_success
-  
-review:
-  extends: .review
-  stage: review
-
-  script:
-    - deploy kubernetes/deployment.yaml
-
-  
-stop_review:
-  extends: .stop_review
-  stage: review
-  
+  - pip install -r requirements.txt
+  - sphinx-build . _build
