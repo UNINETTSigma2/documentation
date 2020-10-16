@@ -116,3 +116,12 @@ Checklist before approving and merging:
   pipeline is not finished yet).
 - After the merge request is merged, the changes should appear on the public
   website in a minute or two.
+
+
+## List of links from sigma2.no
+
+Before changing the paths, we need to inform the webadmin behind sigma2.no to
+change them also there:
+
+- https://documentation.sigma2.no/files_storage/nird.html (from https://www.sigma2.no/data-storage)
+- https://documentation.sigma2.no/getting_help/how_to_write_good_support_requests.html (from https://www.sigma2.no/user-support)
