@@ -143,7 +143,12 @@ documentation about Slurm:
 https://documentation.sigma2.no/jobs/job_scripts/slurm_parameter.html
 
 
-### Storage for scratch during a run
+### Storage for scratch during a run on Saga
+
+```{note}
+Scratch storage is only available on Saga.
+See also [the overview of storage areas](/files_storage/clusters.md).
+```
 
 Scratch storage for read and write files or any short lived files or files that are read and written to during a run should reside on a scratch pad area, [storage on clusters](https://documentation.sigma2.no/files_storage/clusters.html).
 
