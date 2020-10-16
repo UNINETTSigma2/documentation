@@ -1,5 +1,4 @@
 
-
 # Running scientific software
 
 ## Introduction
@@ -147,17 +146,21 @@ https://documentation.sigma2.no/jobs/job_scripts/slurm_parameter.html
 
 ### Storage for scratch during a run
 
-Sratch storage for read and write files or any short lived files or files that are read and written to during a run should reside on a scratch pad area. There are two scratch areas for such files, one shared for all processes and nodes which is residing on the parallel file system and another which is local on each compute node. The latter is smaller and local to each compute node. There are benefits for both types depending on usage. The parallel file system is by nature slower for random read & random operations and metadata operations (handling of large number fo files), the local file system is far better for this. In addition the shared file system need to serve all users and placing very high metadata load on it make the file system slow for all users. However, not only does aggregate performace scacle with the number of nodes used but it does not affect the other users when using local scratch. 
+Scratch storage for read and write files or any short lived files or files that are read and written to during a run should reside on a scratch pad area, [storage on clusters](https://documentation.sigma2.no/files_storage/clusters.html).
+
+On saga there are two scratch areas for such files (Fram and Betzy only has shared scratch), one shared for all processes and nodes which is residing on the parallel file system (shared by all nodes) and another which is local on each compute node. The latter is smaller and local to each compute node e.g.  only accessable to processes running on that node.
+
+There are benefits for both types depending on usage. The parallel file system is by nature slower for random read & random operations and metadata operations (handling of large number fo files), the local file system is far better for this. In addition the shared file system need to serve all users and placing very high metadata load on it make the file system slow for all users. However, not only does aggregate performace scacle with the number of nodes used but it does not affect the other users when using local scratch. 
 
 Which kind of scratch file system to use is a tradeoff, if you need sharing or a large amount of data (more that 250-300 GB) there is only one option, shared scratch. If on the other hand you have a lot of random IO or a large number of files then local scratch is better suited. 
 
-All SLURM jobs get allocated a shared scrach file system pointed to by the vairiable $SCRATCH , but you need to ask for local scratch, like this where I have asked for 200 Gigabytes of local scaratch:
+All SLURM jobs get allocated a shared scrach file system pointed to by the vairiable $SCRATCH , but you need to ask for local scratch, like this where I have asked for 100 Gigabytes of local scratch  :
 ```
-#SBATCH --gres=localscratch:200G
+#SBATCH --gres=localscratch:100G
 ```
-By including this in the job script the local scratch area is pointed to by the variable $LOCALSCRATCH .
-
-Saga have spinning disks with limited performance (but more nodes give more performandce) for local scratch, but newer systems will have memory chips based storage for localscratch and hence it's good practice to start using local scratch now.  
+By including this in the job script the local scratch area is pointed to by the variable $LOCALSCRATCH, (on Saga the maximum is about 300 GB).  Please do not ask for more than what you actually need, other users might share the local scratch space with you.
+ 
+Saga has spinning disks with limited performance (but more nodes give more performandce) for local scratch, but newer systems will have memory chips based storage for localscratch and hence it's good practice to start using local scratch now.  
 
 ### Pure MPI
 
