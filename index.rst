@@ -1,4 +1,3 @@
-
 ===================================
 The Norwegian Academic HPC Services
 ===================================
@@ -187,6 +186,12 @@ attribution to the Sigma2/Metacenter.
    files_storage/file_transfer.md
    files_storage/performance.md
 
+.. toctree::
+   :maxdepth: 1
+   :caption: NIRD Toolkit
+
+   nird_toolkit/overview_nird_toolkit.md
+   nird_toolkit/getting_started_guide.md
 
 .. toctree::
    :maxdepth: 1
