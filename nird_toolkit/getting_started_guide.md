@@ -25,6 +25,6 @@ Once the invited person accepts the invitatation, he/she will appear as a member
  
 
 ## <a name="access-uio"></a> Access to the NIRD Toolkit for the users affiliated to the University of Oslo
-New regulations with regards to access to services through Feide identity has been applied by the University of Oslo (UiO) for Feide users affiliated with UiO. If you want to use the NIRD Toolkit and you are from UiO, [get in contact with us](sigma2@uninett.no) . 
+New regulations with regards to access to services through Feide identity has been applied by the University of Oslo (UiO) for Feide users affiliated with UiO. If you want to use the NIRD Toolkit and you are from UiO, [get in contact with us]<sigma2@uninett.no> . 
 
 
