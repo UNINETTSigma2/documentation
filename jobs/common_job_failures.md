@@ -44,7 +44,7 @@ This will often stop jobs that need to write output or log files.
 
 There could be different quota settings for your home folder, project folders,
 and other folders in addition to a file count or size quota.  Please consult
-[this page](https://documentation.sigma2.no/files_storage/clusters.html) for
+[this page](/files_storage/clusters.md) for
 more details to see how to inspect your disk quota.
 
 (Here we need to link to policies on how/when to ask for more)

@@ -139,13 +139,12 @@ Using Python, Perl, Julia or R opens up for far more programming within the run
 script than what’s possible using bash.
 
 Some examples for Betzy are given below, for details about Slurm see the
-documentation about Slurm:
-https://documentation.sigma2.no/jobs/job_scripts/slurm_parameter.html
+[documentation about Slurm](/jobs/job_scripts/slurm_parameter.md).
 
 
 ### Storage for scratch during a run
 
-Scratch storage for read and write files or any short lived files or files that are read and written to during a run should reside on a scratch pad area, [storage on clusters](https://documentation.sigma2.no/files_storage/clusters.html).
+Scratch storage for read and write files or any short lived files or files that are read and written to during a run should reside on a scratch pad area, [storage on clusters](/files_storage/clusters.md).
 
 On saga there are two scratch areas for such files (Fram and Betzy only has shared scratch), one shared for all processes and nodes which is residing on the parallel file system and another which is local on each compute node. The latter is smaller and local to each compute node e.g.  only accessable to processes running on that node.
 
