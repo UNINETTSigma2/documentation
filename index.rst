@@ -14,9 +14,9 @@ This website (https://documentation.sigma2.no/) holds technical
 documentation about the compute and storage resources. For more general
 information and service overview, please also see https://www.sigma2.no.
 
-**Latest news and announcements** are posted at the \ `Metacenter
+**Latest news and announcements** are posted at the `Metacenter
 OpsLog <https://opslog.sigma2.no>`__ and the
-[@MetacenterOps](https://twitter.com/MetacenterOps) Twitter channel.
+`@MetacenterOps <https://twitter.com/MetacenterOps>`__ Twitter channel.
 
 --------------
 
