@@ -12,12 +12,12 @@ Log in to Fram your preferred way. Note that there is, currently at least, no de
 
 	module avail easybuild
 
-Now, as of January 2019, you will see this:
+Now, as of October 2020, you will see this:
 
 	module avail EasyBuild
 
 	----------------------- /cluster/modulefiles/all ------------------------
-	   EasyBuild/3.8.1
+	   EasyBuild/4.3.0
 
 	Use "module spider" to find all possible modules.
 	Use "module keyword key1 key2 ..." to search for all possible modules
@@ -37,11 +37,11 @@ To download the source of software, type:
 
 It may be a good idea to get an overview of what will be installed with the command you are planning to use, this you get by the command:
 
-	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun
+	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dry-run
 
 if this proves successful, then type:
 
-	eb rjags-4-6-intel-2017b-R-3.4.3.eb -r
+	eb rjags-4-6-intel-2017b-R-3.4.3.eb --robot
 
 Then the process should go absolutely fine, and you will receive a nice little message on the command line stating that installation succeeded.
 
@@ -61,7 +61,7 @@ Then do as follows:
 
 	mkdir -p /cluster/projects/nnXXXXk/easybuild
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --fetch --prefix=/cluster/projects/nnXXXXk/easybuild
-	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun --prefix=/cluster/projects/nnXXXXk/easybuild #as mentioned above.
+	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dry-run --prefix=/cluster/projects/nnXXXXk/easybuild #as mentioned above.
 
 where XXXX is your project id number. When a successful download of sources is made, then type:
 
@@ -74,7 +74,8 @@ A bit more elegant, since the long and horrid path is used thrice, you may do th
 	projsw=/cluster/projects/nnXXXXk/easybuild
 	mkdir -p $projsw
 	eb rjags-4-6-intel-2017b-R-3.4.3.eb --fetch --prefix=$projsw
-	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dryrun --prefix=$projsw
+	eb rjags-4-6-intel-2017b-R-3.4.3.eb --dry-run --prefix=$projsw
+
 ###For more advanced settings:
 
 Please check upon options with
@@ -104,6 +105,7 @@ The default path for modulefiles only contains the centrally installed modules. 
 
 
 # How can I as user install Python packages?
+
 Users can install Python packages in a virtual Python environment. Here is how
 you create a virtual environment with the command `virtualenv`:
 
@@ -115,9 +117,12 @@ source my_new_pythonenv/bin/activate
 # Install packages with pip. Here we install pandas.
 pip install pandas
 ```
+
 ## Using the virtual environment in a batch script
+
 In a batch script you will activate the virtual environment in the same way as
 above. You must just load the python module first:
+
 ```
 # Set up job environment
 set -o errexit # exit on any error
@@ -135,11 +140,14 @@ source my_new_pythonenv/bin/activate
 # execute example script
 python pdexample.py
 ```
+
 ## Using Anaconda and Miniconda in batch
+
 An alternative to creating virtual environments with virtualenv, is to create
 environment with Anaconda or Miniconda. To able to use the conda
 environment in a batch script, you will need to source a conda environment
 file. First create a environment, here also installing:
+
 ```
 # load Anaconda3
 module load Anaconda3/2019.03
@@ -153,6 +161,7 @@ conda activate testenv
 
 To be able to use this environment in a batch script, you will need to include
 the following in your batch script, before calling the python program:
+
 ```
 # load the Anaconda3
 module load Anaconda3/2019.03
