@@ -1,6 +1,6 @@
 # The GAUSSIAN program system
 
-* [Gaussian job examples](gaussian_jobex.md)
+* [Gaussian job examples](gaussian_job_example.md)
 * [Memory and number of cores](gaussian_resources.md)
 * [GaussView](gaussview.md)
 
