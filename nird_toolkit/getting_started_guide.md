@@ -6,6 +6,8 @@ Follow the step-by-step procedure below to create and administer your group. ***
 
 1. Go to the https://minside.dataporten.no and select the institution you belong to from the drop-down menu. If your institution does not appear there (Feide login), then select "Feide guest" from the drop-down menu in the "Other alternative login". You will then be redirected to the OpenIDP page. Create a account in OpenIDP by following the procedure and, once the account has been created, use it to log in to Dataporten as Feide guest.
 
+![Dataporten login](nirdtoolkit/Login.png "Dataporten login")
+
 2. Once logged in, you will be redirected to the Dataporten dashboard. Create a new group by clicking on the link on top of the page ("Create New Group"). 
 
 3. Once the group is created, visualize the "Details" of the newly created group. You will be redirected to a page visualizing several information about the group, including the "Group ID" (fc:adhoc:xxxx-xxx-xxxxx-xxxxx).
