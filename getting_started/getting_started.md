@@ -37,10 +37,11 @@ ssh-server fingerprint. Typical message is:
     The authenticity of host 'fram.sigma2.no (158.39.114.72)' can't be established.
 
 The procedure then is to check the stated `ECDSA key fingerprint` with the one
-printed here: [ssh SHA256 fingerprint](../faq/ssh.md#sha256-fingerprint).
+printed here: {ref}`ssh_fingerprint`
 
 If you are connecting from a laptop we recommend that you use
-[Mosh](./create_ssh_keys.md#mosh).
+{ref}`mosh`.
+
 
 ## Remote desktop
 

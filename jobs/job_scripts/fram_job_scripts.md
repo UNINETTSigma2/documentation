@@ -4,6 +4,9 @@ This page documents how to specify the queue system parameters for the
 different job types on Fram.  See [Fram Job Types](/jobs/job_types/fram_job_types.md)
 for information about the different job types on Fram.
 
+
+(job_scripts_fram_normal)=
+
 ## Normal
 
 The basic type of job on Fram is the *normal* job.  Most of the other
@@ -63,6 +66,9 @@ of a _normal_ MPI job.
 See [Fram Job Placement](fram/fram_job_placement.md) for optional
 parameters for controlling which nodes a _normal_ job is run on.
 
+
+(job_scripts_fram_preproc)=
+
 ## Preproc
 
 _Preproc_ jobs are specified just like _normal_ jobs, except that they
@@ -82,6 +88,9 @@ Here is a simpler _preproc_ job (one task on one node):
     #SBATCH --account=MyProject --job-name=MyJob
     #SBATCH --qos=preproc
     #SBATCH --time=1:0:0
+
+
+(job_scripts_fram_bigmem)=
 
 ## Bigmem
 
@@ -123,6 +132,9 @@ allocated on the nodes:
     #SBATCH --ntasks=16
     #SBATCH --mem-per-cpu=32G
 
+
+(job_scripts_fram_devel)=
+
 ## Devel
 
 _devel_ jobs must specify `--qos=devel`.  A _devel_ job is like a _normal_
@@ -135,6 +147,9 @@ For instance:
    	#SBATCH --qos=devel
 	#SBATCH --time=00:30:00
 	#SBATCH --nodes=2 --ntasks-per-node=32
+
+
+(job_scripts_fram_short)=
 
 ## Short
 
@@ -150,6 +165,9 @@ For instance:
 	#SBATCH --qos=short
 	#SBATCH --time=2:00:00
 	#SBATCH --nodes=8 --ntasks-per-node=32
+
+
+(job_scripts_fram_optimist)=
 
 ## Optimist
 

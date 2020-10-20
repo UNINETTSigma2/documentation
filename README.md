@@ -125,3 +125,23 @@ change them also there:
 
 - https://documentation.sigma2.no/files_storage/nird.html (from https://www.sigma2.no/data-storage)
 - https://documentation.sigma2.no/getting_help/how_to_write_good_support_requests.html (from https://www.sigma2.no/user-support)
+
+
+## How to cross-reference
+
+Create a label at the place you want to cross-refernce to:
+```
+(mylabel)=
+
+## This is some section I want to point to
+```
+
+Then you can reference to it like this:
+```
+{ref}`mylabel`
+```
+
+Or if you want to change the link text:
+```
+{ref}`my text <mylabel>`
+```

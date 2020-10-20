@@ -12,9 +12,9 @@ placement. We don't fully understand why this happens. When using srun
 instead of mpirun or mpiexec, we observe correct task placement on Saga.      
 ```
 
-The basic allocation units on Saga are cpu and memory.  The details of
-how the allocation units are calculated can be found
-[here](/jobs/projects_accounting.md#accounting).
+The basic allocation units on Saga are cpu and memory.
+The details about how the billing units are calculated can be found
+in {ref}`job_accounting`.
 
 Most jobs on Saga are *normal* jobs.
 
@@ -30,6 +30,9 @@ For development or testing, use a *devel* job
 Here is a more detailed description of the different job types on
 Saga:
 
+
+(job_type_saga_normal)=
+
 ## Normal
 
 - __Allocation units__: cpus and memory
@@ -41,9 +44,12 @@ Saga:
   in total 8000 cpus and 36.4 TiB RAM.
 - __Parameter for sbatch/srun__:
     - None, _normal_ is the default
-- __Job Scripts__: [Saga Normal Job Scripts](/jobs/job_scripts/saga_job_scripts.md#normal)
+- __Job Scripts__: {ref}`job_scripts_saga_normal`
 
 This is the default job type.  Most jobs are *normal* jobs.
+
+
+(job_type_saga_bigmem)=
 
 ## Bigmem
 
@@ -58,7 +64,7 @@ This is the default job type.  Most jobs are *normal* jobs.
 	- In total 1632 cpus and 33.9 TiB RAM.
 - __Parameter for sbatch/srun__:
     - `--partition=bigmem`
-- __Job Scripts__: [Saga bigmem Job Scripts](/jobs/job_scripts/saga_job_scripts.md#bigmem)
+- __Job Scripts__: {ref}`job_scripts_saga_bigmem`
 
 *Bigmem* jobs are meant for jobs that need a lot of memory (RAM),
 typically more than 8 GiB per cpu.  (The _normal_ nodes on Fram have
@@ -66,6 +72,9 @@ slightly more than 4.5 GiB per cpu.)
 
 Can be combined with `--qos=devel` to get higher priority but maximum wall time (2h) 
 and resource limits of _devel_ apply.
+
+
+(job_type_saga_accel)=
 
 ## Accel
 
@@ -79,12 +88,15 @@ and resource limits of _devel_ apply.
 - __Parameter for sbatch/srun__: 
     - `--partition=accel`
     - `gres=gpu:N` with _N_ being the number of GPUs (1,2,3 or 4)
-- __Job Scripts__: [Saga accel Job Scripts](/jobs/job_scripts/saga_job_scripts.md#accel)
+- __Job Scripts__: {ref}`job_scripts_saga_accel`
 
 *Accel* jobs give access to use the GPUs.
 
 Can be combined with `--qos=devel` to get higher priority but maximum wall time (2h) 
 and resource limits of _devel_ apply.
+
+
+(job_type_saga_devel)=
 
 ## Devel
 
@@ -98,7 +110,7 @@ and resource limits of _devel_ apply.
 - __Available resources__: *devel* jobs can run on any node on Saga
 - __Parameter for sbatch/srun__: 
     - `--qos=devel`
-- __Job Scripts__: [Saga devel Job Scripts](/jobs/job_scripts/saga_job_scripts.md#devel)
+- __Job Scripts__: {ref}`job_scripts_saga_devel`
 
 This is meant for small, short development or test jobs.  *Devel* jobs
 get higher priority for them to run as soon as possible.  On the other
@@ -110,6 +122,9 @@ priority while having max wall time and job limits of _devel_ job.
 If you have _temporary_ development needs that cannot be fulfilled by
 the _devel_ or _short_ job types, please contact us at
 [support@metacenter.no](mailto:support@metacenter.no).
+
+
+(job_type_saga_optimist)=
 
 ## Optimist
 
@@ -123,7 +138,7 @@ the _devel_ or _short_ job types, please contact us at
 - __Available resources__: *optimist* jobs can run on any node on Saga
 - __Parameter for sbatch/srun__: 
     - `--partition=optimist`
-- __Job Scripts__: [Saga optimist Job Scripts](/jobs/job_scripts/saga_job_scripts.md#optimist)
+- __Job Scripts__: {ref}`job_scripts_saga_optimist`
 
 The _optimist_ job type is meant for very short jobs, or jobs with
 checkpointing (i.e., they save state regularly, so they can restart

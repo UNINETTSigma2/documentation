@@ -88,6 +88,8 @@ Host fram                            # alias, you may run "ssh fram" only
 ```
 
 
+(ssh_fingerprint)=
+
 ## SHA256 fingerprint
 
 No matter how you login, you will need to confirm that the connection shall be
@@ -154,6 +156,9 @@ command on your local machine (Linux or Mac):
 ```bash
 $ ssh-keygen -lf <(ssh-keyscan **login.nird.sigma2.no** 2>/dev/null)
 ```
+
+
+(mosh)=
 
 ## Mosh
 
