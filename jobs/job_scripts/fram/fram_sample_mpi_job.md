@@ -4,8 +4,10 @@ Here is a sample batch script that demonstrates usage of various
 variables and processes for a **normal** job on Fram.  (To run in
 other job types, please read [Fram Job Scripts](fram_job_scripts.md)).
 
-
-[include](files/fram_mpi_job.sh)
+```{eval-rst}
+.. literalinclude:: files/fram_mpi_job.sh
+  :language: bash
+```
 
 Download the script: <a href="files/fram_mpi_job.sh"
 download>fram_mpi_job.sh</a> (you might have to right-click and select

@@ -40,7 +40,10 @@ by `sbatch`.
 
 A small, but complete example (for a _normal_ job on Saga):
 
-[include](files/minimal_array_job.sh)
+```{eval-rst}
+.. literalinclude:: files/minimal_array_job.sh
+  :language: bash
+```
 
 Download the script: <a
 href="files/minimal_array_job.sh">minimal_array_job.sh</a> (you might have

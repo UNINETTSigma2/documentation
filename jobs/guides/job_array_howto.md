@@ -4,7 +4,10 @@ In this example we wish to run many similar sequential jobs in
 parallel using job arrays. We take Python as an example but this does
 not matter for the job arrays:
 
-[include](files/array_test.py)
+```{eval-rst}
+.. literalinclude:: files/array_test.py
+  :language: python
+```
 
 Download the script: <a
 href="files/array_test.py">array_test.py</a> (you might have
@@ -22,7 +25,10 @@ stop at 15:23:58
 Good.  Now we would like to run this script 16 times at (more or less) the same
 time.  For this we use the following
 
-[include](files/array_howto.sh)
+```{eval-rst}
+.. literalinclude:: files/array_howto.sh
+  :language: bash
+```
 
 Download the script: <a
 href="files/array_howto.sh">array_howto.sh</a> (you might have

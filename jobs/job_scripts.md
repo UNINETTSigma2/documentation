@@ -77,7 +77,10 @@ modules.
 
 All in all, a generic job script might look like this:
 
-[include](files/generic_job.sh)
+```{eval-rst}
+.. literalinclude:: files/generic_job.sh
+  :language: bash
+```
 
 Download the script: <a
 href="files/generic_job.sh">generic_job.sh</a> (you might have
