@@ -127,7 +127,6 @@ attribution to the Sigma2/Metacenter.
    :maxdepth: 1
    :caption: Getting started
 
-   frontpage.md
    getting_started/applying_account.md
    getting_started/applying_resources.md
    getting_started/training.md
