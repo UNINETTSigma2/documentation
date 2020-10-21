@@ -1,7 +1,10 @@
 # Job Scripts
 
 This page documents the basics of how to write job scripts for the HPC clusters.
-Cluster-specific details are kept in separate sub pages for each cluster.
+Cluster-specific details are kept in separate sub pages for each cluster:
+
+- [Fram job scripts](job_scripts_on_fram)
+- [Saga job scripts](job_scripts_on_saga)
 
 ## Job Script Basics
 
@@ -102,9 +105,9 @@ cancelled, so too long is better than too short due to lost work!
 - [Environment variables available in job scripts](/jobs/job_scripts/environment_variables.md)
 - [Job work directory](/jobs/job_scripts/work_directory.md)
 - [Array jobs](/jobs/job_scripts/array_jobs.md)
-- [Running Job Steps in Parallel](/jobs/job_scripts/parallel_steps.md)
-- [Porting Job Scripts from PBS/Torque](/jobs/job_scripts/porting_from_pbs.md)
-- [Running MPI Jobs](/jobs/job_scripts/running_mpi_jobs.md)
+- [Running Job Steps in Parallel](/jobs/guides/running_job_steps_parallel.md)
+- [Porting Job Scripts from PBS/Torque](/jobs/guides/porting_from_pbs.md)
+- [Running MPI Jobs](/jobs/guides/running_mpi_jobs.md)
 
 ## Footnotes
 
