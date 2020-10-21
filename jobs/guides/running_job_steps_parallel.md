@@ -7,11 +7,15 @@ lot of flexibility.
 In this example we imagine that we wish to run a job with 5 MPI job steps
 at the same time, each using 4 tasks, thus totalling to 20 tasks:
 
-[include](files/parallel_steps_cpu.sh)
+```{eval-rst}
+.. literalinclude:: files/parallel_steps_cpu.sh
+  :language: bash
+```
 
-Download the script: <a
-href="files/parallel_steps_cpu.sh">parallel_steps_cpu.sh</a> (you might have
-to right-click and select `Save Link As...` or similar).
+Download the script:
+```{eval-rst}
+:download:`files/parallel_steps_cpu.sh`
+```
 
 This will work with any [job type](choosing_job_types.md) that hands out _cpus
 and memory_, so that one specifies `--mem-per-cpu`.  For instance
@@ -23,11 +27,15 @@ on Fram, one has to do it slightly different.  Here is an example to
 run a `normal` job with 8 MPI job steps at the same time, each using
 16 tasks, thus totalling 128 tasks:
 
-[include](files/parallel_steps_node.sh)
+```{eval-rst}
+.. literalinclude:: files/parallel_steps_node.sh
+  :language: bash
+```
 
-Download the script: <a
-href="files/parallel_steps_node.sh">parallel_steps_node.sh</a> (you might have
-to right-click and select `Save Link As...` or similar).
+Download the script:
+```{eval-rst}
+:download:`files/parallel_steps_node.sh`
+```
 
 For instance (on Fram):
 
