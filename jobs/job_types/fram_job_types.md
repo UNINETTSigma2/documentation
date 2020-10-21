@@ -31,7 +31,7 @@ Fram:
 
 - __Allocation units__: whole nodes
 - __Job Limits__:
-    - minimum 4 nodes, maximum 32 nodes (can be increased)
+    - minimum 1 node, maximum 32 nodes (can be increased)
 - __Maximum walltime__: 7 days
 - __Priority__: normal
 - __Available resources__: 996 nodes with 32 cpus and 60 GiB RAM
@@ -146,7 +146,7 @@ time than *devel* jobs, at least on work days.
 
 - __Allocation units__: whole nodes
 - __Job Limits__:
-    - minimum 4 nodes, maximum 32 nodes (can be increased)
+    - minimum 1 node, maximum 32 nodes (can be increased)
 - __Maximum Walltime__: None.  The jobs will start as soon as
   resources are available for at least 30 minutes, but can be
   requeued at any time, so there is no guaranteed minimum run time.
