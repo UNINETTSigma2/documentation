@@ -31,12 +31,12 @@ For other jobs, see {ref}`job_accounting` for how the units are calculated.
 
 | Name                                     | Description                              | Job limits  | Max walltime                              | Priority |
 |:----------------------------------------:|------------------------------------------|:-----------:|:-------------------------------------------:|:--------:|
-| {ref}`normal <job_type_fram_normal>`     | default job type                         | 4--32 nodes | 7 days                                      | normal   |
+| {ref}`normal <job_type_fram_normal>`     | default job type                         | 1--32 nodes | 7 days                                      | normal   |
 | {ref}`preproc <job_type_fram_preproc>`   | pre-/postprocessing jobs                 | 1 node      | 1 day                                       | normal   |
 | {ref}`bigmem <job_type_fram_bigmem>`     | jobs needing more memory                 |             | 14 days                                     | normal   |
 | {ref}`devel <job_type_fram_devel>`       | development jobs (compiling, testing)    | 1--8 nodes  | 30 mins                                     | high     |
 | {ref}`short <job_type_fram_short>`       | short jobs                               | 1--10 nodes | 2 hours                                     | high     |
-| {ref}`optimist <job_type_fram_optimist>` | jobs w/checkpointing, or very short jobs | 4--32 nodes | {ref}`see details <job_type_fram_optimist>` | low      |
+| {ref}`optimist <job_type_fram_optimist>` | jobs w/checkpointing, or very short jobs | 1--32 nodes | {ref}`see details <job_type_fram_optimist>` | low      |
 
 [Fram Job Types](job_types/fram_job_types.md).
 
