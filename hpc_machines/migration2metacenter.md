@@ -4,7 +4,7 @@ In general, the user environment on all Metacenter machines should be as similar
 Thus, for users moving internally between machines run by the Metacenter, they only need to focus on the following:
 
 * [Hardware differences](/hpc_machines/hardware_overview.md): number of CPU cores, memory size, GPU-availability, external access from compute nodes.
-* Software differences: [Installed SW](/software/installed_software.md), type of file-system, access limitation rules to $HOME, same or different file systems on $TMP and $HOME.
+* Software differences: [Installed SW](/software/installed_software.md), type of file-system, access limitation rules to \$HOME, same or different file systems on \$TMP and \$HOME.
 * Jobtype policy differences in Resource Management System (SLURM) on different machines.
 * Storage options.
 
