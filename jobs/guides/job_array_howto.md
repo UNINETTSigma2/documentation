@@ -9,9 +9,10 @@ not matter for the job arrays:
   :language: python
 ```
 
-Download the script: <a
-href="files/array_test.py">array_test.py</a> (you might have
-to right-click and select `Save Link As...` or similar).
+Download the script:
+```{eval-rst}
+:download:`files/array_test.py`
+```
 
 Try it out:
 
@@ -30,9 +31,10 @@ time.  For this we use the following
   :language: bash
 ```
 
-Download the script: <a
-href="files/array_howto.sh">array_howto.sh</a> (you might have
-to right-click and select `Save Link As...` or similar).
+Download the script:
+```{eval-rst}
+:download:`files/array_howto.sh`
+```
 
 This is a script for running a _normal_ array job on Saga.  It can
 easily be changed to run on Fram or use a different job type.

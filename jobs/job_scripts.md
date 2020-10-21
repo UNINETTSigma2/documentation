@@ -82,9 +82,10 @@ All in all, a generic job script might look like this:
   :language: bash
 ```
 
-Download the script: <a
-href="files/generic_job.sh">generic_job.sh</a> (you might have
-to right-click and select `Save Link As...` or similar).
+Download the script:
+```{eval-rst}
+:download:`files/generic_job.sh`
+```
 
 ## Wall Time Limit
 The wall time limit (`--time`) is required for all jobs.

@@ -9,9 +9,10 @@ other job types, please read [Fram Job Scripts](fram_job_scripts.md)).
   :language: bash
 ```
 
-Download the script: <a href="files/fram_mpi_job.sh"
-download>fram_mpi_job.sh</a> (you might have to right-click and select
-`Save Link As...` or similar).
+Download the script:
+```{eval-rst}
+:download:`files/fram_mpi_job.sh`
+```
 
 The actual startup of MPI application differs for different MPI
 libraries.  Since this part is crucial for application performance,

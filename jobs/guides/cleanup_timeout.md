@@ -14,9 +14,10 @@ actions.
   :language: bash
 ```
 
-Download the script: <a
-href="files/timeout_cleanup.sh">timeout_cleanup.sh</a> (you might have
-to right-click and select `Save Link As...` or similar).
+Download the script:
+```{eval-rst}
+:download:`files/timeout_cleanup.sh`
+```
 
 Also note that jobs which use `$SCRATCH` as the work directory can use
 the `savefile` and `cleanup` commands to copy files back to the submit

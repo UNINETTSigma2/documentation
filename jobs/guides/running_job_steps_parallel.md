@@ -12,9 +12,10 @@ at the same time, each using 4 tasks, thus totalling to 20 tasks:
   :language: bash
 ```
 
-Download the script: <a
-href="files/parallel_steps_cpu.sh">parallel_steps_cpu.sh</a> (you might have
-to right-click and select `Save Link As...` or similar).
+Download the script:
+```{eval-rst}
+:download:`files/parallel_steps_cpu.sh`
+```
 
 This will work with any [job type](choosing_job_types.md) that hands out _cpus
 and memory_, so that one specifies `--mem-per-cpu`.  For instance
@@ -29,10 +30,12 @@ run a `normal` job with 8 MPI job steps at the same time, each using
 ```{eval-rst}
 .. literalinclude:: files/parallel_steps_node.sh
   :language: bash
+```
 
-Download the script: <a
-href="files/parallel_steps_node.sh">parallel_steps_node.sh</a> (you might have
-to right-click and select `Save Link As...` or similar).
+Download the script:
+```{eval-rst}
+:download:`files/parallel_steps_node.sh`
+```
 
 For instance (on Fram):
 
