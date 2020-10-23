@@ -55,7 +55,7 @@ If you do check the bin directories of the different VASP installs on Fram you w
 
 1. The binaries comes with a unmodified and a modified flavour (modifications are done in the file constr\_cell\_relax.F and are for simulating epitaxially constrained thin films (abfix) and for simulting cells with point defects which break the symmetry (noshear)). Basically, modification in this sense means a modification in the original source code without adding additional functionality (aka tools).
 
-1. Support for various tools are added, including [occupation matrix control] (https://github.com/WatsonGroupTCD/Occupation-matrix-control-in-VASP), [transition state tools for VASP](http://theory.cm.utexas.edu/vasp/) and [implicit solvation model for VASP](http://vaspsol.mse.ufl.edu/)(file extensions *ocm*, *tst*, *sol* respectively).
+1. Support for various tools are added, including [occupation matrix control] (https://github.com/WatsonGroupTCD/Occupation-matrix-control-in-VASP), [transition state tools for VASP](http://theory.cm.utexas.edu/vtsttools/) and [implicit solvation model for VASP](http://vaspsol.mse.ufl.edu/)(file extensions *ocm*, *tst*, *sol* respectively).
 
 To minimize the number of binaries, they are built in layers:
 First, untooled versions were built - with and without modifications. vasp\_std/gam/ncl is totally unmodified in every way, while vasp\_std/gam/ncl\_abfix/noshear contains the modifications of constr\_cell\_relax.F as mentioned above.

@@ -686,5 +686,5 @@ oversubscribe on GPUs.
 [tensorboard]: https://www.tensorflow.org/tensorboard
 [mirrored]: https://www.tensorflow.org/guide/distributed_training#mirroredstrategy
 [hvd]: https://github.com/horovod/horovod
-[hvd_tf_ex]: https://github.com/horovod/horovod/blob/master/examples/tensorflow2_keras_mnist.py
+[hvd_tf_ex]: https://github.com/horovod/horovod/blob/master/examples/tensorflow2/tensorflow2_keras_synthetic_benchmark.py
 [nccl]: https://developer.nvidia.com/nccl
