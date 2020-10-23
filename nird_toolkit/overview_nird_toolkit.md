@@ -3,6 +3,8 @@ The NIRD Toolkit is a Kubernetes based cloud infrastructure, just alike Google, 
 
 The NIRD toolkit allows pre/post processing analysis, data intensive processing, visualization, artificial intelligence and machine learning platform.
 
+Further documentation about the services available at the NIRD Toolkit is available at https://apps.sigma2.no/docs/ .
+
 # Getting Access
 
 Please refer to the information at UNINETT Sigma2 about [NIRD Toolkit](https://www.sigma2.no/nird-toolkit) for more details.
