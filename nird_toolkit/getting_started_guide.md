@@ -2,7 +2,7 @@
 
 Only the project leader or the executive officer of a NSxxxxK project can deploy applications through the NIRD Toolkit. The project leader/executive officer can also decide who else shall be authorized to deploy application through the NIRD Toolkit and who shall be able run the deployed application. This is done by creating a group in Dataporten and connecting it to the resources in MAS (NSxxxxK). Those members of the group who hold administrative rights will deploy applications, ordinary members will run applications.
 
-Follow the step-by-step procedure below to create and administer your group. ***If you are from University of Oslo, {ref}'read here <access-uio>' .***
+Follow the step-by-step procedure below to create and administer your group. ***If you are from University of Oslo, {ref}`read here <access-uio>` .***
 
 1. Go to the https://minside.dataporten.no and select the institution you belong to from the drop-down menu. If your institution does not appear there (Feide login), then select "Feide guest" from the drop-down menu in the "Other alternative login". You will then be redirected to the OpenIDP page. Create a account in OpenIDP by following the procedure and, once the account has been created, use it to log in to Dataporten as Feide guest.
 
