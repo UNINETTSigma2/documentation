@@ -69,29 +69,6 @@ See [Fram Job Placement](fram/fram_job_placement.md) for optional
 parameters for controlling which nodes a _normal_ job is run on.
 
 
-(job_scripts_fram_preproc)=
-
-## Preproc
-
-_Preproc_ jobs are specified just like _normal_ jobs, except that they
-also must specify `--qos=preproc`, and they are only allocated 1 node
-(so there is no need to specify `--nodes`).  Otherwise, they are just
-like *normal* jobs.
-
-Example of a general _preproc_ specification (1 node, 4 tasks with 8 CPUs/task):
-
-    #SBATCH --account=MyProject --job-name=MyJob
-	#SBATCH --qos=preproc
-    #SBATCH --time=1:0:0
-    #SBATCH --ntasks-per-node=4 --cpus-per-task=8
-
-Here is a simpler _preproc_ job (one task on one node):
-
-    #SBATCH --account=MyProject --job-name=MyJob
-    #SBATCH --qos=preproc
-    #SBATCH --time=1:0:0
-
-
 (job_scripts_fram_bigmem)=
 
 ## Bigmem
