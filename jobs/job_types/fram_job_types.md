@@ -48,26 +48,6 @@ question can actually scale more than 32 nodes, please send a request
 to [support@metacenter.no](mailto:support@metacenter.no).
 
 
-(job_type_fram_preproc)=
-
-## Preproc
-
-- __Allocation units__: whole nodes
-- __Job Limits__:
-    - min/max 1 node
-- __Maximum walltime__: 1 day
-- __Priority__: normal
-- __Available resources__: *preproc* jobs run on the *normal* nodes
-- __Parameter for sbatch/srun__:
-    - `--qos=preproc`
-- __Job Scripts__: {ref}`job_scripts_fram_preproc`
-
-*preproc* jobs are meant for small preprocessing or postprocessing
-tasks.  Typically, such jobs don't use many cpus, so requiring them to
-use 4 nodes would be wasting resources.  If the job is
-single-threaded, one can use a *bigmem* job instead, asking for 1 cpu.
-
-
 (job_type_fram_bigmem)=
 
 ## Bigmem

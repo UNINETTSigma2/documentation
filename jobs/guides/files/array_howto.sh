@@ -16,9 +16,6 @@
 #              d-hh:mm:ss
 #SBATCH --time=0-00:05:00
 
-# For this example we use the preproc qos so we don't waste nodes:
-#SBATCH --qos=preproc
-
 # you must not place bash commands before the last #SBATCH directive
 
 ## Set safer defaults for bash
