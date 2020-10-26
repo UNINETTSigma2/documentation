@@ -5,12 +5,8 @@ run serial jobs or "narrow" parallel jobs, Saga is a better choice.
 
 Most jobs on Fram are *normal* jobs.
 
-For a preprocessing or postprocessing job which only needs one node,
-use a *preproc* job.  If it only needs a single cpu, a small *bigmem*
-job can be used instead.
-
 Jobs requiring a lot of memory (> 4 GiB/cpu) should run as *bigmem*
-jobs.
+jobs. Also, jobs requiring only a single cpu, can use a small *bigmem* job.
 
 Jobs that are very short, or implement checkpointing, can run as
 *optimist* jobs, which means they can use resources that are idle for
