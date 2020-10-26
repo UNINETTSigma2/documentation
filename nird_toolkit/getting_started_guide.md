@@ -6,29 +6,29 @@ Follow the step-by-step procedure below to create and administer your group. ***
 
 1. Go to the https://minside.dataporten.no and select the institution you belong to from the drop-down menu. If your institution does not appear there (Feide login), then select "Feide guest" from the drop-down menu in the "Other alternative login". You will then be redirected to the OpenIDP page. Create a account in OpenIDP by following the procedure and, once the account has been created, use it to log in to Dataporten as Feide guest.
 
-![Dataporten login](nirdtoolkit/Login.png "Dataporten login")
+   ![Dataporten login](nirdtoolkit/Login.png "Dataporten login")
 
 2. Once logged in, you will be redirected to the Dataporten dashboard. Create a new group by clicking on the link on top of the page ("Create New Group"). 
 
-![Dataporten dashboard](nirdtoolkit/DataPorten-daskboard.png "Dataporten dashboard")
+   ![Dataporten dashboard](nirdtoolkit/DataPorten-daskboard.png "Dataporten dashboard")
 
 
 3. Once the group is created, visualize the "Details" of the newly created group. You will be redirected to a page visualizing several information about the group, including the "Group ID" (fc:adhoc:xxxx-xxx-xxxxx-xxxxx).
 
-![Dataporten Group-ID](nirdtoolkit/Group-ID.png "Dataporten Group-ID")
+   ![Dataporten Group-ID](nirdtoolkit/Group-ID.png "Dataporten Group-ID")
 
-**Send the Group name ,Group ID and preferred short name to sigma2@uninett.no to be authorized to deploy a service through the NIRD Toolkit. Please specify, which of your NSxxxxK projects you want this group to have access to.**
+   **Send the Group name ,Group ID and preferred short name to sigma2@uninett.no to be authorized to deploy a service through the NIRD Toolkit. Please specify which of your NSxxxxK projects you want this group to have access to.**
 
 4. You can now authorize other co-workers to run the deployed application, by adding them to the newly created group. Click on "Edit" and you will be redirected to a page that contains a "Share Link" session. Copy the link and send it by mail to the person that you want to invite into the group. 
 
-![Dataporten share-link](nirdtoolkit/share-link.png "Dataporten share-link")
+   ![Dataporten share-link](nirdtoolkit/share-link.png "Dataporten share-link")
 
-Once the invited person accepts the invitation, he/she will appear as a member in the group.
+   Once the invited person accepts the invitation, he/she will appear as a member in the group.
 
-![Dataporten members](nirdtoolkit/members.png "Dataporten members")
+   ![Dataporten members](nirdtoolkit/members.png "Dataporten members")
 
 
-(OBS.: in the example above the owner the group has now become the member of the group.) You can now click on the little icon on the right hand side to make the member the administrator. Once the new member is made administrator, he/she will be able to deploy application, not only run.
+   (OBS.: in the example above the owner the group has now become the member of the group.) You can now click on the little icon on the right hand side to make the member the administrator. Once the new member is made administrator, he/she will be able to deploy application, not only run.
 
 5. If you have logged in to Dataporten through Feide or Feide OpenIDP, then your FeideID shall be connected to your MAS account. Check your account details in MAS here: https://www.metacenter.no/mas/user/profile and verify that you are registered through your Feide e-mail.
 
