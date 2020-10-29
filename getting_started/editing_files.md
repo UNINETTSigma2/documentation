@@ -1,3 +1,5 @@
+# Editing files
+
 We highly recommend using the text mode when using Emacs on Fram, Saga
 or NIRD, e.g.,
 
