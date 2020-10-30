@@ -6,7 +6,7 @@
 Any \$HOME area using more then 20 GiB or more than 100000 files is
 not backed up. To have your \$HOME backed up, you need to shrink the
 disk usage below the 20 GiB limit *and* below 100000 files *and*
-[notify support](/getting_help/support_line.html).
+[notify support](/getting_help/support_line.md).
 
 If "dusage" repots 0 Bytes limits, this means that you **do not have disk quotas**
 activated and this means that these folders **are not backed up**.

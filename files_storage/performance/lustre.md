@@ -45,7 +45,7 @@ fast NVMe JBOD directly connected to the metadata servers.
 ```
 
 For more detailed information on striping, please consult the
-[Lustre](http://lustre.org) documentation.
+[Lustre](https://www.lustre.org/) documentation.
 
 
 ### How to find out the current striping

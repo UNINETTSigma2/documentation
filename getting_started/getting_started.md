@@ -14,7 +14,7 @@ account](https://www.sigma2.no/how-apply-user-account).
 Logging into the machine involves the use of Secure Shell (SSH) in a terminal.
 SSH login is available natively to Linux or Mac OSX (or any UNIX-based systems).
 On Windows machines an SSH client is needed, for example,
-[PuTTY](http://putty.org).
+[PuTTY](https://putty.org).
 
 ```bash
 $ ssh <username>@<machinename>
