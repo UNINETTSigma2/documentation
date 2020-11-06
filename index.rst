@@ -194,6 +194,12 @@ attribution to the Sigma2/Metacenter.
 
    nird_toolkit/overview_nird_toolkit.md
    nird_toolkit/getting_started_guide.md
+   nird_toolkit/package-install.md
+   nird_toolkit/persistent-storage.md
+   nird_toolkit/application-management.md
+   nird_toolkit/package-usage.md
+   nird_toolkit/custom-docker-image.md
+   nird_toolkit/terms.md
 
 .. toctree::
    :maxdepth: 1
