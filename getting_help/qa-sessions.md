@@ -24,16 +24,15 @@ general or specific questions about the event: <jorn.dietze@uit.no>
 
 ## Next event
 
--   **2020-10-13, 13:00 - 15:00**, [online Zoom
-    meeting](https://uit.zoom.us/j/65284253551)
+-   TBA
 
 ### Past events
 
+-   2020-10-13, 13:00 - 15:00, online Zoom meeting
 -   2020-10-10, 13:00 - 15:00, online Zoom meeting
 -   2020-04-23, 13:00 - 15:00, online Zoom meeting
 
 ### Similar events which serve as inspiration
 
--   <https://scicomp.aalto.fi/news/garage.html>
+-   <https://scicomp.aalto.fi/news/garage/>
 -   <https://openworking.wordpress.com/2019/02/04/coding-problems-just-pop-over/>
-

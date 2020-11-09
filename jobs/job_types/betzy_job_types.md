@@ -8,6 +8,9 @@ For development or testing use the  *devel* queue which is limited to small and 
 
 Here is a more detailed description of the different job types on Betzy:
 
+
+(job_type_betzy_normal)=
+
 ## Normal
 
 - __Allocation units__: whole nodes
@@ -22,6 +25,8 @@ Here is a more detailed description of the different job types on Betzy:
 
 This is the default job type. In _normal_ jobs, the queue system hands out complete nodes.
 
+
+(job_type_betzy_preproc)=
 
 ## Preproc
 
@@ -40,7 +45,10 @@ tasks.  Typically, such jobs don't use many CPUs, so requiring them to
 use 8 whole nodes would waste resources.
 
 The details about how the billing units are calculated can be found
-[here](/jobs/projects_accounting.md#accounting).
+in {ref}`job_accounting`.
+
+
+(job_type_betzy_devel)=
 
 ## Devel
 

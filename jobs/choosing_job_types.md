@@ -15,29 +15,27 @@ If it instead needs 200GB memory you should use _bigmem_.
 
 ## Betzy
 
-| Name                                            | Description                           | Job limits   | Max walltime                              | Priority |
-|:-----------------------------------------------:|---------------------------------------|:------------:|:-----------------------------------------:|:--------:|
-| [normal](job_types/betzy_job_types.md#normal)   | default job type                      | 8--256 nodes | 4 days                                    | normal   |
-| [preproc](job_types/betzy_job_types.md#preproc) | pre-/postprocessing jobs              | 1--8 units   | 1 day                                     | normal   |
-| [devel](job_types/betzy_job_types.md#devel)     | development jobs (compiling, testing) | 1--4 nodes   | 30 mins                                   | high     |
+| Name                                     | Description                           | Job limits   | Max walltime | Priority |
+|:----------------------------------------:|---------------------------------------|:------------:|:------------:|:--------:|
+| {ref}`normal <job_type_betzy_normal>`    | default job type                      | 8--256 nodes | 4 days       | normal   |
+| {ref}`preproc <job_type_betzy_preproc>`  | pre-/postprocessing jobs              | 1--8 units   | 1 day        | normal   |
+| {ref}`devel <job_type_betzy_devel>`      | development jobs (compiling, testing) | 1--4 nodes   | 30 mins      | high     |
 
 For jobs that don't request much memory, the "units" of *preproc* jobs
-are simply the number of cpus the job requests.  For other jobs, [see
-here](projects_accounting.md#accounting) for how the units are
-calculated.
+are simply the number of cpus the job requests.
+For other jobs, see {ref}`job_accounting` for how the units are calculated.
 
 [Betzy Job Types](job_types/betzy_job_types.md).
 
 ## Fram
 
-| Name                                             | Description                              | Job limits  | Max walltime                              | Priority |
-|:------------------------------------------------:|------------------------------------------|:-----------:|:-----------------------------------------:|:--------:|
-| [normal](job_types/fram_job_types.md#normal)     | default job type                         | 4--32 nodes | 7 days                                    | normal   |
-| [preproc](job_types/fram_job_types.md#preproc)   | pre-/postprocessing jobs                 | 1 node      | 1 day                                     | normal   |
-| [bigmem](job_types/fram_job_types.md#bigmem)     | jobs needing more memory                 |             | 14 days                                   | normal   |
-| [devel](job_types/fram_job_types.md#devel)       | development jobs (compiling, testing)    | 1--8 nodes  | 30 mins                                   | high     |
-| [short](job_types/fram_job_types.md#short)       | short jobs                               | 1--10 nodes | 2 hours                                   | high     |
-| [optimist](job_types/fram_job_types.md#optimist) | jobs w/checkpointing, or very short jobs | 4--32 nodes | [see details](job_types/fram_job_types.md#optimist) | low      |
+| Name                                     | Description                              | Job limits  | Max walltime                              | Priority |
+|:----------------------------------------:|------------------------------------------|:-----------:|:-------------------------------------------:|:--------:|
+| {ref}`normal <job_type_fram_normal>`     | default job type                         | 1--32 nodes | 7 days                                      | normal   |
+| {ref}`bigmem <job_type_fram_bigmem>`     | jobs needing more memory                 |             | 14 days                                     | normal   |
+| {ref}`devel <job_type_fram_devel>`       | development jobs (compiling, testing)    | 1--8 nodes  | 30 mins                                     | high     |
+| {ref}`short <job_type_fram_short>`       | short jobs                               | 1--10 nodes | 2 hours                                     | high     |
+| {ref}`optimist <job_type_fram_optimist>` | jobs w/checkpointing, or very short jobs | 1--32 nodes | {ref}`see details <job_type_fram_optimist>` | low      |
 
 [Fram Job Types](job_types/fram_job_types.md).
 
@@ -46,16 +44,16 @@ calculated.
 
 | Name                                             | Description                               | Job limits   | Max walltime                              | Priority |
 |:------------------------------------------------:|-------------------------------------------|:------------:|:-----------------------------------------:|:--------:|
-| [normal](job_types/saga_job_types.md#normal)     | default job type                          | 1--256 units | 7 days                                    | normal   |
-| [bigmem](job_types/saga_job_types.md#bigmem)     | jobs needing more memory                  | 1--256 units | 14 days                                   | normal   |
-| [accel](job_types/saga_job_types.md#accel)       | jobs needing GPUs                         | 1--256 units | 14 days                                   | normal   |
-| [devel](job_types/saga_job_types.md#devel)       | development jobs (compiling, testing)[^1] | 1--128 units | 2 hours                                   | high     |
-| [optimist](job_types/saga_job_types.md#optimist) | jobs w/checkpointing, or very short jobs  | 1--256 units | [see details](job_types/saga_job_types.md#optimist) | low      |
+| {ref}`normal <job_type_saga_normal>`     | default job type                          | 1--256 units | 7 days                                      | normal   |
+| {ref}`bigmem <job_type_saga_bigmem>`     | jobs needing more memory                  | 1--256 units | 14 days                                     | normal   |
+| {ref}`accel <job_type_saga_accel>`       | jobs needing GPUs                         | 1--256 units | 14 days                                     | normal   |
+| {ref}`devel <job_type_saga_devel>`       | development jobs (compiling, testing)[^1] | 1--128 units | 2 hours                                     | high     |
+| {ref}`optimist <job_type_saga_optimist>` | jobs w/checkpointing, or very short jobs  | 1--256 units | {ref}`see details <job_type_saga_optimist>` | low      |
 
 For jobs that don't request GPUs or much memory, the "units" on Saga are
-simply the number of cpus the job requests.  For other jobs, [see
-here](projects_accounting.md#accounting) for how the units are calculated.
+simply the number of cpus the job requests.
+For other jobs, see {ref}`job_accounting` for how the units are calculated.
 
 [Saga Job Types](job_types/saga_job_types.md).
 
-[^1]: On Saga it is possible to combine _devel_ with _accel_ or _bigmem_, see [details](job_types/saga_job_types.md#devel).
+[^1]: On Saga it is possible to combine _devel_ with _accel_ or _bigmem_, {ref}`see details <job_type_saga_devel>`.

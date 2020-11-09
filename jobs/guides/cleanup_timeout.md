@@ -9,11 +9,15 @@ In this example we ask Slurm to send a signal to our script 120
 seconds before it times out to give us a chance to perform clean-up
 actions.
 
-[include](files/timeout_cleanup.sh)
+```{eval-rst}
+.. literalinclude:: files/timeout_cleanup.sh
+  :language: bash
+```
 
-Download the script: <a
-href="files/timeout_cleanup.sh">timeout_cleanup.sh</a> (you might have
-to right-click and select `Save Link As...` or similar).
+Download the script:
+```{eval-rst}
+:download:`files/timeout_cleanup.sh`
+```
 
 Also note that jobs which use `$SCRATCH` as the work directory can use
 the `savefile` and `cleanup` commands to copy files back to the submit

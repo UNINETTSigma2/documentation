@@ -8,7 +8,7 @@ First note that the Gaussian installation on Sigma2 machines, are currently Lind
 * The parallel fraction of the code scales to more cores.
 * The shared memory performance is significantly enhanced (small scale performance).
 
-But since we do this trick, we are greatly depending on altering the specific node address into the input file: To run gaussian in parallel requires the additional keywords `%LindaWorkers` and `%NProcshared` in the Link 0 part of the input file. This is taken care of by a wrapper script (***gXX.ib***) around the original binary in each individual version folder. This is also commented in the [job script example](../files/fram_g16.sh). Please use this example(s) as starting point(s) when submitting jobs.
+But since we do this trick, we are greatly depending on altering the specific node address into the input file: To run gaussian in parallel requires the additional keywords `%LindaWorkers` and `%NProcshared` in the Link 0 part of the input file. This is taken care of by a wrapper script (***gXX.ib***) around the original binary in each individual version folder. This is also commented in the [jobscript example](gaussian_job_example.md). Please use this example(s) as starting point(s) when submitting jobs.
 
 Syntax is shown here:
 
@@ -48,7 +48,7 @@ This is done with the following command:
 
 	lfs setstripe -c 8 ${GAUSS_SCRDIR}
 
-Note the placement of this command in the [Fram jobscript example](../files/fram_g16.sh). It is paramount that this commands comes after defining that variable and creating the corresponding folder.
+Note the placement of this command in the [jobscript example](gaussian_job_example.md). It is paramount that this commands comes after defining that variable and creating the corresponding folder.
 
 ## Important aspects of Gaussian setup on Fram:
 

@@ -39,7 +39,7 @@ given a `impi/`-reading focus on the Intel MPI part
 On systems with Mellanox InfiniBand, OpenMPI is the implementation
 recommended by Mellanox due to it's support for the [HPCX
 communication
-libraries](http://www.mellanox.com/page/products_dyn?product_family=189&mtag=hpc-x).
+libraries](https://docs.mellanox.com/category/hpcx).
 
 ### `srun`
 

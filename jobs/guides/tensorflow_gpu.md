@@ -6,8 +6,9 @@ utilize other libraries this guide still holds some value. Do not hesitate to
 [contact us][contact_sigma] for additional assistance.
 
 For the rest of this guide many of the examples ask for Sigma2 resources with
-GPU. This is achieved with the `--partition=accel --gres=gpu:1` [options on
-`Saga`][saga_accel], however, `TensorFlow` does not require the use of a GPU so
+GPU. This is achieved with the `--partition=accel --gres=gpu:1`
+({ref}`job_scripts_saga_accel`),
+however, `TensorFlow` does not require the use of a GPU so
 for testing it is recommended to not ask for GPU resources (to be scheduled
 quicker) and then, once your experiments are ready to run for longer, add back
 inn the request for GPU.
@@ -159,8 +160,8 @@ To upload data to use [`rsync`][rsync] to transfer data:
 $ rsync -zh --info=progress2 -r /path/to/dataset/folder <username>@saga.sigma2.no:~/.
 ```
 
-For large amounts of data it is recommended to load into your [project's shared
-storage][project_storage] to avoid filling your home area.
+For large amounts of data it is recommended to load into your {ref}`project-area`
+to avoid filling your home area.
 
 To retrieving the path to the dataset, we can utilize python's [`os`][python_os]
 module to access the variable, like so:
@@ -671,13 +672,11 @@ oversubscribe on GPUs.
 [sigma2]: https://www.sigma2.no/
 [tensorflow]: https://www.tensorflow.org/
 [contact_sigma]: ../../getting_help/support_line.html
-[saga_accel]: ../job_scripts/saga_job_scripts.html#accel
 [module]: ../../software/modulescheme.html
 [virtualenv]: https://virtualenv.pypa.io/en/stable/
 [tf_install]: https://www.tensorflow.org/install/pip
 [sbatch_ex]: ../job_scripts.html
 [rsync]: https://en.wikipedia.org/wiki/Rsync
-[project_storage]: ../../files_storage/clusters.html#project-area
 [scratch]: ../job_scripts/work_directory.html
 [saga]: ../../hpc_machines/saga.html
 [localscratch]: ../../files_storage/clusters.html#job-scratch-area-on-local-disk
@@ -686,5 +685,5 @@ oversubscribe on GPUs.
 [tensorboard]: https://www.tensorflow.org/tensorboard
 [mirrored]: https://www.tensorflow.org/guide/distributed_training#mirroredstrategy
 [hvd]: https://github.com/horovod/horovod
-[hvd_tf_ex]: https://github.com/horovod/horovod/blob/master/examples/tensorflow2_keras_mnist.py
+[hvd_tf_ex]: https://github.com/horovod/horovod/blob/master/examples/tensorflow2/tensorflow2_keras_synthetic_benchmark.py
 [nccl]: https://developer.nvidia.com/nccl

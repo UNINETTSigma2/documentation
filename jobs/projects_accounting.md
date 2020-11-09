@@ -43,6 +43,8 @@ The `cost` command only shows usage in the current _allocation
 period_.  Historical usage can be found [here](https://www.metacenter.no/mas/projects).
 
 
+(job_accounting)=
+
 ### Accounting
 
 The term "CPU hour" above is an over-simplification.  Jobs are

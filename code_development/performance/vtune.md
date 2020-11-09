@@ -56,7 +56,7 @@ $ amplxe-cl -collect hotspots ./your-program your-arguments
 ```
 
 For a complete list of analysis modes please consult the [VTune
-documentation](https://software.intel.com/en-us/vtune-amplifier-help-collect#7A146C04-7E5E-4C41-BAC7-92670C43B4E5). A
+documentation](https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html). A
 useful set of performance metrics is gathered by the
 `hрc-performance` analysis, which can help to identify opportunities
 to optimize CPU, memory, and vectorization level:

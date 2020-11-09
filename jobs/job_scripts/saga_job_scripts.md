@@ -1,3 +1,5 @@
+(job_scripts_on_saga)=
+
 # Job Scripts on Saga
 
 This page documents how to specify the queue system parameters for the
@@ -12,6 +14,8 @@ placement. We don't fully understand why this happens. When using srun
 instead of mpirun or mpiexec, we observe correct task placement on Saga.
 ```
 
+
+(job_scripts_saga_normal)=
 
 ## Normal
 
@@ -84,6 +88,9 @@ with the specification, it will have to wait.
 The [Saga Sample MPI Job](saga/saga_sample_mpi_job.md) page has an example
 of a _normal_ MPI job.
 
+
+(job_scripts_saga_bigmem)=
+
 ## Bigmem
 
 _Bigmem_ jobs are specified exactly like the _normal_ jobs except that
@@ -97,6 +104,9 @@ RAM per cpu:
     #SBATCH --time=1-0:0:0
     #SBATCH --ntasks=2 --cpus-per-task=4
     #SBATCH --mem-per-cpu=32G
+
+
+(job_scripts_saga_accel)=
 
 ## Accel
 
@@ -113,6 +123,9 @@ Here is an example that asks for 2 tasks and 2 gpus on one gpu node:
     #SBATCH --ntasks-per-node=2 --nodes=1
     #SBATCH --mem-per-cpu=8G
 
+
+(job_scripts_saga_devel)=
+
 ## Devel
 
 _Devel_ jobs must specify `--qos=devel`.  A _devel_ job is like a _normal_
@@ -125,6 +138,9 @@ For instance:
 	#SBATCH --qos=devel
 	#SBATCH --time=00:30:00
 	#SBATCH --ntasks=16
+
+
+(job_scripts_saga_optimist)=
 
 ## Optimist
 

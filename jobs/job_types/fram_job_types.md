@@ -5,12 +5,8 @@ run serial jobs or "narrow" parallel jobs, Saga is a better choice.
 
 Most jobs on Fram are *normal* jobs.
 
-For a preprocessing or postprocessing job which only needs one node,
-use a *preproc* job.  If it only needs a single cpu, a small *bigmem*
-job can be used instead.
-
 Jobs requiring a lot of memory (> 4 GiB/cpu) should run as *bigmem*
-jobs.
+jobs. Also, jobs requiring only a single cpu, can use a small *bigmem* job.
 
 Jobs that are very short, or implement checkpointing, can run as
 *optimist* jobs, which means they can use resources that are idle for
@@ -24,17 +20,20 @@ but will probably have longer wait times.
 Here is a more detailed description of the different job types on
 Fram:
 
+
+(job_type_fram_normal)=
+
 ## Normal
 
 - __Allocation units__: whole nodes
 - __Job Limits__:
-    - minimum 4 nodes, maximum 32 nodes (can be increased)
+    - minimum 1 node, maximum 32 nodes (can be increased)
 - __Maximum walltime__: 7 days
 - __Priority__: normal
 - __Available resources__: 996 nodes with 32 cpus and 60 GiB RAM
 - __Parameter for sbatch/srun__:
     - None, _normal_ is the default
-- __Job Scripts__: [Fram Normal Job Scripts](/jobs/job_scripts/fram_job_scripts.md#normal)
+- __Job Scripts__: {ref}`job_scripts_fram_normal`
 
 This is the default job type.  Most jobs are *normal* jobs.  Most of
 the other job types are "variants" of a *normal* job.
@@ -45,22 +44,7 @@ question can actually scale more than 32 nodes, please send a request
 to [support@metacenter.no](mailto:support@metacenter.no).
 
 
-## Preproc
-
-- __Allocation units__: whole nodes
-- __Job Limits__:
-    - min/max 1 node
-- __Maximum walltime__: 1 day
-- __Priority__: normal
-- __Available resources__: *preproc* jobs run on the *normal* nodes
-- __Parameter for sbatch/srun__:
-    - `--qos=preproc`
-- __Job Scripts__: [Fram Preproc Job Scripts](/jobs/job_scripts/fram_job_scripts.md#preproc)
-
-*preproc* jobs are meant for small preprocessing or postprocessing
-tasks.  Typically, such jobs don't use many cpus, so requiring them to
-use 4 nodes would be wasting resources.  If the job is
-single-threaded, one can use a *bigmem* job instead, asking for 1 cpu.
+(job_type_fram_bigmem)=
 
 ## Bigmem
 
@@ -74,7 +58,7 @@ single-threaded, one can use a *bigmem* job instead, asking for 1 cpu.
     - 2 nodes with 64 cpus and 6045 GiB RAM
 - __Parameter for sbatch/srun__:
     - `--partition=bigmem`
-- __Job Scripts__: [Fram Bigmem Job Scripts](/jobs/job_scripts/fram_job_scripts.md#bigmem)
+- __Job Scripts__: {ref}`job_scripts_fram_bigmem`
 
 *Bigmem* jobs are meant for jobs that need a lot of memory (RAM),
 typically more than 4 GiB per cpu.  (The _normal_ nodes on Fram have
@@ -82,6 +66,9 @@ slightly less than 2 GiB per cpu.)
 
 For _bigmem_ jobs, the queue system hands out cpus and memory, not
 whole nodes.
+
+
+(job_type_fram_devel)=
 
 ## Devel
 
@@ -95,7 +82,7 @@ whole nodes.
   07:00 and 21:00 on weekdays
 - __Parameter for sbatch/srun__: 
     - `--qos=devel`
-- __Job Scripts__: [Fram Devel Job Scripts](/jobs/job_scripts/fram_job_scripts.md#devel)
+- __Job Scripts__: {ref}`job_scripts_fram_devel`
 
 This is meant for small, short development or test jobs.  *Devel* jobs
 have access to a set of dedicated nodes on daytime in weekdays to
@@ -105,6 +92,9 @@ limits on the size and number of _devel_ jobs.
 If you have _temporary_ development needs that cannot be fulfilled by
 the _devel_ or _short_ job types, please contact us at
 [support@metacenter.no](mailto:support@metacenter.no).
+
+
+(job_type_fram_short)=
 
 ## Short
 
@@ -118,18 +108,21 @@ the _devel_ or _short_ job types, please contact us at
   (shared with *normal*)
 - __Parameter for sbatch/srun__: 
     - `--qos=short`
-- __Job Scripts__: [Fram Short Job Scripts](/jobs/job_scripts/fram_job_scripts.md#short)
+- __Job Scripts__: {ref}`job_scripts_fram_short`
 
 This is also meant for development or test jobs.  It allows slightly
 longer and wider jobs than *devel*, but has slightly lower priority,
 and no dedicated resources.  This usually results in a longer wait
 time than *devel* jobs, at least on work days.
 
+
+(job_type_fram_optimist)=
+
 ## Optimist
 
 - __Allocation units__: whole nodes
 - __Job Limits__:
-    - minimum 4 nodes, maximum 32 nodes (can be increased)
+    - minimum 1 node, maximum 32 nodes (can be increased)
 - __Maximum Walltime__: None.  The jobs will start as soon as
   resources are available for at least 30 minutes, but can be
   requeued at any time, so there is no guaranteed minimum run time.
@@ -137,7 +130,7 @@ time than *devel* jobs, at least on work days.
 - __Available resources__: *optimist* jobs run on the *normal* nodes.
 - __Parameter for sbatch/srun__: 
     - `--partition=optimist`
-- __Job Scripts__: [Fram Optimist Job Scripts](/jobs/job_scripts/fram_job_scripts.md#optimist)
+- __Job Scripts__: {ref}`job_scripts_fram_optimist`
 
 The _optimist_ job type is meant for very short jobs, or jobs with
 checkpointing (i.e., they save state regularly, so they can restart

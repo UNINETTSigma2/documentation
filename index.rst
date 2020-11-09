@@ -1,4 +1,3 @@
-
 ===================================
 The Norwegian Academic HPC Services
 ===================================
@@ -23,10 +22,10 @@ OpsLog <https://opslog.sigma2.no>`__ and the
 Compute, storage, pre/post-processing, visualization, machine learning
 ----------------------------------------------------------------------
 
-We offer compute resources (`Betzy <hpc_machines/betzy.md>`__,
-`Fram <hpc_machines/fram.md>`__, `Saga <hpc_machines/saga.md>`__, and
+We offer compute resources (`Betzy <hpc_machines/betzy.html>`__,
+`Fram <hpc_machines/fram.html>`__, `Saga <hpc_machines/saga.html>`__, and
 `Stallo <https://hpc-uit.readthedocs.io>`__), storage resources
-(`NIRD <files_storage/nird.md>`__), as well as the `NIRD
+(`NIRD <files_storage/nird.html>`__), as well as the `NIRD
 Toolkit <https://www.sigma2.no/nird-toolkit>`__ platform for pre- and
 post-processing analysis, data intensive processing, visualization,
 artificial intelligence, and machine learning.
@@ -51,18 +50,21 @@ How to get the most out of your allocation
 
 We want to support researchers in getting the most out of the
 high-performance computing services. When supporting users, we see that
-these problems are very frequent: - **Reusing outdated scripts** from
-colleagues without adapting them to optimal parameters for the cluster
-at hand and thus leaving few cores idle. Please check at least how many
-cores there are on a particular cluster node. - **Requesting too much
-memory** which leads to longer queuing and less resource usage. Please
-check `how to choose memory
-settings </jobs/choosing_memory_settings.md>`__. - Requesting **more
-cores than the application can effectively use** without studying the
-scaling of the application. You will get charged more than needed and
-others cannot run jobs. If others do this, your own jobs queue. -
-**Submitting jobs to the wrong queue** and then queuing longer than
-needed. Please take some time to study the different job types.
+these problems are very frequent:
+
+- **Reusing outdated scripts** from colleagues without adapting them to
+  optimal parameters for the cluster at hand and thus leaving few cores
+  idle. Please check at least how many cores there are on a particular
+  cluster node.
+- **Requesting too much memory** which leads to longer queuing and less
+  resource usage. Please check `how to choose memory
+  settings <jobs/choosing_memory_settings.html>`__.
+- **Requesting more cores than the application can effectively use** without
+  studying the scaling of the application. You will get charged more than
+  needed and others cannot run jobs. If others do this, your own jobs queue.
+- **Submitting jobs to the wrong queue** and then queuing longer than
+  needed. Please take some time to study the different `job types
+  <jobs/choosing_job_types.html>`__.
 
 If you are unsure about these, please contact us via
 support@metacenter.no and we will help you to use your allocated
@@ -124,7 +126,6 @@ attribution to the Sigma2/Metacenter.
    :maxdepth: 1
    :caption: Getting started
 
-   frontpage.md
    getting_started/applying_account.md
    getting_started/applying_resources.md
    getting_started/training.md
@@ -187,6 +188,18 @@ attribution to the Sigma2/Metacenter.
    files_storage/file_transfer.md
    files_storage/performance.md
 
+.. toctree::
+   :maxdepth: 1
+   :caption: NIRD Toolkit
+
+   nird_toolkit/overview_nird_toolkit.md
+   nird_toolkit/getting_started_guide.md
+   nird_toolkit/package-install.md
+   nird_toolkit/persistent-storage.md
+   nird_toolkit/application-management.md
+   nird_toolkit/package-usage.md
+   nird_toolkit/custom-docker-image.md
+   nird_toolkit/terms.md
 
 .. toctree::
    :maxdepth: 1

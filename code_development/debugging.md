@@ -1,24 +1,6 @@
-<h1>Debugging</h1>
+# Debugging
 
-<ul class='toc-indentation'>
-<li><a href='#debugging-comp_opt'>Compiler Debug Options</a></li>
-<li><a href='#debugging-GDB'>GNU GDB</a>
-<ul class='toc-indentation'>
-<li><a href='#debugging-commands'>GDB Commands</a></li>
-<li><a href='#debugging-attach'>Attaching to running processes</a></li>
-<li><a href='#debugging-core'>Examining Core Files</a></li>
-</ul>
-</li>
-<li><a href='#debugging-Totalview'>TotalView</a>
-<ul class='toc-indentation'>
-<li><a href='#debugging-startingTotalview'>Starting TotalView</a></li>
-<li><a href='#debugging-interactive'>Interactive Batch System Debugging</a></li>
-<li><a href='#Totalview-doc'>Further Information</a></li>
-</ul>
-</li>
-</ul>
-
-<h2 id="debugging-comp_opt">Compiler Debug Options</h2>
+## Compiler Debug Options
 
 The table below shows a list of debugging options for the Intel and GCC
 compilers.
@@ -80,14 +62,16 @@ compilers.
 </tbody>
 </table>
 
-<h2 id="debugging-GDB">GNU GDB</h2>
+
+## GNU GDB
 
 GDB, the GNU Project debugger, is a free software debugger that supports
 several programming languages including C, C++ and Fortran. GDB has a
 command-line interface and do not contain its own graphical user interface
 (GUI).
 
-<h4 id="debugging-commands">GDB commands</h4>
+
+### GDB commands
 
 To begin a debug session compile the code with the `-g` option to add
 debugging information, and start GDB by running the `gdb` command adding the
@@ -125,8 +109,8 @@ the command, e.g.
 
        (gdb) shell ls -l
 
-<h4 id="debugging-attach">Attaching to running processes</h4>
 
+### Attaching to running processes
 
 GDB can attach to already running processes using the attach *[process-id]* command. After attaching to a process GDB will stop it from running. This allows you to prepare the debug session using GDB commands, e.g. setting breakpoints or watchpoints. Then use the `continue` command to let the process continue running.
 
@@ -197,7 +181,8 @@ comments):
 
 	(gdb) quit
 
-<h4 id="debugging-core">Examining core files</h4>
+
+### Examining core files
 
 Core files can be examined specifying both an executable program and the core
 file:
@@ -209,7 +194,10 @@ snapshot of a program’s state using the command:
 
 	(gdb) generate-core-file
 
-<h2 id="debugging-Totalview">TotalView</h2>
+
+(totalview_debugging)=
+
+## TotalView
 
 TotalView is a GUI-based cource code debugger from [Rogue Wave Software](https://www.roguewave.com)
 It allows for debugging of serial and parallel codes. Program execution is
@@ -220,16 +208,17 @@ memory errors and leaks, and diagnostic problems like deadlocks.
 TotalView works with C, C++ and Fortran applications, and supports OpenMP and
 several MPI implementations including Open MPI and Intel MPI.
 
-<h4 id="debugging-startingTotalview">Starting Totalview</h4>
+
+### Starting Totalview
 
 After compiling your MPI code with the `-g` flag, load the TotalView module and
 start `totalview` with your executable, e.g. *mpi_prog*, by issuing the command
 
-<h6>Open MPI:</h6>
+Open MPI:
 
     $ mpirun -tv -np <no_of_processes> ./mpi_prog
 
-<h6>Intel MPI:</h6>
+Intel MPI:
 
     $ totalview mpiexec -a -n <no_of_processes> ./mpi_prog
 
@@ -240,13 +229,10 @@ commands in the Process Window. A popup window will ask whether you want to
 start the job in a stopped state. Click **_Yes_**, and the source code of your
 program will show in the source pane of the Process Window.
 
-<br>
-<p>
-<figure>
-<figcaption><b>Fig.1 - TotalView Process Window</b></figcaption>
-<img src="./process.png" vspace="20">
-</figure>
-</p>
+```{image} /code_development/process.png
+:alt: TotalView process window
+```
+**Fig. 1 - TotalView process window**
 
 You are now ready to start the debugging session doing different actions, e.g.:
 
@@ -257,15 +243,13 @@ You are now ready to start the debugging session doing different actions, e.g.:
 * Visualize variable across processes by diving into a variable and click **_View_**  &rarr;  **_Show Across_**  &rarr;  **_Processes_** in the Variable Window.
 * Examine array data: Dive into an arrray variable. Display array subsections by editing the slice field in the array Varible Window. Show statistics information about the array (or a slice of the array) by clicking **_Tools_**  &rarr;  **_Statistics_** in the Variable Window.
 
-<br>
-<p>
-<figure>
-<figcaption><b>Fig.2 - Examining Data</b></figcaption>
-<img src="./statistics.png" vspace="20">
-</figure>
-</p>
+```{image} /code_development/statistics.png
+:alt: Examining Data
+```
+**Fig. 2 - Examining data**
 
-<h4 id="debugging-interactive">Interactive Batch System Debugging</h4>
+
+### Interactive Batch System Debugging
 
 When running TotalView in the batch system, first start an interactive Slurm
 batch job session:
@@ -275,11 +259,11 @@ batch job session:
 
 Start TotalView with the executable
 
-<h6>Open MPI:</h6>
+Open MPI:
 
     $ mpirun -tv ./mpi_prog
 
-<h6>Intel MPI:</h6>
+Intel MPI:
 
     $ totalview srun -a --ntasks-per-node=<ntasks> ./mpi_prog
 
@@ -292,6 +276,9 @@ finishing the debugging session
     $ exit
     salloc: Relinquishing job allocation <jobid>
 
-<h4 id="Totalview-doc">Further Information</h4>
 
-* For more information see the [TotalView Documentation](https://www.roguewave.com/help-support/documentation/totalview) page
+### Further Information
+
+For more information see the [TotalView
+Documentation](https://www.roguewave.com/help-support/documentation/totalview)
+page.

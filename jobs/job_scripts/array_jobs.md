@@ -40,11 +40,15 @@ by `sbatch`.
 
 A small, but complete example (for a _normal_ job on Saga):
 
-[include](files/minimal_array_job.sh)
+```{eval-rst}
+.. literalinclude:: files/minimal_array_job.sh
+  :language: bash
+```
 
-Download the script: <a
-href="files/minimal_array_job.sh">minimal_array_job.sh</a> (you might have
-to right-click and select `Save Link As...` or similar).
+Download the script:
+```{eval-rst}
+:download:`files/minimal_array_job.sh`
+```
 
 Submit the script with `sbatch minimal_array_job.sh`.  This job will
 process the datasets `dataset.1`, `dataset.2`, ..., `dataset.200` and

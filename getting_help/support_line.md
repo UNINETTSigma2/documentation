@@ -29,7 +29,7 @@ the fastest useful response:
 If you don’t know something, it’s OK, just do your best and we’ll help from
 there! You can also chat with us to brainstorm about issues in general.
 
-This summary is copied and adapted from the [Aalto Science-IT help pages](https://scicomp.aalto.fi/triton/help.html#give-enough-information).
+This summary is copied and adapted from the [Aalto Science-IT help pages](https://scicomp.aalto.fi/triton/help/#give-enough-information).
 
 Please also look at the page for a more detailed guide on [how to write good support
 requests](how_to_write_good_support_requests.md) on how to report problems in

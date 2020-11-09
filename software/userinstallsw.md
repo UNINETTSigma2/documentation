@@ -118,6 +118,14 @@ source my_new_pythonenv/bin/activate
 pip install pandas
 ```
 
+```{note}
+When running software from your Python environment in a batch script, it is
+_highly_ recommended to activate the environment _only_ in the script (see
+below), while keeping the login environment clean when submitting the job,
+otherwise the environments can interfere with each other (even if they are the
+same).
+```
+
 ## Using the virtual environment in a batch script
 
 In a batch script you will activate the virtual environment in the same way as
@@ -173,6 +181,9 @@ export PS1=\$
 # The variable ${EBROOTANACONDA3} comes with the
 # module load command
 source ${EBROOTANACONDA3}/etc/profile.d/conda.sh
+
+# Deactivate any spill-over environment from the login node
+conda deactivate &>/dev/null
 
 # Activate the environment by using the full path (not name)
 # to the environment. The full path is listed if you do

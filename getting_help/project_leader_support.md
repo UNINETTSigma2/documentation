@@ -20,6 +20,5 @@ on-going allocation period. For more details follow the documentation at
 
 ## Storage quota for projects
 
-For the details of storage quota, follow
-[this page](/files_storage/clusters.html#project-area)
+For the details of storage quota, follow {ref}`project-area`
 about documentation on **project area** quotas.
