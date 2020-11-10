@@ -20,7 +20,7 @@ shutdown and migration - Questions regarding data storage and management
 organization and data management - Anything else If you think you might
 have a challenging question or topics for us, you can also send them to
 us before, so we can come prepared and help you better. If you have
-general or specific questions about the event: <jorn.dietze@uit.no>
+general or specific questions about the event: [jorn.dietze@uit.no](jorn.dietze@uit.no)
 
 
 ## Next event
