@@ -7,7 +7,7 @@ suggestions on how to improve services, and get advice for your
 projects.
 
 Join us on [Zoom](https://uit.zoom.us/j/65284253551), get yourself a
-coffee or tea and have a chat. It doesn’t matter from which institute or
+coffee or tea and have a chat. It doesn't matter from which institute or
 university you are, you are **welcome to join at any time**.
 
 This time we will start with a **short seminar about “Helpful Tools &
