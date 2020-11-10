@@ -17,15 +17,15 @@ Now, as of November 2020, you will see this:
 	module avail EasyBuild
 
 	----------------------- /cluster/modulefiles/all ------------------------
-	   EasyBuild/4.3.0
+	   EasyBuild/4.3.1
 
 	Use "module spider" to find all possible modules.
 	Use "module keyword key1 key2 ..." to search for all possible modules
 	matching any of the "keys".
 
-Choose 4.3.0 in this case and load this module by typing:
+Choose 4.3.1 in this case and load this module by typing:
 
-	module load EasyBuild/4.3.0
+	module load EasyBuild/4.3.1
 
 Now, we advice to do an install in three steps, first download the sources of your software, then do a test run where you check what will be installed and then the full install.
 
