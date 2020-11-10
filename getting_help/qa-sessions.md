@@ -23,6 +23,14 @@ us before, so we can come prepared and help you better. If you have
 general or specific questions about the event: [jorn.dietze@uit.no](jorn.dietze@uit.no)
 
 
+## How to get notified about these events
+
+You can subscribe to this
+[notification-only mailing list](https://sympa.uninett.no/lists/metacenter.no/info/events).
+This is a low-traffic announcement list about this event and similar training
+events.
+
+
 ## Next event
 
 -   TBA
