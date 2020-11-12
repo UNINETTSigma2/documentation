@@ -27,6 +27,11 @@ Build the HTML:
 $ sphinx-build . _build
 ```
 
+Build the HTML and check links:
+```
+$ sphinx-build -b linkcheck . _build
+```
+
 Now open `_build/index.html` in your browser. After each change
 you need to `sphinx-build` again.
 
