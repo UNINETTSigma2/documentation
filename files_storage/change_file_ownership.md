@@ -1,5 +1,11 @@
 # Changing file ownership
 
+```{note}
+**This is cluster specific**
+
+This page is only relevant for Fram and Saga - **not Betzy**, as disk quotas on Betzy are based on directories instead of groups.
+```
+
 Since file permissions are persistent across the file system, it might be necessary to manually change the ownership of one or more files.
 This page will show an example of how to change ownership on a file that was moved from `$HOME` to `$USERWORK` in order to update the disk quotas.
 
@@ -49,17 +55,6 @@ To change the file group ownership we can use the command `chgrp`:
 total 1048576
 -rw-rw-r-- 1 username username 1073741824 Nov 13 13:11 myfile.txt
 ```
-
-```{warning}
-**Be careful when changing file ownerships**
-
-Changing file ownerships may result in losing permissions to the files.
-Always make sure to read the official documentation to understand how commands work before using them.
-You should also take care to only change the ownership to groups you have access to.
-
-If you are in doubt, please contact support and ask before trying.
-```
-
 
 The file is now owned by the correct group and we can verify that the disk quotas have been updated by running `dusage` again:
 
