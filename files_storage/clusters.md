@@ -73,6 +73,7 @@ $ beegfs-ctl --getquota --gid nn1234k
 - **I have moved files to the project folder but my home quota usage did not go down**:
   Moving files does not change ownership of the files. You need to also change the ownership of the files
   in the project folder from you to the group (change the ownership from 'username_g' to 'username').
+  Please refer to the [example on changing file ownership](change_file_ownership.md).
 ```
 
 
