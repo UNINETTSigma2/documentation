@@ -256,7 +256,8 @@ simply:
 ```c:
 int mkl_serv_intel_cpu_true() { 
 	return 1; 
-}```
+}
+```
 Save this into a file called *fakeintel.c* and compile it into a shared library 
 using the following command: 
 `gcc -shared -fPIC -o libfakeintel.so fakeintel.c`
