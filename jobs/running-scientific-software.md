@@ -253,10 +253,11 @@ Intel processor is found it simply return 1. The solution is simply to
 override this function by writing a dummy functions which always
 return *1* and place this first in the search path.  The function is
 simply: 
-```c:
+```c
 int mkl_serv_intel_cpu_true() { 
 	return 1; 
-}```
+}
+```
 Save this into a file called *fakeintel.c* and compile it into a shared library 
 using the following command: 
 `gcc -shared -fPIC -o libfakeintel.so fakeintel.c`
