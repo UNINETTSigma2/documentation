@@ -240,6 +240,55 @@ Intel 2019b and the 2020 versions. It's not adviced to mix the Compiler and
 MLK versions, e.g. building using 2020 and then link with MKL 2019. 
 
 
+#### Forcing MKL to use best performing routines
+MKL issue a run time test to check for genuine Intel processor. If
+this test fail it will select a generic x86-64 set of routines
+yielding inferior performance. This is well documentated in
+[Wikipedia](https://en.wikipedia.org/wiki/Math_Kernel_Library) and
+remedies in [Intel MKL on AMD Zen](https://danieldk.eu/Posts/2020-08-31-MKL-Zen.html).
+
+Research have discovered that MKL call a function called
+*mkl_serv_intel_cpu_true()* to check the current CPU. If a genuine
+Intel processor is found it simply return 1. The solution is simply to
+override this function by writing a dummy functions which always
+return *1* and place this first in the search path.  The function is
+simply: 
+```c: 
+int mkl_serv_intel_cpu_true() { 
+	return 1; 
+} ``` 
+Save this into a file called *fakeintel.c* and compile it into a shared library 
+using the following command: 
+`gcc -shared -fPIC -o libfakeintel.so fakeintel.c`
+
+To put the new shared library first in the search path we can use a preload environment variable:
+`export LD_PRELOAD=<path to lib>/libfakeintel.so`
+A suggestion is to place the new shared library in $HOME/lib64 and using 
+`export LD_PRELOAD=$HOME/lib64/libfakeintel.so` to insert the fake test function.
+
+In addition the envionment variable *MKL_ENABLE_INSTRUCTIONS* can also have a significant effect. 
+Setting the variable to AVX2 is adviced. Just changing it to AVX have a significant negative impact.
+Setting it to AVX512 and launchinj it on AMD it does not fail, MKL probably do test if feature requesed 
+is present. 
+
+The following table show the recorded performance obtained with the HPL (the top500) test using a small problem size and 
+a single Betzy node:
+
+| Settings                                                   |   Performance     | 
+|-----------------------------------------------------------:|:-----------------:|
+| None                                                       |  1.2858 Tflops/s  |
+| LD_PRELOAD=../libfakeintel.so                              |  2.7865 Tflops/s  |
+| LD_PRELOAD=../libfakeintel.so MKL_ENABLE_INSTRUCTIONS=AVX  |  2.0902 Tflops/s  |
+| LD_PRELOAD=../libfakeintel.so MKL_ENABLE_INSTRUCTIONS=AVX2 |  2.7946 Tflops/s  |
+
+
+The reccomendation is to set :
+`export LD_PRELOAD=<path to lib>/libfakeintel.so` or `export LD_PRELOAD=$HOME/lib64/libfakeintel.so`
+and `export MKL_ENABLE_INSTRUCTIONS=AVX2` 
+
+
+
+
 ## Memory architecture
 
 Betzy compute node is a 2-socket system running AMD EPYC 7742 64-Core
