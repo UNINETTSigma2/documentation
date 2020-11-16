@@ -1,8 +1,8 @@
-#Research Data Archive User Guide
+# Research Data Archive User Guide
 
 .. contents:: Table of Contents
 
-##Introduction
+## Introduction
 The Research Data Archive (hereafter called 'the Archive') is a repository that provides long-term storage for research data and is compliant with the Open Archival
 Information System (OAIS) reference model [1]_.
 
@@ -11,7 +11,7 @@ Information System (OAIS) reference model [1]_.
 The aim of the archive is to provide (public) access to published research data and to promote cross-disciplinary studies. This document is a user-guide for deposit, search and retrieval of datasets. Each of the steps in the archival process are described in the following sections.
 
  
-##Depositing a Dataset
+## Depositing a Dataset
 The process for depositing a dataset in the Archive consists of the following stages:
  
 
