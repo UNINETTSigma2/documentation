@@ -150,7 +150,7 @@ A test using the well known reference implementation of matrix matrix
 multiplication is used for a simple test of the different compilers.
 
 | Compiler      | Flags                               | Performance       |
-| ------------- |:-----------------------------------:|-------- ---------:|
+|:--------------|:-----------------------------------:|:-----------------:|
 | GNU gfortran  | -O3 -march=znver2 -mtune=znver2     | 4.79 Gflops/s     |
 | AOCC flang    | -Ofast -march=znver2 -mavx2 -m3dnow | 5.21 Gflops/s     |
 | Intel ifort   | -O3 -xavx2                          | 26.39 Gflops/s    |
