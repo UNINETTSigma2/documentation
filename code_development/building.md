@@ -200,7 +200,7 @@ Compling this file into a shared library using the following command:
 
 To put the new shared library first in the search path we can use a preload environment vaiable:
 `export LD_PRELOAD=<path to lib>`
-A suggestion is to place the new shared library in $HOME/lib64 and using 
+A suggestion is to place the new shared library in `$HOME/lib64` and using 
 `export LD_PRELOAD=$HOME/lib64/libfakeintel.so` to insert the fake test function.
 
 In addition the envionment variable *MKL_ENABLE_INSTRUCTIONS* can also have a significant effect. 
