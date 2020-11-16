@@ -203,6 +203,12 @@ attribution to the Sigma2/Metacenter.
 
 .. toctree::
    :maxdepth: 1
+   :caption: Research Data Archive
+
+   nird_archive/user-guide.md
+
+.. toctree::
+   :maxdepth: 1
    :caption: Code Development
 
    code_development/building.md
