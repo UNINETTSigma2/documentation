@@ -182,6 +182,35 @@ The following command can be of help when encounter missing symbols:
 Look for symbols with *T* (T means text,global - e.g. it's available, U means undefined).
 
 
+#### Forcing MKL to use best performing routines
+MKL issue a run time test to check for genuine Intel processor. If this test fail it will select a generic x86-64 set of routines yielding 
+inferior performance. This is well documentated in [Wikipedia[(https://en.wikipedia.org/wiki/Math_Kernel_Library) amd remedies in 
+[Intel MKL on AMD Zen](https://danieldk.eu/Posts/2020-08-31-MKL-Zen.html).
+
+Research have discovered that MKL call a function called *mkl_serv_intel_cpu_true()* to check the current CPU. If a genuine Intel processor is 
+found it simply return 1. The solution is simply to override this function by writing a dummy functions which always return 1 and place this 
+early in the search path. The function is simply:
+```C:
+int mkl_serv_intel_cpu_true() {
+  return 1;
+}
+```
+Compling this file into a shared library using the following command:
+`gcc -shared -fPIC -o libfakeintel.so fakeintel.c`
+
+To put the new shared library first in the search path we can use a preload environment vaiable:
+`export LD_PRELOAD=<path to lib>`
+A suggestion is to place the new shared library in $HOME/lib64 and using 
+`export LD_PRELOAD=$HOME/lib64/libfakeintel.so` to insert the fake test function.
+
+In addition the envionment variable *MKL_ENABLE_INSTRUCTIONS* can also have a significant effect. 
+Setting the variable to AVX2 is adviced. Just changing it to AVX have a significant negative impact. 
+  
+For performance impact abd more about running software with MKL please see :
+[Running-scientific-software](https://documentation.sigma2.no/jobs/running-scientific-software.html).
+
+
+
 #### Documentation
 Online documentation can be found at :  https://software.intel.com/content/www/us/en/develop/documentation/mkl-linux-developer-guide/top.html
 
@@ -214,6 +243,8 @@ to select the correct AVX2 enabled routine a flag need to be set,
 use : `export MKL_DEBUG_CPU_TYPE=5`.  This flag is no longer honoured
 in the 2020 version of the MKL. Without support for this flag the
 performance is significantly lower, one test showed about 48 Gflops/s.
+For more about MKL performance and AMD see above about 
+"Forcing MKL to use best performing routines".
 
 At 50 Gflops/s per core the aggregate number is 6.4 Tflops/s quite a
 bit more than what's expected from these nodes. This is a nice example
