@@ -264,12 +264,12 @@ using the following command:
 
 To put the new shared library first in the search path we can use a preload environment variable:
 `export LD_PRELOAD=<path to lib>/libfakeintel.so`
-A suggestion is to place the new shared library in $HOME/lib64 and using 
+A suggestion is to place the new shared library in `$HOME/lib64` and using 
 `export LD_PRELOAD=$HOME/lib64/libfakeintel.so` to insert the fake test function.
 
 In addition the envionment variable *MKL_ENABLE_INSTRUCTIONS* can also have a significant effect. 
 Setting the variable to AVX2 is adviced. Just changing it to AVX have a significant negative impact.
-Setting it to AVX512 and launchinj it on AMD it does not fail, MKL probably do test if feature requesed 
+Setting it to AVX512 and launching it on AMD it does not fail, MKL probably do test if feature requesed 
 is present. 
 
 The following table show the recorded performance obtained with the HPL (the top500) test using a small problem size and 
@@ -278,14 +278,14 @@ a single Betzy node:
 | Settings                                                   |   Performance     | 
 |-----------------------------------------------------------:|:-----------------:|
 | None                                                       |  1.2858 Tflops/s  |
-| LD_PRELOAD=../libfakeintel.so                              |  2.7865 Tflops/s  |
-| LD_PRELOAD=../libfakeintel.so MKL_ENABLE_INSTRUCTIONS=AVX  |  2.0902 Tflops/s  |
-| LD_PRELOAD=../libfakeintel.so MKL_ENABLE_INSTRUCTIONS=AVX2 |  2.7946 Tflops/s  |
+| LD_PRELOAD=./libfakeintel.so                              |  2.7865 Tflops/s  |
+| LD_PRELOAD=./libfakeintel.so MKL_ENABLE_INSTRUCTIONS=AVX  |  2.0902 Tflops/s  |
+| LD_PRELOAD=./libfakeintel.so MKL_ENABLE_INSTRUCTIONS=AVX2 |  2.7946 Tflops/s  |
 
 
-The reccomendation is to set :
-`export LD_PRELOAD=<path to lib>/libfakeintel.so` or `export LD_PRELOAD=$HOME/lib64/libfakeintel.so`
-and `export MKL_ENABLE_INSTRUCTIONS=AVX2` 
+The reccomendation is to copy `libfakeintel.so to` to `$HOME/lib64` and to set the preload evironment variable accordingly :
+`export LD_PRELOAD=$HOME/lib64/libfakeintel.so` or `export LD_PRELOAD=<path to lib>/libfakeintel.so` and to set 
+`export MKL_ENABLE_INSTRUCTIONS=AVX2` 
 
 
 
