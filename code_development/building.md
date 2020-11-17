@@ -190,7 +190,7 @@ inferior performance. This is well documentated in [Wikipedia[(https://en.wikipe
 Research have discovered that MKL call a function called *mkl_serv_intel_cpu_true()* to check the current CPU. If a genuine Intel processor is 
 found it simply return 1. The solution is simply to override this function by writing a dummy functions which always return 1 and place this 
 early in the search path. The function is simply:
-```C:
+```c:
 int mkl_serv_intel_cpu_true() {
   return 1;
 }
@@ -206,7 +206,7 @@ A suggestion is to place the new shared library in `$HOME/lib64` and using
 In addition the envionment variable *MKL_ENABLE_INSTRUCTIONS* can also have a significant effect. 
 Setting the variable to AVX2 is adviced. Just changing it to AVX have a significant negative impact. 
   
-For performance impact abd more about running software with MKL please see :
+For performance impact and more about running software with MKL please see :
 [Running-scientific-software](https://documentation.sigma2.no/jobs/running-scientific-software.html).
 
 
