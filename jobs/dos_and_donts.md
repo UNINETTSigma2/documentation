@@ -3,7 +3,7 @@
 Here is a collection of things to do and not to do on the clusters.
 
 - Always use the queue system for running jobs.  The login nodes are
-  only for file tranfer, compilation, editing, job submission and
+  only for file transfer, compilation, editing, job submission and
   short tests, etc. If you run production jobs on the login nodes, we
   will kill them and email you about it.  If you continue to do it, we
   might have to lock your account.
