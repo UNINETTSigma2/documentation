@@ -29,7 +29,7 @@ You can fix this by requesting more memory in you job script:
 for a lot more than you use, and your jobs may queue for a lot longer than you
 would like to. In addition this can also block resources for others.
 
-[Here](/jobs/choosing_memory_settings.html) you can find out
+[Here](choosing_memory_settings.md) you can find out
 how much memory your job really needs.
 
 

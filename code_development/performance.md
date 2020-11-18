@@ -16,7 +16,7 @@ code. Either way, identifying the bottlenecks and deciding on what
 needs to be done can be made simpler by using specialized tools. Here
 we describe some of the tools available on Fram.
 
-* [Arm Performance Reports](/jobs/performance.md). An in-depth analysis of
+* {ref}`arm-performance-reports`. An in-depth analysis of
   three synthetic benchmarks. We demonstrate some pitfalls of
   profiling, and show how one can use profiling to reason about the
   performance of real-world codes.

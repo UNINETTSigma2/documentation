@@ -91,7 +91,7 @@ VASP is known to be potentially memory demanding. Quite often, you might experie
 
 For relevant core-count, node-count and amounts of memory, see [About Fram](../../quick/fram.md).
 
-For fram, currently the only way of increasing the memory per core available for jobs is to reduce the number of cores per node, please read up in the [Job Scripts](../../jobs/jobstcripts.md) section of the documentation.
+For fram, currently the only way of increasing the memory per core available for jobs is to reduce the number of cores per node, please read up in the {ref}`job-scripts` section of the documentation.
 
 ## Citation
 

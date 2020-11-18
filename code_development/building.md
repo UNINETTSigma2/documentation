@@ -206,9 +206,8 @@ A suggestion is to place the new shared library in `$HOME/lib64` and using
 In addition the envionment variable *MKL_ENABLE_INSTRUCTIONS* can also have a significant effect. 
 Setting the variable to AVX2 is adviced. Just changing it to AVX have a significant negative impact. 
   
-For performance impact and more about running software with MKL please see :
-[Running-scientific-software](https://documentation.sigma2.no/jobs/running-scientific-software.html).
-
+For performance impact and more about running software with MKL please see
+{ref}`running-scientific-software`.
 
 
 #### Documentation

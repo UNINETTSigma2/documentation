@@ -1,3 +1,5 @@
+(job-types-fram)=
+
 # Job Types on Fram
 
 Fram is designed to run medium-sized parallel jobs.  If you need to

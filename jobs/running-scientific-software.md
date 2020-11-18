@@ -1,3 +1,5 @@
+(running-scientific-software)=
+
 # Running scientific software
 
 ## Introduction
@@ -139,7 +141,7 @@ Using Python, Perl, Julia or R opens up for far more programming within the run
 script than what’s possible using bash.
 
 Some examples for Betzy are given below, for details about Slurm see the
-[documentation about Slurm](/jobs/job_scripts/slurm_parameter.md).
+[documentation about Slurm](job_scripts/slurm_parameter.md).
 
 
 ### Storage for scratch during a run on Saga
