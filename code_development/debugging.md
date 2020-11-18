@@ -237,7 +237,7 @@ program will show in the source pane of the Process Window.
 You are now ready to start the debugging session doing different actions, e.g.:
 
 * Click the **_Step_** or **_Next_** buttons to go through the code statement by statement. For function calls **_Step_** goes into the function, while **_Next_** executes the function.
-* Create a breakpoint by clicking the the line number displayed to the left in the Process Window. Click the **_Go_** button to run to this line.
+* Create a breakpoint by clicking the line number displayed to the left in the Process Window. Click the **_Go_** button to run to this line.
 * Monitor a variable's value by creating a watchpoint, select **_Action Points_**  &rarr;  **_Create Watchpoint_**. A watchpoint stops execution when the variable's data changes.
 * Examine variables: Dive into a variable by clicking **_View_**  &rarr;  **_Lookup_** or double-click the variable name using the left mouse button. The Variable Window appears.
 * Visualize variable across processes by diving into a variable and click **_View_**  &rarr;  **_Show Across_**  &rarr;  **_Processes_** in the Variable Window.

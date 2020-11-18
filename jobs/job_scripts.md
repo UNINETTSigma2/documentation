@@ -26,7 +26,7 @@ scripts](http://www.linuxconfig.org/Bash_scripting_Tutorial).
 A job script consists of a couple of parts, in this order:
 
 - The first line, which is always `#!/bin/bash`[^1]
-- Paremeters to the queue system
+- Parameters to the queue system
 - Commands to set up the execution environment
 - The actual commands you want to be run
 

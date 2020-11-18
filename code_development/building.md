@@ -184,7 +184,7 @@ Look for symbols with *T* (T means text,global - e.g. it's available, U means un
 
 #### Forcing MKL to use best performing routines
 MKL issue a run time test to check for genuine Intel processor. If this test fail it will select a generic x86-64 set of routines yielding 
-inferior performance. This is well documentated in [Wikipedia[(https://en.wikipedia.org/wiki/Math_Kernel_Library) amd remedies in 
+inferior performance. This is well documented in [Wikipedia](https://en.wikipedia.org/wiki/Math_Kernel_Library) and remedies in 
 [Intel MKL on AMD Zen](https://danieldk.eu/Posts/2020-08-31-MKL-Zen.html).
 
 Research have discovered that MKL call a function called *mkl_serv_intel_cpu_true()* to check the current CPU. If a genuine Intel processor is 
@@ -195,10 +195,10 @@ int mkl_serv_intel_cpu_true() {
   return 1;
 }
 ```
-Compling this file into a shared library using the following command:
+Compiling this file into a shared library using the following command:
 `gcc -shared -fPIC -o libfakeintel.so fakeintel.c`
 
-To put the new shared library first in the search path we can use a preload environment vaiable:
+To put the new shared library first in the search path we can use a preload environment variable:
 `export LD_PRELOAD=<path to lib>`
 A suggestion is to place the new shared library in `$HOME/lib64` and using 
 `export LD_PRELOAD=$HOME/lib64/libfakeintel.so` to insert the fake test function.
