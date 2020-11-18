@@ -1,10 +1,8 @@
 # Research Data Archive User Guide
 
-.. contents:: Table of Contents
-
 ## Introduction
 The Research Data Archive (hereafter called 'the Archive') is a repository that provides long-term storage for research data and is compliant with the Open Archival
-Information System (OAIS) reference model [1]_.
+Information System (OAIS) reference model  {ref}` [1] <references-archive>`.
 
  
 
@@ -63,7 +61,7 @@ A dataset must be a collection of related data. Typically, this consists of a co
 
 ###  Log onto the Web Interface
 
-To access the Archive web interface, direct your browser to: https://archive.sigma2.no. You should arrive at the front page shown in Figure 1. You will need to authenticate using your FEIDE or other account either by logging on via the *LOGIN* button on the top-right or via the *DEPOSIT* icon.
+To access the Archive web interface, direct your browser to: [https://archive.sigma2.no](https://archive.sigma2.no). You should arrive at the front page shown in Figure 1. You will need to authenticate using your FEIDE or other account either by logging on via the *LOGIN* button on the top-right or via the *DEPOSIT* icon.
  
 ![archive_web_interface](imgs/figure_1_screenshot_of_the_archive_web_interface_front_page.jpg "archive web interface")
 Figure 1: Screenshot of the Archive web interface front page
@@ -103,7 +101,7 @@ The publication metadata allows you to provide a link to the primary article bas
 After completing the publication metadata you will be presented with fields for the second part of the primary metadata (see Figure 4). Each of the metadata fields has a help button (the i icon) containing a short description and example of the term. Some of the metadata fields are automatically populated. An Internal Identifier is generated and used by the archive to identify the dataset. The Depositor is also automatically filled-in (the information is extracted from the identity provided by FEIDE or OpenIdP) and cannot be altered. Additional Depositors can be provided.
 
 
-The currently available licences covering access to a dataset are: the Creative Commons Attribution 4.0 International (CC BY 4.0 [2]_ ), Norwegian Licence for Open Data (NLOD [3]_ ). The licence provides liberal access to the data which maximises the impact of the data you have published, and it ensures that proper recognition is given to you. The default licence is CC BY 4.0.
+The currently available licences covering access to a dataset are: the Creative Commons Attribution 4.0 International (CC BY 4.0 {ref}` [2] <references-archive>` ), Norwegian Licence for Open Data (NLOD {ref}` [3] <references-archive>` ). The licence provides liberal access to the data which maximises the impact of the data you have published, and it ensures that proper recognition is given to you. The default licence is CC BY 4.0.
 
 
 By default, metadata for published datasets are considered public and access is granted to all researchers. The Data Manager and Rights Holder that you nominate will be informed by email of the nomination and whether they wish to accept the role. The Archive will periodically remind them of their nomination, and you will receive an email when they accept or decline the nomination. It is your responsibility to find suitable entities (persons or organisations) that can accept the roles. Your institute may be able to offer guidance on suitable Data Manager and Rights Holders, or you can email the archive.manager@norstore.no for guidance.
@@ -124,7 +122,7 @@ It is possible to restrict access to both the dataset and metadata to a group of
 
 ### Upload Dataset
 
-Once the basic metadata has been provided you will be presented with the dataset upload page (see Figure 5). You can choose to upload a dataset that exists in the NIRD project area (https://www.sigma2.no/data-storage) or a remote dataset.
+Once the basic metadata has been provided you will be presented with the dataset upload page (see Figure 5). You can choose to upload a dataset that exists in the NIRD project area [https://www.sigma2.no/data-storage](https://www.sigma2.no/data-storage) or a remote dataset.
 
 ![the_upload_dataset_page](imgs/figure_5_screenshot_of_the_upload_dataset_page.jpg "upload_dataset_page")
 Figure 5: Screenshot of the upload dataset page
@@ -216,7 +214,7 @@ Once you have selected a dataset from the table shown in Figure 7 you will be pr
 
 Clicking the *Update metadata* button will save any changes you made to the metadata and cause the *Last updated*  field to be updated. You can change the nominations for the Data Manager or Rights Holder roles provided the existing nominees have not accepted their roles. Some of the metadata terms require you to register the term in the form first. For example if you wish to add a Creator you first click the + sign to expand that field. Then you fill in the values for the term and then click the *Add Person as Creator* button to register the term. Then you can click the *Update metadata* button to save the metadata.
 
-The *Optional Information*  tab consists of a form of optional metadata. The *Geo-location*  is useful for datasets that have spatial relevance. Spatial datasets can be described with Point [5]_ or Box [6]_ types where the box type could be used to describe a geographical region and the point type a particular location. Temporal coverage datasets can be described with the Period [7]_.
+The *Optional Information*  tab consists of a form of optional metadata. The *Geo-location*  is useful for datasets that have spatial relevance. Spatial datasets can be described with Point {ref}` [5] <references-archive>` or Box {ref}` [6] <references-archive>` types where the box type could be used to describe a geographical region and the point type a particular location. Temporal coverage datasets can be described with the Period {ref}` [7] <references-archive>`.
  
 ![the_secondary_metadata_form](imgs/figure_8_screenshot_of_the_secondary_metadata_form.jpg "_secondary_metadata_form")
 Figure 8: Screenshot of the secondary metadata form
@@ -284,7 +282,7 @@ Once the dataset has been uploaded you will be presented with a pre-filled metad
 (Section-Terminating-Datasets)=
  
 ## Terminating Datasets
-You can remove access to a dataset you have published by submitting a terminate request to the Archive. The terminate request page is accessible either from the landing page by clicking the *Manage * link, or from the *List datasets*  menu, selecting the dataset you want to terminate, click the *Manage * menu (see Figure 10).
+You can remove access to a dataset you have published by submitting a terminate request to the Archive. The terminate request page is accessible either from the landing page by clicking the *Manage* link, or from the *List datasets*  menu, selecting the dataset you want to terminate, click the *Manage* menu (see Figure 10).
 
 **NOTE:** the *Manage* menu is only available for published datasets. Clicking the *Request termination*  link will display the dataset termination request page. You will need to supply a reason why you wish the dataset to be terminated.
 
@@ -316,7 +314,7 @@ Figure 15: Screenshot of the landing page table of contents
 
  
 ### Downloading a Published Dataset
-Anyone can download published, public datasets either to their local machine or the Project Area.  If you are a member of a NIRD project (https://www.sigma2.no/data-storage) you also have the possibility to download the dataset to your project area.
+Anyone can download published, public datasets either to their local machine or the Project Area.  If you are a member of a NIRD project [https://www.sigma2.no/data-storage](https://www.sigma2.no/data-storage) you also have the possibility to download the dataset to your project area.
 
 To download a dataset first navigate to the landing page for the dataset you want to download and click on the *download*  link. The focus on the landing page will change to an index of the dataset contents that can be downloaded (see Figure 16).
 
@@ -348,33 +346,26 @@ Figure 17: Screenshot of landing page with dataset citation
 ## Contacts
 In case of questions or comments please email the archive manager at: archive.manager@norstore.no
 
- 
+(references-archive)= 
 
 ## References
-.. [1] Reference Model for an Open Archival Information System
+[1] Reference Model for an Open Archival Information System.
+[https://public.ccsds.org/pubs/650x0m2.pdf](https://public.ccsds.org/pubs/650x0m2.pdf)
 
-http://public.ccsds.org/publications/archive/650x0m2.pdf
+[2] Creative Commons Attribution 4.0 International.
+[https://creativecommons.org/licenses/by/4.0/legalcode](https://creativecommons.org/licenses/by/4.0/legalcode)
 
-.. [2] Creative Commons Attribution 4.0 International
+[3] Norwegian License for Open Government Data.
+[https://data.norge.no/nlod/en/1.0](https://data.norge.no/nlod/en/1.0)
 
-http://creativecommons.org/licenses/by/4.0/legalcode
+[4] Filesender Project.
+[https://www.assembla.com/spaces/file_sender/wiki](https://www.assembla.com/spaces/file_sender/wiki)
 
-.. [3] Norwegian License for Open Government Data
+[5] DCMI Point Encoding Scheme.
+[https://dublincore.org/documents/dcmi-point](https://dublincore.org/documents/dcmi-point)
 
-http://data.norge.no/nlod/en/1.0
+[6] DCMI Box Encoding Scheme.
+[https://dublincore.org/documents/dcmi-box](https://dublincore.org/documents/dcmi-box)
 
-.. [4] Filesender Project
-
-https://www.assembla.com/spaces/file_sender/wiki
-
-.. [5] DCMI Point Encoding Scheme
-
-http://dublincore.org/documents/dcmi-point
-
-.. [6] DCMI Box Encoding Scheme
-
-http://dublincore.org/documents/dcmi-box
-
-.. [7] DCMI Period Encoding Scheme
-
-http://dublincore.org/documents/dcmi-period
+[7] DCMI Period Encoding Scheme.
+[https://dublincore.org/documents/dcmi-period](https://dublincore.org/documents/dcmi-period)
