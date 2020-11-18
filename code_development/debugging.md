@@ -229,10 +229,11 @@ commands in the Process Window. A popup window will ask whether you want to
 start the job in a stopped state. Click **_Yes_**, and the source code of your
 program will show in the source pane of the Process Window.
 
-```{image} /code_development/process.png
+```{figure} process.png
 :alt: TotalView process window
+
+Fig. 1 - TotalView process window
 ```
-**Fig. 1 - TotalView process window**
 
 You are now ready to start the debugging session doing different actions, e.g.:
 
@@ -243,10 +244,11 @@ You are now ready to start the debugging session doing different actions, e.g.:
 * Visualize variable across processes by diving into a variable and click **_View_**  &rarr;  **_Show Across_**  &rarr;  **_Processes_** in the Variable Window.
 * Examine array data: Dive into an arrray variable. Display array subsections by editing the slice field in the array Varible Window. Show statistics information about the array (or a slice of the array) by clicking **_Tools_**  &rarr;  **_Statistics_** in the Variable Window.
 
-```{image} /code_development/statistics.png
-:alt: Examining Data
+```{figure} statistics.png
+:alt: Examining data
+
+Fig. 2 - Examining data
 ```
-**Fig. 2 - Examining data**
 
 
 ### Interactive Batch System Debugging
