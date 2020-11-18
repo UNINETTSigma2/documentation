@@ -2,7 +2,7 @@
 
 Here is a sample batch script that demonstrates usage of various
 variables and processes for a **normal** job on Saga.  (To run in
-other job types, please read [Saga Job Scripts](/jobs/job_scripts/saga_job_scripts.md)).
+other job types, please read {ref}`job_scripts_on_saga`.
 
 ```{eval-rst}
 .. literalinclude:: files/saga_mpi_job.sh
@@ -16,4 +16,4 @@ Download the script:
 
 The actual startup of MPI application differs for different MPI
 libraries.  Since this part is crucial for application performance,
-please read about [how to run MPI jobs](/jobs/guides/running_mpi_jobs.md).
+please read about {ref}`running-mpi-applications`.

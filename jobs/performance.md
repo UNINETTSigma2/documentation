@@ -1,4 +1,4 @@
-
+(arm-performance-reports)=
 
 # How to check the performance and scaling using Arm Performance Reports
 
@@ -114,7 +114,7 @@ sysroot to `/`.
 ## Profiling on an interactive compute node
 
 To run interactive tests one needs to submit
-[an interactive job](/jobs/interactive_jobs.md)
+[an interactive job](interactive_jobs.md)
 to Slurm using `srun` (**not** using `salloc`), e.g.:
 
 First obtain an interactive compute node (adjust "myaccount"), on Saga:

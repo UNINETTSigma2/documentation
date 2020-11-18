@@ -3,7 +3,7 @@
 # Job Scripts on Fram
 
 This page documents how to specify the queue system parameters for the
-different job types on Fram.  See [Fram Job Types](/jobs/job_types/fram_job_types.md)
+different job types on Fram. See {ref}`job-types-fram`
 for information about the different job types on Fram.
 
 

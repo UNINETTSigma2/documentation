@@ -3,7 +3,7 @@
 # Job Scripts on Saga
 
 This page documents how to specify the queue system parameters for the
-different job types on Saga.  See [Saga Job Types](/jobs/job_types/saga_job_types.md)
+different job types on Saga. See {ref}`job-types-saga`
 for information about the different job types on Saga.
 
 ```{warning}

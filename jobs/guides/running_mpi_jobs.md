@@ -1,3 +1,5 @@
+(running-mpi-applications)=
+
 # Running MPI Applications
 
 On Fram and Saga users have access to two MPI implementations:

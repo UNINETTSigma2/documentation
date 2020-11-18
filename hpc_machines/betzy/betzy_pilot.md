@@ -35,12 +35,12 @@ and mark the case with *Betzy*.
 ## Queue System
 
 Betzy uses the SLURM queuing system. For more information about the queue
-system on Betzy, please check out the [job types](/jobs/choosing_job_types.md)
+system on Betzy, please check out the {ref}`job-types`
 page.
 
 **NOTE**: During the pilot phase there will be no CPU core limitations imposed. 
 
-For generic information about job submission, please check out our documentation [here](/jobs/submitting.md).
+Please also check our page on {ref}`submitting-jobs`.
 
 
 ## Storage
