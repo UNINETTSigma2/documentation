@@ -20,7 +20,13 @@
 project = 'Sigma2/Metacenter documentation'
 copyright = '2020, Sigma2/Metacenter'
 author = 'Sigma2/Metacenter'
+
+# Logo setup
 html_favicon = 'img/sigma2.ico'
+html_logo = 'img/logo.png'
+
+html_title = 'Sigma2 documentation'
+html_short_title = 'Sigma2'
 
 
 # -- General configuration ---------------------------------------------------
