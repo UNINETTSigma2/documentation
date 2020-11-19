@@ -504,6 +504,10 @@ transitions.
 
 (tips)=
 ## Tips
+- **Do not expect miracles!** Translating a large code base to run on GPU is a
+    large undertaking and should not be taken lightly. Just getting a large code
+    base to run on GPU and having almost the same performance as the CPU code is
+    extremely good! Optimizing for GPUs require time and patience.
 - Always start with the `kernels` directive and study the compiler output. This
     should guide your next steps. The information outputted by the compile will
     usually tell you if the scope of the directive can be run effectively on GPU
