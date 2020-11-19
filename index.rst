@@ -115,7 +115,6 @@ attribution to the Sigma2/Metacenter.
    getting_help/lost_forgotten_password.md
    getting_help/project_leader_support.md
    getting_help/advanced_user_support.md
-   getting_help/publish_research_data.md
 
 
 .. toctree::
