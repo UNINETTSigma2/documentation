@@ -215,3 +215,4 @@ attribution to the Sigma2/Metacenter.
    code_development/compilers.md
    code_development/debugging.md
    code_development/performance.md
+   code_development/guides.md
