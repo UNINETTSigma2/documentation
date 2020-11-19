@@ -97,9 +97,6 @@ attribution to the Sigma2/Metacenter.
 
 --------------
 
-
-
-
 .. toctree::
    :maxdepth: 1
    :caption: News
@@ -136,7 +133,7 @@ attribution to the Sigma2/Metacenter.
 
 .. toctree::
    :maxdepth: 1
-   :caption: HPC Machines
+   :caption: High-performance computing
 
    hpc_machines/hardware_overview.md
    hpc_machines/betzy.md
@@ -144,6 +141,7 @@ attribution to the Sigma2/Metacenter.
    hpc_machines/saga.md
    Stallo <https://hpc-uit.readthedocs.io>
    hpc_machines/migration2metacenter.md
+   jobs/overview.rst
 
 
 .. toctree::
@@ -156,25 +154,6 @@ attribution to the Sigma2/Metacenter.
    software/appguides.md
    software/userinstallsw.md
    software/licenses.md
-
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Jobs
-
-   jobs/submitting.md
-   jobs/choosing_job_types.md
-   jobs/job_scripts.md
-   jobs/running-scientific-software.md
-   jobs/monitoring.md
-   jobs/choosing_memory_settings.md
-   jobs/common_job_failures.md
-   jobs/performance.md
-   jobs/interactive_jobs.md
-   jobs/projects_accounting.md
-   jobs/network-access.md
-   jobs/dos_and_donts.md
-   jobs/guides.md
 
 
 .. toctree::
