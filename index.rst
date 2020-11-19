@@ -142,6 +142,7 @@ attribution to the Sigma2/Metacenter.
    Stallo <https://hpc-uit.readthedocs.io>
    hpc_machines/migration2metacenter.md
    jobs/overview.rst
+   code_development/overview.rst
 
 
 .. toctree::
@@ -185,13 +186,3 @@ attribution to the Sigma2/Metacenter.
    :caption: Research Data Archive
 
    nird_archive/user-guide.md
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Code Development
-
-   code_development/building.md
-   code_development/compilers.md
-   code_development/debugging.md
-   code_development/performance.md
-   code_development/guides.md
