@@ -44,63 +44,14 @@ To begin we will need an example program that does some calculations that we
 would like to speed up.
 
 We have selected an example based on heat dissipation utilizing on Jacobi
-iterations. The initial source can be found in
-[`jacobi_serial.c`](openacc/jacobi_serial.c), shown below:
+iterations. The initial source can be found in `jacobi_serial.c`, shown below:
 
-```c
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-// Number of rows and columns in our matrix
-static const int NUM_ELEMENTS = 2000;
-// Maximum number of iterations before quiting
-static const int MAX_ITER = 10000;
-// Error tolerance for iteration
-static const float MAX_ERROR = 0.01;
-// Seed for random number generator
-static const int SEED = 12345;
-
-int main (int argc, char** argv) {
-  // Initialize random number generator
-  srand (SEED);
-  // Create array to calculate on
-  float array[NUM_ELEMENTS][NUM_ELEMENTS];
-  // Fill array with data
-  for (int i = 0; i < NUM_ELEMENTS; i++) {
-    for (int j = 0; j < NUM_ELEMENTS; j++) {
-      // The following will create random values between [0, 1]
-      array[i][j] = (float) rand () / (float) RAND_MAX;
-    }
-  }
-  // Before starting calculation we will define a few helper variables
-  float arr_new[NUM_ELEMENTS][NUM_ELEMENTS];
-  float error = __FLT_MAX__;
-  int iterations = 0;
-  // Perform Jacobi iterations until we either have low enough error or too
-  // many iterations
-  while (error > MAX_ERROR && iterations < MAX_ITER) {
-    error = 0.;
-    // For each element take the average of the surrounding elements
-    for (int i = 1; i < NUM_ELEMENTS - 1; i++) {
-      for (int j = 1; j < NUM_ELEMENTS - 1; j++) {
-        arr_new[i][j] = 0.25 * (array[i][j + 1] +
-                                array[i][j - 1] +
-                                array[i - 1][j] +
-                                array[i + 1][j]);
-        error = fmaxf (error, fabsf (arr_new[i][j] - array[i][j]));
-      }
-    }
-    // Transfer new array to old
-    for (int i = 1; i < NUM_ELEMENTS - 1; i++) {
-      for (int j = 1; j < NUM_ELEMENTS - 1; j++) {
-        array[i][j] = arr_new[i][j];
-      }
-    }
-    iterations += 1;
-  }
-  return EXIT_SUCCESS;
-}
+```{eval-rst}
+.. literalinclude:: openacc/jacobi_serial.c
+   :language: c
+```
+```{eval-rst}
+:download:`jacobi_serial.c <./openacc/jacobi_serial.c>`
 ```
 
 ### Compiling on Saga
@@ -146,33 +97,17 @@ easiest and it gives the compiler a lot of flexibility when translating the
 code. `kernels` is also a good way to understand if the compiler is not able to
 optimize something and if we need to rewrite some code to better run on the GPU.
 
-The code is available in [`jacobi_kernels.c`](openacc/jacobi_kernels.c) and the
-changes applied are shown below.
+The code is available in `jacobi_kernels.c` and the changes applied are shown
+below.
 
-```c
-while (error > MAX_ERROR && iterations < MAX_ITER) {
-  error = 0.;
-  #pragma acc kernels
-  {
-    // For each element take the average of the surrounding elements
-    for (int i = 1; i < NUM_ELEMENTS - 1; i++) {
-      for (int j = 1; j < NUM_ELEMENTS - 1; j++) {
-        arr_new[i][j] = 0.25 * (array[i][j + 1] +
-            array[i][j - 1] +
-            array[i - 1][j] +
-            array[i + 1][j]);
-        error = fmaxf (error, fabsf (arr_new[i][j] - array[i][j]));
-      }
-    }
-    // Transfer new array to old
-    for (int i = 1; i < NUM_ELEMENTS - 1; i++) {
-      for (int j = 1; j < NUM_ELEMENTS - 1; j++) {
-        array[i][j] = arr_new[i][j];
-      }
-    }
-  }
-  iterations += 1;
-}
+```{eval-rst}
+.. literalinclude:: openacc/jacobi_kernels.c
+   :language: c
+   :lines: 36-58
+   :emphasize-lines: 3,4,21
+```
+```{eval-rst}
+:download:`jacobi_kernels.c <./openacc/jacobi_kernels.c>`
 ```
 
 As can be seen in the code above we have added the `kernels` directive around
@@ -232,32 +167,14 @@ To profile the `kernels` version of our program we will here transition to
 `SLURM` scripts to make it a bit easier to make changes to the running of the
 program.
 
-The `SLURM` script is available [as `kernels.job`](openacc/kernels.job) and is
-show below.
+The `SLURM` script is available as `kernels.job` and is show below.
 
-```sh
-#!/bin/sh
-
-#SBATCH --account=<your project number>
-#SBATCH --job-name=openacc_guide_kernels
-#SBATCH --time=05:00
-#SBATCH --mem-per-cpu=512M
-#SBATCH --partition=accel
-#SBATCH --gres=gpu:1
-
-set -o errexit  # Exit the script on any error
-set -o nounset  # Treat any unset variables as an error
-
-module --quiet purge  # Reset the modules to the system default
-module load NVHPC/20.7  # Load Nvidia HPC SDK with profiler
-module list  # List modules for easier debugging
-
-# Run the program through the Nsight command line profiler 'nsys'
-# The '-t' flag tells the profiler which aspects it should profile, e.g. CUDA
-# and OpenACC code
-# The '-f' flag tells the profiler that it can override existing output files
-# The '-o' flag tells the profiler the name we would like for the output file
-nsys profile -t cuda,openacc -f true -o kernels ./jacobi
+```{eval-rst}
+.. literalinclude:: openacc/kernels.job
+   :language: bash
+```
+```{eval-rst}
+:download:`kernels.job <./openacc/kernels.job>`
 ```
 
 The end result should be a file called `kernels.qdrep` which contains the
@@ -265,8 +182,11 @@ profiling information. Download this file to your local computer to continue
 with this guide.
 
 ## Nsight
-We will continue this guide [using `kernels.qdrep`](openacc/kernels.qdrep) as
-the profiling result to view.
+We will continue this guide `kernels.qdrep` as the profiling result to view.
+
+```{eval-rst}
+:download:`kernels.qdrep <./openacc/kernels.qdrep>`
+```
 
 To begin, start [Nsight Systems](https://developer.nvidia.com/nsight-systems) on
 your own machine, giving the following view.
@@ -371,34 +291,16 @@ result after the loop exits which means that we should try to keep the data on
 the GPU and only transfer in and out at the beginning and end of the loop. To do
 this we will introduce the `#pragma acc data` clause which tells the compiler
 that we only want to do data movement for a given scope. The changes needed
-center around the `while` loop shown below, and can be found [in
-`jacobi_data.c`](openacc/jacobi_data.c).
+center around the `while` loop shown below.
 
-```c
-#pragma acc data copy(array, arr_new)
-while (error > MAX_ERROR && iterations < MAX_ITER) {
-  error = 0.;
-  #pragma acc kernels
-  {
-    // For each element take the average of the surrounding elements
-    for (int i = 1; i < NUM_ELEMENTS - 1; i++) {
-      for (int j = 1; j < NUM_ELEMENTS - 1; j++) {
-        arr_new[i][j] = 0.25 * (array[i][j + 1] +
-            array[i][j - 1] +
-            array[i - 1][j] +
-            array[i + 1][j]);
-        error = fmaxf (error, fabsf (arr_new[i][j] - array[i][j]));
-      }
-    }
-    // Transfer new array to old
-    for (int i = 1; i < NUM_ELEMENTS - 1; i++) {
-      for (int j = 1; j < NUM_ELEMENTS - 1; j++) {
-        array[i][j] = arr_new[i][j];
-      }
-    }
-  }
-  iterations += 1;
-}
+```{eval-rst}
+.. literalinclude:: openacc/jacobi_data.c
+   :language: c
+   :lines: 36-59
+   :emphasize-lines: 1
+```
+```{eval-rst}
+:download:`jacobi_data.c <./openacc/jacobi_data.c>`
 ```
 
 Let us compile this on Saga and see if this results in better performance.
@@ -410,8 +312,12 @@ $ nvc -g -fast -acc -Minfo=accel -o jacobi jacobi_data.c
 $ sbatch kernels.job
 ```
 
-Below we have included the timeline view of the [updated
-profile](openacc/data.qdrep).
+Below we have included the timeline view of the updated
+profile.
+
+```{eval-rst}
+:download:`data.qdrep <./openacc/data.qdrep>`
+```
 
 ![Nsight timeline after adding data movement
 directives](openacc/nsight_after_data.png)
@@ -445,35 +351,25 @@ with the `#pragma acc parallel` directive. Since we also want to do a reduction
 across all loops we can also add a reduction by writing `#pragma acc parallel
 reduction(max:error)`. Lastly, we will apply the `collapse(n)` clause to the
 loop directives so that the compiler can combine the two loops into one large
-one to expose more parallelism. The new code is show below and is available [in
-`jacobi_optimized.c`](openacc/jacobi_optimized.c).
+one to expose more parallelism. The new code is show below.
 
-```c
-#pragma acc data copy(array) create(arr_new)
-while (error > MAX_ERROR && iterations < MAX_ITER) {
-  error = 0.;
-  #pragma acc parallel loop reduction(max:error) collapse(2)
-  for (int i = 1; i < NUM_ELEMENTS - 1; i++) {
-    for (int j = 1; j < NUM_ELEMENTS - 1; j++) {
-      arr_new[i][j] = 0.25 * (array[i][j + 1] +
-          array[i][j - 1] +
-          array[i - 1][j] +
-          array[i + 1][j]);
-      error = fmaxf (error, fabsf (arr_new[i][j] - array[i][j]));
-    }
-  }
-  #pragma acc parallel loop collapse(2)
-  for (int i = 1; i < NUM_ELEMENTS - 1; i++) {
-    for (int j = 1; j < NUM_ELEMENTS - 1; j++) {
-      array[i][j] = arr_new[i][j];
-    }
-  }
-  iterations += 1;
-}
+```{eval-rst}
+.. literalinclude:: openacc/jacobi_optimized.c
+   :language: c
+   :lines: 36-56
+   :emphasize-lines: 1, 4, 14
 ```
 
-Looking at the [generated profile](openacc/optimized.qdrep), shown below, we can
-see that we managed to eek out slightly more performance, but not that much.
+```{eval-rst}
+:download:`jacobi_optimized.c <./openacc/jacobi_optimized.c>`
+```
+
+Looking at the generated profile, `optimized.qdrep` shown below, we can see that
+we managed to eek out slightly more performance, but not that much.
+
+```{eval-rst}
+:download:`optimized.qdrep <./openacc/optimized.qdrep>`
+```
 
 ![Nsight timeline of final optimized
 profile](openacc/nsight_final_optimized.png)
@@ -482,8 +378,8 @@ Compared to the initial translation we can see now that the ratio of `Kernels`
 to `Memory` on the GPU is much better, `98%` spent actually doing useful
 compute.
 
-If we zoom in, image below, we can see that there is not much wasted time
-between useful compute. Going further with OpenACC is most likely not that
+If we zoom in, as in the image below, we can see that there is not much wasted
+time between useful compute. Going further with OpenACC is most likely not that
 useful and getting this to run even quicker will likely require a rewrite to
 `CUDA` which is outside the scope and intention of this guide.
 
