@@ -20,6 +20,7 @@
 project = 'Sigma2/Metacenter documentation'
 copyright = '2020, Sigma2/Metacenter'
 author = 'Sigma2/Metacenter'
+html_favicon = 'img/sigma2.ico'
 
 
 # -- General configuration ---------------------------------------------------
