@@ -137,6 +137,7 @@ attribution to the Sigma2/Metacenter.
 
    nird_archive/user-guide.md
    nird_toolkit/overview.rst
+   EasyDMP <https://www.sigma2.no/easydmp-user-documentation>
 
 
 .. toctree::
