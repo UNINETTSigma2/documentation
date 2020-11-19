@@ -1,8 +1,9 @@
-===================================
-The Norwegian Academic HPC Services
-===================================
+======================================================================
+The Norwegian academic high-performance computing and storage services
+======================================================================
 
-The Norwegian academic HPC infrastructure is maintained by the `Sigma2
+The Norwegian academic high-performance computing and storage
+infrastructure is maintained by the `Sigma2
 Metacenter <https://sigma2.no/metacenter>`__, which is a joint
 collaboration between `UiO <https://www.uio.no>`__,
 `UiB <https://www.uib.no>`__, `NTNU <https://www.ntnu.no>`__,
