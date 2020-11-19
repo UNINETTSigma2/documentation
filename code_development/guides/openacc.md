@@ -326,8 +326,9 @@ Although this doesn't look all that different from the previous profiles, notice
 that the timeline only goes to about `3.6` seconds, the previous profile went to
 above `70` seconds. Almost a `20x` speedup! Compared to our runs on the CPU this
 translation to the GPU has given us about a `10x` speedup. This shows the
-importance of data movement and is a good illustration of the process, which
-initially was much slower than on the CPU before becoming better than the CPU.
+importance of data movement and is a good illustration of the optimization
+process, initially the code ran much slower on the GPU than on the CPU before
+becoming better than the CPU.
 
 ---
 
@@ -337,7 +338,7 @@ However, do not expect great improvements.
 
 The first improvement that we can do is to realize that `arr_new` will never be
 needed and is simply a scratch array for our computation, we can thus change our
-data directive to `#pragma acc data copy(array) create(arr_new)` this tells the
+data directive to `#pragma acc data copy(array) create(arr_new)`. This tells the
 compiler that it should copy `array` from the CPU to the GPU when entering the
 loop and copy the data back from the GPU to CPU when exiting the scope. The
 `create(arr_new)` tells the compiler to only create the data on the GPU, it will
@@ -347,11 +348,12 @@ first loop anyway and never use it after the loop.
 The above optimization will net us very little so lets do some more. Instead of
 using the `kernels` directive we can take more control of the translation and
 tell the compiler that we would like to parallelize both loops. This is done
-with the `#pragma acc parallel` directive. Since we also want to do a reduction
-across all loops we can also add a reduction by writing `#pragma acc parallel
-reduction(max:error)`. Lastly, we will apply the `collapse(n)` clause to the
-loop directives so that the compiler can combine the two loops into one large
-one to expose more parallelism. The new code is show below.
+with the `#pragma acc parallel loop` directive. Since we also want to do a
+reduction across all loops we can also add a reduction by writing `#pragma acc
+parallel loop reduction(max:error)` to the first loop. Lastly, we will apply the
+`collapse(n)` clause to both loop directives so that the compiler can combine the
+two loops into one large one to expose more parallelism. The new code is show
+below.
 
 ```{eval-rst}
 .. literalinclude:: openacc/jacobi_optimized.c
