@@ -116,8 +116,6 @@ attribution to the Sigma2/Metacenter.
    getting_help/lost_forgotten_password.md
    getting_help/project_leader_support.md
    getting_help/advanced_user_support.md
-   getting_help/publish_research_data.md
-   getting_help/course_resources.md
 
 
 .. toctree::
@@ -139,6 +137,7 @@ attribution to the Sigma2/Metacenter.
    nird_archive/user-guide.md
    nird_toolkit/overview.rst
    EasyDMP <https://www.sigma2.no/easydmp-user-documentation>
+   getting_help/course_resources.md
 
 
 .. toctree::
