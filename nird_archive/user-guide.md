@@ -1,4 +1,4 @@
-# Research Data Archive User Guide
+# Research data archive
 
 ## Introduction
 The Research Data Archive (hereafter called 'the Archive') is a repository that provides long-term storage for research data and is compliant with the Open Archival

@@ -133,6 +133,15 @@ attribution to the Sigma2/Metacenter.
 
 .. toctree::
    :maxdepth: 1
+   :caption: Services
+
+   nird_archive/user-guide.md
+   nird_toolkit/overview.rst
+   EasyDMP <https://www.sigma2.no/easydmp-user-documentation>
+
+
+.. toctree::
+   :maxdepth: 1
    :caption: High-performance computing
 
    hpc_machines/hardware_overview.md
@@ -167,22 +176,3 @@ attribution to the Sigma2/Metacenter.
    files_storage/sharing_files.md
    files_storage/file_transfer.md
    files_storage/performance.md
-
-.. toctree::
-   :maxdepth: 1
-   :caption: NIRD Toolkit
-
-   nird_toolkit/overview_nird_toolkit.md
-   nird_toolkit/getting_started_guide.md
-   nird_toolkit/package-install.md
-   nird_toolkit/persistent-storage.md
-   nird_toolkit/application-management.md
-   nird_toolkit/package-usage.md
-   nird_toolkit/custom-docker-image.md
-   nird_toolkit/terms.md
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Research Data Archive
-
-   nird_archive/user-guide.md
