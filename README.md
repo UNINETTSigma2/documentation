@@ -32,9 +32,15 @@ Build the HTML and check links:
 $ sphinx-build -b linkcheck . _build
 ```
 
-Now open `_build/index.html` in your browser. After each change
-you need to `sphinx-build` again.
+To view the documentation you can serve it locally
 
+```bash
+$ cd _build
+$ python3 -m http.server 8080
+```
+
+Open [the address `0.0.0.0:8080`](http://0.0.0.0:8080) in your browser to view
+the documentation as it should appear on the internet.
 
 ## All changes should be submitted as merge requests
 
