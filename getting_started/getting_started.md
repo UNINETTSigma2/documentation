@@ -25,6 +25,7 @@ specific machine name.
 
 The machine names are:
 
+* `betzy.sigma2.no` - Betzy
 * `fram.sigma2.no` - Fram
 * `saga.sigma2.no` - Saga
 * `login.nird.sigma2.no` - NIRD. See [NIRD](../files_storage/nird.md) for more
@@ -45,12 +46,11 @@ If you are connecting from a laptop we recommend that you use
 
 ## Remote desktop
 
-The Fram, Saga and Stallo systems provides a remote desktop service. [See here
+The Fram and Saga systems provides a remote desktop service. [See here
 for tutorial and details.](remote-desktop.md)
 
 **Quickstart**: Use a VNC client to log into `desktop.fram.sigma2.no:5901` or
-`desktop.saga.sigma2.no:5901` (for information on Stallo see here
-<http://stallo-gui.uit.no>). A web based remote desktop service is also
+`desktop.saga.sigma2.no:5901`. A web based remote desktop service is also
 available <https://desktop.fram.sigma2.no:6080>. Access to these services are
 blocked outside the Norwegian Research network, e.g. only accessible from
 UNINETT and partner institutions. (workarounds are described in the
@@ -58,7 +58,7 @@ UNINETT and partner institutions. (workarounds are described in the
 
 ## Development environment
 
-Abel, Stallo, Fram and Saga run CentOS Linux distributions as operating system.
+Fram and Saga run CentOS Linux distributions as operating system, while Betzy runs Red Hat Enterprise Linux Server (RHEL).
 The machines can run C/C++ or Fortran OpenMP and MPI applications, and depending
 on the machine, various open-source and third party applications. The
 Programming Environment page has more information about third-party
@@ -117,7 +117,7 @@ section.
 The HPC machines provide compute nodes for executing applications. To ensure
 fair access to the resources, the HPC machines run applications as _jobs_ in a
 _queue system_, which schedules the tasks and process to run on compute nodes.
-Abel, Stallo, and Fram use the Slurm queue system.
+All systems use the Slurm queue system.
 
 A job is described by a _batch script_, which is a shell script (a text file)
 with `SBATCH` options to specify the needed resources and commands to perform
