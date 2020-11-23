@@ -26,7 +26,8 @@ use [Nvidia Nsight](https://developer.nvidia.com/nsight-systems) to profile and
 optimize code.
 
 If you know some OpenACC or want to see tips for larger applications take a look
-at {ref}`the tip section <tips>` at the bottom.
+at {ref}`the tip section <tips>` at the bottom. We have also included a Fortran
+example at {ref}`the end of this document <fortran>`.
 
 After reading this guide you should:
 - Know what OpenACC is
@@ -425,3 +426,41 @@ transitions.
     ensures that you can focus on a small area and get less compiler output to
     study. Profiling between each round may not be necessary, but it can be
     valuable to know what is happening.
+
+(fortran)=
+## Fortran
+As mentioned in the beginning of this document, OpenACC also supports `Fortran`.
+Directives in Fortran can be added in a similar fashion to OpenMP directives,
+with `!$acc` instead of `!$OMP`. Below is an example of matrix multiplication
+with the `!$acc kernels` directive.
+
+```{eval-rst}
+.. literalinclude:: openacc/mxm.f90
+   :language: fortran
+   :emphasize-lines: 12, 20
+```
+```{eval-rst}
+:download:`mxm.f90 <./openacc/mxm.f90>`
+```
+
+On Saga, load the `NVHPC/20.7` module and compile with `nvfortran` as follows:
+```bash
+$ module load NVHPC/20.7
+$ nvfortran -o mxm -fast -acc -gpu=cc60 -Minfo=accel mxm.f90
+```
+
+To run the program on Saga with GPUs use:
+```bash
+$ srun --account=<your project number> --time=02:00 --mem-per-cpu=512M --partition=accel --gres=gpu:1 ./mxm
+```
+
+This program is as close to the best case scenario possible for accelerators
+and, on Saga, gives a speedup of `24x` compared to a single CPU core.
+
+| Flags                    | Run time      | Speedup  |
+|:------------------------:|:-------------:|:--------:|
+| `-fast` (single CPU core)| 48.9 seconds  |   1 x    |
+| `-fast -acc -gpu=cc60`   | 2.0 seconds   |  24 x    |
+
+You can profile `Fortran` programs in the same way you would for `C/C++`, using
+`nsys profile` and the flag `-t cuda,openacc`.
