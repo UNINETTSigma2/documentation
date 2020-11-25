@@ -10,7 +10,7 @@ runtime to accelerators.
 
 Accelerators, like the Nvidia GPUs on Saga, are great for numerical calculations
 and applications that work on the "SIMD" - **S**ingle **I**nstruction
-**M**ultiple **D**ata principle (where one or more operations are applied to a
+**M**ultiple **D**ata principle, (where one or more operations are applied to a
 large number of datapoints independently of each other).  Examples include
 operations like
 [`gemm`](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms#Level_3)
@@ -19,15 +19,26 @@ CPU](http://developer.download.nvidia.com/compute/cuda/6_5/rel/docs/CUDA_6.5_Per
 or generating random numbers which can be [**70 times**
 faster!](http://developer.download.nvidia.com/compute/cuda/6_5/rel/docs/CUDA_6.5_Performance_Report.pdf)
 
+```{note}
+If you know some OpenACC or want to see tips for larger applications take a look
+at {ref}`the tip section <tips>` at the bottom.
+```
+
+```{note}
+We have also included a Fortran example at
+{ref}`the end of this document <fortran>`.
+```
+
+```{note}
+For a summary of available directives we have used [this reference
+guide.](https://www.openacc.org/sites/default/files/inline-files/API%20Guide%202.7.pdf)
+```
+
 ## Introduction
 This guide will introduce the concept of OpenACC directives in `C/C++` code, how
 to compile and run such programs on [Saga](../hpc_machines/saga.md) and how to
 use [Nvidia Nsight](https://developer.nvidia.com/nsight-systems) to profile and
 optimize code.
-
-If you know some OpenACC or want to see tips for larger applications take a look
-at {ref}`the tip section <tips>` at the bottom. We have also included a Fortran
-example at {ref}`the end of this document <fortran>`.
 
 After reading this guide you should:
 - Know what OpenACC is
@@ -37,14 +48,11 @@ After reading this guide you should:
 - Know how to understand the basic Nsight user interface
 - Know how to optimize OpenACC programs based on profiler results
 
-For a summary of available directives we have used [this reference
-guide.](https://www.openacc.org/sites/default/files/inline-files/API%20Guide%202.7.pdf)
-
 ## OpenACC
 To begin we will need an example program that does some calculations that we
 would like to speed up.
 
-We have selected an example based on heat dissipation utilizing on Jacobi
+We have selected an example based on heat dissipation utilizing Jacobi
 iterations. The initial source can be found in `jacobi_serial.c`, shown below:
 
 ```{eval-rst}
@@ -55,7 +63,7 @@ iterations. The initial source can be found in `jacobi_serial.c`, shown below:
 :download:`jacobi_serial.c <./openacc/jacobi_serial.c>`
 ```
 
-### Compiling on Saga
+### Compiling and running on Saga
 To compile this initial version on Saga we will need to load the [`Nvidia HPC
 SDK`](https://developer.nvidia.com/hpc-sdk). This can be done with the following
 command:
@@ -165,8 +173,9 @@ for only one GPU).
 
 ### Profiling
 To profile the `kernels` version of our program we will here transition to
-`SLURM` scripts to make it a bit easier to make changes to the running of the
-program.
+[`SLURM` scripts](../../jobs/job_scripts.md) This will make it a bit easier to
+make changes to how the program is run and also makes it a bit more
+reproducible.
 
 The `SLURM` script is available as `kernels.job` and is show below.
 
@@ -178,15 +187,25 @@ The `SLURM` script is available as `kernels.job` and is show below.
 :download:`kernels.job <./openacc/kernels.job>`
 ```
 
+Run this script by issuing
+
+```bash
+$ sbatch kernels.job
+```
+
 The end result should be a file called `kernels.qdrep` which contains the
 profiling information. Download this file to your local computer to continue
 with this guide.
 
+```{eval-rst}
+:download:`kernels.qdrep <./openacc/kernels.qdrep>`
+```
+
 ## Nsight
 We will continue this guide `kernels.qdrep` as the profiling result to view.
 
-```{eval-rst}
-:download:`kernels.qdrep <./openacc/kernels.qdrep>`
+```{note}
+To view images in a larger format, right click and select `View Image`
 ```
 
 To begin, start [Nsight Systems](https://developer.nvidia.com/nsight-systems) on
@@ -352,9 +371,9 @@ tell the compiler that we would like to parallelize both loops. This is done
 with the `#pragma acc parallel loop` directive. Since we also want to do a
 reduction across all loops we can also add a reduction by writing `#pragma acc
 parallel loop reduction(max:error)` to the first loop. Lastly, we will apply the
-`collapse(n)` clause to both loop directives so that the compiler can combine the
-two loops into one large one to expose more parallelism. The new code is show
-below.
+`collapse(n)` clause to both loop directives so that the compiler can combine
+the two loops into one large one, with the effect of exposing more parallelism
+for the GPU. The new code is show below.
 
 ```{eval-rst}
 .. literalinclude:: openacc/jacobi_optimized.c
@@ -397,7 +416,7 @@ kernels amount to around `32` **microseconds**.
 ## Summary
 In this guide we have shown how to use OpenACC to transition a simple `C`
 example from running on the CPU to running the main calculations on GPU. We have
-detailed how such code can be used compiled and run on Saga. And, we have
+detailed how such code can be used, compiled and run on Saga. And, we have
 introduced Nsight and how it can be used to profile and guide OpenACC
 transitions.
 
