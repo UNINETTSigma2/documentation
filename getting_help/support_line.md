@@ -34,3 +34,12 @@ This summary is copied and adapted from the [Aalto Science-IT help pages](https:
 Please also look at the page for a more detailed guide on [how to write good support
 requests](how_to_write_good_support_requests.md) on how to report problems in
 the most effective way for getting help quickly.
+
+
+### Display active and resolved tickets
+
+To see details about your open and resolved support requests you can login to the
+[self-service page](https://rt.uninett.no/SelfService).
+There you can select a ticket to see its current status, subqueue as well as the
+whole conversation.
+Please note that only ticket are displayed which are sent from the same email address as the one connected to your Feide account, you use to log in.
