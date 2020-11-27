@@ -160,9 +160,9 @@ attribution to the Sigma2/Metacenter.
 
    software/modulescheme.md
    software/installed_software.md
+   software/userinstallsw.rst
    software/containers.md
    software/appguides.md
-   software/userinstallsw.md
    software/licenses.md
 
 
