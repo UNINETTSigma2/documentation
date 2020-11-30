@@ -26,12 +26,6 @@ Betzy is a BullSequana XH2000, provided by Atos, and will  give Norwegian resear
 Almost all components are liquid cooled resulting in a very high cooling efficiency, 95% of heat being captured to water.
 
 
-### Pilot projects
-
-For pilot project please check out the short getting started guide
-[here](betzy/betzy_pilot.md).
-
-
 ### No network access on compute nodes
 
 According to our security policy, compute nodes shall not have direct access to
