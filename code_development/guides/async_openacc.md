@@ -1,3 +1,5 @@
+<meta name="keywords" content="openacc,gpu,code-development">
+
 # Async and Multi-GPU OpenACC
 In this guide we will go over a few advance topics regarding OpenACC. The guide
 will cover asynchronous operations, which can overlap memory transfers and
@@ -281,9 +283,14 @@ Below is the summary of speedup where the improvement is shown relative to the
 previous entry in the table (take the measured times with a grain of salt, they
 are more an illustration of possible speedup, not guaranteed speedup).
 
-| Version | Speedup |
-|---------|----------|
-|Serial| `1020ms`|
-|Async| `811ms` - `1.25x`|
-|Multi-GPU `--gres=gpu:2`| `547ms` - `1.48x`|
-|Multi-GPU `--gres=gpu:4`| `2932ms` - `0.18x`|
+| Version | Time in milliseconds| Speedup |
+| ------- | ------------------- | ------- |
+|Serial| `10757`| N/A |
+|OpenMP - `--cpus-per-task=6`\*| `3313` | `3.24x`|
+|Initial OpenACC| `1020` | `3.25x`|
+|Async| `811` | `1.25x`|
+|Multi-GPU `--gres=gpu:2`| `547` | `1.48x`|
+|Multi-GPU `--gres=gpu:4`| `2932` | `0.18x`|
+**\*** To keep the comparison as fair as possible we compare the CPU resources
+that would be the equivalent to [the billing resources of 1 GPU on
+Saga](../../jobs/projects_accounting.md).
