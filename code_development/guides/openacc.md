@@ -29,7 +29,7 @@ We have also included a Fortran example at
 {ref}`the end of this document <fortran>`.
 ```
 
-```{note}
+```{tip}
 For a summary of available directives we have used [this reference
 guide.](https://www.openacc.org/sites/default/files/inline-files/API%20Guide%202.7.pdf)
 ```
