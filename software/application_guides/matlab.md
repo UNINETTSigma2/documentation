@@ -33,6 +33,7 @@ Commercial users need to sign a Hosting Provider agreement. Contact: sigma2@unin
 | MATLAB |2018a|
 | MATLAB |2018b|
 | MATLAB |2019a|
+| MATLAB |2020b|
 
 To see available versions when logged into Fram issue command
 
