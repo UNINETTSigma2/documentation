@@ -12,13 +12,6 @@ If "dusage" repots 0 Bytes limits, this means that you **do not have disk quotas
 activated and this means that these folders **are not backed up**.
 ```
 
-```{warning}
-**Betzy: NO BACKUP**
-
-Backup on Betzy will be switched on **only** after the pilot period is
-finished.
-```
-
 
 ## Betzy, Fram and Saga
 
