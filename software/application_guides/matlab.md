@@ -42,6 +42,7 @@ To see available versions when logged into Fram issue command
 To use MATLAB type
 
     module load MATLAB/<version>
+    (eg. module load MATLAB/2020b)
 
 specifying one of the available versions.
 
