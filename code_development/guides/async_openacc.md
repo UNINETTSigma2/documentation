@@ -283,14 +283,14 @@ Below is the summary of speedup where the improvement is shown relative to the
 previous entry in the table (take the measured times with a grain of salt, they
 are more an illustration of possible speedup, not guaranteed speedup).
 
-| Version | Time in milliseconds| Speedup |
-| ------- | ------------------- | ------- |
-|Serial| `10757`| N/A |
-|OpenMP - `--cpus-per-task=6`\*| `3313` | `3.24x`|
-|Initial OpenACC| `1020` | `3.25x`|
-|Async| `811` | `1.25x`|
-|Multi-GPU `--gres=gpu:2`| `547` | `1.48x`|
-|Multi-GPU `--gres=gpu:4`| `2932` | `0.18x`|
+| Version | Time in milliseconds | Speedup |
+| ------- | -------------------- | ------- |
+| Serial | `10757`| N/A |
+| OpenMP  `--cpus-per-task=6`\* | `3313` | `3.24x` |
+| Initial OpenACC | `1020` | `3.25x` |
+| Async | `811` | `1.25x` |
+| Multi-GPU `--gres=gpu:2` | `547` | `1.48x` |
+| Multi-GPU `--gres=gpu:4` | `2932` | `0.18x` |
 **\*** To keep the comparison as fair as possible we compare the CPU resources
 that would be the equivalent to [the billing resources of 1 GPU on
 Saga](../../jobs/projects_accounting.md).
