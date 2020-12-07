@@ -231,11 +231,11 @@ function dgemm is used to test single core performance of the
 libraries. The tests are run on a single node using a single core on
 Betzy.
 
-| Library | Link line                                                 | Performance     |
-| ------- |:---------------------------------------------- ----------:|:------- -------:|
-| AOCL    | gfortran -o dgemm-test.x -O3 dgemm-test.f90 -L$LIB -lblis | 50.13 Gflops/s  |
-| AOCL    | flang -o dgemm-test.x -O3 dgemm-test.f90 -L$LIB -lblis    | 50.13 Gflops/s  |
-| MKL     | ifort -o dgemm-test.x -O3 dgemm-test.f90 -mkl=sequential  | 51.53 Gflops/s  |
+| Library | Link line                                                   | Performance     |
+|:--------|:-----------------------------------------------------------:|:---------------:|
+| AOCL    | `gfortran -o dgemm-test.x -O3 dgemm-test.f90 -L$LIB -lblis` | 50.13 Gflops/s  |
+| AOCL    | `flang -o dgemm-test.x -O3 dgemm-test.f90 -L$LIB -lblis`    | 50.13 Gflops/s  |
+| MKL     | `ifort -o dgemm-test.x -O3 dgemm-test.f90 -mkl=sequential`  | 51.53 Gflops/s  |
 
 Using the MLK library with AMD is straightforward. In order to get MKL
 to select the correct AVX2 enabled routine a flag need to be set,
