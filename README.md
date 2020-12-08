@@ -162,6 +162,13 @@ Or if you want to change the link text:
 
 You can add this to your page if you want `MyKeyword` to show on the index with
 a link to your page:
-
+````
 ```{index} single: MyKeyword
 ```
+````
+
+You can also have several keywords point to this page like here:
+````
+```{index} GPU, OpenACC, CUDA
+```
+````
