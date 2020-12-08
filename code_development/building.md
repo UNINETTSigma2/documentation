@@ -59,6 +59,15 @@ apply to the main routine.  If the main() function is not compiler
 with *-xavx*/*-xavx2* flags the test is not inserted and performance
 is as expected.
 
+| Vectorisation flag    | Single core performance |
+|:---------------------:|:-----------------------:|
+| -O3                   |  4.33 Gflops/sec        |
+| -O3 -march=core-avx2  |  4.79 Gflops/sec        |
+| -O3 -xavx             | 17.97 Gflops/sec        |
+| -O3 -xavx2            | 26.39 Gflops/sec        |
+| -O3 -xcore-avx2       | 26.38 Gflops/sec        |
+
+
 There are a large range of other flags, and while the web
 documentation is very good it can be overwhelming. A simple trick is
 to issue the following command `icc -help > icc.hpl` and open the file
