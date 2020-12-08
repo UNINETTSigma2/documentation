@@ -54,9 +54,15 @@ The flags above have been tested and yield good results. On Betzy the
 flags involving *-xavx*, *-xavx2* and *-xcore-avx2* can cause
 problems. As the -x prefix implies it will only generate code for a
 processor supporting AVX and AVX2. Intel has implemented a run time
-processor check for any program compiled with these flags. This only
-apply to the main routine.  If the main() function is not compiler
-with *-xavx*/*-xavx2* flags the test is not inserted and performance
+processor check for any program compiled with these flags, which will result
+in a message like this:
+
+    Please verify that both the operating system and the processor support
+    Intel(R) X87, CMOV, MMX, FXSAVE, SSE, SSE2, SSE3, SSSE3, SSE4_1, SSE4_2,
+    MOVBE, POPCNT, AVX, F16C, FMA, BMI, LZCNT and AVX2 instructions.
+
+This only apply to the main routine.  If the main() function is not compiled
+with ``-xavx``/``-xavx2`` flags the test is not inserted and performance
 is as expected.
 
 | Vectorisation flag    | Single core performance |
@@ -67,6 +73,11 @@ is as expected.
 | -O3 -xavx2            | 26.39 Gflops/sec        |
 | -O3 -xcore-avx2       | 26.38 Gflops/sec        |
 
+```{warning}
+The ``-xavx2`` flag is quite intrusive, it's building only AVX2 vector
+instructions and if the processor does not support it, you'll get illegal
+instruction.
+```
 
 There are a large range of other flags, and while the web
 documentation is very good it can be overwhelming. A simple trick is
