@@ -48,7 +48,7 @@ python pdexample.py
 An alternative to creating virtual environments with virtualenv, is to create
 environment with Anaconda or Miniconda. To able to use the conda
 environment in a batch script, you will need to source a conda environment
-file. First create a environment, here also installing:
+file. First create a environment, here also installing pandas:
 
 ```
 # load Anaconda3
@@ -59,6 +59,18 @@ conda create -t testenv pandas
 
 # activate the environment
 conda activate testenv
+```
+
+If you are planning on adding many libraries to your environment, you should
+consider placing it in a directory other than your $HOME, due to the
+{ref}`storage restrictions <clusters-homedirectory>` on that folder. One
+alternative could be to use the {ref}`Project area <project-area>`, please
+check out {ref}`Storage areas on HPC clusters <clusters-overview>` for other
+alternatives. To install conda in an alternative location, add
+`-p /path/to/new/directory` to the create environment command, e.g.:
+
+```
+conda create -p /path/to/new/directory
 ```
 
 To be able to use this environment in a batch script, you will need to include

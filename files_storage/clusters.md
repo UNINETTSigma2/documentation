@@ -13,6 +13,7 @@ while others are for storing project data.
 - [Project area](#project-area)
 - [Shared project area](#shared-project-area)
 
+(clusters-overview)=
 
 ## Overview
 
@@ -76,6 +77,7 @@ $ beegfs-ctl --getquota --gid nn1234k
   Please refer to the [example on changing file ownership](change_file_ownership.md).
 ```
 
+(clusters-homedirectory)=
 
 ## Home directory
 
