@@ -1,3 +1,6 @@
+```{index} single: GPU
+```
+
 # Getting started with OpenACC and Nvidia Nsight
 > OpenACC is a user-driven directive-based performance-portable parallel
 > programming model.
