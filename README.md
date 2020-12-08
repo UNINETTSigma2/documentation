@@ -156,3 +156,12 @@ Or if you want to change the link text:
 ```
 {ref}`my text <mylabel>`
 ```
+
+
+## Keywords and index
+
+You can add this to your page if you want `MyKeyword` to show on the index with
+a link to your page:
+
+```{index} single: MyKeyword
+```

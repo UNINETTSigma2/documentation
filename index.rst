@@ -98,6 +98,13 @@ attribution to the Sigma2/Metacenter.
 
 --------------
 
+Index of keywords
+-----------------
+
+:ref:`genindex`
+
+--------------
+
 .. toctree::
    :maxdepth: 1
    :caption: News
