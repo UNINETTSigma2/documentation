@@ -1,4 +1,4 @@
-```{index} single: GPU
+```{index} GPU; TensorFlow on GPU, TensorFlow; TensorFlow on GPU
 ```
 
 # TensorFlow on GPU
