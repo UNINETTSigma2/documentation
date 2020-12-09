@@ -19,9 +19,9 @@ If it instead needs 200GB memory you should use _bigmem_.
 
 | Name                                     | Description                           | Job limits   | Max walltime | Priority |
 |:----------------------------------------:|---------------------------------------|:------------:|:------------:|:--------:|
-| {ref}`normal <job_type_betzy_normal>`    | default job type                      | 8--256 nodes | 4 days       | normal   |
+| {ref}`normal <job_type_betzy_normal>`    | default job type                      | 4--256 nodes | 4 days       | normal   |
 | {ref}`preproc <job_type_betzy_preproc>`  | pre-/postprocessing jobs              | 1--8 units   | 1 day        | normal   |
-| {ref}`devel <job_type_betzy_devel>`      | development jobs (compiling, testing) | 1--4 nodes   | 30 mins      | high     |
+| {ref}`devel <job_type_betzy_devel>`      | development jobs (compiling, testing) | 1--4 nodes   | 60 mins      | high     |
 
 For jobs that don't request much memory, the "units" of *preproc* jobs
 are simply the number of cpus the job requests.
