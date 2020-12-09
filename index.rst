@@ -143,7 +143,7 @@ Index of keywords
 
    nird_archive/user-guide.md
    nird_toolkit/overview.rst
-   EasyDMP <https://www.sigma2.no/easydmp-user-documentation>
+   services/easydmp-user-documentation.md
    getting_help/course_resources.md
 
 
