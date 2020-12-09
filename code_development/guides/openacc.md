@@ -1,4 +1,4 @@
-```{index} single: GPU
+```{index} GPU; Getting started with OpenACC and Nvidia Nsight, OpenACC; Getting started with OpenACC and Nvidia Nsight, Nvidia Nsight; Getting started with OpenACC and Nvidia Nsight
 ```
 
 # Getting started with OpenACC and Nvidia Nsight
@@ -14,7 +14,7 @@ runtime to accelerators.
 Accelerators, like the Nvidia GPUs on Saga, are great for numerical calculations
 and applications that work on the "SIMD" - **S**ingle **I**nstruction
 **M**ultiple **D**ata principle, (where one or more operations are applied to a
-large number of datapoints independently of each other).  Examples include
+large number of datapoints independently of each other). Examples include
 operations like
 [`gemm`](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms#Level_3)
 which can be [**6 times** faster than on the

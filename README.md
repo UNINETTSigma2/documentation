@@ -163,12 +163,12 @@ Or if you want to change the link text:
 You can add this to your page if you want `MyKeyword` to show on the index with
 a link to your page:
 ````
-```{index} single: MyKeyword
+```{index} single: MyKeyword; Name of link in index
 ```
 ````
 
 You can also have several keywords point to this page like here:
 ````
-```{index} GPU, OpenACC, CUDA
+```{index} GPU; Name of link, OpenACC; Name of link, CUDA; Name of link
 ```
 ````
