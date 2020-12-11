@@ -201,20 +201,16 @@ int main (int argc, char** argv) {
     }
     // Share data with neighboors
     if (rank > 0) {
-      check_mpi (MPI_Send(&wave2[1], 1, MPI_DOUBLE, rank - 1, lower_tag, MPI_COMM_WORLD),
-                 "Could not send lower update");
+      MPI_Send(&wave2[1], 1, MPI_DOUBLE, rank - 1, lower_tag, MPI_COMM_WORLD);
       MPI_Status out;
-      check_mpi (MPI_Recv(&wave2[0], 1, MPI_DOUBLE, rank - 1, upper_tag, MPI_COMM_WORLD, &out),
-                 "Could not receive data for lower update");
+      MPI_Recv(&wave2[0], 1, MPI_DOUBLE, rank - 1, upper_tag, MPI_COMM_WORLD, &out);
     } else {
       wave2[0] = exact (0., t, SOUND_SPEED);
     }
     if (rank < num_processes - 1) {
       MPI_Status out;
-      check_mpi (MPI_Recv(&wave2[local_points - 1], 1, MPI_DOUBLE, rank + 1, lower_tag, MPI_COMM_WORLD, &out),
-                 "Could not receive data for upper update");
-      check_mpi (MPI_Send(&wave2[local_points - 2], 1, MPI_DOUBLE, rank + 1, upper_tag, MPI_COMM_WORLD),
-                 "Could not send upper update");
+      MPI_Recv(&wave2[local_points - 1], 1, MPI_DOUBLE, rank + 1, lower_tag, MPI_COMM_WORLD, &out);
+      MPI_Send(&wave2[local_points - 2], 1, MPI_DOUBLE, rank + 1, upper_tag, MPI_COMM_WORLD);
     } else {
       wave2[local_points - 1] = exact (1., t, SOUND_SPEED);
     }

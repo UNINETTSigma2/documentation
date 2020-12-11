@@ -111,7 +111,7 @@ int main (int argc, char** argv) {
   // Determine local rank relative to the node, this is used to allocate GPUs as
   // we assume that each rank has its own GPU to utilize
   const char* local_rank_str = getenv ("OMPI_COMM_WORLD_LOCAL_RANK");
-  if (strnlen (local_rank_str, 10) == 0) {
+  if (local_rank_str != NULL && strnlen (local_rank_str, 7) == 0) {
     printf("\033[0;31mCould not determine local rank!\033[0m\n");
     MPI_Finalize();
     return EXIT_FAILURE;
@@ -120,6 +120,8 @@ int main (int argc, char** argv) {
   // Assign GPU based on local rank
   const int devices = acc_get_num_devices (acc_device_nvidia);
   acc_set_device_num (local_rank % devices, acc_device_nvidia);
+  printf("Global rank \033[0;35m%d\033[0m, local \033[0;35m%d\033[0m, using GPU: \033[0;35m%d\033[0m (of \033[0;35m%d\033[0m)\n",
+         rank, local_rank, local_rank % devices, devices);
 
   /*************************** Implementation *********************************/
   // Define pointer to global result so that we can compile, this variable is
@@ -220,20 +222,16 @@ int main (int argc, char** argv) {
     #pragma acc update self(wave2[local_points - 2:1])
     // Share data with neighboors
     if (rank > 0) {
-      check_mpi (MPI_Send(&wave2[1], 1, MPI_DOUBLE, rank - 1, lower_tag, MPI_COMM_WORLD),
-                 "Could not send lower update");
+      MPI_Send(&wave2[1], 1, MPI_DOUBLE, rank - 1, lower_tag, MPI_COMM_WORLD);
       MPI_Status out;
-      check_mpi (MPI_Recv(&wave2[0], 1, MPI_DOUBLE, rank - 1, upper_tag, MPI_COMM_WORLD, &out),
-                 "Could not receive data for lower update");
+      MPI_Recv(&wave2[0], 1, MPI_DOUBLE, rank - 1, upper_tag, MPI_COMM_WORLD, &out);
     } else {
       wave2[0] = exact (0., t, SOUND_SPEED);
     }
     if (rank < num_processes - 1) {
       MPI_Status out;
-      check_mpi (MPI_Recv(&wave2[local_points - 1], 1, MPI_DOUBLE, rank + 1, lower_tag, MPI_COMM_WORLD, &out),
-                 "Could not receive data for upper update");
-      check_mpi (MPI_Send(&wave2[local_points - 2], 1, MPI_DOUBLE, rank + 1, upper_tag, MPI_COMM_WORLD),
-                 "Could not send upper update");
+      MPI_Recv(&wave2[local_points - 1], 1, MPI_DOUBLE, rank + 1, lower_tag, MPI_COMM_WORLD, &out);
+      MPI_Send(&wave2[local_points - 2], 1, MPI_DOUBLE, rank + 1, upper_tag, MPI_COMM_WORLD);
     } else {
       wave2[local_points - 1] = exact (1., t, SOUND_SPEED);
     }
