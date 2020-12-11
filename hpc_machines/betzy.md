@@ -5,7 +5,7 @@ Named after [Mary Ann Elizabeth (Betzy) Stephansen](https://en.wikipedia.org/wik
 
 ### The most powerful supercomputer in Norway
 
-Betzy is a BullSequana XH2000, provided by Atos, and will  give Norwegian researchers more than 5 times more capacity than previously, with a theoretical peak performance of 6.2  PetaFlops. The supercomputer, which will be placed at NTNU in Trondheim, will be available to users during the second half of 2020.
+Betzy is a BullSequana XH2000, provided by Atos, and will give Norwegian researchers almost three times more capacity than previously, with a theoretical peak performance of 6.2 PetaFlops. The supercomputer is located at NTNU in Trondheim, and was set in production 24 November 2020. Betzy provides close to two billion CPU hours per year, and has a contracted operating time of four years (2024), with an optional one-year extension (2025).
 
 
 | Details     | Betzy     |
