@@ -110,17 +110,16 @@ int main (int argc, char** argv) {
   const int local_start = (rank == 0) ? 0 : equal_share * rank - 1;
   // Determine local rank relative to the node, this is used to allocate GPUs as
   // we assume that each rank has its own GPU to utilize
-  const char* local_rank_str = getenv ("OMPI_COMM_WORLD_LOCAL_RANK");
-  if (local_rank_str != NULL && strnlen (local_rank_str, 7) == 0) {
-    printf("\033[0;31mCould not determine local rank!\033[0m\n");
-    MPI_Finalize();
-    return EXIT_FAILURE;
-  }
-  const int local_rank = atoi (local_rank_str);
+  MPI_Comm shared_node;
+  check_mpi (MPI_Comm_split_type (MPI_COMM_WORLD, MPI_COMM_TYPE_SHARED, 0,
+                                  MPI_INFO_NULL, &shared_node),
+             "Could not split COMM_WORLD into shared communicator");
+  int local_rank;
+  check_mpi (MPI_Comm_rank(shared_node, &local_rank), "Could not get local rank");
   // Assign GPU based on local rank
   const int devices = acc_get_num_devices (acc_device_nvidia);
   acc_set_device_num (local_rank % devices, acc_device_nvidia);
-  printf("Global rank \033[0;35m%d\033[0m, local \033[0;35m%d\033[0m, using GPU: \033[0;35m%d\033[0m (of \033[0;35m%d\033[0m)\n",
+  printf("Global rank \033[0;35m%d\033[0m, local \033[0;35m%d\033[0m, using GPU ID: \033[0;35m%d\033[0m (number of GPUs: \033[0;35m%d\033[0m)\n",
          rank, local_rank, local_rank % devices, devices);
 
   /*************************** Implementation *********************************/

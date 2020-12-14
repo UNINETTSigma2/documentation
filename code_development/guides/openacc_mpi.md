@@ -31,6 +31,8 @@ After reading this guide you should be familiar with the following concepts
     - How to assign the correct GPU based on `rank` and nodes
  - How to profile a combined `MPI` and OpenACC application
 
+---
+
 For this guide we will solve the 1 dimensional wave equation, shown below with
 `MPI` task sharing.
 
@@ -43,18 +45,12 @@ For this guide we will solve the 1 dimensional wave equation, shown below with
 :download:`wave_mpi.c <./openacc_mpi/wave_mpi.c>`
 ```
 
-To compile this on Saga we will load `NVHPC` and compile with the built-in `MPI`
+To compile this on Saga we will load `OpenMPI` and compile with the built-in `MPI`
 compiler.
 
 ```bash
-$ module load NVHPC/20.7
+$ module load OpenMPI/4.0.3-PGI-20.4-GCC-9.3.0
 $ mpicc -g -fast -o mpi wave_mpi.c
-```
-
-```{warning}
-It might be necessary to export the path to `mpicc` for the above to work. Run
-the following to set it up correctly: `export
-PATH=$PATH:$NVHPC/Linux_x86_64/$EBVERSIONNVHPC/comm_libs/mpi/bin`
 ```
 
 To run this with multiple `rank`s, e.g. split the work over `4` processes, use
@@ -215,20 +211,20 @@ self(...)`. `self` in this context means that we want to transfer from `GPU` to
 ```{eval-rst}
 .. literalinclude:: openacc_mpi/wave_acc.c
    :language: c
-   :lines: 197-226
+   :lines: 197-222
    :emphasize-lines: 10-11
 ```
 
-The `MPI` transfer will transmit the correct data now, which is good, but we
-still have a problem in our code. After the `MPI` transfer the points we
-received from the other `rank`s are not updated on the `GPU`. To fix this we can
-add the same `acc update` directive, but change the direction of the transfer.
-To do this we change `self` with `device` as follows.
+The `MPI` transfer will transmit the correct data, which is good, but we still
+have a problem in our code. After the `MPI` transfer the points we received from
+the other `rank`s are not updated on the `GPU`. To fix this we can add the same
+`acc update` directive, but change the direction of the transfer.  To do this we
+change `self` with `device` as follows.
 
 ```{eval-rst}
 .. literalinclude:: openacc_mpi/wave_acc.c
    :language: c
-   :lines: 224-236
+   :lines: 220-232
    :emphasize-lines: 5-6
 ```
 
@@ -264,25 +260,27 @@ assign a unique `GPU` to each `MPI` process.
 ```{eval-rst}
 .. literalinclude:: openacc_mpi/wave_acc_mpi.c
    :language: c
-   :lines: 91-122
-   :emphasize-lines: 21-33
+   :lines: 91-121
+   :emphasize-lines: 21-32
 ```
 
 ```{eval-rst}
 :download:`wave_acc_mpi.c <./openacc_mpi/wave_acc_mpi.c>`
 ```
 
-```{warning}
-The above pinning of `GPU`s is not portable and only works with OpenMPI! We
-have used this solution here since `NVHPC` comes with OpenMPI by default.
-```
-
 We will compile this as before, but now we can run with arbitrary number of
 processes!
 
+```{warning}
+When using `--gres=gpu:X` we need to request the total number of `GPU`s that we
+expect each node to use. So if we ask for `--ntasks=2` we need to request two
+`GPU`s with `--gres=gpu:2`. This will soon be remedied and can instead be
+requested with `--gpus-per-task`.
+```
+
 ```bash
 $ mpicc -g -fast -acc -Minfo=accel -o acc wave_acc_mpi.c
-$ srun --ntasks=2 --partition=accel --gres=gpu:1 --account=<your project number> --time=02:00 --mem-per-cpu=512M time ./acc 1000000
+$ srun --ntasks=2 --partition=accel --gres=gpu:2 --account=<your project number> --time=02:00 --mem-per-cpu=512M time ./acc 1000000
 ```
 
 ## Summary
@@ -294,18 +292,34 @@ that we could continue to exchange data with neighboring `MPI` `rank`s.
 
 ### Speedup
 Below is the runtime, as measured with `time -p ./executable` (extracting
-`real`), of each version.  The code was run with `1000000` points to solve.
+`real`), of each version.  The code was run with `1200000` points to solve.
 
 | Version | Time in seconds | Speedup |
 | ------- | --------------- | ------- |
-| `MPI` `--ntasks=1` | `7`| N/A |
-| `MPI` `--ntasks=12`\* | `3` | `x` |
-| `MPI` `--ntasks=2` + OpenMP `--cpus-per-task=6`\* | `3` | `x` |
-| `MPI` `--ntasks=2` + OpenACC | `0` | `x` |
-| OpenACC\*\* | `0` | `x` |
+| `MPI` `--ntasks=1` | `14.29`| N/A |
+| `MPI` `--ntasks=12`\* | `2.16` | `6.61x` |
+| `MPI` `--ntasks=2` + OpenMP `--cpus-per-task=6`\* | `2.11` | `1.02x` |
+| `MPI` `--ntasks=2` + OpenACC | `2.79` | `0.76x` |
+| OpenACC\*\* | `2.17` | `1.28x` |
 **\*** To keep the comparison as fair as possible we compare the `CPU` resources
 that would be the equivalent to [the billing resources of 2 `GPU`s on
 Saga](../../jobs/projects_accounting.md).
 
 **\*\*** OpenACC implementation on a single `GPU` further optimized when no
 `MPI` sharing is necessary.
+
+### Scaling
+To illustrate the benefit of combining OpenACC with `MPI` we have, in the image
+below, compared three different versions of the solver on increasingly larger
+input.
+
+![Scaling of different inputs](./openacc_mpi/wave_scaling.svg)
+
+From the figure we can see that on the example input, `1200000`, `MPI` combined
+with OpenMP is the quickest. However, as we scale the input size this `CPU`
+version becomes slower compared to the `GPU`. The figure also illustrates the
+advantage of a single `GPU`. We recommended, if possible, to use one `GPU` when
+starting the transition to OpenACC and if the data size is larger than a single
+`GPU` continue with `MPI`. If the application already utilizes `MPI` then we
+recommend that, when using OpenACC, each `rank` is given more work than in the
+pure `CPU` implementation.
