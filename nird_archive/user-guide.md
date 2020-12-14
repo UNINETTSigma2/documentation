@@ -63,7 +63,7 @@ A dataset must be a collection of related data. Typically, this consists of a co
 
 To access the Archive web interface, direct your browser to: [https://archive.sigma2.no](https://archive.sigma2.no). You should arrive at the front page shown in Figure 1. You will need to authenticate using your FEIDE or other account either by logging on via the *LOGIN* button on the top-right or via the *DEPOSIT* icon.
  
-![archive_web_interface](imgs/figure_1_screenshot_of_the_archive_web_interface_front_page.jpg "archive web interface")
+![archive_web_interface](imgs/figure_1_screenshot_of_the_archive_web_interface_front_page.png "archive web interface")
 Figure 1: Screenshot of the Archive web interface front page
 
  
@@ -80,7 +80,7 @@ If you have never used the Archive before you will be presented with a page info
 
 Once approval has been granted you will able to deposit datasets. If you now click the *DEPOSIT* button you will be presented with a page containing a short introduction to the Archive and a link to the Terms and Conditions as shown in Figure 2. The Terms and Conditions outline your responsibilities and those of the Archive. You will need to agree to these before you can start the deposit process.
  
-![the_terms_and_conditions_page](imgs/figure_2_screenshot_of_the_terms_and_conditions_page.jpg "the terms and conditions page")
+![the_terms_and_conditions_page](imgs/figure_2_screenshot_of_the_terms_and_conditions_page.png "the terms and conditions page")
 Figure 2: Screenshot of the Terms and Conditions page
 
  
@@ -90,7 +90,7 @@ Figure 2: Screenshot of the Terms and Conditions page
 
 The primary metadata is divided into two parts. The first part covers the publication that best describes the dataset (see Figure 3). The goal of the Archive is to provide long-term storage for datasets that are considered to be of lasting value, and it's quite likely that these datasets will have resulted in publications. You have the option to add more publications in the Secondary Metadata phase if your dataset is best described by more than one publication. The second part of the primary metadata covers the information required by the Archive to identify the dataset so that queries regarding the dataset can be addressed by the appropriate person.
  
-![the_publication_form](imgs/figure_3_screenshot_of_the_publication_form.jpg "the_publication_form")
+![the_publication_form](imgs/figure_3_screenshot_of_the_publication_form.png "the_publication_form")
 Figure 3: Screenshot of the publication form
 
  
@@ -106,7 +106,7 @@ The currently available licences covering access to a dataset are: the Creative 
 
 By default, metadata for published datasets are considered public and access is granted to all researchers. The Data Manager and Rights Holder that you nominate will be informed by email of the nomination and whether they wish to accept the role. The Archive will periodically remind them of their nomination, and you will receive an email when they accept or decline the nomination. It is your responsibility to find suitable entities (persons or organisations) that can accept the roles. Your institute may be able to offer guidance on suitable Data Manager and Rights Holders, or you can email the archive.manager@norstore.no for guidance.
  
-![the_primary_metadata_form](imgs/figure_4_screenshot_of_the_primary_metadata_form_0.jpg "primary_metadata_form")
+![the_primary_metadata_form](imgs/figure_4_screenshot_of_the_primary_metadata_form_0.png "primary_metadata_form")
 Figure 4: Screenshot of the Primary Metadata form
 
  
@@ -124,7 +124,7 @@ It is possible to restrict access to both the dataset and metadata to a group of
 
 Once the basic metadata has been provided you will be presented with the dataset upload page (see Figure 5). You can choose to upload a dataset that exists in the NIRD project area [https://www.sigma2.no/data-storage](https://www.sigma2.no/data-storage) or a remote dataset.
 
-![the_upload_dataset_page](imgs/figure_5_screenshot_of_the_upload_dataset_page.jpg "upload_dataset_page")
+![the_upload_dataset_page](imgs/figure_5_screenshot_of_the_upload_dataset_page.png "upload_dataset_page")
 Figure 5: Screenshot of the upload dataset page
 
  
@@ -202,7 +202,7 @@ Only datasets that are pending or are in the process of being archived can be ca
 
 After uploading your dataset you will be presented with a list of all the datasets that you are associated with (either as a Depositor, Data Manager or Rights Holder) as shown in Figure 6. By default, the list is sorted by date. You can reverse the order by clicking on the *Date submitted* column. Clicking on a row will provide a detailed description of the selected dataset as well as the forms for supplying the secondary and optional metadata for unpublished datasets.
  
-![the_list_of_datasets](imgs/figure_7_screenshot_of_the_list_of_datasets.jpg "_list_of_datasets")
+![the_list_of_datasets](imgs/figure_7_screenshot_of_the_list_of_datasets.png "_list_of_datasets")
 Figure 7: Screenshot of the list of datasets
 
  
@@ -216,7 +216,7 @@ Clicking the *Update metadata* button will save any changes you made to the meta
 
 The *Optional Information*  tab consists of a form of optional metadata. The *Geo-location*  is useful for datasets that have spatial relevance. Spatial datasets can be described with Point {ref}` [5] <references-archive>` or Box {ref}` [6] <references-archive>` types where the box type could be used to describe a geographical region and the point type a particular location. Temporal coverage datasets can be described with the Period {ref}` [7] <references-archive>`.
  
-![the_secondary_metadata_form](imgs/figure_8_screenshot_of_the_secondary_metadata_form.jpg "_secondary_metadata_form")
+![the_secondary_metadata_form](imgs/figure_8_screenshot_of_the_secondary_metadata_form.png "_secondary_metadata_form")
 Figure 8: Screenshot of the secondary metadata form
 
  
@@ -300,7 +300,7 @@ The search interface allows searches over partial words which you can do by plac
 **NOTE:** that the advanced search interface requires you to register the search term before executing the search (this entails clicking the + then entering the search term in the appropriate field and clicking the *add*  button to register the search term and then clicking the *Search*  button).
 
  
-![the_advanced_search_interface](imgs/figure_14_screenshot_of_the_advanced_search_interface.jpg "_advanced_search_interface")
+![the_advanced_search_interface](imgs/figure_14_screenshot_of_the_advanced_search_interface.png "_advanced_search_interface")
 Figure 14: Screenshot of the advanced search interface
 
  
