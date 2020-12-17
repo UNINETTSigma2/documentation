@@ -19,7 +19,7 @@ You can change your password [here](https://www.metacenter.no/user/password/).
 
 Note that it can take 15 minutes for the change to propagate to the login nodes.
 
-See also [this page](https://www.sigma2.no/how-reset-passwords) for a step by step guide, which also indicates
+See also [this page](https://www.sigma2.no/how-change-passwords) for a step by step guide, which also indicates
 the times it takes for the change to take effect.
 
 
