@@ -30,4 +30,4 @@ firewall has temporarily blocked your computer's IP address. Please try again
 in 15 minutes.
 
 If you still can not connect, please contact
-[Support](mailto: support@metacenter.no).
+<support@metacenter.no>.
