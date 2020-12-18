@@ -15,7 +15,8 @@ with attribution to the Sigma2/Metacenter.
 
 ## Building the documentation locally on your computer
 
-Install dependencies:
+Install dependencies as below. If these commands do not work,
+try with `python3` instead of `python` (on some OS versions it has a different name):
 ```
 $ python -m venv venv
 $ source venv/bin/activate
