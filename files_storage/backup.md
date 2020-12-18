@@ -67,3 +67,12 @@ $ cp /nird/home/u1/.snapshots/DATE/$USER/mydir/myfile /nird/home/$USER/mydir/
 
 Note that snapshots are taken every night only. This means that deleted files
 which did not exist yet yesterday cannot be recovered from snapshots.
+
+To recover a deleted or overwritten file in `/cluster/home/` on either Betzy Fram or Saga
+go to your home directory on NIRD, go to the backup folder and then browse in the directory
+corresponding to the hpc system you come from for the file you want to restore.
+You can then use scp/sftp to transfer a copy to your home directory on the hpc system.
+
+To recover a deleted or overwritten file in `/cluster/projects/nnxxxxk`
+please contact support@metacenter.no and specify the name of the hpc system, the nn project
+and the file (or folder).
