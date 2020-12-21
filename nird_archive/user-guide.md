@@ -11,32 +11,25 @@ The aim of the archive is to provide (public) access to published research data 
  
 ## Depositing a Dataset
 The process for depositing a dataset in the Archive consists of the following stages:
- 
 
-       1. Identify the dataset.
 
-       2. Log onto the web interface.
-
-       3. Agree to the terms and conditions.
-
-       4. Provide primary metadata.
-
-       5. Upload the dataset.
-
-       6. Provide secondary metadata.
-
-       7. Publish the dataset.
- 
-
+- {ref}`Identify the dataset.  <Identify-the-dataset-Archive>`
+- {ref}`Log onto the web interface.  <Log-onto-the-web-interface-Archive>`
+- {ref}`Agree to the terms and conditions.  <Agree-to-the-terms-and-conditions-Archive>`
+- {ref}`Provide primary metadata.  <Provide-primary-metadata-Archive>`
+- {ref}`Upload the dataset.  <Section-Upload-Dataset>`
+- {ref}`Provide secondary metadata.  <Provide-Secondary-Optional-Metadata>`
+- {ref}`Publish the dataset.  <Publish-the-dataset-Archive>`
+      
 The following sub-sections describe these stages.
  
 
 ###  Important Note
 
 All steps prior to and including *Upload Dataset* need to be completed during the same session. It is currently not possible to complete the *Provide Primary Metadata* step, log off and come back at a later point in time to perform the *Upload Dataset* step. Certain fields in the *Provide Primary Metadata* step can be left out and completed at a later time (after uploading the dataset).
- 
 
 
+(Identify-the-dataset-Archive)=
 ### Identify Dataset
 
 Before archiving a dataset you will need to define it, make sure you have approval to archive the data and understand which type of access license should be applied.
@@ -57,8 +50,8 @@ A dataset must be a collection of related data. Typically, this consists of a co
           (i.e. it has public access). However, the Archive recognises that certain datasets of restricted
           use to a given community may be eligible for archiving.
 
- 
 
+(Log-onto-the-web-interface-Archive)=
 ###  Log onto the Web Interface
 
 To access the Archive web interface, direct your browser to: [https://archive.sigma2.no](https://archive.sigma2.no). You should arrive at the front page shown in Figure 1. You will need to authenticate using your FEIDE or other account either by logging on via the *LOGIN* button on the top-right or via the *DEPOSIT* icon.
@@ -75,7 +68,7 @@ The *DEPOSIT* button provides access to the set of pages required for depositing
 
 If you have never used the Archive before you will be presented with a page informing you that you are not registered. You can submit a request approval from this page. Only approved users are allowed to deposit datasets in the Archive. The Archive Manager will contact you if additional information is required. Approval should be granted within 3 business days (and usually much sooner).
 
-
+(Agree-to-the-terms-and-conditions-Archive)=
 ### Agree to Terms & Conditions
 
 Once approval has been granted you will able to deposit datasets. If you now click the *DEPOSIT* button you will be presented with a page containing a short introduction to the Archive and a link to the Terms and Conditions as shown in Figure 2. The Terms and Conditions outline your responsibilities and those of the Archive. You will need to agree to these before you can start the deposit process.
@@ -83,9 +76,9 @@ Once approval has been granted you will able to deposit datasets. If you now cli
 ![the_terms_and_conditions_page](imgs/figure_2_screenshot_of_the_terms_and_conditions_page.png "the terms and conditions page")
 Figure 2: Screenshot of the Terms and Conditions page
 
- 
 
 
+(Provide-primary-metadata-Archive)=
 ### Provide Primary Metadata
 
 The primary metadata is divided into two parts. The first part covers the publication that best describes the dataset (see Figure 3). The goal of the Archive is to provide long-term storage for datasets that are considered to be of lasting value, and it's quite likely that these datasets will have resulted in publications. You have the option to add more publications in the Secondary Metadata phase if your dataset is best described by more than one publication. The second part of the primary metadata covers the information required by the Archive to identify the dataset so that queries regarding the dataset can be addressed by the appropriate person.
@@ -143,7 +136,7 @@ The upload consists of two steps:
 Choosing the *Local machine* for uploading a dataset will result in the upload interface appearing (see Figure 6). Use the *select* button to select files from a file chooser. Once you have selected all the files for upload click the *Submit Dataset* button to send the data to the archive.
 
  
-![the_upload_for_feide_users](imgs/figure_6_screenshot_of_the_upload_for_feide_users.jpg "_upload_for_feide_users")
+![the_upload_for_feide_users](imgs/figure_6_screenshot_of_the_upload_for_feide_users.png "_upload_for_feide_users")
 Figure 6: Screenshot of the upload for FEIDE users
 
  
@@ -225,12 +218,12 @@ Datasets with spatial relevance could be, for example, population in Oslo or mar
 
 The *Table of contents*  tab (see Figure 9) contains a tabular list of the contents of the dataset. If the dataset was deposit as a tar file the contents of the tar file are displayed. However, if a tar file consisting of tar files is deposited then only the contents of the outer tar file are displayed (which would be a list of tar files). 
  
-![the_table_of_contents](imgs/figure_9_screenshot_of_the_table_of_contents.jpg "_table_of_contents")
+![the_table_of_contents](imgs/figure_9_screenshot_of_the_table_of_contents.png "_table_of_contents")
 Figure 9: Screenshot of the table of contents
 
- 
 
 
+(Publish-the-dataset-Archive)=
 ### Publish Dataset (Archiving Data)
 
 Once you have supplied all mandatory metadata for the dataset and a Rights Holder and Data Manager have accepted their roles you will see a *Publish dataset*  button appear in the *Action*  column in the list of your datasets (as shown in Figure 7). Pressing the *Publish dataset*  button will result in a request being sent to the Archive Manager to publish the dataset. The Archive Manager will verify the metadata information, check with the stakeholders agree to the publication, assign a public identifier to the dataset and make the metadata publicly available (or available to a restricted set of users if that option has been chosen).
@@ -244,7 +237,7 @@ You can create a new version of any published dataset for which you are a stakeh
 
 To create a new version of dataset navigate to the published dataset either using the DOI or from the *List datasets*  option on the web interface and click on the *Manage* menu (see Figure 10 and Figure 11). You should choose the *Create version of dataset* to create a new version of the dataset (see Figure 12). This will bring you to the dataset upload where you can choose from Project Area upload or local machine upload (see Section {ref}`Upload Dataset <Section-Upload-Dataset>` ). Once you have uploaded your data you will be presented with the metadata form.
  
-![the_edit_dataset_page](imgs/figure_10_screenshot_of_the_edit_dataset_page._the_manage_menu_is_indicated_by_a_black_box.jpg "_edit_dataset_page")
+![the_edit_dataset_page](imgs/figure_10_screenshot_of_the_edit_dataset_page._the_manage_menu_is_indicated_by_a_black_box.png "_edit_dataset_page")
 Figure 10:Screenshot of the edit dataset page.The *Manage* menu is indicated by a black box
 
  
@@ -253,15 +246,15 @@ You can then update the metadata accordingly (see Section {ref}`Provide Secondar
 
 **NOTE:** If you do not wish to make any changes to the metadata you should click the *Update metadata* button which will result in the *Publish dataset*  button appearing. You can then submit the dataset for publication.
  
-![the_landing_page](imgs/figure_11_screenshot_of_the_landing_page._the_manage_link_is_indicated_by_black_box.jpg "_landing_page")
+![the_landing_page](imgs/figure_11_screenshot_of_the_landing_page._the_manage_link_is_indicated_by_black_box.png "_landing_page")
 Figure 11: Screenshot of the landing page. The Manage link is indicated by black box
 
  
-![the_manage_dataset_menu](imgs/figure_12_screenshot_of_the_manage_dataset_menu.jpg "_manage_dataset_menu")
+![the_manage_dataset_menu](imgs/figure_12_screenshot_of_the_manage_dataset_menu.png "_manage_dataset_menu")
 Figure 12: Screenshot of the manage dataset menu
 
  
-![the_version_dataset_upload](imgs/figure_13_screenshot_of_the_version_dataset_upload.jpg "_version_dataset_upload")
+![the_version_dataset_upload](imgs/figure_13_screenshot_of_the_version_dataset_upload.png "_version_dataset_upload")
 Figure 13: Screenshot of the version dataset upload
 
  
@@ -309,7 +302,7 @@ The search is performed over all published datasets and the results are presente
 
 The landing page also contains graphical views for the coverage (if it has been provided) and for the table of contents (see Figure 15). The table of contents provides an immediate view of the composition of the dataset. The chart in the lower-left pane can be navigated to explore the file structure of the dataset. The table on the lower-right pane displays the total size in each sub-directory and is updated as the chart is navigated. 
  
-![the_landing_page_table_of_contents](imgs/figure_15_screenshot_of_the_landing_page_table_of_contents.jpg "_landing_page_table_of_contents")
+![the_landing_page_table_of_contents](imgs/figure_15_screenshot_of_the_landing_page_table_of_contents.png "_landing_page_table_of_contents")
 Figure 15: Screenshot of the landing page table of contents
 
  
@@ -338,7 +331,7 @@ If your dataset has more than one file, you will need to download each file sepa
 If you use a dataset it is good practice to cite the dataset in any articles you publish. The archive provides a *cite* button on the landing page (see Figure 17) that contains a citation string for the dataset. Currently, two formats for the citation are provided. However, a link to an external service that provides many more formats is provided (you will need to cut and paste the dataset's DOI into the input field).
 
  
-![the_landing_page_with_dataset_citation](imgs/figure_17_screenshot_of_landing_page_with_dataset_citation.jpg "landing page with dataset citation")
+![the_landing_page_with_dataset_citation](imgs/figure_17_screenshot_of_landing_page_with_dataset_citation.png "landing page with dataset citation")
 Figure 17: Screenshot of landing page with dataset citation
 
  
