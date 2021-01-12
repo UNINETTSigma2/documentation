@@ -16,7 +16,7 @@ Here is a more detailed description of the different job types on Betzy:
 - __Allocation units__: whole nodes
 - __Job Limits__:
     - minimum 4 nodes
-    - maximum 256 nodes
+    - maximum 512 nodes
 - __Maximum walltime__: 4 days
 - __Priority__: normal
 - __Available resources__: 1340 nodes with 128 CPU cores and 250 GiB RAM
