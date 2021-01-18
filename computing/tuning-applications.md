@@ -53,16 +53,14 @@ The plot show the recorded speedup for FVCOM with the current input data.
 The dashed line represent perfect speedup.
 
 
-## Simple profiling
+## ARM Performance reports
 
 To learn a great deal of the application the tool
 `Performance-reports` can be used.  This tool profile the application
 and provide a one page report with a huge array of important metrics.
 
 
-### ARM Performance reports
-
-#### Running
+### Running
 
 The commands used to run the ARM performance reports are:
 ```
@@ -73,7 +71,7 @@ When the SLURM job is finished two files containing performance reports are foun
 `fvcom_1024p_8n_1t_yyyy-mm-dd_hh-mm.txt` and `fvcom_1024p_8n_1t_yyyy-mm-dd_hh-mm.html`.
 
 
-#### Header
+### Header
 
 ```{figure} tuning/Perf-reports-1.png
 :alt: Performance report header
@@ -90,7 +88,7 @@ time spent doing Input & Output. In this example we see that time is
 spent on doing computation and communication using MPI.
 
 
-#### Summary
+### Summary
 
 ```{figure} tuning/Perf-reports-2.png
 :alt: Performance report summary
@@ -116,7 +114,7 @@ The last entry show that FVCOM does very little Input & Output during
 a run. Other applications might have a far larger number here.
 
 
-#### Details - CPU
+### Details - CPU
 
 ```{figure} tuning/Perf-reports-3.png
 :alt: Performance report Details - CPU
@@ -155,7 +153,7 @@ The comments below clearly indicate this as the application is memory
 bound and very little time is spent in vectorised code.
 
 
-#### Details - MPI
+### Details - MPI
 
 ```{figure} tuning/Perf-reports-4.png
 :alt: Performance report Details - MPI
@@ -218,7 +216,7 @@ speed at 10 MHz frequency.
 
 
 
-## Intel Advisor - vectorisation, roof-line, memory access & dependencies
+## Intel Advisor
 
 ### Introduction
 I order to get even more insight of your application with respect to
@@ -230,15 +228,14 @@ code and also providing hints about vectorisation. It can also provide
 information about memory access, like striding type.
 
 It can record memory bandwidth and flops which is used to make a
-*roof-line model*.  Please read about *roof-line model*, if you are
-unfamiliar with it (https://en.wikipedia.org/wiki/Roofline_model
-Wikipedia Roof-line model).
+*roof-line model*.  Please read about the
+[roof-line model](https://en.wikipedia.org/wiki/Roofline_model).
+if you are unfamiliar with it.
 
 This case study does not go into depth on how to understand the
 advisor tool, this is far better covered in the Intel tools
-documentation. Intel provide a nice selection of tutorials.
-(https://software.intel.com/content/www/us/en/develop/documentation.html
-Intel software documentation).
+[documentation](https://software.intel.com/content/www/us/en/develop/documentation.html),
+where they also provide a nice selection of tutorials.
 
 
 ### Running and collecting
@@ -276,13 +273,13 @@ mpirun -np 1  $advdir/advixe-cl -project-dir /cluster/work/support/olews/FVCOM_b
 ```
 
 Both *tripcounts* and *map* increase the run time significantly,
-remember to increase the SLURMrrun time.
+remember to increase the SLURM run time.
 
 
 ### Display Survey
 
 To display the collected data please start the Advisor GUI tool using (remember to
-log in using ssh -Y), the login nodes have connection to your X11 terminal.
+log in using ssh -Y, so the login nodes have connection to your X11 terminal):
 ```
 advixe-gui &
 ```
@@ -319,7 +316,7 @@ The Advisor can also generated some recommendations that can be helpful.
 ```
 
 
-#### Display Memory access
+### Display Memory access
 
 ```{figure} tuning/Advisor-7.png
 ```
@@ -331,7 +328,7 @@ references to the source code it's possible to review the code and see if it's
 possible to rewrite or do any changes that will improve performance.
 
 
-#### Display memory dependencies
+### Display memory dependencies
 
 ```{figure} tuning/Advisor-8.png
 ```
@@ -346,7 +343,7 @@ performance.
 
 ### Program efficiency
 
-The Advisor can calculate a total performance of the complete run,
+The Advisor can calculate a total performance of the complete run:
 
 ```{figure} tuning/Advisor-4.png
 ```
@@ -362,7 +359,7 @@ Using the most conservative numbers for double precision and not fused
 multiply add (20 Gflops/s) we get 0.46 / 20 = 2.3% of the theoretical
 performance.
 
-This performance is not unusual for scientific core of this type. We
+This performance is not unusual for scientific code of this type. We
 saw early on that only a fraction of the time (68.6%) was spent in CPU
 time, of that time only a fraction was spent computing (35.9 + 0.3 =
 36.2%). Combining this we arrive at 0.686*0.36.2=0.248 or 25% of the
