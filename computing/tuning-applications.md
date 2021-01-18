@@ -1,10 +1,11 @@
 # Tuning applications
 
 ## Introduction
+
 Running scientific application in order to maximise the efficiency of
-the hardware is increaslingly important as the core count increase. A
-system like Betzy with 172k cores represent a substantional cost and
-effciency of the applications run shoule be as high a practically
+the hardware is increasingly important as the core count increase. A
+system like Betzy with 172k cores represent a substantial cost and
+efficiency of the applications run should be as high a practically
 possible.
 
 There are several steps with increasing complexity that can be taken
@@ -22,6 +23,7 @@ of a seasoned well known application with it's special traits.
 
 
 ## Scaling
+
 The scaling of an application is one of the key factors for running in
 parallel. This simple metric is very simple to record. Just run the
 application with an increasing number of cores and record the run time
@@ -52,12 +54,16 @@ The dashed line represent perfect speedup.
 
 
 ## Simple profiling
+
 To learn a great deal of the application the tool
 `Performance-reports` can be used.  This tool profile the application
 and provide a one page report with a huge array of important metrics.
 
+
 ### ARM Performance reports
+
 #### Running
+
 The commands used to run the ARM performance reports are:
 ```
 module load Arm-PerfReports/20.0.3
@@ -65,6 +71,7 @@ module load Arm-PerfReports/20.0.3
 ```
 When the SLURM job is finished two files containing performance reports are found as:
 `fvcom_1024p_8n_1t_yyyy-mm-dd_hh-mm.txt` and `fvcom_1024p_8n_1t_yyyy-mm-dd_hh-mm.html`.
+
 
 #### Header
 
@@ -81,6 +88,7 @@ the time is distributed over the categories of execution. This is
 binned into 3 categories, compute time, time spent in MPI library and
 time spent doing Input & Output. In this example we see that time is
 spent on doing computation and communication using MPI.
+
 
 #### Summary
 
@@ -106,6 +114,7 @@ complete.
 
 The last entry show that FVCOM does very little Input & Output during
 a run. Other applications might have a far larger number here.
+
 
 #### Details - CPU
 
@@ -137,13 +146,14 @@ show memory bandwidth in excess of 300 Gbytes per second this is far
 from enough to keep up with a processor running at 2500 MHz. Example,
 300 Gbytes/s is 37 G double precision floats per second. A single core
 can do 4 double precision operations per vector unit per clock or 2.5
-GHz*4 = 10 Gflops/s. Then there are two vector units per core and 128
+GHz\*4 = 10 Gflops/s. Then there are two vector units per core and 128
 cores in total. The cache helps in data can be reused in several
 calculations, but as the measurements show the bulk of time is spent
 waiting for memory.
 
 The comments below clearly indicate this as the application is memory
 bound and very little time is spent in vectorised code.
+
 
 #### Details - MPI
 
@@ -197,8 +207,8 @@ cache line.
 Fig. 8 - Performance report Details - Memory
 ```
 
-The Memory
-detail report show the amount of memory used, mean and peak. As for FVCOM with the input model in question it uses only 22% of the nodes' memory.
+The Memory detail report show the amount of memory used, mean and peak. As for
+FVCOM with the input model in question it uses only 22% of the nodes' memory.
 
 It does unfortunately not give any information about strided or random
 access. Even scalar operation can exhibit nice strided access. Any
@@ -231,14 +241,14 @@ documentation. Intel provide a nice selection of tutorials.
 Intel software documentation).
 
 
-
 ### Running and collecting
+
 The GUI can be used to set up, launch, control and analyse the application. However,
 it's simpler to collect data within a batch job.
 When running MPI jobs it's only needed to run a single executable as they are all the same.
 A project directory need to be created before command line collection can be initiated.
 
-The commands that used to collect data for FVCOM in the batch job are when using OpenMPI :
+The commands that used to collect data for FVCOM in the batch job are when using OpenMPI:
 ```
 module load Advisor/2019_update5
 
@@ -288,6 +298,7 @@ us that the compiler did not manage to vectorise the loops as often as we would 
 
 
 ### Display Roof-line model
+
 By clicking at the vertical stripe marked "roofline" the obtained
 roof-line model of the application is displayed. It shows us
 graphically how the application map out on a memory bandwidth vs
@@ -334,6 +345,7 @@ performance.
 
 
 ### Program efficiency
+
 The Advisor can calculate a total performance of the complete run,
 
 ```{figure} tuning/Advisor-4.png
@@ -355,4 +367,3 @@ saw early on that only a fraction of the time (68.6%) was spent in CPU
 time, of that time only a fraction was spent computing (35.9 + 0.3 =
 36.2%). Combining this we arrive at 0.686*0.36.2=0.248 or 25% of the
 time was spent computing.
-
