@@ -159,6 +159,7 @@ Index of keywords
    hpc_machines/migration2metacenter.md
    jobs/overview.rst
    code_development/overview.rst
+   computing/tuning-applications.md
 
 
 .. toctree::
