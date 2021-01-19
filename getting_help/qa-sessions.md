@@ -38,7 +38,7 @@ events.
 
 ## Next event
 
--   2020-02-03, 13:00 - 15:00
+-   2021-02-03, Wednesday, 13:00 - 15:00
 
 
 ## Past events
