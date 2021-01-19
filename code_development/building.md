@@ -44,12 +44,15 @@ To ask the compiler generate optimised code have a huge impact in performance.
 The following graph show the observed speed using the 
 [NASA NPB MPI](https://en.wikipedia.org/wiki/NAS_Parallel_Benchmarks) benchmarks built 
 using the Intel compiler and run using OpenMPI at 64 ranks.
+
 ![Optimisation gain](optgain.png)
+
 The benefit of selecting optimisation flags are obvious. The effect of vectorisation is 
 less pronounced with these benchmarks which are extracts from real applications and running with datasets of 
 serious size. The compiler can recognise some type of code and generate excellent code, often related 
-to cache and TBL issues. Just looking at the generated code will not tell what the compiler actually did. 
-See an extreme case with matrix multiplication below. Tuning tools can help looking for cache and TBL issues.
+to cache and TLB issues. Just looking at the generated code will not tell what the compiler actually did. 
+See an extreme case with matrix multiplication below. Tuning tools can help looking for cache and 
+[TLB](https://en.wikipedia.org/wiki/Translation_lookaside_buffer) issues.
 
 Some optimisation flags are a bit more tricky. As all processors
 support AVX2 this can always be used. A suggested list set of flags
