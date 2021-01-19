@@ -65,7 +65,7 @@ and provide a one page report with a huge array of important metrics.
 The commands used to run the ARM performance reports are:
 ```
 module load Arm-PerfReports/20.0.3
-#perf-report mpirun ./fvcom.bin --casename=$RUN > $RUN_DIR/log-${SLURM_JOBID}.out
+perf-report mpirun ./fvcom.bin --casename=$RUN > $RUN_DIR/log-${SLURM_JOBID}.out
 ```
 When the SLURM job is finished two files containing performance reports are found as:
 `fvcom_1024p_8n_1t_yyyy-mm-dd_hh-mm.txt` and `fvcom_1024p_8n_1t_yyyy-mm-dd_hh-mm.html`.
