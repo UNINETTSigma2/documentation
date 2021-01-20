@@ -47,7 +47,7 @@ using the Intel compiler and run using OpenMPI at 64 ranks.
 
 ![Optimisation gain](optgain.png)
 
-The benefit of selecting optimisation flags are obvious. The effect of vectorisation is 
+The benefit of selecting optimisation flags is obvious. The effect of vectorisation is 
 less pronounced with these benchmarks which are extracts from real applications and running with datasets of 
 serious size. The compiler can recognise some type of code and generate excellent code, often related 
 to cache and TLB issues. Just looking at the generated code will not tell what the compiler actually did. 
@@ -96,6 +96,12 @@ instruction.
 The example above is a best case where the Intel compiler manage to analyse 
 the code and apply special optimisation for matrix multiplication. Checking the 
 code show that is does not call external functions like the matmul in MKL.
+
+For codes that are more realistic and closer to scientific codes like the NPB benchmarks the effect 
+is much smaller. In some cases there are still a significant gain by using the ``-xAVX2``, the figure 
+below illustrate this.
+
+![xAVX2 gain](xAVX2gain.png)
 
 There are a large range of other flags, and while the web
 documentation is very good it can be overwhelming. A simple trick is
@@ -194,7 +200,13 @@ multiplication is used for a simple test of the different compilers.
 | Intel ifort   | -O3 -xavx2                          | 26.39 Gflops/s    |
 
 The Intel Fortran compiler do a remarkable job with this nested loop problem.
+As we have seen above the matrix matrix multiplication is a special case. For more 
+realistic examples the performace is more comparable.
 
+![Compiler performance](compiler-perf.png)
+
+It turns out that for the EP benchmark (Generate independent Gaussian random variates using the Marsaglia polar method) 
+the Intel compiler manage to do something smart. 
 
 ## Performance libraries
 
