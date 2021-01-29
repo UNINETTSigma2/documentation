@@ -19,6 +19,11 @@ the environment variable MLM_LICENSE_FILE:
 Add this environment variable setting into your `~/.bashrc`.  When submitting
 a job with, e.g., sbatch, use `sbatch --licenses=<license-name>`.
 
+```{warning}
+Note that **UiT users** must for the moment contact their Local IT support for getting access to Matlab. 
+```
+
+
 #### Third-Party Access for Collaborative Research in Academia
 See this link: https://se.mathworks.com/support/collaborative-research-academia.html
 
