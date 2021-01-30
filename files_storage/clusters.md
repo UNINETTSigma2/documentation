@@ -81,12 +81,12 @@ $ beegfs-ctl --getquota --gid nn1234k
 
 ## Home directory
 
-The home directory is **/cluster/home/\$USER**. The location is stored
-in the environment variable `\$HOME`.  A quota is enabled on home
+The home directory is `/cluster/home/$USER`. The location is stored
+in the environment variable `$HOME`.  A quota is enabled on home
 directories which is by default 20 GiB and 100 000 files, so it
-is not advisable to run jobs in `\$HOME`. However, it is perfectly
+is not advisable to run jobs in `$HOME`. However, it is perfectly
 fine to store `stderr` and `stdout` logs from your batch jobs in
-`\$HOME` so they are available for reviewing in case of issues with it.
+`$HOME` so they are available for reviewing in case of issues with it.
 
 The home directory should be used for storing tools, scripts, application
 sources or other relevant data which must have a backup.
@@ -102,10 +102,10 @@ days and weekly snapshots for the last 6 weeks
 
 ## Job scratch area
 
-Each job gets an area **/cluster/work/jobs/\$SLURM_JOB_ID** that is
+Each job gets an area `/cluster/work/jobs/$SLURM_JOB_ID` that is
 automatically created for the job, and automatically deleted when the
 job finishes.  The location is stored in the environment variable
-`\$SCRATCH` available in the job.  `\$SCRATCH` is only accessible by the
+`$SCRATCH` available in the job.  `$SCRATCH` is only accessible by the
 user running the job.
 
 The area is meant as a temporary scratch area during job
@@ -114,7 +114,7 @@ execution.
 
 There are special commands (`savefile` and `cleanup`) one can use in
 the job script to ensure that files are copied back to the submit
-directory `\$SLURM_SUBMIT_DIR` (where `sbatch` was run).
+directory `$SLURM_SUBMIT_DIR` (where `sbatch` was run).
 
 ```{note}
 **Pros of running jobs in the job scratch area**
@@ -152,10 +152,10 @@ to use more space on the area than it requested, it will get a "disk
 quota exceeded" or "no space left on device" error (the exact message
 depends on the program doing the writing).
 
-Jobs that request this, get an area **/localscratch/\$SLURM_JOB_ID**
+Jobs that request this, get an area `/localscratch/$SLURM_JOB_ID`
 that is automatically created for the job, and automatically deleted
 when the job finishes.  The location is stored in the environment
-variable `\$LOCALSCRATCH` available in the job.  `\$LOCALSCRATCH` is
+variable `$LOCALSCRATCH` available in the job.  `$LOCALSCRATCH` is
 only accessible by the user running the job.
 
 Note that since this area is on *local disk* on the compute node, it
@@ -198,10 +198,10 @@ similar in the job script.
 
 ## User work area
 
-Each user has an area **/cluster/work/users/\$USER**.  The location is
-stored in the environment variable `\$USERWORK`.
+Each user has an area `/cluster/work/users/$USER`.  The location is
+stored in the environment variable `$USERWORK`.
 **This area is not backed up** ([documentation about backup](backup.md)).
-`\$USERWORK` is only accessible by
+`$USERWORK` is only accessible by
 the user owning the area.
 
 This directory is meant for files that are used by one or more jobs.
@@ -210,7 +210,7 @@ finish, otherwise they will be automatically deleted after a while
 (see notes below). We highly encourage users to keep this area tidy,
 since both high disk usage and automatic deletion process takes away
 disk performance. The best solution is to clean up any unnecessary
-data after each job.  Since `\$USERWORK` is only accessible by the
+data after each job.  Since `$USERWORK` is only accessible by the
 user, you must move results to the project area if you want to share
 them with other people in the project.
 
@@ -237,7 +237,7 @@ for instance running scripts that touch all files.
 **Cons of running jobs in the user work area**
 
 - There is a risk of interference from other jobs unless one makes
-  sure to run each job in a separate sub directory inside `\$USERWORK`.
+  sure to run each job in a separate sub directory inside `$USERWORK`.
 - Because job files are not removed when the job finishes, one has to
   remember to clean up temporary files afterwards.
 - One has to remember to move result files to the project area if one
