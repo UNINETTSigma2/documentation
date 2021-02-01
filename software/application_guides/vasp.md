@@ -33,17 +33,18 @@ Once we receive the confirmation email we will add the user in question to the V
 
 You can check which VASP 5.4.4 versions are installed by executing:
 
-	$ module load VASP5
+	$ module load VASPModules
 	$ module avail VASP
 
 And load a particular module by executing (case sensitive):
 
-	$ module load VASP5
-	$ module load VASP5/5.4.4-intel-2019a-std
+	$ module load VASP/5.4.4-intel-2019a-std
 
-Please remember to use two `module load`. The first loads the location of all the `VASP5` modules and the second command loads the actual VASP module.
+Please remember to use two `module load`. The first loads the location of all the VASP modules and the second command loads the actual VASP module. It is also possible, if you know what module you want to execute::
 
-Users have to supply the necessary input files, inclusing any `POTCAR` files needed. They can be downloaded from the VASP portal you get access to with a valid VASP license. Also, please note that the `POTCAR` files are protected by the license.
+	$ module load load VASPModules VASP/5.4.4-intel-2019a-std
+
+Users have to supply the necessary input files, inclusing any `POTCAR` files needed. They can be downloaded from the VASP portal you get access to with a valid VASP license. Also, please note that the `POTCAR` files are protected by the license so do not share them with anyone that does not have a license.
 
 ### Module naming schemes
 
