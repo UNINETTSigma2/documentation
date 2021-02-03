@@ -6,12 +6,12 @@ Meet the HPC staff, discuss problems and project ideas, give feedback or
 suggestions on how to improve services, and get advice for your
 projects.
 
-Join us on [Zoom](https://uit.zoom.us/j/65210601673), get yourself a
+Join us on Zoom, get yourself a
 coffee or tea and have a chat. It doesn't matter from which institute or
 university you are, you are **welcome to join at any time**.
 
-This time we will start with a **short seminar about “How to install software
-on Saga, Fram & Betzy as user”**. Afterwards we have the open question and
+This time we will start with a **short seminar**.
+ Afterwards we have the open question and
 answer session.
 
 We can talk about:
@@ -38,14 +38,14 @@ events.
 
 ## Next event
 
--   2021-02-03, Wednesday, 13:00 - 15:00
-
+Mid April, details will be announced
 
 ## Past events
 
--   2020-10-13, 13:00 - 15:00, online Zoom meeting
--   2020-06-10, 13:00 - 15:00, online Zoom meeting
--   2020-04-23, 13:00 - 15:00, online Zoom meeting
+-   2021-02-03, 13:00 - 15:00, ["How To Installation" Slides here](https://docs.google.com/presentation/d/1fOzq_ob19TFIZ0lERSPw7oXx6irVVDwB2vmHOrz2AKA/edit?usp=sharing)
+-   2020-10-13, 13:00 - 15:00, ["Helpful tools & Services" Slides](https://docs.google.com/presentation/d/1HKC5-G41lwVxAMjHU_UOTWKsRO3nD7B8uh9IVQRNtsk/edit?usp=sharing)
+-   2020-06-10, 13:00 - 15:00
+-   2020-04-23, 13:00 - 15:00
 
 
 ## Similar events which serve as inspiration
