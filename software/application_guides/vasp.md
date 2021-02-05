@@ -64,6 +64,10 @@ We try to upload new versions if the VASP group issues new official patches and 
 
 In addition, all binaries are compiled with support for maximally-localised Wannier functions and the [Wannier90](http://www.wannier.org/) program v2.1 and MPI enables. No OpenMP is enabled.
 
+### A few notes and special modules
+
+There is a module were `NMAX_DEG` is adjusted to 64 from the supplied value of 48. Since this is statically defined value, a special compile is necessary. If you get issues involving `NMAX_DEG`, please try a minimal working example using this executable and let us know if that solves your problem. Most likely you will encounter it again and we could try to compile an even larger value. However, also try to change your problem, like the symmetry and the representation you work in.
+
 ### Memory allocation for VASP
 
 VASP is known to be potentially memory demanding. Quite often, you might experience to use less than the full number of cores on the node, but still all of the memory.
