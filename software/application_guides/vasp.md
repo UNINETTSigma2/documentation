@@ -16,7 +16,7 @@ VASP is a software package for performing ab-initio quantum-mechanical calculati
 ## Supported versions
 
 * 5.4.4
-* 6.1 (not yet installed, ETA will be notified)
+* 6.1 (not yet installed, ETA will be notified, we are pending updates from the VASP group pertaining to agreements to install/maintain it on our clusters)
 
 ## License and access policy
 
@@ -24,10 +24,11 @@ VASP is a commercial software package that requires a license for all who wants 
 
 * The users research group must have a valid VASP licence. To acquire a licence, please consult the "*How can I purchase a VASP license?*" in this link: https://www.vasp.at/faqs/.
 
-* We need to get a confirmation from a VASP representative to confirm that the user have access to the license. The group representative of the user needs to contact the VASP team using licensing@vasp.at and ask them to send a confirmation email to support@metacenter.no to confirm that the user have a valid licence.
+* We need to get a confirmation from a VASP representative to confirm that the user have access to the license. The group representative of the user needs to contact the VASP team using licensing@vasp.at and ask them to send a confirmation email to `support@metacenter.no` to confirm that the user have a valid license. It is very important that you communicate clearly to the VASP group that we want emails on this address.
 
 Once we receive the confirmation email we will add the user in question to the VASP group, which would give access to the VASP modules on the Sigma2 systems.
 
+Notice that the VASP license is backwards compatible, meaning that if you are issues a VASP 6 license you also have access to VASP 5.
 
 ## Usage
 
