@@ -55,7 +55,7 @@ The naming schemes of the modules are `VASP version-Toolchain-VASP flavor-Additi
 - `VASP version` determines the VASP version, e.g. 5.4.4
 - `Toolchain` determines the toolchain used, typically which compilers, LAPACK, BLAS etc. routines have been used. This is based on the existing toolchains on the system. These can be inspected with `module show intel-2019a` for the particular system (e.g. `fram`).
 - `VASP flavor` determines the VASP flavor, e.g. `std` for the standard flavor (`-DNGZhalf` added to `FPP`), `gam` for the gamma flavor (`-DNGZhalf -DwNGZhalf` added to `FPP`) and `ncl` for the non-collinear flavor.
-- `Additional Package` determines if an additional package has been included, e.g. `beef` (to yield support for the `BEEF` functional and Bayesian error estimates, https://github.com/vossjo/libbeef).
+- `Additional Package` determines if an additional package has been included, e.g. `beef` (to yield support for the `BEEF` functional and Bayesian error estimates, https://github.com/vossjo/libbeef (`beef`), VTST https://theory.cm.utexas.edu/vtsttools/ (`vtst`) and SOL https://github.com/henniggroup/VASPsol `sol`).
 - `Adaptions in source code` determines if there has been adaptions to the source code, e.g. restrictions in the ionic motions. For instance for `nor_x` the ionic motion/relaxation along the `x` (`x`, `y` and `z` is the unit cell axis supplied to VASP) direction.
 
 for the example `5.4.4-intel-2019a-gam-beef-nor_x`.
