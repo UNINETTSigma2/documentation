@@ -16,7 +16,7 @@ VASP is a software package for performing ab-initio quantum-mechanical calculati
 ## Supported versions
 
 * 5.4.4
-* 6.1 (not yet installed, ETA will be notified)
+* 6.1 (not yet installed, ETA will be notified, we are pending updates from the VASP group pertaining to agreements to install/maintain it on our clusters)
 
 ## License and access policy
 
@@ -24,10 +24,11 @@ VASP is a commercial software package that requires a license for all who wants 
 
 * The users research group must have a valid VASP licence. To acquire a licence, please consult the "*How can I purchase a VASP license?*" in this link: https://www.vasp.at/faqs/.
 
-* We need to get a confirmation from a VASP representative to confirm that the user have access to the license. The group representative of the user needs to contact the VASP team using licensing@vasp.at and ask them to send a confirmation email to support@metacenter.no to confirm that the user have a valid licence.
+* We need to get a confirmation from a VASP representative to confirm that the user have access to the license. The group representative of the user needs to contact the VASP team using licensing@vasp.at and ask them to send a confirmation email to `support@metacenter.no` to confirm that the user have a valid license. It is very important that you communicate clearly to the VASP group that we want emails on this address.
 
 Once we receive the confirmation email we will add the user in question to the VASP group, which would give access to the VASP modules on the Sigma2 systems.
 
+Notice that the VASP license is backwards compatible, meaning that if you are issues a VASP 6 license you also have access to VASP 5.
 
 ## Usage
 
@@ -55,7 +56,7 @@ The naming schemes of the modules are `VASP version-Toolchain-VASP flavor-Additi
 - `VASP version` determines the VASP version, e.g. 5.4.4
 - `Toolchain` determines the toolchain used, typically which compilers, LAPACK, BLAS etc. routines have been used. This is based on the existing toolchains on the system. These can be inspected with `module show intel-2019a` for the particular system (e.g. `fram`).
 - `VASP flavor` determines the VASP flavor, e.g. `std` for the standard flavor (`-DNGZhalf` added to `FPP`), `gam` for the gamma flavor (`-DNGZhalf -DwNGZhalf` added to `FPP`) and `ncl` for the non-collinear flavor.
-- `Additional Package` determines if an additional package has been included, e.g. `beef` (to yield support for the `BEEF` functional and Bayesian error estimates, https://github.com/vossjo/libbeef).
+- `Additional Package` determines if an additional package has been included, e.g. `beef` (to yield support for the `BEEF` functional and Bayesian error estimates, https://github.com/vossjo/libbeef (`beef`), VTST https://theory.cm.utexas.edu/vtsttools/ (`vtst`) and SOL https://github.com/henniggroup/VASPsol `sol`).
 - `Adaptions in source code` determines if there has been adaptions to the source code, e.g. restrictions in the ionic motions. For instance for `nor_x` the ionic motion/relaxation along the `x` (`x`, `y` and `z` is the unit cell axis supplied to VASP) direction.
 
 for the example `5.4.4-intel-2019a-gam-beef-nor_x`.
@@ -63,6 +64,10 @@ for the example `5.4.4-intel-2019a-gam-beef-nor_x`.
 We try to upload new versions if the VASP group issues new official patches and the naming scheme above does not indicate which patch is used as that is implicitly assumed to be using the latest released patch.
 
 In addition, all binaries are compiled with support for maximally-localised Wannier functions and the [Wannier90](http://www.wannier.org/) program v2.1 and MPI enables. No OpenMP is enabled.
+
+### A few notes and special modules
+
+There is a module were `NMAX_DEG` is adjusted to 64 from the supplied value of 48. Since this is statically defined value, a special compile is necessary. If you get issues involving `NMAX_DEG`, please try a minimal working example using this executable and let us know if that solves your problem. Most likely you will encounter it again and we could try to compile an even larger value. However, also try to change your problem, like the symmetry and the representation you work in.
 
 ### Memory allocation for VASP
 
