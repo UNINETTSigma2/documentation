@@ -1,7 +1,7 @@
 
 # Storage performance: Lustre file system
 
-## Betzy, Fram and Stallo
+## Betzy and Fram
 
 To get best throughput on the scratch file system (`/cluster/work`), you may
 need to change the data striping. Striping shall be adjusted based on the
@@ -15,7 +15,7 @@ the next OST.
 
 * Striping will only take affect *only* on new files, created or copied
   into the specified directory or file name.
-* Default `stripe_count` on `/cluster` file system on Fram and Stallo is 1.
+* Default `stripe_count` on `/cluster` file system on Fram is 1.
 * Betzy is implementing Progressive File Layouts to dynamically set file stripe
 	size based on file size growth.
 

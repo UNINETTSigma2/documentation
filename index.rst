@@ -24,8 +24,7 @@ Compute, storage, pre/post-processing, visualization, machine learning
 ----------------------------------------------------------------------
 
 We offer compute resources (`Betzy <hpc_machines/betzy.html>`__,
-`Fram <hpc_machines/fram.html>`__, `Saga <hpc_machines/saga.html>`__, and
-`Stallo <https://hpc-uit.readthedocs.io>`__), storage resources
+`Fram <hpc_machines/fram.html>`__, and `Saga <hpc_machines/saga.html>`__, storage resources
 (`NIRD <files_storage/nird.html>`__), as well as the `NIRD
 Toolkit <https://www.sigma2.no/nird-toolkit>`__ platform for pre- and
 post-processing analysis, data intensive processing, visualization,
@@ -155,7 +154,6 @@ Index of keywords
    hpc_machines/betzy.md
    hpc_machines/fram.md
    hpc_machines/saga.md
-   Stallo <https://hpc-uit.readthedocs.io>
    hpc_machines/migration2metacenter.md
    jobs/overview.rst
    code_development/overview.rst

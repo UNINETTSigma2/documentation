@@ -19,18 +19,6 @@ move files into or out of the NIRD project areas.
 For more information, please check out the [Betzy, Fram and Saga](clusters.md)
 storage page.
 
-
-## Moving files from Stallo to NIRD
-
-You can use `scp` or `rsync` and possibly start several `rsync` processes in
-parallel.  But it is important to choose the proper NIRD login, either
-`login-tos` or `login-trd`.
-
-If you are about to transfer very many small files, `tar` the files before
-transferring them and then transfer them as one archive.
-
-
-
 ## Examples
 
 ### scp: secure copy between hosts on a network

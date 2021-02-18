@@ -31,8 +31,7 @@ $ srun --ntasks=1 --mem-per-cpu=4G --time=00:30:00 --qos=devel --account=YourAcc
 ```
 
 When you are done, simply exit the shell (`exit`, `logout` or `^D`) to
-end the job. (Note to users coming from Abel: there is no `qlogin`
-command on Fram or Saga.)
+end the job. 
 
 The arguments between `srun` and `--pty` could be any arguments you
 would have given to `sbatch` when submitting a non-interactive

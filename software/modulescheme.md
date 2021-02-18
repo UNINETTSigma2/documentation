@@ -76,9 +76,8 @@ This, more compact syntax will fortunately also work:
 
 ```{note}
 We are using self-contained modules in the Metacenter, meaning that a given module
-loads all dependecies necessary. This is in slight contrast to old policies on for
-instance Stallo, and also means that you might mess up quite significantly if you
-load extra modules in job scripts after loading the main software module.
+loads all dependecies necessary. This is in slight contrast to old policies and also means it is possible
+to make a mess if you load extra modules in job scripts after loading the main software module.
 We recommend doing `module list` after every load (to inspect) and unloading any
 conflicting packages, if possible. It is also good practice to start all job scripts
 with a `module purge`, before loading all necessary modules for the calculation.
