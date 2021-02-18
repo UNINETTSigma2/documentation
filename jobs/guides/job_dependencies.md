@@ -13,11 +13,11 @@ documentation, but we will show the most useful cases here:
 
 Several `<jobid>`s can be combined in a comma-separated list.
 
-```{warning}
+```{note}
 The `--dependency` option must be added to the `sbatch` command *before* the name of the
-job script, if you put it *after* the script it will be silently ignored. If the dependency
-was added successfully, you should see a `(Dependency)` in the `NODELIST(REASON)` column
-of the `squeue` output.
+job script, if you put it *after* the script it will be treated as an argument to the script, not
+to the `sbatch` command. If the dependency was added successfully, you should see a `(Dependency)`
+in the `NODELIST(REASON)` column of the `squeue` output.
 ```
 
 #### Beware of exit status
