@@ -11,7 +11,7 @@ For these codes and the corresponding research groups and research communities t
 Access to and using of codes will be influenced the following way:
 
 * **ADF/BAND** - the license is renewed every second year, and the software requires valid license to run. Software in the ADF/BAND software suite will cease to work on Metacenter installations from September 1st 2020 unless alternatively funded.
-* **Amber** - the license is for release 11 of the code and is valid for the lifetime of the software. There will be no change in access after September 2020, but there will be no updates to newer versions unless alternatively funded. Bear in mind that Amber 11 will not be transferred to Fram or any other new machine after Stallo is turned off.
+* **Amber** - the license is for release 11 of the code and is valid for the lifetime of the software. Currently this is not installed on any of our clusters. Please let us know if you need this.
 * **Crystal** - the license is for release 14 of the code and is valid for the lifetime of the software. There will be no change in access after September 2020, but there will be no updates to newer versions unless alternatively funded.
 * **Gaussian/GaussView** - the license is valid for the lifetime of the software, there will be no change in access after September 2020, but there will be no updates unless alternatively funded.
 * **NBO6/7** - the license is valid for the lifetime of the software, there will be no change in access after September 2020, but there will be no updates unless alternatively funded.

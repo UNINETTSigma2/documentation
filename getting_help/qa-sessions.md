@@ -15,12 +15,11 @@ This time we will start with a **short seminar**.
 answer session.
 
 We can talk about:
-- Problems/questions regarding the Stallo/Vilje
-shutdown and migration
-- Questions regarding data storage and management
-- Help with programming and software management
-- Help with project organization and data management
-- Anything else
+- Questions regarding compuate resources, data storage and management.
+- Help with programming and software management.
+- Help with paralellization, improving performance and/or scaling etc.
+- Help with project organization and data management.
+- Anything else.
 
 If you think you might have a challenging question or topics for us,
 you can also send them to us before, so we can come prepared and

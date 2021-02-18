@@ -43,11 +43,6 @@ The maximum `%mem` limit will always be half of the physical memory pool given o
 
 As commented in the [performance-tips section](/files_storage/performance/lustre.md), there is an issue with very large temporary output files (termed RW files in Gaussian). It is advisable to slice them into smaller parts using the `lfs setstripe` command.
 
-On Stallo, each user can change the default placement of the files it creates by striping files over several storage arrays, pr. folder basis (on Saga, file striping cannot be reconfigured by the user).
-This is done with the following command:
-
-	lfs setstripe -c 8 ${GAUSS_SCRDIR}
-
 Note the placement of this command in the [jobscript example](gaussian_job_example.md). It is paramount that this commands comes after defining that variable and creating the corresponding folder.
 
 ## Important aspects of Gaussian setup on Fram:
@@ -58,7 +53,4 @@ On Fram, we have not allocated swap space on the nodes, meaning that the heap si
 
 contains info about the heap size for the linda communication of Gaussian. <span style="color:violet"> 20 GB (the number above) is sufficient for most calculations, but if you plan to run 16 nodes or more, you may need to increase this number to at least 30 GB.</span>
 
-On Fram, the gXX.ib wrapper does two things: Together with introducing the  explicit IB network adresses into input file, it distributes the jobs onto two linda processes per node and halves the processes per linda compared to processes per node. After thorough testing, we would generally advice users to run 4-8 nodes with heap-size 20 GB (see above) and 2 Linda instances per node for running Gaussian on Fram. Note that due to the "two-Lindas-per-node" policy, memory demand is approximately the double as similar jobs on Stallo.
-
-
-
+On Fram, the gXX.ib wrapper does two things: Together with introducing the  explicit IB network adresses into input file, it distributes the jobs onto two linda processes per node and halves the processes per linda compared to processes per node. After thorough testing, we would generally advice users to run 4-8 nodes with heap-size 20 GB (see above) and 2 Linda instances per node for running Gaussian on Fram.
