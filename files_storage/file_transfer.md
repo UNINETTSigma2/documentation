@@ -19,8 +19,6 @@ move files into or out of the NIRD project areas.
 For more information, please check out the [Betzy, Fram and Saga](clusters.md)
 storage page.
 
-## Examples
-
 ### scp: secure copy between hosts on a network
 
 Few typical examples when using `scp`:
@@ -50,3 +48,18 @@ sftp> lcd project1
 sftp> cd /nird/projects/project1
 sftp> put out*.log
 ```
+
+
+## Sharing files with others
+
+You may can use [FileSender](https://filesender.org/) to share files with
+others.
+We have two instances running:
+
+* https://filesender2.uio.no/
+* https://filesender.uninett.no/
+
+Please use one of these: we can give support if needed.
+
+If the data you want to share could be useful for the scientific community,
+please use the [NIRD Archive](../nird_archive/user-guide.md).
