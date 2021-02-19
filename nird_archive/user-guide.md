@@ -351,9 +351,6 @@ In case of questions or comments please email the archive manager at: archive.ma
 [3] Norwegian License for Open Government Data.
 [https://data.norge.no/nlod/en/1.0](https://data.norge.no/nlod/en/1.0)
 
-[4] Filesender Project.
-[https://www.assembla.com/spaces/file_sender/wiki](https://www.assembla.com/spaces/file_sender/wiki)
-
 [5] DCMI Point Encoding Scheme.
 [https://dublincore.org/documents/dcmi-point](https://dublincore.org/documents/dcmi-point)
 
