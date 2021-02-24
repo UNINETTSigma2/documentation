@@ -276,7 +276,33 @@ Documentation can be found at https://developer.amd.com/amd-aocl/ .
 
 
 ### Performance
-The same test using matrix matrix multiplication, Level 3 BLAS
+Using the MLK library with AMD is straightforward. 
+
+In order to get MKL to select the correct AVX2 enabled routine a flag 
+need to be set, use : `export MKL_DEBUG_CPU_TYPE=5`. However, this flag 
+is no longer used in the 2020 version of the MKL. For this newer version 
+a different workaround is needed.
+
+For more about MKL performance and AMD see above about 
+"Forcing MKL to use best performing routines", where usage of a cheating 
+library is explained. 
+
+
+The well known top500 test HPL is using linear algebra library functions, 
+the following performance data were obtained using a single node.
+
+| Library        | Environment flag             |Performance    |
+|:---------------|:-----------------------------|:-------------:|
+| AMD BLIS-mt    | none                         | 3.14 Tflops/s |
+| MKL-2019.5.281 | none                         | 1.71 Tflops/s |
+| MKL-2019.5.281 | MKL_DEBUG_CPU_TYPE=5         | 3.23 Tflops/s | 
+| MKL-2020.4.304 | none                         | 2.54 Tflops/s |
+| MLL-2020.4.304 | MKL_DEBUG_CPU_TYPE=5         | 2.54 Tflops/s |
+| MKL-2020.4.304 | MKL_ENABLE_INSTRUCTIONS=AVX2 | 2.54 Tflops/s |
+| MKL-2020.4.304 | LD_PRELOAD=./libfakeintel.so | 3.23 Tflops/s |
+
+  
+The test below using matrix matrix multiplication, Level 3 BLAS
 function dgemm is used to test single core performance of the
 libraries. The tests are run on a single node using a single core on
 Betzy.
@@ -287,17 +313,32 @@ Betzy.
 | AOCL    | `flang -o dgemm-test.x -O3 dgemm-test.f90 -L$LIB -lblis`    | 50.13 Gflops/s  |
 | MKL     | `ifort -o dgemm-test.x -O3 dgemm-test.f90 -mkl=sequential`  | 51.53 Gflops/s  |
 
-Using the MLK library with AMD is straightforward. In order to get MKL
-to select the correct AVX2 enabled routine a flag need to be set,
-use : `export MKL_DEBUG_CPU_TYPE=5`.  This flag is no longer honoured
-in the 2020 version of the MKL. Without support for this flag the
-performance is significantly lower, one test showed about 48 Gflops/s.
-For more about MKL performance and AMD see above about 
-"Forcing MKL to use best performing routines".
-
 At 50 Gflops/s per core the aggregate number is 6.4 Tflops/s quite a
 bit more than what's expected from these nodes. This is a nice example
 of clock boost when using only a few cores, or in this case only one.
+
+While linear algebra is widely used Fourier Transform is also heavily used.
+The performance data below is obtained for a 3d-complex forward FT with a footprint
+of about 22 GiB using a single core.
+
+| Library        | Environment flag             |Performance |
+|:---------------|:-----------------------------|:----------:|
+| FFTW 3.3.8     | none                         | 62.7 sec.  |
+| AMD/AOCL 2.1   | none                         | 61.3 sec.  |
+| MKL-2020.4.304 | none                         | 52.8 sec.  |
+| MKL-2020.4.304 | LD_PRELOAD=./libfakeintel.so | 27.0 sec.  |
+| MKL-2020.4.304 | LD_PRELOAD=./libfakeintel.so |            |
+|                | MKL_ENABLE_INSTRUCTIONS=AVX  | 40.5 sec.  |
+| MKL-2020.4.304 | LD_PRELOAD=./libfakeintel.so |            |
+|                | MKL_ENABLE_INSTRUCTIONS=AVX2 | 27.0 sec.  |
+
+With the 2020 version of MKL the instruction set variable has a significant effect.
+
+The performance of MKL is significantly higher than both FFTW and the AMD library. 
+
+For applications spending a lot of time executing library function code a review of
+libraries used and some testing using the specific library functions actually used. 
+Not all library functions are implemented equally good by the authors. 
 
 
 ## MPI libraries
