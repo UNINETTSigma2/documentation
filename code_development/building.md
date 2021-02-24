@@ -276,11 +276,12 @@ Documentation can be found at https://developer.amd.com/amd-aocl/ .
 
 
 ### Performance
-Using the MLK library with AMD is straightforward. In order to get MKL
-to select the correct AVX2 enabled routine a flag need to be set,
-use : `export MKL_DEBUG_CPU_TYPE=5`. However, this flag is no longer honoured
-in the 2020 version of the MKL, so for this newer version a more eleborate workaround
-is needed.
+Using the MLK library with AMD is straightforward. 
+
+In order to get MKL to select the correct AVX2 enabled routine a flag 
+need to be set, use : `export MKL_DEBUG_CPU_TYPE=5`. However, this flag 
+is no longer used in the 2020 version of the MKL. For this newer version 
+a different workaround is needed.
 
 For more about MKL performance and AMD see above about 
 "Forcing MKL to use best performing routines", where usage of a cheating 
