@@ -61,6 +61,7 @@ than be tried might include:
 * -O3 -xHost
 * -Ofast
 * -O3 -march=core-avx
+* -O3 -march=core-avx2 -mtune=core-avx2
 * -O3 -xavx
 * -O3 -xavx2
 * -O3 -xcore-avx2
@@ -79,6 +80,8 @@ in a message like this:
 This only apply to the main routine.  If the main() function is not compiled
 with ``-xavx``/``-xavx2`` flags the test is not inserted and performance
 is as expected.
+
+The safe option is ``-O3  -march=core-avx2 -mtune=core-avx2`` which mostly provide fair performance.
 
 | Vectorisation flag    | Single core performance |
 |:---------------------:|:-----------------------:|
