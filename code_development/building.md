@@ -300,7 +300,7 @@ the following performance data were obtained using a single node.
 | MKL-2019.5.281 | none                         | 1.71 Tflops/s |
 | MKL-2019.5.281 | MKL_DEBUG_CPU_TYPE=5         | 3.23 Tflops/s | 
 | MKL-2020.4.304 | none                         | 2.54 Tflops/s |
-| MLL-2020.4.304 | MKL_DEBUG_CPU_TYPE=5         | 2.54 Tflops/s |
+| MKL-2020.4.304 | MKL_DEBUG_CPU_TYPE=5         | 2.54 Tflops/s |
 | MKL-2020.4.304 | MKL_ENABLE_INSTRUCTIONS=AVX2 | 2.54 Tflops/s |
 | MKL-2020.4.304 | LD_PRELOAD=./libfakeintel.so | 3.23 Tflops/s |
 
