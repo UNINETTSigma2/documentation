@@ -2,11 +2,11 @@
 
 VASP is a software package for performing ab-initio quantum-mechanical calculation of a periodic arrangement of atoms using the projector-augmented wave method and a plane wave basis set. The package can perform density-functional-theory (DFT) calculations, or many-body-perturbation-theory (MBPT) like GW etc. Please consult the documentation to get a more detailed overview of its feature set.
 
-## Online information from vendor
+## Online information from VASP developers
 
-* Homepage: https://www.vasp.at
-* Documentation: https://cms.mpi.univie.ac.at/wiki/index.php/The_VASP_Manual
-* User forum: https://www.vasp.at/forum/
+* [Homepage](https://www.vasp.at)
+* [Documentation](https://cms.mpi.univie.ac.at/wiki/index.php/The_VASP_Manual)
+* [User forum](https://www.vasp.at/forum/)
 
 ## Installed on facilities
 
@@ -22,7 +22,7 @@ VASP is a software package for performing ab-initio quantum-mechanical calculati
 
 VASP is a commercial software package that requires a license for all who wants to use it. For a user to get access to the VASP executables installed on the Sigma2 systems they must perform the following steps:
 
-* The users research group must have a valid VASP licence. To acquire a licence, please consult the "*How can I purchase a VASP license?*" in this link: https://www.vasp.at/faqs/.
+* The users research group must have a valid VASP licence. To acquire a licence, please consult the [How can I purchase a VASP license?](https://www.vasp.at/faqs/).
 
 * We need to get a confirmation from a VASP representative to confirm that the user have access to the license. The group representative of the user needs to contact the VASP team using licensing@vasp.at and ask them to send a confirmation email to `support@metacenter.no` to confirm that the user have a valid license. It is very important that you communicate clearly to the VASP group that we want emails on this address.
 
@@ -59,13 +59,13 @@ The naming schemes of the modules are `VASP version-Toolchain-Additional Package
 - `Adaptions to source code` determines if there has been adaptions to the source code, e.g. restrictions in the ionic motions. For instance for `nor_x` the ionic motion/relaxation along the `x` (`x`, `y` and `z` is the unit cell axis supplied to VASP) direction. It does not have any version following its label.
 - `VASP flavor` determines the VASP flavor, e.g. `std` for the standard flavor (`-DNGZhalf` added to `FPP`), `gam` for the gamma flavor (`-DNGZhalf -DwNGZhalf` added to `FPP`) and `ncl` for the non-collinear flavor. As for the adaptions, no version is following these labels.
 
-for the example `5.4.4-intel-2019a-beef-0.1.1-nor_x-gam`.
+i.e. for the example module `5.4.4-intel-2019a-beef-0.1.1-nor_x-gam`.
 
 ### Further notes about the additional packages and how the modules have been constructed
 
 Since `sol`, `beef` and `wannier90` does not modify the run-time behavior in any way (you have to enable special flags to enable its functionality, please consult the respective documentations), they are included for all the versions. `vtst` do however modify the original behavior of VASP for some cases and is thus included as a separate additional package.
 
-The VTST scripts are available if you load a module with `vtst` and can be found in `$EBROOTVASP/vtst` after loading the module VASP module containing `vtst`.
+The VTST scripts are available if you load a module with `vtst` and can be found in `$EBROOTVASP/vtst` after loading the VASP module containing `vtst`.
 
 The `bee` executable from the BEEF library can be found in `$EBROOTBEEF/bin/bee`.
 
@@ -87,7 +87,7 @@ All VASP and Wannier90 binaries are compiled with Intel MPI support, if they sup
 
 VASP is known to be potentially memory demanding. Quite often, you might experience to use less than the full number of cores on the node, but still all of the memory.
 
-For relevant core-count, node-count and amounts of memory, see [About Fram](../../quick/fram.md) and [About Saga](,,/,,/quick/saga,md). There are two ways of increasing the memory pr. cpu over the standard node configuration:
+For relevant core-count, node-count and amounts of memory, see [About Fram](https://documentation.sigma2.no/hpc_machines/fram.html) and [About Saga](https://documentation.sigma2.no/hpc_machines/saga.html). There are two ways of increasing the memory pr. cpu over the standard node configuration:
 
 - Increase the SLURM setting `mem-per-cpu`
 - Utilize the nodes with more memory per cpu.
