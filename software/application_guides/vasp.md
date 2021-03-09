@@ -16,7 +16,7 @@ VASP is a software package for performing ab-initio quantum-mechanical calculati
 ## Supported versions
 
 * 5.4.4
-* 6.1 (not yet installed, ETA will be notified, we are pending updates from the VASP group pertaining to agreements to install/maintain it on our clusters)
+* 6.1 (not yet installed, ETA will be notified, we are pending updates from the VASP group pertaining to agreements to install/maintain it on our clusters, in essence the agreements of a cluster maintenance license)
 
 ## License and access policy
 
@@ -45,29 +45,43 @@ Please remember to use two `module load`. The first loads the location of all th
 
 	$ module load VASPModules VASP/5.4.4-intel-2019a-std
 
-Users have to supply the necessary input files, inclusing any `POTCAR` files needed. They can be downloaded from the VASP portal you get access to with a valid VASP license. Also, please note that the `POTCAR` files are protected by the license so do not share them with anyone that does not have a license.
+Users have to supply the necessary input files, including any `POTCAR` files needed. They can be downloaded from the VASP portal you get access to with a valid VASP license. Also, please note that the `POTCAR` files are protected by the license so do not share them with anyone that does not have a license, including the support team, unless explicitly notified to do so.
 
 ### Module naming schemes
 
-There are now one module per VASP version. Meaning when you now load a module, there is only one executable, `vasp`.
+There are now one module per VASP version. Meaning when you now load a module, there is only one executable, `vasp`. In order to make it crystal clear to the users what versions of the additional packages have been used, the module names are unfortunately quite long. However, we hope this will at least give transparency and better facilitate reproducibility.
 
-The naming schemes of the modules are `VASP version-Toolchain-VASP flavor-Additional Package-Adaptions in source code.` where:
+The naming schemes of the modules are `VASP version-Toolchain-Additional Packages-Adaptions to source code-VASP flavor`. Where:
 
 - `VASP version` determines the VASP version, e.g. 5.4.4
-- `Toolchain` determines the toolchain used, typically which compilers, LAPACK, BLAS etc. routines have been used. This is based on the existing toolchains on the system. These can be inspected with `module show intel-2019a` for the particular system (e.g. `fram`).
-- `VASP flavor` determines the VASP flavor, e.g. `std` for the standard flavor (`-DNGZhalf` added to `FPP`), `gam` for the gamma flavor (`-DNGZhalf -DwNGZhalf` added to `FPP`) and `ncl` for the non-collinear flavor.
-- `Additional Package` determines if an additional package has been included, e.g. `beef` (to yield support for the `BEEF` functional and Bayesian error estimates, https://github.com/vossjo/libbeef (`beef`), VTST https://theory.cm.utexas.edu/vtsttools/ (`vtst`) and SOL https://github.com/henniggroup/VASPsol `sol`).
-- `Adaptions in source code` determines if there has been adaptions to the source code, e.g. restrictions in the ionic motions. For instance for `nor_x` the ionic motion/relaxation along the `x` (`x`, `y` and `z` is the unit cell axis supplied to VASP) direction.
+- `Toolchain` determines the toolchain used, typically which compilers, LAPACK, BLAS etc. routines have been used. This is based on the existing toolchains on the system. These can be inspected with `module show intel-2019a` for the particular system (e.g. `fram`). Typically, the `Toolchain` is the vendor, e.g. `intel` followed by the version, e.g. `2019a`.
+- `Additional Packages` determines if an additional package has been included, e.g. `wannier90` (support for maximally-localised Wannier functions and the [Wannier90](http://www.wannier.org/)), `beef` (to yield support for the [BEEF](https://github.com/vossjo/libbeef) functional and Bayesian error estimates), `vtst` (to yield support for additional transition state tools [VTST](https://theory.cm.utexas.edu/vtsttools/)) and `sol` (to yield support for solvation models using [VASPsol](https://github.com/henniggroup/VASPsol)). Following the package name is the version of that specific package, e.g. `beef-0.1.1`, meaning the `beef` package is included using version `0.1.1`. For multiple packages and combination, the list continues.
+- `Adaptions to source code` determines if there has been adaptions to the source code, e.g. restrictions in the ionic motions. For instance for `nor_x` the ionic motion/relaxation along the `x` (`x`, `y` and `z` is the unit cell axis supplied to VASP) direction. It does not have any version following its label.
+- `VASP flavor` determines the VASP flavor, e.g. `std` for the standard flavor (`-DNGZhalf` added to `FPP`), `gam` for the gamma flavor (`-DNGZhalf -DwNGZhalf` added to `FPP`) and `ncl` for the non-collinear flavor. As for the adaptions, no version is following these labels.
 
-for the example `5.4.4-intel-2019a-gam-beef-nor_x`.
+for the example `5.4.4-intel-2019a-beef-0.1.1-nor_x-gam`.
+
+### Further notes about the additional packages and how the modules have been constructed
+
+Since `sol`, `beef` and `wannier90` does not modify the run-time behavior in any way (you have to enable special flags to enable its functionality, please consult the respective documentations), they are included for all the versions. `vtst` do however modify the original behavior of VASP for some cases and is thus included as a separate additional package.
+
+The VTST scripts are available if you load a module with `vtst` and can be found in `$EBROOTVASP/vtst` after loading the module VASP module containing `vtst`.
+
+The `bee` executable from the BEEF library can be found in `$EBROOTBEEF/bin/bee`.
+
+The `wannier90.x` and `postw90.x` executables of Wannier90 can be found in `$EBROOTWANNIER90/bin/wannier90.x` and `$EBROOTWANNIER90/bin/postw90.x`.
+
+### Patches
 
 We try to upload new versions if the VASP group issues new official patches and the naming scheme above does not indicate which patch is used as that is implicitly assumed to be using the latest released patch.
 
-In addition, all binaries are compiled with support for maximally-localised Wannier functions and the [Wannier90](http://www.wannier.org/) program v2.1 and MPI enables. No OpenMP is enabled.
-
 ### A few notes and special modules
 
-There is a module were `NMAX_DEG` is adjusted to 64 from the supplied value of 48. Since this is statically defined value, a special compile is necessary. If you get issues involving `NMAX_DEG`, please try a minimal working example using this executable and let us know if that solves your problem. Most likely you will encounter it again and we could try to compile an even larger value. However, also try to change your problem, like the symmetry and the representation you work in.
+There are modules were `NMAX_DEG` (`ndegX`) is adjusted to `X=64, 128 and 256` from the default value of 48. Since this is statically defined value, a special compile is necessary. If you get issues involving `NMAX_DEG`, please try a minimal working example using this executable and let us know if that solves your problem. Most likely you will encounter it again and we could try to compile an even larger value. However, also try to change your problem, like the symmetry and the representation you work in.
+
+### Parallel functionality and library support.
+
+All VASP and Wannier90 binaries are compiled with Intel MPI support, if they support it. No OpenMP is enabled. For the binaries of the additional packages, no parallelization is available.
 
 ### Memory allocation for VASP
 
@@ -82,4 +96,4 @@ Remember you are accounted for the CPUs that would be reserved due to your deman
 
 ## Citation
 
-When publishing results obtained with the software referred to, please do check the developers web page in order to find the correct citation(s). Also, remember to acknowledge Sigma2 for the computational resources.
+When publishing results obtained with the software referred to, please do check your license agreement and the developers web page in order to find the correct citation(s). Also, remember to acknowledge Sigma2 for the computational resources.
