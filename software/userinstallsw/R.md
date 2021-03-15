@@ -3,13 +3,14 @@ R is a programming environment for performing statistical operations.
 
 To find out more, visit the R website at: [https://www.r-project.org](https://www.r-project.org)
 
-## Selecting the correct module load 
+## Selecting the correct module to load 
 | Module     | Version     |
 | :------------- | :------------- |
-| R | R/3.5.1-foss-2018b <br> R/3.5.1-intel-2018b <br> R/3.6.0-foss-2019a <br> 
-      R/3.6.0-fosscuda-2019a <br> R/3.6.0-intel-2019a <br> R/3.6.1-foss-2019a <br> 
-      R/3.6.2-foss-2019b  <br> R/3.6.2-fosscuda-2019b <br> R/3.6.2-intel-2019b <br> 
-      R/4.0.0-foss-2020a <br> R/4.0.3-foss-2020b <br> |
+| R-3.5.x| R/3.5.1-foss-2018b  R/3.5.1-intel-2018b|  
+| R-3.6.0| R/3.6.0-foss-2019a R/3.6.0-fosscuda-2019a  R/3.6.0-intel-2019a|
+| R-3.6.1| R/3.6.1-foss-2019a|
+| R-3.6.2| R/3.6.2-foss-2019b R/3.6.2-fosscuda-2019b R/3.6.2-intel-2019b|
+| R-4.0.x| R/4.0.0-foss-2020a R/4.0.3-foss-2020b|
 
 To see available versions when logged into Fram issue command
 
@@ -40,11 +41,16 @@ Please remmeber to use your username instead of *user1*
 -  There is no internet access from compute nodes, so you can not install
    packages as part of your job. You need to install them using the login node
    and make sure to provide the path in the job script (examples below)
-```{note}
+
+```
 
 *The examples is for SAGA*
  -  Login to saga
  -  Load the module
+ -  Create a directory to place the libraries 
+ -  Start R
+ -  Set the library path 
+ -  Install the package
 
 ```
         [user1@login-1.SAGA ~]$ module restore
@@ -53,7 +59,7 @@ Please remmeber to use your username instead of *user1*
         [user1@login-1.SAGA ~]$ R
 ```
 
- - Use the R prompt to install the package
+Use the R prompt to install the package
 
 ```
       #Set the location for the packages to be installed
@@ -64,17 +70,18 @@ Please remmeber to use your username instead of *user1*
       > library(XYZ)
 ```
 
--  How to use an installed package
-   After installing, everytime the packages needed to be accessed
-   The `.libPaths("/cluster/home/user1/R")` setting should be done.
-   When submitting R Script as a job, the `.libPath("/cluster/home/user1/R")` should be
-   specified before calling the package.
+How to use an installed package
+After installing, everytime the packages needed to be accessed
+The `.libPaths("/cluster/home/user1/R")` setting should be done.
+When submitting R Script as a job, the `.libPath("/cluster/home/user1/R")` should be
+specified before calling the package.
 
 
 ## Rscript example in a job 
 In order to submit as a job, we need to include all R processing steps in an Rscript
 
 Example Rscript
+
 
 ```
 [user1@login-3.SAGA ~]$ cat test.rscript 
@@ -128,11 +135,10 @@ combinations for some packages.
 ## Selecting the correct module load 
 | Module     | Version     |
 | :------------- | :------------- |
-| R |   R-bundle-Bioconductor/3.8-foss-2018b-R-3.5.1 <br>
-        R-bundle-Bioconductor/3.8-intel-2018b-R-3.5.1 <br>
-        R-bundle-Bioconductor/3.9-foss-2019a-R-3.6.0  <br>
-        R-bundle-Bioconductor/3.11-foss-2020a-R-4.0.0 <br>
-        R-bundle-Bioconductor/3.12-foss-2020b-R-4.0.3 <br>|
+| Bioconductor-3.8 | R-bundle-Bioconductor/3.8-foss-2018b-R-3.5.1 R-bundle-Bioconductor/3.8-intel-2018b-R-3.5.1 |
+| Bioconductor-3.9 | R-bundle-Bioconductor/3.9-foss-2019a-R-3.6.0 |
+| Bioconductor-3.11| R-bundle-Bioconductor/3.11-foss-2020a-R-4.0.0 |
+| Bioconductor-3.12| R-bundle-Bioconductor/3.12-foss-2020b-R-4.0.3 |
 
 To see available versions when logged into Fram issue command
 
