@@ -29,6 +29,15 @@ version than what we have. In that case you could install the packages yourself.
 following is the procedure to install the package called XYZ by the user *user1* on  SAGA. 
 Please remmeber to use your username instead of *user1*
 
+-  Installing packages may take a long time, specailly if your comparing with 
+   installing on a Windows or Mac computer. The reason for this is that unlike
+   Windows or Mac some packages will be compiled from source code to work on
+   the operating system we have on the HPC systesms. 
+
+-  There is no internet access from compute nodes, so you can not install
+   packages as part of your job. You need to install them using the login node
+   and make sure to provide the path in the job script (examples below)
+
 *The examples is for SAGA*
  -  Login to saga
  -  Load the module
@@ -44,17 +53,13 @@ Please remmeber to use your username instead of *user1*
 
 ```
       #Set the location for the packages to be installed
-      > .libPaths("/cluster/home/user1/R")
+      > .libPaths(c("/cluster/home/user1/R",.libPaths()))
       #install the package
       >  install.packages("XYX", repo="cran.uib.no")
       #Check if the package can be  loaded
       > library(XYZ)
 ```
 
--  Installing packages may take a long time, specailly if your comparing with 
-   installing on a Windows or Mac computer. The reason for this is that unlike
-   Windows or Mac some packages will be compiled from source code to work on
-   the operating system we have on the HPC systesms. 
 
 -  How to use an installed package
    After installing, everytime the packages needed to be accessed
@@ -89,6 +94,26 @@ as of now it is  "R-bundle-Bioconductor/3.12-foss-2020b-R-4.0.3"
 When you load the Bioconductor module a compatible R module and 
 all supporting module that are needed to build libraries will be
 loaded. 
+
+Here is an example showing how to install a bioconductor package
+
+```
+        [user1@login-1.SAGA ~]$ module restore
+        [user1@login-1.SAGA ~]$ module load R-bundle-Bioconductor/3.12-foss-2020b-R-4.0.3
+        [user1@login-1.SAGA ~]$ mkdir /cluster/home/user1/R
+        [user1@login-1.SAGA ~]$ R
+```
+
+ - Use the R prompt to install the package
+
+```
+      #Set the location for the packages to be installed
+      > .libPaths(c("/cluster/home/user1/R",.libPaths()))
+      #install the package
+      >  BiocManager::install("XYZ", repo="cran.uib.no")
+      #Check if the package can be  loaded
+      > library(XYZ)
+```
 
 ## License Information
 
