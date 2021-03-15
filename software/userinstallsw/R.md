@@ -1,0 +1,63 @@
+# R 
+R is a programming environment for performing statistical operations.
+
+To find out more, visit the R website at: https://www.r-project.org
+
+## Selecting the correct module load 
+| Module     | Version     |
+| :------------- | :------------- |
+| R | R/3.5.1-foss-2018b <br> R/3.5.1-intel-2018b <br> R/3.6.0-foss-2019a 
+      <br> R/3.6.0-fosscuda-2019a <br> R/3.6.0-intel-2019a <br> R/3.6.1-foss-2019a  
+      <br> R/3.6.2-foss-2019b  <br> R/3.6.2-fosscuda-2019b <br> R/3.6.2-intel-2019b
+      <br> R/4.0.0-foss-2020a <br> R/4.0.3-foss-2020b <br> |
+
+To see available versions when logged into Fram issue command
+
+    module spider R
+
+
+To use R type
+
+    module load R/<version>
+
+## How to install packages as a user
+There might be some packages missing in the R module we have installed or may be you need a different
+version than what we have. In that case you could install the packages yourself. For example,
+following is the procedure to install the package called XYZ by the user *user1* on  SAGA. 
+Please Please remmeber to use your username instead of *user1*
+
+ -  Login to saga
+ -  Load the module
+
+```
+        [user1@login-1.SAGA ~]$ module restore
+        [user1@login-1.SAGA ~]$ module load R/4.0.0-foss-2020a
+        [user1@login-1.SAGA ~]$ mkdir /cluster/home/user1/R
+        [user1@login-1.SAGA ~]$ R
+```
+
+ - Use the R prompt to install the package
+
+```
+      #Set the location for the packages to be installed
+      > .libPaths("/cluster/home/user1/R")
+      #install the package
+      >  install.packages("XYX", repo="cran.uib.no")
+      #Check if the package can be  loaded
+      > library(XYZ)
+```
+
+ - How to use an installed package
+   After installing, everytime the packages needed to be accessed
+   The `.libPaths("/cluster/home/user1/R")` setting should be done.
+   When submitting R Script as a job, the `.libPath("/cluster/home/user1/R")` should be
+   specified before calling the package.
+
+
+## License Information
+
+R is available under several open-source licenses. For more information, visit https://www.r-project.org/Licenses/
+
+It is the user's responsibility to make sure they adhere to the license agreements.
+
+
