@@ -1,4 +1,4 @@
-# R 
+# Installing R packages
 R is a programming environment for performing statistical operations.
 
 To find out more, visit the R website at: https://www.r-project.org
