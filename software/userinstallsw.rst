@@ -30,6 +30,7 @@ package managers.
 
    userinstallsw/easybuild.md
    userinstallsw/python.md
+   userinstallsw/R.md
 
 Note that the software install team **never** do installations in
 ``$HOME`` for users, and preferably not in ``/cluster/projects``.
