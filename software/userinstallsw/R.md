@@ -132,11 +132,10 @@ combinations for some packages.
 ## Selecting the correct module load 
 | Module     | Version     |
 | :------------- | :------------- |
-| R |   R-bundle-Bioconductor/3.8-foss-2018b-R-3.5.1 <br>
-        R-bundle-Bioconductor/3.8-intel-2018b-R-3.5.1 <br>
-        R-bundle-Bioconductor/3.9-foss-2019a-R-3.6.0  <br>
-        R-bundle-Bioconductor/3.11-foss-2020a-R-4.0.0 <br>
-        R-bundle-Bioconductor/3.12-foss-2020b-R-4.0.3 <br>|
+| Bioconductor-3.8 | R-bundle-Bioconductor/3.8-foss-2018b-R-3.5.1 R-bundle-Bioconductor/3.8-intel-2018b-R-3.5.1 |
+| Bioconductor-3.9 | R-bundle-Bioconductor/3.9-foss-2019a-R-3.6.0 |
+| Bioconductor-3.11| R-bundle-Bioconductor/3.11-foss-2020a-R-4.0.0 |
+| Bioconductor-3.12| R-bundle-Bioconductor/3.12-foss-2020b-R-4.0.3 |
 
 To see available versions when logged into Fram issue command
 
