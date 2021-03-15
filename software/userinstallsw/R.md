@@ -40,11 +40,13 @@ Please remmeber to use your username instead of *user1*
 -  There is no internet access from compute nodes, so you can not install
    packages as part of your job. You need to install them using the login node
    and make sure to provide the path in the job script (examples below)
-```{note}
+
+```
 
 *The examples is for SAGA*
  -  Login to saga
  -  Load the module
+
 
 ```
         [user1@login-1.SAGA ~]$ module restore
@@ -53,7 +55,7 @@ Please remmeber to use your username instead of *user1*
         [user1@login-1.SAGA ~]$ R
 ```
 
- - Use the R prompt to install the package
+Use the R prompt to install the package
 
 ```
       #Set the location for the packages to be installed
@@ -64,17 +66,18 @@ Please remmeber to use your username instead of *user1*
       > library(XYZ)
 ```
 
--  How to use an installed package
-   After installing, everytime the packages needed to be accessed
-   The `.libPaths("/cluster/home/user1/R")` setting should be done.
-   When submitting R Script as a job, the `.libPath("/cluster/home/user1/R")` should be
-   specified before calling the package.
+How to use an installed package
+After installing, everytime the packages needed to be accessed
+The `.libPaths("/cluster/home/user1/R")` setting should be done.
+When submitting R Script as a job, the `.libPath("/cluster/home/user1/R")` should be
+specified before calling the package.
 
 
 ## Rscript example in a job 
 In order to submit as a job, we need to include all R processing steps in an Rscript
 
 Example Rscript
+
 
 ```
 [user1@login-3.SAGA ~]$ cat test.rscript 
