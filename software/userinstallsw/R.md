@@ -6,10 +6,11 @@ To find out more, visit the R website at: [https://www.r-project.org](https://ww
 ## Selecting the correct module load 
 | Module     | Version     |
 | :------------- | :------------- |
-| R | R/3.5.1-foss-2018b <br> R/3.5.1-intel-2018b <br> R/3.6.0-foss-2019a <br>     |
-|   | R/3.6.0-fosscuda-2019a <br> R/3.6.0-intel-2019a <br> R/3.6.1-foss-2019a <br> |
-|   | R/3.6.2-foss-2019b  <br> R/3.6.2-fosscuda-2019b <br> R/3.6.2-intel-2019b <br>|  
-|   | R/4.0.0-foss-2020a <br> R/4.0.3-foss-2020b <br>                              |
+| R-3.5.x| R/3.5.1-foss-2018b  R/3.5.1-intel-2018b|  
+| R-3.6.0| R/3.6.0-foss-2019a R/3.6.0-fosscuda-2019a  R/3.6.0-intel-2019a|
+| R-3.6.1| R/3.6.1-foss-2019a|
+| R-3.6.2| R/3.6.2-foss-2019b R/3.6.2-fosscuda-2019b R/3.6.2-intel-2019b|
+| R-4.0.x| R/4.0.0-foss-2020a R/4.0.3-foss-2020b|
 
 To see available versions when logged into Fram issue command
 
