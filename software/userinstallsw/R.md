@@ -51,7 +51,12 @@ Please remmeber to use your username instead of *user1*
       > library(XYZ)
 ```
 
- - How to use an installed package
+-  Installing packages may take a long time, specailly if your comparing with 
+   installing on a Windows or Mac computer. The reason for this is that unlike
+   Windows or Mac some packages will be compiled from source code to work on
+   the operating system we have on the HPC systesms. 
+
+-  How to use an installed package
    After installing, everytime the packages needed to be accessed
    The `.libPaths("/cluster/home/user1/R")` setting should be done.
    When submitting R Script as a job, the `.libPath("/cluster/home/user1/R")` should be
@@ -80,6 +85,10 @@ To see available versions when logged into Fram issue command
 
 If you do not have specific requirements please use the latest, 
 as of now it is  "R-bundle-Bioconductor/3.12-foss-2020b-R-4.0.3"
+
+When you load the Bioconductor module a compatible R module and 
+all supporting module that are needed to build libraries will be
+loaded. 
 
 ## License Information
 
