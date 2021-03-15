@@ -20,8 +20,10 @@ To use R type
 
     module load R/<version>
 
+```{note}
 If you do not have specific requirements please use the latest,
 as of now it is  "R/4.0.0-foss-2020a"
+```
 
 ## How to install packages as a user
 There might be some packages missing in the R module we have installed or may be you need a different
@@ -29,6 +31,7 @@ version than what we have. In that case you could install the packages yourself.
 following is the procedure to install the package called XYZ by the user *user1* on  SAGA. 
 Please remmeber to use your username instead of *user1*
 
+```{note}
 -  Installing packages may take a long time, specailly if your comparing with 
    installing on a Windows or Mac computer. The reason for this is that unlike
    Windows or Mac some packages will be compiled from source code to work on
@@ -37,6 +40,7 @@ Please remmeber to use your username instead of *user1*
 -  There is no internet access from compute nodes, so you can not install
    packages as part of your job. You need to install them using the login node
    and make sure to provide the path in the job script (examples below)
+```{note}
 
 *The examples is for SAGA*
  -  Login to saga
@@ -60,13 +64,13 @@ Please remmeber to use your username instead of *user1*
       > library(XYZ)
 ```
 
-
+```{note}
 -  How to use an installed package
    After installing, everytime the packages needed to be accessed
    The `.libPaths("/cluster/home/user1/R")` setting should be done.
    When submitting R Script as a job, the `.libPath("/cluster/home/user1/R")` should be
    specified before calling the package.
-
+```
 
 ## Bioconductor
 We have also made bioconductor as a module with the base bioconductor packages.
