@@ -35,7 +35,7 @@ Please remmeber to use your username instead of *user1*
 -  Installing packages may take a long time, specailly if your comparing with 
    installing on a Windows or Mac computer. The reason for this is that unlike
    Windows or Mac some packages will be compiled from source code to work on
-   the operating system we have on the HPC systesms. 
+   the operating system we have on the HPC systems. 
 
 -  There is no internet access from compute nodes, so you can not install
    packages as part of your job. You need to install them using the login node
@@ -75,7 +75,7 @@ Please remmeber to use your username instead of *user1*
 ```
 
 ## Rscript example in a job 
-In order to suubmit as a job, we need to include all R processing steps in an Rscript
+In order to submit as a job, we need to include all R processing steps in an Rscript
 
 Example Rscript
 
@@ -99,7 +99,7 @@ mean_plus_this(test_data, 3)
 
 ```
 
-Exmaple job script to call the above Rscript
+Example job script to call the above Rscript
 
 ```
 #!/bin/bash
@@ -124,7 +124,7 @@ Rscript test.rscript > output.Rout 2> error.Rout
 ## Bioconductor
 We have also made bioconductor as a module with the base bioconductor packages.
 Not all packages found in biocondctor repository are pre-installed. This is becasue 
-compatobility issues, i.e. not all packages can be installed with the same set of 
+compatibility issues, i.e. not all packages can be installed with the same set of 
 dependancies and to make it easier for the user to select the exact version 
 combinations for some packages.
 
