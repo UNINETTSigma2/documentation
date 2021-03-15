@@ -72,6 +72,55 @@ Please remmeber to use your username instead of *user1*
    specified before calling the package.
 ```
 
+## Rscript example in a job 
+In order to suubmit as a job, we need to include all R processing steps in an Rscript
+
+Example Rscript
+
+```
+[user1@login-3.SAGA ~]$ cat test.rscript 
+
+#!/usr/bin/env Rscript
+
+.libPaths(c("/cluster/home/user1/R",.libPaths()))
+library("ggplot2")
+out_put = paste("Processing started on", Sys.info()["nodename"])
+paste(out_put)
+
+mean_plus_this <- function(data, addthis = 0) {
+  new_data <- mean(data) + addthis
+  return(new_data)
+}
+
+test_data <- c(4, 40, 9, 1)
+mean_plus_this(test_data, 3)
+
+```
+
+Exmaple job script to call the above Rscript
+
+```
+#!/bin/bash
+
+#SBATCH --account=nn9999k
+#SBATCH --job-name=R_script_test
+#SBATCH --partition=normal
+#SBATCH --mem=8G
+#SBATCH --ntasks=1
+#SBATCH --time=15:00
+
+set -o errexit # Make bash exit on any error
+set -o nounset # Treat unset variables as errors
+
+module restore
+module load R-bundle-Bioconductor/3.12-foss-2020b-R-4.0.3
+
+Rscript test.rscript > output.Rout 2> error.Rout
+
+```
+
+
+
 ## Bioconductor
 We have also made bioconductor as a module with the base bioconductor packages.
 Not all packages found in biocondctor repository are pre-installed. This is becasue 
