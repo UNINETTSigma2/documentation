@@ -20,12 +20,16 @@ To use R type
 
     module load R/<version>
 
+If you do not have specific requirements please use the latest,
+as of now it is  "R/4.0.0-foss-2020a"
+
 ## How to install packages as a user
 There might be some packages missing in the R module we have installed or may be you need a different
 version than what we have. In that case you could install the packages yourself. For example,
 following is the procedure to install the package called XYZ by the user *user1* on  SAGA. 
-Please Please remmeber to use your username instead of *user1*
+Please remmeber to use your username instead of *user1*
 
+*The examples is for SAGA*
  -  Login to saga
  -  Load the module
 
@@ -74,7 +78,8 @@ To see available versions when logged into Fram issue command
 
     module spider bioconductor
 
-
+If you do not have specific requirements please use the latest, 
+as of now it is  "R-bundle-Bioconductor/3.12-foss-2020b-R-4.0.3"
 
 ## License Information
 
