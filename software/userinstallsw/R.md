@@ -65,11 +65,13 @@ Please remmeber to use your username instead of *user1*
 ```
 
 ```{note}
+
 -  How to use an installed package
    After installing, everytime the packages needed to be accessed
    The `.libPaths("/cluster/home/user1/R")` setting should be done.
    When submitting R Script as a job, the `.libPath("/cluster/home/user1/R")` should be
    specified before calling the package.
+
 ```
 
 ## Rscript example in a job 
@@ -118,8 +120,6 @@ module load R-bundle-Bioconductor/3.12-foss-2020b-R-4.0.3
 Rscript test.rscript > output.Rout 2> error.Rout
 
 ```
-
-
 
 ## Bioconductor
 We have also made bioconductor as a module with the base bioconductor packages.
