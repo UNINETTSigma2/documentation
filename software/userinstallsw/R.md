@@ -3,7 +3,7 @@ R is a programming environment for performing statistical operations.
 
 To find out more, visit the R website at: [https://www.r-project.org](https://www.r-project.org)
 
-## Selecting the correct module load 
+## Selecting the correct module to load 
 | Module     | Version     |
 | :------------- | :------------- |
 | R-3.5.x| R/3.5.1-foss-2018b  R/3.5.1-intel-2018b|  
@@ -47,7 +47,10 @@ Please remmeber to use your username instead of *user1*
 *The examples is for SAGA*
  -  Login to saga
  -  Load the module
-
+ -  Create a directory to place the libraries 
+ -  Start R
+ -  Set the library path 
+ -  Install the package
 
 ```
         [user1@login-1.SAGA ~]$ module restore
