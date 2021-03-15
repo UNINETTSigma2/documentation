@@ -1,7 +1,7 @@
 # Installing R packages
 R is a programming environment for performing statistical operations.
 
-To find out more, visit the R website at: https://www.r-project.org
+To find out more, visit the R website at: [https://www.r-project.org](https://www.r-project.org)
 
 ## Selecting the correct module load 
 | Module     | Version     |
@@ -170,7 +170,9 @@ Here is an example showing how to install a bioconductor package
 
 ## License Information
 
-R is available under several open-source licenses. For more information, visit https://www.r-project.org/Licenses/
+R is available under several open-source licenses. 
+For more information, 
+visit [https://www.r-project.org/Licenses/](https://www.r-project.org/Licenses)
 
 It is the user's responsibility to make sure they adhere to the license agreements.
 
