@@ -64,15 +64,12 @@ Please remmeber to use your username instead of *user1*
       > library(XYZ)
 ```
 
-```{note}
-
 -  How to use an installed package
    After installing, everytime the packages needed to be accessed
    The `.libPaths("/cluster/home/user1/R")` setting should be done.
    When submitting R Script as a job, the `.libPath("/cluster/home/user1/R")` should be
    specified before calling the package.
 
-```
 
 ## Rscript example in a job 
 In order to submit as a job, we need to include all R processing steps in an Rscript
