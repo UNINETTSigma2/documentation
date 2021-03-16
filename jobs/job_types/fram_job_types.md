@@ -77,7 +77,7 @@ whole nodes.
 - __Allocation units__: whole nodes
 - __Job Limits__:
     - minimum 1 nodes, maximum 8 nodes per job
-    - maximum 8 nodes in use at the same time
+    - maximum 1 running job at a time per user
 - __Maximum walltime__: 30 minutes
 - __Priority__: high
 - __Available resources__: 8 nodes with 32 cpus and 60 GiB RAM between
