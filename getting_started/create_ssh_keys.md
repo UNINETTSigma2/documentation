@@ -22,7 +22,13 @@ we use:
 $ ssh-copy-id -i ~/.ssh/id_sigma2 <username>@saga.sigma2.no
 ```
 
-Note, this command may create the directory `~/.ssh` on the target machine (`saga.sigma2.no` in the example above) if it did not exist yet. The directory will have the standard file permissions (see `umask -S`). The directory `~/.ssh` requires stricter permissions. To set permissions correctly, you need to login to the machine (using your password once more) and change the permissions to `0700` with the command `chmod 0700 ~/.ssh`. You may of course check what the permissions are beforehand by running something like `ls -ld .ssh`
+This command creates the directory `~/.ssh` on the target machine
+(`saga.sigma2.no` in the example above) if it did not exist yet.
+When created by OpenSSH (e.g. through `ssh-copy-id`), the directory gets
+the required strict permissions `0700`, which may be different from the
+shell's file-creation mask returned by `umask -S`.
+You can check the permissions by running `ls -ld ~/.ssh` on saga, and change the
+permissions to `0700` with the command `chmod 0700 ~/.ssh`.
 
 Using ssh keys has the added benefit that you can avoid having to type your
 password every time. `ssh-agent` is program installed on virtually all linux
