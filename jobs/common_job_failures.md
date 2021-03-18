@@ -50,7 +50,7 @@ more details to see how to inspect your disk quota.
 (Here we need to link to policies on how/when to ask for more)
 
 
-## Job is rejected because of insufficient funds
+## Job is rejected because of insufficient credit
 
 If you see an error message like this one after submitting your job script:
 ```
@@ -59,6 +59,6 @@ sbatch: error: Batch job submission failed: Job violates accounting/QOS policy
                (job submit limit, user's size and/or time limits)
 ```
 
-Then check with `cost` whether your compute account has enough funds for your
-job.  The error probably means that you as for more resources in your job
-script than you have available.
+Then check with `cost` whether your compute account has enough credit for your
+job. The error probably means that you asked for more resources in your job
+script than you have available. Please consult [this page](/getting_started/applying_resources.md) on how to apply for more credits.
