@@ -159,7 +159,7 @@ There are benefits for both types depending on usage. The parallel file system i
 
 Which kind of scratch file system to use is a trade-off, if you need sharing or a large amount of data (more than 250-300 GB) there is only one option, shared scratch. If on the other hand you have a lot of random IO or a large number of files then local scratch is much better suited.
 
-All SLURM jobs get allocated a shared scratch file system pointed to by the variable $SCRATCH , but you need to ask for local scratch, like this example where I have asked for 100 Gigabytes of local scratch:
+All Slurm jobs get allocated a shared scratch file system pointed to by the variable $SCRATCH , but you need to ask for local scratch, like this example where I have asked for 100 Gigabytes of local scratch:
 ```
 #SBATCH --gres=localscratch:100G
 ```

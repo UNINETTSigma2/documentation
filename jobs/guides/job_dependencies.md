@@ -1,7 +1,7 @@
 # Job Dependencies
 
-In the following we demonstrate how to add dependecies between jobs using the SLURM option `--dependency`.
-The full list of dependency types can be found in the [SLURM](https://slurm.schedmd.com/sbatch.html)
+In the following we demonstrate how to add dependecies between jobs using the Slurm option `--dependency`.
+The full list of dependency types can be found in the [Slurm](https://slurm.schedmd.com/sbatch.html)
 documentation, but we will show the most useful cases here:
 
 | Option                 | Explanation                                                                     |
@@ -46,7 +46,7 @@ and finally *explicitly* return 0 in case the script finishes successfully:
 exit 0
 ```
 
-Standard SLURM errors like out-of-memory or time limit will of course be captured automatically.
+Standard Slurm errors like out-of-memory or time limit will of course be captured automatically.
 
 #### Examples
 

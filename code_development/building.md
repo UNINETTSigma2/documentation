@@ -368,12 +368,12 @@ compiler versions is `mpif90 -v`.
 
 Compiler flags are propagated to the underlaying compiler.
 
-To run programs the launched application mpirun is used (SLURM srun is
+To run programs the launched application mpirun is used (Slurm srun is
 an option also). There are a range of options to OpenMPI's mpirun of
 which `--bind-to` and `--map-by` a the most important when running on
-the Sigma2 systems using SLURM as the queue system set the number of
+the Sigma2 systems using Slurm as the queue system set the number of
 ranks and other run time parameters like list of hosts etc. This is normal
-for MPI libraries built and installed with SLURM support.
+for MPI libraries built and installed with Slurm support.
 
 
 
@@ -413,5 +413,5 @@ documentation pointed to above and do some testing yourself before
 employing in large production scale.
 
 Running applications with Intel MPI is just like a simple as for
-OpenMPI as Intel MPI also has support for SLURM. Just `mpirun ./a.out`
+OpenMPI as Intel MPI also has support for Slurm. Just `mpirun ./a.out`
 is normally enough.

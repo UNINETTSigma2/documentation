@@ -161,7 +161,7 @@ In the above output the numbers corresponds to line numbers in our
 with each line.
 
 Before we start profiling to see what we can optimize, lets run the program to
-learn the additional `SLURM` parameters needed for running with GPU on Saga. The
+learn the additional `Slurm` parameters needed for running with GPU on Saga. The
 following is the new command needed (notice the added `--partition=accel` and
 `--gres=gpu:1` flags)
 
@@ -169,18 +169,18 @@ following is the new command needed (notice the added `--partition=accel` and
 $ srun --account=<your project number> --time=02:00 --mem-per-cpu=512M --partition=accel --gres=gpu:1 time ./jacobi
 ```
 
-`--partition=accel` is needed to tell `SLURM` to only run on nodes on Saga with
-GPUs and the `--gres=gpu:n` line tells `SLURM` that we would like to have access
+`--partition=accel` is needed to tell `Slurm` to only run on nodes on Saga with
+GPUs and the `--gres=gpu:n` line tells `Slurm` that we would like to have access
 to `n` GPUs (`accel` nodes on Saga have `4` separate GPUs, above we are asking
 for only one GPU).
 
 ### Profiling
 To profile the `kernels` version of our program we will here transition to
-[`SLURM` scripts](../../jobs/job_scripts.md) This will make it a bit easier to
+[`Slurm` scripts](../../jobs/job_scripts.md) This will make it a bit easier to
 make changes to how the program is run and also makes it a bit more
 reproducible.
 
-The `SLURM` script is available as `kernels.job` and is show below.
+The `Slurm` script is available as `kernels.job` and is show below.
 
 ```{eval-rst}
 .. literalinclude:: openacc/kernels.job

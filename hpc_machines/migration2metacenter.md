@@ -5,7 +5,7 @@ Thus, for users moving internally between machines run by the Metacenter, they o
 
 * [Hardware differences](/hpc_machines/hardware_overview.md): number of CPU cores, memory size, GPU-availability, external access from compute nodes.
 * Software differences: [Installed SW](/software/installed_software.md), type of file-system, access limitation rules to \$HOME, same or different file systems on \$TMP and \$HOME.
-* Jobtype policy differences in Resource Management System (SLURM) on different machines.
+* Jobtype policy differences in Resource Management System (Slurm) on different machines.
 * Storage options.
 
 For users either being novel to HPC in general, or having experience from other clusters - either local/private or foreign setup, basically the same rules apply - one must try to identify the critical differences in what one is used to and then adapt behaviour accordingly. 

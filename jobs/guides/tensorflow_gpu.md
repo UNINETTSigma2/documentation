@@ -16,7 +16,7 @@ for testing it is recommended to not ask for GPU resources (to be scheduled
 quicker) and then, once your experiments are ready to run for longer, add back
 inn the request for GPU.
 
-A complete example, both `python` and SLURM file, can be found at
+A complete example, both `python` and Slurm file, can be found at
 [`mnist.py`](files/mnist.py) and [`run_mnist.sh`](files/run_mnist.sh).
 
 # Installing `python` libraries
@@ -483,7 +483,7 @@ nodes and perform gradient computation, averaged over the different nodes.
 
 Utilizing this library together with `TensorFlow 2` requires minimal changes,
 however, there are a few things to be aware of in regards to scheduling with
-`SLURM`. The following example is based on the [official `TensorFlow`
+`Slurm`. The following example is based on the [official `TensorFlow`
 example][hvd_tf_ex].
 
 To install `Horovod` you will need to create a `virtualenv` as described above.
@@ -657,7 +657,7 @@ srun python $SLURM_SUBMIT_DIR/mnist_hvd.py
 
 Note especially the use of `--gress=gpu:4` which means that each node allocated
 for the job will get four GPUs. The `--ntasks-per-node=4` is necessary to force
-`SLURM` to allocate at most four task per available node, which corresponds to
+`Slurm` to allocate at most four task per available node, which corresponds to
 the number of GPUs per node on Saga. Also note that this means the example above
 will require two nodes without using all available compute - in effect
 oversubscribing. Due to this potential to oversubscribe it is recommended that

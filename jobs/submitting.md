@@ -6,20 +6,20 @@ The HPC clusters are resources that are shared between many users, and
 to ensure fair use everyone must do their computations by submitting
 jobs through a queue system (batch system) that will execute the
 applications on the available resources.
-In our case [SLURM](https://slurm.schedmd.com/) is used as workload
+In our case [Slurm](https://slurm.schedmd.com/) is used as workload
 manager and job scheduler.
 
 When you log in to a cluster, you are logged in to a _login_ node
 shared by all users. The login nodes are meant for logging in, copying
 files, editing, compiling, running short tests (no more than a couple
 of minutes), submitting jobs, checking job status, etc.
-Jobs started via SLURM run on the _compute nodes_.
+Jobs started via Slurm run on the _compute nodes_.
 
 Note that it is _not_ allowed to run jobs directly on the login nodes.
 
 ## Jobs
 
-There are two ways of starting jobs with SLURM; either interactively
+There are two ways of starting jobs with Slurm; either interactively
 with `srun` or as a job script with `sbatch`.
 
 Interactive jobs are a good way to test your setup before you put it
@@ -59,9 +59,9 @@ allocated by the queue system. The script also specifies a number of
 requirements (memory usage, number of CPUs, run-time, etc.), used by
 the queue system to find one or more suitable machines for the job.
 
-### More information about SLURM
-- For more information about the SLURM parameters and job script settings,
-see [SLURM parameter](job_scripts/slurm_parameter.md).
+### More information about Slurm
+- For more information about the Slurm parameters and job script settings,
+see [Slurm parameter](job_scripts/slurm_parameter.md).
 
 - A more detailed description of the queue system can be found in
 [Queue System Concepts](submitting/queue_system_concepts.md).
