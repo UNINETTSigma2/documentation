@@ -13,7 +13,7 @@
 # we give this job 4 minutes
 #SBATCH --time=0-00:04:00
 
-# asks SLURM to send the USR1 signal 120 seconds before end of the time limit
+# asks Slurm to send the USR1 signal 120 seconds before end of the time limit
 #SBATCH --signal=B:USR1@120
 
 # define the handler function

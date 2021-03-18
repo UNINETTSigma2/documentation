@@ -22,7 +22,7 @@ of the PBS/TORQUE commands with their Slurm counterparts.
 
 ## Environment variables
 
-| Environment variables | PBS/Torque     | SLURM               |
+| Environment variables | PBS/Torque     | Slurm               |
 | :-------------        | :------------- | :-------------      |
 | Job ID                | $PBS_JOBID     | $SLURM_JOB_ID       |
 | Submit Directory      | $PBS_O_WORKDIR | $SLURM_SUBMIT_DIR   |
@@ -33,7 +33,7 @@ of the PBS/TORQUE commands with their Slurm counterparts.
 These are options that may be placed in the batch script or passed as arguments
 to *sbatch*.
 
-| Options               | PBS/Torque               | SLURM                                                         |
+| Options               | PBS/Torque               | Slurm                                                         |
 | :-------------        | :-------------           | :-------------                                                |
 | Script directive      | #PBS                     | #SBATCH                                                       |
 | Job Name              | -N <*name*>              | --job-name=<*name*> OR -J <*name*>                            |

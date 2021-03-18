@@ -1,6 +1,6 @@
-# SLURM Parameter and Settings
+# Slurm Parameter and Settings
 
-SLURM supports a multitude of different parameters. This enables you to
+Slurm supports a multitude of different parameters. This enables you to
 effectively tailor your script to your need but also
 means that is easy to get lost and waste your time and quota.
 
@@ -9,7 +9,7 @@ The following parameters can be used as command line parameters with
 a newline with `#SBATCH` followed by the parameter. Replace <....>
 with the value you want, e.g. `--job-name=test-job`.
 
-## SLURM Parameter
+## Slurm Parameter
 
 ### Basic settings:
 
@@ -26,7 +26,7 @@ with the value you want, e.g. `--job-name=test-job`.
 
 | Parameter                              | Function                                                                                                                     |
 | -------------------------------------- | -------------------------------                                                                                              |
-| `--time=<d-hh:mm:ss>`                  | Time limit for job. Job will be killed by SLURM after time has run out. Format days-hours:minutes:seconds.                   |
+| `--time=<d-hh:mm:ss>`                  | Time limit for job. Job will be killed by Slurm after time has run out. Format days-hours:minutes:seconds.                   |
 | `--nodes=<num_nodes>`                  | Number of nodes. Multiple nodes are only useful for jobs with distributed-memory (e.g. MPI).                                 |
 | `--mem=<MB>`                           | Minimum memory (RAM) per node. Number followed by unit prefix, e.g. 16G.                                                     |
 | `--mem-per-cpu=<MB>`                   | Minimum memory (RAM) per requested physical CPU core Number followed by unit prefix, e.g. 4G.                                |
@@ -44,7 +44,7 @@ with the value you want, e.g. `--job-name=test-job`.
 
 See also [projects and accounting](projects.md) for more information.
 
-SLURM differs slightly from the previous Torque system with respect to
+Slurm differs slightly from the previous Torque system with respect to
 definitions of various parameters, and what was known as queues in
 Torque may be covered by either `--partition=...` or `--qos=...`.
 
@@ -65,10 +65,10 @@ QOS of that system:
 
 ## Differences between CPUs and tasks
 
-As a new users writing your first SLURM job script the difference
+As a new users writing your first Slurm job script the difference
 between `--ntasks` and `--cpus-per-taks` is typically quite confusing.
 Assuming you want to run your program on a single node with 16 cores
-which SLURM parameters should you specify?
+which Slurm parameters should you specify?
 
 The answer is it depends whether the your application supports MPI. MPI
 (message passing protocol) is a communication interface used for
@@ -127,13 +127,13 @@ For MPI applications.
 Depending on the frequency and bandwidth demand of your setup, you can choose two 
 distribution schemes:
 
-- Let SLURM determine where to put your parallel MPI tasks as it see fit.
+- Let Slurm determine where to put your parallel MPI tasks as it see fit.
 
-- Force SLURM to group all MPI tasks on whole nodes.
+- Force Slurm to group all MPI tasks on whole nodes.
 
 The latter approach of using whole nodes guarantees a low latency and high bandwidth, but it
 usually results in a longer queuing time compared to cluster wide job.
-With the former approach, the SLURM manager distribute your task to maximize utilization.
+With the former approach, the Slurm manager distribute your task to maximize utilization.
 This usually results in shorter queuing times but slower inter-task connection speeds and latency. 
 What is suitable for you depends entirely on your ability to wait and the requirements of the application
 that are set for execution. 

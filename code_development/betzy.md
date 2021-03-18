@@ -70,14 +70,14 @@ For running Intel MPI, these settings are good starting points:
 * I_MPI_PIN=1 
 * I_MPI_PIN_PROCESSOR_EXCLUDE_LIST=128-255 (run only on physical cores)
 
-For a correct SLURM job script file the only command needed to launch MPI programs are for :
+For a correct Slurm job script file the only command needed to launch MPI programs are for :
 * OpenMPI : mpirun -bind-to core ./a.out
 * Intel MPI: mpirun ./a.out
 
 
 #### Running Hybrid models
 
-For hybrid models it's important to set up SLURM to provide access to all
+For hybrid models it's important to set up Slurm to provide access to all
 available cores. An example could look like this:
 
 ```
@@ -91,7 +91,7 @@ available cores. An example could look like this:
 This will request 32 MPI ranks per node, and leave cores for 4 threads per
 rank, e.g. each of the 32 ranks can schedule 4 threads yielding a total of 128
 cores which is the maximum number of cores on each compute node.  The
-*exclusive* is important, if not set SLURM will only allow the 32 cores
+*exclusive* is important, if not set Slurm will only allow the 32 cores
 allocated to be used (this will place all 4 threads onto one core). In order to
 have free access to all cores the *exclusive* need to be set. 
 

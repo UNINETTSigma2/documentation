@@ -89,7 +89,7 @@ VASP is known to be potentially memory demanding. Quite often, you might experie
 
 For relevant core-count, node-count and amounts of memory, see [About Fram](https://documentation.sigma2.no/hpc_machines/fram.html) and [About Saga](https://documentation.sigma2.no/hpc_machines/saga.html). There are two ways of increasing the memory pr. cpu over the standard node configuration:
 
-- Increase the SLURM setting `mem-per-cpu`
+- Increase the Slurm setting `mem-per-cpu`
 - Utilize the nodes with more memory per cpu.
 
 Remember you are accounted for the CPUs that would be reserved due to your demand for increased memory.

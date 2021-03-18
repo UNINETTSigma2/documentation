@@ -26,7 +26,7 @@ Please do not reuse scripts inherited from others without studying the performan
 
 We do advice people to use up to 256 cores (`--tasks`). We have observed acceptable scaling of the current Gaussian install beyond this count of cores/nodes for the jobs that do scale outside of one node (i.e. the binaries in the `$gXXroot/linda-exe` folder). But, Linda networking overhead seems to hit hard around this amount of cores, causing us to be somewhat reluctant to advice going beyond this until further notice.
 
-Gaussian takes care of memory allocation internally. This means that if the submitted job needs more memory per core than what is in average available on the node, it will automatically scale down the number of cores to mirror the need. This also means that you always should ask for full nodes when submitting Gaussian jobs! This is taken care of by the `--exclusive`in flag SLURM, and also commented in the job script example.
+Gaussian takes care of memory allocation internally. This means that if the submitted job needs more memory per core than what is in average available on the node, it will automatically scale down the number of cores to mirror the need. This also means that you always should ask for full nodes when submitting Gaussian jobs! This is taken care of by the `--exclusive`in flag Slurm, and also commented in the job script example.
 
 **The `%mem` allocation of memory in the Gaussian input file means two things:**
 

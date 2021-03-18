@@ -2,7 +2,7 @@
 ################### Gaussian Job Batch Script Example ###################
 # Section for defining queue-system variables:
 #-------------------------------------
-# SLURM-section
+# Slurm-section
 #SBATCH --account=nnXXXXk
 #SBATCH --nodes=4 --ntasks-per-node=32
 #SBATCH --time=1-20:30:00
