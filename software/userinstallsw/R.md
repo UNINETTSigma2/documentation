@@ -119,7 +119,7 @@ set -o errexit # Make bash exit on any error
 set -o nounset # Treat unset variables as errors
 
 module restore
-module load R-bundle-Bioconductor/3.12-foss-2020b-R-4.0.3
+module load R/4.0.0-foss-2020a
 
 Rscript test.rscript > output.Rout 2> error.Rout
 
