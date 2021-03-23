@@ -175,7 +175,7 @@ supported, if you require any of the following you will have to use `ssh`
 `fram.sigma2.no` and `login.fram.sigma2.no` are round-robin DNS
 entries, every time you use this name the round-robin configuration
 will send you to one of the following two login nodes:
-`login1.fram.sigma2.no` and `login2.fram.sigma2.no`
+`login-1.fram.sigma2.no` and `login-2.fram.sigma2.no`
 
 When you use `sshfs`, to make sure your authentication is valid, you should
 always specify one of the real login nodes above. You should not use
