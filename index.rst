@@ -30,6 +30,9 @@ Toolkit <https://www.sigma2.no/nird-toolkit>`__ platform for pre- and
 post-processing analysis, data intensive processing, visualization,
 artificial intelligence, and machine learning.
 
+Researchers also have access to `LUMI <hpc_machines/lumi.html>`__ through the
+LUMI consortium.
+
 
 First time on a supercomputer?
 ------------------------------
@@ -154,6 +157,7 @@ Index of keywords
    hpc_machines/betzy.md
    hpc_machines/fram.md
    hpc_machines/saga.md
+   hpc_machines/lumi.md
    hpc_machines/migration2metacenter.md
    jobs/overview.rst
    code_development/overview.rst
