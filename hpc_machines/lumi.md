@@ -24,7 +24,8 @@ LUMI is the first of a new class of pre-exascale supercomputers set up by [a
 consortium of countries in
 Europe](https://www.lumi-supercomputer.eu/lumi-consortium/). All partner
 countries will get access to an equal share of the resources, currently
-estimated to be `2%` for Norway.
+estimated to be `2%` for Norway. In addition, project can apply for resources
+through EuroHPC JU which control the other `50%` of LUMI capacity.
 
 LUMI is aimed at AI and HPC workloads that can take advantage of GPU
 accelerators.
@@ -48,7 +49,8 @@ interactions with the accelerators is through
 [`ROCm`](https://rocmdocs.amd.com/en/latest/), `OpenMP` and
 [`HIP`](https://rocmdocs.amd.com/en/latest/Programming_Guides/Programming-Guides.html).
 CUDA is *not* supported on LUMI and existing users should consider porting their
-application to `HIP`.
+application to `HIP` through the tools offered. Starting early with the porting
+effort is very important and will be supported by the EuroHPC CC team.
 
 The Metacenter is currently soliciting pilot users for LUMI-G participation.
 Interested users should contact
@@ -64,9 +66,9 @@ continue to aid in porting applications to this architecture.
 
 ### Porting to accelerators
 Since LUMI-G is based on AMD GPU Accelerators, not all applications will be able
-to instantly take advantage of the additional compute. AI researchers using one
-of the larger frameworks, such as `TensorFlow` and `pyTorch`, will be able to
-use LUMI-G directly.
+to instantly take advantage of the additional compute power. AI researchers
+using one of the larger frameworks, such as `TensorFlow` and `pyTorch`, will be
+able to use LUMI-G directly.
 
 The Metacenter is still building documentation for taking advantage of
 accelerator resources. Researchers that want to begin the transition should
