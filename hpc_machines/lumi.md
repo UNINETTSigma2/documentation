@@ -1,8 +1,4 @@
 # LUMI
-```{note}
-LUMI is not yet operational, but we are soliciting pilot projects for both
-LUMI-G and LUMI-C.
-```
 
 > The European High-Performance Computing Joint Undertaking (EuroHPC JU) is
 > pooling European resources to develop top-of-the-range exascale supercomputers
@@ -16,10 +12,11 @@ LUMI-G and LUMI-C.
 > for artificial intelligence.
 
 ```{note}
-LUMI is an external system which the Metacenter does not support directly. The
-Metacenter supports LUMI indirectly by helping researchers get access to the
-system and port their application to the LUMI architecture. For day-to-day
-support please contact LUMI support.
+LUMI will be installed in Kajaani, Finland. Basic operations are done by the
+vendor and CSC. Researchers will be supported by different teams: the Norwegian
+EuroHPC competence centre for porting and tuning applications on the LUMI
+hardware and programming environment, Sigma2 for handling allocation requests,
+and The LUMI User Support Team (LUST) for day-to-day issues.
 ```
 
 ## Overview
@@ -82,5 +79,3 @@ libraries](https://rocmdocs.amd.com/en/latest/ROCm_Libraries/ROCm_Libraries.html
 LUMI-C is the compute partition of LUMI, dealing with CPU based HPC
 applications. Users interested in this partition should also consider the other
 clusters already in operation in Norway.
-
-For pilot testing contact [support@metacenter.no](mailto:support@metacenter.no).
