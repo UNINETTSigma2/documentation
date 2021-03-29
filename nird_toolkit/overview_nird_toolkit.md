@@ -24,5 +24,9 @@ To install your first package, go to the [Installing a package](package-install.
 
 ## Getting Access
 
-Please refer to the information at UNINETT Sigma2 about [NIRD Toolkit](https://www.sigma2.no/nird-toolkit) for more details.
+If you already have access to Sigma2 resources and a project allocation, you can use the NIRD Toolkit. Please see https://documentation.sigma2.no/nird_toolkit/getting_started_guide.html to get started.
+
+If your research team has access to Sigma2 resources, but you do not have a user-account, please visit: https://www.sigma2.no/how-apply-user-account
+
+If you do not yet have access to Sigma2 resources, please visit these pages in order to apply for access: https://www.sigma2.no/apply-e-infrastructure-resources.
 
