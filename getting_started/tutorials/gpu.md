@@ -2,19 +2,20 @@
 A GPU, or **G**raphics **P**rocessing **U**nit, is a computational unit, which
 as the name suggest, is optimized to work on graphics tasks. Nearly every
 computer device that one interacts with contains a GPU of some sort, responsible
-for transforming the information we want to display into actual colors on our
+for transforming the information we want to display into actual pixels on our
 screens.
 
 One question that might immediately present itself is, **if GPUs are optimized
-for graphics - why are they interesting in the context of computational resources?** The
-answer to that is of course complicated, but the short explanation is that quite
-many computational tasks have a lot in common with graphical
-computations. The reason for this is that GPUs are optimized for working with
-pixels on the screen, and a lot of them. Since all of these operations are
-almost identical mainly working on floating point values, they can be run in
-parallel on dedicated hardware (i.e. the GPU) that is tailored and optimized for this particular task. This already sounds quite a bit
-like working with a discrete grid in e.g. atmospheric simulation, which points
-to the reason why GPUs can be interesting in a scientific context.
+for graphics - why are they interesting in the context of computational
+resources?** The answer to that is of course complicated, but the short
+explanation is that many computational tasks have a lot in common with
+graphical computations. The reason for this is that GPUs are optimized for
+working with pixels on the screen, and a lot of them. Since all of these
+operations are almost identical, mainly working on floating point values, they
+can be run in parallel on dedicated hardware (i.e. the GPU) that is tailored and
+optimized for this particular task. This already sounds quite a bit like working
+with a discrete grid in e.g. atmospheric simulation, which points to the reason
+why GPUs can be interesting in a computational context.
 
 Since GPUs are optimized for working on grids of data and how to transform this
 data, they are quite well suited for matrix calculations. For some indication of
@@ -43,8 +44,8 @@ To select the correct partition use the `--partition=accel` flag with either
 [Slurm script](https://documentation.sigma2.no/jobs/job_scripts.html). This flag
 will ensure that your job is only run on machines in the `accel` partition which
 have attached GPUs. However, to be able to actually interact with one or more
-GPUs we will have to also add `--gres=gpu:N` which tells Slurm that we would
-also like to use `N` GPUs (`N` can be a number between 1 and 4 on Saga).
+GPUs we will have to also add `--gres=gpu:N` which tells Slurm/`srun` that we
+would also like to use `N` GPUs (`N` can be a number between 1 and 4 on Saga).
 
 ### Step by step
 To get started we first have to [`SSH` into
@@ -93,7 +94,8 @@ Tue Mar 23 14:29:33 2021
 In the above Slurm specification we combined `--qos=devel` with GPUs and
 interactive operations so that we can experiment with commands interactively.
 This can be a good way to perform short tests to ensure that libraries correctly
-pick up GPUs when developing your experiments.
+pick up GPUs when developing your experiments. [Read more about `--qos=devel`
+here](https://documentation.sigma2.no/jobs/interactive_jobs.html).
 ```
 
 #### Slurm script testing
@@ -105,26 +107,15 @@ a Slurm script (which can also make it a bit easier since we don't have to sit
 and wait for the interactive session to start).
 
 We will use the following simple calculation in Python and `Tensorflow` to test
-the GPUs of Saga (save the following in `gpu_into.py`).
+the GPUs of Saga:
 
-```python
-#!/usr/bin/env python 3
+```{eval-rst} 
+.. literalinclude:: gpu/gpu_intro.py
+  :language: python
+```
 
-import tensorflow as tf
-
-# Test if there are any GPUs available
-print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
-
-# Have Tensorflow output where computations are run
-tf.debugging.set_log_device_placement(True)
-
-# Create some tensors
-a = tf.constant([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])
-b = tf.constant([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]])
-c = tf.matmul(a, b)
-
-# Print result
-print(c)
+```{eval-rst} 
+:download:`gpu_intro.py <./gpu/gpu_intro.py>`
 ```
 
 To run this we will first have to create a Slurm script in which we will request
@@ -133,22 +124,12 @@ script](https://documentation.sigma2.no/jobs/job_scripts.html#job-script-basics)
 Use the following to create `submit_gpu.sh` (remember to substitute your project
 number under `--account`):
 
-```bash
-#!/bin/bash
-#SBATCH --job-name=TestGPUOnSaga
-#SBATCH --account=nn<XXXX>k
-#SBATCH --time=05:00
-#SBATCH --mem-per-cpu=512M
-
-## Set up job environment:
-set -o errexit  # Exit the script on any error
-set -o nounset  # Treat any unset variables as an error
-
-module --quiet purge  # Reset the modules to the system default
-module load TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4
-module list
-
-python gpu_intro.py
+```{eval-rst} 
+.. literalinclude:: gpu/submit_cpu.sh
+  :language: bash
+```
+```{eval-rst} 
+:download:`submit_gpu.sh <./gpu/submit_cpu.sh>`
 ```
 
 If we just run the above Slurm script with `sbatch submit_gpu.sh` the output
@@ -172,7 +153,10 @@ this we will change the Slurm script to include the `--partition=accel` and
 ```{eval-rst} 
 .. literalinclude:: gpu/submit_gpu.sh
   :language: bash
-  :emphasize-lines: 6,7
+  :emphasize-lines: 7,8
+```
+```{eval-rst} 
+:download:`submit_gpu.sh <./gpu/submit_gpu.sh>`
 ```
 
 We should now see the following output:
@@ -197,7 +181,10 @@ while we use the GPU. We will change the `submit_gpu.sh` Slurm script above to
 ```{eval-rst} 
 .. literalinclude:: gpu/submit_monitor.sh
   :language: bash
-  :emphasize-lines: 18-20,24
+  :emphasize-lines: 19-21,25
+```
+```{eval-rst} 
+:download:`submit_monitor.sh <./gpu/submit_monitor.sh>`
 ```
 
 ```{note}
@@ -211,7 +198,7 @@ Run this script with `sbatch submit_monitor.sh` to test if the output
 to ensure that we are actually using the GPU as intended. Pay specific attention
 to `utilization.gpu` which shows the percentage of how much processing the GPU
 is doing. It is not expected that this will always be `100%` as we will need to
-transfer data back and forth, but the average should be quite high.
+transfer data, but the average should be quite high.
 
 ## Next steps
 Transitioning your application to GPU can be a daunting challenge. We have

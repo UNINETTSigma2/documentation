@@ -3,6 +3,7 @@
 #SBATCH --account=nn<XXXX>k
 #SBATCH --time=05:00
 #SBATCH --mem-per-cpu=512M
+#SBATCH --qos=devel
 #SBATCH --partition=accel
 #SBATCH --gres=gpu:1
 
