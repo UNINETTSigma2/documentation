@@ -17,27 +17,9 @@ total 1048576
 -rw-rw-r-- 1 username username_g 1073741824 Nov 13 13:11 myfile.txt
 
 [username@login-3.SAGA ~/example]$ mv myfile.txt /cluster/work/users/username
-
 ```
 
-By checking our disk usage with `dusage` we can see that the file is still counted towards the `$HOME` quota:
-
-```
-[username@login-3.SAGA ~/example]$ dusage
-No options specified, assuming "-a". For help, use "-h" option.
-
-===============================================================================
-Block quota usage on: SAGA
-===============================================================================
-File system    User/Group          Usage          Soft Limit     Hard Limit     
--------------------------------------------------------------------------------
-username_g     $HOME               1.0 GiB        20.0 GiB       20.0 GiB       
-username       username (u)        1.0 GiB        0 Bytes        0 Bytes        
-username       username (g)        0 Bytes        0 Bytes        0 Bytes      
-dgi            dgi (g)             0 Bytes        0 Bytes        0 Bytes        
-===============================================================================
-```
-
+By checking our disk usage with `dusage` we can see that the file is still counted towards the `$HOME` quota.
 The reason for this is that the file is still owned by the `username_g` group, which is used for the `$HOME` quota.
 
 ```
@@ -56,20 +38,4 @@ total 1048576
 -rw-rw-r-- 1 username username 1073741824 Nov 13 13:11 myfile.txt
 ```
 
-The file is now owned by the correct group and we can verify that the disk quotas have been updated by running `dusage` again:
-
-```
-[username@login-3.SAGA /cluster/work/users/username]$ dusage
-No options specified, assuming "-a". For help, use "-h" option.
-
-===============================================================================
-Block quota usage on: SAGA
-===============================================================================
-File system    User/Group          Usage          Soft Limit     Hard Limit     
--------------------------------------------------------------------------------
-username_g     $HOME               0 Bytes        20.0 GiB       20.0 GiB       
-username       username (u)        1.0 GiB        0 Bytes        0 Bytes        
-username       username (g)        1.0 GiB        0 Bytes        0 Bytes      
-dgi            dgi (g)             0 Bytes        0 Bytes        0 Bytes         
-===============================================================================
-```
+The file is now owned by the correct group and we can verify that the disk quotas have been updated by running `dusage` again.

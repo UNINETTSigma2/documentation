@@ -52,18 +52,17 @@ You can see the **disk usage and disk quotas** of your available areas with:
 ```
 $ dusage
 ```
-But please note that this command does not show you the number of files and
+
+But please note that on Fram and Betzy, this command does not show you the number of files and
 there may be a quota on the number of files.
 
-To see the usage **including the number of files**, check:
+To see the usage **including the number of files** on Fram and Betzy, check:
 ```
 $ dusage -i
 ```
 
-On **Saga** you can see a **project's disk usage**, e.g., for nn1234k, with:
-```
-$ beegfs-ctl --getquota --gid nn1234k
-```
+On Saga we have modernized `dusage` to show both disk quotas and number of files
+but we still need to port these changes to Fram and Betzy.
 
 ```{warning}
 **Frequently asked questions**
@@ -269,7 +268,7 @@ group/less compute hrs).
 
 Daily backup is taken to NIRD ([documentation about backup](backup.md)).
 
-To see disk usage and quota information for your project, run `dusage -p <project_name>`.
+To see disk usage and quota information for your project on NIRD, run `dusage -p <project_name>`.
 
 ```{note}
 **Pros of running jobs in the project area**
