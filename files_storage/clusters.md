@@ -196,6 +196,7 @@ similar in the job script.
 ```
 
 
+(user-work-area)=
 ## User work area
 
 Each user has an area `/cluster/work/users/$USER`.  The location is
