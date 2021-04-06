@@ -6,20 +6,20 @@ for transforming the information we want to display into actual colors on our
 screens.
 
 One question that might immediately present itself is, **if GPUs are optimized
-for graphics - why are they interesting for me doing scientific research?** The
+for graphics - why are they interesting in the context of computational resources?** The
 answer to that is of course complicated, but the short explanation is that quite
-a bit of scientific computation have a lot in common with graphical
+many computational tasks have a lot in common with graphical
 computations. The reason for this is that GPUs are optimized for working with
 pixels on the screen, and a lot of them. Since all of these operations are
 almost identical mainly working on floating point values, they can be run in
-parallel on simplified hardware (i.e. the GPU). This already sounds quite a bit
+parallel on dedicated hardware (i.e. the GPU) that is tailored and optimized for this particular task. This already sounds quite a bit
 like working with a discrete grid in e.g. atmospheric simulation, which points
 to the reason why GPUs can be interesting in a scientific context.
 
 Since GPUs are optimized for working on grids of data and how to transform this
 data, they are quite well suited for matrix calculations. For some indication of
-this we can compare the theoretical performance of one GPU on Saga with one CPU
-on Betzy.
+this we can compare the theoretical performance of one GPU with one CPU
+.
 
 | | AMD Epyc 7742 (Betzy) | Nvidia P100 (Saga) | Nvidia A100 |
 |-|-----------------------|--------------------|-------------|
@@ -32,8 +32,8 @@ Based on this it is no wonder why tensor libraries such as
 [report **speedup**](https://blog.tensorflow.org/2018/04/speed-up-tensorflow-inference-on-gpus-tensorRT.html)
 on accelerators between **`23x` and `190x`** compared to using only a CPU.
 
-## Getting started on Saga
-Of the resources provided, only
+## Getting started
+Of the resources provided by us, only
 [Saga](https://documentation.sigma2.no/jobs/job_types/saga_job_types.html#job-type-saga-accel)
 currently has GPUs available. To access these one has to select the correct
 partition as well as request one or more GPUs to utilize.
