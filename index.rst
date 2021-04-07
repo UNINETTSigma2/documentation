@@ -137,6 +137,7 @@ Index of keywords
    getting_started/getting_started.md
    getting_started/editing_files.md
    getting_started/create_ssh_keys.md
+   getting_started/tutorials.md
 
 
 .. toctree::
