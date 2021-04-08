@@ -1,8 +1,6 @@
-
-
 # Common job failures
 
-Although users run very different types of jobes on the clusters, two errors are common and here we
+Although users run very different types of jobs on the clusters, two errors are common and here we
 describe how to detect these as well as steps to fix these common job failures.
 
 
