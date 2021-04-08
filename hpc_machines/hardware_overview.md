@@ -12,9 +12,9 @@ The **Memory** column specifies physical node memory in Gigabytes (GiB), with mi
 
 |Resource |	Job types |	Memory (min/max) |	Cores/Node |
 | :------------- | :------------- | :------------- | :------------- |
-| Betzy |	P&ensp;&ensp;&ensp;L |	256/256 |	128 |
-| Fram |	P&ensp;&ensp;&ensp;L |	64/512 |	32 |
-| Saga |    A   P   S   L | 186/3066 |  24/64 |
+| ([Betzy](/hpc_machines/betzy.md)) |	P L |	256/256 |	128 |
+| ([Fram](/hpc_machines/fram.md)) |	P L |	64/512 |	32 |
+| ([Saga](/hpc_machines/saga.md)) |    A   P   S   L | 186/3066 |  24/64 |
 
 
 
@@ -22,14 +22,14 @@ The resource allocation committee (RFK) manages a part of the total cores on the
 
 The following considerations should be kept in mind when selecting a system to execute applications:
 
-* Saga is a throughput system. It can be used for sequential (single-threaded) as well as parallel applications.
+* ([Saga](/hpc_machines/saga.md)) is a throughput system. It can be used for sequential (single-threaded) as well as parallel applications.
 
-* Betzy and Fram are large scale parallel (distributed-memory) application systems.
+* ([Betzy](/hpc_machines/betzy.md)) and ([Fram](/hpc_machines/fram.md)) are large scale parallel (distributed-memory) application systems.
 Applications that use less than 128 cores (4 nodes) on Fram and less than 1024 cores (8 nodes) on Betzy for production are discouraged.
 Requests for access to execute applications that use fewer cores are often rejected or moved to other systems.
 
-* Saga and Fram run CentOS Linux distributions.
+* ([Saga](/hpc_machines/saga.md)) and ([Fram](/hpc_machines/fram.md)) run CentOS Linux distributions.
 
-* Betzy runs Bull Super Computer Suite 5 (SCS5) based on RHEL 7™.
+* ([Betzy](/hpc_machines/betzy.md)) runs Bull Super Computer Suite 5 (SCS5) based on RHEL 7™.
 
 * In case you need to install a specific software package, please make sure that you know for which environments the software is supported, before choosing a system.
