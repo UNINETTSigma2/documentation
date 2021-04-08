@@ -36,7 +36,7 @@ The single most common question requested is a set of suggested
 compiler flags. The Intel development team have already selected a
 very good set of flags and just a simple *-O3* flag will provide quite
 good choice. The compiler comes with a set of default optimisation flags already
-set. Just invoking the compiler without any such flags will generate reasonbly good code. 
+set. Just invoking the compiler without any such flags will generate reasonably good code. 
 
 The flag for OpenMP is very often needed : *-qopenmp* and must be used in both compiling a linking.
 
