@@ -15,6 +15,6 @@ For a general explanation on how to make an application available for use, the m
     * [NWChem](application_guides/nwchem.md)
     * [OpenFOAM](application_guides/openfoam.md)
     * [PROJ](application_guides/proj.md)
-    * [R](application_guides/r.md)
+    * [R](userinstallsw/R.html)
     * [VASP](application_guides/vasp.md)
     * [WRF](application_guides/wrf.md)
