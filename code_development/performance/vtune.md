@@ -152,7 +152,7 @@ reveals the heaviest parts of the code.
 
 This confirms the previous finding (and adds `pow` to the list of
 computationally heavy functions). From the above reports we can
-roughly scetch the optimization directions:
+roughly sketch the optimization directions:
 
 * Re-write the code such that the vectorized math library is used for
   `exp, log, pow` calls
