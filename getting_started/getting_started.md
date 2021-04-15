@@ -1,4 +1,4 @@
-# Getting Started
+# Getting started
 
 This page lists information about how to get started with running applications
 on the HPC machines.

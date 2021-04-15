@@ -1,35 +1,89 @@
+(running-containers)=
+# Running containers
 
+```{note}
+Currently, [Singularity](https://sylabs.io/singularity/) is the only supported container
+solution on our HPC systems (Saga, Fram, Betzy). However, since Singularity can build
+containers from Docker images, it is also possible to run [Docker](https://www.docker.com/)
+containers through Singularity.
+```
 
-# Running Singularity and Docker containers
-
-It is now possible to run Singularity containers on Saga, Fram, and Betzy.
-
-This gives the users enormous flexibility to bring a full software stack
-already set up to the cluster. This can make software installations and
+Containers give the users the flexibility to bring a full software stack to the
+cluster which has already been set up, which can make software installations and
 dependencies more reproducible and more portable across clusters.
 
-And since Singularity can build containers from Docker images, it is also
-possible to run Docker images through Singularity and we will show you how.
+Singularity is already installed globally on all our systems, and should be
+immediately available on your command line (no `module load` necessary):
+```
+[me@login-1.SAGA ~]$ singularity --version
+singularity version 3.6.4-1.el7
+```
 
+The following examples will demonstrate how you can _run_ container images that has
+already been prepared by others. If you want to learn how to _build_ your own containers,
+see our code development {ref}`guides <dev-guides>`.
 
-## Simple example to get started
+## Fetching images from the web
 
-First we pull a "hello world" Singularity image from https://singularity-hub.org/:
+Singularity images can be fetched from the web using the `singularity pull` command,
+which will download a SIF (Singularity Image Format) file to your current directory.
+Notice that with Singularity, an image is just a simple binary file, and there's nothing
+special about the directory in which you run the `singularity pull` command. This means
+that you can move your image around as you please, and even `scp` it to a different
+machine and execute it there (as long as you have Singularity installed, of course).
+
+There are a number of different online repositories for hosting images, some of the
+more common ones are listed below. Notice how you can pull Docker images
+directly from Docker-Hub using Singularity.
+
+Fetching from [Singularity-Hub](https://singularity-hub.org/):
 ```
 $ singularity pull --name hello-world.sif shub://vsoch/hello-world
 ```
-We do the `singularity pull` step on the login node. We cannot do this step inside a job
-script because compute nodes cannot access the web.
+Fetching from the [Sylabs](https://cloud.sylabs.io/library) library:
+```
+$ singularity pull --name alpine.sif library://alpine:latest
+```
+Fetching from [Docker-Hub](https://hub.docker.com/):
+```
+$ singularity pull --name alpine.sif docker://alpine:latest
+```
+Fetching from [Quay](https://quay.io/):
+```
+$ singularity pull --name openmpi-i8.sif docker://quay.io/bast/openmpi-i8:4.0.4-gcc-9.3.0
+```
 
-Once we have the `hello-world.sif` file, we can test it out with the following
-job script on Saga (adjust "myaccount"; on Fram/Betzy you will need to remove
+```{note}
+The `singularity pull` step must be done on the login node. We cannot do this step
+inside a job script because compute nodes cannot access the web.
+```
+
+## Hello world example
+
+This example demonstrates:
+1. how to download an image from an online repository, e.g. Singularity-Hub
+2. how to run a container in a job script
+3. how to execute a command from inside a container: `singularity exec <image-name>.sif <command>`
+4. that the container runs it's own operating system (using the same kernel as the host)
+5. that the current directory is mounted in the container by default, which means that it
+will have access to input files etc. located in this directory (you will have read/write
+permissions according to your own user)
+
+First we pull a "hello world" Singularity image from Singularity-Hub:
+```
+$ singularity pull --name hello-world.sif shub://vsoch/hello-world
+```
+
+This should be done on the login node, as noted above.
+Once we have the SIF file, we can test it out with the following
+job script on Saga (adjust `<myaccount>`; on Fram/Betzy you will need to remove
 the line containing `#SBATCH --mem-per-cpu=1000M` but the rest should work as
 is):
 
 ```bash
 #!/bin/bash
 
-#SBATCH --account=myaccount
+#SBATCH --account=<myaccount>
 #SBATCH --job-name=singularity-test
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
@@ -41,23 +95,23 @@ echo "check that we can read the current directory from the container:"
 singularity exec hello-world.sif ls
 
 echo
-echo "what is the operationg system on the host?"
+echo "what is the operating system on the host?"
 cat /etc/os-release
 
 echo
-echo "what is the operationg system on the container?"
+echo "what is the operating system in the container?"
 singularity exec hello-world.sif cat /etc/os-release
 ```
 
-This produces the following output. Notice how on the container we are on a
-Ubuntu operating system:
+This produces the following output. Notice how in the container we are on a
+Ubuntu operating system while the host is CentOS:
 ```
 check that we can read the current directory from the container:
 hello-world.sif
 run.sh
 slurm-1119935.out
 
-what is the operationg system on the host?
+what is the operating system on the host?
 NAME="CentOS Linux"
 VERSION="7 (Core)"
 ID="centos"
@@ -74,7 +128,7 @@ CENTOS_MANTISBT_PROJECT_VERSION="7"
 REDHAT_SUPPORT_PRODUCT="centos"
 REDHAT_SUPPORT_PRODUCT_VERSION="7"
 
-what is the operationg system on the container?
+what is the operating system in the container?
 NAME="Ubuntu"
 VERSION="14.04.6 LTS, Trusty Tahr"
 ID=ubuntu
@@ -86,135 +140,3 @@ SUPPORT_URL="http://help.ubuntu.com/"
 BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
 ```
 
-
-## Fetching images from the web
-
-As mentioned above, we fetch images on the login node. We cannot do this step
-inside a job script because compute nodes cannot access the web.
-
-You can fetch an image from https://singularity-hub.org/:
-```
-$ singularity pull --name hello-world.sif shub://vsoch/hello-world
-```
-Or from https://cloud.sylabs.io/library:
-```
-$ singularity pull --name alpine.sif library://alpine:latest
-```
-Or from https://hub.docker.com/:
-```
-$ singularity pull --name alpine.sif docker://alpine:latest
-```
-Or https://quay.io/:
-```
-$ singularity pull --name openmpi-i8.sif docker://quay.io/bast/openmpi-i8:4.0.4-gcc-9.3.0
-```
-
-
-## MPI example
-
-Here we will try a bit more advanced example. First we will create a container
-from a definition file, then we will try to run the container on multiple
-nodes.
-
-
-### Creating a Singularity container from a definition file
-
-**We do this step on our own laptop/computer, not on the cluster**.
-This is because Singularity needs root rights to build the container.
-We will later
-upload the generated container file to the cluster.
-
-You need to have Singularity installed on your laptop for this to work
-(follow e.g. https://sylabs.io/guides/3.3/user-guide/installation.html).
-
-We start with the following definitions file (`example.def`; this is a simplified
-version based on the example in https://sylabs.io/guides/3.3/user-guide/mpi.html):
-```
-Bootstrap: docker
-From: ubuntu:latest
-
-%environment
-    export OMPI_DIR=/opt/ompi
-
-%post
-    apt-get update && apt-get install -y wget git bash gcc gfortran g++ make file
-    export OMPI_DIR=/opt/ompi
-    export OMPI_VERSION=4.0.1
-    export OMPI_URL="https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-$OMPI_VERSION.tar.bz2"
-    mkdir -p /tmp/ompi
-    mkdir -p /opt
-    cd /tmp/ompi && wget -O openmpi-$OMPI_VERSION.tar.bz2 $OMPI_URL && tar -xjf openmpi-$OMPI_VERSION.tar.bz2
-    cd /tmp/ompi/openmpi-$OMPI_VERSION && ./configure --prefix=$OMPI_DIR && make install
-```
-
-From this we build a container (we are still on the laptop, not on the cluster):
-```
-$ sudo singularity build example.sif example.def
-```
-
-This takes a couple of minutes:
-```
-[... lots of output ...]
-
-INFO:    Adding environment to container
-INFO:    Creating SIF file...
-INFO:    Build complete: example.sif
-```
-
-Once `example.sif` is generated, we can `scp`
-the container file to the cluster.
-
-
-### Running the container on multiple nodes
-
-We assume that we have the container file `example.sif` from the step before on
-the cluster.  We will also fetch `mpi_hello_world.c` from
-https://mpitutorial.com/tutorials/mpi-hello-world/.
-
-We are ready to test it out with the following job script on Saga (adjust
-"myaccount"; on Fram/Betzy you will need to remove the line containing `#SBATCH
---mem-per-cpu=1000M` but the rest should work as is):
-```bash
-#!/bin/bash
-
-#SBATCH --account=myaccount
-#SBATCH --job-name=singularity-test
-#SBATCH --nodes=4
-#SBATCH --ntasks-per-node=4
-#SBATCH --mem-per-cpu=1000M
-#SBATCH --time=00:03:00
-
-singularity exec example.sif /opt/ompi/bin/mpirun --version
-singularity exec example.sif /opt/ompi/bin/mpicc mpi_hello_world.c
-
-module purge
-module load foss/2020a
-
-mpirun --bind-to core -n ${SLURM_NTASKS} singularity exec example.sif ./a.out
-```
-
-The interesting part of the output is:
-```
-mpirun (Open MPI) 4.0.1
-
-[...]
-
-Hello world from processor c2-4, rank 2 out of 16 processors
-Hello world from processor c2-4, rank 3 out of 16 processors
-Hello world from processor c2-4, rank 0 out of 16 processors
-Hello world from processor c2-4, rank 1 out of 16 processors
-Hello world from processor c2-21, rank 14 out of 16 processors
-Hello world from processor c2-21, rank 13 out of 16 processors
-Hello world from processor c2-21, rank 12 out of 16 processors
-Hello world from processor c2-21, rank 15 out of 16 processors
-Hello world from processor c2-18, rank 8 out of 16 processors
-Hello world from processor c2-18, rank 11 out of 16 processors
-Hello world from processor c2-18, rank 9 out of 16 processors
-Hello world from processor c2-18, rank 10 out of 16 processors
-Hello world from processor c2-11, rank 6 out of 16 processors
-Hello world from processor c2-11, rank 4 out of 16 processors
-Hello world from processor c2-11, rank 7 out of 16 processors
-Hello world from processor c2-11, rank 5 out of 16 processors
-```
-
-Looks like it's working!
