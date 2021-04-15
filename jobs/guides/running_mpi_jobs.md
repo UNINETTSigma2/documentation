@@ -36,12 +36,14 @@ code is compiled with support for.** So if `module list` give you a
 `OpenMPI/`-reading, you should focus on the OpenMPI part beneath, if
 given a `impi/`-reading focus on the Intel MPI part
 
+
 ## OpenMPI
 
 On systems with Mellanox InfiniBand, OpenMPI is the implementation
-recommended by Mellanox due to it's support for the [HPCX
+recommended by Mellanox due to its support for the [HPCX
 communication
 libraries](https://docs.mellanox.com/category/hpcx).
+
 
 ### `srun`
 
@@ -70,6 +72,7 @@ srun --mpi=pmix /path/to/MySoftWare_exec
 The startup time might be improved further using the OpenMPI MCA
 `pmix_base_async_modex` argument (see below). With `srun` this needs to be
 set using an environment variable.
+
 
 ### `mpirun`
 
@@ -138,6 +141,7 @@ this is your case, please refer to the documentation regarding
 [Interoperability between MPI and
 OpenMP](https://software.intel.com/en-us/mpi-developer-reference-windows-interoperability-with-openmp-api).
 
+
 ### `srun`
 
 With `srun`, Intel MPI applications can be started as follows:
@@ -150,6 +154,7 @@ We have observed that in the current setup some applications compiled
 against Intel MPI and executed with `srun` achieve inferior
 performance compared to the same code executed with `mpirun`. Until
 this is resolved, we suggest using `mpirun` to start applications.
+
 
 ## Final remarks
 
