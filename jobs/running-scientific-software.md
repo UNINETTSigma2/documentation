@@ -210,21 +210,6 @@ For more optimal performance process binding can be introduced, like for
 OpenMPI: `--bind-to core`
 
 
-#### Memory bandwidth sensitive applications
-
-Some applications are very sensitive to memory bandwidth
-and consequently will benefit from having fewer ranks per node than the number 
-of cores, like running only 64 ranks per node. 
-Using `#SBATCH --ntasks-per-node=64` and then lauch using something like:
-```
-mpirun --map-by slot:PE=2 --bind-to core ./a.out
-mpirun --map-by ppr:32:socket:pe=2 --bind-to core ./a.out
-```
-Tests have shown that more than 2x in performance is possible, but using twice 
-as many nodes. Twice the number of nodes will yield twice the aggregated 
-memory bandwith. Needless to say also twice as many core hours.  
-
-
 ### Running  MPI-OpenMP - Hybrid applications
 
 For large core count a pure MPI solution is often not optimal. Like HPL (the
@@ -319,20 +304,3 @@ per node the intra node communication is quite important.
 Depending on your application’s communication pattern, point-to-point or
 collectives the usage of Mellanox optimised offload collectives can have an
 impact.
-
-
-### Monitoring process/thread placement
-
-To monitor the placement or ranks the `htop` utility is useful, just log in to
-a node running your application and issue the `htop` command. By default  `htop`
-numbers the cores from 1 through 256. This can be confusing at times (it can be
-changed in htop by pressing F2 and navigate to display options and tick off
-count from zero).
-
-The 0-127 (assume you’ve ticked of the start to count from zero) are the first
-one of the two SMT on the  AMD processor. The number of cores from 128 to 255
-are the second SMT thread and share the same executional units as do the first
-128 cores.
-
-Using this view it’s easy to monitor how the ranks and threads are allocated
-and mapped on the compressor cores.

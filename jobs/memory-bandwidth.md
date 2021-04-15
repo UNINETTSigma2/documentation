@@ -77,7 +77,7 @@ node   0   1   2   3   4   5   6   7
 ```
 
 
-## Binding thread/ranks to cores
+## Binding thread/processes to cores
 
 The above picture is further complicated by the fact that within the individual
 NUMA nodes the memory access time is also not uniform. This can be verified by
@@ -157,3 +157,36 @@ second core. So a correct binding is either 0,2,4,...,126, or 1,3,5,...,127.
 The above assures that the application runs on both NUMA-nodes in the most
 efficient way. If instead you run the application on cores 0-63 only, then it
 will be running at 50% performance as only one NUMA node will be used.
+
+
+## Monitoring thread/process placement
+
+To monitor the placement of threads or processes/ranks the `htop` utility is
+useful, just log in to a node running your application and issue the `htop`
+command. By default  `htop` numbers the cores from 1 through 256. This can be
+confusing at times (it can be changed in htop by pressing F2 and navigate to
+display options and tick off count from zero).
+
+The 0-127 (counting starts from zero) are the first one of the two SMT on the
+AMD processor. The number of cores from 128 to 255 are the second SMT thread
+and share the same executional units as do the first 128 cores.
+
+Using this view it’s easy to monitor how the ranks and threads are allocated
+and mapped on the compressor cores.
+
+
+## Memory bandwidth sensitive MPI applications
+
+Some MPI applications are very sensitive to memory bandwidth
+and consequently will benefit from having fewer ranks per node than the number
+of cores, like running only 64 ranks per node.
+
+Using `#SBATCH --ntasks-per-node=64` and then launch using something like:
+```
+mpirun --map-by slot:PE=2 --bind-to core ./a.out
+mpirun --map-by ppr:32:socket:pe=2 --bind-to core ./a.out
+```
+
+Tests have shown that more than 2x in performance is possible, but using twice
+as many nodes. Twice the number of nodes will yield twice the aggregated
+memory bandwidth. Needless to say also twice as many core hours.
