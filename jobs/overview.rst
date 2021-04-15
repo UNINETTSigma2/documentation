@@ -13,6 +13,7 @@ Job types and job scripts
    common_job_failures.md
    performance.md
    mkl.md
+   memory-bandwidth.md
    interactive_jobs.md
    projects_accounting.md
    network-access.md
