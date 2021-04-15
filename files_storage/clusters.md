@@ -13,6 +13,7 @@ while others are for storing project data.
 - [Project area](#project-area)
 - [Shared project area](#shared-project-area)
 
+
 (clusters-overview)=
 
 ## Overview
@@ -76,6 +77,7 @@ but we still need to port these changes to Fram and Betzy.
   Please refer to the [example on changing file ownership](change_file_ownership.md).
 ```
 
+
 (clusters-homedirectory)=
 
 ## Home directory
@@ -106,6 +108,8 @@ automatically created for the job, and automatically deleted when the
 job finishes.  The location is stored in the environment variable
 `$SCRATCH` available in the job.  `$SCRATCH` is only accessible by the
 user running the job.
+
+On Saga there are two scratch areas (see also below).
 
 The area is meant as a temporary scratch area during job
 execution.
@@ -144,12 +148,15 @@ directory `$SLURM_SUBMIT_DIR` (where `sbatch` was run).
 A job on **Saga** can request a scratch area on local disk on the node
 it is running on.  This is done by specifying
 `--gres=localscratch:<size>`, where *<size>* is the size of the requested
-area, for instance `20G` for 20 GiB.  Most nodes on Saga have 300 GiB
+area, for instance `--gres=localscratch:20G` for 20 GiB.
+Most nodes on Saga have 300 GiB
 disk that can be handed out to local scratch areas; a few of the
 bigmem nodes have 7 TiB and the GPU nodes have 8 TiB.  If a job tries
 to use more space on the area than it requested, it will get a "disk
 quota exceeded" or "no space left on device" error (the exact message
 depends on the program doing the writing).
+Please do not ask for more than what you actually need, other users might share
+the local scratch space with you.
 
 Jobs that request this, get an area `/localscratch/$SLURM_JOB_ID`
 that is automatically created for the job, and automatically deleted
@@ -176,6 +183,7 @@ similar in the job script.
 **Pros of running jobs in the local disk job scratch area**
 
 - IO operations are faster than on the `/cluster` file system.
+- Great if you need to write/read a large number of files.
 - It reduces the load on the `/cluster` file system.
 - There is less risk of interference from other jobs because every job ID has
   its own scratch directory.
@@ -188,6 +196,7 @@ similar in the job script.
 
 - Since the area is removed automatically, it can be hard to debug
   jobs that fail.
+- Not suitable for files larger than 250-300 GB.
 - One must make sure to use `cp` commands or similar in the job
   script to copy files back.
 - If the main node of a job crashes (i.e., not the job script, but the

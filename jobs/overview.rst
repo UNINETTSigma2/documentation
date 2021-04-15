@@ -7,11 +7,13 @@ Job types and job scripts
    submitting.md
    choosing_job_types.md
    job_scripts.md
-   running-scientific-software.md
    monitoring.md
    choosing_memory_settings.md
    common_job_failures.md
    performance.md
+   mkl.md
+   memory-bandwidth.md
+   parallel-calculations.md
    interactive_jobs.md
    projects_accounting.md
    dos_and_donts.md
