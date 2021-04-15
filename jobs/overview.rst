@@ -14,6 +14,5 @@ Job types and job scripts
    performance.md
    interactive_jobs.md
    projects_accounting.md
-   network-access.md
    dos_and_donts.md
    guides.md
