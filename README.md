@@ -141,7 +141,7 @@ change them also there:
 
 ## How to cross-reference
 
-Create a label at the place you want to cross-refernce to:
+Create a label at the place you want to cross-reference to:
 ```
 (mylabel)=
 
