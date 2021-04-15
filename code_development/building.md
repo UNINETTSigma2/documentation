@@ -260,7 +260,7 @@ In addition the environment variable *MKL_ENABLE_INSTRUCTIONS* can also have a s
 Setting the variable to AVX2 is adviced. Just changing it to AVX have a significant negative impact. 
   
 For performance impact and more about running software with MKL please see
-{ref}`running-scientific-software`.
+{ref}`using-mkl-efficiently`.
 
 
 #### Documentation

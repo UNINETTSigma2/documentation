@@ -1,5 +1,3 @@
-(running-scientific-software)=
-
 # Running scientific software
 
 ## Introduction
@@ -175,75 +173,6 @@ Performance testing does not show any significant performance difference when
 launching jobs in a normal way. There are, however a lot of possible 
 options to mpirun both OpenMPI and Intel MPI. Both environment flags and 
 command line options. 
-
-
-
-## Library settings
-
-The Intel MLK library performs run time checks at startup to select the
-appropriate *INTEL* processor. When it cannot work ut the processor type a
-least common instruction set is set is selected yielding lower performance.  To
-instruct MKL to use a more suitable instruction set a debug variable can be
-set, e.g. `export  MKL_DEBUG_CPU_TYPE=5`.
-
-```{note}
-The MKL_DEBUG_CPU_TYPE flag does not work for Intel compiler distribution    
-2020 and and newer.                                                          
-```
-
-Users are adviced to check if there is any performance difference between 
-Intel 2019b and the 2020 versions. It's not adviced to mix the Compiler and
-MLK versions, e.g. building using 2020 and then link with MKL 2019. 
-
-
-#### Forcing MKL to use best performing routines
-MKL issue a run time test to check for genuine Intel processor. If
-this test fail it will select a generic x86-64 set of routines
-yielding inferior performance. This is well documentated in
-[Wikipedia](https://en.wikipedia.org/wiki/Math_Kernel_Library) and
-remedies in [Intel MKL on AMD Zen](https://danieldk.eu/Posts/2020-08-31-MKL-Zen.html).
-
-Research have discovered that MKL call a function called
-*mkl_serv_intel_cpu_true()* to check the current CPU. If a genuine
-Intel processor is found it simply return 1. The solution is simply to
-override this function by writing a dummy functions which always
-return *1* and place this first in the search path.  The function is
-simply: 
-```c
-int mkl_serv_intel_cpu_true() { 
-	return 1; 
-}
-```
-Save this into a file called *fakeintel.c* and compile it into a shared library 
-using the following command: 
-`gcc -shared -fPIC -o libfakeintel.so fakeintel.c`
-
-To put the new shared library first in the search path we can use a preload environment variable:
-`export LD_PRELOAD=<path to lib>/libfakeintel.so`
-A suggestion is to place the new shared library in `$HOME/lib64` and using 
-`export LD_PRELOAD=$HOME/lib64/libfakeintel.so` to insert the fake test function.
-
-In addition the envionment variable *MKL_ENABLE_INSTRUCTIONS* can also have a significant effect. 
-Setting the variable to AVX2 is adviced. Just changing it to AVX have a significant negative impact.
-Setting it to AVX512 and launching it on AMD it does not fail, MKL probably do test if feature requesed 
-is present. 
-
-The following table show the recorded performance obtained with the HPL (the top500) test using a small problem size and 
-a single Betzy node:
-
-| Settings                                                   |   Performance     | 
-|-----------------------------------------------------------:|:-----------------:|
-| None                                                       |  1.2858 Tflops/s  |
-| LD_PRELOAD=./libfakeintel.so                              |  2.7865 Tflops/s  |
-| LD_PRELOAD=./libfakeintel.so MKL_ENABLE_INSTRUCTIONS=AVX  |  2.0902 Tflops/s  |
-| LD_PRELOAD=./libfakeintel.so MKL_ENABLE_INSTRUCTIONS=AVX2 |  2.7946 Tflops/s  |
-
-
-The reccomendation is to copy `libfakeintel.so to` to `$HOME/lib64` and to set the preload evironment variable accordingly :
-`export LD_PRELOAD=$HOME/lib64/libfakeintel.so` or `export LD_PRELOAD=<path to lib>/libfakeintel.so` and to set 
-`export MKL_ENABLE_INSTRUCTIONS=AVX2` 
-
-
 
 
 ## Memory architecture

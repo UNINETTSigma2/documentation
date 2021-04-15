@@ -7,6 +7,7 @@ Job types and job scripts
    submitting.md
    choosing_job_types.md
    job_scripts.md
+   mkl.md
    running-scientific-software.md
    monitoring.md
    choosing_memory_settings.md
