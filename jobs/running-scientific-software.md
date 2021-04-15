@@ -110,35 +110,12 @@ performance, see the note on environment flag for MKL later.
 
 ### Introduction
 
-The resource manager used by the Sigma2 systems is Slurm.
-
 Requesting the correct set of resources in the Slurm job script is vital for
 optimum performance. The job may be pure MPI or a hybrid using both MPI and
 OpenMPI.
 
 In addition we have seen that in some cases memory bandwidth is the performance
 limiting factor and only 64 processes per compute node is requested.
-
-All of this is set in the Slurm job script. The job script can be written in
-any language that uses `#` as the comment sign. Bash is most common, but some
-applications like NorESM use Python. Perl, Julia and R are other options. Here
-is a simple Python example:
-```python
-#!/usr/bin/env python
-
-#SBATCH --job-name=slurm
-#SBATCH --account=nn9999k
-#SBATCH --nodes=128
-#SBATCH --ntasks-per-node=1
-#SBATCH --time=0:0:5
-
-import os
-
-os.system("srun hostname")
-```
-
-Using Python, Perl, Julia or R opens up for far more programming within the run
-script than what’s possible using bash.
 
 Some examples for Betzy are given below, for details about Slurm see the
 [documentation about Slurm](job_scripts/slurm_parameter.md).
