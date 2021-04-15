@@ -144,29 +144,6 @@ Some examples for Betzy are given below, for details about Slurm see the
 [documentation about Slurm](job_scripts/slurm_parameter.md).
 
 
-### Storage for scratch during a run on Saga
-
-```{note}
-Scratch storage is only available on Saga.
-See also [the overview of storage areas](/files_storage/clusters.md).
-```
-
-Scratch storage for read and write files or any short lived files or files that are read and written to during a run should reside on a scratch pad area, [storage on clusters](/files_storage/clusters.md).
-
-On Saga there are two scratch areas for such files (Fram and Betzy only has shared scratch), one shared for all processes and nodes which is residing on the parallel file system and another which is local on each compute node. The latter is smaller and only accessible to processes running on that node.
-
-There are benefits for both types depending on usage. The parallel file system is by nature slower for random read & write operations and metadata operations (handling of large number fo files), the local file system is far better suited for this. In addition the shared file system need to serve all users and placing very high metadata load on it make the file system slow for all users. However, not only does aggregate performance scale with the number of nodes used but it does not affect the other users when using local scratch.
-
-Which kind of scratch file system to use is a trade-off, if you need sharing or a large amount of data (more than 250-300 GB) there is only one option, shared scratch. If on the other hand you have a lot of random IO or a large number of files then local scratch is much better suited.
-
-All Slurm jobs get allocated a shared scratch file system pointed to by the variable $SCRATCH , but you need to ask for local scratch, like this example where I have asked for 100 Gigabytes of local scratch:
-```
-#SBATCH --gres=localscratch:100G
-```
-By including this in the job script each allocated node will have a local scratch area pointed to by the variable $LOCALSCRATCH, (on Saga the maximum you can ask for is about 300 GB). Please do not ask for more than what you actually need, other users might share the local scratch space with you.
- 
-Saga has spinning disks with limited performance (but more nodes give more performance) for local scratch, but newer systems will have memory chips based storage for localscratch and hence it's good practice to start using local scratch now.
-
 ### Pure MPI
 
 ```
