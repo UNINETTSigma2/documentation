@@ -257,7 +257,7 @@ A suggestion is to place the new shared library in `$HOME/lib64` and using
 `export LD_PRELOAD=$HOME/lib64/libfakeintel.so` to insert the fake test function.
 
 In addition the environment variable *MKL_ENABLE_INSTRUCTIONS* can also have a significant effect. 
-Setting the variable to AVX2 is adviced. Just changing it to AVX have a significant negative impact. 
+Setting the variable to AVX2 is advised. Just changing it to AVX have a significant negative impact.
   
 For performance impact and more about running software with MKL please see
 {ref}`running-scientific-software`.
