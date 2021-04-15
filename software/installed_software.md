@@ -1,4 +1,4 @@
-# Installed Software
+# Installed software
 
 The `module` command is for loading or listing available modules.
 
