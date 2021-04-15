@@ -13,6 +13,22 @@ appropriate **Intel** processor. When it cannot work ut the processor type a
 least common instruction set is set is selected yielding lower performance.
 
 
+## AVX2 vector units
+
+Each processor core on Betzy has two vector units, these are 256 bits wide and
+can hence operate on four 64-bit floating point numbers simultaneously. With
+two such units and selecting fused multiply add (FMA) up to 16 double precision
+operations can be performed per clock cycle.
+
+This yields a marketing theoretical performance of frequency times number of
+cores times 16, 2.26 GHz * 128 * 16 = 4608 Gflops/s for a single compute node
+(or 6.2 Pflops/s for the complete Betzy).  No program consists of only FMA
+instruction so these numbers are inflated.
+
+In any case the vector units are important for floating point performance, see
+below.
+
+
 ## Mixing Intel compiler and MKL versions
 
 Users are adviced to check if there is any performance difference between

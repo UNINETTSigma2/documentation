@@ -91,19 +91,6 @@ To display information about the NUMA nodes use the command `numactl -H`. More d
 later.
 
 
-#### AVX2 vector units
-
-Each of the processor cores have two vector units, these are 256 bits wide and
-can hence operate on four 64-bit floating point numbers simultaneously. With
-two such units and selecting fused multiply add (FMA) up to 16 double precision
-operations can be performed per clock cycle. (no program contain only FMA
-instruction so these numbers are inflated). This yields a marketing theoretical
-performance of frequency times number of cores times 16, 2.26 GHz * 128 * 16 =
-4608 Gflops/s for a single compute node (or 6.2 Pflops/s for the complete
-Betzy). In any case the vector units are important for floating point
-performance, see the note on environment flag for MKL later.
-
-
 ## Slurm
 
 ### Introduction
