@@ -1,144 +1,49 @@
 # Frequently Asked Questions
 
-## I forgot my password - what should I do to recover it?
+## Access and connections
 
-You can reset it here: https://www.metacenter.no/user/
+### How do I change my password?
 
-The new password is valid for our compute resources.
+Please consult [this page](lost_forgotten_password,md).
 
-## How do I change my password?
+### I forgot my password - what should I do to recover it?
 
-The password can be changed on [this page](https://www.metacenter.no/user/password/). 
-Log in using your existing username.
+Please consult [this page](lost_forgotten_password,md).
 
-The ``passwd`` command does not work. Our compute resources are using a centralized database for user management.
+### What is the ssh key fingerprint for our systems?
 
-## What is the ssh key fingerprint for our systems?
+Please consult [this page](../getting_help/create_ssh_keys.md)
 
-The SHA256 key fingerprint is: ``SHA256:YJpwZ91X5FNXTc/5SE1j9UR1UAAI4FFWVwNSoWoq6Hc``
+### Connecting to the cluster
 
-The MD5 key fingerprint is: ``MD5:36:a8:c5:f3:21:24:bb:bc:07:6f:af:4a:fe:3e:cb:9a``
+Typically users connect to our clusters with an SSH client. Please consult [this page](../getting_started/create_ssh_keys.md) for additional details.
 
-If you are more of a visual person, use ``ssh -o VisualHostKey=yes stallo.uit.no`` and compare it to this visual key::
+### How can I access a compute node from the login node?
 
-  +---[RSA 1024]----+
-  |      oo+ooo**BO^|
-  |     . + ..+ o.BO|
-  |  . . * . o . +.=|
-  |   o * . . . . o.|
-  |    o   S     . .|
-  |   .   o         |
-  |  . . .          |
-  | .  ..E          |
-  |  .. .           |
-  +----[SHA256]-----+
+Log in to the login node, for instance Fram::
 
+	ssh myusername@fram.sigma2.no
 
-.. COMMENT: use ``ssh -o VisualHostKey=yes stallo.uit.no`` to get both, the SHA256 string and visual key.
+Then connect to the compute node (on Fram and Saga)::
+	
+	ssh c3-5
 
+Or on Betzy::
 
-Installing software
-===================
+	ssh b4296
 
-I need Python package X but the one on Stallo is too old or I cannot find it
-----------------------------------------------------------------------------
+Notice that you typically can only log into a compute node where you have a running job.
 
-You can choose different Python versions with either the module system or using Anaconda/Miniconda. See here: :doc:`/software/modules` and :doc:`/software/python_r_perl`.
-
-In cases where this still doesn't solve your problem or you would like to install a package yourself, please read the next section below about installing without sudo rights.
-
-If we don't have it installed, and installing it yourself is not a good solution for you, please contact us and we will do our best to help you.
-
-
-Can I install Python software as a normal user without sudo rights?
--------------------------------------------------------------------
-
-Yes. Please see :doc:`/software/python_r_perl`.
-
-
-Compute and storage quota
-=========================
-
-How can I check my disk quota and disk usage?
----------------------------------------------
-
-To check how large your disk quota is, and how much of it you have used,
-you can use the following command::
-
-  $ quota -s
-
-Only home and project partitions have quota.
-
-
-How many CPU hours have I spent?
---------------------------------
-
-For a simple summary, you can use the command ``cost``,
-for more details, you can use::
-
-  $ gstatement --hours --summarize -p PROSJEKT -s YYYY-MM-DD -e YYYY-MM-DD
-
-For a detailed overview over usage you can use::
-
-  $ gstatement --hours -p PROSJEKT -s YYYY-MM-DD -e YYYY-MM-DD
-
-For more options see::
-
-  $ gstatement --help
-
-
-
-Connecting via ssh
-==================
-
-
-How can I export the display from a compute node to my desktop?
----------------------------------------------------------------
-
-If you need to export the display from a compute node to your desktop you should
-
-#. First login to Stallo with display forwarding.
-#. Then you should reserve a node, with display forwarding, trough the
-   queuing system.
-
-Here is an example::
-
-  $ ssh -Y stallo.uit.no                 # log in with port forwarding
-  $ srun -N 1 -t 1:0:0 --pty bash -I     # reserve and log in on a compute node
-
-This example assumes that you are running an X-server on your local
-desktop, which should be available for most users running Linux, Unix
-and Mac Os X. If you are using Windows you must install some X-server
-on your local PC.
-
-
-How can I access a compute node from the login node?
-----------------------------------------------------
-
-Log in to stallo.uit.no and type e.g.::
-
-  $ ssh compute-1-3
-
-or use the shorter version::
-
-  $ ssh c1-3
-
-
-My ssh connections are dying / freezing
----------------------------------------
-
-How to prevent your ssh connections from dying / freezing.
+### My ssh connections are dying / freezing. How to fix it?
 
 If your ssh connections more or less randomly are dying / freezing, try
-to add the following to your *local* ``~/.ssh/config`` file:
-
-::
+to add the following to your *local* ``~/.ssh/config`` file::
 
     ServerAliveCountMax 3
     ServerAliveInterval 10
 
 (*local* means that you need to make these changes to your computer,
-not on stallo)
+not on our resources).
 
 The above config is for `OpenSSH <https://www.openssh.org>`_, if you're
 using
@@ -147,35 +52,63 @@ you can take a look at this page explaining
 `keepalives <https://the.earth.li/~sgtatham/putty/0.60/htmldoc/Chapter4.html#config-keepalive>`_
 for a similar solution.
 
+## Installing software
 
-Jobs and queue system
-=====================
+### I need to use Python but I am not satisfied with system default
 
-I am not able to submit jobs longer than two days
--------------------------------------------------
+You can choose different Python versions using either the module system or Anaconda/Miniconda. See [here](../software/modulescheme.md) and [here](../software/userinstallsw/python.md) for the former. In Anaconda, you typically load first the Anaconda module you like and then from within that you can chose and configure the Python version and environment. Please consult the [Anaconda documentation](https://docs.anaconda.com/) for details.
 
-Please read about :ref:`label_partitions`.
+In cases where these routes still does not solve your problem or you would like to install a package yourself, please consult this [page](../software/userinstallsw.md). If you are still stuck or would like support, please contact [support@metacenter.no](mailto:support@metacenter.no).
+
+### Can I install software as a normal user without sudo rights or a root account?
+
+Yes. In fact, this is the recommended approach to install software that we do not offer to all users. Please consult this [page](../software/userinstallsw.md).
+
+## Compute and disk usage, in addition to allocated quota
+
+### How can I check my disk quota and usage?
+
+Please consult this [page](https://documentation.sigma2.no/files_storage/clusters.html?highlight=disk%20usage#usage-and-quota).
 
 
-Where can I find an example of job script?
-------------------------------------------
+### How can I check my CPU hours quota and usage?
 
-You can find job script examples in :ref:`job_script_examples`.
+Please consult this [page](../jobs/projects_accounting.md).
 
-Relevant application specific examples (also for beginning users) for a few applications can be found in
-:ref:`sw_guides`.
+## Other topics
 
+### How can I export the display from a compute node to my desktop?
 
-When will my job start?
------------------------
+Please consult this [page](https://documentation.sigma2.no/getting_started/create_ssh_keys.html#x11-forwarding)
 
-How can I find out when my job will start?
+This example assumes that you are running an X-server on your local
+desktop, which should be available for most users running Linux, Unix
+and Mac Os X. If you are using Windows you must install some X-server
+on your local PC.
+
+## Jobs, submission and queue system
+
+### I am not able to submit jobs longer than the maximum set walltime
+
+For each [job type](../jobs/choosing_job_types.md) there is a maximum walltime. If you try to set a 
+walltime that is larger than this, the job will not be accepted when you submit it. We recommend you
+to try to segment the job using a [job script](../jobs/job_scripts.md). If this does not suit your need,
+feel free to open a support ticket at [support@metacenter.no](support@metacenter.no). The main
+intention to have a limit on the max walltime is to make sure the queue system works as best as possible and
+as such would give a better experience for most users.
+
+### Where can I find an example of job script?
+
+You can find job script examples for Fram [here](https://documentation.sigma2.no/jobs/job_scripts/fram_job_scripts.html#job-scripts-on-fram) and for Saga [here](https://documentation.sigma2.no/jobs/job_scripts/saga_job_scripts.html#job-scripts-on-saga).
+
+### When will my job start?
 
 To find out approximately when the job scheduler thinks your job will
 start, use the command::
 
-  squeue --start -j <job_id>
+	squeue --start -j <job_id>
 
+where ``job_id`` is the id number of the job you want to check.
 This command will give you information about how many CPUs your job requires,
 for how long, as well as when approximately it will start and complete.  It
 must be emphasized that this is just a best guess, queued jobs may start
@@ -183,118 +116,50 @@ earlier because of running jobs that finishes before they hit the walltime
 limit and jobs may start later than projected because new jobs are submitted
 that get higher priority.
 
+### How can I see the queing situation of my job(s)?
 
-How can I see the queing situation?
------------------------------------
+How can I see how my jobs are doing in the queue, if my jobs are idle, blocked, running etc. by issuing::
 
-How can I see how my jobs are doing in the queue, if my jobs are idle, blocked,
-running?
+	squeue -u <username>
 
-On the webpage http://stallo-login2.uit.no/slurmbrowser/html/squeue.html you
-can find information about the current load on stallo, some information about
-the nodes, and the information you would get from the showq command, which is
-described below. You can also find information about your job and if you the
-job is running, you can find graphs about its usage of the CPUs, memory and so
-on.
+where ``username`` is your username. You can of course also check the queue by not adding a username. For additional
+details on how to monitor job(s), please consult this [page](../jobs/monitoring.md).
 
-If you prefer to use the command line, to see the job queue use::
+### Why does my job not start or give me error feedback when submitting?
 
-  $ squeue
+Most often the reason a job is not starting is that the resources are busy. Typically there are many jobs waiting 
+in the queue. But sometimes there is an error in the job script and you are asking for a configuration (say a combination of 
+memory and cores) that is not possible. In such a cases you do not always get a message that the options are invalid on submission
+and they might not be, but the combination will lead to a job that never starts.
 
+To find out how to monitor your jobs and check their status see this [page](../jobs/monintoring.md).
 
-Why does my job not start or give me error feedback when submitting?
---------------------------------------------------------------------
-
-Most often the reason a job is not starting is that Stallo is full at the moment and there are many jobs waiting in the queue. But sometimes there is an error in the job script and you are asking for a configuration that is not possible on Stallo. In such a case the job will not start.
-
-To find out how to monitor your jobs and check their status see :ref:`monitoring_jobs`.
-
-Below are a few cases of why jobs don't start or error messages you might get:
-
-
-**Memory per core**
-
-   "When I try to start a job with 2GB of memory pr. core, I get the following error:
-   ``sbatch: error: Batch job submission failed: Requested node configuration is not available``
-   With 1GB/core it works fine. What might be the cause to this?"
-
-On Stallo we have two different configurations available; 16 core and 20 core nodes - with both a
-total of 32 GB of memory/node. If you ask for full nodes by
-specifying both number of nodes and cores/node together with 2 GB of memory/core, you will ask
-for 20 cores/node and 40 GB of memory. This configuration does not exist on Stallo. If you ask
-for 16 cores, still with 2GB/core, there is a sort of buffer within SLURM no allowing you
-to consume absolutely all memory available (system needs some to work). 2000MB/core works
-fine, but not 2 GB for 16 cores/node.
-
-The solution we want to push in general is this::
-
-   #SBATCH -ntasks=80 # (number of nodes * number of cores, i.e. 5*16 or 4*20 = 80)
-
-If you then ask for 2000MB of memory/core, you will be given 16 cores/node and a total
-of 16 nodes. 4000MB will give you 8 cores/node - everyone being happy. Just note the
-info about PE :ref:`accounting`; mem-per-cpu 4000MB will cost you twice as much as
-mem-per-cpu 2000MB.
-
-Please also note that if you want to use the whole memory on a node, do not ask
-for 32GB, but for 31GB or 31000MB as the node needs some memory for the system itself.
-For an example, see here: :ref:`allocated_entire_memory`
-
-
-
-**Step memory limit**
-
-   "Why do I get ``slurmstepd: Exceeded step memory limit`` in my log/output?"
-
-For slurm, the memory flag is a hard limit, meaning that when each core
-tries to utilize more than the given amount of memory, it is killed by the slurm-deamon.
-For example ``$SBATCH --mem-per-cpu=2GB`` means that you maximum can use 2 GB of memory per
-core. With memory intensive applications like Comsol or VASP, your job will likely be
-terminated. The solution to this problem is to specify the
-number of tasks irrespectively of cores/node and ask for as much memory you will need.
-
-For instance::
-
-   #SBATCH --ntasks=20
-   #SBATCH --time=0-24:05:00
-   #SBATCH --mem-per-cpu=6000MB
-
-
-**QOSMaxWallDurationPerJobLimit**
-
-QOSMaxWallDurationPerJobLimit means that MaxWallDurationPerJobLimit has been exceeded. Basically, you have asked for more time than allowed for the given QOS/Partition. Please have a look at :ref:`label_partitions`
-
+Here follows a few typical gotchas:
 
 **Priority vs. Resources**
 
 Priority means that resources are in principle available, but someone else has higher priority in the queue. Resources means the at the moment the requested resources are not available.
 
 
-Why is my job not starting on highmem nodes although the highmem queue is empty?
---------------------------------------------------------------------------------
-
-To prevent the highmem nodes from standing around idle, normal jobs may use them as well, using only 32 GB of the available memory. Hence, it is possible that the highmem nodes are busy, although you do not see any jobs queuing or running on `squeue -p highmem`.
-
-
-How can I customize emails that I get after a job has completed?
-----------------------------------------------------------------
+### How can I customize emails that I get after a job has completed?
 
 Use the mail command and you can customize it to your liking but make sure
 that you send the email via the login node.
 
 As an example, add and adapt the following line at the end of your script::
 
-  echo "email content" | ssh stallo-1.local 'mail -s "Job finished: ${SLURM_JOBID}" firstname.lastname@uit.no'
+	echo "email content" | ssh stallo-1.local 'mail -s "Job finished: ${SLURM_JOBID}" <your_email_address>'
 
+where ``your_email_address`` is your email address you want to be the receiver of the message.
 
-How can I run many short tasks?
--------------------------------
+### How can I run many short tasks?
 
-The overhead in the job start and cleanup makes it unpractical to run
-thousands of short tasks as individual jobs on Stallo.
+The overhead in the job start and cleanup makes it not practical to run
+thousands of short tasks as individual jobs on our resources.
 
-The queueing setup on stallo, or rather, the accounting system generates
-overhead in the start and finish of a job of about 1 second at each end
-of the job. This overhead is insignificant when running large parallel
+The queueing setup, or rather, the accounting system generates
+overhead in the start and finish of a job. About a few seconds at each end
+of the job for instance. This overhead is insignificant when running large parallel
 jobs, but creates scaling issues when running a massive amount of
 shorter jobs. One can consider a collection of independent tasks as one
 large parallel job and the aforementioned overhead becomes the serial or
@@ -303,18 +168,17 @@ only start and account one job at a time. This scaling problem is
 described by `Amdahls Law <https://en.wikipedia.org/wiki/Amdahl's_law>`_.
 
 If the tasks are extremly short, you can use the example below. If you want to
-spawn many jobs without polluting the queueing system, please have a look at
-:ref:`job_arrays`.
+spawn many jobs without polluting the queueing system, please have a look [here](../jobs/job_scripts/array_jobs.md)
 
 By using some shell trickery one can spawn and load-balance multiple
 independent task running in parallel within one node, just background
 the tasks and poll to see when some task is finished until you spawn the
 next:
 
-.. literalinclude:: files/multiple.sh
+.. literalinclude:: ../files/multiple.sh
    :language: bash
 
 And here is the ``dowork.sh`` script:
 
-.. literalinclude:: files/dowork.sh
+.. literalinclude:: ../files/dowork.sh
    :language: bash
