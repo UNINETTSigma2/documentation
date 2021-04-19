@@ -61,30 +61,6 @@ requirements (memory usage, number of CPUs, run-time, etc.), used by
 the queue system to find one or more suitable machines for the job.
 
 
-### The Slurm script does not have to be written in Bash
-
-The job script can be written in
-any language that uses `#` as the comment sign. Bash is most common, but some
-applications like NorESM use Python. Perl, Julia, and R are other options. Here
-is a Python example:
-```python
-#!/usr/bin/env python
-
-#SBATCH --job-name=slurm
-#SBATCH --account=nn9999k
-#SBATCH --nodes=128
-#SBATCH --ntasks-per-node=1
-#SBATCH --time=0:0:5
-
-import os
-
-os.system("srun hostname")
-```
-
-Using Python, Perl, Julia, or R can open up for more programming possibilities
-within the run script than what would be possible using Bash.
-
-
 ### More information about Slurm
 
 - For more information about the Slurm parameters and job script settings,

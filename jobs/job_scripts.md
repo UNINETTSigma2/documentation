@@ -8,6 +8,7 @@ Cluster-specific details are kept in separate sub pages for each cluster:
 - [Fram job scripts](job_scripts_on_fram)
 - [Saga job scripts](job_scripts_on_saga)
 
+
 ## Job Script Basics
 
 To run a _job_ on the cluster involves creating a shell script called
@@ -27,7 +28,8 @@ scripts](http://www.linuxconfig.org/Bash_scripting_Tutorial).
 
 A job script consists of a couple of parts, in this order:
 
-- The first line, which is always `#!/bin/bash`[^1]
+- The first line, which is typically `#!/bin/bash`
+  (the Slurm script does not have to be written in Bash, see below)
 - Parameters to the queue system
 - Commands to set up the execution environment
 - The actual commands you want to be run
@@ -106,6 +108,31 @@ higher priority jobs (so-called *backfilling*).  On the other hand, if
 the job has not finished before the wall time limit, it will be
 cancelled, so too long is better than too short due to lost work!
 
+
+## The Slurm script does not have to be written in Bash
+
+The job script can be written in
+any language that uses `#` as the comment sign. Bash is most common, but some
+applications like NorESM use Python. Perl, Julia, and R are other options. Here
+is a Python example:
+```python
+#!/usr/bin/env python
+
+#SBATCH --job-name=slurm
+#SBATCH --account=nn9999k
+#SBATCH --nodes=128
+#SBATCH --ntasks-per-node=1
+#SBATCH --time=0:0:5
+
+import os
+
+os.system("srun hostname")
+```
+
+Using Python, Perl, Julia, or R can open up for more programming possibilities
+within the run script than what would be possible using Bash.
+
+
 ## Further Topics
 
 - [Environment variables available in job scripts](job_scripts/environment_variables.md)
@@ -114,7 +141,3 @@ cancelled, so too long is better than too short due to lost work!
 - [Running Job Steps in Parallel](guides/running_job_steps_parallel.md)
 - [Porting Job Scripts from PBS/Torque](guides/porting_from_pbs.md)
 - [Running MPI Jobs](guides/running_mpi_jobs.md)
-
-## Footnotes
-
-[^1]: Technically, any script language that uses `#` as a comment character can be used, but the recommended, and the only one supported by the Metacenter, is bash.
