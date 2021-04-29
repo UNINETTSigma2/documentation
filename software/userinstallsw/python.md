@@ -1,12 +1,17 @@
 # Installing Python packages
 
-`pip` and `conda` are the easiest ways of installing python packages and programs
-as user. In both cases it is advised to use virtual environments to separate
-between different workflows/projects. This makes it possible to have mulitple
-versions of the same package or application without problems of conflicting
-dependencies.
+`pip` and `conda` are the easiest ways of installing python packages and
+programs as user. In both cases it is advised to use virtual environments to
+separate between different workflows/projects. This makes it possible to have
+multiple versions of the same package or application without problems of
+conflicting dependencies.
 
-## pip
+## Virtual environments
+
+Virtual environments in Python are a nice way to compartmentalize package
+installation. You can have many virtual environment and we recommend that you at
+least have one for each disparate experiment. One additional benefit of this
+setup is that it allows other researchers to easily replicate your setup.
 
 `pip` is the main package installer for Python and included in every Python
 installation. It is easy to use and can be combined with `virtualenv` to manage
@@ -18,18 +23,22 @@ and libraries. In this case, `conda` is the better solution.
 ### Setup and installation with pip
 
 Users can install Python packages in a virtual Python environment. Here is how
-you create a virtual environment with the command `virtualenv`:
+you create a virtual environment with Python:
 
 ``` sh
+# First load an appropriate Python module (use 'module list Python' to see all)
+$ module load Python/3.8.6-GCCcore-10.2.0
 # Create the virtual environment.
-$ virtualenv my_new_pythonenv
+$ python -m venv my_new_pythonenv
 # Activate the environment.
 $ source my_new_pythonenv/bin/activate
 # Install packages with pip. Here we install pandas.
-$ pip install pandas
+$ python -m pip install pandas
 ```
 
-For more information, have a look at the [official pip](https://pip.pypa.io/en/stable/) and [virtualenv](https://virtualenv.pypa.io/en/latest/) documentations.
+For more information, have a look at the [official
+`pip`](https://pip.pypa.io/en/stable/) and
+[`virtualenv`](https://virtualenv.pypa.io/en/latest/) documentations.
 
 ```{note}
 When running software from your Python environment in a batch script, it is
@@ -50,7 +59,7 @@ set -o errexit # exit on any error
 set -o nounset # treat unset variables as error
 
 # Load modules
-module load Python/3.7.2-GCCcore-8.2.0
+module load Python/3.8.6-GCCcore-10.2.0
 
 # Set the ${PS1} (needed in the source of the virtual environment for some Python versions)
 export PS1=\$
@@ -61,6 +70,31 @@ source my_new_pythonenv/bin/activate
 # execute example script
 python pdexample.py
 ```
+
+### Sharing package configuration
+
+To allow other researchers to replicate your virtual environment setup it can be
+a good idea to "freeze" your packages. This tells `pip` that it should not
+silently upgrade packages and also gives a good way to share the exact same
+packages between researchers.
+
+To freeze the packages into a list to share with others run:
+```bash
+$ python -m pip freeze --local > requirements.txt
+```
+
+The file `requirements.txt` will now contain the list of packages installed in
+your virtual environment with their exact versions. When publishing your
+experiments it can be a good idea to share this file which other can install in
+their own virtual environments like so:
+
+```bash
+$ python -m pip install -r requirements.txt
+```
+
+Your virtual environment and the new one installed from the same
+`requirements.txt` should now be identical and thus should replicate the
+experiment setup as closely as possible.
 
 
 ## Anaconda, Miniconda & Conda
@@ -121,7 +155,7 @@ $ conda config --add channels bioconda
 #### Supress unneccessary warnings
 To suppress the warning that a newer version of conda exists which is usually
 not important for most users and will be fixed by us by installing a new module:
-  
+
 ``` sh
 $ conda config --set notify_outdated_conda false
 ```
@@ -187,7 +221,7 @@ and install it with:
 ``` sh
 $ conda install -n ENVIRONMENT SOMESOFTWARE
 ```
-  
+
 If the python package you are looking for is not available in conda
 you can use [pip](https://pip.pypa.io/en/stable/) like usually
 from within a conda environment to install additional python packages:
@@ -196,7 +230,7 @@ from within a conda environment to install additional python packages:
 $ pip install SOMEPACKAGE
 ```
 
-To update the a single package with conda:
+To update a single package with conda:
 
 ``` sh
 $ conda update -n ENVIRONMENT SOMESOFTWARE
@@ -238,7 +272,7 @@ conda activate PATH_TO_ENVIRONMENT
 # Execute the python program
 python pdexample.py
 ```
-  
+
 ### Share your environment
 
 #### Share with project members on the same machine
@@ -259,7 +293,7 @@ in a certain environment (in this case "ENVIRONMENT"):
 ``` sh
 $ conda list --explicit --name ENVIRONMENT > package-list.txt
 ```
-  
+
 To setup a new environment (let's call it "newpython")
 from an exported package list:
 
@@ -281,13 +315,11 @@ at the [conda documentation](https://conda.io/projects/conda/en/latest/user-guid
 
 #### Miniconda vs. Anaconda
 
-Both Miniconda and Anaconda are distributions of the conda repository
-managment system.
-But while Miniconda brings just the managment system (the conda command),
-Anaconda comes with a lot of built-in packages.
+Both Miniconda and Anaconda are distributions of the conda repository management
+system. But while Miniconda brings just the management system (the `conda`
+command), Anaconda comes with a lot of built-in packages.
 
-Both are installed on Stallo but we advise the use of Miniconda.
-By explicitly installing packages into your own enviroment the chance
-for unwanted effects and errors due to wrong or incomaptible versions is
-reduced. Also you can be sure that everything that happens with your setup is
-controlled by yourself.
+Both are installed on Stallo but we advise the use of Miniconda. By explicitly
+installing packages into your own environment the chance for unwanted effects
+and errors due to wrong or incompatible versions is reduced. Also you can be
+sure that everything that happens with your setup is controlled by yourself.
