@@ -149,7 +149,7 @@ codes.
 - [LINPACK benchmark](arm-perf/linpack.md) (measures the floating-point capabilities)
 - [OSU benchmark](arm-perf/osu.md) (measures the interconnect performance)
 - [Quantifying the profiling overhead](arm-perf/overhead.md)
-- [Finite Volume Community Ocean Model (fvcom)](computing/tuning-applications.md#ARM-Performance-reports)
+- {ref}`Finite Volume Community Ocean Model (fvcom) <tuning-applications-apr>`
 
 
 ## What if the job timed out?

@@ -52,6 +52,7 @@ Fig. 1 - Scaling
 The plot show the recorded speedup for FVCOM with the current input data.
 The dashed line represent perfect speedup.
 
+(tuning-applications-apr)=
 
 ## ARM Performance reports
 
