@@ -52,6 +52,7 @@ Fig. 1 - Scaling
 The plot show the recorded speedup for FVCOM with the current input data.
 The dashed line represent perfect speedup.
 
+(tuning-applications-apr)=
 
 ## ARM Performance reports
 
@@ -69,6 +70,9 @@ perf-report mpirun ./fvcom.bin --casename=$RUN > $RUN_DIR/log-${SLURM_JOBID}.out
 ```
 When the Slurm job is finished two files containing performance reports are found as:
 `fvcom_1024p_8n_1t_yyyy-mm-dd_hh-mm.txt` and `fvcom_1024p_8n_1t_yyyy-mm-dd_hh-mm.html`.
+
+See also [How to check the performance and scaling using Arm Performance Reports](jobs/performance.md)
+for more details on running ARM Performance reports.
 
 
 ### Header
