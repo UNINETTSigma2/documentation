@@ -53,11 +53,6 @@ Fetching from [Quay](https://quay.io/):
 $ singularity pull --name openmpi-i8.sif docker://quay.io/bast/openmpi-i8:4.0.4-gcc-9.3.0
 ```
 
-```{note}
-The `singularity pull` step must be done on the login node. We cannot do this step
-inside a job script because compute nodes cannot access the web.
-```
-
 ## Hello world example
 
 This example demonstrates:
@@ -74,7 +69,6 @@ First we pull a "hello world" Singularity image from Singularity-Hub:
 $ singularity pull --name hello-world.sif shub://vsoch/hello-world
 ```
 
-This should be done on the login node, as noted above.
 Once we have the SIF file, we can test it out with the following
 job script on Saga (adjust `<myaccount>`; on Fram/Betzy you will need to remove
 the line containing `#SBATCH --mem-per-cpu=1000M` but the rest should work as
