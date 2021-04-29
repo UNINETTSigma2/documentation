@@ -45,7 +45,7 @@ tasks.  Typically, such jobs don't use many CPUs, so requiring them to
 use 8 whole nodes would waste resources.
 
 The details about how the billing units are calculated can be found
-in {ref}`job_accounting`.
+in [job accounting](../projects_accounting.md).
 
 
 (job_type_betzy_devel)=
