@@ -126,6 +126,13 @@ zero memory which is probably wrong.  The sampling rate also means that if your
 job contains short peaks of high memory consumption, the sampling may
 completely miss these.
 
+#### A short note about the memory stats values.
+
+In the [SLURM manual for `sacct`](https://slurm.schedmd.com/sacct.html) the following is stated for 
+`AvgRSS`:  *Average resident set size of all tasks in job.* and similarly for `MaxRSS`. However, this statement needs a comment. 
+These values give information for each `step`, which is call to `srun` or `mpirun` in your job script. 
+Meaning, if you call `srun` or `mpirun` multiple times in your 
+job script you will get different entries for both `AvgRSS` and `MaxRSS`.
 
 ### By using sacct
 
@@ -144,6 +151,8 @@ $ sacct -j 999107 --format=MaxRSS
 
 From this I see that the job needed
 `1562896K` memory (1562896 KB), so around 1.5 GB.
+
+Please see the [comment about `MaxRSS` and `AvgRSS`](#a-short-note-about-the-memory-stats-values).
 
 
 ### By prepending your binary with time
