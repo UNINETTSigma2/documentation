@@ -15,6 +15,7 @@ Job types and job scripts
    memory-bandwidth.md
    parallel-calculations.md
    interactive_jobs.md
+   checkpointing.md
    projects_accounting.md
    dos_and_donts.md
    guides.md
