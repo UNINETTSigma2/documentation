@@ -40,8 +40,10 @@ Saga:
     - maximum 256 units
 - __Maximum walltime__: 7 days
 - __Priority__: normal
-- __Available resources__: 200 nodes with 40 cpus and 186 GiB RAM,
-  in total 8000 cpus and 36.4 TiB RAM.
+- __Available resources__:
+    - 200 nodes with 40 cpus and 186 GiB RAM
+	- 120 nodes with 52 cpus and 186 GiB RAM
+	- In total 14240 cpus and 58.1 TiB RAM.
 - __Parameter for sbatch/srun__:
     - None, _normal_ is the default
 - __Job Scripts__: {ref}`job_scripts_saga_normal`
