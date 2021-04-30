@@ -74,21 +74,36 @@ The number billing units of a job is calculated like this:
 4. The number of billing units is the _maximum_ of the CPU cost, memory
    cost and GPU cost.
 
-The _memory cost factor_ varies between the partitions on the
-clusters:
+The _memory cost factor_ and _GPU cost factor_ vary between the partitions on the
+clusters.
 
-- For the _bigmem_ partition on Saga, the factor is currently
+#### Saga
+
+- The _normal_ partition: memory factor is 0.2467806 units per GiB.  Thus
+  the memory cost of a job asking for all memory on a node will
+  be 46.  This is a compromise between the two node types in the
+  normal partition; they have 40 and 52 CPUs.
+
+- For the _bigmem_ partition, the factor is
   0.1059915 units per GiB.  This means that for a job requesting all
   memory on one of the "small" bigmem nodes, the memory cost is 40,
   while for a job requesting all memory on one of the large nodes,
   it is 320.
 
-- For all other partitions, the factor is set such that the memory
-  cost of requesting all the memory on a node is the same as
-  requesting all CPUs on the node (40 for normal nodes and 24 for the
-  GPU nodes).
+- On the _accel_ partition, the memory factor is 0.06359442 units per
+  GiB, and the GPU factor is 6.  This means that a job asking for all
+  memory on a node, or all GPUs on a node, gets a cost of 24, the
+  number of CPUs on the node.
 
-The _GPU cost factor_ on Saga is currently 6, which means that a job
-requesting all 4 GPUs on a node, will cost the same as a job
-requesting all CPUs on it.  Note that this factor might increase in
-the future, because GPUs are more expensive than CPUs.
+- The _optimist_ partition has the same memory factor as the _normal_
+  partition.
+
+#### Betzy
+
+- In the _normal_ partition, only whole nodes are handed out, so each
+  job is accounted for 128 units per node, and there is no memory
+  factor.
+
+- The _preproc_ partition has a memory factor of 0.5221992 units per
+  GiB, so a job asking for all memory on the node would have a cost of
+  128, the number of CPUs on the node.
