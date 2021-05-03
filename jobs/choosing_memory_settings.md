@@ -128,11 +128,17 @@ completely miss these.
 
 #### A short note about the memory stats values.
 
-In the [SLURM manual for `sacct`](https://slurm.schedmd.com/sacct.html) the following is stated for 
-`AvgRSS`:  *Average resident set size of all tasks in job.* and similarly for `MaxRSS`. However, this statement needs a comment. 
-These values give information for each `step`, which is call to `srun` or `mpirun` in your job script. 
+In the [Slurm manual for `sacct`](https://slurm.schedmd.com/sacct.html) the following is stated for
+`AvgRSS`:  *Average resident set size of all tasks in job.* and
+similarly for `MaxRSS` and all other `Max<something>` or `Ave<something>` values. However, this statement needs a comment.
+These values give information for each *step* of a job, each being a call 
+to `srun` or `mpirun` in your job script.  Also, the job script itself
+(commands run in the jobscript without using `srun` or `mpirun`) is
+counted as a *step*, called the `batch` step.  The *average* or
+*maximum* is calculated over the tasks (processes) in each step.
 Meaning, if you call `srun` or `mpirun` multiple times in your 
-job script you will get different entries for both `AvgRSS` and `MaxRSS`.
+job script they will get one line each in the `sacct` output with
+separate entries for both `AvgRSS` and `MaxRSS`.
 
 ### By using sacct
 
