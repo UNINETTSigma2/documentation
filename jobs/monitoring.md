@@ -34,7 +34,7 @@ details about a job, use
     scontrol show job JobId
 
 Both commands will show the job state (**ST**), and can show a job reason for
-why a job is pending. [Job States](job_states.md) describes a few
+why a job is pending. {ref}`job-states` describes a few
 of the more common ones.
 
 While a job is running, it is possible to view some of its usage
