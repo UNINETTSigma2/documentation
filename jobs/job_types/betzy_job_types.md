@@ -32,8 +32,8 @@ This is the default job type. In _normal_ jobs, the queue system hands out compl
 
 - __Allocation units__: cpus and memory
 - __Job Limits__:
-    - maximum 8 billing units (CPU cores plus memory) per job
-    - maximum 2 running jobs per user
+    - maximum 16 billing units (CPU cores plus memory) per job
+    - maximum 4 running jobs per user
 - __Maximum walltime__: 1 day
 - __Priority__: normal
 - __Available resources__: 128 CPU cores and 250 GiB RAM on one node
