@@ -9,7 +9,7 @@
 
 - [Introduction to HPC training material - UiO](https://sabryr.github.io/hpc-intro/)
 - [Introduction to HPC training and materials - NTNU](https://www.hpc.ntnu.no/ntnu-hpc-group/training/introduction-to-parallel-programming)
-- [Introduction to HPC training materials - UiB](https://docs.hpc.uib.no/wiki/Category:Training)
+- [Introduction to HPC training materials - UiB](https://wiki.uib.no/hpcdoc/index.php/Category:Training)
 
 ## HPC carpentry
 

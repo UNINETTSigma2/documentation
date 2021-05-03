@@ -5,7 +5,7 @@ VASP is a software package for performing ab-initio quantum-mechanical calculati
 ## Online information from VASP developers
 
 * [Homepage](https://www.vasp.at)
-* [Documentation](https://cms.mpi.univie.ac.at/wiki/index.php/The_VASP_Manual)
+* [Documentation](https://www.vasp.at/wiki/index.php/The_VASP_Manual)
 * [User forum](https://www.vasp.at/forum/)
 
 ## Installed on facilities
@@ -55,7 +55,7 @@ The naming schemes of the modules are `VASP version-Toolchain-Additional Package
 
 - `VASP version` determines the VASP version, e.g. 5.4.4
 - `Toolchain` determines the toolchain used, typically which compilers, LAPACK, BLAS etc. routines have been used. This is based on the existing toolchains on the system. These can be inspected with `module show intel-2019a` for the particular system (e.g. `fram`). Typically, the `Toolchain` is the vendor, e.g. `intel` followed by the version, e.g. `2019a`.
-- `Additional Packages` determines if an additional package has been included, e.g. `wannier90` (support for maximally-localised Wannier functions and the [Wannier90](http://www.wannier.org/)), `beef` (to yield support for the [BEEF](https://github.com/vossjo/libbeef) functional and Bayesian error estimates), `vtst` (to yield support for additional transition state tools [VTST](https://theory.cm.utexas.edu/vtsttools/)) and `sol` (to yield support for solvation models using [VASPsol](https://github.com/henniggroup/VASPsol)). Following the package name is the version of that specific package, e.g. `beef-0.1.1`, meaning the `beef` package is included using version `0.1.1`. For multiple packages and combination, the list continues.
+- `Additional Packages` determines if an additional package has been included, e.g. `wannier90` (support for maximally-localised Wannier functions and the [Wannier90](http://www.wannier.org/)), `beef` (to yield support for the [BEEF](https://github.com/vossjo/libbeef) functional and Bayesian error estimates), `vtst` (to yield support for additional transition state tools [VTST](http://theory.cm.utexas.edu/vtsttools/)) and `sol` (to yield support for solvation models using [VASPsol](https://github.com/henniggroup/VASPsol)). Following the package name is the version of that specific package, e.g. `beef-0.1.1`, meaning the `beef` package is included using version `0.1.1`. For multiple packages and combination, the list continues.
 - `Adaptions to source code` determines if there has been adaptions to the source code, e.g. restrictions in the ionic motions. For instance for `nor_x` the ionic motion/relaxation along the `x` (`x`, `y` and `z` is the unit cell axis supplied to VASP) direction. It does not have any version following its label.
 - `VASP flavor` determines the VASP flavor, e.g. `std` for the standard flavor (`-DNGZhalf` added to `FPP`), `gam` for the gamma flavor (`-DNGZhalf -DwNGZhalf` added to `FPP`) and `ncl` for the non-collinear flavor. As for the adaptions, no version is following these labels.
 
