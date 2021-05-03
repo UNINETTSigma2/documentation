@@ -66,12 +66,7 @@ applications.
 
 ### Unix CLI
 
-It is expected that the user is familiar with command-line interfaces (CLIs),
-but for those who are not familiar with commands, the UiB and UiT pages have
-several tutorials on the CLI environment:
-
-* [Introduction to Unix CLI](https://docs.hpc.uib.no/wiki/Introduction_to_Unix_CLI) - UiB
-
+It is expected that the user is familiar with command-line interfaces (CLIs).
 To copy files from your machine to the HPC machines, use SSH File Transfer
 Protocol (SFTP) or Secure Copy (SCP). They are available as command-line tools
 for Linux and MacOS X but Windows users need to download a separate SCP or FTP

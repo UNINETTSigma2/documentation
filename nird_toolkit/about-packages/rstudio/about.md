@@ -4,7 +4,7 @@
 For a general tutorial on how to use RStudio,
 see [RStudio 101](https://dss.princeton.edu/training/RStudio101.pdf).
 For a webinar with an in-depth explanation of RStudio can be found, see
-[RStudio webinars](https://www.rstudio.com/resources/webinars/#rstudioessentials).
+[RStudio webinars](https://www.rstudio.com/collections/rstudio-essentials/).
 
 ### Serving Shiny applications
 The rstudio package has built-in support for serving [Shiny web applications](https://shiny.rstudio.com/).

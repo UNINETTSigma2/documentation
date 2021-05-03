@@ -1,3 +1,5 @@
+(job-states)=
+
 # Job States
 
 Commands like `squeue`, `sacct` and `scontrol show job` will show a

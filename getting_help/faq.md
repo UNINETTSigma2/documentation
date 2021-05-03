@@ -4,11 +4,11 @@
 
 ### How do I change my password?
 
-Please consult [this page](lost_forgotten_password,md).
+Please consult {ref}`lost-passwords`.
 
 ### I forgot my password - what should I do to recover it?
 
-Please consult [this page](lost_forgotten_password,md).
+Please consult {ref}`lost-passwords`.
 
 ### What is the ssh key fingerprint for our systems?
 
@@ -58,7 +58,7 @@ for a similar solution.
 
 You can choose different Python versions using either the module system or Anaconda/Miniconda. See [here](../software/modulescheme.md) and [here](../software/userinstallsw/python.md) for the former. In Anaconda, you typically load first the Anaconda module you like and then from within that you can chose and configure the Python version and environment. Please consult the [Anaconda documentation](https://docs.anaconda.com/) for details.
 
-In cases where these routes still does not solve your problem or you would like to install a package yourself, please consult this [page](../software/userinstallsw.md). If you are still stuck or would like support, please contact [support@metacenter.no](mailto:support@metacenter.no).
+In cases where these routes still does not solve your problem or you would like to install a package yourself, please consult this [page](../software/userinstallsw.md). If you are still stuck or would like support, please contact `support@metacenter.no`.
 
 ### Can I install software as a normal user without sudo rights or a root account?
 
