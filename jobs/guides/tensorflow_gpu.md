@@ -18,7 +18,9 @@ quicker) and then, once your experiments are ready to run for longer, add back
 inn the request for GPU.
 
 A complete example, both `python` and Slurm file, can be found at
-[`mnist.py`](files/mnist.py) and [`run_mnist.sh`](files/run_mnist.sh).
+{download}`files/mnist.py`
+and
+{download}`files/run_mnist.sh`.
 
 # Installing `python` libraries
 The preferred way to "install" the necessary machine learning libraries is to

@@ -17,8 +17,8 @@ $ ./configure CC=mpicc CXX=mpicxx --prefix=/cluster/projects/nn9999k/marcink/hpl
 $ make
 ```
 
-To run, the benchmark requires a [configuration file
-(`HPL.dat`)](input_files/HPL.dat) to reside in the same directory as the
+To run, the benchmark requires a configuration file
+({download}`inputs/HPL.dat`) to reside in the same directory as the
 `xhpl` binary. We run the benchmark on 32 cores of a
 single compute node (all communication can be done through shared memory):
 

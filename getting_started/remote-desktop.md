@@ -43,7 +43,6 @@ and use `localhost:5901` as the server address. (The space after -L must be ther
 plink.exe -L 5901:localhost:5901 USERNAME@desktop.fram.sigma2.no
 ```
 
-([Example](./ssh-tunnel-fram.bat) edit in Notepad and save it to a location where you can click on it, e.g the desktop. DO NOT USE WORD TO EDIT THIS!)
 
 #### Linux/MAC/Windows with OpenSSH
 
