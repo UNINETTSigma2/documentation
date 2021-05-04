@@ -7,7 +7,7 @@
 - [Accounting](#accounting)
 
 
-### Projects
+## Projects
 
 All jobs are run in a _project_.  Use `--account` in job scripts to
 select which project the job should run in.  (The queue system calls
@@ -23,7 +23,7 @@ $ projects
 ```
 
 
-### List available quota
+## List available quota
 
 The command `cost` gives an overview of the CPU hour quota.  It can be
 run in different ways:
@@ -43,7 +43,7 @@ The `cost` command only shows usage in the current _allocation
 period_.  Historical usage can be found [here](https://www.metacenter.no/mas/projects).
 
 
-### Accounting
+## Accounting
 
 The term "CPU hour" above is an over-simplification.  Jobs are
 accounted for both CPU and memory usage, as well as usage of GPUs.
@@ -75,7 +75,7 @@ The number billing units of a job is calculated like this:
 The _memory cost factor_ and _GPU cost factor_ vary between the partitions on the
 clusters.
 
-#### Saga
+### Saga
 
 - The _normal_ partition: memory factor is 0.2467806 units per GiB.  Thus
   the memory cost of a job asking for all memory on a node will
@@ -96,7 +96,7 @@ clusters.
 - The _optimist_ partition has the same memory factor as the _normal_
   partition.
 
-#### Betzy
+### Betzy
 
 - In the _normal_ partition, only whole nodes are handed out, so each
   job is accounted for 128 units per node, and there is no memory

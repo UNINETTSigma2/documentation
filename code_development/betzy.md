@@ -1,4 +1,4 @@
-## Software environment on Betzy
+# Software environment on Betzy
 
 As on Fram and Saga, scientific software on Betzy will be installed using the
 EasyBuild system, and the Lmod modules tool will be used for changing
@@ -6,13 +6,13 @@ environment setup via modulefiles.
 
 The two *common toolchains* `foss` and `intel` will be installed on Betzy.
 
-### foss toolchain
+## foss toolchain
 * GCC compilers (`gcc`, `g++`, `gfortran`)
 * Open MPI library
 * OpenBLAS (including LAPACK) + ScaLAPACK
 * FFTW library
 
-### intel toolchain
+## intel toolchain
 * Intel compilers (`icc`, `icpc`, `ifort`)
 * Intel MPI library
 * Intel MKL library (including BLAS, LAPACK, ScaLAPACK, FFT)
@@ -21,16 +21,16 @@ Regarding compiler optimization this needs to be investigated case by case. Aggr
 where it makes a difference, as it increases the probability of the compiler generating wrong code or exposing
 floating-point issues in the application. A few starting suggestions are:
 
-### Compiler flags
+## Compiler flags
 A set of suggested compiler flags are given below, these have been tested and used, but users are 
 advised to read the documentation and try other combinations as not all code are alike.
 
-#### gcc/gfortran
+### gcc/gfortran
 *  -O3
 *  -O3 -march=znver2 -mtune=znver2 (recommended)
 *  -O3 -march=znver2 -mtune=znver2 -mfma -mavx2 -m3dnow -fomit-frame-pointer
 
-#### ifort/icc/ipcp 
+### ifort/icc/ipcp 
 * -O3  
 * -O3 -march=core-avx2 
 * -O3 -xavx
@@ -48,20 +48,20 @@ flags trigger the Intel processor run time check, causing the application to
 abort.
 
 
-### MPI libraries
+## MPI libraries
 
 Both OpenMPI and Intel MPI are installed. Built both for GNU and Intel.
 Experience have shown that performance varies. Both OpenMPI and Intel MPI are
 supported. OpenMPI is built with support for GNU compiler and Intel.  
 
-#### OpenMPI
+### OpenMPI
 * mpicc
 * mpicxx
 * mpif90
 
 For running with OpenMPI the processor binding is beneficial, adding *-bind-to core* is generally a good idea.
 
-#### Intel MPI
+### Intel MPI
 * mpiicc
 * mpiicpc
 * mpiifort
@@ -75,7 +75,7 @@ For a correct Slurm job script file the only command needed to launch MPI progra
 * Intel MPI: mpirun ./a.out
 
 
-#### Running Hybrid models
+### Running Hybrid models
 
 For hybrid models it's important to set up Slurm to provide access to all
 available cores. An example could look like this:
@@ -96,7 +96,7 @@ allocated to be used (this will place all 4 threads onto one core). In order to
 have free access to all cores the *exclusive* need to be set. 
 
 
-### MKL library
+## MKL library
 
 The MKL perform run time check to select correct code to invoke. This test fail
 to find any Intel processor and hence select a code compatible with all x86-64

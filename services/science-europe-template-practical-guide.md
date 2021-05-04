@@ -56,7 +56,7 @@ The structure is therefore the following:
 (Data-description-and-collection-or-reuse-of-existing-data)=
 ## Data description and collection or reuse of existing data
 
-####  *How will new data be collected or produced and/or how will existing data be re-used?*
+###  *How will new data be collected or produced and/or how will existing data be re-used?*
 
    - Explain which methodologies or software will be used if new data are collected or produced.
    - State any constraints on re-use of existing data if there are any.
@@ -71,10 +71,7 @@ The structure is therefore the following:
             - Images of the objects from which the samples were taken. The images will be taken with conventional digital photography. The images contain information on the location and date when they were taken. In addition, information on the conditions in which the photographs were taken will also be electronically recorded in an e-logbook.
 
 
-
-
-
-#### *What data (for example the kind, formats, and volumes), will be collected or produced?*
+### *What data (for example the kind, formats, and volumes), will be collected or produced?*
 
    - Give details on the kind of data: for example numeric (databases, spreadsheets), textual (documents), image, audio, video, and/or mixed media.
    - Give details on the data format: the way in which the data is encoded for storage, often reflected by the filename extension (for example pdf, xls, doc, txt, or rdf).
@@ -92,7 +89,7 @@ The structure is therefore the following:
 (Documentation-and-data-quality)=
 ## Documentation and data quality
 
-####  *What metadata and documentation (for example the methodology of data collection and way of organising data) will accompany the data?*
+###  *What metadata and documentation (for example the methodology of data collection and way of organising data) will accompany the data?*
 
    - Indicate which metadata will be provided to help others identify and discover the data.
    - Indicate which metadata standards (for example DDI, TEI, EML, MARC, CMDI) will be used.
@@ -110,7 +107,7 @@ The structure is therefore the following:
 
 
 
-####  *What data quality control measures will be used?*
+###  *What data quality control measures will be used?*
 
    - Explain how the consistency and quality of data collection will be controlled and documented. This may include processes such as calibration, repeated samples or measurements, standardised data capture, data entry validation, peer review of data, or representation with controlled vocabularies.
    - **Questions:**
@@ -123,7 +120,7 @@ The structure is therefore the following:
 (Storage-and-backup-during-the-research-process)=
 ## Storage and backup during the research process
 
-####  *How will data and metadata be stored and backed up during the research?*
+###  *How will data and metadata be stored and backed up during the research?*
 
    - Describe where the data will be stored and backed up during research activities and how often the backup will be performed. It is recommended to store data in least at two separate locations.
    - Give preference to the use of robust, managed storage with automatic backup, such as provided by IT support services of the home institution. Storing data on laptops, stand-alone hard drives, or external storage devices such as USB sticks is not recommended.
@@ -138,7 +135,7 @@ The structure is therefore the following:
 
 
 
-####  *How will data security and protection of sensitive data be taken care of during the research?*
+###  *How will data security and protection of sensitive data be taken care of during the research?*
 
    - Consider data protection, particularly if your data is sensitive for example containing personal data, politically sensitive information, or trade secrets. Describe the main risks and how these will be managed.
    - Explain which institutional data protection policies are in place.
@@ -150,7 +147,7 @@ The structure is therefore the following:
 (Legal-and-ethical-requirements-codes-of-conduct)=
 ## Legal and ethical requirements, codes of conduct
 
-####  *If personal data are processed, how will compliance with legislation on personal data and on security be ensured?*
+###  *If personal data are processed, how will compliance with legislation on personal data and on security be ensured?*
 
    - Ensure that when dealing with personal data, data protection laws (for example GDPR) are complied with:
    - Gain informed consent for preservation and/or sharing of personal data.
@@ -169,7 +166,7 @@ The structure is therefore the following:
 
 
 
-####  *How will other legal issues, such as intellectual property rights and ownership, be managed? What legislation is applicable?*
+###  *How will other legal issues, such as intellectual property rights and ownership, be managed? What legislation is applicable?*
 
    - Explain who will be the owner of the data, meaning who will have the rights to control access:
    - Explain what access conditions will apply to the data? Will the data be openly accessible, or will there be access restrictions? In the latter case, which? Consider the use of data access and re-use licenses.
@@ -184,7 +181,7 @@ The structure is therefore the following:
 
 
 
-####  *What ethical issues and codes of conduct are there, and how will they be taken into account?*
+###  *What ethical issues and codes of conduct are there, and how will they be taken into account?*
 
    - Consider whether ethical issues can affect how data are stored and transferred, who can see or use them, and how long they are kept. Demonstrate awareness of these aspects and respective planning.
    - Follow the national and international codes of conducts and institutional ethical guidelines, and check if ethical review (for example by an ethics committee) is required for data collection in the research project.
@@ -198,7 +195,7 @@ The structure is therefore the following:
 (Data-sharing-and-long-term-preservation)=
 ## Data sharing and long term preservation
 
-#### *How and when will data be shared? Are there possible restrictions to data sharing or embargo reasons?*
+### *How and when will data be shared? Are there possible restrictions to data sharing or embargo reasons?*
 
    - Explain how the data will be discoverable and shared (for example by depositing in a trustworthy data repository, indexed in a catalogue, use of a secure data service, direct handling of data requests, or use of another mechanism).
    - Outline the plan for data preservation and give information on how long the data will be retained.
@@ -216,7 +213,7 @@ The structure is therefore the following:
 
 
 
-####  *How will data for preservation be selected, and where data will be preserved long-term (for example a data repository or archive)?*
+###  *How will data for preservation be selected, and where data will be preserved long-term (for example a data repository or archive)?*
 
    - Indicate what data must be retained or destroyed for contractual, legal, or regulatory purposes.
    - Indicate how it will be decided what data to keep. Describe the data to be preserved long-term.
@@ -227,14 +224,14 @@ The structure is therefore the following:
 
 
 
-####  *What methods or software tools are needed to access and use data?*
+###  *What methods or software tools are needed to access and use data?*
 
    - Indicate whether potential users need specific tools to access and (re-)use the data. Consider the sustainability of software needed for accessing the data.
    - Indicate whether data will be shared via a repository, requests handled directly, or whether another mechanism will be used?
 
 
 
-####  *How will the application of a unique and persistent identifier (such as a Digital Object Identifier (DOI)) to each data set be ensured?*
+###  *How will the application of a unique and persistent identifier (such as a Digital Object Identifier (DOI)) to each data set be ensured?*
 
    - Explain how the data might be re-used in other contexts. Persistent identifiers should be applied so that data can be reliably and efficiently located and referred to. Persistent identifiers also help to track citations and re-use.
    - Indicate whether a persistent identifier for the data will be pursued. Typically, a trustworthy, long-term repository will provide a persistent identifier.
@@ -246,7 +243,7 @@ The structure is therefore the following:
 (Data-management-responsibilities-and-resources)=
 ## Data management responsibilities and resources
 
-####  *Who (for example role, position, and institution) will be responsible for data management (i.e. the data steward)?*
+###  *Who (for example role, position, and institution) will be responsible for data management (i.e. the data steward)?*
 
    - Outline the roles and responsibilities for data management/stewardship activities for example data capture, metadata production, data quality, storage and backup, data archiving, and data sharing. Name responsible individual(s) where possible.
    - For collaborative projects, explain the co-ordination of data management responsibilities across partners.
@@ -260,7 +257,7 @@ The structure is therefore the following:
 
 
 
-####  *What resources (for example financial and time) will be dedicated to data management and ensuring that data will be FAIR (Findable, Accessible, Interoperable, Re-usable)?*
+###  *What resources (for example financial and time) will be dedicated to data management and ensuring that data will be FAIR (Findable, Accessible, Interoperable, Re-usable)?*
 
    - Explain how the necessary resources (for example time) to prepare the data for sharing/preservation (data curation) have been costed in. Carefully consider and justify any resources needed to deliver the data. These may include storage costs, hardware, staff time, costs of preparing data for deposit, and repository charges.
    - Indicate whether additional resources will be needed to prepare data for deposit or to meet any charges from data repositories. If yes, explain how much is needed and how such costs will be covered.

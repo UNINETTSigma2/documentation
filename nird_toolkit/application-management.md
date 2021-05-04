@@ -1,6 +1,6 @@
 # Application management
 
-### Listing all applications
+## Listing all applications
 To list all applications, go to the `My applications` tab in the main navigation menu.
 
 ![Application list](imgs/application_list.png)
@@ -12,7 +12,7 @@ the application filtering bar. In the filtering bar, you will also find
 functions for filtering applications based on for instance status,
 projectspace or general metadata.
 
-### Viewing the details of a specific application
+## Viewing the details of a specific application
 To view the details of a specific application, click on the name of the application.
 You will then be taken to a page containing various information about the
 application.
@@ -36,7 +36,7 @@ is pulling a Docker image, or mounting a volume.
 Most of this information is only useful when the application is initializing or
 failing, so most of the time there will be few or none events.
 
-### Upgrading an application to the newest version
+## Upgrading an application to the newest version
 Sometimes it may be useful to reconfigure your application after it has been
 created. By clicking on the `Reconfigure` tab, you will be navigated to a page
 very similar to the installation page, which allows you to change the
@@ -48,13 +48,13 @@ Note that the application will be restarted and locally stored data will be
 lost when reconfiguring. See the `Installing a package`-page for more details
 as to what each field means.
 
-### Starting and stopping an application
+## Starting and stopping an application
 If you want to keep the application configuration, but stop using the
 resources associated with it, you can stop the application by navigating to
 the `Stop` tab. After stopping the application, you can start it again by
 going to the `Start` tab. This will reuse your previous configuration.
 
-### Deleting an application
+## Deleting an application
 When you are done using your application, you can delete it by going to the
 `Delete`-tab. After the application has been deleted, you may for some time be
 able to find the application by listing all applications, and then choose
@@ -64,7 +64,7 @@ able to find the application by listing all applications, and then choose
 You can then navigate to the application, and go to the `Configuration` tab in
 order to see which configuration the application had when running.
 
-### *Advanced* - Viewing the Kubernetes resources an application is using
+## *Advanced* - Viewing the Kubernetes resources an application is using
 To view the Kubernetes resources created by your application, navigate to the
 `Resources` tab. This page shows some details about each resource, as well as
 linking to the dashboard URL of the different resources (when available).

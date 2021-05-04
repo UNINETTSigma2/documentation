@@ -2,12 +2,12 @@
 orphan: true
 ---
 
-## Configuration
+# Configuration
 See the `Configuration` section of the 
 {ref}`Jupyter package <Configuration-Jupyter-package>` .
 
-## Usage
-### What can the deep-learning-tools package be used for?
+# Usage
+## What can the deep-learning-tools package be used for?
 The purpose of the deep-learning-tools package is to provide a
 pre-configure environment for performing deep-learning related tasks.
 Widely used deep-learning libraries such as PyTorch, Tensorflow, Keras, CNTK,
@@ -35,18 +35,18 @@ torch.cuda.get_device_name(0)
 This example uses PyTorch, but all the other libraries should also be able to find and use GPUs.
 The output should be similar to `Pascal Titan X`.
 
-### Useful introductions to various deep learning libraries
+## Useful introductions to various deep learning libraries
 - [Deep learning with PyTorch: A 60 minute blitz](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html)
 - [Getting started with Tensorflow + Keras](https://www.tensorflow.org/guide/keras)
 - [MXNet - In-depth guide](https://github.com/zackchase/mxnet-the-straight-dope)
 
 
-### Using Jupyter with Apache Spark
+## Using Jupyter with Apache Spark
 The `Connecting a Jupyter notebook to Apache Spark` section of the following
 link describes how to use 
 {ref}`Apache Spark with Jupyter <Apache-Spark-with-Jupyter>` .
 
-### How to add new packages
+## How to add new packages
 In case you are missing some packages from the default application image, you can add those packages yourself by creating a custom docker image.
 See {ref}`this tutorial <custom-docker-image>` for generic instructions on how to add packages.
 

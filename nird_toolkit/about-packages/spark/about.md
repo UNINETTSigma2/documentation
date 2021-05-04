@@ -2,20 +2,20 @@
 orphan: true
 ---
 
-## Configuration
-### Adding more workers
+# Configuration
+## Adding more workers
 By default, only one worker is created. To create more workers, set `replicas`
 (in the `Advanced configuration` panel) to the desired number of workers when
 installing the package, or when reconfiguring an existing application. More
 workers will then automatically be associated with the cluster.
 
-## Usage
-### Using Apache Spark from a Jupyter notebook
+# Usage
+## Using Apache Spark from a Jupyter notebook
 The `Connecting a Jupyter notebook to Apache Spark` section of the following
 link describes how to use 
 {ref}`Apache Spark with Jupyter <Apache-Spark-with-Jupyter>` .
 
-### Accessing the Apache Spark cluster dashboard
+## Accessing the Apache Spark cluster dashboard
 Sometimes it is necessary to debug a Spark application. The Spark UI provides
 a lot of different information about the Spark cluster, and may thus be useful
 to found out why something went wrong.
@@ -47,11 +47,11 @@ information to debug your application, but if you need more information,
 the following link further explains each part of the UI.
 [Apache Spark web UI detailed guide](https://www.ibm.com/support/knowledgecenter/en/SS3H8V_1.1.0/com.ibm.izoda.v1r1.azka100/topics/azkic_c_webUIs.htm)
 
-### Apache Spark for machine learning
+## Apache Spark for machine learning
 Apache Spark can be used for various machine-learning related tasks.
 The following guide provides various examples on [how to use Apache Spark for machine learning](https://spark.apache.org/docs/2.3.1/ml-statistics.html).
 
-### How to add new packages
+## How to add new packages
 In case you are missing some packages from the default application image, you can add those packages yourself by creating a custom docker image.
 See  {ref}`this tutorial <custom-docker-image>`  for generic instructions on how to add packages.
 

@@ -2,8 +2,8 @@
 orphan: true
 ---
 
-## Configuration
-### Sharing data among users
+# Configuration
+## Sharing data among users
 To share data among the users of JupyterHub, when installing or reconfiguring,
 start by selecting a volume in the persistent storage field.
 Then, navigate to the `Advanced configuration` section and check the `enabled`
@@ -56,8 +56,8 @@ The `%%px` notebook magic also works with regular notebook magic commands, so co
 will work if you need to execute other binaries on a GPU enabled machine.
 
 
-## Usage
-### Accessing the admin panel
+# Usage
+## Accessing the admin panel
 Jupyterhub allows you to administer and access the notebooks that are
 associated with the Jupyterhub server. This can for instance be useful in
 order to help users with debugging, or shutting down notebooks that use a lot

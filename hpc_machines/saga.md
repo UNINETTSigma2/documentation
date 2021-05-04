@@ -7,9 +7,9 @@ The supercomputer is named after the godess in norse mythology associated with w
 Saga is provided by Hewlett Packard Enterprise and has a computational capacity of approximately 140 million CPU hours a year and a life expectancy of four year, until 2023.
 
 
-### Technical details
+## Technical details
 
-#### Main components
+### Main components
 
 * 200 standard compute nodes with 40 cores and 192 GiB memory each
 * 120 standard compute nodes with 52 cores and 192 GiB memory each
@@ -33,7 +33,7 @@ Saga is provided by Hewlett Packard Enterprise and has a computational capacity 
 | Total parallel filesystem capacity     |	1 PB  |
 
 
-### No network access on compute nodes
+## No network access on compute nodes
 
 According to our security policy, compute nodes shall not have direct access to
 the public internet. This means that commands like `git clone` or `conda

@@ -2,9 +2,7 @@
 orphan: true
 ---
 
-
-
-### LINPACK benchmark {#linpack-benchmark}
+# LINPACK benchmark {#linpack-benchmark}
 
 The [LINPACK benchmark](http://www.netlib.org/benchmark/hpl/), used by
 the [TOP500 HPC list](https://www.top500.org/), solves a dense

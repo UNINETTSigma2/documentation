@@ -2,11 +2,7 @@
 orphan: true
 ---
 
----
-title: All Installed Modules on fram
-date: 2020-12-08
----
-# Installed modules on fram
+# Installed modules on Fram
 
 ## ABAQUS  
 **Description:** Finite Element Analysis software for modeling, visualization and best-in-class implicit and explicit

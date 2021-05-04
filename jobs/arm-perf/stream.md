@@ -2,9 +2,7 @@
 orphan: true
 ---
 
-
-
-### STREAM benchmark
+# STREAM benchmark
 
 The purpose of the [STREAM benchmark](https://www.cs.virginia.edu/stream/)
 is to measure the effective memory bandwidth of

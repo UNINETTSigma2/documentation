@@ -2,11 +2,11 @@
 orphan: true
 ---
 
-## Configuration
+# Configuration
 
 (Configuration-Jupyter-package)=
 
-### Enabling JupyterLab
+## Enabling JupyterLab
 JupyterLab is the next-generation of Jupyter notebooks and provides a more
 flexible and powerful user-interface. To enable JupyterLab, go to `Advanced
 configuration` while installing, and check the `jupyterLab` checkbox.
