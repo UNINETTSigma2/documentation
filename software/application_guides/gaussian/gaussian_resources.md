@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Memory and number of cores
 
 This page contains info about special features related to the Gaussian install made on Sigma2 machines, but also general issues related to Gaussian only vaguely documented elsewhere.

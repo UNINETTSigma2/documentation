@@ -1,4 +1,10 @@
-# Job Work Directory
+---
+orphan: true
+---
+
+(job-work-directory)=
+
+# Job work directory
 
 A job has multiple choices for its work directory, i.e., the directory
 where it does its work:

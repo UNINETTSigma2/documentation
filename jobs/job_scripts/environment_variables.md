@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Environment Variables in Job Scripts
 
 Here is a list of some useful environment variables that can be used

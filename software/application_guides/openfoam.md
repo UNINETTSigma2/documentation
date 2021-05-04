@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # OpenFOAM
 OpenFOAM is a computational fluid dynamics (CFD) software suite for physical and
 engineering simulations. The suite consists of mechanical, electronics, and

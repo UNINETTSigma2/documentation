@@ -1,4 +1,4 @@
-
+(projects-accounting)=
 
 # Projects and accounting
 
@@ -42,8 +42,6 @@ See `cost --man` for other options, and explanation of the output.
 The `cost` command only shows usage in the current _allocation
 period_.  Historical usage can be found [here](https://www.metacenter.no/mas/projects).
 
-
-(job_accounting)=
 
 ### Accounting
 

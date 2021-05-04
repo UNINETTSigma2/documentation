@@ -1,4 +1,8 @@
 ---
+orphan: true
+---
+
+---
 title: All Installed Modules on saga
 permalink: /${md_file}
 layout: single

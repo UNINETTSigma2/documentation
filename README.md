@@ -141,6 +141,17 @@ change them also there:
 
 ## How to cross-reference
 
+**Do not refer to other pages on this site by filename**. In other words, **don't do this**:
+```
+Linking to [some other page](../../some-page.md).
+```
+
+(the above note has been written by somebody who just fixed 60 broken internal links)
+
+Instead insert a label
+and refer to the label as shown below. This is more robust since the links will
+still work after the target file is moved or renamed.
+
 Create a label at the place you want to cross-reference to:
 ```
 (mylabel)=

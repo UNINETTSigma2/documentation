@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 ## Configuration
 See the `Configuration` section of the 
 {ref}`Jupyter package <Configuration-Jupyter-package>` .

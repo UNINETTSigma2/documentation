@@ -1,3 +1,5 @@
+(betzy)=
+
 # Betzy
 
 Named after [Mary Ann Elizabeth (Betzy) Stephansen](https://en.wikipedia.org/wiki/Elizabeth_Stephansen), the first Norwegian woman to be awarded a doctorate degree.

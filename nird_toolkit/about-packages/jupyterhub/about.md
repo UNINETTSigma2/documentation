@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 ## Configuration
 ### Sharing data among users
 To share data among the users of JupyterHub, when installing or reconfiguring,

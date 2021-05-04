@@ -1,8 +1,12 @@
+---
+orphan: true
+---
+
 # Sample MPI Batch Script
 
 Here is a sample batch script that demonstrates usage of various
 variables and processes for a **normal** job on Saga.  (To run in
-other job types, please read {ref}`job_scripts_on_saga`.
+other job types, please read {ref}`job-scripts-on-saga`.
 
 ```{eval-rst}
 .. literalinclude:: files/saga_mpi_job.sh

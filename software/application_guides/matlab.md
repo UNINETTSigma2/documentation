@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # MATLAB
 
 MATLAB is a platform for solving engineering, mathematical, and graphical problems.

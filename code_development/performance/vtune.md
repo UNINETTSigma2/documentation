@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Example VTune Analysis
 
 As an example we use VTune Amplifier to analyze the performance of the

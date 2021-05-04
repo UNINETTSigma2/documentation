@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Slurm Parameter and Settings
 
 Slurm supports a multitude of different parameters. This enables you to
@@ -42,7 +46,7 @@ with the value you want, e.g. `--job-name=test-job`.
 | `--partition=<name>`       | Partition/queue in which to run the job.                                                                    |
 | `--qos=<devel/short>`      | The *devel* or *short* QOS (quality of servive) can be used to submit short jobs for testing and debugging. |
 
-See also [projects and accounting](projects.md) for more information.
+See also {ref}`projects-accounting` for more information.
 
 Slurm differs slightly from the previous Torque system with respect to
 definitions of various parameters, and what was known as queues in
@@ -51,8 +55,9 @@ Torque may be covered by either `--partition=...` or `--qos=...`.
 Check our cluster specific sites for an overview of the partitions and
 QOS of that system:
 
-- [Fram](fram_job_types.md)
-- [Saga](saga_job_types.md)
+- {ref}`job-types-fram`
+- {ref}`job-types-saga`
+
 
 ### Advanced Job Control
 

@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 ## Configuration
 
 The custom image package allows you to deploy an arbitrary [Docker](https://docs.docker.com/get-started/overview/) container.

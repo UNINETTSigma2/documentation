@@ -1,4 +1,7 @@
+(saga)=
+
 # Saga
+
 The supercomputer is named after the godess in norse mythology associated with wisdom. Saga is also a term for the Icelandic epic prose literature. The supercomputer, placed at NTNU in Trondheim is designed to run both sequential and parallel workloads. It was made available to users right before the start of the 2019.2 period (October 2019).
 
 Saga is provided by Hewlett Packard Enterprise and has a computational capacity of approximately 140 million CPU hours a year and a life expectancy of four year, until 2023.

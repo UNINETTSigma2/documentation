@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Building MPI containers
 
 The following example will demonstrate how to _build_ Singularity containers on

@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # R
 R is a programming environment for performing statistical operations.
 

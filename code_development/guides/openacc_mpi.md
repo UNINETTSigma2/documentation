@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 ```{index} MPI; Combining MPI and OpenACC, OpenACC; Combining MPI and OpenACC, GPU; Combining MPI and OpenACC, Nvidia Nsight; Combining MPI and OpenACC, Multi-GPU; Combining MPI and OpenACC
 ```
 # Combining MPI and OpenACC

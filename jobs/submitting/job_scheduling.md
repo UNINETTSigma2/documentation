@@ -1,10 +1,14 @@
+---
+orphan: true
+---
+
 # Scheduling
 
 Jobs are scheduled based on their priority.  In addition, lower
 priority jobs can be back-filled if there are idle resources.
 
-Note that job priority is only affected by the [job
-type](choosing_job_types.md) and how long the job has been pending in the
+Note that job priority is only affected by the {ref}`job-types`
+and how long the job has been pending in the
 queue.  Notably, job size and fair share usage does _not_ affect the
 priorities.
 
@@ -47,7 +51,7 @@ network bandwidth within an island is higher than the throughput between
 islands.  Some jobs need high network throughput between its nodes, and will
 usually run faster if they run within a single island.  Therefore, the queue
 system is configured to run each job within one island, if possible.  See
-[Job Placement on Fram](fram_job_placement.md) for details and for how this can
+{ref}`job-placement-fram` for details and for how this can
 be overridden.
 
 

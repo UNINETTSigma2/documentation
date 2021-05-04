@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (EasyDMP-User-Documentation-for-the-RFK)=
 # EasyDMP User Documentation for the RFK
 

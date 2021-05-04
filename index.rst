@@ -23,14 +23,14 @@ OpsLog <https://opslog.sigma2.no>`__ and the
 Compute, storage, pre/post-processing, visualization, machine learning
 ----------------------------------------------------------------------
 
-We offer compute resources (`Betzy <hpc_machines/betzy.html>`__,
-`Fram <hpc_machines/fram.html>`__, and `Saga <hpc_machines/saga.html>`__, storage resources
-(`NIRD <files_storage/nird.html>`__), as well as the `NIRD
+We offer compute resources ({ref}`betzy`, {ref}`fram`, and {ref}`saga`,
+storage resources ({ref}`nird`),
+as well as the `NIRD
 Toolkit <https://www.sigma2.no/nird-toolkit>`__ platform for pre- and
 post-processing analysis, data intensive processing, visualization,
 artificial intelligence, and machine learning.
 
-Researchers also have access to `LUMI <hpc_machines/lumi.html>`__ through the
+Researchers also have access to {ref}`lumi` through the
 LUMI consortium.
 
 
@@ -60,14 +60,12 @@ these problems are very frequent:
   idle. Please check at least how many cores there are on a particular
   cluster node.
 - **Requesting too much memory** which leads to longer queuing and less
-  resource usage. Please check `how to choose memory
-  settings <jobs/choosing_memory_settings.html>`__.
+  resource usage. Please check {ref}`choosing-memory-settings`.
 - **Requesting more cores than the application can effectively use** without
   studying the scaling of the application. You will get charged more than
   needed and others cannot run jobs. If others do this, your own jobs queue.
 - **Submitting jobs to the wrong queue** and then queuing longer than
-  needed. Please take some time to study the different `job types
-  <jobs/choosing_job_types.html>`__.
+  needed. Please take some time to study the different {ref}`job-types`.
 
 If you are unsure about these, please contact us via
 support@metacenter.no and we will help you to use your allocated

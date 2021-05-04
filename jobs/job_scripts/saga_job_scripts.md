@@ -1,4 +1,8 @@
-(job_scripts_on_saga)=
+---
+orphan: true
+---
+
+(job-scripts-on-saga)=
 
 # Job Scripts on Saga
 

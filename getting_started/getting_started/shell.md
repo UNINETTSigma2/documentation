@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 
 
 ## I would like to change my shell. What do I do?

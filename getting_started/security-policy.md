@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Security policy for Sigma2 infrastructure
 
 

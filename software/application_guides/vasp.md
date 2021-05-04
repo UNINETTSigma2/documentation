@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # VASP (Vienna Ab initio Simulation Package)
 
 VASP is a software package for performing ab-initio quantum-mechanical calculation of a periodic arrangement of atoms using the projector-augmented wave method and a plane wave basis set. The package can perform density-functional-theory (DFT) calculations, or many-body-perturbation-theory (MBPT) like GW etc. Please consult the documentation to get a more detailed overview of its feature set.

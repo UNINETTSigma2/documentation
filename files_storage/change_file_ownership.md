@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Changing file ownership
 
 ```{note}

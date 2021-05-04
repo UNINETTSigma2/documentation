@@ -1,3 +1,9 @@
+---
+orphan: true
+---
+
+(license-list)=
+
 # List of software with licensed access in the Metacenter
 
 | Software                    | Machines          | Availabe for whom                         | License type            | Field                      | Source of funding   |

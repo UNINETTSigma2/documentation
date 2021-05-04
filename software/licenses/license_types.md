@@ -1,4 +1,6 @@
-
+---
+orphan: true
+---
 
 # Licence Information
 
@@ -14,7 +16,7 @@ In general, the application and tool licenses fall under these types:
 
 It is the user's responsibility to make sure they adhere to the license agreements.
 
-Please also consult [our license policies and list of software licenses we maintain](../apps/licenses/general.md).
+Please also consult the {ref}`license-list`.
 
 
 # Citation

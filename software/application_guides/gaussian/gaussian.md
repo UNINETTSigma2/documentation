@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # The GAUSSIAN program system
 
 * [Gaussian job examples](gaussian_job_example.md)

@@ -24,7 +24,7 @@ We can talk about:
 If you think you might have a challenging question or topics for us,
 you can also send them to us before, so we can come prepared and
 help you better. If you have general or specific questions about
-the event: [jorn.dietze@uit.no](jorn.dietze@uit.no)
+the event, please write to `jorn.dietze@uit.no`.
 
 
 ## How to get notified about these events

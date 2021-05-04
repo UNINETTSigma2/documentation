@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Frequently Asked Questions
 
 ## Access and connections
@@ -12,11 +16,11 @@ Please consult {ref}`lost-passwords`.
 
 ### What is the ssh key fingerprint for our systems?
 
-Please consult [this page](../getting_help/create_ssh_keys.md)
+Please consult {ref}`this page <ssh>`.
 
 ### Connecting to the cluster
 
-Typically users connect to our clusters with an SSH client. Please consult [this page](../getting_started/create_ssh_keys.md) for additional details.
+Typically users connect to our clusters with an SSH client. Please consult {ref}`this page <ssh>` for additional details.
 
 ### How can I access a compute node from the login node?
 
@@ -58,7 +62,7 @@ for a similar solution.
 
 You can choose different Python versions using either the module system or Anaconda/Miniconda. See [here](../software/modulescheme.md) and [here](../software/userinstallsw/python.md) for the former. In Anaconda, you typically load first the Anaconda module you like and then from within that you can chose and configure the Python version and environment. Please consult the [Anaconda documentation](https://docs.anaconda.com/) for details.
 
-In cases where these routes still does not solve your problem or you would like to install a package yourself, please consult this [page](../software/userinstallsw.md). If you are still stuck or would like support, please contact `support@metacenter.no`.
+In cases where these routes still does not solve your problem or you would like to install a package yourself, please consult this [page](../software/userinstallsw.md). If you are still stuck or would like support, please contact <support@metacenter.no>.
 
 ### Can I install software as a normal user without sudo rights or a root account?
 
@@ -93,7 +97,7 @@ on your local PC.
 For each [job type](../jobs/choosing_job_types.md) there is a maximum walltime. If you try to set a 
 walltime that is larger than this, the job will not be accepted when you submit it. We recommend you
 to try to segment the job using a [job script](../jobs/job_scripts.md). If this does not suit your need,
-feel free to open a support ticket at [support@metacenter.no](support@metacenter.no). The main
+feel free to open a support ticket at <support@metacenter.no>. The main
 intention to have a limit on the max walltime is to make sure the queue system works as best as possible and
 as such would give a better experience for most users.
 
@@ -123,7 +127,7 @@ How can I see how my jobs are doing in the queue, if my jobs are idle, blocked, 
 	squeue -u <username>
 
 where ``username`` is your username. You can of course also check the queue by not adding a username. For additional
-details on how to monitor job(s), please consult this [page](../jobs/monitoring.md).
+details on how to monitor job(s), please consult page about {ref}`monitoring-jobs`.
 
 ### Why does my job not start or give me error feedback when submitting?
 
@@ -132,7 +136,7 @@ in the queue. But sometimes there is an error in the job script and you are aski
 memory and cores) that is not possible. In such a cases you do not always get a message that the options are invalid on submission
 and they might not be, but the combination will lead to a job that never starts.
 
-To find out how to monitor your jobs and check their status see this [page](../jobs/monintoring.md).
+To find out how to monitor your jobs and check their status see {ref}`monitoring-jobs`.
 
 Here follows a few typical gotchas:
 

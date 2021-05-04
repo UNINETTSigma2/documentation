@@ -1,6 +1,13 @@
+---
+orphan: true
+---
+
+(running-job-steps-parallel)=
+
 # Packaging smaller parallel jobs into one large
+
 There are several ways to package smaller parallel jobs into one large
-parallel job. The preferred way is to use [job arrays](array_jobs.md).
+parallel job. The preferred way is to use {ref}`array-jobs`.
 Here we want to present a more pedestrian alternative which can give a
 lot of flexibility.
 
@@ -17,7 +24,7 @@ Download the script:
 :download:`files/parallel_steps_cpu.sh`
 ```
 
-This will work with any [job type](choosing_job_types.md) that hands out _cpus
+This will work with any {ref}`job-types` that hands out _cpus
 and memory_, so that one specifies `--mem-per-cpu`.  For instance
 
     sbatch --partition=bigmem parallel_steps_cpu.sh

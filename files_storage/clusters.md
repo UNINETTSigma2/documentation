@@ -1,3 +1,5 @@
+(storage-areas)=
+
 # Storage areas on HPC clusters
 
 Projects and users receive different areas to store files and other

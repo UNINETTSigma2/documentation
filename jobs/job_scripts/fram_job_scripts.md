@@ -1,4 +1,8 @@
-(job_scripts_on_fram)=
+---
+orphan: true
+---
+
+(job-scripts-on-fram)=
 
 # Job Scripts on Fram
 

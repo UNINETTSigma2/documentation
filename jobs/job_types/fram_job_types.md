@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (job-types-fram)=
 
 # Job Types on Fram

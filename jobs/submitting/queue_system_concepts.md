@@ -1,4 +1,10 @@
-# Queue System Concepts
+---
+orphan: true
+---
+
+(queue-system)=
+
+# Queue system concepts
 
 This page explains some of the core concepts of the Slurm queue system.
 
@@ -9,7 +15,7 @@ For an overview of the Slurm concepts, Slurm has a beginners guide:
 The nodes on a cluster is divided into sets, called _partitions_.  The
 partitions can be overlapping.
 
-Several [job types](choosing_job_types.md) on our clusters are
+Several {ref}`job-types` on our clusters are
 implemented as partitions, meaning that one specifies `--partition` to
 select job type -- for instance _bigmem_, _accel_ and _optimist_.
 
@@ -19,7 +25,7 @@ be used to give jobs different priority, and add or change the
 limitations on the jobs, for instance the size or lenght of jobs, or
 the number of jobs running at one time.
 
-Several [job types](choosing_job_types.md) on our clusters are
+Several {ref}`job-types` on our clusters are
 implemented as a QoS, meaning that one specifies `--qos` to select
 job type -- for instance _preproc_, _devel_ and _short_.
 The jobs will then (by default) run in the standard (_normal_) partition,
@@ -38,7 +44,7 @@ On our cluster, each project has its own account, with the same name
 _optimist_ jobs.  We use accounts mainly for accounting resource
 usage.
 
-Read more about [projects and usage accounting](projects_accounting.md).
+Read more about {ref}`projects-accounting`.
 
 ## Jobs
 Jobs are submitted to the job queue, and starts running on assigned
@@ -47,8 +53,10 @@ compute nodes when there are enough resources available.
 ### Job step
 A job is divided into one or more _job steps_.  Each time a job runs
 `srun` or `mpirun`, a new job step is created.  Job steps are
-[normally](guides/running_job_steps_parallel.md) executed
-sequentially, one after each other.  In addition to these, the
+normally executed
+sequentially, one after each other.
+But please also see {ref}`running-job-steps-parallel`.
+In addition to these, the
 batch job script itself, which runs on the first of the allocated
 nodes, is considered a job step (`batch`).
 
@@ -77,5 +85,5 @@ Each task in a job step is started at the same time, and they run in
 parallel on the nodes of the job.  `srun` and `mpirun` will take care
 of starting the right number of processes on the right nodes.
 
-(Unfortunately, Slurm also calls the individual instances of an [array
-job](job_scripts/array_jobs.md) for _array tasks_.)
+(Unfortunately, Slurm also calls the individual instances of {ref}`array-jobs`
+for _array tasks_.)
