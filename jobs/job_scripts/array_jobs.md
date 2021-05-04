@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (array-jobs)=
 
 # Array Jobs

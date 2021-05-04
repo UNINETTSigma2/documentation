@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Intel tuning tools
 
 Intel provide a set of tuning tools that can be quite useful. The

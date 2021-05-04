@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 
 # Storage performance: Lustre file system
 

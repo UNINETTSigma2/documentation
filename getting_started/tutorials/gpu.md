@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Introduction to using GPU compute
 A GPU, or **G**raphics **P**rocessing **U**nit, is a computational unit, which
 as the name suggest, is optimized to work on graphics tasks. Nearly every

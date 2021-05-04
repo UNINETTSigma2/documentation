@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Slurm Parameter and Settings
 
 Slurm supports a multitude of different parameters. This enables you to

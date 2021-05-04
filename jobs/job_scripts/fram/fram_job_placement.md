@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (job-placement-fram)=
 
 # Job Placement on Fram

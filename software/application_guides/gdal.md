@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # GDAL
 
 Geospatial Data Abstraction Library (GDAL) is a library for handling geospatial data in vector form.

@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 ## Configuration
 ### Setting a more secure password
 In order to set up a more secure password and username, go to the `Advanced

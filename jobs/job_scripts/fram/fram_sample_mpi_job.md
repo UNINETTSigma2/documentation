@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Sample MPI Batch Script
 
 Here is a sample batch script that demonstrates usage of various

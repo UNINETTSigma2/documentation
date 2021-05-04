@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (queue-system)=
 
 # Queue system concepts

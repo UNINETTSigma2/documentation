@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # NAMD
 NAMD is designed for simulating large biomolecular systems. NAMD scales to many cores and is compatible with AMBER.
 

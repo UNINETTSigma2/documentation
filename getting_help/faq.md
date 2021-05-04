@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Frequently Asked Questions
 
 ## Access and connections

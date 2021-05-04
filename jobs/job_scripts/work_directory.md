@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (job-work-directory)=
 
 # Job work directory

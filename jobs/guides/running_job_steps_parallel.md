@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (running-job-steps-parallel)=
 
 # Packaging smaller parallel jobs into one large

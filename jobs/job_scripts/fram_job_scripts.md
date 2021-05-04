@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (job-scripts-on-fram)=
 
 # Job Scripts on Fram

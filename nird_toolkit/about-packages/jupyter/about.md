@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 ## Configuration
 
 (Configuration-Jupyter-package)=

@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Job Dependencies
 
 In the following we demonstrate how to add dependecies between jobs using the Slurm option `--dependency`.

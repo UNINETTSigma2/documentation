@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 ```{index} GPU; TensorFlow on GPU, TensorFlow; TensorFlow on GPU
 ```
 

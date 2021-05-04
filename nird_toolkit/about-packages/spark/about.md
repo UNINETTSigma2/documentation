@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 ## Configuration
 ### Adding more workers
 By default, only one worker is created. To create more workers, set `replicas`

@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # PROJ
 
 PROJ is a library for handling cartographic projections typically used for map-making and global coordinates.

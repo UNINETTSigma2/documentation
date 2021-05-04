@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (job-types-saga)=
 
 # Job Types on Saga

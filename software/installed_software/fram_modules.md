@@ -1,4 +1,8 @@
 ---
+orphan: true
+---
+
+---
 title: All Installed Modules on fram
 date: 2020-12-08
 ---

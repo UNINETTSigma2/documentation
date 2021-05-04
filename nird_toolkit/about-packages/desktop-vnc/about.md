@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 ## Usage
 ### What can the desktop-vnc package be used for?
 The purpose of the desktop-vnc package is to provide a lightweight linux desktop environment    

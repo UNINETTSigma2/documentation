@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (running-mpi-applications)=
 
 # Running MPI Applications

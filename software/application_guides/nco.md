@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # NCO
 NetCDF Operators (NCO) is a collection of tools that operate on NetCDF and other data types.
 

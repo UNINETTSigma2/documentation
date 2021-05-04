@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Ncview
 
 Ncview is a visual browser for NetCDF files.

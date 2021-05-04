@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (job-array-howto)=
 
 # Job array howto

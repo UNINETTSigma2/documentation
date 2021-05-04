@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (job-states)=
 
 # Job States

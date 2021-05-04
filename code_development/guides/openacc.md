@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 ```{index} GPU; Getting started with OpenACC and Nvidia Nsight, OpenACC; Getting started with OpenACC and Nvidia Nsight, Nvidia Nsight; Getting started with OpenACC and Nvidia Nsight
 ```
 

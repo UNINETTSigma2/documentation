@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (Science-Europe-template-Practical-Guide)=
 # Science Europe template - Practical Guide
 

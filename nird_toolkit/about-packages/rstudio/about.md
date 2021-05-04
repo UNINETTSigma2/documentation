@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 ## Usage
 
 ### How to use RStudio
