@@ -1,5 +1,4 @@
 
-
 # Checkpointing Jobs
 
 Checkpointing is the action of saving the state of a running process to a check point image file.
@@ -20,7 +19,7 @@ The DMTCP module is available in all our machines **(Saga, Fram, Betzy)** and it
 
 ```module load DMTCP/2.6.0-GCCcore-9.3.0``` 
 
- There are two steps involved after loading the DMTCP module.
+  There are two steps involved after loading the DMTCP module.
 
 - First is to launch your application using `dmptcp_launch` by running the following
 
@@ -49,30 +48,23 @@ and `<your_command>` is the actual command you want to run and checkpoint
 
 # Job name:
 #SBATCH --job-name=YourJobname
-#
 # Project:
 #SBATCH --account=nnXXXXk
-#
 # Wall time limit:
 #SBATCH --time=DD-HH:MM:SS
-#
 # Other parameters:
 #SBATCH ...
-
 ## Set up job environment:
 set -o errexit  # Exit the script on any error
 set -o nounset  # Treat any unset variables as an error
-
 module --quiet purge  # Reset the modules to the system default
 ### Load DMPTCP module 
 module load DMTCP/2.6.0-GCCcore-9.3.0
 ### Load your software module
 module load SomeProgram/SomeVersion
 module list
-
 ## Do some work: Running under dmptcp control 
 dmtcp_launch --new-coordinator --rm --interval 3600 YourCommands 
-
 ```
 
 In this example, DMTCP takes checkpoints every hour '(--interval 3600)'
@@ -84,20 +76,15 @@ In this example, DMTCP takes checkpoints every hour '(--interval 3600)'
 
 # Job name:
 #SBATCH --job-name=YourJobname
-#
 # Project:
 #SBATCH --account=nnXXXXk
-#
 # Wall time limit:
 #SBATCH --time=DD-HH:MM:SS
-#
 # Other parameters:
 #SBATCH ...
-
 ## Set up job environment:
 set -o errexit  # Exit the script on any error
 set -o nounset  # Treat any unset variables as an error
-
 module --quiet purge  # Reset the modules to the system default
 ### Load DMPTCP module
 module load DMTCP/2.6.0-GCCcore-9.3.0
@@ -111,14 +98,16 @@ export DMTCP_COORD_PORT=$(</tmp/port)
 # Restart job 
 # The script below(dmtcp_restart_script.sh) is created automatically as part of the checkpointing process.
 ./dmtcp_restart_script.sh
-
 ```
-``` {Info}
+
+## More Information
+
 dmtcp_restart generates new ckpt_*.dmtcp and dmtcp_restart_script*.sh files.
 Therefore, if the restarted job is also killed due to unavailable/exceeded resources,
 you can resubmit the same job again without any changes in the submit file shown above.
 We recommend the users to delete  old ckpt_*.dmtcp files. 
-**Note there is no guarantee that every application can be checkpointed and restarted with DMTCP.
-Users are recommended to see the [DMTCP documentation](http://dmtcp.sourceforge.net/) for further read.** ```
+Note that there is no guarantee that every application can be checkpointed and restarted with DMTCP.
+Users are recommended to see the [DMTCP documentation](http://dmtcp.sourceforge.net/) and 
+[DMTCP supported apps](http://dmtcp.sourceforge.net/supportedApps.html#xwindow)for further read.
 
 
