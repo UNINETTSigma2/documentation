@@ -3,4 +3,4 @@ test:
   stage: test
   script:
   - pip install -r requirements.txt
-  - sphinx-build . _build
+  - sphinx-build -W -b linkcheck . _build

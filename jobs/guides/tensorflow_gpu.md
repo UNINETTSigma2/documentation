@@ -362,7 +362,7 @@ which created a `TensorBoard` log, it can be viewed as follows.
 4. Open up another terminal and this time connect to `Saga` using the following:
    `ssh -L 6006:localhost:<port> <username>@saga.sigma2.no` where `<port>` is
    the port reported from step `3` (e.g. `44124` in our case).
-5. Open your browser and go to [`localhost:6006`](localhost:6006)
+5. Open your browser and go to `localhost:6006`.
 
 # Advance topics
 ## Using multiple GPUs
