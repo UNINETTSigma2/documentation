@@ -1,3 +1,5 @@
+(job-types-saga)=
+
 # Job Types on Saga
 
 Saga is designed to run serial and small ("narrow") parallel jobs, in
@@ -14,7 +16,7 @@ instead of mpirun or mpiexec, we observe correct task placement on Saga.
 
 The basic allocation units on Saga are cpu and memory.
 The details about how the billing units are calculated can be found
-in {ref}`job_accounting`.
+in {ref}`projects-accounting`.
 
 Most jobs on Saga are *normal* jobs.
 

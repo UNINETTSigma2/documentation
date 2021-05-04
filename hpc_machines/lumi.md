@@ -1,3 +1,5 @@
+(lumi)=
+
 # LUMI
 
 > The European High-Performance Computing Joint Undertaking (EuroHPC JU) is

@@ -1,4 +1,4 @@
-(job_scripts_on_fram)=
+(job-scripts-on-fram)=
 
 # Job Scripts on Fram
 

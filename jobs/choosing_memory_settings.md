@@ -1,4 +1,4 @@
-
+(choosing-memory-settings)=
 
 # How to choose the right amount of memory
 

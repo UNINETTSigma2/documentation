@@ -1,3 +1,5 @@
+(array-jobs)=
+
 # Array Jobs
 
 To run many instances of the same job, use the `--array` switch to
@@ -54,4 +56,4 @@ Submit the script with `sbatch minimal_array_job.sh`.  This job will
 process the datasets `dataset.1`, `dataset.2`, ..., `dataset.200` and
 put the results in `result.1`, `result.2`, ..., `result.200`.
 
-You can also find a more extended guide [here](job_array_howto.md).
+You can also find a more extended guide {ref}`here <job-array-howto>`.

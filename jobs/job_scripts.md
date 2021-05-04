@@ -5,8 +5,8 @@
 This page documents the basics of how to write job scripts for the HPC clusters.
 Cluster-specific details are kept in separate sub pages for each cluster:
 
-- [Fram job scripts](job_scripts_on_fram)
-- [Saga job scripts](job_scripts_on_saga)
+- [Fram job scripts](job-scripts-on-fram)
+- [Saga job scripts](job-scripts-on-saga)
 
 
 ## Job Script Basics
@@ -75,9 +75,7 @@ in the `module load` command.  We also recommend adding a
 module list    # For easier debugging
 ```
 
-after the `module load` commands.  See [Software Module
-Scheme](../apps/modulescheme.md) for more information about software
-modules.
+after the `module load` commands. See also {ref}`module-scheme`.
 
 All in all, a generic job script might look like this:
 

@@ -32,7 +32,18 @@ Open cmd.exe to get a DOS prompt and run
 plink.exe -L 5901:localhost:5901 USERNAME@desktop.fram.sigma2.no
 ```
 
-and use `localhost:5901` as the server address. (The space after -L must be there) If you want to avoid typing you can create a .bat script with the correct plink command. ([Example](./ssh-tunnel-fram.bat) edit in Notepad and save it to a location where you can click on it, e.g the desktop. DO NOT USE WORD TO EDIT THIS!)
+and use `localhost:5901` as the server address. (The space after -L must be there) If you want to avoid typing you can create a .bat script with the correct plink command.
+
+**Example**: Edit in notepad and save it to a location where you can click on it, e.g the desktop. Do not use word to edit this:
+```
+# Create ssh tunnel to fram from the outside world.
+# Use localhost:5901 as the server address in the VNC client.
+
+# Change USERNAME to the username on fram.
+plink.exe -L 5901:localhost:5901 USERNAME@desktop.fram.sigma2.no
+```
+
+([Example](./ssh-tunnel-fram.bat) edit in Notepad and save it to a location where you can click on it, e.g the desktop. DO NOT USE WORD TO EDIT THIS!)
 
 #### Linux/MAC/Windows with OpenSSH
 

@@ -1,3 +1,5 @@
+(ssh)=
+
 # SSH
 
 Some SSH related frequently asked questions are documented down below.

@@ -6,7 +6,8 @@ The intention of this guide is to teach students and researchers with access to
 [Sigma2][sigma2] how to use machine learning libraries on CPU and GPU. The guide
 is optimized for [`TensorFlow 2`][tensorflow], however, we hope that if you
 utilize other libraries this guide still holds some value. Do not hesitate to
-[contact us][contact_sigma] for additional assistance.
+{ref}`contact us <support-line>`
+for additional assistance.
 
 For the rest of this guide many of the examples ask for Sigma2 resources with
 GPU. This is achieved with the `--partition=accel --gres=gpu:1`
@@ -21,7 +22,7 @@ A complete example, both `python` and Slurm file, can be found at
 
 # Installing `python` libraries
 The preferred way to "install" the necessary machine learning libraries is to
-load one of the pre-built [modules][module] below. By using the built-in modules
+load one of the pre-built {ref}`modules <module-scheme>` below. By using the built-in modules
 any required third-party module is automatically loaded and ready for use,
 minimizing the amount of packages to load.
 
@@ -70,7 +71,7 @@ $ deactivate
 
 Once the environment is activated, new packages can be installed by using `pip
 install <package>`. If you end up using additional packages make sure that the
-`virtualenv` is activated in your [job script][sbatch_ex].
+`virtualenv` is activated in your {ref}`job-scripts`.
 
 ```sh
 # Often useful to purge modules before running experiments
@@ -137,7 +138,7 @@ now we just wanted to see that `TensorFlow` was installed and pre-compiled with
 
 This should be it for installing necessary libraries. Below we have listed the
 modules which will have to be loaded for GPU compute to work. The next code
-snippet should be in your [job script][sbatch_ex] so that the correct modules
+snippet should be in your {ref}`job-scripts` so that the correct modules
 are loaded on worker nodes and the virtual environment is activated.
 
 ```sh
@@ -258,7 +259,7 @@ model.fit(x_train[:1000], y_train[:1000],
           verbose=0)
 ```
 
-The above file can be run with the following [job script][sbatch_ex] which will
+The above file can be run with the following {ref}`job-scripts` which will
 ensure that correct modules are loaded and results are copied back into your
 home directory.
 
@@ -674,15 +675,9 @@ oversubscribe on GPUs.
 
 [sigma2]: https://www.sigma2.no/
 [tensorflow]: https://www.tensorflow.org/
-[contact_sigma]: ../../getting_help/support_line.html
-[module]: ../../software/modulescheme.html
 [virtualenv]: https://virtualenv.pypa.io/en/stable/
 [tf_install]: https://www.tensorflow.org/install/pip
-[sbatch_ex]: ../job_scripts.html
 [rsync]: https://en.wikipedia.org/wiki/Rsync
-[scratch]: ../job_scripts/work_directory.html
-[saga]: ../../hpc_machines/saga.html
-[localscratch]: ../../files_storage/clusters.html#job-scratch-area-on-local-disk
 [python_os]: https://docs.python.org/3/library/os.html
 [tensorflow_ckpt]: https://www.tensorflow.org/tutorials/keras/save_and_load
 [tensorboard]: https://www.tensorflow.org/tensorboard

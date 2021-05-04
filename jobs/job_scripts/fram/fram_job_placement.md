@@ -1,3 +1,5 @@
+(job-placement-fram)=
+
 # Job Placement on Fram
 
 The compute nodes on Fram are divided into four groups, called
@@ -58,8 +60,8 @@ followin environment variables:
 - `SALLOC_WAIT4SWITCH`: Max wait time for `salloc` jobs.
 - `SRUN_WAIT4SWITCH`: Max wait time for `srun` jobs.
 
-(`salloc` and `srun` jobs are interactive jobs; see
-[Interactive Jobs](interactive_jobs.md).)  As above, the maximal possible wait
+`salloc` and `srun` jobs are interactive jobs; see {ref}`interactive-jobs`.
+As above, the maximal possible wait
 time to specify is 28 days[^1], and any time longer than that will *silently be
 truncated*.  The change takes effect for jobs submitted after you change the
 variables.  For instance, to change the default to allow two islands, and wait

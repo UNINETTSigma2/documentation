@@ -1,3 +1,5 @@
+(nird)=
+
 # NIRD - National Infrastructure for Research Data
 
 **NIRD** is the **N**ational e-**I**nfrastructure for **R**esearch **D**ata. It

@@ -2,7 +2,7 @@
 
 # Changes in Sigma2 funding policy
 
-Currently the cost for a number of licenses for application software is carried by the Metacenter, as shown in the [list of licensed software at the Metacenter](license-list.md). This will change gradually, and from autum 2020 the Metacenter will not fund licenses for application software (e.g. ADF/BAND, Crystal, Gaussian, GaussView, Molpro).
+Currently the cost for a number of licenses for application software is carried by the Metacenter, as shown in the {ref}`license-list`. This will change gradually, and from autum 2020 the Metacenter will not fund licenses for application software (e.g. ADF/BAND, Crystal, Gaussian, GaussView, Molpro).
 
 For these codes and the corresponding research groups and research communities the Metacenter will offer consulting for pooling costs and for the maintenance of common license certificates and servers. The Metacenter will help these communities to set up coordination points to simplify paperwork and save costs.
 

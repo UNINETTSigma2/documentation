@@ -1,4 +1,6 @@
-# Job Array Howto
+(job-array-howto)=
+
+# Job array howto
 
 In this example we wish to run many similar sequential jobs in
 parallel using job arrays. We take Python as an example but this does

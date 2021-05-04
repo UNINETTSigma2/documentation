@@ -39,7 +39,7 @@ guide.](https://www.openacc.org/sites/default/files/inline-files/API%20Guide%202
 
 ## Introduction
 This guide will introduce the concept of OpenACC directives in `C/C++` code, how
-to compile and run such programs on [Saga](../hpc_machines/saga.md) and how to
+to compile and run such programs on {ref}`saga` and how to
 use [Nvidia Nsight](https://developer.nvidia.com/nsight-systems) to profile and
 optimize code.
 
@@ -176,7 +176,7 @@ for only one GPU).
 
 ### Profiling
 To profile the `kernels` version of our program we will here transition to
-[`Slurm` scripts](../../jobs/job_scripts.md) This will make it a bit easier to
+{ref}`job-scripts`. This will make it a bit easier to
 make changes to how the program is run and also makes it a bit more
 reproducible.
 

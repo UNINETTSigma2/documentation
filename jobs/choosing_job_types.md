@@ -25,7 +25,7 @@ If it instead needs 200GB memory you should use _bigmem_.
 
 For jobs that don't request much memory, the "units" of *preproc* jobs
 are simply the number of cpus the job requests.
-For other jobs, see {ref}`job_accounting` for how the units are calculated.
+For other jobs, see {ref}`projects-accounting` for how the units are calculated.
 
 [Betzy Job Types](job_types/betzy_job_types.md).
 
@@ -54,7 +54,7 @@ For other jobs, see {ref}`job_accounting` for how the units are calculated.
 
 For jobs that don't request GPUs or much memory, the "units" on Saga are
 simply the number of cpus the job requests.
-For other jobs, see {ref}`job_accounting` for how the units are calculated.
+For other jobs, see {ref}`projects-accounting` for how the units are calculated.
 
 [Saga Job Types](job_types/saga_job_types.md).
 

@@ -1,5 +1,8 @@
 # Application guides
-For a general explanation on how to make an application available for use, the module system, and information about changes in application software see [Software Module Scheme](modulescheme.md).
+
+For a general explanation on how to make an application available for use, the
+module system, and information about changes in application software see
+{ref}`module-scheme`.
 
 * List of documented software (so far):
     * [CDO](application_guides/cdo.md)
@@ -15,6 +18,6 @@ For a general explanation on how to make an application available for use, the m
     * [NWChem](application_guides/nwchem.md)
     * [OpenFOAM](application_guides/openfoam.md)
     * [PROJ](application_guides/proj.md)
-    * [R](userinstallsw/R.html)
+    * [R](userinstallsw/R.md)
     * [VASP](application_guides/vasp.md)
     * [WRF](application_guides/wrf.md)
