@@ -12,7 +12,7 @@ option**.
 - [The difference between salloc and srun](#the-difference-between-salloc-and-srun)
 
 
-### Asking for an interactive node
+## Asking for an interactive node
 
 Instead of running on a login node, you can ask the queue system to allocate
 compute resources for you and once assigned, you can run the job(s)
@@ -44,7 +44,7 @@ for that matter), specifying more than 6-8 hrs runtime is not very
 useful. An alternative is to start the job in a tmux session (next section).
 
 
-### Keeping interactive jobs alive
+## Keeping interactive jobs alive
 
 Interactive jobs stop when you disconnect from the login node either by
 choice or by internet connection problems. To keep a job alive you can
@@ -88,7 +88,7 @@ a short tutorial of tmux. Otherwise working inside of a tmux session is
 almost the same as a normal bash session.
 
 
-### Graphical user interfaces in interactive jobs
+## Graphical user interfaces in interactive jobs
 
 It is possible to run X commands, i.e., programs with a graphical user
 interface (GUI), in interactive jobs. This allows you to get graphical output
@@ -123,7 +123,7 @@ $ srun --ntasks=1 --mem-per-cpu=4G --time=00:30:00 --qos=devel --account=YourAcc
 ```
 
 
-### The difference between salloc and srun
+## The difference between salloc and srun
 
 An alternative to using `srun ... --pty bash -i` is to use
 ```

@@ -24,7 +24,7 @@ to the `sbatch` command. If the dependency was added successfully, you should se
 in the `NODELIST(REASON)` column of the `squeue` output.
 ```
 
-#### Beware of exit status
+## Beware of exit status
 
 With some of the options it is important to keep in mind the *exit status* of
 your job script, to indicate whether or not the job finished successfully. By default the
@@ -52,7 +52,7 @@ exit 0
 
 Standard Slurm errors like out-of-memory or time limit will of course be captured automatically.
 
-#### Examples
+## Examples
 
 - **Here `pre.sh` is a pre-processing step for `job-1.sh`, `job-2.sh`, etc:**
 ```bash

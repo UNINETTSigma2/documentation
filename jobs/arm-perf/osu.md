@@ -2,9 +2,7 @@
 orphan: true
 ---
 
-
-
-### OSU benchmark
+# OSU benchmark
 
 The [OSU benchmark
 suite](http://mvapich.cse.ohio-state.edu/benchmarks/) measures the

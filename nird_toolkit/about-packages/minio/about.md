@@ -2,8 +2,8 @@
 orphan: true
 ---
 
-## Configuration
-### Setting a more secure password
+# Configuration
+## Setting a more secure password
 In order to set up a more secure password and username, go to the `Advanced
 configuration` section, and enter a more random `secretKey` and
 `accessKey`. Keep in mind that these will be stored in plain-text and be
@@ -12,8 +12,8 @@ anywhere.
 The `accessKey` and `secretKey` you entered can then be used when login into
 minio.
 
-## Usage
-### Uploading files
+# Usage
+## Uploading files
 Begin by creating a new bucket by clicking on the circle with a plus sign in
 the right-hand corner, and selecting `Create bucket`.
 
@@ -34,7 +34,7 @@ then be able to select which file(s) to upload. To upload multiple files, hold
 
 ![Minio file upload success](./minio_upload_file.png)
 
-### Sharing files
+## Sharing files
 To share a file with a friend (or enemy), click the three dots furthest to the
 right of the filename. You will then be given a link which can be used to
 share the file.

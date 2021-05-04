@@ -5,7 +5,7 @@
 Named after [Mary Ann Elizabeth (Betzy) Stephansen](https://en.wikipedia.org/wiki/Elizabeth_Stephansen), the first Norwegian woman to be awarded a doctorate degree.
 
 
-### The most powerful supercomputer in Norway
+## The most powerful supercomputer in Norway
 
 Betzy is a BullSequana XH2000, provided by Atos, and will give Norwegian researchers almost three times more capacity than previously, with a theoretical peak performance of 6.2 PetaFlops. The supercomputer is located at NTNU in Trondheim, and was set in production 24 November 2020. Betzy provides close to two billion CPU hours per year, and has a contracted operating time of four years (2024), with an optional one-year extension (2025).
 
@@ -28,7 +28,7 @@ Betzy is a BullSequana XH2000, provided by Atos, and will give Norwegian researc
 Almost all components are liquid cooled resulting in a very high cooling efficiency, 95% of heat being captured to water.
 
 
-### No network access on compute nodes
+## No network access on compute nodes
 
 According to our security policy, compute nodes shall not have direct access to
 the public internet. This means that commands like `git clone` or `conda

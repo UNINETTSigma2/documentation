@@ -1,4 +1,3 @@
-
 # Checkpointing Jobs
 
 Checkpointing is the action of saving the state of a running process to a check point image file.
@@ -43,7 +42,7 @@ and `<your_command>` is the actual command you want to run and checkpoint
 
 - First submit your job with dmptcp `generic_job.sh' 
 
-```
+```bash
 #!/bin/bash
 
 # Job name:
@@ -109,5 +108,3 @@ We recommend the users to delete  old ckpt_*.dmtcp files.
 Note that there is no guarantee that every application can be checkpointed and restarted with DMTCP.
 Users are recommended to see the [DMTCP documentation](http://dmtcp.sourceforge.net/) and 
 [DMTCP supported apps](http://dmtcp.sourceforge.net/supportedApps.html#xwindow)for further read.
-
-

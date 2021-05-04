@@ -87,6 +87,7 @@ your jobs to start on any nodes, whichever island they are on, simply set
 future we might change the underlying mechanism, in which case unsetting these
 variables will have no effect (but setting them will).
 
-## Footnotes
+
+**Footnotes**
 
 [^1]: The limits might change in the future.

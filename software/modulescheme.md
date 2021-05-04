@@ -10,12 +10,16 @@ The main command for using this system is the module command. You can find a lis
 
 We use the lmod module system; for more info see <https://lmod.readthedocs.io/en/latest/> in the Metacenter currently. Below we listed the most commonly used options, but also feel free to ivestigate options in this toolset more thoroughly on developers site.
 
-### Which modules are currently loaded?
+
+## Which modules are currently loaded?
+
 To see the modules currently active in your session, use the command:
 
 	module list
 
-### Which modules are available?
+
+## Which modules are available?
+
 In order to see a complete list of available modules, issue the command:
 
 	module avail
@@ -42,14 +46,17 @@ avail` search.
 ```
 
 
-### How to load a module
+## How to load a module
+
 In order to make, for instance, the NetCDF library available issue the command:
 
 	module load netCDF/4.4.1.1-intel-2018a-HDF5-1.8.19
 
 Note that we currently do **not have** default modules on Metacenter machines, so you need to write full module name when loading!
 
-### How to unload a module
+
+## How to unload a module
+
 Keeping with the above example, use the following command to unload the NetCDF module again:
 
 	module unload netCDF
@@ -67,7 +74,8 @@ option instead.
 ```
 
 
-### How to switch to a different version of a module
+## How to switch to a different version of a module
+
 Switching to another version is similar to loading a specific version. As an example, if you want to switch from the current loaded netCDF to an older one; netCDF/4.4.0-intel-2016a:
 
 	module switch netCDF/4.4.1.1-intel-2018a-HDF5-1.8.19 netCDF/4.4.0-intel-2016a
@@ -86,7 +94,8 @@ with a `module purge`, before loading all necessary modules for the calculation.
 ```
 
 
-### How to save and restore your module environment
+## How to save and restore your module environment
+
 When you have loaded all necessary modules for a particular purpose and made sure that
 your environment is working correctly, you can save it with
 

@@ -9,7 +9,7 @@ your laptop which are suitable for execution on our HPC systems (Saga, Fram, Bet
 If you are only interested in _running_ existing containers,
 see {ref}`Running containers <running-containers>`.
 
-### Creating a Singularity container from a definition file
+## Creating a Singularity container from a definition file
 
 **We do this step on our own laptop/computer, not on the cluster**.
 This is because Singularity needs root rights to build the container.
@@ -57,7 +57,7 @@ Once `example.sif` is generated, we can `scp`
 the container file to the cluster.
 
 
-### Running the container on multiple nodes
+## Running the container on multiple nodes
 
 We assume that we have the container file `example.sif` from the step before on
 the cluster.  We will also fetch `mpi_hello_world.c` from

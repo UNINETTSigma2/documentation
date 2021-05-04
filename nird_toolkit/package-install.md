@@ -8,7 +8,7 @@ Here, you will be presented with a selection of different packages. To find a
 specific package, you can use the search bar to search for the package name,
 keywords or similar features.
 
-### Getting an overview of a package
+## Getting an overview of a package
 Each package in the package list consists of two components. A description of
 the package, and a `Install` button. By clicking on the `Install`-button, you will
 be taken to the installation page, where you can configure and install the package.
@@ -29,7 +29,7 @@ Various metadata, such as who maintains the package can be found besides the
 package description.
 
 
-### Actually installing a package
+## Actually installing a package
 After reading this description, we should have all the information required to
 install the package. To navigate to the package installation page, click on the
 `Installation`-button in the menu.
@@ -60,15 +60,15 @@ go to the [Managing applications](application-management.md) section.
 
 (appendix-a-the-meaning-of-each-of-common-fields-in-the-installation-form)=
 
-### Appendix A: the meaning of each of common fields in the installation form
+## Appendix A: the meaning of each of common fields in the installation form
 
-#### Required fields
-##### Application name
+### Required fields
+#### Application name
 To make it easier to determine identify applications, you are required give
 your application a name. This name is meant as a human friendly way of
 describing the application.
 
-##### Projectspace
+#### Projectspace
 In many cases it is useful to group applications belonging to the same project together.
 By specifying a projectspace, an application will be grouped in a specific project.
 A projectspace may have different resources available to it, and you may not
@@ -77,24 +77,24 @@ be able to install applications in all projectspaces.
 Note: if you are familiar with Kubernetes namespaces, then it is worth noting
 that a projectspace is just a different name for a namespace.
 
-##### URL
+#### URL
 In order to make it easier to access each application, each application hosted
 behind the URL specified using the URL field.
 
-#### Optional fields
-##### Authorized groups
+### Optional fields
+#### Authorized groups
 Sometimes it may be useful to only allow some groups access to the
 application.
 the 'authorized groups' selector allows you to specify which groups
 are allowed to access the application.
 
 
-##### Persistent storage
+#### Persistent storage
 Allows you to attach a volume that can be used to persistently
 store data. The [enabling persistent storage section](persistent-storage.md)
 goes into more detail as to what this does.
 
-##### Machine type
+#### Machine type
 For an application to work properly, it must allocate some resources.
 
 ![Machine types](imgs/machine_type.png)
@@ -112,7 +112,7 @@ different resource flavours. Every projectspace as a different amount of
 resource available. To see how much of each resource is available, look at the
 `Requested resources` field.
 
-##### Requested resources
+#### Requested resources
 The bars in the 'requested resources' section shows how much of each
 resource is available.
 
@@ -123,12 +123,12 @@ the resource you are about to allocate, and green indicates how much
 is already in use. red indicates that you are about to attempt to
 allocate more resources than what is available.
 
-#### Common advanced values
+### Common advanced values
 
 Each package should have an explanation of its non-standard values on the
 package overview page.
 
-##### dockerImage
+#### dockerImage
 In order to use custom images, it is in some packages possible to specify a
 custom Docker image to use when creating the application. This image should be
 publicly available.

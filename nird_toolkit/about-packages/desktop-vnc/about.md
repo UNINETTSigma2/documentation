@@ -2,14 +2,14 @@
 orphan: true
 ---
 
-## Usage
-### What can the desktop-vnc package be used for?
+# Usage
+## What can the desktop-vnc package be used for?
 The purpose of the desktop-vnc package is to provide a lightweight linux desktop environment    
 for performing interactive tasks involving graphical applications and to speed-up their display on local desktop machines.   
 Note: 3D hardware acceleration is not supported. So it is not suitable for use with heavy 3D rendering application.   
 
 
-### How to add new packages
+## How to add new packages
 In case you are missing some packages from the default application image, you can add those packages yourself by creating a custom docker image.
 See   {ref}`this tutorial <custom-docker-image>` for generic instructions on how to add packages.
 

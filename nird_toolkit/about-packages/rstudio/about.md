@@ -2,15 +2,15 @@
 orphan: true
 ---
 
-## Usage
+# Usage
 
-### How to use RStudio
+## How to use RStudio
 For a general tutorial on how to use RStudio,
 see [RStudio 101](https://dss.princeton.edu/training/RStudio101.pdf).
 For a webinar with an in-depth explanation of RStudio can be found, see
 [RStudio webinars](https://www.rstudio.com/collections/rstudio-essentials/).
 
-### Serving Shiny applications
+## Serving Shiny applications
 The rstudio package has built-in support for serving [Shiny web applications](https://shiny.rstudio.com/).
 Shiny can be used to create interactive web applications directly in R.
 By default, a collection of sample applications are hosted on `shiny-<your application URL here>`.

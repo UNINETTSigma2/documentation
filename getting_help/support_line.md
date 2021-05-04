@@ -17,7 +17,7 @@ However, for a new problem, **do not reply to emails with unrelated subjects** (
 ticket numbers) as this can be confusing for us.
 
 
-### Give enough information
+## Give enough information
 
 We get many requests for help which are too vague to give a useful response.
 So, when sending us a question, always answer these questions and you’ll get
@@ -37,7 +37,7 @@ requests](how_to_write_good_support_requests.md) on how to report problems in
 the most effective way for getting help quickly.
 
 
-### Display active and resolved tickets
+## Display active and resolved tickets
 
 To see details about your open and resolved support requests you can login to the
 [self-service page](https://rt.uninett.no/SelfService).

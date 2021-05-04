@@ -19,13 +19,13 @@ for instance sftp, FileZilla, or Cyberduck.
 - [Downloading and uploading files and folders](#downloading-and-uploading-files-and-folders)
 
 
-### Installation on Windows
+## Installation on Windows
 
 1.  Download the program from <https://winscp.net/eng/download.php>.
 2.  When the installation file is downloaded, double click on it and follow the instructions for installing the program.
 
 
-### Connecting to NIRD with WinSCP
+## Connecting to NIRD with WinSCP
 
 1. Start WinSCP. You should see something like this:
 
@@ -48,7 +48,7 @@ for instance sftp, FileZilla, or Cyberduck.
 8. Navigate to the desired place in the project folder.
 
 
-### Downloading and uploading files and folders
+## Downloading and uploading files and folders
 
 When connected to a server (NIRD in this case), the WinSCP window shows two
 file areas in the two large panels. The left panel is your local computer, the

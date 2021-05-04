@@ -265,7 +265,7 @@ assign a unique `GPU` to each `MPI` process.
 .. literalinclude:: openacc_mpi/wave_acc_mpi.c
    :language: c
    :lines: 91-121
-   :emphasize-lines: 21-32
+   :emphasize-lines: 21-31
 ```
 
 ```{eval-rst}
