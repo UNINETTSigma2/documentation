@@ -31,11 +31,3 @@ Saga is provided by Hewlett Packard Enterprise and has a computational capacity 
 | Total memory     |	97.5 TiB  |
 | Total NVMe+SSD local disc | 89 TiB + 60 TiB |
 | Total parallel filesystem capacity     |	1 PB  |
-
-
-## No network access on compute nodes
-
-According to our security policy, compute nodes shall not have direct access to
-the public internet. This means that commands like `git clone` or `conda
-install` or `pip install`, updating Git submodules, fetching data from web
-sources, etc., will not work on compute nodes.

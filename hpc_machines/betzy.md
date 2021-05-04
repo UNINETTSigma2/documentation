@@ -26,11 +26,3 @@ Betzy is a BullSequana XH2000, provided by Atos, and will give Norwegian researc
 | Top500 June 2020 | 55th place \@ 1250 nodes, 76% efficiency|
 
 Almost all components are liquid cooled resulting in a very high cooling efficiency, 95% of heat being captured to water.
-
-
-## No network access on compute nodes
-
-According to our security policy, compute nodes shall not have direct access to
-the public internet. This means that commands like `git clone` or `conda
-install` or `pip install`, updating Git submodules, fetching data from web
-sources, etc., will not work on compute nodes.
