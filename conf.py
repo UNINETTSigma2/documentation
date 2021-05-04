@@ -64,3 +64,14 @@ html_context = {
     'github_repo': 'documentation',
     'github_version': 'master/' ,
 }
+
+# ignoring these because they are behind vpn/login and linkchecker cannot verify these
+# or because they don't really exist
+linkcheck_ignore = [
+    'https://rt.uninett.no/SelfService',
+    r'localhost:\d+',
+    r'https://desktop.saga.sigma2.no:\d+',
+    r'https://desktop.fram.sigma2.no:\d+',
+    r'.*slurmbrowser.*',
+    'http://www.linuxconfig.org/Bash_scripting_Tutorial',
+]
