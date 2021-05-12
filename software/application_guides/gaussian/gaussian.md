@@ -6,6 +6,7 @@ orphan: true
 
 * [Gaussian job examples](gaussian_job_example.md)
 * [Memory and number of cores](gaussian_resources.md)
+* [Tuning Gaussian](gaussian_tuning.md)
 * [GaussView](gaussview.md)
 
 [Gaussian](http://gaussian.com/) is a popular computational chemistry program. Official documentation: [http://gaussian.com/man](http://gaussian.com/man)
