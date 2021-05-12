@@ -1,3 +1,5 @@
+(appguides)=
+
 # Application guides
 
 For a general explanation on how to make an application available for use, the

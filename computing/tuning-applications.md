@@ -23,7 +23,7 @@ of a seasoned well known application with it's special traits.
 
 In the following we will cover application tuning and benchmarking at a general level.
 If you are interested in specific advice or guidance for your particular software, please
-have a look at the [application specific](../software/appguide.md) pages, locate your application and see if it has a dedicated guide. If not, 
+have a look at the {ref}`application specific <appguides>` pages, locate your application and see if it has a dedicated guide. If not, 
 and this is of interest to you, please consider contacting us by sending a mail to [support@metacenter](mailto:support@metacenter.no). We
 greatly appreciate any assistance or help in improving this.
 
