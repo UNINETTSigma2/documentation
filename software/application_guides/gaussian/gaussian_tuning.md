@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Gaussian performance tuning
 
 ## Introduction
