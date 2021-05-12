@@ -50,8 +50,11 @@ optimal as the scaling is not very good for any higher number of
 cores. These extra cores are essential wasted and could be used by other jobs.
 
 Below is an example of a real Gaussian run:
+
 ![G16 run times](figures/g16-runtimes.png "G16 run times")
+
 ![G16 speedup](figures/g16-speedup.png "G16 speedup")
+
 There is a significant speedup with core count from one core and up to
 a core count of about 32. Using more than 40 cores seems counterproductive. 
 Even for problems with fairly long run times in the order of hours. It's not 
@@ -77,6 +80,7 @@ The figure below show a dramatic increase in performance at the memory size
 where the 2-electron fit in the memory. From 8 to 6 hours (depending on
 memory requested) down to less than 3 hours at the memory size where
 all the 2-electrons integrals fit in the memory.
+
 ![Effect of requesting memory](figures/g16-mem.png "Performance and memory requested")
 
 The problem is then to find how much memory is needed to fit it in memory. 
@@ -127,6 +131,7 @@ performance.  We suggest the following settings as a guideline:
 The last one can be replaced with avx2, if problems like illegal
 instruction or operand is encountered. The figure below show the effect of
 the CPU settings:
+
 ![Effect of environment variables](figures/g16-cpu-settings.png "Effect of setting environment variable for CPU")
 
 
