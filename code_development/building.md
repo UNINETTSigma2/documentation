@@ -2,11 +2,9 @@
 
 ## Introduction
 This is just a quick short guide on the topic. For more in depth documentation please
-check out the PRACE Best Practice Guides at:
-https://prace-ri.eu/training-support/best-practice-guides/
+check out the [PRACE Best Practice Guides](https://prace-ri.eu/training-support/best-practice-guides/).
 
-Most relevant for Betzy :
-https://prace-ri.eu/training-support/best-practice-guides/best-practice-guide-amd-epyc/
+[Most relevant for Betzy](https://prace-ri.eu/training-support/best-practice-guides/best-practice-guide-amd-epyc/)
 and an update covering AMD Rome named  "Best Practice Guide Modern Processors"
 soon to be published.
 
