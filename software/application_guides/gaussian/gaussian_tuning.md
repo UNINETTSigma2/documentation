@@ -25,7 +25,7 @@ compute these than reading them from disk. In addition doing the calculation
 in memory (in-core) is also default (if possible). This can have a major
 impact of performance. See later about memory allocation. 
 
-Please consult the [Gaussian manual][https://gaussian.com] about specific settings.
+Please consult the [Gaussian manual](https://gaussian.com) about specific settings.
 
 
 ## Scaling
@@ -74,7 +74,7 @@ The Gaussian manual states that `"Requests a direct SCF calculation, in
 which the two-electron integrals are recomputed as needed"`. This is
 the default. In addition it states `"... SCF be performed storing the full 
 integral list in memory"`. This is done automatically if enough memory is requested, 
-see Gaussian manual on SCF : ![Gaussian manual SCF][https://gaussian.com/scf/] .
+see Gaussian manual on SCF : [Gaussian manual SCF](https://gaussian.com/scf/) .
 
 The figure below show a dramatic increase in performance at the memory size
 where the 2-electron fit in the memory. From 8 to 6 hours (depending on
@@ -98,7 +98,7 @@ always be a trade off between queue time and run time. How much gain
 (lower run time) will adding extra core yield?
 
 The Sigma2 systems have a range of nodes with different amount of
-memory, [Sigma2 hardware overview][https://documentation.sigma2.no/hpc_machines/hardware_overview.html].
+memory, [Sigma2 hardware overview](https://documentation.sigma2.no/hpc_machines/hardware_overview.html).
 
 It might be beneficial to check different nodes and associated
 memory capabilities. Both Saga and Fram have Gaussian installed and both systems
@@ -120,8 +120,8 @@ Gaussian functions.
 
 ## Environment variables
 Gaussian is compiled using the PGI compilers, which only make use of a
-small set of OpenMP environment variables.
-![PGI manual 2017][https://www.pgroup.com/resources/docs/17.10/x86/pgi-user-guide/index.htm#openmp-env-vars].
+small set of OpenMP environment variables,
+[PGI manual 2017](https://www.pgroup.com/resources/docs/17.10/x86/pgi-user-guide/index.htm#openmp-env-vars).
 
 Setting correct environment variables can have significant impact on
 performance.  We suggest the following settings as a guideline:
