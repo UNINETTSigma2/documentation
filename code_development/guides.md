@@ -1,5 +1,6 @@
 (dev-guides)=
 # Guides
+(dev-guides-openacc)=
 - GPU programming with OpenACC:
     - [<span style="color:green">Beginner</span>]
         [Getting started with OpenACC and Nvidia Nsight](guides/openacc.md)
