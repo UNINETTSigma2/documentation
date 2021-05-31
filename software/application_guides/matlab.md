@@ -48,7 +48,7 @@ To see available versions when logged into Fram issue command
 To use MATLAB type
 
     module load MATLAB/<version>
-    (eg. module load MATLAB/2020b)
+    (eg. module load MATLAB/2021a)
 
 specifying one of the available versions.
 
@@ -74,10 +74,10 @@ matlab -nodisplay -nodesktop -nojvm -r "myprogram"
 ```
 
 ## MPI for Matlab
-MPI for Matlab is installed on Fram (for parallelizing on many compute nodes)
+MPI for Matlab is installed on Fram/Saga/Betzy (for parallelizing on many compute nodes)
 
 User guide:
 
-Distributed Matlab (for non MPI programmers): https://www.hpc.ntnu.no/pages/viewpage.action?pageId=15794234
+Distributed Matlab (for non MPI programmers): https://www.hpc.ntnu.no/ntnu-hpc-group/matlab-for-hpc/distributed-matlab-using-mpi
 
-Matlab MPI: https://www.hpc.ntnu.no/display/hpc/Matlab+MPI
+Matlab MPI: https://www.hpc.ntnu.no/ntnu-hpc-group/matlab-for-hpc/matlab-mpi
