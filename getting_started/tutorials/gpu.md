@@ -34,7 +34,9 @@ Based on this it is no wonder why tensor libraries such as
 [report **speedup**](https://blog.tensorflow.org/2018/04/speed-up-tensorflow-inference-on-gpus-tensorRT.html)
 on accelerators between **`23x` and `190x`** compared to using only a CPU.
 
+
 ## Getting started
+
 Of the resources provided by us, only
 [Saga](https://documentation.sigma2.no/jobs/job_types/saga_job_types.html#job-type-saga-accel)
 currently has GPUs available. To access these one has to select the correct
@@ -48,7 +50,9 @@ have attached GPUs. However, to be able to actually interact with one or more
 GPUs we will have to also add `--gres=gpu:N` which tells Slurm/`srun` that we
 would also like to use `N` GPUs (`N` can be a number between 1 and 4 on Saga).
 
-### Step by step
+
+## Connecting to the cluster
+
 To get started we first have to [`SSH` into
 Saga](https://documentation.sigma2.no/getting_started/create_ssh_keys.html).
 
@@ -56,7 +60,9 @@ Saga](https://documentation.sigma2.no/getting_started/create_ssh_keys.html).
 $ ssh <username>@saga.sigma2.no
 ```
 
-#### Interactive testing
+
+## Interactive testing
+
 All projects should have access to GPU resources, and to that end we will start
 by simply testing that we can get access to a single GPU. To do this we will run
 an interactive job, on the `accel` partition and asking for a single GPU.
@@ -99,7 +105,9 @@ pick up GPUs when developing your experiments. [Read more about `--qos=devel`
 here](https://documentation.sigma2.no/jobs/interactive_jobs.html).
 ```
 
-#### Slurm script testing
+
+## Slurm script testing
+
 The next thing that we will try to do is to utilize the
 `TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4` library to execute a very simple
 computation on the GPU. We could do the following interactively in Python, but
@@ -174,7 +182,9 @@ guaranteed that the above actually ran on the GPU. There is some output to
 verify this, but we will check this manually as that can be applied more
 generally.
 
-#### Monitoring the GPUs
+
+## Monitoring the GPUs
+
 To do this monitoring we will start `nvidia-smi` before our job and let it run
 while we use the GPU. We will change the `submit_gpu.sh` Slurm script above to
 `submit_monitor.sh`, shown below:
@@ -201,7 +211,9 @@ to `utilization.gpu` which shows the percentage of how much processing the GPU
 is doing. It is not expected that this will always be `100%` as we will need to
 transfer data, but the average should be quite high.
 
+
 ## Next steps
+
 Transitioning your application to GPU can be a daunting challenge. We have
 documented [a few ways to get
 started](https://documentation.sigma2.no/code_development/guides.html), but if
