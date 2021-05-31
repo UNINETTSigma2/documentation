@@ -1,3 +1,5 @@
+(hardware-overview)=
+
 # Overview over our machines
 
 The current Norwegian academic HPC infrastructure consists of three systems, located in Tromsø ([Fram](/hpc_machines/fram.md)) and Trondheim ([Saga](/hpc_machines/saga.md) and [Betzy](/hpc_machines/betzy.md)).

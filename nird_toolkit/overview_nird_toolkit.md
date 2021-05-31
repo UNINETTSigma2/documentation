@@ -24,7 +24,8 @@ To install your first package, go to the [Installing a package](package-install.
 
 ## Getting Access
 
-If you already have access to Sigma2 resources and a project allocation, you can use the NIRD Toolkit. Please see https://documentation.sigma2.no/nird_toolkit/getting_started_guide.html to get started.
+If you already have access to Sigma2 resources and a project allocation, you can use the NIRD Toolkit. Please see the
+{ref}`nird-toolkit-getting-started`.
 
 If your research team has access to Sigma2 resources, but you do not have a user-account, please visit: https://www.sigma2.no/how-apply-user-account
 

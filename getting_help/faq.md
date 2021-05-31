@@ -72,7 +72,7 @@ Yes. In fact, this is the recommended approach to install software that we do no
 
 ### How can I check my disk quota and usage?
 
-Please consult this [page](https://documentation.sigma2.no/files_storage/clusters.html?highlight=disk%20usage#usage-and-quota).
+Please consult the page on {ref}`usage-and-quota`.
 
 
 ### How can I check my CPU hours quota and usage?
@@ -83,7 +83,7 @@ Please consult this [page](../jobs/projects_accounting.md).
 
 ### How can I export the display from a compute node to my desktop?
 
-Please consult this [page](https://documentation.sigma2.no/getting_started/create_ssh_keys.html#x11-forwarding)
+Please consult this note on {ref}`x11-forwarding`.
 
 This example assumes that you are running an X-server on your local
 desktop, which should be available for most users running Linux, Unix
@@ -103,7 +103,8 @@ as such would give a better experience for most users.
 
 ### Where can I find an example of job script?
 
-You can find job script examples for Fram [here](https://documentation.sigma2.no/jobs/job_scripts/fram_job_scripts.html#job-scripts-on-fram) and for Saga [here](https://documentation.sigma2.no/jobs/job_scripts/saga_job_scripts.html#job-scripts-on-saga).
+Here we have examples for {ref}`job-scripts-on-fram` and {ref}`job-scripts-on-saga`.
+
 
 ### When will my job start?
 

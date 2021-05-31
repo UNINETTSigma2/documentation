@@ -1,3 +1,5 @@
+(nird-toolkit-getting-started)=
+
 # Get ready to deploy a service through the NIRD Toolkit
 
 Only the project leader or the executive officer of a NSxxxxK project can deploy applications through the NIRD Toolkit. 

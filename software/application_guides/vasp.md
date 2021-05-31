@@ -91,7 +91,7 @@ All VASP and Wannier90 binaries are compiled with Intel MPI support, if they sup
 
 VASP is known to be potentially memory demanding. Quite often, you might experience to use less than the full number of cores on the node, but still all of the memory.
 
-For relevant core-count, node-count and amounts of memory, see [About Fram](https://documentation.sigma2.no/hpc_machines/fram.html) and [About Saga](https://documentation.sigma2.no/hpc_machines/saga.html). There are two ways of increasing the memory pr. cpu over the standard node configuration:
+For relevant core-count, node-count, and amounts of memory, see the pages about {ref}`fram` and {ref}`saga`. There are two ways of increasing the memory pr. cpu over the standard node configuration:
 
 - Increase the Slurm setting `mem-per-cpu`
 - Utilize the nodes with more memory per cpu.

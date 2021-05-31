@@ -5,6 +5,8 @@ orphan: true
 ```{index} GPU; TensorFlow on GPU, TensorFlow; TensorFlow on GPU
 ```
 
+(tensorflow)=
+
 # TensorFlow on GPU
 The intention of this guide is to teach students and researchers with access to
 [Sigma2][sigma2] how to use machine learning libraries on CPU and GPU. The guide

@@ -5,6 +5,8 @@ orphan: true
 ```{index} GPU; Getting started with OpenACC and Nvidia Nsight, OpenACC; Getting started with OpenACC and Nvidia Nsight, Nvidia Nsight; Getting started with OpenACC and Nvidia Nsight
 ```
 
+(openacc)=
+
 # Getting started with OpenACC and Nvidia Nsight
 > OpenACC is a user-driven directive-based performance-portable parallel
 > programming model.

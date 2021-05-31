@@ -148,6 +148,11 @@ Linking to [some other page](../../some-page.md).
 
 (the above note has been written by somebody who just fixed 60 broken internal links)
 
+Also **do not do this** (since your local preview will then be confusing or wrong):
+```
+Linking to [this could be an internal link](https://documentation.sigma2.no/page/on/same/site.html).
+```
+
 Instead insert a label
 and refer to the label as shown below. This is more robust since the links will
 still work after the target file is moved or renamed.
