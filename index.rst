@@ -22,7 +22,6 @@ information and service overview, please also see https://www.sigma2.no.
 
 ----
 
---------------
 
 Compute, storage, pre/post-processing, visualization, machine learning
 ----------------------------------------------------------------------
