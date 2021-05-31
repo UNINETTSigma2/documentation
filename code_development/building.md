@@ -152,6 +152,7 @@ Some set of flags for optimisation include :
 * -O3 -march=znver2 -mtune=znver2 (for AMD)
 * -O3 -march=skylake-avx512  (for Intel Skylake)
 
+When gfortran include paths is given by gcc CPATH the following line is bash command line substitute can be beneficial : `gfortran -O3 -I${CPATH//:/ -I/}`
 
 
 ### AMD AOCC/llvm
@@ -227,6 +228,12 @@ When using MKL with the GNU compilers some more work is often needed.
 An example can provide some hints:
 `-L$MKLROOT/lib/intel64 -lmkl_gnu_thread -lmkl_avx2 -lmkl_core -lmkl_rt`
 The variable *MKLROOT* is set when the Intel module is loaded.
+
+In many cases the include files are needed and since the CPATH is set by module scripts the following command like might easy the process of
+translating a colon separated string of directores to something that the Fortran compiler will accept.
+`gfortran -O3 -I${CPATH//:/ -I/}   fftw-3d.f90  ${MKLROOT}/lib/intel64/libfftw3xf_intel.a -lmkl_sequential  -lmkl`
+The above example is an example og using the FFTW wrapper in MKL, using only environment variables set by the module scripts it will
+be portable with different versions of MKL. 
 
 The following command can be of help when encounter missing symbols:
 `nm -A $MKLROOT/lib/intel64/* | grep <missing symbol>`
