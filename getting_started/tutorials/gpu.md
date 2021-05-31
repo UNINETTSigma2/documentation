@@ -39,7 +39,7 @@ on accelerators between **`23x` and `190x`** compared to using only a CPU.
 
 ## Getting started
 Of the resources provided by us, only
-{ref}`job_type_saga_accel`
+the {ref}`job_type_saga_accel` job type
 currently has GPUs available. To access these one has to select the correct
 partition as well as request one or more GPUs to utilize.
 
