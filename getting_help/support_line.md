@@ -25,7 +25,7 @@ from time to time be extensive, which requires the staff working with tickets to
 and in order to better justify the prioritization we would like you to consider that the following topics will be **defined as 
 low priority** for the support line:
 
-- Issues, questions or advice with compilations, setups, environments, executions, data preparation etc. on **local hardware and software**.
+- Issues, questions or advice with compilations, setups, environments, executions, data preparation etc. on **local resources**.
   Please consider to raise these issues with your local IT department, support service of our organization or the place you purchased your compute equipment.
 
 - Issues, questions or advice pertaining to software settings related to the problem you are trying to solve. Typically this 
