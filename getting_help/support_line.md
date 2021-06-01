@@ -22,27 +22,32 @@ ticket numbers) as this can be confusing for us.
 
 The support line is there for the user and we encourage its usage. However, the load on the support line can
 from time to time be extensive, which requires the staff working with tickets to prioritize. We ask for your understanding 
-and in order to better justify the prioritization we would like you to consider that the following topics will be defined as 
-low priority for the support line:
+and in order to better justify the prioritization we would like you to consider that the following topics will be **defined as 
+low priority** for the support line:
 
-- Issues, questions or advice with compilations, setups, environments, executions, data preparation etc. on local hardware and software.
-  Please consider to raise these issues with your local IT department or support service of our organization.
+- Issues, questions or advice with compilations, setups, environments, executions, data preparation etc. on **local hardware and software**.
+  Please consider to raise these issues with your local IT department, support service of our organization or the place you purchased your compute equipment.
 
 - Issues, questions or advice pertaining to software settings related to the problem you are trying to solve. Typically this 
   covers the choice of algorithms, convergence related issues, how to use certain features etc. Please consider
-  to raise these issues with the developer or vendor of the software your are using. With the exceptions of: VASP as we
-  have dedicated staff to assist in questions related directly to these software suites, in particular pertaining to how to run
-  these as optimal as possible.
+  to raise these issues with the developer or vendor of the software your are using.
 
-- Issues, questions or advice pertaining to how to solve particular domain specific problems. Please consider to discuss this with
+- Issues, questions or advice pertaining to how to solve particular domain specific problems. Please consider to discuss this first with
   your research group, colleagues. If you feel alone on these problems, please consider to use the opportunity to 
   increase your networking activity and contact other persons you might not already know in order to ask or discuss these
   problems or challenges.
   
-If there is capacity in the support line, the staff might address these requests. Please consider to first utilize local resources, 
+If there is capacity in the support line, the staff **might address these requests**. Please consider to first utilize local resources, 
 searching the internet, establishing new contacts, attending conferences and workshops to discuss your specific problems and issues,
 study the documentation and maybe the most important aspect, make sure you have done what you can to obtain basic knowledge of the
 issue or problem at hand.
+
+.. note::
+   There are exceptions to the definitions above. We have a few application liaisons targeted towards assisting users in a few target domains/softwares. For these particular domains/softwares, tickets are forwarded to the respective liaisons. Please consult the documentation pages related to the domains/softwares in order to understand what we can do for you. We highly encourage fields or groups to contribute with application liaisons in order to improve response time, usability and adoption of certain software or techniques. If so, or if you have any questions related to this, please contact us at [support@metacenter.no](mailto:support@metacenter.no).
+   
+   Currently we have application liaisons targeted towards the following domains/softwares:
+   
+   - {ref}`VASP <VASP>`
 
 ### Give enough information
 
