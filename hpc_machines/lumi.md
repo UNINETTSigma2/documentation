@@ -74,8 +74,8 @@ able to use LUMI-G directly.
 
 The Metacenter is still building documentation for taking advantage of
 accelerator resources. Researchers that want to begin the transition should
-evaluate `OpenACC` (our documentation can be found
-[here](https://documentation.sigma2.no/code_development/guides.html)), `OpenMP`
+evaluate `OpenACC` (see our {ref}`dev-guides`),
+`OpenMP`
 or directly using [accelerated
 libraries](https://rocmdocs.amd.com/en/latest/ROCm_Libraries/ROCm_Libraries.html).
 

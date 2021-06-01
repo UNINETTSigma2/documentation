@@ -64,6 +64,9 @@ This will not only give you a shell with the ssh client, but also let you
 install and use all of your favourite Linux software such as `Vim`, `Emacs`,
 `nano`, `perl`, `python` and so on.
 
+
+(x11-forwarding)=
+
 ## X11 forwarding
 
 X11 forwarding should be used with caution due to security implications. Please

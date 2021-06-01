@@ -49,6 +49,8 @@ Below the table we give recommendations and discuss pros and cons for the variou
   pages.
 
 
+(usage-and-quota)=
+
 ## Usage and quota
 
 You can see the **disk usage and disk quotas** of your available areas with:

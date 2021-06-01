@@ -98,7 +98,7 @@ always be a trade off between queue time and run time. How much gain
 (lower run time) will adding extra core yield?
 
 The Sigma2 systems have a range of nodes with different amount of
-memory, [Sigma2 hardware overview](https://documentation.sigma2.no/hpc_machines/hardware_overview.html).
+memory, see the {ref}`hardware-overview`.
 
 It might be beneficial to check different nodes and associated
 memory capabilities. Both Saga and Fram have Gaussian installed and both systems

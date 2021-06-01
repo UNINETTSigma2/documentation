@@ -38,24 +38,23 @@ on accelerators between **`23x` and `190x`** compared to using only a CPU.
 ## Getting started
 
 Of the resources provided by us, only
-[Saga](https://documentation.sigma2.no/jobs/job_types/saga_job_types.html#job-type-saga-accel)
+the {ref}`job_type_saga_accel` job type
 currently has GPUs available. To access these one has to select the correct
 partition as well as request one or more GPUs to utilize.
 
 To select the correct partition use the `--partition=accel` flag with either
-[`srun`](https://documentation.sigma2.no/jobs/interactive_jobs.html) or in your
-[Slurm script](https://documentation.sigma2.no/jobs/job_scripts.html). This flag
+{ref}`srun <interactive-jobs>`
+or in your
+{ref}`Slurm script <job-scripts>`.
+This flag
 will ensure that your job is only run on machines in the `accel` partition which
 have attached GPUs. However, to be able to actually interact with one or more
 GPUs we will have to also add `--gres=gpu:N` which tells Slurm/`srun` that we
 would also like to use `N` GPUs (`N` can be a number between 1 and 4 on Saga).
 
-
-## Connecting to the cluster
-
-To get started we first have to [`SSH` into
-Saga](https://documentation.sigma2.no/getting_started/create_ssh_keys.html).
-
+### Step by step
+To get started we first have to
+{ref}`ssh` into Saga:
 ```bash
 $ ssh <username>@saga.sigma2.no
 ```
@@ -101,8 +100,8 @@ Tue Mar 23 14:29:33 2021
 In the above Slurm specification we combined `--qos=devel` with GPUs and
 interactive operations so that we can experiment with commands interactively.
 This can be a good way to perform short tests to ensure that libraries correctly
-pick up GPUs when developing your experiments. [Read more about `--qos=devel`
-here](https://documentation.sigma2.no/jobs/interactive_jobs.html).
+pick up GPUs when developing your experiments. Read more about `--qos=devel`
+in our guide on {ref}`interactive-jobs`.
 ```
 
 
@@ -128,8 +127,8 @@ the GPUs of Saga:
 ```
 
 To run this we will first have to create a Slurm script in which we will request
-resources. A good place to start is with [a basic job
-script](https://documentation.sigma2.no/jobs/job_scripts.html#job-script-basics).
+resources. A good place to start is with a basic job
+script (see {ref}`job-scripts`).
 Use the following to create `submit_gpu.sh` (remember to substitute your project
 number under `--account`):
 
@@ -215,13 +214,13 @@ transfer data, but the average should be quite high.
 ## Next steps
 
 Transitioning your application to GPU can be a daunting challenge. We have
-documented [a few ways to get
-started](https://documentation.sigma2.no/code_development/guides.html), but if
+documented a few ways to get
+started in our development {ref}`dev-guides`, but if
 you are unsure please don't hesitate to contact us at
 [support@metacenter.no](mailto:support@metacenter.no).
 
 We also have a few tutorials on specific libraries:
-- [Tensorflow](https://documentation.sigma2.no/jobs/guides/tensorflow_gpu.html)
-- [OpenACC](https://documentation.sigma2.no/code_development/guides/openacc.html)
+- {ref}`tensorflow`
+- {ref}`openacc`
 - Coming soon
   - OpenMP for GPU
