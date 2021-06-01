@@ -107,6 +107,6 @@ When publishing results obtained with the software referred to, please do check 
 
 ## Getting additional help
 
-We have an application liaison at our disposal for VASP which can help users with particular VASP issues and/or possibly also domain specific problems. In order to get in contact with the application liaison, please submit a support request as documented {ref}`here <support_line>`. If the ticket does not fall within regular support it will be forwarded.
+We have an application liaison at our disposal for VASP which can help users with particular VASP issues and/or possibly also domain specific problems. In order to get in contact with the application liaison, please submit a support request as documented {ref}`here <support-line>`. If the ticket does not fall within regular support it will be forwarded.
 
 However, before asking for help, please make sure you have gone through the tutorials and workshop material above that is relevant to you. Also, if your group would be interested in a dedicated VASP workshop, please reach out to [support@metacenter.no](mailto:support@metacenter.no) with a request and we will try to gauge general interest and arrange it, possibly in collaboration with the VASP developers if need be.
