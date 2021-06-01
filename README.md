@@ -23,7 +23,16 @@ $ source venv/bin/activate
 $ python -m pip install -r requirements.txt
 ```
 
-Build the HTML:
+This is the nicest way to preview locally since you don't need
+to re-run the command after each change:
+```
+$ sphinx-autobuild  . _build
+```
+Open `http://127.0.0.1:8000`
+in your browser to view
+the documentation as it should appear on the internet.
+
+Build the HTML without opening a web server:
 ```
 $ sphinx-build . _build
 ```
@@ -33,15 +42,6 @@ Build the HTML and check links:
 $ sphinx-build -b linkcheck . _build
 ```
 
-To view the documentation you can serve it locally
-
-```bash
-$ cd _build
-$ python3 -m http.server 8080
-```
-
-Open [the address `0.0.0.0:8080`](http://0.0.0.0:8080) in your browser to view
-the documentation as it should appear on the internet.
 
 ## All changes should be submitted as merge requests
 

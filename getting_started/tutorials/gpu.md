@@ -1,8 +1,5 @@
----
-orphan: true
----
-
 # Introduction to using GPU compute
+
 A GPU, or **G**raphics **P**rocessing **U**nit, is a computational unit, which
 as the name suggest, is optimized to work on graphics tasks. Nearly every
 computer device that one interacts with contains a GPU of some sort, responsible
@@ -37,7 +34,9 @@ Based on this it is no wonder why tensor libraries such as
 [report **speedup**](https://blog.tensorflow.org/2018/04/speed-up-tensorflow-inference-on-gpus-tensorRT.html)
 on accelerators between **`23x` and `190x`** compared to using only a CPU.
 
+
 ## Getting started
+
 Of the resources provided by us, only
 the {ref}`job_type_saga_accel` job type
 currently has GPUs available. To access these one has to select the correct
@@ -60,7 +59,9 @@ To get started we first have to
 $ ssh <username>@saga.sigma2.no
 ```
 
-#### Interactive testing
+
+## Interactive testing
+
 All projects should have access to GPU resources, and to that end we will start
 by simply testing that we can get access to a single GPU. To do this we will run
 an interactive job, on the `accel` partition and asking for a single GPU.
@@ -103,7 +104,9 @@ pick up GPUs when developing your experiments. Read more about `--qos=devel`
 in our guide on {ref}`interactive-jobs`.
 ```
 
-#### Slurm script testing
+
+## Slurm script testing
+
 The next thing that we will try to do is to utilize the
 `TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4` library to execute a very simple
 computation on the GPU. We could do the following interactively in Python, but
@@ -178,7 +181,9 @@ guaranteed that the above actually ran on the GPU. There is some output to
 verify this, but we will check this manually as that can be applied more
 generally.
 
-#### Monitoring the GPUs
+
+## Monitoring the GPUs
+
 To do this monitoring we will start `nvidia-smi` before our job and let it run
 while we use the GPU. We will change the `submit_gpu.sh` Slurm script above to
 `submit_monitor.sh`, shown below:
@@ -205,7 +210,9 @@ to `utilization.gpu` which shows the percentage of how much processing the GPU
 is doing. It is not expected that this will always be `100%` as we will need to
 transfer data, but the average should be quite high.
 
+
 ## Next steps
+
 Transitioning your application to GPU can be a daunting challenge. We have
 documented a few ways to get
 started in our development {ref}`dev-guides`, but if
