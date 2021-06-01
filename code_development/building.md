@@ -14,7 +14,7 @@ soon to be published.
 ### Introduction 
 Include paths in C/C++ and Fortran are distictly different. The module system set the flag CPATH for us which contain a ':' separated  list 
 of directories to be searched for a include files. This is done behind the scenes for us whein using C/C++. However, with Fortran this is another story.
-Fortran compilers uses a set of '-I' options each with a single directory as argument. This prevent us from using $CPATH for include path. One might think
+Fortran compilers uses a set of '-I' options each with a single directory as argument. This prevent us from using `$CPATH` for include path. One might think
 that FPATH should be a solution (so did Intel some years ago) but it can interfere with some shells (ksh) and should avoided a general setting. However, it does not 
 prevent us from doing it locally (avoiding ksh or othes shells that might be affected). 
 
@@ -28,7 +28,7 @@ For command line a direct syntax can be used like : `gfortran -I${CPATH//:/ -I/}
 The Intel compiler suite is supported on all Sigma2 systems. On the
 systems Saga and Fram the processors are from Intel while the
 processors on Betzy are from AMD. As the Intel compiler is primarily
-compiler written fro the Intel processors there are some minor issues
+compiler written for the Intel processors there are some minor issues
 when using it to build core for the AMD processors.
 
 
