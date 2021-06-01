@@ -11,6 +11,18 @@ soon to be published.
 
 ## Compilers
 
+### Introduction 
+Include paths in C/C++ and Fortran are distictly different. The module system set the flag CPATH for us which contain a ':' separated  list 
+of directories to be searched for a include files. This is done behind the scenes for us whein using C/C++. However, with Fortran this is another story.
+Fortran compilers uses a set of '-I' options each with a single directory as argument. This prevent us from using $CPATH for include path. One might think
+that FPATH should be a solution (so did Intel some years ago) but it can interfere with some shells (ksh) and should avoided a general setting. However, it does not 
+prevent us from doing it locally (avoiding ksh or othes shells that might be affected). 
+
+The FPATH can be set : `export FPATH="-I"${CPATH//:/ -I}`
+
+Then $FPATH can be used in Makefiles and on the command line like `gfortran $FPATH file.f90`  
+For command line a direct syntax can be used like : `gfortran -I${CPATH//:/ -I/} file.f90`
+
 ### Intel
 #### Introduction
 The Intel compiler suite is supported on all Sigma2 systems. On the
@@ -152,7 +164,8 @@ Some set of flags for optimisation include :
 * -O3 -march=znver2 -mtune=znver2 (for AMD)
 * -O3 -march=skylake-avx512  (for Intel Skylake)
 
-When gfortran include paths is given by gcc CPATH the following line is bash command line substitute can be beneficial : `gfortran -O3 -I${CPATH//:/ -I/}`
+When gfortran include paths is given by gcc CPATH the following line is bash command line substitute can be beneficial : 
+`gfortran -O3 -I${CPATH//:/ -I/}`
 
 
 ### AMD AOCC/llvm
@@ -224,14 +237,14 @@ FFTW with MKL. Both Include files and library functions are provided.
 When using the Intel compiler the compiling and linking is very simple, most
 of the times is enough to just add *-mkl*. Adding *=sequential* or *=parallel*.
 
-When using MKL with the GNU compilers some more work is often needed.
+When using MKL with the GNU compilers some more work is often needed, both include paths and linking paths. 
 An example can provide some hints:
 `-L$MKLROOT/lib/intel64 -lmkl_gnu_thread -lmkl_avx2 -lmkl_core -lmkl_rt`
 The variable *MKLROOT* is set when the Intel module is loaded.
 
 In many cases the include files are needed and since the CPATH is set by module scripts the following command like might easy the process of
 translating a colon separated string of directores to something that the Fortran compiler will accept.
-`gfortran -O3 -I${CPATH//:/ -I/}   fftw-3d.f90  ${MKLROOT}/lib/intel64/libfftw3xf_intel.a -lmkl_sequential  -lmkl`
+`gfortran -O3 -I${CPATH//:/ -I/} fftw-3d.f90 ${MKLROOT}/lib/intel64/libfftw3xf_intel.a -lmkl_sequential -lmkl`
 The above example is an example og using the FFTW wrapper in MKL, using only environment variables set by the module scripts it will
 be portable with different versions of MKL. 
 
