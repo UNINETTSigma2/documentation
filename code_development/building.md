@@ -20,7 +20,7 @@ prevent us from doing it locally (avoiding ksh or othes shells that might be aff
 
 The FPATH can be set : `export FPATH="-I"${CPATH//:/ -I}`
 
-Then $FPATH can be used in Makefiles and on the command line like `gfortran $FPATH file.f90`  
+Then `$FPATH` can be used in Makefiles and on the command line like `gfortran $FPATH file.f90`  
 For command line a direct syntax can be used like : `gfortran -I${CPATH//:/ -I/} file.f90`
 
 ### Intel
