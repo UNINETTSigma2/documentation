@@ -17,7 +17,7 @@ Saga is provided by Hewlett Packard Enterprise and has a computational capacity 
 * 8 big memory nodes, with 3 TiB and 64 cores each
 * 8 GPU nodes, with 4 NVIDIA GPUs and 2 CPUs with 24 cores and 384 GiB memory each
 * 8 login and service nodes with 256 cores in total
-* 1 PB high metadata performance BeeGFS scratch file system
+* 6.5 PB high metadata performance BeeGFS scratch file system
 
 | Details     | Saga     |
 | :------------- | :------------- |
