@@ -52,7 +52,8 @@ have attached GPUs. However, to be able to actually interact with one or more
 GPUs we will have to also add `--gres=gpu:N` which tells Slurm/`srun` that we
 would also like to use `N` GPUs (`N` can be a number between 1 and 4 on Saga).
 
-### Step by step
+## Connecting to the cluster
+
 To get started we first have to
 {ref}`ssh` into Saga:
 ```bash
@@ -222,5 +223,6 @@ you are unsure please don't hesitate to contact us at
 We also have a few tutorials on specific libraries:
 - {ref}`tensorflow`
 - {ref}`openacc`
+- {ref}`Singularity container w/CUDA support: BigDFT example <bigdft-cuda-example>`
 - Coming soon
   - OpenMP for GPU
