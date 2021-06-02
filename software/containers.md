@@ -134,6 +134,7 @@ SUPPORT_URL="http://help.ubuntu.com/"
 BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
 ```
 
+(bigdft-cuda-example)=
 ## Real world example: BigDFT
 
 ```{note}
