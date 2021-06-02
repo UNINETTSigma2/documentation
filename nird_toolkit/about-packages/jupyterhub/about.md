@@ -47,7 +47,7 @@ with open('/home/e19b7304-2d13ec-2d490f-2d9fa0-2de6d6b4c3a858/file.txt') as f:
 ```
 will be able to read the file stored in the users home directory.
 
-To read more about how to use ipyparallel with Jupyter notebooks, see the following [link](https://ipyparallel.readthedocs.io/en/latest/magics.html).
+To read more about how to use ipyparallel with Jupyter notebooks, see the following [link](https://ipyparallel.readthedocs.io/en/latest/tutorial/magics.html).
 The `%%px` notebook magic also works with regular notebook magic commands, so commands like
 ```
 %%px
