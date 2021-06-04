@@ -20,7 +20,7 @@ stats will be affected by all jobs running on the same compute node.
 ## How to check whether your job is running
 
 To check the job status of all your jobs, you can use
-[squeue](https://slurm.schedmd.com/squeue.html):
+[squeue](https://slurm.schedmd.com/squeue.html), i.e. by executing:
 
     squeue -u MyUsername
 
@@ -56,7 +56,7 @@ contain some usage statistics from `sstat` and `sacct`.
 
 ## Cancelling jobs and putting jobs on hold
 
-You can cancel running or pending (waiting) jobs with [scancel](https://slurm.schedmd.com/scancel.html):
+You can cancel running or pending (waiting) jobs with [scancel](https://slurm.schedmd.com/scancel.html). For instance:
 
     scancel JobId                # Cancel job with id JobId (as returned from sbatch)
     scancel --user=MyUsername    # Cancel all your jobs

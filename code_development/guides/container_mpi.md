@@ -20,7 +20,7 @@ You need to have Singularity installed on your laptop for this to work
 (follow e.g. https://sylabs.io/guides/3.3/user-guide/installation.html).
 
 We start with the following definitions file (`example.def`; this is a simplified
-version based on the example in https://sylabs.io/guides/3.3/user-guide/mpi.html):
+version based on https://sylabs.io/guides/3.3/user-guide/mpi.html and the example provided there):
 ```
 Bootstrap: docker
 From: ubuntu:latest

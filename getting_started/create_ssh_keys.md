@@ -143,7 +143,7 @@ $ ssh-keyscan login.nird.sigma2.no | ssh-keygen -l -f - -E md5
 
 ## Mosh
 
-A description of [Mosh](https://mosh.org):
+[Mosh](https://mosh.org) describe itself as:
 
 > Remote terminal application that allows roaming, supports intermittent
 > connectivity, and provides intelligent local echo and line editing of user

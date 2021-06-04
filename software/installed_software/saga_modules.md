@@ -18,7 +18,7 @@ orphan: true
 **Description:** AdapterRemoval searches for and removes remnant adapter sequences
  from High-Throughput Sequencing (HTS) data and (optionally) trims low quality bases
  from the 3' end of reads following adapter removal.
-**Homepage:** https://github.com/%/(github_account)s/adapterremoval
+**Homepage:** https://github.com/MikkelSchubert/adapterremoval
 <details><summary> <u>Installed versions:</u> </summary>
 
  - AdapterRemoval/2.3.1-GCC-8.2.0-2.31.1
@@ -53,7 +53,7 @@ orphan: true
 **Description:** ADMIXTURE is a software tool for maximum likelihood estimation of individual ancestries from
 multilocus SNP genotype datasets. It uses the same statistical model as STRUCTURE but calculates estimates much
 more rapidly using a fast numerical optimization algorithm.
-**Homepage:** http://software.genetics.ucla.edu/admixture
+**Homepage:** http://dalexander.github.io/admixture/index.html
 <details><summary> <u>Installed versions:</u> </summary>
 
  - ADMIXTURE/1.3.0
@@ -65,7 +65,7 @@ more rapidly using a fast numerical optimization algorithm.
 **Description:** Amber (originally Assisted Model Building with Energy
  Refinement) is software for performing molecular dynamics and structure
  prediction.
-**Homepage:** http://ambermd.org/amber.html
+**Homepage:** http://ambermd.org
 <details><summary> <u>Installed versions:</u> </summary>
 
  - Amber/18-foss-2018b-AmberTools-18-patchlevel-10-8
@@ -79,7 +79,7 @@ more rapidly using a fast numerical optimization algorithm.
 the Anaconda platform provides an enterprise-ready data analytics platform
 that empowers companies to adopt a modern open data science analytics architecture.
 
-**Homepage:** https://www.continuum.io/anaconda-overview
+**Homepage:** https://www.anaconda.com/
 <details><summary> <u>Installed versions:</u> </summary>
 
  - Anaconda2/2019.03
@@ -92,7 +92,7 @@ that empowers companies to adopt a modern open data science analytics architectu
 the Anaconda platform provides an enterprise-ready data analytics platform
 that empowers companies to adopt a modern open data science analytics architecture.
 
-**Homepage:** https://www.continuum.io/anaconda-overview
+**Homepage:** https://www.anaconda.com/
 <details><summary> <u>Installed versions:</u> </summary>
 
  - Anaconda3/2019.03
@@ -203,7 +203,7 @@ that empowers companies to adopt a modern open data science analytics architectu
 **Description:** Armadillo is an open-source C++ linear algebra library (matrix maths) aiming towards
  a good balance between speed and ease of use. Integer, floating point and complex numbers are supported,
  as well as a subset of trigonometric and statistics functions.
-**Homepage:** https://arma.sourceforge.net/
+**Homepage:** http://arma.sourceforge.net/
 <details><summary> <u>Installed versions:</u> </summary>
 
  - Armadillo/9.700.2-foss-2019a
@@ -732,7 +732,7 @@ It is used to build the majority of Google's software.
 ## CD-HIT
 **Description:** CD-HIT is a very widely used program for clustering and
  comparing protein or nucleotide sequences.
-**Homepage:** http://weizhong-lab.ucsd.edu/cd-hit/
+**Homepage:** https://github.com/weizhongli/cdhit
 <details><summary> <u>Installed versions:</u> </summary>
 
  - CD-HIT/4.8.1-foss-2018b
@@ -1380,7 +1380,7 @@ pipeline.
 to model flow, turbulence, heat transfer, and reactions for industrial applications ranging from
 air flow over an aircraft wing to combustion in a furnace, from bubble columns to oil platforms,
 from blood flow to semiconductor manufacturing, and from clean room design to wastewater treatment plants.
-**Homepage:** http://www.ansys.com/Products/Simulation+Technology/Fluid+Dynamics/Fluid+Dynamics+Products/ANSYS+Fluent
+**Homepage:** https://www.ansys.com/products/fluids/ansys-fluent
 <details><summary> <u>Installed versions:</u> </summary>
 
  - FLUENT/19.4
@@ -2552,7 +2552,7 @@ capable of running on top of either TensorFlow or Theano.
 
 ## libgpuarray
 **Description:** Library to manipulate tensors on the GPU.
-**Homepage:** http://deeplearning.net/software/libgpuarray/
+**Homepage:** https://github.com/Theano/libgpuarray
 <details><summary> <u>Installed versions:</u> </summary>
 
  - libgpuarray/0.7.6-fosscuda-2018b-Python-3.6.6
@@ -2702,7 +2702,7 @@ capable of running on top of either TensorFlow or Theano.
 
 ## LibTIFF
 **Description:** tiff: Library and tools for reading and writing TIFF data files
-**Homepage:** http://www.remotesensing.org/libtiff/
+**Homepage:** https://gitlab.com/libtiff/libtiff
 <details><summary> <u>Installed versions:</u> </summary>
 
  - LibTIFF/4.0.9-GCCcore-7.3.0
@@ -3177,7 +3177,7 @@ on simulation of (stochastic) flow in graphs.
 the Anaconda platform provides an enterprise-ready data analytics platform
 that empowers companies to adopt a modern open data science analytics architecture.
 
-**Homepage:** https://www.continuum.io/anaconda-overview
+**Homepage:** https://docs.conda.io/en/latest/miniconda.html
 <details><summary> <u>Installed versions:</u> </summary>
 
  - Miniconda3/4.5.12
@@ -3668,7 +3668,7 @@ from NGS data, based on genotype likelihoods.
  the operating system before running your program. The libnuma library provides
  convenient ways for you to add NUMA memory policies into your own program.
 
-**Homepage:** http://oss.sgi.com/projects/libnuma/
+**Homepage:** https://github.com/numactl/numactl
 <details><summary> <u>Installed versions:</u> </summary>
 
  - numactl/2.0.11-GCCcore-7.3.0
@@ -3704,7 +3704,7 @@ from NGS data, based on genotype likelihoods.
 
 ## NVidia
 **Description:** This module makes NVidia drivers available to EasyBuild softwawre.
-**Homepage:** https://www.nvidia.com/
+**Homepage:** https://www.nvidia.com
 <details><summary> <u>Installed versions:</u> </summary>
 
  - NVidia/1.0
@@ -3740,7 +3740,7 @@ from NGS data, based on genotype likelihoods.
 
 ## OpenBLAS
 **Description:** OpenBLAS is an optimized BLAS library based on GotoBLAS2 1.13 BSD version.
-**Homepage:** http://xianyi.github.com/OpenBLAS/
+**Homepage:** https://github.com/xianyi/OpenBLAS
 <details><summary> <u>Installed versions:</u> </summary>
 
  - OpenBLAS/0.3.1-GCC-7.3.0-2.30
@@ -3907,7 +3907,7 @@ context of the GTK+ widget toolkit. Pango forms the core of text and font handli
 
 ## parsyncfp
 **Description:** Parallel rsync wrapper for large data transfers
-**Homepage:** http://moo.nac.uci.edu/~hjm/parsync/
+**Homepage:** https://github.com/hjmangalam/parsyncfp
 <details><summary> <u>Installed versions:</u> </summary>
 
  - parsyncfp/1.61
@@ -4170,7 +4170,7 @@ to perform multiple population genetic analyses in heterogeneous populations.
  state of the art methods such as metadynamics, umbrella sampling and Jarzynski-equation based steered MD.
  The software, written in C++, can be easily interfaced with both fortran and C/C++ codes.
 
-**Homepage:** http://www.plumed-code.org
+**Homepage:** https://github.com/plumed/plumed2
 <details><summary> <u>Installed versions:</u> </summary>
 
  - PLUMED/2.4.0-intel-2018a
@@ -4814,8 +4814,8 @@ static mapping, and sparse matrix block ordering, and sequential mesh and hyperg
 </details>
 
 ## SGA
-**Description:** Assembles large genomes from high coverage short read data.
-**Homepage:** https://omictools.com/sga-tool
+**Description:** Assembles large genomes from high coverage short read data. Old url pointed to: omictools.com/sga-tool, but that is broken. Please contact us if you know the new url.
+**Homepage:** 
 <details><summary> <u>Installed versions:</u> </summary>
 
  - SGA/190808-foss-2018b-Python-3.6.6
@@ -4890,7 +4890,7 @@ instead, it aims for very high speeds and reasonable compression.
  assemble Illumina short reads. It creates new opportunities for building reference
  sequences and carrying out accurate analyses of unexplored genomes in a cost effective way.
  SOAPdenovo2 is the successor of SOAPdenovo.
-**Homepage:** http://soap.genomics.org.cn/index.html
+**Homepage:** https://github.com/aquaskyline/SOAPdenovo2
 <details><summary> <u>Installed versions:</u> </summary>
 
  - SOAPdenovo2/r241-foss-2018b
@@ -4929,7 +4929,7 @@ instead, it aims for very high speeds and reasonable compression.
  It was originally created for the new Python documentation, and it has excellent facilities for the
  documentation of Python projects, but C/C++ is already supported as well, and it is planned to add
  special support for other languages as well.
-**Homepage:** http://sphinx.pocoo.org/
+**Homepage:** https://github.com/sphinx-doc/sphinx
 <details><summary> <u>Installed versions:</u> </summary>
 
  - Sphinx/1.8.1-foss-2018b-Python-2.7.15
@@ -4990,7 +4990,7 @@ instead, it aims for very high speeds and reasonable compression.
 
 ## StringTie
 **Description:** StringTie is a fast and highly efficient assembler of RNA-Seq alignments into potential transcripts.
-**Homepage:** http://ccb.jhu.edu/software/%(namelower)/
+**Homepage:** http://ccb.jhu.edu/software/stringtie
 <details><summary> <u>Installed versions:</u> </summary>
 
  - StringTie/1.3.5-GCCcore-8.2.0
@@ -5093,7 +5093,7 @@ instead, it aims for very high speeds and reasonable compression.
 ## tbb
 **Description:** Intel(R) Threading Building Blocks (Intel(R) TBB) lets you easily write parallel C++ programs that
  take full advantage of multicore performance, that are portable, composable and have future-proof scalability.
-**Homepage:** https://01.org/tbb/
+**Homepage:** https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onetbb.html
 <details><summary> <u>Installed versions:</u> </summary>
 
  - tbb/2018_U5-GCCcore-7.3.0
@@ -5131,7 +5131,7 @@ instead, it aims for very high speeds and reasonable compression.
 ## Theano
 **Description:** Theano is a Python library that allows you to define, optimize,
 and evaluate mathematical expressions involving multi-dimensional arrays efficiently.
-**Homepage:** http://deeplearning.net/software/theano
+**Homepage:** https://github.com/Theano/Theano
 <details><summary> <u>Installed versions:</u> </summary>
 
  - Theano/1.0.4-fosscuda-2018b-Python-3.6.6

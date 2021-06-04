@@ -62,7 +62,7 @@ orphan: true
 the Anaconda platform provides an enterprise-ready data analytics platform 
 that empowers companies to adopt a modern open data science analytics architecture.
 
-**Homepage:** https://www.continuum.io/anaconda-overview  
+**Homepage:** https://www.anaconda.com/  
 
 <details><summary> <u>Installed versions:</u> </summary>
 
@@ -76,7 +76,7 @@ that empowers companies to adopt a modern open data science analytics architectu
 the Anaconda platform provides an enterprise-ready data analytics platform 
 that empowers companies to adopt a modern open data science analytics architecture.
 
-**Homepage:** https://www.anaconda.com  
+**Homepage:** https://www.anaconda.com/  
 
 <details><summary> <u>Installed versions:</u> </summary>
 
@@ -189,7 +189,7 @@ that empowers companies to adopt a modern open data science analytics architectu
  toolkits and applications. Using the ATK interfaces, accessibility tools have
  full access to view and control running applications.
 
-**Homepage:** https://developer.gnome.org/ATK/stable/  
+**Homepage:** https://developer.gnome.org/atk/  
 
 <details><summary> <u>Installed versions:</u> </summary>
 
@@ -756,7 +756,7 @@ FITS (Flexible Image Transport System) data format.
 ## ESMF  
 **Description:** The Earth System Modeling Framework (ESMF) is a suite of software tools for developing
  high-performance, multi-component Earth science modeling applications.
-**Homepage:** https://www.earthsystemcog.org/projects/esmf/  
+**Homepage:** https://earthsystemmodeling.org/  
 
 <details><summary> <u>Installed versions:</u> </summary>
 
@@ -909,28 +909,17 @@ designed to meet the needs of oceanographers and meteorologists analyzing large 
  - flex/2.6.4-GCCcore-9.3.0 
 </details>
 
-## Fluent  
-**Description:** ANSYS FLUENT software contains the broad physical modeling capabilities needed
-to model flow, turbulence, heat transfer, and reactions for industrial applications ranging from
-air flow over an aircraft wing to combustion in a furnace, from bubble columns to oil platforms,
-from blood flow to semiconductor manufacturing, and from clean room design to wastewater treatment plants.
-**Homepage:** http://www.ansys.com/Products/Simulation+Technology/Fluid+Dynamics/Fluid+Dynamics+Products/ANSYS+Fluent  
-
-<details><summary> <u>Installed versions:</u> </summary>
-
- - Fluent/18.2 
- - Fluent/19.0 
-</details>
-
 ## FLUENT  
 **Description:** ANSYS FLUENT software contains the broad physical modeling capabilities needed
 to model flow, turbulence, heat transfer, and reactions for industrial applications ranging from
 air flow over an aircraft wing to combustion in a furnace, from bubble columns to oil platforms,
 from blood flow to semiconductor manufacturing, and from clean room design to wastewater treatment plants.
-**Homepage:** http://www.ansys.com/Products/Simulation+Technology/Fluid+Dynamics/Fluid+Dynamics+Products/ANSYS+Fluent  
+**Homepage:** https://www.ansys.com/products/fluids/ansys-fluent  
 
 <details><summary> <u>Installed versions:</u> </summary>
 
+ - Fluent/18.2 
+ - Fluent/19.0 
  - FLUENT/19.0 
  - FLUENT/19.2 
  - FLUENT/20.1 
@@ -1450,7 +1439,7 @@ It also contains the gmxapi extension for the single precision MPI build.
 ## GTK+  
 **Description:** The GTK+ 2 package contains libraries used for creating graphical user interfaces for applications.
 
-**Homepage:** https://developer.gnome.org/gtk+/stable/  
+**Homepage:** https://developer.gnome.org/gtk2/stable/  
 
 <details><summary> <u>Installed versions:</u> </summary>
 
@@ -1459,7 +1448,7 @@ It also contains the gmxapi extension for the single precision MPI build.
 
 ## gtkglext  
 **Description:** GtkGLExt is an OpenGL extension to GTK+.
-**Homepage:** https://projects.gnome.org/gtkglext  
+**Homepage:** https://developer.gnome.org/gtkglext/  
 
 <details><summary> <u>Installed versions:</u> </summary>
 
@@ -2316,7 +2305,7 @@ latency hiding, direct access to the protocol, improved threading support, and e
 
 ## LibTIFF  
 **Description:** tiff: Library and tools for reading and writing TIFF data files
-**Homepage:** https://libtiff.maptools.org/  
+**Homepage:** https://gitlab.com/libtiff/libtiff  
 
 <details><summary> <u>Installed versions:</u> </summary>
 
@@ -2741,7 +2730,7 @@ of any size and offers an easy and intuitive interface.
 **Description:** Molden is a package for displaying Molecular Density from the
  Ab Initio packages GAMESS-UK, GAMESS-US and GAUSSIAN and the Semi-Empirical
  packages Mopac/Ampac
-**Homepage:** https://www.cmbi.ru.nl/molden/  
+**Homepage:** https://www3.cmbi.umcn.nl/molden/  
 
 <details><summary> <u>Installed versions:</u> </summary>
 
@@ -3188,7 +3177,7 @@ and study of the structure, dynamics, and functions of complex networks.
 
 ## OpenBLAS  
 **Description:** OpenBLAS is an optimized BLAS library based on GotoBLAS2 1.13 BSD version.
-**Homepage:** https://xianyi.github.com/OpenBLAS/  
+**Homepage:** https://github.com/xianyi/OpenBLAS  
 
 <details><summary> <u>Installed versions:</u> </summary>
 
@@ -3332,7 +3321,7 @@ context of the GTK+ widget toolkit. Pango forms the core of text and font handli
 
 ## pangox-compat  
 **Description:** PangoX compatibility library
-**Homepage:** https://github.com/GNOME/pangox-compat  
+**Homepage:** https://gitlab.gnome.org/Archive/pangox-compat  
 
 <details><summary> <u>Installed versions:</u> </summary>
 
@@ -3517,8 +3506,8 @@ context of the GTK+ widget toolkit. Pango forms the core of text and font handli
 
 ## PIL  
 **Description:** The Python Imaging Library (PIL) adds image processing capabilities to your Python interpreter.
- This library supports many file formats, and provides powerful image processing and graphics capabilities.
-**Homepage:** http://www.pythonware.com/products/pil  
+ This library supports many file formats, and provides powerful image processing and graphics capabilities. Original website down: http://www.pythonware.com/products/pil. Currently no replacement exists.
+**Homepage:**
 
 <details><summary> <u>Installed versions:</u> </summary>
 
@@ -3601,7 +3590,7 @@ context of the GTK+ widget toolkit. Pango forms the core of text and font handli
  state of the art methods such as metadynamics, umbrella sampling and Jarzynski-equation based steered MD.
  The software, written in C++, can be easily interfaced with both fortran and C/C++ codes.
 
-**Homepage:** https://www.plumed.org  
+**Homepage:** https://github.com/plumed/plumed2  
 
 <details><summary> <u>Installed versions:</u> </summary>
 
@@ -3864,7 +3853,7 @@ nucleic acids.
 **Description:** ScientificPython is a collection of Python modules for scientific computing.
  It contains support for geometry, mathematical functions, statistics, physical units, IO, visualization,
  and parallelization.
-**Homepage:** https://sourcesup.cru.fr/projects/scientific-py/  
+**Homepage:** https://github.com/khinsen/ScientificPython  
 
 <details><summary> <u>Installed versions:</u> </summary>
 
@@ -4020,7 +4009,7 @@ instead, it aims for very high speeds and reasonable compression.
  It was originally created for the new Python documentation, and it has excellent facilities for the 
  documentation of Python projects, but C/C++ is already supported as well, and it is planned to add 
  special support for other languages as well.
-**Homepage:** http://sphinx.pocoo.org/  
+**Homepage:** https://github.com/sphinx-doc/sphinx  
 
 <details><summary> <u>Installed versions:</u> </summary>
 
@@ -4211,7 +4200,7 @@ of products and designs operating under real-world conditions.
 ## Theano  
 **Description:** Theano is a Python library that allows you to define, optimize,
 and evaluate mathematical expressions involving multi-dimensional arrays efficiently.
-**Homepage:** http://deeplearning.net/software/theano  
+**Homepage:** https://github.com/Theano/Theano  
 
 <details><summary> <u>Installed versions:</u> </summary>
 
@@ -4298,7 +4287,7 @@ and evaluate mathematical expressions involving multi-dimensional arrays efficie
 **Description:** The Trilinos Project is an effort to develop algorithms and enabling technologies
  within an object-oriented software framework for the solution of large-scale, complex multi-physics
  engineering and scientific problems. A unique design feature of Trilinos is its focus on packages.
-**Homepage:** http://trilinos.sandia.gov/  
+**Homepage:** https://github.com/trilinos/Trilinos  
 
 <details><summary> <u>Installed versions:</u> </summary>
 

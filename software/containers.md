@@ -36,19 +36,19 @@ There are a number of different online repositories for hosting images, some of 
 more common ones are listed below. Notice how you can pull Docker images
 directly from Docker-Hub using Singularity.
 
-Fetching from [Singularity-Hub](https://singularity-hub.org/):
+Fetching from a [Singularity](https://singularityhub.github.io/) registry:
 ```
 $ singularity pull --name hello-world.sif shub://vsoch/hello-world
 ```
-Fetching from the [Sylabs](https://cloud.sylabs.io/library) library:
+Fetching from a [Sylabs](https://cloud.sylabs.io/library) registry:
 ```
 $ singularity pull --name alpine.sif library://alpine:latest
 ```
-Fetching from [Docker-Hub](https://hub.docker.com/):
+Fetching from a [Docker-Hub](https://hub.docker.com/) registry:
 ```
 $ singularity pull --name alpine.sif docker://alpine:latest
 ```
-Fetching from [Quay](https://quay.io/):
+Fetching from a [Quay](https://quay.io) registry:
 ```
 $ singularity pull --name openmpi-i8.sif docker://quay.io/bast/openmpi-i8:4.0.4-gcc-9.3.0
 ```
