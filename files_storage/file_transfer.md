@@ -52,7 +52,7 @@ sftp> put out*.log
 
 ## Sharing files with others
 
-You may can use [FileSender](https://filesender.org/) to share files with
+You may can use [FileSender](https://filesender.uninett.no/) to share files with
 others.
 We have two instances running:
 
