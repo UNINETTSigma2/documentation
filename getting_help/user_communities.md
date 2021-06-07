@@ -32,6 +32,7 @@ If you see yourself and want to update the information, please send an email to 
   Batteries
 
 - (Kristian Berland)[mailto:kristian.berland@nmbu.no] (NMBU)
+  Exchange-correlation functionals, van der Waals forces in DFT, dielectric functions, ferroelectrics
 
 - (Kristian Berland)[mailto:kristian.berland@nmbu.no] (NMBU)
 
