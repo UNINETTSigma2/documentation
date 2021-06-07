@@ -1,10 +1,7 @@
-stages:
-  - test
-  - build
-
 linkchecker:
   image: python:3.7-alpine
-  stage: test
+  only:
+    - schedules
   script:
     - apk add --no-cache git bash curl
     - git clone https://github.com/cytopia/linkcheck.git /tmp/linkchecker
@@ -15,7 +12,6 @@ linkchecker:
 
 build:
   image: python:3.7-alpine
-  stage: build
   script:
   - pip install -r requirements.txt
-  - sphinx-build -W . _build
+  - sphinx-build -W -b linkcheck . _build
