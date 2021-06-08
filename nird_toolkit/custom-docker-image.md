@@ -21,7 +21,7 @@ USER notebook
 RUN pip install scikit-learn
 ```
 
-You need to have this image pushed to a public repository e.g. [Docker hub](https://hub.docker.com/) or [Quay Registry](https://quay.io/).
+You need to have this image pushed to a public repository e.g. [Docker hub](https://hub.docker.com/) or [Quay Registry](https://quay.io).
 Once pushed, you can use the docker image by specifying the `dockerImage` under `Show advanced configuration` button on the `Installation/Reconfigure` page.
 Note that the exact name of the field may very, but the field name should end with `Image` (ex. `workerImage`, `userImage` etc.).
 After specifying your custom image and applying those changes, your image will be used in the given instance of application and have all the newly added packages.
