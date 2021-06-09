@@ -4,8 +4,9 @@
 #-------------------------------------
 # Slurm-section
 #SBATCH --account=nnXXXXk
-#SBATCH --nodes=4 --ntasks-per-node=32
+#SBATCH --nodes=1 --ntasks-per-node=32
 #SBATCH --time=1-20:30:00
+#SBATCH --output=slurm.%j.log
 ######################################
 # Section for defining job variables and settings:
 #-------------------------------------
@@ -26,7 +27,7 @@ submitdir=$SLURM_SUBMIT_DIR
 tempdir=$GAUSS_SCRDIR
 
 # split large temporary files into smaller parts:
-lfs setstripe –c 8 $tempdir
+lfs setstripe --stripe-count 8 $tempdir
 
 # Moving files to scratch:
 cd $submitdir

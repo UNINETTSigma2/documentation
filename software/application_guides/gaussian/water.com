@@ -1,4 +1,4 @@
-chk=water
+%chk=water
 %mem=500MB
 #p b3lyp/cc-pVDZ opt
 
