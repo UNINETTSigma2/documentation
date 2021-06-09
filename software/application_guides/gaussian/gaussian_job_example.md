@@ -31,7 +31,6 @@ To run this example(s) create a directory, step into it, create the input file a
 :language: bash
 ```
 
-
 - Water input example (note the blank line at the end; `water.com`):
 
 ```{literalinclude} water.com
@@ -40,7 +39,11 @@ To run this example(s) create a directory, step into it, create the input file a
 
 ## Running Gaussian on Saga
 
-No script examples are ready yet due to non-ready setup for Gaussian on Saga.
+- Run script example (`saga_g16.sh`):
+
+```{literalinclude} saga_g16.sh
+:language: bash
+```
 
 - Water input example (note the blank line at the end; `water.com`):
 
