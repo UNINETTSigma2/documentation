@@ -141,23 +141,24 @@ yield the optimal performance. Some sweet spot need to be found, some testing sh
 to establish good practice for a compute campaign. As seen from the figure above there is no gain
 in using more memory that what's needed to hold the integrals in memory (instead of writing and reading from the disk).
 
-## Environment variables
-Gaussian is compiled using the PGI compilers, which only make use of a
-small set of OpenMP environment variables,
-[PGI manual 2017](https://www.pgroup.com/resources/docs/17.10/x86/pgi-user-guide/index.htm#openmp-env-vars).
+<!-- radovan: commented out below since it seems technical, disconnected to the job -->
+<!-- examples, and at least the documented run-time difference seems insignificant -->
+<!-- to worry about this -->
 
-Setting correct environment variables can have significant impact on
-performance (the OMP_PROC_BIND=true can be tried, it normally improves performance, but failues have been spotted).
-We suggest the following settings as a guideline:
-- `export PGI_FASTMATH_CPU=skylake`
+<!-- ## Environment variables -->
+<!-- Gaussian is compiled using the PGI compilers, which only make use of a -->
+<!-- small set of OpenMP environment variables, -->
+<!-- [PGI manual 2017](https://www.pgroup.com/resources/docs/17.10/x86/pgi-user-guide/index.htm#openmp-env-vars). -->
 
-The last one can be replaced with avx2, if problems like illegal instruction or operand is encountered.
-The figure below show the effect of the CPU settings:
+<!-- Setting correct environment variables can have significant impact on -->
+<!-- performance (the OMP_PROC_BIND=true can be tried, it normally improves performance, but failues have been spotted). -->
+<!-- We suggest the following settings as a guideline: -->
+<!-- - `export PGI_FASTMATH_CPU=skylake` -->
 
-![Effect of environment variables](figures/g16-cpu-settings.png "Effect of setting environment variable for CPU")
+<!-- The last one can be replaced with avx2, if problems like illegal instruction or operand is encountered. -->
+<!-- The figure below show the effect of the CPU settings: -->
 
-The effect is about 1%, which is small, but often Gaussian run for days and 1% of a day is about 15 min which is a nice
-payoff for just setting a flag, if you run with 32 cores it saves your quota 8 CPU hours on a 24 hrs run (32*24*0.01).
+<!-- ![Effect of environment variables](figures/g16-cpu-settings.png "Effect of setting environment variable for CPU") -->
 
-
-
+<!-- The effect is about 1%, which is small, but often Gaussian run for days and 1% of a day is about 15 min which is a nice -->
+<!-- payoff for just setting a flag, if you run with 32 cores it saves your quota 8 CPU hours on a 24 hrs run (32*24*0.01). -->
