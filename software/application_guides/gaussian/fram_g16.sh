@@ -1,7 +1,9 @@
 #!/bin/bash -l
 #SBATCH --account=nnXXXXk
-#SBATCH --nodes=1 --ntasks-per-node=32
+#SBATCH --job-name=example
 #SBATCH --time=0-00:05:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=32
 #SBATCH --output=slurm.%j.log
 
 # make the program and environment visible to this script
