@@ -8,9 +8,9 @@ orphan: true
 Gaussian is a widely used and well known application. The current (pt. 2021)
 implementation is Gaussian 16. This version can utilise several cores
 using an OpenMP threading model and hence confined to a single machine using
-shared memory. The LINDA version is not covered here. The local LINDA installation
+shared memory. **The Linda version is not covered on this page**. The local Linda installation
 contain some local adaptations, like wraper script etc not present in the
-threaded sharred memory version. The tuning guide for the LINDA versions is pending.
+threaded sharred memory version. **A tuning guide for the Linda versions is in preparation**.
 
 This guide is dealing with the shared memory version running on single node.
 Gaussian is compiled using the PGI (now NVIDIA) compiler using OpenMP.
@@ -57,7 +57,7 @@ Gaussian (using OpenMP) does not scale to high core counts.
 
 It's important to set the same number of cores in `both` the SLURM file and the
 Gaussian input file, or at least as many as specified in the Gaussian input.
-The LINDA version have a wrapper for this, but that is an exception. Please verify
+The Linda version have a wrapper for this, but that is an exception. Please verify
 that the number of cores in slurm `--tasks-per-node` and `%NPROCSHARED` are the same.
 Gaussian will launch NPROCSHARED threads, if less allocated cores
 some threads will share cores with severe performance implications.
@@ -73,7 +73,9 @@ Below is an example of a real Gaussian run:
 ![G16 speedup](figures/g16-speedup.png "G16 speedup")
 
 There is a significant speedup with core count from one core and up to
-a core count of about 32. Using more than 40 cores seems counterproductive.
+a core count of about 32. Using more than 40 cores seems counterproductive
+for shared-memory parallelization. With Linda parallelization, we can go
+further.
 Even for problems with fairly long run times in the order of hours. It's not
 expected that this will change with run times in the order of days as this is
 an iterative process.
@@ -110,7 +112,7 @@ This require a large amount of memory as seen from the figure above.
 Another possibility is to review the `SLURM` log (all SLURM log files emit memory statistice)
 and look for maximum resident memory at the end of the log file. When job is running it's possible
 to log in to the node the job is running on and run tools like `top` or `htop` and look at
-memory usage for your application.
+memory usage for your application. See also our page on {ref}`choosing-memory-settings`.
 
 Just requesting far too much memory is a waste of resources.
 We advise spending some time to get a handle of this threshold value
