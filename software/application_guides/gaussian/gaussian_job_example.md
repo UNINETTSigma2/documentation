@@ -2,6 +2,8 @@
 orphan: true
 ---
 
+(gaussian-job-examples)=
+
 # Gaussian job examples
 
 To see which versions are available; type the following command after logged into the machine in question:
