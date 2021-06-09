@@ -32,7 +32,7 @@ To run this example(s) create a directory, step into it, create the input file a
 ```
 
 
-- Water input example (`water.com`):
+- Water input example (note the blank line at the end; `water.com`):
 
 ```{literalinclude} water.com
 ```
@@ -42,7 +42,7 @@ To run this example(s) create a directory, step into it, create the input file a
 
 No script examples are ready yet due to non-ready setup for Gaussian on Saga.
 
-- Water input example (`water.com`):
+- Water input example (note the blank line at the end; `water.com`):
 
 ```{literalinclude} water.com
 ```
