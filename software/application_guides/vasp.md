@@ -1,16 +1,19 @@
 ---
 orphan: true
 ---
+(VASP)=
 
 # VASP (Vienna Ab initio Simulation Package)
 
 VASP is a software package for performing ab-initio quantum-mechanical calculation of a periodic arrangement of atoms using the projector-augmented wave method and a plane wave basis set. The package can perform density-functional-theory (DFT) calculations, or many-body-perturbation-theory (MBPT) like GW etc. Please consult the documentation to get a more detailed overview of its feature set.
 
-## Online information from VASP developers
+## Online information from VASP developers targeted towards users
 
 * [Homepage](https://www.vasp.at)
 * [Documentation](https://www.vasp.at/wiki/index.php/The_VASP_Manual)
 * [User forum](https://www.vasp.at/forum/)
+* [Tutorials](https://www.vasp.at/wiki/index.php/Category:Tutorials)
+* [Workshops](https://www.vasp.at/wiki/index.php/VASP_workshop)
 
 ## Installed on facilities
 
@@ -101,3 +104,9 @@ Remember you are accounted for the CPUs that would be reserved due to your deman
 ## Citation
 
 When publishing results obtained with the software referred to, please do check your license agreement and the developers web page in order to find the correct citation(s). Also, remember to acknowledge Sigma2 for the computational resources.
+
+## Getting additional help
+
+We have an application liaison at our disposal for VASP which can help users with particular VASP issues and/or possibly also domain specific problems. In order to get in contact with the application liaison, please submit a support request as documented {ref}`here <support-line>`. If the ticket does not fall within regular support it will be forwarded.
+
+However, before asking for help, please make sure you have gone through the tutorials and workshop material above that is relevant to you. Also, if your group would be interested in a dedicated VASP workshop, please reach out to [support@metacenter.no](mailto:support@metacenter.no) with a request and we will try to gauge general interest and arrange it, possibly in collaboration with the VASP developers if need be.
