@@ -1,46 +1,33 @@
 #!/bin/bash -l
-################### Gaussian Job Batch Script Example ###################
-# Section for defining queue-system variables:
-#-------------------------------------
-# Slurm-section
 #SBATCH --account=nnXXXXk
 #SBATCH --nodes=1 --ntasks-per-node=32
-#SBATCH --time=1-20:30:00
+#SBATCH --time=0-00:05:00
 #SBATCH --output=slurm.%j.log
-######################################
-# Section for defining job variables and settings:
-#-------------------------------------
 
-input=water # Name of input without extention
-extention=com # We use the same naming scheme as the software default
-
+# make the program and environment visible to this script
 module load Gaussian/g16_B.01
 
-# This one is important; setting the heap-size for the job to 20GB:
+# name of input file without extention
+input=water
+
+# set the heap-size for the job to 20GB
 export GAUSS_LFLAGS2="--LindaOptions -s 20000000"
-#Creating the gaussian temp dir:
+
+# create the temporary folder
 export GAUSS_SCRDIR=/cluster/work/users/$USER/$SLURM_JOB_ID
 mkdir -p $GAUSS_SCRDIR
 
-# Creating aliases:
-submitdir=$SLURM_SUBMIT_DIR
-tempdir=$GAUSS_SCRDIR
+# split large temporary files into smaller parts
+lfs setstripe --stripe-count 8 $GAUSS_SCRDIR
 
-# split large temporary files into smaller parts:
-lfs setstripe --stripe-count 8 $tempdir
+# copy input file to temporary folder
+cp $SLURM_SUBMIT_DIR/$input.com $GAUSS_SCRDIR
 
-# Moving files to scratch:
-cd $submitdir
-cp $input.com $tempdir
-cd $tempdir
+# run the program
+cd $GAUSS_SCRDIR
+time g16.ib $input.com > $input.out
 
-# Running program, pay attention to command name:
-
-time g16.ib $input.com > g16_$input.out
-
-# Cleaning up and moving files back to home/submitdir:
-
-cp g16_$input.out $submitdir
-cp $input.chk $submitdir
+# copy result files back to submit directory
+cp $input.out $input.chk $SLURM_SUBMIT_DIR
 
 exit 0
