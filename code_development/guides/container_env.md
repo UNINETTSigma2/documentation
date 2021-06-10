@@ -8,7 +8,7 @@ orphan: true
 To follow this tutorial you need to have root access to a Linux computer
 with Singularity installed, e.g. your personal laptop/workstation.
 Please follow the installation
-[instructions](https://sylabs.io/guides/3.7/user-guide/installation.html)
+[instructions](https://sylabs.io/guides/3.7/user-guide/quick_start.html)
 from the Singularity documentation.
 ```
 
