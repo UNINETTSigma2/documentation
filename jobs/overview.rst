@@ -1,3 +1,5 @@
+.. _job-types-and-job-scripts:
+
 Job types and job scripts
 =========================
 
