@@ -13,12 +13,13 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+import datetime
 
 
 # -- Project information -----------------------------------------------------
 
 project = 'Sigma2/Metacenter documentation'
-copyright = '2020, Sigma2/Metacenter'
+copyright = f'{datetime.datetime.now().year}, Sigma2/Metacenter'
 author = 'Sigma2/Metacenter'
 
 # Logo setup
