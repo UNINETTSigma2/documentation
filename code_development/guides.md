@@ -10,4 +10,6 @@
         [Async and Multi-GPU OpenACC](guides/async_openacc.md)
 - Building containers with Singularity:
     - [<span style="color:green">Beginner</span>]
-        [Hello world MPI container](guides/container_mpi.md)
+        [Container with build environment](guides/container_env.md)
+    - [<span style="color:green">Beginner</span>]
+        [Container with MPI support](guides/container_mpi.md)
