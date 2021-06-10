@@ -58,7 +58,7 @@ You can find much more on Singularity definition files [here](https://sylabs.io/
 **Building the container**
 
 We can now build the container with the following command (you need sudo rights for this step):
-```
+```console
 [me@laptop]$ sudo singularity build example.sif example.def
 
 [... lots of output ...]
@@ -72,12 +72,12 @@ INFO:    Build complete: example.sif
 
 Once `example.sif` is generated, we can `scp` the container file to the cluster:
 
-```
+```console
 [me@laptop]$ scp example.sif me@saga.sigma2.no
 ```
 
 First we check the default `g++` compiler on the cluster:
-```
+```console
 [me@login-1.SAGA ~]$ g++ --version
 g++ (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
 Copyright (C) 2015 Free Software Foundation, Inc.
@@ -87,7 +87,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 Then we check the `g++` version in the container by running the command through
 `singularity exec`:
-```
+```console
 [me@login-1.SAGA ~]$ singularity exec example.sif g++ --version
 g++ (Ubuntu 5.4.0-6ubuntu1~16.04.12) 5.4.0 20160609
 Copyright (C) 2015 Free Software Foundation, Inc.
@@ -105,7 +105,7 @@ int main() {
 }
 ```
 and compile it _through_ the container environment:
-```
+```console
 [me@login-1.SAGA ~]$ singularity exec example.sif g++ hello-world.cpp
 [me@login-1.SAGA ~]$ singularity exec example.sif ./a.out
 Hello World!
@@ -163,12 +163,12 @@ Ubuntu-20.04 base image, and we set the `LC_ALL` environment variable inside the
 at run time. The `%runscript` section specifies the commands to be run inside the container
 when you launch the image file as an executable, where the `$@` will capture an argument string.
 In this particular example it means that we can run the image as
-```
+```console
 $ ./<image-name>.sif <file-name>.tex
 ```
 which will be equivalent of running the given `%runscript` command (`pdflatex` in this case)
 through the container with `singularity exec`:
-```
+```console
 $ singularity exec <image-name>.sif pdflatex <file-name>.tex
 ```
 
@@ -179,7 +179,7 @@ string (accessible through `singularity run-help <image-name>.sif`) for document
 
 We build the container on a local computer (requires sudo rights), where we have called the
 definition and image files `pdflatex.def` and `pdflatex.sif`, respectively:
-```
+```console
 [me@laptop]$ sudo singularity build pdflatex.sif pdflatex.def
 
 [... lots of output ...]
@@ -197,7 +197,7 @@ INFO:    Build complete: pdflatex.sif
 
 When the image is ready we can inspect the metadata that we put into it
 
-```
+```console
 [me@laptop]$ singularity inspect pdflatex.sif
 Author: Me <me@mymail.com>
 Description: PDF latex on a Ubuntu-20.04 base image
@@ -214,7 +214,7 @@ org.label-schema.usage.singularity.runscript.help: /.singularity.d/runscript.hel
 org.label-schema.usage.singularity.version: 3.7.0
 ```
 
-```
+```console
 [me@laptop]$ singularity run-help pdflatex.sif
     How to run the container on a tex file:
     $ ./<image-name>.sif <file-name>.tex
@@ -225,7 +225,7 @@ org.label-schema.usage.singularity.version: 3.7.0
 When we are happy with the container we can move it to any machine where we would like
 to run `pdflatex`. Here we `scp` to Saga and log in with `-X` in order to browse the
 produced PDF:
-```
+```console
 [me@laptop]$ scp pdflatex.sif me@saga.sigma2.no
 [me@laptop]$ ssh -X me@saga.sigma2.no
 ```
@@ -237,7 +237,7 @@ Hello World!
 \end{document}
 ```
 and run our container on it:
-```
+```console
 [me@login-1.SAGA ~]$ ./pdflatex.sif hello-world.tex
 This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex) restricted \write18 enabled.
 entering extended mode
@@ -256,7 +256,7 @@ Transcript written on hello-world.log.
 ```
 
 Finally, you can inspect the produced file e.g. in a browser:
-```
+```console
 [me@login-1.SAGA ~]$ firefox hello-world.pdf
 ```
 where you will hopefully see an almost blank page with the words "Hello World!" written.
