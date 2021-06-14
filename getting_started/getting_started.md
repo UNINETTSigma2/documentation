@@ -55,7 +55,8 @@ Protocol (SFTP) or Secure Copy (SCP). They are available as command-line tools
 for Linux and MacOS X but Windows users need to download a separate SCP or FTP
 client, such as [WinSCP](https://winscp.net/) or [MobaXterm](https://mobaxterm.mobatek.net/).
 
-For example, to copy `projectfiles.tar.gz` to the home directory of myusername to
+For example, to copy `projectfiles.tar.gz` from your local home directory
+to the remote home directory of `myusername` on
 Fram, type (the colon at the end is important):
 
 ```console
