@@ -14,12 +14,13 @@ To get access you need two things:
 
 ## Information on available CPU hours and disk space
 
-This will list your available projects and the remaining CPU hours:
+This will list your available projects and the remaining CPU hours
+(see also {ref}`projects-accounting`):
 ```console
 $ cost
 ```
 
-This will give you information about your disk usage:
+This will give you information about your disk {ref}`usage-and-quota`:
 ```console
 $ dusage
 ```
