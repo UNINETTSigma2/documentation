@@ -1,3 +1,5 @@
+(applying-account)=
+
 # How do I get an account?
 
 To apply for an account to be able to log in and use our compute and storage

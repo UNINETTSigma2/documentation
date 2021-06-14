@@ -2,6 +2,8 @@
 orphan: true
 ---
 
+(remote-desktop)=
+
 # Remote desktop
 
 ## Introduction
