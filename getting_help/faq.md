@@ -52,7 +52,7 @@ ServerAliveCountMax 3
 ServerAliveInterval 10
 ```
 
-The above configuration is for [OpenSSH](https://www.openssh.org), if you're
+The above configuration is for [OpenSSH](https://www.openssh.com), if you're
 using
 [PUTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html)
 you can take a look at this page explaining
