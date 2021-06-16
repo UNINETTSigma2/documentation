@@ -188,7 +188,7 @@ shorter jobs. One can consider a collection of independent tasks as one
 large parallel job and the aforementioned overhead becomes the serial or
 unparallelizable part of the job. This is because the queuing system can
 only start and account one job at a time. This scaling problem is
-described by [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl's_law>).
+described by [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law).
 
 If the tasks are extremely short, you can use the example below. If you want to
 spawn many jobs without polluting the queueing system, please use {ref}`array-jobs`.
