@@ -1,8 +1,5 @@
----
-orphan: true
----
+# Frequently asked questions
 
-# Frequently Asked Questions
 
 ## Access and connections
 
@@ -10,63 +7,87 @@ orphan: true
 
 Please consult {ref}`lost-passwords`.
 
+
 ### I forgot my password - what should I do to recover it?
 
 Please consult {ref}`lost-passwords`.
+
 
 ### What is the ssh key fingerprint for our systems?
 
 Please consult {ref}`this page <ssh>`.
 
+
 ### Connecting to the cluster
 
 Typically users connect to our clusters with an SSH client. Please consult {ref}`this page <ssh>` for additional details.
 
+
 ### How can I access a compute node from the login node?
 
-Log in to the login node, for instance Fram::
+Log in to the login node, for instance Fram:
+```console
+$ ssh myusername@fram.sigma2.no
+```
 
-	ssh myusername@fram.sigma2.no
+Then connect to the compute node (on Fram and Saga):
+```console
+$ ssh c3-5
+```
 
-Then connect to the compute node (on Fram and Saga)::
-	
-	ssh c3-5
-
-Or on Betzy::
-
-	ssh b4296
+Or on Betzy:
+```console
+$ ssh b4296
+```
 
 Notice that you typically can only log into a compute node where you have a running job.
 
-### My ssh connections are dying / freezing. How to fix it?
 
-If your ssh connections more or less randomly are dying / freezing, try
-to add the following to your *local* ``~/.ssh/config`` file::
+### My ssh connections are freezing. How to fix it?
 
-    ServerAliveCountMax 3
-    ServerAliveInterval 10
+If your ssh connections more or less randomly are freezing, try
+to add the following to `~/.ssh/config` file on your computer/laptop:
+```cfg
+ServerAliveCountMax 3
+ServerAliveInterval 10
+```
 
-(*local* means that you need to make these changes to your computer,
-not on our resources).
-
-The above config is for `OpenSSH <https://www.openssh.org>`_, if you're
+The above configuration is for [OpenSSH](https://www.openssh.org), if you're
 using
-`PUTTY <https://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html>`_
+[PUTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html)
 you can take a look at this page explaining
-`keepalives <https://the.earth.li/~sgtatham/putty/0.60/htmldoc/Chapter4.html#config-keepalive>`_
+[keepalives](https://the.earth.li/~sgtatham/putty/0.60/htmldoc/Chapter4.html#config-keepalive)
 for a similar solution.
+
+---
 
 ## Installing software
 
 ### I need to use Python but I am not satisfied with system default
 
-You can choose different Python versions using either the module system or Anaconda/Miniconda. See [here](../software/modulescheme.md) and [here](../software/userinstallsw/python.md) for the former. In Anaconda, you typically load first the Anaconda module you like and then from within that you can chose and configure the Python version and environment. Please consult the [Anaconda documentation](https://docs.anaconda.com/) for details.
+You can choose different Python versions using either the {ref}`module-scheme` or
+{ref}`Anaconda/Miniconda <installing-python-packages>`.
+In Anaconda, you
+typically load first the Anaconda module you like and then from within that you
+can chose and configure the Python version and environment. Please consult the
+[Anaconda documentation](https://docs.anaconda.com/) for details.
 
-In cases where these routes still does not solve your problem or you would like to install a package yourself, please consult this [page](../software/userinstallsw.md). If you are still stuck or would like support, please contact <support@metacenter.no>.
+In cases where these routes still do not solve your problem or you would like
+to install a package yourself, please consult this
+page about {ref}`installing-software-as-user`.
+If you are still stuck or would like
+support, please contact the {ref}`support-line`.
+
 
 ### Can I install software as a normal user without sudo rights or a root account?
 
-Yes. In fact, this is the recommended approach to install software that we do not offer to all users. Please consult this [page](../software/userinstallsw.md).
+Yes. In fact, this is the recommended approach to install software that we do
+not offer to all users.
+Please consult this
+page about {ref}`installing-software-as-user`.
+
+
+---
 
 ## Compute and disk usage, in addition to allocated quota
 
@@ -77,9 +98,12 @@ Please consult the page on {ref}`usage-and-quota`.
 
 ### How can I check my CPU hours quota and usage?
 
-Please consult this [page](../jobs/projects_accounting.md).
+Please consult the page on {ref}`projects-accounting`.
 
-## Other topics
+
+---
+
+## Graphical interfaces
 
 ### How can I export the display from a compute node to my desktop?
 
@@ -90,16 +114,20 @@ desktop, which should be available for most users running Linux, Unix
 and Mac Os X. If you are using Windows you must install some X-server
 on your local PC.
 
-## Jobs, submission and queue system
+
+---
+
+## Jobs, submission, and queue system
 
 ### I am not able to submit jobs longer than the maximum set walltime
 
-For each [job type](../jobs/choosing_job_types.md) there is a maximum walltime. If you try to set a 
+For all {ref}`job-types` there is a maximum walltime. If you try to set a 
 walltime that is larger than this, the job will not be accepted when you submit it. We recommend you
-to try to segment the job using a [job script](../jobs/job_scripts.md). If this does not suit your need,
-feel free to open a support ticket at <support@metacenter.no>. The main
+to try to segment the job using {ref}`job-scripts`. If this does not suit your need,
+please contact the {ref}`support-line`. The main
 intention to have a limit on the max walltime is to make sure the queue system works as best as possible and
 as such would give a better experience for most users.
+
 
 ### Where can I find an example of job script?
 
@@ -109,11 +137,12 @@ Here we have examples for {ref}`job-scripts-on-fram` and {ref}`job-scripts-on-sa
 ### When will my job start?
 
 To find out approximately when the job scheduler thinks your job will
-start, use the command::
+start, use the command:
+```console
+$ squeue --start -j <job_id>
+```
 
-	squeue --start -j <job_id>
-
-where ``job_id`` is the id number of the job you want to check.
+where `<job_id>` is the number of the job you want to check.
 This command will give you information about how many CPUs your job requires,
 for how long, as well as when approximately it will start and complete.  It
 must be emphasized that this is just a best guess, queued jobs may start
@@ -121,14 +150,16 @@ earlier because of running jobs that finishes before they hit the walltime
 limit and jobs may start later than projected because new jobs are submitted
 that get higher priority.
 
-### How can I see the queing situation of my job(s)?
 
-How can I see how my jobs are doing in the queue, if my jobs are idle, blocked, running etc. by issuing::
+### How can I see the queue situation of my job(s)?
 
-	squeue -u <username>
-
-where ``username`` is your username. You can of course also check the queue by not adding a username. For additional
+How can I see how my jobs are doing in the queue, if my jobs are idle, blocked, running etc. by issuing:
+```console
+$ squeue -u <username>
+```
+where `<username>` is your username. You can of course also check the queue by not adding a username. For additional
 details on how to monitor job(s), please consult page about {ref}`monitoring-jobs`.
+
 
 ### Why does my job not start or give me error feedback when submitting?
 
@@ -139,23 +170,10 @@ and they might not be, but the combination will lead to a job that never starts.
 
 To find out how to monitor your jobs and check their status see {ref}`monitoring-jobs`.
 
-Here follows a few typical gotchas:
+**Priority** means that resources are in principle available, but someone else has
+higher priority in the queue. **Resources** means the at the moment the requested
+resources are not available.
 
-**Priority vs. Resources**
-
-Priority means that resources are in principle available, but someone else has higher priority in the queue. Resources means the at the moment the requested resources are not available.
-
-
-### How can I customize emails that I get after a job has completed?
-
-Use the mail command and you can customize it to your liking but make sure
-that you send the email via the login node.
-
-As an example, add and adapt the following line at the end of your script::
-
-	echo "email content" | ssh stallo-1.local 'mail -s "Job finished: ${SLURM_JOBID}" <your_email_address>'
-
-where ``your_email_address`` is your email address you want to be the receiver of the message.
 
 ### How can I run many short tasks?
 
@@ -170,20 +188,24 @@ shorter jobs. One can consider a collection of independent tasks as one
 large parallel job and the aforementioned overhead becomes the serial or
 unparallelizable part of the job. This is because the queuing system can
 only start and account one job at a time. This scaling problem is
-described by `Amdahls Law <https://en.wikipedia.org/wiki/Amdahl's_law>`_.
+described by [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl's_law>).
 
-If the tasks are extremly short, you can use the example below. If you want to
-spawn many jobs without polluting the queueing system, please have a look [here](../jobs/job_scripts/array_jobs.md)
+If the tasks are extremely short, you can use the example below. If you want to
+spawn many jobs without polluting the queueing system, please use {ref}`array-jobs`.
 
 By using some shell trickery one can spawn and load-balance multiple
 independent task running in parallel within one node, just background
 the tasks and poll to see when some task is finished until you spawn the
 next:
 
-.. literalinclude:: ../files/multiple.sh
-   :language: bash
+```{eval-rst}
+.. literalinclude:: ./files/multiple.sh
+  :language: bash
+```
 
-And here is the ``dowork.sh`` script:
+And here is the `dowork.sh` script:
 
-.. literalinclude:: ../files/dowork.sh
-   :language: bash
+```{eval-rst}
+.. literalinclude:: ./files/dowork.sh
+  :language: bash
+```

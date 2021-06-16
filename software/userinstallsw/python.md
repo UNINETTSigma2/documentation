@@ -1,3 +1,5 @@
+(installing-python-packages)=
+
 # Installing Python packages
 
 `pip` and `conda` are the easiest ways of installing python packages and
