@@ -8,6 +8,14 @@ Cluster-specific details are kept in separate sub pages for each cluster:
 - [Fram job scripts](job-scripts-on-fram)
 - [Saga job scripts](job-scripts-on-saga)
 
+```{note}
+Email notification from completed Slurm scripts is currently disabled **on all
+machines** and it looks like it will take quite a while (months?) before we can
+re-enable it. Sorry for the inconvenience. The reason is technical due to the
+way the infrastructure is set up. It is non-trivial for us to re-enable this in
+a good and robust and secure way.
+```
+
 
 ## Job Script Basics
 
