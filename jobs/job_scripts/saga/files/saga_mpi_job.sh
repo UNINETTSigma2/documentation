@@ -16,10 +16,6 @@
 ## Run for 10 minutes, syntax is d-hh:mm:ss
 #SBATCH --time=0-00:10:00 
 
-# turn on all mail notification, and also provide mail address:
-#SBATCH --mail-type=ALL
-#SBATCH -M my.email@institution.no
-
 # you may not place bash commands before the last SBATCH directive
 ######################################################
 ## Setting variables and prepare runtime environment:

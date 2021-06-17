@@ -13,6 +13,7 @@ The following parameters can be used as command line parameters with
 a newline with `#SBATCH` followed by the parameter. Replace <....>
 with the value you want, e.g. `--job-name=test-job`.
 
+
 ## Slurm Parameter
 
 ### Basic settings:
@@ -21,10 +22,7 @@ with the value you want, e.g. `--job-name=test-job`.
 | ------------------------------------ | ------------------------                                                                   |
 | `--job-name=<name>`                  | Job name to be displayed by for example `squeue`                                           |
 | `--output=<path>`                    | Path to the file where the job (error) output is written to                                |
-| `--mail-type=<type>`                 | <sup>*</sup>Turn on mail notification; type can be one of BEGIN, END, FAIL, REQUEUE or ALL |
-| `--mail-user=<email_address>`        | <sup>*</sup>Email address to send notifications to                                         |
 
-(*) Note, email notifications are not working on Betzy yet.
 
 ### Requesting Resources
 
