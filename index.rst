@@ -133,10 +133,10 @@ Index of keywords
    :maxdepth: 1
    :caption: Getting started
 
+   getting_started/getting_started.md
    getting_started/applying_account.md
    getting_started/applying_resources.md
    getting_started/training.md
-   getting_started/getting_started.md
    getting_started/editing_files.md
    getting_started/create_ssh_keys.md
    getting_started/tutorials.rst
