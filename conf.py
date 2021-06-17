@@ -75,4 +75,5 @@ linkcheck_ignore = [
     r'https://desktop.fram.sigma2.no:\d+',
     r'.*slurmbrowser.*',
     'http://www.linuxconfig.org/Bash_scripting_Tutorial',
+    'http://www.wannier.org',
 ]
