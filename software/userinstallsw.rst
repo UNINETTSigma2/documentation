@@ -1,3 +1,5 @@
+.. _installing-software-as-user:
+
 Installing software as user
 ===========================
 
