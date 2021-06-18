@@ -11,28 +11,30 @@ To exclude specific files or directories, those shall be listed in the
 `.replication_exclude` control file. Each file or directory which is to be
 excluded from replication, shall be added as a separate line.
 
-* Exclude a directory
-To exclude the `/tos-project1/NS1234K/datasets/non_important/` directory, 
-add `/datasets/non_important` into the `.replication_exclude` control file
-as a line on it's own.
+Lines in the `.replication_exclude` control file starting with `#` or `;` are 
+ignored.
 
-* Exclude a specific file
+## Exclude a specific file
+
 To exclude the `/tos-project1/NS1234K/datasets/experiment/tmp_file.nc` file, 
 add `/datasets/experiment/tmp_file.nc` into the `.replication_exclude` control
 file as a line on it's own.
 
+## Exclude a directory
+
+To exclude the `/tos-project1/NS1234K/datasets/non_important/` directory, 
+add `/datasets/non_important` into the `.replication_exclude` control file
+as a line on it's own.
+
 Mentions of `/datasets` on its own, would exclude everything in that directory.
 
-Lines in the `.replication_exclude` control file starting with `#` or `;` are 
-ignored.
-
-e.g.:
+## Example
 ```
 # exclude all files from non_important directory
 /datasets/non_important
-# exclude temporary data from the experiment_A directory
+# exclude a specific file from the experiment_A directory
 /datasets/experiment_A/tmp_file.nc
-# exclude tmp subdirectory from the experiment_B directory
+# exclude all files from tmp subdirectory from the experiment_B directory
 /datasets/experiment_B/tmp
 ```
 
