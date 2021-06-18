@@ -101,29 +101,48 @@ There is no quota in the scratch area.
 
 ## Project area
 
-Each NIRD Storage project gets a project area `/nird/projects/NSxxxxK`,
+Each NIRD Data Storage project gets a project area `/nird/projects/NSxxxxK`,
 where `NSxxxxK` is the ID of the project.
 
-### Project locality
+### Data replication
 
-NIRD Storage projects are -with some exceptions, mutually agreed with the
-project leader- stored on two sites and asynchronously geo-replicated.
+NIRD Data Storage projects are - with some exceptions, mutually agreed with the
+project leader - stored on two sites and asynchronously geo-replicated.
 
-For every project storage there is a primary data volume on one site and a full
-replica on the other site. The main purpose for the replica is to ensure
-security and resilience in case of large damage at the primary site. The primary
- site is chosen for operational convenience to be the one closest to where the
- data is consumed, namely NIRD-TOS, if data is analysed on Fram or NIRD-TRD if
- data is analysed on Saga or Betzy HPC clusters.
+The main purpose for the replica is to ensure data integrity and resilience in
+case of large damage at the primary site.
 
- Projects have the possibility to read from and write to the primary site, while
- they cannot read from or write to the replica site.
+We advice projects to assess which of the dataset needs a higher level of 
+security and should be replicated. This helps in optimizing the storage space 
+used by the project.
+
+In general, one can consider which data can be easily reproduced, and which 
+are copies of files stored on other storage resources. These data normally do 
+not need replication, and can be considered excluded from replication.
+
+
+```{warning}
+Instructions on how to exclude files and folders from replication are described
+on the [Granular Replication](replication.md) page.
+```
+
+### Data locality
+
+For every project that has requested replication, the data is stored on a 
+primary data volume on one site and the replica on the other site.
+
+The primary site is chosen based on operational convenience, that is to be the 
+one closest to where the data is consumed, namely NIRD-TOS if data is 
+analysed on the Fram HPC cluster, or NIRD-TRD if data is analysed on the Saga 
+or on the Betzy HPC clusters.
+
+Projects have the possibility to read from and write to the primary site, while
+they cannot read from or write to the secondary site.
 
 ```{warning}
 The users should log onto the login container nearest to the primary data
 storage.
 ```
-
 
 ### Disk usage
 
