@@ -45,4 +45,46 @@ Follow the step-by-step procedure below to create and administer your group. ***
 ##  Access to the NIRD Toolkit for the users affiliated to the University of Oslo
 New regulations with regard to access to services through Feide identity has been applied by the University of Oslo (UiO) for Feide users affiliated with UiO. If you want to use the NIRD Toolkit and you are from UiO, get in contact with us at <sigma2@uninett.no> . 
 
+(service-not-activated)=
+## "Service not activated"
 
+Due to a recent change made by Feide in response to new national directives in the sector, all services are now opt-in.  
+This means that when you try to access a service in the Toolkit, you may get the following message:
+
+![Feide service not activated](imgs/feide-service-not-activated.PNG "Feide service not activated")
+
+Since the NIRD Toolkit is a platform to deploy services dynamically, the activation cannot be done one a per-service level.  
+
+In order to access your deployed services, you can use an OpenIdP account.  
+You can create an account on https://openidp.feide.no for free if you don't have one already.
+
+
+**Create new dataporten group**  
+Using your _regular Feide-account_, go to [Dataporten Minside](https://minside.dataporten.no) and click "Create new group" in the top right corner.
+
+![New dataporten group](imgs/dataporten-mygroups.png "New dataporten group")
+
+![New dataporten group](imgs/dataporten-newgrp.png "New dataporten group")
+
+
+**Invite OpenIdP account to the Dataporten group**  
+Once the group is created, you will see a Share link. Copy and paste this in another browser or an incognito tab, then log in with your OpenIdP account that you created earlier to join the group.
+
+![Dataporten group share](imgs/dataporten-grp-management.png "Dataporten group share")
+
+**Authorize group to service**  
+In the Toolkit, add the Dataporten group you created under "Authorized groups" on the service. You can reconfigure an existing service to do this as well.
+
+![Authorized groups](imgs/authorized_groups.png "Authorized groups")
+
+**Log in with OpenIdP**  
+We recommend using another browser or an incognito tab to separate the sessions.
+
+Once your OpenIdP account is added to the group, you can log in using it to access the deployed service.
+
+From the login page in the [Toolkit](https://apps.sigma2.no/), choose "Feide guest users" and log in with your OpenIdP account.
+
+![Feide guest auth](imgs/feide-guest-authentication.png "Feide guest auth")
+
+You should now have acccess to the service using the OpenIdP account.  
+Please note that you still have to use your regular Feide-account to deploy and make changes to your services.  
