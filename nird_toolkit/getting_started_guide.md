@@ -49,7 +49,8 @@ New regulations with regard to access to services through Feide identity has bee
 ## "Service not activated"
 
 Due to a recent change made by Feide in response to new national directives in the sector, all services are now opt-in.  
-This means that when you try to access a service in the Toolkit, you may get the following message:
+This means that every service with Feide login must be accepted by a Feide administrator at your institution. 
+Unfortunately, the approval cannot be exercised on services that are owned by individuals and deployed dynamically/on-demand like in the NIRD Toolkit. Hence, you might get this message upon login:
 
 ![Feide service not activated](imgs/feide-service-not-activated.PNG "Feide service not activated")
 
