@@ -72,8 +72,8 @@ the number of ranks per node.
 #SBATCH --account=nn<NNNN>k
 #SBATCH --job-name=topol
 #SBATCH --time=1-0:0:0
-## Distribute the work over nodes, here only one node, but more can be utilized
-#SBATCH --nodes=1
+## Total number of MPI ranks, can be more than 4, but should be multiple of 2
+#SBATCH --ntasks=1
 ## Setup number of tasks and CPU cores per task
 #SBATCH --ntasks-per-node=4
 #sbatch --cpus-per-task=2  # Minimum number of cores per MPI rank for GROMACS
