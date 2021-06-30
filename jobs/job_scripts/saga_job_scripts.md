@@ -113,20 +113,47 @@ RAM per cpu:
 (job_scripts_saga_accel)=
 
 ## Accel
-
 *Accel* jobs are specified just like *normal* jobs except that they
-also have to specify `--partition=accel`.  Also, they must also
-specify how many GPUs to use, with `--gres=gpu:N`, where `N` is 1, 2,
-3 or 4.
+also have to specify `--partition=accel`.  In addition, they must also
+specify how many GPUs to use, and how they should be distributed
+across nodes and tasks.  The simplest way to do that is, with
+`--gpus=N` or `--gpus-per-node=N`, where `N` is the number of GPUs to
+use.
+
+For a job simple job running one process and using one GPU, the
+following example is enough:
+
+    #SBATCH --account=MyProject --job-name=MyJob
+    #SBATCH --partition=accel --gpus=1
+    #SBATCH --time=1-0:0:0
+    #SBATCH --mem-per-cpu=8G
 
 Here is an example that asks for 2 tasks and 2 gpus on one gpu node:
 
     #SBATCH --account=MyProject --job-name=MyJob
-    #SBATCH --partition=accel --gres=gpu:2
+    #SBATCH --partition=accel --gpus-per-node=2
     #SBATCH --time=1-0:0:0
     #SBATCH --ntasks-per-node=2 --nodes=1
     #SBATCH --mem-per-cpu=8G
 
+There are other GPU related specifications that can be used, and that
+parallel some of the cpu related specifications.  The most useful are
+probably:
+
+- `--gpus-per-node` How many GPUs the job should have on each node.
+- `--gpus-per-task` How many GPUs the job should have per task.
+  Requires the use of `--ntasks` or `--gpus`.
+- `--gpus-per-socket` How many GPUs the job should have on each
+  socket.  Requires the use of `--sockets-per-node`.
+- `--mem-per-gpu` How much RAM the job should have for each GPU.
+  Can be used *instead of* `--mem-per-cpu`, (but cannot be used
+  *together with* it).
+
+See [sbatch](https://slurm.schedmd.com/sbatch.html) or `man sbatch`
+for the details, and other GPU related specifications.
+
+(The old way of specifying GPUs: `--gres=gpu:N` is still supported,
+but is less flexible than the above specification.)
 
 (job_scripts_saga_devel)=
 

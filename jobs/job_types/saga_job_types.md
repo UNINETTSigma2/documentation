@@ -95,7 +95,7 @@ and resource limits of _devel_ apply.
   GPUs, in total 192 cpus, 3019 GiB RAM and 32 GPUs.
 - __Parameter for sbatch/srun__: 
     - `--partition=accel`
-    - `gres=gpu:N` with _N_ being the number of GPUs (1,2,3 or 4)
+    - `--gpus=N`, `--gpus-per-node=N` or similar, with _N_ being the number of GPUs
 - __Job Scripts__: {ref}`job_scripts_saga_accel`
 
 *Accel* jobs give access to use the GPUs.
