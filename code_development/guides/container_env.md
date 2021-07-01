@@ -51,7 +51,7 @@ package that is available for the base OS can be installed in this way. Other co
 `shub` for [Singularity-Hub](https://singularity-hub.org) or
 `localimage` if you want to build on top of another image located on your computer.
 
-```{note}
+```{tip}
 You can find much more on Singularity definition files [here](https://sylabs.io/guides/3.7/user-guide/definition_files.html).
 ```
 

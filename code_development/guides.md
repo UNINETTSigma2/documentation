@@ -13,3 +13,5 @@
         [Container with build environment](guides/container_env.md)
     - [<span style="color:green">Beginner</span>]
         [Container with MPI support](guides/container_mpi.md)
+    - [<span style="color:green">Beginner</span>]
+        [Container with GPU support (OpenACC)](guides/container_openacc.md)
