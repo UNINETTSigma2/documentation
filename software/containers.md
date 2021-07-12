@@ -276,7 +276,7 @@ input.yaml  posinp.xyz  psppar.Fe
 ```
 In order to run this example correctly we need to ask for GPU resourses in the job
 script, here we call it `$HOME/bigdft-test/GPU/FeHyb.run`. We request a single CPU
-core (`--ntasks=1`) with an associated GPU accelerator (`--gres=gpu:1`). Also remember
+core (`--ntasks=1`) with an associated GPU accelerator (`--gpus=1`). Also remember
 to use the `accel` partition:
 ```bash
 #!/bin/bash
@@ -285,7 +285,7 @@ to use the `accel` partition:
 #SBATCH --job-name=FeHyb-GPU
 #SBATCH --ntasks=1
 #SBATCH --mem-per-cpu=10G
-#SBATCH --gres=gpu:1
+#SBATCH --gpus=1
 #SBATCH --partition=accel
 #SBATCH --time=00:10:00
 

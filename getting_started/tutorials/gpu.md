@@ -49,8 +49,16 @@ or in your
 This flag
 will ensure that your job is only run on machines in the `accel` partition which
 have attached GPUs. However, to be able to actually interact with one or more
-GPUs we will have to also add `--gres=gpu:N` which tells Slurm/`srun` that we
+GPUs we will have to also add `--gpus=N` which tells Slurm/`srun` that we
 would also like to use `N` GPUs (`N` can be a number between 1 and 4 on Saga).
+
+```{tip}
+There are multiple ways of requesting GPUs a part from `--gpus=N`, such as
+`--gpus-per-task` to specify the number of GPUs that each task should get
+access to. Checkout the official [Slurm
+documentation](https://slurm.schedmd.com/srun.html) for more on how to specify
+the number of GPUs.
+```
 
 ## Connecting to the cluster
 
@@ -68,7 +76,7 @@ by simply testing that we can get access to a single GPU. To do this we will run
 an interactive job, on the `accel` partition and asking for a single GPU.
 
 ```bash
-$ srun --ntasks=1 --mem-per-cpu=1G --time=00:02:00 --partition=accel --gres=gpu:1 --qos=devel --account=<your project number> --pty bash -i
+$ srun --ntasks=1 --mem-per-cpu=1G --time=00:02:00 --partition=accel --gpus=1 --qos=devel --account=<your project number> --pty bash -i
 $ nvidia-smi
 ```
 
@@ -157,7 +165,7 @@ tf.Tensor(
 So the above, eventually, ran fine, but did not report any GPUs. The reason for
 this is of course that we never asked for any GPUs in the first place. To remedy
 this we will change the Slurm script to include the `--partition=accel` and
-`--gres=gpu:1`, as follows:
+`--gpus=1`, as follows:
 
 ```{eval-rst} 
 .. literalinclude:: gpu/submit_gpu.sh

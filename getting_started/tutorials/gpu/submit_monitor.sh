@@ -5,7 +5,7 @@
 #SBATCH --mem-per-cpu=512M
 #SBATCH --qos=devel
 #SBATCH --partition=accel
-#SBATCH --gres=gpu:1
+#SBATCH --gpus=1
 
 ## Set up job environment:
 set -o errexit  # Exit the script on any error

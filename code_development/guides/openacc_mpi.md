@@ -111,10 +111,10 @@ $ mpicc -g -fast -acc -Minfo=accel -o acc wave_loop.c
 
 To test the above code use `srun` as above, but do not ask for multiple tasks.
 We also need to request GPU resources with `--partition=accel` and
-`--gres=gpu:1`.
+`--gpus=1`.
 
 ```bash
-$ srun --ntasks=1 --partition=accel --gres=gpu:1 --account=<your project number> --time=02:00 --mem-per-cpu=512M time ./acc 1000000
+$ srun --ntasks=1 --partition=accel --gpus=1 --account=<your project number> --time=02:00 --mem-per-cpu=512M time ./acc 1000000
 ```
 
 The code runs on the GPU, but it is not particularly fast. The reason for this
@@ -128,7 +128,7 @@ Nsight](https://developer.nvidia.com/nsight-systems) to profile the application.
 We will simply change the invocation of `time` with `nsys` as follows.
 
 ```bash
-$ srun --ntasks=1 --partition=accel --gres=gpu:1 --account=<your project number> --time=02:00 --mem-per-cpu=512M nsys profile -t cuda,openacc,osrt -o openacc_mpi_tutorial ./acc 1000000
+$ srun --ntasks=1 --partition=accel --gpus=1 --account=<your project number> --time=02:00 --mem-per-cpu=512M nsys profile -t cuda,openacc,osrt -o openacc_mpi_tutorial ./acc 1000000
 ```
 
 This will create an `openacc_mpi_tutorial.qdrep` profile that we can download to
@@ -185,7 +185,7 @@ Compile and run to see if we get any improvements.
 
 ```bash
 $ mpicc -g -fast -acc -Minfo=accel -o acc wave_data.c
-$ srun --ntasks=1 --partition=accel --gres=gpu:1 --account=<your project number> --time=02:00 --mem-per-cpu=512M time ./acc 1000000
+$ srun --ntasks=1 --partition=accel --gpus=1 --account=<your project number> --time=02:00 --mem-per-cpu=512M time ./acc 1000000
 ```
 
 The above runs quite a bit faster, but we have one problem now, the output is
@@ -244,7 +244,7 @@ Compile and run with the following, as usual.
 
 ```bash
 $ mpicc -g -fast -acc -Minfo=accel -o acc wave_acc.c
-$ srun --ntasks=1 --partition=accel --gres=gpu:1 --account=<your project number> --time=02:00 --mem-per-cpu=512M time ./acc 1000000
+$ srun --ntasks=1 --partition=accel --gpus=1 --account=<your project number> --time=02:00 --mem-per-cpu=512M time ./acc 1000000
 ```
 
 ## Splitting the work over multiple `GPU`s
@@ -275,16 +275,14 @@ assign a unique `GPU` to each `MPI` process.
 We will compile this as before, but now we can run with arbitrary number of
 processes!
 
-```{warning}
-When using `--gres=gpu:X` we need to request the total number of `GPU`s that we
-expect each node to use. So if we ask for `--ntasks=2` we need to request two
-`GPU`s with `--gres=gpu:2`. This will soon be remedied and can instead be
-requested with `--gpus-per-task`.
+```{note}
+When using multiple tasks ensure that each task gets a dedicated GPU with the
+`--gpus-per-task=N` flag.
 ```
 
 ```bash
 $ mpicc -g -fast -acc -Minfo=accel -o acc wave_acc_mpi.c
-$ srun --ntasks=2 --partition=accel --gres=gpu:2 --account=<your project number> --time=02:00 --mem-per-cpu=512M time ./acc 1000000
+$ srun --ntasks=2 --partition=accel --gpus-per-task=1 --account=<your project number> --time=02:00 --mem-per-cpu=512M time ./acc 1000000
 ```
 
 ## Summary
