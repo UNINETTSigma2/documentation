@@ -150,7 +150,7 @@ Let's see what insight we can gain from running with `Nsight`.
 
 To run with `Nsight` use the following invocation of `srun`
 ```bash
-$ srun --account=<your project number> --time=02:00 --mem-per-cpu=1G --partition=accel --gres=gpu:1 nsys profile -t cuda,openacc,osrt -o initial ./builddir/src/mandelbrot 4k
+$ srun --account=<your project number> --time=02:00 --mem-per-cpu=1G --partition=accel --gpus=1 nsys profile -t cuda,openacc,osrt -o initial ./builddir/src/mandelbrot 4k
 ```
 
 ```{eval-rst}
@@ -225,7 +225,7 @@ asynchronously. Use the following command on Saga (don't forget to compile with
 `meson compile -C builddir`)
 
 ```bash
-$ srun --account=<your project number> --time=02:00 --mem-per-cpu=1G --partition=accel --gres=gpu:1 nsys profile -t cuda,openacc,osrt -o async ./builddir/src/mandelbrot 4k
+$ srun --account=<your project number> --time=02:00 --mem-per-cpu=1G --partition=accel --gpus=1 nsys profile -t cuda,openacc,osrt -o async ./builddir/src/mandelbrot 4k
 ```
 
 ```{eval-rst}
@@ -256,6 +256,9 @@ work over multiple GPUs and so a different technique might be called for.
 Instead of trying to split loops into work for multiple GPUs, try to see already
 existing possibilities to split the work. One natural way is to give individual
 MPI ranks their own GPU to utilize.
+
+This can be easily accomplished through Slurm with the `--gpus-per-task` flag
+which will allocate a number of GPUs appropriate for the number of Slurm tasks.
 ```
 
 ```{eval-rst}
@@ -276,7 +279,7 @@ enter data` directive keeps the data in GPU memory until otherwise stated (in
 contrast to `#pragma acc data` which keeps the data only for the extent of the
 following block of code).
 
-This last iterations is about `1.5x` faster using `--gres=gpu:2` with
+This last iterations is about `1.5x` faster using `--gpus=2` with
 diminishing, or even negative, returns for additional GPUs.
 
 ## Summary
@@ -294,8 +297,8 @@ are more an illustration of possible speedup, not guaranteed speedup).
 | OpenMP  `--cpus-per-task=6`\* | `3313` | `3.24x` |
 | Initial OpenACC | `1020` | `3.25x` |
 | Async | `811` | `1.25x` |
-| Multi-GPU `--gres=gpu:2` | `547` | `1.48x` |
-| Multi-GPU `--gres=gpu:4` | `2932` | `0.18x` |
+| Multi-GPU `--gpus=2` | `547` | `1.48x` |
+| Multi-GPU `--gpus=4` | `2932` | `0.18x` |
 **\*** To keep the comparison as fair as possible we compare the CPU resources
 that would be the equivalent to [the billing resources of 1 GPU on
 Saga](../../jobs/projects_accounting.md).

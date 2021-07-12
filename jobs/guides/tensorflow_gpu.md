@@ -16,7 +16,7 @@ utilize other libraries this guide still holds some value. Do not hesitate to
 for additional assistance.
 
 For the rest of this guide many of the examples ask for Sigma2 resources with
-GPU. This is achieved with the `--partition=accel --gres=gpu:1`
+GPU. This is achieved with the `--partition=accel --gpus=1`
 ({ref}`job_scripts_saga_accel`),
 however, `TensorFlow` does not require the use of a GPU so
 for testing it is recommended to not ask for GPU resources (to be scheduled
@@ -281,7 +281,7 @@ home directory.
 #SBATCH --ntasks=1
 #SBATCH --mem-per-cpu=8G
 ## The following line can be omitted to run on CPU alone
-#SBATCH --partition=accel --gres=gpu:1
+#SBATCH --partition=accel --gpus=1
 #SBATCH --time=00:30:00
 
 # Purge modules and load tensorflow
@@ -471,7 +471,7 @@ above works.
 #SBATCH --job-name=<creative_job_name>
 #SBATCH --ntasks=1
 #SBATCH --mem-per-cpu=8G
-#SBATCH --partition=accel --gres=gpu:2
+#SBATCH --partition=accel --gpus=2
 #SBATCH --time=00:30:00
 
 # Purge modules and load tensorflow
@@ -643,9 +643,8 @@ This can then be scheduled with the following:
 
 #SBATCH --account=<your project account>
 #SBATCH --job-name=<fancy name>
-#SBATCH --partition=accel --gres=gpu:4
-#SBATCH --ntasks=6
-#SBATCH --ntasks-per-node=4
+#SBATCH --partition=accel --gpus-per-task=1
+#SBATCH --ntasks=8
 #SBATCH --mem-per-cpu=8G
 #SBATCH --time=00:30:00
 
@@ -664,22 +663,8 @@ export HOROVOD_MPI_THREADS_DISABLE=1
 srun python $SLURM_SUBMIT_DIR/mnist_hvd.py
 ```
 
-Note especially the use of `--gress=gpu:4` which means that each node allocated
-for the job will get four GPUs. The `--ntasks-per-node=4` is necessary to force
-`Slurm` to allocate at most four task per available node, which corresponds to
-the number of GPUs per node on Saga. Also note that this means the example above
-will require two nodes without using all available compute - in effect
-oversubscribing. Due to this potential to oversubscribe it is recommended that
-you ask for a multiple of `4` for `--ntasks` to avoid oversubscribing and
-increase scheduling speed.
-
-```{note}
-**Tip:**
-
-In the future it should be possible to use
-`--gpus-per-task=1` instead to simplify and not
-oversubscribe on GPUs.
-```
+Note especially the use of `--gpus-per-task=1` which means that each task will
+get a dedicated GPU. The above job will thus take up two whole nodes on Saga.
 
 [sigma2]: https://www.sigma2.no/
 [tensorflow]: https://www.tensorflow.org/

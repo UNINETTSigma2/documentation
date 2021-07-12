@@ -169,15 +169,15 @@ with each line.
 Before we start profiling to see what we can optimize, lets run the program to
 learn the additional `Slurm` parameters needed for running with GPU on Saga. The
 following is the new command needed (notice the added `--partition=accel` and
-`--gres=gpu:1` flags)
+`--gpus=1` flags)
 
 ```bash
-$ srun --account=<your project number> --time=02:00 --mem-per-cpu=512M --partition=accel --gres=gpu:1 time ./jacobi
+$ srun --account=<your project number> --time=02:00 --mem-per-cpu=512M --partition=accel --gpus=1 time ./jacobi
 ```
 
 `--partition=accel` is needed to tell `Slurm` to only run on nodes on Saga with
-GPUs and the `--gres=gpu:n` line tells `Slurm` that we would like to have access
-to `n` GPUs (`accel` nodes on Saga have `4` separate GPUs, above we are asking
+GPUs and the `--gpus=N` line tells `Slurm` that we would like to have access
+to `N` GPUs (`accel` nodes on Saga have `4` separate GPUs, above we are asking
 for only one GPU).
 
 ### Profiling
@@ -479,7 +479,7 @@ $ nvfortran -o mxm -fast -acc -gpu=cc60 -Minfo=accel mxm.f90
 
 To run the program on Saga with GPUs use:
 ```bash
-$ srun --account=<your project number> --time=02:00 --mem-per-cpu=512M --partition=accel --gres=gpu:1 ./mxm
+$ srun --account=<your project number> --time=02:00 --mem-per-cpu=512M --partition=accel --gpus=1 ./mxm
 ```
 
 This program is as close to the best case scenario possible for accelerators

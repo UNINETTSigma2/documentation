@@ -2,7 +2,7 @@
 
 #SBATCH --account=<project account>
 #SBATCH --job-name=<fancy_name>
-#SBATCH --partition=accel --gres=gpu:1
+#SBATCH --partition=accel --gpus=1
 #SBATCH --ntasks=1
 #SBATCH --mem-per-cpu=8G
 #SBATCH --time=00:30:00
