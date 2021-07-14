@@ -38,7 +38,7 @@ and `<your_command>` is the actual command you want to run and checkpoint
 
 ```./dmtcp_restart_script.sh```
 
-###Sample example of how to use DMPTCP in your slurm script
+ **Sample example of how to use DMPTCP in your slurm script**
 
 - First submit your job with dmptcp `generic_job.sh' 
 
@@ -68,8 +68,7 @@ dmtcp_launch --new-coordinator --rm --interval 3600 YourCommands
 
 In this example, DMTCP takes checkpoints every hour '(--interval 3600)'
 
--If this job is killed for various reasons, it can be restarted using the following submit file: `generic_job_dmptcp_restart.sh`
-
+- Second, restart the job: If the job is killed for various reasons, it can be restarted using the following submit file: `generic_job_dmptcp_restart.sh`
 ```
 #!/bin/bash
 
