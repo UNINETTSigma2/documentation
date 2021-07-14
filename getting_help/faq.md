@@ -160,6 +160,13 @@ $ squeue -u <username>
 where `<username>` is your username. You can of course also check the queue by not adding a username. For additional
 details on how to monitor job(s), please consult page about {ref}`monitoring-jobs`.
 
+### Why are my devel/short/preproc jobs put in the “normal” queue even though I specify `--qos` in my job script?
+
+The `--qos` specified jobs, like `devel`, `short` and `preproc`, by default run in the standard partition - i.e. `normal` but will have different properties. For detailed explanation see {ref}`queue-system`.
+In order to see your jobs in the devel queue, use the following command, (you can replace `devel` with `short` or `preproc` to see the respective queues)
+```console
+$ squeue -q devel -u <username>
+```
 
 ### Why does my job not start or give me error feedback when submitting?
 
