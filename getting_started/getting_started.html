@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Getting started &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="How do I get an account?" href="applying_account.html" />
+    <link rel="prev" title="Advanced User Support (AUS)" href="../getting_help/advanced_user_support.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-access">Getting access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#information-on-available-cpu-hours-and-disk-space">Information on available CPU hours and disk space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logging-in">Logging in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transfering-files">Transfering files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#remote-desktop">Remote desktop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-applications">Running applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Getting started</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/getting_started/getting_started.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>This page is meant to get you started on our resources and briefly list the
+essentials.  In the menu on the left you will then find more in-depth
+documentation on these topics.</p>
+<div class="section" id="getting-access">
+<h2>Getting access<a class="headerlink" href="#getting-access" title="Permalink to this headline">¶</a></h2>
+<p>To get access you need two things:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="applying_account.html#applying-account"><span class="std std-ref">apply for a user account</span></a></p></li>
+<li><p><a class="reference internal" href="applying_resources.html#applying-computing-storage"><span class="std std-ref">compute/storage resource allocation</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="information-on-available-cpu-hours-and-disk-space">
+<h2>Information on available CPU hours and disk space<a class="headerlink" href="#information-on-available-cpu-hours-and-disk-space" title="Permalink to this headline">¶</a></h2>
+<p>This will list your available projects and the remaining CPU hours
+(see also <a class="reference internal" href="../jobs/projects_accounting.html#projects-accounting"><span class="std std-ref">Projects and accounting</span></a>):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>cost
+</pre></div>
+</div>
+<p>This will give you information about your disk <a class="reference internal" href="../files_storage/clusters.html#usage-and-quota"><span class="std std-ref">Usage and quota</span></a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>dusage
+</pre></div>
+</div>
+</div>
+<div class="section" id="logging-in">
+<h2>Logging in<a class="headerlink" href="#logging-in" title="Permalink to this headline">¶</a></h2>
+<p>Logging into the machines involves the use of Secure Shell (SSH) protocol,
+either in a terminal shell or through a graphical tool using this protocol
+under the hood.  SSH login is available natively to Linux or macOS. Also on
+Windows a number of good tools for this exists.</p>
+<p>For more information and examples see <a class="reference internal" href="create_ssh_keys.html#ssh"><span class="std std-ref">SSH</span></a>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh &lt;username&gt;@&lt;machinename&gt;
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">&lt;username&gt;</span></code> with your registered username and <code class="docutils literal notranslate"><span class="pre">&lt;machinename&gt;</span></code> with the
+specific machine name.</p>
+<p>The machine names are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">betzy.sigma2.no</span></code> - <a class="reference internal" href="../hpc_machines/betzy.html#betzy"><span class="std std-ref">Betzy</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fram.sigma2.no</span></code> - <a class="reference internal" href="../hpc_machines/fram.html#fram"><span class="std std-ref">Fram</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">saga.sigma2.no</span></code> - <a class="reference internal" href="../hpc_machines/saga.html#saga"><span class="std std-ref">Saga</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">login.nird.sigma2.no</span></code> - <a class="reference internal" href="../files_storage/nird.html#nird"><span class="std std-ref">NIRD - National Infrastructure for Research Data</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="transfering-files">
+<h2>Transfering files<a class="headerlink" href="#transfering-files" title="Permalink to this headline">¶</a></h2>
+<p>To copy files from your machine to the HPC machines, use SSH file transfer
+Protocol (SFTP) or Secure Copy (SCP). They are available as command-line tools
+for Linux and MacOS X but Windows users need to download a separate SCP or FTP
+client, such as <a class="reference external" href="https://winscp.net/">WinSCP</a> or <a class="reference external" href="https://mobaxterm.mobatek.net/">MobaXterm</a>.</p>
+<p>For example, to copy <code class="docutils literal notranslate"><span class="pre">projectfiles.tar.gz</span></code> from your local home directory
+to the remote home directory of <code class="docutils literal notranslate"><span class="pre">myusername</span></code> on
+Fram, type (the colon at the end is important):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>scp projectfiles.tar.gz myusername@fram.sigma2.no:
+</pre></div>
+</div>
+<p>For more information please see our page on <a class="reference internal" href="../files_storage/file_transfer.html#file-transfer"><span class="std std-ref">File transfer</span></a>.</p>
+</div>
+<div class="section" id="remote-desktop">
+<h2>Remote desktop<a class="headerlink" href="#remote-desktop" title="Permalink to this headline">¶</a></h2>
+<p>The Fram and Saga systems provide a <a class="reference internal" href="remote-desktop.html#remote-desktop"><span class="std std-ref">Remote desktop</span></a> service.</p>
+<p><strong>Quickstart</strong>: Use a VNC client to log into <code class="docutils literal notranslate"><span class="pre">desktop.fram.sigma2.no:5901</span></code> or
+<code class="docutils literal notranslate"><span class="pre">desktop.saga.sigma2.no:5901</span></code>. A web based remote desktop service is also
+available <a class="reference external" href="https://desktop.fram.sigma2.no:6080">https://desktop.fram.sigma2.no:6080</a>. Access to these services are
+blocked outside the Norwegian research network, e.g. only accessible from
+UNINETT and partner institutions.</p>
+</div>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<p>To keep track of the large number of different pieces of software that is
+typically available on a shared HPC cluster, we use something called a software
+module system. This allows us to have many different versions of compilers,
+libraries, and applications available for different users at the same time
+without conflicting each other.</p>
+<p>By default when you log in to the cluster you will get a clean environment with
+nothing but standard system compilers and libraries. In order to make your
+favourite software application available to you, you need to load its module
+into your environment, which is done using the <code class="docutils literal notranslate"><span class="pre">module</span></code> command</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module &lt;options&gt; &lt;modulename&gt;
+</pre></div>
+</div>
+<p>Some of the more common options include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">avail</span></code> - list the available modules</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code> - list the currently loaded modules</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">load</span> <span class="pre">&lt;modulename&gt;</span></code> - load the module called <code class="docutils literal notranslate"><span class="pre">modulename</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unload</span> <span class="pre">&lt;modulename&gt;</span></code> - unload the module called <code class="docutils literal notranslate"><span class="pre">modulename</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">&lt;modulename&gt;</span></code> - display configuration settings for <code class="docutils literal notranslate"><span class="pre">modulename</span></code></p></li>
+</ul>
+<p>For more details please see <a class="reference internal" href="../software/modulescheme.html#module-scheme"><span class="std std-ref">Software module scheme</span></a>.</p>
+</div>
+<div class="section" id="running-applications">
+<h2>Running applications<a class="headerlink" href="#running-applications" title="Permalink to this headline">¶</a></h2>
+<p>The HPC machines provide compute nodes for executing applications. To ensure
+fair access to the resources, the HPC machines run applications as <em>jobs</em> in a
+<em>queue system</em>, which schedules the tasks and process to run on compute nodes.
+All systems use the Slurm queue system.</p>
+<p>A job is described by a <em>batch script</em>, which is a shell script (a text file)
+with <code class="docutils literal notranslate"><span class="pre">SBATCH</span></code> options to specify the needed resources and commands to perform
+the calculations. All batch scripts must contain <em>at least</em> the following
+two <code class="docutils literal notranslate"><span class="pre">SBATCH</span></code> options (on <a class="reference internal" href="../hpc_machines/saga.html#saga"><span class="std std-ref">Saga</span></a> you also need to indicate maximum memory):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
+
+<span class="c1"># account name</span>
+<span class="c1">#SBATCH --account=nnXXXXk</span>
+
+<span class="c1"># max running time in d-hh:mm:ss</span>
+<span class="c1"># this helps the scheduler to assess priorities and tasks</span>
+<span class="c1">#SBATCH --time=0-00:05:00</span>
+</pre></div>
+</div>
+<p>For more details please see <a class="reference internal" href="../jobs/overview.html#job-types-and-job-scripts"><span class="std std-ref">Job types and job scripts</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="applying_account.html" class="btn btn-neutral float-right" title="How do I get an account?" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../getting_help/advanced_user_support.html" class="btn btn-neutral float-left" title="Advanced User Support (AUS)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

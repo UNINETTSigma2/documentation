@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>NIRD - National Infrastructure for Research Data &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Storage areas on HPC clusters" href="clusters.html" />
+    <link rel="prev" title="Licenses and access policies" href="../software/licenses.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NIRD - National Infrastructure for Research Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#technical-specifications">Technical specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-access">Getting access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logging-in">Logging in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#home-directories">Home directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scratch-directories">Scratch directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#project-area">Project area</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-replication">Data replication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-locality">Data locality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#disk-usage">Disk usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#snapshots">Snapshots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nird-toolkit">NIRD Toolkit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mounts-on-hpc">Mounts on HPC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>NIRD - National Infrastructure for Research Data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/files_storage/nird.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nird-national-infrastructure-for-research-data">
+<span id="nird"></span><h1>NIRD - National Infrastructure for Research Data<a class="headerlink" href="#nird-national-infrastructure-for-research-data" title="Permalink to this headline">¶</a></h1>
+<p><strong>NIRD</strong> is the <strong>N</strong>ational e-<strong>I</strong>nfrastructure for <strong>R</strong>esearch <strong>D</strong>ata. It
+is owned and operated by <a class="reference external" href="https://www.sigma2.no">UNINETT Sigma2</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The NIRD infrastructure offers storage services, archiving services, and
+processing capacity for computing on the stored data.  It offers services
+and capacities to any scientific discipline that requires access to
+advanced, large scale, or high-end resources for storing, processing,
+publishing research data or searching digital databases and collections.</p>
+</div>
+<p>NIRD will provide storage resources with yearly capacity upgrades,
+data security through geo-replication (data stored on two physical
+locations) and adaptable application services, multiple storage
+protocol support, migration to third-party cloud providers and much
+more. Alongside the national high-performance computing resources,
+NIRD forms the backbone of the national e-infrastructure for research
+and education in Norway, connecting data and computing resources for
+efficient provisioning of services.</p>
+<div class="section" id="technical-specifications">
+<h2>Technical specifications<a class="headerlink" href="#technical-specifications" title="Permalink to this headline">¶</a></h2>
+<p>The NIRD storage system consists of DDN SFA14K controllers, 3400 x 10TB NL-SAS
+drives with a total capacity of 2 x 11 PiB.
+The solution is based on DDN GridScaler® parallel file system, supporting
+multiple file, block and object protocols.</p>
+</div>
+<div class="section" id="getting-access">
+<h2>Getting access<a class="headerlink" href="#getting-access" title="Permalink to this headline">¶</a></h2>
+<p>To gain access to the storage services, a formal application is required. The
+process is explained at the
+<a class="reference external" href="https://www.sigma2.no/how-apply-user-account">How to apply for a user account</a>
+page.</p>
+<p>Users must be registered and authorised by the project responsible
+before getting access.</p>
+<p>To access or transfer data, you may use the following tools: <code class="docutils literal notranslate"><span class="pre">ssh</span></code>, <code class="docutils literal notranslate"><span class="pre">scp</span></code> or
+<code class="docutils literal notranslate"><span class="pre">sftp</span></code>.  Visit the <a class="reference internal" href="file_transfer.html"><span class="doc std std-doc">transferring files</span></a> page
+for details.</p>
+</div>
+<div class="section" id="logging-in">
+<h2>Logging in<a class="headerlink" href="#logging-in" title="Permalink to this headline">¶</a></h2>
+<p>Access to your $HOME on NIRD and the project data storage area is through the
+login containers.
+Login containers are running on servers directly connected to
+the storage on both sites -that is Tromsø and Trondheim- to facilitate data
+handling right where the primary data resides. Each login container offers a
+maximum of 16 CPU cores and 128GiB of memory.</p>
+<p>Login containers can be accessed via following addresses:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">login</span><span class="o">-</span><span class="n">tos</span><span class="o">.</span><span class="n">nird</span><span class="o">.</span><span class="n">sigma2</span><span class="o">.</span><span class="n">no</span>
+<span class="n">login</span><span class="o">-</span><span class="n">trd</span><span class="o">.</span><span class="n">nird</span><span class="o">.</span><span class="n">sigma2</span><span class="o">.</span><span class="n">no</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that we run four login containers per site.</p>
+<p>If you plan to start a <code class="docutils literal notranslate"><span class="pre">screen</span></code> session on one of the login containers or
+you wish to copy data with the help of <code class="docutils literal notranslate"><span class="pre">scp</span></code> or <code class="docutils literal notranslate"><span class="pre">WinSCP</span></code>, you should log in
+to a specific container.</p>
+<p>Addresses are:</p>
+<ul class="simple">
+<li><p>login<strong>X</strong>-tos.nird.sigma2.no</p></li>
+<li><p>login<strong>X</strong>-trd.nird.sigma2.no</p></li>
+<li><p><strong>X</strong> - can have values between 0 and 3.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="home-directories">
+<h2>Home directories<a class="headerlink" href="#home-directories" title="Permalink to this headline">¶</a></h2>
+<p>Each user has a home directory <code class="docutils literal notranslate"><span class="pre">/nird/home/&lt;username&gt;</span></code>, where
+<code class="docutils literal notranslate"><span class="pre">&lt;username&gt;</span></code> is the username.  The default quota for home directories
+is 20 GiB and 100 000 files.  To check the disk usage and quotas, type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ dusage
+</pre></div>
+</div>
+<p>Home directories on NIRD also contain a backup of Betzy, Fram and Saga home
+directories (when relevant) in <code class="docutils literal notranslate"><span class="pre">/nird/home/&lt;username&gt;/backup/fram</span></code> and
+<code class="docutils literal notranslate"><span class="pre">/nird/home/&lt;username&gt;/backup/saga</span></code>.
+To account for this default quota is doubled when relevant.
+Note that this is a <em>backup</em> from the HPC cluster; you cannot transfer
+files to the cluster by putting them here.</p>
+</div>
+<div class="section" id="scratch-directories">
+<h2>Scratch directories<a class="headerlink" href="#scratch-directories" title="Permalink to this headline">¶</a></h2>
+<p>The total storage space of <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> is 15TB.
+Each user has a scratch directory <code class="docutils literal notranslate"><span class="pre">/scratch/&lt;username&gt;</span></code>.
+The area is meant as a temporary scratch area. This area is not backed up.
+When file system usage reaches 75%, files are subject to automatic deletion.
+There is no quota in the scratch area.</p>
+</div>
+<div class="section" id="project-area">
+<h2>Project area<a class="headerlink" href="#project-area" title="Permalink to this headline">¶</a></h2>
+<p>Each NIRD Data Storage project gets a project area <code class="docutils literal notranslate"><span class="pre">/nird/projects/NSxxxxK</span></code>,
+where <code class="docutils literal notranslate"><span class="pre">NSxxxxK</span></code> is the ID of the project.</p>
+<div class="section" id="data-replication">
+<h3>Data replication<a class="headerlink" href="#data-replication" title="Permalink to this headline">¶</a></h3>
+<p>NIRD Data Storage projects are - with some exceptions, mutually agreed with the
+project leader - stored on two sites and asynchronously geo-replicated.</p>
+<p>The main purpose for the replica is to ensure data integrity and resilience in
+case of large damage at the primary site.</p>
+<p>We advice projects to assess which of the dataset needs a higher level of
+security and should be replicated. This helps in optimizing the storage space
+used by the project.</p>
+<p>In general, one can consider which data can be easily reproduced, and which
+are copies of files stored on other storage resources. These data normally do
+not need replication, and can be considered excluded from replication.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Instructions on how to exclude files and folders from replication are described
+on the <a class="reference internal" href="replication.html"><span class="doc std std-doc">Granular Replication</span></a> page.</p>
+</div>
+</div>
+<div class="section" id="data-locality">
+<h3>Data locality<a class="headerlink" href="#data-locality" title="Permalink to this headline">¶</a></h3>
+<p>For every project that has requested replication, the data is stored on a
+primary data volume on one site and the replica on the other site.</p>
+<p>The primary site is chosen based on operational convenience, that is to be the
+one closest to where the data is consumed, namely NIRD-TOS if data is
+analysed on the Fram HPC cluster, or NIRD-TRD if data is analysed on the Saga
+or on the Betzy HPC clusters.</p>
+<p>Projects have the possibility to read from and write to the primary site, while
+they cannot read from or write to the secondary site.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The users should log onto the login container nearest to the primary data
+storage.</p>
+</div>
+</div>
+<div class="section" id="disk-usage">
+<h3>Disk usage<a class="headerlink" href="#disk-usage" title="Permalink to this headline">¶</a></h3>
+<p>The project area has a quota on disk space and the number of files,
+and you can see the quota and the current usage by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ dusage -p NSxxxxK
+</pre></div>
+</div>
+</div>
+<div class="section" id="snapshots">
+<h3>Snapshots<a class="headerlink" href="#snapshots" title="Permalink to this headline">¶</a></h3>
+<p>In addition to geo-replication NIRD supports snapshots of project areas
+and home directories allowing for recovery of deleted data.
+For more information, visit the <a class="reference internal" href="backup.html"><span class="doc std std-doc">backup</span></a> page.</p>
+</div>
+<div class="section" id="nird-toolkit">
+<h3>NIRD Toolkit<a class="headerlink" href="#nird-toolkit" title="Permalink to this headline">¶</a></h3>
+<p>The NIRD toolkit allows pre/post processing analysis,
+data intensive processing, visualization, artificial intelligence and machine learning platform.
+The NIRD toolkit services have access to your NIRD Project area.
+The available services can be found at the documentation of
+<a class="reference external" href="https://www.sigma2.no/nird-toolkit">NIRD Toolkit</a> .</p>
+</div>
+<div class="section" id="mounts-on-hpc">
+<h3>Mounts on HPC<a class="headerlink" href="#mounts-on-hpc" title="Permalink to this headline">¶</a></h3>
+<p>When relevant, the NIRD Storage project areas are also mounted on the login
+nodes of Betzy, Fram or Saga HPC clusters.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only the primary data volumes for projects are mounted to the HPC clusters:</p>
+<ul class="simple">
+<li><p>projects from NIRD-TOS to Fram</p></li>
+<li><p>projects from NIRD-TRD to Betzy and Saga</p></li>
+</ul>
+<p>You can check what the primary site is for a project by running the following on a NIRD login-node:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ readlink /projects/NSxxxxK
+</pre></div>
+</div>
+<p>Replace “xxxx” with the actual project number you want to check.
+It will print out a path starting either with /tos-project or /trd-project.</p>
+<ul class="simple">
+<li><p>If it starts with “tos” then the primary site is in Tromsø (login-tos.nird.sigma2.no)</p></li>
+<li><p>If it starts with “trd” then the primary site is in Trondheim (login-trd.nird.sigma2.no)</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>To avoid performance impact and operational issues, NIRD $HOME and project
+areas are <em>not</em> mounted on any of the compute nodes of the HPC clusters.</p>
+</div>
+<p>For more information, visit the <a class="reference internal" href="clusters.html"><span class="doc std std-doc">Betzy, Fram and Saga</span></a> page.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="clusters.html" class="btn btn-neutral float-right" title="Storage areas on HPC clusters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../software/licenses.html" class="btn btn-neutral float-left" title="Licenses and access policies" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

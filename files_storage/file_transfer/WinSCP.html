@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Using WinSCP to transfer files &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Using WinSCP to transfer files</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/files_storage/file_transfer/WinSCP.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="using-winscp-to-transfer-files">
+<h1>Using WinSCP to transfer files<a class="headerlink" href="#using-winscp-to-transfer-files" title="Permalink to this headline">¶</a></h1>
+<p>To access data on NIRD or an HPC cluster (Fram and Saga) using a graphical
+interface, you will need to install and use specialized software.</p>
+<p>As an example, we will here present how to use the program WinSCP to access
+NIRD. The procedure will be similar for Fram and Saga.  WinSCP is a Windows
+program. If you are on Linux or Mac you need to use a different program, like
+for instance sftp, FileZilla, or Cyberduck.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#installation-on-windows">Installation on Windows</a></p></li>
+<li><p><a class="reference external" href="#connecting-to-nird-with-winscp">Connecting to NIRD with WinSCP</a></p></li>
+<li><p><a class="reference external" href="#downloading-and-uploading-files-and-folders">Downloading and uploading files and folders</a></p></li>
+</ul>
+<div class="section" id="installation-on-windows">
+<h2>Installation on Windows<a class="headerlink" href="#installation-on-windows" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Download the program from <a class="reference external" href="https://winscp.net/eng/download.php">https://winscp.net/eng/download.php</a>.</p></li>
+<li><p>When the installation file is downloaded, double click on it and follow the instructions for installing the program.</p></li>
+</ol>
+</div>
+<div class="section" id="connecting-to-nird-with-winscp">
+<h2>Connecting to NIRD with WinSCP<a class="headerlink" href="#connecting-to-nird-with-winscp" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p>Start WinSCP. You should see something like this:</p>
+<p><img alt="WinSCP startup" src="../../_images/WinSCP_start.jpg" /></p>
+</li>
+<li><p>Fill in these values</p>
+<ul class="simple">
+<li><p>Host name: login.nird.sigma2.no</p></li>
+<li><p>User name: <em>Your username</em></p></li>
+<li><p>Password: <em>Your password</em></p></li>
+</ul>
+</li>
+<li><p>Save the configuration by pressing the <em>Save</em> button.</p></li>
+<li><p>Log in to NIRD by pressing the <em>Login</em> button</p></li>
+<li><p>If this is your first login, you should see your home folder at NIRD in the right column of the WinSCP window.
+Since data at NIRD is located in projects we need to navigate there.</p></li>
+<li><p>Use the dropdown menu:</p>
+<p><img alt="Dropdown" src="../../_images/WinSCP_dropdown.jpg" /></p>
+<p>And navigate to the <code class="docutils literal notranslate"><span class="pre">/&lt;root&gt;</span></code> folder.</p>
+</li>
+<li><p>From the <code class="docutils literal notranslate"><span class="pre">/</span></code> folder move into the <em>projects</em> folder and select your project.</p></li>
+<li><p>Navigate to the desired place in the project folder.</p></li>
+</ol>
+</div>
+<div class="section" id="downloading-and-uploading-files-and-folders">
+<h2>Downloading and uploading files and folders<a class="headerlink" href="#downloading-and-uploading-files-and-folders" title="Permalink to this headline">¶</a></h2>
+<p>When connected to a server (NIRD in this case), the WinSCP window shows two
+file areas in the two large panels. The left panel is your local computer, the
+right panel the server.</p>
+<p>To download data, navigate to the folder on the server where the files of
+interest are located. In the left panel, navigate to the place you want to
+download the files to. Now you can either right click the file or folder and
+select <em>Download</em>, or <em>drag and drop</em> the file or folder from the right panel
+to the left panel. Follow the dialogue boxes and wait for the download to
+finish. Usually, the standard suggestions should be reasonable.</p>
+<p>Uploading works similarly. Just navigate to the right folders on your local
+computer and on the server and <em>drag and drop</em> a file or folder from your local
+computer (left) to the server (right). Alternatively, you can, again, right
+click on the file or folder of interest and choose <em>Upload</em>. Follow the
+dialogue boxes and wait for the upload to finish. Usually, the standard
+suggestions should be reasonable.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

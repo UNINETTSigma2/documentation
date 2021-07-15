@@ -1,0 +1,481 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>SSH &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tutorials" href="tutorials.html" />
+    <link rel="prev" title="Editing files" href="editing_files.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="editing_files.html">Editing files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SSH</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#login-via-ssh-keys">Login via ssh keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows-ssh-client">Windows ssh client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x11-forwarding">X11 forwarding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sha256-fingerprint">SHA256 fingerprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mosh">Mosh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sshfs">SSHFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#poor-connection">Poor connection</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>SSH</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/getting_started/create_ssh_keys.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ssh">
+<span id="id1"></span><h1>SSH<a class="headerlink" href="#ssh" title="Permalink to this headline">¶</a></h1>
+<p>Some SSH related frequently asked questions are documented down below.
+For more in-depth details, other options, please consult the man pages:
+<code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">ssh</span></code> and <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">ssh_config</span></code>.</p>
+<div class="section" id="login-via-ssh-keys">
+<h2>Login via ssh keys<a class="headerlink" href="#login-via-ssh-keys" title="Permalink to this headline">¶</a></h2>
+<p>To login to a server without typing in your password every time, you can
+configure ssh to use public key cryptography. In case you use a linux system
+start by generating a pair of keys and saving them in the folder <code class="docutils literal notranslate"><span class="pre">.ssh</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh-keygen -t ed25519 -a 100 -f .ssh/id_sigma2
+</pre></div>
+</div>
+<p>Make sure to enter a passphrase to encrypt the key.</p>
+<p>To copy and install the public key to the server, for example saga,
+we use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh-copy-id -i ~/.ssh/id_sigma2 &lt;username&gt;@saga.sigma2.no
+</pre></div>
+</div>
+<p>This command creates the directory <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> on the target machine
+(<code class="docutils literal notranslate"><span class="pre">saga.sigma2.no</span></code> in the example above) if it did not exist yet.
+When created by OpenSSH (e.g. through <code class="docutils literal notranslate"><span class="pre">ssh-copy-id</span></code>), the directory gets
+the required strict permissions <code class="docutils literal notranslate"><span class="pre">0700</span></code>, which may be different from the
+shell’s file-creation mask returned by <code class="docutils literal notranslate"><span class="pre">umask</span> <span class="pre">-S</span></code>.
+You can check the permissions by running <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-ld</span> <span class="pre">~/.ssh</span></code> on saga, and change the
+permissions to <code class="docutils literal notranslate"><span class="pre">0700</span></code> with the command <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">0700</span> <span class="pre">~/.ssh</span></code>.</p>
+<p>Using ssh keys has the added benefit that you can avoid having to type your
+password every time. <code class="docutils literal notranslate"><span class="pre">ssh-agent</span></code> is program installed on virtually all linux
+versions to manage the keys so that you only have to unlock the key once. We
+can add the new key with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh-add ~/.ssh/id_sigma2
+</pre></div>
+</div>
+<p>We recommend you configure your ssh client by adding a section for each Sigma2
+system you have access to by editing <code class="docutils literal notranslate"><span class="pre">.ssh/config</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Host</span> <span class="n">saga</span>
+	<span class="n">Hostname</span> <span class="n">saga</span><span class="o">.</span><span class="n">sigma2</span><span class="o">.</span><span class="n">no</span>
+	<span class="n">User</span> <span class="n">myusername</span>
+	<span class="n">IdentityFile</span> <span class="o">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_sigma2</span>
+</pre></div>
+</div>
+<p>This will let you simply type <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">saga</span></code>, rather than e.g. <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">myusername&#64;saga.sigma2.no</span> <span class="pre">-i</span> <span class="pre">.ssh/id_sigma2</span></code></p>
+<p>For more information see <a class="reference external" href="https://www.ssh.com/ssh/keygen/"><code class="docutils literal notranslate"><span class="pre">keygen</span></code></a>.</p>
+</div>
+<div class="section" id="windows-ssh-client">
+<h2>Windows ssh client<a class="headerlink" href="#windows-ssh-client" title="Permalink to this headline">¶</a></h2>
+<p>In Windows 10 and newer you can now get a fully functional Linux terminal by
+<a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">installing WSL</a>.</p>
+<p>This will not only give you a shell with the ssh client, but also let you
+install and use all of your favourite Linux software such as <code class="docutils literal notranslate"><span class="pre">Vim</span></code>, <code class="docutils literal notranslate"><span class="pre">Emacs</span></code>,
+<code class="docutils literal notranslate"><span class="pre">nano</span></code>, <code class="docutils literal notranslate"><span class="pre">perl</span></code>, <code class="docutils literal notranslate"><span class="pre">python</span></code> and so on.</p>
+</div>
+<div class="section" id="x11-forwarding">
+<span id="id2"></span><h2>X11 forwarding<a class="headerlink" href="#x11-forwarding" title="Permalink to this headline">¶</a></h2>
+<p>X11 forwarding should be used with caution due to security implications. Please
+note that if someone can read your X authorization database <a class="footnote-reference brackets" href="#id5" id="id3">2</a>, that person
+would be able to access the local X11 display through the forwarded connection.</p>
+<p>We suggest switching it on <em>only</em> when needed, with the use of options (<code class="docutils literal notranslate"><span class="pre">-X</span></code> or
+<code class="docutils literal notranslate"><span class="pre">-Y</span></code>) passed to the <code class="docutils literal notranslate"><span class="pre">ssh</span></code> command. Whenever possible, use <code class="docutils literal notranslate"><span class="pre">-X</span></code> option to mark
+remote X11 clients untrusted.</p>
+<p>In some cases <code class="docutils literal notranslate"><span class="pre">-X</span></code> will fail to work and either the use of <code class="docutils literal notranslate"><span class="pre">-Y</span></code> option or
+setting <code class="docutils literal notranslate"><span class="pre">ForwardX11Trusted</span></code> in your ssh config file to “yes” is required. In
+this case remote X11 clients will have full access to the original X11 display.</p>
+<p>Alternatively, if X11 forwarding is always needed, you can configure it on a
+per-host basis in your <code class="docutils literal notranslate"><span class="pre">.ssh/config</span></code> file.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.ssh/config</span></code> example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># global settings</span>
+<span class="n">ForwardX11</span>        <span class="n">no</span>               <span class="c1"># disable X11 forwarding</span>
+<span class="n">ForwardX11Trusted</span> <span class="n">no</span>               <span class="c1"># do not trust remote X11 clients</span>
+
+<span class="c1"># per-host based settings, example for Fram</span>
+<span class="n">Host</span> <span class="n">fram</span>                            <span class="c1"># alias, you may run &quot;ssh fram&quot; only</span>
+	<span class="n">HostName</span> <span class="n">fram</span><span class="o">.</span><span class="n">sigma2</span><span class="o">.</span><span class="n">no</span>          <span class="c1"># actual hostname for Fram</span>
+	<span class="n">User</span> <span class="n">my_username</span>                 <span class="c1"># replace with your username on Fram</span>
+	<span class="n">IdentityFile</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa_fram</span>  <span class="c1"># pointer to your private SSH key</span>
+	<span class="n">ForwardX11</span>          <span class="n">yes</span>          <span class="c1"># enable X11 forwarding</span>
+	<span class="n">ForwardX11Trusted</span>	<span class="n">no</span>           <span class="c1"># do not trust remote X11 clients</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sha256-fingerprint">
+<span id="ssh-fingerprint"></span><h2>SHA256 fingerprint<a class="headerlink" href="#sha256-fingerprint" title="Permalink to this headline">¶</a></h2>
+<p>No matter how you login, you will need to confirm that the connection shall be
+trusted. The first time you log in to a machine via <code class="docutils literal notranslate"><span class="pre">ssh</span></code>, you will get a
+message like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The authenticity of host &#39;&lt;hostname&gt;&#39; can&#39;t be established.
+ECDSA key fingerprint is &lt;fingerprint&gt;.
+Are you sure you want to continue connecting (yes/no)?
+</pre></div>
+</div>
+<p>If the <code class="docutils literal notranslate"><span class="pre">&lt;fingerprint&gt;</span></code> matches the fingerprint of the login machine you are
+logging in to (see below), you can confirm by typing <code class="docutils literal notranslate"><span class="pre">yes</span></code> and press <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.
+(Note that the trailing “.” is not part of the fingerprint.) If the fingerprint
+does <em>not</em> match, please contact <code class="docutils literal notranslate"><span class="pre">support&#64;metacenter.no</span></code> immediately.</p>
+<p>The following table displays the different keys, both as <code class="docutils literal notranslate"><span class="pre">MD5</span></code> and <code class="docutils literal notranslate"><span class="pre">SHA256</span></code>,
+for all systems.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>System</p></th>
+<th class="head"><p>RSA</p></th>
+<th class="head"><p>ECDSA</p></th>
+<th class="head"><p>ED25519</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong><code class="docutils literal notranslate"><span class="pre">fram.sigma2.no</span></code></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MD5:6d:3b:72:31:c8:38:9c:c5:c9:a6:8a:aa:ee:50:38:da</span></code> <br /> <code class="docutils literal notranslate"><span class="pre">SHA256:0FqUvnjU5OAXkmx2j1U2Z8rxmwq/Sm12lN+i+HrqnaQ</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MD5:5b:af:a6:1d:94:1c:64:e1:11:54:0e:1f:7d:d2:cd:80</span></code> <br /> <code class="docutils literal notranslate"><span class="pre">SHA256:4z8Jipr50TpYTXH/hpAGZVgMAt0zwT9+hz8L3LLrHF8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MD5:5c:49:52:68:a1:aa:d7:dd:3e:71:4a:3b:fd:6f:ef:7b</span></code> <br /> <code class="docutils literal notranslate"><span class="pre">SHA256:H3H3kjQU+SJdV4hBWDkDEjLMvAuLjy2UtOhC1Kz1XO4</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong><code class="docutils literal notranslate"><span class="pre">saga.sigma2.no</span></code></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MD5:83:5e:c5:c3:95:dc:9e:b9:34:87:f6:df:4b:74:04:6b</span></code> <br /> <code class="docutils literal notranslate"><span class="pre">SHA256:WgRP8okUDv2j8SwDxj7ZoNRQDOlJwVtvRqVf1SzXgdU</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MD5:13:4e:ae:66:89:0d:24:27:b8:15:87:24:31:ed:32:af</span></code> <br /> <code class="docutils literal notranslate"><span class="pre">SHA256:qirKlTjO9QSXuCAiuDQeDPqq+jorMFarCW+0qhpaAEA</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MD5:55:52:eb:a5:c3:a9:18:be:02:15:ea:60:19:d7:5e:06</span></code> <br /> <code class="docutils literal notranslate"><span class="pre">SHA256:ryqAxpKDjNLLa5VeUPclQRaZBOIjd2HFgufUEnn4Jrw</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong><code class="docutils literal notranslate"><span class="pre">betzy.sigma2.no</span></code></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MD5:f6:a9:4e:a7:f6:1e:10:5c:01:e7:44:ac:34:4d:4b:b4</span></code> <br /> <code class="docutils literal notranslate"><span class="pre">SHA256:wSirru+JTpcAZKQe/u6jLRj3kVCccNNUWU2PxzgbebM</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MD5:37:da:0d:cd:fe:66:47:71:3f:08:59:d7:bb:76:ec:cc</span></code> <br /> <code class="docutils literal notranslate"><span class="pre">SHA256:l0adSAGOHM4CNOqxvBNh5Laf+PlDSXQiargVoG/cue4</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MD5:de:75:8c:93:40:f6:32:94:b6:bd:47:43:62:a5:1a:58</span></code> <br /> <code class="docutils literal notranslate"><span class="pre">SHA256:7M0HDP163k9fOUeZq3KtzLdjISE9Kq/gVygCpyrZPDQ</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong><code class="docutils literal notranslate"><span class="pre">login.nird.sigma2.no</span></code></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MD5:31:ff:b1:14:f0:34:dd:20:75:57:90:bd:49:b6:b4:27</span></code> <br /> <code class="docutils literal notranslate"><span class="pre">SHA256:Jp8LJDcqXyDn0yt2s2zZy49ukkMRwNqpJrj72kuqQaA</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MD5:02:02:cc:9d:c5:b7:43:42:5b:cd:d2:82:09:48:31:e9</span></code> <br /> <code class="docutils literal notranslate"><span class="pre">SHA256:ZkBvlcu4b5QMf1o9nKzoPHTmSTAzVhogZxKYvNw9N9I</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MD5:bc:c9:a9:44:ca:b5:cb:53:56:68:02:d1:f1:6a:1a:78</span></code> <br /> <code class="docutils literal notranslate"><span class="pre">SHA256:sI/YOUiasD/yA/g8UMc2Isg4imXs7l8x/QQK01XfaOQ</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>To display all fingerprints for a certain server, you can use the following
+command on your local machine (Linux or Mac):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ssh-keyscan login.nird.sigma2.no <span class="p">|</span> ssh-keygen -l -f - -E md5
+<span class="c1"># Note, &#39;md5&#39; can be changed with &#39;sha256&#39; to display that variant</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mosh">
+<span id="id4"></span><h2>Mosh<a class="headerlink" href="#mosh" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://mosh.org">Mosh</a> describe itself as:</p>
+<blockquote>
+<div><p>Remote terminal application that allows roaming, supports intermittent
+connectivity, and provides intelligent local echo and line editing of user
+keystrokes.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Mosh is a replacement for interactive SSH terminals. It’s more robust and
+responsive, especially over Wi-Fi, cellular, and long-distance links.</p>
+</div></blockquote>
+<p>Mosh is in many instances a drop-in replacement for <code class="docutils literal notranslate"><span class="pre">ssh</span></code> (and actually utilizes
+<code class="docutils literal notranslate"><span class="pre">ssh</span></code> under the hood for establishing a connection). It is recommended to use
+Mosh if you connect to Sigma 2 resources from a laptop and want to keep the
+connection when roaming on Wi-Fi or putting the laptop to sleep.</p>
+<p>Since Mosh uses <code class="docutils literal notranslate"><span class="pre">ssh</span></code> to establish a connection it can use the same <code class="docutils literal notranslate"><span class="pre">ssh</span></code> keys
+and configuration, as described above. Which mean that if you created the keys
+above and added a section to your <code class="docutils literal notranslate"><span class="pre">.ssh/config</span></code> you can connect by doing the
+following</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mosh saga <span class="c1"># Equivalent to &#39;mosh &lt;username&gt;@saga.sigma2.no&#39;</span>
+</pre></div>
+</div>
+<p>For more detailed usage information <a class="reference external" href="https://mosh.org/#usage">see the Mosh
+homepage</a>.</p>
+<p>Unfortunately to support the features of Mosh not everything <code class="docutils literal notranslate"><span class="pre">ssh</span></code> can do is
+supported, if you require any of the following you will have to use <code class="docutils literal notranslate"><span class="pre">ssh</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X11</span></code> forwarding</p></li>
+<li><p>Port forwarding</p></li>
+</ul>
+</div>
+<div class="section" id="sshfs">
+<h2>SSHFS<a class="headerlink" href="#sshfs" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">fram.sigma2.no</span></code> and <code class="docutils literal notranslate"><span class="pre">login.fram.sigma2.no</span></code> are round-robin DNS
+entries, every time you use this name the round-robin configuration
+will send you to one of the following two login nodes:
+<code class="docutils literal notranslate"><span class="pre">login-1.fram.sigma2.no</span></code> and <code class="docutils literal notranslate"><span class="pre">login-2.fram.sigma2.no</span></code></p>
+<p>When you use <code class="docutils literal notranslate"><span class="pre">sshfs</span></code>, to make sure your authentication is valid, you should
+always specify one of the real login nodes above. You should not use
+<code class="docutils literal notranslate"><span class="pre">login.fram.sigma2.no</span></code> or <code class="docutils literal notranslate"><span class="pre">fram.sigma2.no</span></code> in your <code class="docutils literal notranslate"><span class="pre">sshfs</span></code> command, otherwise
+you will risk to get your IP address blacklisted, since your session is
+authenticated against only one login node not both.</p>
+<p>Similarly, <code class="docutils literal notranslate"><span class="pre">saga.sigma2.no</span></code> and <code class="docutils literal notranslate"><span class="pre">login.saga.sigma2.no</span></code> are round-robin DNS
+entries for <code class="docutils literal notranslate"><span class="pre">login-1.saga.sigma2.no</span></code>, <code class="docutils literal notranslate"><span class="pre">login-2.saga.sigma2.no</span></code>.</p>
+</div>
+<div class="section" id="poor-connection">
+<h2>Poor connection<a class="headerlink" href="#poor-connection" title="Permalink to this headline">¶</a></h2>
+<p>In case of poor connection to the server (likely from a very remote area),
+usually noticeable with X11 forwarding enabled, you may request data compression
+by using the <code class="docutils literal notranslate"><span class="pre">-C</span></code> option.</p>
+<p>Please note that the compression uses the CPU to compress-decompress all data
+sent over ssh and will actually have negative impact, slow down things on a fast
+network.</p>
+<hr class="docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p>By default your X authority database is stored in the <code class="docutils literal notranslate"><span class="pre">~/.Xauthority</span></code>
+file. This file contains records with authorization information used in
+connecting to the X server.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="tutorials.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="editing_files.html" class="btn btn-neutral float-left" title="Editing files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

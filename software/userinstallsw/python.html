@@ -1,0 +1,586 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Installing Python packages &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Installing R packages" href="R.html" />
+    <link rel="prev" title="Installing software with EasyBuild" href="easybuild.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installed_software.html">Installed software</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../userinstallsw.html">Installing software as user</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="easybuild.html">Installing software with EasyBuild</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installing Python packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#virtual-environments">Virtual environments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setup-and-installation-with-pip">Setup and installation with pip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-virtual-environment-in-a-batch-script">Using the virtual environment in a batch script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sharing-package-configuration">Sharing package configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#anaconda-miniconda-conda">Anaconda, Miniconda &amp; Conda</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#daily-usage">Daily usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#share-your-environment">Share your environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-conda-information">Additional Conda information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="R.html">Installing R packages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../userinstallsw.html">Installing software as user</a> &raquo;</li>
+        
+      <li>Installing Python packages</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/software/userinstallsw/python.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installing-python-packages">
+<span id="id1"></span><h1>Installing Python packages<a class="headerlink" href="#installing-python-packages" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span></code> and <code class="docutils literal notranslate"><span class="pre">conda</span></code> are the easiest ways of installing python packages and
+programs as user. In both cases it is advised to use virtual environments to
+separate between different workflows/projects. This makes it possible to have
+multiple versions of the same package or application without problems of
+conflicting dependencies.</p>
+<div class="section" id="virtual-environments">
+<h2>Virtual environments<a class="headerlink" href="#virtual-environments" title="Permalink to this headline">¶</a></h2>
+<p>Virtual environments in Python are a nice way to compartmentalize package
+installation. You can have many virtual environment and we recommend that you at
+least have one for each disparate experiment. One additional benefit of this
+setup is that it allows other researchers to easily replicate your setup.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span></code> is the main package installer for Python and included in every Python
+installation. It is easy to use and can be combined with <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> to manage
+independent environments. These can contain different Python versions and packages.</p>
+<p>In some cases, packages installed with <code class="docutils literal notranslate"><span class="pre">pip</span></code> have problems with complex dependencies
+and libraries. In this case, <code class="docutils literal notranslate"><span class="pre">conda</span></code> is the better solution.</p>
+<div class="section" id="setup-and-installation-with-pip">
+<h3>Setup and installation with pip<a class="headerlink" href="#setup-and-installation-with-pip" title="Permalink to this headline">¶</a></h3>
+<p>Users can install Python packages in a virtual Python environment. Here is how
+you create a virtual environment with Python:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># First load an appropriate Python module (use &#39;module list Python&#39; to see all)</span>
+$ module load Python/3.8.6-GCCcore-10.2.0
+<span class="c1"># Create the virtual environment.</span>
+$ python -m venv my_new_pythonenv
+<span class="c1"># Activate the environment.</span>
+$ <span class="nb">source</span> my_new_pythonenv/bin/activate
+<span class="c1"># Install packages with pip. Here we install pandas.</span>
+$ python -m pip install pandas
+</pre></div>
+</div>
+<p>For more information, have a look at the <a class="reference external" href="https://pip.pypa.io/en/stable/">official
+<code class="docutils literal notranslate"><span class="pre">pip</span></code></a> and
+<a class="reference external" href="https://virtualenv.pypa.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">virtualenv</span></code></a> documentations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When running software from your Python environment in a batch script, it is
+<em>highly</em> recommended to activate the environment <em>only</em> in the script (see
+below), while keeping the login environment clean when submitting the job,
+otherwise the environments can interfere with each other (even if they are the
+same).</p>
+</div>
+</div>
+<div class="section" id="using-the-virtual-environment-in-a-batch-script">
+<h3>Using the virtual environment in a batch script<a class="headerlink" href="#using-the-virtual-environment-in-a-batch-script" title="Permalink to this headline">¶</a></h3>
+<p>In a batch script you will activate the virtual environment in the same way as
+above. You must just load the python module first:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Set up job environment
+set -o errexit # exit on any error
+set -o nounset # treat unset variables as error
+
+# Load modules
+module load Python/3.8.6-GCCcore-10.2.0
+
+# Set the ${PS1} (needed in the source of the virtual environment for some Python versions)
+export PS1=\$
+
+# activate the virtual environment
+source my_new_pythonenv/bin/activate
+
+# execute example script
+python pdexample.py
+</pre></div>
+</div>
+</div>
+<div class="section" id="sharing-package-configuration">
+<h3>Sharing package configuration<a class="headerlink" href="#sharing-package-configuration" title="Permalink to this headline">¶</a></h3>
+<p>To allow other researchers to replicate your virtual environment setup it can be
+a good idea to “freeze” your packages. This tells <code class="docutils literal notranslate"><span class="pre">pip</span></code> that it should not
+silently upgrade packages and also gives a good way to share the exact same
+packages between researchers.</p>
+<p>To freeze the packages into a list to share with others run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python -m pip freeze --local &gt; requirements.txt
+</pre></div>
+</div>
+<p>The file <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> will now contain the list of packages installed in
+your virtual environment with their exact versions. When publishing your
+experiments it can be a good idea to share this file which other can install in
+their own virtual environments like so:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python -m pip install -r requirements.txt
+</pre></div>
+</div>
+<p>Your virtual environment and the new one installed from the same
+<code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> should now be identical and thus should replicate the
+experiment setup as closely as possible.</p>
+</div>
+</div>
+<div class="section" id="anaconda-miniconda-conda">
+<h2>Anaconda, Miniconda &amp; Conda<a class="headerlink" href="#anaconda-miniconda-conda" title="Permalink to this headline">¶</a></h2>
+<p>You can install many python and non-python packages yourself using
+<a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> or especially for bioinformatics
+software <a class="reference external" href="https://bioconda.github.io/">bioconda</a>.</p>
+<p>Conda enables you to easily install complex packages and software.
+Creating multiple enviroments enables you to have installations of the
+same software in different versions or incompatible software collections
+at once.
+You can easily share a list of the installed packages with
+collaborators or colleagues, so they can setup the same
+eniviroment in a matter of minutes.</p>
+<div class="section" id="setup">
+<h3>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h3>
+<p>First you load the miniconda module which is like a python and r package
+manager.
+Conda makes it easy to have multiple environments for example one python2 and
+one python3 based parallel to each other without interfering.</p>
+<div class="section" id="load-conda-module">
+<h4>Load conda module<a class="headerlink" href="#load-conda-module" title="Permalink to this headline">¶</a></h4>
+<p>Start by removing all preloaded modules which can complicate things. We then
+display all installed version and load the newest Miniconda one (4.6.14):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ml purge
+$ ml avail conda
+$ ml Miniconda3/4.6.14
+</pre></div>
+</div>
+</div>
+<div class="section" id="setup-conda-activate-command">
+<h4>Setup conda activate command<a class="headerlink" href="#setup-conda-activate-command" title="Permalink to this headline">¶</a></h4>
+<p>To use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span></code> interactively you have to initialise your shell once with:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ conda init bash
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-channels">
+<h4>Add channels<a class="headerlink" href="#add-channels" title="Permalink to this headline">¶</a></h4>
+<p>To install packages we first have to add the package repository to conda
+(we only have to do this once). This is the place conda will download the packages
+from.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ conda config --add channels defaults
+$ conda config --add channels conda-forge
+</pre></div>
+</div>
+<p>If you want install bioinformatics packages you should also add
+the bioconda channel:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ conda config --add channels bioconda
+</pre></div>
+</div>
+</div>
+<div class="section" id="supress-unneccessary-warnings">
+<h4>Supress unneccessary warnings<a class="headerlink" href="#supress-unneccessary-warnings" title="Permalink to this headline">¶</a></h4>
+<p>To suppress the warning that a newer version of conda exists which is usually
+not important for most users and will be fixed by us by installing a new module:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ conda config --set notify_outdated_conda <span class="nb">false</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-new-environment">
+<h4>Create new environment<a class="headerlink" href="#create-new-environment" title="Permalink to this headline">¶</a></h4>
+<p>New environments are initialised with the <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span></code>. During the creation you
+should list all the packages and software that should be installed in this
+environment instead of creating an empty one and installing them one by one. This
+makes the installation much faster and there is less chance for conda to get stuck in
+a dependency loop.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ conda create --name ENVIRONMENT <span class="nv">python</span><span class="o">=</span><span class="m">3</span> SOMESOFTWARE MORESOFTWARE
+</pre></div>
+</div>
+<p>If you are planning on adding many libraries to your environment, you should
+consider placing it in a directory other than your $HOME, due to the
+<a class="reference internal" href="../../files_storage/clusters.html#clusters-homedirectory"><span class="std std-ref">storage restrictions</span></a> on that folder. One
+alternative could be to use the <a class="reference internal" href="../../files_storage/clusters.html#project-area"><span class="std std-ref">Project area</span></a>, please
+check out <a class="reference internal" href="../../files_storage/clusters.html#clusters-overview"><span class="std std-ref">Storage areas on HPC clusters</span></a> for other
+alternatives. To install conda in an alternative location, use the <code class="docutils literal notranslate"><span class="pre">--prefix</span> <span class="pre">PATH</span></code> or <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">PATH</span></code> option when creating a
+new environment.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>conda create -p PATH SOMEPACKAGES
+</pre></div>
+</div>
+<p>This enables multiple users of a project to share the conda environment by
+installing it into their project folder instead of the user’s home.</p>
+</div>
+</div>
+<div class="section" id="daily-usage">
+<h3>Daily usage<a class="headerlink" href="#daily-usage" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="interactively">
+<h4>Interactively<a class="headerlink" href="#interactively" title="Permalink to this headline">¶</a></h4>
+<p>To load this environment you have to use the following commands either on the
+command line or in your job script:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ml purge
+$ ml Miniconda3/4.6.14 <span class="c1"># Replace with the version available on the system</span>
+$ conda activate ENVIRONMENT
+</pre></div>
+</div>
+<p>Then you can use all software as usual.</p>
+<p>To deactivate the current environment:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ conda deactivate
+</pre></div>
+</div>
+<p>If you need to install additional software or packages,
+we can search for it with:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ conda search SOMESOFTWARE
+</pre></div>
+</div>
+<p>and install it with:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ conda install -n ENVIRONMENT SOMESOFTWARE
+</pre></div>
+</div>
+<p>If the python package you are looking for is not available in conda
+you can use <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> like usually
+from within a conda environment to install additional python packages:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ pip install SOMEPACKAGE
+</pre></div>
+</div>
+<p>To update a single package with conda:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ conda update -n ENVIRONMENT SOMESOFTWARE
+</pre></div>
+</div>
+<p>or to update all packages:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ conda update -n ENVIRONMENT --all
+</pre></div>
+</div>
+</div>
+<div class="section" id="in-batch-job-scripts">
+<h4>In batch/job scripts<a class="headerlink" href="#in-batch-job-scripts" title="Permalink to this headline">¶</a></h4>
+<p>To be able to use this environment in a batch script (job script), you will need
+to include the following in your batch script, before calling the python program:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the Anaconda3</span>
+module load Anaconda3/2019.03
+
+<span class="c1"># Set the ${PS1} (needed in the source of the Anaconda environment)</span>
+<span class="nb">export</span> <span class="nv">PS1</span><span class="o">=</span><span class="se">\$</span>
+
+<span class="c1"># Source the conda environment setup</span>
+<span class="c1"># The variable ${EBROOTANACONDA3} or ${EBROOTMINICONDA3}</span>
+<span class="c1"># So use one of the following lines</span>
+<span class="c1"># comes with the module load command</span>
+<span class="c1"># source ${EBROOTANACONDA3}/etc/profile.d/conda.sh</span>
+<span class="nb">source</span> <span class="si">${</span><span class="nv">EBROOTMINICONDA3</span><span class="si">}</span>/etc/profile.d/conda.sh
+
+<span class="c1"># Deactivate any spill-over environment from the login node</span>
+conda deactivate <span class="p">&amp;</span>&gt;/dev/null
+
+<span class="c1"># Activate the environment by using the full path (not name)</span>
+<span class="c1"># to the environment. The full path is listed if you do</span>
+<span class="c1"># conda info --envs at the command prompt.</span>
+conda activate PATH_TO_ENVIRONMENT
+
+<span class="c1"># Execute the python program</span>
+python pdexample.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="share-your-environment">
+<h3>Share your environment<a class="headerlink" href="#share-your-environment" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="share-with-project-members-on-the-same-machine">
+<h4>Share with project members on the same machine<a class="headerlink" href="#share-with-project-members-on-the-same-machine" title="Permalink to this headline">¶</a></h4>
+<p>By creating conda environments in your project folder
+(<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-p</span> <span class="pre">/cluster/projects/nnXXXXk/conda/ENVIROMENT</span></code>)
+all your colleagues that are also member of that project have access
+to the environment and can load it with:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ conda activate /cluster/projects/nnXXXXk/conda/ENVIROMENT
+</pre></div>
+</div>
+</div>
+<div class="section" id="export-your-package-list">
+<h4>Export your package list<a class="headerlink" href="#export-your-package-list" title="Permalink to this headline">¶</a></h4>
+<p>To export a list of all packages/programs installed with conda
+in a certain environment (in this case “ENVIRONMENT”):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ conda list --explicit --name ENVIRONMENT &gt; package-list.txt
+</pre></div>
+</div>
+<p>To setup a new environment (let’s call it “newpython”)
+from an exported package list:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ conda create --name newpython --file package-list.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="additional-conda-information">
+<h3>Additional Conda information<a class="headerlink" href="#additional-conda-information" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="cheatsheet-and-built-in-help">
+<h4>Cheatsheet and built-in help<a class="headerlink" href="#cheatsheet-and-built-in-help" title="Permalink to this headline">¶</a></h4>
+<p>See this <a class="reference external" href="https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf">cheatsheet</a>
+for an overview over the most important conda commands.</p>
+<p>In case you get confused by the conda commands and command line options
+you can get help by adding <code class="docutils literal notranslate"><span class="pre">--help</span></code> to any conda command or have a look
+at the <a class="reference external" href="https://conda.io/projects/conda/en/latest/user-guide/getting-started.html">conda documentation</a>.</p>
+</div>
+<div class="section" id="miniconda-vs-anaconda">
+<h4>Miniconda vs. Anaconda<a class="headerlink" href="#miniconda-vs-anaconda" title="Permalink to this headline">¶</a></h4>
+<p>Both Miniconda and Anaconda are distributions of the conda repository management
+system. But while Miniconda brings just the management system (the <code class="docutils literal notranslate"><span class="pre">conda</span></code>
+command), Anaconda comes with a lot of built-in packages.</p>
+<p>Both are installed on Stallo but we advise the use of Miniconda. By explicitly
+installing packages into your own environment the chance for unwanted effects
+and errors due to wrong or incompatible versions is reduced. Also you can be
+sure that everything that happens with your setup is controlled by yourself.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="R.html" class="btn btn-neutral float-right" title="Installing R packages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="easybuild.html" class="btn btn-neutral float-left" title="Installing software with EasyBuild" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

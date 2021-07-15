@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Job Types on Saga &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Job Types on Saga</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/jobs/job_types/saga_job_types.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="job-types-on-saga">
+<span id="job-types-saga"></span><h1>Job Types on Saga<a class="headerlink" href="#job-types-on-saga" title="Permalink to this headline">¶</a></h1>
+<p>Saga is designed to run serial and small (“narrow”) parallel jobs, in
+addition to GPU jobs.  If you need to run “wider” parallel jobs, Fram
+is a better choice.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>On Saga use srun, not mpirun</strong></p>
+<p>mpirun can get the number of tasks wrong and also lead to wrong task<br />
+placement. We don’t fully understand why this happens. When using srun<br />
+instead of mpirun or mpiexec, we observe correct task placement on Saga.</p>
+</div>
+<p>The basic allocation units on Saga are cpu and memory.
+The details about how the billing units are calculated can be found
+in <a class="reference internal" href="../projects_accounting.html#projects-accounting"><span class="std std-ref">Projects and accounting</span></a>.</p>
+<p>Most jobs on Saga are <em>normal</em> jobs.</p>
+<p>Jobs requiring a lot of memory (&gt; 8 GiB/cpu) should run as <em>bigmem</em>
+jobs.</p>
+<p>Jobs that are very short, or implement checkpointing, can run as
+<em>optimist</em> jobs, which means they can use resources that are idle for
+a short time before they are requeued by a non-<em>optimist</em> job.</p>
+<p>For development or testing, use a <em>devel</em> job</p>
+<p>Here is a more detailed description of the different job types on
+Saga:</p>
+<div class="section" id="normal">
+<span id="job-type-saga-normal"></span><h2>Normal<a class="headerlink" href="#normal" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Allocation units</strong>: cpus and memory</p></li>
+<li><p><strong>Job Limits</strong>:</p>
+<ul>
+<li><p>maximum 256 units</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum walltime</strong>: 7 days</p></li>
+<li><p><strong>Priority</strong>: normal</p></li>
+<li><p><strong>Available resources</strong>:</p>
+<ul>
+<li><p>200 nodes with 40 cpus and 186 GiB RAM</p></li>
+<li><p>120 nodes with 52 cpus and 186 GiB RAM</p></li>
+<li><p>In total 14240 cpus and 58.1 TiB RAM.</p></li>
+</ul>
+</li>
+<li><p><strong>Parameter for sbatch/srun</strong>:</p>
+<ul>
+<li><p>None, <em>normal</em> is the default</p></li>
+</ul>
+</li>
+<li><p><strong>Job Scripts</strong>: <a class="reference internal" href="../job_scripts/saga_job_scripts.html#job-scripts-saga-normal"><span class="std std-ref">Normal</span></a></p></li>
+</ul>
+<p>This is the default job type.  Most jobs are <em>normal</em> jobs.</p>
+</div>
+<div class="section" id="bigmem">
+<span id="job-type-saga-bigmem"></span><h2>Bigmem<a class="headerlink" href="#bigmem" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Allocation units</strong>: cpus and memory</p></li>
+<li><p><strong>Job Limits</strong>:</p>
+<ul>
+<li><p>maximum 256 units</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum walltime</strong>: 14 days</p></li>
+<li><p><strong>Priority</strong>: normal</p></li>
+<li><p><strong>Available resources</strong>:</p>
+<ul>
+<li><p>28 nodes with 40 cpus and 377 GiB RAM</p></li>
+<li><p>8 nodes with 64 cpus and 3021 GiB RAM</p></li>
+<li><p>In total 1632 cpus and 33.9 TiB RAM.</p></li>
+</ul>
+</li>
+<li><p><strong>Parameter for sbatch/srun</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--partition=bigmem</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Job Scripts</strong>: <a class="reference internal" href="../job_scripts/saga_job_scripts.html#job-scripts-saga-bigmem"><span class="std std-ref">Bigmem</span></a></p></li>
+</ul>
+<p><em>Bigmem</em> jobs are meant for jobs that need a lot of memory (RAM),
+typically more than 8 GiB per cpu.  (The <em>normal</em> nodes on Fram have
+slightly more than 4.5 GiB per cpu.)</p>
+<p>Can be combined with <code class="docutils literal notranslate"><span class="pre">--qos=devel</span></code> to get higher priority but maximum wall time (2h)
+and resource limits of <em>devel</em> apply.</p>
+</div>
+<div class="section" id="accel">
+<span id="job-type-saga-accel"></span><h2>Accel<a class="headerlink" href="#accel" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Allocation units</strong>: cpus, memory and GPUs</p></li>
+<li><p><strong>Job Limits</strong>:</p>
+<ul>
+<li><p>maximum 256 units</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum walltime</strong>: 14 days</p></li>
+<li><p><strong>Priority</strong>: normal</p></li>
+<li><p><strong>Available resources</strong>: 8 nodes with 24 cpus, 377 GiB RAM and 4
+GPUs, in total 192 cpus, 3019 GiB RAM and 32 GPUs.</p></li>
+<li><p><strong>Parameter for sbatch/srun</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--gpus=N</span></code>, <code class="docutils literal notranslate"><span class="pre">--gpus-per-node=N</span></code> or similar, with <em>N</em> being the number of GPUs</p></li>
+</ul>
+</li>
+<li><p><strong>Job Scripts</strong>: <a class="reference internal" href="../job_scripts/saga_job_scripts.html#job-scripts-saga-accel"><span class="std std-ref">Accel</span></a></p></li>
+</ul>
+<p><em>Accel</em> jobs give access to use the GPUs.</p>
+<p>Can be combined with <code class="docutils literal notranslate"><span class="pre">--qos=devel</span></code> to get higher priority but maximum wall time (2h)
+and resource limits of <em>devel</em> apply.</p>
+</div>
+<div class="section" id="devel">
+<span id="job-type-saga-devel"></span><h2>Devel<a class="headerlink" href="#devel" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Allocation units</strong>: cpus and memory and GPUs</p></li>
+<li><p><strong>Job Limits</strong>:</p>
+<ul>
+<li><p>maximum 128 units per job</p></li>
+<li><p>maximum 256 units in use at the same time</p></li>
+<li><p>maximum 2 running jobs per user</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum walltime</strong>: 2 hours</p></li>
+<li><p><strong>Priority</strong>: high</p></li>
+<li><p><strong>Available resources</strong>: <em>devel</em> jobs can run on any node on Saga</p></li>
+<li><p><strong>Parameter for sbatch/srun</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--qos=devel</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Job Scripts</strong>: <a class="reference internal" href="../job_scripts/saga_job_scripts.html#job-scripts-saga-devel"><span class="std std-ref">Devel</span></a></p></li>
+</ul>
+<p>This is meant for small, short development or test jobs.  <em>Devel</em> jobs
+get higher priority for them to run as soon as possible.  On the other
+hand, there are limits on the size and number of <em>devel</em> jobs.</p>
+<p>Can be combined with either <code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code> or <code class="docutils literal notranslate"><span class="pre">--partition=bigmem</span></code> to increase
+priority while having max wall time and job limits of <em>devel</em> job.</p>
+<p>If you have <em>temporary</em> development needs that cannot be fulfilled by
+the <em>devel</em> or <em>short</em> job types, please contact us at
+<a class="reference external" href="mailto:support&#37;&#52;&#48;metacenter&#46;no">support<span>&#64;</span>metacenter<span>&#46;</span>no</a>.</p>
+</div>
+<div class="section" id="optimist">
+<span id="job-type-saga-optimist"></span><h2>Optimist<a class="headerlink" href="#optimist" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Allocation units</strong>: cpus and memory</p></li>
+<li><p><strong>Job Limits</strong>:</p>
+<ul>
+<li><p>maximum 256 units</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum Walltime</strong>: None.  The jobs will start as soon as
+resources are available for at least 30 minutes, but can be
+requeued at any time, so there is no guaranteed minimum run time.</p></li>
+<li><p><strong>Priority</strong>: low</p></li>
+<li><p><strong>Available resources</strong>: <em>optimist</em> jobs can run on any node on Saga</p></li>
+<li><p><strong>Parameter for sbatch/srun</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--partition=optimist</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Job Scripts</strong>: <a class="reference internal" href="../job_scripts/saga_job_scripts.html#job-scripts-saga-optimist"><span class="std std-ref">Optimist</span></a></p></li>
+</ul>
+<p>The <em>optimist</em> job type is meant for very short jobs, or jobs with
+checkpointing (i.e., they save state regularly, so they can restart
+from where they left off).</p>
+<p><em>Optimist</em> jobs get lower priority than other jobs, but will start as
+soon as there are free resources for at least 30 minutes.  However,
+when any other non-<em>optimist</em> job needs its resources, the <em>optimist</em>
+job is stopped and put back on the job queue.  This can happen before
+the <em>optimist</em> job has run 30 minutes, so there is no <em>guaranteed</em>
+minimum run time.</p>
+<p>Therefore, all <em>optimist</em> jobs must use checkpointing, and access to
+run <em>optimist</em> jobs will only be given to projects that demonstrate
+that they can use checkpointing.  If you want to run <em>optimist</em> jobs,
+send a request to <a class="reference external" href="mailto:support&#37;&#52;&#48;metacenter&#46;no">support<span>&#64;</span>metacenter<span>&#46;</span>no</a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

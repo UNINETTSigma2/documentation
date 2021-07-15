@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Job array howto &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Job array howto</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/jobs/guides/job_array_howto.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="job-array-howto">
+<span id="id1"></span><h1>Job array howto<a class="headerlink" href="#job-array-howto" title="Permalink to this headline">¶</a></h1>
+<p>In this example we wish to run many similar sequential jobs in
+parallel using job arrays. We take Python as an example but this does
+not matter for the job arrays:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start at &#39;</span> <span class="o">+</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sleep for 10 seconds ...&#39;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;stop at &#39;</span> <span class="o">+</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Download the script:</p>
+<p><a class="reference download internal" download="" href="../../_downloads/39300185bd1cf3a39e44fa16acb210df/array_test.py"><code class="xref download docutils literal notranslate"><span class="pre">files/array_test.py</span></code></a></p>
+<p>Try it out:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python array_test.py
+start at <span class="m">15</span>:23:48
+sleep <span class="k">for</span> <span class="m">10</span> seconds ...
+stop at <span class="m">15</span>:23:58
+</pre></div>
+</div>
+<p>Good.  Now we would like to run this script 16 times at (more or less) the same
+time.  For this we use the following</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#####################</span>
+<span class="c1"># job-array example #</span>
+<span class="c1">#####################</span>
+
+<span class="c1">## Substitute with your project name:</span>
+<span class="c1">#SBATCH --account=YourProject</span>
+
+<span class="c1">#SBATCH --job-name=array_example</span>
+
+<span class="c1"># 16 jobs will run in this array at the same time</span>
+<span class="c1">#SBATCH --array=1-16</span>
+
+<span class="c1"># each job will run for maximum five minutes</span>
+<span class="c1">#              d-hh:mm:ss</span>
+<span class="c1">#SBATCH --time=0-00:05:00</span>
+
+<span class="c1"># you must not place bash commands before the last #SBATCH directive</span>
+
+<span class="c1">## Set safer defaults for bash</span>
+<span class="nb">set</span> -o errexit
+<span class="nb">set</span> -o nounset
+
+module --quiet purge  <span class="c1"># Clear any inherited modules</span>
+
+<span class="c1"># each job will see a different ${SLURM_ARRAY_TASK_ID}</span>
+<span class="nb">echo</span> <span class="s2">&quot;now processing task id:: &quot;</span> <span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>
+python test.py &gt; output_<span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>.txt
+</pre></div>
+</div>
+<p>Download the script:</p>
+<p><a class="reference download internal" download="" href="../../_downloads/c98f994b5f4f63ad7bb1adc39e3a0771/array_howto.sh"><code class="xref download docutils literal notranslate"><span class="pre">files/array_howto.sh</span></code></a></p>
+<p>This is a script for running a <em>normal</em> array job on Saga.  It can
+easily be changed to run on Fram or use a different job type.</p>
+<p>Submit the script with <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> and after a while you should see 16
+output files in your submit directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls -l output*txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_1.txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_10.txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_11.txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_12.txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_13.txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_14.txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_15.txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_16.txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_2.txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_3.txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_4.txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_5.txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_6.txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_7.txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_8.txt
+-rw------- <span class="m">1</span> user user <span class="m">60</span> Oct <span class="m">14</span> <span class="m">14</span>:44 output_9.txt
+</pre></div>
+</div>
+<p>Observe that they all started (approximately) at the same time:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ grep start output*txt
+output_1.txt:start at <span class="m">14</span>:43:58
+output_10.txt:start at <span class="m">14</span>:44:00
+output_11.txt:start at <span class="m">14</span>:43:59
+output_12.txt:start at <span class="m">14</span>:43:59
+output_13.txt:start at <span class="m">14</span>:44:00
+output_14.txt:start at <span class="m">14</span>:43:59
+output_15.txt:start at <span class="m">14</span>:43:59
+output_16.txt:start at <span class="m">14</span>:43:59
+output_2.txt:start at <span class="m">14</span>:44:00
+output_3.txt:start at <span class="m">14</span>:43:59
+output_4.txt:start at <span class="m">14</span>:43:59
+output_5.txt:start at <span class="m">14</span>:43:58
+output_6.txt:start at <span class="m">14</span>:43:59
+output_7.txt:start at <span class="m">14</span>:43:58
+output_8.txt:start at <span class="m">14</span>:44:00
+output_9.txt:start at <span class="m">14</span>:43:59
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

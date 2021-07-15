@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Checkpointing Jobs &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Projects and accounting" href="projects_accounting.html" />
+    <link rel="prev" title="Interactive jobs" href="interactive_jobs.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Job types and job scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="submitting.html">Submitting jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_job_types.html">Job Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts.html">Job Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Monitoring jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_memory_settings.html">How to choose the right amount of memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_job_failures.html">Common job failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">How to check the performance and scaling using Arm Performance Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mkl.html">Using MKL efficiently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory-bandwidth.html">Efficient use of memory bandwith on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-calculations.html">Efficient use of processors and network on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_jobs.html">Interactive jobs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Checkpointing Jobs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#checkpointing-on-our-clusters">Checkpointing on our Clusters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#more-information">More Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="projects_accounting.html">Projects and accounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dos_and_donts.html">Dos and Don’ts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides.html">Guides</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="overview.html">Job types and job scripts</a> &raquo;</li>
+        
+      <li>Checkpointing Jobs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/jobs/checkpointing.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="checkpointing-jobs">
+<h1>Checkpointing Jobs<a class="headerlink" href="#checkpointing-jobs" title="Permalink to this headline">¶</a></h1>
+<p>Checkpointing is the action of saving the state of a running process to a check point image file.
+Users can utilize checkpointing to pickup a job where it left off due to failing resources (e.g. hardware,
+software, exceeded time and memory resources) and continue running.
+Users are encouraged to use application level checkpointing, that means to investigate whether the software
+tools they’re using are capable of stopping and restarting where a job leaves off. If it is available,
+it is recommended to use the software built in tools for checkpointing.</p>
+<div class="section" id="checkpointing-on-our-clusters">
+<h2>Checkpointing on our Clusters<a class="headerlink" href="#checkpointing-on-our-clusters" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://dmtcp.sourceforge.net">DMTCP</a> (Distributed MultiThreaded Checkpointing)is a checkpointing package for applications.
+DMTCP Checkpoint/Restart allows one to transparently checkpoint to disk a distributed computation. It works under Linux,
+with no modifications to the Linux kernel nor to the application binaries. It can be used by users (no root privilege needed).
+One can later restart from a checkpoint. DMTCP supports both sequential and multi-threaded applications and it provides support
+for SLURM resource manager.
+The DMTCP module is available in all our machines <strong>(Saga, Fram, Betzy)</strong> and it is enabled by typing</p>
+<p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">DMTCP/2.6.0-GCCcore-9.3.0</span></code></p>
+<p>There are two steps involved after loading the DMTCP module.</p>
+<ul class="simple">
+<li><p>First is to launch your application using <code class="docutils literal notranslate"><span class="pre">dmptcp_launch</span></code> by running the following</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">[user1&#64;login-1.SAGA</span> <span class="pre">~]$</span> <span class="pre">dmtcp_launch</span> <span class="pre">--new-coordinator</span> <span class="pre">--rm</span> <span class="pre">--interval</span> <span class="pre">&lt;interval_time_seconds&gt;</span> <span class="pre">&lt;your_command&gt;</span></code></p>
+<p>where <code class="docutils literal notranslate"><span class="pre">--rm</span></code> option enables SLURM support, <code class="docutils literal notranslate"><span class="pre">&lt;interval_time_seconds&gt;</span></code> is the time in seconds between automatic checkpoints,
+and <code class="docutils literal notranslate"><span class="pre">&lt;your_command&gt;</span></code> is the actual command you want to run and checkpoint</p>
+<p><code class="docutils literal notranslate"><span class="pre">dmtcp_launch</span></code> creates few files that are used to resume the cancelled job, such as <code class="docutils literal notranslate"><span class="pre">ckpt_*.dmtcp</span></code> and <code class="docutils literal notranslate"><span class="pre">dmtcp_restart_script*.sh</span></code>.
+Unless otherwise stated (using <code class="docutils literal notranslate"><span class="pre">--ckptdir</span> <span class="pre">option</span></code>), these files are stored in the current working directory.</p>
+<p>More <code class="docutils literal notranslate"><span class="pre">dmtcp_launch</span></code> options can be found by using :</p>
+<p><code class="docutils literal notranslate"><span class="pre">dmtcp_launch</span> <span class="pre">--help</span></code></p>
+<ul class="simple">
+<li><p>The second step of DMTCP is to restart the cancelled job. This can be done by doing</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">./dmtcp_restart_script.sh</span></code></p>
+<p><strong>Sample example of how to use DMPTCP in your slurm script</strong></p>
+<ul class="simple">
+<li><p>First submit your job with dmptcp `generic_job.sh’</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Job name:</span>
+<span class="c1">#SBATCH --job-name=YourJobname</span>
+<span class="c1"># Project:</span>
+<span class="c1">#SBATCH --account=nnXXXXk</span>
+<span class="c1"># Wall time limit:</span>
+<span class="c1">#SBATCH --time=DD-HH:MM:SS</span>
+<span class="c1"># Other parameters:</span>
+<span class="c1">#SBATCH ...</span>
+<span class="c1">## Set up job environment:</span>
+<span class="nb">set</span> -o errexit  <span class="c1"># Exit the script on any error</span>
+<span class="nb">set</span> -o nounset  <span class="c1"># Treat any unset variables as an error</span>
+module --quiet purge  <span class="c1"># Reset the modules to the system default</span>
+<span class="c1">### Load DMPTCP module </span>
+module load DMTCP/2.6.0-GCCcore-9.3.0
+<span class="c1">### Load your software module</span>
+module load SomeProgram/SomeVersion
+module list
+<span class="c1">## Do some work: Running under dmptcp control </span>
+dmtcp_launch --new-coordinator --rm --interval <span class="m">3600</span> YourCommands 
+</pre></div>
+</div>
+<p>In this example, DMTCP takes checkpoints every hour ‘(–interval 3600)’</p>
+<ul class="simple">
+<li><p>Second, restart the job: If the job is killed for various reasons, it can be restarted using the following submit file: <code class="docutils literal notranslate"><span class="pre">generic_job_dmptcp_restart.sh</span></code></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+
+# Job name:
+#SBATCH --job-name=YourJobname
+# Project:
+#SBATCH --account=nnXXXXk
+# Wall time limit:
+#SBATCH --time=DD-HH:MM:SS
+# Other parameters:
+#SBATCH ...
+## Set up job environment:
+set -o errexit  # Exit the script on any error
+set -o nounset  # Treat any unset variables as an error
+module --quiet purge  # Reset the modules to the system default
+### Load DMPTCP module
+module load DMTCP/2.6.0-GCCcore-9.3.0
+### Load your software module
+module load SomeProgram/SomeVersion
+module list
+# Start DMTCP
+dmtcp_coordinator --daemon --port 0 --port-file /tmp/port
+export DMTCP_COORD_HOST=`hostname`
+export DMTCP_COORD_PORT=$(&lt;/tmp/port)
+# Restart job 
+# The script below(dmtcp_restart_script.sh) is created automatically as part of the checkpointing process.
+./dmtcp_restart_script.sh
+</pre></div>
+</div>
+</div>
+<div class="section" id="more-information">
+<h2>More Information<a class="headerlink" href="#more-information" title="Permalink to this headline">¶</a></h2>
+<p>dmtcp_restart generates new ckpt_<em>.dmtcp and dmtcp_restart_script</em>.sh files.
+Therefore, if the restarted job is also killed due to unavailable/exceeded resources,
+you can resubmit the same job again without any changes in the submit file shown above.
+We recommend the users to delete  old ckpt_*.dmtcp files.
+Note that there is no guarantee that every application can be checkpointed and restarted with DMTCP.
+Users are recommended to see the <a class="reference external" href="http://dmtcp.sourceforge.net/">DMTCP documentation</a> and
+<a class="reference external" href="http://dmtcp.sourceforge.net/supportedApps.html#xwindow">DMTCP supported apps</a>for further read.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="projects_accounting.html" class="btn btn-neutral float-right" title="Projects and accounting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="interactive_jobs.html" class="btn btn-neutral float-left" title="Interactive jobs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

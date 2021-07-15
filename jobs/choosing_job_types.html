@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Job Types &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Job Scripts" href="job_scripts.html" />
+    <link rel="prev" title="Submitting jobs" href="submitting.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Job types and job scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="submitting.html">Submitting jobs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Job Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#betzy">Betzy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fram">Fram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#saga">Saga</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts.html">Job Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Monitoring jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_memory_settings.html">How to choose the right amount of memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_job_failures.html">Common job failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">How to check the performance and scaling using Arm Performance Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mkl.html">Using MKL efficiently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory-bandwidth.html">Efficient use of memory bandwith on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-calculations.html">Efficient use of processors and network on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_jobs.html">Interactive jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkpointing.html">Checkpointing Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects_accounting.html">Projects and accounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dos_and_donts.html">Dos and Don’ts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides.html">Guides</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="overview.html">Job types and job scripts</a> &raquo;</li>
+        
+      <li>Job Types</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/jobs/choosing_job_types.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="job-types">
+<span id="id1"></span><h1>Job Types<a class="headerlink" href="#job-types" title="Permalink to this headline">¶</a></h1>
+<p>The clusters are designed for different work loads, and each cluster
+has several types of jobs.  This page gives an overview of the
+available job types on each cluster, and their main characteristics.
+See the sub pages of each cluster for a more detailed description of
+the job types and their purposes.</p>
+<p>You should always choose the job type that fulfils the resource
+requirements of your job best without being excessive as this ensures
+the highest possible priority and therefore the shortest queuing time.
+If for example your job on Saga needs 20GB memory and 5 CPUs for 5 days,
+you should choose a <em>normal</em> instead of a <em>bigmem</em> job.
+If it instead needs 200GB memory you should use <em>bigmem</em>.</p>
+<div class="section" id="betzy">
+<h2>Betzy<a class="headerlink" href="#betzy" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="text-align:center head"><p>Job limits</p></th>
+<th class="text-align:center head"><p>Max walltime</p></th>
+<th class="text-align:center head"><p>Priority</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><a class="reference internal" href="job_types/betzy_job_types.html#job-type-betzy-normal"><span class="std std-ref">normal</span></a></p></td>
+<td><p>default job type</p></td>
+<td class="text-align:center"><p>4–512 nodes</p></td>
+<td class="text-align:center"><p>4 days</p></td>
+<td class="text-align:center"><p>normal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><a class="reference internal" href="job_types/betzy_job_types.html#job-type-betzy-preproc"><span class="std std-ref">preproc</span></a></p></td>
+<td><p>pre-/postprocessing jobs</p></td>
+<td class="text-align:center"><p>1–16 units</p></td>
+<td class="text-align:center"><p>1 day</p></td>
+<td class="text-align:center"><p>normal</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><a class="reference internal" href="job_types/betzy_job_types.html#job-type-betzy-devel"><span class="std std-ref">devel</span></a></p></td>
+<td><p>development jobs (compiling, testing)</p></td>
+<td class="text-align:center"><p>1–4 nodes</p></td>
+<td class="text-align:center"><p>60 mins</p></td>
+<td class="text-align:center"><p>high</p></td>
+</tr>
+</tbody>
+</table>
+<p>For jobs that don’t request much memory, the “units” of <em>preproc</em> jobs
+are simply the number of cpus the job requests.
+For other jobs, see <a class="reference internal" href="projects_accounting.html#projects-accounting"><span class="std std-ref">Projects and accounting</span></a> for how the units are calculated.</p>
+<p><a class="reference internal" href="job_types/betzy_job_types.html"><span class="doc std std-doc">Betzy Job Types</span></a>.</p>
+</div>
+<div class="section" id="fram">
+<h2>Fram<a class="headerlink" href="#fram" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="text-align:center head"><p>Job limits</p></th>
+<th class="text-align:center head"><p>Max walltime</p></th>
+<th class="text-align:center head"><p>Priority</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><a class="reference internal" href="job_types/fram_job_types.html#job-type-fram-normal"><span class="std std-ref">normal</span></a></p></td>
+<td><p>default job type</p></td>
+<td class="text-align:center"><p>1–32 nodes</p></td>
+<td class="text-align:center"><p>7 days</p></td>
+<td class="text-align:center"><p>normal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><a class="reference internal" href="job_types/fram_job_types.html#job-type-fram-bigmem"><span class="std std-ref">bigmem</span></a></p></td>
+<td><p>jobs needing more memory</p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p>14 days</p></td>
+<td class="text-align:center"><p>normal</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><a class="reference internal" href="job_types/fram_job_types.html#job-type-fram-devel"><span class="std std-ref">devel</span></a></p></td>
+<td><p>development jobs (compiling, testing)</p></td>
+<td class="text-align:center"><p>1–8 nodes</p></td>
+<td class="text-align:center"><p>30 mins</p></td>
+<td class="text-align:center"><p>high</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><a class="reference internal" href="job_types/fram_job_types.html#job-type-fram-short"><span class="std std-ref">short</span></a></p></td>
+<td><p>short jobs</p></td>
+<td class="text-align:center"><p>1–10 nodes</p></td>
+<td class="text-align:center"><p>2 hours</p></td>
+<td class="text-align:center"><p>high</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><a class="reference internal" href="job_types/fram_job_types.html#job-type-fram-optimist"><span class="std std-ref">optimist</span></a></p></td>
+<td><p>jobs w/checkpointing, or very short jobs</p></td>
+<td class="text-align:center"><p>1–32 nodes</p></td>
+<td class="text-align:center"><p><a class="reference internal" href="job_types/fram_job_types.html#job-type-fram-optimist"><span class="std std-ref">see details</span></a></p></td>
+<td class="text-align:center"><p>low</p></td>
+</tr>
+</tbody>
+</table>
+<p><a class="reference internal" href="job_types/fram_job_types.html"><span class="doc std std-doc">Fram Job Types</span></a>.</p>
+</div>
+<div class="section" id="saga">
+<h2>Saga<a class="headerlink" href="#saga" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="text-align:center head"><p>Job limits</p></th>
+<th class="text-align:center head"><p>Max walltime</p></th>
+<th class="text-align:center head"><p>Priority</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><a class="reference internal" href="job_types/saga_job_types.html#job-type-saga-normal"><span class="std std-ref">normal</span></a></p></td>
+<td><p>default job type</p></td>
+<td class="text-align:center"><p>1–256 units</p></td>
+<td class="text-align:center"><p>7 days</p></td>
+<td class="text-align:center"><p>normal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><a class="reference internal" href="job_types/saga_job_types.html#job-type-saga-bigmem"><span class="std std-ref">bigmem</span></a></p></td>
+<td><p>jobs needing more memory</p></td>
+<td class="text-align:center"><p>1–256 units</p></td>
+<td class="text-align:center"><p>14 days</p></td>
+<td class="text-align:center"><p>normal</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><a class="reference internal" href="job_types/saga_job_types.html#job-type-saga-accel"><span class="std std-ref">accel</span></a></p></td>
+<td><p>jobs needing GPUs</p></td>
+<td class="text-align:center"><p>1–256 units</p></td>
+<td class="text-align:center"><p>14 days</p></td>
+<td class="text-align:center"><p>normal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><a class="reference internal" href="job_types/saga_job_types.html#job-type-saga-devel"><span class="std std-ref">devel</span></a></p></td>
+<td><p>development jobs (compiling, testing)<a class="footnote-reference brackets" href="#id3" id="id2">2</a></p></td>
+<td class="text-align:center"><p>1–128 units</p></td>
+<td class="text-align:center"><p>2 hours</p></td>
+<td class="text-align:center"><p>high</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><a class="reference internal" href="job_types/saga_job_types.html#job-type-saga-optimist"><span class="std std-ref">optimist</span></a></p></td>
+<td><p>jobs w/checkpointing, or very short jobs</p></td>
+<td class="text-align:center"><p>1–256 units</p></td>
+<td class="text-align:center"><p><a class="reference internal" href="job_types/saga_job_types.html#job-type-saga-optimist"><span class="std std-ref">see details</span></a></p></td>
+<td class="text-align:center"><p>low</p></td>
+</tr>
+</tbody>
+</table>
+<p>For jobs that don’t request GPUs or much memory, the “units” on Saga are
+simply the number of cpus the job requests.
+For other jobs, see <a class="reference internal" href="projects_accounting.html#projects-accounting"><span class="std std-ref">Projects and accounting</span></a> for how the units are calculated.</p>
+<p><a class="reference internal" href="job_types/saga_job_types.html"><span class="doc std std-doc">Saga Job Types</span></a>.</p>
+<hr class="docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>On Saga it is possible to combine <em>devel</em> with <em>accel</em> or <em>bigmem</em>, <a class="reference internal" href="job_types/saga_job_types.html#job-type-saga-devel"><span class="std std-ref">see details</span></a>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="job_scripts.html" class="btn btn-neutral float-right" title="Job Scripts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="submitting.html" class="btn btn-neutral float-left" title="Submitting jobs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

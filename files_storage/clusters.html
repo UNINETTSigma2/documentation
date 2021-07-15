@@ -1,0 +1,603 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Storage areas on HPC clusters &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Backup on Betzy, Fram, Saga and NIRD" href="backup.html" />
+    <link rel="prev" title="NIRD - National Infrastructure for Research Data" href="nird.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Storage areas on HPC clusters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-and-quota">Usage and quota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#home-directory">Home directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#job-scratch-area">Job scratch area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#job-scratch-area-on-local-disk">Job scratch area on local disk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-work-area">User work area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#project-area">Project area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shared-project-area">Shared project area</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Storage areas on HPC clusters</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/files_storage/clusters.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="storage-areas-on-hpc-clusters">
+<span id="storage-areas"></span><h1>Storage areas on HPC clusters<a class="headerlink" href="#storage-areas-on-hpc-clusters" title="Permalink to this headline">¶</a></h1>
+<p>Projects and users receive different areas to store files and other
+data. Some areas are used for temporary files during job execution
+while others are for storing project data.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#overview">Overview</a></p></li>
+<li><p><a class="reference external" href="#usage-and-quota">Usage and quota</a></p></li>
+<li><p><a class="reference external" href="#home-directory">Home directory</a></p></li>
+<li><p><a class="reference external" href="#job-scratch-area">Job scratch area</a></p></li>
+<li><p><a class="reference external" href="#job-scratch-area-on-local-disk">Job scratch area on local disk</a></p></li>
+<li><p><a class="reference external" href="#user-work-area">User work area</a></p></li>
+<li><p><a class="reference external" href="#project-area">Project area</a></p></li>
+<li><p><a class="reference external" href="#shared-project-area">Shared project area</a></p></li>
+</ul>
+<div class="section" id="overview">
+<span id="clusters-overview"></span><h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The following table summarizes the different storage options for <strong>Betzy, Fram and Saga</strong>.
+Below the table we give recommendations and discuss pros and cons for the various storage areas.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Directory</p></th>
+<th class="text-align:left head"><p>Purpose</p></th>
+<th class="text-align:left head"><p>Default Quota</p></th>
+<th class="text-align:center head"><p><a class="reference internal" href="backup.html"><span class="doc std std-doc">Backup</span></a></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">/cluster/home/$USER</span></code> (<code class="docutils literal notranslate"><span class="pre">$HOME</span></code>)</p></td>
+<td class="text-align:left"><p>User data</p></td>
+<td class="text-align:left"><p>20 GiB / 100 K files</p></td>
+<td class="text-align:center"><p><a class="reference internal" href="backup.html"><span class="doc std std-doc">Only if quota enforced</span></a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">/cluster/work/jobs/$SLURM_JOB_ID</span></code> (<code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code>)</p></td>
+<td class="text-align:left"><p>Per-job data</p></td>
+<td class="text-align:left"><p>N/A</p></td>
+<td class="text-align:center"><p>No</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>(Only Saga) <code class="docutils literal notranslate"><span class="pre">/localscratch/$SLURM_JOB_ID</span></code> (<code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code>)</p></td>
+<td class="text-align:left"><p>Per-job data</p></td>
+<td class="text-align:left"><p><a class="reference external" href="#job-scratch-area-on-local-disk">Individual</a></p></td>
+<td class="text-align:center"><p>No</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">/cluster/work/users/$USER</span></code> (<code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code>)</p></td>
+<td class="text-align:left"><p>Staging and job data</p></td>
+<td class="text-align:left"><p>N/A</p></td>
+<td class="text-align:center"><p>No</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">/cluster/projects/&lt;project_name&gt;</span></code></p></td>
+<td class="text-align:left"><p>Project data</p></td>
+<td class="text-align:left"><p><a class="reference external" href="#project-area">1 TiB / 1 M files</a></p></td>
+<td class="text-align:center"><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">/cluster/shared/&lt;folder_name&gt;</span></code></p></td>
+<td class="text-align:left"><p>Shared data</p></td>
+<td class="text-align:left"><p><a class="reference external" href="#shared-project-area">Individual</a></p></td>
+<td class="text-align:center"><p>No</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p><strong>User areas and project areas are private</strong>: Data handling and storage policy is documented <a class="reference internal" href="sharing_files.html"><span class="doc std std-doc">here</span></a>.</p></li>
+<li><p><strong>Note that the <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code> area is only implemented on Saga</strong></p></li>
+<li><p>In addition to the areas in the tables above, <strong>both clusters mount the
+NIRD project areas</strong> as <code class="docutils literal notranslate"><span class="pre">/nird/projects/nird/NSxxxxK</span></code> on the login nodes
+(but not on the compute nodes).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">/cluster</span></code> file system is a high-performance parallel file
+system.  On Fram, it is a <a class="reference external" href="https://www.lustre.org/">Lustre</a> system with
+a total storage space of 2.3PB, and on Saga it is a
+<a class="reference external" href="https://www.beegfs.io/">BeeGFS</a> system with a total storage space of
+1.1PB.
+For performance optimizations, consult
+<a class="reference internal" href="performance/lustre.html"><span class="doc std std-doc">Lustre performance tips</span></a> (Fram)
+and
+<a class="reference internal" href="performance/beegfs.html"><span class="doc std std-doc">BeeGFS performance tips</span></a> (Saga)
+pages.</p></li>
+</ul>
+</div>
+<div class="section" id="usage-and-quota">
+<span id="id1"></span><h2>Usage and quota<a class="headerlink" href="#usage-and-quota" title="Permalink to this headline">¶</a></h2>
+<p>You can see the <strong>disk usage and disk quotas</strong> of your available areas with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ dusage
+</pre></div>
+</div>
+<p>But please note that on Fram and Betzy, this command does not show you the number of files and
+there may be a quota on the number of files.</p>
+<p>To see the usage <strong>including the number of files</strong> on Fram and Betzy, check:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ dusage -i
+</pre></div>
+</div>
+<p>On Saga we have modernized <code class="docutils literal notranslate"><span class="pre">dusage</span></code> to show both disk quotas and number of files
+but we still need to port these changes to Fram and Betzy.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Frequently asked questions</strong></p>
+<ul class="simple">
+<li><p><strong>I cannot copy files although we haven’t used up all space</strong>:
+You have probably exceeded the quota on the number of files.</p></li>
+<li><p><strong>I have moved files to the project folder but my home quota usage did not go down</strong>:
+Moving files does not change ownership of the files. You need to also change the ownership of the files
+in the project folder from you to the group (change the ownership from ‘username_g’ to ‘username’).
+Please refer to the <a class="reference internal" href="change_file_ownership.html"><span class="doc std std-doc">example on changing file ownership</span></a>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="home-directory">
+<span id="clusters-homedirectory"></span><h2>Home directory<a class="headerlink" href="#home-directory" title="Permalink to this headline">¶</a></h2>
+<p>The home directory is <code class="docutils literal notranslate"><span class="pre">/cluster/home/$USER</span></code>. The location is stored
+in the environment variable <code class="docutils literal notranslate"><span class="pre">$HOME</span></code>.  A quota is enabled on home
+directories which is by default 20 GiB and 100 000 files, so it
+is not advisable to run jobs in <code class="docutils literal notranslate"><span class="pre">$HOME</span></code>. However, it is perfectly
+fine to store <code class="docutils literal notranslate"><span class="pre">stderr</span></code> and <code class="docutils literal notranslate"><span class="pre">stdout</span></code> logs from your batch jobs in
+<code class="docutils literal notranslate"><span class="pre">$HOME</span></code> so they are available for reviewing in case of issues with it.</p>
+<p>The home directory should be used for storing tools, scripts, application
+sources or other relevant data which must have a backup.</p>
+<p>The home directory is only accessible for the user. Files that should be
+accessible by other uses in a project must be placed in the project
+area.</p>
+<p>Backed up with daily snapshots <strong>only if quota is enforced</strong> for the last 7
+days and weekly snapshots for the last 6 weeks
+(<a class="reference internal" href="backup.html"><span class="doc std std-doc">documentation about backup</span></a>).</p>
+</div>
+<div class="section" id="job-scratch-area">
+<h2>Job scratch area<a class="headerlink" href="#job-scratch-area" title="Permalink to this headline">¶</a></h2>
+<p>Each job gets an area <code class="docutils literal notranslate"><span class="pre">/cluster/work/jobs/$SLURM_JOB_ID</span></code> that is
+automatically created for the job, and automatically deleted when the
+job finishes.  The location is stored in the environment variable
+<code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> available in the job.  <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> is only accessible by the
+user running the job.</p>
+<p>On Saga there are two scratch areas (see also below).</p>
+<p>The area is meant as a temporary scratch area during job
+execution.
+<strong>This area is not backed up</strong> (<a class="reference internal" href="backup.html"><span class="doc std std-doc">documentation about backup</span></a>).</p>
+<p>There are special commands (<code class="docutils literal notranslate"><span class="pre">savefile</span></code> and <code class="docutils literal notranslate"><span class="pre">cleanup</span></code>) one can use in
+the job script to ensure that files are copied back to the submit
+directory <code class="docutils literal notranslate"><span class="pre">$SLURM_SUBMIT_DIR</span></code> (where <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> was run).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Pros of running jobs in the job scratch area</strong></p>
+<ul class="simple">
+<li><p>There is less risk of interference from other jobs because every job ID has
+its own scratch directory.</p></li>
+<li><p>Because the scratch directory is removed when the job finishes, the scripts
+do not need to clean up temporary files.</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Cons of running jobs in the job scratch area</strong></p>
+<ul class="simple">
+<li><p>Since the area is removed automatically, it can be hard to debug
+jobs that fail.</p></li>
+<li><p>One must use the special commands to copy files back in case the job
+script crashes before it has finished.</p></li>
+<li><p>If the main node of a job crashes (i.e., not the job script, but the
+node itself), the special commands might not be run, so files might
+be lost.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="job-scratch-area-on-local-disk">
+<h2>Job scratch area on local disk<a class="headerlink" href="#job-scratch-area-on-local-disk" title="Permalink to this headline">¶</a></h2>
+<p><strong>This only exists on Saga.</strong></p>
+<p>A job on <strong>Saga</strong> can request a scratch area on local disk on the node
+it is running on.  This is done by specifying
+<code class="docutils literal notranslate"><span class="pre">--gres=localscratch:&lt;size&gt;</span></code>, where <em><size></em> is the size of the requested
+area, for instance <code class="docutils literal notranslate"><span class="pre">--gres=localscratch:20G</span></code> for 20 GiB.
+Most nodes on Saga have 300 GiB
+disk that can be handed out to local scratch areas; a few of the
+bigmem nodes have 7 TiB and the GPU nodes have 8 TiB.  If a job tries
+to use more space on the area than it requested, it will get a “disk
+quota exceeded” or “no space left on device” error (the exact message
+depends on the program doing the writing).
+Please do not ask for more than what you actually need, other users might share
+the local scratch space with you.</p>
+<p>Jobs that request this, get an area <code class="docutils literal notranslate"><span class="pre">/localscratch/$SLURM_JOB_ID</span></code>
+that is automatically created for the job, and automatically deleted
+when the job finishes.  The location is stored in the environment
+variable <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code> available in the job.  <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code> is
+only accessible by the user running the job.</p>
+<p>Note that since this area is on <em>local disk</em> on the compute node, it
+is probably not useful for jobs running on more than one node (the job
+would get one independent area on each node).</p>
+<p>The area is meant to be used as a temporary scratch area during job
+execution by jobs who do a lot of disk IO operations (either metadata
+operations or read/write operations).  Using it for such jobs will
+speed up the jobs, and reduce the load on the <code class="docutils literal notranslate"><span class="pre">/cluster</span></code> file system.</p>
+<p><strong>This area is not backed up</strong> (<a class="reference internal" href="backup.html"><span class="doc std std-doc">documentation about backup</span></a>).</p>
+<p>Currently, there are <em>no</em> special commands to ensure that files are
+copied back automatically, so one has to do that with <code class="docutils literal notranslate"><span class="pre">cp</span></code> commands or
+similar in the job script.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Pros of running jobs in the local disk job scratch area</strong></p>
+<ul class="simple">
+<li><p>IO operations are faster than on the <code class="docutils literal notranslate"><span class="pre">/cluster</span></code> file system.</p></li>
+<li><p>Great if you need to write/read a large number of files.</p></li>
+<li><p>It reduces the load on the <code class="docutils literal notranslate"><span class="pre">/cluster</span></code> file system.</p></li>
+<li><p>There is less risk of interference from other jobs because every job ID has
+its own scratch directory.</p></li>
+<li><p>Because the scratch directory is removed when the job finishes, the scripts
+do not need to clean up temporary files.</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Cons of running jobs in the local disk job scratch area</strong></p>
+<ul class="simple">
+<li><p>Since the area is removed automatically, it can be hard to debug
+jobs that fail.</p></li>
+<li><p>Not suitable for files larger than 250-300 GB.</p></li>
+<li><p>One must make sure to use <code class="docutils literal notranslate"><span class="pre">cp</span></code> commands or similar in the job
+script to copy files back.</p></li>
+<li><p>If the main node of a job crashes (i.e., not the job script, but the
+node itself), files might be lost.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="user-work-area">
+<span id="id2"></span><h2>User work area<a class="headerlink" href="#user-work-area" title="Permalink to this headline">¶</a></h2>
+<p>Each user has an area <code class="docutils literal notranslate"><span class="pre">/cluster/work/users/$USER</span></code>.  The location is
+stored in the environment variable <code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code>.
+<strong>This area is not backed up</strong> (<a class="reference internal" href="backup.html"><span class="doc std std-doc">documentation about backup</span></a>).
+<code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code> is only accessible by
+the user owning the area.</p>
+<p>This directory is meant for files that are used by one or more jobs.
+All result files must be moved out from this area after the jobs
+finish, otherwise they will be automatically deleted after a while
+(see notes below). We highly encourage users to keep this area tidy,
+since both high disk usage and automatic deletion process takes away
+disk performance. The best solution is to clean up any unnecessary
+data after each job.  Since <code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code> is only accessible by the
+user, you must move results to the project area if you want to share
+them with other people in the project.</p>
+<p>File deletion depends on the newest of the <em>creation-</em>, <em>modification-</em> and
+<em>access</em> time and the total usage of the file system. The oldest files will
+be deleted first and a weekly scan removes files older than 42 days.</p>
+<p>When file system usage reaches 70%, files older than 21 days are subject to
+automatic deletion.</p>
+<p>It is <strong>not</strong> allowed to try to circumvent the automatic deletion by
+for instance running scripts that touch all files.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Pros of running jobs in the user work area</strong></p>
+<ul class="simple">
+<li><p>Since job files are not removed automatically directly when a job
+finishes, it is easier to debug failing jobs.</p></li>
+<li><p>There is no need to use special commands to copy files back in case
+the job script or node crashes before the job has finished.</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Cons of running jobs in the user work area</strong></p>
+<ul class="simple">
+<li><p>There is a risk of interference from other jobs unless one makes
+sure to run each job in a separate sub directory inside <code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code>.</p></li>
+<li><p>Because job files are not removed when the job finishes, one has to
+remember to clean up temporary files afterwards.</p></li>
+<li><p>One has to remember to move result files to the project area if one
+wants to keep them.  Otherwise they will eventually be deleted by
+the automatic file deletion.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="project-area">
+<span id="id3"></span><h2>Project area<a class="headerlink" href="#project-area" title="Permalink to this headline">¶</a></h2>
+<p>All HPC projects have a dedicated local space to share data between project
+members, located at <strong>/cluster/projects/&lt;project_name&gt;</strong>.</p>
+<p>The project area is quota controlled and the default project quota for
+HPC projects is 1 TB, but projects can apply for more during the
+application process with a maximum quota of 10 TB.</p>
+<p>Also after the project has been created, project members can request to increase
+the quota to up to 10 TB by motivating why this is needed. Such requests should be submitted by the project leader via e-mail to <a class="reference external" href="mailto:sigma2&#37;&#52;&#48;uninett&#46;no">mailto:sigma2<span>&#64;</span>uninett<span>&#46;</span>no</a>.</p>
+<p>Requests for more than 10 TB require an application for a separate <a class="reference internal" href="nird.html"><span class="doc std std-doc">NIRD</span></a> project area.</p>
+<p>Note that unused quota can also be withdrawn for technical reasons (too little
+space) or organisational reasons (less needs/less usage/less members of
+group/less compute hrs).</p>
+<p>Daily backup is taken to NIRD (<a class="reference internal" href="backup.html"><span class="doc std std-doc">documentation about backup</span></a>).</p>
+<p>To see disk usage and quota information for your project on NIRD, run <code class="docutils literal notranslate"><span class="pre">dusage</span> <span class="pre">-p</span> <span class="pre">&lt;project_name&gt;</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Pros of running jobs in the project area</strong></p>
+<ul class="simple">
+<li><p>Since job files are not removed automatically directly when a job
+finishes, it is easier to debug failing jobs.</p></li>
+<li><p>There is no need to use special commands to copy files back in case
+the job script or node crashes before the job has finished.</p></li>
+<li><p>There is no need to move result files to save them permanently or
+give the rest of the project access to them.</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Cons of running jobs in the project area</strong></p>
+<ul class="simple">
+<li><p>There is a risk of interference from other jobs unless one makes
+sure to run each job in a separate sub directory inside the project
+area.</p></li>
+<li><p>Because job files are not removed when the job finishes, one has to
+remember to clean up temporary files afterwards, otherwise they can
+fill up the quota.</p></li>
+<li><p>There is a risk of using all of the disk quota if one runs many jobs
+and/or jobs needing a lot of storage at the same time.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="shared-project-area">
+<h2>Shared project area<a class="headerlink" href="#shared-project-area" title="Permalink to this headline">¶</a></h2>
+<p>In special cases there might be a need for sharing data between projects for
+collaboration and possibly preventing data duplication.</p>
+<p>If such a need is justified, a meta-group and it’s according directory
+in <code class="docutils literal notranslate"><span class="pre">/cluster/shared</span></code> is created.  The area gets a disk quota based on
+the needs of the data.  The permissions of the areas vary.  In some
+cases all but a few users in the meta-group only have read-only access
+to the area.  In other cases, all users on the cluster have read-only
+access.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="backup.html" class="btn btn-neutral float-right" title="Backup on Betzy, Fram, Saga and NIRD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="nird.html" class="btn btn-neutral float-left" title="NIRD - National Infrastructure for Research Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

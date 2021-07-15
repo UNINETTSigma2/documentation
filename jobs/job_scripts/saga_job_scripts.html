@@ -1,0 +1,434 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Job Scripts on Saga &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Job Scripts on Saga</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/jobs/job_scripts/saga_job_scripts.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="job-scripts-on-saga">
+<span id="id1"></span><h1>Job Scripts on Saga<a class="headerlink" href="#job-scripts-on-saga" title="Permalink to this headline">¶</a></h1>
+<p>This page documents how to specify the queue system parameters for the
+different job types on Saga. See <a class="reference internal" href="../job_types/saga_job_types.html#job-types-saga"><span class="std std-ref">Job Types on Saga</span></a>
+for information about the different job types on Saga.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>On Saga use srun, not mpirun</strong></p>
+<p>mpirun can get the number of tasks wrong and also lead to wrong task
+placement. We don’t fully understand why this happens. When using srun
+instead of mpirun or mpiexec, we observe correct task placement on Saga.</p>
+</div>
+<div class="section" id="normal">
+<span id="job-scripts-saga-normal"></span><h2>Normal<a class="headerlink" href="#normal" title="Permalink to this headline">¶</a></h2>
+<p>The basic type of job on Saga is the <em>normal</em> job.</p>
+<p><em>Normal</em> jobs must specify account (<code class="docutils literal notranslate"><span class="pre">--account</span></code>), walltime limit
+(<code class="docutils literal notranslate"><span class="pre">--time</span></code>) and how much memory is needed.  Usually, they will also
+specify the number of tasks (i.e., processes) to run (<code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> - the
+default is 1), and they can also specify how many cpus each task
+should get (<code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> - the default is 1).</p>
+<p>The jobs can also specify how man tasks should be run per node
+(<code class="docutils literal notranslate"><span class="pre">--ntasks-per-node</span></code>), or how many nodes the tasks should be
+distributed over (<code class="docutils literal notranslate"><span class="pre">--nodes</span></code>).  Without any of these two
+specifications, the tasks will be distributed on any available
+resources.</p>
+<p>Memory usage is specified with <code class="docutils literal notranslate"><span class="pre">--mem-per-cpu</span></code>, in <em>MiB</em>
+(<code class="docutils literal notranslate"><span class="pre">--mem-per-cpu=3600M</span></code>) or <em>GiB</em> (<code class="docutils literal notranslate"><span class="pre">--mem-per-cpu=4G</span></code>).</p>
+<p>If a job tries to use more (resident) memory on a compute node than it
+requested, it will be killed.  Note that it is the <em>total</em> memory
+usage on each node that counts, not the usage per task or cpu.  So,
+for instance, if your job has two single-cpu tasks on a node and asks
+for 2 GiB RAM per cpu, the total limit on that node will be 4 GiB.
+The queue system does not care if one of the tasks uses more than 2
+GiB, as long as the total usage on the node is not more than 4 GiB.</p>
+<p>A typical job specification for a normal job would be</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=MyProject
+#SBATCH --job-name=MyJob
+#SBATCH --time=1-0:0:0
+#SBATCH --mem-per-cpu=3G
+#SBATCH --ntasks=16
+</pre></div>
+</div>
+<p>This will start 16 tasks (processes), each one getting one cpu and 3
+GiB RAM.  The tasks can be distributed on any number of nodes (up to
+16, of course).</p>
+<p>To run multithreaded applications, use <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> to allocate
+the right number of cpus to each task.  <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> sets the
+environment variable <code class="docutils literal notranslate"><span class="pre">$OMP_NUM_THREADS</span></code> so that OpenMP programs by
+default will use the right number of threads.  (It is possible to
+override this number by setting <code class="docutils literal notranslate"><span class="pre">$OMP_NUM_THREADS</span></code> in the job script.)
+For instance:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=MyProject
+#SBATCH --job-name=MyJob
+#SBATCH --time=1-0:0:0
+#SBATCH --mem-per-cpu=4G
+#SBATCH --ntasks=8 --cpus-per-task=10 --ntasks-per-node=4
+</pre></div>
+</div>
+<p>This job will get 2 nodes, and run 4 processes on each of them, each
+process getting 10 cpus.  All in all, that will be two whole nodes on
+Saga.</p>
+<p>All jobs on Saga are allocated the requested cpus and memory
+exclusively, but share nodes with other jobs.  Also note that they are
+bound to the cpu cores they are allocated.  However, the tasks and
+threads are free to use all cores the job has access to on the node.</p>
+<p>Note that the more restrictive one is in specifying how tasks are
+placed on nodes, the longer the job might have to wait in the job
+queue: In this example, for instance, there might be eight nodes with
+10 idle cpus, but not two whole idle nodes.  Without the
+<code class="docutils literal notranslate"><span class="pre">--ntasks-per-node</span></code> specification, the job could have started, but
+with the specification, it will have to wait.</p>
+<p>The <a class="reference internal" href="saga/saga_sample_mpi_job.html"><span class="doc std std-doc">Saga Sample MPI Job</span></a> page has an example
+of a <em>normal</em> MPI job.</p>
+</div>
+<div class="section" id="bigmem">
+<span id="job-scripts-saga-bigmem"></span><h2>Bigmem<a class="headerlink" href="#bigmem" title="Permalink to this headline">¶</a></h2>
+<p><em>Bigmem</em> jobs are specified exactly like the <em>normal</em> jobs except that
+you also have to specify <code class="docutils literal notranslate"><span class="pre">--partition=bigmem</span></code>.</p>
+<p>Here is an example that asks for 2 tasks, 4 cpus per task, and 32 GiB
+RAM per cpu:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=MyProject --job-name=MyJob
+#SBATCH --partition=bigmem
+#SBATCH --time=1-0:0:0
+#SBATCH --ntasks=2 --cpus-per-task=4
+#SBATCH --mem-per-cpu=32G
+</pre></div>
+</div>
+</div>
+<div class="section" id="accel">
+<span id="job-scripts-saga-accel"></span><h2>Accel<a class="headerlink" href="#accel" title="Permalink to this headline">¶</a></h2>
+<p><em>Accel</em> jobs are specified just like <em>normal</em> jobs except that they
+also have to specify <code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code>.  In addition, they must also
+specify how many GPUs to use, and how they should be distributed
+across nodes and tasks.  The simplest way to do that is, with
+<code class="docutils literal notranslate"><span class="pre">--gpus=N</span></code> or <code class="docutils literal notranslate"><span class="pre">--gpus-per-node=N</span></code>, where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of GPUs to
+use.</p>
+<p>For a job simple job running one process and using one GPU, the
+following example is enough:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=MyProject --job-name=MyJob
+#SBATCH --partition=accel --gpus=1
+#SBATCH --time=1-0:0:0
+#SBATCH --mem-per-cpu=8G
+</pre></div>
+</div>
+<p>Here is an example that asks for 2 tasks and 2 gpus on one gpu node:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=MyProject --job-name=MyJob
+#SBATCH --partition=accel --gpus-per-node=2
+#SBATCH --time=1-0:0:0
+#SBATCH --ntasks-per-node=2 --nodes=1
+#SBATCH --mem-per-cpu=8G
+</pre></div>
+</div>
+<p>There are other GPU related specifications that can be used, and that
+parallel some of the cpu related specifications.  The most useful are
+probably:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--gpus-per-node</span></code> How many GPUs the job should have on each node.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--gpus-per-task</span></code> How many GPUs the job should have per task.
+Requires the use of <code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> or <code class="docutils literal notranslate"><span class="pre">--gpus</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--gpus-per-socket</span></code> How many GPUs the job should have on each
+socket.  Requires the use of <code class="docutils literal notranslate"><span class="pre">--sockets-per-node</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--mem-per-gpu</span></code> How much RAM the job should have for each GPU.
+Can be used <em>instead of</em> <code class="docutils literal notranslate"><span class="pre">--mem-per-cpu</span></code>, (but cannot be used
+<em>together with</em> it).</p></li>
+</ul>
+<p>See <a class="reference external" href="https://slurm.schedmd.com/sbatch.html">sbatch</a> or <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">sbatch</span></code>
+for the details, and other GPU related specifications.</p>
+<p>(The old way of specifying GPUs: <code class="docutils literal notranslate"><span class="pre">--gres=gpu:N</span></code> is still supported,
+but is less flexible than the above specification.)</p>
+</div>
+<div class="section" id="devel">
+<span id="job-scripts-saga-devel"></span><h2>Devel<a class="headerlink" href="#devel" title="Permalink to this headline">¶</a></h2>
+<p><em>Devel</em> jobs must specify <code class="docutils literal notranslate"><span class="pre">--qos=devel</span></code>.  A <em>devel</em> job is like a <em>normal</em>
+job, except that it has restrictions on job length and size.</p>
+<p>For instance:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=MyProject
+#SBATCH --job-name=MyJob
+#SBATCH --qos=devel
+#SBATCH --time=00:30:00
+#SBATCH --ntasks=16
+</pre></div>
+</div>
+</div>
+<div class="section" id="optimist">
+<span id="job-scripts-saga-optimist"></span><h2>Optimist<a class="headerlink" href="#optimist" title="Permalink to this headline">¶</a></h2>
+<p><em>Optimist</em> jobs are specified just like <em>normal</em> jobs, except that
+they also must must specify <code class="docutils literal notranslate"><span class="pre">--qos=optimist</span></code>.  They can run on any
+node on Saga.</p>
+<p>An <em>optimist</em> job can be scheduled if there are free resources at
+least 30 minutes when the job is considered for scheduling.  However,
+it can be requeued before 30 minutes have passed, so there is no
+<em>gurarantee</em> of a minimum run time.  When an <em>optimist</em> job is requeued,
+it is first sent a <code class="docutils literal notranslate"><span class="pre">SIGTERM</span></code> signal.  This can be trapped in order to
+trigger a checkpoint.  After 30 seconds, the job receives a <code class="docutils literal notranslate"><span class="pre">SIGKILL</span></code>
+signal, which cannot be trapped.</p>
+<p>A simple <em>optimist</em> job specification might be:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=MyProject
+#SBATCH --job-name=MyJob
+#SBATCH --partition=optimist
+#SBATCH --mem-per-cpu=3G
+#SBATCH --ntasks=16
+#SBATCH --time=2:00:00
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

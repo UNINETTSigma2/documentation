@@ -1,0 +1,518 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>How to choose the right amount of memory &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Common job failures" href="common_job_failures.html" />
+    <link rel="prev" title="Monitoring jobs" href="monitoring.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Job types and job scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="submitting.html">Submitting jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_job_types.html">Job Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts.html">Job Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Monitoring jobs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">How to choose the right amount of memory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#why-it-matters">Why it matters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-find-out-how-much-memory-you-need">How to find out how much memory you need</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#by-using-the-slurm-browser">By using the Slurm browser</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#by-checking-the-slurm-output-generated-with-your-job">By checking the Slurm output generated with your job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#by-using-sacct">By using sacct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#by-prepending-your-binary-with-time">By prepending your binary with time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#by-using-arm-performance-reports">By using Arm Performance Reports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#by-reducing-the-memory-parameter-until-a-job-fails">By reducing the memory parameter until a job fails</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common_job_failures.html">Common job failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">How to check the performance and scaling using Arm Performance Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mkl.html">Using MKL efficiently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory-bandwidth.html">Efficient use of memory bandwith on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-calculations.html">Efficient use of processors and network on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_jobs.html">Interactive jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkpointing.html">Checkpointing Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects_accounting.html">Projects and accounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dos_and_donts.html">Dos and Don’ts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides.html">Guides</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="overview.html">Job types and job scripts</a> &raquo;</li>
+        
+      <li>How to choose the right amount of memory</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/jobs/choosing_memory_settings.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="how-to-choose-the-right-amount-of-memory">
+<span id="choosing-memory-settings"></span><h1>How to choose the right amount of memory<a class="headerlink" href="#how-to-choose-the-right-amount-of-memory" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Do not ask for a lot more memory than you need</strong></p>
+<p>A job that asks for many CPUs but little memory will be billed
+for its number of CPUs, while a job that asks for a lot of memory but
+few CPUs, will be billed for its memory requirement.</p>
+<p>If you ask for a lot more memory than you need, you might be surprised
+that your job will bill your project a lot more than you expected.</p>
+<p>If you ask for a lot more memory than you need, your job may queue much
+longer than it would asking for less memory.</p>
+</div>
+<ul class="simple">
+<li><p><a class="reference external" href="#why-it-matters">Why it matters</a></p></li>
+<li><p><a class="reference external" href="#how-to-find-out-how-much-memory-you-need">How to find out how much memory you need</a></p>
+<ul>
+<li><p><a class="reference external" href="#by-using-the-slurm-browser">By using the Slurm browser</a></p></li>
+<li><p><a class="reference external" href="#by-checking-the-slurm-output-generated-with-your-job">By checking the Slurm output generated with your job</a></p></li>
+<li><p><a class="reference external" href="#by-using-sacct">By using sacct</a></p></li>
+<li><p><a class="reference external" href="#by-prepending-your-binary-with-time">By prepending your binary with time</a></p></li>
+<li><p><a class="reference external" href="#by-using-arm-performance-reports">By using Arm Performance Reports</a></p></li>
+<li><p><a class="reference external" href="#by-reducing-the-memory-parameter-until-a-job-fails">By reducing the memory parameter until a job fails</a></p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="why-it-matters">
+<h2>Why it matters<a class="headerlink" href="#why-it-matters" title="Permalink to this headline">¶</a></h2>
+<p>Please read the above box, please share this with your colleagues and students.
+A significant portion of resources risks to be wasted if you ask for too much memory.</p>
+<p>This is because memory and CPU are not completely independent. If I ask for too
+much memory, I also block the compute resources which carry that memory
+resource at the same time.</p>
+<p>A too generous “better safe than sorry” approach to memory allocation leads to these problems:</p>
+<ul class="simple">
+<li><p>Your compute account gets charged too much (problem for you and your
+allocation group, as well as for the tax payer financing these compute
+resources)</p></li>
+<li><p>Other users have to wait longer with their jobs (problem for us and for other users)</p></li>
+<li><p>Your jobs may queue much longer (problem for you)</p></li>
+</ul>
+<p>It is important to make sure that your jobs use the right amount of memory and
+the right number of CPUs in order to help you and others using the HPC machines
+utilize these resources more efficiently, and in turn get work done more
+speedily.</p>
+<p>We recommend users to run a test job before submitting many similar runs to the queue system
+and find out how much memory is used (see below for examples on how to do that).
+Once you know, add perhaps 20% extra memory (and runtime) for the job compared to what
+your representative test case needed.</p>
+<p>Remember to check the <a class="reference external" href="https://slurm.schedmd.com/squeue.html#lbAG">Slurm documentation</a>,
+<a class="reference internal" href="choosing_job_types.html"><span class="doc std std-doc">job types</span></a>,
+<a class="reference internal" href="submitting/queue_system_concepts.html"><span class="doc std std-doc">queue system concepts</span></a>,
+and <a class="reference internal" href="../hpc_machines/hardware_overview.html"><span class="doc std std-doc">HPC machines</span></a>
+to verify that you are submitting the right job to the right partition and
+right hardware.</p>
+<p>Speaking of right partition, one way to get more memory if a node is not enough
+is to spread the job over several nodes by asking for more cores than needed. But this comes
+at the price of paying for more resources, queuing longer, and again blocking others.
+A good alternative is often to get access to “highmem” nodes which are designed for jobs
+with high memory demand.</p>
+</div>
+<div class="section" id="how-to-find-out-how-much-memory-you-need">
+<h2>How to find out how much memory you need<a class="headerlink" href="#how-to-find-out-how-much-memory-you-need" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="by-using-the-slurm-browser">
+<h3>By using the Slurm browser<a class="headerlink" href="#by-using-the-slurm-browser" title="Permalink to this headline">¶</a></h3>
+<p>This only works for a currently running job.</p>
+<p>Log into one of the available Slurm browsers <a class="reference internal" href="monitoring.html"><span class="doc std std-doc">here</span></a>.
+You need to be on the university network to reach these. Use a VPN solution
+(check with your university for details on how to connect using VPN) if you
+would like to access these from home or outside.</p>
+<p>Once connected, you can have a look at all currently running jobs. There is a
+lot of interesting data but here we focus on the memory part.</p>
+<p>In this example you can see that the node has a bit above 60 GB memory and the
+job consumes about half at the beginning of the run and later oscillates
+consuming around a third of the available memory.</p>
+<p><img alt="Memory high water mark in the Slurm browser" src="../_images/slurmbrowser-memory.jpg" /></p>
+</div>
+<div class="section" id="by-checking-the-slurm-output-generated-with-your-job">
+<h3>By checking the Slurm output generated with your job<a class="headerlink" href="#by-checking-the-slurm-output-generated-with-your-job" title="Permalink to this headline">¶</a></h3>
+<p>Slurm generates an output for each job you run. For instance job number <code class="docutils literal notranslate"><span class="pre">999107</span></code>
+generated output <code class="docutils literal notranslate"><span class="pre">slurm-999107.out</span></code>.</p>
+<p>This output contains the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Task</span> <span class="ow">and</span> <span class="n">CPU</span> <span class="n">usage</span> <span class="n">stats</span><span class="p">:</span>
+       <span class="n">JobID</span>    <span class="n">JobName</span>  <span class="n">AllocCPUS</span>   <span class="n">NTasks</span>     <span class="n">MinCPU</span> <span class="n">MinCPUTask</span>     <span class="n">AveCPU</span>    <span class="n">Elapsed</span> <span class="n">ExitCode</span>
+<span class="o">------------</span> <span class="o">----------</span> <span class="o">----------</span> <span class="o">--------</span> <span class="o">----------</span> <span class="o">----------</span> <span class="o">----------</span> <span class="o">----------</span> <span class="o">--------</span>
+<span class="mi">999107</span>         <span class="n">mem</span><span class="o">-</span><span class="n">size</span>          <span class="mi">1</span>                                             <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">32</span>      <span class="mi">0</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">999107.</span><span class="n">batch</span>      <span class="n">batch</span>          <span class="mi">1</span>        <span class="mi">1</span>   <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>          <span class="mi">0</span>   <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">32</span>      <span class="mi">0</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">999107.</span><span class="n">exte</span><span class="o">+</span>     <span class="n">extern</span>          <span class="mi">1</span>        <span class="mi">1</span>   <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>          <span class="mi">0</span>   <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">32</span>      <span class="mi">0</span><span class="p">:</span><span class="mi">0</span>
+
+<span class="n">Memory</span> <span class="n">usage</span> <span class="n">stats</span><span class="p">:</span>
+       <span class="n">JobID</span>     <span class="n">MaxRSS</span> <span class="n">MaxRSSTask</span>     <span class="n">AveRSS</span> <span class="n">MaxPages</span>   <span class="n">MaxPagesTask</span>   <span class="n">AvePages</span>
+<span class="o">------------</span> <span class="o">----------</span> <span class="o">----------</span> <span class="o">----------</span> <span class="o">--------</span> <span class="o">--------------</span> <span class="o">----------</span>
+<span class="mi">999107</span>
+<span class="mf">999107.</span><span class="n">batch</span>   <span class="mi">1562896</span><span class="n">K</span>          <span class="mi">0</span>   <span class="mi">1562896</span><span class="n">K</span>        <span class="mi">1</span>              <span class="mi">0</span>          <span class="mi">1</span>
+<span class="mf">999107.</span><span class="n">exte</span><span class="o">+</span>          <span class="mi">0</span>          <span class="mi">0</span>          <span class="mi">0</span>        <span class="mi">0</span>              <span class="mi">0</span>          <span class="mi">0</span>
+
+<span class="n">Disk</span> <span class="n">usage</span> <span class="n">stats</span><span class="p">:</span>
+       <span class="n">JobID</span>  <span class="n">MaxDiskRead</span> <span class="n">MaxDiskReadTask</span>    <span class="n">AveDiskRead</span> <span class="n">MaxDiskWrite</span> <span class="n">MaxDiskWriteTask</span>   <span class="n">AveDiskWrite</span>
+<span class="o">------------</span> <span class="o">------------</span> <span class="o">---------------</span> <span class="o">--------------</span> <span class="o">------------</span> <span class="o">----------------</span> <span class="o">--------------</span>
+<span class="mi">999107</span>
+<span class="mf">999107.</span><span class="n">batch</span>        <span class="mf">0.13</span><span class="n">M</span>               <span class="mi">0</span>          <span class="mf">0.13</span><span class="n">M</span>        <span class="mf">0.00</span><span class="n">M</span>                <span class="mi">0</span>          <span class="mf">0.00</span><span class="n">M</span>
+<span class="mf">999107.</span><span class="n">exte</span><span class="o">+</span>        <span class="mf">0.00</span><span class="n">M</span>               <span class="mi">0</span>          <span class="mf">0.00</span><span class="n">M</span>            <span class="mi">0</span>                <span class="mi">0</span>              <span class="mi">0</span>
+</pre></div>
+</div>
+<p>From this (see below <code class="docutils literal notranslate"><span class="pre">Memory</span> <span class="pre">usage</span> <span class="pre">stats</span></code>) we can find out that the job needed
+<code class="docutils literal notranslate"><span class="pre">1562896K</span></code> memory (1562896 KB), so around 1.5 GB.</p>
+<p>Note that Slurm samples the memory every 30 seconds. This means that if your
+job is shorter than 30 seconds, it will show that your calculation consumed
+zero memory which is probably wrong.  The sampling rate also means that if your
+job contains short peaks of high memory consumption, the sampling may
+completely miss these.</p>
+<div class="section" id="a-short-note-about-the-memory-stats-values">
+<h4>A short note about the memory stats values.<a class="headerlink" href="#a-short-note-about-the-memory-stats-values" title="Permalink to this headline">¶</a></h4>
+<p>In the <a class="reference external" href="https://slurm.schedmd.com/sacct.html">Slurm manual for <code class="docutils literal notranslate"><span class="pre">sacct</span></code></a> the following is stated for
+<code class="docutils literal notranslate"><span class="pre">AvgRSS</span></code>:  <em>Average resident set size of all tasks in job.</em> and
+similarly for <code class="docutils literal notranslate"><span class="pre">MaxRSS</span></code> and all other <code class="docutils literal notranslate"><span class="pre">Max&lt;something&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">Ave&lt;something&gt;</span></code> values. However, this statement needs a comment.
+These values give information for each <em>step</em> of a job, each being a call
+to <code class="docutils literal notranslate"><span class="pre">srun</span></code> or <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> in your job script.  Also, the job script itself
+(commands run in the jobscript without using <code class="docutils literal notranslate"><span class="pre">srun</span></code> or <code class="docutils literal notranslate"><span class="pre">mpirun</span></code>) is
+counted as a <em>step</em>, called the <code class="docutils literal notranslate"><span class="pre">batch</span></code> step.  The <em>average</em> or
+<em>maximum</em> is calculated over the tasks (processes) in each step.
+Meaning, if you call <code class="docutils literal notranslate"><span class="pre">srun</span></code> or <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> multiple times in your
+job script they will get one line each in the <code class="docutils literal notranslate"><span class="pre">sacct</span></code> output with
+separate entries for both <code class="docutils literal notranslate"><span class="pre">AvgRSS</span></code> and <code class="docutils literal notranslate"><span class="pre">MaxRSS</span></code>.</p>
+</div>
+</div>
+<div class="section" id="by-using-sacct">
+<h3>By using sacct<a class="headerlink" href="#by-using-sacct" title="Permalink to this headline">¶</a></h3>
+<p>This creates a short version of the above.</p>
+<p>As an example, I want to know this for my job which had the number <code class="docutils literal notranslate"><span class="pre">999107</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sacct -j 999107 --format=MaxRSS
+
+    MaxRSS
+----------
+
+  1562896K
+         0
+</pre></div>
+</div>
+<p>From this I see that the job needed
+<code class="docutils literal notranslate"><span class="pre">1562896K</span></code> memory (1562896 KB), so around 1.5 GB.</p>
+<p>Please see the <a class="reference external" href="#a-short-note-about-the-memory-stats-values">comment about <code class="docutils literal notranslate"><span class="pre">MaxRSS</span></code> and <code class="docutils literal notranslate"><span class="pre">AvgRSS</span></code></a>.</p>
+</div>
+<div class="section" id="by-prepending-your-binary-with-time">
+<h3>By prepending your binary with time<a class="headerlink" href="#by-prepending-your-binary-with-time" title="Permalink to this headline">¶</a></h3>
+<p>In your job script instead of running <code class="docutils literal notranslate"><span class="pre">./mybinary</span></code> directly, prepend it with <code class="docutils literal notranslate"><span class="pre">/usr/bin/time</span> <span class="pre">-v</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ... rest of the job script</span>
+
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">time</span> <span class="o">-</span><span class="n">v</span> <span class="o">./</span><span class="n">mybinary</span>
+</pre></div>
+</div>
+<p>Then in the Slurm output we find:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Command</span> <span class="n">being</span> <span class="n">timed</span><span class="p">:</span> <span class="s2">&quot;./mybinary&quot;</span>
+<span class="n">User</span> <span class="n">time</span> <span class="p">(</span><span class="n">seconds</span><span class="p">):</span> <span class="mf">0.18</span>
+<span class="n">System</span> <span class="n">time</span> <span class="p">(</span><span class="n">seconds</span><span class="p">):</span> <span class="mf">0.34</span>
+<span class="n">Percent</span> <span class="n">of</span> <span class="n">CPU</span> <span class="n">this</span> <span class="n">job</span> <span class="n">got</span><span class="p">:</span> <span class="mi">1</span><span class="o">%</span>
+<span class="n">Elapsed</span> <span class="p">(</span><span class="n">wall</span> <span class="n">clock</span><span class="p">)</span> <span class="n">time</span> <span class="p">(</span><span class="n">h</span><span class="p">:</span><span class="n">mm</span><span class="p">:</span><span class="n">ss</span> <span class="ow">or</span> <span class="n">m</span><span class="p">:</span><span class="n">ss</span><span class="p">):</span> <span class="mi">0</span><span class="p">:</span><span class="mf">31.54</span>
+<span class="n">Average</span> <span class="n">shared</span> <span class="n">text</span> <span class="n">size</span> <span class="p">(</span><span class="n">kbytes</span><span class="p">):</span> <span class="mi">0</span>
+<span class="n">Average</span> <span class="n">unshared</span> <span class="n">data</span> <span class="n">size</span> <span class="p">(</span><span class="n">kbytes</span><span class="p">):</span> <span class="mi">0</span>
+<span class="n">Average</span> <span class="n">stack</span> <span class="n">size</span> <span class="p">(</span><span class="n">kbytes</span><span class="p">):</span> <span class="mi">0</span>
+<span class="n">Average</span> <span class="n">total</span> <span class="n">size</span> <span class="p">(</span><span class="n">kbytes</span><span class="p">):</span> <span class="mi">0</span>
+<span class="n">Maximum</span> <span class="n">resident</span> <span class="nb">set</span> <span class="n">size</span> <span class="p">(</span><span class="n">kbytes</span><span class="p">):</span> <span class="mi">1563320</span>
+<span class="n">Average</span> <span class="n">resident</span> <span class="nb">set</span> <span class="n">size</span> <span class="p">(</span><span class="n">kbytes</span><span class="p">):</span> <span class="mi">0</span>
+<span class="n">Major</span> <span class="p">(</span><span class="n">requiring</span> <span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="p">)</span> <span class="n">page</span> <span class="n">faults</span><span class="p">:</span> <span class="mi">9</span>
+<span class="n">Minor</span> <span class="p">(</span><span class="n">reclaiming</span> <span class="n">a</span> <span class="n">frame</span><span class="p">)</span> <span class="n">page</span> <span class="n">faults</span><span class="p">:</span> <span class="mi">1525</span>
+<span class="n">Voluntary</span> <span class="n">context</span> <span class="n">switches</span><span class="p">:</span> <span class="mi">25</span>
+<span class="n">Involuntary</span> <span class="n">context</span> <span class="n">switches</span><span class="p">:</span> <span class="mi">2</span>
+<span class="n">Swaps</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">File</span> <span class="n">system</span> <span class="n">inputs</span><span class="p">:</span> <span class="mi">1553</span>
+<span class="n">File</span> <span class="n">system</span> <span class="n">outputs</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Socket</span> <span class="n">messages</span> <span class="n">sent</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Socket</span> <span class="n">messages</span> <span class="n">received</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Signals</span> <span class="n">delivered</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Page</span> <span class="n">size</span> <span class="p">(</span><span class="nb">bytes</span><span class="p">):</span> <span class="mi">4096</span>
+<span class="n">Exit</span> <span class="n">status</span><span class="p">:</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>The relevant information in this context is <code class="docutils literal notranslate"><span class="pre">Maximum</span> <span class="pre">resident</span> <span class="pre">set</span> <span class="pre">size</span> <span class="pre">(kbytes)</span></code>.</p>
+</div>
+<div class="section" id="by-using-arm-performance-reports">
+<h3>By using Arm Performance Reports<a class="headerlink" href="#by-using-arm-performance-reports" title="Permalink to this headline">¶</a></h3>
+<p>You can profile your job using <a class="reference internal" href="performance.html"><span class="doc std std-doc">Arm Performance Reports</span></a>.</p>
+<p>This generates a HTML and text summary. These reports contain lots of
+interesting information. Here showing the relevant part of the text report for
+the memory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Memory</span><span class="p">:</span>
+<span class="n">Per</span><span class="o">-</span><span class="n">process</span> <span class="n">memory</span> <span class="n">usage</span> <span class="n">may</span> <span class="n">also</span> <span class="n">affect</span> <span class="n">scaling</span><span class="p">:</span>
+<span class="n">Mean</span> <span class="n">process</span> <span class="n">memory</span> <span class="n">usage</span><span class="p">:</span>                    <span class="mf">72.4</span> <span class="n">MiB</span>
+<span class="n">Peak</span> <span class="n">process</span> <span class="n">memory</span> <span class="n">usage</span><span class="p">:</span>                    <span class="mf">74.6</span> <span class="n">MiB</span>
+<span class="n">Peak</span> <span class="n">node</span> <span class="n">memory</span> <span class="n">usage</span><span class="p">:</span>                       <span class="mf">9.0</span><span class="o">%</span> <span class="o">||</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="by-reducing-the-memory-parameter-until-a-job-fails">
+<h3>By reducing the memory parameter until a job fails<a class="headerlink" href="#by-reducing-the-memory-parameter-until-a-job-fails" title="Permalink to this headline">¶</a></h3>
+<p>This is not an elegant approach but can be an OK approach to calibrate one
+script before submitting 300 similar jobs.</p>
+<p>What you can do is to start with a generous memory setting:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --mem-per-cpu=4000M</span>
+</pre></div>
+</div>
+<p>And gradually reduce it until your job fails with <code class="docutils literal notranslate"><span class="pre">oom-kill</span></code> (“oom” is short for “out of memory”):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">slurm_script</span><span class="p">:</span> <span class="n">line</span> <span class="mi">11</span><span class="p">:</span> <span class="mi">33333</span> <span class="n">Killed</span> <span class="o">./</span><span class="n">mybinary</span>
+<span class="n">slurmstepd</span><span class="p">:</span> <span class="n">error</span><span class="p">:</span> <span class="n">Detected</span> <span class="mi">1</span> <span class="n">oom</span><span class="o">-</span><span class="n">kill</span> <span class="n">event</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">in</span> <span class="n">step</span> <span class="mf">997857.</span><span class="n">batch</span> <span class="n">cgroup</span><span class="o">.</span>
+<span class="n">Some</span> <span class="n">of</span> <span class="n">your</span> <span class="n">processes</span> <span class="n">may</span> <span class="n">have</span> <span class="n">been</span> <span class="n">killed</span> <span class="n">by</span> <span class="n">the</span> <span class="n">cgroup</span> <span class="n">out</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">memory</span>
+<span class="n">handler</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Then you also know. But there are more elegant ways to find this out (see
+options above).</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="common_job_failures.html" class="btn btn-neutral float-right" title="Common job failures" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="monitoring.html" class="btn btn-neutral float-left" title="Monitoring jobs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

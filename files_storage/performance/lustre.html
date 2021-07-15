@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Storage performance: Lustre file system &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Storage performance: Lustre file system</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/files_storage/performance/lustre.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="storage-performance-lustre-file-system">
+<h1>Storage performance: Lustre file system<a class="headerlink" href="#storage-performance-lustre-file-system" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="betzy-and-fram">
+<h2>Betzy and Fram<a class="headerlink" href="#betzy-and-fram" title="Permalink to this headline">¶</a></h2>
+<p>To get best throughput on the scratch file system (<code class="docutils literal notranslate"><span class="pre">/cluster/work</span></code>), you may
+need to change the data striping. Striping shall be adjusted based on the
+client access pattern to optimally load the object storage targets (OSTs).
+On Lustre, the OSTs are referring to disks or storage volumes constructing the
+whole file system.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">stripe_count</span></code> indicates how many OSTs to use.
+The <code class="docutils literal notranslate"><span class="pre">stripe_size</span></code> indicates how much data to write to one OST before moving to
+the next OST.</p>
+<ul class="simple">
+<li><p>Striping will only take affect <em>only</em> on new files, created or copied
+into the specified directory or file name.</p></li>
+<li><p>Default <code class="docutils literal notranslate"><span class="pre">stripe_count</span></code> on <code class="docutils literal notranslate"><span class="pre">/cluster</span></code> file system on Fram is 1.</p></li>
+<li><p>Betzy is implementing Progressive File Layouts to dynamically set file stripe
+size based on file size growth.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Betzy: Progressive File Layouts</strong></p>
+<p>PFL removes the need to explicitly specify striping for each file,
+assigning different Lustre striping characteristics to contiguous
+segments of a ﬁle as it grows.
+Dynamic striping allows lower overhead for small files and assures
+increased bandwidth for larger files.
+However, note that for workloads with signiﬁcant random read phases it is
+best to manually assign stripe size and count.</p>
+</div>
+<ul class="simple">
+<li><p>Betzy implements another new feature, called data on metadata for small files
+with size under 2KB.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Betzy: Data on Metadata</strong></p>
+<p>Lustre file system performance is optimized for large files. To balance
+that, data on metadata (DoM) is enabled on Betzy to ensure higher
+performance in case of frequently accessed small files.
+Files accessed with a size of 2KB or smaller will be stored on a very
+fast NVMe JBOD directly connected to the metadata servers.</p>
+</div>
+<p>For more detailed information on striping, please consult the
+<a class="reference external" href="https://www.lustre.org/">Lustre</a> documentation.</p>
+<div class="section" id="how-to-find-out-the-current-striping">
+<h3>How to find out the current striping<a class="headerlink" href="#how-to-find-out-the-current-striping" title="Permalink to this headline">¶</a></h3>
+<p>To see current stripe size (in bytes), use <code class="docutils literal notranslate"><span class="pre">lfs</span> <span class="pre">getsripe</span> <span class="pre">[file_system,</span> <span class="pre">dir,</span> <span class="pre">file]</span></code>
+command. e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lfs getstripe /cluster/tmp/test
+
+/cluster/tmp/test
+stripe_count:   1 stripe_size:    1048576 stripe_offset:  -1
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Rules of thumb for proper stripe counts</strong></p>
+<p>For best performance we urge you to always profile the I/O characterstics
+of your HPC application and tune the I/O behavior.</p>
+<p>Down below is a list of rules you may apply to properly set stripe count for
+your files:</p>
+<ul class="simple">
+<li><p>files smaller than 1GB: default striping</p></li>
+<li><p>files size between 1GB - 10GB: stripe count 2</p></li>
+<li><p>files size between 10GB - 1TB: stripe count 4</p></li>
+<li><p>files bigger than 1TB: stripe count 8</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="large-files">
+<h3>Large files<a class="headerlink" href="#large-files" title="Permalink to this headline">¶</a></h3>
+<p>For large files it is advisable to increase stripe count and perhaps chunk size
+too. e.g.:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># stripe huge file across 8 OSTs</span>
+$ lfs setstripe --stripe-count <span class="m">8</span> <span class="s2">&quot;my_file&quot;</span>
+
+<span class="c1"># stripe across 4 OSTs using 8 MB chunks.</span>
+$ lfs setstripe --stripe-size 8M --stripe-count <span class="m">4</span> <span class="s2">&quot;my_dir&quot;</span>
+</pre></div>
+</div>
+<p>It is advisable to use higher stripe count for scientific application that
+writes to a single file from hundreds of nodes, or a binary executable that
+is loaded by many nodes when an application starts.</p>
+<p>Choose a stripe size between 1 MB and 4 MB for sequential I/O. Larger than 4MB
+stripe size may result in performance loss in case of shared files.</p>
+<p>Set the stripe size a multiple of the write() size, if your application is
+writing in a consistent and aligned way.</p>
+</div>
+<div class="section" id="small-files">
+<h3>Small files<a class="headerlink" href="#small-files" title="Permalink to this headline">¶</a></h3>
+<p>For many small files and one client accessing each file, change stripe count to 1.
+Avoid having small files with large stripe counts. This negatively impacts the
+performance due to the unnecessary communication to multiple OSTs.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ lfs setstripe --stripe-count <span class="m">1</span> <span class="s2">&quot;my_dir&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

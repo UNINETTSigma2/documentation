@@ -1,0 +1,492 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Installing R packages &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Running containers" href="../containers.html" />
+    <link rel="prev" title="Installing Python packages" href="python.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installed_software.html">Installed software</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../userinstallsw.html">Installing software as user</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="easybuild.html">Installing software with EasyBuild</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Installing Python packages</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installing R packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#selecting-the-correct-module-to-load">Selecting the correct module to load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-install-packages-as-a-user">How to install packages as a user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rscript-example-in-a-job">Rscript example in a job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bioconductor">Bioconductor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#selecting-the-correct-module-load">Selecting the correct module load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#license-information">License Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../userinstallsw.html">Installing software as user</a> &raquo;</li>
+        
+      <li>Installing R packages</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/software/userinstallsw/R.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installing-r-packages">
+<h1>Installing R packages<a class="headerlink" href="#installing-r-packages" title="Permalink to this headline">¶</a></h1>
+<p>R is a programming environment for performing statistical operations.</p>
+<p>To find out more, visit the R website at: <a class="reference external" href="https://www.r-project.org">https://www.r-project.org</a></p>
+<div class="section" id="selecting-the-correct-module-to-load">
+<h2>Selecting the correct module to load<a class="headerlink" href="#selecting-the-correct-module-to-load" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Module</p></th>
+<th class="text-align:left head"><p>Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>R-3.5.x</p></td>
+<td class="text-align:left"><p>R/3.5.1-foss-2018b  R/3.5.1-intel-2018b</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>R-3.6.0</p></td>
+<td class="text-align:left"><p>R/3.6.0-foss-2019a R/3.6.0-fosscuda-2019a  R/3.6.0-intel-2019a</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>R-3.6.1</p></td>
+<td class="text-align:left"><p>R/3.6.1-foss-2019a</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>R-3.6.2</p></td>
+<td class="text-align:left"><p>R/3.6.2-foss-2019b R/3.6.2-fosscuda-2019b R/3.6.2-intel-2019b</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>R-4.0.x</p></td>
+<td class="text-align:left"><p>R/4.0.0-foss-2020a R/4.0.3-foss-2020b</p></td>
+</tr>
+</tbody>
+</table>
+<p>To see available versions when logged into Fram issue command</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>module spider R
+</pre></div>
+</div>
+<p>To use R type</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>module load R/&lt;version&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you do not have specific requirements please use the latest,
+as of now it is  “R/4.0.0-foss-2020a”</p>
+</div>
+</div>
+<div class="section" id="how-to-install-packages-as-a-user">
+<h2>How to install packages as a user<a class="headerlink" href="#how-to-install-packages-as-a-user" title="Permalink to this headline">¶</a></h2>
+<p>There might be some packages missing in the R module we have installed or may be you need a different
+version than what we have. In that case you could install the packages yourself. For example,
+following is the procedure to install the package called XYZ by the user <em>user1</em> on  SAGA.
+Please remmeber to use your username instead of <em>user1</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Installing packages may take a long time, specailly if your comparing with
+installing on a Windows or Mac computer. The reason for this is that unlike
+Windows or Mac some packages will be compiled from source code to work on
+the operating system we have on the HPC systems.</p></li>
+<li><p>There is no internet access from compute nodes, so you can not install
+packages as part of your job. You need to install them using the login node
+and make sure to provide the path in the job script (examples below)</p></li>
+</ul>
+</div>
+<p><em>The examples is for SAGA</em></p>
+<ul class="simple">
+<li><p>Login to saga</p></li>
+<li><p>Load the module</p></li>
+<li><p>Create a directory to place the libraries</p></li>
+<li><p>Start R</p></li>
+<li><p>Set the library path</p></li>
+<li><p>Install the package</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        [user1@login-1.SAGA ~]$ module restore
+        [user1@login-1.SAGA ~]$ module load R/4.0.0-foss-2020a
+        [user1@login-1.SAGA ~]$ mkdir /cluster/home/user1/R
+        [user1@login-1.SAGA ~]$ R
+</pre></div>
+</div>
+<p>Use the R prompt to install the package</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="c1">#Set the location for the packages to be installed</span>
+      <span class="o">&gt;</span> <span class="o">.</span><span class="n">libPaths</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;/cluster/home/user1/R&quot;</span><span class="p">,</span><span class="o">.</span><span class="n">libPaths</span><span class="p">()))</span>
+      <span class="c1">#install the package</span>
+      <span class="o">&gt;</span>  <span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;XYX&quot;</span><span class="p">,</span> <span class="n">repo</span><span class="o">=</span><span class="s2">&quot;cran.uib.no&quot;</span><span class="p">)</span>
+      <span class="c1">#Check if the package can be  loaded</span>
+      <span class="o">&gt;</span> <span class="n">library</span><span class="p">(</span><span class="n">XYZ</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>How to use an installed package
+After installing, everytime the packages needed to be accessed
+The <code class="docutils literal notranslate"><span class="pre">.libPaths(&quot;/cluster/home/user1/R&quot;)</span></code> setting should be done.
+When submitting R Script as a job, the <code class="docutils literal notranslate"><span class="pre">.libPath(&quot;/cluster/home/user1/R&quot;)</span></code> should be
+specified before calling the package.</p>
+</div>
+<div class="section" id="rscript-example-in-a-job">
+<h2>Rscript example in a job<a class="headerlink" href="#rscript-example-in-a-job" title="Permalink to this headline">¶</a></h2>
+<p>In order to submit as a job, we need to include all R processing steps in an Rscript</p>
+<p>Example Rscript</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[user1@login-3.SAGA ~]$ cat test.rscript 
+
+#!/usr/bin/env Rscript
+
+.libPaths(c(&quot;/cluster/home/user1/R&quot;,.libPaths()))
+library(&quot;ggplot2&quot;)
+out_put = paste(&quot;Processing started on&quot;, Sys.info()[&quot;nodename&quot;])
+paste(out_put)
+
+mean_plus_this &lt;- function(data, addthis = 0) {
+  new_data &lt;- mean(data) + addthis
+  return(new_data)
+}
+
+test_data &lt;- c(4, 40, 9, 1)
+mean_plus_this(test_data, 3)
+
+</pre></div>
+</div>
+<p>Example job script to call the above Rscript</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#SBATCH --account=nn9999k</span>
+<span class="c1">#SBATCH --job-name=R_script_test</span>
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1">#SBATCH --mem=8G</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --time=15:00</span>
+
+<span class="nb">set</span> <span class="o">-</span><span class="n">o</span> <span class="n">errexit</span> <span class="c1"># Make bash exit on any error</span>
+<span class="nb">set</span> <span class="o">-</span><span class="n">o</span> <span class="n">nounset</span> <span class="c1"># Treat unset variables as errors</span>
+
+<span class="n">module</span> <span class="n">restore</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">R</span><span class="o">/</span><span class="mf">4.0.0</span><span class="o">-</span><span class="n">foss</span><span class="o">-</span><span class="mi">2020</span><span class="n">a</span>
+
+<span class="n">Rscript</span> <span class="n">test</span><span class="o">.</span><span class="n">rscript</span> <span class="o">&gt;</span> <span class="n">output</span><span class="o">.</span><span class="n">Rout</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">error</span><span class="o">.</span><span class="n">Rout</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="bioconductor">
+<h2>Bioconductor<a class="headerlink" href="#bioconductor" title="Permalink to this headline">¶</a></h2>
+<p>We have also made bioconductor as a module with the base bioconductor packages.
+Not all packages found in biocondctor repository are pre-installed. This is becasue
+compatibility issues, i.e. not all packages can be installed with the same set of
+dependancies and to make it easier for the user to select the exact version
+combinations for some packages.</p>
+</div>
+<div class="section" id="selecting-the-correct-module-load">
+<h2>Selecting the correct module load<a class="headerlink" href="#selecting-the-correct-module-load" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Module</p></th>
+<th class="text-align:left head"><p>Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Bioconductor-3.8</p></td>
+<td class="text-align:left"><p>R-bundle-Bioconductor/3.8-foss-2018b-R-3.5.1 R-bundle-Bioconductor/3.8-intel-2018b-R-3.5.1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Bioconductor-3.9</p></td>
+<td class="text-align:left"><p>R-bundle-Bioconductor/3.9-foss-2019a-R-3.6.0</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Bioconductor-3.11</p></td>
+<td class="text-align:left"><p>R-bundle-Bioconductor/3.11-foss-2020a-R-4.0.0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Bioconductor-3.12</p></td>
+<td class="text-align:left"><p>R-bundle-Bioconductor/3.12-foss-2020b-R-4.0.3</p></td>
+</tr>
+</tbody>
+</table>
+<p>To see available versions when logged into Fram issue command</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>module spider bioconductor
+</pre></div>
+</div>
+<p>If you do not have specific requirements please use the latest,
+as of now it is  “R-bundle-Bioconductor/3.12-foss-2020b-R-4.0.3”</p>
+<p>When you load the Bioconductor module a compatible R module and
+all supporting module that are needed to build libraries will be
+loaded.</p>
+<p>Here is an example showing how to install a bioconductor package</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        [user1@login-1.SAGA ~]$ module restore
+        [user1@login-1.SAGA ~]$ module load R-bundle-Bioconductor/3.12-foss-2020b-R-4.0.3
+        [user1@login-1.SAGA ~]$ mkdir /cluster/home/user1/R
+        [user1@login-1.SAGA ~]$ R
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Use the R prompt to install the package</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="c1">#Set the location for the packages to be installed</span>
+      <span class="o">&gt;</span> <span class="o">.</span><span class="n">libPaths</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;/cluster/home/user1/R&quot;</span><span class="p">,</span><span class="o">.</span><span class="n">libPaths</span><span class="p">()))</span>
+      <span class="c1">#install the package</span>
+      <span class="o">&gt;</span>  <span class="n">BiocManager</span><span class="p">::</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;XYZ&quot;</span><span class="p">,</span> <span class="n">repo</span><span class="o">=</span><span class="s2">&quot;cran.uib.no&quot;</span><span class="p">)</span>
+      <span class="c1">#Check if the package can be  loaded</span>
+      <span class="o">&gt;</span> <span class="n">library</span><span class="p">(</span><span class="n">XYZ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="license-information">
+<h2>License Information<a class="headerlink" href="#license-information" title="Permalink to this headline">¶</a></h2>
+<p>R is available under several open-source licenses.
+For more information,
+visit <a class="reference external" href="https://www.r-project.org/Licenses">https://www.r-project.org/Licenses/</a></p>
+<p>It is the user’s responsibility to make sure they adhere to the license agreements.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../containers.html" class="btn btn-neutral float-right" title="Running containers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="python.html" class="btn btn-neutral float-left" title="Installing Python packages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

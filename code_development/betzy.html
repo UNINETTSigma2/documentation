@@ -1,0 +1,422 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Software environment on Betzy &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Compilers" href="compilers.html" />
+    <link rel="prev" title="Building scientific software" href="building.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Code development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="building.html">Building scientific software</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Software environment on Betzy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#foss-toolchain">foss toolchain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#intel-toolchain">intel toolchain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiler-flags">Compiler flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gcc-gfortran">gcc/gfortran</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ifort-icc-ipcp">ifort/icc/ipcp</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mpi-libraries">MPI libraries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#openmpi">OpenMPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intel-mpi">Intel MPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-hybrid-models">Running Hybrid models</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mkl-library">MKL library</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compilers.html">Compilers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugging.html">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">Performance Analysis and Tuning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides.html">Guides</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="overview.html">Code development</a> &raquo;</li>
+        
+      <li>Software environment on Betzy</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/code_development/betzy.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="software-environment-on-betzy">
+<h1>Software environment on Betzy<a class="headerlink" href="#software-environment-on-betzy" title="Permalink to this headline">¶</a></h1>
+<p>As on Fram and Saga, scientific software on Betzy will be installed using the
+EasyBuild system, and the Lmod modules tool will be used for changing
+environment setup via modulefiles.</p>
+<p>The two <em>common toolchains</em> <code class="docutils literal notranslate"><span class="pre">foss</span></code> and <code class="docutils literal notranslate"><span class="pre">intel</span></code> will be installed on Betzy.</p>
+<div class="section" id="foss-toolchain">
+<h2>foss toolchain<a class="headerlink" href="#foss-toolchain" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>GCC compilers (<code class="docutils literal notranslate"><span class="pre">gcc</span></code>, <code class="docutils literal notranslate"><span class="pre">g++</span></code>, <code class="docutils literal notranslate"><span class="pre">gfortran</span></code>)</p></li>
+<li><p>Open MPI library</p></li>
+<li><p>OpenBLAS (including LAPACK) + ScaLAPACK</p></li>
+<li><p>FFTW library</p></li>
+</ul>
+</div>
+<div class="section" id="intel-toolchain">
+<h2>intel toolchain<a class="headerlink" href="#intel-toolchain" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Intel compilers (<code class="docutils literal notranslate"><span class="pre">icc</span></code>, <code class="docutils literal notranslate"><span class="pre">icpc</span></code>, <code class="docutils literal notranslate"><span class="pre">ifort</span></code>)</p></li>
+<li><p>Intel MPI library</p></li>
+<li><p>Intel MKL library (including BLAS, LAPACK, ScaLAPACK, FFT)</p></li>
+</ul>
+<p>Regarding compiler optimization this needs to be investigated case by case. Aggressive optimization should be added only to files
+where it makes a difference, as it increases the probability of the compiler generating wrong code or exposing
+floating-point issues in the application. A few starting suggestions are:</p>
+</div>
+<div class="section" id="compiler-flags">
+<h2>Compiler flags<a class="headerlink" href="#compiler-flags" title="Permalink to this headline">¶</a></h2>
+<p>A set of suggested compiler flags are given below, these have been tested and used, but users are
+advised to read the documentation and try other combinations as not all code are alike.</p>
+<div class="section" id="gcc-gfortran">
+<h3>gcc/gfortran<a class="headerlink" href="#gcc-gfortran" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>-O3</p></li>
+<li><p>-O3 -march=znver2 -mtune=znver2 (recommended)</p></li>
+<li><p>-O3 -march=znver2 -mtune=znver2 -mfma -mavx2 -m3dnow -fomit-frame-pointer</p></li>
+</ul>
+</div>
+<div class="section" id="ifort-icc-ipcp">
+<h3>ifort/icc/ipcp<a class="headerlink" href="#ifort-icc-ipcp" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>-O3</p></li>
+<li><p>-O3 -march=core-avx2</p></li>
+<li><p>-O3 -xavx</p></li>
+<li><p>-O3 -xavx2 (recommended, for all execpt for main() )</p></li>
+<li><p>-O3 -xcore-avx2</p></li>
+</ul>
+<p>The above applies to GCC 9.3 and Intel 2019b, and the choices are listed in
+increased performance as obtained with a DGEMM matrix multiplication test
+(which show significant performance improvement), it is also verified using one
+of the major benchmarks used.  Please notice that ifort performs substantially
+better (2-4x) than gfortran with the dgemm.f test. Also, building the main
+routine in the program file with <em>-xcore-avx2</em>, <em>-xavx</em> or <em>-xavx2</em> is not
+recommended.  It’s known that building the main() (C and Fortran) with these
+flags trigger the Intel processor run time check, causing the application to
+abort.</p>
+</div>
+</div>
+<div class="section" id="mpi-libraries">
+<h2>MPI libraries<a class="headerlink" href="#mpi-libraries" title="Permalink to this headline">¶</a></h2>
+<p>Both OpenMPI and Intel MPI are installed. Built both for GNU and Intel.
+Experience have shown that performance varies. Both OpenMPI and Intel MPI are
+supported. OpenMPI is built with support for GNU compiler and Intel.</p>
+<div class="section" id="openmpi">
+<h3>OpenMPI<a class="headerlink" href="#openmpi" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>mpicc</p></li>
+<li><p>mpicxx</p></li>
+<li><p>mpif90</p></li>
+</ul>
+<p>For running with OpenMPI the processor binding is beneficial, adding <em>-bind-to core</em> is generally a good idea.</p>
+</div>
+<div class="section" id="intel-mpi">
+<h3>Intel MPI<a class="headerlink" href="#intel-mpi" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>mpiicc</p></li>
+<li><p>mpiicpc</p></li>
+<li><p>mpiifort</p></li>
+</ul>
+<p>For running Intel MPI, these settings are good starting points:</p>
+<ul class="simple">
+<li><p>I_MPI_PIN=1</p></li>
+<li><p>I_MPI_PIN_PROCESSOR_EXCLUDE_LIST=128-255 (run only on physical cores)</p></li>
+</ul>
+<p>For a correct Slurm job script file the only command needed to launch MPI programs are for :</p>
+<ul class="simple">
+<li><p>OpenMPI : mpirun -bind-to core ./a.out</p></li>
+<li><p>Intel MPI: mpirun ./a.out</p></li>
+</ul>
+</div>
+<div class="section" id="running-hybrid-models">
+<h3>Running Hybrid models<a class="headerlink" href="#running-hybrid-models" title="Permalink to this headline">¶</a></h3>
+<p>For hybrid models it’s important to set up Slurm to provide access to all
+available cores. An example could look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --ntasks=2048</span>
+<span class="c1">#SBATCH --nodes=64</span>
+<span class="c1">#SBATCH --ntasks-per-node=32</span>
+<span class="c1">#SBATCH --cpus-per-task=4</span>
+<span class="c1">#SBATCH --exclusive</span>
+</pre></div>
+</div>
+<p>This will request 32 MPI ranks per node, and leave cores for 4 threads per
+rank, e.g. each of the 32 ranks can schedule 4 threads yielding a total of 128
+cores which is the maximum number of cores on each compute node.  The
+<em>exclusive</em> is important, if not set Slurm will only allow the 32 cores
+allocated to be used (this will place all 4 threads onto one core). In order to
+have free access to all cores the <em>exclusive</em> need to be set.</p>
+</div>
+</div>
+<div class="section" id="mkl-library">
+<h2>MKL library<a class="headerlink" href="#mkl-library" title="Permalink to this headline">¶</a></h2>
+<p>The MKL perform run time check to select correct code to invoke. This test fail
+to find any Intel processor and hence select a code compatible with all x86-64
+processors. Setting the environment flag <em>MKL_DEBUG_CPU_TYPE=5</em> will force MKL
+to select code that uses <em>AVX2</em> instructions, hence increase performance
+significantly.</p>
+<p>It is possible to use Intel MKL library with the GNU compilers, this require
+some work resolve the symbol names at link time and library path at run time,
+but can provide a nice performance boost to both linear algebra and Fourier
+transforms.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="compilers.html" class="btn btn-neutral float-right" title="Compilers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="building.html" class="btn btn-neutral float-left" title="Building scientific software" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

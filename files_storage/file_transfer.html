@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>File transfer &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Storage performance tuning" href="performance.html" />
+    <link rel="prev" title="Data handling and storage policy" href="sharing_files.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">File transfer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#transferring-files-between-betzy-fram-saga-and-nird">Transferring files between Betzy/Fram/Saga and NIRD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scp-secure-copy-between-hosts-on-a-network">scp: secure copy between hosts on a network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sftp-interactive-secure-file-transfer-program-secure-ftp">sftp: interactive secure file transfer program (Secure FTP)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sharing-files-with-others">Sharing files with others</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>File transfer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/files_storage/file_transfer.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="file-transfer">
+<span id="id1"></span><h1>File transfer<a class="headerlink" href="#file-transfer" title="Permalink to this headline">¶</a></h1>
+<p>Access to the compute and storage systems (Betzy, Fram, Saga, NIRD) is permitted only trough <a class="reference external" href="https://en.wikipedia.org/wiki/Secure_Shell">secure
+shell</a> (ssh).</p>
+<p>One can use <code class="docutils literal notranslate"><span class="pre">scp</span></code>
+(secure copy) or <code class="docutils literal notranslate"><span class="pre">sftp</span></code> (secure file transfer protocol) and <code class="docutils literal notranslate"><span class="pre">rsync</span></code> to upload or download
+data. There are graphical frontends for these tools, for instance
+<a class="reference internal" href="file_transfer/WinSCP.html"><span class="doc std std-doc">WinSCP</span></a> for MS Windows.</p>
+<div class="section" id="transferring-files-between-betzy-fram-saga-and-nird">
+<h2>Transferring files between Betzy/Fram/Saga and NIRD<a class="headerlink" href="#transferring-files-between-betzy-fram-saga-and-nird" title="Permalink to this headline">¶</a></h2>
+<p>Since NIRD is mounted on the login nodes of Betzy, Fram, and Saga,
+one can use regular
+<code class="docutils literal notranslate"><span class="pre">cp</span></code> or <code class="docutils literal notranslate"><span class="pre">mv</span></code> commands on the cluster login nodes to copy or
+move files into or out of the NIRD project areas.</p>
+<p>For more information, please check out the <a class="reference internal" href="clusters.html"><span class="doc std std-doc">Betzy, Fram, and Saga</span></a>
+storage page.</p>
+<div class="section" id="scp-secure-copy-between-hosts-on-a-network">
+<h3>scp: secure copy between hosts on a network<a class="headerlink" href="#scp-secure-copy-between-hosts-on-a-network" title="Permalink to this headline">¶</a></h3>
+<p>Few typical examples when using <code class="docutils literal notranslate"><span class="pre">scp</span></code>:</p>
+<p>Copy single file to home folder on Fram
+note that folder is ommitted, home folder being default:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>scp my_file.tar.gz &lt;username&gt;@fram.sigma2.no:
+</pre></div>
+</div>
+<p>Copy a directory to work area:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>scp -r my_dir/ &lt;username&gt;@fram.sigma2.no:/cluster/work/users/&lt;username&gt;/
+</pre></div>
+</div>
+<p>Copy a result directory back to my laptop:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>scp -r &lt;username&gt;@fram.sigma2.no:/cluster/work/users/&lt;username&gt;/my_results /home/some/place
+</pre></div>
+</div>
+</div>
+<div class="section" id="sftp-interactive-secure-file-transfer-program-secure-ftp">
+<h3>sftp: interactive secure file transfer program (Secure FTP)<a class="headerlink" href="#sftp-interactive-secure-file-transfer-program-secure-ftp" title="Permalink to this headline">¶</a></h3>
+<p>In this example we copy all logs with names that start with “out” and
+end with “.log” from the <code class="docutils literal notranslate"><span class="pre">project1</span></code> folder to <code class="docutils literal notranslate"><span class="pre">/nird/projects/project1</span></code> on NIRD:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sftp &lt;username&gt;@nird.sigma2.no
+
+<span class="go">sftp&gt; lcd project1</span>
+<span class="go">sftp&gt; cd /nird/projects/project1</span>
+<span class="go">sftp&gt; put out*.log</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sharing-files-with-others">
+<h2>Sharing files with others<a class="headerlink" href="#sharing-files-with-others" title="Permalink to this headline">¶</a></h2>
+<p>You may can use <a class="reference external" href="https://filesender.uninett.no/">FileSender</a> to share files with
+others.
+We have two instances running:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://filesender2.uio.no/">https://filesender2.uio.no/</a></p></li>
+<li><p><a class="reference external" href="https://filesender.uninett.no/">https://filesender.uninett.no/</a></p></li>
+</ul>
+<p>Please use one of these: we can give support if needed.</p>
+<p>If the data you want to share could be useful for the scientific community,
+please use the <a class="reference internal" href="../nird_archive/user-guide.html"><span class="doc std std-doc">NIRD Archive</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="performance.html" class="btn btn-neutral float-right" title="Storage performance tuning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="sharing_files.html" class="btn btn-neutral float-left" title="Data handling and storage policy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

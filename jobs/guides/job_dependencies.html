@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Job Dependencies &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Job Dependencies</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/jobs/guides/job_dependencies.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="job-dependencies">
+<h1>Job Dependencies<a class="headerlink" href="#job-dependencies" title="Permalink to this headline">¶</a></h1>
+<p>In the following we demonstrate how to add dependecies between jobs using the Slurm option <code class="docutils literal notranslate"><span class="pre">--dependency</span></code>.
+The full list of dependency types can be found in the <a class="reference external" href="https://slurm.schedmd.com/sbatch.html">Slurm</a>
+documentation, but we will show the most useful cases here:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Option</p></th>
+<th class="text-align:left head"><p>Explanation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">after:&lt;jobid&gt;</span></code></p></td>
+<td class="text-align:left"><p>job can start after <code class="docutils literal notranslate"><span class="pre">&lt;jobid&gt;</span></code> has <em>started</em></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">afterany:&lt;jobid&gt;</span></code></p></td>
+<td class="text-align:left"><p>job can start after <code class="docutils literal notranslate"><span class="pre">&lt;jobid&gt;</span></code> has <em>completed</em> (any exit code)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">afterok:&lt;jobid&gt;</span></code></p></td>
+<td class="text-align:left"><p>job can start only if <code class="docutils literal notranslate"><span class="pre">&lt;jobid&gt;</span></code> has <em>completed</em> with exit code 0 (success)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">afternotok:&lt;jobid&gt;</span></code></p></td>
+<td class="text-align:left"><p>job can start only if <code class="docutils literal notranslate"><span class="pre">&lt;jobid&gt;</span></code> has <em>completed</em> with exit code <em>not</em> 0 (failed)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Several <code class="docutils literal notranslate"><span class="pre">&lt;jobid&gt;</span></code>s can be combined in a comma-separated list.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">--dependency</span></code> option must be added to the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command <em>before</em> the name of the
+job script, if you put it <em>after</em> the script it will be treated as an argument to the script, not
+to the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command. If the dependency was added successfully, you should see a <code class="docutils literal notranslate"><span class="pre">(Dependency)</span></code>
+in the <code class="docutils literal notranslate"><span class="pre">NODELIST(REASON)</span></code> column of the <code class="docutils literal notranslate"><span class="pre">squeue</span></code> output.</p>
+</div>
+<div class="section" id="beware-of-exit-status">
+<h2>Beware of exit status<a class="headerlink" href="#beware-of-exit-status" title="Permalink to this headline">¶</a></h2>
+<p>With some of the options it is important to keep in mind the <em>exit status</em> of
+your job script, to indicate whether or not the job finished successfully. By default the
+script will return the exit status of the <em>last command</em> executed in the script, which in
+general does not necessarily reflect the overall success of the job. It is then highly
+recommended adding the following to the script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> -o errexit  <span class="c1"># Exit the script on any error</span>
+<span class="nb">set</span> -o nounset  <span class="c1"># Treat any unset variables as an error</span>
+</pre></div>
+</div>
+<p>as well as capturing errors in critical commands along the way:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mycommand <span class="o">||</span> <span class="nb">exit</span> <span class="m">1</span>
+</pre></div>
+</div>
+<p>and finally <em>explicitly</em> return 0 in case the script finishes successfully:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Successful exit</span>
+<span class="nb">exit</span> <span class="m">0</span>
+</pre></div>
+</div>
+<p>Standard Slurm errors like out-of-memory or time limit will of course be captured automatically.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Here <code class="docutils literal notranslate"><span class="pre">pre.sh</span></code> is a pre-processing step for <code class="docutils literal notranslate"><span class="pre">job-1.sh</span></code>, <code class="docutils literal notranslate"><span class="pre">job-2.sh</span></code>, etc:</strong></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sbatch pre.sh
+Submitted batch job <span class="m">123123</span>
+$ <span class="k">for</span> i <span class="k">in</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span><span class="p">;</span> <span class="k">do</span> sbatch --dependency<span class="o">=</span>afterok:123123 job-<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sh<span class="p">;</span> <span class="k">done</span>
+Submitted batch job <span class="m">123124</span>
+Submitted batch job <span class="m">123125</span>
+Submitted batch job <span class="m">123126</span>
+Submitted batch job <span class="m">123127</span>
+Submitted batch job <span class="m">123128</span>
+$ squeue -u <span class="nv">$USER</span>
+       JOBID PARTITION    NAME     ST   USER   TIME  NODES NODELIST<span class="o">(</span>REASON<span class="o">)</span>
+      <span class="m">123124</span>    normal    job-1    PD     me   <span class="m">0</span>:00      <span class="m">1</span> <span class="o">(</span>Dependency<span class="o">)</span>
+      <span class="m">123125</span>    normal    job-2    PD     me   <span class="m">0</span>:00      <span class="m">1</span> <span class="o">(</span>Dependency<span class="o">)</span>
+      <span class="m">123126</span>    normal    job-3    PD     me   <span class="m">0</span>:00      <span class="m">1</span> <span class="o">(</span>Dependency<span class="o">)</span>
+      <span class="m">123127</span>    normal    job-4    PD     me   <span class="m">0</span>:00      <span class="m">1</span> <span class="o">(</span>Dependency<span class="o">)</span>
+      <span class="m">123128</span>    normal    job-5    PD     me   <span class="m">0</span>:00      <span class="m">1</span> <span class="o">(</span>Dependency<span class="o">)</span>
+      <span class="m">123123</span>    normal    pre       R     me   <span class="m">0</span>:28      <span class="m">1</span> c1-1
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Here <code class="docutils literal notranslate"><span class="pre">post.sh</span></code> is a post-processing step for <code class="docutils literal notranslate"><span class="pre">job-1.sh</span></code>, <code class="docutils literal notranslate"><span class="pre">job-2.sh</span></code>, etc:</strong></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="k">for</span> i <span class="k">in</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span><span class="p">;</span> <span class="k">do</span> sbatch job-<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sh<span class="p">;</span> <span class="k">done</span>
+Submitted batch job <span class="m">123123</span>
+Submitted batch job <span class="m">123124</span>
+Submitted batch job <span class="m">123125</span>
+Submitted batch job <span class="m">123126</span>
+Submitted batch job <span class="m">123127</span>
+$ sbatch --dependency<span class="o">=</span>afterok:123123,123124,123125,123126,123127 post.sh
+Submitted batch job <span class="m">123128</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Here <code class="docutils literal notranslate"><span class="pre">job-2.sh</span></code> is a fallback/retry in case <code class="docutils literal notranslate"><span class="pre">job-1.sh</span></code> fails:</strong></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sbatch job-1.sh
+Submitted batch job <span class="m">123123</span>
+$ sbatch --dependency<span class="o">=</span>afternotok:123123 job-2.sh
+Submitted batch job <span class="m">123124</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>If for some reason you want your jobs to run one after the other:</strong></p></li>
+</ul>
+<p>This is a bit cumbersome to do in a loop since the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command returns the text string
+“Submitted batch job” before showing the jobid, but we can extract it with a <code class="docutils literal notranslate"><span class="pre">awk</span> <span class="pre">'{</span> <span class="pre">print</span> <span class="pre">$4</span> <span class="pre">}'</span></code>
+command (which returns the 4th entry in the string), and use it in a loop as follows (not that
+the first job must be submitted individually, as it has no dependencies):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nv">lastid</span><span class="o">=</span><span class="sb">`</span>sbatch job-1.sh <span class="p">|</span> awk <span class="s1">&#39;{ print $4 }&#39;</span><span class="sb">`</span>
+$ <span class="nb">echo</span> <span class="nv">$lastid</span>
+<span class="m">123123</span>
+$ <span class="k">for</span> i <span class="k">in</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span><span class="p">;</span> <span class="k">do</span> <span class="nv">lastid</span><span class="o">=</span><span class="sb">`</span>sbatch --dependency<span class="o">=</span>after:<span class="si">${</span><span class="nv">lastid</span><span class="si">}</span> job-<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sh <span class="p">|</span> awk <span class="s1">&#39;{ print $4 }&#39;</span><span class="sb">`</span><span class="p">;</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">lastid</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
+<span class="m">123124</span>
+<span class="m">123125</span>
+<span class="m">123126</span>
+<span class="m">123127</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Configuration &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Configuration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/nird_toolkit/about-packages/jupyterhub/about.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="sharing-data-among-users">
+<h2>Sharing data among users<a class="headerlink" href="#sharing-data-among-users" title="Permalink to this headline">¶</a></h2>
+<p>To share data among the users of JupyterHub, when installing or reconfiguring,
+start by selecting a volume in the persistent storage field.
+Then, navigate to the <code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">configuration</span></code> section and check the <code class="docutils literal notranslate"><span class="pre">enabled</span></code>
+checkbox in the <code class="docutils literal notranslate"><span class="pre">sharedData</span></code> subsection.</p>
+<p><img alt="Reconfigure jupyter with shared data" src="../../../_images/jupyterhub_shared_data.png" /></p>
+<p>The shared data is by default not editable by other users, but you can enable
+this by unchecking the <code class="docutils literal notranslate"><span class="pre">readOnly</span></code> checkbox. Note that this will allow any
+users to add files or edit existing files.</p>
+<p>If you want to mount a subfolder in the persistent storage, specify the path
+to the subfolder in the <code class="docutils literal notranslate"><span class="pre">subPath</span></code> field. Note that this path is relative to
+the root of the persistent storage.</p>
+<div class="section" id="sharing-access-to-gpus">
+<h3>Sharing access to GPUs<a class="headerlink" href="#sharing-access-to-gpus" title="Permalink to this headline">¶</a></h3>
+<p>In many cases it is useful to share GPUs among all users. In order to allow users to access GPUs,
+<a class="reference external" href="https://ipyparallel.readthedocs.io/en/latest/">ipyparallel</a> is used.
+ipyparallel works by running separate Jupyter kernels on remote nodes.
+This enables a user to with very little modification run their notebook on another GPU enabled machine.
+To enable ipyparallel, ensure that <code class="docutils literal notranslate"><span class="pre">enabled</span></code> is ticked in the <code class="docutils literal notranslate"><span class="pre">ipyparallel</span></code> section of the <code class="docutils literal notranslate"><span class="pre">Adavanced</span> <span class="pre">configuration</span></code>.</p>
+<p>To use ipyparallel within a notebook, run the following script inside a notebook</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipyparallel</span> <span class="k">as</span> <span class="nn">ipp</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="n">rc</span> <span class="o">=</span> <span class="n">ipp</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+<span class="n">worker_id</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">rc</span><span class="o">.</span><span class="n">ids</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">rc</span> <span class="o">=</span> <span class="n">rc</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">targets</span><span class="o">=</span><span class="p">[</span><span class="n">worker_id</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>which will configure the ipyparallel client and select a single node which is used for execution.</p>
+<p>You are then able to run all code in a notebook cell by using the <code class="docutils literal notranslate"><span class="pre">%%px</span></code> notebook command. Output will be handled in the same manner as if the code was executed on the local kernel.
+Each execution node will mount the same volumes as the notebook, but will run as user with very limited access. It is therefore important to make all files used by the code readable to all users.</p>
+<p>So, a cell containing the following code</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">px</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/home/e19b7304-2d13ec-2d490f-2d9fa0-2de6d6b4c3a858/file.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>will be able to read the file stored in the users home directory.</p>
+<p>To read more about how to use ipyparallel with Jupyter notebooks, see the following <a class="reference external" href="https://ipyparallel.readthedocs.io/en/latest/tutorial/magics.html">link</a>.
+The <code class="docutils literal notranslate"><span class="pre">%%px</span></code> notebook magic also works with regular notebook magic commands, so commands like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%px
+!/home/e19b7304-2d13ec-2d490f-2d9fa0-2de6d6b4c3a858/gpu-enabled-binary
+</pre></div>
+</div>
+<p>will work if you need to execute other binaries on a GPU enabled machine.</p>
+</div>
+</div>
+</div>
+<div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="accessing-the-admin-panel">
+<h2>Accessing the admin panel<a class="headerlink" href="#accessing-the-admin-panel" title="Permalink to this headline">¶</a></h2>
+<p>Jupyterhub allows you to administer and access the notebooks that are
+associated with the Jupyterhub server. This can for instance be useful in
+order to help users with debugging, or shutting down notebooks that use a lot
+of resources.</p>
+<p>To access the admin panel, begin by navigating to the <code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">Panel</span></code> which
+should be in on the right-hand side of the Jupyter navigation bar on the top
+of the page.</p>
+<p><img alt="Jupyter notebook overview" src="../../../_images/jupyterhub_jup.png" /></p>
+<p>Then, click on the <code class="docutils literal notranslate"><span class="pre">Admin</span></code> tab in the navigation bar. This tab should be on
+the left side of the navigation bar.</p>
+<p><img alt="Jupyter control panel" src="../../../_images/jupyterhub_control_panel.png" /></p>
+<p>You should then be taken to a page which
+allows you to add new users, stop, access and edit the notebooks of individual
+users, as well as shutting down the Hub.</p>
+<p><img alt="Jupyter admin panel" src="../../../_images/jupyterhub_admin.png" /></p>
+<div class="section" id="how-to-add-new-packages">
+<h3>How to add new packages<a class="headerlink" href="#how-to-add-new-packages" title="Permalink to this headline">¶</a></h3>
+<p>In case you are missing some packages from the default application image, you can add those packages yourself by creating a custom docker image.
+See  <a class="reference internal" href="../../custom-docker-image.html#custom-docker-image"><span class="std std-ref">this tutorial</span></a>  for generic instructions on how to add packages.</p>
+<p>After having read the tutorial above, you can use the dockerfile below as a starting point when creating the dockerfile that adds new packages.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># See the value of userImage in</span>
+<span class="c1">#</span>
+<span class="c1">#   https://github.com/Uninett/helm-charts/blob/master/repos/stable/jupyterhub/values.yaml</span>
+<span class="c1">#</span>
+<span class="c1"># to determine the latest base image</span>
+
+<span class="n">FROM</span> <span class="n">quay</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">uninett</span><span class="o">/</span><span class="n">jupyterhub</span><span class="o">-</span><span class="n">singleuser</span><span class="p">:</span><span class="o">&lt;</span><span class="n">use</span> <span class="n">latest</span> <span class="n">tag</span> <span class="n">here</span><span class="o">&gt;</span>
+
+<span class="c1"># Install system packages</span>
+<span class="n">USER</span> <span class="n">root</span>
+<span class="n">RUN</span> <span class="n">apt</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">vim</span>
+
+<span class="c1"># Install other packages</span>
+<span class="n">USER</span> <span class="n">notebook</span>
+<span class="n">RUN</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,569 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Debugging &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Performance Analysis and Tuning" href="performance.html" />
+    <link rel="prev" title="Compilers" href="compilers.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Code development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="building.html">Building scientific software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="betzy.html">Software environment on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compilers.html">Compilers</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Debugging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#compiler-debug-options">Compiler Debug Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gnu-gdb">GNU GDB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gdb-commands">GDB commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#attaching-to-running-processes">Attaching to running processes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examining-core-files">Examining core files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#totalview">TotalView</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#starting-totalview">Starting Totalview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interactive-batch-system-debugging">Interactive Batch System Debugging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#further-information">Further Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">Performance Analysis and Tuning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides.html">Guides</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="overview.html">Code development</a> &raquo;</li>
+        
+      <li>Debugging</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/code_development/debugging.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="debugging">
+<h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="compiler-debug-options">
+<h2>Compiler Debug Options<a class="headerlink" href="#compiler-debug-options" title="Permalink to this headline">¶</a></h2>
+<p>The table below shows a list of debugging options for the Intel and GCC
+compilers.</p>
+<table>
+<thead>
+<th align="left">Compiler</th>
+<th align="left">Option</th>
+<th align="left">Action</th>
+</thead>
+<tbody>
+<tr>
+<td>Intel</td>
+<td rowspan="2"><code class="code">-g</code></td>
+<td rowspan="2">Generate symbolic debugging information</td>
+</tr>
+<tr>
+<td>GCC</td>
+</tr>
+<tr>
+<td>Intel</td>
+<td><code class="code">-check bounds</code><i>(Fortran only)</i></td>
+<td rowspan="2">Add runtime array bounds checking</td>
+</tr>
+<tr>
+<td>GCC</td>
+<td><code class="code">-fcheck=bounds</code><i>(Fortran only)</i></td>
+</tr>
+<tr>
+<td>Intel</td>
+<td><code class="code">-check=uninit</code> <i>(C/C++)</i> <br/> <code class="code">-check uninit</code> <i>(Fortran)</i></td>
+<td rowspan="2">Check for uninitialized variables</td>
+</tr>
+<tr>
+<td>GCC</td>
+<td><code class="code">-Wuninitialized</code></td>
+</tr>
+<tr>
+<td>Intel</td>
+<td><code class="code">-fp-trap-all=common</code> <i>(C/C++)</i> <br/> <code class="code">-fpe-all=0</code> <i>(Fortran)</i></td>
+<td rowspan="2">Trap floating point exceptions: <br/>
+ - divide by zero <br/>
+ - invalid operands <br/>
+ - floating point overflow</td>
+</tr>
+<tr>
+<td>GCC</td>
+<td><code class="code">-ffpe-trap=zero,invalid,overflow</code> <i>(Fortran only)</i></td>
+</tr>
+<tr>
+<td>Intel</td>
+<td><code class="code">-traceback</code></td>
+<td rowspan="2">Add debug information for runtime traceback</td>
+</tr>
+<tr>
+<td>GCC</td>
+<td><code class="code">-fbacktrace</code> <i>(Fortran only)</i></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="gnu-gdb">
+<h2>GNU GDB<a class="headerlink" href="#gnu-gdb" title="Permalink to this headline">¶</a></h2>
+<p>GDB, the GNU Project debugger, is a free software debugger that supports
+several programming languages including C, C++ and Fortran. GDB has a
+command-line interface and do not contain its own graphical user interface
+(GUI).</p>
+<div class="section" id="gdb-commands">
+<h3>GDB commands<a class="headerlink" href="#gdb-commands" title="Permalink to this headline">¶</a></h3>
+<p>To begin a debug session compile the code with the <code class="docutils literal notranslate"><span class="pre">-g</span></code> option to add
+debugging information, and start GDB by running the <code class="docutils literal notranslate"><span class="pre">gdb</span></code> command adding the
+executable program as argument:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>   $ gdb prog
+</pre></div>
+</div>
+<p>Once inside the GDB environment, indicated by the <code class="docutils literal notranslate"><span class="pre">(gdb)</span></code> prompt, you can issue
+commands. The following shows a list of selected GDB commands:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">help</span></code>      – display a list of named classes of commands</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run</span></code>	      – start the program</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">attach</span></code>    – attach to a running process outside GDB</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">step</span></code>      - go to the next source line, will step into a function/subroutine</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">next</span></code>      – go to the next source line, function/subroutine calls are executed without stepping into them</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">continue</span></code>  – continue executing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">break</span></code>     – set breakpoint</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">watch</span></code>     – set a watchpoint to stop execution when the value of a variable or an expression changes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code>      – display (default 10) lines of source surrounding the current line</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">print</span></code>     – print value of a variable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">backtrace</span></code> - display a stack frame for each active subroutine</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">detach</span></code>    – detach from a process</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">quit</span></code>      – exit GDB</p></li>
+</ul>
+<p>Commands can be abbreviated to one or the first few letters of the command
+name if that abbreviation is unambiguous or in some cases where a single
+letter is specifically defined for a command. E.g. to start a program:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>   (gdb) r
+   Starting program: /path/to/executable/prog
+</pre></div>
+</div>
+<p>To execute shell commands during the debugging session issue shell in front of
+the command, e.g.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>   (gdb) shell ls -l
+</pre></div>
+</div>
+</div>
+<div class="section" id="attaching-to-running-processes">
+<h3>Attaching to running processes<a class="headerlink" href="#attaching-to-running-processes" title="Permalink to this headline">¶</a></h3>
+<p>GDB can attach to already running processes using the attach <em>[process-id]</em> command. After attaching to a process GDB will stop it from running. This allows you to prepare the debug session using GDB commands, e.g. setting breakpoints or watchpoints. Then use the <code class="docutils literal notranslate"><span class="pre">continue</span></code> command to let the process continue running.</p>
+<p>Although GDB is a serial debugger you can examine parallel programs by attaching to individual processes of the program. For instance, when running batch jobs you can log into one of the compute nodes of the job and attach to one of the running processes.</p>
+<p>The listing below displays a sample debug session attaching to one of the
+processes of a running MPI job for examining data (lines starting with # are
+comments):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ gdb
+
+(gdb) # List the processes of the MPI program
+(gdb) shell ps -eo pid,comm | grep mpi_prog
+14957   mpi_prog
+14961   mpi_prog
+14962   mpi_prog
+...etc.
+
+(gdb) # Attach to one of the MPI processes
+(gdb) attach 14961
+Attaching to process 14961
+Reading symbols from /path/to/executable/mpi_prog...done.
+...etc
+
+(gdb) # Set a watchpoint to stop execution when the variable Uc is updated
+(gdb) watch Uc
+Hardware watchpoint 1: Uc
+
+(gdb) # Continue the execution of the program
+(gdb) continue
+Continuing.
+
+Hardware watchpoint 1: Uc
+Old value = -3.33545399
+New value = -2.11184907
+POTTEMP::ptemp (ldiad=...etc) at ptemp1.f90:298
+298              Vc= dsdx(2,1,ie2)*u0 + dsdx(2,2,ie2)*v0 +
+dsdx(2,3,ie2)*w0
+
+(gdb) # Set the list command to display 16 lines...
+(gdb) set listsize 16
+(gdb) # ...and display the source backwards starting 2 lines below the current one
+(gdb) list +2
+284              do k= 1, 8
+285                kp= lnode2(k,ie2)
+286                u0= u0 + u12(kp)
+287                v0= v0 + u22(kp)
+288                w0= w0 + u32(kp)
+289                vt= vt + vtef2(kp)
+290              enddo
+291
+292              u0= 0.125*u0;  v0= 0.125*v0;  w0= 0.125*w0;  vt= 0.125*vt
+293
+294     !
+295     !----    Contravariant velocity
+296     !
+297              Uc= dsdx(1,1,ie2)*u0 + dsdx(1,2,ie2)*v0 + dsdx(1,3,ie2)*w0
+298              Vc= dsdx(2,1,ie2)*u0 + dsdx(2,2,ie2)*v0 + dsdx(2,3,ie2)*w0
+299              Wc= dsdx(3,1,ie2)*u0 + dsdx(3,2,ie2)*v0 + dsdx(3,3,ie2)*w0
+
+(gdb) # Print a 5 element slice of the variable u12
+(gdb) print u12(3006:3010)
+$1 = (0.0186802763, 0.0188683271, 0.0145201795, 0.00553302653, -0.00918145757)
+
+(gdb) # Release the process from GDB control
+(gdb) detach
+Detaching from program: /path/to/executable/mpi_prog, process 14961
+
+(gdb) quit
+</pre></div>
+</div>
+</div>
+<div class="section" id="examining-core-files">
+<h3>Examining core files<a class="headerlink" href="#examining-core-files" title="Permalink to this headline">¶</a></h3>
+<p>Core files can be examined specifying both an executable program and the core
+file:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ gdb prog core
+</pre></div>
+</div>
+<p>One can also produce a core file from within the GDB session to preserve a
+snapshot of a program’s state using the command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(gdb) generate-core-file
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="totalview">
+<span id="totalview-debugging"></span><h2>TotalView<a class="headerlink" href="#totalview" title="Permalink to this headline">¶</a></h2>
+<p>TotalView is a GUI-based cource code debugger from <a class="reference external" href="https://www.roguewave.com">Rogue Wave Software</a>
+It allows for debugging of serial and parallel codes. Program execution is
+controlled by stepping line by line through the code, setting breakpoints, or
+by setting watchpoints on variables. It is also efficient for debugging of
+memory errors and leaks, and diagnostic problems like deadlocks.</p>
+<p>TotalView works with C, C++ and Fortran applications, and supports OpenMP and
+several MPI implementations including Open MPI and Intel MPI.</p>
+<div class="section" id="starting-totalview">
+<h3>Starting Totalview<a class="headerlink" href="#starting-totalview" title="Permalink to this headline">¶</a></h3>
+<p>After compiling your MPI code with the <code class="docutils literal notranslate"><span class="pre">-g</span></code> flag, load the TotalView module and
+start <code class="docutils literal notranslate"><span class="pre">totalview</span></code> with your executable, e.g. <em>mpi_prog</em>, by issuing the command</p>
+<p>Open MPI:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mpirun -tv -np &lt;no_of_processes&gt; ./mpi_prog
+</pre></div>
+</div>
+<p>Intel MPI:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ totalview mpiexec -a -n &lt;no_of_processes&gt; ./mpi_prog
+</pre></div>
+</div>
+<p>Three windows, the TotalView Root window, the Startup Parameters Dialog Box and
+the Process Window, will appear. Click the <strong><em>OK</em></strong> button in the Startup
+Parameters Dialog Box. Now click the <strong><em>Go</em></strong> button from the execution control
+commands in the Process Window. A popup window will ask whether you want to
+start the job in a stopped state. Click <strong><em>Yes</em></strong>, and the source code of your
+program will show in the source pane of the Process Window.</p>
+<div class="figure align-default" id="id1">
+<img alt="TotalView process window" src="../_images/process.png" />
+<p class="caption"><span class="caption-text">Fig. 1 - TotalView process window</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>You are now ready to start the debugging session doing different actions, e.g.:</p>
+<ul class="simple">
+<li><p>Click the <strong><em>Step</em></strong> or <strong><em>Next</em></strong> buttons to go through the code statement by statement. For function calls <strong><em>Step</em></strong> goes into the function, while <strong><em>Next</em></strong> executes the function.</p></li>
+<li><p>Create a breakpoint by clicking the line number displayed to the left in the Process Window. Click the <strong><em>Go</em></strong> button to run to this line.</p></li>
+<li><p>Monitor a variable’s value by creating a watchpoint, select <strong><em>Action Points</em></strong>  →  <strong><em>Create Watchpoint</em></strong>. A watchpoint stops execution when the variable’s data changes.</p></li>
+<li><p>Examine variables: Dive into a variable by clicking <strong><em>View</em></strong>  →  <strong><em>Lookup</em></strong> or double-click the variable name using the left mouse button. The Variable Window appears.</p></li>
+<li><p>Visualize variable across processes by diving into a variable and click <strong><em>View</em></strong>  →  <strong><em>Show Across</em></strong>  →  <strong><em>Processes</em></strong> in the Variable Window.</p></li>
+<li><p>Examine array data: Dive into an arrray variable. Display array subsections by editing the slice field in the array Varible Window. Show statistics information about the array (or a slice of the array) by clicking <strong><em>Tools</em></strong>  →  <strong><em>Statistics</em></strong> in the Variable Window.</p></li>
+</ul>
+<div class="figure align-default" id="id2">
+<img alt="Examining data" src="../_images/statistics.png" />
+<p class="caption"><span class="caption-text">Fig. 2 - Examining data</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="interactive-batch-system-debugging">
+<h3>Interactive Batch System Debugging<a class="headerlink" href="#interactive-batch-system-debugging" title="Permalink to this headline">¶</a></h3>
+<p>When running TotalView in the batch system, first start an interactive Slurm
+batch job session:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ salloc --account=&lt;my_account&gt; --time &lt;HH:MM&gt; -N &lt;no_of_nodes&gt;
+salloc: Granted job allocation &lt;jobid&gt;
+</pre></div>
+</div>
+<p>Start TotalView with the executable</p>
+<p>Open MPI:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mpirun -tv ./mpi_prog
+</pre></div>
+</div>
+<p>Intel MPI:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ totalview srun -a --ntasks-per-node=&lt;ntasks&gt; ./mpi_prog
+</pre></div>
+</div>
+<p>Your program will now execute within TotalView on the number of nodes specified
+in the Slurm job allocation.</p>
+<p><strong>Note:</strong> Be sure to exit the shell created by the <code class="docutils literal notranslate"><span class="pre">salloc</span></code> command when
+finishing the debugging session</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ exit
+salloc: Relinquishing job allocation &lt;jobid&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="further-information">
+<h3>Further Information<a class="headerlink" href="#further-information" title="Permalink to this headline">¶</a></h3>
+<p>For more information see the <a class="reference external" href="https://www.roguewave.com/help-support/documentation/totalview">TotalView
+Documentation</a>
+page.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="performance.html" class="btn btn-neutral float-right" title="Performance Analysis and Tuning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="compilers.html" class="btn btn-neutral float-left" title="Compilers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Backup on Betzy, Fram, Saga and NIRD &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Granular replication for NIRD projects" href="replication.html" />
+    <link rel="prev" title="Storage areas on HPC clusters" href="clusters.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Backup on Betzy, Fram, Saga and NIRD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#betzy-fram-and-saga">Betzy, Fram and Saga</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#where-the-backups-are-located">Where the backups are located</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-recover-deleted-overwritten-data">How to recover deleted/overwritten data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nird">NIRD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#where-the-snapshots-are-located">Where the snapshots are located</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">How to recover deleted/overwritten data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Backup on Betzy, Fram, Saga and NIRD</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/files_storage/backup.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="backup-on-betzy-fram-saga-and-nird">
+<h1>Backup on Betzy, Fram, Saga and NIRD<a class="headerlink" href="#backup-on-betzy-fram-saga-and-nird" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Only home directories with enforced quotas are backed up</strong></p>
+<p>Any $HOME area using more than 20 GiB or more than 100 000 files is
+not backed up. To have your $HOME backed up, you need to shrink the
+disk usage below the 20 GiB limit <em>and</em> below 100 000 files <em>and</em>
+<a class="reference internal" href="../getting_help/support_line.html"><span class="doc std std-doc">notify support</span></a>.</p>
+<p>If “dusage” reports 0 Bytes limits, this means that you <strong>do not have disk quotas</strong>
+activated and this means that these folders <strong>are not backed up</strong>.</p>
+</div>
+<div class="section" id="betzy-fram-and-saga">
+<h2>Betzy, Fram and Saga<a class="headerlink" href="#betzy-fram-and-saga" title="Permalink to this headline">¶</a></h2>
+<p>The storage backup on Betzy, Fram and Saga happens in two steps: first as a nightly backup from the
+respective machines over to NIRD, and then NIRD is backed up as described in the NIRD section below.</p>
+<p>The following areas on Betzy, Fram and Saga are backed up nightly to NIRD:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/cluster/home</span></code>, excluding <code class="docutils literal notranslate"><span class="pre">$HOME/nobackup</span></code> and <code class="docutils literal notranslate"><span class="pre">$HOME/tmp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/cluster/projects</span></code></p></li>
+</ul>
+<p>The following areas are <strong>not backed up</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/cluster/share</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/cluster/work</span></code></p></li>
+</ul>
+<p>The work area also enforces an autocleanup strategy, and is <strong>not</strong> meant for permanent storage.
+Files in this area will be <strong>deleted</strong> after 42 or 21 days, depending on the storage capacity,
+see <a class="reference internal" href="clusters.html#user-work-area"><span class="std std-ref">User work area</span></a> for details.</p>
+<div class="section" id="where-the-backups-are-located">
+<h3>Where the backups are located<a class="headerlink" href="#where-the-backups-are-located" title="Permalink to this headline">¶</a></h3>
+<p><strong>HOME</strong>: The nightly backups of the <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> areas on Betzy, Fram and Saga end up in your <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> area on
+NIRD, which is geo-replicated between NIRD-TOS (Tromsø) and NIRD-TRD (Trondheim):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/nird/home/$USER/backups/betzy</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/nird/home/$USER/backups/fram</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/nird/home/$USER/backups/saga</span></code></p></li>
+</ul>
+<p><strong>PROJECT</strong>: The nnXXXXk project areas on Betzy, Fram and Saga are backed up only to the
+local NIRD site for each machine, and end up in the following folders on NIRD:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/tos-project4/fram/backups</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/trd-project4/saga/backups</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/trd-project4/betzy/backups</span></code></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All users on either Betzy, Fram or Saga should automatically get access also to NIRD,
+and can log in to either of the NIRD sites with</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">&lt;user&gt;&#64;login-tos.nird.sigma2.no</span></code> for NIRD-TOS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">&lt;user&gt;&#64;login-trd.nird.sigma2.no</span></code> for NIRD-TRD</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="how-to-recover-deleted-overwritten-data">
+<h3>How to recover deleted/overwritten data<a class="headerlink" href="#how-to-recover-deleted-overwritten-data" title="Permalink to this headline">¶</a></h3>
+<p><strong>HOME</strong>: To recover a deleted or overwritten file in <code class="docutils literal notranslate"><span class="pre">/cluster/home/$USER</span></code> on either Betzy, Fram or Saga
+go to your home directory on NIRD, go to the backup folder and then browse in the directory
+corresponding to the HPC system you come from for the file you want to restore.
+You can then use <code class="docutils literal notranslate"><span class="pre">scp</span></code>/<code class="docutils literal notranslate"><span class="pre">sftp</span></code> to transfer a copy to your home directory on the HPC system.</p>
+<p><strong>PROJECT</strong>: The nightly backup from the Betzy, Fram and Saga project directories (<code class="docutils literal notranslate"><span class="pre">/cluster/projects/nnXXXXk</span></code>)
+can be accessed <em>directly</em> from the respective machines, or from NIRD:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/tos-project4/fram/backups</span></code> from Fram or NIRD</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/trd-project4/saga/backups</span></code> from Betzy, Saga or NIRD</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/trd-project4/betzy/backups</span></code> from Betzy, Saga or NIRD</p></li>
+</ul>
+<p>The Saga and Betzy backups can be accessed mutually from both machines, since both are located
+on the Trondheim side of NIRD, but the Fram backup cannot be accessed from Saga or Betzy
+(and vice versa).</p>
+</div>
+</div>
+<div class="section" id="nird">
+<h2>NIRD<a class="headerlink" href="#nird" title="Permalink to this headline">¶</a></h2>
+<p>Both home directories (<code class="docutils literal notranslate"><span class="pre">/nird/home/$USER</span></code>) and project areas (<code class="docutils literal notranslate"><span class="pre">/nird/projects/NSxxxxK</span></code>) have
+backup in the form of snapshots and geo-replication (only NS projects are geo-replicated,
+not the NN project backups from Betzy, Fram and Saga mentioned above).</p>
+<p>Snapshots are taken with the following frequencies:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/nird/home/$USER</span></code>:</p>
+<ul>
+<li><p>daily snapshots for the last 7 days</p></li>
+<li><p>weekly snapshots for the last 6 weeks</p></li>
+<li><p>this also includes the nightly backup of the Betzy, Fram and Saga home directory as described above</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/nird/projects/NSxxxxK</span></code>:</p>
+<ul>
+<li><p>daily snapshots for the last 7 days</p></li>
+<li><p>weekly snapshots for the last 6 weeks</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/tos-project4/fram</span></code>, <code class="docutils literal notranslate"><span class="pre">/trd-project4/saga</span></code>, <code class="docutils literal notranslate"><span class="pre">/trd-project4/betzy</span></code>:</p>
+<ul>
+<li><p>site dependent, but daily for a few days and weekly for a few weeks</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="where-the-snapshots-are-located">
+<h3>Where the snapshots are located<a class="headerlink" href="#where-the-snapshots-are-located" title="Permalink to this headline">¶</a></h3>
+<p>The NIRD <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> and NS project snapshots are available under:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/nird/home/u1/.snapshots</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/nird/projects/NSxxxxK/.snapshots</span></code></p></li>
+</ul>
+<p>The snapshots of the NN project backups from Betzy, Fram and Saga are available under:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/tos-project4/fram/backups/.snapshots</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/trd-project4/saga/backups/.snapshots</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/trd-project4/betzy/backups/.snapshots</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h3>How to recover deleted/overwritten data<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>A deleted/overwritten file in the home directory on NIRD can be recovered like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cp /nird/home/u1/.snapshots/DATE/$USER/mydir/myfile /nird/home/$USER/mydir/
+</pre></div>
+</div>
+<p>Note that snapshots are taken every night only. This means that deleted files
+which did not exist yet yesterday cannot be recovered from snapshots.</p>
+<p>To recover a deleted or overwritten file <code class="docutils literal notranslate"><span class="pre">/nird/projects/NSxxxxK/dataset1/myfile</span></code>,
+you can copy a snapshot back to the folder and restore the deleted/overwritten file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cp /nird/projects/NSxxxxK/.snapshots/DATE/dataset1/myfile /nird/projects/NSxxxxK/dataset1/
+</pre></div>
+</div>
+<p>Select the DATE accordingly to your case.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="replication.html" class="btn btn-neutral float-right" title="Granular replication for NIRD projects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="clusters.html" class="btn btn-neutral float-left" title="Storage areas on HPC clusters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

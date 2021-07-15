@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Projects and accounting &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dos and Don’ts" href="dos_and_donts.html" />
+    <link rel="prev" title="Checkpointing Jobs" href="checkpointing.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Job types and job scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="submitting.html">Submitting jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_job_types.html">Job Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts.html">Job Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Monitoring jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_memory_settings.html">How to choose the right amount of memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_job_failures.html">Common job failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">How to check the performance and scaling using Arm Performance Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mkl.html">Using MKL efficiently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory-bandwidth.html">Efficient use of memory bandwith on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-calculations.html">Efficient use of processors and network on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_jobs.html">Interactive jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkpointing.html">Checkpointing Jobs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Projects and accounting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#projects">Projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-available-quota">List available quota</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accounting">Accounting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#saga">Saga</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#betzy">Betzy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dos_and_donts.html">Dos and Don’ts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides.html">Guides</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="overview.html">Job types and job scripts</a> &raquo;</li>
+        
+      <li>Projects and accounting</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/jobs/projects_accounting.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="projects-and-accounting">
+<span id="projects-accounting"></span><h1>Projects and accounting<a class="headerlink" href="#projects-and-accounting" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="#projects">Projects</a></p></li>
+<li><p><a class="reference external" href="#list-available-quota">List available quota</a></p></li>
+<li><p><a class="reference external" href="#accounting">Accounting</a></p></li>
+</ul>
+<div class="section" id="projects">
+<h2>Projects<a class="headerlink" href="#projects" title="Permalink to this headline">¶</a></h2>
+<p>All jobs are run in a <em>project</em>.  Use <code class="docutils literal notranslate"><span class="pre">--account</span></code> in job scripts to
+select which project the job should run in.  (The queue system calls
+projects <em>accounts</em>.)  Each project has a CPU hour quota, and when a
+job runs, CPU hours are subtracted from the project quota.  If there
+is not enough hours left on the quota, the job will be left pending
+with a reason <code class="docutils literal notranslate"><span class="pre">AssocGrpBillingMinutes</span></code> (<code class="docutils literal notranslate"><span class="pre">AssocGrpCPUMinutesLimit</span></code> on
+Fram, but this will soon change.)</p>
+<p>To see which projects you have access to on a cluster, run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ projects
+</pre></div>
+</div>
+</div>
+<div class="section" id="list-available-quota">
+<h2>List available quota<a class="headerlink" href="#list-available-quota" title="Permalink to this headline">¶</a></h2>
+<p>The command <code class="docutils literal notranslate"><span class="pre">cost</span></code> gives an overview of the CPU hour quota.  It can be
+run in different ways:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show quota information for all projects you have access to</span>
+$ cost
+
+<span class="c1"># Show quota information for project YourProject</span>
+$ cost -p YourProject
+
+<span class="c1"># Adds information about how much each user has run</span>
+$ cost --details
+</pre></div>
+</div>
+<p>See <code class="docutils literal notranslate"><span class="pre">cost</span> <span class="pre">--man</span></code> for other options, and explanation of the output.
+The <code class="docutils literal notranslate"><span class="pre">cost</span></code> command only shows usage in the current <em>allocation
+period</em>.  Historical usage can be found <a class="reference external" href="https://www.metacenter.no/mas/projects">here</a>.</p>
+</div>
+<div class="section" id="accounting">
+<h2>Accounting<a class="headerlink" href="#accounting" title="Permalink to this headline">¶</a></h2>
+<p>The term “CPU hour” above is an over-simplification.  Jobs are
+accounted for both CPU and memory usage, as well as usage of GPUs.
+(Currently, jobs on Fram are only accounted for their CPU usage, but
+this will change soon.)</p>
+<p>This also means that it is important that you
+<a class="reference internal" href="choosing_memory_settings.html"><span class="doc std std-doc">do not ask for a lot more memory than you need</span></a>,
+otherwise you can get billed
+for a lot more than you use, and your jobs may queue for a lot longer than you
+would like to. In addition this can also block resources for others.</p>
+<p>Accounting is done in terms of <em>billing units</em>, and the quota is in
+<em>billing unit hours</em>.  Each job is assigned a number of billing units
+based on the requested CPUs, memory and GPUs.  The number that is
+subtracted from the quota is the number of billing units multiplied
+with the (actual) wall time of the job.</p>
+<p>The number billing units of a job is calculated like this:</p>
+<ol class="simple">
+<li><p>Each requested CPU is given a cost of 1.</p></li>
+<li><p>The requested memory is given a cost based on a <em>memory cost factor</em>
+(see below).</p></li>
+<li><p>Each requested GPU is given a cost based on a <em>GPU cost factor</em>
+(see below).</p></li>
+<li><p>The number of billing units is the <em>maximum</em> of the CPU cost, memory
+cost and GPU cost.</p></li>
+</ol>
+<p>The <em>memory cost factor</em> and <em>GPU cost factor</em> vary between the partitions on the
+clusters.</p>
+<div class="section" id="saga">
+<h3>Saga<a class="headerlink" href="#saga" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The <em>normal</em> partition: memory factor is 0.2467806 units per GiB.  Thus
+the memory cost of a job asking for all memory on a node will
+be 46.  This is a compromise between the two node types in the
+normal partition; they have 40 and 52 CPUs.</p></li>
+<li><p>For the <em>bigmem</em> partition, the factor is
+0.1059915 units per GiB.  This means that for a job requesting all
+memory on one of the “small” bigmem nodes, the memory cost is 40,
+while for a job requesting all memory on one of the large nodes,
+it is 320.</p></li>
+<li><p>On the <em>accel</em> partition, the memory factor is 0.06359442 units per
+GiB, and the GPU factor is 6.  This means that a job asking for all
+memory on a node, or all GPUs on a node, gets a cost of 24, the
+number of CPUs on the node.</p></li>
+<li><p>The <em>optimist</em> partition has the same memory factor as the <em>normal</em>
+partition.</p></li>
+</ul>
+</div>
+<div class="section" id="betzy">
+<h3>Betzy<a class="headerlink" href="#betzy" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>In the <em>normal</em> partition, only whole nodes are handed out, so each
+job is accounted for 128 units per node, and there is no memory
+factor.</p></li>
+<li><p>The <em>preproc</em> partition has a memory factor of 0.5221992 units per
+GiB, so a job asking for all memory on the node would have a cost of
+128, the number of CPUs on the node.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="dos_and_donts.html" class="btn btn-neutral float-right" title="Dos and Don’ts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="checkpointing.html" class="btn btn-neutral float-left" title="Checkpointing Jobs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

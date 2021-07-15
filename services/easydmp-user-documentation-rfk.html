@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>EasyDMP User Documentation for the RFK &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>EasyDMP User Documentation for the RFK</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/services/easydmp-user-documentation-rfk.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="easydmp-user-documentation-for-the-rfk">
+<span id="id1"></span><h1>EasyDMP User Documentation for the RFK<a class="headerlink" href="#easydmp-user-documentation-for-the-rfk" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="#access-easydmp-rfk"><span class="std std-ref">Access</span></a></p></li>
+<li><p><a class="reference internal" href="#create-a-dmp-rfk"><span class="std std-ref">Create a new DMP</span></a></p></li>
+<li><p><a class="reference internal" href="#review-and-manage-your-plan-rfk"><span class="std std-ref">Review and manage your plans</span></a></p></li>
+<li><p><a class="reference internal" href="#management-options-rfk"><span class="std std-ref">Export your plan</span></a></p></li>
+<li><p><a class="reference internal" href="#request-support-easydmp-rfk"><span class="std std-ref">Request support</span></a></p></li>
+<li><p><a class="reference internal" href="#example-plan-rfk"><span class="std std-ref">Example plan</span></a></p></li>
+</ul>
+<div class="section" id="access">
+<span id="access-easydmp-rfk"></span><h2>Access<a class="headerlink" href="#access" title="Permalink to this headline">¶</a></h2>
+<p>The service is free of charge and accessible to everyone.</p>
+<p>The EasyDMP service is accessible here: <a class="reference external" href="https://easydmp.sigma2.no">https://easydmp.sigma2.no</a></p>
+<p>Members from every institution supporting Feide federated identity will be able to login through DataPorten.</p>
+<p>Members from European institutions can authenticate through B2ACCESS login (more info about B2ACCESS <a class="reference external" href="https://www.eudat.eu/services/b2access">here</a>).</p>
+</div>
+<div class="section" id="create-a-dmp">
+<span id="create-a-dmp-rfk"></span><h2>Create a DMP<a class="headerlink" href="#create-a-dmp" title="Permalink to this headline">¶</a></h2>
+<p>Click on the “+ Create new plan” button shown in the red rectangle in the figure below.</p>
+<p><img alt="Picture1" src="../_images/Picture1.png" /></p>
+<ul class="simple">
+<li><p>You will then be presented with a list of templates. You should use the <strong>“Sigma2 Data Management Plan”</strong> template.</p></li>
+<li><p>You will then need to fill in the Title of your plan and optionally an abbreviation for your plan.</p></li>
+<li><p>The template is divided into 5 Sections:</p>
+<ul>
+<li><p><strong>General Project Information</strong> – that covers general information about your project. Some of this information you will have put into your MAS form request. We apologise for this. We are currently working on integrating the DMP tool with MAS so you do not have to provide duplicate information. There are 7 questions in this section, two which are optional.</p></li>
+<li><p><strong>Data</strong> – which covers information on the data that your project will create or use. There are 4 questions in this section, all of which are optional at this stage.</p></li>
+<li><p><strong>Documentation and Metadata</strong> – which covers the metadata and documentation that you will use to describe your data. There are 2 questions in this section that are optional at this stage.</p></li>
+<li><p><strong>Storage</strong> – covers how and where you will manage your data during your project. There are up to 8 questions in this section, one which is optional.</p></li>
+<li><p><strong>End of project</strong> – covers how you will make your data available after your project finishes. There are up to 7 questions in this section, one which is optional.</p></li>
+</ul>
+</li>
+<li><p>Note: in some sections, you may notice the question counter at the bottom of the page jump (e.g. 1/8 to 4/8). This is not a bug. The way the questionnaire is designed all questions are represented as one long chain. Depending on your response to some questions you may jump to different points in the chain, skipping the questions that are irrelevant.</p></li>
+<li><p>Only the questions marked with a red asterisk are required at this time, but all questions are necessary for a complete data management plan.</p></li>
+<li><p>You do not have to answer all questions in one go. You can press ‘Save’ and come back your plan at a late point in time.</p></li>
+<li><p>Click on <strong>“Go to plan summary”</strong> to go to a summary view of the plan. From the summary you can edit any question in your plan.</p></li>
+<li><p>Some questions have a <strong>“More information”</strong> text box (see the image below) where you can supply additional information relevant to the question.</p></li>
+</ul>
+<p><img alt="Picture2" src="../_images/Picture2.png" />
+The last question in Section 5 will take you to a summary of your plan. If you have completed all the required questions you should see green ticks by the sections (see the figure below).</p>
+<p><img alt="Picture3" src="../_images/Picture3.png" /></p>
+</div>
+<div class="section" id="export-your-plan">
+<span id="management-options-rfk"></span><h2>Export your plan<a class="headerlink" href="#export-your-plan" title="Permalink to this headline">¶</a></h2>
+<p>You can click on the ‘cog’ next to your plan title (see the above figure). Choose the <strong>“Export”</strong> option which will result in your plan being displayed in your browser. You can then either copy the text and paste into a document or use your browser’s print button to print to a PDF file.</p>
+</div>
+<div class="section" id="review-and-manage-your-plan">
+<span id="review-and-manage-your-plan-rfk"></span><h2>Review and manage your plan<a class="headerlink" href="#review-and-manage-your-plan" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Picture4" src="../_images/Picture4.png" /></p>
+<ul class="simple">
+<li><p>You can view all your plans by clicking on the <strong>“Your plans”</strong> in the menu bar. You can view any plan by clicking on the title of that plan. From there, you can edit any questions in your plan.</p></li>
+<li><p>You can find more management options (see the image below) for your plan by clicking the ‘cog’ icon in the right column. The options are:</p>
+<ul>
+<li><p>You can share your plan with other users by selecting <strong>“People”</strong> option. The invited person will receive a mail with a link to edit the DMP.</p></li>
+<li><p>You can rename, copy or delete a plan with the <strong>“Rename”</strong>, <strong>“Duplicate”</strong> or <strong>“Delete”</strong> options respectively.</p></li>
+<li><p>The <strong>“Export”</strong> option results in the plan being displayed as an HTML document. You can use your browser’s “Print” option to print the document to a file. Or, you can cut and paste the text into a new document.
+NOTE: better support for exporting documents will appear in the near future.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="request-support">
+<span id="request-support-easydmp-rfk"></span><h2>Request Support<a class="headerlink" href="#request-support" title="Permalink to this headline">¶</a></h2>
+<p>If you experience any problems, or you have any question, please contact  <a class="reference external" href="mailto:support&#37;&#52;&#48;easydmp&#46;sigma2&#46;no">mailto:support<span>&#64;</span>easydmp<span>&#46;</span>sigma2<span>&#46;</span>no</a>.
+Your request will be handled within the next 24 hours during working days.</p>
+</div>
+<div class="section" id="example-plan">
+<span id="example-plan-rfk"></span><h2>Example plan<a class="headerlink" href="#example-plan" title="Permalink to this headline">¶</a></h2>
+<p>An example plan can be found <a class="reference external" href="https://www.sigma2.no/sites/default/files/imce/Support/ExamplePlan.pdf">here</a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,453 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Job Scripts &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Monitoring jobs" href="monitoring.html" />
+    <link rel="prev" title="Job Types" href="choosing_job_types.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Job types and job scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="submitting.html">Submitting jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_job_types.html">Job Types</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Job Scripts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#job-script-basics">Job Script Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wall-time-limit">Wall Time Limit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-slurm-script-does-not-have-to-be-written-in-bash">The Slurm script does not have to be written in Bash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#further-topics">Further Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Monitoring jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_memory_settings.html">How to choose the right amount of memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_job_failures.html">Common job failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">How to check the performance and scaling using Arm Performance Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mkl.html">Using MKL efficiently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory-bandwidth.html">Efficient use of memory bandwith on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-calculations.html">Efficient use of processors and network on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_jobs.html">Interactive jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkpointing.html">Checkpointing Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects_accounting.html">Projects and accounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dos_and_donts.html">Dos and Don’ts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides.html">Guides</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="overview.html">Job types and job scripts</a> &raquo;</li>
+        
+      <li>Job Scripts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/jobs/job_scripts.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="job-scripts">
+<span id="id1"></span><h1>Job Scripts<a class="headerlink" href="#job-scripts" title="Permalink to this headline">¶</a></h1>
+<p>This page documents the basics of how to write job scripts for the HPC clusters.
+Cluster-specific details are kept in separate sub pages for each cluster:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="job_scripts/fram_job_scripts.html#job-scripts-on-fram"><span class="std std-ref">Fram job scripts</span></a></p></li>
+<li><p><a class="reference internal" href="job_scripts/saga_job_scripts.html#job-scripts-on-saga"><span class="std std-ref">Saga job scripts</span></a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Email notification from completed Slurm scripts is currently disabled <strong>on all
+machines</strong> and it looks like it will take quite a while (months?) before we can
+re-enable it. Sorry for the inconvenience. The reason is technical due to the
+way the infrastructure is set up. It is non-trivial for us to re-enable this in
+a good and robust and secure way.</p>
+</div>
+<div class="section" id="job-script-basics">
+<h2>Job Script Basics<a class="headerlink" href="#job-script-basics" title="Permalink to this headline">¶</a></h2>
+<p>To run a <em>job</em> on the cluster involves creating a shell script called
+a <em>job script</em>.  The job script is a plain-text file containing any
+number of commands, including your main computational task, i.e., it
+may copy or rename files, cd into the proper directory, etc., all
+before doing the “real” work.  The lines in the script file are the
+commands to be executed, in the given order.  Lines starting with a
+<code class="docutils literal notranslate"><span class="pre">#</span></code> are ignored as comments, except lines that start with <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code>,
+which are not executed, but contain special instructions to the queue
+system.</p>
+<p>If you are not familiar with shell scripts, they are simply a set of
+commands that you could have typed at the command line.  You can find
+more information about shell scripts here: <a class="reference external" href="http://www.linuxconfig.org/Bash_scripting_Tutorial">Introduction to Bash shell
+scripts</a>.</p>
+<p>A job script consists of a couple of parts, in this order:</p>
+<ul class="simple">
+<li><p>The first line, which is typically <code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code>
+(the Slurm script does not have to be written in Bash, see below)</p></li>
+<li><p>Parameters to the queue system</p></li>
+<li><p>Commands to set up the execution environment</p></li>
+<li><p>The actual commands you want to be run</p></li>
+</ul>
+<p>Parameters to the queue system may be specified on the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>
+command line and/or in <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> lines in the job script.  There can
+be as many <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> lines as you want, and you can combine several
+parameters on the same line.  If a parameter is specified both on the
+command line and in the job script, the parameter specified on the
+command line takes precedence.  The <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> lines must precede any
+commands in the script.</p>
+<p>Which parameters are allowed or required depends the job type and
+cluster, but two parameters must be present in (almost) any job:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--account</span></code>, which specifies the <em>project</em> the job will run in.
+Required by all jobs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--time</span></code>, which specifies how long a job should be allowed to
+run.  If it has not finished within that time, it will be cancelled.</p></li>
+</ul>
+<p>The other parameters will be described in the sub pages for each cluster.</p>
+<p>It is recommended to start the commands to set up the environment with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> -o errexit  <span class="c1"># Exit the script on any error</span>
+<span class="nb">set</span> -o nounset  <span class="c1"># Treat any unset variables as an error</span>
+
+module --quiet purge  <span class="c1"># Reset the modules to the system default</span>
+</pre></div>
+</div>
+<p>and will most likely include one or more</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module load SomeProgram/SomeVersion
+</pre></div>
+</div>
+<p>to set up environment variables like <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> to get access to the
+specified programs.  It is recommended to specify the explicit version
+in the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> command.  We also recommend adding a</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module list    <span class="c1"># For easier debugging</span>
+</pre></div>
+</div>
+<p>after the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> commands. See also <a class="reference internal" href="../software/modulescheme.html#module-scheme"><span class="std std-ref">Software module scheme</span></a>.</p>
+<p>All in all, a generic job script might look like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Job name:</span>
+<span class="c1">#SBATCH --job-name=YourJobname</span>
+<span class="c1">#</span>
+<span class="c1"># Project:</span>
+<span class="c1">#SBATCH --account=nnXXXXk</span>
+<span class="c1">#</span>
+<span class="c1"># Wall time limit:</span>
+<span class="c1">#SBATCH --time=DD-HH:MM:SS</span>
+<span class="c1">#</span>
+<span class="c1"># Other parameters:</span>
+<span class="c1">#SBATCH ...</span>
+
+<span class="c1">## Set up job environment:</span>
+<span class="nb">set</span> -o errexit  <span class="c1"># Exit the script on any error</span>
+<span class="nb">set</span> -o nounset  <span class="c1"># Treat any unset variables as an error</span>
+
+module --quiet purge  <span class="c1"># Reset the modules to the system default</span>
+module load SomeProgram/SomeVersion
+module list
+
+<span class="c1">## Do some work:</span>
+YourCommands
+</pre></div>
+</div>
+<p>Download the script:</p>
+<p><a class="reference download internal" download="" href="../_downloads/7beb7ef2f0ef17a10074082f488a5a21/generic_job.sh"><code class="xref download docutils literal notranslate"><span class="pre">files/generic_job.sh</span></code></a></p>
+</div>
+<div class="section" id="wall-time-limit">
+<h2>Wall Time Limit<a class="headerlink" href="#wall-time-limit" title="Permalink to this headline">¶</a></h2>
+<p>The wall time limit (<code class="docutils literal notranslate"><span class="pre">--time</span></code>) is required for all jobs.</p>
+<p>The most used formats for the time specification is <code class="docutils literal notranslate"><span class="pre">DD-HH:MM:SS</span></code>
+and <code class="docutils literal notranslate"><span class="pre">HH:MM:SS</span></code>, where <em>DD</em> is days, <em>HH</em> hours, <em>MM</em> minutes and <em>SS</em>
+seconds.  For instance:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">3-12:00:00</span></code>: 3.5 days</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">7:30:00</span></code>: 7.5 hours</p></li>
+</ul>
+<p>We recommend you to be as precise as you can when specifying the wall
+time limit as it will inflict on how fast your jobs will start to
+run:  It is easier for a short job to get started between two larger,
+higher priority jobs (so-called <em>backfilling</em>).  On the other hand, if
+the job has not finished before the wall time limit, it will be
+cancelled, so too long is better than too short due to lost work!</p>
+</div>
+<div class="section" id="the-slurm-script-does-not-have-to-be-written-in-bash">
+<h2>The Slurm script does not have to be written in Bash<a class="headerlink" href="#the-slurm-script-does-not-have-to-be-written-in-bash" title="Permalink to this headline">¶</a></h2>
+<p>The job script can be written in
+any language that uses <code class="docutils literal notranslate"><span class="pre">#</span></code> as the comment sign. Bash is most common, but some
+applications like NorESM use Python. Perl, Julia, and R are other options. Here
+is a Python example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1">#SBATCH --job-name=slurm</span>
+<span class="c1">#SBATCH --account=nn9999k</span>
+<span class="c1">#SBATCH --nodes=128</span>
+<span class="c1">#SBATCH --ntasks-per-node=1</span>
+<span class="c1">#SBATCH --time=0:0:5</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;srun hostname&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Using Python, Perl, Julia, or R can open up for more programming possibilities
+within the run script than what would be possible using Bash.</p>
+</div>
+<div class="section" id="further-topics">
+<h2>Further Topics<a class="headerlink" href="#further-topics" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="job_scripts/environment_variables.html"><span class="doc std std-doc">Environment variables available in job scripts</span></a></p></li>
+<li><p><a class="reference internal" href="job_scripts/work_directory.html"><span class="doc std std-doc">Job work directory</span></a></p></li>
+<li><p><a class="reference internal" href="job_scripts/array_jobs.html"><span class="doc std std-doc">Array jobs</span></a></p></li>
+<li><p><a class="reference internal" href="guides/running_job_steps_parallel.html"><span class="doc std std-doc">Running Job Steps in Parallel</span></a></p></li>
+<li><p><a class="reference internal" href="guides/porting_from_pbs.html"><span class="doc std std-doc">Porting Job Scripts from PBS/Torque</span></a></p></li>
+<li><p><a class="reference internal" href="guides/running_mpi_jobs.html"><span class="doc std std-doc">Running MPI Jobs</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="monitoring.html" class="btn btn-neutral float-right" title="Monitoring jobs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="choosing_job_types.html" class="btn btn-neutral float-left" title="Job Types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

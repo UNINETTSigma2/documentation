@@ -1,0 +1,408 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Gaussian job examples &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Gaussian job examples</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/software/application_guides/gaussian/gaussian_job_example.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gaussian-job-examples">
+<span id="id1"></span><h1>Gaussian job examples<a class="headerlink" href="#gaussian-job-examples" title="Permalink to this headline">¶</a></h1>
+<p>To see which versions are available; type the following command after logged into the machine in question:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>module avail Gaussian
+</pre></div>
+</div>
+<p>To use Gaussian, type</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>module load Gaussian/&lt;version&gt;
+</pre></div>
+</div>
+<p>specifying one of the available versions.</p>
+<p><strong>Please carefully inspect the job script examples whown below before submitting jobs!</strong></p>
+<p>To run this example(s) create a directory, step into it, create the input file and submit the script with:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sbatch fram_g16.sh
+</pre></div>
+</div>
+<div class="section" id="example-for-gaussian-on-fram">
+<h2>Example for Gaussian on Fram<a class="headerlink" href="#example-for-gaussian-on-fram" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Run script example (<code class="docutils literal notranslate"><span class="pre">fram_g16.sh</span></code>):</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
+<span class="c1">#SBATCH --account=nnXXXXk</span>
+<span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --time=0-00:05:00</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks-per-node=32</span>
+<span class="c1">#SBATCH --output=slurm.%j.log</span>
+
+<span class="c1"># make the program and environment visible to this script</span>
+module load Gaussian/g16_B.01
+
+<span class="c1"># name of input file without extention</span>
+<span class="nv">input</span><span class="o">=</span>water
+
+<span class="c1"># set the heap-size for the job to 20GB</span>
+<span class="nb">export</span> <span class="nv">GAUSS_LFLAGS2</span><span class="o">=</span><span class="s2">&quot;--LindaOptions -s 20000000&quot;</span>
+
+<span class="c1"># create the temporary folder</span>
+<span class="nb">export</span> <span class="nv">GAUSS_SCRDIR</span><span class="o">=</span>/cluster/work/users/<span class="nv">$USER</span>/<span class="nv">$SLURM_JOB_ID</span>
+mkdir -p <span class="nv">$GAUSS_SCRDIR</span>
+
+<span class="c1"># split large temporary files into smaller parts</span>
+lfs setstripe --stripe-count <span class="m">8</span> <span class="nv">$GAUSS_SCRDIR</span>
+
+<span class="c1"># copy input file to temporary folder</span>
+cp <span class="nv">$SLURM_SUBMIT_DIR</span>/<span class="nv">$input</span>.com <span class="nv">$GAUSS_SCRDIR</span>
+
+<span class="c1"># run the program</span>
+<span class="nb">cd</span> <span class="nv">$GAUSS_SCRDIR</span>
+<span class="nb">time</span> g16.ib <span class="nv">$input</span>.com &gt; <span class="nv">$input</span>.out
+
+<span class="c1"># copy result files back to submit directory</span>
+cp <span class="nv">$input</span>.out <span class="nv">$input</span>.chk <span class="nv">$SLURM_SUBMIT_DIR</span>
+
+<span class="nb">exit</span> <span class="m">0</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Water input example (note the blank line at the end; <code class="docutils literal notranslate"><span class="pre">water.com</span></code>):</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">chk</span><span class="o">=</span><span class="n">water</span>
+<span class="o">%</span><span class="n">mem</span><span class="o">=</span><span class="mi">500</span><span class="n">MB</span>
+<span class="c1">#p b3lyp/cc-pVDZ opt</span>
+
+<span class="n">structure</span> <span class="n">optimization</span> <span class="n">of</span> <span class="n">water</span>
+
+<span class="mi">0</span> <span class="mi">1</span>
+<span class="n">O</span>
+<span class="n">H</span> <span class="mi">1</span> <span class="mf">0.96</span>
+<span class="n">H</span> <span class="mi">1</span> <span class="mf">0.96</span> <span class="mi">2</span> <span class="mf">109.471221</span>
+
+</pre></div>
+</div>
+<p>If you see this warning in your Slurm output then this is not a reason for concern:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ntsnet: WARNING: /cluster/software/Gaussian/g16_C.01/linda-exe/l302.exel may
+not be a valid Tcp-Linda Linda executable Warning: Permanently added the ECDSA
+host key for IP address &#39;10.33.5.24&#39; to the list of known hosts.
+</pre></div>
+</div>
+<p>This is due the redirect via rscocket, which is necessary
+if Gaussian is to scale satisfactory to more than 2 nodes.</p>
+</div>
+<div class="section" id="running-gaussian-on-saga">
+<h2>Running Gaussian on Saga<a class="headerlink" href="#running-gaussian-on-saga" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Run script example (<code class="docutils literal notranslate"><span class="pre">saga_g16.sh</span></code>):</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
+<span class="c1">#SBATCH --account=nnXXXXk</span>
+<span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --time=0-00:05:00</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks-per-node=40</span>
+<span class="c1">#SBATCH --mem=32G</span>
+<span class="c1">#SBATCH --output=slurm.%j.log</span>
+
+<span class="c1"># make the program and environment visible to this script</span>
+module load Gaussian/g16_C.01
+
+<span class="nb">export</span> <span class="nv">PGI_FASTMATH_CPU</span><span class="o">=</span>skylake
+
+<span class="c1"># name of input file without extention</span>
+<span class="nv">input</span><span class="o">=</span>water
+
+<span class="c1"># create the temporary folder</span>
+<span class="nb">export</span> <span class="nv">GAUSS_SCRDIR</span><span class="o">=</span>/cluster/work/users/<span class="nv">$USER</span>/<span class="nv">$SLURM_JOB_ID</span>
+mkdir -p <span class="nv">$GAUSS_SCRDIR</span>
+
+<span class="c1"># copy input file to temporary folder</span>
+cp <span class="nv">$SLURM_SUBMIT_DIR</span>/<span class="nv">$input</span>.com <span class="nv">$GAUSS_SCRDIR</span>
+
+<span class="c1"># run the program</span>
+<span class="nb">cd</span> <span class="nv">$GAUSS_SCRDIR</span>
+<span class="nb">time</span> g16.ib <span class="nv">$input</span>.com &gt; <span class="nv">$input</span>.out
+
+<span class="c1"># copy result files back to submit directory</span>
+cp <span class="nv">$input</span>.out <span class="nv">$input</span>.chk <span class="nv">$SLURM_SUBMIT_DIR</span>
+
+<span class="nb">exit</span> <span class="m">0</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Water input example (note the blank line at the end; <code class="docutils literal notranslate"><span class="pre">water.com</span></code>):</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">chk</span><span class="o">=</span><span class="n">water</span>
+<span class="o">%</span><span class="n">mem</span><span class="o">=</span><span class="mi">500</span><span class="n">MB</span>
+<span class="c1">#p b3lyp/cc-pVDZ opt</span>
+
+<span class="n">structure</span> <span class="n">optimization</span> <span class="n">of</span> <span class="n">water</span>
+
+<span class="mi">0</span> <span class="mi">1</span>
+<span class="n">O</span>
+<span class="n">H</span> <span class="mi">1</span> <span class="mf">0.96</span>
+<span class="n">H</span> <span class="mi">1</span> <span class="mf">0.96</span> <span class="mi">2</span> <span class="mf">109.471221</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

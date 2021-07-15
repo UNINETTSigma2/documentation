@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>The Norwegian academic high-performance computing and storage services &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Known issues" href="known-issues.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>The Norwegian academic high-performance computing and storage services</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="the-norwegian-academic-high-performance-computing-and-storage-services">
+<h1>The Norwegian academic high-performance computing and storage services<a class="headerlink" href="#the-norwegian-academic-high-performance-computing-and-storage-services" title="Permalink to this headline">¶</a></h1>
+<p>The Norwegian academic high-performance computing and storage
+infrastructure is maintained by the <a class="reference external" href="https://sigma2.no/metacenter">Sigma2
+Metacenter</a>, which is a joint
+collaboration between <a class="reference external" href="https://www.uio.no">UiO</a>,
+<a class="reference external" href="https://www.uib.no">UiB</a>, <a class="reference external" href="https://www.ntnu.no">NTNU</a>,
+<a class="reference external" href="https://uit.no">UiT</a>, and <a class="reference external" href="https://www.sigma2.no/">UNINETT
+Sigma2</a>.</p>
+<p>This website (<a class="reference external" href="https://documentation.sigma2.no/">https://documentation.sigma2.no/</a>) holds technical
+documentation about the compute and storage resources. For more general
+information and service overview, please also see <a class="reference external" href="https://www.sigma2.no">https://www.sigma2.no</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Latest news and announcements</strong> are posted at the <a class="reference external" href="https://opslog.sigma2.no">Metacenter
+OpsLog</a> and the
+<a class="reference external" href="https://twitter.com/MetacenterOps">&#64;MetacenterOps</a> Twitter channel.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="compute-storage-pre-post-processing-visualization-machine-learning">
+<h2>Compute, storage, pre/post-processing, visualization, machine learning<a class="headerlink" href="#compute-storage-pre-post-processing-visualization-machine-learning" title="Permalink to this headline">¶</a></h2>
+<p>We offer compute resources (<a class="reference internal" href="hpc_machines/betzy.html#betzy"><span class="std std-ref">Betzy</span></a>, <a class="reference internal" href="hpc_machines/fram.html#fram"><span class="std std-ref">Fram</span></a>, and <a class="reference internal" href="hpc_machines/saga.html#saga"><span class="std std-ref">Saga</span></a>,
+storage resources (<a class="reference internal" href="files_storage/nird.html#nird"><span class="std std-ref">NIRD - National Infrastructure for Research Data</span></a>),
+as well as the <a class="reference external" href="https://www.sigma2.no/nird-toolkit">NIRD
+Toolkit</a> platform for pre- and
+post-processing analysis, data intensive processing, visualization,
+artificial intelligence, and machine learning.</p>
+<p>Researchers also have access to <a class="reference internal" href="hpc_machines/lumi.html#lumi"><span class="std std-ref">LUMI</span></a> through the
+LUMI consortium.</p>
+</div>
+<div class="section" id="first-time-on-a-supercomputer">
+<h2>First time on a supercomputer?<a class="headerlink" href="#first-time-on-a-supercomputer" title="Permalink to this headline">¶</a></h2>
+<p>Please read the <strong>GETTING STARTED</strong> section (left sidebar). In the
+sidebar overview you will also find technical details about the
+machines, instructions for using installed software, for submitting
+jobs, storage, and code development.</p>
+<p>Please do not hesitate to write to <a class="reference external" href="mailto:support&#37;&#52;&#48;metacenter&#46;no">support<span>&#64;</span>metacenter<span>&#46;</span>no</a> if you find
+documentation sections which are not clear enough or have suggestions
+for improvements. Such a feedback is very important to us and will
+count.</p>
+</div>
+<div class="section" id="how-to-get-the-most-out-of-your-allocation">
+<h2>How to get the most out of your allocation<a class="headerlink" href="#how-to-get-the-most-out-of-your-allocation" title="Permalink to this headline">¶</a></h2>
+<p>We want to support researchers in getting the most out of the
+high-performance computing services. When supporting users, we see that
+these problems are very frequent:</p>
+<ul class="simple">
+<li><p><strong>Reusing outdated scripts</strong> from colleagues without adapting them to
+optimal parameters for the cluster at hand and thus leaving few cores
+idle. Please check at least how many cores there are on a particular
+cluster node.</p></li>
+<li><p><strong>Requesting too much memory</strong> which leads to longer queuing and less
+resource usage. Please check <a class="reference internal" href="jobs/choosing_memory_settings.html#choosing-memory-settings"><span class="std std-ref">How to choose the right amount of memory</span></a>.</p></li>
+<li><p><strong>Requesting more cores than the application can effectively use</strong> without
+studying the scaling of the application. You will get charged more than
+needed and others cannot run jobs. If others do this, your own jobs queue.</p></li>
+<li><p><strong>Submitting jobs to the wrong queue</strong> and then queuing longer than
+needed. Please take some time to study the different <a class="reference internal" href="jobs/choosing_job_types.html#job-types"><span class="std std-ref">Job Types</span></a>.</p></li>
+</ul>
+<p>If you are unsure about these, please contact us via
+<a class="reference external" href="mailto:support&#37;&#52;&#48;metacenter&#46;no">support<span>&#64;</span>metacenter<span>&#46;</span>no</a> and we will help you to use your allocated
+resources more efficiently so that you get your research results faster.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="acknowledging-use-of-national-hpc-infrastructure">
+<h2>Acknowledging use of national HPC infrastructure<a class="headerlink" href="#acknowledging-use-of-national-hpc-infrastructure" title="Permalink to this headline">¶</a></h2>
+<p>Projects are required to acknowledge the use of the national
+e-infrastructure resources in their scientific publications. Papers,
+presentations and other publications that feature work that relied on
+Sigma2 should include an acknowledgement following this template:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">computations</span><span class="o">/</span><span class="n">simulations</span><span class="o">/</span><span class="p">[</span><span class="n">SIMILAR</span><span class="p">]</span> <span class="n">were</span> <span class="n">performed</span> <span class="n">on</span> <span class="n">resources</span> <span class="n">provided</span> <span class="n">by</span>
+<span class="n">UNINETT</span> <span class="n">Sigma2</span> <span class="o">-</span> <span class="n">the</span> <span class="n">National</span> <span class="n">Infrastructure</span> <span class="k">for</span> <span class="n">High</span> <span class="n">Performance</span> <span class="n">Computing</span> <span class="ow">and</span>
+<span class="n">Data</span> <span class="n">Storage</span> <span class="ow">in</span> <span class="n">Norway</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="text-is-licensed-cc-by">
+<h2>Text is licensed CC-BY<a class="headerlink" href="#text-is-licensed-cc-by" title="Permalink to this headline">¶</a></h2>
+<p>Unless explicitly noted, all text on this website is made available
+under the <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution license
+(CC-BY-4.0)</a> with
+attribution to the Sigma2/Metacenter.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="index-of-keywords">
+<h2>Index of keywords<a class="headerlink" href="#index-of-keywords" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="known-issues.html">Known issues</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jobs/overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software/licenses.html">Licenses and access policies</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="known-issues.html" class="btn btn-neutral float-right" title="Known issues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

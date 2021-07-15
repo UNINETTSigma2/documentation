@@ -1,0 +1,431 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Job Types on Fram &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Job types and job scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Job Types on Fram</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/jobs/job_types/fram_job_types.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="job-types-on-fram">
+<span id="job-types-fram"></span><h1>Job Types on Fram<a class="headerlink" href="#job-types-on-fram" title="Permalink to this headline">¶</a></h1>
+<p>Fram is designed to run medium-sized parallel jobs.  If you need to
+run serial jobs or “narrow” parallel jobs, Saga is a better choice.</p>
+<p>Most jobs on Fram are <em>normal</em> jobs.</p>
+<p>Jobs requiring a lot of memory (&gt; 4 GiB/cpu) should run as <em>bigmem</em>
+jobs. Also, jobs requiring only a single cpu, can use a small <em>bigmem</em> job.</p>
+<p>Jobs that are very short, or implement checkpointing, can run as
+<em>optimist</em> jobs, which means they can use resources that are idle for
+a short time before they are requeued by a non-<em>optimist</em> job.</p>
+<p>For development or testing, there are two job types: <em>devel</em> usually
+has the shortest wait time during office hours, but is limited to
+small, short jobs.  <em>short</em> allows slightly larger and longer jobs,
+but will probably have longer wait times.</p>
+<p>Here is a more detailed description of the different job types on
+Fram:</p>
+<div class="section" id="normal">
+<span id="job-type-fram-normal"></span><h2>Normal<a class="headerlink" href="#normal" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Allocation units</strong>: whole nodes</p></li>
+<li><p><strong>Job Limits</strong>:</p>
+<ul>
+<li><p>minimum 1 node, maximum 32 nodes (can be increased)</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum walltime</strong>: 7 days</p></li>
+<li><p><strong>Priority</strong>: normal</p></li>
+<li><p><strong>Available resources</strong>: 996 nodes with 32 cpus and 60 GiB RAM</p></li>
+<li><p><strong>Parameter for sbatch/srun</strong>:</p>
+<ul>
+<li><p>None, <em>normal</em> is the default</p></li>
+</ul>
+</li>
+<li><p><strong>Job Scripts</strong>: <a class="reference internal" href="../job_scripts/fram_job_scripts.html#job-scripts-fram-normal"><span class="std std-ref">Normal</span></a></p></li>
+</ul>
+<p>This is the default job type.  Most jobs are <em>normal</em> jobs.  Most of
+the other job types are “variants” of a <em>normal</em> job.</p>
+<p>In <em>normal</em> jobs, the queue system hands out complete nodes.  If a
+project needs more than 32 nodes per job, and the application in
+question can actually scale more than 32 nodes, please send a request
+to <a class="reference external" href="mailto:support&#37;&#52;&#48;metacenter&#46;no">support<span>&#64;</span>metacenter<span>&#46;</span>no</a>.</p>
+</div>
+<div class="section" id="bigmem">
+<span id="job-type-fram-bigmem"></span><h2>Bigmem<a class="headerlink" href="#bigmem" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Allocation units</strong>: cpus and memory</p></li>
+<li><p><strong>Job Limits</strong>:</p>
+<ul>
+<li><p>(none)</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum walltime</strong>: 14 days</p></li>
+<li><p><strong>Priority</strong>: normal</p></li>
+<li><p><strong>Available resources</strong>:</p>
+<ul>
+<li><p>8 nodes with 32 cpus and 501 GiB RAM</p></li>
+<li><p>2 nodes with 64 cpus and 6045 GiB RAM</p></li>
+</ul>
+</li>
+<li><p><strong>Parameter for sbatch/srun</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--partition=bigmem</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Job Scripts</strong>: <a class="reference internal" href="../job_scripts/fram_job_scripts.html#job-scripts-fram-bigmem"><span class="std std-ref">Bigmem</span></a></p></li>
+</ul>
+<p><em>Bigmem</em> jobs are meant for jobs that need a lot of memory (RAM),
+typically more than 4 GiB per cpu.  (The <em>normal</em> nodes on Fram have
+slightly less than 2 GiB per cpu.)</p>
+<p>For <em>bigmem</em> jobs, the queue system hands out cpus and memory, not
+whole nodes.</p>
+</div>
+<div class="section" id="devel">
+<span id="job-type-fram-devel"></span><h2>Devel<a class="headerlink" href="#devel" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Allocation units</strong>: whole nodes</p></li>
+<li><p><strong>Job Limits</strong>:</p>
+<ul>
+<li><p>minimum 1 nodes, maximum 8 nodes per job</p></li>
+<li><p>maximum 1 running job at a time per user</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum walltime</strong>: 30 minutes</p></li>
+<li><p><strong>Priority</strong>: high</p></li>
+<li><p><strong>Available resources</strong>: 8 nodes with 32 cpus and 60 GiB RAM between
+07:00 and 21:00 on weekdays</p></li>
+<li><p><strong>Parameter for sbatch/srun</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--qos=devel</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Job Scripts</strong>: <a class="reference internal" href="../job_scripts/fram_job_scripts.html#job-scripts-fram-devel"><span class="std std-ref">Devel</span></a></p></li>
+</ul>
+<p>This is meant for small, short development or test jobs.  <em>Devel</em> jobs
+have access to a set of dedicated nodes on daytime in weekdays to
+make the jobs start as soon as possible.  On the other hand, there are
+limits on the size and number of <em>devel</em> jobs.</p>
+<p>If you have <em>temporary</em> development needs that cannot be fulfilled by
+the <em>devel</em> or <em>short</em> job types, please contact us at
+<a class="reference external" href="mailto:support&#37;&#52;&#48;metacenter&#46;no">support<span>&#64;</span>metacenter<span>&#46;</span>no</a>.</p>
+</div>
+<div class="section" id="short">
+<span id="job-type-fram-short"></span><h2>Short<a class="headerlink" href="#short" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Allocation units</strong>: whole nodes</p></li>
+<li><p><strong>Job Limits</strong>:</p>
+<ul>
+<li><p>minimum 1 nodes, maximum 10 nodes per job</p></li>
+<li><p>maximum 16 nodes in use at the same time</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum walltime</strong>: 2 hours</p></li>
+<li><p><strong>Priority</strong>: high (slightly lower than <em>devel</em>)</p></li>
+<li><p><strong>Available resources</strong>: 16 nodes with 32 cpus and 60 GiB RAM
+(shared with <em>normal</em>)</p></li>
+<li><p><strong>Parameter for sbatch/srun</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--qos=short</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Job Scripts</strong>: <a class="reference internal" href="../job_scripts/fram_job_scripts.html#job-scripts-fram-short"><span class="std std-ref">Short</span></a></p></li>
+</ul>
+<p>This is also meant for development or test jobs.  It allows slightly
+longer and wider jobs than <em>devel</em>, but has slightly lower priority,
+and no dedicated resources.  This usually results in a longer wait
+time than <em>devel</em> jobs, at least on work days.</p>
+</div>
+<div class="section" id="optimist">
+<span id="job-type-fram-optimist"></span><h2>Optimist<a class="headerlink" href="#optimist" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Allocation units</strong>: whole nodes</p></li>
+<li><p><strong>Job Limits</strong>:</p>
+<ul>
+<li><p>minimum 1 node, maximum 32 nodes (can be increased)</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum Walltime</strong>: None.  The jobs will start as soon as
+resources are available for at least 30 minutes, but can be
+requeued at any time, so there is no guaranteed minimum run time.</p></li>
+<li><p><strong>Priority</strong>: low</p></li>
+<li><p><strong>Available resources</strong>: <em>optimist</em> jobs run on the <em>normal</em> nodes.</p></li>
+<li><p><strong>Parameter for sbatch/srun</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--partition=optimist</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Job Scripts</strong>: <a class="reference internal" href="../job_scripts/fram_job_scripts.html#job-scripts-fram-optimist"><span class="std std-ref">Optimist</span></a></p></li>
+</ul>
+<p>The <em>optimist</em> job type is meant for very short jobs, or jobs with
+checkpointing (i.e., they save state regularly, so they can restart
+from where they left off).</p>
+<p><em>Optimist</em> jobs get lower priority than other jobs, but will start as
+soon as there are free resources for at least 30 minutes.  However,
+when any other non-<em>optimist</em> job needs its resources, the <em>optimist</em>
+job is stopped and put back on the job queue.  This can happen before
+the <em>optimist</em> job has run 30 minutes, so there is no <em>guaranteed</em>
+minimum run time.</p>
+<p>Therefore, all <em>optimist</em> jobs must use checkpointing, and access to
+run <em>optimist</em> jobs will only be given to projects that demonstrate
+that they can use checkpointing.  If you want to run <em>optimist</em> jobs,
+send a request to <a class="reference external" href="mailto:support&#37;&#52;&#48;metacenter&#46;no">support<span>&#64;</span>metacenter<span>&#46;</span>no</a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

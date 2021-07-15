@@ -1,0 +1,41 @@
+name: Build HTML
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install Python dependencies
+      run: |
+        python -m pip install -r requirements.txt
+    - name: Run Sphinx
+      run: |
+        sphinx-build . _build
+    - name: Commit and push to gh-pages
+      run: |-
+        git config --global user.email "workflow-bot@example.com"
+        git config --global user.name "workflow-bot"
+        git checkout --orphan gh-pages
+        git rm --cached -r .
+        mv CNAME _build ..
+        rm -rf *
+        mv ../_build/* .
+        mv ../CNAME .
+        touch .nojekyll
+        git add .
+        git commit -m "generated using sphinx-build"
+        git push --set-upstream origin gh-pages --force

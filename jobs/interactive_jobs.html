@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Interactive jobs &mdash; Sigma2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/sigma2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Checkpointing Jobs" href="checkpointing.html" />
+    <link rel="prev" title="Efficient use of processors and network on Betzy" href="parallel-calculations.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sigma2/Metacenter documentation
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">News</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://opslog.sigma2.no">Latest changes and events</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/hardware-status">Hardware live status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Support line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/user_communities.html">User communities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/project_leader_support.html">Project leader support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/advanced_user_support.html">Advanced User Support (AUS)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/training.html">Training material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/create_ssh_keys.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research data archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption"><span class="caption-text">High-performance computing</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to a Metacenter HPC machine</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Job types and job scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="submitting.html">Submitting jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_job_types.html">Job Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts.html">Job Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Monitoring jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_memory_settings.html">How to choose the right amount of memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_job_failures.html">Common job failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">How to check the performance and scaling using Arm Performance Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mkl.html">Using MKL efficiently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory-bandwidth.html">Efficient use of memory bandwith on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-calculations.html">Efficient use of processors and network on Betzy</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Interactive jobs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#asking-for-an-interactive-node">Asking for an interactive node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#keeping-interactive-jobs-alive">Keeping interactive jobs alive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#graphical-user-interfaces-in-interactive-jobs">Graphical user interfaces in interactive jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-difference-between-salloc-and-srun">The difference between salloc and srun</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="checkpointing.html">Checkpointing Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects_accounting.html">Projects and accounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dos_and_donts.html">Dos and Don’ts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides.html">Guides</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/containers.html">Running containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licenses and access policies</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Files and Storage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird.html">NIRD - National Infrastructure for Research Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Fram, Saga and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/replication.html">Granular replication for NIRD projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Storage performance tuning</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/Metacenter documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="overview.html">Job types and job scripts</a> &raquo;</li>
+        
+      <li>Interactive jobs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/UNINETTSigma2/documentation/blob/master/jobs/interactive_jobs.md" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="interactive-jobs">
+<span id="id1"></span><h1>Interactive jobs<a class="headerlink" href="#interactive-jobs" title="Permalink to this headline">¶</a></h1>
+<p>Sometimes you might want to test or debug a calculation interactively,
+but <strong>running interactively on the login node is discouraged and not an
+option</strong>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#asking-for-an-interactive-node">Asking for an interactive node</a></p></li>
+<li><p><a class="reference external" href="#keeping-interactive-jobs-alive">Keeping interactive jobs alive</a></p></li>
+<li><p><a class="reference external" href="#graphical-user-interfaces-in-interactive-jobs">Graphical user interfaces in interactive jobs</a></p></li>
+<li><p><a class="reference external" href="#the-difference-between-salloc-and-srun">The difference between salloc and srun</a></p></li>
+</ul>
+<div class="section" id="asking-for-an-interactive-node">
+<h2>Asking for an interactive node<a class="headerlink" href="#asking-for-an-interactive-node" title="Permalink to this headline">¶</a></h2>
+<p>Instead of running on a login node, you can ask the queue system to allocate
+compute resources for you and once assigned, you can run the job(s)
+interactively for as long as requested.  The examples below are for <em>devel</em>
+jobs, but the procedure also holds for the <a class="reference internal" href="choosing_job_types.html"><span class="doc std std-doc">other job types
+</span></a> except <em>optimist</em> jobs.</p>
+<p>On <strong>Fram</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ srun --nodes=1 --time=00:30:00 --qos=devel --account=YourAccount --pty bash -i
+</pre></div>
+</div>
+<p>On <strong>Saga</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ srun --ntasks=1 --mem-per-cpu=4G --time=00:30:00 --qos=devel --account=YourAccount --pty bash -i
+</pre></div>
+</div>
+<p>When you are done, simply exit the shell (<code class="docutils literal notranslate"><span class="pre">exit</span></code>, <code class="docutils literal notranslate"><span class="pre">logout</span></code> or <code class="docutils literal notranslate"><span class="pre">^D</span></code>) to
+end the job.</p>
+<p>The arguments between <code class="docutils literal notranslate"><span class="pre">srun</span></code> and <code class="docutils literal notranslate"><span class="pre">--pty</span></code> could be any arguments you
+would have given to <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> when submitting a non-interactive
+job. However, <code class="docutils literal notranslate"><span class="pre">--qos=devel</span></code> is probably a good idea to avoid waiting
+too long in the queue.</p>
+<p><strong>Note that interactive jobs stop when you log out from the login
+machine</strong>, so unless you have very long days in office (or elsewhere,
+for that matter), specifying more than 6-8 hrs runtime is not very
+useful. An alternative is to start the job in a tmux session (next section).</p>
+</div>
+<div class="section" id="keeping-interactive-jobs-alive">
+<h2>Keeping interactive jobs alive<a class="headerlink" href="#keeping-interactive-jobs-alive" title="Permalink to this headline">¶</a></h2>
+<p>Interactive jobs stop when you disconnect from the login node either by
+choice or by internet connection problems. To keep a job alive you can
+use a terminal multiplexer like tmux.</p>
+<p>tmux allows you to run processes as usual in your standard bash shell</p>
+<p>You start tmux on the login node before you get a interactive Slurm
+session with <code class="docutils literal notranslate"><span class="pre">srun</span></code> and then do all the work in it. In case of a
+disconnect you simply reconnect to the login node and attach to the tmux
+session again by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tmux attach
+</pre></div>
+</div>
+<p>Or in case you have multiple session running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tmux list-session
+$ tmux attach -t SESSION_NUMBER
+</pre></div>
+</div>
+<p>As long as the tmux session is not closed or terminated (e.g. by a
+server restart) your session should continue. One problem with our
+systems is that the tmux session is bound to the particular login server
+you get connected to. So if you start a tmux session on login-1 on SAGA
+and next time you get randomly connected to login-2 you first have to
+connect to login-1 again by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh login-1
+</pre></div>
+</div>
+<p>On Fram the login nodes currently used are login-1-1 and login-1-2.</p>
+<p>To log out a tmux session without closing it you have to press Ctrl-B
+(that the Ctrl key and simultaneously “b”, which is the standard tmux
+prefix) and then “d” (without the quotation marks). To close a session
+just close the bash session with either Ctrl-D or type exit. You can get
+a list of all tmux commands by Ctrl-B and the ? (question mark). See
+also <a class="reference external" href="https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/">this
+page</a> for
+a short tutorial of tmux. Otherwise working inside of a tmux session is
+almost the same as a normal bash session.</p>
+</div>
+<div class="section" id="graphical-user-interfaces-in-interactive-jobs">
+<h2>Graphical user interfaces in interactive jobs<a class="headerlink" href="#graphical-user-interfaces-in-interactive-jobs" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to run X commands, i.e., programs with a graphical user
+interface (GUI), in interactive jobs. This allows you to get graphical output
+back from your job running on a login node.</p>
+<p>First, you must make sure that you have turned on <em>X forwarding</em> when logging
+in to the cluster.  With <code class="docutils literal notranslate"><span class="pre">ssh</span></code> from a Linux or MacOS machine, you do this with
+the <code class="docutils literal notranslate"><span class="pre">-Y</span></code> flag, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh -Y fram.sigma2.no
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh -Y saga.sigma2.no
+</pre></div>
+</div>
+<p>Check that the X forwarding works by running a graphical command like <code class="docutils literal notranslate"><span class="pre">emacs</span> <span class="pre">&amp;</span></code>
+and verify that it sets up a window.  (Note that due to network latency, it
+can take a long time to set up a window.)</p>
+<p>To be able to run X commands in interactive jobs, add the argument <code class="docutils literal notranslate"><span class="pre">--x11</span></code>
+(note the lowercase <code class="docutils literal notranslate"><span class="pre">x</span></code>) to <code class="docutils literal notranslate"><span class="pre">srun</span></code>, like this:</p>
+<p>On <strong>Fram</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ srun --nodes=1 --time=00:30:00 --qos=devel --account=YourAccount --x11 --pty bash -i
+</pre></div>
+</div>
+<p>On <strong>Saga</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ srun --ntasks=1 --mem-per-cpu=4G --time=00:30:00 --qos=devel --account=YourAccount --x11 --pty bash -i
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-difference-between-salloc-and-srun">
+<h2>The difference between salloc and srun<a class="headerlink" href="#the-difference-between-salloc-and-srun" title="Permalink to this headline">¶</a></h2>
+<p>An alternative to using <code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">...</span> <span class="pre">--pty</span> <span class="pre">bash</span> <span class="pre">-i</span></code> is to use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ salloc --nodes=1 --time=00:30:00 --qos=devel --account=YourAccount
+</pre></div>
+</div>
+<p>And equivalently on Saga.</p>
+<p>As with <code class="docutils literal notranslate"><span class="pre">srun</span></code>, the arguments to <code class="docutils literal notranslate"><span class="pre">salloc</span></code> can be any you would have
+given to <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>. <code class="docutils literal notranslate"><span class="pre">salloc</span></code> will also give you an interactive shell, but note
+that the shell <strong>will be running on the login node</strong>.  That means that you
+<em>must</em> start all calculations with <code class="docutils literal notranslate"><span class="pre">srun</span></code> or <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> or equivalent, to make
+sure they run on the allocated compute node(s).  For this reason, <strong>the srun
+method is probably preferable in most cases</strong> (it also works more like a batch
+job).  However, there might be situations when the <code class="docutils literal notranslate"><span class="pre">srun</span></code> method doesn’t work
+properly, in which case you can try with <code class="docutils literal notranslate"><span class="pre">salloc</span></code>.</p>
+<p>With this method, you can run X commands without adding any switch to the
+<code class="docutils literal notranslate"><span class="pre">salloc</span></code> command, but note again that the commands will be run <strong>on the login
+node</strong>.  In some cases, this is what you want (see for instance
+<a class="reference internal" href="../code_development/debugging.html#totalview-debugging"><span class="std std-ref">TotalView</span></a>).</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="checkpointing.html" class="btn btn-neutral float-right" title="Checkpointing Jobs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="parallel-calculations.html" class="btn btn-neutral float-left" title="Efficient use of processors and network on Betzy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sigma2/Metacenter.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
