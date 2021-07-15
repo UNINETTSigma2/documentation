@@ -144,4 +144,4 @@ properly, in which case you can try with `salloc`.
 With this method, you can run X commands without adding any switch to the
 `salloc` command, but note again that the commands will be run **on the login
 node**.  In some cases, this is what you want (see for instance
-:ref:`totalview_debugging`).
+{ref}`totalview_debugging`).
