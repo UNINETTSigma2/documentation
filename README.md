@@ -63,7 +63,7 @@ anything.
 Assuming we want to add a section describing that no animals are allowed on the server.
 We will call the branch `no-animals`.
 
-0. Optionally but recommended: [Open an issue](https://scm.uninett.no/sigma2/eksterndokumentasjon/issues)
+0. Optionally but recommended: [Open an issue](https://gitlab.sigma2.no/sigma2/eksterndokumentasjon/issues)
    describing the necessary change. This is useful to either signal a problem if you don't have time to solve it,
    but it can also be useful to collect feedback for an idea before doing all the writing.
 1. Get an up-to-date `master` branch: `git pull origin master`
@@ -72,7 +72,7 @@ We will call the branch `no-animals`.
 4. Stage your changes: `git add new_section.md`
 5. Commit the changes: `git commit -m 'Add new section'`
 6. Upload your changes to the main repository: `git push origin no-animals`
-7. Create a new [merge request](https://scm.uninett.no/sigma2/eksterndokumentasjon/-/merge_requests).
+7. Create a new [merge request](https://gitlab.sigma2.no/sigma2/eksterndokumentasjon/-/merge_requests).
    Select your branch as _source branch_ and `master` as _target branch_. Also mark the source
    branch to be deleted upon accepted merge request.
 8. Describe the changes and optionally assign someone to review and approve the commits.
@@ -81,9 +81,9 @@ We will call the branch `no-animals`.
 ## How to submit a merge request via the web interface
 
 It is possible to suggest changes and file a merge request to the documentation directly from
-the [web interface](https://scm.uninett.no/sigma2/eksterndokumentasjon):
+the [web interface](https://gitlab.sigma2.no/sigma2/eksterndokumentasjon):
 
-- Browse the [file tree](https://scm.uninett.no/sigma2/eksterndokumentasjon/-/tree/master)
+- Browse the [file tree](https://gitlab.sigma2.no/sigma2/eksterndokumentasjon/-/tree/master)
   and click on the file you wish to edit.
 - Click the blue button "Edit".
 - Make changes to the file.
@@ -99,7 +99,7 @@ $ git checkout master
 ```
 
 Pull changes from `origin`
-(we assume `origin` points at `git@scm.uninett.no:sigma2/eksterndokumentasjon.git`):
+(we assume `origin` points at `git@gitlab.sigma2.no:sigma2/eksterndokumentasjon.git`):
 ```
 $ git pull origin master
 ```
@@ -107,9 +107,9 @@ $ git pull origin master
 
 ## How to review a merge request
 
-Open merge requests are listed [here](https://scm.uninett.no/sigma2/eksterndokumentasjon/-/merge_requests).
+Open merge requests are listed [here](https://gitlab.sigma2.no/sigma2/eksterndokumentasjon/-/merge_requests).
 
-Every merge request is numbered, e.g. [!62](https://scm.uninett.no/sigma2/eksterndokumentasjon/-/merge_requests/62).
+Every merge request is numbered, e.g. [!62](https://gitlab.sigma2.no/sigma2/eksterndokumentasjon/-/merge_requests/62).
 
 Checklist before approving and merging:
 
