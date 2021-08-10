@@ -6,18 +6,18 @@ Meet the HPC staff, discuss problems and project ideas, give feedback or
 suggestions on how to improve services, and get advice for your
 projects.
 
-Join us on Zoom, get yourself a
+Join us on [Zoom](https://uit.zoom.us/j/63325955553), get yourself a
 coffee or tea and have a chat. It doesn't matter from which institute or
 university you are, you are **welcome to join at any time**.
 
-This time we will start with a **short seminar**.
- Afterwards we have the open question and
-answer session.
+This time we will start with a **15 min seminar about the documentation
+and other helpful resources and how you can help us to improve it.**
+Afterwards we have the open question and answer session.
 
 We can talk about:
-- Questions regarding compuate resources, data storage and management.
+- Questions regarding compute resources, data storage and management.
 - Help with programming and software management.
-- Help with paralellization, improving performance and/or scaling etc.
+- Help with parallelization, improving performance and/or scaling etc.
 - Help with project organization and data management.
 - Anything else.
 
@@ -37,7 +37,8 @@ events.
 
 ## Next event
 
-Mid April, details will be announced
+-   **2021-09-09, 13:00 - 15:00**, [join us via Zoom](https://uit.zoom.us/j/63325955553)
+
 
 ## Past events
 
