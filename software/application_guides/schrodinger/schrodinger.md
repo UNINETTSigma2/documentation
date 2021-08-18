@@ -15,4 +15,4 @@ The Schrödinger package is currently available on `SAGA`.
 
 ## Citation
 
-For the recommended citation, please consult [https://www.schrodinger.com/citations](https://www.schrodinger.com/citations).
+For the recommended citation(s), please consult [https://www.schrodinger.com/citations](https://www.schrodinger.com/citations).

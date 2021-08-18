@@ -25,3 +25,11 @@ queue:       SLURM2.1
 qargs:       --export=ALL --account=nnXXXXk --mem-per-cpu=1GB --time=01:00:00
 processors:  40
 tmpdir:      /cluster/work/users/schrodinger
+
+#
+name:        batch-long
+host:        login-3
+queue:       SLURM2.1
+qargs:       --export=ALL --account=nnXXXXk --mem-per-cpu=1GB --time=96:00:00
+processors:  80
+tmpdir:      /cluster/work/users/schrodinger
