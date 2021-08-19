@@ -139,7 +139,7 @@ mapping and binding algorithms. Intel's `mpirun` uses it's own default
 binding settings, which can be modified either by [command line
 parameters](https://software.intel.com/en-us/node/589999), or by
 [environment
-variables](https://software.intel.com/en-us/mpi-developer-reference-windows-environment-variables-for-process-pinning).
+variables](https://software.intel.com/content/www/us/en/develop/documentation/mpi-developer-reference-linux/top/environment-variable-reference/process-pinning/environment-variables-for-process-pinning.html).
 Special care must be taken when running hybrid MPI-OpenMP cores. If
 this is your case, please refer to the documentation regarding
 [Interoperability between MPI and

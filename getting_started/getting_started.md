@@ -129,4 +129,4 @@ two `SBATCH` options (on {ref}`saga` you also need to indicate maximum memory):
 #SBATCH --time=0-00:05:00
 ```
 
-For more details please see {ref}`job-types-and-job-scripts`.
+For more details please see {ref}`running-jobs`.
