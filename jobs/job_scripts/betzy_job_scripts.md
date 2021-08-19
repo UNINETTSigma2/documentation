@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (betzy_job_scripts)=
 
 # Job Scripts on Betzy
