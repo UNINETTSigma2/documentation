@@ -7,6 +7,7 @@ Cluster-specific details are kept in separate sub pages for each cluster:
 
 - [Fram job scripts](job-scripts-on-fram)
 - [Saga job scripts](job-scripts-on-saga)
+- {ref}`betzy_job_scripts`
 
 ```{note}
 Email notification from completed Slurm scripts is currently disabled **on all
