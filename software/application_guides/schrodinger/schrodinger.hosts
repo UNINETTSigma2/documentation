@@ -15,12 +15,14 @@
 
 # schrodinger.hosts for SAGA
 name:        localhost
+schrodinger: ${SCHRODINGER}
 tmpdir:      /cluster/work/users/schrodinger
 processors:  1
 
 #
 name:        batch-small
 host:        login-3
+schrodinger: ${SCHRODINGER}
 queue:       SLURM2.1
 qargs:       --export=ALL --account=nnXXXXk --mem-per-cpu=1GB --time=01:00:00
 processors:  40
@@ -29,7 +31,17 @@ tmpdir:      /cluster/work/users/schrodinger
 #
 name:        batch-long
 host:        login-3
+schrodinger: ${SCHRODINGER}
 queue:       SLURM2.1
-qargs:       --export=ALL --account=nnXXXXk --mem-per-cpu=1GB --time=96:00:00
+qargs:       --export=ALL --account=nnXXXXk --mem-per-cpu=1GB --time=7-00:00:00
 processors:  80
+tmpdir:      /cluster/work/users/schrodinger
+
+#
+name:        batch-jaguar
+host:        login-3
+schrodinger: ${SCHRODINGER}
+queue:       SLURM2.1
+qargs:       --export=ALL --account=nnXXXXk --mem-per-cpu=1GB --ntasks=%TPP% --time=2-00:00:00
+processors:  160
 tmpdir:      /cluster/work/users/schrodinger
