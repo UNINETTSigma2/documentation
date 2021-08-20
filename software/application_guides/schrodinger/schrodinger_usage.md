@@ -8,7 +8,7 @@ Load the desired Schrodinge suite on SAGA:
 * `module purge`
 * `module load Schrodinger/2021-2-intel-2020b`
 
-Now you can call any Schrodinger software by using the $SCHRODINGER variable from your command line, for exameple 
+Now you can call any Schrodinger software by using the \$SCHRODINGER variable from your command line, for exameple 
 `$SCHRODINGER/glide`.
 
 You can also launch maestro by typing the command `maestro`. We however would generally encourage our users
@@ -24,3 +24,8 @@ the command line using the \$SCRODINGER variable.
 The above command submits the pre-created input file glide-grid_1.in. The `-OVERWRITE -HOST batch-small` tells 
 Schrodinger to you use the job settings and qargs defined in your local [schrodinger.hosts](schrodinger_hosts.md) file 
 with entry name batch-small. 
+
+### Go to:
+* [Schrodinger main page](schrodinger.md)
+* [Using the Schrodinger suite](schrodinger_usage.md)
+* [Setting up the Hosts file](schrodinger_hosts.md)

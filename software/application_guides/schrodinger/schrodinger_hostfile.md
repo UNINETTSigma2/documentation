@@ -1,3 +1,9 @@
+---
+orphan: true
+---
+
+# schrodinger.hosts file example
+```
 # Schrodinger hosts file
 #
 # The hosts file consists of a series of entries, each describing a
@@ -45,3 +51,9 @@ queue:       SLURM2.1
 qargs:       --export=ALL --account=nnXXXXk --mem-per-cpu=1GB --ntasks=%TPP% --time=2-00:00:00
 processors:  160
 tmpdir:      /cluster/work/users/schrodinger
+```
+
+### Go to:
+* [Schrodinger main page](schrodinger.md)
+* [Using the Schrodinger suite](schrodinger_usage.md)
+* [Setting up the Hosts file](schrodinger_hosts.md)

@@ -24,3 +24,8 @@ The Schrödinger package is currently available on `SAGA`.
 ## Citation
 
 For the recommended citation(s), please consult [https://www.schrodinger.com/citations](https://www.schrodinger.com/citations).
+
+### Go to:
+* [Schrodinger main page](schrodinger.md)
+* [Using the Schrodinger suite](schrodinger_usage.md)
+* [Setting up the Hosts file](schrodinger_hosts.md)
