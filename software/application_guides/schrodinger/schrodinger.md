@@ -16,10 +16,10 @@ The following Schrodinger suites are available on SAGA:
 2. [Using the Schrodinger suite](schrodinger_usage.md)
 
 
-NOTE: Before running any jobs, you need to make a copy of the schrodinger.hosts file as described [here](schrodinger_hosts.md).
+**NOTE:** Before running any jobs, you need to make a copy of the schrodinger.hosts file as described [here](schrodinger_hosts.md).
 
 ## License and access
-The Schrödinger package is currently available on `SAGA`. 
+The Schrödinger suite is currently available on `SAGA`. 
 
 ## Citation
 
@@ -29,3 +29,4 @@ For the recommended citation(s), please consult [https://www.schrodinger.com/cit
 * [Schrodinger main page](schrodinger.md)
 * [Using the Schrodinger suite](schrodinger_usage.md)
 * [Setting up the Hosts file](schrodinger_hosts.md)
+* [Hosts file keywords](host_file_settings.md)

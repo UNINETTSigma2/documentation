@@ -17,7 +17,7 @@ maestro gui, you must log in to SAGA with X11 forwarding, e.g. `ssh -Y you@saga.
 
 To the extent it is possible, we recommend preparing input files etc. using a local version of maestro and uploading
 the files to SAGA (`scp -r input_files/ you@saga.sigma2.no:/some/existing/directory`). Jobs can then be submitted from
-the command line using the \$SCRODINGER variable. 
+the command line using the \$SCRODINGER variable. For example:
 
 * `"${SCHRODINGER}/glide" glide-grid_1.in -OVERWRITE -HOST batch-small -TMPLAUNCHDIR`
 
@@ -31,3 +31,4 @@ with entry name batch-small.
 * [Schrodinger main page](schrodinger.md)
 * [Using the Schrodinger suite](schrodinger_usage.md)
 * [Setting up the Hosts file](schrodinger_hosts.md)
+* [Hosts file keywords](host_file_settings.md)

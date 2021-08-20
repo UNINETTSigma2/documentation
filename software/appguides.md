@@ -21,5 +21,6 @@ module system, and information about changes in application software see
     * [OpenFOAM](application_guides/openfoam.md)
     * [PROJ](application_guides/proj.md)
     * [R](userinstallsw/R.md)
+    * [Schrödinger](application_guides/schrodinger/schrodinger.md)
     * [VASP](application_guides/vasp.md)
     * [WRF](application_guides/wrf.md)

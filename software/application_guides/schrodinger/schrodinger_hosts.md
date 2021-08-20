@@ -37,3 +37,4 @@ It is however more efficient to make several host entries with different setting
 * [Schrodinger main page](schrodinger.md)
 * [Using the Schrodinger suite](schrodinger_usage.md)
 * [Setting up the Hosts file](schrodinger_hosts.md)
+* [Hosts file keywords](host_file_settings.md)
