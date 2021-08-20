@@ -28,6 +28,8 @@ orphan: true
 |tmpdir| Base directory for temporary or scratch files, also called the scratch directory. The file system on which this directory is mounted should be large enough for the largest temporary files, should be mounted locally, and should be writable by the user.|
 |user| User name to use on the host. This should never be set in the hosts file in the installation directory. It is required if the user has a different user name on the defined host than on the host on which the job is launched.|
 
+##
+
 ### Go to:
 * [Schrodinger main page](schrodinger.md)
 * [Using the Schrodinger suite](schrodinger_usage.md)
