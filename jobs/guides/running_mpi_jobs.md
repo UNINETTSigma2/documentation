@@ -142,9 +142,9 @@ parameters](https://software.intel.com/en-us/node/589999), or by
 variables](https://software.intel.com/content/www/us/en/develop/documentation/mpi-developer-reference-linux/top/environment-variable-reference/process-pinning/environment-variables-for-process-pinning.html).
 Special care must be taken when running hybrid MPI-OpenMP cores. If
 this is your case, please refer to the documentation regarding
-[Interoperability between MPI and
-OpenMP](https://software.intel.com/en-us/mpi-developer-reference-windows-interoperability-with-openmp-api).
+[Interoperability between MPI and OpenMP](https://software.intel.com/content/www/us/en/develop/documentation/mpi-developer-reference-windows/top/environment-variable-reference/main-thread-pinning/interoperability-with-openmp-api.html).
 
+[comment]: # Original link (https://software.intel.com/en-us/mpi-developer-reference-windows-interoperability-with-openmp-api)
 
 ### `srun`
 

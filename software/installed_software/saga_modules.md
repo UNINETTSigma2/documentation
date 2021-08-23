@@ -4705,6 +4705,15 @@ without the use of a reference genome for comparison.
 
 </details>
 
+## Schrodinger 
+**Description:** Schrodinger is a scientific leader in computational chemistry, providing software solutions and services for life sciences 
+  and materials research. 
+**Homepage:** http://www.schrodinger.com
+<details><summary> <u>Installed versions:</u> </summary>
+
+ - Schrodinger/2021-2-intel-2020b
+</details>
+
 ## scikit-allel
 **Description:** This package provides utilities for exploratory analysis of large scale genetic variation data.
  It is based on numpy, scipy and other general-purpose Python scientific libraries.
