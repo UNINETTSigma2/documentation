@@ -4,11 +4,11 @@ orphan: true
 
 # Using the Schrodinger suite
 
-Load the desired Schrodinge suite on SAGA:
+Load the desired Schrodinger suite on SAGA:
 * `module purge`
 * `module load Schrodinger/2021-2-intel-2020b`
 
-Now you can call any Schrodinger software by using the \$SCHRODINGER variable from your command line, for exameple 
+Now you can call any Schrodinger software by using the \$SCHRODINGER variable from your command line, for example
 `$SCHRODINGER/glide`.
 
 You can also launch maestro by typing the command `maestro`. We however would generally encourage our users
@@ -17,7 +17,7 @@ maestro gui, you must log in to SAGA with X11 forwarding, e.g. `ssh -Y you@saga.
 
 To the extent it is possible, we recommend preparing input files etc. using a local version of maestro and uploading
 the files to SAGA (`scp -r input_files/ you@saga.sigma2.no:/some/existing/directory`). Jobs can then be submitted from
-the command line using the \$SCRODINGER variable. For example:
+the command line using the `$SCRODINGER` variable. For example:
 
 * `"${SCHRODINGER}/glide" glide-grid_1.in -OVERWRITE -HOST batch-small -TMPLAUNCHDIR`
 
