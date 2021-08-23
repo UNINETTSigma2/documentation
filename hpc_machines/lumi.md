@@ -79,6 +79,10 @@ evaluate `OpenACC` (see our {ref}`dev-guides`),
 or directly using [accelerated
 libraries](https://rocmdocs.amd.com/en/latest/ROCm_Libraries/ROCm_Libraries.html).
 
+If you are interested in porting your application to GPUs, or already have
+ported your application and need assistance transitioning to AMD GPUs, please
+contact the metacenter support (see {ref}`contact_support`).
+
 ## LUMI-C
 LUMI-C is the compute partition of LUMI, dealing with CPU based HPC
 applications. Users interested in this partition should also consider the other
