@@ -26,9 +26,9 @@ the directory permissions are set to 0700 (meaning: only the user can read, writ
 Permissions are regularly controlled, and in case of mismatch, reset.
 
 On the HPC clusters, users also have a *user work area*,
-`/cluster/work/users/$USER` (`$USERWORK`). This is also a **private**
-area, and the permissions are set so that only the user has access to
-the area.
+`/cluster/work/users/$USER` (`$USERWORK`). It is possible to grant other users access here, f.ex 
+for debugging purposes, but you may not grant *write* access to *others*. Be mindful of the permissions
+you set here, as you may inadvertently allow others to delete or modify your files.
 
 
 ## Project areas
