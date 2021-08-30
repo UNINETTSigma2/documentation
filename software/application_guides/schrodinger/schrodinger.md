@@ -8,16 +8,19 @@ sciences and materials research.
 
 The following Schrodinger suites are available on SAGA:
 * Schrodinger/2021-2-intel-2020b
-* Schrodinger/2021-3-intel-2020b (coming soon)
+* Schrodinger/2021-3-intel-2020b 
 
 ## Follow these steps to use the Schrodinger software package on SAGA:
 
 1. [Preparing the schrodinger.hosts file](schrodinger_hosts.md)
 2. [Using the Schrodinger suite](schrodinger_usage.md)
+3. [Schrodinger job control facility](job_control.md)
 
 
 **NOTE:** Before running any jobs, you need to make a copy of the schrodinger.hosts file as described [here](schrodinger_hosts.md).
 
+**NOTE 2:** Schrodinger uses its own wrapper on top of the SLURM queuing system. Please take the time to ensure that
+you understand how this works.
 ## License and access
 The Schrödinger suite is currently available on `SAGA`. 
 
