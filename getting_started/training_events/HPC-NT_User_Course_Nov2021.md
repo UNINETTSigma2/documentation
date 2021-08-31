@@ -4,7 +4,7 @@ In November 2021, the Norwegian Research Infrastructure Services **NRIS** (forme
 
 For individual sessions we list recommended prerequisites. The participants can choose which session they want to attend and you're certainly welcome to just attend all sessions you are interested in. On each course day, we will start at 09:00 and conclude at around 13:00. Each "morning" will include presentations and hands-on time on one of the actual HPC systems or the NIRD Toolkit. We recommend that participants use the afternoon on each day to repeat examples from the morning to get more experience on the systems.
 
-### **Practical Information**
+## **Practical Information**
 This is an online course via zoom. Participants require access to a computer (not provided by the course organisers) with internet connectivity and pre-installed programs to participate in the video meeting of the course (zoom, might work from a browser), to access the HPC systems (e.g., ssh or Putty), to transfer data to/from an HPC system (e.g., scp or WinSCP) and to access the NIRD Toolkit (web browser).
 
   **IMPORTANT NOTES**
@@ -21,7 +21,6 @@ If you want to receive further information about training events, and other anno
 - users at University of Bergen and affiliated institutes: [register to hpcnews@uib.no](https://mailman.uib.no/listinfo/hpcnews) 
 - users of Sigma3 services: [subscribe to Sigma2's newsletter](https://sigma2.us13.list-manage.com/subscribe?u=4fd109ad79a5dca6dde7e4997&id=59b164c7b6)
 
-## **HPC and NIRD Toolkit user course**
 **Dates: 2021 November 2, 3, 4 and 5 <
 Time: each day 09:00-13:00 with short breaks**
 Location: Video meeting (zoom) ,We use HackMD for asking questions (information will be send to registered participants via email) **Note, sessions will be recorded and made publicly available after the course!**
@@ -38,7 +37,7 @@ The course is free of charge and is organised by the NRIS partners Sigma2, UiB, 
 
 ## **Agenda**
 
-#### Day 1: 02-11.2021: Welcome, Introduction to High Performance Computing
+### Day 1: 02-11.2021: Welcome, Introduction to High Performance Computing
 
 - **Get ready: 08:50-09:00 Connect to zoom meeting**
 
@@ -63,7 +62,7 @@ Break for 10 minutes
 
 - **Session Q&A: 12:45-13:00 Questions & Answers**
 
-#### Day 2: 03-11-2021: Optimization of codes and Resource Management
+### Day 2: 03-11-2021: Optimization of codes and Resource Management
 
 **Prerequisites:** Basic HPC knowledge, we recommend participants  to attend Day1 sessions
 
@@ -85,7 +84,7 @@ Break for 10 minutes
 
 - **Session Q&A: 12:50-13:00 Questions & Answers**
 
-#### Day 3: 04-11-2021:  Containers on HPC and NIRD Toolkit
+### Day 3: 04-11-2021:  Containers on HPC and NIRD Toolkit
 
 - **Get ready: 08:50-09:00 Connect to zoom meeting**
 
@@ -103,7 +102,7 @@ Break for 10 minutes
 
 - **Session Q&A: 12:40-13:00 Questions & Answers**
 
-#### Day 4: 05-11-2021: GPU Computing 
+### Day 4: 05-11-2021: GPU Computing 
 
 - **Get ready: 08:50-09:00 Connect to zoom meeting**
 
