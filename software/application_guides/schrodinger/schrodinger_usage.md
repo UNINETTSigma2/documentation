@@ -16,10 +16,12 @@ to limit the use of graphical user interfaces to as little as possible. If you f
 maestro gui, you must log in to SAGA with X11 forwarding, e.g. `ssh -Y you@saga.sigma2.no`.
 
 To the extent it is possible, we recommend preparing input files etc. using a local version of maestro and uploading
-the files to SAGA (`scp -r input_files/ you@saga.sigma2.no:/some/existing/directory`). Jobs can then be submitted from
+the files to SAGA (`scp -r input_files/ you@saga.sigma2.no:/some/existing/directory`). To create the input files needed
+to run a job from the command line, set up the job in Maestro, choose Write from the Job Settings button menu 
+![settings](figures/settings.png), and if needed, modify the files that are generated. Jobs can then be submitted from
 the command line using the `$SCRODINGER` variable. For example:
 
-* `"${SCHRODINGER}/glide" glide-grid_1.in -OVERWRITE -NJOBS 20 -DRIVERHOST localhost -SUBHOST batch-small -TMPLAUNCHDIR`
+`"${SCHRODINGER}/glide" glide-grid_1.in -OVERWRITE -NJOBS 20 -DRIVERHOST localhost -SUBHOST batch-small -TMPLAUNCHDIR`
 
 The above command submits the pre-created input file glide-grid_1.in (ligand docking) and keeps the driver (job control) 
 on localhost (`-DRIVERHOST localhost`), preventing it from occupying a node. The `-SUBHOST -batch-small` tells 
@@ -48,3 +50,4 @@ and the actual jobs on the host specified by -SUBHOST. This combination will not
 * [Using the Schrodinger suite](schrodinger_usage.md)
 * [Setting up the Hosts file](schrodinger_hosts.md)
 * [Hosts file keywords](host_file_settings.md)
+* [Job control facility](job_control.md)

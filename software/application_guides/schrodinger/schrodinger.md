@@ -20,9 +20,9 @@ The following Schrodinger suites are available on SAGA:
 **NOTE:** Before running any jobs, you need to make a copy of the schrodinger.hosts file as described [here](schrodinger_hosts.md).
 
 **NOTE 2:** Schrodinger uses its own wrapper on top of the SLURM queuing system. Please take the time to ensure that
-you understand how this works.
+you understand how this works: [Schrodinger job control facility](job_control.md).
 ## License and access
-The Schrödinger suite is currently available on `SAGA`. 
+The Schrödinger suite is currently available on `SAGA` and the license is paid by the users. 
 
 ## Citation
 
@@ -33,3 +33,4 @@ For the recommended citation(s), please consult [https://www.schrodinger.com/cit
 * [Using the Schrodinger suite](schrodinger_usage.md)
 * [Setting up the Hosts file](schrodinger_hosts.md)
 * [Hosts file keywords](host_file_settings.md)
+* [Job control facility](job_control.md)
