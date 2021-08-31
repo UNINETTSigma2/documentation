@@ -1,3 +1,5 @@
+=(hpc-nirt-toolkit-user-course-nov-2021)
+
 # HPC and NIRD toolkit user course November 2021
 
 In November 2021, the Norwegian Research Infrastructure Services **NRIS** (formerly known as the Metacenter) partners Sigma2, UiB, UiO & UiT  are jointly offering a hands-on course for current and future users of national HPC systems (Saga, Fram, Betzy) and the NIRD Toolkit. The course is open to all users and free of charge.
