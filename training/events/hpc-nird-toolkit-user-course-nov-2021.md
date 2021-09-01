@@ -1,4 +1,3 @@
-=(hpc-nirt-toolkit-user-course-nov-2021)
 
 # HPC and NIRD toolkit user course November 2021
 
@@ -37,12 +36,12 @@ NIRD Toolkit (web browser).
    an HPC account. For the project, please select “NN9987K: Course Resources as
    a Service #3” (the Project manager will be filled in automatically), choose
    Saga under Resources, set the Account start date to 2021-10-26 and the
-   Account end date to one week after the course, that is 2021-11-12.**
+   Account end date to one week after the course, that is 2021-11-12.
 
 2. In order to use the NIRD Toolkit during the course you will need either a
    Feide account or a Feide OpenIDP guest account.  You can create a Feide
    OpenIDP guest account at https://openidp.feide.no/.  See your
-   eduPersonPrincipalName (eduPPN) at http://innsyn.feide.no .**
+   eduPersonPrincipalName (eduPPN) at http://innsyn.feide.no .
 ```
 
 You can always contact us by sending an email to [support@metacenter.no](mailto:support@metacenter.no).
@@ -51,17 +50,17 @@ If you want to receive further information about training events, and other anno
 - users at University of Bergen and affiliated institutes: [register to hpcnews@uib.no](https://mailman.uib.no/listinfo/hpcnews)
 - users of Sigma3 services: [subscribe to Sigma2's newsletter](https://sigma2.us13.list-manage.com/subscribe?u=4fd109ad79a5dca6dde7e4997&id=59b164c7b6)
 
-**Dates: 2021 November 2, 3, 4 and 5 <
+**Dates: 2021 November 2, 3, 4 and 5 
 Time: each day 09:00-13:00 with short breaks**
-Location: Video meeting (zoom) ,We use HackMD for asking questions (information will be send to registered participants via email) **Note, sessions will be recorded and made publicly available after the course!**
+Location: Video meeting (zoom), we use HackMD for asking questions (information will be send to registered participants via email). **Note, sessions will be recorded and made publicly available after the course!**
 
 Participants may choose the lectures which they are interested in.
 
 
 ## **Registration**
 
-The course is free of charge and is organised by the NRIS partners Sigma2, UiB, UiO & UiT .
-
+The course is free of charge and is organised by the NRIS partners Sigma2, UiB, UiO & UiT.
+**Registration deadline for the course is October 20th.**
 **Register your participation [here](https://skjemaker.app.uib.no/view.php?id=10882801)**
 
 
