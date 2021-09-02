@@ -115,6 +115,7 @@ Index of keywords
    Latest changes and events <https://opslog.sigma2.no>
    Hardware live status <https://www.sigma2.no/hardware-status>
    known-issues.md
+   code-of-conduct.md
 
 
 .. toctree::
