@@ -25,22 +25,22 @@ schrodinger: ${SCHRODINGER}
 tmpdir:      /cluster/work/users/schrodinger
 processors:  1
 
-#
+# 1 hour wall time, 40 tasks with default 1 cpu/task
 name:        batch-small
 host:        login-3
 schrodinger: ${SCHRODINGER}
 queue:       SLURM2.1
-qargs:       --export=ALL --account=nnXXXXk --mem-per-cpu=1GB --time=01:00:00
-processors:  40
+qargs:       --export=ALL --account=nnXXXXk --ntasks=40 --mem-per-cpu=3GB --time=01:00:00
+processors:  1000
 tmpdir:      /cluster/work/users/schrodinger
 
-#
+# 7 days wall time 20 tasks with 4 cpus/task
 name:        batch-long
 host:        login-3
 schrodinger: ${SCHRODINGER}
 queue:       SLURM2.1
-qargs:       --export=ALL --account=nnXXXXk --mem-per-cpu=1GB --time=7-00:00:00
-processors:  80
+qargs:       --export=ALL --account=nnXXXXk --ntasks=20 --cpus-per-task=4 --mem-per-cpu=3GB --time=7-00:00:00
+processors:  1000
 tmpdir:      /cluster/work/users/schrodinger
 
 #
@@ -59,3 +59,4 @@ tmpdir:      /cluster/work/users/schrodinger
 * [Using the Schrodinger suite](schrodinger_usage.md)
 * [Setting up the Hosts file](schrodinger_hosts.md)
 * [Hosts file keywords](host_file_settings.md)
+* [Job control facility](job_control.md)

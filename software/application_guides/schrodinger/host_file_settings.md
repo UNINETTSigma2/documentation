@@ -35,3 +35,4 @@ orphan: true
 * [Using the Schrodinger suite](schrodinger_usage.md)
 * [Setting up the Hosts file](schrodinger_hosts.md)
 * [Hosts file keywords](host_file_settings.md)
+* [Job control facility](job_control.md)
