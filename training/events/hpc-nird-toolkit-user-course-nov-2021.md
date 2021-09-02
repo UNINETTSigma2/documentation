@@ -70,7 +70,7 @@ All participants in our course are expected to show respect and courtesy to
 others. We follow [carpentry code of
 conduct](https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html#code-of-conduct-detailed-view).
 If you believe someone is violating the Code of Conduct, we ask that you report
-it to either [Radovan Bast](mailto:radovan.bast@uit.no) or [Dhanya
+it either to [Radovan Bast](mailto:radovan.bast@uit.no) or [Dhanya
 Pushpadas](mailto:Dhanya.Pushpadas@uib.no)
 
 
@@ -111,20 +111,23 @@ Break for 10 minutes
 
 - **Get ready: 08:50-09:00 Connect to zoom meeting**
 
-- **Session 1: 09:00-09:55 Optimization of codes and batch script part I**
+- **Session 1: 09:00-09:45 Optimization of codes and batch script part I**
 
 Break for 10 minutes
 
-- **Session 2: 10:05-11:00 Optimization of codes and batch script part II**
+- **Session 2: 09:55-10:30 Optimization of codes and batch script part II**
 
 Break for 10 minutes
 
-- **Session 3: 11:10-12:05 Optimizing use of memory and CPUs**
+- **Session 3: 10:40-11:20 Optimizing use of memory and CPUs**
 
 Break for 10 minutes
 
-- **Session 4: 12:15-12:45 Profiling memory and CPU resource usage**
+- **Session 4: 11:30-12:10 Profiling memory and CPU resource usage**
 
+Break for 10 minutes
+
+- **Session 5: 12:20-12:50 Optimization of codes: Usecase**
 - **Session Q&A: 12:50-13:00 Questions & Answers**
 
 
