@@ -31,7 +31,7 @@ host:        login-3
 schrodinger: ${SCHRODINGER}
 queue:       SLURM2.1
 qargs:       --export=ALL --account=nnXXXXk --ntasks=40 --mem-per-cpu=3GB --time=01:00:00
-processors:  40
+processors:  1000
 tmpdir:      /cluster/work/users/schrodinger
 
 # 7 days wall time 20 tasks with 4 cpus/task
@@ -40,7 +40,7 @@ host:        login-3
 schrodinger: ${SCHRODINGER}
 queue:       SLURM2.1
 qargs:       --export=ALL --account=nnXXXXk --ntasks=20 --cpus-per-task=4 --mem-per-cpu=3GB --time=7-00:00:00
-processors:  80
+processors:  1000
 tmpdir:      /cluster/work/users/schrodinger
 
 #
