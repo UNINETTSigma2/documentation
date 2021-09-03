@@ -59,7 +59,7 @@ This will kill the main thread and the subjobs, and also remove them from the sl
   |-recover_jobrecord | recover jobrecord of given job(s).|
   |-delete | remove job from the database, if completed. Use '-force' flag to delete uncompleted jobs (dangerous)|
   |-wait | wait until job finishes|
-  |-int <seconds> . interval for checking job status (default is 5 sec)|
+  |-int <seconds> | interval for checking job status (default is 5 sec)|
   |-v[ersion] | display program version and exit|
   |-h[elp] | display this help message| | 
 
@@ -82,3 +82,4 @@ The flags can be one or more of:
 * [Setting up the Hosts file](schrodinger_hosts.md)
 * [Hosts file keywords](host_file_settings.md)
 * [Job control facility](job_control.md)
+* [Tuning](tuning.md)
