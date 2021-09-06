@@ -33,14 +33,14 @@ using the qargs defined in batch-small.
 Schrodinger uses its own [job control facility](job_control.md) that sits on top of the SLURM queuing system. When 
 submitting a job, schrodinger will use one job as a driver, to control the remaining jobs. Thus, if you submit a job 
 directly from maestro, or with `"${SCHRODINGER}/glide" glide-grid_1.in -OVERWRITE -NJOBS -HOST batch-small`, the driver 
-will be submitted to the queue along with the 20 subjobs. The problem with this is that the driver may run out of walltime
-before the subjobs have even started. This will effectively kill all the subjobs. In order to avoid this, you must 
-specify a -DRIVERHOST and a -SUBHOST. Setting the -DRIVERHOST to localhost will put the driver on on of the login nodes
-and the actual jobs on the host specified by -SUBHOST. This combination will not allow any subjobs to run on the 
--DRIVERHOST, only the driver itself, which is good. 
+will also be submitted to the queue along with the 20 subjobs. The problem with this is that the driver may run out of 
+walltime before the subjobs have even started. This will effectively kill all the subjobs. In order to avoid this, you 
+must specify a `-DRIVERHOST` and a `-SUBHOST`. Setting the `-DRIVERHOST` to localhost will put the driver on of the login 
+node and the actual jobs on the host specified by `-SUBHOST` (compute nodes). This combination will not allow any subjobs 
+to run on the `-DRIVERHOST`, only the driver itself, which is good. 
 
 **Conclusion:** Do not submit jobs on the cluster directly from maestro, but from the command line specifying 
--DRIVERHOST and -SUBHOST.
+`-DRIVERHOST` and `-SUBHOST`.
 
 ## Submitting you jobs from command line
 `"${SCHRODINGER}/package" job.in -DRIVERHOST localhost -SUBHOST hostname`
@@ -51,3 +51,4 @@ and the actual jobs on the host specified by -SUBHOST. This combination will not
 * [Setting up the Hosts file](schrodinger_hosts.md)
 * [Hosts file keywords](host_file_settings.md)
 * [Job control facility](job_control.md)
+* [Tuning](tuning.md)

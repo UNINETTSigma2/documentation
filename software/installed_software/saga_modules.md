@@ -4712,6 +4712,7 @@ without the use of a reference genome for comparison.
 <details><summary> <u>Installed versions:</u> </summary>
 
  - Schrodinger/2021-2-intel-2020b
+ - Schrodinger/2021-3-intel-2020b
 </details>
 
 ## scikit-allel

@@ -60,3 +60,4 @@ tmpdir:      /cluster/work/users/schrodinger
 * [Setting up the Hosts file](schrodinger_hosts.md)
 * [Hosts file keywords](host_file_settings.md)
 * [Job control facility](job_control.md)
+* [Tuning](tuning.md)
