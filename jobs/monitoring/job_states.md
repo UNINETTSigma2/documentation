@@ -34,13 +34,12 @@ page](https://slurm.schedmd.com/squeue.html#lbAF).
 
 Here is a table with the most common ones
 
-| Name                    | Description                                                                                                          |
-|-------------------------|----------------------------------------------------------------------------------------------------------------------|
-| Resources               | The job is waiting for resources to become idle                                                                      |
-| Priority                | There are jobs with higher priority than this job.  The job might be started, if it does not delay any of those jobs |
-| AssocGrpCPUMinutesLimit | (On Fram) There is not enough hours left on the quota to start the job                                               |
-| AssocBillingMinutes     | (On Saga) There is not enough hours left on the quota to start the job                                               |
-| ReqNodeNotAvail         | One or more of the job's required nodes is currently not available, typically because it is down or reserved         |
-| Dependency              | The job is waiting for jobs it depend on to start or finish.                                                         |
-| JobHeldUser             | The job has been put on hold by the user                                                                             |
-| JobHeldAdmin            | The job has been put on hold by an admin.  Please contact support if you don't know why it is being held.            |
+| Name                   | Description                                                                                                          |
+|------------------------|----------------------------------------------------------------------------------------------------------------------|
+| Resources              | The job is waiting for resources to become idle                                                                      |
+| Priority               | There are jobs with higher priority than this job.  The job might be started, if it does not delay any of those jobs |
+| AssocGrpBillingMinutes | There is not enough hours left on the quota to start the job                                                         |
+| ReqNodeNotAvail        | One or more of the job's required nodes is currently not available, typically because it is down or reserved         |
+| Dependency             | The job is waiting for jobs it depend on to start or finish.                                                         |
+| JobHeldUser            | The job has been put on hold by the user                                                                             |
+| JobHeldAdmin           | The job has been put on hold by an admin.  Please contact support if you don't know why it is being held.            |
