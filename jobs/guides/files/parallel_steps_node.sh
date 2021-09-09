@@ -16,6 +16,7 @@ module list
 
 # This is needed for job types that hand out whole nodes:
 export SLURM_MEM_PER_CPU=1920
+# (This is for Fram.  For betzy, use 1960.)
 
 # The set of parallel runs:
 srun --ntasks=16 --exclusive ./my-binary &

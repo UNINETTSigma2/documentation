@@ -6,21 +6,21 @@ Sometimes you might want to test or debug a calculation interactively,
 but **running interactively on the login node is discouraged and not an
 option**.
 
-- [Asking for an interactive node](#asking-for-an-interactive-node)
+- [Asking for an interactive job](#asking-for-an-interactive-job)
 - [Keeping interactive jobs alive](#keeping-interactive-jobs-alive)
 - [Graphical user interfaces in interactive jobs](#graphical-user-interfaces-in-interactive-jobs)
 - [The difference between salloc and srun](#the-difference-between-salloc-and-srun)
 
 
-## Asking for an interactive node
+## Asking for an interactive job
 
 Instead of running on a login node, you can ask the queue system to allocate
-compute resources for you and once assigned, you can run the job(s)
+compute resources for you and once assigned, you can run commands
 interactively for as long as requested.  The examples below are for _devel_
 jobs, but the procedure also holds for the [other job types
 ](choosing_job_types.md) except _optimist_ jobs.
 
-On **Fram**:
+On **Fram** and **Betzy**:
 ```
 $ srun --nodes=1 --time=00:30:00 --qos=devel --account=YourAccount --pty bash -i
 ```
@@ -31,7 +31,7 @@ $ srun --ntasks=1 --mem-per-cpu=4G --time=00:30:00 --qos=devel --account=YourAcc
 ```
 
 When you are done, simply exit the shell (`exit`, `logout` or `^D`) to
-end the job. 
+end the job.
 
 The arguments between `srun` and `--pty` could be any arguments you
 would have given to `sbatch` when submitting a non-interactive
@@ -75,8 +75,6 @@ connect to login-1 again by:
 $ ssh login-1
 ```
 
-On Fram the login nodes currently used are login-1-1 and login-1-2.
-
 To log out a tmux session without closing it you have to press Ctrl-B
 (that the Ctrl key and simultaneously "b", which is the standard tmux
 prefix) and then "d" (without the quotation marks). To close a session
@@ -92,7 +90,8 @@ almost the same as a normal bash session.
 
 It is possible to run X commands, i.e., programs with a graphical user
 interface (GUI), in interactive jobs. This allows you to get graphical output
-back from your job running on a login node.
+back from your job running on a login node.  (Note that currently,
+this has not been activated on Betzy.)
 
 First, you must make sure that you have turned on *X forwarding* when logging
 in to the cluster.  With `ssh` from a Linux or MacOS machine, you do this with

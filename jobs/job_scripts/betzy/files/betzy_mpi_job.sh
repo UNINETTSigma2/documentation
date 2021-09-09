@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###############################################
-# Script example for a normal MPI job on Fram #
+# Script example for a normal MPI job on Betzy #
 ###############################################
 
 ## Project: replace XXXX with your project ID
@@ -12,8 +12,8 @@
 ## Allocating amount of resources:
 #SBATCH --nodes=10
 ## Number of tasks (aka processes) to start on each node: Pure mpi, one task per core
-#SBATCH --ntasks-per-node=32
-## No memory pr task since this option is turned off on Fram in partition normal.
+#SBATCH --ntasks-per-node=128
+## No memory pr task since this option is turned off on Betzy in partition normal.
 ## Run for 10 minutes, syntax is d-hh:mm:ss
 #SBATCH --time=0-00:10:00 
 
