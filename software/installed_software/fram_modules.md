@@ -1436,16 +1436,6 @@ It also contains the gmxapi extension for the single precision MPI build.
  - GSL/2.6-iccifort-2019.5.281 
 </details>
 
-## GTK+  
-**Description:** The GTK+ 2 package contains libraries used for creating graphical user interfaces for applications.
-
-**Homepage:** https://developer.gnome.org/gtk2/stable/  
-
-<details><summary> <u>Installed versions:</u> </summary>
-
- - GTK+/2.24.32-intel-2018a 
-</details>
-
 ## gtkglext  
 **Description:** GtkGLExt is an OpenGL extension to GTK+.
 **Homepage:** https://developer.gnome.org/gtkglext/  
