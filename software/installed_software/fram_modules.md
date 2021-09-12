@@ -1423,15 +1423,6 @@ It also contains the gmxapi extension for the single precision MPI build.
  - GSL/2.6-iccifort-2019.5.281 
 </details>
 
-## gtkglext  
-**Description:** GtkGLExt is an OpenGL extension to GTK+.
-**Homepage:** https://developer.gnome.org/gtkglext/  
-
-<details><summary> <u>Installed versions:</u> </summary>
-
- - gtkglext/1.2.0-intel-2018a 
-</details>
-
 ## Guile  
 **Description:** Guile is a programming language, designed to help programmers create flexible
  applications that can be extended by users or other programmers with plug-ins,
