@@ -2,6 +2,8 @@
 orphan: true
 ---
 
+(job-types-betzy)=
+
 # Job Types on Betzy
 
 Betzy is designed to run highly parallelized jobs.  If you need to run medium-sized jobs, than Fram is a better choice, while for serial jobs you shall use Saga.
