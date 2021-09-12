@@ -10,7 +10,6 @@ This page documents how to specify the queue system parameters for the
 different job types on Betzy. See {ref}`job-types-betzy`
 for information about the different job types on Betzy.
 
-
 (job_scripts_betzy_normal)=
 
 ## Normal
