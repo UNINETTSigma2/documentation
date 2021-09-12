@@ -1123,19 +1123,6 @@ from blood flow to semiconductor manufacturing, and from clean room design to wa
  - GDAL/3.0.4-intel-2020a-Python-3.8.2 
 </details>
 
-## Gdk-Pixbuf  
-**Description:** The Gdk Pixbuf is a toolkit for image loading and pixel buffer manipulation.
- It is used by GTK+ 2 and GTK+ 3 to load and manipulate images. In the past it
- was distributed as part of GTK+ 2 but it was split off into a separate package
- in preparation for the change to GTK+ 3.
-
-**Homepage:** https://developer.gnome.org/gdk-pixbuf/stable/  
-
-<details><summary> <u>Installed versions:</u> </summary>
-
- - Gdk-Pixbuf/2.36.11-intel-2018a 
-</details>
-
 ## GEOS  
 **Description:** GEOS (Geometry Engine
 **Homepage:** https://trac.osgeo.org/geos  
