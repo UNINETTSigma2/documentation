@@ -3071,18 +3071,6 @@ and study of the structure, dynamics, and functions of complex networks.
  - NLopt/2.6.1-GCCcore-8.2.0 
 </details>
 
-## NSPR  
-**Description:** Netscape Portable Runtime (NSPR) provides a platform-neutral API for system level
- and libc-like functions.
-**Homepage:** https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSPR  
-
-<details><summary> <u>Installed versions:</u> </summary>
-
- - NSPR/4.21-GCCcore-8.2.0 
- - NSPR/4.21-GCCcore-8.3.0 
- - NSPR/4.25-GCCcore-9.3.0 
-</details>
-
 ## NSS  
 **Description:** Network Security Services (NSS) is a set of libraries designed to support cross-platform development
  of security-enabled client and server applications.
