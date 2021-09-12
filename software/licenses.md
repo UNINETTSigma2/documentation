@@ -8,7 +8,7 @@ software. Commercial access to licensed software is outside the scope of this
 document.
 
 There are **4 different levels of access limitations** for
-[licensed software at the Metacenter](licenses/license_list.md):
+[licensed software at NRIS](licenses/license_list.md):
 
 - License access limited on **group level**.
 - License access limited on **institutional level**.
@@ -29,5 +29,5 @@ There are **4 different levels of access limitations** for
 **Users are responsible for having the correct credentials and agreements in
 terms of license access**. For all software with access limitations
 on group- and research-project level the credentials may have to be provided to
-the Metacenter before being granted access to software installed on Metacenter
+NRIS before being granted access to software installed on NRIS
 controlled machines.

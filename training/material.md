@@ -3,7 +3,7 @@
 - [Sigma2 training calendar](https://www.sigma2.no/events)
 
 
-## Training material used at Metacenter sites
+## Training material used at NRIS sites
 
 - [Introduction to HPC training material - UiO](https://sabryr.github.io/hpc-intro/)
 - [Introduction to HPC training and materials - NTNU](https://www.hpc.ntnu.no/ntnu-hpc-group/training/introduction-to-parallel-programming)

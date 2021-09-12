@@ -18,9 +18,9 @@ import datetime
 
 # -- Project information -----------------------------------------------------
 
-project = 'Sigma2/Metacenter documentation'
-copyright = f'{datetime.datetime.now().year}, Sigma2/Metacenter'
-author = 'Sigma2/Metacenter'
+project = 'Sigma2/NRIS documentation'
+copyright = f'{datetime.datetime.now().year}, Sigma2/NRIS'
+author = 'Sigma2/NRIS'
 
 # Logo setup
 html_favicon = 'img/sigma2.ico'

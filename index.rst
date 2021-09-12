@@ -3,8 +3,8 @@ The Norwegian academic high-performance computing and storage services
 ======================================================================
 
 The Norwegian academic high-performance computing and storage
-infrastructure is maintained by the `Sigma2
-Metacenter <https://sigma2.no/metacenter>`__, which is a joint
+infrastructure is maintained by `Sigma2
+NRIS <https://sigma2.no/nris>`__ (formally known as the Sigma2 Metacenter), which is a joint
 collaboration between `UiO <https://www.uio.no>`__,
 `UiB <https://www.uib.no>`__, `NTNU <https://www.ntnu.no>`__,
 `UiT <https://uit.no>`__, and `UNINETT
@@ -16,9 +16,11 @@ information and service overview, please also see https://www.sigma2.no.
 
 .. note::
 
-   **Latest news and announcements** are posted at the `Metacenter
+   **Latest news and announcements** are posted at the `NRIS
    OpsLog <https://opslog.sigma2.no>`__ and the
    `@MetacenterOps <https://twitter.com/MetacenterOps>`__ Twitter channel.
+   Due to the recent change of name from Metacenter to NRIS the MetacenterOps
+   account has not yet been renamed.
 
 ----
 
@@ -97,7 +99,7 @@ Text is licensed CC-BY
 Unless explicitly noted, all text on this website is made available
 under the `Creative Commons Attribution license
 (CC-BY-4.0) <https://creativecommons.org/licenses/by/4.0/>`__ with
-attribution to the Sigma2/Metacenter.
+attribution to the Sigma2/NRIS.
 
 --------------
 

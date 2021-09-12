@@ -2,7 +2,7 @@
 
 # Applying for computing and storage
 
-Applications for computing and storage resources should be submitted through Metacenter Administration System (MAS).
+Applications for computing and storage resources should be submitted through NRIS Administration System (MAS).
 
 
 ## If you do not have a compute (nn) or storage (ns) project

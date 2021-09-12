@@ -8,7 +8,7 @@ of the most commonly used tools and applications within our user base.
 However, due to our wide range of users, it is not feasible for us to maintain
 all the different packages with particular versions and toolchains that you
 might depend on in your daily work flow. While *system-wide* installations can
-only be done by the Metacenter personnel, there is nothing preventing users
+only be done by NRIS personnel, there is nothing preventing users
 from installing their own software *locally*.
 
 **If you have a software need that is currently not available on our systems:**

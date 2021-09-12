@@ -4,7 +4,7 @@ orphan: true
 
 (license-list)=
 
-# List of software with licensed access in the Metacenter
+# List of software with licensed access in NRIS
 
 | Software                    | Machines          | Availabe for whom                         | License type            | Field                      | Source of funding   |
 |-----------------------------|-------------------|-------------------------------------------|-------------------------|----------------------------|---------------------|

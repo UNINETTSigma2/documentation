@@ -16,7 +16,7 @@ Official documentation: <http://gaussian.com/man>
 ## License and access
 
 The license for Gaussian is commercial/proprietary and constitutes of 4 site
-licenses for the 4 current host institutions of Metacenter sites; NTNU, UiB,
+licenses for the 4 current host institutions of NRIS sites; NTNU, UiB,
 UiO, UiT. Only persons from one of these institutions have access to the
 Gaussian Software system installed on {ref}`fram` and {ref}`saga`. Note that users that do not come
 from one of the above mentioned institutions still may be granted access, but
