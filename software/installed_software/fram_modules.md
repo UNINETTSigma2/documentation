@@ -1123,19 +1123,6 @@ from blood flow to semiconductor manufacturing, and from clean room design to wa
  - GDAL/3.0.4-intel-2020a-Python-3.8.2 
 </details>
 
-## Gdk-Pixbuf  
-**Description:** The Gdk Pixbuf is a toolkit for image loading and pixel buffer manipulation.
- It is used by GTK+ 2 and GTK+ 3 to load and manipulate images. In the past it
- was distributed as part of GTK+ 2 but it was split off into a separate package
- in preparation for the change to GTK+ 3.
-
-**Homepage:** https://developer.gnome.org/gdk-pixbuf/stable/  
-
-<details><summary> <u>Installed versions:</u> </summary>
-
- - Gdk-Pixbuf/2.36.11-intel-2018a 
-</details>
-
 ## GEOS  
 **Description:** GEOS (Geometry Engine
 **Homepage:** https://trac.osgeo.org/geos  
@@ -1434,25 +1421,6 @@ It also contains the gmxapi extension for the single precision MPI build.
  - GSL/2.6-GCC-8.3.0 
  - GSL/2.6-GCC-9.3.0 
  - GSL/2.6-iccifort-2019.5.281 
-</details>
-
-## GTK+  
-**Description:** The GTK+ 2 package contains libraries used for creating graphical user interfaces for applications.
-
-**Homepage:** https://developer.gnome.org/gtk2/stable/  
-
-<details><summary> <u>Installed versions:</u> </summary>
-
- - GTK+/2.24.32-intel-2018a 
-</details>
-
-## gtkglext  
-**Description:** GtkGLExt is an OpenGL extension to GTK+.
-**Homepage:** https://developer.gnome.org/gtkglext/  
-
-<details><summary> <u>Installed versions:</u> </summary>
-
- - gtkglext/1.2.0-intel-2018a 
 </details>
 
 ## Guile  
@@ -3101,18 +3069,6 @@ and study of the structure, dynamics, and functions of complex networks.
  - NLopt/2.4.2-intel-2017b 
  - NLopt/2.4.2-intel-2018a 
  - NLopt/2.6.1-GCCcore-8.2.0 
-</details>
-
-## NSPR  
-**Description:** Netscape Portable Runtime (NSPR) provides a platform-neutral API for system level
- and libc-like functions.
-**Homepage:** https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSPR  
-
-<details><summary> <u>Installed versions:</u> </summary>
-
- - NSPR/4.21-GCCcore-8.2.0 
- - NSPR/4.21-GCCcore-8.3.0 
- - NSPR/4.25-GCCcore-9.3.0 
 </details>
 
 ## NSS  
