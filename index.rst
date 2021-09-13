@@ -10,9 +10,15 @@ collaboration between `UiO <https://www.uio.no>`__,
 `UiT <https://uit.no>`__, and `UNINETT
 Sigma2 <https://www.sigma2.no/>`__.
 
-This website (https://documentation.sigma2.no/) holds technical
-documentation about the compute and storage resources. For more general
-information and service overview, please also see https://www.sigma2.no.
+We provide valuable resources for the research communities. Not only do we provide
+state-of-the art {ref}`compute <hardware-overview>` and storage facilities,
+backed by {ref}`support` <support-line>` and a guarantee that your data always
+stays in Norway. But possibly more important is {ref}`easy access <extended-support>` to a wide selection
+of competences that can assist, realize or take your project to the next level.
+
+This website (https://documentation.sigma2.no/) primarily holds documentation
+of resources we provide. For more general information and service overview,
+please also see https://www.sigma2.no.
 
 .. note::
 
