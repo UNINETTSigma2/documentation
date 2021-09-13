@@ -131,12 +131,14 @@ Index of keywords
 .. toctree::
    :maxdepth: 1
    :caption: Extended support
+
    extended_support/general.md
    extended_support/eus.md
    extended_support/aus.md
    extended_support/gpu.md
    extended_support/ncc.md
-   
+
+
 .. toctree::
    :maxdepth: 1
    :caption: Training
