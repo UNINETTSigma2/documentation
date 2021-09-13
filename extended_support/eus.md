@@ -1,4 +1,4 @@
-(extended-support-user)=
+(extended-support-eus)=
 
 # Extended User Support
 
