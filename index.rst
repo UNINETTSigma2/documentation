@@ -126,9 +126,17 @@ Index of keywords
    getting_help/qa-sessions.md
    getting_help/lost_forgotten_password.md
    getting_help/project_leader_support.md
-   getting_help/advanced_user_support.md
 
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Extended support
+   extended_support/general.md
+   extended_support/eus.md
+   extended_support/aus.md
+   extended_support/gpu.md
+   extended_support/ncc.md
+   
 .. toctree::
    :maxdepth: 1
    :caption: Training
