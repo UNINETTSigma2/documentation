@@ -8,7 +8,7 @@ On this page we list some expectations from our side and recommended practice th
 
 - We expect you to explore this useful documentation before asking for help.
 
-- We expect you to use the resources responsibly. Since the resources are shared among many users, it is significant that we maintain the services that can be fair to all our users. Make sure that you have gone through  the [Slurm documentation](https://slurm.schedmd.com/squeue.html#lbAG), {ref}`job-types`, {ref}`queue-system`,[HPC machines](/hpc_machines/hardware_overview.md),and {ref}`choosing-memory-settings` to verify that you are submitting the right job to the right partition to the right hardware and not wasting resources.
+- We expect you to use the resources responsibly. Since the resources are shared among many users, it is significant that we maintain the services that can be fair to all our users. Make sure that you have gone through  the [Slurm documentation](https://slurm.schedmd.com/squeue.html#lbAG), {ref}`job-types`, {ref}`queue-system`,[HPC machines](/hpc_machines/hardware_overview.md), and {ref}`choosing-memory-settings` to verify that you are submitting the right job to the right partition to the right hardware and not wasting resources.
 
 - You are obliged to comply with [Sigma2 user policy](https://www.sigma2.no/acceptable-use-policy).
 - Users should meet the terms of the [best practices](jobs/dos_and_donts.md)
