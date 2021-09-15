@@ -41,7 +41,8 @@ NIRD Toolkit (web browser).
 2. In order to use the NIRD Toolkit during the course you will need either a
    Feide account or a Feide OpenIDP guest account.  You can create a Feide
    OpenIDP guest account at https://openidp.feide.no/.  See your
-   eduPersonPrincipalName (eduPPN) at http://innsyn.feide.no .
+   eduPersonPrincipalName (eduPPN) at http://innsyn.feide.no . Those who  are 
+   using Feide openidp guest account should go to minside.dataporten.no to find    eduppn, and it is the field called "Secondary user identifiers".
 ```
 
 You can always contact us by sending an email to [support@metacenter.no](mailto:support@metacenter.no).
