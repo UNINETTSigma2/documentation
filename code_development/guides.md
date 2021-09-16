@@ -8,6 +8,9 @@
         [MPI and OpenACC](guides/openacc_mpi.md)
     - [<span style="color:orange">Intermediate</span>]
         [Async and Multi-GPU OpenACC](guides/async_openacc.md)
+- GPU programming with SYCL:
+    - [<span style="color:green">Beginner</span>]
+        [Getting started with hipSYCL](guides/hipsycl.md)
 - Building containers with Singularity:
     - [<span style="color:green">Beginner</span>]
         [Container with build environment](guides/container_env.md)
