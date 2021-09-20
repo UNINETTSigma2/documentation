@@ -118,7 +118,7 @@ Are you sure you want to continue connecting (yes/no)?
 If the `<fingerprint>` matches the fingerprint of the login machine you are
 logging in to (see below), you can confirm by typing `yes` and press `Enter`.
 (Note that the trailing "." is not part of the fingerprint.) If the fingerprint
-does _not_ match, please contact `support@metacenter.no` immediately.
+does _not_ match, please contact `support@nris.no` immediately.
 
 The following table displays the different keys, both as `MD5` and `SHA256`,
 for all systems.

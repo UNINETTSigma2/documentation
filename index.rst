@@ -47,7 +47,7 @@ sidebar overview you will also find technical details about the
 machines, instructions for using installed software, for submitting
 jobs, storage, and code development.
 
-Please do not hesitate to write to support@metacenter.no if you find
+Please do not hesitate to write to support@nris.no if you find
 documentation sections which are not clear enough or have suggestions
 for improvements. Such a feedback is very important to us and will
 count.
@@ -73,7 +73,7 @@ these problems are very frequent:
   needed. Please take some time to study the different :ref:`job-types`.
 
 If you are unsure about these, please contact us via
-support@metacenter.no and we will help you to use your allocated
+support@nris.no and we will help you to use your allocated
 resources more efficiently so that you get your research results faster.
 
 --------------

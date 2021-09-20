@@ -14,10 +14,10 @@ from installing their own software *locally*.
 **If you have a software need that is currently not available on our systems:**
 
 1.  If you think the package will be useful for a wider scope of users, you can
-    request a global installation by sending an email to support@metacenter.no.
+    request a global installation by sending an email to support@nris.no.
 2.  Otherwise you can try to install it yourself locally under your home or
     project area. If you run into problems, we are happy to help out, just send
-    a support request to support@metacenter.no.
+    a support request to support@nris.no.
 
 There are several different ways to install the software, depending on the
 package. Building from source is often the best when it comes to customization

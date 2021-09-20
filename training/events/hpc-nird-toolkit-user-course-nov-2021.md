@@ -45,7 +45,7 @@ NIRD Toolkit (web browser).
    using Feide openidp guest account should go to minside.dataporten.no to find    eduppn, and it is the field called "Secondary user identifiers".
 ```
 
-You can always contact us by sending an email to [support@metacenter.no](mailto:support@metacenter.no).
+You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
 
 If you want to receive further information about training events, and other announcements about IT resources and services for researchers, there are a couple of information channels you can subscribe to:
 - users at University of Bergen and affiliated institutes: [register to hpcnews@uib.no](https://mailman.uib.no/listinfo/hpcnews)

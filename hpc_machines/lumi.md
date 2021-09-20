@@ -56,7 +56,7 @@ effort is very important and will be supported by the EuroHPC CC team.
 
 NRIS is currently soliciting pilot users for LUMI-G participation.
 Interested users should contact
-[support@metacenter.no](mailto:support@metacenter.no). Since there is a limited
+[support@nris.no](mailto:support@nris.no). Since there is a limited
 number of pilots, users will need to dedicate some amount of time to get ready
 for pilot testing, however, NRIS will be available for help in porting
 applications to LUMI-G.

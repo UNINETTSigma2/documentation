@@ -47,7 +47,7 @@ the other job types are "variants" of a *normal* job.
 In _normal_ jobs, the queue system hands out complete nodes.  If a
 project needs more than 32 nodes per job, and the application in
 question can actually scale more than 32 nodes, please send a request
-to [support@metacenter.no](mailto:support@metacenter.no).
+to [support@nris.no](mailto:support@nris.no).
 
 
 (job_type_fram_bigmem)=
@@ -97,7 +97,7 @@ limits on the size and number of _devel_ jobs.
 
 If you have _temporary_ development needs that cannot be fulfilled by
 the _devel_ or _short_ job types, please contact us at
-[support@metacenter.no](mailto:support@metacenter.no).
+[support@nris.no](mailto:support@nris.no).
 
 
 (job_type_fram_short)=
@@ -152,4 +152,4 @@ minimum run time.
 Therefore, all _optimist_ jobs must use checkpointing, and access to
 run _optimist_ jobs will only be given to projects that demonstrate
 that they can use checkpointing.  If you want to run _optimist_ jobs,
-send a request to [support@metacenter.no](mailto:support@metacenter.no).
+send a request to [support@nris.no](mailto:support@nris.no).
