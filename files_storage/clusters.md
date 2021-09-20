@@ -58,16 +58,16 @@ You can see the **disk usage and disk quotas** of your available areas with:
 $ dusage
 ```
 
-But please note that on Fram and Betzy, this command does not show you the number of files and
+But please note that on Betzy, this command does not show you the number of files and
 there may be a quota on the number of files.
 
-To see the usage **including the number of files** on Fram and Betzy, check:
+To see the usage **including the number of files** on Betzy, check:
 ```
 $ dusage -i
 ```
 
-On Saga we have modernized `dusage` to show both disk quotas and number of files
-but we still need to port these changes to Fram and Betzy.
+On Saga and Fram we have modernized `dusage` to show both disk quotas and number of files
+but we still need to port these changes to Betzy.
 
 ```{warning}
 **Frequently asked questions**
