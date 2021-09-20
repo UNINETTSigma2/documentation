@@ -1,6 +1,6 @@
 # Installing software with EasyBuild
 
-The Metacenter software team is currently using the
+The NRIS software team is currently using the
 [EasyBuild](https://easybuild.readthedocs.io/en/latest/)
 system for installing system-wide software and scientific applications on all
 Norwegian HPC systems. It is, actually, quite easy (hence the name) and

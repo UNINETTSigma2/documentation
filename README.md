@@ -4,7 +4,7 @@ Served via [https://documentation.sigma2.no](https://documentation.sigma2.no/)
 
 Unless explicitly noted, all text on this website is made available under the
 [Creative Commons Attribution license (CC-BY-4.0)](https://creativecommons.org/licenses/by/4.0/)
-with attribution to the Sigma2/Metacenter.
+with attribution to the Sigma2/NRIS.
 
 
 ## How the GitHub pages are built
