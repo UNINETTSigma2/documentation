@@ -74,4 +74,4 @@ in [job accounting](../projects_accounting.md).
 This is meant for small, short development or test jobs.
 
 If you have _temporary_ development needs that cannot be fulfilled by the _devel_ job type, please contact us at
-[support@metacenter.no](mailto:support@metacenter.no).
+[support@nris.no](mailto:support@nris.no).

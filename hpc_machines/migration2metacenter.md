@@ -18,7 +18,7 @@ For users either being novel to HPC in general, or having experience from other 
 * Transfer data, scripts etc from other machines to the new machine.
 * Modify scripts & routines to match differences on the new machine.
 * **Verify that your jobs run efficiently and produce the same results as on other systems!**
-* Be patient with user support [(support@metacenter.no)](mailto:support@metacenter.no), but don't hesitate to ask questions!
+* Be patient with user support [(support@nris.no)](mailto:support@nris.no), but don't hesitate to ask questions!
 
 ## Read about the current machines operated by NRIS
 
