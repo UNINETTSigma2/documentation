@@ -12,3 +12,8 @@ The courses are free of charges. Our upcoming courses are listed below:
 
    events/hpc-nird-toolkit-user-course-nov-2021.md
 ```
+
+
+## Sigma2 training calendar
+
+- <https://www.sigma2.no/events>
