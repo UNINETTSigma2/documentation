@@ -37,15 +37,16 @@ events.
 
 ## Next event
 
--   **2021-09-09, 13:00 - 15:00**, [join us via Zoom](https://uit.zoom.us/j/63325955553)
+- **2021-10-13, 13:00 - 15:00**, [join us via Zoom](https://uit.zoom.us/j/67712377666)
 
 
 ## Past events
 
--   2021-02-03, 13:00 - 15:00, ["How To Installation" Slides here](https://docs.google.com/presentation/d/1fOzq_ob19TFIZ0lERSPw7oXx6irVVDwB2vmHOrz2AKA/edit?usp=sharing)
--   2020-10-13, 13:00 - 15:00, ["Helpful tools & Services" Slides](https://docs.google.com/presentation/d/1HKC5-G41lwVxAMjHU_UOTWKsRO3nD7B8uh9IVQRNtsk/edit?usp=sharing)
--   2020-06-10, 13:00 - 15:00
--   2020-04-23, 13:00 - 15:00
+- 2021-09-09, 13:00 - 15:00
+- 2021-02-03, 13:00 - 15:00, ["How To Installation" Slides here](https://docs.google.com/presentation/d/1fOzq_ob19TFIZ0lERSPw7oXx6irVVDwB2vmHOrz2AKA/edit?usp=sharing)
+- 2020-10-13, 13:00 - 15:00, ["Helpful tools & Services" Slides](https://docs.google.com/presentation/d/1HKC5-G41lwVxAMjHU_UOTWKsRO3nD7B8uh9IVQRNtsk/edit?usp=sharing)
+- 2020-06-10, 13:00 - 15:00
+- 2020-04-23, 13:00 - 15:00
 
 
 ## Similar events which serve as inspiration
