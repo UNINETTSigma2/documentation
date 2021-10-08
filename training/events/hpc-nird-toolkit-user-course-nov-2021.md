@@ -1,4 +1,3 @@
-
 # HPC and NIRD toolkit user course November 2021
 
 In November 2021, the Norwegian Research Infrastructure Services **NRIS**
@@ -49,7 +48,7 @@ You can always contact us by sending an email to [support@nris.no](mailto:suppor
 
 If you want to receive further information about training events, and other announcements about IT resources and services for researchers, there are a couple of information channels you can subscribe to:
 - users at University of Bergen and affiliated institutes: [register to hpcnews@uib.no](https://mailman.uib.no/listinfo/hpcnews)
-- users of Sigma3 services: [subscribe to Sigma2's newsletter](https://sigma2.us13.list-manage.com/subscribe?u=4fd109ad79a5dca6dde7e4997&id=59b164c7b6)
+- users of Sigma2 services: [subscribe to Sigma2's newsletter](https://sigma2.us13.list-manage.com/subscribe?u=4fd109ad79a5dca6dde7e4997&id=59b164c7b6)
 
 **Dates: 2021 November 2, 3, 4 and 5 
 Time: each day 09:00-13:00 with short breaks**
