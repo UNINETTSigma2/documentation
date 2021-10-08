@@ -15,7 +15,7 @@ This example demonstates:
 5. how to perform a reduction operation in a SYCL kernel function
 
 In this tutorial we will SYCL-ify a somewhat more realistic example, which is taken from the
-[OpenACC tutorial](openacc). The serial version of the Jacobi iteration program has here been
+{ref}`OpenACC tutorial <openacc>`. The serial version of the Jacobi iteration program has here been
 slightly modified for C++ (and in anticipation of what is to come):
 
 ```{eval-rst}
@@ -73,7 +73,7 @@ to all the tasks, which effectively deactivates any asynchronous execution.
 
 Back to the Jacobi source code, we start by creating a `sycl::queue`. This object is "attached"
 to a particular device and is used to submit tasks for execution, in general asynchronously
-(out-of-order). As in the [Hello World](hipsycl-start) SYCL example, we will print out the name
+(out-of-order). As in the {ref}`Hello World <hipsycl-start>` SYCL example, we will print out the name
 of the device to make sure that we pick up the correct hardware:
 
 ```{eval-rst}
