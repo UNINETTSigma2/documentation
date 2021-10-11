@@ -70,8 +70,7 @@ All participants in our course are expected to show respect and courtesy to
 others. We follow [carpentry code of
 conduct](https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html#code-of-conduct-detailed-view).
 If you believe someone is violating the Code of Conduct, we ask that you report
-it either to [Radovan Bast](mailto:radovan.bast@uit.no) or [Dhanya
-Pushpadas](mailto:Dhanya.Pushpadas@uib.no)
+it to [the training team](mailto:training@nris.no).
 
 
 ## **Agenda**
