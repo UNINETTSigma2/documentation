@@ -1,4 +1,4 @@
-# Migration to a NRIS HPC machine
+# Migration to an NRIS HPC machine
 
 In general, the user environment on all NRIS machines should be as similar as possible.
 Thus, for users moving internally between machines run by NRIS, they only need to focus on the following:
@@ -10,7 +10,7 @@ Thus, for users moving internally between machines run by NRIS, they only need t
 
 For users either being novel to HPC in general, or having experience from other clusters - either local/private or foreign setup, basically the same rules apply - one must try to identify the critical differences in what one is used to and then adapt behaviour accordingly. 
 
-## Major steps in migrating to a NRIS HPC machines
+## Major steps in migrating to an NRIS HPC machines
 
 * Read this documentation.
 * Get an [account](/getting_started/applying_account.md) and [project](/getting_started/applying_resources.md) quota.
