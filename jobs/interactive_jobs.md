@@ -30,6 +30,13 @@ On **Saga**:
 $ srun --ntasks=1 --mem-per-cpu=4G --time=00:30:00 --qos=devel --account=YourAccount --pty bash -i
 ```
 
+***NOTE*** After the recent upgrades on **Saga** and **Fram**, it does
+not work to run `srun` inside interactive jobs started with `srun`.
+Until the problem has been resolved, you must either use the `salloc`
+method shown below, or the following workaround.  Instead of `srun
+<options> --pty bash -i`, use `salloc <options> srun --interactive
+--preserve-env --pty bash`.
+
 When you are done, simply exit the shell (`exit`, `logout` or `^D`) to
 end the job.
 
