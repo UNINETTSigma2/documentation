@@ -18,11 +18,7 @@ information and service overview, please also see https://www.sigma2.no.
 
    **Latest news and announcements** are posted at the `NRIS
    OpsLog <https://opslog.sigma2.no>`__ and the
-   `@MetacenterOps <https://twitter.com/MetacenterOps>`__ Twitter channel.
-   Due to the recent change of name from Metacenter to NRIS the MetacenterOps
-   account has not yet been renamed.
-
-----
+   `@NRISstatus <https://twitter.com/NRISstatus.>`__ Twitter channel.
 
 
 Compute, storage, pre/post-processing, visualization, machine learning
