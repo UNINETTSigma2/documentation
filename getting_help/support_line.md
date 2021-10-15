@@ -48,6 +48,11 @@ Currently we have application liaisons targeted towards the following domains/so
 	- {ref}`VASP <VASP>`
 ```
 
+### What we expect from you
+
+We expect that, if asked, users can give details to the support staff the description of their jobs like what their jobs are doing, how they work, why they need the resources they have requested, how they use the queues and when they are expected to complete. Jobs will be removed from the queue if requests for this information are not answered clearly and in good time, especially if a job is blocking access to the queue, or otherwise limit other users access to resources.
+
+
 ### Give enough information
 
 We get many requests for help which are too vague to give a useful response.
@@ -67,6 +72,15 @@ Please also look at the page for a more detailed guide on [how to write good sup
 requests](how_to_write_good_support_requests.md) on how to report problems in
 the most effective way for getting help quickly.
 
+### Useful knowledge to possess before submitting a ticket
+
+Being accustomed to basic knowledge about Linux command line (shell) navigation and shell scripting makes
+it easier to communicate with support and will most likely make your daily work flow more efficient as well.
+If you are new to command line, go through some Linux tutorials on the subject first. 
+Here are some useful pages you can look into: [shell novice](https://swcarpentry.github.io/shell-novice/) or [Effective shell](https://effective-shell.com). Otherwise consult your local IT resources for help.
+
+However, do not be afraid to contact support if you are not an expert or have knowledge of this. We will
+try our best to help you.
 
 ### Display active and resolved tickets
 
