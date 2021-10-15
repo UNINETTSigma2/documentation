@@ -1,6 +1,6 @@
-# Installing perl packages
+# Installing Perl modules
 
-Many Perl packages have numerous dependencies, and different modules can have conflicting
+Many Perl modules have numerous dependencies, and different modules can have conflicting
 dependencies.  The current 'best practices' regarding Perl modules is therefore to install your own
 modules, and even have separate modules installed for different projects/programs.  Thus, on our HPC
 systems, we only install a small set of modules that are heavily used, or are compiled against
@@ -15,7 +15,7 @@ in your home directory.
 module load Perl/5.32.0-GCCcore-10.2.0
 # Make Perl install Perl modules in your $HOME:
 eval $(perl -Mlocal::lib)
-# `PERL_CPANM_HOME` is the directory where cpanm builds the packages, not where they are installed
+# `PERL_CPANM_HOME` is the directory where cpanm builds the modules, not where they are installed
 export PERL_CPANM_HOME=/tmp/cpanm_$USER
 # Install for example Perl module Chess:
 cpanm Chess
