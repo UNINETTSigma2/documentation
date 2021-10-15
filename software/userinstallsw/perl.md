@@ -35,7 +35,7 @@ d
 cpanm --uninstall Chess
 ```
 
-#### Advanced Options
+## Advanced Options
 
 Install from local file:
 
