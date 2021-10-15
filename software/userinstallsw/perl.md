@@ -11,7 +11,7 @@ It is easy to install your own Perl modules.  Most Perl modules are available on
 in your home directory.
 
 ```bash
-# First load an appropriate Perl module (use 'module avail Perl' to see all)
+# First load an appropriate Perl module (use `module avail Perl` to see all)
 module load Perl/5.32.0-GCCcore-10.2.0
 # Make Perl install Perl modules in your $HOME:
 eval $(perl -Mlocal::lib)
