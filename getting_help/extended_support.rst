@@ -29,7 +29,7 @@ A few examples of what we can offer you:
 
 - Competence and insight that sits close to the domain topic of interest. Sometimes it is not enough to have deep digital competence to address a challenge, but one also needs overview of the role and character of this challenge for your flow of work. Typically, optimizing a specific solver might incur unwanted effects on other parts of the program which is hard to understand unless you also understand what the solvers are actually doing.
 
-If you are interested in reading more about our specific stimuli frameworks please take a look at {ref}`Extended User Support (EUS) <extended-support-eus>`, {ref}`Advanced User Support (AUS) <extended-support-aus>`, {ref}`GPU Support <extended-support-gpu>`, {ref}`National Competence Center (NCC) <extended-support-ncc>`). But we encourage you to contact us first to spare you the acronyms and letting us do the work of coordinating how to facilitate further progress on your challenge.
+If you are interested in reading more about our specific stimuli frameworks please take a look at :ref:`Extended User Support (EUS) <extended-support-eus>`, :ref:`Advanced User Support (AUS) <extended-support-aus>`, :ref:`GPU Support <extended-support-gpu>`, :ref:`National Competence Center (NCC) <extended-support-ncc>`). But we encourage you to contact us first to spare you the acronyms and letting us do the work of coordinating how to facilitate further progress on your challenge.
 
 .. toctree::
    :maxdepth: 1
