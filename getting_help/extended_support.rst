@@ -9,7 +9,7 @@ However, what we believe is even more valuable is the fact that you as a user ha
 
 Even though our digital competence is at the forefront, that does not mean we only provide assistance and appreciate complex state-of-the-art challenges. On the contrary, we would really like to help you and your activity, regardless where you are coming from. In fact, sometimes nothing feels better than seeing you and your flow or work evolve after getting a little help in the start.
 
-Whether that challenge is small, large, complex or trivial does not matter, please [reach out](mailto:support@metacenter.no) and we will find a common ground for collaboration. Using that as an entry point we can figure out together how, who and what kind of competences we should involve to address the challenge. And for the most part this is free of charge.
+Whether that challenge is small, large, complex or trivial does not matter, please `reach out <mailto:support@metacenter.no>`_ and we will find a common ground for collaboration. Using that as an entry point we can figure out together how, who and what kind of competences we should involve to address the challenge. And for the most part this is free of charge.
 
 A few examples of what we can offer you:
 
