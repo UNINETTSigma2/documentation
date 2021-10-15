@@ -114,12 +114,17 @@ Index of keywords
 
 .. toctree::
    :maxdepth: 1
+   :caption: Policies
+
+   code-of-conduct.md
+
+.. toctree::
+   :maxdepth: 1
    :caption: News
 
    Latest changes and events <https://opslog.sigma2.no>
    Hardware live status <https://www.sigma2.no/hardware-status>
    known-issues.md
-   code-of-conduct.md
 
 
 .. toctree::

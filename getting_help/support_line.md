@@ -42,12 +42,11 @@ searching the internet, establishing new contacts, attending conferences and wor
 study the documentation and maybe the most important aspect, make sure you have done what you can to obtain basic knowledge of the
 issue or problem at hand.
 
-.. note::
-   There are exceptions to the definitions above. We have a few application liaisons targeted towards assisting users in a few target domains/softwares. For these particular domains/softwares, tickets are forwarded to the respective liaisons. Please consult the documentation pages related to the domains/softwares in order to understand what we can do for you. We highly encourage fields or groups to contribute with application liaisons in order to improve response time, usability and adoption of certain software or techniques. If so, or if you have any questions related to this, please contact us at [support@nris.no](mailto:support@nris.no).
-   
-   Currently we have application liaisons targeted towards the following domains/softwares:
-   
-   - {ref}`VASP <VASP>`
+```{note} There are exceptions to the definitions above. We have a few application liaisons targeted towards assisting users in a few domains/softwares. For these particular domains/softwares, tickets are forwarded to the respective liaisons. Please consult the documentation pages related to the domains/softwares in order to understand what we can do for you. We highly encourage fields or groups to contribute with application liaisons in order to improve response time, usability and adoption of certain software or techniques. If so, or if you have any questions related to this, please contact us at [support@nris.no](mailto:support@nris.no). 
+
+Currently we have application liaisons targeted towards the following domains/softwares:<br>
+	- {ref}`VASP <VASP>`
+```
 
 ### Give enough information
 
