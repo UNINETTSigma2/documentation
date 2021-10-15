@@ -126,6 +126,7 @@ Index of keywords
    :caption: Getting help
 
    getting_help/support_line.md
+   getting_help/extended_support.rst
    getting_help/faq.md
    getting_help/how_to_write_good_support_requests.md
    getting_help/user_communities.md
