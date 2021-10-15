@@ -34,6 +34,8 @@ We expect all parties to follow these standards:
 
 - Always try to consult existing documentation, i.e. this or other before asking question, giving comments or making statements.
 
+- Do's and don'ts: {ref}`for help<help-dos-donts>`, {ref}`for jobs<jobs-dos-donts>` and {ref}`for storage<storage-dos-donts>`.
+
 A few examples that are considered breach of this code of conduct:
 
 - Use of insulting language or behavior, e.g. sexual, personal, professional or private.
@@ -41,8 +43,6 @@ A few examples that are considered breach of this code of conduct:
 - Any direct or indirect harassment in all contexts.
 
 - Carefulness with personal data.
-
-- Do's and don'ts: {ref}`for help<help-dos-donts>`, {ref}`for jobs<jobs-dos-donts>` and {ref}`for storage<storage-dos-donts>`.
 
 ## Standards of practice for users
 All users are obliged to comply with the [Sigma2 user policy](https://www.sigma2.no/acceptable-use-policy).
