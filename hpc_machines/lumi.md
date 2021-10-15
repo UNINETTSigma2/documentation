@@ -54,16 +54,16 @@ CUDA is *not* supported on LUMI and existing users should consider porting their
 application to `HIP` through the tools offered. Starting early with the porting
 effort is very important and will be supported by the EuroHPC CC team.
 
-The Metacenter is currently soliciting pilot users for LUMI-G participation.
+NRIS is currently soliciting pilot users for LUMI-G participation.
 Interested users should contact
-[support@metacenter.no](mailto:support@metacenter.no). Since there is a limited
+[support@nris.no](mailto:support@nris.no). Since there is a limited
 number of pilots, users will need to dedicate some amount of time to get ready
-for pilot testing, however, the Metacenter will be available for help in porting
+for pilot testing, however, NRIS will be available for help in porting
 applications to LUMI-G.
 
 Once LUMI-G is operational and pilot testing is completed, all interested users
 will be able to request access. Applications that can take advantage of GPU
-accelerators will see massive speed-ups on LUMI-G and the Metacenter will
+accelerators will see massive speed-ups on LUMI-G and NRIS will
 continue to aid in porting applications to this architecture.
 
 ### Porting to accelerators
@@ -72,7 +72,7 @@ to instantly take advantage of the additional compute power. AI researchers
 using one of the larger frameworks, such as `TensorFlow` and `pyTorch`, will be
 able to use LUMI-G directly.
 
-The Metacenter is still building documentation for taking advantage of
+NRIS is still building documentation for taking advantage of
 accelerator resources. Researchers that want to begin the transition should
 evaluate `OpenACC` (see our {ref}`dev-guides`),
 `OpenMP`

@@ -3,7 +3,7 @@
 # Support line
 
 All support requests concerning the e-infrastructure resources should be sent to
-[support@metacenter.no](mailto:support@metacenter.no).
+[support@nris.no](mailto:support@nris.no).
 
 Behind this address is an issue tracker (ticket system) and you will get an
 automatic reply first and can expect response from our staff within hours
@@ -43,7 +43,7 @@ study the documentation and maybe the most important aspect, make sure you have 
 issue or problem at hand.
 
 .. note::
-   There are exceptions to the definitions above. We have a few application liaisons targeted towards assisting users in a few target domains/softwares. For these particular domains/softwares, tickets are forwarded to the respective liaisons. Please consult the documentation pages related to the domains/softwares in order to understand what we can do for you. We highly encourage fields or groups to contribute with application liaisons in order to improve response time, usability and adoption of certain software or techniques. If so, or if you have any questions related to this, please contact us at [support@metacenter.no](mailto:support@metacenter.no).
+   There are exceptions to the definitions above. We have a few application liaisons targeted towards assisting users in a few target domains/softwares. For these particular domains/softwares, tickets are forwarded to the respective liaisons. Please consult the documentation pages related to the domains/softwares in order to understand what we can do for you. We highly encourage fields or groups to contribute with application liaisons in order to improve response time, usability and adoption of certain software or techniques. If so, or if you have any questions related to this, please contact us at [support@nris.no](mailto:support@nris.no).
    
    Currently we have application liaisons targeted towards the following domains/softwares:
    

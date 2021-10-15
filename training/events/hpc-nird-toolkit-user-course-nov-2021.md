@@ -1,4 +1,3 @@
-
 # HPC and NIRD toolkit user course November 2021
 
 In November 2021, the Norwegian Research Infrastructure Services **NRIS**
@@ -41,14 +40,15 @@ NIRD Toolkit (web browser).
 2. In order to use the NIRD Toolkit during the course you will need either a
    Feide account or a Feide OpenIDP guest account.  You can create a Feide
    OpenIDP guest account at https://openidp.feide.no/.  See your
-   eduPersonPrincipalName (eduPPN) at http://innsyn.feide.no .
+   eduPersonPrincipalName (eduPPN) at http://innsyn.feide.no . Those who  are 
+   using Feide openidp guest account should go to minside.dataporten.no to find    eduppn, and it is the field called "Secondary user identifiers".
 ```
 
-You can always contact us by sending an email to [support@metacenter.no](mailto:support@metacenter.no).
+You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
 
 If you want to receive further information about training events, and other announcements about IT resources and services for researchers, there are a couple of information channels you can subscribe to:
 - users at University of Bergen and affiliated institutes: [register to hpcnews@uib.no](https://mailman.uib.no/listinfo/hpcnews)
-- users of Sigma3 services: [subscribe to Sigma2's newsletter](https://sigma2.us13.list-manage.com/subscribe?u=4fd109ad79a5dca6dde7e4997&id=59b164c7b6)
+- users of Sigma2 services: [subscribe to Sigma2's newsletter](https://sigma2.us13.list-manage.com/subscribe?u=4fd109ad79a5dca6dde7e4997&id=59b164c7b6)
 
 **Dates: 2021 November 2, 3, 4 and 5 
 Time: each day 09:00-13:00 with short breaks**
@@ -70,8 +70,7 @@ All participants in our course are expected to show respect and courtesy to
 others. We follow [carpentry code of
 conduct](https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html#code-of-conduct-detailed-view).
 If you believe someone is violating the Code of Conduct, we ask that you report
-it to either [Radovan Bast](mailto:radovan.bast@uit.no) or [Dhanya
-Pushpadas](mailto:Dhanya.Pushpadas@uib.no)
+it to [the training team](mailto:training@nris.no).
 
 
 ## **Agenda**
@@ -111,20 +110,23 @@ Break for 10 minutes
 
 - **Get ready: 08:50-09:00 Connect to zoom meeting**
 
-- **Session 1: 09:00-09:55 Optimization of codes and batch script part I**
+- **Session 1: 09:00-09:45 Optimization of codes and batch script part I**
 
 Break for 10 minutes
 
-- **Session 2: 10:05-11:00 Optimization of codes and batch script part II**
+- **Session 2: 09:55-10:30 Optimization of codes and batch script part II**
 
 Break for 10 minutes
 
-- **Session 3: 11:10-12:05 Optimizing use of memory and CPUs**
+- **Session 3: 10:40-11:20 Optimizing use of memory and CPUs**
 
 Break for 10 minutes
 
-- **Session 4: 12:15-12:45 Profiling memory and CPU resource usage**
+- **Session 4: 11:30-12:10 Profiling memory and CPU resource usage**
 
+Break for 10 minutes
+
+- **Session 5: 12:20-12:50 Optimization of codes: Usecase**
 - **Session Q&A: 12:50-13:00 Questions & Answers**
 
 

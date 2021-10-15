@@ -2,6 +2,8 @@
 orphan: true
 ---
 
+(job-types-betzy)=
+
 # Job Types on Betzy
 
 Betzy is designed to run highly parallelized jobs.  If you need to run medium-sized jobs, than Fram is a better choice, while for serial jobs you shall use Saga.
@@ -23,9 +25,10 @@ Here is a more detailed description of the different job types on Betzy:
     - maximum 512 nodes
 - __Maximum walltime__: 4 days
 - __Priority__: normal
-- __Available resources__: 1340 nodes with 128 CPU cores and 250 GiB RAM
+- __Available resources__: 1340 nodes with 128 CPU cores and 245 GiB RAM
 - __Parameter for sbatch/srun__:
     - None, _normal_ is the default
+- __Job Scripts__: {ref}`job_scripts_betzy_normal`
 
 This is the default job type. In _normal_ jobs, the queue system hands out complete nodes.
 
@@ -40,13 +43,14 @@ This is the default job type. In _normal_ jobs, the queue system hands out compl
     - maximum 4 running jobs per user
 - __Maximum walltime__: 1 day
 - __Priority__: normal
-- __Available resources__: 128 CPU cores and 250 GiB RAM on one node
+- __Available resources__: 128 CPU cores and 245 GiB RAM on one node
 - __Parameter for sbatch/srun__:
     - `--qos=preproc`
+- __Job Scripts__: {ref}`job_scripts_betzy_preproc`
 
 *preproc* jobs are meant for small preprocessing or postprocessing
 tasks.  Typically, such jobs don't use many CPUs, so requiring them to
-use 8 whole nodes would waste resources.
+use 4 whole nodes would waste resources.
 
 The details about how the billing units are calculated can be found
 in [job accounting](../projects_accounting.md).
@@ -65,8 +69,9 @@ in [job accounting](../projects_accounting.md).
 - __Available resources__: 4 nodes with 128 CPU cores and 250 GiB RAM
 - __Parameter for sbatch/srun__: 
     - `--qos=devel`
+- __Job Scripts__: {ref}`job_scripts_betzy_devel`
 
-This is meant for small, short development or test jobs.  *Devel* jobs have access to a set of dedicated nodes.
+This is meant for small, short development or test jobs.
 
 If you have _temporary_ development needs that cannot be fulfilled by the _devel_ job type, please contact us at
-[support@metacenter.no](mailto:support@metacenter.no).
+[support@nris.no](mailto:support@nris.no).

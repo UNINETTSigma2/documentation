@@ -1,9 +1,13 @@
 # Training material
 
-- [Sigma2 training calendar](https://www.sigma2.no/events)
+
+## Training material used in our past courses
+
+- [March 2021 course](https://wiki.uib.no/hpcdoc/index.php/HPC_and_NIRD_toolkit_user_course_March_2021)
+  - [Slides and recordings](https://drive.google.com/drive/u/1/folders/1Umw7Ag6dFC3ZRffS3FHZJpHFhjId5mXT)
 
 
-## Training material used at Metacenter sites
+## Training material used at NRIS sites
 
 - [Introduction to HPC training material - UiO](https://sabryr.github.io/hpc-intro/)
 - [Introduction to HPC training and materials - NTNU](https://www.hpc.ntnu.no/ntnu-hpc-group/training/introduction-to-parallel-programming)

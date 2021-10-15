@@ -28,7 +28,7 @@ Users can install Python packages in a virtual Python environment. Here is how
 you create a virtual environment with Python:
 
 ``` sh
-# First load an appropriate Python module (use 'module list Python' to see all)
+# First load an appropriate Python module (use 'module avail Python/' to see all)
 $ module load Python/3.8.6-GCCcore-10.2.0
 # Create the virtual environment.
 $ python -m venv my_new_pythonenv
@@ -122,13 +122,16 @@ one python3 based parallel to each other without interfering.
 
 #### Load conda module
 Start by removing all preloaded modules which can complicate things. We then
-display all installed version and load the newest Miniconda one (4.6.14):
+display all installed version and (on Saga) load the newest Miniconda one (4.6.14):
 
 ``` sh
 $ ml purge
 $ ml avail conda
 $ ml Miniconda3/4.6.14
 ```
+
+On Fram, Miniconda is not installed (yet) but instead you can load `Anaconda3`.
+
 
 #### Setup conda activate command
 To use `conda activate` interactively you have to initialise your shell once with:

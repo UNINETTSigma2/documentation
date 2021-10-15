@@ -1,7 +1,7 @@
 # Training events
 
-The Norwegian Research Infrastructure Services NRIS (formerly known as the
-Metacenter), has an extensive education and training program to assist existing
+Norwegian Research Infrastructure Services NRIS (formerly known as the
+The Metacenter), has an extensive education and training program to assist existing
 and future users of our services. The courses are aimed to give the participants
 an understanding of our services as well as using the resources effectively.
 The courses are free of charges. Our upcoming courses are listed below:
@@ -12,3 +12,8 @@ The courses are free of charges. Our upcoming courses are listed below:
 
    events/hpc-nird-toolkit-user-course-nov-2021.md
 ```
+
+
+## Sigma2 training calendar
+
+- <https://www.sigma2.no/events>

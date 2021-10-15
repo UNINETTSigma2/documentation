@@ -149,7 +149,7 @@ This example demonstrates:
 4. how to launch a hybrid MPI+OpenMP container using the host MPI runtime
 5. how to launch a CUDA container
 
-[BigDFT](https://bigdft.org/) is an electronic structure code targeting large molecular
+[BigDFT](https://bigdft-suite.readthedocs.io/en/latest) is an electronic structure code targeting large molecular
 systems with density functonal theory. The program is written for heterogeneus computing
 environments with support for both MPI, OpenMP and CUDA. This makes for a good test case
 as a more advanced container application. All the following is based on the official
