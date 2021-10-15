@@ -21,7 +21,7 @@ export PERL_CPANM_HOME=/tmp/cpanm_$USER
 cpanm Chess
 ```
 
-#### Other useful commands:
+## Other useful commands:
 ```bash
 # Check if the Perl module installed correctly:
 perl -MChess -e ’print "ok\n"’
