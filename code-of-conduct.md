@@ -12,8 +12,6 @@ Staff of NRIS are expected to follow this code of conduct, as is any users or ot
 
 ## Standards of operation
 
-### General 
-
 We expect all parties to follow these standards:
 
 - Use a welcoming and respectful tone when communicating.
@@ -44,15 +42,7 @@ A few examples that are considered breach of this code of conduct:
 
 - Carefulness with personal data.
 
-### Technical and dedicated to our specific service portfolio
-
-In order to provide efficient delivery of services, both hard and soft, to a broad community we would like everyone to try to comply with the following:
-
-- Do and do not do's should be followed: {ref}`for jobs<jobs-dos-donts>`
-
-- All support requests concerning the resources, both hard and soft, should be sent to [support@metacenter.no](mailto:support@nris.no). Please see the {ref}`support-line` for guidelines.
-
-- Clean your home directory frequently and make sure that you don't exceed the limits. Please see [this page](/files_storage/clusters.md) for more details on usage and quota.
+- Do's and don'ts: {ref}`for help<help-dos-donts>`, {ref}`for jobs<jobs-dos-donts>` and {ref}`for storage<storage-dos-donts>`.
 
 ## Standards of practice for users
 All users are obliged to comply with the [Sigma2 user policy](https://www.sigma2.no/acceptable-use-policy).

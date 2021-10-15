@@ -1,5 +1,6 @@
 (jobs-dos-donts)=
-# Dos and Don'ts
+
+# Do's and Don'ts
 
 Here is a collection of things to do and not to do on the clusters:
 
