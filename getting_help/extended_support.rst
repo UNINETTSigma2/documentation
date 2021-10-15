@@ -1,4 +1,4 @@
-(extended-support-general)=
+.. _extended-support:
 
 Extended support
 ================
