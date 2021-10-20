@@ -197,7 +197,7 @@ input.yaml  log.ref.yaml  posinp.xyz  psppar.Fe  tols-BigDFT.yaml
 ```{note}
 Container images are read-only, so it is not possible to copy things _into_ the container
 or change it in any other way without sudo access on the host. This is why all container
-_construction_ needs to be done on your local machine where you have such priviliges, see
+_construction_ needs to be done on your local machine where you have such privileges, see
 {ref}`guides <dev-guides>` for more info on building containers.
 ```
 

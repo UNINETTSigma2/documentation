@@ -28,7 +28,7 @@ project area for others to be able to access them.
 
 When using `$USERWORK`, it is a good idea to make sure that each job
 runs in its own subdirectory.  This reduces the risk of jobs
-interferring with each other.  One easy way to do that is to use the
+interfering with each other.  One easy way to do that is to use the
 following in the job script:
 
     ## Create and move to work dir

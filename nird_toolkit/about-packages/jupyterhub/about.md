@@ -24,7 +24,7 @@ In many cases it is useful to share GPUs among all users. In order to allow user
 [ipyparallel](https://ipyparallel.readthedocs.io/en/latest/) is used.
 ipyparallel works by running separate Jupyter kernels on remote nodes.
 This enables a user to with very little modification run their notebook on another GPU enabled machine.
-To enable ipyparallel, ensure that `enabled` is ticked in the `ipyparallel` section of the `Adavanced configuration`.
+To enable ipyparallel, ensure that `enabled` is ticked in the `ipyparallel` section of the `Advanced configuration`.
 
 To use ipyparallel within a notebook, run the following script inside a notebook
 ```

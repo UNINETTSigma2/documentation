@@ -58,7 +58,7 @@ Here we first include the main SYCL header file, which in our case will be provi
 so-called `default_selector`, and then we print out which device was picked up for this particular
 queue (more on queues later). The `default_selector` will choose an accelerator if one is found
 on the host, otherwise it will fall back to run as (traditional) OpenMP on the host CPU.
-By specifiying different types of `selectors` it is possible to e.g. force the code to always
+By specifying different types of `selectors` it is possible to e.g. force the code to always
 run on the CPU, or to choose a particular device if more than one accelerator is available.
 
 ### Compiling for CPUs

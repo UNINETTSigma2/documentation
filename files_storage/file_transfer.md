@@ -26,7 +26,7 @@ storage page.
 Few typical examples when using `scp`:
 
 Copy single file to home folder on Fram
-note that folder is ommitted, home folder being default:
+note that folder is omitted, home folder being default:
 ```console
 $ scp my_file.tar.gz <username>@fram.sigma2.no:
 ```

@@ -10,7 +10,7 @@ orphan: true
 
 The remote desktop service makes it possible to run graphical applications on the Fram system with reasonable performance over the network. The service provides a simple Linux desktop based on the very lightweight XFCE desktop environment (<https://www.xfce.org/>). Currently (Aug. 2018) the system has no hardware acceleration so running advanced 3D rendering applications will probably not have adequate performance.
 
-## Neccessary client software
+## Necessary client software
 
 Although it is possible to run the desktop in a web-browser (<https://desktop.fram.sigma2.no:6080> or <https://desktop.saga.sigma2.no:6080>)it is recommended to use a VNC client as it gives better performance and user experience. The recommended VNC client is TigerVNC which can be downloaded from <https://tigervnc.org/> (Many Linux distros have tigervnc in their software repos).
 

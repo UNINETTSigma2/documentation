@@ -29,7 +29,7 @@ def create_model():
 
 # Create and display summary of model
 model = create_model()
-# Output, such as from the following command, is outputed into the '.out' file
+# Output, such as from the following command, is outputted into the '.out' file
 # produced by 'sbatch'
 model.summary()
 # Output to check if we are using GPU
