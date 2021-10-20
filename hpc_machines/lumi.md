@@ -54,17 +54,11 @@ CUDA is *not* supported on LUMI and existing users should consider porting their
 application to `HIP` through the tools offered. Starting early with the porting
 effort is very important and will be supported by the EuroHPC CC team.
 
-NRIS is currently soliciting pilot users for LUMI-G participation.
-Interested users should contact
-[support@nris.no](mailto:support@nris.no). Since there is a limited
-number of pilots, users will need to dedicate some amount of time to get ready
-for pilot testing, however, NRIS will be available for help in porting
-applications to LUMI-G.
-
 Once LUMI-G is operational and pilot testing is completed, all interested users
 will be able to request access. Applications that can take advantage of GPU
-accelerators will see massive speed-ups on LUMI-G and NRIS will
-continue to aid in porting applications to this architecture.
+accelerators will see massive speed-ups on LUMI-G and NRIS will continue to aid
+in porting applications to this architecture, see
+{ref}`here for more information about our GPU support <extended-support-gpu>`.
 
 ### Porting to accelerators
 Since LUMI-G is based on AMD GPU Accelerators, not all applications will be able
@@ -80,8 +74,8 @@ or directly using [accelerated
 libraries](https://rocmdocs.amd.com/en/latest/ROCm_Libraries/ROCm_Libraries.html).
 
 If you are interested in porting your application to GPUs, or already have
-ported your application and need assistance transitioning to AMD GPUs, please
-contact the metacenter support (see {ref}`contact_support`).
+ported your application and need assistance transitioning to AMD GPUs, 
+{ref}`please contact NRIS support<extended-support-gpu>`.
 
 ## LUMI-C
 LUMI-C is the compute partition of LUMI, dealing with CPU based HPC
