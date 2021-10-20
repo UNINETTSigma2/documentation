@@ -25,7 +25,7 @@ To use R type
 There might be some packages missing in the R module we have installed or may be you need a different
 version than what we have. In that case you could install the packages yourself. For example,
 following is the procedure to install the package called XYZ by the user *user1* on  SAGA. 
-Please Please remmeber to use your username instead of *user1*
+Please Please remember to use your username instead of *user1*
 
  -  Login to saga
  -  Load the module

@@ -22,7 +22,7 @@ select job type -- for instance _bigmem_, _accel_ and _optimist_.
 ## QoS - Quality of Service
 A _QoS_ is a way to assign properties and limitations to jobs.  It can
 be used to give jobs different priority, and add or change the
-limitations on the jobs, for instance the size or lenght of jobs, or
+limitations on the jobs, for instance the size or length of jobs, or
 the number of jobs running at one time.
 
 Several {ref}`job-types` on our clusters are

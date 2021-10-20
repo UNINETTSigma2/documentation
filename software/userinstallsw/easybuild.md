@@ -168,7 +168,7 @@ this is a tip for housekeeping and not strictly required. This will give the
 path structure as for the local case, with the software and modulefiles
 installed in ``cluster/projects/nnXXXXk/easybuild``.
 
-Now the ``rjags`` installation is avaiable to everyone associated with the
+Now the ``rjags`` installation is available to everyone associated with the
 ``nnXXXXk`` project, after typing:
 
     $ module use /cluster/projects/nnXXXk/easybuild/modules/all

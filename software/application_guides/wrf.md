@@ -38,7 +38,7 @@ When publishing results obtained with the software referred to, please do check 
 
 ## Building from source
 
-There are a lot of issues when building WRF from source, but most is covered in the WRF documentaion. 
+There are a lot of issues when building WRF from source, but most is covered in the WRF documentation. 
 Below are some hints that apply locally.
 
 Please make sure all modules are using the same toolchain, like `intel/2021a` etc. 

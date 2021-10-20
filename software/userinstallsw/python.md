@@ -106,7 +106,7 @@ You can install many python and non-python packages yourself using
 software [bioconda](https://bioconda.github.io/).
 
 Conda enables you to easily install complex packages and software.
-Creating multiple enviroments enables you to have installations of the
+Creating multiple environments enables you to have installations of the
 same software in different versions or incompatible software collections
 at once.
 You can easily share a list of the installed packages with 

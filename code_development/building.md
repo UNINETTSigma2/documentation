@@ -216,7 +216,7 @@ multiplication is used for a simple test of the different compilers.
 
 The Intel Fortran compiler do a remarkable job with this nested loop problem.
 As we have seen above the matrix matrix multiplication is a special case. For more 
-realistic examples the performace is more comparable.
+realistic examples the performance is more comparable.
 
 ![Compiler performance](compiler-perf.png)
 
@@ -243,7 +243,7 @@ An example can provide some hints:
 The variable *MKLROOT* is set when the Intel module is loaded.
 
 In many cases the include files are needed and since the CPATH is set by module scripts the following command like might easy the process of
-translating a colon separated string of directores to something that the Fortran compiler will accept.
+translating a colon separated string of directories to something that the Fortran compiler will accept.
 `gfortran -O3 -I${CPATH//:/ -I/} fftw-3d.f90 ${MKLROOT}/lib/intel64/libfftw3xf_intel.a -lmkl_sequential -lmkl`
 The above example is an example og using the FFTW wrapper in MKL, using only environment variables set by the module scripts it will
 be portable with different versions of MKL. 

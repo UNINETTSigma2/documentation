@@ -242,7 +242,7 @@ def create_model():
 
 # Create and display summary of model
 model = create_model()
-# Output, such as from the following command, is outputed into the '.out' file
+# Output, such as from the following command, is outputted into the '.out' file
 # produced by 'sbatch'
 model.summary()
 
@@ -430,7 +430,7 @@ def create_model():
 ## --- NEW ---
 with strategy.scope():
 	model = create_model()
-# Output, such as from the following command, is outputed into the '.out' file
+# Output, such as from the following command, is outputted into the '.out' file
 # produced by 'sbatch'
 model.summary()
 log_dir = os.path.join(os.environ['SLURM_SUBMIT_DIR'],
@@ -570,7 +570,7 @@ def create_model():
 
 # Create and display summary of model
 model = create_model()
-# Output, such as from the following command, is outputed into the '.out' file
+# Output, such as from the following command, is outputted into the '.out' file
 # produced by 'sbatch'
 if hvd.rank() == 0:
     model.summary()

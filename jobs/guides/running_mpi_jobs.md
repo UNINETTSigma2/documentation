@@ -20,7 +20,7 @@ On Betzy, Fram and Saga users have access to two MPI implementations:
 **Also note that quite a few scientific packages is set up in such a
 way that all necessary software are loaded as a part of the software
 module in question. Do not load toolchains and/or mpi modules
-explicitely unless absolutely sure of the need for it!!!**
+explicitly unless absolutely sure of the need for it!!!**
 
 Slurm is used as the {ref}`queue-system`, and the native
 way to start MPI applications with Slurm is to use the
