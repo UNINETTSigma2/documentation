@@ -256,7 +256,7 @@ Fig. 2 - Examining data
 When running TotalView in the batch system, first start an interactive Slurm
 batch job session:
 
-    $ salloc --account=<my_account> --time <HH:MM> -N <no_of_nodes>
+    $ salloc --account=<my_account> --time <HH:MM> -N <no_of_nodes> bash
     salloc: Granted job allocation <jobid>
 
 Start TotalView with the executable
