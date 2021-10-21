@@ -98,7 +98,7 @@ For some applications (see for instance {ref}`totalview_debugging`),
 it is preferrable to have the shell or a command running on the login
 node instead of on the compute node(s).
 
-This can be achived by just adding `bash` or the command to the end of
+This can be achieved by just adding `bash` or the command to the end of
 the `salloc` command line, i.e.,
 ```
 $ salloc <options> bash

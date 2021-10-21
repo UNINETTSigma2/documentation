@@ -157,7 +157,7 @@ the bioconda channel:
 $ conda config --add channels bioconda
 ```
 
-#### Supress unneccessary warnings
+#### Suppress unnecessary warnings
 To suppress the warning that a newer version of conda exists which is usually
 not important for most users and will be fixed by us by installing a new module:
 
