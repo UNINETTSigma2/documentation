@@ -32,6 +32,25 @@ Here is a more detailed description of the different job types on Betzy:
 
 This is the default job type. In _normal_ jobs, the queue system hands out complete nodes.
 
+(job_type_betzy_accel)=
+
+## Accel
+- __Allocation units__: CPUs, Memory and GPUs
+- __Job Limits__: 1-256 units
+- __Maximum walltime__: 7 days
+- __Priority__: Normal
+- __Available resources__: 3 nodes - each with 128 CPU cores, 512 GiB RAM and 4 x Nvidia A100 GPUs with 40GB RAM
+- __Parameter for sbatch/srun__:
+    - `--partition=accel`
+    - `--gpus=N`, `--gpus-per-task=N` or similar, with `N` being the number of GPUs
+
+Can be combined with `--qos=devel` for shorter development tasks which require
+GPUs for testing.
+
+Note that the GPU nodes on Betzy are billed differently than the other
+partitions, one can reserve less than a full node in a similar manner to Saga.
+See the {ref}`accounting page<projects-accounting>` for more information.
+
 
 (job_type_betzy_preproc)=
 

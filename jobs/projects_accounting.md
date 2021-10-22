@@ -77,31 +77,38 @@ clusters.
 
 ### Saga
 
-- The _normal_ partition: memory factor is 0.2467806 units per GiB.  Thus
+- The `normal` partition: memory factor is `0.2467806` units per GiB. Thus
   the memory cost of a job asking for all memory on a node will
-  be 46.  This is a compromise between the two node types in the
+  be 46. This is a compromise between the two node types in the
   normal partition; they have 40 and 52 CPUs.
 
-- For the _bigmem_ partition, the factor is
-  0.1059915 units per GiB.  This means that for a job requesting all
+- For the `bigmem` partition, the factor is
+  `0.1059915` units per GiB.  This means that for a job requesting all
   memory on one of the "small" bigmem nodes, the memory cost is 40,
   while for a job requesting all memory on one of the large nodes,
   it is 320.
 
-- On the _accel_ partition, the memory factor is 0.06359442 units per
+- On the `accel` partition, the memory factor is `0.06359442` units per
   GiB, and the GPU factor is 6.  This means that a job asking for all
   memory on a node, or all GPUs on a node, gets a cost of 24, the
   number of CPUs on the node.
 
-- The _optimist_ partition has the same memory factor as the _normal_
+- The `optimist` partition has the same memory factor as the `normal`
   partition.
 
 ### Betzy
 
-- In the _normal_ partition, only whole nodes are handed out, so each
+- In the `normal` partition, only whole nodes are handed out, so each
   job is accounted for 128 units per node, and there is no memory
   factor.
 
-- The _preproc_ partition has a memory factor of 0.5221992 units per
+- The `preproc` partition has a memory factor of `0.5221992` units per
   GiB, so a job asking for all memory on the node would have a cost of
   128, the number of CPUs on the node.
+
+- The `accel` partition has a memory factor of `0.2570281` units per GiB, while
+  the GPU factor is `32` units per GPU. This means that when one reserves 1 GPU
+  on Betzy the billing is equivalent of reserving 32 CPU cores. Also note that
+  the _maximum_ is used to calculate core hours, so if a job reserves 1 GPU and
+  32 CPU cores billing would be the same to reserving 1 GPU and 1 CPU core
+  (when using the same amount of memory).
