@@ -28,7 +28,7 @@ For jobs that don't request much memory, the "units" of *preproc* jobs
 are simply the number of cpus the job requests.
 For other jobs, see {ref}`projects-accounting` for how the units are calculated.
 
-{ref}`Betzy Job Types <betzy_job_types>`.
+{ref}`Betzy Job Types <job-types-betzy>`.
 
 ## Fram
 
