@@ -2,6 +2,8 @@
 orphan: true
 ---
 
+(betzy_job_types)=
+
 # Job Types on Betzy
 
 Betzy is designed to run highly parallelized jobs.  If you need to run medium-sized jobs, than Fram is a better choice, while for serial jobs you shall use Saga.
@@ -33,9 +35,8 @@ This is the default job type. In _normal_ jobs, the queue system hands out compl
 
 ## Accel
 - __Allocation units__: CPUs, Memory and GPUs
-- __Job Limits__:
-    - TBD
-- __Maximum walltime__: 14 days
+- __Job Limits__: 1-256 units
+- __Maximum walltime__: 7 days
 - __Priority__: Normal
 - __Available resources__: 3 nodes - each with 128 CPU cores, 512 GiB RAM and 4 x Nvidia A100 GPUs with 40GB RAM
 - __Parameter for sbatch/srun__:
@@ -44,6 +45,10 @@ This is the default job type. In _normal_ jobs, the queue system hands out compl
 
 Can be combined with `--qos=devel` for shorter development tasks which require
 GPUs for testing.
+
+Note that the GPU nodes on Betzy are billed differently than the other
+partitions, one can reserve less than a full node in a similar manner to Saga.
+See the {ref}`accounting page<projects-accounting>` for more information.
 
 
 (job_type_betzy_preproc)=
