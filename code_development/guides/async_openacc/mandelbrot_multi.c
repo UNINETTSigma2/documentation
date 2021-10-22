@@ -136,14 +136,14 @@ int main (int argc, char** argv) {
   const double start_time = omp_get_wtime ();
   const int block_size = height / num_blocks;
   for (int g = 0; g < num_gpus; g++) {
-    acc_set_device(g, acc_device_nvidia);
+    acc_set_device_num(g, acc_device_nvidia);
     #pragma acc enter data create(image[:width * height]) copyin(palette[:palette_size])
   }
   for (int block = 0; block < num_blocks; block++) {
     const int start = block * block_size;
     const int end = (block != num_blocks - 1) ? start + block_size : height;
     const int num_elements = end - start;
-    acc_set_device(block % num_gpus, acc_device_nvidia);
+    acc_set_device_num(block % num_gpus, acc_device_nvidia);
     // For each pixel of our image calculate the value of the mandelbrot set
     #pragma acc parallel loop collapse(2) async(block)
     for (int y = start; y < end; y++) {
@@ -155,7 +155,7 @@ int main (int argc, char** argv) {
     #pragma acc update self(image[start * width:num_elements * width]) async(block)
   }
   for (int g = 0; g < num_gpus; g++) {
-    acc_set_device(g, acc_device_nvidia);
+    acc_set_device_num(g, acc_device_nvidia);
     #pragma acc wait
     #pragma acc exit data delete(image[:width * height]) delete(palette[:palette_size])
   }
