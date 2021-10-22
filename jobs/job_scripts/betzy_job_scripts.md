@@ -85,7 +85,7 @@ could be used:
 #SBATCH --gpus=1
 ```
 
-The following example starts 2 tasks each with a single GPU. This is usefull
+The following example starts 2 tasks each with a single GPU. This is useful
 for MPI enabled jobs where each rank should be assigned a GPU.
 
 ```bash
