@@ -8,7 +8,7 @@ The main command for using this system is the module command. You can find a lis
 
 	module --help
 
-We use the lmod module system; for more info see <https://lmod.readthedocs.io/en/latest/> in the Metacenter currently. Below we listed the most commonly used options, but also feel free to ivestigate options in this toolset more thoroughly on developers site.
+We use the lmod module system; for more info see <https://lmod.readthedocs.io/en/latest/> in NRIS currently. Below we listed the most commonly used options, but also feel free to ivestigate options in this toolset more thoroughly on developers site.
 
 
 ## Which modules are currently loaded?
@@ -52,7 +52,7 @@ In order to make, for instance, the NetCDF library available issue the command:
 
 	module load netCDF/4.4.1.1-intel-2018a-HDF5-1.8.19
 
-Note that we currently do **not have** default modules on Metacenter machines, so you need to write full module name when loading!
+Note that we currently do **not have** default modules on NRIS machines, so you need to write full module name when loading!
 
 
 ## How to unload a module
@@ -85,7 +85,7 @@ This, more compact syntax will fortunately also work:
 	module switch netCDF netCDF/4.4.0-intel-2016a
 
 ```{note}
-We are using self-contained modules in the Metacenter, meaning that a given module
+We are using self-contained modules in NRIS, meaning that a given module
 loads all dependecies necessary. This is in slight contrast to old policies and also means it is possible
 to make a mess if you load extra modules in job scripts after loading the main software module.
 We recommend doing `module list` after every load (to inspect) and unloading any

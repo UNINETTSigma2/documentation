@@ -53,6 +53,7 @@ Torque may be covered by either `--partition=...` or `--qos=...`.
 Check our cluster specific sites for an overview of the partitions and
 QOS of that system:
 
+- {ref}`job-types-betzy`
 - {ref}`job-types-fram`
 - {ref}`job-types-saga`
 

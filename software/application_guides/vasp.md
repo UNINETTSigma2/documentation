@@ -31,7 +31,7 @@ VASP is a commercial software package that requires a license for all who wants 
 
 * The users research group must have a valid VASP licence. To acquire a licence, please consult the [How can I purchase a VASP license?](https://www.vasp.at/faqs/).
 
-* We need to get a confirmation from a VASP representative to confirm that the user have access to the license. The group representative of the user needs to contact the VASP team using licensing@vasp.at and ask them to send a confirmation email to `support@metacenter.no` to confirm that the user have a valid license. It is very important that you communicate clearly to the VASP group that we want emails on this address.
+* We need to get a confirmation from a VASP representative to confirm that the user have access to the license. The group representative of the user needs to contact the VASP team using licensing@vasp.at and ask them to send a confirmation email to `support@nris.no` to confirm that the user have a valid license. It is very important that you communicate clearly to the VASP group that we want emails on this address.
 
 Once we receive the confirmation email we will add the user in question to the VASP group, which would give access to the VASP modules on the Sigma2 systems.
 
@@ -109,4 +109,4 @@ When publishing results obtained with the software referred to, please do check 
 
 We have an application liaison at our disposal for VASP which can help users with particular VASP issues and/or possibly also domain specific problems. In order to get in contact with the application liaison, please submit a support request as documented {ref}`here <support-line>`. If the ticket does not fall within regular support it will be forwarded.
 
-However, before asking for help, please make sure you have gone through the tutorials and workshop material above that is relevant to you. Also, if your group would be interested in a dedicated VASP workshop, please reach out to [support@metacenter.no](mailto:support@metacenter.no) with a request and we will try to gauge general interest and arrange it, possibly in collaboration with the VASP developers if need be.
+However, before asking for help, please make sure you have gone through the tutorials and workshop material above that is relevant to you. Also, if your group would be interested in a dedicated VASP workshop, please reach out to [support@nris.no](mailto:support@nris.no) with a request and we will try to gauge general interest and arrange it, possibly in collaboration with the VASP developers if need be.

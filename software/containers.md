@@ -149,7 +149,7 @@ This example demonstrates:
 4. how to launch a hybrid MPI+OpenMP container using the host MPI runtime
 5. how to launch a CUDA container
 
-[BigDFT](https://bigdft.org/) is an electronic structure code targeting large molecular
+[BigDFT](https://bigdft-suite.readthedocs.io/en/latest) is an electronic structure code targeting large molecular
 systems with density functonal theory. The program is written for heterogeneus computing
 environments with support for both MPI, OpenMP and CUDA. This makes for a good test case
 as a more advanced container application. All the following is based on the official
@@ -197,7 +197,7 @@ input.yaml  log.ref.yaml  posinp.xyz  psppar.Fe  tols-BigDFT.yaml
 ```{note}
 Container images are read-only, so it is not possible to copy things _into_ the container
 or change it in any other way without sudo access on the host. This is why all container
-_construction_ needs to be done on your local machine where you have such priviliges, see
+_construction_ needs to be done on your local machine where you have such privileges, see
 {ref}`guides <dev-guides>` for more info on building containers.
 ```
 

@@ -6,7 +6,7 @@ orphan: true
 
 # Running MPI Applications
 
-On Fram and Saga users have access to two MPI implementations:
+On Betzy, Fram and Saga users have access to two MPI implementations:
 
 * OpenMPI is provided by the foss - and iomkl toolchains; and may also
   be loaded directly. For available versions, type `module avail
@@ -20,7 +20,7 @@ On Fram and Saga users have access to two MPI implementations:
 **Also note that quite a few scientific packages is set up in such a
 way that all necessary software are loaded as a part of the software
 module in question. Do not load toolchains and/or mpi modules
-explicitely unless absolutely sure of the need for it!!!**
+explicitly unless absolutely sure of the need for it!!!**
 
 Slurm is used as the {ref}`queue-system`, and the native
 way to start MPI applications with Slurm is to use the
@@ -139,12 +139,12 @@ mapping and binding algorithms. Intel's `mpirun` uses it's own default
 binding settings, which can be modified either by [command line
 parameters](https://software.intel.com/en-us/node/589999), or by
 [environment
-variables](https://software.intel.com/en-us/mpi-developer-reference-windows-environment-variables-for-process-pinning).
+variables](https://software.intel.com/content/www/us/en/develop/documentation/mpi-developer-reference-linux/top/environment-variable-reference/process-pinning/environment-variables-for-process-pinning.html).
 Special care must be taken when running hybrid MPI-OpenMP cores. If
 this is your case, please refer to the documentation regarding
-[Interoperability between MPI and
-OpenMP](https://software.intel.com/en-us/mpi-developer-reference-windows-interoperability-with-openmp-api).
+[Interoperability between MPI and OpenMP](https://software.intel.com/content/www/us/en/develop/documentation/mpi-developer-reference-windows/top/environment-variable-reference/main-thread-pinning/interoperability-with-openmp-api.html).
 
+[comment]: # Original link (https://software.intel.com/en-us/mpi-developer-reference-windows-interoperability-with-openmp-api)
 
 ### `srun`
 

@@ -1,6 +1,6 @@
 # Installing software with EasyBuild
 
-The Metacenter software team is currently using the
+The NRIS software team is currently using the
 [EasyBuild](https://easybuild.readthedocs.io/en/latest/)
 system for installing system-wide software and scientific applications on all
 Norwegian HPC systems. It is, actually, quite easy (hence the name) and
@@ -157,18 +157,18 @@ You can now load and use the package just like any other module:
 In order to install semi-globally under a project directory you should make the
 following changes to the above procedure.
 
-    $ my-path=/cluster/projects/nnXXXXk/easybuild
-    $ mkdir -p $my-path
-    $ eb rjags-4-6-intel-2017b-R-3.4.3.eb --prefix=$my-path --fetch
-    $ eb rjags-4-6-intel-2017b-R-3.4.3.eb --prefix=$my-path --dry-run
-    $ eb rjags-4-6-intel-2017b-R-3.4.3.eb --prefix=$my-path
+    $ my_path=/cluster/projects/nnXXXXk/easybuild
+    $ mkdir -p $my_path
+    $ eb rjags-4-6-intel-2017b-R-3.4.3.eb --prefix=$my_path --fetch
+    $ eb rjags-4-6-intel-2017b-R-3.4.3.eb --prefix=$my_path --dry-run
+    $ eb rjags-4-6-intel-2017b-R-3.4.3.eb --prefix=$my_path
 
 where XXXX is your project id number. Note the easybuild folder in the path,
 this is a tip for housekeeping and not strictly required. This will give the
 path structure as for the local case, with the software and modulefiles
 installed in ``cluster/projects/nnXXXXk/easybuild``.
 
-Now the ``rjags`` installation is avaiable to everyone associated with the
+Now the ``rjags`` installation is available to everyone associated with the
 ``nnXXXXk`` project, after typing:
 
     $ module use /cluster/projects/nnXXXk/easybuild/modules/all

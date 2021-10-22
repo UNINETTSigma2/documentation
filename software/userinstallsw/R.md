@@ -30,10 +30,10 @@ as of now it is  "R/4.0.0-foss-2020a"
 There might be some packages missing in the R module we have installed or may be you need a different
 version than what we have. In that case you could install the packages yourself. For example,
 following is the procedure to install the package called XYZ by the user *user1* on  SAGA. 
-Please remmeber to use your username instead of *user1*
+Please remember to use your username instead of *user1*
 
 ```{note}
--  Installing packages may take a long time, specailly if your comparing with 
+-  Installing packages may take a long time, especially if your comparing with 
    installing on a Windows or Mac computer. The reason for this is that unlike
    Windows or Mac some packages will be compiled from source code to work on
    the operating system we have on the HPC systems. 
@@ -127,9 +127,9 @@ Rscript test.rscript > output.Rout 2> error.Rout
 
 ## Bioconductor
 We have also made bioconductor as a module with the base bioconductor packages.
-Not all packages found in biocondctor repository are pre-installed. This is becasue 
+Not all packages found in biocondctor repository are pre-installed. This is because 
 compatibility issues, i.e. not all packages can be installed with the same set of 
-dependancies and to make it easier for the user to select the exact version 
+dependencies and to make it easier for the user to select the exact version 
 combinations for some packages.
 
 ## Selecting the correct module load 

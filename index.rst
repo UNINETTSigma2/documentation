@@ -3,24 +3,28 @@ The Norwegian academic high-performance computing and storage services
 ======================================================================
 
 The Norwegian academic high-performance computing and storage
-infrastructure is maintained by the `Sigma2
-Metacenter <https://sigma2.no/metacenter>`__, which is a joint
+infrastructure is maintained by `Sigma2
+NRIS <https://sigma2.no/nris>`__ (formally known as the Sigma2 Metacenter), which is a joint
 collaboration between `UiO <https://www.uio.no>`__,
 `UiB <https://www.uib.no>`__, `NTNU <https://www.ntnu.no>`__,
 `UiT <https://uit.no>`__, and `UNINETT
 Sigma2 <https://www.sigma2.no/>`__.
 
-This website (https://documentation.sigma2.no/) holds technical
-documentation about the compute and storage resources. For more general
-information and service overview, please also see https://www.sigma2.no.
+We provide valuable resources for the research communities. Not only do we provide
+state-of-the art :ref:`compute <hardware-overview>` and storage facilities,
+backed by :ref:`support <support-line>` and a guarantee that your data always
+stays in Norway. But possibly more important is :ref:`easy access <extended-support>` to a wide selection
+of competences that can assist, realize or take your project to the next level.
+
+This website (https://documentation.sigma2.no/) primarily holds documentation
+of resources we provide. For more general information and service overview,
+please also see https://www.sigma2.no.
 
 .. note::
 
-   **Latest news and announcements** are posted at the `Metacenter
+   **Latest news and announcements** are posted at the `NRIS
    OpsLog <https://opslog.sigma2.no>`__ and the
-   `@MetacenterOps <https://twitter.com/MetacenterOps>`__ Twitter channel.
-
-----
+   `@NRISstatus <https://twitter.com/NRISstatus.>`__ Twitter channel.
 
 
 Compute, storage, pre/post-processing, visualization, machine learning
@@ -45,7 +49,7 @@ sidebar overview you will also find technical details about the
 machines, instructions for using installed software, for submitting
 jobs, storage, and code development.
 
-Please do not hesitate to write to support@metacenter.no if you find
+Please do not hesitate to write to support@nris.no if you find
 documentation sections which are not clear enough or have suggestions
 for improvements. Such a feedback is very important to us and will
 count.
@@ -71,7 +75,7 @@ these problems are very frequent:
   needed. Please take some time to study the different :ref:`job-types`.
 
 If you are unsure about these, please contact us via
-support@metacenter.no and we will help you to use your allocated
+support@nris.no and we will help you to use your allocated
 resources more efficiently so that you get your research results faster.
 
 --------------
@@ -97,7 +101,7 @@ Text is licensed CC-BY
 Unless explicitly noted, all text on this website is made available
 under the `Creative Commons Attribution license
 (CC-BY-4.0) <https://creativecommons.org/licenses/by/4.0/>`__ with
-attribution to the Sigma2/Metacenter.
+attribution to the Sigma2/NRIS.
 
 --------------
 
@@ -122,13 +126,22 @@ Index of keywords
    :caption: Getting help
 
    getting_help/support_line.md
+   getting_help/extended_support.rst
    getting_help/faq.md
    getting_help/how_to_write_good_support_requests.md
    getting_help/user_communities.md
    getting_help/qa-sessions.md
    getting_help/lost_forgotten_password.md
    getting_help/project_leader_support.md
-   getting_help/advanced_user_support.md
+
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Training
+
+   training/events.md
+   training/material.md
 
 
 .. toctree::
@@ -138,7 +151,6 @@ Index of keywords
    getting_started/getting_started.md
    getting_started/applying_account.md
    getting_started/applying_resources.md
-   getting_started/training.md
    getting_started/editing_files.md
    getting_started/create_ssh_keys.md
    getting_started/tutorials.rst

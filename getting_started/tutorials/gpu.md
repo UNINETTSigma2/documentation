@@ -226,7 +226,7 @@ Transitioning your application to GPU can be a daunting challenge. We have
 documented a few ways to get
 started in our development {ref}`dev-guides`, but if
 you are unsure please don't hesitate to contact us at
-[support@metacenter.no](mailto:support@metacenter.no).
+[support@nris.no](mailto:support@nris.no).
 
 We also have a few tutorials on specific libraries:
 - {ref}`tensorflow`

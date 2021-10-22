@@ -1,7 +1,7 @@
-.. _job-types-and-job-scripts:
+.. _running-jobs:
 
-Job types and job scripts
-=========================
+Running jobs
+============
 
 .. toctree::
    :maxdepth: 1

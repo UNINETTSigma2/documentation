@@ -24,9 +24,3 @@ module load intel/2017a
 
 Modules may load other modules as part of its dependency. For example, loading the Intel version loads related modules to satisfy the module's dependency.
 The `module show` command displays the other modules loaded by a module. The `module spider` command displays the module's description.
-
-For installed SW on:
-
-* Fram: See [List of installed software on Fram](installed_software/fram_modules.md)
-* Saga: See [List of installed software on Saga](installed_software/saga_modules.md)
-* Betzy (currently none, but will come eventually ;-))

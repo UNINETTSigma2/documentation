@@ -1,4 +1,4 @@
-# Efficient use of memory bandwith on Betzy
+# Efficient use of memory bandwidth on Betzy
 
 ## Memory - NUMA and ccNUMA
 

@@ -49,7 +49,7 @@ The machine names are:
 - `login.nird.sigma2.no` - {ref}`nird`
 
 
-## Transfering files
+## Transferring files
 
 To copy files from your machine to the HPC machines, use SSH file transfer
 Protocol (SFTP) or Secure Copy (SCP). They are available as command-line tools
@@ -129,4 +129,4 @@ two `SBATCH` options (on {ref}`saga` you also need to indicate maximum memory):
 #SBATCH --time=0-00:05:00
 ```
 
-For more details please see {ref}`job-types-and-job-scripts`.
+For more details please see {ref}`running-jobs`.

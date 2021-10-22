@@ -5,6 +5,7 @@
 This page documents the basics of how to write job scripts for the HPC clusters.
 Cluster-specific details are kept in separate sub pages for each cluster:
 
+- [Betzy job scripts](job-scripts-on-betzy)
 - [Fram job scripts](job-scripts-on-fram)
 - [Saga job scripts](job-scripts-on-saga)
 - {ref}`Betzy job scripts <betzy_job_scripts>`

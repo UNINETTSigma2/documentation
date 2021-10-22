@@ -157,7 +157,7 @@ ARM Performance reports may fail if too many processes are generated on a single
 `ulimit -u` default value (4096). This can easily be fixed by setting `ulimit -u` to a high number.
 E.g., add the line `ulimit -u 40960` in your jobscript.
 
-There seems to be a compatability issue between ARM Performance reports and the `Intel/20XX` modules.
+There seems to be a compatibility issue between ARM Performance reports and the `Intel/20XX` modules.
 If you are using this module and having trouble with APR, you might want to test alternative modules.
 In some cases, loading the ARM Performance reports module after the Intel module, might fix the issue. 
 

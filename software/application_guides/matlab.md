@@ -15,8 +15,8 @@ website](http://se.mathworks.com/help/matlab).
 Academic users need a link to a MATLAB license server for their university
 (UiB, UiT, UiO or NTNU). Users from other universities can also use MATLAB on
 Fram. Send an email to
-<a href="mailto:support@metacenter.no?subject=Request for Matlab license link">
-support@metacenter.no
+<a href="mailto:support@nris.no?subject=Request for Matlab license link">
+support@nris.no
 </a>
 and ask for the link for your university and the license name to use when
 submitting jobs. Add this link to the environment variable `MLM_LICENSE_FILE`:

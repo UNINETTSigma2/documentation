@@ -28,7 +28,7 @@ Users can install Python packages in a virtual Python environment. Here is how
 you create a virtual environment with Python:
 
 ``` sh
-# First load an appropriate Python module (use 'module list Python' to see all)
+# First load an appropriate Python module (use 'module avail Python/' to see all)
 $ module load Python/3.8.6-GCCcore-10.2.0
 # Create the virtual environment.
 $ python -m venv my_new_pythonenv
@@ -106,7 +106,7 @@ You can install many python and non-python packages yourself using
 software [bioconda](https://bioconda.github.io/).
 
 Conda enables you to easily install complex packages and software.
-Creating multiple enviroments enables you to have installations of the
+Creating multiple environments enables you to have installations of the
 same software in different versions or incompatible software collections
 at once.
 You can easily share a list of the installed packages with 
@@ -122,13 +122,16 @@ one python3 based parallel to each other without interfering.
 
 #### Load conda module
 Start by removing all preloaded modules which can complicate things. We then
-display all installed version and load the newest Miniconda one (4.6.14):
+display all installed version and (on Saga) load the newest Miniconda one (4.6.14):
 
 ``` sh
 $ ml purge
 $ ml avail conda
 $ ml Miniconda3/4.6.14
 ```
+
+On Fram, Miniconda is not installed (yet) but instead you can load `Anaconda3`.
+
 
 #### Setup conda activate command
 To use `conda activate` interactively you have to initialise your shell once with:
@@ -154,7 +157,7 @@ the bioconda channel:
 $ conda config --add channels bioconda
 ```
 
-#### Supress unneccessary warnings
+#### Suppress unnecessary warnings
 To suppress the warning that a newer version of conda exists which is usually
 not important for most users and will be fixed by us by installing a new module:
 

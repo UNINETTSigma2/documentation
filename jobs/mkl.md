@@ -31,7 +31,7 @@ below.
 
 ## Mixing Intel compiler and MKL versions
 
-Users are adviced to check if there is any performance difference between
+Users are advised to check if there is any performance difference between
 Intel 2019b and the 2020 versions. We recommend to **not mix different compiler
 versions and Math Kernel Library (MKL) versions**,
 e.g. building using 2020 compilers and then linking with MKL 2019.

@@ -9,7 +9,7 @@
 # make the program and environment visible to this script
 module load Gaussian/g16_B.01
 
-# name of input file without extention
+# name of input file without extension
 input=water
 
 # set the heap-size for the job to 20GB

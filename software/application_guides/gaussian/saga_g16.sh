@@ -12,7 +12,7 @@ module load Gaussian/g16_C.01
 
 export PGI_FASTMATH_CPU=skylake
 
-# name of input file without extention
+# name of input file without extension
 input=water
 
 # create the temporary folder
