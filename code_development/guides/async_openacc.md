@@ -242,7 +242,7 @@ transition](./async_openacc/async_timeline.png)
 ## Utilizing multiple GPUs
 To utilize multiple GPUs on Saga we will have to dip into the OpenACC runtime
 calls to query and set which GPU we want to run on. We will use the
-`acc_get_num_devices` and `acc_set_device` methods to assign work to GPUs.
+`acc_get_num_devices` and `acc_set_device_num` methods to assign work to GPUs.
 
 ```{tip}
 To see all the directives and runtime methods of OpenACC consult the [quick
