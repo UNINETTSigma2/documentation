@@ -10,7 +10,8 @@ Named after [Mary Ann Elizabeth (Betzy) Stephansen](https://en.wikipedia.org/wik
 Betzy is a BullSequana XH2000, provided by Atos, and will give Norwegian researchers almost three times more capacity than previously, with a theoretical peak performance of 6.2 PetaFlops. The supercomputer is located at NTNU in Trondheim, and was set in production 24 November 2020. Betzy provides close to two billion CPU hours per year, and has a contracted operating time of four years (2024), with an optional one-year extension (2025).
 
 Betzy has also gotten a GPU partition consisting of 3 nodes. Each node has 128
-CPU cores, 512 GiB memory and 4 x Nvidia A100 GPUs with 40GB memory.
+CPU cores, 512 GiB memory and 4 x Nvidia A100 GPUs with 40GB memory connected
+by NVLink.
 
 | Details     | Betzy     |
 | :------------- | :------------- |
@@ -22,7 +23,7 @@ CPU cores, 512 GiB memory and 4 x Nvidia A100 GPUs with 40GB memory.
 | CPU cores per node  | 128  |
 | Memory in total    |	336 TiB  |
 | Memory per node    |  256 GiB  |
-| GPU type | Nvidia A100 40 GB |
+| GPU type | Nvidia A100 40 GB with NVLink |
 | GPUs per node | 4 |
 | GPUs in total | 12 |
 | Operating System   | Red Hat Enterprise Linux 7 |
