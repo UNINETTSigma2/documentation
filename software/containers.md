@@ -51,6 +51,31 @@ singularity version 3.6.4-1.el7
 ```
 
 ## How to find container images
+A valid use case as indicated would be that you have a software that requires specific set
+of dependacies that you could not provided with modules. In that case you would know which
+images to download.  
+If it is that you need a container image with certain combincation of dependancies, but
+you do not know where exactly to aquire this, you could use the search option on the
+terminal or on the web.
+
+Example 1: A user wants to use different version of the software Tensorflow  than 
+what is installed in SAGA. So she googles and ends up here
+https://www.tensorflow.org/install
+There she finds the following command sequence
+```
+ docker pull tensorflow/tensorflow:latest  # Download latest stable image
+ docker run -it tensorflow/tensorflow:latest  # Start Jupyter server 
+```
+But she knows that we do not have Docker on SAGA so she uses Singularity to pull 
+the image, yes it is possible to pull docker images using sigularity
+```
+  singularity pull docker://tensorflow/tensorflow:latest
+  #To test she prints the version
+  singularity run  tensorflow_latest.sif python -c "import tensorflow as tf;print(tf.__version__)" 
+```
+
+
+
 The following examples will demonstrate how you can _run_ container images that has
 already been prepared by others. If you want to learn how to _build_ your own containers,
 see our code development {ref}`guides <dev-guides>`.
@@ -354,3 +379,7 @@ Remarks: !!map
 As we can see from the timings, this small test case run more or less equally fast (11-12 sec)
 on a single GPU as on 2x10 CPU cores. For comparison, the same example takes about 90 sec
 to complete on a single CPU core.
+
+
+## Other notes
+### singularity cache
