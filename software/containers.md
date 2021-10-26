@@ -1,5 +1,5 @@
 (running-containers)=
-# Running containers
+# Containers on NRIS HPC systems
 
 ```{note}
 Currently, [Singularity](https://sylabs.io/singularity/) is the only supported container
@@ -7,8 +7,14 @@ solution on our HPC systems (Saga, Fram, Betzy). However, since Singularity can 
 containers from Docker images, it is also possible to run [Docker](https://www.docker.com/)
 containers through Singularity.
 ```
+## What is a container
 
-# When to use containers on NRIS HPC systems
+## What is not covered in this document
+We are showing how to use existing container images on our systems as regular users.
+Operations that require root access, like building or making changes to an images
+not discussed. 
+
+## When to use containers on NRIS HPC systems
 
 ```{note}
 Please let us know if you find more reasens for using containers
@@ -24,24 +30,23 @@ Please let us know if you find more reasens for using containers
  - You have a old software that needs some older dependencies and older kernel
  - You need a specific version of a software to run another software, e.g. CUDA 
 
-# When not to use containers on NRIS HPC systems
+## When not to use containers on NRIS HPC systems
  - If the software you are planing to to use already installed as a module(s), then
    better to use that module or collection of modules
  - Windows containers. On NRIS HPC systems only containers that uses UNIX kernel would 
    work 
  - If you do not know what the container is exactly for. i.e. found a command on
-   the internet and just want to try it
+   the internet and just want to try it out
 
-# How to access singularity on NRIS HPC systems
+## How to access singularity on NRIS HPC systems
 Singularity is already installed globally on all our systems, and should be
 immediately available on your command line (no `module load` necessary):
 ```
 [me@login-1.SAGA ~]$ singularity --version
 singularity version 3.6.4-1.el7
 ```
-Please not that there are no modules to be loaded as singularity is installed
-system wide (on login and compute nodes)
 
+## How to find container images
 The following examples will demonstrate how you can _run_ container images that has
 already been prepared by others. If you want to learn how to _build_ your own containers,
 see our code development {ref}`guides <dev-guides>`.
