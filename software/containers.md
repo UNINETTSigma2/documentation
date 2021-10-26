@@ -13,10 +13,24 @@ containers through Singularity.
 ```{note}
 Please let us know if you find more reasens for using containers
 ```
- - Containers give the users the flexibility to bring a full software stack to the
-   cluster which has already been set up, which can make software installations and
-   dependencies more reproducible and more portable across clusters.
+ - If you have a software stack or a pipeline already setup somewhere else and 
+   you want to bring it as it is to one of the HPC systems
+     - Containers give the users the flexibility to bring a full software stack to the
+       cluster which has already been set up, which can make software installations and
+       dependencies more reproducible and more portable across clusters.
+ - The software you want to use is only available as a container image
+ - You need to use system level installations, e.g. the procedure involved
+   apt-get install SOMETHING
+ - You have a old software that needs some older dependencies and older kernel
+ - You need a specific version of a software to run another software, e.g. CUDA 
 
+# When not to use containers on NRIS HPC systems
+ - If the software you are planing to to use already installed as a module(s), then
+   better to use that module or collection of modules
+ - Windows containers. On NRIS HPC systems only containers that uses UNIX kernel would 
+   work 
+ - If you do not know what the container is exactly for. i.e. found a command on
+   the internet and just want to try it
 
 # How to access singularity on NRIS HPC systems
 Singularity is already installed globally on all our systems, and should be
