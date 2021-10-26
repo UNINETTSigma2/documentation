@@ -9,8 +9,8 @@ containers through Singularity.
 ```
 ## What is a container image
 Container image is a package with all cargo needed for a software to work. This
-includes the operating system, system packages, libraries and applicatios as
-a single unit. It only uses the host operating systems kernal.     
+includes the operating system, system packages, libraries and applications as
+a single unit. It only uses the host operating systems kernel.     
 
 
 ## What is not covered in this document
@@ -52,13 +52,13 @@ singularity version 3.6.4-1.el7
 
 ## How to find container images
 A valid use case as indicated would be that you have a software that requires specific set
-of dependacies that you could not provided with modules. In that case you would know which
+of dependencies that you could not provided with modules. In that case you would know which
 images to download.  
-If it is that you need a container image with certain combincation of dependancies, but
-you do not know where exactly to aquire this, you could use the search option on the
+If it is that you need a container image with certain combination of dependencies, but
+you do not know where exactly to acquire this, you could use the search option on the
 terminal or on the web.
 
-Example 1: A user wants to use different version of the software Tensorflow  than 
+Example 1: A user wants to use different version of the software TensorFlow  than 
 what is installed in SAGA. So she googles and ends up here
 https://www.tensorflow.org/install
 There she finds the following command sequence
@@ -67,13 +67,17 @@ There she finds the following command sequence
  docker run -it tensorflow/tensorflow:latest  # Start Jupyter server 
 ```
 But she knows that we do not have Docker on SAGA so she uses Singularity to pull 
-the image, yes it is possible to pull docker images using sigularity
+the image, yes it is possible to pull docker images using singularity
 ```
   singularity pull docker://tensorflow/tensorflow:latest
   #To test she prints the version
   singularity run  tensorflow_latest.sif python -c "import tensorflow as tf;print(tf.__version__)" 
 ```
 
+Example 2
+A user tries to run a software that needs a Perl library that is not available with the 
+installed module on SAGA. He tries to install it by him self, but encounters errors
+during insulation, due to some missing system level dependencies. 
 
 
 The following examples will demonstrate how you can _run_ container images that has
