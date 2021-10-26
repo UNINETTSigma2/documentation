@@ -51,20 +51,16 @@ singularity version 3.6.4-1.el7
 ```
 
 ## How to find container images
-A valid use case as indicated would be that you have a software that requires specific set
-of dependencies that you could not provided with modules. In that case you would know which
-images to download.  
-If it is that you need a container image with certain combination of dependencies, but
-you do not know where exactly to acquire this, you could use the search option on the
-terminal or on the web.
 
-Example 1: A user wants to use different version of the software TensorFlow  than 
+```{note}
+Example 1: A user wants to use different version of the TensorFlow  than 
 what is installed in SAGA. So she googles and ends up here
-https://www.tensorflow.org/install
+[https://www.tensorflow.org/install](https://www.tensorflow.org/install)
 There she finds the following command sequence
 ```
+```
  docker pull tensorflow/tensorflow:latest  # Download latest stable image
- docker run -it tensorflow/tensorflow:latest  # Start Jupyter server 
+ docker run -it -p 8888:8888 tensorflow/tensorflow:latest-jupyter  # Start Jupyter server 
 ```
 But she knows that we do not have Docker on SAGA so she uses Singularity to pull 
 the image, yes it is possible to pull docker images using singularity
@@ -74,11 +70,14 @@ the image, yes it is possible to pull docker images using singularity
   singularity run  tensorflow_latest.sif python -c "import tensorflow as tf;print(tf.__version__)" 
 ```
 
+```{note}
 Example 2
-A user tries to run a software that needs a Perl library that is not available with the 
-installed module on SAGA. He tries to install it by him self, but encounters errors
+A user tries to run [GMASS](https://github.com/jkimlab/GMASS) that needs a set of
+Perl library that is not available with the installed module on SAGA.
+He tries to install it by him self, but encounters errors
 during insulation, due to some missing system level dependencies. 
 
+```{note}
 
 The following examples will demonstrate how you can _run_ container images that has
 already been prepared by others. If you want to learn how to _build_ your own containers,
