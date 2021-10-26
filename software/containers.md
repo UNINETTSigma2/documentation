@@ -7,7 +7,11 @@ solution on our HPC systems (Saga, Fram, Betzy). However, since Singularity can 
 containers from Docker images, it is also possible to run [Docker](https://www.docker.com/)
 containers through Singularity.
 ```
-## What is a container
+## What is a container image
+Container image is a package with all cargo needed for a software to work. This
+includes the operating system, system packages, libraries and applicatios as
+a single unit. It only uses the host operating systems kernal.     
+
 
 ## What is not covered in this document
 We are showing how to use existing container images on our systems as regular users.
@@ -27,7 +31,7 @@ Please let us know if you find more reasens for using containers
  - The software you want to use is only available as a container image
  - You need to use system level installations, e.g. the procedure involved
    apt-get install SOMETHING
- - You have a old software that needs some older dependencies and older kernel
+ - You have a old software that needs some older dependencies.
  - You need a specific version of a software to run another software, e.g. CUDA 
 
 ## When not to use containers on NRIS HPC systems
