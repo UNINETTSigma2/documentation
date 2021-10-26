@@ -8,16 +8,25 @@ containers from Docker images, it is also possible to run [Docker](https://www.d
 containers through Singularity.
 ```
 
-Containers give the users the flexibility to bring a full software stack to the
-cluster which has already been set up, which can make software installations and
-dependencies more reproducible and more portable across clusters.
+# When to use containers on NRIS HPC systems
 
+```{note}
+Please let us know if you find more reasens for using containers
+```
+ - Containers give the users the flexibility to bring a full software stack to the
+   cluster which has already been set up, which can make software installations and
+   dependencies more reproducible and more portable across clusters.
+
+
+# How to access singularity on NRIS HPC systems
 Singularity is already installed globally on all our systems, and should be
 immediately available on your command line (no `module load` necessary):
 ```
 [me@login-1.SAGA ~]$ singularity --version
 singularity version 3.6.4-1.el7
 ```
+Please not that there are no modules to be loaded as singularity is installed
+system wide (on login and compute nodes)
 
 The following examples will demonstrate how you can _run_ container images that has
 already been prepared by others. If you want to learn how to _build_ your own containers,
@@ -150,7 +159,7 @@ This example demonstrates:
 5. how to launch a CUDA container
 
 [BigDFT](https://bigdft-suite.readthedocs.io/en/latest) is an electronic structure code targeting large molecular
-systems with density functonal theory. The program is written for heterogeneus computing
+systems with density functional theory. The program is written for heterogeneous computing
 environments with support for both MPI, OpenMP and CUDA. This makes for a good test case
 as a more advanced container application. All the following is based on the official
 tutorial which can be found [here](https://ngc.nvidia.com/catalog/containers/hpc:bigdft).
@@ -274,7 +283,7 @@ which should contain the following files:
 $ ls $HOME/bigdft-test/GPU
 input.yaml  posinp.xyz  psppar.Fe
 ```
-In order to run this example correctly we need to ask for GPU resourses in the job
+In order to run this example correctly we need to ask for GPU resources in the job
 script, here we call it `$HOME/bigdft-test/GPU/FeHyb.run`. We request a single CPU
 core (`--ntasks=1`) with an associated GPU accelerator (`--gpus=1`). Also remember
 to use the `accel` partition:
