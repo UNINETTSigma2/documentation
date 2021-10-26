@@ -76,7 +76,7 @@ A user needs to use a software that runs only on a specific vesion of Ubuntu
 ```
 
 ```{warning}
-If a ready made image is not availble with the software. Then you need to pull
+If a ready made image is not available with the software. Then you need to pull
 Ubuntu image to a machine where you have root access, install the software,
 repackage it and take it to SAGA. This step is not coverd here
 ```
