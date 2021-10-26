@@ -72,12 +72,17 @@ the image, yes it is possible to pull docker images using singularity
 
 ```{note}
 Example 2
-A user tries to run [GMASS](https://github.com/jkimlab/GMASS) that needs a set of
-Perl library that is not available with the installed module on SAGA.
-He tries to install it by him self, but encounters errors
-during insulation, due to some missing system level dependencies. 
+A user needs to use a software that runs only on a specific vesion of Ubuntu
+```
 
-```{note}
+```{warning}
+If a ready made image is not availble with the software. Then you need to pull
+Ubuntu image to a machine where you have root access, install the software,
+repackage it and take it to SAGA. This step is not coverd here
+```
+```
+  #To run Ubuntu
+```
 
 The following examples will demonstrate how you can _run_ container images that has
 already been prepared by others. If you want to learn how to _build_ your own containers,
@@ -206,7 +211,7 @@ This example demonstrates:
 1. how to bind mount a work directory into the container
 2. how to copy files from the container to the host
 3. how to run an interactive shell inside the container
-4. how to launch a hybrid MPI+OpenMP container using the host MPI runtime
+4. how to launch a hybrid MPI+OpenMP container using the host MPI reunite
 5. how to launch a CUDA container
 
 [BigDFT](https://bigdft-suite.readthedocs.io/en/latest) is an electronic structure code targeting large molecular
