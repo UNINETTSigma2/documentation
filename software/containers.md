@@ -294,7 +294,7 @@ This example demonstrates:
 1. how to bind mount a work directory into the container
 2. how to copy files from the container to the host
 3. how to run an interactive shell inside the container
-4. how to launch a hybrid MPI+OpenMP container using the host MPI reunite
+4. how to launch a hybrid MPI+OpenMP container using the host MPI runtime
 5. how to launch a CUDA container
 
 [BigDFT](https://bigdft-suite.readthedocs.io/en/latest) is an electronic structure code targeting large molecular
