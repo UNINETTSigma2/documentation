@@ -30,9 +30,9 @@ Please let us know if you find more reasons for using containers
        dependencies more reproducible and more portable across clusters.
  - The software you want to use is only available as a container image
  - You need to use system level installations, e.g. the procedure involved
-   apt-get install SOMETHING
+   `apt-get install SOMETHING` or similar (`yum`, `rpm`, etc).
  - You have a old software that needs some older dependencies.
- - You need a specific version of a software to run another software, e.g. CUDA 
+ - You need a specific version of a software to run another software, e.g. CUDA.
 
 ## When not to use containers on NRIS HPC systems
  - If the software you are planing to to use already installed as a module(s), then
@@ -84,7 +84,7 @@ $ singularity pull --name openmpi-i8.sif docker://quay.io/bast/openmpi-i8:4.0.4-
  singularity run Vs singularity exec
 - [singularity exec](https://sylabs.io/guides/3.1/user-guide/cli/singularity_exec.html):
    Run a command within a container
-- [singularity run](https://sylabs.io/guides/3.1/user-guide/cli/singularity_run.html)
+- [singularity run](https://sylabs.io/guides/3.1/user-guide/cli/singularity_run.html):
    Run the user-defined default command within a container	
 
 ```
@@ -143,7 +143,7 @@ the image, yes it is possible to pull docker images using singularity
 
 
 ```{note}
-Example 2
+Example 2:
 A user needs to use a software that runs only on a specific vesion of Ubuntu
 ```
 
@@ -164,38 +164,10 @@ A user needs to use a software that runs only on a specific vesion of Ubuntu
 ```{warning}
 If a ready made image is not available with the software. Then you need to pull
 Ubuntu image to a machine where you have root access, install the software,
-repackage it and take it to SAGA. This step is not coverd here
+repackage it and take it to SAGA. This step is not covered here.
 If you want to learn how to _build_ your own containers,
 see our code development {ref}`guides <dev-guides>`.
 ```
-
-## Access project area from the container
-
-Singularity container can access the home directory
-but to access the project directory we need to bind it first. 
-
-Lets try it out
-```console
-[SAGA]$ head -n2 data/input.txt 
-1
-2
-[SAGA]$ singularity exec hello-world.sif  head -n2 data/input.txt 
-/usr/bin/head: cannot open 'data/input.txt' for reading: No such file or directory
-[SAGA]$ pwd
-/cluster/projects/nnxxxxk/containers
-[SAGA]$ singularity exec hello-world.sif  head -n2 /cluster/projects/nnxxxxk/containers/data/input.txt 
-/usr/bin/head: cannot open '/cluster/projects/nnxxxxk/containers/data/input.txt' for reading: No such file or directory
-```
-
-Now we use binding to attache local storage and then the container would have access.
-
-```console
-[SAGA]$ singularity exec --bind /path/containers/data:/data bioperl_latest.sif head -n2 /data/input.txt
-1
-2
-
-```
-
 
 ## Singularity in Job scripts
 
@@ -203,8 +175,8 @@ This example demonstrates:
 1. how to run a container in a job script
 2. how to execute a command from inside a container: `singularity exec <image-name>.sif <command>`
 3. that the container runs it's own operating system (using the same kernel as the host)
-4. that the current directory is mounted in the container by default, which means that it
-will have access to input files etc. located in this directory (you will have read/write
+4. that your `$HOME` directory is mounted in the container by default, which means that it
+will have access to input files etc. located somewhere in this directory (you will have read/write
 permissions according to your own user)
 
 First we pull a "hello world" Singularity image from Singularity-Hub. This we need
@@ -277,6 +249,41 @@ VERSION_ID="14.04"
 HOME_URL="http://www.ubuntu.com/"
 SUPPORT_URL="http://help.ubuntu.com/"
 BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
+```
+
+```{note}
+The behavior described in the above example is only accurate if you run it from somewhere within your `$HOME`
+directory. If you run it from somewhere else, like `/cluster/projects/` or `/cluster/work/` you will *not*
+enter the container environment from the current directory, but rather from your root `$HOME` directory, i.e.
+the output from the first `ls` command in the script will be equivalent to `$ ls $HOME`. If you want to access
+files that are *not* located in your `$HOME` you'll need to `--bind` that directory explicitly as described below.
+```
+
+## Access project area from the container
+
+Singularity container can access the home directory
+but to access the project directory we need to bind it first.
+
+Lets try it out
+```console
+[SAGA]$ head -n2 data/input.txt
+1
+2
+[SAGA]$ singularity exec hello-world.sif  head -n2 data/input.txt
+/usr/bin/head: cannot open 'data/input.txt' for reading: No such file or directory
+[SAGA]$ pwd
+/cluster/projects/nnxxxxk/containers
+[SAGA]$ singularity exec hello-world.sif  head -n2 /cluster/projects/nnxxxxk/containers/data/input.txt
+/usr/bin/head: cannot open '/cluster/projects/nnxxxxk/containers/data/input.txt' for reading: No such file or directory
+```
+
+Now we use binding to attach local storage and then the container would have access.
+
+```
+[SAGA]$ singularity exec --bind /path/containers/data:/data bioperl_latest.sif head -n2 /data/input.txt
+1
+2
+
 ```
 
 (bigdft-cuda-example)=
