@@ -172,20 +172,48 @@ If you want to learn how to _build_ your own containers,
 see our code development {ref}`guides <dev-guides>`.
 ```
 
+## File access from container
+
+Singularity container can not access files on host system, unless we make it possible.
+
+Lets try it out
+```
+[SAGA]$ head -n2 data/input.txt 
+1
+2
+[SAGA]$ singularity exec hello-world.sif  head -n2 data/input.txt 
+/usr/bin/head: cannot open 'data/input.txt' for reading: No such file or directory
+[SAGA]$ singupwd
+-bash: singupwd: command not found
+[SAGA]$ pwd
+/path/containers
+[SAGA]$ singularity exec hello-world.sif  head -n2 /path/containers/data/input.txt 
+/usr/bin/head: cannot open '/path/containers/data/input.txt' for reading: No such file or directory
+```
+
+Now we use binding to attache local storage and then the container would have access.
+
+```
+[SAGA]$ singularity exec --bind /path/containers/data:/data bioperl_latest.sif head -n2 /data/input.txt
+1
+2
+
+```
 
 
-## Hello world example
+## Singularity in Job scripts
 
 This example demonstrates:
-1. how to download an image from an online repository, e.g. Singularity-Hub
-2. how to run a container in a job script
-3. how to execute a command from inside a container: `singularity exec <image-name>.sif <command>`
-4. that the container runs it's own operating system (using the same kernel as the host)
-5. that the current directory is mounted in the container by default, which means that it
+1. how to run a container in a job script
+2. how to execute a command from inside a container: `singularity exec <image-name>.sif <command>`
+3. that the container runs it's own operating system (using the same kernel as the host)
+4. that the current directory is mounted in the container by default, which means that it
 will have access to input files etc. located in this directory (you will have read/write
 permissions according to your own user)
 
-First we pull a "hello world" Singularity image from Singularity-Hub:
+First we pull a "hello world" Singularity image from Singularity-Hub. Thi we need
+to do from the login node, before the job is submitted. i.e. we do not pull
+images from within a job.
 ```
 $ singularity pull --name hello-world.sif shub://vsoch/hello-world
 ```
