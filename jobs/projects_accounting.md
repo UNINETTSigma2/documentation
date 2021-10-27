@@ -108,7 +108,4 @@ clusters.
 
 - The `accel` partition has a memory factor of `0.2570281` units per GiB, while
   the GPU factor is `32` units per GPU. This means that when one reserves 1 GPU
-  on Betzy the billing is equivalent of reserving 32 CPU cores. Also note that
-  the _maximum_ is used to calculate core hours, so if a job reserves 1 GPU and
-  32 CPU cores billing would be the same to reserving 1 GPU and 1 CPU core
-  (when using the same amount of memory).
+  on Betzy the billing is equivalent of reserving 32 CPU cores.

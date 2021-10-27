@@ -17,14 +17,14 @@ If it instead needs 200GB memory you should use _bigmem_.
 
 ## Betzy
 
-| Name                                     | Description                           | Job limits   | Max walltime | Priority |
-|:----------------------------------------:|---------------------------------------|:------------:|:------------:|:--------:|
-| {ref}`normal <job_type_betzy_normal>`    | default job type                      | 4--512 nodes | 4 days       | normal   |
-| {ref}`accel <job_type_betzy_accel>`      | jobs needing GPUs                     | 1-256 units  | 7 days      | normal   |
-| {ref}`preproc <job_type_betzy_preproc>`  | pre-/postprocessing jobs              | 1--16 units  | 1 day        | normal   |
-| {ref}`devel <job_type_betzy_devel>`      | development jobs (compiling, testing) | 1--4 nodes   | 60 mins      | high     |
+| Name                                    | Description                               | Job limits   | Max walltime | Priority |
+|:---------------------------------------:|-------------------------------------------|:------------:|:------------:|:--------:|
+| {ref}`normal <job_type_betzy_normal>`   | default job type                          | 4--512 nodes | 4 days       | normal   |
+| {ref}`accel <job_type_betzy_accel>`     | jobs needing GPUs                         |              | 7 days       | normal   |
+| {ref}`preproc <job_type_betzy_preproc>` | pre-/postprocessing jobs                  | 1--16 units  | 1 day        | normal   |
+| {ref}`devel <job_type_betzy_devel>`     | development jobs (compiling, testing)[^1] | 1--4 nodes   | 60 mins      | high     |
 
-For jobs that don't request much memory, the "units" of *preproc* jobs
+For jobs that don't request GPUs or much memory, the "units" of *accel* or *preproc* jobs
 are simply the number of cpus the job requests.
 For other jobs, see {ref}`projects-accounting` for how the units are calculated.
 
@@ -50,7 +50,7 @@ For other jobs, see {ref}`projects-accounting` for how the units are calculated.
 | {ref}`normal <job_type_saga_normal>`     | default job type                          | 1--256 units | 7 days                                      | normal   |
 | {ref}`bigmem <job_type_saga_bigmem>`     | jobs needing more memory                  | 1--256 units | 14 days                                     | normal   |
 | {ref}`accel <job_type_saga_accel>`       | jobs needing GPUs                         | 1--256 units | 14 days                                     | normal   |
-| {ref}`devel <job_type_saga_devel>`       | development jobs (compiling, testing)[^1] | 1--128 units | 2 hours                                     | high     |
+| {ref}`devel <job_type_saga_devel>`       | development jobs (compiling, testing)[^2] | 1--128 units | 2 hours                                     | high     |
 | {ref}`optimist <job_type_saga_optimist>` | jobs w/checkpointing, or very short jobs  | 1--256 units | {ref}`see details <job_type_saga_optimist>` | low      |
 
 For jobs that don't request GPUs or much memory, the "units" on Saga are
@@ -59,4 +59,6 @@ For other jobs, see {ref}`projects-accounting` for how the units are calculated.
 
 [Saga Job Types](job_types/saga_job_types.md).
 
-[^1]: On Saga it is possible to combine _devel_ with _accel_ or _bigmem_, {ref}`see details <job_type_saga_devel>`.
+[^1]: On Betzy it is possible to combine _devel_ with _accel_, {ref}`see details <job_type_betzy_devel>`.
+
+[^2]: On Saga it is possible to combine _devel_ with _accel_ or _bigmem_, {ref}`see details <job_type_saga_devel>`.

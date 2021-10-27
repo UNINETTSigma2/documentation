@@ -65,52 +65,6 @@ number of threads.  (It is possible to override this number by setting
 The [Betzy Sample MPI Job](betzy/betzy_sample_mpi_job.md) page has an example
 of a _normal_ MPI job.
 
-(job_scripts_betzy_accel)=
-## Accel
-_Accel_ jobs are those that require GPUs to perform calculations. To ensure
-that your job is run on only machinces with GPUs the `--partition=accel` flag
-must be supplied. In addition, to get access to one or more GPUs one need to
-request a number of GPUs with the `--gpus=N` flag (see below for more ways to
-specify the number of GPUs for your job).
-
-For a simple job, only requiring 1 GPU, the following example configuration
-could be used:
-
-```bash
-#SBATCH --account=nn<XXXX>k
-#SBATCH --job-name=SimpleGPUJob
-#SBATCH --time=0-00:05:00
-#SBATCH --mem-per-cpu=1G
-#SBATCH --partition=accel
-#SBATCH --gpus=1
-```
-
-The following example starts 2 tasks each with a single GPU. This is useful
-for MPI enabled jobs where each rank should be assigned a GPU.
-
-```bash
-#SBATCH --account=nn<XXXX>k
-#SBATCH --job-name=MPIGPUJob
-#SBATCH --time=0-00:05:00
-#SBATCH --mem-per-cpu=1G
-#SBATCH --ntasks=2
-#SBATCH --partition=accel
-#SBATCH --gpus-per-task=1
-```
-
-There are other GPU related specifications that can be used, and that
-parallel some of the cpu related specifications.  The most useful are
-probably:
-
-- `--gpus-per-node` How many GPUs the job should have on each node.
-- `--gpus-per-task` How many GPUs the job should have per task.
-  Requires the use of `--ntasks` or `--gpus`.
-- `--gpus-per-socket` How many GPUs the job should have on each
-  socket.  Requires the use of `--sockets-per-node`.
-- `--mem-per-gpu` How much RAM the job should have for each GPU.
-  Can be used *instead of* `--mem-per-cpu`, (but cannot be used
-  *together with* it).
-
 (job_scripts_betzy_preproc)=
 
 ## Preproc
@@ -144,6 +98,57 @@ bound to the cpu cores they are allocated, so the above sample job
 will have access to 12 cores. However, the three tasks are free to use
 all cores the job has access to (12 in this example).
 
+(job_scripts_betzy_accel)=
+
+## Accel
+_Accel_ jobs are those that require GPUs to perform calculations. To
+ensure that your job is run on only machinces with GPUs the
+`--partition=accel` option must be supplied. Also, to get access to
+one or more GPUs one need to request a number of GPUs with the
+`--gpus=N` specification (see below for more ways to specify the GPUs
+for your job).  In addition, the jobs must specify wall time limit,
+the number of tasks and the amount of memory memory per cpu or GPU.
+See the *preproc* job section above for details about specifying tasks
+and memory.
+
+For a simple job, only requiring 1 GPU, the following example configuration
+could be used:
+
+```bash
+#SBATCH --account=MyProject
+#SBATCH --job-name=SimpleGPUJob
+#SBATCH --time=0-00:05:00
+#SBATCH --mem-per-cpu=1G
+#SBATCH --partition=accel
+#SBATCH --gpus=1
+```
+
+The following example starts 2 tasks each with a single GPU. This is useful
+for MPI enabled jobs where each rank should be assigned a GPU.
+
+```bash
+#SBATCH --account=MyProject
+#SBATCH --job-name=MPIGPUJob
+#SBATCH --time=0-00:05:00
+#SBATCH --mem-per-cpu=1G
+#SBATCH --ntasks=2
+#SBATCH --partition=accel
+#SBATCH --gpus-per-task=1
+```
+
+There are other GPU related specifications that can be used, and that
+parallel some of the cpu related specifications.  The most useful are
+probably:
+
+- `--gpus-per-node` How many GPUs the job should have on each node.
+- `--gpus-per-task` How many GPUs the job should have per task.
+  Requires the use of `--ntasks` or `--gpus`.
+- `--gpus-per-socket` How many GPUs the job should have on each
+  socket.  Requires the use of `--sockets-per-node`.
+- `--mem-per-gpu` How much RAM the job should have for each GPU.
+  Can be used *instead of* `--mem-per-cpu`, (but cannot be used
+  *together with* it).
+
 
 (job_scripts_betzy_devel)=
 
@@ -159,4 +164,3 @@ For instance:
    	#SBATCH --qos=devel
 	#SBATCH --time=00:30:00
 	#SBATCH --nodes=2 --ntasks-per-node=128
->>>>>>> 423b84b4cdb41242d5ac5e5f4905de3158ff8dec
