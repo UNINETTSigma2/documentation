@@ -1,5 +1,5 @@
 (running-containers)=
-# Running containers
+# Containers on NRIS HPC systems
 
 ```{note}
 Currently, [Singularity](https://sylabs.io/singularity/) is the only supported container
@@ -7,23 +7,52 @@ solution on our HPC systems (Saga, Fram, Betzy). However, since Singularity can 
 containers from Docker images, it is also possible to run [Docker](https://www.docker.com/)
 containers through Singularity.
 ```
+## What is a container image
+Container image is a package with all cargo needed for a software to work. This
+includes the operating system, system packages, libraries and applications as
+a single unit. It only uses the host operating systems kernel.     
 
-Containers give the users the flexibility to bring a full software stack to the
-cluster which has already been set up, which can make software installations and
-dependencies more reproducible and more portable across clusters.
 
+## What is not covered in this document
+We are showing how to use existing container images on our systems as regular users.
+Operations that require root access, like building or making changes to an images
+not discussed. 
+
+## When to use containers on NRIS HPC systems
+
+```{note}
+Please let us know if you find more reasons for using containers
+```
+ - If you have a software stack or a pipeline already setup somewhere else and 
+   you want to bring it as it is to one of the HPC systems
+     - Containers give the users the flexibility to bring a full software stack to the
+       cluster which has already been set up, which can make software installations and
+       dependencies more reproducible and more portable across clusters.
+ - The software you want to use is only available as a container image
+ - You need to use system level installations, e.g. the procedure involved
+   `apt-get install SOMETHING` or similar (`yum`, `rpm`, etc).
+ - You have a old software that needs some older dependencies.
+ - You need a specific version of a software to run another software, e.g. CUDA.
+
+## When not to use containers on NRIS HPC systems
+ - If the software you are planing to to use already installed as a module(s), then
+   better to use that module or collection of modules
+ - Windows containers. On NRIS HPC systems only containers that uses UNIX kernel would 
+   work 
+ - If you do not know what the container is exactly for. i.e. found a command on
+   the internet and just want to try it out
+
+## How to access singularity on NRIS HPC systems
 Singularity is already installed globally on all our systems, and should be
 immediately available on your command line (no `module load` necessary):
-```
-[me@login-1.SAGA ~]$ singularity --version
+```console
+[SAGA]$ singularity --version
 singularity version 3.6.4-1.el7
 ```
 
-The following examples will demonstrate how you can _run_ container images that has
-already been prepared by others. If you want to learn how to _build_ your own containers,
-see our code development {ref}`guides <dev-guides>`.
 
-## Fetching images from the web
+
+## How to find container images
 
 Singularity images can be fetched from the web using the `singularity pull` command,
 which will download a SIF (Singularity Image Format) file to your current directory.
@@ -36,37 +65,127 @@ There are a number of different online repositories for hosting images, some of 
 more common ones are listed below. Notice how you can pull Docker images
 directly from Docker-Hub using Singularity.
 
-Fetching from a [Singularity](https://singularityhub.github.io/) registry:
-```
+```console
+#Fetching from a [Singularity](https://singularityhub.github.io/) registry:
 $ singularity pull --name hello-world.sif shub://vsoch/hello-world
-```
-Fetching from a [Sylabs](https://cloud.sylabs.io/library) registry:
-```
+
+#Fetching from a [Sylabs](https://cloud.sylabs.io/library) registry:
 $ singularity pull --name alpine.sif library://alpine:latest
-```
-Fetching from a [Docker-Hub](https://hub.docker.com/) registry:
-```
+
+#Fetching from a [Docker-Hub](https://hub.docker.com/) registry:
 $ singularity pull --name alpine.sif docker://alpine:latest
-```
-Fetching from a [Quay](https://quay.io) registry:
-```
+
+#Fetching from a [Quay](https://quay.io) registry:
 $ singularity pull --name openmpi-i8.sif docker://quay.io/bast/openmpi-i8:4.0.4-gcc-9.3.0
 ```
 
-## Hello world example
+```{note}
+
+ singularity run Vs singularity exec
+- [singularity exec](https://sylabs.io/guides/3.1/user-guide/cli/singularity_exec.html):
+   Run a command within a container
+- [singularity run](https://sylabs.io/guides/3.1/user-guide/cli/singularity_run.html):
+   Run the user-defined default command within a container	
+
+```
+
+Example 
+```console
+
+[SAGA]$ singularity pull --name hello-world.sif shub://vsoch/hello-world
+The image created (hello-world.sif) has a user defined command called "rawr.sh"
+
+[SAGA]$ singularity exec hello-world.sif cat /singularity
+#!/bin/sh 
+
+exec /bin/bash /rawr.sh
+[SAGA]$ singularity exec hello-world.sif cat /rawr.sh
+#!/bin/bash
+
+echo "RaawwWWWWWRRRR!! Avocado!"
+
+
+[SAGA]$ singularity run hello-world.sif 
+RaawwWWWWWRRRR!! Avocado!
+
+With run, the default command is what is excuted,
+[SAGA]$ singularity run hello-world.sif cat /etc/os-release
+RaawwWWWWWRRRR!! Avocado!
+So we need to use exec to get the expected result
+[SAGA]$ singularity exec hello-world.sif cat /etc/os-release
+NAME="Ubuntu"
+VERSION="14.04.6 LTS, Trusty Tahr"
+...
+..
+
+```
+
+
+Following are some example use cases we have seen on NRIS HPC systems. 
+
+```{note}
+Example 1: A user wants to use different version of the TensorFlow  than 
+what is installed in SAGA. So she googles and ends up here
+[https://www.tensorflow.org/install](https://www.tensorflow.org/install)
+There she finds the following command sequence
+```
+```console
+ docker pull tensorflow/tensorflow:latest  # Download latest stable image
+ docker run -it -p 8888:8888 tensorflow/tensorflow:latest-jupyter  # Start Jupyter server 
+```
+But she knows that we do not have Docker on SAGA so she uses Singularity to pull 
+the image, yes it is possible to pull docker images using singularity
+```console
+[SAGA]$ singularity pull docker://tensorflow/tensorflow:latest
+```
+To test she prints the version
+```console
+[SAGA]$ singularity run  tensorflow_latest.sif python -c "import tensorflow as tf;print(tf.__version__)" 
+```
+
+
+```{note}
+Example 2:
+A user needs to use a software that runs only on a specific vesion of Ubuntu
+```
+
+```console
+[SAGA]$ singularity pull docker://bioperl/bioperl
+[SAGA]$ singularity exec  bioperl_latest.sif cat /etc/os-release                    
+    NAME="Ubuntu"
+    VERSION="14.04.5 LTS, Trusty Tahr"
+
+[SAGA]$ singularity exec  bioperl_latest.sif perl -e 'use Bio::SeqIO; print join "\n", %INC; print "\n"'
+    base.pm
+    /usr/share/perl/5.18/base.pm
+    File/Path.pm
+    /usr/share/perl/5.18/File/Path.pm
+
+
+```
+```{warning}
+If a ready made image is not available with the software. Then you need to pull
+Ubuntu image to a machine where you have root access, install the software,
+repackage it and take it to SAGA. This step is not covered here.
+If you want to learn how to _build_ your own containers,
+see our code development {ref}`guides <dev-guides>`.
+```
+
+## Singularity in Job scripts
 
 This example demonstrates:
-1. how to download an image from an online repository, e.g. Singularity-Hub
-2. how to run a container in a job script
-3. how to execute a command from inside a container: `singularity exec <image-name>.sif <command>`
-4. that the container runs it's own operating system (using the same kernel as the host)
-5. that the current directory is mounted in the container by default, which means that it
-will have access to input files etc. located in this directory (you will have read/write
+1. how to run a container in a job script
+2. how to execute a command from inside a container: `singularity exec <image-name>.sif <command>`
+3. that the container runs it's own operating system (using the same kernel as the host)
+4. that your `$HOME` directory is mounted in the container by default, which means that it
+will have access to input files etc. located somewhere in this directory (you will have read/write
 permissions according to your own user)
 
-First we pull a "hello world" Singularity image from Singularity-Hub:
-```
-$ singularity pull --name hello-world.sif shub://vsoch/hello-world
+First we pull a "hello world" Singularity image from Singularity-Hub. This we need
+to do from the login node, before the job is submitted. i.e. we do not pull
+images from within a job.
+```console
+[SAGA]$ singularity pull --name hello-world.sif shub://vsoch/hello-world
 ```
 
 Once we have the SIF file, we can test it out with the following
@@ -134,6 +253,41 @@ SUPPORT_URL="http://help.ubuntu.com/"
 BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
 ```
 
+```{note}
+The behavior described in the above example is only accurate if you run it from somewhere within your `$HOME`
+directory. If you run it from somewhere else, like `/cluster/projects/` or `/cluster/work/` you will *not*
+enter the container environment from the current directory, but rather from your root `$HOME` directory, i.e.
+the output from the first `ls` command in the script will be equivalent to `$ ls $HOME`. If you want to access
+files that are *not* located in your `$HOME` you'll need to `--bind` that directory explicitly as described below.
+```
+
+## Access project area from the container
+
+Singularity container can access the home directory
+but to access the project directory we need to bind it first.
+
+Lets try it out
+```console
+[SAGA]$ head -n2 data/input.txt
+1
+2
+[SAGA]$ singularity exec hello-world.sif  head -n2 data/input.txt
+/usr/bin/head: cannot open 'data/input.txt' for reading: No such file or directory
+[SAGA]$ pwd
+/cluster/projects/nnxxxxk/containers
+[SAGA]$ singularity exec hello-world.sif  head -n2 /cluster/projects/nnxxxxk/containers/data/input.txt
+/usr/bin/head: cannot open '/cluster/projects/nnxxxxk/containers/data/input.txt' for reading: No such file or directory
+```
+
+Now we use binding to attach local storage and then the container would have access.
+
+```console
+[SAGA]$ singularity exec --bind /path/containers/data:/data bioperl_latest.sif head -n2 /data/input.txt
+1
+2
+
+```
+
 (bigdft-cuda-example)=
 ## Real world example: BigDFT
 
@@ -150,7 +304,7 @@ This example demonstrates:
 5. how to launch a CUDA container
 
 [BigDFT](https://bigdft-suite.readthedocs.io/en/latest) is an electronic structure code targeting large molecular
-systems with density functonal theory. The program is written for heterogeneus computing
+systems with density functional theory. The program is written for heterogeneous computing
 environments with support for both MPI, OpenMP and CUDA. This makes for a good test case
 as a more advanced container application. All the following is based on the official
 tutorial which can be found [here](https://ngc.nvidia.com/catalog/containers/hpc:bigdft).
@@ -159,8 +313,8 @@ A BigDFT Docker image with CUDA support is provided by the
 [NVIDIA GPU Cloud (NGC)](https://ngc.nvidia.com/catalog)
 and can be built using Singularity with the following command (here into a folder called
 `$HOME/containers`, but this is arbitrary):
-```
-$ singularity pull --name $HOME/containers/bigdft-cuda.sif docker://nvcr.io/hpc/bigdft:cuda10-ubuntu1804-ompi4-mkl
+```console
+[SAGA]$ singularity pull --name $HOME/containers/bigdft-cuda.sif docker://nvcr.io/hpc/bigdft:cuda10-ubuntu1804-ompi4-mkl
 ```
 
 ```{warning}
@@ -180,17 +334,17 @@ The BigDFT container comes bundled with a couple of test cases that can be used 
 that everything works correctly. We will start by extracting the necessary input files
 for a test case called FeHyb which can be found in the `/docker/FeHyb` directory _inside_
 the container (starting here with the non-GPU version):
-```
-$ mkdir $HOME/bigdft-test
-$ singularity exec --bind $HOME/bigdft-test:/work-dir $HOME/containers/bigdft-cuda.sif /bin/bash -c "cp -r /docker/FeHyb/NOGPU /work-dir"
+```console
+[SAGA]$ mkdir $HOME/bigdft-test
+[SAGA]$ singularity exec --bind $HOME/bigdft-test:/work-dir $HOME/containers/bigdft-cuda.sif /bin/bash -c "cp -r /docker/FeHyb/NOGPU /work-dir"
 ```
 Here we first create a job directory for our test calculation on the host called `$HOME/bigdft-test`
 and then bind mount this to a directory called `/work-dir` _inside_ the container. Then we execute
 a bash command in the container to copy the example files from `/docker/FeHyb/NOGPU` into this
 work directory, which is really the `$HOME/bigdft-test` directory on the host. You should now see a
 `NOGPU` folder on the host file system with the following content:
-```
-$ ls $HOME/bigdft-test/NOGPU
+```console
+[SAGA]$ ls $HOME/bigdft-test/NOGPU
 input.yaml  log.ref.yaml  posinp.xyz  psppar.Fe  tols-BigDFT.yaml
 ```
 
@@ -226,24 +380,24 @@ exit 0
 
 The `--bind-to none` option is necessary to avoid all OpenMP threads landing on the
 same CPU core. Now set `<myaccount>` to something appropriate and launch the job
-```
-$ sbatch FeHyb.run
+```console
+[SAGA]$ sbatch FeHyb.run
 ```
 It should not take more than a minute to finish. After completion, the Slurm output
 file should contain the following line (in addition to the usual Slurm statistics output):
-```
+```console
  <BigDFT> log of the run will be written in logfile: ./log.yaml
 ```
 To check that the calculation succeeded, we can inspect the `log.yaml` output file,
 or we can run a test script provided by the container. First start an interactive shell
 inside the container (you should run this command in the job directory containing the
 `log.yaml` file so that it is automatically mounted in the container):
-```
-$ singularity shell $HOME/containers/bigdft-cuda.sif
+```console
+[SAGA]$ singularity shell $HOME/containers/bigdft-cuda.sif
 ```
 Now you have stepped into the container and your shell prompt should have changed from `$`
 to `Singularity>`. Now run the command:
-```
+```console
 Singularity> python /usr/local/bigdft/lib/python2.7/site-packages/fldiff_yaml.py -d log.yaml -r /docker/FeHyb/NOGPU/log.ref.yaml -t /docker/FeHyb/NOGPU/tols-BigDFT.yaml
 ```
 which hopefully reports success, something like this:
@@ -266,15 +420,15 @@ We will now run the same example using the CUDA version of BigDFT. We again copy
 bundled input files from within the container, this time the `GPU` directory (see
 example above for explanation of the commands):
 
-```
-singularity exec --bind $HOME/bigdft-test:/work-dir $HOME/containers/bigdft-cuda.sif /bin/bash -c "cp -r /docker/FeHyb/GPU /work-dir"
+```console
+[SAGA]$ singularity exec --bind $HOME/bigdft-test:/work-dir $HOME/containers/bigdft-cuda.sif /bin/bash -c "cp -r /docker/FeHyb/GPU /work-dir"
 ```
 which should contain the following files:
-```
-$ ls $HOME/bigdft-test/GPU
+```console
+[SAGA]$ ls $HOME/bigdft-test/GPU
 input.yaml  posinp.xyz  psppar.Fe
 ```
-In order to run this example correctly we need to ask for GPU resourses in the job
+In order to run this example correctly we need to ask for GPU resources in the job
 script, here we call it `$HOME/bigdft-test/GPU/FeHyb.run`. We request a single CPU
 core (`--ntasks=1`) with an associated GPU accelerator (`--gpus=1`). Also remember
 to use the `accel` partition:
@@ -300,14 +454,14 @@ With BigDFT, the CUDA request is handled through the input file, so we run the s
 `bigdft` executable as before. There is an extra `--nv` option for the `singularity exec`
 command though, which will make the container aware of the available NVIDIA hardware.
 Set `<myaccount>` to something appropriate and launch the job
-```
-$ sbatch FeHyb.run
+```console
+[SAGA]$ sbatch FeHyb.run
 ```
 We can again check that the calculation completed successfully by shell-ing into the
 container and running the diff script (note that we still compare against the `NOGPU`
 reference as there is no specific GPU reference available in the container):
-```
-$ singularity shell $HOME/containers/bigdft-cuda.sif
+```console
+[SAGA]$ singularity shell $HOME/containers/bigdft-cuda.sif
 Singularity> python /usr/local/bigdft/lib/python2.7/site-packages/fldiff_yaml.py -d log.yaml -r /docker/FeHyb/NOGPU/log.ref.yaml -t /docker/FeHyb/NOGPU/tols-BigDFT.yaml
 ---
 Maximum discrepancy: 2.4000000000052625e-09
@@ -322,3 +476,7 @@ Remarks: !!map
 As we can see from the timings, this small test case run more or less equally fast (11-12 sec)
 on a single GPU as on 2x10 CPU cores. For comparison, the same example takes about 90 sec
 to complete on a single CPU core.
+
+
+## Other notes
+### singularity cache
