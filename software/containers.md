@@ -82,26 +82,6 @@ Fetching from a [Quay](https://quay.io) registry:
 $ singularity pull --name openmpi-i8.sif docker://quay.io/bast/openmpi-i8:4.0.4-gcc-9.3.0
 ```
 
-Following are some example use cases we have seen on NRIS HPC systems. 
-
-```{note}
-Example 1: A user wants to use different version of the TensorFlow  than 
-what is installed in SAGA. So she googles and ends up here
-[https://www.tensorflow.org/install](https://www.tensorflow.org/install)
-There she finds the following command sequence
-```
-```
- docker pull tensorflow/tensorflow:latest  # Download latest stable image
- docker run -it -p 8888:8888 tensorflow/tensorflow:latest-jupyter  # Start Jupyter server 
-```
-But she knows that we do not have Docker on SAGA so she uses Singularity to pull 
-the image, yes it is possible to pull docker images using singularity
-```
-  singularity pull docker://tensorflow/tensorflow:latest
-  #To test she prints the version
-  singularity run  tensorflow_latest.sif python -c "import tensorflow as tf;print(tf.__version__)" 
-```
-
 ```{note}
 
  singularity run Vs singularity exec
@@ -115,7 +95,7 @@ the image, yes it is possible to pull docker images using singularity
 Example 
 ```
 
-singularity pull --name hello-world.sif shub://vsoch/hello-world
+[SAGA]$ singularity pull --name hello-world.sif shub://vsoch/hello-world
 The image created (hello-world.sif) has a user defined command called "rawr.sh"
 
 [SAGA]$ singularity exec hello-world.sif cat /singularity
@@ -128,7 +108,7 @@ exec /bin/bash /rawr.sh
 echo "RaawwWWWWWRRRR!! Avocado!"
 
 
-[sabryr@login-1.SAGA /cluster/projects/nn9997k/sabryr/containers]$ singularity run hello-world.sif 
+[SAGA]$ singularity run hello-world.sif 
 RaawwWWWWWRRRR!! Avocado!
 
 With run, the default command is what is excuted,
@@ -144,10 +124,41 @@ VERSION="14.04.6 LTS, Trusty Tahr"
 ```
 
 
+Following are some example use cases we have seen on NRIS HPC systems. 
+
+```{note}
+Example 1: A user wants to use different version of the TensorFlow  than 
+what is installed in SAGA. So she googles and ends up here
+[https://www.tensorflow.org/install](https://www.tensorflow.org/install)
+There she finds the following command sequence
+```
+```
+ docker pull tensorflow/tensorflow:latest  # Download latest stable image
+ docker run -it -p 8888:8888 tensorflow/tensorflow:latest-jupyter  # Start Jupyter server 
+```
+But she knows that we do not have Docker on SAGA so she uses Singularity to pull 
+the image, yes it is possible to pull docker images using singularity
+```
+  [SAGA]$ singularity pull docker://tensorflow/tensorflow:latest
+  #To test she prints the version
+  [SAGA]$ singularity run  tensorflow_latest.sif python -c "import tensorflow as tf;print(tf.__version__)" 
+```
+
 
 ```{note}
 Example 2
 A user needs to use a software that runs only on a specific vesion of Ubuntu
+[SAGA]$ singularity pull docker://bioperl/bioperl
+[SAGA]$ singularity exec  bioperl_latest.sif cat /etc/os-release                    
+        NAME="Ubuntu"
+        VERSION="14.04.5 LTS, Trusty Tahr"
+
+[SAGA]$ singularity exec  bioperl_latest.sif perl -e 'use Bio::SeqIO; print join "\n", %INC; print "\n"'
+    base.pm
+    /usr/share/perl/5.18/base.pm
+    File/Path.pm
+    /usr/share/perl/5.18/File/Path.pm
+
 ```
 
 ```{warning}
