@@ -52,6 +52,36 @@ singularity version 3.6.4-1.el7
 
 ## How to find container images
 
+Singularity images can be fetched from the web using the `singularity pull` command,
+which will download a SIF (Singularity Image Format) file to your current directory.
+Notice that with Singularity, an image is just a simple binary file, and there's nothing
+special about the directory in which you run the `singularity pull` command. This means
+that you can move your image around as you please, and even `scp` it to a different
+machine and execute it there (as long as you have Singularity installed, of course).
+
+There are a number of different online repositories for hosting images, some of the
+more common ones are listed below. Notice how you can pull Docker images
+directly from Docker-Hub using Singularity.
+
+Fetching from a [Singularity](https://singularityhub.github.io/) registry:
+```
+$ singularity pull --name hello-world.sif shub://vsoch/hello-world
+```
+Fetching from a [Sylabs](https://cloud.sylabs.io/library) registry:
+```
+$ singularity pull --name alpine.sif library://alpine:latest
+```
+Fetching from a [Docker-Hub](https://hub.docker.com/) registry:
+```
+$ singularity pull --name alpine.sif docker://alpine:latest
+```
+Fetching from a [Quay](https://quay.io) registry:
+```
+$ singularity pull --name openmpi-i8.sif docker://quay.io/bast/openmpi-i8:4.0.4-gcc-9.3.0
+```
+
+Following are some example use cases we have seen on NRIS hpc systesms. 
+
 ```{note}
 Example 1: A user wants to use different version of the TensorFlow  than 
 what is installed in SAGA. So she googles and ends up here
@@ -88,35 +118,6 @@ The following examples will demonstrate how you can _run_ container images that 
 already been prepared by others. If you want to learn how to _build_ your own containers,
 see our code development {ref}`guides <dev-guides>`.
 
-## Fetching images from the web
-
-Singularity images can be fetched from the web using the `singularity pull` command,
-which will download a SIF (Singularity Image Format) file to your current directory.
-Notice that with Singularity, an image is just a simple binary file, and there's nothing
-special about the directory in which you run the `singularity pull` command. This means
-that you can move your image around as you please, and even `scp` it to a different
-machine and execute it there (as long as you have Singularity installed, of course).
-
-There are a number of different online repositories for hosting images, some of the
-more common ones are listed below. Notice how you can pull Docker images
-directly from Docker-Hub using Singularity.
-
-Fetching from a [Singularity](https://singularityhub.github.io/) registry:
-```
-$ singularity pull --name hello-world.sif shub://vsoch/hello-world
-```
-Fetching from a [Sylabs](https://cloud.sylabs.io/library) registry:
-```
-$ singularity pull --name alpine.sif library://alpine:latest
-```
-Fetching from a [Docker-Hub](https://hub.docker.com/) registry:
-```
-$ singularity pull --name alpine.sif docker://alpine:latest
-```
-Fetching from a [Quay](https://quay.io) registry:
-```
-$ singularity pull --name openmpi-i8.sif docker://quay.io/bast/openmpi-i8:4.0.4-gcc-9.3.0
-```
 
 ## Hello world example
 
