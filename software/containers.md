@@ -148,6 +148,9 @@ the image, yes it is possible to pull docker images using singularity
 ```{note}
 Example 2
 A user needs to use a software that runs only on a specific vesion of Ubuntu
+```
+
+```
 [SAGA]$ singularity pull docker://bioperl/bioperl
 [SAGA]$ singularity exec  bioperl_latest.sif cat /etc/os-release                    
         NAME="Ubuntu"
@@ -159,20 +162,16 @@ A user needs to use a software that runs only on a specific vesion of Ubuntu
     File/Path.pm
     /usr/share/perl/5.18/File/Path.pm
 
-```
 
+```
 ```{warning}
 If a ready made image is not available with the software. Then you need to pull
 Ubuntu image to a machine where you have root access, install the software,
 repackage it and take it to SAGA. This step is not coverd here
-```
-```
-  #To run Ubuntu
+If you want to learn how to _build_ your own containers,
+see our code development {ref}`guides <dev-guides>`.
 ```
 
-The following examples will demonstrate how you can _run_ container images that has
-already been prepared by others. If you want to learn how to _build_ your own containers,
-see our code development {ref}`guides <dev-guides>`.
 
 
 ## Hello world example
