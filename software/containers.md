@@ -184,10 +184,8 @@ Lets try it out
 2
 [SAGA]$ singularity exec hello-world.sif  head -n2 data/input.txt 
 /usr/bin/head: cannot open 'data/input.txt' for reading: No such file or directory
-[SAGA]$ singupwd
--bash: singupwd: command not found
 [SAGA]$ pwd
-/path/containers
+/cluster/projects/nnxxxxk/containers
 [SAGA]$ singularity exec hello-world.sif  head -n2 /cluster/projects/nnxxxxk/containers/data/input.txt 
 /usr/bin/head: cannot open '/cluster/projects/nnxxxxk/containers/data/input.txt' for reading: No such file or directory
 ```
