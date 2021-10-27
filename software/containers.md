@@ -21,7 +21,7 @@ not discussed.
 ## When to use containers on NRIS HPC systems
 
 ```{note}
-Please let us know if you find more reasens for using containers
+Please let us know if you find more reasons for using containers
 ```
  - If you have a software stack or a pipeline already setup somewhere else and 
    you want to bring it as it is to one of the HPC systems
