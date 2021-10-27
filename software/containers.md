@@ -50,6 +50,8 @@ immediately available on your command line (no `module load` necessary):
 singularity version 3.6.4-1.el7
 ```
 
+
+
 ## How to find container images
 
 Singularity images can be fetched from the web using the `singularity pull` command,
@@ -80,7 +82,7 @@ Fetching from a [Quay](https://quay.io) registry:
 $ singularity pull --name openmpi-i8.sif docker://quay.io/bast/openmpi-i8:4.0.4-gcc-9.3.0
 ```
 
-Following are some example use cases we have seen on NRIS hpc systesms. 
+Following are some example use cases we have seen on NRIS HPC systems. 
 
 ```{note}
 Example 1: A user wants to use different version of the TensorFlow  than 
@@ -99,6 +101,49 @@ the image, yes it is possible to pull docker images using singularity
   #To test she prints the version
   singularity run  tensorflow_latest.sif python -c "import tensorflow as tf;print(tf.__version__)" 
 ```
+
+```{note}
+
+ singularity run Vs singularity exec
+- [singularity exec](https://sylabs.io/guides/3.1/user-guide/cli/singularity_exec.html):
+   Run a command within a container
+- [singularity run](https://sylabs.io/guides/3.1/user-guide/cli/singularity_run.html)
+   Run the user-defined default command within a container	
+
+```
+
+Example 
+```
+
+singularity pull --name hello-world.sif shub://vsoch/hello-world
+The image created (hello-world.sif) has a user defined command called "rawr.sh"
+
+[SAGA]$ singularity exec hello-world.sif cat /singularity
+#!/bin/sh 
+
+exec /bin/bash /rawr.sh
+[SAGA]$ singularity exec hello-world.sif cat /rawr.sh
+#!/bin/bash
+
+echo "RaawwWWWWWRRRR!! Avocado!"
+
+
+[sabryr@login-1.SAGA /cluster/projects/nn9997k/sabryr/containers]$ singularity run hello-world.sif 
+RaawwWWWWWRRRR!! Avocado!
+
+With run, the default command is what is excuted,
+[SAGA]$ singularity run hello-world.sif cat /etc/os-release
+RaawwWWWWWRRRR!! Avocado!
+So we need to use exec to get the expected result
+[SAGA]$ singularity exec hello-world.sif cat /etc/os-release
+NAME="Ubuntu"
+VERSION="14.04.6 LTS, Trusty Tahr"
+...
+..
+
+```
+
+
 
 ```{note}
 Example 2
