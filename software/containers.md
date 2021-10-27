@@ -172,9 +172,10 @@ If you want to learn how to _build_ your own containers,
 see our code development {ref}`guides <dev-guides>`.
 ```
 
-## File access from container
+## Access project area from the container
 
-Singularity container can not access files on host system, unless we make it possible.
+Singularity container can access the home directory
+but to access the project directory we need to bind it first. 
 
 Lets try it out
 ```
@@ -187,8 +188,8 @@ Lets try it out
 -bash: singupwd: command not found
 [SAGA]$ pwd
 /path/containers
-[SAGA]$ singularity exec hello-world.sif  head -n2 /path/containers/data/input.txt 
-/usr/bin/head: cannot open '/path/containers/data/input.txt' for reading: No such file or directory
+[SAGA]$ singularity exec hello-world.sif  head -n2 /cluster/projects/nnxxxxk/containers/data/input.txt 
+/usr/bin/head: cannot open '/cluster/projects/nnxxxxk/containers/data/input.txt' for reading: No such file or directory
 ```
 
 Now we use binding to attache local storage and then the container would have access.
@@ -211,7 +212,7 @@ This example demonstrates:
 will have access to input files etc. located in this directory (you will have read/write
 permissions according to your own user)
 
-First we pull a "hello world" Singularity image from Singularity-Hub. Thi we need
+First we pull a "hello world" Singularity image from Singularity-Hub. This we need
 to do from the login node, before the job is submitted. i.e. we do not pull
 images from within a job.
 ```
