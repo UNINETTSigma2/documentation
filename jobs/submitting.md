@@ -13,6 +13,8 @@ When you log in to a cluster, you are logged in to a _login_ node
 shared by all users. The login nodes are meant for logging in, copying
 files, editing, compiling, running short tests (no more than a couple
 of minutes), submitting jobs, checking job status, etc.
+If you are unsure about the basic interaction with Unix-like systems,
+[here](https://effective-shell.com/) is a good resource to start with.
 Jobs started via Slurm run on the _compute nodes_.
 
 Note that it is _not_ allowed to run jobs directly on the login nodes.

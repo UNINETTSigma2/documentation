@@ -48,6 +48,9 @@ The machine names are:
 - `saga.sigma2.no` - {ref}`saga`
 - `login.nird.sigma2.no` - {ref}`nird`
 
+If you are unfamiliar with working with Unix or want to refresh the basics, you
+may want to [learn using the shell](https://effective-shell.com/).
+
 
 ## Transferring files
 
