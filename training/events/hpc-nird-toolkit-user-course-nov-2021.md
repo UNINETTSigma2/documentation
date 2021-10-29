@@ -153,19 +153,21 @@ Break for 10 minutes
 
 - **Get ready: 08:50-09:00 Connect to zoom meeting**
 
-- **Session 1: 09:00-10:20 Introduction to GPU computing**
+- **Session 1: 09:00-09:45 Introduction to GPU computing**
 
-Break for 10 minutes
+Break for 15 minutes
 
-- **Session 2: 10:35-11:30 GPU computing on HPC**
+- **Session 2: 10:00-10:45 Using GPUs at NRIS**
 
-Break for 10 minutes
+Break for 15 minutes
 
-- **Session 3: 11:40-12:40 Using GPUs with containers**
+- **Session 3: 11:00-11:45 Practical introduction to using GPUs part 1**
 
-Break for 10 minutes
+Break for 15 minutes
 
-- **Session Q&A: 12:40-13:00 Questions & Answers**
+- **Session 4: 12:00-12:45 Practical introduction to using GPUs part 2**
+
+- **Session Q&A: 12:45-13:00 Questions & Answers**
 
 
 ## Preparing your machine for the course
