@@ -315,9 +315,8 @@ emphasize-lines: 11-13, 15
 #SBATCH --mem-per-cpu=3500M
 #SBATCH --ntasks=1
 
-module load Arm-PerfReports/20.0.3
-echo "set sysroot /" > gdbfile
-export ALLINEA_DEBUGGER_USER_FILE=gdbfile
+module purge
+module load Arm-Forge/21.1
 
 perf-report ./mybinary
 ```
