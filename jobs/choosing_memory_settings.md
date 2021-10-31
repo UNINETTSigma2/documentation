@@ -303,7 +303,7 @@ You can profile your job using {ref}`Arm Performance Reports <arm-performance-re
 Here is an example script (adapt `--account=nn____k`; this is tested on Saga):
 ```{code-block}
 ---
-emphasize-lines: 11-13, 15
+emphasize-lines: 11-12, 14
 ---
 #!/bin/bash
 
