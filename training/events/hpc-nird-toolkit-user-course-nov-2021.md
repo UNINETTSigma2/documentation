@@ -118,11 +118,17 @@ Break for 10 minutes
 
 Break for 10 minutes
 
-- **Session 3: 10:40-11:20 Optimizing use of memory and CPUs**
+- **Session 3: 10:40-11:20 How to choose memory and number of cores (part I)** (R. Bast)
+  - [Slides](https://cicero.xyz/v3/remark/0.14.0/github.com/bast/talk-better-resource-usage/main/talk.md/)
+  - [Tutorial about memory](https://documentation.sigma2.no/jobs/choosing-memory-settings.html)
+  - [Tutorial about cores](https://documentation.sigma2.no/jobs/choosing-number-of-cores.html)
 
 Break for 10 minutes
 
-- **Session 4: 11:30-12:10 Profiling memory and CPU resource usage**
+- **Session 4: 11:30-12:10 How to choose memory and number of cores (part II)** (R. Bast)
+  - [Slides](https://cicero.xyz/v3/remark/0.14.0/github.com/bast/talk-better-resource-usage/main/talk.md/)
+  - [Tutorial about memory](https://documentation.sigma2.no/jobs/choosing-memory-settings.html)
+  - [Tutorial about cores](https://documentation.sigma2.no/jobs/choosing-number-of-cores.html)
 
 Break for 10 minutes
 
