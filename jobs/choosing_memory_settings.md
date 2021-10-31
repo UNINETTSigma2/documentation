@@ -134,6 +134,12 @@ memory consumption varies over time.
 ![Memory high water mark in the Slurm browser](img/slurmbrowser-memory.jpg "Memory high water mark in the Slurm browser")
 
 
+### Using top
+
+While the job is running, find out on which node(s) it runs using `squeue -u $USER`,
+then `ssh` into one of the listed compute nodes and run `top -u $USER`.
+
+
 ### By checking the Slurm output generated with your job
 
 We can use the following example script (adapt `--account=nn____k`; this is tested on Saga):
