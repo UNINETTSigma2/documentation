@@ -160,10 +160,12 @@ Break for 10 minutes
 - **Get ready: 08:50-09:00 Connect to zoom meeting**
 
 - **Session 1: 09:00-09:45 Introduction to GPU computing**
+  - [Slides can be found here](https://docs.google.com/presentation/d/e/2PACX-1vSz2-a0FzWkMgSICvQpDAXcCgVcyMryimjlZGI_DOyDaT6iWJ5ZOb7WGpNZ9FT6ZpXPWyP1nDxWXLLr/pub?start=false&loop=false&delayms=3000)
 
 Break for 15 minutes
 
 - **Session 2: 10:00-10:45 Using GPUs at NRIS**
+  - [Slides can be found here](https://docs.google.com/presentation/d/e/2PACX-1vSz2-a0FzWkMgSICvQpDAXcCgVcyMryimjlZGI_DOyDaT6iWJ5ZOb7WGpNZ9FT6ZpXPWyP1nDxWXLLr/pub?start=false&loop=false&delayms=3000)
 
 Break for 15 minutes
 
