@@ -110,11 +110,11 @@ Break for 10 minutes
 
 - **Get ready: 08:50-09:00 Connect to zoom meeting**
 
-- **Session 1: 09:00-09:45 Optimization of codes and batch script part I**
+- **Session 1: 09:00-09:45 Optimization of codes and batch script (part I)**
 
 Break for 10 minutes
 
-- **Session 2: 09:55-10:30 Optimization of codes and batch script part II**
+- **Session 2: 09:55-10:30 Optimization of codes and batch script (part II)**
 
 Break for 10 minutes
 
@@ -140,15 +140,15 @@ Break for 10 minutes
 
 - **Get ready: 08:50-09:00 Connect to zoom meeting**
 
-- **Session 1: 09:00-10:20 Containers on HPC**
+- **Session 1: 09:00-10:20 Containers on HPC (part I)**
 
 Break for 10 minutes
 
-- **Session 2: 10:35-11:30 NIRD Toolkit part I**
+- **Session 2: 10:35-11:30 NIRD Toolkit (part I)**
 
 Break for 10 minutes
 
-- **Session 3: 11:40-12:40 NIRD Toolkit part II**
+- **Session 3: 11:40-12:40 NIRD Toolkit (part II)**
 
 Break for 10 minutes
 
@@ -159,21 +159,21 @@ Break for 10 minutes
 
 - **Get ready: 08:50-09:00 Connect to zoom meeting**
 
-- **Session 1: 09:00-09:45 Introduction to GPU computing**
+- **Session 1: 09:00-09:45 Introduction to GPU computing** (J. Nordmoen)
   - [Slides can be found here](https://docs.google.com/presentation/d/e/2PACX-1vSz2-a0FzWkMgSICvQpDAXcCgVcyMryimjlZGI_DOyDaT6iWJ5ZOb7WGpNZ9FT6ZpXPWyP1nDxWXLLr/pub?start=false&loop=false&delayms=3000)
 
 Break for 15 minutes
 
-- **Session 2: 10:00-10:45 Using GPUs at NRIS**
+- **Session 2: 10:00-10:45 Using GPUs at NRIS** (J. Nordmoen)
   - [Slides can be found here](https://docs.google.com/presentation/d/e/2PACX-1vSz2-a0FzWkMgSICvQpDAXcCgVcyMryimjlZGI_DOyDaT6iWJ5ZOb7WGpNZ9FT6ZpXPWyP1nDxWXLLr/pub?start=false&loop=false&delayms=3000)
 
 Break for 15 minutes
 
-- **Session 3: 11:00-11:45 Practical introduction to using GPUs part 1**
+- **Session 3: 11:00-11:45 Practical introduction to using GPUs** (S.R. Jensen)
 
 Break for 15 minutes
 
-- **Session 4: 12:00-12:45 Practical introduction to using GPUs part 2**
+- **Session 4: 12:00-12:45 Containers on HPC (part II): MPI and GPU** (S.R. Jensen)
 
 - **Session Q&A: 12:45-13:00 Questions & Answers**
 
