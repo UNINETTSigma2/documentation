@@ -134,6 +134,12 @@ memory consumption varies over time.
 ![Memory high water mark in the Slurm browser](img/slurmbrowser-memory.jpg "Memory high water mark in the Slurm browser")
 
 
+### Using top
+
+While the job is running, find out on which node(s) it runs using `squeue -u $USER`,
+then `ssh` into one of the listed compute nodes and run `top -u $USER`.
+
+
 ### By checking the Slurm output generated with your job
 
 We can use the following example script (adapt `--account=nn____k`; this is tested on Saga):
@@ -297,7 +303,7 @@ You can profile your job using {ref}`Arm Performance Reports <arm-performance-re
 Here is an example script (adapt `--account=nn____k`; this is tested on Saga):
 ```{code-block}
 ---
-emphasize-lines: 11-13, 15
+emphasize-lines: 11-12, 14
 ---
 #!/bin/bash
 
@@ -309,9 +315,8 @@ emphasize-lines: 11-13, 15
 #SBATCH --mem-per-cpu=3500M
 #SBATCH --ntasks=1
 
-module load Arm-PerfReports/20.0.3
-echo "set sysroot /" > gdbfile
-export ALLINEA_DEBUGGER_USER_FILE=gdbfile
+module purge
+module load Arm-Forge/21.1
 
 perf-report ./mybinary
 ```

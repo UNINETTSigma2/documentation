@@ -51,7 +51,7 @@ accounted for both CPU and memory usage, as well as usage of GPUs.
 this will change soon.)
 
 This also means that it is important that you
-[do not ask for a lot more memory than you need](choosing_memory_settings.md),
+{ref}`do not ask for a lot more memory than you need <choosing-memory-settings>`,
 otherwise you can get billed
 for a lot more than you use, and your jobs may queue for a lot longer than you
 would like to. In addition this can also block resources for others.
