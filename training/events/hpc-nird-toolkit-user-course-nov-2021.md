@@ -60,8 +60,7 @@ Participants may choose the lectures which they are interested in.
 ## **Registration**
 
 The course is free of charge and is organised by the NRIS partners Sigma2, UiB, UiO & UiT.
-**Registration deadline for the course is October 20th.**
-**Register your participation [here](https://skjemaker.app.uib.no/view.php?id=10882801)**
+**Registration is closed**
 
 
 ## Code of Conduct
@@ -100,6 +99,7 @@ Break for 10 minutes
 Break for 10 minutes
 
 - **Session 4: 12:15-12:45 HPC through a web browser**
+- [Slides can be found here](https://drive.google.com/file/d/1ABlMjIxz4wvOaNDe2aAzizS3W3ZPLew_/view?usp=sharing)
 
 - **Session Q&A: 12:45-13:00 Questions & Answers**
 
@@ -111,10 +111,12 @@ Break for 10 minutes
 - **Get ready: 08:50-09:00 Connect to zoom meeting**
 
 - **Session 1: 09:00-09:45 Optimization of codes and batch script (part I)**
+- [Slides can be found here](https://drive.google.com/file/d/1jSfdYK0WdHfMYICS-AZ30qsW8yp5MYpg/view?usp=sharing)
 
 Break for 10 minutes
 
 - **Session 2: 09:55-10:30 Optimization of codes and batch script (part II)**
+- [Slides can be found here](https://drive.google.com/file/d/1jy6wvidIuHb8aWpA1pN0qd7ULm7ta4Yt/view?usp=sharing)
 
 Break for 10 minutes
 
