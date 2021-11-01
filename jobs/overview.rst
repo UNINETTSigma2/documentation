@@ -11,6 +11,7 @@ Running jobs
    job_scripts.md
    monitoring.md
    choosing-memory-settings.md
+   choosing-number-of-cores.md
    common_job_failures.md
    performance.md
    mkl.md

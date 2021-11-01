@@ -118,11 +118,17 @@ Break for 10 minutes
 
 Break for 10 minutes
 
-- **Session 3: 10:40-11:20 Optimizing use of memory and CPUs**
+- **Session 3: 10:40-11:20 How to choose memory and number of cores (part I)** (R. Bast)
+  - [Slides](https://cicero.xyz/v3/remark/0.14.0/github.com/bast/talk-better-resource-usage/main/talk.md/)
+  - [Tutorial about memory](https://documentation.sigma2.no/jobs/choosing-memory-settings.html)
+  - [Tutorial about cores](https://documentation.sigma2.no/jobs/choosing-number-of-cores.html)
 
 Break for 10 minutes
 
-- **Session 4: 11:30-12:10 Profiling memory and CPU resource usage**
+- **Session 4: 11:30-12:10 How to choose memory and number of cores (part II)** (R. Bast)
+  - [Slides](https://cicero.xyz/v3/remark/0.14.0/github.com/bast/talk-better-resource-usage/main/talk.md/)
+  - [Tutorial about memory](https://documentation.sigma2.no/jobs/choosing-memory-settings.html)
+  - [Tutorial about cores](https://documentation.sigma2.no/jobs/choosing-number-of-cores.html)
 
 Break for 10 minutes
 
@@ -154,10 +160,12 @@ Break for 10 minutes
 - **Get ready: 08:50-09:00 Connect to zoom meeting**
 
 - **Session 1: 09:00-09:45 Introduction to GPU computing**
+  - [Slides can be found here](https://docs.google.com/presentation/d/e/2PACX-1vSz2-a0FzWkMgSICvQpDAXcCgVcyMryimjlZGI_DOyDaT6iWJ5ZOb7WGpNZ9FT6ZpXPWyP1nDxWXLLr/pub?start=false&loop=false&delayms=3000)
 
 Break for 15 minutes
 
 - **Session 2: 10:00-10:45 Using GPUs at NRIS**
+  - [Slides can be found here](https://docs.google.com/presentation/d/e/2PACX-1vSz2-a0FzWkMgSICvQpDAXcCgVcyMryimjlZGI_DOyDaT6iWJ5ZOb7WGpNZ9FT6ZpXPWyP1nDxWXLLr/pub?start=false&loop=false&delayms=3000)
 
 Break for 15 minutes
 
