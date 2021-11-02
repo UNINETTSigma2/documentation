@@ -110,12 +110,12 @@ Break for 10 minutes
 
 - **Get ready: 08:50-09:00 Connect to zoom meeting**
 
-- **Session 1: 09:00-09:45 Optimization of codes and batch script (part I)**
+- **Session 1: 09:00-09:45 Effective use of HPC resources part I (basic)** (O. W. Saastad)
 - [Slides can be found here](https://drive.google.com/file/d/1jSfdYK0WdHfMYICS-AZ30qsW8yp5MYpg/view?usp=sharing)
 
 Break for 10 minutes
 
-- **Session 2: 09:55-10:30 Optimization of codes and batch script (part II)**
+- **Session 2: 09:55-10:30 Effective use use of HPC resources part II (intermediate)** (O. W. Saastad)
 - [Slides can be found here](https://drive.google.com/file/d/1jy6wvidIuHb8aWpA1pN0qd7ULm7ta4Yt/view?usp=sharing)
 
 Break for 10 minutes
