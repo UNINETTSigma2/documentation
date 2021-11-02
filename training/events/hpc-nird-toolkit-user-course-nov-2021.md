@@ -1,3 +1,5 @@
+(training-2021-autumn)=
+
 # HPC and NIRD toolkit user course November 2021
 
 In November 2021, the Norwegian Research Infrastructure Services **NRIS**
