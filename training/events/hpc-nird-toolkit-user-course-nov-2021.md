@@ -137,6 +137,7 @@ Break for 10 minutes
 Break for 10 minutes
 
 - **Session 5: 12:20-12:50 Optimization of codes: Usecase**
+  - [Slides can be found here](https://drive.google.com/file/d/17cTSutG7qm9_sIaa4XcJzOpxZlooGtWS/view?usp=sharing)
 - **Session Q&A: 12:50-13:00 Questions & Answers**
 
 
