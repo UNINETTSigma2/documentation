@@ -1,7 +1,3 @@
----
-orphan: true
----
-
 (training-2021-autumn)=
 
 # HPC and NIRD toolkit user course November 2021
