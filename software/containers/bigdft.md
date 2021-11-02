@@ -1,5 +1,5 @@
 (bigdft-cuda-example)=
-# Real world container example: BigDFT
+# BigDFT with MPI and CUDA
 
 ```{note}
 Parts of the following example require access to NVIDIA GPU resources. It has been tested
@@ -38,7 +38,7 @@ directory with the `SINGULARITY_CACHEDIR` environment variable, or clean up the 
 regularly with `singularity cache clean`.
 ```
 
-## MPI + OpenMP example
+## MPI + OpenMP version
 
 The BigDFT container comes bundled with a couple of test cases that can be used to verify
 that everything works correctly. We will start by extracting the necessary input files
@@ -124,7 +124,7 @@ Remarks: !!map
 ```
 To exit the container, type `exit` or press `Ctrl-D`.
 
-## CUDA example
+## CUDA version
 
 We will now run the same example using the CUDA version of BigDFT. We again copy the
 bundled input files from within the container, this time the `GPU` directory (see

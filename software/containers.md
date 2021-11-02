@@ -290,7 +290,11 @@ Now we use binding to attach local storage and then the container would have acc
 
 ## Real world container examples
 
-- [BigDFT with MPI and CUDA](containers/bigdft.md)
+```{eval-rst}
+.. toctree::
+    :maxdepth: 1
 
+    containers/bigdft.md
+```
 ## Other notes
 ### singularity cache
