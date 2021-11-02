@@ -46,7 +46,7 @@
 - please clarify what one should do on a login node
     - login nodes are the entry point for all users
     - they are shared by many users (meaning many users are using these at the same time)
-    - also for code developement.
+    - also for code development.
     - therefore login nodes shall only be used for lightweight work (transferring data, organising files/directories, creating jobs, managing jobs, ...)
     - some very little work (quick compiling, a few seconds test runs) may be ok too, but if one is unsure how intrusive some work would be it is better to launch an interactive job on the cluster
       - if the compilation needs 8 cores and takes 2 hours, I would also submit the compilation to a compute node
@@ -150,7 +150,7 @@ hostname
 
 - How many cores a node can have?
     - [Details](https://documentation.sigma2.no/hpc_machines/hardware_overview.html#comparison-between-current-hardware) from the official documentation
-    - Tricky question, what is a core ? Covered tomorrow. The command lscpu report virtual (aka logical) cores also. This is often refered to as SMT-2, common on x86-64 processors. Will go through this tomorrow.
+    - Tricky question, what is a core ? Covered tomorrow. The command lscpu report virtual (aka logical) cores also. This is often referred to as SMT-2, common on x86-64 processors. Will go through this tomorrow.
     - for saga [here](https://documentation.sigma2.no/hpc_machines/saga.html?highlight=login%20nodes)
     - Saga: 24/40/52/64
     - Fram: 32
@@ -206,7 +206,7 @@ hostname
 - Are you typing these commands in command prompt in your laptop?
     - Yes, he's using linux so it's in the terminal which is the same as a command prompt, just named differently
     - When I tried to do in my command prompt, it shows this error: 'scp' is not recognized as an internal or external command, operable program or batch file.
-        - That's because you don't have `scp` installed on your system, you can download the install file frome [here](https://winscp.net/eng/index.php?)
+        - That's because you don't have `scp` installed on your system, you can download the install file from [here](https://winscp.net/eng/index.php?)
         - thanks but i have winscp intalled on my windows
         - do i have to go to that directory where it is installed?
         - You can try, I'm not a Windows user so if you have already installed it I don't know why it's not being recognized, please let me know how it went when you ran it from its directory
@@ -226,12 +226,12 @@ hostname
     - Yes, both `scp` and `rsync` is installed on all of our clusters
         - Saga, Fram and Betzy
 
-- How can we percisely calculate job running time since it may terminate or reimbrushed?
+- How can we precisely calculate job running time since it may terminate or reimbrushed?
     - You can't, but you can give it what you think is too much time and then note down how long it took and adjust the requested time to something just slightly above so you have some margin for next time
     - Keep in mind that asking for too much time will give you a lower priority in the queue, so try to adjust it once you know how much time is required
     - It will benefit you as well as all other users
 
-- Can you say something on the exit code on the slurm file ? does 0:0 means job excuted sucesfully or?
+- Can you say something on the exit code on the slurm file ? does 0:0 means job executed successfully or?
     - An exit code of `0` means that the job exited successfully
     - Within Slurm the exit code is reported as `<code>:<task>` which is used to show how each task exited, so if you run multiple tasks you can see if every task exited successfully or if any exited with a different code
 
@@ -346,7 +346,7 @@ hostname
   - thanks for feedback, I will raise this issue
 
 - is the program only for genomics?
-  - Yes. We are showing a prototype and I will comback about including more tools
+  - Yes. We are showing a prototype and I will comeback about including more tools
 
 - Can you save the sbatch scripts created by the Web interface?
   - they are always created but the web frontend will point you where you can find it on the cluster
@@ -396,7 +396,7 @@ One thing you particularly enjoyed:
 - agree with the person before (error fixing during the lesson)
 - pace was nice.
 - the content is on an appropriate level for beginners
-- good content webapge with lots of info
+- good content webpage with lots of info
 
 One thing we should change/improve for next time:
 - the whole thing is too fast. if you lose one point you will be totally lost.
