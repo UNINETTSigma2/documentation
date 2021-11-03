@@ -201,17 +201,22 @@ Have you ever used any of these?
                 - :+1:
 
 - Radovan just said "you asked for 16 cores, but there are atually 20 cores, so 4 are wasted". Could anyone elaborate on this? Why 4 are wasted? Won't them be used by other users?
-    -If you use only 16 cores, then you have to pay for 20 cores.
+    - If you use only 16 cores, then you have to pay for 20 cores.
     - That is true, the user requesting 16 cores are not wasting the 4 remaining cores, but they are not using the resources effectively either
     - If everyone asked for only 16 cores then finding work to place on these 4 cores could be really difficult resulting in longer queuing times
     - On Saga: no problem, you can ask for as many cores as you like and the remaining cores can be used by others.
     - On Fram/Betzy: jobs are allocated as _full_ nodes, so here remaining cores will actually be wasted
+    - [name=Radovan] sorry I was imprecise when speaking but what really
+      happened is that people asked for an exclusive node and 16 tasks per node
+      so in that case the 4 processors possibly were wasted.
 
 - So for Fram, you should always ask for 32 cores if you specify cores per node?
     - On FRAM we ask for a whole nodes (inbstead of cores by number), [more details](https://documentation.sigma2.no/jobs/job_types/fram_job_types.html)
     - so e.g: --ntasks=256 --ntasks-per-node=16 will automatically assign 16 nodes using all 32 cores each?
     -Yes this is correct for ntasks=256
     - Sorry I am confused again... if the node always uses (or at least reserves) all 32 cores on the node, what does the --ntasks-per-node really do? Why isn't there always 32 tasks-per-node and 8 nodes instead? (in the example of --ntasks=256)
+      - It is a good question. If we always allocate full nodes, we could simply divide the number of tasks by the number of cores per node. But some codes
+        need a smaller --ntasks-per-node to "stretch" to have access to more memory.
 
 - could you give examples for queing times for different sized jobs? e.g. 1 cpu - low mem jobs vs. 40 cpu - full avail mem jobs per node (i know this depends on the workload, just some experience)
     - User experience: I got 128 nodes for 2 days on Betzy with 0 queue time a few days ago. But a few days before that, I had to wait for two days to get 128 nodes for a few hours. I guess the queue time depends on many factors!
