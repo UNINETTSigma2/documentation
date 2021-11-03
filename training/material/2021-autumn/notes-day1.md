@@ -383,10 +383,13 @@ hostname
     - The workflows are not more than chains of operations executed by different tools in the system. As long as we have the tools installed, we can run them separately but also combine them and produce a workflow. In turn, the framework Galaxy is quite complex to be installed by a single person. This is why we installed it for NRIS community.
 
 - Could you please provide the fully commented version of the final MPI parallel python code? and explain how to manage tabs and indentations correctly in vim? especially useful for users who are used to prepare scripts on notepad+ and then upload them to server.
+    - https://github.com/Sabryr/HPC_teaching_scripts/blob/master/pi-mpi.py
 
 - one thing I missed (or maybe did not hear?): where and how to determine where output files and error files are produced when submitting a script? Overall, it would have been nice to have a little overview on HOW to organise yourself on a cluster: where to put scripts, where scripts outputs etc...
+    - Unless you change the jobscript to point to somewhare else, it will be in the same directory as the directory job is submitted from.
 
 - Can you explain the difference between --ntasks and --nodes in #SBASH parameters
+    - `--node` refer to a pizza-box I showed, it is a computer. Inside that there are two processors with cores. On SAGA there 40 cores each on a processor on a normal node. You could use the `sinfo` command to find this out. `--ntasks` refer to the cores.  
 
 
 ## Feedback for the day
