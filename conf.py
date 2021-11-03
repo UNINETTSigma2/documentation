@@ -76,4 +76,5 @@ linkcheck_ignore = [
     r'.*slurmbrowser.*',
     'http://www.linuxconfig.org/Bash_scripting_Tutorial',
     'http://www.wannier.org',
+    'https://hpc.llnl.gov/\d+',  # some problem with SSL certificate not recognized by CI
 ]
