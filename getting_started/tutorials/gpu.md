@@ -51,7 +51,7 @@ You can run the `sinfo` command to check the available partitions on Saga:
 [me@login.SAGA]$ sinfo
 ```
 ```{eval-rst}
-.. literalinclude:: gpu/sinfo.out
+.. literalinclude:: gpu/outputs/sinfo.out
     :emphasize-lines: 9-11
 ```
 
@@ -103,7 +103,7 @@ the `nvidia-smi` command (this is kind of the `top` equivalent for Nvidia GPUs):
 [me@c7-8.SAGA]$ nvidia-smi
 ```
 ```{eval-rst}
-.. literalinclude:: gpu/nvidia-smi.out
+.. literalinclude:: gpu/outputs/nvidia-smi.out
     :emphasize-lines: 3,9,19
 ```
 
@@ -125,12 +125,16 @@ in our guide on {ref}`interactive jobs <interactive-jobs>`.
 
 ## Simple GPU test runs
 
+In the following we present a few minimal standalone code examples using different
+acceleration strategies and programming languages. The purpose of all these examples
+is the same (compile, run and verify), so you can choose the version that suites you best.
+
 ```{eval-rst}
 .. toctree::
     :maxdepth: 1
 
-    gpu/python_tensorflow.md
-    gpu/c_cuda.md
+    gpu/tensorflow.md
+    gpu/cuda.md
 ```
 
 

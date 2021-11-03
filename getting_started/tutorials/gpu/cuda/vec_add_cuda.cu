@@ -14,9 +14,9 @@ __global__ void add(const float* a, const float* b, float* c, const size_t n) {
 }
 
 int main(int argc, char* argv[]) {
-    printf("ENTER MAIN");
+    printf("ENTER MAIN\n");
     // Number of elements to compute over
-    const size_t num_elements = 100000;
+    const size_t num_elements = 1000000;
 
     // Allocate memory that can be accessed both on host and device
     float* a;
@@ -53,6 +53,6 @@ int main(int argc, char* argv[]) {
     cudaFree(b);
     cudaFree(c);
 
-    printf("EXIT SUCCESS");
+    printf("EXIT SUCCESS\n");
     return EXIT_SUCCESS;
 }

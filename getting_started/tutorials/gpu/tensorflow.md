@@ -11,12 +11,12 @@ We will use the following simple calculation in Python and `TensorFlow` to test
 the GPUs of Saga:
 
 ```{eval-rst} 
-.. literalinclude:: gpu_intro.py
+.. literalinclude:: tensorflow/gpu_intro.py
   :language: python
 ```
 
 ```{eval-rst} 
-:download:`gpu_intro.py <./gpu_intro.py>`
+:download:`gpu_intro.py <./tensorflow/gpu_intro.py>`
 ```
 
 To run this we will first have to create a Slurm script in which we will request
@@ -26,11 +26,11 @@ Use the following to create `submit_gpu.sh` (remember to substitute your project
 number under `--account`):
 
 ```{eval-rst} 
-.. literalinclude:: submit_cpu.sh
+.. literalinclude:: tensorflow/submit_cpu.sh
   :language: bash
 ```
 ```{eval-rst} 
-:download:`submit_gpu.sh <./submit_cpu.sh>`
+:download:`submit_gpu.sh <./tensorflow/submit_cpu.sh>`
 ```
 
 If we just run the above Slurm script with `sbatch submit_gpu.sh` the output
@@ -52,12 +52,12 @@ this we will change the Slurm script to include the `--partition=accel` and
 `--gpus=1`, as follows:
 
 ```{eval-rst} 
-.. literalinclude:: submit_gpu.sh
+.. literalinclude:: tensorflow/submit_gpu.sh
   :language: bash
   :emphasize-lines: 7,8
 ```
 ```{eval-rst} 
-:download:`submit_gpu.sh <./submit_gpu.sh>`
+:download:`submit_gpu.sh <./tensorflow/submit_gpu.sh>`
 ```
 
 We should now see the following output:
@@ -82,12 +82,12 @@ while we use the GPU. We will change the `submit_gpu.sh` Slurm script above to
 `submit_monitor.sh`, shown below:
 
 ```{eval-rst} 
-.. literalinclude:: submit_monitor.sh
+.. literalinclude:: tensorflow/submit_monitor.sh
   :language: bash
   :emphasize-lines: 19-21,25
 ```
 ```{eval-rst} 
-:download:`submit_monitor.sh <./submit_monitor.sh>`
+:download:`submit_monitor.sh <./tensorflow/submit_monitor.sh>`
 ```
 
 ```{note}
