@@ -56,8 +56,8 @@ Have you ever used any of these?
     - To add to the confusion, please note OpenMPI is a MPI version
     - [Here is a good article](http://pawangh.blogspot.com/2014/05/mpi-vs-openmp.html)
 
-- What is the difference beyween node and thread?
-    - A node is a seperate server, a thread is a virtual core on a CPU
+- What is the difference between node and thread?
+    - A node is a separate server, a thread is a virtual core on a CPU
     - So a server/node can have for example 32 cores but 64 virtual cores, aka threads
     - Threading is a way to increase the performance of a CPU without adding more physical cores
 
@@ -164,7 +164,7 @@ Have you ever used any of these?
     - As can be seen Saga has 8 "big mem" nodes with 384 GiB of memory so the theoretical maximum there is 384 GiB all on one core or `384 / 40 ≃ 9GiB` per core
 
 - what's the difference between memory (mem) and virtual memory (vmem) when looking at a job ressource report?
-    - Are you refering to the log file created at the end of the job ?
+    - Are you referring to the log file created at the end of the job ?
     - yes, the output file (or when checking job stats after it has ended e.g. I was used to use qstat jobid)
         - Description of each field is [here](https://slurm.schedmd.com/sacct.html), I see two virtual memory realted fields there (MaxVMSize and AveVMSize).
         - These refers to RAM usage and not SWAP (on disks) if that is what you were wondering
@@ -235,12 +235,12 @@ Have you ever used any of these?
         - if `ntasks=N` and `cpus-per-task=n` then "number of cores requested" = N*n
 
 - About test datasets. My programs need to detect a pattern in the whole dataset (genome), and then it get error because the truncated version is "not complete". How would you approach this? Maybe I misunderstand my own problem.
-    - For this specific example, not truncate but partitioning is the solution. i.e. finde the fastq boundry and split.
+    - For this specific example, not truncate but partitioning is the solution. i.e. finde the fastq boundary and split.
     - Or you could setup the test using a smaller genome.
 
 - If I ask for 5 minutes and 16 CPU (or lots of memory), will I get charged for the memory, even if the job crashes after 5 minutes?
     - Yes, for the 5min the job ran
-    - But the 5 min untill the crash resources will be reserved (for the whole resource request).
+    - But the 5 min until the crash resources will be reserved (for the whole resource request).
 
 - Core VS node. Are nodes a group of cores? are nodes "the restaurants" and cores "the chairs"?
     - Restaurant: full cluster (Saga, Betzy, Fram)
@@ -266,7 +266,7 @@ Have you ever used any of these?
     - Ah, I see. So for doing the same thing on Fram, what we need to do is to adjust the number of tasks and tasks-per-node that we ask for until we land on an appropriate memory usage?
 
 - is the monitoring of memory with `time` reliable for executables running in parallel (multi-node)? This is non-mpi stuff (Linda-parallelized Gaussian).
-    - You could aslo get similar info from SLURM (try the following for the job Radovan ran)
+    - You could also get similar info from SLURM (try the following for the job Radovan ran)
         - sacct -j  4318034 -o AveCPU,AvePages,AveRSS,AveVMSize,MaxVMSizeNode,MaxVMSizeTask
             - uhm... results in an empty table (on saga, with my job number, of course)
             - May the job number not exact match (please share if it is OK)
