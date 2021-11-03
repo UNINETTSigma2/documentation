@@ -151,10 +151,12 @@ Break for 10 minutes
 Break for 10 minutes
 
 - **Session 2: 10:35-11:30 NIRD Toolkit (part I)**
+   - [Slides can be found here](https://drive.google.com/file/d/1bv7ztgc1HChwlfkfet4MgjsYA51xpYZF/view?usp=sharing)
 
 Break for 10 minutes
 
 - **Session 3: 11:40-12:40 NIRD Toolkit (part II)**
+   - [Slides can be found here](https://drive.google.com/file/d/1-_wQgE5-WHbvQicJiLPS75QNdJpG3RrS/view?usp=sharing)
 
 Break for 10 minutes
 
