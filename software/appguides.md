@@ -23,4 +23,5 @@ module system, and information about changes in application software see
     * [R](userinstallsw/R.md)
     * [Schrödinger](application_guides/schrodinger/schrodinger.md)
     * [VASP](application_guides/vasp.md)
+    * [VisIt](application_guides/visit.rst)
     * [WRF](application_guides/wrf.md)
