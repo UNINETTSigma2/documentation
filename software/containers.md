@@ -49,10 +49,18 @@ immediately available on your command line (no `module load` necessary):
 [SAGA]$ singularity --version
 singularity version 3.6.4-1.el7
 ```
-
-
-
 ## How to find container images
+ - [Docker hub](https://hub.docker.com/)
+ - [NVidia](https://ngc.nvidia.com/catalog/containers)
+ - [Singularity Cloud](https://cloud.sylabs.io/library)
+ - [Singularity Hub](https://singularity-hub.org/)
+ - [RedHat](https://quay.io/)
+ - [BioContainers](https://biocontainers.pro/)
+ - [AMD](https://www.amd.com/en/technologies/infinity-hub)
+ - From software developers
+
+
+## How to get container images
 
 Singularity images can be fetched from the web using the `singularity pull` command,
 which will download a SIF (Singularity Image Format) file to your current directory.
@@ -203,9 +211,6 @@ is):
 #SBATCH --mem-per-cpu=1000M
 #SBATCH --time=00:03:00
 
-echo
-echo "check that we can read the current directory from the container:"
-singularity exec hello-world.sif ls
 
 echo
 echo "what is the operating system on the host?"
