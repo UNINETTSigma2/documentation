@@ -5,6 +5,7 @@
 
 - {ref}`training-2021-autumn`
   - {ref}`training-2021-autumn-notes-day1`
+  - {ref}`training-2021-autumn-notes-day2`
 
 - [March 2021 course](https://wiki.uib.no/hpcdoc/index.php/HPC_and_NIRD_toolkit_user_course_March_2021)
   - [Slides and recordings](https://drive.google.com/drive/u/1/folders/1Umw7Ag6dFC3ZRffS3FHZJpHFhjId5mXT)

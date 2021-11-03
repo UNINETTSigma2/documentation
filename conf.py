@@ -77,4 +77,5 @@ linkcheck_ignore = [
     'http://www.linuxconfig.org/Bash_scripting_Tutorial',
     'http://www.wannier.org',
     'https://hpc.llnl.gov/training/tutorials/introduction-parallel-computing-tutorial#ExamplesPI',  # some problem with SSL certificate not recognized by CI
+    'https://hpc.llnl.gov/training/tutorials/introduction-parallel-computing-tutorial#ModelsOverview',  # some problem with SSL certificate not recognized by CI
 ]
