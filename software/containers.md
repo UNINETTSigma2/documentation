@@ -211,9 +211,6 @@ is):
 #SBATCH --mem-per-cpu=1000M
 #SBATCH --time=00:03:00
 
-echo
-echo "check that we can read the current directory from the container:"
-singularity exec hello-world.sif ls
 
 echo
 echo "what is the operating system on the host?"
