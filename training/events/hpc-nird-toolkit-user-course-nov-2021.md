@@ -146,6 +146,7 @@ Break for 10 minutes
 - **Get ready: 08:50-09:00 Connect to zoom meeting**
 
 - **Session 1: 09:00-10:20 Containers on HPC (part I)**
+    - [Course material](https://documentation.sigma2.no/software/containers.html)
 
 Break for 10 minutes
 
