@@ -52,7 +52,7 @@ orphan: true
     - they are shared by many users (meaning many users are using these at the same time)
     - also for code development.
     - therefore login nodes shall only be used for lightweight work (transferring data, organising files/directories, creating jobs, managing jobs, ...)
-    - some very little work (quick compiling, a few seconds test runs) may be ok too, but if one is unsure how intrusive some work would be it is better to launch an interactive job on the cluster
+    - some very little work (quick compiling, a few seconds test runs) may be OK too, but if one is unsure how intrusive some work would be it is better to launch an interactive job on the cluster
       - if the compilation needs 8 cores and takes 2 hours, I would also submit the compilation to a compute node
 
 - is the home folder `/cluster/home/somebody` accessible from the login node?
@@ -117,11 +117,11 @@ hostname
       - click on "raw", you land here: <https://raw.githubusercontent.com/Sabryr/HPC_teaching_scripts/master/example-job.sh>
       - now you can download directly with `wget`, e.g.: `wget https://raw.githubusercontent.com/Sabryr/HPC_teaching_scripts/master/example-job.sh` - this will download the file and create the file in your current folder (on saga or wherever)
 
-- Is there an easy explanation of the difference between cores, nodes and pizzaboxes?
-    - pizzabox = every box in the rack (the hardware)
-    - node = a computer unit with CPUs and memory (if you prefer, a name for every pizzabox)
+- Is there an easy explanation of the difference between cores, nodes and postboxes?
+    - postboxes = every box in the rack (the hardware)
+    - node = a computer unit with Cups and memory (if you prefer, a name for every postboxes)
     - cores = processors in each node, to compute a task
-    - beware of the term "CPU", it can have many different meanings. In hardware specs, a CPU typically has several cores/threads, but in Slurm "cpu" means core
+    - beware of the term "CPU", it can have many different meanings. In hardware specs, a CPU typically has several cores/threads, but in Slurm "CPU" means core
     - Cores come in different flavors, it will  be covered tomorrow.
 
 - Getting error "can't write on swap file" when creating example.sh by vim
@@ -167,7 +167,7 @@ hostname
     - You can read more about [Slurm scripts here](https://documentation.sigma2.no/jobs/job_scripts.html)
     - Shortly - these are scripts which inform the cluster what command(s) shall be executed and what resources shall be used when it is being executed (memory, time, etc)
 
-- If the module we are intested is not in the module list, how is it posssible to call it?
+- If the module we are interested is not in the module list, how is it possible to call it?
     - The easiest way to proceed is to contact us at support@nris.no and we will help you with the specific software you require
     - but just to clarify: you meant that you would like a module and cannot find it in `module avail`?
         - yes that was what I meant, if it is not in the module avail - list?
@@ -178,10 +178,10 @@ hostname
 
 - what does it mean for module load and module avail?
   - module load activates the environment of the module and makes it visible so that you can access its binaries and libraries
-  - `module avail somename` will list you all modules that contain "somename" but it will not load them, only show you which ones exist
+  - `module avail somename` will list you all modules that contain "some-name" but it will not load them, only show you which ones exist
 
 - Can we open the graphic user interface? like fluent?
-    - X11 fowarding ? ssh -Y (please use -X if possible, Y is less safe, but works more often).See the documentation <https://documentation.sigma2.no/getting_help/faq.html?highlight=graphical%20user%20interface#graphical-interfaces>
+    - X11 forwarding ? ssh -Y (please use -X if possible, Y is less safe, but works more often).See the documentation <https://documentation.sigma2.no/getting_help/faq.html?highlight=graphical%20user%20interface#graphical-interfaces>
     - VNC (remote desktop)
         - I have already installed Tiger VNC and use it to submit my tasks on Fram. I am wondering how I can open Fluent there by GUI?
 - can we have conda on saga and have Env for one user
@@ -190,7 +190,7 @@ hostname
     - If you by "Env for one user" mean a unique environment for only your user, then yes.
       - and that's a good idea: unique environment for a user. I would even try to create a separate environment for each project (since projects can have different dependencies)
 
-- scp vs rsync - any difference on the usage or just a prefernce?
+- scp vs rsync - any difference on the usage or just a preference?
     - Rsync can pick up if stopped, it normally for larger transfers. Both uses ssh for transport.
 
 - Can I put a scp into a bash script before running a code?
@@ -203,19 +203,19 @@ hostname
              - ah now I get it, sorry: yes. the script will probably fail if it runs at 2 a.m. and you are not there to type the passphrase and it cannot find the decrypted key in its memory. one can give the unlocked private key probably a longer lifetime and one probably can use ssh agent to remember it for a while but I anticipate this to be difficult and not practical.
              - depending on the use case one could use some authentication tokens. so there are situations where one wants unsupervised authentication and it can be solved.
 
-- How about the support for using ftp or other related softwares?
+- How about the support for using ftp or other related software?
     - ftp is not secure, hence not allowed. Use scp or rsync.
     - not secure because data travels in plain text and it is easy to intercept it
 
 - Are you typing these commands in command prompt in your laptop?
-    - Yes, he's using linux so it's in the terminal which is the same as a command prompt, just named differently
-    - When I tried to do in my command prompt, it shows this error: 'scp' is not recognized as an internal or external command, operable program or batch file.
+    - Yes, he's using Linux so it's in the terminal which is the same as a command prompt, just named differently
+    - When I tried to do in my command prompt, it shows this error: 'scp' is not recognised as an internal or external command, operable program or batch file.
         - That's because you don't have `scp` installed on your system, you can download the install file from [here](https://winscp.net/eng/index.php?)
-        - thanks but i have winscp intalled on my windows
+        - thanks but i have winscp installed on my windows
         - do i have to go to that directory where it is installed?
-        - You can try, I'm not a Windows user so if you have already installed it I don't know why it's not being recognized, please let me know how it went when you ran it from its directory
-        - I stronly recommend to try <https://mobaxterm.mobatek.net/> on Windows which will give you a terminal, graphical connectivity, and also scp, all in one
-        - Yup, I use mobaxterm rather than putty, but I instaled winscp because file tranfer is slow on moba.
+        - You can try, I'm not a Windows user so if you have already installed it I don't know why it's not being recognised, please let me know how it went when you ran it from its directory
+        - I strongly recommend to try <https://mobaxterm.mobatek.net/> on Windows which will give you a terminal, graphical connectivity, and also scp, all in one
+        - Yup, I use mobaxterm rather than putty, but I installed winscp because file transfer is slow on moba.
           - ah. interesting to know.
 
 - Why should we not use scp command on the cluster? Maybe I misunderstood, but whenever we copy file , we should use scp on our laptop?
@@ -230,7 +230,7 @@ hostname
     - Yes, both `scp` and `rsync` is installed on all of our clusters
         - Saga, Fram and Betzy
 
-- How can we precisely calculate job running time since it may terminate or reimbrushed?
+- How can we precisely calculate job running time since it may terminate or reimbursed?
     - You can't, but you can give it what you think is too much time and then note down how long it took and adjust the requested time to something just slightly above so you have some margin for next time
     - Keep in mind that asking for too much time will give you a lower priority in the queue, so try to adjust it once you know how much time is required
     - It will benefit you as well as all other users
@@ -241,15 +241,15 @@ hostname
 
 - how do I exit the example-job.sh
     - Do you mean exit the file or cancel the job?
-    - exit the file, im unable to come back to the commad line
+    - exit the file, I'm unable to come back to the command line
        - did you open it with vim? if yes, then type ESCAPE, then type ":q!" (no saving) or ":wq" (with saving) and hit ENTER
        - I opened with vim, but the ESCAPE wq does not work, it just gets written in the file
        - try several times ESCAPE, then type ":wq" - it should work. otherwise one "brutal" way out is to close the terminal and reconnect to Saga
-       - unfortunately it still doesnt work, am I supposed to write it at the top of the file or at the bottom or where? Nothing really happens when i type ESCAPE
-         - we can also go to a breakout room and look at it via screenshare? when you hit escape, vim should go out of "insert mode" and then whatever you type should show up at the bottom of the screen as command to vim, not as something you type. please also double check that this is really vim and not perhaps nano.
-         - when i hit escape and try to type something i just get "error not an editor command" and thats it. I just ended the session because I dont know what else I can do
+       - unfortunately it still doesn't work, am I supposed to write it at the top of the file or at the bottom or where? Nothing really happens when i type ESCAPE
+         - we can also go to a breakout room and look at it via screen-share? when you hit escape, vim should go out of "insert mode" and then whatever you type should show up at the bottom of the screen as command to vim, not as something you type. please also double check that this is really vim and not perhaps nano.
+         - when i hit escape and try to type something i just get "error not an editor command" and that's it. I just ended the session because I dint know what else I can do
              - does it show "Not an editor command:" and then something behind that that would give us clues?
-             - ok, I see that session ended. Well, happy to look at it on screenshare in a breakout room or after the course. If yes, please write at the bottom (I am watching there)
+             - OK, I see that session ended. Well, happy to look at it on screen-share in a breakout room or after the course. If yes, please write at the bottom (I am watching there)
 
 - What is Slurm?
     - <https://slurm.schedmd.com/>
@@ -268,9 +268,9 @@ hostname
     - `sleep` simply halts the program and waits for `X` number of seconds
     - It's very much like a timer, I use it if I want to queue something for later like this `sleep 10; echo "it has now passed 10 seconds"`
         - It does not use CPU while it wait.
-    - we only use it to simulate a running program without introducing and explaining a real program, to minimize confusion. in real life there is very rarely need to use the `sleep` command.
+    - we only use it to simulate a running program without introducing and explaining a real program, to minimise confusion. in real life there is very rarely need to use the `sleep` command.
 
-- At some point I heard Sabry said "if you ask more time you will be reimbursed, if the job finished before the allocated time" if that is true, so would it be wise to ask for reasonbly more time to finsh the job?
+- At some point I heard Sabry said "if you ask more time you will be reimbursed, if the job finished before the allocated time" if that is true, so would it be wise to ask for reasonably more time to finish the job?
     - Ask for some margin, but keep it sensible because you get placed further back in the queue if you ask for a lot of time
     - more about that tomorrow but yes, add some margin, perhaps 15-20%
 
@@ -280,7 +280,7 @@ hostname
   - we have some course material here: <https://coderefinery.github.io/reproducible-research/04-workflow-management/> but this would be for another day
   - do you know on which day this is covered? or not yet?
     - to my knowledge we did not consider teaching it this time. we should do a separate training event on this and also add this next time.
-    - ah, thanks. i hoped for that b/c i was running into some problems, but this is a topic for individual user support then. i'll have a look at the material.
+    - ah, thanks. i hoped for that b/c i was running into some problems, but this is a topic for individual user support then. I'll have a look at the material.
       - I recommend to send an email to support and we can go from there and help. We could also potentially offer extended support.
 
 - How do I exit the `watch` command?
@@ -296,9 +296,9 @@ hostname
           - Fram and Betzy have `htop` on compute nodes, Saga does not
              - great to know! I was testing only on Saga and didn't notice. I was in fact looking for htop and wishing it was there and nice to hear that it is (on some machines).
 
-- Is there VNC support for betzy by any chance?
+- Is there VNC support for Betzy by any chance?
     - Fram and Saga support remote desktops
-        - I've used it on fram, that's why I am wondering about betzy.
+        - I've used it on Fram, that's why I am wondering about Betzy.
     - More information [about remote desktop here](https://documentation.sigma2.no/getting_started/remote-desktop.html?highlight=vnc)
 
  - `python pi.py 10` What is 10 here?
@@ -343,7 +343,7 @@ hostname
   - It is on SAGA
     - is there any plan to have this also on other clusters?
         - Not at the moment as this is mainly for make it an easy entry point to HPC, not as a replacement for command line. If there is a need yes possible on other places.
-    - so the rest of today's session is mostly relevant for Saga users, not fram users?
+    - so the rest of today's session is mostly relevant for Saga users, not Fram users?
         - Correct.
 
 - font size is small for me... could you increase it? and I have a 27.5 in screen...
@@ -353,15 +353,15 @@ hostname
   - Yes. We are showing a prototype and I will comeback about including more tools
 
 - Can you save the sbatch scripts created by the Web interface?
-  - they are always created but the web frontend will point you where you can find it on the cluster
+  - they are always created but the web front end will point you where you can find it on the cluster
 
 - does "working space" in lifeportal corresponds to /cluster/work/? or what?
     - It creates its own working directory, but not exactly `/cluster/work/`
 
-- where is the link for webinterface?
+- where is the link for web-interface?
     - <https://lifeportal.saga.sigma2.no/>
 
-- Does having an accopund on SAGA grants an account on lifeportal? Or, can I use SAGA account to log on lifeportal?
+- Does having an account on SAGA grants an account on lifeportal? Or, can I use SAGA account to log on lifeportal?
   - in my understanding: yes, with your saga account you should be able to log in
       - I tried it with my SAGA credentials, but `Auto-registration failed, contact your local Galaxy administrator. Please enter an allowed domain email address for this server.`
       - Indeed my answer was wrong and during this prototype phase not all Saga accounts seem to be mapped to this service and you may need to contact support@nris.no to be added.
@@ -372,21 +372,21 @@ hostname
 - do the files have to be decompressed to work on lifeportal? i.e. could Sabry have run fastqc on fastq.gz files?
     - Yes, fastqz.gz could have been used instead as the groomer software accepts that format.
     - so that still means that sample files have to be uploaded one by one, e.g. upload individual fastq.gz files?
-    - Files can be uploaded as archives or as individual files. It depends on the software used . I.e. some software accepts archives (also compressed) some do not. At the moment if you upload an archive or compressed file it will not be defalted. But you can run a tool to deflate, which is not instlaled at the memoment. We can make it availabel if there is a request.
+    - Files can be uploaded as archives or as individual files. It depends on the software used . I.e. some software accepts archives (also compressed) some do not. At the moment if you upload an archive or compressed file it will not be deflated. But you can run a tool to deflate, which is not installed at the moment. We can make it available if there is a request.
 
 
 - Is there lessons on how to run scripts on the Galaxy Lifeportal on SAGA? So we can recreate the steps you did today to run the script.
     - <https://training.galaxyproject.org/>
     - <https://lifeportal.saga.sigma2.no/u/sabryr/h/sharednris>
 
-- is galaxy something we (users) can create for ouselves? I mean, can we implement workflows for applications other than what available now?
+- is galaxy something we (users) can create for ourselves? I mean, can we implement workflows for applications other than what available now?
     - The workflows are not more than chains of operations executed by different tools in the system. As long as we have the tools installed, we can run them separately but also combine them and produce a workflow. In turn, the framework Galaxy is quite complex to be installed by a single person. This is why we installed it for NRIS community.
 
 - Could you please provide the fully commented version of the final MPI parallel python code? and explain how to manage tabs and indentations correctly in vim? especially useful for users who are used to prepare scripts on notepad+ and then upload them to server.
     - https://github.com/Sabryr/HPC_teaching_scripts/blob/master/pi-mpi.py
 
 - one thing I missed (or maybe did not hear?): where and how to determine where output files and error files are produced when submitting a script? Overall, it would have been nice to have a little overview on HOW to organise yourself on a cluster: where to put scripts, where scripts outputs etc...
-    - Unless you change the jobscript to point to somewhare else, it will be in the same directory as the directory job is submitted from.
+    - Unless you change the job-script to point to somewhere else, it will be in the same directory as the directory job is submitted from.
 
 - Can you explain the difference between --ntasks and --nodes in #SBASH parameters
     - `--node` refer to a pizza-box I showed, it is a computer. Inside that there are two processors with cores. On SAGA there 40 cores each on a processor on a normal node. You could use the `sinfo` command to find this out. `--ntasks` refer to the cores.  
@@ -403,7 +403,7 @@ One thing you particularly enjoyed:
 - agree with the person before (error fixing during the lesson)
 - pace was nice.
 - the content is on an appropriate level for beginners
-- good content webpage with lots of info
+- good content web-page with lots of info
 
 One thing we should change/improve for next time:
 - the whole thing is too fast. if you lose one point you will be totally lost.
@@ -413,7 +413,7 @@ One thing we should change/improve for next time:
 - bit fast
 - perform some more testing of the demonstrations in advance, so that we can focus on the point of the demo instead of trying to follow along when solving unexpected errors
 - don't use vim, it is too hard for a beginner :-P
-- in particular for the terminal work, when there is a slightly complicated command output to analyze; show/tell which part that brings you to a certain conclusion
+- in particular for the terminal work, when there is a slightly complicated command output to analyse; show/tell which part that brings you to a certain conclusion
 - Generally, it was a bit complicated to follow what you were saying and the course content material, as it was complicated to navigate between the hackMD (and the many questions!) and the course content page, and you were not always following the same structure as the course content. Overall, much too fast for real beginners, but appropriate content and speed for people who have already used a cluster.
 - should have left the time for users to try out and do the exercises of the course page, but this makes the course longer.
 - I would love if things were a little bit more structured rather than just running a script with no explanation of the code there and being surprised by the output/error messages. The documents on the github page are good, but it would be more easier if we stick to the script. Also, the topics today were not that hard, but there was a flood of commands that we needed to use.
