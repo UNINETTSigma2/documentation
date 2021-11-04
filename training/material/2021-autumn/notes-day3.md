@@ -1,22 +1,14 @@
-# HPC and NIRD Toolkit User Course November 2021
+---
+orphan: true
+---
 
-:::info
-- NRIS : https://www.sigma2.no/nris
-- Our documentation https://documentation.sigma2.no
-- Course page: https://documentation.sigma2.no/training/events/hpc-nird-toolkit-user-course-nov-2021.html
-- This document (for questions): https://hackmd.io/@hpc/course-autumn-2021
-- We strive to follow the [Carpentry Code of Conduct](https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html#code-of-conduct-detailed-view)(CoC) to foster an inclusive and welcoming environment for everyone. Any CoC violation can be reported by sending an email to training@nris.no
-- Ask questions to the bottom
-- Old questions/answers are moved to https://hackmd.io/@hpc/course-autumn-2021-archive to keep this document not too long but at the end of the day we archive them to https://documentation.sigma2.no/training/material.html
-:::
+(training-2021-autumn-notes-day3)=
 
-Previous days'  notes archived to https://documentation.sigma2.no/training/material.html.
+# Questions, answers, and notes from day 3
 
-- Reactions in zoom client
-![](https://i.imgur.com/DKOlPQX.png)
 
-:::info
-### Day 3 Course materials
+## Links
+
 - Session 1: [Containers on HPC part I](https://documentation.sigma2.no/software/containers.html)
     - [Docker hub](https://hub.docker.com/)
     - [NVidia](https://ngc.nvidia.com/catalog/containers)
@@ -32,7 +24,7 @@ Previous days'  notes archived to https://documentation.sigma2.no/training/mater
 --[Nird Toolkit](https://apps.sigma2.no) 
 - Session 3: [Nird Toolkit part II Slides](https://drive.google.com/file/d/1-_wQgE5-WHbvQicJiLPS75QNdJpG3RrS/view?usp=sharing)
 - [NIRD Toolkit documentation](https://documentation.sigma2.no/nird_toolkit/overview.html)
-:::
+
 
 ## Ice breaker 
 
@@ -62,10 +54,7 @@ Target containers can be pulled by a URI of the following formats:
 - `oras://` a supporting OCI registry
 
 
-## Day 3 Q&A 
-
-
-
+## Questions and answers
 
 - What is container?
     - Think of it as a lightweight virtual machine.
@@ -74,7 +63,7 @@ Target containers can be pulled by a URI of the following formats:
 
 - Is it like docker or anaconda?
     - Docker is a type of container technology, while anaconda is not
-    - Anaconda manages the packages in the machine where it is running. A docker container is a capsule containing all the neccessary packages and dependecies needed for a tool to run, it can be then copied and started on a different machine.
+    - Anaconda manages the packages in the machine where it is running. A docker container is a capsule containing all the necessary packages and dependecies needed for a tool to run, it can be then copied and started on a different machine.
     - environments in conda may provide application level encapsulation (and some degree of portability: export list of installed packages to install them elsewhere ... might fail though (unknown/missed dependencies, needed compilation fails, etc.))
 
 - can you elaborate on the difference between conda environments and containers? on another cluster, I needed to load conda env each time I was executing apps, so I thought that this was to allow executional independence. But now I'm not sure anymore... what do conda env offer then?
@@ -89,7 +78,7 @@ Target containers can be pulled by a URI of the following formats:
   - Stupid mistake, typo... Sorry
 
 
-- If I want to compile some software to run on the HPC, the software contains a Makefile and instructions for how to compile it on for instance Ubuntu. For resolving the dependencies would it be best to use a container to replicate the enviroment used originally or try to resolve the dependencies using the modules already available on the HPC?
+- If I want to compile some software to run on the HPC, the software contains a Makefile and instructions for how to compile it on for instance Ubuntu. For resolving the dependencies would it be best to use a container to replicate the environment used originally or try to resolve the dependencies using the modules already available on the HPC?
     - A bit difficult to answer very shortly, both approaches have advantages, containers can be shared and then run anywhere (so others can reproduce your results). However, modules are easier to get started with and easier for us to help you with.
     - If you don't need reproducibility outside our systems it is easier with modules
         - Ok, thanks!
@@ -170,7 +159,7 @@ Target containers can be pulled by a URI of the following formats:
     - https://singularity.hpcng.org/admin-docs/master/installation.html#mac
         - Thanks. But this approach seems rather limited as it only runs from within a vagrantbox, so I was hoping there was another way to run it:-) 
             - Linux container runtimes like SingularityCE cannot run natively on Windows or Mac because of basic incompatibilities with the host kernel. (Contrary to a popular misconception, MacOS does not run on a Linux kernel. It runs on a kernel called Darwin originally forked from BSD.)
-            - Thanks. Do you by any chance know a nice way to bind a directory from the host machine to the vagrantbox, and to excecute commands within the vagrantbox on a command line fashin from the host?
+            - Thanks. Do you by any chance know a nice way to bind a directory from the host machine to the vagrantbox, and to execute commands within the vagrantbox on a command line fashin from the host?
                 - You may sync directories from the host: https://www.vagrantup.com/docs/synced-folders/basic_usage
                 - In general, use Mac to only build the container is a good practice
 
@@ -248,7 +237,8 @@ FATAL:   Failed to open image $HOME/.singularity/cache/blob/blobs/sha256/09815c5
         - ok, understood :+1: 
 
 ### Singularity on HPC above this line
----------------------------------
+
+
 ### NIRD Toolkit below this line
 
 - Will issues with setting up ncview fit into todays session? (I wasn't expecting this, but I was wondering since there is a vnc application in the nird toolkit)
@@ -258,7 +248,7 @@ FATAL:   Failed to open image $HOME/.singularity/cache/blob/blobs/sha256/09815c5
 
 - Anybody had a problem logging in to apps.sigma2.no with Feide? I get a "Service not activated" error with my NMBU Feide. The NMBU administrators are working on it but they had little clue what to do or how to activate "Uninett Sigma2 Apps".
     - If the feide administrators does not allow for NIRD toolkit services, the solution is to get a OpenIDP feide account, I think we have sent out some instruction on how to set up this guest feide accounts.j Let us know the eduppn of the guest feide account and we can update your profile on our side.
-    - Here is the message that you recieved via email *We also need your correct eduPPN in order to give you acces to the NIRD Toolkit hands-on session. Please see the information below in order to find your eduPPN    
+    - Here is the message that you received via email *We also need your correct eduPPN in order to give you acces to the NIRD Toolkit hands-on session. Please see the information below in order to find your eduPPN    
     - In order to use the NIRD Toolkit during the course you will need either a Feide account or a Feide OpenIDP guest account. See your eduPersonPrincipalName (eduPPN) at http://innsyn.feide.no.  You can create a Feide OpenIDP guest account at https://openidp.feide.no/. Those who are using Feide openidp guest account should go to minside.dataporten.no to find eduppn, and it is the field called “Secondary user identifiers* 
 
 - I can signin to apps.sigma2.no but when I try to access the apps I get the message "Service not activated. In order to use this service, a Feide administrator for your organization must activate it. Name of service: jupyterhub"
@@ -270,7 +260,7 @@ Users that are able to log in and access the toolkit, but not access services mu
     - e.g.  /cluster/work/users/$USER 
         - yes, and I guess the point is that the slurm job script is executed by compute nodes, so NIRD in not available there. Therefore, files have to be copied before the job start, and cannot be copied during the job (not even at the end of it).
             - That is correct
-                - a bit annoying, though, because it means that the file transfering cannot be automatically linked to job execution. right?
+                - a bit annoying, though, because it means that the file transferring cannot be automatically linked to job execution. right?
             - Correct. The main reason is slow IO. i.e. the access to data from compute node to NIRD mount is slow and it will be a bottle neck (slow down jobs)
                 - ok
 
