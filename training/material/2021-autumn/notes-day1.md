@@ -1,3 +1,5 @@
+# Questions, answers, and notes from day 3
+
 
 ## Ice breaker
 
