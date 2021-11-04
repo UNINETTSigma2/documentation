@@ -1,3 +1,4 @@
+(gpu-intro)=
 # Introduction to using GPU compute
 
 A GPU, or **G**raphics **P**rocessing **U**nit, is a computational unit, which
@@ -23,7 +24,7 @@ data, they are quite well suited for matrix calculations. For some indication of
 this we can compare the theoretical performance of one GPU with one CPU
 .
 
-| | AMD Epyc 7742 (Betzy) | Nvidia P100 (Saga) | Nvidia A100 |
+| | AMD Epyc 7742 (Betzy) | Nvidia P100 (Saga) | Nvidia A100 (Betzy)|
 |-|-----------------------|--------------------|-------------|
 | Half Precision | N/A | 18.7 TFLOPS | 78 TFLOPS |
 | Single Precision | 1,3 TFLOPS | 9,3 TFLOPS | 19.5 TFLOPS |
@@ -37,20 +38,38 @@ on accelerators between **`23x` and `190x`** compared to using only a CPU.
 
 ## Getting started
 
-Of the resources provided by us, only
-the {ref}`job_type_saga_accel` job type
-currently has GPUs available. To access these one has to select the correct
-partition as well as request one or more GPUs to utilize.
+To get started we first have to {ref}`ssh` into Saga:
+```console
+[me@mylaptop]$ ssh <username>@saga.sigma2.no
+```
+
+From the {ref}`hardware specification <saga>` we see that there should be 8 GPU
+nodes available on Saga, and from the available {ref}`job types <job_type_saga_accel>`
+we identify `--partition=accel` as the relevant hardware partition for GPU jobs.
+You can run the `sinfo` command to check the available partitions on Saga:
+
+```console
+[me@login.SAGA]$ sinfo
+```
+```{eval-rst}
+.. literalinclude:: gpu/outputs/sinfo.out
+    :emphasize-lines: 9-11
+```
+
+Here we see that the `accel` partition contains 8 nodes in total, 2 of which are
+unused at the moment (`idle`), 4 are fully occupied (`alloc`) and 2 are partially
+occupied (`mix`). We can also read from this that the maximum time limit for a GPU
+job is 14 days, which might be relevant for your production calculations.
 
 To select the correct partition use the `--partition=accel` flag with either
-{ref}`srun <interactive-jobs>`
-or in your
-{ref}`Slurm script <job-scripts>`.
-This flag
-will ensure that your job is only run on machines in the `accel` partition which
-have attached GPUs. However, to be able to actually interact with one or more
-GPUs we will have to also add `--gpus=N` which tells Slurm/`srun` that we
-would also like to use `N` GPUs (`N` can be a number between 1 and 4 on Saga).
+`salloc` ({ref}`interactive <interactive-jobs>`)
+or
+`sbatch` ({ref}`job script <job-scripts>`).
+This flag will ensure that your job is only run on machines in the `accel` partition
+which have attached GPUs. However, to be able to actually interact with one or more
+GPUs we will have to also add `--gpus=N` which tells Slurm that we would also like
+to use `N` GPUs (`N` can be a number between 1 and 4 on Saga since each node has 4
+GPUs).
 
 ```{tip}
 There are multiple ways of requesting GPUs a part from `--gpus=N`, such as
@@ -60,177 +79,76 @@ documentation](https://slurm.schedmd.com/srun.html) for more on how to specify
 the number of GPUs.
 ```
 
-## Connecting to the cluster
-
-To get started we first have to
-{ref}`ssh` into Saga:
-```bash
-$ ssh <username>@saga.sigma2.no
-```
-
 
 ## Interactive testing
 
 All projects should have access to GPU resources, and to that end we will start
 by simply testing that we can get access to a single GPU. To do this we will run
-an interactive job, on the `accel` partition and asking for a single GPU.
+an interactive job using the `salloc` command, on the `accel` partition and asking
+for a single GPU:
 
-```bash
-$ srun --ntasks=1 --mem-per-cpu=1G --time=00:02:00 --partition=accel --gpus=1 --qos=devel --account=<your project number> --pty bash -i
-$ nvidia-smi
+```console
+[me@login.SAGA]$ salloc --ntasks=1 --mem-per-cpu=1G --time=00:02:00 --partition=accel --gpus=1 --qos=devel --account=<your project number>
+salloc: Pending job allocation 4318997
+salloc: job 4318997 queued and waiting for resources
+salloc: job 4318997 has been allocated resources
+salloc: Granted job allocation 4318997
+salloc: Waiting for resource configuration
+salloc: Nodes c7-7 are ready for job
 ```
 
-The two commands above should result in something like:
+Once we land on the compute node we can inspect the GPU hardware with
+the `nvidia-smi` command (this is kind of the `top` equivalent for Nvidia GPUs):
 
-```bash
-Tue Mar 23 14:29:33 2021                                                       
-+-----------------------------------------------------------------------------+
-| NVIDIA-SMI 455.32.00    Driver Version: 455.32.00    CUDA Version: 11.1     |
-|-------------------------------+----------------------+----------------------+
-| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-|                               |                      |               MIG M. |
-|===============================+======================+======================|
-|   0  Tesla P100-PCIE...  Off  | 00000000:14:00.0 Off |                    0 |
-| N/A   33C    P0    30W / 250W |      0MiB / 16280MiB |      0%      Default |
-|                               |                      |                  N/A |
-+-------------------------------+----------------------+----------------------+
-                                                                               
-+-----------------------------------------------------------------------------+
-| Processes:                                                                  |
-|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
-|        ID   ID                                                   Usage      |
-|=============================================================================|
-|  No running processes found                                                 |
-+-----------------------------------------------------------------------------+
+```console
+[me@c7-8.SAGA]$ nvidia-smi
+```
+```{eval-rst}
+.. literalinclude:: gpu/outputs/nvidia-smi.out
+    :emphasize-lines: 3,9,19
 ```
 
-```{note}
+Here we can find useful things like CUDA library/driver version and the name of the
+graphics card (`Tesla P100-PCIE...`), but also information about currently
+running processes that are "GPU aware" (none at the moment). If you don't get any
+useful information out of the `nvidia-smi` command (e.g. `command not found` or
+`No devices were found`) you likely missed the `--partition=accel` and/or `--gpus=N`
+options in your Slurm command, which means that you won't actually have access to any
+GPU (even if there might be one physically on the machine).
+
+```{tip}
 In the above Slurm specification we combined `--qos=devel` with GPUs and
 interactive operations so that we can experiment with commands interactively.
 This can be a good way to perform short tests to ensure that libraries correctly
 pick up GPUs when developing your experiments. Read more about `--qos=devel`
-in our guide on {ref}`interactive-jobs`.
+in our guide on {ref}`interactive jobs <interactive-jobs>`.
 ```
 
+## Simple GPU test runs
 
-## Slurm script testing
+In the following we present a few minimal standalone code examples using different
+acceleration strategies and programming languages. The purpose of all these examples
+is the same (compile, run and verify), so you can choose the version that suites you best.
 
-The next thing that we will try to do is to utilize the
-`TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4` library to execute a very simple
-computation on the GPU. We could do the following interactively in Python, but
-to introduce both interactive `srun` and Slurm scripts we will now transition to
-a Slurm script (which can also make it a bit easier since we don't have to sit
-and wait for the interactive session to start).
+```{eval-rst}
+.. toctree::
+    :maxdepth: 1
 
-We will use the following simple calculation in Python and `Tensorflow` to test
-the GPUs of Saga:
-
-```{eval-rst} 
-.. literalinclude:: gpu/gpu_intro.py
-  :language: python
+    gpu/tensorflow.md
+    gpu/cuda.md
+    gpu/cuda-container.md
 ```
-
-```{eval-rst} 
-:download:`gpu_intro.py <./gpu/gpu_intro.py>`
-```
-
-To run this we will first have to create a Slurm script in which we will request
-resources. A good place to start is with a basic job
-script (see {ref}`job-scripts`).
-Use the following to create `submit_gpu.sh` (remember to substitute your project
-number under `--account`):
-
-```{eval-rst} 
-.. literalinclude:: gpu/submit_cpu.sh
-  :language: bash
-```
-```{eval-rst} 
-:download:`submit_gpu.sh <./gpu/submit_cpu.sh>`
-```
-
-If we just run the above Slurm script with `sbatch submit_gpu.sh` the output
-(found in the same directory as you executed the `sbatch` command with a name
-like `slurm-<job-id>.out`) will contain several errors as `Tensorflow` attempts
-to communicate with the GPU, however, the program will still run and give the
-following successful output:
-
-```bash
-Num GPUs Available:  0                   
-tf.Tensor(                               
-[[22. 28.]                               
- [49. 64.]], shape=(2, 2), dtype=float32)
-```
-
-So the above, eventually, ran fine, but did not report any GPUs. The reason for
-this is of course that we never asked for any GPUs in the first place. To remedy
-this we will change the Slurm script to include the `--partition=accel` and
-`--gpus=1`, as follows:
-
-```{eval-rst} 
-.. literalinclude:: gpu/submit_gpu.sh
-  :language: bash
-  :emphasize-lines: 7,8
-```
-```{eval-rst} 
-:download:`submit_gpu.sh <./gpu/submit_gpu.sh>`
-```
-
-We should now see the following output:
-
-```bash
-Num GPUs Available:  1                    
-tf.Tensor(                                
-[[22. 28.]                                
- [49. 64.]], shape=(2, 2), dtype=float32) 
-```
-
-However, with complicated libraries such as `Tensorflow` we are still not
-guaranteed that the above actually ran on the GPU. There is some output to
-verify this, but we will check this manually as that can be applied more
-generally.
-
-
-## Monitoring the GPUs
-
-To do this monitoring we will start `nvidia-smi` before our job and let it run
-while we use the GPU. We will change the `submit_gpu.sh` Slurm script above to
-`submit_monitor.sh`, shown below:
-
-```{eval-rst} 
-.. literalinclude:: gpu/submit_monitor.sh
-  :language: bash
-  :emphasize-lines: 19-21,25
-```
-```{eval-rst} 
-:download:`submit_monitor.sh <./gpu/submit_monitor.sh>`
-```
-
-```{note}
-The query used to monitor the GPU can be further extended by adding additional
-parameters to the `--query-gpu` flag. Check available options
-[here](http://developer.download.nvidia.com/compute/DCGM/docs/nvidia-smi-367.38.pdf).
-```
-
-Run this script with `sbatch submit_monitor.sh` to test if the output
-`gpu_util-<job id>.csv` actually contains some data. We can then use this data
-to ensure that we are actually using the GPU as intended. Pay specific attention
-to `utilization.gpu` which shows the percentage of how much processing the GPU
-is doing. It is not expected that this will always be `100%` as we will need to
-transfer data, but the average should be quite high.
 
 
 ## Next steps
 
 Transitioning your application to GPU can be a daunting challenge. We have
-documented a few ways to get
-started in our development {ref}`dev-guides`, but if
-you are unsure please don't hesitate to contact us at
+documented a few ways to get started in our development {ref}`guides <dev-guides>`,
+but if you are unsure please don't hesitate to contact us at
 [support@nris.no](mailto:support@nris.no).
 
-We also have a few tutorials on specific libraries:
-- {ref}`tensorflow`
+We also have a few tutorials on specific GPU related topics:
 - {ref}`openacc`
-- {ref}`Singularity container w/CUDA support: BigDFT example <bigdft-cuda-example>`
-- Coming soon
-  - OpenMP for GPU
+- {ref}`hipsycl-start`
+- {ref}`Running TensorFlow on GPUs <tensorflow>`
+- {ref}`Running containers w/CUDA support: BigDFT example <bigdft-cuda-example>`
