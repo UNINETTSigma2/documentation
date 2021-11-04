@@ -1,22 +1,14 @@
-# HPC and NIRD Toolkit User Course November 2021
+---
+orphan: true
+---
 
-:::info
-- NRIS : https://www.sigma2.no/nris
-- Our documentation https://documentation.sigma2.no
-- Course page: https://documentation.sigma2.no/training/events/hpc-nird-toolkit-user-course-nov-2021.html
-- This document (for questions): https://hackmd.io/@hpc/course-autumn-2021
-- We strive to follow the [Carpentry Code of Conduct](https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html#code-of-conduct-detailed-view)(CoC) to foster an inclusive and welcoming environment for everyone. Any CoC violation can be reported by sending an email to training@nris.no
-- Ask questions to the bottom
-- Old questions/answers are moved to https://hackmd.io/@hpc/course-autumn-2021-archive to keep this document not too long but at the end of the day we archive them to https://documentation.sigma2.no/training/material.html
-:::
+(training-2021-autumn-notes-day3)=
 
-Previous days'  notes archived to https://documentation.sigma2.no/training/material.html.
+# Questions, answers, and notes from day 3
 
-- Reactions in zoom client
-![](https://i.imgur.com/DKOlPQX.png)
 
-:::info
-### Day 3 Course materials
+## Links
+
 - Session 1: [Containers on HPC part I](https://documentation.sigma2.no/software/containers.html)
     - [Docker hub](https://hub.docker.com/)
     - [NVidia](https://ngc.nvidia.com/catalog/containers)
@@ -32,7 +24,7 @@ Previous days'  notes archived to https://documentation.sigma2.no/training/mater
 --[Nird Toolkit](https://apps.sigma2.no) 
 - Session 3: [Nird Toolkit part II Slides](https://drive.google.com/file/d/1-_wQgE5-WHbvQicJiLPS75QNdJpG3RrS/view?usp=sharing)
 - [NIRD Toolkit documentation](https://documentation.sigma2.no/nird_toolkit/overview.html)
-:::
+
 
 ## Ice breaker 
 
@@ -62,10 +54,7 @@ Target containers can be pulled by a URI of the following formats:
 - `oras://` a supporting OCI registry
 
 
-## Day 3 Q&A 
-
-
-
+## Questions and answers
 
 - What is container?
     - Think of it as a lightweight virtual machine.
