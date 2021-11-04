@@ -278,7 +278,7 @@ Users that are able to log in and access the toolkit, but not access services mu
     - More info [on file transfer](https://documentation.sigma2.no/files_storage/file_transfer.html)
 
 - is the NIRD toolkit quota to be considered part of a project quota, or the request to enable the toolkit is essentially an application to extend the project quota?
-    - Storage quota in the Toolkit is the same as your NIRD project quota, however compute quota is seperate from this and is connected to a namespace on the service platform. (See the link below to getting started).
+    - Storage quota in the Toolkit is the same as your NIRD project quota, however compute quota is separate from this and is connected to a namespace on the service platform. (See the link below to getting started).
         - I meant cpu quota, actually.
     -  You can apply for resources through the application form.
     - For more information, please check out the [getting started guide for the NIRD Toolkit](https://documentation.sigma2.no/nird_toolkit/getting_started_guide.html)
@@ -294,7 +294,7 @@ Users that are able to log in and access the toolkit, but not access services mu
         - This is not supported at all
     - Singularity in docker is less sketchy but still not good practice, you can do it but should consider a cleaner way of doing it
         - No one will stop you though
-    - Thanks. If possible this would indeed be excellent in order to mimic a complex environment directly on the NIRD toolkit, which could then be used to set up similar enviroments on local machines, the HPC resources, and for (pre- and) postprocessing on the NIRD toolkit
+    - Thanks. If possible this would indeed be excellent in order to mimic a complex environment directly on the NIRD toolkit, which could then be used to set up similar environments on local machines, the HPC resources, and for (pre- and) postprocessing on the NIRD toolkit
     - If all you need is a development machine, "use and abuse", then [NREC](https://www.nrec.no/) is something to consider too
     - Thanks, but not excacly. We are developing a platform for our users and developers, and believe NIRD toolkit could be an excellent first entry for joint projects, both to set things up, to try it out, and for postprocessing with e.g. ML tools. The plaform is meant to allow for an easy switch between either native builds (ie. ´module load´) or singularity/docker images for various softwares and libraries needed by our developers and users
     - Sounds useful, I'm sure you will find the best way to develop it, either way NREC has worked well for us at UiB so it's a good option if a bare VM is required for something semi permanent
@@ -346,7 +346,7 @@ Users that are able to log in and access the toolkit, but not access services mu
     - A feature request would to be abale to submit jobs from NIRD tool kit, which I think they are working on at the moment.
 
 
-- a bit of a phylosophical question: while I see the organizing of a course on the toolkit as a very powerfull option, wouldn't this mask the getting of the jupyter notebook up and running with the right environment. Effectively, it would make students less able to do-it-yourself.
+- a bit of a  philosophical question: while I see the organizing of a course on the toolkit as a very powerful option, wouldn't this mask the getting of the jupyter notebook up and running with the right environment. Effectively, it would make students less able to do-it-yourself.
     - Correct. So the question would be is the course teaching "jupyter notebooks" or using jupter note book to teach something else (e.g. python). 
     
     
@@ -392,9 +392,9 @@ import tensorflow as tf"
 ---
 ```
 
-- How can I have different conda enviroments on Jupyterhub in NIRD toolkit?
+- How can I have different conda environments on Jupyterhub in NIRD toolkit?
     - I think (as I have not tried) this could be activating different kernals, can you see [here](https://towardsdatascience.com/get-your-conda-environment-to-show-in-jupyter-notebooks-the-easy-way-17010b76e874) if that is a solution
-    - But I would have to define the conda enviroments using the docker files right? I can't use conda within the hub server?
+    - But I would have to define the conda environments using the docker files right? I can't use conda within the hub server?
     - Will get back soon on this
 - I want to follow up on the above question. Can each member of the JupyterHub create their own python environment?
     - Will get back soon on this
@@ -422,7 +422,7 @@ import tensorflow as tf"
                                 - Yes, I heard from you guys that using SMT is probably not a good idea, but the author of the code I'm using says that he has had a small performance improvement when using SMT. Well, he was testing on an Intel system, so hyperthreading there, but the principle is the same?
                                     - sure, the principle is the same and it is of course worth a try. 
         - Follow-up q2: [The documentation](https://documentation.sigma2.no/jobs/parallel-calculations.html) says that a hybrid solution yields the best performance, stating `--ntasks-per-node=8` `--cpus-per-task=16` specifically. Should I not do that?
-            - What I meant was ntasks-per-node not needed to achive what you are intending.
+            - What I meant was ntasks-per-node not needed to achieve what you are intending.
         - It might work with `--ntasks-per-node=16 --cpus-per-task=8` but then override with `export OMP_NUM_THREADS=16` in the run script
             - So Slurm is not allowed to oversubscribe the nodes, but you are allowed to override once you have gotten the resources.
                 - Aha, so I request 16 MPI ranks with 8 OpenMP threads each, then I override `OMP_NUM_THREADS` to 16?
