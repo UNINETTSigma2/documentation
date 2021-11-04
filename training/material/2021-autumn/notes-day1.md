@@ -1,10 +1,4 @@
----
-orphan: true
----
-
-(training-2021-autumn-notes-day1)=
-
-# Questions, answers, and notes from day 1
+# Questions, answers, and notes from day 3
 
 
 ## Ice breaker
