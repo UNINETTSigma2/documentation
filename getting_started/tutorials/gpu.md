@@ -1,3 +1,4 @@
+(gpu-intro)=
 # Introduction to using GPU compute
 
 A GPU, or **G**raphics **P**rocessing **U**nit, is a computational unit, which
@@ -135,6 +136,7 @@ is the same (compile, run and verify), so you can choose the version that suites
 
     gpu/tensorflow.md
     gpu/cuda.md
+    gpu/cuda-container.md
 ```
 
 
