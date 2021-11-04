@@ -175,10 +175,22 @@ Break for 15 minutes
 Break for 15 minutes
 
 - **Session 3: 11:00-11:45 Practical introduction to using GPUs** (S.R. Jensen)
+    - **Course material:**
+        -  {ref}`Requesting GPU resources <gpu-intro>`
+        -  {ref}`Compile and run CUDA code <cuda-c>`
+    - **Prerequisites:**
+        - GPU fundamentals, e.g. from the _previous session_
 
 Break for 15 minutes
 
 - **Session 4: 12:00-12:45 Containers on HPC (part II): MPI and GPU** (S.R. Jensen)
+    - **Course material:**
+        -  {ref}`BYO CUDA environment with containers <byo-cuda-container>`
+        -  {ref}`Real-world container example: BigDFT w/MPI and CUDA <bigdft-cuda-example>`
+    - **Prerequisites:**
+        - running Singularity containers, e.g. from _Day 3_
+        - running MPI jobs using Slurm scripts, e.g. from _Day 2_
+        - running GPU jobs using Slurm scripts, e.g. from the _previous session_
 
 - **Session Q&A: 12:45-13:00 Questions & Answers**
 
