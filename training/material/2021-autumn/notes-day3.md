@@ -237,7 +237,8 @@ FATAL:   Failed to open image $HOME/.singularity/cache/blob/blobs/sha256/09815c5
         - ok, understood :+1: 
 
 ### Singularity on HPC above this line
----------------------------------
+
+
 ### NIRD Toolkit below this line
 
 - Will issues with setting up ncview fit into todays session? (I wasn't expecting this, but I was wondering since there is a vnc application in the nird toolkit)
