@@ -30,18 +30,19 @@ the event, please write to `jorn.dietze@uit.no`.
 ## How to get notified about these events
 
 You can subscribe to this
-[notification-only mailing list](https://sympa.uninett.no/lists/metacenter.no/info/events).
+[notification-only mailing list](https://sympa.uninett.no/lists/nris.no/info/events).
 This is a low-traffic announcement list about this event and similar training
 events.
 
 
 ## Next event
 
-- **2021-10-13, 13:00 - 15:00**, [join us via Zoom](https://uit.zoom.us/j/67712377666)
+- we will schedule one soon, we aim at roughly monthly calls
 
 
 ## Past events
 
+- 2021-10-13, 13:00 - 15:00
 - 2021-09-09, 13:00 - 15:00
 - 2021-02-03, 13:00 - 15:00, ["How To Installation" Slides here](https://docs.google.com/presentation/d/1fOzq_ob19TFIZ0lERSPw7oXx6irVVDwB2vmHOrz2AKA/edit?usp=sharing)
 - 2020-10-13, 13:00 - 15:00, ["Helpful tools & Services" Slides](https://docs.google.com/presentation/d/1HKC5-G41lwVxAMjHU_UOTWKsRO3nD7B8uh9IVQRNtsk/edit?usp=sharing)
