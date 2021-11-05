@@ -28,7 +28,7 @@ orphan: true
 GPUs are excellent for well structured problems.
 
 - As we know, one thread work on cpu, thread group works on GPU. However, can they use different initial data at begin in the one GPU group?
-    - Concurrent kernel execution makes GPUs appear more like MIMD (Multiple instructions and Multiple data). So, yes it is possible to start with different initial data but the programmer needs to write his/her program to focus more on multiple data needs. I need to mention this as well that newer Gpus can run kernels simultaneously (they hack into multiple streams and run different kernels parallely); however, on older Gpus it is not possible and the second kernel runs after the first kernel, somewhat serially. It is recommended to perform SIMD operations on one GPU. If the tasks are not independent then the inter-communication within MIMD may drop down the over-all performance.
+    - Concurrent kernel execution makes GPUs appear more like MIMD (Multiple instructions and Multiple data). So, yes it is possible to start with different initial data but the programmer needs to write his/her program to focus more on multiple data needs. I need to mention this as well that newer Gpus can run kernels simultaneously (they hack into multiple streams and run different kernels parallelly); however, on older Gpus it is not possible and the second kernel runs after the first kernel, somewhat serially. It is recommended to perform SIMD operations on one GPU. If the tasks are not independent then the inter-communication within MIMD may drop down the over-all performance.
     - Yes, each thread in the thread group can use different memory locations when calculating, so they can load different data, but have to perform the same calculations
 
 - Does OpenACC support conditional execution that blocks instructions of individual threads? To my understanding, this is supported by CUDA. 
@@ -80,7 +80,7 @@ for(int i = 0; i < X; i++) {
           - (Yes, but many problems cannot be partionned in thousands of pieces! Then it would usually scale to more CPU too) 
 
 - For large problems (e.g., high resolution ocean model): is direct GPU-GPU communication supported on SAGA/BETZY/LUMI, or is the data exchange always via the CPU?
-  - In general, the data get copied from the cpu to gpu (and back), but then you could run the code also on multipe-GPUs.
+  - In general, the data get copied from the cpu to gpu (and back), but then you could run the code also on multiple-GPUs.
   - GPU-to-GPU communication should be supported, and I believe Jørgen is working on an example/tutorial on this for our documentation pages.
   - Apparently only Betzy :)
   - LUMI we will know later ;)
@@ -137,7 +137,7 @@ for(int i = 0; i < X; i++) {
 
 - general question: Stig just said "the run time varied a lot among repetitions of the same job". I've noticed this as well. Really wilde changes of 300-500%. Any ideas on what this id due to?
     - Difficult to say, but on general terms, we observe filesystem hiccups from time to time which can affect your jobs, the processors should almost always behave in the same way, but the shared filesystem can affect jobs in this way
-        - how to deal with this when benchmarking job configurations? Effectivly, I ended up with lots of noise.
+        - how to deal with this when benchmarking job configurations? Effectively, I ended up with lots of noise.
             - Again, very good questions, ideally there should not be this much variability in the filesystem, but here we are
             - I can recommend to see [here](https://documentation.sigma2.no/files_storage/performance.html) for some tuning options to optimize for the shared filesystem
             - Other recommendations would be to try to batch writes and use [`mmap`-ed files if possible](https://en.wikipedia.org/wiki/Mmap)
