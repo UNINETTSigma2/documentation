@@ -30,7 +30,7 @@ the event, please write to `jorn.dietze@uit.no`.
 ## How to get notified about these events
 
 You can subscribe to this
-[notification-only mailing list](https://sympa.uninett.no/lists/metacenter.no/info/events).
+[notification-only mailing list](https://sympa.uninett.no/lists/nris.no/info/events).
 This is a low-traffic announcement list about this event and similar training
 events.
 
