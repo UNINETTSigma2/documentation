@@ -1,12 +1,8 @@
----
-orphan: true
----
-
 # CDO
 
 CDO is a collection of tools for analyzing Climate and NWP model Data.
 
-Mor information: https://code.zmaw.de/projects/cdo
+[More information here.](https://code.zmaw.de/projects/cdo)
 
 ## Running CDO
 

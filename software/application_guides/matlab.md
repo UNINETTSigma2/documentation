@@ -1,12 +1,8 @@
----
-orphan: true
----
-
 # MATLAB
 
 MATLAB is a platform for solving engineering, mathematical, and graphical
 problems. To find out more, visit the [MATLAB
-website](http://se.mathworks.com/help/matlab).
+website](https://se.mathworks.com/help/matlab).
 
 ## License Information
 

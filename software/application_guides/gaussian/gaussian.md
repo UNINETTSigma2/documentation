@@ -1,16 +1,12 @@
----
-orphan: true
----
-
-# The GAUSSIAN program system
+# GAUSSIAN
 
 * [Gaussian job examples](gaussian_job_example.md)
 * [Memory and number of cores](gaussian_resources.md)
 * [Tuning Gaussian](gaussian_tuning.md)
 * [GaussView](gaussview.md)
 
-[Gaussian](http://gaussian.com/) is a popular computational chemistry program.
-Official documentation: <http://gaussian.com/man>
+[Gaussian](https://gaussian.com/) is a popular computational chemistry program.
+Official documentation: <https://gaussian.com/man>
 
 
 ## License and access

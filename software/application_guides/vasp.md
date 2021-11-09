@@ -1,6 +1,3 @@
----
-orphan: true
----
 (VASP)=
 
 # VASP (Vienna Ab initio Simulation Package)

@@ -1,12 +1,8 @@
----
-orphan: true
----
-
 # CESM
 
 Community Earth System Model (CESM) is a software suite for simulating Earth climate.
 
-More information: http://www2.cesm.ucar.edu
+[More information here.](https://www.cesm.ucar.edu/)
 
 ## Running CESM
 
