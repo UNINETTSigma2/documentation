@@ -1,8 +1,4 @@
----
-orphan: true
----
-
-# The Schrödinger molecular modeling package
+# Schrödinger
 Schrodinger is a scientific leader in computational chemistry, providing software solutions and services for life 
 sciences and materials research. 
 

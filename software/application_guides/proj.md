@@ -1,12 +1,8 @@
----
-orphan: true
----
-
 # PROJ
 
 PROJ is a library for handling cartographic projections typically used for map-making and global coordinates.
 
-To find out more, visit the PROJ website at: https://trac.osgeo.org/proj/
+[To find out more, visit the PROJ website.](https://proj.org/)
 
 ## Running PROJ
 

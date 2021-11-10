@@ -1,7 +1,3 @@
----
-orphan: true
----
-
 # GROMACS
 
 
@@ -9,7 +5,7 @@ GROMACS is a versatile package to perform molecular dynamics, i.e. simulate the
 Newtonian equations of motion for systems with hundreds to millions of
 particles.
 
-[More information can be found on GROMACS' homepage.](http://www.gromacs.org)
+[More information can be found on GROMACS' homepage.](https://www.gromacs.org)
 
 ## Running GROMACS
 

@@ -1,12 +1,8 @@
----
-orphan: true
----
-
 # NWChem
 
 The North Western program system for computational Chemistry (NWChem) is ab initio computational chemistry software package, which also includes quantum chemical and molecular dynamics functionality.
 
-More information: http://www.nwchem-sw.org
+[More information here.](https://www.nwchem-sw.org)
 
 
 ## Running NWChem

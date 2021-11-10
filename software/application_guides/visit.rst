@@ -1,7 +1,4 @@
-:orphan:
-
-
-VisIt visualization
+VisIt
 ===================
 
 VisIt visualization is an open-source interactive parallel visualization tool

@@ -1,12 +1,8 @@
----
-orphan: true
----
-
 # WRF / WPS
 
 Weather Research and Forecasting Model (WRF) is a mesoscale numerical weather prediction system.
 
-To find out more, visit the WRF website at: http://www.wrf-model.org
+[To find out more, visit the WRF website.](https://www.mmm.ucar.edu/weather-research-and-forecasting-model)
 
 ## Running WRF
 
