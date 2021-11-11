@@ -4,7 +4,7 @@
 
 We strive to cultivate fair, efficient, professional and welcoming working environments and relationships, regardless of education, socio-economic status, gender, nationality, age, personality, religion, disability, size, appearance, ethnicity, political, identity or orientation in the sexual context. 
 
-In all possible relations we should be honest, unprejudiced and unbiased. We should try to focus on facts over feelings without relieving possibilities to express in a proper way if need be. 
+In all possible relations we should be honest, unprejudiced and unbiased. We should strive to focus on objective facts. 
 
 ## Scope
 
