@@ -6,7 +6,7 @@ orphan: true
 
 # Unified Shared Memory with SYCL
 
-This example demonstates:
+This example demonstrates:
 
 1. how to allocate USM pointers in SYCL
 2. how to submit work tasks to a SYCL device queue
@@ -37,7 +37,7 @@ of the GNU C++ compiler, and compile a `jacobi_serial` target with `-Ofast` opti
 [me@login-1.SAGA ~]$ g++ -Ofast -o jacobi_serial jacobi_serial.cpp
 ```
 
-Hopefully no errors occured on this step, and we are ready to run a reference benchmark on a compute node:
+Hopefully no errors occurred on this step, and we are ready to run a reference benchmark on a compute node:
 
 ```console
 [me@login-1.SAGA ~]$ srun --account=<my-account> --time=0:10:00 --ntasks=1 --cpus-per-task=1 --mem=1G time ./jacobi_serial
@@ -266,7 +266,7 @@ Since we are copying data _between_ two USM pointers, we can actually perform th
 on the device, and thus avoid the costly data migration.
 
 The `memcpy` that we do _before_ the main work loop in our example could be left unchanged.
-This single function call should have no noticable impact on the performance since the data is already
+This single function call should have no noticeable impact on the performance since the data is already
 located on the host after the initialization. We will still submit also this `memcpy` operation to the
 `sycl::queue` for execution on the device since it will serve as a preporatory step of migrating the
 data to device memory _in advance_ of the upcoming kernel execution.
@@ -350,3 +350,26 @@ kernel, we have reduced the overall run time to about six seconds. Notice also t
 spent in `system` calls setting up the program, and only two seconds is spent by actually running the program.
 This system overhead should (hopefully) remain at a few seconds also for larger application when the total runtime
 is much longer.
+
+## Summary
+
+In this guide we have transitioned a serial C++ code into a small GPU application using the SYCL framework.
+We have taken several steps from the initial serial implementation to the final accelerated version, using
+concepts like Unified Shared Memory and a SYCL reduction operation. We have seen that the path to actual
+_accelerated_ code is not necessarily straightforward, as several of the intermediate steps shows execution
+times significantly _slower_ than the original serial code. The steps can be summarized as follows:
+
+| Version                  | CPUs     | GPUs   | Run time      | Relative  |
+|:------------------------:|:--------:|:------:|:-------------:|:---------:|
+| `jacobi_serial`          | 1        | 0      |  38.1 sec     |   100%    |
+| `jacobi_shared`          | 1        | 0      |  65.9 sec     |   173%    |
+| `jacobi_shared`          | 20       | 0      |  30.8 sec     |    81%    |
+| `jacobi_shared`          | 1        | 1      | 132.4 sec     |   348%    |
+| `jacobi_reduction`       | 1        | 1      |   6.5 sec     |    17%    |
+
+We have with this example shown in some detail how to compile and run a SYCL code on Saga, and how to make use of
+the available GPU resources there. We have highlighted some basic SYCL _syntax_, but we have not gone into much
+detail on what goes on under the hood, or how to write _good_ and _efficient_ SYCL code. This simple example only
+scratches the surface of what's possible within the framework, and we encourage the reader to check out other more
+complete resources, like the [Data Parallel C++](https://www.apress.com/gp/book/9781484255735)
+e-book, before venturing into a real-world porting project using SYCL.
