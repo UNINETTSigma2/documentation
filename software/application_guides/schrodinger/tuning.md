@@ -20,7 +20,7 @@ processing, which Glide is not set up for. Thus, how much walltime you need will
 each subjob will be.
 
 ### Subjobs -NJOBS
-We did a Glide HTVS with 5000 ligands using the following qargs in our schrodinger.hosts file 
+We did a Glide HTVS with 5000 ligands on SAGA using the following qargs in our schrodinger.hosts file 
 (batch-small):
 * `qargs:       --export=ALL --account=nnXXXXk --ntasks=40 --mem-per-cpu=3GB --time=01:00:00`
 
@@ -59,6 +59,10 @@ Thus, keep `--cpus-per-task=1`. Increasing this, will only result in waste of CP
 * Tune the optimal `-NJOBS`/number of ligands per subjob (~130 for HTVS, but will probably be different with SP and XP docking). 
 * `--ntasks=20` or `--ntasks=40` seems good for HTVS, but could be different for SP and XP docking.
 * Use `cpus-per-task=1`
+
+
+## Desmond (gpu)
+coming soon. 
 
 ## Jaguar
 Coming soon.

@@ -4,7 +4,7 @@ orphan: true
 
 # Using the Schrodinger suite
 
-Load the desired Schrodinger suite on SAGA:
+Load the desired Schrodinger suite:
 * `module purge`
 * `module load Schrodinger/2021-2-intel-2020b`
 
