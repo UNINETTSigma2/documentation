@@ -74,6 +74,7 @@ linkcheck_ignore = [
     r'https://desktop.saga.sigma2.no:\d+',
     r'https://desktop.fram.sigma2.no:\d+',
     r'.*slurmbrowser.*',
+    'https://lifeportal.saga.sigma2.no',
     'http://www.linuxconfig.org/Bash_scripting_Tutorial',
     'http://www.wannier.org',
     'https://hpc.llnl.gov/training/tutorials/introduction-parallel-computing-tutorial#ExamplesPI',  # some problem with SSL certificate not recognized by CI

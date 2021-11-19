@@ -81,7 +81,7 @@ node   0   1   2   3   4   5   6   7
 
 The above picture is further complicated by the fact that within the individual
 NUMA nodes the memory access time is also not uniform. This can be verified by
-running the [STREAM benchmark](https://www.cs.virginia.edu/stream/ref.html). As
+running the [STREAM benchmark](https://github.com/jeffhammond/STREAM). As
 reported above, each NUMA node has 16 physical cores (e.g. node 0, cores 0-15).
 
 Consider the following 2 STREAM experiments:

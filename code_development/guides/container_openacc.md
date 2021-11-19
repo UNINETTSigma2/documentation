@@ -18,7 +18,7 @@ This example demonstrates:
 3. how to compile a simple OpenACC program inside the container
 4. how to run the container on a cluster with GPU resourses
 
-This example is based on the OpenACC {ref}`tutorial <openacc>`, and we will simply copy
+This example is based on the {ref}`OpenACC tutorial <openacc>`, and we will simply copy
 the fully optimized source code for the Jacobi iteration to serve as our GPU application:
 
 ```{eval-rst}
