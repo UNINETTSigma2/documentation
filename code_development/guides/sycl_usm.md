@@ -365,6 +365,11 @@ times significantly _slower_ than the original serial code. The steps can be sum
 | `jacobi_shared`          | 1        | 0      |  65.9 sec     |   173%    |
 | `jacobi_shared`          | 20       | 0      |  30.8 sec     |    81%    |
 | `jacobi_shared`          | 1        | 1      | 132.4 sec     |   348%    |
+| `jacobi_memcpy`          | 1        | 0      | 110.2 sec     |   289%    |
+| `jacobi_memcpy`          | 20       | 0      |  33.9 sec     |    89%    |
+| `jacobi_memcpy`          | 1        | 1      |  93.8 sec     |   246%    |
+| `jacobi_reduction`       | 1        | 0      | 115.1 sec     |   302%    |
+| `jacobi_reduction`       | 20       | 0      |  21.6 sec     |    56%    |
 | `jacobi_reduction`       | 1        | 1      |   6.5 sec     |    17%    |
 
 We have with this example shown in some detail how to compile and run a SYCL code on Saga, and how to make use of
