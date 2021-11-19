@@ -4,7 +4,7 @@ orphan: true
 
 # STREAM benchmark
 
-The purpose of the [STREAM benchmark](https://www.cs.virginia.edu/stream/)
+The purpose of the [STREAM benchmark](https://github.com/jeffhammond/STREAM)
 is to measure the effective memory bandwidth of
 modern CPU-based architectures. This is done by measuring the time
 of four loops that operate on *large arrays* (vectors) that do not fit
@@ -17,7 +17,7 @@ into the CPU cache:
 
 
 The [sourcecode
-(`stream.c`)](https://www.cs.virginia.edu/stream/FTP/Code/) is
+(`stream.c`)](https://github.com/jeffhammond/STREAM/blob/master/stream.c) is
 compiled using the Intel `icc` compiler as follows:
 
 ```
