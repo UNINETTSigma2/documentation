@@ -24,7 +24,8 @@ Open `$USER/.schrodinger/schrodinger.hosts` with a text editor (for example `vim
 
 In principle, you can edit the qargs to meet requirements of every type of job you want to submit (similar to a regular
 slurm job script):
-* `qargs:       --export=ALL --account=nnXXXXk --ntasks=40 --mem-per-cpu=1GB --time=04:00:00`
+* `qargs:       --export=ALL --account=nnXXXXk --ntasks=40 --mem-per-cpu=1GB --time=04:00:00` (SAGA)
+* `qargs:       --export=ALL --account=nnXXXXk --ntasks=32 --time=04:00:00` (FRAM)
 
 It is however more efficient to make several host entries with different settings depending on the jobs you are
   going to submit. 

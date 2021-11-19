@@ -1,10 +1,8 @@
 # Schrödinger
-Schrodinger is a scientific leader in computational chemistry, providing software solutions and services for life 
+Schrödinger is a scientific leader in computational chemistry, providing software solutions and services for life 
 sciences and materials research. 
 
-The following Schrodinger suites are available on SAGA:
-* Schrodinger/2021-2-intel-2020b
-* Schrodinger/2021-3-intel-2020b 
+The Schrödinger suite is available on SAGA and FRAM:
 
 ## Follow these steps to use the Schrodinger software package on SAGA:
 
