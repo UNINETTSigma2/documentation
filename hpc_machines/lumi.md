@@ -37,13 +37,19 @@ followed by LUMI-C:
 ![LUMI partition
 overview](https://www.lumi-supercomputer.eu/content/uploads/2020/11/lumiSlide-1024x576.png)
 
-| Details | LUMI |
+| Details | LUMI-G |
 |:--------|:-----|
-| Peak performance | 552 PetaFLOPs |
-| CPU type | Next generation AMD® Epyc™ 64-Core |
-| GPU type | Next generation AMD® Instinct™ GPU |
+| Peak performance | 375 PetaFLOPs |
+| CPU type | AMD® Trento™ 64-Core |
+| GPU type | AMD® Instinct™ MI250X GPU |
+| GPU memory | 128 GB HBM2e per GPU |
+| Node configuration | 1 CPU and 4 x GPUs |
+| Number of nodes | 2560 |
+| Interconnect | Cray Slingshot 200 Gbit/s, GPUs directly connected to interconnect |
 | Storage capacity | <ul><li>117 PB total <ul><li>7 PB fast flash storage</li> <li>80 PB parallel filesystem</li> <li>30 PB object storage</li></ul></li></ul> |
 | Expected Top500 | Top 3 |
+
+[Full system specification](https://www.lumi-supercomputer.eu/lumis-full-system-architecture-revealed/)
 
 ## LUMI-G
 LUMI-G is the main partition of LUMI and is based on AMD accelerators. The main
