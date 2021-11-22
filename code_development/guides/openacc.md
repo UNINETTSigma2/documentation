@@ -8,6 +8,7 @@ orphan: true
 (openacc)=
 
 # Getting started with OpenACC and Nvidia Nsight
+[//]: # (pandoc -s -o out.html openacc.md)
 > OpenACC is a user-driven directive-based performance-portable parallel
 > programming model.
 From the [OpenACC homepage](https://www.openacc.org).

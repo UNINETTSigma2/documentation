@@ -8,6 +8,9 @@
         [MPI and OpenACC](guides/openacc_mpi.md)
     - [<span style="color:orange">Intermediate</span>]
         [Async and Multi-GPU OpenACC](guides/async_openacc.md)
+- GPU programming with OpenMP:
+    - [<span style="color:green">Beginner</span>]
+        [Introduction to OpenMP offloading](guides/ompoffload.md)
 - GPU programming with SYCL:
     - [<span style="color:green">Beginner</span>]
         [Getting started with hipSYCL](guides/hipsycl.md)
