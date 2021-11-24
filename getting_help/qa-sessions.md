@@ -10,8 +10,8 @@ Join us on [Zoom](https://uit.zoom.us/j/63325955553), get yourself a
 coffee or tea and have a chat. It doesn't matter from which institute or
 university you are, you are **welcome to join at any time**.
 
-This time we will start with a **15 min seminar about the documentation
-and other helpful resources and how you can help us to improve it.**
+This time we will start with a **15 min seminar about typical but somewhat cryptic
+errors and problems on our HPC systems.**
 Afterwards we have the open question and answer session.
 
 We can talk about:
@@ -37,13 +37,13 @@ events.
 
 ## Next event
 
-- we will schedule one soon, we aim at roughly monthly calls
+- **2021-12-08, 13:00 - 15:00**, [Join us on Zoom](https://uit.zoom.us/j/65507988731)
 
 
 ## Past events
 
 - 2021-10-13, 13:00 - 15:00
-- 2021-09-09, 13:00 - 15:00
+- 2021-09-09, 13:00 - 15:00, ["Our More and Less Known Resources"](https://docs.google.com/presentation/d/1kEmxUYJJa2b6jKgiJYvdzFopyB3owkQkK-uJTolXny0/edit?usp=sharing)
 - 2021-02-03, 13:00 - 15:00, ["How To Installation" Slides here](https://docs.google.com/presentation/d/1fOzq_ob19TFIZ0lERSPw7oXx6irVVDwB2vmHOrz2AKA/edit?usp=sharing)
 - 2020-10-13, 13:00 - 15:00, ["Helpful tools & Services" Slides](https://docs.google.com/presentation/d/1HKC5-G41lwVxAMjHU_UOTWKsRO3nD7B8uh9IVQRNtsk/edit?usp=sharing)
 - 2020-06-10, 13:00 - 15:00
