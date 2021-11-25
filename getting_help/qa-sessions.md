@@ -6,7 +6,7 @@ Meet the HPC staff, discuss problems and project ideas, give feedback or
 suggestions on how to improve services, and get advice for your
 projects.
 
-Join us on [Zoom](https://uit.zoom.us/j/63325955553), get yourself a
+Join us on [Zoom](https://uit.zoom.us/j/65507988731), get yourself a
 coffee or tea and have a chat. It doesn't matter from which institute or
 university you are, you are **welcome to join at any time**.
 
