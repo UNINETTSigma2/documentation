@@ -16,7 +16,10 @@ and hands-on time on one of the actual HPC systems or the NIRD Toolkit. We
 recommend that participants use the afternoon on each day to repeat examples
 from the morning to get more experience on the systems.
 
+```{note}
+  **The video recordings and notes can be found [here](https://documentation.sigma2.no/training/material.html)**
 
+```
 ## **Practical Information**
 
 This is an online course via zoom. Participants require access to a computer
