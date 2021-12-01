@@ -86,7 +86,7 @@ end do
 | Indexed syntax CPU  1 core | 14.5285            |
 | Vector syntax  CPU  1 core | 14.5234            |
 | Indexed syntax GPU  A100   |  0.4218            |
-| Vector syntax  CPU  A100   |  0.4149            |
+| Vector syntax  GPU  A100   |  0.4149            |
 
 With more flops per byte transferred the speedup by offloading to
 GPU is higher. A speedup of 34 compared to a single core is nice.
@@ -157,7 +157,6 @@ $ nvfortran -O3 -stdpar=gpu dgemm-test.f90 dgemm.f90 xerrbla.o lsame.f
 | Reference f90   | -O3 -stdpar=multicore |  16   |  24.67 Gflops/s |
 | Reference f90   | -O3 -stdpar=gpu       |RTX2080|  43.81 Gflops/s |
 | Reference f90   | -O3 -stdpar=gpu       |  A100 | 112.23 Gflops/s |
-|-------------------------------------------------------------------|
 
 The results are stunning: changing only one line in the old legacy
 code from `do` to `do concurrent` can speed up from 4 Gflops/s to 112
