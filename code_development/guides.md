@@ -23,3 +23,6 @@
         [Container with MPI support](guides/container_mpi.md)
     - [<span style="color:green">Beginner</span>]
         [Container with GPU support (OpenACC)](guides/container_openacc.md)
+- Offloading to GPU using Fortran 2008:
+    - [<span style="color:green">Beginner</span>]
+        [Offloading to GPU using Fortran 2008](guides/offloading-using-fortran.md)
