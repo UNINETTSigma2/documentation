@@ -16,12 +16,15 @@ concurrent` construct to offload to NVIDIA GPU accelerators.
 It provides a simple way of using accelerators without any extra
 libraries nor deviation from the standard language. No compiler
 directives or any other kind of libraries are needed. By using plain
-standard Fortran the portability is not an issue. The 2008 standard
-will be supported in the foreseeable future, just like many compiler
-still support Fortran 66 standard today.
+standard Fortran the portability is not an issue. The code will use whatever
+means of parallel execution available on the current platform, it might be multicore
+or in this example offloading to highly parallel GPU execution. 
 
-This approach provides a simple, user friendly, and portable approach to
-offloading to accelerators.
+The 2008 standard will be supported in the foreseeable future, just like many compiler
+still support the Fortran 66 standard.
+
+This approach provides a simple, user friendly, future proof and portable approach to
+offloading to accelerators. 
 
 
 ## Example code using SAXPY
@@ -118,7 +121,9 @@ The BLAS routines multiplication comes in 4 flavors:
 - Z complex double precision
 
 
-Assume well behaved matrices `C := alpha*A*B + beta*C`.
+Assume well behaved matrices `C := alpha*A*B + beta*C` and a call to dgemm like: 
+`call dgemm('n', 'n', N, N, N, alpha, a, N, b, N, beta, c, N)`
+
 Locate the line below the line highlighted above, about line 228.
 Change :
 ```fortran
@@ -162,3 +167,8 @@ $ nvfortran -O3 -stdpar=gpu dgemm-test.f90 dgemm.f90 xerrbla.o lsame.f
 The results are stunning: changing only one line in the old legacy
 code from `do` to `do concurrent` can speed up from 4 Gflops/s to 112
 Gflops/s a 25x increase in performance.
+
+An intersting test is to compare this more then 30 year old reference code 
+with a call to a modern library, the syntax is still the same. 
+The scientific application fortran code will probably behave like the 30 year old example 
+while libraries generally show far higher performance.  
