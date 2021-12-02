@@ -7,10 +7,11 @@ orphan: true
 ## Introduction
 
 In 2010 the ISO Standard Fortran 2008 introduced the `do concurrent` construct
-which allows to express loop-level parallelism.
+which allows to express loop-level parallelism. The current compilers support multicore 
+parallel execution, but presently only NVIDIA offer a compiler that support offload to their GPUs.
 
 The NVIDIA HPC Fortran (Formerly PGI Fortran) supports using the `do
-concurrent` construct to offload to NVIDIA GPU accelerators.
+concurrent` construct to offload to NVIDIA GPU accelerators. 
 
 It provides a simple way of using accelerators without any extra
 libraries nor deviation from the standard language. No compiler
