@@ -26,6 +26,7 @@ still support the Fortran 66 standard.
 This approach provides a simple, user friendly, future proof and portable approach to
 offloading to accelerators. 
 
+Example code used can be found [NRIS example repo](https://gitlab.sigma2.no/training/sample_code/-/tree/master/Offload-ISO-Languages).
 
 ## Example code using SAXPY
 
