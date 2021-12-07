@@ -102,7 +102,7 @@ Target containers can be pulled by a URI of the following formats:
 
 - How does it work to mix Docker containers with Singularity files?
     - Docker containers will have to be converted to Singularity `.sif` images to be usable on our systems
-    - The `singularity` command can directly convert docker receipts into Singularity images, [more information can be found here](https://singularity.hpcng.org/user-docs/3.8/singularity_and_docker.html)
+    - The `singularity` command can directly convert docker receipts into Singularity images, [more information can be found here](https://sylabs.io/guides/latest/user-guide/singularity_and_docker.html)
         - Thank you very much, really interesting!
 
 - Is it possible to use docker containers on saga/betzy/etc? 

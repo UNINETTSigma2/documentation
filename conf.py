@@ -79,4 +79,6 @@ linkcheck_ignore = [
     'http://www.wannier.org',
     'https://hpc.llnl.gov/training/tutorials/introduction-parallel-computing-tutorial#ExamplesPI',  # some problem with SSL certificate not recognized by CI
     'https://hpc.llnl.gov/training/tutorials/introduction-parallel-computing-tutorial#ModelsOverview',  # some problem with SSL certificate not recognized by CI
+    'https://www.ccp4.ac.uk/',  # SSL certificate issue
+    'https://www.vasp.at',  # SSL certificate issue
 ]
