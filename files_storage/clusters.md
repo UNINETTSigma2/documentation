@@ -27,13 +27,13 @@ Below the table we give recommendations and discuss pros and cons for the variou
 | :---------------------------------------------- | :------------------- | :--------------------------------- | :---------------------------------: |
 | `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files               | [Only if quota enforced](backup.md) |
 | `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                | No                                  |
-| (Only Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALSCRATCH`) | Per-job data | [Individual](#job-scratch-area-on-local-disk) | No                   |
+| (Fram/Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALSCRATCH`) | Per-job data | [Individual](#job-scratch-area-on-local-disk) | No                   |
 | `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                | No                                  |
 | `/cluster/projects/<project_name>`              | Project data         | [1 TiB / 1 M files](#project-area) | Yes                                 |
 | `/cluster/shared/<folder_name>`                 | Shared data          | [Individual](#shared-project-area) | No                                  |
 
 - **User areas and project areas are private**: Data handling and storage policy is documented [here](/files_storage/sharing_files.md).
-- **Note that the `$LOCALSCRATCH` area is only implemented on Saga**
+- **Note that the `$LOCALSCRATCH` area is only implemented on Fram and Saga**
 - In addition to the areas in the tables above, **both clusters mount the
   NIRD project areas** as `/nird/projects/nird/NSxxxxK` on the login nodes
   (but not on the compute nodes).
@@ -102,7 +102,7 @@ job finishes.  The location is stored in the environment variable
 `$SCRATCH` available in the job.  `$SCRATCH` is only accessible by the
 user running the job.
 
-On Saga there are two scratch areas (see also below).
+On Fram and Saga there are two scratch areas (see also below).
 
 The area is meant as a temporary scratch area during job
 execution.
@@ -136,20 +136,20 @@ directory `$SLURM_SUBMIT_DIR` (where `sbatch` was run).
 
 ## Job scratch area on local disk
 
-**This only exists on Saga.**
+**This only exists on Fram and Saga**
 
-A job on **Saga** can request a scratch area on local disk on the node
+A job on **Fram/Saga** can request a scratch area on local disk on the node
 it is running on.  This is done by specifying
 `--gres=localscratch:<size>`, where *<size>* is the size of the requested
 area, for instance `--gres=localscratch:20G` for 20 GiB.
-Most nodes on Saga have 300 GiB
-disk that can be handed out to local scratch areas; a few of the
+Computenodes on Fram have 198GiB disk that can be handed out to local scratch areas, Hugemem have 9.8GiB. 
+On Saga most nodes have 300 GiB; a few of the
 bigmem nodes have 7 TiB and the GPU nodes have 8 TiB.  If a job tries
 to use more space on the area than it requested, it will get a "disk
 quota exceeded" or "no space left on device" error (the exact message
 depends on the program doing the writing).
 Please do not ask for more than what you actually need, other users might share
-the local scratch space with you.
+the local scratch space with you(Saga only).
 
 Jobs that request this, get an area `/localscratch/$SLURM_JOB_ID`
 that is automatically created for the job, and automatically deleted
@@ -189,7 +189,7 @@ similar in the job script.
 
 - Since the area is removed automatically, it can be hard to debug
   jobs that fail.
-- Not suitable for files larger than 250-300 GB.
+- Not suitable for files larger than 198-300 GB.
 - One must make sure to use `cp` commands or similar in the job
   script to copy files back.
 - If the main node of a job crashes (i.e., not the job script, but the
