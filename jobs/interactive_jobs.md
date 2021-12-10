@@ -25,20 +25,10 @@ On **Saga**:
 $ salloc --ntasks=1 --mem-per-cpu=4G --time=00:30:00 --qos=devel --account=YourAccount
 ```
 
-On **Fram**:
+On **Fram** or **Betzy**:
 ```
 $ salloc --nodes=1 --time=00:30:00 --qos=devel --account=YourAccount
 ```
-
-On **Betzy**:
-```
-$ srun --nodes=1 --time=00:30:00 --qos=devel --account=YourAccount --pty bash -i
-```
-
-(The reason for using `srun` for interactive jobs on Betzy is that it
-currently has an older version of Slurm.  Alternatively, one can use
-the somewhat longer `salloc <options> srun --interactive
---preserve-env --pty bash`.)
 
 This will allocate resources, and start a shell on a compute node.
 When you are done, simply exit the shell (`exit`, `logout` or `^D`) to
@@ -107,7 +97,6 @@ or
 ```
 $ salloc <options> <command>
 ```
-(This works on **Betzy** as well as **Saga** and **Fram**.)
 
 Note that the shell **will be running on the login node**.  That means
 that you *must* start all calculations with `srun` or `mpirun` or
