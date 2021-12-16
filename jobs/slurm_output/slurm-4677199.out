@@ -1,0 +1,144 @@
+Starting job 4677199 on c7-2 at Thu Dec 16 09:31:53 CET 2021
+
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) StdEnv
+
+Currently Loaded Modules:
+  1) StdEnv                           (S)
+  2) GCCcore/10.2.0
+  3) zlib/1.2.11-GCCcore-10.2.0       (H)
+  4) binutils/2.35-GCCcore-10.2.0     (H)
+  5) GCC/10.2.0
+  6) CUDAcore/11.1.1
+  7) CUDA/11.1.1-GCC-10.2.0
+  8) gcccuda/2020b
+  9) bzip2/1.0.8-GCCcore-10.2.0       (H)
+ 10) XZ/5.2.5-GCCcore-10.2.0          (H)
+ 11) Boost/1.74.0-GCC-10.2.0
+ 12) numactl/2.0.13-GCCcore-10.2.0    (H)
+ 13) libxml2/2.9.10-GCCcore-10.2.0    (H)
+ 14) libpciaccess/0.16-GCCcore-10.2.0 (H)
+ 15) hwloc/2.2.0-GCCcore-10.2.0       (H)
+ 16) ncurses/6.2-GCCcore-10.2.0       (H)
+ 17) GMP/6.2.0-GCCcore-10.2.0         (H)
+ 18) Z3/4.8.10-GCCcore-10.2.0         (H)
+ 19) Clang/11.0.1-gcccuda-2020b
+ 20) libreadline/8.0-GCCcore-10.2.0   (H)
+ 21) libffi/3.3-GCCcore-10.2.0        (H)
+ 22) Python/3.8.6-GCCcore-10.2.0
+ 23) hipSYCL/0.9.1-gcccuda-2020b
+
+  Where:
+   H:  Hidden Module
+   S:  Module is Sticky, requires --force to unload or purge
+
+ 
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.6, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
+benchmark: 3.4.1 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
+rootdir: /cluster/home/jorgehn/PyHeat
+plugins: benchmark-3.4.1
+collected 18 items
+
+tests/test_cuda.py .....                                                 [ 27%]
+tests/test_parallel.py ....                                              [ 50%]
+tests/test_serial.py ....                                                [ 72%]
+tests/test_sycl.py .....                                                 [100%]
+
+
+-------------------------------------------------------------------------- benchmark 'large': 2 tests -------------------------------------------------------------------------
+Name (time in s)        Min               Max              Mean            StdDev            Median               IQR            Outliers     OPS            Rounds  Iterations
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+test_sycl_large      1.7865 (1.0)      1.8190 (1.0)      1.8002 (1.0)      0.0128 (1.03)     1.7979 (1.0)      0.0188 (1.0)           2;0  0.5555 (1.0)           5           1
+test_cuda_large      2.3535 (1.32)     2.3850 (1.31)     2.3679 (1.32)     0.0124 (1.0)      2.3671 (1.32)     0.0191 (1.02)          2;0  0.4223 (0.76)          5           1
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------- benchmark 'medium': 4 tests ------------------------------------------------------------------------------------
+Name (time in ms)               Min                   Max                  Mean            StdDev                Median               IQR            Outliers      OPS            Rounds  Iterations
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+test_cuda_medium            91.8107 (1.0)         99.0856 (1.0)         94.0471 (1.0)      2.3381 (1.0)         93.4163 (1.0)      2.9091 (1.0)           2;0  10.6330 (1.0)          10           1
+test_sycl_medium            94.2072 (1.03)       102.2420 (1.03)        96.7172 (1.03)     2.5075 (1.07)        96.0775 (1.03)     3.1050 (1.07)          3;0  10.3394 (0.97)         10           1
+test_parallel_medium       237.4343 (2.59)       244.0350 (2.46)       239.8715 (2.55)     2.6437 (1.13)       239.2884 (2.56)     3.6873 (1.27)          1;0   4.1689 (0.39)          5           1
+test_serial_medium       1,757.2473 (19.14)    1,764.6931 (17.81)    1,762.3800 (18.74)    2.9815 (1.28)     1,763.3501 (18.88)    3.0287 (1.04)          1;0   0.5674 (0.05)          5           1
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------- benchmark 'small': 4 tests -------------------------------------------------------------------------------
+Name (time in ms)            Min                 Max                Mean            StdDev              Median               IQR            Outliers      OPS            Rounds  Iterations
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+test_cuda_small          30.2394 (1.0)       35.1833 (1.0)       31.0431 (1.0)      1.3208 (7.22)      30.3371 (1.0)      0.4941 (2.24)          6;6  32.2132 (1.0)          29           1
+test_sycl_small          46.6914 (1.54)      50.8053 (1.44)      47.3295 (1.52)     1.1601 (6.34)      46.9274 (1.55)     0.2393 (1.09)          2;3  21.1285 (0.66)         20           1
+test_parallel_small      62.4059 (2.06)      63.0035 (1.79)      62.6588 (2.02)     0.1828 (1.0)       62.6308 (2.06)     0.2204 (1.0)           7;0  15.9594 (0.50)         17           1
+test_serial_small       441.9537 (14.62)    442.8699 (12.59)    442.3886 (14.25)    0.3248 (1.78)     442.3796 (14.58)    0.2530 (1.15)          2;0   2.2605 (0.07)          5           1
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Legend:
+  Outliers: 1 Standard Deviation from Mean; 1.5 IQR (InterQuartile Range) from 1st Quartile and 3rd Quartile.
+  OPS: Operations Per Second, computed as 1 / Mean
+======================== 18 passed in 60.86s (0:01:00) =========================
+
+Task and CPU usage stats:
+       JobID    JobName  AllocCPUS   NTasks     MinCPU MinCPUTask     AveCPU    Elapsed ExitCode 
+------------ ---------- ---------- -------- ---------- ---------- ---------- ---------- -------- 
+4677199       run.slurm         16                                             00:01:05      0:0 
+4677199.bat+      batch         16        1   00:02:11          0   00:02:11   00:01:05      0:0 
+4677199.ext+     extern         16        1   00:00:00          0   00:00:00   00:01:05      0:0 
+
+Memory usage stats:
+       JobID     MaxRSS MaxRSSTask     AveRSS MaxPages   MaxPagesTask   AvePages 
+------------ ---------- ---------- ---------- -------- -------------- ---------- 
+4677199                                                                          
+4677199.bat+    150344K          0    150344K        0              0          0 
+4677199.ext+          0          0          0        0              0          0 
+
+Disk usage stats:
+       JobID  MaxDiskRead MaxDiskReadTask    AveDiskRead MaxDiskWrite MaxDiskWriteTask   AveDiskWrite 
+------------ ------------ --------------- -------------- ------------ ---------------- -------------- 
+4677199                                                                                               
+4677199.bat+        8.55M               0          8.55M        0.05M                0          0.05M 
+4677199.ext+        0.00M               0          0.00M            0                0              0 
+
+GPU usage stats:
+Successfully retrieved statistics for job: 4677199. 
++------------------------------------------------------------------------------+
+| GPU ID: 0                                                                    |
++====================================+=========================================+
+|-----  Execution Stats  ------------+-----------------------------------------|
+| Start Time                         | Thu Dec 16 09:31:54 2021                |
+| End Time                           | Thu Dec 16 09:32:58 2021                |
+| Total Execution Time (sec)         | 64.4                                    |
+| No. of Processes                   | 1                                       |
++-----  Performance Stats  ----------+-----------------------------------------+
+| Energy Consumed (Joules)           | 3104                                    |
+| Power Usage (Watts)                | Avg: 103.465, Max: 172.91, Min: 34.02   |
+| Max GPU Memory Used (bytes)        | 466616320                               |
+| SM Clock (MHz)                     | Avg: 1258, Max: 1328, Min: 1189         |
+| Memory Clock (MHz)                 | Avg: 715, Max: 715, Min: 715            |
+| SM Utilization (%)                 | Avg: 50, Max: 100, Min: 0               |
+| Memory Utilization (%)             | Avg: 8, Max: 17, Min: 0                 |
+| PCIe Rx Bandwidth (megabytes)      | Avg: N/A, Max: N/A, Min: N/A            |
+| PCIe Tx Bandwidth (megabytes)      | Avg: N/A, Max: N/A, Min: N/A            |
++-----  Event Stats  ----------------+-----------------------------------------+
+| Single Bit ECC Errors              | 0                                       |
+| Double Bit ECC Errors              | 0                                       |
+| PCIe Replay Warnings               | 0                                       |
+| Critical XID Errors                | 0                                       |
++-----  Slowdown Stats  -------------+-----------------------------------------+
+| Due to - Power (%)                 | 0                                       |
+|        - Thermal (%)               | 0                                       |
+|        - Reliability (%)           | Not Supported                           |
+|        - Board Limit (%)           | Not Supported                           |
+|        - Low Utilization (%)       | Not Supported                           |
+|        - Sync Boost (%)            | 0                                       |
++--  Compute Process Utilization  ---+-----------------------------------------+
+| PID                                | 7392                                    |
+|     Avg SM Utilization (%)         | 15                                      |
+|     Avg Memory Utilization (%)     | 2                                       |
++-----  Overall Health  -------------+-----------------------------------------+
+| Overall Health                     | Healthy                                 |
++------------------------------------+-----------------------------------------+
+
+
+Job 4677199 completed at Thu Dec 16 09:32:58 CET 2021
