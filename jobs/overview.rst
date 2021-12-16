@@ -10,6 +10,7 @@ Running jobs
    choosing_job_types.md
    job_scripts.md
    monitoring.md
+   slurm_output.md
    choosing-memory-settings.md
    choosing-number-of-cores.md
    common_job_failures.md
