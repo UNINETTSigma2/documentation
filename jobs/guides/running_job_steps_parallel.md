@@ -7,9 +7,12 @@ orphan: true
 # Packaging smaller parallel jobs into one large
 
 There are several ways to package smaller parallel jobs into one large
-parallel job. The preferred way is to use {ref}`array-jobs`.
+parallel job. *The preferred way is to use {ref}`array-jobs`.*
 Here we want to present a more pedestrian alternative which can give a
-lot of flexibility.
+lot of flexibility, but can also be a little more complicated to get right.
+
+Note that how to use this mechanism has changed since Slurm 19.05.x (and
+might change again later).
 
 In this example we imagine that we wish to run a job with 5 MPI job steps
 at the same time, each using 4 tasks, thus totalling to 20 tasks:
@@ -54,14 +57,15 @@ A couple of notes:
   all commands started with `&` have completed.
 - It is possible to use `mpirun` instead of `srun`, although `srun` is
   recommended for OpenMPI.
-- The `export SLURM_MEM_PER_CPU=1920` prior to the `srun` lines is
-  needed for jobs in the `normal` or `optimist` partitions on Fram, because it
-  is not possible to specify this to `sbatch` for such jobs.
-  Alternatively, you can add `--mem-per-cpu=1920` to the `srun`
-  command lines (this only works with `srun`).  (1920 allows up to 32
-  tasks per node.  If each task needs more than 1920 MiB per cpu, the
-  number must be increased (and the number of tasks per node will be
-  reduced).  On *Betzy*, the corresponding number is 1960, which will
-  allow up to 128 tasks per node.
+- The `export SLURM_MEM_PER_CPU=1920` and `unset SLURM_MEM_PER_NODE`
+  lines prior to the `srun` lines are needed for jobs in the `normal` or
+  `optimist` partitions on Fram and Betzy, because it is not possible
+  to specify this to `sbatch` for such jobs.  Alternatively, you can
+  add `--mem-per-cpu=1920` to the `srun` command lines (this only
+  works with `srun`).  (1920 allows up to 32 tasks per node.  If each
+  task needs more than 1920 MiB per cpu, the number must be increased
+  (and the number of tasks per node will be reduced).  On *Betzy*, the
+  corresponding number is 1960, which will allow up to 128 tasks per
+  node.
 - This technique does **not** work with IntelMPI, at least not when using
   `mpirun`, which is currently the recommended way of running IntelMPI jobs.
