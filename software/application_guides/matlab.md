@@ -31,7 +31,7 @@ page)](https://se.mathworks.com/support/collaborative-research-academia.html).
 
 #### Commercial users
 Commercial users need to sign a Hosting Provider agreement. Contact:
-[sigma2@uninett.no](mailto:sigma2@uninett.no)
+[contact@sigma2.no](mailto:contact@sigma2.no)
 
 ## Running MATLAB
 

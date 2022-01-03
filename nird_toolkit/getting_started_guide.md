@@ -21,7 +21,7 @@ Those members of the group who hold administrative rights will deploy applicatio
 
    ![Dataporten Group-ID](imgs/Group-ID.png "Dataporten Group-ID")
 
-   **Send the Group name, Group ID and preferred short name to sigma2@uninett.no to be authorized to deploy a service through the NIRD Toolkit. Please specify which of your NSxxxxK projects you want this group to have access to.**
+   **Send the Group name, Group ID and preferred short name to contact@sigma2.no to be authorized to deploy a service through the NIRD Toolkit. Please specify which of your NSxxxxK projects you want this group to have access to.**
 
 4. You can now authorize other co-workers to run the deployed application, by adding them to the newly created group. Click on "Edit" and you will be redirected to a page that contains a "Share Link" session. Copy the link and send it by mail to the person that you want to invite into the group. 
 
