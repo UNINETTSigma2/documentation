@@ -6,12 +6,12 @@ Meet the HPC staff, discuss problems and project ideas, give feedback or
 suggestions on how to improve services, and get advice for your
 projects.
 
-Join us on [Zoom](https://uit.zoom.us/j/65507988731), get yourself a
+Join us on [Zoom](https://uit.zoom.us/j/66032115387), get yourself a
 coffee or tea and have a chat. It doesn't matter from which institute or
 university you are, you are **welcome to join at any time**.
 
-This time we will start with a **15 min seminar about typical but somewhat cryptic
-errors and problems on our HPC systems.**
+This time we will start with a **15 min seminar about the new European
+HPC cluster LUMI and how you might benefit from it.**
 Afterwards we have the open question and answer session.
 
 We can talk about:
@@ -37,14 +37,15 @@ events.
 
 ## Next event
 
-- **2021-12-08, 13:00 - 15:00**, [Join us on Zoom](https://uit.zoom.us/j/65507988731)
+- **2022-01-26, 13:00 - 15:00**, [Join us on Zoom](https://uit.zoom.us/j/66032115387)
 
 
 ## Past events
 
+- 2021-12-08, 13:00 - 15:00, ["Common but cryptic errors" Slides](https://docs.google.com/presentation/d/1U-GaHeyLOFM0HUObrYQzJELpS4UL10hOS5AGFMeEzVU/edit?usp=sharing)
 - 2021-10-13, 13:00 - 15:00
-- 2021-09-09, 13:00 - 15:00, ["Our More and Less Known Resources"](https://docs.google.com/presentation/d/1kEmxUYJJa2b6jKgiJYvdzFopyB3owkQkK-uJTolXny0/edit?usp=sharing)
-- 2021-02-03, 13:00 - 15:00, ["How To Installation" Slides here](https://docs.google.com/presentation/d/1fOzq_ob19TFIZ0lERSPw7oXx6irVVDwB2vmHOrz2AKA/edit?usp=sharing)
+- 2021-09-09, 13:00 - 15:00, ["Our More and Less Known Resources" Slides](https://docs.google.com/presentation/d/1kEmxUYJJa2b6jKgiJYvdzFopyB3owkQkK-uJTolXny0/edit?usp=sharing)
+- 2021-02-03, 13:00 - 15:00, ["How To Installation" Slides](https://docs.google.com/presentation/d/1fOzq_ob19TFIZ0lERSPw7oXx6irVVDwB2vmHOrz2AKA/edit?usp=sharing)
 - 2020-10-13, 13:00 - 15:00, ["Helpful tools & Services" Slides](https://docs.google.com/presentation/d/1HKC5-G41lwVxAMjHU_UOTWKsRO3nD7B8uh9IVQRNtsk/edit?usp=sharing)
 - 2020-06-10, 13:00 - 15:00
 - 2020-04-23, 13:00 - 15:00
