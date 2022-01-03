@@ -58,7 +58,7 @@ This template implements the **EU Horizon 2020** recommendation with regard to d
 (Institutional-and-community-specific-template)=
 ### Institutional and community specific template
 
-The service can support multiple form for the questionnaire (referred to as *"template"*). For example, it is possible to integrate Institutions specific recommendations or community specific recommendations into templates available in the easyDMP.  If you want to know more about this take contact with us: <sigma2@uninett.no>.
+The service can support multiple form for the questionnaire (referred to as *"template"*). For example, it is possible to integrate Institutions specific recommendations or community specific recommendations into templates available in the easyDMP.  If you want to know more about this take contact with us: <contact@sigma2.no>.
 
 (Create-a-DMP)=
 ## Create a DMP

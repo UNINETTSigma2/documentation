@@ -12,7 +12,7 @@ Log in using your existing username.
 Go to [this page](https://www.metacenter.no/user/reset/) and fill in your username.
 An activation key will be sent to you to the mobile number associated with your username.
 A mobile  number is required to get access, but we do accept foreign numbers (just make sure the number registered contain the full
- callable number including correct country code etc.). If you have no number registered, you have two options: (i) use your OpenIdP or Feide account to log into your account on [this page](https://www.metacenter.no/user/login/) and enter a valid mobile number, or (ii) contact [sigma2@uninett.no](mailto:sigma2@uninett.no).
+ callable number including correct country code etc.). If you have no number registered, you have two options: (i) use your OpenIdP or Feide account to log into your account on [this page](https://www.metacenter.no/user/login/) and enter a valid mobile number, or (ii) contact [contact@sigma2.no](mailto:contact@sigma2.no).
 
 Note that it can take 15 minutes for the change to propagate to the login nodes.
 

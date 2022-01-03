@@ -260,7 +260,7 @@ HPC projects is 1 TB, but projects can apply for more during the
 application process with a maximum quota of 10 TB.
 
 Also after the project has been created, project members can request to increase
-the quota to up to 10 TB by motivating why this is needed. Such requests should be submitted by the project leader via e-mail to <sigma2@uninett.no>.
+the quota to up to 10 TB by motivating why this is needed. Such requests should be submitted by the project leader via e-mail to <contact@sigma2.no>.
 
 Requests for more than 10 TB require an application for a separate [NIRD](nird.md) project area.
 
