@@ -203,18 +203,26 @@ similar in the job script.
 Each user has an area `/cluster/work/users/$USER`.  The location is
 stored in the environment variable `$USERWORK`.
 **This area is not backed up** ([documentation about backup](backup.md)).
-`$USERWORK` is only accessible by
-the user owning the area.
+By default, `$USERWORK` is private area and only accessible by
+the user owning the area. However, it is possible to grant other
+users access here, for e.g., debugging purposes. Note that write 
+access to your `$USERWORK` can not be granted to others.
 
-This directory is meant for files that are used by one or more jobs.
-All result files must be moved out from this area after the jobs
-finish, otherwise they will be automatically deleted after a while
-(see notes below). We highly encourage users to keep this area tidy,
-since both high disk usage and automatic deletion process takes away
-disk performance. The best solution is to clean up any unnecessary
-data after each job.  Since `$USERWORK` is only accessible by the
-user, you must move results to the project area if you want to share
-them with other people in the project.
+To allow others to read your work area, you may use the command: 
+`chmod o+rx $USERWORK`
+  
+Note that by doing so you will allow everyone on the machine to 
+access your user work directory. If you want to share the results
+in `$USERWORK` with other people in the project, the best way is to 
+move them to the project area. 
+
+The `$USERWORK`directory is meant for files that are used by one 
+or more jobs. All result files must be moved out from this area 
+after the jobs finish, otherwise they will be automatically deleted
+after a while(see notes below). We highly encourage users to keep 
+this area tidy,since both high disk usage and automatic deletion
+process takes away disk performance. The best solution is to clean up
+any unnecessary data after each job.  
 
 File deletion depends on the newest of the *creation-*, *modification-* and
 *access* time and the total usage of the file system. The oldest files will
