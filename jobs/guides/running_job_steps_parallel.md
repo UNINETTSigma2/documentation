@@ -57,15 +57,15 @@ A couple of notes:
   all commands started with `&` have completed.
 - It is possible to use `mpirun` instead of `srun`, although `srun` is
   recommended for OpenMPI.
-- The `export SLURM_MEM_PER_CPU=1920` and `unset SLURM_MEM_PER_NODE`
+- The `export SLURM_MEM_PER_CPU=1888` and `unset SLURM_MEM_PER_NODE`
   lines prior to the `srun` lines are needed for jobs in the `normal` or
   `optimist` partitions on Fram and Betzy, because it is not possible
   to specify this to `sbatch` for such jobs.  Alternatively, you can
-  add `--mem-per-cpu=1920` to the `srun` command lines (this only
-  works with `srun`).  (1920 allows up to 32 tasks per node.  If each
-  task needs more than 1920 MiB per cpu, the number must be increased
+  add `--mem-per-cpu=1888` to the `srun` command lines (this only
+  works with `srun`).  (1888 allows up to 32 tasks per node.  If each
+  task needs more than 1888 MiB per cpu, the number must be increased
   (and the number of tasks per node will be reduced).  On *Betzy*, the
-  corresponding number is 1960, which will allow up to 128 tasks per
+  corresponding number is 1952, which will allow up to 128 tasks per
   node.
 - This technique does **not** work with IntelMPI, at least not when using
   `mpirun`, which is currently the recommended way of running IntelMPI jobs.

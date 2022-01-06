@@ -34,8 +34,8 @@ This will start 128 tasks (processes) on each node, one for each cpu on the node
 All normal jobs gets exclusive access to whole nodes (all CPUs and
 memory).  If a job tries to use more (resident) memory than is
 configured on the nodes, it will be killed.  Currently, this limit is
-245 GiB, *but it can change*.  If a job would require more memory per
-task than the given 245 GiB split by 128 tasks, the trick is to limit the
+244 GiB, *but it can change*.  If a job would require more memory per
+task than the given 244 GiB split by 128 tasks, the trick is to limit the
 number of tasks per node the following way:
 
 	#SBATCH --account=MyProject
@@ -46,7 +46,7 @@ number of tasks per node the following way:
 This example above will use only 16 tasks per node, giving each task 15
 GiB.  Note that is the _total_ memory usage on each node that counts,
 so one of the tasks can use more than 15 GiB, as long as the total is
-less than 245 GiB.
+less than 244 GiB.
 
 To run multithreaded applications, use `--cpus-per-task` to allocate
 the right number of cpus to each task.  For instance:

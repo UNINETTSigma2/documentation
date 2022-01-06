@@ -36,7 +36,7 @@ Fram:
     - minimum 1 node, maximum 32 nodes (can be increased)
 - __Maximum walltime__: 7 days
 - __Priority__: normal
-- __Available resources__: 996 nodes with 32 cpus and 60 GiB RAM
+- __Available resources__: 996 nodes with 32 cpus and 59 GiB RAM
 - __Parameter for sbatch/srun__:
     - None, _normal_ is the default
 - __Job Scripts__: {ref}`job_scripts_fram_normal`
@@ -60,7 +60,7 @@ to [support@nris.no](mailto:support@nris.no).
 - __Maximum walltime__: 14 days
 - __Priority__: normal
 - __Available resources__:
-    - 8 nodes with 32 cpus and 501 GiB RAM
+    - 8 nodes with 32 cpus and 494 GiB RAM
     - 2 nodes with 64 cpus and 6045 GiB RAM
 - __Parameter for sbatch/srun__:
     - `--partition=bigmem`
@@ -84,7 +84,7 @@ whole nodes.
     - maximum 1 running job at a time per user
 - __Maximum walltime__: 30 minutes
 - __Priority__: high
-- __Available resources__: 8 nodes with 32 cpus and 60 GiB RAM between
+- __Available resources__: 8 nodes with 32 cpus and 59 GiB RAM between
   07:00 and 21:00 on weekdays
 - __Parameter for sbatch/srun__: 
     - `--qos=devel`
@@ -110,7 +110,7 @@ the _devel_ or _short_ job types, please contact us at
     - maximum 16 nodes in use at the same time
 - __Maximum walltime__: 2 hours
 - __Priority__: high (slightly lower than *devel*)
-- __Available resources__: 16 nodes with 32 cpus and 60 GiB RAM
+- __Available resources__: 16 nodes with 32 cpus and 59 GiB RAM
   (shared with *normal*)
 - __Parameter for sbatch/srun__: 
     - `--qos=short`

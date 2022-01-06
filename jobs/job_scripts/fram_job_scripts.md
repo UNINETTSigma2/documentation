@@ -35,8 +35,8 @@ This will start 32 tasks (processes) on each node, one for each cpu on the node.
 All normal jobs gets exclusive access to whole nodes (all CPUs and
 memory).  If a job tries to use more (resident) memory than is
 configured on the nodes, it will be killed.  Currently, this limit is
-60 GiB, *but it can change*.  If a job would require more memory per
-task than the given 60 GiB split by 32 tasks, the trick is to limit the
+59 GiB, *but it can change*.  If a job would require more memory per
+task than the given 59 GiB split by 32 tasks, the trick is to limit the
 number of tasks per node the following way:
 
 	#SBATCH --account=MyProject
@@ -47,9 +47,9 @@ number of tasks per node the following way:
 This example above will use only 4 tasks per node, giving each task 15
 GiB.  Note that is the _total_ memory usage on each node that counts,
 so one of the tasks can use more than 15 GiB, as long as the total is
-less than 60 GiB.
+less than 59 GiB.
 
-If your job needs more than 60 GiB per task, the only option on Fram
+If your job needs more than 59 GiB per task, the only option on Fram
 is to use a *bigmem* job (see below).
 
 To run multithreaded applications, use `--cpus-per-task` to allocate
