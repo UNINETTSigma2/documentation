@@ -14,8 +14,7 @@ select which project the job should run in.  (The queue system calls
 projects _accounts_.)  Each project has a CPU hour quota, and when a
 job runs, CPU hours are subtracted from the project quota.  If there
 is not enough hours left on the quota, the job will be left pending
-with a reason `AssocGrpBillingMinutes` (`AssocGrpCPUMinutesLimit` on
-Fram, but this will soon change.)
+with a reason `AssocGrpBillingMinutes`.
 
 To see which projects you have access to on a cluster, run
 ```
@@ -77,18 +76,18 @@ clusters.
 
 ### Saga
 
-- The `normal` partition: memory factor is `0.2467806` units per GiB. Thus
+- The `normal` partition: memory factor is 0.2577031 units per GiB. Thus
   the memory cost of a job asking for all memory on a node will
   be 46. This is a compromise between the two node types in the
   normal partition; they have 40 and 52 CPUs.
 
 - For the `bigmem` partition, the factor is
-  `0.1059915` units per GiB.  This means that for a job requesting all
+  0.1104972 units per GiB.  This means that for a job requesting all
   memory on one of the "small" bigmem nodes, the memory cost is 40,
   while for a job requesting all memory on one of the large nodes,
   it is 320.
 
-- On the `accel` partition, the memory factor is `0.06359442` units per
+- On the `accel` partition, the memory factor is 0.06593407 units per
   GiB, and the GPU factor is 6.  This means that a job asking for all
   memory on a node, or all GPUs on a node, gets a cost of 24, the
   number of CPUs on the node.
@@ -102,10 +101,10 @@ clusters.
   job is accounted for 128 units per node, and there is no memory
   factor.
 
-- The `preproc` partition has a memory factor of `0.5221992` units per
+- The `preproc` partition has a memory factor of 0.5245902 units per
   GiB, so a job asking for all memory on the node would have a cost of
   128, the number of CPUs on the node.
 
-- The `accel` partition has a memory factor of `0.2570281` units per GiB, while
-  the GPU factor is `32` units per GPU. This means that when one reserves 1 GPU
+- The `accel` partition has a memory factor of 0.2588473 units per GiB, while
+  the GPU factor is 32 units per GPU. This means that when one reserves 1 GPU
   on Betzy the billing is equivalent of reserving 32 CPU cores.
