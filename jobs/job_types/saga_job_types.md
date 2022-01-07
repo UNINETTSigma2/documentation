@@ -47,9 +47,8 @@ Saga:
 - __Maximum walltime__: 7 days
 - __Priority__: normal
 - __Available resources__:
-    - 200 nodes with 40 cpus and 186 GiB RAM
-	- 120 nodes with 52 cpus and 186 GiB RAM
-	- In total 14240 cpus and 58.1 TiB RAM.
+    - 200 nodes with 40 cpus and 178.5 GiB RAM
+	- 120 nodes with 52 cpus and 178.5 GiB RAM
 - __Parameter for sbatch/srun__:
     - None, _normal_ is the default
 - __Job Scripts__: {ref}`job_scripts_saga_normal`
@@ -67,9 +66,8 @@ This is the default job type.  Most jobs are *normal* jobs.
 - __Maximum walltime__: 14 days
 - __Priority__: normal
 - __Available resources__:
-    - 28 nodes with 40 cpus and 377 GiB RAM
+    - 28 nodes with 40 cpus and 362 GiB RAM
     - 8 nodes with 64 cpus and 3021 GiB RAM
-	- In total 1632 cpus and 33.9 TiB RAM.
 - __Parameter for sbatch/srun__:
     - `--partition=bigmem`
 - __Job Scripts__: {ref}`job_scripts_saga_bigmem`
@@ -91,8 +89,8 @@ and resource limits of _devel_ apply.
     - maximum 256 units
 - __Maximum walltime__: 14 days
 - __Priority__: normal
-- __Available resources__: 8 nodes with 24 cpus, 377 GiB RAM and 4
-  GPUs, in total 192 cpus, 3019 GiB RAM and 32 GPUs.
+- __Available resources__: 8 nodes with 24 cpus, 364 GiB RAM and 4
+  GPUs.
 - __Parameter for sbatch/srun__: 
     - `--partition=accel`
     - `--gpus=N`, `--gpus-per-node=N` or similar, with _N_ being the number of GPUs
