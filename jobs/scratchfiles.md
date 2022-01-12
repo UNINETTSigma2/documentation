@@ -1,6 +1,9 @@
 (scratchfiles)=
 
-# Why is matters
+
+# Local storage for scratch files
+
+## Why is matters
 
 Usage of local storage for scratch files can have dramatic impact of run time!
 ```
@@ -22,7 +25,7 @@ The test run to produce the results in the figure above figure took 47 minutes u
 while it took 20 hours using `$SCRATCH`.
 
 
-# How to choose location for scratch files
+## How to choose location for scratch files
 
 A job typically uses several types of files, including:
 
