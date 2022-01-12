@@ -42,10 +42,9 @@ There are multiple choices for where to keep files.
 | Job scratch area  | ($LOCALSCRATCH) /localscratch/<job-ID>  | few 100GBs per node    | a fast disk on the node where the job runs  |
 
 Each location has its advantages and disadvantages, depending on
-usage. The parallel file system (project area and project work area)
-is very good for sequential read and write of large files.
-It is by nature (very) slow for random read & write operations and metadata
-operations (handling of large number of files).
+usage. The parallel file system is very good for sequential read and 
+write of large files.It is by nature (very) slow for random read & write 
+operations and metadata operations (handling of large number of files).
 
 The local file system ($LOCALSCRATCH) is far better suited for this.
 In addition the parallel file system needs to serve all users, so
@@ -57,17 +56,19 @@ below).
 ## Recommendations
 
 We recommend that the job script itself and the Slurm output file
-(slurm-<jobid>.log) are kept in the project area. The default location
-for the Slurm output file is the directory where one runs sbatch. You
-can also keep both of these files in your home directory, but be aware
-that the disk quota for home directories is quite small.
+(slurm-<jobid>.log) are kept on the paralell sile system. 
+The default location for the Slurm output file is the directory where 
+one runs sbatch. You can also keep both of these files in your home directory, 
+but be aware that the disk quota for home directories is quite small
+(but it has backup for your important files).
+
 
 ### Input files
 
 Where to keep input files depends on how they are used.
 
 If an input file is read sequentially (i.e., from start to end), it is
-best to keep it in the project area.
+best to keep it in the work/home or project area.
 
 ```{warning}
 The storage location pointed to by $LOCALSCRATCH is limited, of 
@@ -79,7 +80,8 @@ the job script copy the file to $LOCALSCRATCH.
 
 ### Temporary files
 
-By temporary files we mean files created by the job, and that are not needed after the job has finished.
+By temporary files we mean files created by the job, and that are not 
+needed after the job has finished.
 
 Temporary files should normally be created in $LOCALSCRATCH, since
 this is the fastest disk. This is especially important if there is a
