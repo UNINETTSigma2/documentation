@@ -34,11 +34,11 @@ GPUs are excellent for well structured problems.
 - Does OpenACC support conditional execution that blocks instructions of individual threads? To my understanding, this is supported by CUDA. 
     - In OpenACC you need to add a reduction clause yourself, and the compiler will generate a code to perform if-condition.-
     - There is no explicit support for calculating your thread ID within OpenACC, however, that does not mean that you cannot get thread divergence with OpenACC
-```c=
+```c
 // The following is likely to result in thread divergence and very low performance on a GPU
 #pragma acc kernels
-for(int i = 0; i < X; i++) {
-    if(i < Z) {
+for (int i = 0; i < X; i++) {
+    if (i < Z) {
         i -= 1;
     } else {
         i += 1;
