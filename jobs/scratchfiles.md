@@ -1,4 +1,4 @@
-(choosing-location-for-scratchfiles)=
+(scratchfiles)=
 
 # Why is matters
 
@@ -69,7 +69,7 @@ Where to keep input files depends on how they are used.
 If an input file is read sequentially (i.e., from start to end), it is
 best to keep it in the project area.
 
-```{warning}: 
+```{warning}
 The storage location pointed to by $LOCALSCRATCH is limited, of 
 job fails due to storage limitation on $LOCALSCRATCH use $SCRATCH.
 ```
