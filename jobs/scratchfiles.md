@@ -3,7 +3,9 @@
 # Why is matters
 
 Usage of local storage for scratch files can have dramatic impact of run time!
-
+```
+NOTE: localscratch is only available on Saga and Fram.
+```
 ![Different scratch locations](img/localscratch.png) 
 
 as illustrated in the figure random read operations are extremely slow on a global 
@@ -67,8 +69,8 @@ Where to keep input files depends on how they are used.
 If an input file is read sequentially (i.e., from start to end), it is
 best to keep it in the project area.
 
-```
-{warning}: The storage location pointed to by $LOCALSCRATCH is limited, of 
+```{warning}: 
+The storage location pointed to by $LOCALSCRATCH is limited, of 
 job fails due to storage limitation on $LOCALSCRATCH use $SCRATCH.
 ```
 
@@ -88,7 +90,7 @@ like to keep the files after the job has finished, you should create
 files in the project work area. Files here can be made available to
 users in the same project.
 
-```
+```{warning}
 NOTE: Files in the project work area are deleted after some time.
 ```
 
