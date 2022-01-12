@@ -21,5 +21,6 @@ Running jobs
    interactive_jobs.md
    checkpointing.md
    projects_accounting.md
+   scratchfiles.md
    dos_and_donts.md
    guides.md
