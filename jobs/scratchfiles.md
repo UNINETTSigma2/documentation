@@ -177,7 +177,7 @@ several nodes will get one `$LOCALSCRATCH` area on each node.
 
 Slurm provide utilities for distributing files to local scratch areas on several nodes and gather files back again. 
 Here is an example to illustrate how this might look:
-```
+```bash
 #!/bin/bash
 #SBATCH --account=YourProject
 #SBATCH --ntasks-per-node=2
