@@ -71,7 +71,7 @@ If an input file is read sequentially (i.e., from start to end), it is
 best to keep it in the work/home or project area.
 
 ```{warning}
-The storage location pointed to by $LOCALSCRATCH is limited, of 
+The storage location pointed to by $LOCALSCRATCH is limited, if 
 job fails due to storage limitation on $LOCALSCRATCH use $SCRATCH.
 ```
 
