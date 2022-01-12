@@ -32,14 +32,12 @@ A job typically uses several types of files, including:
 
 There are multiple choices for where to keep files.
 
-| ----------------- | ---------------------------------------- | --------------------- |-------------------------------------------- |
 | Name              | Path                                     | Size                  |	Description                              |
 | ----------------- | ---------------------------------------- | --------------------- |-------------------------------------------- |
 | Project area      | /cluster/projects/<project-name>        | quota per project      | main project area, for permanent files      |
 | User work area    | /cluster/work/users/<uname>             | no quota 	           | for temporary user files                    |
 | Job scratch area  | ($SCRATCH) /cluster/work/jobs/<job-ID>  | no quota               | for temporary job files                     |
 | Job scratch area  | ($LOCALSCRATCH) /localscratch/<job-ID>  | few 100GBs per node    | a fast disk on the node where the job runs  |
-| ---------------------------------------------------------------------------------------------------------------------------------- |
 
 Each location has its advantages and disadvantages, depending on
 usage. The parallel file system (project area and project work area)
