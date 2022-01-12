@@ -3,7 +3,7 @@
 
 # Local storage for scratch files
 
-## Why is matters
+## Why it matters
 
 Usage of local storage for scratch files can have dramatic impact of run time!
 ```{note}
