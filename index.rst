@@ -2,11 +2,12 @@
 Norwegian Research Infrastructure Services
 ======================================================================
 
-The Norwegian academic high-performance computing and storage
-infrastructure is maintained by `NRIS <https://sigma2.no/nris>`__ (formerly known as *the Metacenter*), which is a joint
-collaboration between `UiO <https://www.uio.no>`__,
-`UiB <https://www.uib.no>`__, `NTNU <https://www.ntnu.no>`__,
-`UiT <https://uit.no>`__, and `Sigma2 <https://www.sigma2.no/>`__.
+The Norwegian academic high-performance computing and storage infrastructure is
+maintained by `NRIS <https://sigma2.no/nris>`__ (formerly known as *the
+Metacenter*), which is a joint collaboration between `UiO
+<https://www.uio.no>`__, `UiB <https://www.uib.no>`__, `NTNU
+<https://www.ntnu.no>`__, `UiT <https://uit.no>`__, and `Sigma2
+<https://www.sigma2.no/>`__.
 
 We provide valuable resources for the research communities. Not only do we provide
 state-of-the art :ref:`compute <hardware-overview>` and :ref:`storage facilities <nird>`,
@@ -89,7 +90,7 @@ Sigma2 should include an acknowledgement following this template:
 ::
 
    The computations/simulations/[SIMILAR] were performed on resources provided by
-   NRIS - the Norwegain Research Infrastructure Services for High Performance Computing and
+   NRIS - the Norwegian Research Infrastructure Services for High Performance Computing and
    Data Storage
 
 
