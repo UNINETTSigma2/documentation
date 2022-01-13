@@ -103,6 +103,7 @@ following performance.
 | 1 CPU core + 1 GPU | 181 | 1.3x |
 | 8 CPU cores + 1 GPU | 60 | 3.9x |
 | 8 CPU cores + 2 GPUs | 56 | 4.2x |
+| 24 CPU cores + 4 GPUs | 33 | 7.1x |
 
 Note that depending on your setup you might not see the same performance, we
 urge researchers to test with GPU to see if they can benefit and
