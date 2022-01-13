@@ -1,4 +1,3 @@
-
 # GPU-programming: Porting OpenACC to OpenMP  
 
 # Summary
@@ -98,7 +97,7 @@ In the following we cover both the OpenACC and OpenMP implementations to acceler
 
 We begin first by illustarting the functionality of the OpenACC model in terms of parallelism, which is determined by the directives **kernels** or **parallel loop**. The concept of parallelism functions via the generic directives: **gang**, **worker** and **vector** as schematically represented in [Fig. 1](#Fig1) (left-hand side). Here, the compiler initiates the parallelism by generating parallel gangs, in which each gang consists of a set of workers represented by a matrix of threads. This group of threads within a gang execute the same instruction (SIMT, Single Instruction Multiple Threads) via the vectorization process. In this scenario, a block of loops is assigned to each gang, which gets vectorized and executed redundantly by a group of threads.  
 
-<img src="https://user-images.githubusercontent.com/95568317/149146826-e54d09ef-b428-466e-9f05-1bd2b95c3461.jpg" width="1000" height="300">
+<img src="https://gitlab.sigma2.no/sigma2/eksterndokumentasjon/-/blob/hicham-master-patch-49560/code_development/guides/converting_acc2omp/figs/fig-arch.jpg" width="1000" height="300">
 
 **Fig. 1.** *GPU-architecture. Left-hand-side: software concept; right-hand-side: hardware aspect (see text for a detailed description).*
 
@@ -142,7 +141,7 @@ For completeness, we compare in [Fig. 2](#Fig2) the performance of the compute c
                                                        |  !$acc end data
 ```
 
-![Fig2](https://user-images.githubusercontent.com/95568317/148846246-39e4610e-1878-4812-8850-551b12c5e0b4.jpeg)
+![Fig2](https://gitlab.sigma2.no/sigma2/eksterndokumentasjon/-/blob/hicham-master-patch-49560/code_development/guides/converting_acc2omp/figs/fig-acc.jpeg)
 
 **Fig. 2.** *Performance of different OpenACC directives.*
 
@@ -228,7 +227,7 @@ The description of the compute constructs and clauses used in our OpenMP applica
                                                        |  !$omp end target data
 ```
 
-![Fig3](https://user-images.githubusercontent.com/95568317/148846520-6b1f8540-abf1-4953-9677-f72c347cc5cc.jpg)
+![Fig3](https://gitlab.sigma2.no/sigma2/eksterndokumentasjon/-/blob/hicham-master-patch-49560/code_development/guides/converting_acc2omp/figs/fig-omp.jpg)
 
 **Fig. 3.** *Performance of different OpenMP directives.*
 
