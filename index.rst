@@ -1,5 +1,5 @@
 ======================================================================
-The Norwegian academic high-performance computing and storage services
+Norwegian Research Infrastructure Services
 ======================================================================
 
 The Norwegian academic high-performance computing and storage
