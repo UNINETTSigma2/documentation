@@ -3,15 +3,13 @@ Norwegian Research Infrastructure Services
 ======================================================================
 
 The Norwegian academic high-performance computing and storage
-infrastructure is maintained by `Sigma2
-NRIS <https://sigma2.no/nris>`__ (formally known as the Sigma2 Metacenter), which is a joint
+infrastructure is maintained by `NRIS <https://sigma2.no/nris>`__ (formerly known as *the Metacenter*), which is a joint
 collaboration between `UiO <https://www.uio.no>`__,
 `UiB <https://www.uib.no>`__, `NTNU <https://www.ntnu.no>`__,
-`UiT <https://uit.no>`__, and `UNINETT
-Sigma2 <https://www.sigma2.no/>`__.
+`UiT <https://uit.no>`__, and `Sigma2 <https://www.sigma2.no/>`__.
 
 We provide valuable resources for the research communities. Not only do we provide
-state-of-the art :ref:`compute <hardware-overview>` and storage facilities,
+state-of-the art :ref:`compute <hardware-overview>` and :ref:`storage facilities <nird>`,
 backed by :ref:`support <support-line>` and a guarantee that your data always
 stays in Norway. But possibly more important is :ref:`easy access <extended-support>` to a wide selection
 of competences that can assist, realize or take your project to the next level.
@@ -91,8 +89,8 @@ Sigma2 should include an acknowledgement following this template:
 ::
 
    The computations/simulations/[SIMILAR] were performed on resources provided by
-   UNINETT Sigma2 - the National Infrastructure for High Performance Computing and
-   Data Storage in Norway
+   NRIS - the Norwegain Research Infrastructure Services for High Performance Computing and
+   Data Storage
 
 
 Text is licensed CC-BY
@@ -101,7 +99,7 @@ Text is licensed CC-BY
 Unless explicitly noted, all text on this website is made available
 under the `Creative Commons Attribution license
 (CC-BY-4.0) <https://creativecommons.org/licenses/by/4.0/>`__ with
-attribution to the Sigma2/NRIS.
+attribution to NRIS.
 
 --------------
 
