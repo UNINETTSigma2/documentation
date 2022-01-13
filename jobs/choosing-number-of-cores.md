@@ -253,7 +253,7 @@ perf-report ./mybinary
 ```
 
 This will generate the following performance report:
-```{code-block} txt
+```{code-block}
 ---
 emphasize-lines: 4, 15
 ---
