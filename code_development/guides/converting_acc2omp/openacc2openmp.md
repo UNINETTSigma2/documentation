@@ -50,21 +50,21 @@ suffers from some weaknesses, such as low performance, issues with the diagnosti
 We give a brief description of the numerical model used to slove the Laplace equation &Delta;f=0. For the sake of simplicity, we solve the eqution in a two-dimentional (2D) uniform grid according to
 
 ```math
-$$\Delta f(x,y)=\frac{\partial^{2} f(x,y)}{\partial x^{2}} + \frac{\partial^{2} f(x,y)}{\partial y^{2}}=0$$.   (1)
+\Delta f(x,y)=\frac{\partial^{2} f(x,y)}{\partial x^{2}} + \frac{\partial^{2} f(x,y)}{\partial y^{2}}=0. \ \ \ \ (1)
 ```
-Here we use the finite-difference method to approximate the partial derivative of the form `$\frac{\partial^{2} f(x)}{\partial x^{2}}$`. The spatial discretisation in the second-order scheme can be written as 
+Here we use the finite-difference method to approximate the partial derivative of the form $`\frac{\partial^{2} f(x)}{\partial x^{2}}`$. The spatial discretisation in the second-order scheme can be written as 
 
 ```math
-$$\frac{\partial^{2} f(x,y)}{\partial^{2} x}=$\frac{f(x_{i+1},y) - 2f(x_{i},y) + f(x_{i-1},y)}{\Delta x}$.   (2)
+\frac{\partial^{2} f(x,y)}{\partial^{2} x}=\frac{f(x_{i+1},y) - 2f(x_{i},y) + f(x_{i-1},y)}{\Delta x}. \ \ \ \ (2)
 ```
 
-The Eq.(2) can be further simplified and takes the final form
+Inserting Eq. (2) into Eq. (1) leads to this final expression 
 
 ```math
-$$f(x_i,y_j)=\frac{f(x_{i+1},y) + f(x_{i-1},y) + f(x,y_{i+1}) + f(x,y_{i-1})}{4}$$.   (3)
+f(x_i,y_j)=\frac{f(x_{i+1},y) + f(x_{i-1},y) + f(x,y_{i+1}) + f(x,y_{i-1})}{4}. \ \ \ \ (3)
 ```
 
-The Eq. (3) can be solved iteratively by defining some initial conditions that reflect the geometry of the problem at-hand. The iteration process can be done  either using ...or Jacobi algorithm. In this tutorial, we apt for the Jacobi algorithm due to its simplicity. The laplace equation is solved in a 2D-grid, and the corresponding compute code, which is written in *Fortran 90*, is given below in a serial form. Note that a *C*-based code can be found [here](https://documentation.sigma2.no/code_development/guides/openacc.html?highlight=openacc).
+The Eq. (3) can be solved iteratively by defining some initial conditions that reflect the geometry of the problem at-hand. The iteration process can be done either using ...or Jacobi algorithm. In this tutorial, we apt for the Jacobi algorithm due to its simplicity. The laplace equation is solved in a 2D-grid, and the corresponding compute code, which is written in *Fortran 90*, is given below in a serial form. Note that a *C*-based code can be found [here](https://documentation.sigma2.no/code_development/guides/openacc.html?highlight=openacc).
 
 ```bash
        do while (max_err.gt.error.and.iter.le.max_iter)
@@ -97,7 +97,7 @@ In the following we cover both the OpenACC and OpenMP implementations to acceler
 
 We begin first by illustarting the functionality of the OpenACC model in terms of parallelism, which is determined by the directives **kernels** or **parallel loop**. The concept of parallelism functions via the generic directives: **gang**, **worker** and **vector** as schematically represented in [Fig. 1](#Fig1) (left-hand side). Here, the compiler initiates the parallelism by generating parallel gangs, in which each gang consists of a set of workers represented by a matrix of threads. This group of threads within a gang execute the same instruction (SIMT, Single Instruction Multiple Threads) via the vectorization process. In this scenario, a block of loops is assigned to each gang, which gets vectorized and executed redundantly by a group of threads.  
 
-<img src="https://gitlab.sigma2.no/sigma2/eksterndokumentasjon/-/blob/hicham-master-patch-49560/code_development/guides/converting_acc2omp/figs/fig-arch.jpg" width="1000" height="300">
+<img src="figs/fig-arch.jpg" width="1000" height="300">
 
 **Fig. 1.** *GPU-architecture. Left-hand-side: software concept; right-hand-side: hardware aspect (see text for a detailed description).*
 
@@ -141,7 +141,7 @@ For completeness, we compare in [Fig. 2](#Fig2) the performance of the compute c
                                                        |  !$acc end data
 ```
 
-![Fig2](https://gitlab.sigma2.no/sigma2/eksterndokumentasjon/-/blob/hicham-master-patch-49560/code_development/guides/converting_acc2omp/figs/fig-acc.jpeg)
+![Fig2](figs/fig-acc.jpeg)
 
 **Fig. 2.** *Performance of different OpenACC directives.*
 
@@ -227,7 +227,7 @@ The description of the compute constructs and clauses used in our OpenMP applica
                                                        |  !$omp end target data
 ```
 
-![Fig3](https://gitlab.sigma2.no/sigma2/eksterndokumentasjon/-/blob/hicham-master-patch-49560/code_development/guides/converting_acc2omp/figs/fig-omp.jpg)
+![Fig3](figs/fig-omp.jpg)
 
 **Fig. 3.** *Performance of different OpenMP directives.*
 
