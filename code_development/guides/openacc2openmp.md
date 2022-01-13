@@ -245,12 +245,8 @@ The flag *-fopenmp* activates the OpenMP directives (i.e. !$omp [construct] in 
  
 ## Mapping OpenACC to OpenMP
 
-We compare our OpenACC application against the OpenMP one. This is summarized below:
-
 We present a direct comparison between the OpenACC and OpenMP offload features. This comparison is shown below and further illustrated in the table, in which we emphasise the meaning of some of the basic constructs and clauses underlying our application. Here, evaluating the behavior of OpenACC and OpenMP by one-to-one mapping is a key feature of the conversion procedure. A closer look at OpenACC and OpenMP codes reveals some similarities and differences in terms of constructs and clauses as summerized in the table. In particular, it shows that the syntax of both programming models is so similar, thus making the implementation of the translation procedure at the syntactic level straightforward. Therefore, such a Comparison is critical for determining the correct mappings to OpenMP.
 
-We thus discuss this translation procedure in the next section.
- 
 ```bash
                     **OpenACC**                        |                    **OpenMP**
 !$acc data copyin(f) copyout(f_k)                      |  !$omp target data map(to:f) map(from:f_k)
