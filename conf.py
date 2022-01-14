@@ -25,6 +25,7 @@ author = 'Sigma2/NRIS'
 # Logo setup
 html_favicon = 'img/nris.ico'
 html_logo = 'img/NRIS Logo.svg'
+html_css_files = ['nris.css']
 
 html_title = 'Sigma2 documentation'
 html_short_title = 'Sigma2'
@@ -56,7 +57,7 @@ html_theme = 'sphinx_rtd_theme'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = []
+html_static_path = ['_static']
 
 # this configures where "view page source" (top right on rendered page) points to
 html_context = {
@@ -82,11 +83,3 @@ linkcheck_ignore = [
     'https://www.ccp4.ac.uk/',  # SSL certificate issue
     'https://www.vasp.at',  # SSL certificate issue
 ]
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
-
-def setup(app):
-    app.add_css_file('nris.css')

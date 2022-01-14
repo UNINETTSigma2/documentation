@@ -6,6 +6,6 @@
     background: #51626f;
 }
 
-.wy-menu, .wy-menu-vertical, .wy-nav-side, .caption-text {
+.wy-menu-vertical .caption-text {
     color: #c79900;
 }
