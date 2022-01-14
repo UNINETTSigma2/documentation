@@ -84,7 +84,7 @@ Acknowledging use of national HPC infrastructure
 Projects are required to acknowledge the use of the national
 e-infrastructure resources in their scientific publications. Papers,
 presentations and other publications that feature work that relied on
-resources provided by Sigma2 should include an [acknowledgement following this template](https://www.sigma2.no/acknowledgements).
+resources provided by Sigma2 should include an `acknowledgement following this template <https://www.sigma2.no/acknowledgements>`__.
 
 Text is licensed CC-BY
 ----------------------
