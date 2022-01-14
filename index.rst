@@ -84,14 +84,7 @@ Acknowledging use of national HPC infrastructure
 Projects are required to acknowledge the use of the national
 e-infrastructure resources in their scientific publications. Papers,
 presentations and other publications that feature work that relied on
-Sigma2 should include an acknowledgement following this template:
-
-::
-
-   The computations/simulations/[SIMILAR] were performed on resources provided by
-   NRIS - the Norwegain Research Infrastructure Services for High Performance Computing and
-   Data Storage
-
+resources provided by Sigma2 should include an [acknowledgement following this template](https://www.sigma2.no/acknowledgements).
 
 Text is licensed CC-BY
 ----------------------
