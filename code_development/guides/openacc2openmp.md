@@ -94,7 +94,7 @@ We begin first by illustrating the functionality of the OpenACC model in terms o
 
 <img src="figs/fig-arch.jpg" width="1000" height="300">
 
-**Fig. 1.** *GPU-architecture. Left-hand-side: software concept; right-hand-side: hardware aspect (see text for a detailed description).*
+**Fig. 1.** *GPU-architecture. Left-hand-side: software concept; right-hand-side: hardware aspect (see text for a detailed description and also [here](#http://web.engr.oregonstate.edu/~mjb/cs575/Handouts/gpu101.2pp.pdf)).*
 
 In the hardware picture, a GPU-device consists of a block of Compute Units (CUs) (CU is a general term for a Streaming Multiprocessor, SM) each of which is organized as a matrix of Processing Elements (PEs) (PE is a general term for a CUDA core), as shown in [Fig. 1](#Fig1) (right-hand side). As an example, the [NVIDIA P100 GPU-accelerators](https://images.nvidia.com/content/tesla/pdf/nvidia-tesla-p100-PCIe-datasheet.pdf) [see also [here](http://web.engr.oregonstate.edu/~mjb/cs575/Handouts/gpu101.2pp.pdf)] have 56 CUs (or 56 SMs) and each CU has 64 PEs (or 64 CUDA cores) with a total of 3584 PEs (i.e. 3584 FP32 cores/GPU or 1792 FP64 cores/GPU), while the [NVIDIA V100](https://images.nvidia.com/content/technologies/volta/pdf/volta-v100-datasheet-update-us-1165301-r5.pdf) has 80 CUs and each CU has 64 PEs with a total of 5120 PEs (5120 FP32/GPU or 2560 FP64/GPU), where FP32 and FP64 correspond to the single-precision Floating Point (FP) (i.e. 32 bit) and to the double precision (64 bit), respectively. 
 
