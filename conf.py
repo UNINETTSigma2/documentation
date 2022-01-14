@@ -24,7 +24,7 @@ author = 'Sigma2/NRIS'
 
 # Logo setup
 html_favicon = 'img/nris.ico'
-html_logo = 'img/NRIS-Logo.png'
+html_logo = 'img/NRIS Logo.svg'
 
 html_title = 'Sigma2 documentation'
 html_short_title = 'Sigma2'
