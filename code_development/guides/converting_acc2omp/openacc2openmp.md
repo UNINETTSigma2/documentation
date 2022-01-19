@@ -1,3 +1,9 @@
+---
+orphan: true
+---
+
+(acc2omp)=
+
 # Mapping OpenACC to OpenMP offloading 
 
 # Summary
@@ -59,7 +65,7 @@ Inserting Eq. (2) into Eq. (1) leads to this final expression
 f(x_i,y_j)=\frac{f(x_{i+1},y) + f(x_{i-1},y) + f(x,y_{i+1}) + f(x,y_{i-1})}{4}. \ \ \ \ (3)
 ```
 
-The Eq. (3) can be solved iteratively by defining some initial conditions that reflect the geometry of the problem at-hand. This can be done either using Gauss–Seidel method or Jacobi method. Here, we apt for the Jacobi algorithm due to its simplicity. The corresponding compute code is written in *Fortran 90* and is given below in a serial form. Note that a *C*-based code can be found [here](https://documentation.sigma2.no/code_development/guides/openacc.html?highlight=openacc).
+The Eq. (3) can be solved iteratively by defining some initial conditions that reflect the geometry of the problem at-hand. This can be done either using Gauss–Seidel method or Jacobi method. Here, we apt for the Jacobi algorithm due to its simplicity. The corresponding compute code is written in *Fortran 90* and is given below in a serial form. Note that a *C*-based code can be found {ref}`here <openacc>`.
 
 ```bash
        do while (max_err.gt.error.and.iter.le.max_iter)
@@ -167,13 +173,18 @@ For completeness, we compare in [Fig. 4](#Fig4) the performance of the compute c
 **Fig. 4.** *Performance of different OpenACC directives.*
 </div>
 
+Here are some notes:
 
-```{note} Accoriding to the OpenACC [specification](https://www.openacc.org/sites/default/files/inline-files/OpenACC_Programming_Guide_0_0.pdf) the order of the clauses  **gang**, **worker** and **vector** should be enforced: the **gang** clause must determine the outermost loop and the **vector** clause should define the innermost parallel loop, while the **worker** clause should be in between these two clauses.```
+```{note} 
+- Accoriding to the OpenACC [specification](https://www.openacc.org/sites/default/files/inline-files/OpenACC_Programming_Guide_0_0.pdf) the order of the clauses  **gang**, **worker** and **vector** should be enforced: 
+the **gang** clause must determine the outermost loop and the **vector** clause should define the innermost parallel loop, while the **worker** clause should be in between these two clauses.
 
-> 
-> ```{note} Different gangs operate independently.```
-> 
-> ```{note} When incorporating the constructs **kernels** or **parallel loop**, the compiler will generate arrays that will be copied back and forth between the host and the device if they are not already present in the device.``` 
+- When incorporating the constructs **kernels** or **parallel loop**, the compiler will generate arrays that will be copied back and forth
+ between the host and the device if they are not already present in the device.
+
+- Different gangs operate independently.
+```
+
 
 ### Compiling and running OpenACC-program
 
@@ -202,9 +213,11 @@ module load NVHPC/21.2
  
 $ srun ./laplace_acc.exe
 ```
-In the script above, the option *--partition=accel* enables the access to the GPU, as shown [here](https://documentation.sigma2.no/code_development/guides/openacc.html?highlight=openacc). One can also use the command `sinfo` to get information about which nodes are connected to the GPUs. 
+In the script above, the option *--partition=accel* enables the access to the GPU, as shown {ref}`here <openacc>`. One can also use the command `sinfo` to get information about which nodes are connected to the GPUs. 
 
-```{note} The compilation process requires loading a NVHPC module, e.g. `NVHPC/21.2` or a different version.```
+```{note} 
+The compilation process requires loading a NVHPC module, e.g. `NVHPC/21.2` or a different version.
+```
 
 
 ## Experiment on OpenMP offloading
@@ -215,7 +228,7 @@ The concept of parallelism is implemented using the same model described in [Sec
 
 The OpenMP performance however gets improved when introducing the directive **data** in the beginning of the iteration. This implementation has the advantage of keeping the data in the device during the iteration process and copying them back to the host only at the end of the iteration. By doing so, the performance is improved by almost a factor of 22, as depicted in [Fig. 5](#Fig5): it goes from 119.6 s in the absence of the data directive to 5.4 s when the directive is introduced. As in OpenACC application, the performance can be further tuned by introducing additional clauses, specifically, the clauses **collapse** and **schedule** which are found to reduce the computing time from 5.4 s to 2.15 s. 
 
-The description of the compute constructs and clauses used in our OpenMP application is provided in the [Table. 1](Table1) together with those of OpenACC. For further OpenMP tutorials, we refer to a different scenario implemented in C, which can be found [here](https://documentation.sigma2.no/code_development/guides/ompoffload.html).
+The description of the compute constructs and clauses used in our OpenMP application is provided in the [Table. 1](Table1) together with those of OpenACC. For further OpenMP tutorials, we refer to a different scenario implemented in C, which can be found {ref}`here <ompoffload>`.
          
 ```bash
           **OpenMP without data directive**            |                 **OpenMP with data directive**
@@ -265,7 +278,9 @@ flang -fopenmp=libomp -fopenmp-targets=<target> -Xopenmp-target=<target> -march=
 
 The flag *-fopenmp* activates the OpenMP directives (i.e. !$omp [construct] in Fortran). The option *-fopenmp-targets=<target>* is used to enable the target offloading to GPU-accelerators and tells the Flang compiler to use *<target>=amdgcn-amd-amdhsa* as the AMD target. The *-Xopenmp-target* flag enables options to be passed to the target offloading toolchain. In addition, we need to specify the architecture of the GPU to be used. This is done via the flag *-march=<arch>*, where *<arch>* specifies the name of the GPU-architecture. This characteristic feature can be extracted from the machine via the command `rocminfo` for the AMD device. These commands provide a general view of the GPU-accelerator and additional related information. For instance, the AMD Mi100 accelerator architecture is specified by the flag *-march=gfx908 amd-arch*.   
 
-> ```{note} The compilation process requires loading a AOMP module, e.g. `AOMP/13.0-2-GCCcore-10.2.0` or a newer version.```
+```{note} 
+The compilation process requires loading a AOMP module, e.g. `AOMP/13.0-2-GCCcore-10.2.0` or a newer version.
+```
 
  
 ## Mapping OpenACC to OpenMP
@@ -336,7 +351,7 @@ Details about library routines can be found [here](https://gcc.gnu.org/onlinedoc
 
 # Discussion on porting OpenACC to OpenMP
 
- For completeness, we provide in this section some highlights of the available open-source tools that provide support of OpenACC in terms of compilers and hardware. According to the work of [J. Vetter et al.](https://ieeexplore.ieee.org/document/8639349) and the [OpenACC website](https://www.openacc.org/tools), the only open-source compiler that supports OpenACC offloading to NVIDIA and AMD accelerators is GCC 10. Recently, there has been an effort in developing an open-source compiler to complement the existing one, thus allowing to perform experiments on a broad range of architectures. The compiler is called [Clacc](https://ieeexplore.ieee.org/document/8639349) and its development is funded by Exascale Computing Project: [Clacc project](https://www.exascaleproject.org/highlight/clacc-an-open-source-openacc-compiler-and-source-code-translation-project/), which is described in the work of [J. Vetter et al.](https://ieeexplore.ieee.org/document/8639349). We thus focus here on providing some basic features of the Clacc compiler platform, without addressing deeply the fundamental aspect of the compiler, which is beyond the scope of this documentation..
+ For completeness, we provide in this section some highlights of the available open-source OpenACC compilers. According to the work of [J. Vetter et al.](https://ieeexplore.ieee.org/document/8639349) and the [OpenACC website](https://www.openacc.org/tools), the only open-source compiler that supports OpenACC offloading to NVIDIA and AMD accelerators is GCC 10. Recently, there has been an effort in developing an open-source compiler to complement the existing one, thus allowing to perform experiments on a broad range of architectures. The compiler is called [Clacc](https://ieeexplore.ieee.org/document/8639349) and its development is funded by the Exascale Computing Project: [Clacc project](https://www.exascaleproject.org/highlight/clacc-an-open-source-openacc-compiler-and-source-code-translation-project/) and is further described in the work of [J. Vetter et al.](https://ieeexplore.ieee.org/document/8639349). We thus focus here on providing some basic features of the Clacc compiler platform, without addressing deeply the fundamental aspect of the compiler, which is beyond the scope of this documentation..
 
 Clacc is an open-source OpenACC compiler platform that has support for [Clang](https://clang.llvm.org/) and [LLVM](https://llvm.org/), and aims at facilitating GPU-programming in its broad use. The key behind the design of Clacc is based on translating OpenACC to OpenMP, taking advantage of the existing OpenMP debugging tools to be re-used for OpenACC. Clacc was designed to mimic the exact behavior of OpenMP as explicit as possible. The Clacc strategy for interpreting OpenACC is based on one-to-one mapping of [OpenACC directives to OpenMP directives](https://ieeexplore.ieee.org/document/8639349) as we have already shown in the [Table 1.](#Table1) above.
 
@@ -350,7 +365,12 @@ In conclusion, we have presented an overview of the OpenACC and OpenMP offload f
 
 Last but not least, writing an efficient GPU-based program requires some basic knowledge of the target architectures and how regions of a program is mapped into a target device. This documentation thus was designed to provide such basic knowledge in the aim of triggering the interest of developers/users to GPU-programming. It thus functions as a benchmark for future advanced GPU-based parallel programming models. 
 
-{ref}`You can get in touch with the NRIS GPU team for help in porting your application here<extended-support-gpu>`
+```{note} 
+Users who are interested in porting their applications may contact {ref}`the NRIS GPU team <extended-support-gpu>`.
+```
+
+
+
 
 
 
