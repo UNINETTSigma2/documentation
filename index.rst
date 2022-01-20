@@ -1,12 +1,13 @@
 ======================================================================
-The Norwegian academic high-performance computing and storage services
+Norwegian Research Infrastructure Services
 ======================================================================
 
-The Norwegian academic high-performance computing and storage
-infrastructure is maintained by `NRIS <https://sigma2.no/nris>`__ (formerly known as *the Metacenter*), which is a joint
-collaboration between `UiO <https://www.uio.no>`__,
-`UiB <https://www.uib.no>`__, `NTNU <https://www.ntnu.no>`__,
-`UiT <https://uit.no>`__, and `Sigma2 <https://www.sigma2.no/>`__.
+The Norwegian academic high-performance computing and storage infrastructure is
+maintained by `NRIS <https://sigma2.no/nris>`__ (formerly known as *the
+Metacenter*), which is a joint collaboration between `UiO
+<https://www.uio.no>`__, `UiB <https://www.uib.no>`__, `NTNU
+<https://www.ntnu.no>`__, `UiT <https://uit.no>`__, and `Sigma2
+<https://www.sigma2.no/>`__.
 
 We provide valuable resources for the research communities. Not only do we provide
 state-of-the art :ref:`compute <hardware-overview>` and :ref:`storage facilities <nird>`,
@@ -81,10 +82,11 @@ resources more efficiently so that you get your research results faster.
 Acknowledging use of national HPC infrastructure
 ------------------------------------------------
 
-Projects are required to acknowledge the use of the national
-e-infrastructure resources in their scientific publications. Papers,
-presentations and other publications that feature work that relied on
-resources provided by Sigma2 should include an `acknowledgement following this template <https://www.sigma2.no/acknowledgements>`__.
+Projects are required to acknowledge the use of the national e-infrastructure
+resources in their scientific publications. Papers, presentations and other
+publications that feature work that relied on resources provided by Sigma2
+should include an `acknowledgement following this template
+<https://www.sigma2.no/acknowledgements>`__.
 
 Text is licensed CC-BY
 ----------------------

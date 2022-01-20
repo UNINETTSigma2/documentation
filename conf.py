@@ -23,8 +23,9 @@ copyright = f'{datetime.datetime.now().year}, Sigma2/NRIS'
 author = 'Sigma2/NRIS'
 
 # Logo setup
-html_favicon = 'img/sigma2.ico'
-html_logo = 'img/logo.png'
+html_favicon = 'img/nris.ico'
+html_logo = 'img/NRIS Logo.svg'
+html_css_files = ['nris.css']
 
 html_title = 'Sigma2 documentation'
 html_short_title = 'Sigma2'
@@ -56,7 +57,7 @@ html_theme = 'sphinx_rtd_theme'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = []
+html_static_path = ['_static']
 
 # this configures where "view page source" (top right on rendered page) points to
 html_context = {
