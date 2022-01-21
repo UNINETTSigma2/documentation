@@ -6,7 +6,6 @@ for viewing scientific data. VisIt can be used for visualizing large 2D and 3D
 datasets on both structured and unstructured grids. To find out more, visit the
 `VisIt website <https://visit-dav.github.io/visit-website/>`_.
 
-
 Loading VisIt
 -------------
 
@@ -97,15 +96,15 @@ If the host profile is configured correctly, the user will see additional availa
     <Field name="maximumProcessors" type="int">1</Field>
     <Object name="LaunchProfile">
         <Field name="timeout" type="int">480</Field>
-        <Field name="numProcessors" type="int">128</Field>
+        <Field name="numProcessors" type="int">512</Field>
         <Field name="numNodesSet" type="bool">true</Field>
-        <Field name="numNodes" type="int">1</Field>
+        <Field name="numNodes" type="int">4</Field>
         <Field name="partitionSet" type="bool">false</Field>
         <Field name="partition" type="string"></Field>
         <Field name="bankSet" type="bool">true</Field>
         <Field name="bank" type="string">nnXXXXk</Field>
         <Field name="timeLimitSet" type="bool">true</Field>
-        <Field name="timeLimit" type="string">00:30:00</Field>
+        <Field name="timeLimit" type="string">01:00:00</Field>
         <Field name="launchMethodSet" type="bool">true</Field>
         <Field name="launchMethod" type="string">srun</Field>
         <Field name="forceStatic" type="bool">true</Field>
@@ -114,7 +113,7 @@ If the host profile is configured correctly, the user will see additional availa
         <Field name="arguments" type="stringVector"></Field>
         <Field name="parallel" type="bool">true</Field>
         <Field name="launchArgsSet" type="bool">true</Field>
-        <Field name="launchArgs" type="string">"--account=nnXXXXk --qos=preproc"</Field>
+        <Field name="launchArgs" type="string">"--account=nnXXXXk --mpi=pmi2"</Field>
         <Field name="sublaunchArgsSet" type="bool">false</Field>
         <Field name="sublaunchArgs" type="string"></Field>
         <Field name="sublaunchPreCmdSet" type="bool">false</Field>
@@ -133,7 +132,7 @@ If the host profile is configured correctly, the user will see additional availa
         <Field name="constrainNodeProcs" type="bool">false</Field>
         <Field name="allowableNodes" type="intVector"></Field>
         <Field name="allowableProcs" type="intVector"></Field>
-        <Field name="profileName" type="string">preproc</Field>
+        <Field name="profileName" type="string">normal</Field>
     </Object>
     <Field name="activeProfile" type="int">2</Field>
     </Object>
@@ -145,7 +144,7 @@ If the host profile is configured correctly, the user will see additional availa
     <Object name="MachineProfile">
     <Field name="hostNickname" type="string">fram.sigma2.no</Field>
     <Field name="host" type="string">fram.sigma2.no</Field>
-    <Field name="userName" type="string">marskar</Field>
+    <Field name="userName" type="string">username</Field>
     <Field name="hostAliases" type="string"></Field>
     <Field name="directory" type="string">/cluster/software/VisIt/2.13.0-intel-2017a</Field>
     <Field name="shareOneBatchJob" type="bool">false</Field>
@@ -164,13 +163,13 @@ If the host profile is configured correctly, the user will see additional availa
     <Field name="maximumProcessors" type="int">1</Field>
     <Object name="LaunchProfile">
         <Field name="timeout" type="int">480</Field>
-        <Field name="numProcessors" type="int">32</Field>
+        <Field name="numProcessors" type="int">128</Field>
         <Field name="numNodesSet" type="bool">true</Field>
-        <Field name="numNodes" type="int">1</Field>
+        <Field name="numNodes" type="int">4</Field>
         <Field name="partitionSet" type="bool">false</Field>
         <Field name="partition" type="string"></Field>
         <Field name="bankSet" type="bool">true</Field>
-        <Field name="bank" type="string">nn9636k</Field>
+        <Field name="bank" type="string">nnXXXXk</Field>
         <Field name="timeLimitSet" type="bool">true</Field>
         <Field name="timeLimit" type="string">00:30:00</Field>
         <Field name="launchMethodSet" type="bool">true</Field>
@@ -181,7 +180,7 @@ If the host profile is configured correctly, the user will see additional availa
         <Field name="arguments" type="stringVector"></Field>
         <Field name="parallel" type="bool">true</Field>
         <Field name="launchArgsSet" type="bool">true</Field>
-        <Field name="launchArgs" type="string">"--account=nn9636k --qos=preproc"</Field>
+        <Field name="launchArgs" type="string">"--account=nnXXXXk --mpi=pmi2"</Field>
         <Field name="sublaunchArgsSet" type="bool">false</Field>
         <Field name="sublaunchArgs" type="string"></Field>
         <Field name="sublaunchPreCmdSet" type="bool">false</Field>
@@ -200,12 +199,10 @@ If the host profile is configured correctly, the user will see additional availa
         <Field name="constrainNodeProcs" type="bool">false</Field>
         <Field name="allowableNodes" type="intVector"></Field>
         <Field name="allowableProcs" type="intVector"></Field>
-        <Field name="profileName" type="string">preproc</Field>
+        <Field name="profileName" type="string">normal</Field>
     </Object>
     <Field name="activeProfile" type="int">0</Field>
     </Object>
-
-
 
 .. _visit_host_config:
    
@@ -237,11 +234,14 @@ After creating the host profile, launch profiles are added through the ``Launch 
 
 1. Go to ``Launch profiles`` and press ``New profile``.
 2. Next, under ``Parallel``, select the launch method (e.g., ``srun``), the number of nodes, time limit, and project account (usually in the form nnXXXXk).
-3. Under the ``Advanced`` tab, one can add launcher arguments. For launching the job in the ``devel`` queue, for example, check the launcher argument tick box and add ``--qos=devel`` to the corresponding field.
+3. Under the ``Advanced`` tab, one can add launcher arguments.
+   ``--mpi=pmi2`` must be added to the launcher argument field. 
+   Other options can also be added.
+   For launching the job in the ``devel`` queue, for example, add ``--qos=devel`` to the launcher arguments. 
 
    .. note::
    
-      Occasionally, queue systems may require that the job account is added to launcher arguments. In this case the user must also add ``--account=nnXXXXk`` to the launcher argument field. 
+      Occasionally, queue systems may require that the job account is added to launcher arguments. In this case the user must also add ``--account=nnXXXXk`` to the launcher argument field.
    
 
 Citation
