@@ -55,6 +55,13 @@ sftp> cd /nird/projects/project1
 sftp> put out*.log
 ```
 
+### Troubleshooting - Broken pipe error during `scp`/`sftp`/`rsync`
+
+Sikt perform daily housekeeping of their DNS and then the connection from 
+outside to the NRIS services drops that can cause broken pipe error during 
+file transfer from outside. To avoid this especially while copying large datasets,
+it is recommended to open a `screen` session from the NRIS cluster/storage  login 
+node and to pull/push the data from there.
 
 ## Sharing files with others
 
