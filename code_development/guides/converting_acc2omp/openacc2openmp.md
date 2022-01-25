@@ -8,7 +8,7 @@ orphan: true
 
 # Summary
 
-This documentation is designed for beginners in GPU-programming and who want to get familiar with OpenACC and OpenMP offloading models. Here we provide an overview of these two programming models as well as of the GPU-architectures. Specifically, we provide some insights into the functionality of these models and perform experiments involving different directives and discuss their performance. This is achieved through the use of an application based on solving numerically the Laplace equation. Such experiments reveal the benefit of the use of GPU, which in our case manifests by an increase of the performance by almost a factor of 52. We further carry out a comparative study between the OpenACC and OpenMP models in the aim of converting OpenACC to OpenMP. In this context, we present a short overview of the open-source OpenACC compiler Clacc, which is designed based on translating OpenACC to OpenMP in Clang. This documentation ultimately aims at initiating developers'/users' interest in GPU-programming. We therefore expect developers/users, by the end of this documentation, to be able to: 
+This documentation is designed for beginners in GPU-programming and who want to get familiar with [OpenACC](https://www.openacc.org/tools) and [OpenMP offloading](https://www.openmp.org/updates/openmp-accelerator-support-gpus/) models. Here we provide an overview of these two programming models as well as of the GPU-architectures. Specifically, we provide some insights into the functionality of these models and perform experiments involving different directives and discuss their performance. This is achieved through the use of an application based on solving numerically the Laplace equation. Such experiments reveal the benefit of the use of GPU, which in our case manifests by an increase of the performance by almost a factor of 52. We further carry out a comparative study between the OpenACC and OpenMP models in the aim of converting OpenACC to OpenMP. In this context, we present a short overview of the open-source OpenACC compiler Clacc, which is designed based on translating OpenACC to OpenMP in Clang. This documentation ultimately aims at initiating developers'/users' interest in GPU-programming. We therefore expect developers/users, by the end of this documentation, to be able to: 
 
 *	Recognise the benefits of GPU-programming.
 *	Acquire some basic knowledge of the GPU-architecture and the functionality of the underlying models.
@@ -104,7 +104,7 @@ We focus in this section on describing the [NVIDIA GPU accelerator](https://imag
 **Fig. 1.** *Schematic representation of a NVIDIA GPU-accelerator.*
 </div>
 
-Various NVIDIA [GPU-architectures](https://gpltech.com/wp-content/uploads/2018/11/NVIDIA-Turing-Architecture-Whitepaper.pdf) exist. As an example, we present in [Fig. 2](#Fig2) the characteristic of the NVIDIA V100 Volta architecture. As shown in the figure, the peak performance of the NVIDIA Volta depends on the specified architecture: V100 PCle, V100 SXMe and V100S PCle, which in trun depends, in particular, on the  Memory Bandwidth. For instance, the double precision performance associated with each architecture is respectively, 7, 7.8 and 8.2 TFLOPS (or TeraFLOPS). Here 1 TFLOPS= $`10^{12}`$ calculations per second, where FLOPS (Floiting-Point of Opertaions Per Second), in general, defines a measure of the speed of a computer to perform arithmetic operations. The peak performance can be calculated theoretically based on the following [expression](https://en.wikipedia.org/wiki/FLOPS#cite_note-en.community.dell.com-5) for a single processor
+Various NVIDIA [GPU-architectures](https://gpltech.com/wp-content/uploads/2018/11/NVIDIA-Turing-Architecture-Whitepaper.pdf) exist. As an example, we present in [Fig. 2](#Fig2) the characteristic of the NVIDIA V100 Volta architecture. As shown in the figure, the peak performance of the NVIDIA Volta depends on the specified architecture: V100 PCle, V100 SXMe and V100S PCle, which in turn depends, in particular, on the  Memory Bandwidth. For instance, the double precision performance associated with each architecture is respectively, 7, 7.8 and 8.2 TFLOPS (or TeraFLOPS). Here 1 TFLOPS= $`10^{12}`$ calculations per second, where FLOPS (Floiting-Point of Opertaions Per Second), in general, defines a measure of the speed of a computer to perform arithmetic operations. The peak performance can be calculated theoretically based on the following [expression](https://en.wikipedia.org/wiki/FLOPS#cite_note-en.community.dell.com-5) for a single processor
 
 FLOPS = (Clock speed)$`\times`$(cores)$`\times`$(FLOP/cycle),  
 
@@ -120,7 +120,7 @@ FLOPS = (Clock speed)$`\times`$(cores)$`\times`$(FLOP/cycle),
 
 ## Experiment on OpenACC offloading
 
-We begin first by illustrating the functionality of the OpenACC model in terms of parallelism, which is specified by the directives **kernels** or **parallel loop**. The concept of parallelism is defined precisely by the generic directives: **gang**, **worker** and **vector** as schematically depicted in [Fig. 3](#Fig3). Here, the compiler initiates the parallelism by generating parallel gangs, in which each gang consists of a set of workers represented by a matrix of threads as depicted in the inset of [Fig. 3](#Fig3). This group of threads within a gang executes the same instruction (SIMT, Single Instruction Multiple Threads) via a vectorization process. In other word, a block of loops is assigned to each gang, which gets vectorized and executed by a group of threads. Specifically, each thread executes the same kernel program but operates on different parts of the offloaded region. 
+We begin first by illustrating the functionality of the [OpenACC model](https://www.openacc.org/sites/default/files/inline-files/OpenACC_Programming_Guide_0_0.pdf) in terms of parallelism, which is specified by the directives **kernels** or **parallel loop**. The concept of parallelism is defined precisely by the generic directives: **gang**, **worker** and **vector** as schematically depicted in [Fig. 3](#Fig3). Here, the compiler initiates the parallelism by generating parallel gangs, in which each gang consists of a set of workers represented by a matrix of threads as depicted in the inset of [Fig. 3](#Fig3). This group of threads within a gang executes the same instruction (SIMT, Single Instruction Multiple Threads) via a vectorization process. In other word, a block of loops is assigned to each gang, which gets vectorized and executed by a group of threads. Specifically, each thread executes the same kernel program but operates on different parts of the offloaded region. 
 
 By combining the two pictures depicted in [Figs. 1](#Fig1) and [2](#Fig2), one can say that the execution of the parallelism, which is specified by the **parallel loop** construct, is mapped on the GPU-device in the following way: each streaming multiprocessor is associated to one gang of threads generated by the directive **gang**, in which a block of loops is assigned to. In addition, this block of loops is run in parallel on the CUDA cores via the directive **vector**. The description of these directives and others implemented in our OpenACC application is summarized in the [Table 1.](#Table1).  
 
@@ -172,7 +172,6 @@ For completeness, we compare in [Fig. 4](#Fig4) the performance of the compute c
 **Fig. 4.** *Performance of different OpenACC directives.*
 </div>
 
-Here are some notes:
 
 ```{note} 
 - When incorporating the constructs **kernels** or **parallel loop**, the compiler will generate arrays that will be copied back and forth
@@ -188,9 +187,9 @@ We run our OpenACC-program on the NVIDIA-GPU P100. The syntax of the compilation
 ```bash
 $ nvfortran -fast -acc -Minfo=accel -o laplace_acc.exe laplace_acc.f90
 or
-$ nvfortran -ta=tesla:cc60 -Minfo=accel -o laplace_acc.exe laplace_acc.f90
+$ nvfortran -gpu=tesla:cc60 -Minfo=accel -o laplace_acc.exe laplace_acc.f90
 ```
-where the flags *-acc* and *-⁠ta=[target]* enables OpenACC directives. The option *[target]* reflects the name of the GPU device. The latter is set to be *[tesla:cc60]* for the device name Tesla P100 and *[tesla:cc70]* for the tesla V100 device. This information can be viewed by running the command `pgaccelinfo`. Last, the flag option *-Minfo* enables the compiler to print out the feedback messages on optimizations and transformations.
+where the flags *-acc* and *-⁠gpu=[target]* enables OpenACC directives. The option *[target]* reflects the name of the GPU device. The latter is set to be *[tesla:cc60]* for the device name Tesla P100 and *[tesla:cc70]* for the tesla V100 device. This information can be viewed by running the command `pgaccelinfo`. Last, the flag option *-Minfo* enables the compiler to print out the feedback messages on optimizations and transformations.
 
 The generated binary (i.e. `laplace_acc.exe`) can be launched with the use of a Slurm script as follows
 ```bash
@@ -281,7 +280,7 @@ The compilation process requires loading a AOMP module, e.g. `AOMP/13.0-2-GCCcor
  
 ## Mapping OpenACC to OpenMP
 
-In this section, we present a direct comparison between the OpenACC and OpenMP offload features. This comparison is illustrated in the compute code below. A closer look at OpenACC and OpenMP codes reveals some similarities and differences in terms of constructs and clauses. The meaning of these directives are summerized in the [Table 1.](#Table1). Here, evaluating the behavior of OpenACC and OpenMP by one-to-one mapping is a key feature for an effort of porting OpenACC to OpenMP offloading. Based on this comparison, it is seen that the syntax of both programming models is so similar, thus making the implementation of the translation procedure at the syntactic level straightforward. Therefore, carying out such a comparison is critical for determining the correct mappings to OpenMP.
+In this section, we present a direct comparison between the OpenACC and OpenMP offload features. This comparison is illustrated in the compute code below. A closer look at OpenACC and OpenMP codes reveals some similarities and differences in terms of constructs and clauses. The meaning of these directives are summarized in the [Table 1.](#Table1). Here, evaluating the behavior of OpenACC and OpenMP by one-to-one mapping is a key feature for an effort of porting OpenACC to OpenMP offloading. Based on this comparison, it is seen that the syntax of both programming models is so similar, thus making the implementation of the translation procedure at the syntactic level straightforward. Therefore, carying out such a comparison is critical for determining the correct mappings to OpenMP.
 
 ```bash
                     **OpenACC**                        |                    **OpenMP**
@@ -323,7 +322,7 @@ acc parallel loop gang worker vector | omp target teams distribute parallel do s
 acc data     | omp target data | to share data between multiple parallel regions in a device|
 -- | -- | -- |
 acc loop | omp teams distribute | to workshare for parallelism on a device|
-acc loop gang | omp teams(num_teams) | to partition a loop accross gangs/teams|
+acc loop gang | omp teams(num_teams) | to partition a loop across gangs/teams|
 acc loop worker | omp parallel simd | to partition a loop across threads|
 acc loop vector | omp parallel simd | - - |
 num_gangs       | num_teams         | to control how many gangs/teams are created |
@@ -363,8 +362,32 @@ In conclusion, we have presented an overview of the GPU-architecture as well as 
 
 Last but not least, writing an efficient GPU-based program requires some basic knowledge of the GPU architecture and how regions of a program is mapped into a target device. This documentation thus was designed to provide such basic knowledge in the aim of triggering the interest of developers/users to GPU-programming. It thus functions as a benchmark for future advanced GPU-based parallel programming models. 
 
+
+# Relevant links
+
+[Various NVIDIA GPU-architectures](https://gpltech.com/wp-content/uploads/2018/11/NVIDIA-Turing-Architecture-Whitepaper.pdf).
+
+[NVIDIA P100 GPU-accelerator](https://images.nvidia.com/content/tesla/pdf/nvidia-tesla-p100-PCIe-datasheet.pdf).
+
+[NVIDIA V100 GPU-accelerator](https://images.nvidia.com/content/technologies/volta/pdf/volta-v100-datasheet-update-us-1165301-r5.pdf).
+
+[OpenACC programming guide](https://www.openacc.org/sites/default/files/inline-files/OpenACC_Programming_Guide_0_0.pdf).
+
+[OpenMP offloading programming guide](https://www.openmp.org/wp-content/uploads/OpenMP-API-Specification-5-1.pdf).
+
+[OpenMP 5.0 API Syntax Reference Guide](https://www.openmp.org/wp-content/uploads/OpenMPRef-5.0-111802-web.pdf).
+
+[OpenACC library routines](https://gcc.gnu.org/onlinedocs/libgomp/OpenACC-Runtime-Library-Routines.html).
+
+[OpenMP library routines](https://www.intel.com/content/www/us/en/develop/documentation/get-started-with-cpp-fortran-compiler-openmp/top.html).
+
+[The Clacc compiler platform](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8639349).
+
+[The Cray Compilation Environment (CCE)](https://support.hpe.com/hpesc/public/docDisplay?docId=a00115296en_us&page=OpenACC_Use.html#OpenACC2.6). 
+
+
 ```{note} 
-Users who are interested in porting their applications may contact {ref}`the NRIS GPU team <extended-support-gpu>`.
+Users who are interested in porting their applications may contact {ref}`the NRIS GPU team <extended-support-gpu>` for assistance.
 ```
 
 
