@@ -27,6 +27,7 @@ This documentation is designed for beginners in GPU-programming and who want to 
 - [Mapping OpenACC to OpenMP](#mapping-openacc-to-openmp)
 - [Open-source OpenACC compilers](#open-source-openacc-compilers)
 - [Conclusion](#conclusion)
+- [Relevant links](#relevant links)
 
 
 # Introduction
