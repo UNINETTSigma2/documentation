@@ -88,6 +88,11 @@ srun singularity run --nv -B ${PWD}:/host_dir lammps.sif\
   -var x 8 -var y 8 -var z 8 -in /host_dir/in.lj.txt
 ```
 
+In the script above note that `--gpus=X` (or `--gpus-per-node=X`) needs to be
+the same as the parameter `-k on g X` for LAMMPS. We also recommend that users
+have one MPI rank per GPU so that `--ntasks=X` is either equal to `--gpus=X` or
+use `--gpus-per-task=1`.
+
 ### Performance increase
 
 We modified the above input file to run for a bit longer (increased the number
