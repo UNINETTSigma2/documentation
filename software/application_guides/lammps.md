@@ -30,6 +30,77 @@ To use LAMMPS type
 
 specifying one of the available versions.
 
+## Running on GPUs
+
+```{note}
+We are working on compiling the LAMMPS module on Saga and Betzy with GPU
+support, however, since that could take some time we are, for the time being,
+presenting an alternative solution below.
+```
+
+LAMMPS is capable of running on GPUs using the [`Kokkos`
+framework](https://github.com/kokkos/kokkos). However, the default distribution
+of LAMMPS on Saga and Betzy are not compiled with GPU support. We will therefor
+use {ref}`singularity<running-containers>` to use LAMMPS with GPUs.
+
+### Preparations
+
+We will first start by creating our LAMMPS singularity image based on [Nvidia's
+accelerated images](https://catalog.ngc.nvidia.com/orgs/hpc/containers/lammps).
+The following command will download the image and create a singularity
+container with the name `lammps.sif`.
+
+```console
+[user@login-X.SAGA ~]$ singularity pull --name lammps.sif docker://nvcr.io/hpc/lammps:29Sep2021
+```
+
+Then, to retrieve the input test file (`in.lj.txt`) execute the following:
+
+```console
+[user@login-X.SAGA ~]$ wget https://lammps.sandia.gov/inputs/in.lj.txt
+```
+
+### Slurm script
+
+To run this we will use the following Slurm script:
+
+```sh
+#!/bin/bash                                                                        
+
+#SBATCH --job-name=LAMMPS-Singularity
+#SBATCH --account=nn<XXXX>k
+#SBATCH --time=10:00
+#SBATCH --ntasks=2
+#SBATCH --mem-per-cpu=2G
+#SBATCH --ntasks-per-node=4
+#SBATCH --partition=accel
+#SBATCH --gpus=2
+
+set -o errexit  # Exit the script on any error
+set -o nounset  # Treat any unset variables as an error
+
+module --quiet purge  # Reset the modules to the system default
+# Note: We don't need any additional modules here as Singularity is always
+# available
+
+srun singularity run --nv -B ${PWD}:/host_dir lammps.sif\
+  lmp -k on g 2 -sf kk -pk kokkos cuda/aware on neigh full comm device binsize 2.8\
+  -var x 8 -var y 8 -var z 8 -in /host_dir/in.lj.txt
+```
+
+### Performance increase
+
+We modified the above input file to run for a bit longer (increased the number
+of steps to `1000`). This gave us the following speed-ups compared to
+`LAMMPS/3Mar2020-foss-2019b-Python-3.7.4-kokkos` on Saga.
+
+| Node configuration | Performance (`tau/day`) | Speed up |
+|--------------------|-------------------------|----------|
+| 40 CPU cores | 1439.286 | 1.0x |
+| 1 GPU | 2670.089 | 1.8x |
+| 2 GPUs | 4895.459 | 3.4x |
+| 4 GPUs | 11610.741 | 8.0x |
+
 ## License Information
 
 LAMMPS is available under the GNU Public License (GPLv3). For more information,
