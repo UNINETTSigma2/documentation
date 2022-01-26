@@ -109,7 +109,8 @@ of steps to `1000`). This gave us the following speed-ups compared to
 ## License Information
 
 LAMMPS is available under the GNU Public License (GPLv3). For more information,
-visit http://lammps.sandia.gov/open_source.html
+visit [the LAMMPS documentation
+pages](https://docs.lammps.org/Intro_opensource.html).
 
 It is the user's responsibility to make sure they adhere to the license
 agreements.
@@ -117,4 +118,5 @@ agreements.
 ## Citation
 
 When publishing results obtained with the software referred to, please do check
-the developers web page in order to find the correct citation(s).
+the [developers web page in order to find the correct
+citation(s)](https://docs.lammps.org/Intro_citing.html).
