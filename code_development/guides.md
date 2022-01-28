@@ -16,6 +16,9 @@
         [Getting started with hipSYCL](guides/hipsycl.md)
     - [<span style="color:orange">Intermediate</span>]
         [Unified Shared Memory with SYCL](guides/sycl_usm.md)
+- Porting applications:
+    - [<span style="color:green">Beginner</span>]
+        [Porting OpenACC to OpenMP offloading](guides/converting_acc2omp/openacc2openmp.md)
 - Building containers with Singularity:
     - [<span style="color:green">Beginner</span>]
         [Container with build environment](guides/container_env.md)
