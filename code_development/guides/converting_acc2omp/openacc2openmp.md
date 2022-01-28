@@ -391,7 +391,7 @@ Last but not least, writing an efficient GPU-based program requires some basic k
 
 [The Clacc compiler platform](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8639349).
 
-[The Cray Compilation Environment (CCE)](https://support.hpe.com/hpesc/public/docDisplay?docId=a00115296en_us&page=OpenACC_Use.html#OpenACC2.6). 
+[The Cray Compilation Environment (CCE)](https://support.hpe.com/hpesc/public/docDisplay?docId=a00115296en_us&page=OpenACC_Use.html). 
 
 
 ```{note} 
