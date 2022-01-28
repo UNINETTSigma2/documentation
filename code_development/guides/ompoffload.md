@@ -2,6 +2,8 @@
 orphan: true
 ---
 
+(ompoffload)= 
+
 ```{index} GPU; Introduction to OpenMP-Offload;OpenMP
 ```
 
