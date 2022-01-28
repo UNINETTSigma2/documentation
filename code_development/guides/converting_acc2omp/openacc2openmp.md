@@ -20,7 +20,7 @@ This documentation ultimately aims at initiating developers'/users' interest in 
 *	Get some highlights of available open-source OpenACC compilers.
 
 
-#### Table of Contents
+# Table of Contents
 
 - [Introduction](#introduction)
 - [Computational model](#computational-model)
