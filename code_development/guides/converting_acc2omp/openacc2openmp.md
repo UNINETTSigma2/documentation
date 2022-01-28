@@ -227,7 +227,7 @@ The concept of parallelism is implemented using the same model described in [Sec
 
 The OpenMP performance, however is found to be improved when introducing the directive `data` in the beginning of the iteration. This implementation has the advantage of keeping the data in the device during the iteration process and copying them back to the host only at the end of the iteration. By doing so, the performance is improved by almost a factor of 22, as depicted in *Fig. 5*: it goes from 119.6 s in the absence of the data directive to 5.4 s when the directive is introduced. As in the OpenACC application, the performance can be further tuned by introducing additional clauses, specifically, the clauses `collapse` and `schedule` which are found to reduce the computing time from 5.4 s to 2.15 s. 
 
-The description of the compute constructs and clauses used in our OpenMP mini-application is provided in the *Table 1* together with those of OpenACC. For further OpenMP tutorials, we refer to a different scenario implemented in C, which can be found [here](code_development/guides/ompoffload.md).
+The description of the compute constructs and clauses used in our OpenMP mini-application is provided in the *Table 1* together with those of OpenACC. For further OpenMP tutorials, we refer to a different scenario implemented in C, which can be found {ref}`here <ompoffload>`.
          
 ```bash
           **OpenMP without data directive**            |                 **OpenMP with data directive**
