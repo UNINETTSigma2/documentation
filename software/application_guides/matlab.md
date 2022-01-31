@@ -43,6 +43,7 @@ Commercial users need to sign a Hosting Provider agreement. Contact:
 | MATLAB |2019a|
 | MATLAB |2020b|
 | MATLAB |2021a|
+| MATLAB |2021b|
 
 To see available versions when logged into Fram issue command
 ```bash
