@@ -42,7 +42,7 @@ A few examples that are considered breach of this code of conduct:
 
 - Any direct or indirect harassment in all contexts.
 
-- Carefulness with personal data.
+- Carelessness with personal data.
 
 ## Standards of practice for users
 All users are obliged to comply with the [Sigma2 user policy](https://www.sigma2.no/acceptable-use-policy).
