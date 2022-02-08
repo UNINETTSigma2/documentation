@@ -2,7 +2,7 @@
 
 ## Ethics and values
 
-We strive to cultivate fair, efficient, professional and welcoming working environments and relationships, regardless of education, socio-economic status, gender, nationality, age, personality, religion, disability, size, appearance, ethnicity, political, identity or orientation in the sexual context. 
+We strive to cultivate fair, efficient, professional and welcoming working environments and relationships, regardless of education, socio-economic status, gender, nationality, age, personality, religion, disability, size, appearance, ethnicity, political views, identity or orientation in the sexual context. 
 
 In all possible relations we should be honest, unprejudiced and unbiased. We should strive to focus on objective facts. 
 
