@@ -69,27 +69,27 @@ Inserting Eq. (2) into Eq. (1) leads to this final expression
 
 The Eq. (3) can be solved iteratively by defining some initial conditions that reflect the geometry of the problem at-hand. This can be done either using Gauss–Seidel method or Jacobi method. Here, we apt for the Jacobi algorithm due to its simplicity. The corresponding compute code is written in *Fortran 90* and is given below in a serial form. Note that a *C*-based code can be found {ref}`here <openacc>`.
 
-```bash
-       do while (max_err.gt.error.and.iter.le.max_iter)
-         do j=2,ny-1
-            do i=2,nx-1
-               d2fx = f(i+1,j) + f(i-1,j)
-               d2fy = f(i,j+1) + f(i,j-1)
-               f_k(i,j) = 0.25*(d2fx + d2fy)
-             enddo
-          enddo
+```fortran
+do while (max_err.gt.error.and.iter.le.max_iter)
+do j=2,ny-1
+do i=2,nx-1
+d2fx = f(i+1,j) + f(i-1,j)
+d2fy = f(i,j+1) + f(i,j-1)
+f_k(i,j) = 0.25*(d2fx + d2fy)
+enddo
+enddo
 
-          max_err=0.
+max_err=0.
 
-          do j=2,ny-1
-            do i=2,nx-1
-               max_err = max(dabs(f_k(i,j) - f(i,j)),max_err)
-               f(i,j) = f_k(i,j)
-            enddo
-          enddo
+do j=2,ny-1
+do i=2,nx-1
+max_err = max(dabs(f_k(i,j) - f(i,j)),max_err)
+f(i,j) = f_k(i,j)
+enddo
+enddo
 
-          iter = iter +1
-        enddo
+iter = iter + 1
+enddo
 ```
 
 # Comparative study: OpenACC versus OpenMP
@@ -115,7 +115,7 @@ FLOPS = (Clock speed)$`\times`$(cores)$`\times`$(FLOP/cycle),
 
 <div align="center">
 
-<img src="figs/fig-arch-volta.jpg" width="600" height="500"> 
+![Fig2](figs/fig-software.jpg)
 
 **Fig. 2.** *Specification of the architecture of the NVIDIA Volta GPU taken from [here](https://images.nvidia.com/content/technologies/volta/pdf/volta-v100-datasheet-update-us-1165301-r5.pdf).*
 </div>
@@ -130,7 +130,7 @@ By combining the two pictures displayed in *Fig. 1* and *Fig. 2*, one can say th
 
 <div align="center">
 
-![Fig3](figs/fig-software.jpg)
+![Fig3](figs/fig-arch-volta.jpg) 
 
 **Fig. 3.** *Schematic representation of the concept of parallelism (see text for more details).*
 </div> 
