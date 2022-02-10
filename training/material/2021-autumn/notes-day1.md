@@ -30,7 +30,7 @@ orphan: true
     - [VNC](https://documentation.sigma2.no/getting_started/remote-desktop.html?highlight=vnc)
     - [Some hints on logging in from Windows machines](https://wiki.uib.no/hpcdoc/index.php/HPC_and_NIRD_toolkit_course_fall_2020#Windows_2)
 - [SAGA specs](https://documentation.sigma2.no/hpc_machines/saga.html)
-- [SAGA job types](ttps://documentation.sigma2.no/jobs/job_types/saga_job_types.html)
+- [SAGA job types](https://documentation.sigma2.no/jobs/job_types/saga_job_types.html)
 - [Interactive jobs](https://documentation.sigma2.no/jobs/interactive_jobs.html?highlight=salloc#requesting-an-interactive-job)
 - [Examples used](https://github.com/Sabryr/HPC_teaching_scripts)
 - [MPI on NRIS](https://documentation.sigma2.no/jobs/guides/running_mpi_jobs.html)
