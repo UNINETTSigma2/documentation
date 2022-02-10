@@ -24,13 +24,13 @@ This documentation ultimately aims at initiating developers'/users' interest in 
 
 - [Introduction](#introduction)
 - [Computational model](#computational-model)
-- [GPU-accelerators](#gpu-accelerators)
+- [GPU-architecture](#gpu-architecture)
 - [Experiment on OpenACC offloading](#experiment-on-openacc-offloading)
 - [Experiment on OpenMP offloading](#experiment-on-openmp-offloading)
 - [Mapping OpenACC to OpenMP](#mapping-openacc-to-openmp)
 - [Open-source OpenACC compilers](#open-source-openacc-compilers)
 - [Conclusion](#conclusion)
-- [Relevant links](#relevant links)
+- [Relevant links](#relevant-links)
 
 
 # Introduction
@@ -54,19 +54,17 @@ As far as we know, the only compiler that fully supports OpenACC for offloading 
 
 We give a brief description of the numerical model used to solve the Laplace equation &Delta;f=0. For the sake of simplicity, we solve the equation in a two-dimensional (2D) uniform grid according to
 
-```math
-\Delta f(x,y)=\frac{\partial^{2} f(x,y)}{\partial x^{2}} + \frac{\partial^{2} f(x,y)}{\partial y^{2}}=0. \ \ \ \ (1)
+
+```{math} \Delta f(x,y)=\frac{\partial^{2} f(x,y)}{\partial x^{2}} + \frac{\partial^{2} f(x,y)}{\partial y^{2}}=0. \ \ \ \ (1)
 ```
 Here we use the finite-difference method to approximate the partial derivative of the form $`\frac{\partial^{2} f(x)}{\partial x^{2}}`$. The spatial discretization in the second-order scheme can be written as 
 
-```math
-\frac{\partial^{2} f(x,y)}{\partial^{2} x}=\frac{f(x_{i+1},y) - 2f(x_{i},y) + f(x_{i-1},y)}{\Delta x}. \ \ \ \ (2)
+```{math} \frac{\partial^{2} f(x,y)}{\partial^{2} x}=\frac{f(x_{i+1},y) - 2f(x_{i},y) + f(x_{i-1},y)}{\Delta x}. \ \ \ \ (2)
 ```
 
 Inserting Eq. (2) into Eq. (1) leads to this final expression 
 
-```math
-f(x_i,y_j)=\frac{f(x_{i+1},y) + f(x_{i-1},y) + f(x,y_{i+1}) + f(x,y_{i-1})}{4}. \ \ \ \ (3)
+```{math} f(x_i,y_j)=\frac{f(x_{i+1},y) + f(x_{i-1},y) + f(x,y_{i+1}) + f(x,y_{i-1})}{4}. \ \ \ \ (3)
 ```
 
 The Eq. (3) can be solved iteratively by defining some initial conditions that reflect the geometry of the problem at-hand. This can be done either using Gauss–Seidel method or Jacobi method. Here, we apt for the Jacobi algorithm due to its simplicity. The corresponding compute code is written in *Fortran 90* and is given below in a serial form. Note that a *C*-based code can be found {ref}`here <openacc>`.
@@ -98,14 +96,15 @@ The Eq. (3) can be solved iteratively by defining some initial conditions that r
 
 In the following we first provide a short description of GPU accelerators and then perform experiments covering both the OpenACC and OpenMP implementations to accelerate the Jacobi algorithm in the aim of conducting a comparative experiment between the two programming models. The experiments are systematically performed with a fixed number of grid points (i.e. 8192 points in both $`x`$ and $`y`$ directions) and a fixed number of iterations that ensure the convergence of the algorithm. This is found to be 240 iterations resulting in an error of 0.001.
 
-## GPU accelerators
+## GPU architecture
 
-We focus in this section on describing the [NVIDIA GPU accelerator](https://images.nvidia.com/content/technologies/volta/pdf/volta-v100-datasheet-update-us-1165301-r5.pdf) as it is considered the most powerful accelerator in the world to be used for artificial intelligence (AI) and high-performance computing (HPC). The NVIDIA GPU-device consists of a block of a Streaming Multiprocessor (SM) each of which is organized as a matrix of CUDA cores, as shown in *Fig. 1*. As an example, the [NVIDIA P100 GPU-accelerators](https://images.nvidia.com/content/tesla/pdf/nvidia-tesla-p100-PCIe-datasheet.pdf) have 56 SMs and each SM has 64 CUDA cores with a total of 3584 FP32 cores/GPU or 1792 FP64 cores/GPU, while the [NVIDIA V100](https://images.nvidia.com/content/technologies/volta/pdf/volta-v100-datasheet-update-us-1165301-r5.pdf) has 80 SMs and each SM has 64 CUDA cores with a total of 5120 FP32/GPU or 2560 FP64/GPU, where FP32 and FP64 correspond to the single-precision Floating Point (FP) (i.e. 32 bit) and to the double precision (64 bit), respectively. 
+We focus in this section on describing the [NVIDIA GPU accelerator](https://images.nvidia.com/content/technologies/volta/pdf/volta-v100-datasheet-update-us-1165301-r5.pdf) as it is considered the most powerful accelerator in the world to be used for artificial intelligence (AI) and high-performance computing (HPC). The NVIDIA GPU-device consists of a block of a Streaming Multiprocessor (SM) each of which is organized as a matrix of CUDA cores, as shown in *Fig. 1*. As an example, the [NVIDIA P100 GPU-accelerators](https://images.nvidia.com/content/tesla/pdf/nvidia-tesla-p100-PCIe-datasheet.pdf) have 56 SMs and each SM has 64 CUDA cores with a total of 3584 CUDA cores/GPU, while the [NVIDIA V100](https://images.nvidia.com/content/technologies/volta/pdf/volta-v100-datasheet-update-us-1165301-r5.pdf) has 80 SMs and each SM has 64 CUDA cores with a total of 5120 CUDA core/GPU. 
 
 <div align="center">
+
 ![Fig1](figs/fig-hardware.jpg) 
 
-**Fig. 1.** *Schematic representation of a NVIDIA GPU-accelerator.*
+**Fig. 1.** *A simplified representation of a NVIDIA GPU-architecture.*
 </div>
 
 Various NVIDIA [GPU-architectures](https://gpltech.com/wp-content/uploads/2018/11/NVIDIA-Turing-Architecture-Whitepaper.pdf) exist. As an example, we present in *Fig. 2* the characteristic of the NVIDIA V100 Volta architecture. As shown in the figure, the peak performance of the NVIDIA Volta depends on the specified architecture: V100 PCle, V100 SXMe and V100S PCle, which in turn depends, in particular, on the  Memory Bandwidth. For instance, the double precision performance associated with each architecture is respectively, 7, 7.8 and 8.2 TFLOPS (or TeraFLOPS). Here 1 TFLOPS= $`10^{12}`$ calculations per second, where FLOPS (Floiting-Point of Opertaions Per Second), in general, defines a measure of the speed of a computer to perform arithmetic operations. The peak performance can be calculated theoretically based on the following [expression](https://en.wikipedia.org/wiki/FLOPS#cite_note-en.community.dell.com-5) for a single processor
@@ -115,6 +114,7 @@ FLOPS = (Clock speed)$`\times`$(cores)$`\times`$(FLOP/cycle),
  where FLOP is a way of encoding real numbers (i.e. FP64 or FP32 or ...). One can check the validity of the expression by calculating, for instance, the peak performance for V100 PCle, in which the Clock speed (or GPU Boost Clock) is [1.38 GHz](https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf). The total FLOPS is (1.38 $`10^9`$ cycle/second)x5120xFLOP/cycle, which is 7.065 $`10^{12}`$ FLOP per second or also 7.065 TFLOPS in accordance with the peak performance indicated in *Fig. 2*.
 
 <div align="center">
+
 <img src="figs/fig-arch-volta.jpg" width="600" height="500"> 
 
 **Fig. 2.** *Specification of the architecture of the NVIDIA Volta GPU taken from [here](https://images.nvidia.com/content/technologies/volta/pdf/volta-v100-datasheet-update-us-1165301-r5.pdf).*
@@ -129,6 +129,7 @@ We begin first by illustrating the functionality of the [OpenACC model](https://
 By combining the two pictures displayed in *Fig. 1* and *Fig. 2*, one can say that the execution of the parallelism, which is specified by the `parallel loop` construct, is mapped on the GPU-device in the following way: each streaming multiprocessor is associated to one gang of threads generated by the directive `gang`, in which a block of loops is assigned to. In addition, this block of loops is run in parallel on the CUDA cores via the directive `vector`. The description of these directives and others implemented in our OpenACC mini-application is summarized in the *Table 1*  
 
 <div align="center">
+
 ![Fig3](figs/fig-software.jpg)
 
 **Fig. 3.** *Schematic representation of the concept of parallelism (see text for more details).*
@@ -171,6 +172,7 @@ For completeness, we compare in *Fig. 4* the performance of the compute construc
 ```
 
 <div align="center">
+
 ![Fig4](figs/fig-acc.jpeg)
 
 **Fig. 4.** *Performance of different OpenACC directives.*
@@ -223,7 +225,7 @@ The compilation process requires loading a NVHPC module, e.g. `NVHPC/21.2` or an
 
 In this section, we carry out an experiment on [OpenMP](https://www.openmp.org/wp-content/uploads/OpenMP-API-Specification-5-1.pdf) offloading by adopting the same scenario as in the previous [section](#experiment-on-openacc-offloading) but with the use of a different GPU-architecture: AMD Mi100 accelerator. The functionality of OpenMP is similar to the one of OpenACC, although the terminology is different [cf. *Fig. 1*]. In the OpenMP concept, a block of loops is offloaded to a device via the construct `target`. A set of threads is then created on each compute unit (CU) (analogous to a streaming multiprocessor in NVIDIA terminology) [cf. *Fig. 1*] by means of the directive `teams` to execute the offloaded region. Here, the offloaded region (e.g. a block of loops) gets assigned to teams via the clause `distribute`, and gets executed on the processing elements (PEs) (analogous to CUDA cores) by means of the directive `parallel do simd`. These directives define the concept of parallelism in OpenMP. 
 
-The concept of parallelism is implemented using the same model described in [Section II](#computational model). The implementation is presented below for two cases: (i) OpenMP without introducing the data directive and (ii) OpenMP with the data directive. This Comparison allows us to identify the benefit of data management during the data-transfer between the host and a device. This in turn provides some insights into the performance of the OpenMP offload features. In the left-hand-side of the OpenMP application, the arrays **f** and **f_k**, which define the main components of the compute region, are copied from the host to a device and back, respectively via the clause `map`. Note that specifying the `map` clause in this case is optional. Once the data are offloaded to a device, the parallelism gets executed according to the scenario described above. This scheme repeats itself at each iteration, which causes a low performance as shown in *Fig. 5*. Here the computing time is 119.6 s, which is too high compared to 76.52 s in the serial case. A similar behavior is observed in the OpenACC mini-application.
+The concept of parallelism is implemented using the same model described in [Section II](#computational-model). The implementation is presented below for two cases: (i) OpenMP without introducing the data directive and (ii) OpenMP with the data directive. This Comparison allows us to identify the benefit of data management during the data-transfer between the host and a device. This in turn provides some insights into the performance of the OpenMP offload features. In the left-hand-side of the OpenMP application, the arrays **f** and **f_k**, which define the main components of the compute region, are copied from the host to a device and back, respectively via the clause `map`. Note that specifying the `map` clause in this case is optional. Once the data are offloaded to a device, the parallelism gets executed according to the scenario described above. This scheme repeats itself at each iteration, which causes a low performance as shown in *Fig. 5*. Here the computing time is 119.6 s, which is too high compared to 76.52 s in the serial case. A similar behavior is observed in the OpenACC mini-application.
 
 The OpenMP performance, however is found to be improved when introducing the directive `data` in the beginning of the iteration. This implementation has the advantage of keeping the data in the device during the iteration process and copying them back to the host only at the end of the iteration. By doing so, the performance is improved by almost a factor of 22, as depicted in *Fig. 5*: it goes from 119.6 s in the absence of the data directive to 5.4 s when the directive is introduced. As in the OpenACC application, the performance can be further tuned by introducing additional clauses, specifically, the clauses `collapse` and `schedule` which are found to reduce the computing time from 5.4 s to 2.15 s. 
 
@@ -262,6 +264,7 @@ The description of the compute constructs and clauses used in our OpenMP mini-ap
 ```
 
 <div align="center">
+
 ![Fig5](figs/fig-omp.jpg)
 
 **Fig. 5.** *Performance of different OpenMP directives.*
