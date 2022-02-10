@@ -71,24 +71,24 @@ The Eq. (3) can be solved iteratively by defining some initial conditions that r
 
 ```fortran
 do while (max_err.gt.error.and.iter.le.max_iter)
-do j=2,ny-1
-do i=2,nx-1
-d2fx = f(i+1,j) + f(i-1,j)
-d2fy = f(i,j+1) + f(i,j-1)
-f_k(i,j) = 0.25*(d2fx + d2fy)
-enddo
-enddo
+   do j=2,ny-1
+      do i=2,nx-1
+         d2fx = f(i+1,j) + f(i-1,j)
+         d2fy = f(i,j+1) + f(i,j-1)
+         f_k(i,j) = 0.25*(d2fx + d2fy)
+      enddo
+   enddo
 
-max_err=0.
+   max_err=0.
 
-do j=2,ny-1
-do i=2,nx-1
-max_err = max(dabs(f_k(i,j) - f(i,j)),max_err)
-f(i,j) = f_k(i,j)
-enddo
-enddo
+   do j=2,ny-1
+      do i=2,nx-1
+         max_err = max(dabs(f_k(i,j) - f(i,j)),max_err)
+         f(i,j) = f_k(i,j)
+      enddo
+   enddo
 
-iter = iter + 1
+   iter = iter + 1
 enddo
 ```
 
@@ -223,7 +223,7 @@ The compilation process requires loading a NVHPC module, e.g. `NVHPC/21.2` or an
 
 ## Experiment on OpenMP offloading
 
-In this section, we carry out an experiment on [OpenMP](https://www.openmp.org/wp-content/uploads/OpenMP-API-Specification-5-1.pdf) offloading by adopting the same scenario as in the previous [section](#experiment-on-openacc-offloading) but with the use of a different GPU-architecture: AMD Mi100 accelerator. The functionality of OpenMP is similar to the one of OpenACC, although the terminology is different [cf. *Fig. 1*]. In the OpenMP concept, a block of loops is offloaded to a device via the construct `target`. A set of threads is then created on each compute unit (CU) (analogous to a streaming multiprocessor in NVIDIA terminology) [cf. *Fig. 1*] by means of the directive `teams` to execute the offloaded region. Here, the offloaded region (e.g. a block of loops) gets assigned to teams via the clause `distribute`, and gets executed on the processing elements (PEs) (analogous to CUDA cores) by means of the directive `parallel do simd`. These directives define the concept of parallelism in OpenMP. 
+In this section, we carry out an experiment on [OpenMP](https://www.openmp.org/wp-content/uploads/OpenMP-API-Specification-5-1.pdf) offloading by adopting the same scenario as in the previous [section](#experiment-on-openacc-offloading) but with the use of a different GPU-architecture: AMD Mi100 accelerator. The functionality of OpenMP is similar to the one of OpenACC, although the terminology is different [cf. *Fig. 1*]. In the OpenMP concept, a block of loops is offloaded to a device via the construct `target`. A set of threads is then created on each compute unit (CU) (analogous to a streaming multiprocessor in NVIDIA terminology) [cf. *Fig. 1*] by means of the directive `teams` to execute the offloaded region. Here, the offloaded region (e.g. a block of loops) gets assigned to teams via the clause `distribute`, and gets executed on the processing elements (PEs) or also called stream processors (analogous to CUDA cores) by means of the directive `parallel do simd`. These directives define the concept of parallelism in OpenMP. 
 
 The concept of parallelism is implemented using the same model described in [Section II](#computational-model). The implementation is presented below for two cases: (i) OpenMP without introducing the data directive and (ii) OpenMP with the data directive. This Comparison allows us to identify the benefit of data management during the data-transfer between the host and a device. This in turn provides some insights into the performance of the OpenMP offload features. In the left-hand-side of the OpenMP application, the arrays **f** and **f_k**, which define the main components of the compute region, are copied from the host to a device and back, respectively via the clause `map`. Note that specifying the `map` clause in this case is optional. Once the data are offloaded to a device, the parallelism gets executed according to the scenario described above. This scheme repeats itself at each iteration, which causes a low performance as shown in *Fig. 5*. Here the computing time is 119.6 s, which is too high compared to 76.52 s in the serial case. A similar behavior is observed in the OpenACC mini-application.
 
