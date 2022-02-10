@@ -28,4 +28,10 @@ build:
   image: python:3.7-alpine
   script:
     - pip install -r requirements.txt
-    - sphinx-build -W -b linkcheck . _build
+    # '-W': Turn warnings into errors
+    # '--keep-going': When encountering a warning continue to process (this
+    # allows us to capture multiple warnings at the same time, avoiding the
+    # 'build->warning->fix->build->warning' loop where both fixes could be
+    # solved at the same time)
+    # '-n': Warn about internal missing references
+    - sphinx-build -W --keep-going -n . _build
