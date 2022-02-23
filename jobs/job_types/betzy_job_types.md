@@ -63,7 +63,7 @@ See the {ref}`accounting page<projects-accounting>` for more information.
     - maximum 4 running jobs per user
 - __Maximum walltime__: 1 day
 - __Priority__: normal
-- __Available resources__: 128 CPU cores and 1 TiB RAM over 7 nodes
+- __Available resources__: 128 CPU cores and 1 TiB RAM over 6 nodes
 - __Parameter for sbatch/srun__:
     - `--qos=preproc`
 - __Job Scripts__: {ref}`job_scripts_betzy_preproc`
