@@ -3,10 +3,12 @@ orphan: true
 ---
 
 # Using the Schrodinger suite
+*If you plan to use the maestro GUI, we recommend doing this through our [remote desktop](https://documentation.sigma2.no/getting_started/remote-desktop.html?highlight=tigervnc).*
 
 Load the desired Schrodinger suite:
 * `module purge`
-* `module load Schrodinger/2021-2-intel-2020b`
+* `module load Schrodinger/2022-1-GCCcore-11.2.0`
+
 
 Now you can call any Schrodinger software by using the \$SCHRODINGER variable from your command line, for example
 `$SCHRODINGER/glide`.
