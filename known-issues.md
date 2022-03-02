@@ -26,3 +26,14 @@ weeks back to find a known issue.
   jobs failing due to an InfiniBand problem which emits messages of the "excess
   retry". This is an ongoing problem, but shows up (more) on high core count
   jobs.
+
+- **Running jobs hang and consume compute resources**: on Fram and Betzy
+  there is a randomly occurring problem that results in Zombie / unkillable
+  processes. Amongst others, this happens when some of the application processes
+  execute `MPI_Abort`, or otherwise crash while other ranks are performing MPI communication.
+  With Intel MPI, this often results in the job hanging forever, or until it runs out
+  of the SLURM allocated time. At this stage, to avoid this issue users should
+  either make sure that all ranks call `MPI_Abort` at the same time (which might
+  of course be impossible), or use OpenMPI. In the latter case, although the Zombie
+  processes might also be created, we believe this does not result in a hanging
+  application and waste of compute resources.
