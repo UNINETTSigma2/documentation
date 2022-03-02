@@ -28,7 +28,7 @@ weeks back to find a known issue.
   jobs.
 
 - **Running jobs hang and consume compute resources**: on Fram and Betzy
-  there is a randomly occuring problem that results in Zombie / unkillable
+  there is a randomly occurring problem that results in Zombie / unkillable
   processes. Amongst others, this happens when some of the application processes
   execute `MPI_Abort`, or otherwise crash while other ranks are performing MPI communication.
   With Intel MPI, this often results in the job hanging forever, or until it runs out
