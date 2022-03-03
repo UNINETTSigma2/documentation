@@ -14,6 +14,8 @@
 - GPU programming with SYCL:
     - [<span style="color:green">Beginner</span>]
         [Getting started with hipSYCL](guides/hipsycl.md)
+    - [<span style="color:green">Beginner</span>]
+        [SYCL Academy tutorial](guides/sycl_academy.md)
     - [<span style="color:orange">Intermediate</span>]
         [Unified Shared Memory with SYCL](guides/sycl_usm.md)
 - Porting applications:
