@@ -9,8 +9,9 @@ The courses are free of charges. Our upcoming courses are listed below:
 ```{eval-rst}
 .. toctree::
    :maxdepth: 1
+   :glob:
 
-   events/hpc-nird-toolkit-user-course-nov-2021.md
+   events/*
 ```
 
 
