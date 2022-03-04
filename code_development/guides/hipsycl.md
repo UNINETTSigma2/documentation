@@ -110,7 +110,7 @@ device: hipSYCL OpenMP host device` (since the code is still only compiled for C
 The only thing we need to change when compiling for GPUs is to add new target options to
 the compiler string. The only complicating issue here might be to figure out which target
 architecture corresponds to the hardware at hand, but for the P100 GPUs on Saga the
-name of the target should be `cuda:sm_60`:
+name of the target should be `cuda:sm_60` (`cuda:sm_80` for Betzy's A100 cards):
 
 ```console
 [me@login-1.SAGA ~]$ syclcc --hipsycl-targets='omp;cuda:sm_60' -O3 -o hello_world hello_world.cpp
