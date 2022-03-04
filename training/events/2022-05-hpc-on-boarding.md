@@ -3,7 +3,7 @@
 # HPC On-boarding May 2022
 
 The Norwegian Research Infrastructure Services (**NRIS**) is offering 
-a on-boarding hands-on course for current and future users of national HPC systems 
+an on-boarding hands-on course for current and future users of national HPC systems 
 (Saga, Fram, Betzy). 
 
 **Targeted Audience**: The course is aimed at students, researchers and employees of any
