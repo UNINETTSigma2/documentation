@@ -7,7 +7,7 @@ a on-boarding hands-on course for current and future users of national HPC syste
 (Saga, Fram, Betzy). 
 
 **Targeted Audience**: The course is aimed at students, researchers and employees of any
-background. We assume no prior knowledge of what an HPC is or how to use it.For those who
+background. We assume no prior knowledge of what an HPC is or how to use it. For those who
 have little experience with UNIX-like operating systems such as Linux or who have never
 worked on the command line of a terminal, we will offer a hands-on pre-course about UNIX 
 a day before the HPC course.
