@@ -3,7 +3,7 @@
 # HPC On-boarding May 2022
 
 The Norwegian Research Infrastructure Services (**NRIS**) is offering 
-a on-boarding hands-on course for current and future users of national HPC systems 
+an on-boarding hands-on course for current and future users of national HPC systems 
 (Saga, Fram, Betzy). 
 
 **Targeted Audience**: The course is aimed at students, researchers and employees of any
@@ -33,7 +33,7 @@ If you want to receive further information about training events, and other anno
 The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT, NTNU & Sigma2. Registration closes on **25th April** for those attending LINUX course and HPC course. We need a bit time to ensure that everyone has an account on the HPC systems in case a participant does not already have one.
 **[You can register here](https://skjemaker.app.uib.no/view.php?id=12253729)**
 
-## Time, date () all times CEST
+## Time, date (all times CEST)
 |   Date    |  Time   |  Topic	|
 | :----------- | :----------- | :---------- |
 | Tue 03.05    | 09:00 - 12:30 | Linux on HPC context |
