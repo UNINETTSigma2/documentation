@@ -277,7 +277,7 @@ hostname
 - @bast Will you cover workflow managers tomorrow? E.g. snakemake which will be queing tasks on its own?
   - no, not me. but good point. we should have added this to the material.
   - yes, it is an advanced topic.
-  - we have some course material here: <https://coderefinery.github.io/reproducible-research/04-workflow-management/> but this would be for another day
+  - we have some course material here: <https://coderefinery.github.io/reproducible-research/> but this would be for another day
   - do you know on which day this is covered? or not yet?
     - to my knowledge we did not consider teaching it this time. we should do a separate training event on this and also add this next time.
     - ah, thanks. i hoped for that b/c i was running into some problems, but this is a topic for individual user support then. I'll have a look at the material.
