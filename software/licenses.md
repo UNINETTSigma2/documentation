@@ -16,13 +16,14 @@ machines. In general, the application and tool licenses fall under these types:
    Initiative](https://opensource.org/licenses).
 
 3. Commercial license - may be granted to an individual, project, or
-   organization.
+   organization. See {ref}`the list below <license-list>` for available
+   licenses at NRIS.
 
 It is the user's responsibility to make sure they adhere to the license
 agreements.
 
 (license-list)=
-## Commercial licenses
+## Commercial licenses at NRIS
 
 | Software                    | Machines          | Available for whom                         | License type            | Field                      | Source of funding   |
 |-----------------------------|-------------------|-------------------------------------------|-------------------------|----------------------------|---------------------|
