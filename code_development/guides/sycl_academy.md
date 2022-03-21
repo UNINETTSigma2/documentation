@@ -33,7 +33,7 @@ The course material can be downloaded from Github with the following command (re
 
 ```console
 [me@login-1.SAGA ~]$ git clone --recursive https://github.com/codeplaysoftware/syclacademy.git
-[me@login-1.SAGA ~/syclacademy]$ cd syclacademy
+[me@login-1.SAGA ~]$ cd syclacademy
 [me@login-1.SAGA ~/syclacademy]$ ls
 CMakeLists.txt  CODE_OF_CONDUCT.md  External          LICENSE.md  sycl_academy.png
 Code_Exercises  CONTRIBUTING        Lesson_Materials  README.md   Utilities
@@ -111,9 +111,13 @@ The main point of all these exercises is of course to run the code on accelerato
 you need to ask for GPU resources through Slurm, here as an interactive job on the `accel` partition:
 
 ```console
-[me@login-1.SAGA ~/syclacademy/build]$ srun --account=<my-account> --time=1:00:00 --ntasks=1 --gpus-per-task=1 --partition=accel --mem=1G --pty bash
-srun: job 3511733 queued and waiting for resources
-srun: job 3511733 has been allocated resources
+[me@login-1.SAGA ~/syclacademy/build]$ salloc --account=<my-account> --time=1:00:00 --ntasks=1 --gpus=1 --partition=accel --mem=1G
+salloc: Pending job allocation 5353133
+salloc: job 5353133 queued and waiting for resources
+salloc: job 5353133 has been allocated resources
+salloc: Granted job allocation 5353133
+salloc: Waiting for resource configuration
+salloc: Nodes c7-8 are ready for job
 [me@c7-8.SAGA ~/syclacademy/build]$ Code_Exercises/Exercise_01_Compiling_with_SYCL/exercise_01_compiling_with_sycl_solution
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
