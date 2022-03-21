@@ -55,11 +55,10 @@ Users have to supply the necessary input files, including any `POTCAR` files nee
 
 There are now one module per VASP flavor (standard, gamma only and non-collinear). Meaning when you now load a module, there is only one executable, `vasp`. For the example given above we load the module `VASP/5.4.4-intel-2019a-std-wannier90-somehash`. Here, `somehash` is a generated hash. i.e. `86f69b2cbd5b5987c9dd0bf21a1b7e82` based on the versions of libraries and extensions. This is done to avoid a very long module name. In the future we might chose to go with something even more compact, e.g. `VASP/5.4.4/somehash`. For now, we believe it is convenient to directly see which VASP version and what libraries are there etc., but not necessarily the Wannier90, BEEF, libxc version etc. The mapping between the hash and exact version numbers can be found here:
 
-| Hash                             | Wannier90 | VTST | BEEF | SOL | libxc | hdf5 |
-|----------------------------------|-----------|------|------|-----|-------|------|
-| 86f69b2cbd5b5987c9dd0bf21a1b7e82 | 2.1.0     | -    | -    | -   | -     | -    |
-|                                  |           |      |      |     |       |      |
-|                                  |           |      |      |     |       |      |
+| VASP version | Hash                               | Wannier90   | VTST   | BEEF   | SOL   | libxc   | hdf5     |
+| ------------ | ---------------------------------- | ----------- | ------ | ------ | ----- | ------- | -------- |
+| 5.4.4 pl2    | 86f69b2cbd5b5987c9dd0bf21a1b7e82   | 2.1.0       | -      | -      | -     | -       | -        |
+| 6.3.0        | 5289f748cfc70eba91b5b6c81efedad4   | 3.1.0       | -      | -      | -     | 5.2.2   | 1.12.1   |
 
 The module list will grow in the next weeks (spring 2022). Also, notice that when we add new versions, we will add new modules and the only difference will be a different hash if the same inclusions is present. Users should then check back on this table to make sure they load a version that is to their specifications. In the future we will make sure the table is also updated in the repository that builds VASP and included here as a reference. Also, modules with names not containing a hash in the end is now considered legacy. You might use them to reproduce old results and we will keep them around until the system is end of life.
 
