@@ -61,7 +61,7 @@ There are now one module per VASP flavor (standard, gamma only and non-collinear
 |                                  |           |      |      |     |       |      |
 |                                  |           |      |      |     |       |      |
 
-The module list will grow in the next weeks (spring 2022). Also, notice that when we add new versions, we will add new modules and the only difference will be a different hash if the same inclusions is present. Users should then check back on this table to make sure they load a version that is to their specifications. In the future we will make sure the table is also updated in the repository that builds VASP and included here as a reference.
+The module list will grow in the next weeks (spring 2022). Also, notice that when we add new versions, we will add new modules and the only difference will be a different hash if the same inclusions is present. Users should then check back on this table to make sure they load a version that is to their specifications. In the future we will make sure the table is also updated in the repository that builds VASP and included here as a reference. Also, modules with names not containing a hash in the end is now considered legacy. You might use them to reproduce old results and we will keep them around until the system is end of life.
 
 We would like feedback from the community how we can improve the module naming scheme going forward. Please keep in mind that whatever we chose have to support reproducability, which means that we should be able to say, _give me VASP version x.y.z, with BEEF version x1.y1.z1 and Wannier90 with x2,y2,z2_ etc.
 
