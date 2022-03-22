@@ -4,18 +4,17 @@
 
 The Norwegian Research Infrastructure Services (**NRIS**) is offering
 a course for users of national HPC systems (Saga, Fram, Betzy). 
-The two half days course is the follow up to the NRIS Hpc on-boarding
+The two half days course is the follow up to the {ref}`NRIS HPC on-boarding<training-2022-spring-onboarding>`
 course. We will focus on different aspects related to the everyday usage
 of HPC facilities in order to facilitate an valuable and productive framework
 to develop your research. These include best practices and trouble shooting,
 resource management, software installation, gpu computing with slurm and advanced 
-user support 
+user support. 
 
 **Targeted Audience**: The course is aimed at students, researchers and employees
 who want to deepen their knowledge of the usage of HPC facilities. This is a follow-up
-course to the NRIS Hpc on-boarding course (although it is not a prerequisite). 
-If you are new to HPC, we highly recommend to sign up for the NRIS Hpc on-boarding course 
-to benefit from this course.
+course to the {ref}`NRIS HPC on-boarding<training-2022-spring-onboarding>` course (although it is not a prerequisite). 
+If you are new to HPC, we highly recommend to sign up for the {ref}`NRIS HPC on-boarding course<training-2022-spring-onboarding>` to benefit from this course.
 
 **The course is open to all users and free of charge, but registration is mandatory.**
 
@@ -35,17 +34,14 @@ If you want to receive further information about training events, and other anno
 
 ## **Registration**
 
-**[You can register here](https://skjemaker.app.uib.no/view.php?id=12438755)**
-Registration closes on **12th May**
+**You can register [here](https://skjemaker.app.uib.no/view.php?id=12438755)**.
+Registration closes on **12th May**.
 
 ## Time, date (all times CEST)
 |   Date    |  Time   |  Topic  |
 | :----------- | :----------- | :---------- |
-| Mon 23.05    | 09:00 - 12:30 | Session 1: Best Practices and Trouble shooting |
-                               | Session 2: Resource management |
-| Tue 24.05    | 09:00 - 12:30 | Session 1: Software Installation |
-			       | Session 2: GPU computing with slurm |
-                               | Session 3: Advanced user support |
+| Mon 23.05    | 09:00 - 12:30 | Session 1 : Best Practices and Trouble shooting on NRIS clusters <br> Session 2: Resource management |
+| Tue 24.05    | 09:00 - 12:30 | Session 1: Software Installation <br> Session 2: GPU computing with slurm <br> Session 3: Advanced user support |
 
 ```{note}
  A detailed schedule will be published here a week before the course
