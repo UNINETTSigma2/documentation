@@ -24,7 +24,7 @@ based upon, in this case `GCCcore/11.2.0`:
 
 ## Step 2: Download course material
 
-The course material can be downloaded from Github with the following command (remember the `--recursive` option):
+The course material can be downloaded from Github with the following command
 
 ```console
 [me@login-1.SAGA ~]$ git clone https://github.com/ENCCS/sycl-workshop.git
@@ -48,9 +48,7 @@ examples, here for the very first `00_hello`:
 
 ```console
 [me@login-1.SAGA ~/sycl-workshop]$ cd content/code/day-1/00_hello
-[me@login-1.SAGA ~/sycl-workshop/content/code/day-1/00_hello]$ mkdir build
-[me@login-1.SAGA ~/sycl-workshop/content/code/day-1/00_hello]$ cd build
-[me@login-1.SAGA ~/syclacademy/build]$ cmake -DHIPSYCL_TARGETS="omp;cuda:sm_60" ..
+[me@login-1.SAGA ~/sycl-workshop/content/code/day-1/00_hello]$ cmake -S . -B build -DHIPSYCL_TARGETS="omp;cuda:sm_60"
 -- The CXX compiler identification is GNU 11.2.0
 -- Detecting CXX compiler ABI info
 -- Detecting CXX compiler ABI info - done
@@ -78,6 +76,7 @@ The tutorial is organized such that you are expected to write your solution in t
 directory for a particular exercise, simply run `make` in the `build` directory:
 
 ```console
+[me@login-1.SAGA ~/sycl-workshop/content/code/day-1/00_hello]$ cd build
 [me@login-1.SAGA ~/sycl-workshop/content/code/day-1/00_hello/build]$ make
 [ 50%] Building CXX object CMakeFiles/hello.dir/hello.cpp.o
 clang-13: warning: Unknown CUDA version. cuda.h: CUDA_VERSION=11040. Assuming the latest supported version 10.1 [-Wunknown-cuda-version]
