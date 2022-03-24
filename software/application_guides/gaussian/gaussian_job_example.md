@@ -16,7 +16,7 @@ To use Gaussian, type
 
 specifying one of the available versions.
 
-**Please carefully inspect the job script examples whown below before submitting jobs!**
+**Please carefully inspect the job script examples shown below before submitting jobs!**
 
 To run this example(s) create a directory, step into it, create the input file and submit the script with:
 
