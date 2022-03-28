@@ -6,14 +6,8 @@ Projects and users receive different areas to store files and other
 data. Some areas are used for temporary files during job execution
 while others are for storing project data.
 
-- [Overview](#overview)
-- [Usage and quota](#usage-and-quota)
-- [Home directory](#home-directory)
-- [Job scratch area](#job-scratch-area)
-- [Job scratch area on local disk](#job-scratch-area-on-local-disk)
-- [User work area](#user-work-area)
-- [Project area](#project-area)
-- [Shared project area](#shared-project-area)
+```{contents} Table of Contents
+```
 
 
 (clusters-overview)=
@@ -27,10 +21,10 @@ Below the table we give recommendations and discuss pros and cons for the variou
 | :---------------------------------------------- | :------------------- | :--------------------------------- | :---------------------------------: |
 | `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files               | [Only if quota enforced](backup.md) |
 | `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                | No                                  |
-| (Fram/Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALSCRATCH`) | Per-job data | [Individual](#job-scratch-area-on-local-disk) | No                   |
+| (Fram/Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALSCRATCH`) | Per-job data | {ref}`Individual <job-scratch-area-on-local-disk>` | No                   |
 | `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                | No                                  |
-| `/cluster/projects/<project_name>`              | Project data         | [1 TiB / 1 M files](#project-area) | Yes                                 |
-| `/cluster/shared/<folder_name>`                 | Shared data          | [Individual](#shared-project-area) | No                                  |
+| `/cluster/projects/<project_name>`              | Project data         | {ref}`1 TiB / 1 M files <project-area>` | Yes                                 |
+| `/cluster/shared/<folder_name>`                 | Shared data          | {ref}`Individual <shared-project-area>` | No                                  |
 
 - **User areas and project areas are private**: Data handling and storage policy is documented [here](/files_storage/sharing_files.md).
 - **Note that the `$LOCALSCRATCH` area is only implemented on Fram and Saga**
@@ -133,6 +127,7 @@ directory `$SLURM_SUBMIT_DIR` (where `sbatch` was run).
   be lost.
 ```
 
+(job-scratch-area-on-local-disk)=
 
 ## Job scratch area on local disk
 
@@ -304,6 +299,7 @@ To see disk usage and quota information for your project on NIRD, run `dusage -p
   and/or jobs needing a lot of storage at the same time.
 ```
 
+(shared-project-area)=
 
 ## Shared project area
 
