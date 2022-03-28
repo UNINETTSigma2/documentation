@@ -1,7 +1,7 @@
 (Configuration-general-package)=
 
 # Installing a package
-Begin by navigating to the package library.
+Begin by navigating to the package library in the [Toolkit](https://apps.sigma2.no/).
 ![Package library](imgs/library.png)
 
 Here, you will be presented with a selection of different packages. To find a
