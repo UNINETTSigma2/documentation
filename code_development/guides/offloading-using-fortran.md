@@ -2,6 +2,8 @@
 orphan: true
 ---
 
+(offload_fortran_concurrent)=
+
 # Offloading to GPU using Fortran 2008
 
 ## Introduction
