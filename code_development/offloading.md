@@ -7,7 +7,7 @@ standard `for` (or `do` in Fortran) loop.
 
 This document shows how to use the standard compilers available on {ref}`saga`
 and {ref}`betzy` to offload computation to the attached GPUs. This document is
-not a comprehensive guide for how to perform the actual offloading, but is
+not considered as a comprehensive for how to perform offloading, but rather as
 rather a compendium on the different compiler flags required to offload with
 different compilers. For guides on how to transition your code to become
 offload capable please {ref}`see our guides <dev-guides>`.
