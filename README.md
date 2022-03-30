@@ -190,7 +190,6 @@ You can also have several keywords point to this page like here:
 ```
 ````
 
-
 ## Table of contents on longer pages
 
 If you need a table of contents on top of a long page, do not create it manually using
@@ -199,3 +198,38 @@ anchors. Instead you can get it like this:
 ```{contents} Table of Contents
 ```
 ````
+
+## Creating tabs
+
+The tab plugin used is
+[`sphinx-tabs`](https://sphinx-tabs.readthedocs.io/en/latest/).
+
+To create tabs in the documentation you can use the following markdown syntax
+`````
+````{tabs}
+```{tab} Tab 1 name
+
+Content of tab 1
+```
+```{tab} Tab 2 name
+
+Content of tab 2
+```
+````
+`````
+
+We can also have pure code tabs:
+`````
+````{tabs}
+```{code-tab} c
+
+void main() {
+  printf("Hello World!\n");
+}
+```
+```{code-tab} py
+
+print("Hello World!")
+```
+````
+`````
