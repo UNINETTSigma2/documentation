@@ -3,7 +3,6 @@ orphan: true
 ---
 
 
-
 # Using WinSCP to transfer files
 
 To access data on NIRD or an HPC cluster (Fram and Saga) using a graphical
@@ -14,9 +13,8 @@ NIRD. The procedure will be similar for Fram and Saga.  WinSCP is a Windows
 program. If you are on Linux or Mac you need to use a different program, like
 for instance sftp, FileZilla, or Cyberduck.
 
-- [Installation on Windows](#installation-on-windows)
-- [Connecting to NIRD with WinSCP](#connecting-to-nird-with-winscp)
-- [Downloading and uploading files and folders](#downloading-and-uploading-files-and-folders)
+```{contents} Table of Contents
+```
 
 
 ## Installation on Windows

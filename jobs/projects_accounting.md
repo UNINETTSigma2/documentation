@@ -2,9 +2,8 @@
 
 # Projects and accounting
 
-- [Projects](#projects)
-- [List available quota](#list-available-quota)
-- [Accounting](#accounting)
+```{contents} Table of Contents
+```
 
 
 ## Projects

@@ -6,10 +6,9 @@ Sometimes you might want to test or debug a calculation interactively,
 but **running interactively on the login node is discouraged and not an
 option**.
 
-- [Requesting an interactive job](#requesting-an-interactive-job)
-- [Graphical user interface in interactive jobs](#graphical-user-interface-in-interactive-jobs)
-- [Running the shell or a command on the login node](#running-the-shell-or-a-command-on-the-login-node)
-- [Keeping interactive jobs alive](#keeping-interactive-jobs-alive)
+
+```{contents} Table of Contents
+```
 
 
 ## Requesting an interactive job

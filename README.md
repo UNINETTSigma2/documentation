@@ -189,3 +189,13 @@ You can also have several keywords point to this page like here:
 ```{index} GPU; Name of link, OpenACC; Name of link, CUDA; Name of link
 ```
 ````
+
+
+## Table of contents on longer pages
+
+If you need a table of contents on top of a long page, do not create it manually using
+anchors. Instead you can get it like this:
+````
+```{contents} Table of Contents
+```
+````

@@ -20,17 +20,8 @@ This documentation ultimately aims at initiating developers'/users' interest in 
 *	Get some highlights of available open-source OpenACC compilers.
 
 
-# Table of Contents
-
-- [Introduction](#introduction)
-- [Computational model](#computational-model)
-- [GPU-architecture](#gpu-architecture)
-- [Experiment on OpenACC offloading](#experiment-on-openacc-offloading)
-- [Experiment on OpenMP offloading](#experiment-on-openmp-offloading)
-- [Mapping OpenACC to OpenMP](#mapping-openacc-to-openmp)
-- [Open-source OpenACC compilers](#open-source-openacc-compilers)
-- [Conclusion](#conclusion)
-- [Relevant links](#relevant-links)
+```{contents} Table of Contents
+```
 
 
 # Introduction
@@ -46,9 +37,16 @@ the most popular programming model that requires a special attention in terms of
 As far as we know, the only compiler that fully supports OpenACC for offloading to both NVIDIA and AMD devices is GCC. The GCC's performance, however, suffers from some weaknesses and poses some [challenges](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8639349), which limit its extension. Although the Cray Compilation Environment [(CCE)](https://support.hpe.com/hpesc/public/docDisplay?docId=a00115296en_us&page=OpenACC_Use.html) has full support of OpenACC 2.0 and partial support of OpenACC 2.6, the support is limited only to Fortran, and thus no support for C or C++. This lack of support for OpenACC calls for an alternative that goes beyond the GCC compiler, and which ensures higher performance. On the other hand, the OpenMP offloading is supported on multiple devices by a set of compilers such as *Clang/Flang* and *Cray*, and *Icx/Ifx* which are well-known to provide the highest performance with respect to GCC. Therefore, converting OpenACC to OpenMP becomes a necessity to overcome the lack of stable implementations for all relevant hardware vendors, and to extend the OpenACC implementations to cover various GPU-architectures. In this context, there has been a project funded by [Exascale Computing Project](https://www.exascaleproject.org/highlight/clacc-an-open-source-openacc-compiler-and-source-code-translation-project/) and published [here](https://ieeexplore.ieee.org/document/8639349), which aims at developing an open-source OpenACC compiler. This documentation is inspired by this project and is motivated by the need to document how to translate OpenACC to OpenMP on heterogeneous systems.
  
  
- This documentation is organised as follows. In [sec. II](#computational-model), we provide a computational model, which is based on solving the Laplace equation. [Section III](#comparative-study-openacc-versus-openmp) is devoted to 
- the analysis of experiments performed using the OpenACC and OpenMP offload features and to a one-to-one mapping of these two models. [Section IV](#open-source-openacc-compilers) is directed to a discussion about open-source OpenACC compilers. Finally, conclusions are given in [Sec. V](#conclusion).
- 
+This documentation is organised as follows. In {ref}`sec. II <computational-model>`,
+we provide a computational model, which is based on solving the Laplace
+equation. {ref}`Section III <comparative-study-openacc-versus-openmp>` is devoted to
+the analysis of experiments performed using the OpenACC and OpenMP offload
+features and to a one-to-one mapping of these two models. {ref}`Section
+IV <open-source-openacc-compilers>` is directed to a discussion about
+open-source OpenACC compilers. Finally, conclusions are given in {ref}`Sec. V <conclusion>`.
+
+
+(computational-model)=
 
 # Computational model
 
@@ -92,6 +90,8 @@ do while (max_err.gt.error.and.iter.le.max_iter)
 enddo
 ```
 
+(comparative-study-openacc-versus-openmp)=
+
 # Comparative study: OpenACC versus OpenMP
 
 In the following we first provide a short description of GPU accelerators and then perform experiments covering both the OpenACC and OpenMP implementations to accelerate the Jacobi algorithm in the aim of conducting a comparative experiment between the two programming models. The experiments are systematically performed with a fixed number of grid points (i.e. 8192 points in both $`x`$ and $`y`$ directions) and a fixed number of iterations that ensure the convergence of the algorithm. This is found to be 240 iterations resulting in an error of 0.001.
@@ -121,6 +121,7 @@ FLOPS = (Clock speed)$`\times`$(cores)$`\times`$(FLOP/cycle),
 </div>
 
 
+(experiment-on-openacc-offloading)=
 
 ## Experiment on OpenACC offloading
 
@@ -223,9 +224,9 @@ The compilation process requires loading a NVHPC module, e.g. `NVHPC/21.2` or an
 
 ## Experiment on OpenMP offloading
 
-In this section, we carry out an experiment on [OpenMP](https://www.openmp.org/wp-content/uploads/OpenMP-API-Specification-5-1.pdf) offloading by adopting the same scenario as in the previous [section](#experiment-on-openacc-offloading) but with the use of a different GPU-architecture: AMD Mi100 accelerator. The functionality of OpenMP is similar to the one of OpenACC, although the terminology is different [cf. *Fig. 1*]. In the OpenMP concept, a block of loops is offloaded to a device via the construct `target`. A set of threads is then created on each compute unit (CU) (analogous to a streaming multiprocessor in NVIDIA terminology) [cf. *Fig. 1*] by means of the directive `teams` to execute the offloaded region. Here, the offloaded region (e.g. a block of loops) gets assigned to teams via the clause `distribute`, and gets executed on the processing elements (PEs) or also called stream processors (analogous to CUDA cores) by means of the directive `parallel do simd`. These directives define the concept of parallelism in OpenMP. 
+In this section, we carry out an experiment on [OpenMP](https://www.openmp.org/wp-content/uploads/OpenMP-API-Specification-5-1.pdf) offloading by adopting the same scenario as in the previous {ref}`section <experiment-on-openacc-offloading>` but with the use of a different GPU-architecture: AMD Mi100 accelerator. The functionality of OpenMP is similar to the one of OpenACC, although the terminology is different [cf. *Fig. 1*]. In the OpenMP concept, a block of loops is offloaded to a device via the construct `target`. A set of threads is then created on each compute unit (CU) (analogous to a streaming multiprocessor in NVIDIA terminology) [cf. *Fig. 1*] by means of the directive `teams` to execute the offloaded region. Here, the offloaded region (e.g. a block of loops) gets assigned to teams via the clause `distribute`, and gets executed on the processing elements (PEs) or also called stream processors (analogous to CUDA cores) by means of the directive `parallel do simd`. These directives define the concept of parallelism in OpenMP. 
 
-The concept of parallelism is implemented using the same model described in [Section II](#computational-model). The implementation is presented below for two cases: (i) OpenMP without introducing the data directive and (ii) OpenMP with the data directive. This Comparison allows us to identify the benefit of data management during the data-transfer between the host and a device. This in turn provides some insights into the performance of the OpenMP offload features. In the left-hand-side of the OpenMP application, the arrays **f** and **f_k**, which define the main components of the compute region, are copied from the host to a device and back, respectively via the clause `map`. Note that specifying the `map` clause in this case is optional. Once the data are offloaded to a device, the parallelism gets executed according to the scenario described above. This scheme repeats itself at each iteration, which causes a low performance as shown in *Fig. 5*. Here the computing time is 119.6 s, which is too high compared to 76.52 s in the serial case. A similar behavior is observed in the OpenACC mini-application.
+The concept of parallelism is implemented using the same model described in {ref}`Section II <computational-model>`. The implementation is presented below for two cases: (i) OpenMP without introducing the data directive and (ii) OpenMP with the data directive. This Comparison allows us to identify the benefit of data management during the data-transfer between the host and a device. This in turn provides some insights into the performance of the OpenMP offload features. In the left-hand-side of the OpenMP application, the arrays **f** and **f_k**, which define the main components of the compute region, are copied from the host to a device and back, respectively via the clause `map`. Note that specifying the `map` clause in this case is optional. Once the data are offloaded to a device, the parallelism gets executed according to the scenario described above. This scheme repeats itself at each iteration, which causes a low performance as shown in *Fig. 5*. Here the computing time is 119.6 s, which is too high compared to 76.52 s in the serial case. A similar behavior is observed in the OpenACC mini-application.
 
 The OpenMP performance, however is found to be improved when introducing the directive `data` in the beginning of the iteration. This implementation has the advantage of keeping the data in the device during the iteration process and copying them back to the host only at the end of the iteration. By doing so, the performance is improved by almost a factor of 22, as depicted in *Fig. 5*: it goes from 119.6 s in the absence of the data directive to 5.4 s when the directive is introduced. As in the OpenACC application, the performance can be further tuned by introducing additional clauses, specifically, the clauses `collapse` and `schedule` which are found to reduce the computing time from 5.4 s to 2.15 s. 
 
@@ -353,6 +354,8 @@ firstprivate    | firstprivate     | to allocate a copy of the variable `var` on
 Details about library routines can be found [here](https://gcc.gnu.org/onlinedocs/libgomp/OpenACC-Runtime-Library-Routines.html) for OpenACC and [here](https://www.intel.com/content/www/us/en/develop/documentation/get-started-with-cpp-fortran-compiler-openmp/top.html) for OpenMP.
 ```
 
+(open-source-openacc-compilers)=
+
 # Open-source OpenACC compilers
 
  For completeness, we provide in this section some highlights of the available open-source OpenACC compilers. According to the work of [J. Vetter et al.](https://ieeexplore.ieee.org/document/8639349) and the [OpenACC website](https://www.openacc.org/tools), the only open-source compiler that supports OpenACC offloading to NVIDIA and AMD accelerators is GCC 10. Recently, there has been an effort in developing an open-source compiler to complement the existing one, thus allowing to perform experiments on a broad range of architectures. The compiler is called [Clacc](https://ieeexplore.ieee.org/document/8639349) and its development is funded by the Exascale Computing Project [Clacc project](https://www.exascaleproject.org/highlight/clacc-an-open-source-openacc-compiler-and-source-code-translation-project/) and is further described by [J. Vetter et al.](https://ieeexplore.ieee.org/document/8639349). We thus focus here on providing some basic features of the Clacc compiler platform, without addressing deeply the fundamental aspect of the compiler, which is beyond the scope of this documentation..
@@ -361,7 +364,8 @@ Clacc is an open-source OpenACC compiler platform that has support for [Clang](h
 
 Despite the new development of Clacc compiler platform, there is still major need to further extend the compiler as it suffers from some limitations, [mainly](https://ieeexplore.ieee.org/document/8639349): (i) in the Clacc's design, translating OpenACC to OpenMP in Clang/Flang is currently supported only in C and Fortran but not yet in C++. (ii) Clacc has so far focused primarily on compute constructs, and thus lacks support of data-sharing between the CPU-host and a GPU-device. These limitations however are expected to be overcome in the near future. So far, Clacc has been tested and benchmarked against a series of different configurations, and it is found to provide an acceptable GPU-performance, as stated [here](https://www.exascaleproject.org/highlight/clacc-an-open-source-openacc-compiler-and-source-code-translation-project/). Note that Clacc is publicly available [here](https://github.com/llvm-doe-org/llvm-project/wiki).
 
- 
+
+(conclusion)=
 
 # Conclusion
 
