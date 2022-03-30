@@ -54,17 +54,17 @@ supports OpenMP offloading on {ref}`betzy`.
 
 ```````{tabs}
 
-``````{tab} Clang
+``````{group-tab} Clang
 
 `````{tabs}
 
-````{tab} Nvidia
+````{group-tab} Nvidia
 
 ```bash
 -fopenmp -fopenmp-targets=nvptx64-nvidia-cuda -Xopenmp-target=nvptx64-nvidia-cuda -march=sm_<XX>
 ```
 ````
-````{tab} AMD
+````{group-tab} AMD
 
 ```bash
 -fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=gfx<XXX>
@@ -72,17 +72,17 @@ supports OpenMP offloading on {ref}`betzy`.
 ````
 `````
 ``````
-``````{tab} GCC
+``````{group-tab} GCC
 
 `````{tabs}
 
-````{tab} Nvidia
+````{group-tab} Nvidia
 
 ```bash
 -fopenmp -foffload=nvptx-none="-misa=sm_35"
 ```
 ````
-````{tab} AMD
+````{group-tab} AMD
 
 ```bash
 -fopenmp -foffload=amdgcn-amdhsa="-march=gfx<XXX>
@@ -90,11 +90,11 @@ supports OpenMP offloading on {ref}`betzy`.
 ````
 `````
 ``````
-``````{tab} NVHPC
+``````{group-tab} NVHPC
 
 `````{tabs}
 
-````{tab} Nvidia
+````{group-tab} Nvidia
 
 ```bash
 -mp=gpu -Minfo=mp,accel -gpu=cc<XX>
@@ -116,17 +116,17 @@ If you are interested in learning more about OpenACC offloading we have
 
 ```````{tabs}
 
-``````{tab} GCC
+``````{group-tab} GCC
 
 `````{tabs}
 
-````{tab} Nvidia
+````{group-tab} Nvidia
 
 ```bash
 -fopenacc -foffload=nvptx-none="-misa=sm_35"
 ```
 ````
-````{tab} AMD
+````{group-tab} AMD
 
 ```bash
 -fopenacc -foffload=amdgcn-amdhsa="-march=gfx<XXX>
@@ -134,11 +134,11 @@ If you are interested in learning more about OpenACC offloading we have
 ````
 `````
 ``````
-``````{tab} NVHPC
+``````{group-tab} NVHPC
 
 `````{tabs}
 
-````{tab} Nvidia
+````{group-tab} Nvidia
 
 ```bash
 -acc -Minfo=accel -gpu=cc<XX>
@@ -158,7 +158,7 @@ You can read more about accelerating Fortran using `do concurrent`
 {ref}`in our guide<offload_fortran_concurrent>`.
 
 `````{tabs}
-````{tab} NVHPC
+````{group-tab} NVHPC
 
 ```bash
 -stdpar=gpu -Minfo=stdpar
