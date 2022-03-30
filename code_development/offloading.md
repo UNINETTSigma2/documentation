@@ -12,7 +12,7 @@ rather a compendium on the different compiler flags required to offload with
 different compilers. For guides on how to transition your code to become
 offload capable please {ref}`see our guides <dev-guides>`.
 
-Below we have listed the flags necessary to enable GPU offloading for the
+Below we have listed the necessary flags to enable GPU offloading for the
 different systems NRIS users have access to. Both {ref}`saga` and {ref}`betzy`
 are Nvidia systems, while {ref}`lumi` is an AMD based system. For information
 about the specific accelerators, and their specific IDs often needed when
