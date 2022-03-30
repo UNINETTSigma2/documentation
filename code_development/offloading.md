@@ -2,7 +2,7 @@
 
 In high-performance computing offloading is the act of moving a computation
 kernel from the main processor to one or more accelerators. In many cases the
-<h1>the computational kernel does not need to be programmed</h1>
+**the computational kernel does not need to be programmed** but can be a
 standard `for` (or `do` in Fortran) loop.
 
 This document shows how to use the standard compilers available on {ref}`saga`
