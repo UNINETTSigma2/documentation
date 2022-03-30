@@ -14,9 +14,9 @@ offloading please {ref}`see our guides <dev-guides>`.
 
 Below we have listed the necessary flags to enable GPU offloading for the
 different systems NRIS users have access to. Both {ref}`saga` and {ref}`betzy`
-are Nvidia systems, while {ref}`lumi` is an AMD based system. For information
-about the specific accelerators, and their specific IDs often needed when
-compiling, consult the below tabs.
+are Nvidia systems, while {ref}`lumi` is an AMD based system.
+
+A brief description of their GPU-architectures is given in the tabs below.
 
 ````{tabs}
 ```{tab} Betzy
