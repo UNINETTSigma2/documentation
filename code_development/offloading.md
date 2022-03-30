@@ -9,8 +9,8 @@ This document shows how to use the standard compilers available on {ref}`saga`
 and {ref}`betzy` to offload computation to the attached GPUs. This document is
 not considered as a comprehensive for how to perform offloading, but rather as
 rather a compendium on the different compiler flags required to offload with
-different compilers. For guides on how to transition your code to become
-offload capable please {ref}`see our guides <dev-guides>`.
+different compilers. For guidance on different programming models for
+offloading please {ref}`see our guides <dev-guides>`.
 
 Below we have listed the necessary flags to enable GPU offloading for the
 different systems NRIS users have access to. Both {ref}`saga` and {ref}`betzy`
