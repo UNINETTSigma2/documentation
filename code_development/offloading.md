@@ -1,33 +1,35 @@
 # Offloading to GPUs
 
 In high-performance computing offloading is the act of moving a computation
-kernel from the main processor to one or more accelerators. In many cases the
-**the computational kernel does not need to be programmed** but can be a
-standard `for` (or `do` in Fortran) loop.
+from the main processor to one or more accelerators. In many cases **the
+computation does not need to be explicitly programmed** but can be a standard
+`for` (or `do` in Fortran) loop.
 
 This document shows how to use the standard compilers available on {ref}`saga`
 and {ref}`betzy` to offload computation to the attached GPUs. This document is
-not considered as a comprehensive for how to perform offloading, but rather as
-rather a compendium on the different compiler flags required to offload with
-different compilers. For guidance on different programming models for
-offloading please {ref}`see our guides <dev-guides>`.
+not considered a comprehensive guide for how to perform offloading, but rather
+as a compendium on the different compiler flags required with different
+compilers. For guidance on different programming models for offloading please
+{ref}`see our guides <dev-guides>`.
 
 Below we have listed the necessary flags to enable GPU offloading for the
 different systems NRIS users have access to. Both {ref}`saga` and {ref}`betzy`
 are Nvidia systems, while {ref}`lumi` is an AMD based system.
 
-A brief description of their GPU-architectures is given in the tabs below.
+A brief description of their GPU architectures is given in the tabs below.
 
 ````{tabs}
 ```{tab} Betzy
 
 Betzy has `Nvidia A100` accelerators which support CUDA version `8.0`. The
-identifier for the GPU is either `sm_80` or `cc80` depending on the compiler.
+generational identifier for the GPU is either `sm_80` or `cc80` depending on
+the compiler.
 ```
 ```{tab} Saga
 
 Saga has `Nvidia P100` accelerators which support CUDA version `6.0`. The
-identifier for the GPU is either `sm_60` or `cc60` depending on the compiler.
+generational identifier for the GPU is either `sm_60` or `cc60` depending on
+the compiler.
 ```
 ```{tab} LUMI-G
 
