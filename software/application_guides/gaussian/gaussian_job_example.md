@@ -120,11 +120,13 @@ CPU to GPU billing, which will depend on the system configuration, but at least 
 the current ratio of 6:1 on Saga it seems to pay off to use the GPU over the CPU
 version (queuing time not taken into account).
 
-If you find any issues with the GPU version of Gaussian, please contact us at [support@nris](mailto:support@nris.no).
+If you find any issues with the GPU version of Gaussian, please contact us at {ref}`our support line<support-line>`.
 
 ```{note}
 The timings in the table above represent a single use case, and the behavior might be
 very different in other situations. Please perform simple benchmarks to check that
-the program runs efficiently with your particular computational setup.
+the program runs efficiently with your particular computational setup. Also do not
+hesitate to contact us if you need guidance on GPU efficiency, see our extended
+{ref}`extended-support-gpu`.
 ```
 
