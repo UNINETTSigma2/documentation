@@ -9,8 +9,8 @@ Gaussian is a widely used and well known application. The current (pt. 2021)
 implementation is Gaussian 16. This version can utilise several cores
 using an OpenMP threading model and hence confined to a single machine using
 shared memory. **The Linda version is not covered on this page**. The local Linda installation
-contain some local adaptations, like wraper script etc not present in the
-threaded sharred memory version. **A tuning guide for the Linda versions is in preparation**.
+contain some local adaptations, like wrapper script etc not present in the
+threaded shared memory version. **A tuning guide for the Linda versions is in preparation**.
 
 This guide is dealing with the shared memory version running on single node.
 Gaussian is compiled using the PGI (now NVIDIA) compiler using OpenMP.
@@ -109,8 +109,8 @@ all the 2-electrons integrals fit in the memory.
 The problem is then to find how much memory is needed to fit the integrals in memory, the real gain
 in performance is when enough memory is allowed to keep the 2-electron integrals in core.
 This require a large amount of memory as seen from the figure above.
-Another possibility is to review the `SLURM` log (all SLURM log files emit memory statistice)
-and look for maximum resident memory at the end of the log file. When job is running it's possible
+Another possibility is to review the `SLURM` log (all SLURM log files emit memory statistics)
+and look for maximum resident memory at the end of the log file. When the job is running it's possible
 to log in to the node the job is running on and run tools like `top` or `htop` and look at
 memory usage for your application. See also our page on {ref}`choosing-memory-settings`.
 
