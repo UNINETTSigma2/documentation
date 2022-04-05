@@ -25,7 +25,7 @@ Here is a more detailed description of the different job types on Betzy:
     - maximum 512 nodes
 - __Maximum walltime__: 4 days
 - __Priority__: normal
-- __Available resources__: 1340 nodes with 128 CPU cores and 244 GiB RAM
+- __Available resources__: 1340 nodes, each with 128 CPU cores and 244 GiB RAM
 - __Parameter for sbatch/srun__:
     - None, _normal_ is the default
 - __Job Scripts__: {ref}`job_scripts_betzy_normal`
@@ -39,7 +39,7 @@ This is the default job type. In _normal_ jobs, the queue system hands out compl
 - __Job Limits__:
 - __Maximum walltime__: 7 days
 - __Priority__: Normal
-- __Available resources__: 4 nodes - each with 128 CPU cores, 494.5 GiB
+- __Available resources__: 4 nodes, each with 64 CPU cores, 494.5 GiB
   RAM and 4 x Nvidia A100 GPUs with 40 GiB RAM
 - __Parameter for sbatch/srun__:
     - `--partition=accel`
@@ -63,7 +63,7 @@ See the {ref}`accounting page<projects-accounting>` for more information.
     - maximum 4 running jobs per user
 - __Maximum walltime__: 1 day
 - __Priority__: normal
-- __Available resources__: 128 CPU cores and 1 TiB RAM over 6 nodes
+- __Available resources__: 6 nodes, each with 128 CPU cores and 1 TiB RAM
 - __Parameter for sbatch/srun__:
     - `--qos=preproc`
 - __Job Scripts__: {ref}`job_scripts_betzy_preproc`

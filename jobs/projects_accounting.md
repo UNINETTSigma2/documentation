@@ -104,6 +104,6 @@ clusters.
   GiB, so a job asking for all memory on the node would have a cost of
   128, the number of CPUs on the node.
 
-- The `accel` partition has a memory factor of 0.2588473 units per GiB, while
-  the GPU factor is 32 units per GPU. This means that when one reserves 1 GPU
-  on Betzy the billing is equivalent of reserving 32 CPU cores.
+- The `accel` partition has a memory factor of 0.1294237 units per GiB, while
+  the GPU factor is 16 units per GPU. This means that when one reserves 1 GPU
+  on Betzy the billing is equivalent to reserving 16 CPU cores.
