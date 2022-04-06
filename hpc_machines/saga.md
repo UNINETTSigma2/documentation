@@ -31,3 +31,19 @@ Saga is provided by Hewlett Packard Enterprise and has a computational capacity 
 | Total memory     |	97.5 TiB  |
 | Total NVMe+SSD local disc | 89 TiB + 60 TiB |
 | Total parallel filesystem capacity     |	1 PB  |
+
+
+### Mapping of processors to memory specifications:
+
+- 6126
+  - HPE 16GB (1 x 16GB) Dual Rank x8 DDR4-2666 CAS-19-19-19 Registered Smart Memory Kit
+  - Max number of memory channels: 6
+- 6130
+  - HPE 32GB (1 x 32GB) Dual Rank x4 DDR4-2666 CAS-19-19-19 Registered Smart Memory Kit
+  - Max number of memory channels: 6
+- 6138
+  - HPE 64GB (1 x 64GB) Quad Rank x4 DDR4-2666 CAS-19-19-19 Load Reduced Smart Memory Kit
+  - Max number of memory channels: 6
+- 6230R
+  - HPE 16GB (1 x 16GB) Dual Rank x8 DDR4-2933 CAS-21-21-21 Registered Smart Memory Kit
+  - Max number of memory channels: 6
