@@ -25,7 +25,7 @@ Saga is provided by Hewlett Packard Enterprise and has a computational capacity 
 | Number of Cores     |	16064  |
 | Number of nodes     |	364  |
 | Number of GPUs | 32 |
-| CPU type     |	Intel Xeon-Gold 6138 2.0 GHz / 6230R 2.1 GHz(normal)<br> Intel Xeon-Gold 6130 2.1 GHz (bigmem)<br> Intel Xeon-Gold 6126 2.6 GHz (accel)  |
+| CPU type     |	Intel Xeon-Gold 6138 2.0 GHz / 6230R 2.1 GHz (normal)<br> Intel Xeon-Gold 6130 2.1 GHz (bigmem)<br> Intel Xeon-Gold 6126 2.6 GHz (accel)  |
 | GPU type     |    NVIDIA P100, 16 GiB RAM (accel) |
 | Total max floating point performance, double     |	645 Teraflop/s (CPUs) + 150 Teraflop/s (GPUs) |
 | Total memory     |	97.5 TiB  |
@@ -36,14 +36,14 @@ Saga is provided by Hewlett Packard Enterprise and has a computational capacity 
 ### Mapping of processors to memory specifications:
 
 - 6126
-  - HPE 16GB (1 x 16GB) Dual Rank x8 DDR4-2666 CAS-19-19-19 Registered Smart Memory Kit
+  - HPE 16GB (12 x 16GB per node) Dual Rank x8 DDR4-2666 CAS-19-19-19 Registered Smart Memory Kit
   - Max number of memory channels: 6
 - 6130
-  - HPE 32GB (1 x 32GB) Dual Rank x4 DDR4-2666 CAS-19-19-19 Registered Smart Memory Kit
+  - HPE 32GB (48 x 32GB per node) Dual Rank x4 DDR4-2666 CAS-19-19-19 Registered Smart Memory Kit
   - Max number of memory channels: 6
 - 6138
-  - HPE 64GB (1 x 64GB) Quad Rank x4 DDR4-2666 CAS-19-19-19 Load Reduced Smart Memory Kit
+  - HPE 64GB (12 x 64GB per node) Quad Rank x4 DDR4-2666 CAS-19-19-19 Load Reduced Smart Memory Kit
   - Max number of memory channels: 6
 - 6230R
-  - HPE 16GB (1 x 16GB) Dual Rank x8 DDR4-2933 CAS-21-21-21 Registered Smart Memory Kit
+  - HPE 16GB (12 x 16GB per node) Dual Rank x8 DDR4-2933 CAS-21-21-21 Registered Smart Memory Kit
   - Max number of memory channels: 6
