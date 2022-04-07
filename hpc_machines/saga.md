@@ -25,7 +25,7 @@ Saga is provided by Hewlett Packard Enterprise and has a computational capacity 
 | Number of Cores     |	16064  |
 | Number of nodes     |	364  |
 | Number of GPUs | 32 |
-| CPU type     |	Intel Xeon-Gold 6138 2.0 GHz / 6230R 2.1 GHz(normal)<br> Intel Xeon-Gold 6130 2.1 GHz (bigmem)<br> Intel Xeon-Gold 6126 2.6 GHz (accel)  |
+| CPU type     |	Intel Xeon-Gold 6138 2.0 GHz / 6230R 2.1 GHz (normal)<br> Intel Xeon-Gold 6130 2.1 GHz (bigmem)<br> Intel Xeon-Gold 6126 2.6 GHz (accel)  |
 | GPU type     |    NVIDIA P100, 16 GiB RAM (accel) |
 | Total max floating point performance, double     |	645 Teraflop/s (CPUs) + 150 Teraflop/s (GPUs) |
 | Total memory     |	97.5 TiB  |
