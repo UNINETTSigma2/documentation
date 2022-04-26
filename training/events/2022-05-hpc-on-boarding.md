@@ -31,7 +31,7 @@ If you want to receive further information about training events, and other anno
 ## **Registration**
 
 The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT, NTNU & Sigma2. Registration closes on **25th April** for those attending LINUX course and HPC course. We need a bit time to ensure that everyone has an account on the HPC systems in case a participant does not already have one.
-**[You can register here](https://skjemaker.app.uib.no/view.php?id=12253729)**
+**Registration is closed**.
 
 ## Time, date (all times CEST)
 |   Date    |  Time   |  Topic	|
@@ -40,10 +40,36 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 | Wed 04.05    | 09:00 - 12:30 | HPC On-boarding day 1|
 | Thu 05.05    | 09:00 - 12:30 | HPC On-boarding day2 |
 
-```{note}
- A detailed schedule will be published here a week before the course
+## Schedule
+**Day0 - Linux on HPC context (optional 3rd May, Tuesday)**
 
-```
+-  Schedule to be updated 
+
+**Day1 - HPC On-boarding (4th May Wednesday)**
+
+- 09:00-09:10 - Welcome, Practical information &icebreaker question
+- 09:10-09:30 - [Why use a Cluster?](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html) 
+- 09:30-10:00 - [Working on a remote HPC system](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/12-cluster.html)
+- 10:00-10:10 - Break
+- 10:10-10:55 - [Scheduling jobs](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html) 
+- 10:55-11:05 - Break
+- 11:05-11:55 - [Scheduling jobs Excercises (Breakout Rooms)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html)
+- 11:55-12:05 - Break
+- 12:05-12:30 - Q&A & Discussion
+
+**Day2 - HPC On-boarding (5th May Thursday)**
+
+- 09:00-09:10 - Recap & ice breaker question
+- 09:10-09:55 - [Accessing Software (15min Excercises, Breakout Rooms)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html) 
+- 09:55-10:05 - Break
+- 10:05-10:50 - [Transferring files (1omin Excercises, Breakout Rooms)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html)
+- 10:50-11:00 - Break
+- 11:00-11:30 - Compute and storage quota 
+- 11:30-12:00 - How to ask for help 
+- 12:00-12:10 - Break
+- 12:10-12:30 - Q&A & Discussion
+
+
 ## Course material
 
 Course material will be mostly based on the [HPC-Intro](https://training.pages.sigma2.no/tutorials/hpc-intro/index.html) 
@@ -63,3 +89,26 @@ to use them. You need tools to login into a remote machine (e.g., ssh or PuTTY)
 and to transfer data to/from a remote machine (e.g., scp or WinSCP). If you
 need to install such tools, please see [prepare your machine
 section](https://wiki.uib.no/hpcdoc/index.php/HPC_and_NIRD_toolkit_course_fall_2020#Preparing_your_machine_for_the_course).
+
+## Instructors & Helpers
+
+- Sabry Razick
+- Radovan Bast
+- Jørn Dietze
+- Bjørn Lindi
+- Thomas Röblitz
+- Stig Rune Jensen
+- Dhanya Pushpadas
+
+## Expert helpers
+
+- Jørgen Nordmoen
+- Siri Kallhovd
+- Ole W. Saastad
+- Hicham Agueny
+- Marius Linge
+
+## Coordinator
+
+- Dhanya Pushpadas
+
