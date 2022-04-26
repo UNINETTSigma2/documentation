@@ -1,4 +1,3 @@
-(nird)=	
 
 # NIRD Migration User Support Guide    
 
