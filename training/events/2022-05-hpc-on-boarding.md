@@ -62,7 +62,7 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 - 09:00-09:10 - Recap & ice breaker question
 - 09:10-09:55 - [Accessing Software (15min Excercises, Breakout Rooms)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html) 
 - 09:55-10:05 - Break
-- 10:05-10:50 - [Transferring files (1omin Excercises, Breakout Rooms)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html)
+- 10:05-10:50 - [Transferring files (10min Excercises, Breakout Rooms)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html)
 - 10:50-11:00 - Break
 - 11:00-11:30 - Compute and storage quota 
 - 11:30-12:00 - How to ask for help 
@@ -105,7 +105,6 @@ section](https://wiki.uib.no/hpcdoc/index.php/HPC_and_NIRD_toolkit_course_fall_2
 - Jørgen Nordmoen
 - Siri Kallhovd
 - Ole W. Saastad
-- Hicham Agueny
 - Marius Linge
 
 ## Coordinator
