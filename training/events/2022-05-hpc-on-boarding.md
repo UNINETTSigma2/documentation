@@ -74,7 +74,7 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 - 09:55-10:05 - Break
 - 10:05-10:50 - [Transferring files (10min Excercises, Breakout Rooms)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html)
 - 10:50-11:00 - Break
-- 11:00-11:30 - Compute and storage quota 
+- 11:00-11:30 - [Compute and storage quota](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/compute-storage-quota.html)
 - 11:30-12:00 - [How to ask for help](https://bit.ly/help-with-supercomputers) 
 - 12:00-12:10 - Break
 - 12:10-12:30 - Q&A & Discussion
