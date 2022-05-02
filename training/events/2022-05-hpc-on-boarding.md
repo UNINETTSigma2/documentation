@@ -115,6 +115,7 @@ section](https://wiki.uib.no/hpcdoc/index.php/HPC_and_NIRD_toolkit_course_fall_2
 - Jørgen Nordmoen
 - Siri Kallhovd
 - Ole W. Saastad
+- Nikolay Aleksandrov Vazov
 - Marius Linge
 
 ## Coordinator
