@@ -44,16 +44,16 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 **Day0 - Linux on HPC context (optional 3rd May, Tuesday)**
 
 - 09:00-09:10 - Welcome, Practical information &icebreaker question
-- 09:10-09:40 - [The terminal and remote login](https://training.pages.sigma2.no/tutorials/unix-for-hpc/)
-- 09:40-09:55 - [Navigating on the cluster](https://training.pages.sigma2.no/tutorials/unix-for-hpc/)
+- 09:10-09:40 - [The terminal and remote login](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/intro.html)
+- 09:40-09:55 - [Navigating on the cluster](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html)
 - 09:55-10:05 - Break
-- 10:05-10:20 - [Navigating on the cluster (exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/)
-- 10:20-10:50 - [Finding things](https://training.pages.sigma2.no/tutorials/unix-for-hpc/)
+- 10:05-10:20 - [Navigating on the cluster (exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html#exercise)
+- 10:20-10:50 - [Finding things](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html)
 - 10:50-11:00 - Break
-- 11:00-11:30 - [Reading and writing files](https://training.pages.sigma2.no/tutorials/unix-for-hpc/)
-- 11:30-12:00 - [Composing commands with pipes](https://training.pages.sigma2.no/tutorials/unix-for-hpc/)
+- 11:00-11:30 - [Creating and modifying files](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/writing-files.html)
+- 11:30-12:00 - [Composing commands with pipes](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html)
 - 12:00-12:10 - Break
-- 12:10-12:30 - [Scripting](https://training.pages.sigma2.no/tutorials/unix-for-hpc/)
+- 12:10-12:30 - [Scripting](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html)
 
 **Day1 - HPC On-boarding (4th May Wednesday)**
 
