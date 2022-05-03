@@ -1,5 +1,10 @@
 (dev-guides)=
 # Guides
+- Calling GPU accelerated libraries
+    - [<span style="color:green">Beginner</span>]
+        {ref}`Calling cuBLAS from OpenACC<cublas_openacc>`
+    - [<span style="color:green">Beginner</span>]
+        {ref}`Calling cuBLAS from OpenMP<cublas_openmp>`
 (dev-guides-openacc)=
 - GPU programming with OpenACC:
     - [<span style="color:green">Beginner</span>]
