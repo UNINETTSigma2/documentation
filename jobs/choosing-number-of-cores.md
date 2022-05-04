@@ -32,14 +32,6 @@ resource demands, then the calibration will probably be meaningful for all of
 them.
 
 
-## Using the Slurm browser
-
-This approach only works for a currently running job.
-
-(The Slurm browser currently does not work. We will document this once the tool
-is reactivated.)
-
-
 ## Using Arm Performance Reports
 
 (This currently does not work because of network routing issues.  We are
