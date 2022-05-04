@@ -61,7 +61,7 @@ What is the most important thing for you to get clarified about the UNIX shell (
 1. What is the best FTP client for mac, and do we need this when we work on saga? 
     - We will go through all the necessary tools that you will need for working on Saga 
 
-2.  I am currently taking the HPC onboarding course, I applied for my HPC account yesterday, I haven't recieved my account information yet, am I able to log in to the HPC cluster?
+2.  I am currently taking the HPC onboarding course, I applied for my HPC account yesterday, I haven't received my account information yet, am I able to log in to the HPC cluster?
     - Try `ssh saga.sigma2.no` and use your current credentials. If you manage to log in, then it is ok.  Did you apply for SAGA cluster?
         - yes I applied for SAGA, I did not have a chance to set a password yet
     - Then you can simply try to follow the course on your local terminal. We'll try to fix this for you tomorrow.
@@ -138,7 +138,7 @@ What is the most important thing for you to get clarified about the UNIX shell (
 	File name.
 	```
 
-12. How do I exit the VI command...I am now reading poem...but dont know how to get out
+12. How do I exit the VI command...I am now reading poem...but don't know how to get out
     - ESC then `:wq`
         - Could also just do `:q!` if you don't care about saving the current file 
     - This will write the buffer and quit.
@@ -156,7 +156,7 @@ What is the most important thing for you to get clarified about the UNIX shell (
 14. does tab-complete only work for subfolders?
     - it works for commands in the PATH to binaries and many other things (e.g. try to type `py`+ Tab),it completes the subcommands too 
 
-15. where does autocmplete look for info to what to compete from-these are file names I never wrote so who knows what it can come up with!
+15. where does autocomplete look for info to what to compete from-these are file names I never wrote so who knows what it can come up with!
     - Hitting `<TAB>` is always an option.
     - It is a cascade: right after the prompt, it looks in the list of executable files (see quest. 14 above), then it guesses the next info with regard to the already typed command, e.g. if you type `cat` (display a file), the tab after `cat` will show you the available files in the directory you are in.
 
@@ -209,7 +209,7 @@ What is the most important thing for you to get clarified about the UNIX shell (
 grep: .: Is a directory (this is what I got - running this?)`
         - Sorry, add `-R` as shown 
 
-21. I think I copied the wget part-run on saga to dowload the instruction files as instructed but my computer returns "command not found"
+21. I think I copied the wget part-run on saga to download the instruction files as instructed but my computer returns "command not found"
     - and you ran the command(s) on saga?
     - where are you standing when executing the command? (what is the output of `pwd`?) my home dir, I used cd .. to get back from the poem part
     - try these commands in this order:
