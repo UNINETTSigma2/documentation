@@ -3,10 +3,13 @@ orphan: true
 ---
 
 (training-2022-spring-notes-day0)=
-# HPC On-boarding May 2022 Q&A
-## Day 0 (3rd of May)
+# Questions and answers from HPC On-boarding May 2022, Day 0 (May 3)
 
-### Icebreaker question
+```{contents} Table of Contents
+```
+
+
+## Icebreaker question
 
 What is the most important thing for you to get clarified about the UNIX shell (terminal) today?
 
@@ -24,8 +27,8 @@ What is the most important thing for you to get clarified about the UNIX shell (
 - How to run programs in 'background', meaning being able to work on other stuff while programs are running in background. 
 - I use ubuntu for windows. How do I navigate to files saved from this terminal from the windows file explorer?
 
-### Intro to command line
 
+## Intro to command line
 
 - What are the methods that you know and use to interact with the computer and open a file?
   - double clicking icons
@@ -35,6 +38,7 @@ What is the most important thing for you to get clarified about the UNIX shell (
   - Via terminal command line
   - Microphone and assistant
   - Punch cards
+
 
 ### Are you able to open a terminal on your computer?
 
@@ -49,6 +53,7 @@ What is the most important thing for you to get clarified about the UNIX shell (
     - Should be okay
 - On windows ssh on CMD did not work, but using putty.exe works.
 
+
 ### SSH is available on my computer
 
 - yes: oooooooooooo
@@ -56,7 +61,8 @@ What is the most important thing for you to get clarified about the UNIX shell (
 - If you have a problem, please describe the error here:
     - ...
 
-### Questions and answers
+
+## Questions and answers
 
 1. What is the best FTP client for mac, and do we need this when we work on saga? 
     - We will go through all the necessary tools that you will need for working on Saga 
@@ -183,12 +189,6 @@ What is the most important thing for you to get clarified about the UNIX shell (
     - you can give `find` a "depth" on how far down it should go (check `man find` and search there for "depth"; you can search in man pages by typing "/" followed by what you search for)
         - Thank you very much, this was helpful
 
-### Did you manage to login to SAGA (or any one of the clusters)
-
-- yes: o
-- no: 
-- If no what is the issue
-    - (reason here)
 
 ### How is the speed so far?
 
@@ -196,10 +196,11 @@ What is the most important thing for you to get clarified about the UNIX shell (
 
 - too slow: ooo
 - too fast: oo
-- just right:oooo
-- too confusing:o
+- just right: oooo
+- too confusing: o
 
-### Finding things
+
+## Finding things
 
 [Teaching material](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html)
 
@@ -233,7 +234,8 @@ grep: .: Is a directory (this is what I got - running this?)`
     - Often you need quotes when there are spaces. Example: `grep "text with spaces" somefile`
     - Wildcards are expanded by the shell, try `echo "*"` and `echo *`
 
-### Creating/modifying files
+
+## Creating/modifying files
 
 [Teahing material](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/writing-files.html)
 
@@ -280,7 +282,8 @@ grep: .: Is a directory (this is what I got - running this?)`
 30. 15 years of UNIX experience, but I have never used `cat` with its "intended" purpose, for concatenating files :) Never too old to learn new tricks from an intro course
     - cool! I also learned new things. It's great to watch somebody else type because only then I discover new ways which I never tried.
 
-### Composing commands with pipes
+
+## Composing commands with pipes
 
 [Teaching material](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html)
 
@@ -300,10 +303,11 @@ grep: .: Is a directory (this is what I got - running this?)`
                - they look like italics confusingly but on the rendered page they are vertical lines
 
 35. For clarity perhaps better to not use italics on the pipe character-just a note (ok thanks my inexperience ;)
-    - If you look on the rendered page it is not actually italized, that is simply HackMD trying to intelligently show that the pipe is within the `
+    - If you look on the rendered page it is not actually italized, that is simply HackMD trying to intelligently show that the pipe is within the backticks
     - it confused me too so thanks for double checking and asking
 
-### Scripting
+
+## Scripting
 
 [Teaching material](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html)
 
@@ -329,7 +333,7 @@ Exercise:
     - CPUs contain typically several cores.
 
 
-### Feedback for the day
+## Feedback for the day
 
 One thing you really liked: 
 
