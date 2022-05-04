@@ -166,7 +166,7 @@ Question to participants, how is the speed so far?
     ```
 
 16. What happens if you give to litle time?
-    - the job will be stopped by the scheduler and you will find an error message that it timed out. if you have a long running job that risks to time out, you can also contact support and ask us to extend the time. this is OK if this was an "accident" and you risk losing days of compute time. but extending jobs should not be a regular thing since it makes it harder for the scheduler to schedule (restaurant analogy: somebody reserverd a table until 9 pm but stays 2 hours longer)
+    - the job will be stopped by the scheduler and you will find an error message that it timed out. if you have a long running job that risks to time out, you can also contact support and ask us to extend the time. this is OK if this was an "accident" and you risk losing days of compute time. but extending jobs should not be a regular thing since it makes it harder for the scheduler to schedule (restaurant analogy: somebody reserved a table until 9 pm but stays 2 hours longer)
     - please don't count on extensions. They are resevered for special circumstances. If your job needs longer than allowed on the partition you are using, we can help you to improve your workflow by parallization or checkpointing.
 
 17. Can we have empty lines between the `#SBATCH` commands?
@@ -309,7 +309,7 @@ hostname
     - Ask for too much time in the start, maybe even maximum wall time allowed, e.g. 7 days. It will queue a bit longer but that's okay if you then know better what to ask for the next time
     - Always ask for a bit more time that you expect the job to run. So 8h or even 12h if you assume 6h. Once you are confident you acn go down a bit.
 
-38. looking forward to hear more about how to run a program such as R or python, and particularly, how to execute scripts in it. Where do we find how we shoudl actually use the HPC for the typical kind of jobs? I am not used to starting jobs on my own computer from the command line-so open a program, tell the program what to do, etc. I suppose this is a required skill for working with the cluster.
+38. looking forward to hear more about how to run a program such as R or python, and particularly, how to execute scripts in it. Where do we find how we should actually use the HPC for the typical kind of jobs? I am not used to starting jobs on my own computer from the command line-so open a program, tell the program what to do, etc. I suppose this is a required skill for working with the cluster.
     - This topic is outside the scope of this course. Running R or python scripts on HPC is not much different from running them on your local machine, unless you have some special parallelization code
     - For the second part of your question : you shall refer to R or python documentation, both of them are made to be used from a command line, then these
     -  command-line commands can be executed on the cluster, just as we did this today.
