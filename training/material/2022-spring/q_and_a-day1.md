@@ -2,342 +2,346 @@
 orphan: true
 ---
 
-(training-2022-spring-notes-day0)=
-# HPC On-boarding May 2022 Q&A
-## Day 0 (3rd of May)
+(training-2022-spring-notes-day1)=
+# Questions and answers from HPC On-boarding May 2022, Day 1 (May 4)
 
-### Icebreaker question
-
-What is the most important thing for you to get clarified about the UNIX shell (terminal) today?
-
-- (Add answers below with a leading `-`)
-- ?
-- Possibilities to add scripts from git?
-- How to find programs/scripts (module avail?)
-- how to log in to the server :)
-- how to track which processes are running and how to start/end processes gracefully
-- Using clusters via terminal and being a fast user of Linux
-- how SAGA works and where to find things
-- logging and running codes on sigma2 resources
-- running bioinformatics on saga
-- How to log in specific login node or switch to another login node?
-- How to run programs in 'background', meaning being able to work on other stuff while programs are running in background. 
-- I use ubuntu for windows. How do I navigate to files saved from this terminal from the windows file explorer?
-
-### Intro to command line
+```{contents} Table of Contents
+```
 
 
-- What are the methods that you know and use to interact with the computer and open a file?
-  - double clicking icons
-  - ...
-  - ...
-  - Graphical file/folder navigator
-  - Via terminal command line
-  - Microphone and assistant
-  - Punch cards
+## Icebreaker question
 
-### Are you able to open a terminal on your computer?
-
-(vote by adding an "o" at end of each line)
-
-- "I found my terminal" : ooooo ooooooooooooo
-- "I did not find my terminal": 
-- Yes windows command prompt o
-- Not looking for it, only want to watch the course:
-- Search Git Bash and you get one
-- Is the use of Mobaxterm okay as an terminal?
-    - Should be okay
-- On windows ssh on CMD did not work, but using putty.exe works.
-
-### SSH is available on my computer
-
-- yes: oooooooooooo
-- no: o
-- If you have a problem, please describe the error here:
-    - ...
-
-### Questions and answers
-
-1. What is the best FTP client for mac, and do we need this when we work on saga? 
-    - We will go through all the necessary tools that you will need for working on Saga 
-
-2.  I am currently taking the HPC onboarding course, I applied for my HPC account yesterday, I haven't received my account information yet, am I able to log in to the HPC cluster?
-    - Try `ssh saga.sigma2.no` and use your current credentials. If you manage to log in, then it is ok.  Did you apply for SAGA cluster?
-        - yes I applied for SAGA, I did not have a chance to set a password yet
-    - Then you can simply try to follow the course on your local terminal. We'll try to fix this for you tomorrow.
-        - Should I email someone with my username?
-    - Let me check
-        - Thank you
-    - It is been taken care of now
-
-3. I get permission denied..?
-    - Which command returned this error?
-        - Permission denied, please try again. [is the command returned]
-    - Could you paste the command you ran in your terminal which returned the above error?
-    - I MADE IT!!! forgot to add my username first :)
-        - Good to hear!
-
-4. I use ubuntu for windows. How do I navigate to files saved from this terminal from the windows file explorer?
-    - I don't use WSL, but I found [this article](https://www.howtogeek.com/426749/how-to-access-your-linux-wsl-files-in-windows-10/) which I hope can help
-
-4. I cannot find my username in the email I got from sigma that my account is created
-    - This is the username you used when making the application
-        - I found it :)
-    - Good !!
-
-5. After login via SSH the command line sometimes freezes what justifies that?
-    - This is most likely caused by your internet connection. SSH is dependent on a constant connection which sometimes might lead to these freezes. One alternative to SSH is to use [`mosh`](https://mosh.org/)
-
-6. How do we reset password to saga in terminal
-    - [Try this page rather](https://www.metacenter.no/user/reset/)
-    - [Guide also here](https://www.sigma2.no/how-reset-passwords)
-
-7. checking edit mode on question form-ok got it
-
-9. I am getting access denied using putty
-    - We can fix this in the break, before this, ensure that you use the correct username that you got when applying for access
-        - works now
-
-8. need to find the commands on the page
-    - You can find the current page that we are presenting above the questions
-
-10. After the wget command I get the following output: 
-`The command "wget" is either misspelled or could not be found.`
-    - Did you do this on Saga or on your local machine?
-        - You´re right sorry, I was not logged in now:) Thanks!
-        - Happy to help!
-
-9. I need to find the page where you are to copy-I tried this yesterday and it failed? I got it now-it is going a bit fast to try and follow both the terminal, zoom presentation and the course pages
-    - Do you mean the target page or the source page?
-    - You can always find the current course page right above the questions and answers on this hackmd 
-    - https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html
-
-10. How can I copy paste commands from windows to the terminal? It does not work for me with Ctr+shift+C or Ctr+shift+V neither without shift
-    - CTRL+c and CTRL+V
-    - Try the mouse, if you have one, right click + copy + paste
-    - right click with your mouse :)
-        - With the mouse works great, thanks!
-            - Good to hear!
-    
-11. can you explain what the list command actually lists? I understand but it is organized in a weird way- can you point where the fields are, file name, size etc-looks a bit confusing if you are not used to this-ok thanks:)
-    - The `ls` command lists the content in the current folder, in other words it shows what your terminal can "see" in the current place
-    - Could you specify what you mean with `fields`?
-    - We will go into detail later today
-    - "Shortly" it is this - per column: (but these notions will be explained later, I guess)
-
-	```
-	When the long listing format is used, you can see the following file information:
-
-	The file type.
-	The file permissions.
-	Number of hard links to the file.
-	File owner.
-	File group.
-	File size.
-	Date and Time.
-	File name.
-	```
-
-12. How do I exit the VI command...I am now reading poem...but don't know how to get out
-    - ESC then `:wq`
-        - Could also just do `:q!` if you don't care about saving the current file 
-    - This will write the buffer and quit.
-    - May I suggest using the far better option emacs ?
-      - all editors are equally good but a matter of personal preference
-    - if you are new to terminal editors, we recommend to use `nano` and we will show this one later as this one is the easiest to get started with 
-
-13. please explain what is a terminal editor if it is different from the terminal itself? 
-    - It's a text based editor, it's written for a 80x24 text terminal. Today terminal windows can have any size, but still character based. 
-    - An editor is used for changing/editing text files
-        - Ok so you use it "off line" like a word pad, then paste it into the terminal, right?
-            - You run it on the remote machine directly, no cut/paste.
-            - There are multiple ways to work with remote machines, one way is to write on your local machine and then copy to the remote machine, but one could also use the terminal editor to directly do all the work on the remote machine
-
-14. does tab-complete only work for subfolders?
-    - it works for commands in the PATH to binaries and many other things (e.g. try to type `py`+ Tab),it completes the subcommands too 
-
-15. where does autocomplete look for info to what to compete from-these are file names I never wrote so who knows what it can come up with!
-    - Hitting `<TAB>` is always an option.
-    - It is a cascade: right after the prompt, it looks in the list of executable files (see quest. 14 above), then it guesses the next info with regard to the already typed command, e.g. if you type `cat` (display a file), the tab after `cat` will show you the available files in the directory you are in.
-
-16. Why would you use `ls -l` it is so much easier to just do `ls`?
-    - Using `-l` gives you a very nice list if the folder contains many files
-    - It also give you additional information that is not shown without `-l`
-
-17. What does exactly `cp poem1.txt poem2.txt` does? Copy the files where?
-    - Next to each other in the same directory
-        - You mean like merge in the same file or located next to each other
-            - The latter : two copies of the same file but under two different names
-                - Ah perfect! This makes sense, thank you
-                    - Yes, you could very well do `cp poem1.txt novel1.txt` - still the same content
-
-18. What is the difference between `more` and `less`?
-    - They are more or less equal :)
-    - `more` was first and is used for scrolling through a file, jumping forward through it
-    - `less` was developed later, with support for scrolling back, and got the name as a joke (less is more).
-    - I usually just always use `less`
-        - `less` is usually what you want since it can scroll
-
-19. How do you find files in the whole computer? And to tell that does not look into subdirectories?
-    - first question: if I want to search entire file system (don't try this on saga as you will get errors due to permissions since you cannot search through other people's directories and also it might take forever): `find /`
-    - you can give `find` a "depth" on how far down it should go (check `man find` and search there for "depth"; you can search in man pages by typing "/" followed by what you search for)
-        - Thank you very much, this was helpful
-
-### Did you manage to login to SAGA (or any one of the clusters)
-
-- yes: o
-- no: 
-- If no what is the issue
-    - (reason here)
-
-### How is the speed so far?
-
-(vote by adding an "o")
-
-- too slow: ooo
-- too fast: oo
-- just right:oooo
-- too confusing:o
-
-### Finding things
-
-[Teaching material](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html)
-
-20. I used grep command - but cannot exit
-    - Your command will be `grep -R "computation failed" .` Dot at the end!!
-    - `[st12156@login-3.SAGA ~/exercise-moving-around/results]$ grep -R "computation failed" .
-grep: .: Is a directory (this is what I got - running this?)`
-        - Sorry, add `-R` as shown 
-
-21. I think I copied the wget part-run on saga to download the instruction files as instructed but my computer returns "command not found"
-    - and you ran the command(s) on saga?
-    - where are you standing when executing the command? (what is the output of `pwd`?) my home dir, I used cd .. to get back from the poem part
-    - try these commands in this order:
-      - `hostname`
-      - `cd`
-      - `wget https://gitlab.sigma2.no/training/tutorials/unix-for-hpc/-/raw/master/content/downloads/finding.tar.gz`
-      - `tar xzvf finding.tar.gz`
-    - does it still fail? `wget` should be available on saga
-    - the output of `wget --version` is also command not found?
-    - one more hint! Make sure you don't have other characters before `wget`
-       - we unfortunately never explained that the "$" is not part of the command but means "prompt" = ready for new command
-       - it works now, I got that with $. problem with copy paste is that the enter strokes also seem to get copied if you do the whole thing at once, so it executes at once. thanks for the help
-          - excellent. sorry for the troubles. we should make it so that copy paste does not copy the "$"
-
-22. not sure i understand why this "udon" pops up? ok cool!
-    - this was the line right after the grepped line. with `-C 1` we got some "context" around the searched lines and `grep` printed the line before and the line after the found lines.
-
-23. What is the role of quotations in '*.jpg' or can we skip it?
-    - I think in this case they need to be there to delimit how far the argument goes.
-    - In some commands you don't need them. Example: `ls -l *.jpg`
-    - Often you need quotes when there are spaces. Example: `grep "text with spaces" somefile`
-    - Wildcards are expanded by the shell, try `echo "*"` and `echo *`
-
-### Creating/modifying files
-
-[Teahing material](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/writing-files.html)
-
-24. which terminal are you using, because you could open another teminal in the next tab?
-    - It is the default terminal on ubuntu which allows to open several tabs
-
-25. Can you suggest one for windows? I am using WSL, Vs code , but cant open two tabs together
-    - Look here : https://askubuntu.com/questions/1074283/multiple-terminal-windows-in-windows-ubuntu
-        - Shift-click means to hold the Shift key while clicking on the Ubuntu icon.
-
-26. I am a bit confused-is this nano version a program or a file? we opened it by opening as a file?
-       - It is a program, like Word, for example. You start it by typing its name in the terminal. If the name is followed by a file name, this file will be opened in the editor called nano.
-       - A program is also a file, it's a binary file that the system can execute. 
+- Have you experienced any computational analysis/tasks that was too big or too long for laptop or the desktop?
+    - During a bioinformatics anaysis analysing a single files took 1 hour on office desktop. I need to anaysis 450 of those.
+    - Yes, for one project I had to process very many short independent jobs and I had only 3 days to do that and laptop/time wasn't enough to do them one after the other.
+    - Analyzing 2-photon microscope video recordings that are typically 200gb in length.
+    - I also had a bioinformatics problem with too many optimization runs to do it locally on my laptop
+    - With atmospheric simulations it is too big for a laptop sometimes.
+    - Analyzing metagenomic data and need HPC for these analyses
+    - yes, used a GPU
+    - Yes, running climate models
+    - Yes, transcriptome mapping of RNAseq data
+    - Yes with earth system model simulations and data analysis
 
 
-28. so "learn-nano" is a file created in nano? 
-    - Exactly!  In Unix files may or may not have extensions (e.g. `.doc`. or similar). This is why the files may simply bear their names without any extensions. If you prefer, you may give them extensions to improve readability when dispalying directory contents.
-    - Ok-where is Nano running, did we download it somewhere along the way or is it simply already there on saga?
-        - Yes, `nano` is already installed on Saga (and all the other clusters that NRIS support)
-        - Unix (Linux) distributions always contain a number of text editors which get installed by default when the Operating System itself is installed
-    - Ok great-see also my question 13, I tended to regard the terminal window already as a text editor in its own right-is that wrong? After all, it translate text into instructions-ok thanks for the explanation :)
-        - The terminal is the place where you communicate with the computer, as a dialogue board. You type smth and then "Enter" it and wait for the machine to respond. It works in a dialogue regime. The editor is a text editor, kind of static, meant to create files, which might be programs, text files etc.
+## Why use a cluster?
 
-29. I tried emacs and I cant now get out of it...??
-    - Control X Control C
-    - doesnt work :(
-    - Try Control Z
-    - doesnt work
-    - Try control G a couple of times, then Control X control C
-    - I hate emacs!!
-    - It's a huge program that can do a lot of things, it can be intimmidating the first time.
-    - Still not out of this editor
-    - Can you type anything there ?
-    - yes I can type control G and then it comes up "quit" - but then when i press enter - northing happens
-    - This is right, C-G is a quit command stopping any ongoing things, then C-X C-C coule work.
-    - when I couple C-G with any of the following - nothing happens
-    - Then try Control-X and Control C
-    - I figured it our it was C-G and then C-Z
-    - Control Z suspend emacs, it's still running. You can start it up again with `fg` or kill it with `kill %1`
-    - Super - thank you!
-    - Open emacs again and try ESCAPE M and then type hanoi for some fun.
-    - Substitute hanoi with doctor for a session with psychotherapist inside emacs.
+[Teaching material](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html)
 
-30. 15 years of UNIX experience, but I have never used `cat` with its "intended" purpose, for concatenating files :) Never too old to learn new tricks from an intro course
-    - cool! I also learned new things. It's great to watch somebody else type because only then I discover new ways which I never tried.
+1. Now I'm confused -- Cloud vs HPC/cluster discussion -- no need to interrupt
+    - Could you specify and we can optionally interrupt the presenters (or answer here)
+    - Which specific part of the "HPC vs Cloud" discussion would you like us to clarify
+    - Azure offers HPC instances with InfiniBand
+        - [This system is actually the 10th fastest in the world!](https://top500.org/system/180024/)
+    - My five cents to the issue: Imagine Cloud as a virtual shop for computers. You order 1,2 or N machines there. You receive credentials to log in and you can use them at your own discretion. They may live in different geographical locations. These machines are not connected with a high-speed connection between each other and you can not send jobs to all of them simultaneously UNLESS you specify that these machines shall be configured as an HPC-cluster and are connected between each other with a high-speed connection (e.g. Infiniband). The latter configuration increases the Cloud price solution as the machines will have to be located in a similar geographical location. In the case of Cloud you pay a) for upload and download (e.g. per MB) from/to Cloud machines and b) for the time the jobs are running (e.g. per CPU/hr). In case of an HPC cluster (e.g. SAGA), you _always_ get access to the same amount of machines which are interconnected with a high-speed connection. It is up to you how many of them you request for your calculations.
 
-### Composing commands with pipes
 
-[Teaching material](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html)
+## Working on a remote HPC system
 
-32. the dash in the file name is simply to avoid a space, right? Thanks I am hapy to not use spaces :)
-    - Yes. We can include space in names on the terminal, but it is a bit cumbersome (`touch file\ with\ space.txt` will create a file `file with space.txt`) and easy to make mistakes (`touch file with space.txt` will create three files `file`, `with` and `space.txt`)
-    - Underscore, dash and dot are commonly used to avoid space.
-        - but I guess dot is dangerous as it also separates extension in other applications
-        - The shell does not care much about the dot, it mostly used for us humans. Executables are often postfixed with .x , but a.out is in most cases an executable. To check the type of file try `file  /bin/ls` .
+[Teaching material](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/12-cluster.html)
 
-33. `find ..` takes find this up one level?
+(add an "o" at the end of the line)
+
+- I was able to login to the cluster: oooooooooooooo
+- I was not able to log in:
+- I did not try, only watching:
+
+2. Will we have to select a partition avail (normal, bigmem,..) when running a job?
+    - You normally don't need to specify, because you will get partition `normal` by default, however, if you have specific needs (e.g. a lot of memory `bigmem` or GPUs `accel`) then you will need to specify (note also that these can incur additional costs)
+        - Great all clear now, thank you!
+
+3. What should/can I do on a login node and what should/can I do on a compute node?
+    - you shall put your job scripts to the login node and start them from there
+    - you shall try not to run any jobs which are longer than 20-30 min on a login node
+    - you may want to compile something on a login node provided this does not take more than 20-30 mins
+    - compute nodes shall execute the jobs launched by the job scripts, it is quite unprobable that you have to log into the compute nodes
+    - compute nodes are used for debugging, as long as important parts of the logs of the jobs land into compute nodes' scheduler logs
+
+4. Is "head node" the same thing as login node?
+    - Yes, we try to use the same terminology everywhere, but sometimes outside words sneak in
+
+5. Is it recommended to use htop to see the availability of nodes in saga?
+    - `htop` will only work on the local machine where you run it, so it will only show you the load on the login node in most cases
+    - One needs to use tools such as `sinfo` to see the status of the whole cluster, this is a bit more advanced and I don't think we will cover that in this course
+        - You can read more about [`sinfo` here](https://slurm.schedmd.com/sinfo.html)
+            - Great, now I know what to use :)
+
+
+## Scheduling jobs
+
+- [Teaching material](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html)
+
+(add an "o" at the end of the line)
+Question to participants, how is the speed so far?
+- too slow:
+- too fast:
+- just right: oooooooo
+- too confusing:
+
+- [Core counts on NRIS clusters](https://documentation.sigma2.no/hpc_machines/hardware_overview.html)
+
+6. Are we sent to free nodes automatically when submitting jobs?
+    - Yes! The queue system will only give you free resources, on Saga you will be the only person that has access to the given CPU cores, but other people might be using the rest of the CPU cores if you don't ask for all the cores. For Betzy you will only got free nodes
+
+7. When is a node marked as allocated? Can you elaborate on that?
+    - Before a job starts, it gets allocated a node (or number of nodes). This means that your job will run on these pasrticular compute nodes. You can check which exact nodes are being used for your job by a special command which will be given later, I suppose.
+    - What is the difference between a node being busy and node being allocated? Are they the same?
+       - a bit of a detour answer: ideally, nodes are busy all the time and almost never idle and as soon as one job finishes, another queuing job should start immediately. However, it is a bit more difficult because it is more likely that always only few "restaurant seats" become available but never large parts of the restaurant at the same time. So if the scheduler is too simple, then jobs that require many cores at the same time, would never start and always queue. Therefore, there are different queues and different priorities and sometimes the scheduler will have to reserve a node/processor waiting for a larger job. If I understood correctly. I am also not 100% sure about the technical distinction.
+       - a node is actually allocated to a job before the job starts and is technically _not busy_ with this job at this moment, but, as said, it is most probably busy with other jobs already running there
+           - Thanks!
+
+8. Can I have a separate terminal window open that is not on Saga?
+    - you can use the `terminal` in windows again and another terminal will open in your local machine
+    - each new terminal will start a new session on your local computer
+
+9. the "#" usually indicates that the line is not actually executed, how is this different for this shebang?
+    - correct. you can put comments starting with "#" and they get ignored
+    - however there are exceptions:
+      - the so-called "shebang", `#!/bin/bash` is actually read and understood if it is on the first line
+         - Is that because of the "!", or is there another reason why this is accepted?
+           - yes, it tells the shell which interpreter to use to read and interpret the script/program that follows. anything following "#!" is an interpreter. The interpreter does not have to be Bash, it can for instance be Python or R or Perl or some other language.
+      - `#SBATCH` commands that we will learn about to ask the scheduler for resources are read and understood by the scheduler but this is not a Unix feature but a Slurm feature
+
+10. how do we kill a running script on saga?
+    - `scancel JOB_ID`
+    - is it a Slurm job script or a Bash shell script?
+    - its the script that sabry made (I did it also)- which is now running?
+       - the one that was started like this: `./example-job.sh`?
+         - yes
+           - and it never finished/returned and is hanging?
+           - this is the message from terminal: "This script is running on login-3.saga.sigma2.no" is it still running? its not really doing anything
+              - when it printed this, it finished. because this is the only thing we asked the script to do: to print that line and tell us on which `hostname` it was. So all is fine. It is not running anymore. You can check all your currently running processes with command `ps`.
+
+11. I am getting the following `warning` message, when I type `projects`
+
+    ```
+    perl: warning: Setting locale failed.
+    perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+    perl: warning: Falling back to the standard local      ("C").
+    ```
+    - Should I change some settings?
+        - Yes (I guess you are using a Mac -> Yes): put this into your file (in your home directory of your mac) `.bashrc`and run `source .bashrc`
+    ```
+    export LC_ALL=en_US.utf8
+    export LANGUAGE=en_US
+    export LC_CTYPE="UTF-8"
+    export LANG="en.US.utf8"
+    ```
+
+    - works great!
+    - Nice to hear!!
+
+12. the obvious question is: how do I know how much memory and time I will need? 1 min and 1 Gb seems a bit much for this also
+    - very good and important question. just a sec ... looking for good links in our documentation but in short: this needs to be calibrated for each job class/type. ask for not too much but a bit more than you think (20% more?)
+    - how to calibrate memory: https://documentation.sigma2.no/jobs/choosing-memory-settings.html
+    - how to calibrate number of cores (we did not discuss this part yet): https://documentation.sigma2.no/jobs/choosing-number-of-cores.html
+    -
+    - how to calibrate time: run one example job and check how long it took before starting dozens similar jobs.
+    - start with a small example and grow the job/ system size/ problem size and with this you will get a better feeling for how long the real/big job will take
+
+13. where do I find my account number?
+    - The command `projects` will list all projects (accounts) you are associated with
+    - The command `cost` will also display how many cpu-hours you have available in the different projects
+
+
+14. How do I know the time and memory my job will take?
+    - hard to predict and needs some calibration. see also question 12. in short: run one example job and check how long it took before starting dozens similar jobs. if it timed out, ask for more. takes some calibrating. also grow the calculation from small to realistic so that it will be easier for you to predict. I often start with asking for 1 h and then go from there. For the first ever job it is also fine to ask for more. But if you ask for excessively more, say 5 days, then you may queue way too long. So it's better to start small/short and add rather than too much and remove.
+
+15. Is there a maximum time limit?
+    - Yes, it is different for each partition type. You shall refer to the SAGA/Betzy/FRAM documentation.
+    - https://documentation.sigma2.no/getting_help/faq.html?highlight=walltime#jobs-submission-and-queue-system
+    - The command `sinfo` that we already saw also gives some info on this. On the "normal" compute nodes on Saga the limit is 7 days (format `DAYS-HR:MIN:SEC`):
+    ```
+    PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
+    normal*      up 7-00:00:00      1  inval c10-33
+    normal*      up 7-00:00:00      1  down* c5-52
+    normal*      up 7-00:00:00      3  drain c1-10,c3-22,c5-39
+    normal*      up 7-00:00:00      5   resv c2-[5,9,27],c3-19,c5-45
+    ...
+    ```
+
+16. What happens if you give to litle time?
+    - the job will be stopped by the scheduler and you will find an error message that it timed out. if you have a long running job that risks to time out, you can also contact support and ask us to extend the time. this is OK if this was an "accident" and you risk losing days of compute time. but extending jobs should not be a regular thing since it makes it harder for the scheduler to schedule (restaurant analogy: somebody reserved a table until 9 pm but stays 2 hours longer)
+    - please don't count on extensions. They are resevered for special circumstances. If your job needs longer than allowed on the partition you are using, we can help you to improve your workflow by parallization or checkpointing.
+
+17. Can we have empty lines between the `#SBATCH` commands?
     - Yes
+    - But all the `#SBATCH` commands need to be put in the beginning of the script, before any actual job commands
 
-34. What is gs in xar gs wc -l?
-    - the string is `xargs`, no spaces in it
-        - Ah okay, got it! thanks
-            - Also don't forget the pipe `|`, so `| xargs COMMAND`
-               - they look like italics confusingly but on the rendered page they are vertical lines
+18. how can i ask for 0,5 gb mem: comma or dot? rediculously small but just to know what the decimal character is?
+    - Type `--mem=500MB`
+         - yes that is a solution-is there never a situation where you want to  write a number with decimals?
+         - Decimals are not allowed as a value to `--mem`
 
-35. For clarity perhaps better to not use italics on the pipe character-just a note (ok thanks my inexperience ;)
-    - If you look on the rendered page it is not actually italized, that is simply HackMD trying to intelligently show that the pipe is within the `
-    - it confused me too so thanks for double checking and asking
+19. I was kicked out if SAGA and now when I try to access it it says "operation timed out"
+    - `ssh` back into Saga does not work anymore?
+      - No it just says "operation timed out"
+         - is this a firewall issue? also asking NRIS colleagues
+             - I was able to access at the beginning of the course
+             - Try running `ssh -vvv ALL_NORMAL_OPTIONS` to get more debug information (ie, where it stops working).
+             - Yes I get lots of information now. It says: "authentication provider SSH_SK_PROVIDER did not resolve; diabling". Is that the key maybe? maybe it's more efficient to solve this issue in a breakout room where you could share your screen. Yes, I can contact you. I will just quickly try to restart the machine and see if it helps. It seems to be lagging a bit as well. it may be sufficient to reconnect to your network (as a first step)
+             - Now it works. Thank you so much!!
 
-### Scripting
+20. What does sleep 60 mean in the job script or why put it there? I missed the explanation.
+    - It means : "stop execution for 60 secs but stay in the job"
+    - we did this so that we have a job example which "computes" for 60 seconds. Otherwise it would finish within miliseconds. In this artificial case it does not do anything but only waits. But we do this so that we can inspect job states before it finishes.
+    - `sleep N` returns after `N` seconds. `man sleep` shows a very concise description of the program.
 
-[Teaching material](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html)
+21. Presenter mentioned job states (if I understood correctly) and we list them here: https://documentation.sigma2.no/jobs/monitoring/job_states.html#job-states
+    - but maybe it was something else? availability of nodes? (I was typing and distracted)
+    - yes, these are the states that you job can be in when you inspect it with `squeue`, under the `ST` column
+    - but once it completes it will disappear from the list, so you will never actually see it in `CD` (completed) state
 
-Exercise:
-   - use `#!/bin/bash` instead of `#!/bin bash` (the space is a typo we forgot to fix)
-      - fixed on the page now
+22. I am running on `betzy` and getting the following error in `sbatch`
+    `sbatch: error: --nodes >= 4 required for normal jobs`
+    - Betzy is meant for big jobs which require big resources. Small jobs requiring very few nodes are not allowed (welcome) there
+    - You can add `#SBATCH -qos=devel`, then it starts faster and you can go down to only one node.
+        - Works with the `devel` setting :)
+        - Keep in mind that the `devel` QOS is intended for testing and development - not production runs.
+        - all registered participants should have acces to saga and fram. You can do the excercises on Saga as well.
 
-36. the extension ".sh" appears to be essential, I may have missed it but where does it come from? if I enter bash list it does not run the script as indicated, but if I do "bash list.sh" it does. OK it's the integral file name I get it; this line about the ".sh file" is a bit confusing:  can now run it by using our .sh file as an input for bash like this:
-    - The file name of the script is `list.sh`,  if you just write `list` it can't be found
-    - It's not really essential but best practise to inform yourself and others that it is a (bash) script and not some other text file
-    - you could also give it extension .bash or .script or .x or no extension and it would still work but it helps communicating to humans what the content is and how it is intended to be used
+23. What's the difference between login node and compute node, from the perspective of hardware? e.g. login node is CPU and compute node is GPU.
+    - Basically no difference from hardware point of view but it depends on the decision of the admins
+    - No, the login nodes are CPU nodes
+      - So compute node is GPU?
+        - most compute nodes are CPU nodes but there are some GPU compute nodes also
+        - the difference is in how we use login nodes and compute nodes:
+          - login nodes: many users at the same time, interactively editing files, submitting and monitory jobs
+          - compute nodes: few or only one user at the same time, computing, often in batch mode (not interactively; but one can also get an interactive compute node)
 
-37. note this line from the tutorial: References: This counts the number of references (hard links) to the item (file, folder, symbolic link or “shortcut”). Following the link to "hard link", shortcuts are explained as being "soft links". So are they included in this number?
-    - No they are not counted in the reference counter
+24. How can I cancel a job?
+    - check the job number with `squeue -u yourusername`
+    - then: `scancel jobnumber`
+      - Thank you!!!
 
-38. we learnt that "#" prevents a line from being executed. Yet, the shebang #!/bin/bash starts with "#". Is the exclamation mark the key here, or what causes this line to actually do something?
+25. `squeue` has an option (`-i` or `--iterate`) to query slurm with some interval. Might be better resource usage than using `watch`.
+    - thanks! Today I Learned.
 
-### Feedback for the day
+26. How to add comments in the submission script?
+    - Just use `#` before the line. _Not_ before the shebang and the `SBATCH` keyword lines though
+        - For the `SBATCH` lines will adding `##` comment it out?
+            - Yes
+                - Thanks!
 
-One thing you really liked: 
+27. How do we specify the output folder for the completed job?
+    - By default it is the folder where you launch the sbatch script from
+        - Can we specify some other folder to redirect the output?
+           - in your job script you typically have a line or lines that do the actual computation and produce output and you can redirect it then with ">" to any path/file on the system that you have access to. Side note for later: If your computation is very input/output heavy (lots of writing every few miliseconds, very many writes), then you need to also be a bit careful where you redirect to as you don't want the disk bandwidth to become the bottleneck of your calculation.
+           - `#SBATCH --output=/SOMEDIR/%j.out` but mind the previous comment hereabove
+               - Thanks!
 
-- fast responses on (at times my ignorant) questions (+1)
-- presentation format with 2 presenters (one "interviewing" the other) works well for me (+1)
-- great content to learn to use terminal
-- very good tutorials!
-- useful tips and commands and good pace of the course
+28. In the 15th question, resv c2-[5,9,27],c3-19,c5-45... what c2-[5,9,27], c3-19 means specifically?
+    - `cX-Y` is the name of the compute node, so if log in to one and type `hostname` it will give you this
+        - is it from X to Y or X-Y together is the name?
+            - `c2-5` is one node, `c2-[5,9,27]` is a shorthand for the three nodes `c2-5`, `c2-9` and `c2-27`
+        - [5,9,27] are reserved nodes? the rest are not?
+            - in this case all the nodes `c2-5`, `c2-9`, `c2-27`, `c3-19` and `c5-45` (so five nodes in total) are reserved
+    - `resv` means that all the nodes listed are reserved for some reason (probably this course)
 
-One thing you want us to improve:
+29. #SBATCH --reservation=nn9989k ,   #SBATCH --acount==nn9989k    both nn9989k?
+       - Yes , both nn9989k
 
-- not enough time for exercises (allocate more time or less content)
-- I have problems keeping up... high speed, new jargon, several windows to follow
-  - too many pages/windows or too few breaks and too high speed? 
-  - good point about the jargon
-- having problems to find special character on key board - and then things ran a little fast
-- I noticed that some of the exercises contained requirements which come up in the next session, e.g. the exercise about : find the string "computation failed" appears before the `grep` command :) 
-- we need clear warning that Copy/Paste from the training materials is risky unless we use the copy icon in the upper corner
-- so far, everything is fine!
+30. The job doesn't start, still pending. The jobid is increasing the whole time:
+```bash
+#!/bin/sbatch     <- this should be /bin/bash and not /bin/sbatch
+#SBATCH --account=nn9989k
+#SBATCH --mem=1G
+#SBATCH --time=10:00
+#SBATCH --reservation=nn9989k
+#SBATCH --job-name=NINA
+#SBATCH --error=output-%j-error.out
+#SBATCH --output=output-%A-blah.out
+echo -n "This script is running "
+
+sleep 60
+hostname
+```
+  - Was started with `./job.sh`
+  - I would `scancel` it, fix the first line, and re-submit it with `sbatch job.sh`
+  - The jobid changes too quickly to cancel with `scancel JOBID`
+  - Worked with `scancel -u USER`
+    - so problem solved? was the problem the first line?
+
+31. Is it the same in the real scenario like the picture "HPC dinner", one job/user would be assigned with one core?
+    - yes but we also have many jobs that ask for more than a core and wait until the number of cores they ask for become available
+    - restaurant is still a good analogy. sometimes we reserve a table for 8 people and then the dinner party/group would be the "job"
+
+32. General question: is it possible to copy all the output from the terminal to a file .txt using a command in linux?
+     - and the output is the output of a command? You can redirect the output from a command to a file with ">". Example:
+     - `ls -l` prints the directory content to your screen
+     - `ls -l > directory-contents.txt` redirects the output to a file called "directory-contents.txt"
+     - did this answer the question?
+         - This is very useful and I did not remember exactly! But in the case I want to copy all the output (multiple command outputs, since the start of the session until the last line and output i got)? Is this possible? Thank you
+           - The way I would do it is to select the output with my mouse, open a new file, and then paste it into the file (in my case with mouse wheel but it seems better with right click). Is there any better way? If I wanted to see all commands I typed, I would use `history` command but I understand here you don't want just the command but also the output.
+               - Great I did not know if there was a more accessible way, but this works too! I see there is not also a way to select all lines like Ctrl+shift+up arrow
+                  - I am sure there is a way to split all output to go both to the screen and also to some file but I don't think there is any more elegant way to recover "past" output since from terminal's perspective this is already gone and forgotten.
+                      - Good, now all is clear! Thanks a lot
+
+33. If I don't know how much time it needs for the job, and just give an estimated time period, e.g. for 48 hours, but it actually need 50 hours (longer than the estimated time), how could I handle this case?
+    - The scheduler will stop your job.
+    - see also question 16 on how and when we can help extending running jobs
+    - Is there a way to avoid wasting 48 hours to get to know that the job needs more time?
+       - what I do when it's possible: grow the job from small system size to real system size and that makes testing this easier and hopefully I can extrapolate to the real job. But it will still take some calibration and some trial and error.
+
+
+## Q&A
+
+34. How to run interactive jobs?
+    - https://documentation.sigma2.no/jobs/interactive_jobs.html
+
+35. Can you prolong/extent jobs yourself?
+    - No, not after the job started
+    - In special occations you can write the support team and we can extend it.
+    - Also see question 16
+
+36. Looking at interactive session. We start with salloc right? When do we use srun?
+    - "depends" :-) but also see link under 34 where there are explicit examples
+    - it seems we recommend `salloc` on all NRIS clusters but with slightly different options (e.g. on Saga one has to indicate the max memory)
+        - Thank you!
+
+37. How to estimate runtime?
+    - Try smaller sample job (parts of problem, only one iteration) and then try to estimate
+    - Ask for too much time in the start, maybe even maximum wall time allowed, e.g. 7 days. It will queue a bit longer but that's okay if you then know better what to ask for the next time
+    - Always ask for a bit more time that you expect the job to run. So 8h or even 12h if you assume 6h. Once you are confident you acn go down a bit.
+
+38. looking forward to hear more about how to run a program such as R or python, and particularly, how to execute scripts in it. Where do we find how we should actually use the HPC for the typical kind of jobs? I am not used to starting jobs on my own computer from the command line-so open a program, tell the program what to do, etc. I suppose this is a required skill for working with the cluster.
+    - This topic is outside the scope of this course. Running R or python scripts on HPC is not much different from running them on your local machine, unless you have some special parallelization code
+    - For the second part of your question : you shall refer to R or python documentation, both of them are made to be used from a command line, then these
+    -  command-line commands can be executed on the cluster, just as we did this today.
+
+39. How do I exit SAGA?
+    - type `exit` and hit Enter
+
+40. When to use interactive jobs?
+    - Useful for debugging and establishing workflows and job scripts
+    - But at some point you should have a job script to use instead of an interactive session. better for sharing, reproducibility and more robust
+    - Useful if you want/need to test something without interference from other users and without interfering with other users' work since you can allocate interactive node exclusively only for you for a certain time
+    - Useful if you need to debug a problem that crashes after few seconds and you don't want to queue for hours every time between each crash
+
+41. How do I navigate from where I start when logged into Saga (`home/<username>`), to my project directory (nnXXXXk)?
+    - You shall know the location of the project directory, then you use the unix command `cd <PATH TO THE DIRECTORY>` to get there, e.g. `cd /cluster/projects/nnXXXXk` where XXXX is a project number
+      - Thanks, exactly what I was looking for.
+    - One thing that helps me remembering where all the places are, is to add a symbolic link from my home folder to the other place.
+        - A good idea indeed, you can also write a so called alias in your `.bashrc` file, a command which executes some particular `cd PATH` command. E.g. `alias my_proj='cd <PATH TO MY PROJ>'` Then you only type `my_proj` and you get where you want. After changes in `.bashrc` file you need to run `source .bashrc`.
+
+
+## Feedback for today
+
+- Please list one thing that you particularly liked
+  - I liked that you did the instruction sessions as a duo. Overall a very good course! Thanks!
+  - I liked the breakout rooms where you could ask questions
+  - Many instructors to help out! Very nice to have all questions answered at once.
+  - Its nice we can enter and leave any breakout room anytime so that we dont need to wait for our turn to ask a question
+  - Enjoyed the live coding parts of the course.
+
+- What we should improve/change for tomorrow or next edition
+  - in the grey boxes it is not immediately clear to me what content is supposed to be part of the script, and which are commands to run outside of that
+  - I was a bit confused what exactly the exercise was supposed to be. Maybe make that a little bit more clear next time :)
+  - If you have some trouble with the commands/scripts it's a bit too fast and it may be hard to catch up. Maybe take more time to have the people that everything doesnt run smoothely for to follow
+  - The goal of the exercises was a bit unclear to me.
+  - It would be nice to repeat the session briefly after its done
