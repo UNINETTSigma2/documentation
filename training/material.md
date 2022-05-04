@@ -3,6 +3,8 @@
 
 ## Training material used in our past courses
 
+- {ref}`training-2022-spring-onboarding`
+  - {ref}`Questions and answers from day 0<training-2022-spring-notes-day0>`
 - {ref}`training-2021-autumn`
   - {ref}`training-2021-autumn-notes-day1`
   - {ref}`training-2021-autumn-notes-day2`
