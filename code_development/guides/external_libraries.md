@@ -6,16 +6,16 @@ orphan: true
 
 One of the best ways to get the benefit of GPU acceleration is to call an
 external library that is already accelerated. All of the major GPU hardware
-vendors create such libraries and the advantage of using such a library is that
-you will get the best performance possible for the available hardware. Examples
-of GPU accelerated libraries include BLAS libraries such as [`cuBLAS` from
-Nvidia](https://developer.nvidia.com/cublas), [`rocBLAS` from
-AMD](https://rocblas.readthedocs.io/en/latest/) and [`oneMKL` from
+vendors create such libraries and the advantage of their use is that you will
+get the best performance possible for the available hardware. Examples of GPU
+accelerated libraries include BLAS (Basic Linear Algebra Subprograms) libraries
+such as [`cuBLAS` from Nvidia](https://developer.nvidia.com/cublas), [`rocBLAS`
+from AMD](https://rocblas.readthedocs.io/en/latest/) and [`oneMKL` from
 Intel](https://www.intel.com/content/www/us/en/develop/documentation/oneapi-programming-guide/top/api-based-programming/intel-oneapi-math-kernel-library-onemkl.html).
 
-One challenge with calling an external library is how to integrate with custom
-accelerated code and how does one compile the code so that everything is
-properly linked. To answer that this tutorial will go through:
+One challenge with calling an external library is related to its integration
+with user accelerated code and how to compile the code so that everything is
+linked. To address these issues this tutorial will go through:
 - How to call different GPU accelerated libraries from both C/C++ and Fortran.
 - How to combine external accelerated libraries and custom offloading code.
   - Focusing on OpenACC and OpenMP offloading
@@ -33,17 +33,18 @@ properly linked. To answer that this tutorial will go through:
 > [netlib](https://www.netlib.org/blas/)
 
 As noted in the introduction to this tutorial, all of the major GPU hardware
-vendors offers specialised BLAS routines for their own hardware. These
+vendors provide specialised BLAS routines for their own hardware. These
 libraries offers the best in class performance and thanks to the shared
-interface, abstracting over these different libraries are quite easy. We will
-here show how to integrate with [`cuBLAS` from
-Nvidia](https://developer.nvidia.com/cublas) which is compatible with the
-hardware found on Saga and Betzy.
+interface, one can easily abstract over multiple libraries from different
+vendors. Here we will show how to integrate OpenACC with [`cuBLAS` from
+Nvidia](https://developer.nvidia.com/cublas). The `cuBLAS` library is a BLAS
+implementation for Nvidia GPUs which is compatible with the hardware found on
+Saga and Betzy.
 
 As an example we will use `cuBLAS` to perform a simple vector addition and then
-calculate the sum of the vector in our own custom loop. The example is
-simplistic to show how to combine `cuBLAS` and OpenACC, and our recommendation
-is to always use BLAS libraries when performing mathematical computations.
+calculate the sum of the vector in our own custom loop. The example allows us
+to show how to combine `cuBLAS` and OpenACC, and our recommendation is to
+always use BLAS libraries when performing mathematical computations.
 
 ```{eval-rst}
 .. literalinclude:: external_libraries/cublas/openacc.c
@@ -64,10 +65,10 @@ SAXPY routine within the already established OpenACC data region.
 
 In the above section one can see that we first create an OpenACC data region
 (`#pragma acc data`) so that our compute vectors are available on the GPU
-device. Within this region we would normally perform calculations on the data,
-but when integrating with `cuBLAS` we only need the address of the memory
-(`#pragma acc host_data`). After the SAXPY routine is called we use the data to
-calculate the sum as a normal OpenACC kernel.
+device. Within this region we would normally have accelerated loops that do
+calculations on the data, but when integrating with `cuBLAS` we only need the
+address of the memory (`#pragma acc host_data`). After the SAXPY routine is
+called we use the data to calculate the sum as a normal OpenACC kernel.
 
 Combining `cuBLAS` and OpenACC in this manner allows us to call accelerated
 libraries without having to perform low-level memory handling as one would
@@ -93,7 +94,7 @@ $ module load NVHPC/21.7 CUDA/11.4.1
 `````
 
 We first load `NVHPC` which contains the OpenACC C compiler (`nvc`), then we
-load `CUDA` which contains the `cuBLAS` library which we will need to link in.
+load `CUDA` which contains the `cuBLAS` library which we will need to link to.
 
 To compile we can use the following:
 
@@ -112,8 +113,8 @@ $ nvc -acc -Minfo=acc -gpu=cc80 -lcublas -o cublas_acc cublas_openacc.c
 ````
 `````
 
-Finally we can run the program with the following call to `srun` (note that
-this call works on both Saga and Betzy):
+Finally, we can run the program using the `srun` command which works on both
+Saga and Betzy:
 
 ```console
 $ srun --account=nn<XXXX>k --ntasks=1 --time=02:00 --mem=1G --partition=accel --gpus=1 ./cublas_acc
