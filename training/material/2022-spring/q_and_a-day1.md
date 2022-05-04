@@ -321,6 +321,14 @@ Exercise:
 
 38. we learnt that "#" prevents a line from being executed. Yet, the shebang #!/bin/bash starts with "#". Is the exclamation mark the key here, or what causes this line to actually do something?
 
+39. By the way I did not clearly understood the difference between Node, cores, and CPU
+
+    - A node corresponds best to what we think of a traditional computer: something that has one or more CPUs, has memory, and network capabilities.
+    - A node contains often several CPUs. A CPU looks like we would imagine a
+      chip.
+    - CPUs contain typically several cores.
+
+
 ### Feedback for the day
 
 One thing you really liked: 
