@@ -80,7 +80,7 @@ orphan: true
 
 [Lesson material](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html)
 
-9. the adress question may bring up another issue (if interpreted literally): storing data that can relate to a person, is that ok gdpr-wise (double encrytion)?
+9. the address question may bring up another issue (if interpreted literally): storing data that can relate to a person, is that ok gdpr-wise (double encrytion)?
     - Yes it is, maybe not relevant here but still smth to think about
 
 10. How do I know how much data I can download to my account in saga
@@ -107,7 +107,7 @@ orphan: true
     - I use this sometimes to make sure that I have transferred a file completely and did not end up with an incomplete file before deleting the other.
 
 15. While sending files from saga to personal laptop, why not execute scp directly in saga, instead, again in personal laptop?
-    - If your personal laptop has an IP which is accessible from SAGA, you can, yes. Yet, ususally, the IP of your laptop is local to your home network as it is assigned by your router at home. Hence it is not accessible from the outside.
+    - If your personal laptop has an IP which is accessible from SAGA, you can, yes. Yet, usually, the IP of your laptop is local to your home network as it is assigned by your router at home. Hence it is not accessible from the outside.
 
 16. How is the pace of this lesson?(give an 'o')
     - clear oooooooooo
@@ -202,7 +202,7 @@ orphan: true
     - I mean like the mothur or silva databases, are these on the HCP or you should download these yourself
         - We used to have some biodatabases pre-downloaded. There are here some of them now : `/cluster/shared/databases`. In case you need more we can download them for you.
         -thanks ! :)
-        - Is there an information page about all the availible databases? or will there be one
+        - Is there an information page about all the available databases? or will there be one
             - I see that details are not in NRIS docs yet (or link lost), will note it down for fixing. Details of the process of setting these up are here https://github.com/Sabryr/Databases-on-SAGA. In addition when you load a module that has assoctiated data, that information will be printed  ` module load BLAST+/2.11.0-gompi-2020b`. How to use the database with the software is something the user supposed to know or det from the documentation of the software it self.
 34. I am wondering how you can catch runtime errors and debug, by logging to log files or?
     - depends whether this is software we can change (then adding debug information or print statements) or cannot change (then we can only hope that the code prints and logs some error)
