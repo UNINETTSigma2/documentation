@@ -6,6 +6,7 @@
 - {ref}`training-2022-spring-onboarding`
   - {ref}`training-2022-spring-notes-day0`
   - {ref}`training-2022-spring-notes-day1`
+  - {ref}`training-2022-spring-notes-day2`
 - {ref}`training-2021-autumn`
   - {ref}`training-2021-autumn-notes-day1`
   - {ref}`training-2021-autumn-notes-day2`
