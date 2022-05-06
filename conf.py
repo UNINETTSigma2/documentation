@@ -74,7 +74,6 @@ linkcheck_ignore = [
     r'localhost:\d+',
     r'https://desktop.saga.sigma2.no:\d+',
     r'https://desktop.fram.sigma2.no:\d+',
-    r'.*slurmbrowser.*',
     'https://lifeportal.saga.sigma2.no',
     'http://www.linuxconfig.org/Bash_scripting_Tutorial',
     'http://www.wannier.org',

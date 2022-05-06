@@ -114,26 +114,6 @@ $ gfortran example.f90 -o mybinary
 ```
 
 
-### By using the Slurm browser
-
-This approach only works for a currently running job.
-
-Log into one of the available Slurm browsers [here](monitoring.md).
-You need to be on the university network to reach these. Use a VPN solution
-(check with your university for details on how to connect using VPN) if you
-would like to access these from home or outside.
-
-Once connected, you can have a look at all currently running jobs. There is a
-lot of interesting data but here we focus on the memory part.
-
-In this example you can see that the node has a bit above 60 GB memory and the
-job consumes about half at the beginning of the run and later oscillates
-consuming around a third of the available memory. But you can also see that the
-memory consumption varies over time.
-
-![Memory high water mark in the Slurm browser](img/slurmbrowser-memory.jpg "Memory high water mark in the Slurm browser")
-
-
 ### Using top
 
 While the job is running, find out on which node(s) it runs using `squeue -u $USER`,
