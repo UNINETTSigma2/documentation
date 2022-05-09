@@ -26,7 +26,7 @@ the migration of important data.
 User home ($HOME) migration is user's responsibility.
 
 ```
-Below you will find the guidence to prepare and par down the data before
+Below you will find the guidance to prepare and par down the data before
 the migration. 
 
 
