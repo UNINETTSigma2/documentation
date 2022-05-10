@@ -48,8 +48,55 @@ email to nird-migration@nris.no
   - Try to compress large number of small size files to a single tar file
   - If you have any questions, contact the PoWG team by sending 
 email to nird-migration@nris.no 
-  - Please see the Frequently Asked Questions below to find the necessary commands
+  - Please see the Frequently Asked Questions below to find the necessary commands. 
   
 ## Frequently Asked Questions(FAQ)
 
-To be updated 
+#### How do I find zero length files?
+
+ Use the following command.
+
+```console
+$ find -type f -empty
+```
+ 
+#### How do I find empty directory?
+
+ Use the follwing command.
+```console
+$ find -type d -empty
+```   
+
+#### How do I compress large number of small files to a single file?
+
+Use `tar` command. See different options on man pages `man tar`.
+
+For example move all the files that needs to archive, into a single directory,
+ and compress it using 
+the following command.
+
+```console
+$ tar -czvf name_archive.tar.gz dirname
+```
+  - `-c`: Create an archive
+  - `-z`: Compress the archive with gzip/ use `–j` for bzip compression
+  - `-v`: Display progress in the terminal while creating the archive,
+ also known as “verbose” mode. The v is always optional in these commands, but it’s helpful.
+  - `-f`: Allows you to specify the filename of the archive.
+  - Remember to delete the directory after successful compression
+
+#### How do I find out cold/not used data since a long time?
+
+  Use the following command to find files and directories which were not accessed/modified since last six months.
+
+- for files
+
+```console
+$ find . -type f -mtime +180 -atime +180
+```         
+- for directories 
+```console
+$ find . -type d -mtime +180 -atime +180
+```  
+ - `atime +180` is accessed time 180 days
+ - `mtime +180` is modified time 180 days 
