@@ -48,12 +48,12 @@ Registration closes on **19th May**.
 **Day1 - Monday 23 May 2022**
 
 - 09:00-09:10 - Welcome, Practical information &icebreaker question
-- 09:10-09:50 - Best Practices and Trouble shooting on NRIS clusters
+- 09:10-09:50 - Best Practices and Trouble shooting on NRIS clusters (Ole W. Saastad)
 - 09:50-10:00 - Break
-- 10:00-10:40 - Best Practices and Trouble shooting on NRIS clusters (contuinue)
+- 10:00-10:40 - Best Practices and Trouble shooting on NRIS clusters (contuinues)
 
 - 10:40-10:50 - Break
-- 10:50-11:30 - Optimal resource management - cores and memory monitoring
+- 10:50-11:30 - Optimal resource management - cores and memory monitoring (Radovan Bast)
 - 11:30-11:40 - Break
 - 11:40-12:15 - Optimal resource management - cores and memory monitoring (contuinues)
 
@@ -63,14 +63,14 @@ Registration closes on **19th May**.
 **Day2 - Tuesday 24 May 2022**
 
 - 09:00-09:05 - Welcome, Practical information &icebreaker question
-- 09:05-09:50 - Software Installation
+- 09:05-09:50 - Software Installation (Sabry Razick & Jørn Dietze)
 - 09:50-10:00 - Break
 - 10:00-10:30 - Software Installation (continues)
-- 10:30-11:00 - GPU-programming: Using GPUs with Slurm
+- 10:30-11:00 - GPU-programming: Using GPUs with Slurm (Jørgen Nordmoen)
 - 11:00-11:10 - Break
 - 11:10-11:40 - GPU-programming: Using GPUs with Slurm (continues)
 - 11:40-11:45 - Break
-- 11:45-12:15 - NRIS extended support & AUS
+- 11:45-12:15 - NRIS extended support & AUS (Espen Flage-Larsen)
 - 12:15-12:30 - Q&A & Discussion
 
 ### Instructors 
