@@ -52,7 +52,7 @@ email to nird-migration@nris.no
   
 ## Frequently Asked Questions(FAQ)
 
-#### How do I find zero length files?
+### How do I find zero length files?
 
  Use the following command.
 
@@ -60,14 +60,14 @@ email to nird-migration@nris.no
 $ find -type f -empty
 ```
  
-#### How do I find empty directory?
+### How do I find empty directory?
 
  Use the follwing command.
 ```console
 $ find -type d -empty
 ```   
 
-#### How do I compress large number of small files to a single file?
+### How do I compress large number of small files to a single file?
 
 Use `tar` command. See different options on man pages `man tar`.
 
@@ -85,7 +85,7 @@ $ tar -czvf name_archive.tar.gz dirname
   - `-f`: Allows you to specify the filename of the archive.
   - Remember to delete the directory after successful compression
 
-#### How do I find out cold/not used data since a long time?
+### How do I find out cold/not used data since a long time?
 
   Use the following command to find files and directories which were not accessed/modified since last six months.
 
