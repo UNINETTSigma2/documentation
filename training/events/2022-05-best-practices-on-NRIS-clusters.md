@@ -50,12 +50,12 @@ Registration closes on **19th May**.
 - 09:00-09:10 - Welcome, Practical information &icebreaker question
 - 09:10-09:50 - Best Practices and Trouble shooting on NRIS clusters (Ole W. Saastad)
 - 09:50-10:00 - Break
-- 10:00-10:40 - Best Practices and Trouble shooting on NRIS clusters (contuinues)
+- 10:00-10:40 - Best Practices and Trouble shooting on NRIS clusters (continues)
 
 - 10:40-10:50 - Break
-- 10:50-11:30 - Optimal resource management - cores and memory monitoring (Radovan Bast)
+- 10:50-11:30 - Optimal resource management - {ref}`choosing-memory-settings` (Radovan Bast)
 - 11:30-11:40 - Break
-- 11:40-12:15 - Optimal resource management - cores and memory monitoring (contuinues)
+- 11:40-12:15 - Optimal resource management - {ref}`choosing-number-of-cores` (Radovan Bast)
 
 - 12:15-12:30 - Q&A & Discussion
 
