@@ -34,8 +34,7 @@ If you want to receive further information about training events, and other anno
 
 ## **Registration**
 
-**You can register [here](https://skjemaker.app.uib.no/view.php?id=12438755)**.
-Registration closes on **19th May**.
+Registration is closed.
 
 ## Time, date (all times CEST)
 |   Date    |  Time   |  Topic  |
@@ -84,6 +83,7 @@ Registration closes on **19th May**.
 
 ### Expert helpers
 
+- Bjørn Lindi
 - Nikolay Aleksandrov Vazov
 - Siri Kallhovd
 - Marius Linge
