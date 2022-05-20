@@ -9,11 +9,11 @@ A job that asks for many CPUs but little memory will be billed
 for its number of CPUs, while a job that asks for a lot of memory but
 few CPUs, may be billed for its memory requirement.
 
-If you ask for a lot more memory than you need, you might be surprised
-that your job will bill your project a lot more than you expected.
-
-If you ask for a lot more memory than you need, your job may queue much
-longer than it would asking for less memory.
+If you ask for a lot more memory than you need:
+- You might be surprised that your job will bill your project a lot more than
+  you expected.
+- Your job may queue much longer than it would asking for less memory.
+- The possibility to parallelize your job/workflow may be more limited.
 ```
 
 ```{contents} Table of Contents
@@ -31,25 +31,32 @@ much memory, I also block the compute resources which carry that memory
 resource at the same time.
 
 A too generous "better safe than sorry" approach to memory allocation leads to these problems:
-- Your compute account gets charged too much (problem for you and your
+- Your compute account **gets charged too much** (problem for you and your
   allocation group, as well as for the tax payer financing these compute
   resources)
-- Other users have to wait longer with their jobs (problem for us and for other users)
-- Your jobs may queue much longer (problem for you) because the scheduler does not know that you
-  might use a lot less memory than you ask it to reserve for you
+- Other users have to **wait longer with their jobs** (problem for us and for other users)
+- Your **jobs may queue much longer** (problem for you) because the scheduler does
+  not know that you might use a lot less memory than you ask it to reserve for you
+- The **possibility to parallelize your job/workflow may be severely limited** if
+  you ask for excessive amount of unused memory since there may not be enough
+  memory left for parallel jobs running at the same time
 
-It is important to make sure that your jobs use the right amount of memory and
-the right number of CPUs in order to help you and others using the HPC machines
-utilize these resources more efficiently, and in turn get work done more
-speedily.
+It is important to make sure that your jobs use the right amount of memory
+(below we show how to find out) and {ref}`the right number of CPUs
+<choosing-number-of-cores>` in order to help you and others using the HPC
+machines utilize these resources more efficiently, and in turn get work done
+more speedily.
 
 If you ask for too little memory, your job will be stopped and it might be
 stopped late in the run.
 
-We recommend users to run a test job before submitting many similar runs to the queue system
-and find out how much memory is used (see below for examples on how to do that).
-Once you know, add perhaps 15-20% extra memory (and runtime) for the job compared to what
-your representative test case needed.
+
+## Run a test job before running many similar jobs
+
+We recommend users to run a test job before submitting many similar runs to the
+queue system and find out how much memory is used (see below for examples on
+how to do that).  **Once you know, add perhaps 20% extra memory** (and runtime)
+for the job compared to what your representative test case needed.
 
 Remember to check the [Slurm documentation](https://slurm.schedmd.com/squeue.html#lbAG),
 [job types](choosing_job_types.md),
@@ -58,11 +65,15 @@ and [HPC machines](/hpc_machines/hardware_overview.md)
 to verify that you are submitting the right job to the right partition and
 right hardware.
 
+
+## How to get more memory if you need it
+
 Speaking of right partition, one way to get more memory if a node is not enough
-is to spread the job over several nodes by asking for more cores than needed. But this comes
-at the price of paying for more resources, queuing longer, and again blocking others.
-A good alternative is often to get access to "highmem" nodes which are designed for jobs
-with high memory demand.
+is to spread the job over several nodes by asking for more cores than needed.
+But this comes at the price of paying for more resources, queuing longer, and
+again blocking others.  A good alternative for jobs that need a lot of memory
+is often to get access to "highmem" nodes which are designed for jobs with high
+memory demand.
 
 
 ## How to find out how much memory you need
@@ -176,7 +187,7 @@ Disk usage stats:
 From this (see below `Memory usage stats`) we can find out that the job needed
 `3210476K` memory (3210476 KB).
 
-Note that Slurm samples the memory every 30 seconds. This means that if your
+Note that **Slurm samples the memory every 30 seconds**. This means that if your
 job is shorter than 30 seconds, it will show that your calculation consumed
 zero memory which is probably wrong.  The sampling rate also means that if your
 job contains short peaks of high memory consumption, the sampling may
@@ -185,17 +196,12 @@ completely miss these.
 
 #### Slurm reports values for each job step
 
-In the [Slurm manual for sacct](https://slurm.schedmd.com/sacct.html) the
-following is stated for `AvgRSS`:  *Average resident set size of all tasks in
-job*. And similarly for `MaxRSS` and all other `Max<something>` or
-`Ave<something>` values: These values give information for each *step* of a
-job, each being a call to `srun` or `mpirun` in your job script.  Also, the job
-script itself (commands run in the jobscript without using `srun` or `mpirun`)
-is counted as a *step*, called the `batch` step.  The *average* or *maximum* is
-calculated over the tasks (processes) in each step.  Meaning, if you call
-`srun` or `mpirun` multiple times in your job script they will get one line
-each in the `sacct` output with separate entries for both `AvgRSS` and
+If you call `srun` or `mpirun` multiple times in your job script they will get
+one line each in the `sacct` output with separate entries for both `AvgRSS` and
 `MaxRSS`.
+
+Also the job script itself (commands run in the jobscript without using `srun`
+or `mpirun`) is counted as a *step*, called the `batch` step.
 
 
 ### By using sacct
@@ -215,6 +221,32 @@ $ sacct -j 4200691 --format=MaxRSS
 
 From this we see that the job needed `3210476K` memory, same as above. The
 comment above about possibly multiple steps applies also here.
+
+
+### Using seff
+
+`seff` is a nice tool which we can use on **completed jobs**. For example here we ask
+for a summary for the job number 4200691:
+
+```console
+$ seff 4200691
+```
+
+```{code-block}
+---
+emphasize-lines: 9-10
+---
+Job ID: 4200691
+Cluster: saga
+User/Group: user/user
+State: COMPLETED (exit code 0)
+Cores: 1
+CPU Utilized: 00:00:01
+CPU Efficiency: 2.70% of 00:00:37 core-walltime
+Job Wall-clock time: 00:00:37
+Memory Utilized: 3.06 GB
+Memory Efficiency: 89.58% of 3.42 GB
+```
 
 
 ### By prepending your binary with /usr/bin/time -v
