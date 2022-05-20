@@ -6,13 +6,13 @@ Meet the HPC staff, discuss problems and project ideas, give feedback or
 suggestions on how to improve services, and get advice for your
 projects.
 
-Join us on [Zoom](https://uit.zoom.us/j/66457838936), get yourself a
+Join us on [Zoom](https://uit.zoom.us/j/63647467890), get yourself a
 coffee or tea and have a chat. It doesn't matter from which institute or
 university you are, you are **welcome to join at any time**.
 
-This time we will start with a **15 min seminar about useful resources
-and good to know stuff for new users.**
-Afterwards we have the open question and answer session.
+This time we will start with a **15 min seminar about why and how to use
+NIRDToolkit for data analysis and visualisation with for example Jupyter
+Notebooks.** Afterwards we have the open question and answer session.
 
 We can talk about:
 - Questions regarding compute resources, data storage and management.
@@ -37,11 +37,12 @@ events.
 
 ## Next event
 
-- **2022-05-10, 13:00 - 15:00**, [Join us on Zoom](https://uit.zoom.us/j/66457838936)
+- **2022-06-14, 13:00 - 15:00**, [Join us on Zoom](https://uit.zoom.us/j/63647467890)
 
 
 ## Past events
 
+- 2022-05-10, 13:00 - 15:00, ["Useful and good to know stuff for new users" Slides](https://docs.google.com/presentation/d/1pgueQ6w8sFW4-1y3iRwiWgkypUhrlLfhEPTFSY2_Lw8/edit?usp=sharing)
 - 2022-03-08, 13:00 - 15:00, ["State of Gaussian and VASP" Slides](https://docs.google.com/presentation/d/13vm5-Yx_VTfg02SAgrzki9rgSlUTDW5cERVSIdKCrfc/edit?usp=sharing)
 - 2022-01-26, 13:00 - 15:00, ["The new European HPC cluster LUMI" Slides](https://docs.google.com/presentation/d/1mSl6q6dvi12ouY0Rt5eephgFR-G_4WzB/edit?usp=sharing&ouid=109172959781988137007&rtpof=true&sd=true)
 - 2021-12-08, 13:00 - 15:00, ["Common but cryptic errors" Slides](https://docs.google.com/presentation/d/1U-GaHeyLOFM0HUObrYQzJELpS4UL10hOS5AGFMeEzVU/edit?usp=sharing)
