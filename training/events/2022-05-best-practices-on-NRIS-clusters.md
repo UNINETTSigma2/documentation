@@ -62,10 +62,10 @@ Registration is closed.
 **Day2 - Tuesday 24 May 2022**
 
 - 09:00-09:05 - Welcome, Practical information &icebreaker question
-- 09:05-09:50 - Software Installation (Sabry Razick & Jørn Dietze)
+- 09:05-09:50 - {ref}`Software Installation <installing-software-as-user>` - (Sabry Razick & Jørn Dietze)
 - 09:50-10:00 - Break
-- 10:00-10:30 - Software Installation (continues)
-- 10:30-11:00 - GPU-programming: Using GPUs with Slurm (Jørgen Nordmoen)
+- 10:00-10:30 - {ref}`Software Installation (continues) <installing-software-as-user>` - (Sabry Razick & Jørn Dietze)
+- 10:30-11:00 - GPU-programming: Using GPUs with Slurm - (Jørgen Nordmoen)
 - 11:00-11:10 - Break
 - 11:10-11:40 - GPU-programming: Using GPUs with Slurm (continues)
 - 11:40-11:45 - Break

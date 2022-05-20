@@ -23,7 +23,6 @@ To use R type
 
 ```{note}
 If you do not have specific requirements please use the latest,
-as of now it is  "R/4.0.0-foss-2020a"
 ```
 
 ## How to install packages as a user
