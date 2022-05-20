@@ -24,12 +24,13 @@ Just because a website says that code X can run in parallel or "scales well"
 does not mean that it will scale well for the particular feature/system/input
 at hand.
 
-Therefore it is important to verify and calibrate this setting for your use
+Therefore **it is important to verify and calibrate this setting** for your use
 case before computing very many similar jobs. Below we will show few
-strategies.  Note that you don't have to go through this for every single run.
-This just just to calibrate a job type. If many of your jobs have similar
-resource demands, then the calibration will probably be meaningful for all of
-them.
+strategies.
+
+Note that **you don't have to go through this for every single run**. This is
+just to calibrate a job type. If many of your jobs have similar resource
+demands, then the calibration will probably be meaningful for all of them.
 
 
 ## Using Arm Performance Reports
@@ -42,6 +43,9 @@ working on restoring this.)
 
 While the job is running, find out on which node(s) it runs using `squeue -u $USER`,
 then `ssh` into one of the listed compute nodes and run `top -u $USER`.
+
+Some clusters also have `htop` available which produces similar output as `top`
+but with colors and possibly clearer overview.
 
 
 ## Timing a series of runs
@@ -102,8 +106,8 @@ int main(int argc, char* argv[])
 }
 ```
 
-It does not matter so much what the code does. Here we wish to find out how
-this code scales and what an optimum number of cores for it might be on our
+It does not matter so much what the code does. Here we wish to **find out how
+this code scales** and what an optimum number of cores for it might be on our
 system.
 
 We can build our example binary with this script (`compile.sh`):
@@ -155,6 +159,50 @@ You might get the following timings:
 | 128             |       00:00:25         |
 
 Please try this. What can we conclude? And how can we explain it?
+
+
+## Using seff
+
+`seff JOBID` is a nice tool which we can use on **completed jobs**.
+
+Here we can compare the output from `seff` when using 4 cores and when using
+8 cores.
+
+Run with 4 cores:
+```{code-block}
+---
+emphasize-lines: 8-9
+---
+Job ID: 5690604
+Cluster: saga
+User/Group: user/user
+State: COMPLETED (exit code 0)
+Nodes: 2
+Cores per node: 2
+CPU Utilized: 00:00:39
+CPU Efficiency: 75.00% of 00:00:52 core-walltime
+Job Wall-clock time: 00:00:13
+Memory Utilized: 42.23 MB (estimated maximum)
+Memory Efficiency: 1.03% of 4.00 GB (1.00 GB/core)
+```
+
+Run with 8 cores:
+```{code-block}
+---
+emphasize-lines: 8-9
+---
+Job ID: 5690605
+Cluster: saga
+User/Group: user/user
+State: COMPLETED (exit code 0)
+Nodes: 4
+Cores per node: 2
+CPU Utilized: 00:00:45
+CPU Efficiency: 56.25% of 00:01:20 core-walltime
+Job Wall-clock time: 00:00:10
+Memory Utilized: 250.72 MB (estimated maximum)
+Memory Efficiency: 3.06% of 8.00 GB (1.00 GB/core)
+```
 
 
 ## If it does not scale, what can be possible reasons?
@@ -235,11 +283,9 @@ Now take the following example script
 #SBATCH --mem-per-cpu=2000M
 #SBATCH --ntasks=1
 
+module purge
 module load foss/2020b
-
-module load Arm-PerfReports/20.0.3
-echo "set sysroot /" > gdbfile
-export ALLINEA_DEBUGGER_USER_FILE=gdbfile
+module load Arm-Forge/21.1
 
 perf-report ./mybinary
 ```
@@ -261,9 +307,9 @@ spent in MPI calls, this code may also benefit from running at larger scales.
 
 CPU:
 A breakdown of the 100.0% CPU time:
-Scalar numeric ops:                           4.6% ||
+Scalar numeric ops:                           4.4% ||
 Vector numeric ops:                           0.0% |
-Memory accesses:                             88.1% |========|
+Memory accesses:                             91.6% |========|
 The per-core performance is memory-bound. Use a profiler to identify
 time-consuming loops and check their cache performance.  No time is spent in
 vectorized instructions. Check the compiler's vectorization advice to see why
@@ -278,7 +324,7 @@ limitations can you imagine when running this on many cores on the same node?
 
 ## What is MPI and OpenMP and how can I tell?
 
-These two parallelization schemes are very common( but there are other schemes):
+These two parallelization schemes are very common (but there are other schemes):
 - [Message passing interface](https://en.wikipedia.org/wiki/Message_Passing_Interface):
   typically each task allocates its own memory, tasks communicate via messages,
   and it is no problem to go beyond one node.
@@ -353,3 +399,41 @@ Run this example and check the timing. Then uncomment the highlighted lines and
 run it again and compare timings.  It can also be interesting to log into the
 compute node while the job is running and using `top -u $USER`. Can you explain
 what is happening here?
+
+Here is a comparison of the two runs using `seff` and the corresponding job numbers:
+
+This was the job script where the export lines were commented:
+```{code-block}
+---
+emphasize-lines: 8-9
+---
+Job ID: 5690632
+Cluster: saga
+User/Group: user/user
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 4
+CPU Utilized: 00:01:32
+CPU Efficiency: 22.12% of 00:06:56 core-walltime
+Job Wall-clock time: 00:01:44
+Memory Utilized: 789.23 MB
+Memory Efficiency: 13.15% of 5.86 GB
+```
+
+And this was the job script with the export lines active:
+```{code-block}
+---
+emphasize-lines: 8-9
+---
+Job ID: 5690642
+Cluster: saga
+User/Group: user/user
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 4
+CPU Utilized: 00:01:32
+CPU Efficiency: 74.19% of 00:02:04 core-walltime
+Job Wall-clock time: 00:00:31
+Memory Utilized: 797.02 MB
+Memory Efficiency: 13.28% of 5.86 GB
+```
