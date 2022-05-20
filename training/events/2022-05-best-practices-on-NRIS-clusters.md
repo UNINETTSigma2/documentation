@@ -65,7 +65,7 @@ Registration closes on **19th May**.
 - 09:00-09:05 - Welcome, Practical information &icebreaker question
 - 09:05-09:50 - {ref}`Software Installation <installing-software-as-user>` - (Sabry Razick & Jørn Dietze)
 - 09:50-10:00 - Break
-- 10:00-10:30 - {ref}`Software Installation (continues) <installing-software-as-user>`) -
+- 10:00-10:30 - {ref}`Software Installation (continues) <installing-software-as-user>` - (Sabry Razick & Jørn Dietze)
 - 10:30-11:00 - GPU-programming: - (Jørgen Nordmoen)
 - 11:00-11:10 - Break
 - 11:10-11:40 - GPU-programming: Using GPUs with Slurm (continues)
