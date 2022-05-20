@@ -112,3 +112,6 @@ To list all your saved environments
 This feature is particularly convenient if you spend a lot of time compiling/debugging
 in interactive sessions. For production calculations using job scripts it is still
 recommended to load each module explicitly for clarity.
+
+## Tutorial on module system for software
+[Introduction to HPC - Accessing software](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html)
