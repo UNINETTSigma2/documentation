@@ -63,7 +63,7 @@ Registration closes on **19th May**.
 **Day2 - Tuesday 24 May 2022**
 
 - 09:00-09:05 - Welcome, Practical information &icebreaker question
-- 09:05-09:50 - Software Installation  [Using GPUs with Slurm](https://documentation.sigma2.no/software/userinstallsw.html`) - (Sabry Razick & Jørn Dietze)
+- 09:05-09:50 - {ref}`Software Installation <installing-software-as-user>` - (Sabry Razick & Jørn Dietze)
 - 09:50-10:00 - Break
 - 10:00-10:30 - Software Installation (continues) [Using GPUs with Slurm](https://documentation.sigma2.no/software/userinstallsw.html`) -
 - 10:30-11:00 - GPU-programming: - (Jørgen Nordmoen)
