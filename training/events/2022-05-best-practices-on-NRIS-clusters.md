@@ -48,7 +48,7 @@ Registration closes on **19th May**.
 **Day1 - Monday 23 May 2022**
 
 - 09:00-09:10 - Welcome, Practical information &icebreaker question
-- 09:10-09:50 - Best Practices and Trouble shooting on NRIS clusters (Ole W. Saastad)
+- 09:10-09:50 - [Best Practices and Trouble shooting on NRIS clusters](https://drive.google.com/drive/folders/1fHC43LPvysnAuqEzojBEQLQR0184ShIj) (Ole W. Saastad)
 - 09:50-10:00 - Break
 - 10:00-10:40 - Best Practices and Trouble shooting on NRIS clusters (continues)
 
