@@ -38,7 +38,7 @@ orphan: true
    - in other words during a random read, the reading device needs to move from one place to another and cannot keep reading and thus spends a lot of time "moving" and not reading
 
 3. "Try to not copy files": but somewhere we also hear/read to not run from HOME. So should we rather keep them on HOME and run from there?
-    - The comment about copying is refering to parallel file systems. Which means your HOME or project area are the same in that sence (on the /cluster partition).
+    - The comment about copying is referring to parallel file systems. Which means your HOME or project area are the same in that sense (on the /cluster partition).
     - If you have millions of read/write, then using the localscratch (see the question 4 below) would make it more efficient. 
     - This you have to plan, i.e. there is no universal answer, e.g you have pne big file and you are planing to access it millions of time during then better to copy it to local scratch (Q4 below). Copying that files inside the /cluster to somewhare else would not make a difference.
 
@@ -50,7 +50,7 @@ orphan: true
 5. What does MPI mean?
     - message passing interface. it is one of several techniques/protocols to run a code in parallel. it is suitable for problems where the independent "tasks" need to communicate and where they are not completely independent.
     - if the jobs/tasks are completely independent, then MPI is typically not a suitable tool to parallelize but job arrays might be more suitable
-    - Not offitial explanation, but how I try to think of it: On a compute cluster compute nodes are connected using fast network, so data can be moved fast between them. However memory/RAM of each compute node are isolated. i.e. if you assign a value to a variable in memory on one compute node (e.g. A=10), other compute nodes would not know it. So MPI can help you make this connection, i.e. let your program know and use what is going on on a nother computer on the cluster. Then MPI helps to consilidate the results at the end as well. 
+    - Not offitial explanation, but how I try to think of it: On a compute cluster compute nodes are connected using fast network, so data can be moved fast between them. However memory/RAM of each compute node are isolated. i.e. if you assign a value to a variable in memory on one compute node (e.g. A=10), other compute nodes would not know it. So MPI can help you make this connection, i.e. let your program know and use what is going on on a nother computer on the cluster. Then MPI helps to consolidate the results at the end as well. 
     - All the executables launched by mpirun are identical, they get asigned a rank and total rank number. The only way they can communicate is by sending a message fram one rank to another.
     - As programmers generally need to know to program in parallel the MPI programs tend to scale better than OpenMP/Shared memory. 
 ## Exercise scaling 
@@ -86,7 +86,7 @@ orphan: true
    - slurm-16nodes.out: Mop/s/process  =                   1178.52
 what's the conclusion from the result?? More nodes then less operations?
        
-   - The purpose of the exercise was to measure the performance for different number of tasks of the simulation. Its measure is Mop/s/process, where Mop/s = milion of operations per second. 
+   - The purpose of the exercise was to measure the performance for different number of tasks of the simulation. Its measure is Mop/s/process, where Mop/s = million of operations per second. 
    - The results above show that the performance decreases with increasing number of tasks, which is bad, meaning that to use resources optimally you should use fewer tasks. This is a very small simulation, and it does not really matter if it takes 20 or 50 seconds. For realistic simulations (think hours or days), you should do some tests to find out a good balance between performance (Mop/s/process) and the time needed to run the simulation.
 
 10. How do I make plots in linux? (related to the scaling task)
@@ -163,7 +163,7 @@ gives me `sbatch: error: contain a NULL character '\0'.`
 
 ---
     
-20. If you run a combined MPI & OpenMP job on Saga, how do you deal witht he fact that there is a different number of cores on the different nodes?
+20. If you run a combined MPI & OpenMP job on Saga, how do you deal with he fact that there is a different number of cores on the different nodes?
     - hmmm. very good question. in this case you could ask for tasks per node for the node type with the higher core count? or how do others do that?
         - What happens then to MPI ranks that have less cores? Stupid question: Can they easily discover the number or cores avvilable to them?
         - Slurm allocate cores on different nodes in such a way that you get what you asked for. You may only get part of the nodes with more cores than on nodes with less cores. You should not have to worry too much about this. Slurm generally do a good job.
@@ -219,12 +219,12 @@ gives me `sbatch: error: contain a NULL character '\0'.`
 ### Feedback Day 1
 
 One thing you thought was good:
-  - The second session was very practial and interactive --> that was very helpful +1
+  - The second session was very practical and interactive --> that was very helpful +1
   - Enjoyed the content of both sessions. The instructors were good at pointing out what to think of when tailoring the slurm scripts for a particular simulation. `strings` was a discovery for me too :). Nice you have several tools documented to check CPU and memory usage. I like the `time` wrapper a lot. Used `perf-report` before, a favourite too.
   - Not so much to do with today, but the docs on https://documentation.sigma2.no/ are really getting very good!
   - The demo using the terminal was nicely made. Appropriate tempo. The user/directory coloring and extra command window at the bottom were helpful.
 
 One thing that should be improved until tomorrow or next time:
   - The first part was very abstract, and then very specific. A more middle approach with more simple practical information with more context would be much more useful +1
-  - Some of the terminalogy was already to advanced for me (e.g. MPI, localscratch...) +1
+  - Some of the terminology was already to advanced for me (e.g. MPI, localscratch...) +1
   - The first exercise would need more explanation for first-time users. There is a typo in `scontrol show job $jobid` (it was with capital S). A bit less scrolling maybe when presenting the content on the website.
