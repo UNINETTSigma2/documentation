@@ -1,4 +1,4 @@
-.. _extended-support:
+(extended-support)=
 
 Extended support
 ================

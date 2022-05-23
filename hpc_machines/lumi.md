@@ -81,7 +81,7 @@ libraries](https://rocmdocs.amd.com/en/latest/ROCm_Libraries/ROCm_Libraries.html
 
 If you are interested in porting your application to GPUs, or already have
 ported your application and need assistance transitioning to AMD GPUs, 
-{ref}`please contact NRIS support<extended-support-gpu>`.
+{ref}`please contact NRIS support <extended-support-gpu>`.
 
 ## LUMI-C
 LUMI-C is the compute partition of LUMI, dealing with CPU based HPC
