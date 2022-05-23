@@ -44,7 +44,7 @@ orphan: true
 
 4. What is a local scratch? 
     - Local scratch is a local storage on the compute node, hard drive, Solid State disk, NVMe etc. 
-    - More abot this: https://documentation.sigma2.no/jobs/scratchfiles.html
+    - More abot this: <https://documentation.sigma2.no/jobs/scratchfiles.html>
     - all other storage is accessed via network but "local scratch" is a hard drive that is inside the same "box" as the CPU and memory and has thus much faster access
    
 5. What does MPI mean?
@@ -103,8 +103,8 @@ what's the conclusion from the result?? More nodes then less operations?
 ## Choosing memory and core settings (we start 10:50)
 
 We will follow:
-- https://documentation.sigma2.no/jobs/choosing-memory-settings.html
-- https://documentation.sigma2.no/jobs/choosing-number-of-cores.html
+- <https://documentation.sigma2.no/jobs/choosing-memory-settings.html>
+- <https://documentation.sigma2.no/jobs/choosing-number-of-cores.html>
 
 
 13. What is the command to check the quota required for a submitted job?
@@ -143,7 +143,7 @@ gives me `sbatch: error: contain a NULL character '\0'.`
     - RB: I don't fully agree. I normally prefer to not concentrate them until I know that it has any effect. Letting the scheduler distribute them gives it more flexibility and less queue time for me. It can matter but in my experience more often than not it does not matter for smaller calculations.
     
 19. Which module and version did you load for the `perf-report` tool?
-    - https://documentation.sigma2.no/jobs/choosing-number-of-cores.html#example-for-a-memory-bound-job
+    - <https://documentation.sigma2.no/jobs/choosing-number-of-cores.html#example-for-a-memory-bound-job>
     - it was `module load Arm-Forge/21.1`
     - then prepend the command with `perf-report`
     
@@ -154,11 +154,11 @@ gives me `sbatch: error: contain a NULL character '\0'.`
 - how-much-memory:
   - first run the script as is: `sbatch run.sh`
   - then try to find out how much memory binary-a is using
-  - use https://documentation.sigma2.no/jobs/choosing-memory-settings.html
+  - use <https://documentation.sigma2.no/jobs/choosing-memory-settings.html>
 - how-many-cores:
   - first run the script as is: `sbatch run.sh`
   - then try to find out optimal number of cores/tasks for binary-b
-  - https://documentation.sigma2.no/jobs/choosing-number-of-cores.html
+  - <https://documentation.sigma2.no/jobs/choosing-number-of-cores.html>
 - You can also try to analyze your own code or run script  
 
 ---
@@ -174,7 +174,7 @@ gives me `sbatch: error: contain a NULL character '\0'.`
       - cores: run a series of jobs and compare timings but make sure the job is not too quick as the comparison is then not conclusive. later drill more into the calculation with seff and perf-report 
 
 22. Are different nodes with different amount of memory/core accounted differently at NRIS?
-    - here is detailed information: https://documentation.sigma2.no/jobs/projects_accounting.html
+    - here is detailed information: <https://documentation.sigma2.no/jobs/projects_accounting.html>
     - in short: ask for what the job needs and you probably don't need to worry too much (except sharing the project allocation with other project members responsibly). the accounting can become a problem if you request much more resources than are actually used. also memory, not only cores.
 
 23. Regarding reading data: You mentioned a few simple do's and dont's, but is there any more advice / tools for taking care of tricky file reading / databases?
@@ -196,9 +196,9 @@ gives me `sbatch: error: contain a NULL character '\0'.`
 26. Where can I find the next Q&A session (the monthly event)? 
    - [NRIS Monthly Q&A](https://documentation.sigma2.no/getting_help/qa-sessions.html)
 
-27. Is there a tool like top/htop that can tell me about how busy the file system is? I have experienced that my Python scripts take > 60 s to import packages (usually <2 s), so I can only guess that the file system was slow / busy?
+27. Is there a tool like top/htop that can tell me about how busy the file system is? I have experienced that my Python scripts take > 60 s to import packages (usually less than 2 s), so I can only guess that the file system was slow / busy?
     - we are aware that sometimes it can be very difficult for users to see whether it is slow because of something they do or slow because of the file system (slowed down due to to other reasons). we are working on setting up better dashboards with health checks so that it becomes easier to see.
-    - currently the best option is to check https://opslog.sigma2.no/
+    - currently the best option is to check <https://opslog.sigma2.no/>
 
 
 28. Are the results of the exercise correct?
@@ -221,7 +221,7 @@ gives me `sbatch: error: contain a NULL character '\0'.`
 One thing you thought was good:
   - The second session was very practical and interactive --> that was very helpful +1
   - Enjoyed the content of both sessions. The instructors were good at pointing out what to think of when tailoring the slurm scripts for a particular simulation. `strings` was a discovery for me too :). Nice you have several tools documented to check CPU and memory usage. I like the `time` wrapper a lot. Used `perf-report` before, a favourite too.
-  - Not so much to do with today, but the docs on https://documentation.sigma2.no/ are really getting very good!
+  - Not so much to do with today, but the docs on <https://documentation.sigma2.no/> are really getting very good!
   - The demo using the terminal was nicely made. Appropriate tempo. The user/directory coloring and extra command window at the bottom were helpful.
 
 One thing that should be improved until tomorrow or next time:
