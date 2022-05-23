@@ -100,18 +100,17 @@ what's the conclusion from the result?? More nodes then less operations?
 12. Command to explain later
     - `ldd <binary>`, `strings <binary>` (read man pages : man ldd and man strings)
 
-## Choosing memory and core settings (we start 10:50)
+
+## Choosing memory and core settings
 
 We will follow:
 - <https://documentation.sigma2.no/jobs/choosing-memory-settings.html>
 - <https://documentation.sigma2.no/jobs/choosing-number-of-cores.html>
 
-
 13. What is the command to check the quota required for a submitted job?
-  - compute quota: `cost`
-  - storage quota: `dusage`
-  - There is no quota "for the submited job". The quota is on how many CPU hours you have remaining in the project and how much storage space you have left.
-
+   - compute quota: `cost`
+   - storage quota: `dusage`
+   - There is no quota "for the submited job". The quota is on how many CPU hours you have remaining in the project and how much storage space you have left.
 
 14. How can I specify that I want 16 tasks on specified nodes?
     - You shall also specify the nodes : e.g. `--nodelist=c1-2,c1-3` (assuming you have the right to run on these nodes)
@@ -146,8 +145,9 @@ gives me `sbatch: error: contain a NULL character '\0'.`
     - <https://documentation.sigma2.no/jobs/choosing-number-of-cores.html#example-for-a-memory-bound-job>
     - it was `module load Arm-Forge/21.1`
     - then prepend the command with `perf-report`
-    
-## Exercise: until 12:10
+
+
+## Exercise (15 min)
 
 - Copy files from here: `/cluster/projects/nn9989k/nris-best-practices/`
 - Consider only the `how-much-memory` and `how-many-cores`
@@ -200,8 +200,8 @@ gives me `sbatch: error: contain a NULL character '\0'.`
     - we are aware that sometimes it can be very difficult for users to see whether it is slow because of something they do or slow because of the file system (slowed down due to to other reasons). we are working on setting up better dashboards with health checks so that it becomes easier to see.
     - currently the best option is to check <https://opslog.sigma2.no/>
 
-
 28. Are the results of the exercise correct?
+    - yes. great job!
 
 
 ### Results from exercises
@@ -212,8 +212,6 @@ gives me `sbatch: error: contain a NULL character '\0'.`
 - and what `--num-tasks` would you recommend for `binary-b`?
         Nodes: 1
         Cores per node: 4
-
-
 
 
 ### Feedback Day 1
