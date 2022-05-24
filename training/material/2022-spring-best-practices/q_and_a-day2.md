@@ -53,7 +53,7 @@ Which software would you like to run on our HPC machines?
     - You can install also into your project folder as described  [here](https://documentation.sigma2.no/software/userinstallsw/easybuild.html#installing-software-in-a-project-folder) and then just delete the `.local/easybuild` folder
     - we will also discuss this in the Q&A session
     - How to be more specific when installing.
-        -  `eb --show-config` shows where things are placed, specifying `sourcepath` you could place the downloaded files in a specfic folder and delete it later [Details](https://docs.easybuild.io/en/latest/Configuration.html) . Removing the  `sourcepath` folder recursively will clear all downloads and would not affect the instaltion.
+        -  `eb --show-config` shows where things are placed, specifying `sourcepath` you could place the downloaded files in a specific folder and delete it later [Details](https://docs.easybuild.io/en/latest/Configuration.html) . Removing the  `sourcepath` folder recursively will clear all downloads and would not affect the instaltion.
 
 5. I don't know if I understood correctly, but can I build my own module with EasyBuild for any bioinformatic software?
     - yes, provided that the software is available in the EasyBuild ecosystem (people and communities can contribute installation recipes that others can use)
@@ -64,7 +64,7 @@ Which software would you like to run on our HPC machines?
 
     - maybe with the command : `eb --list-software` yet it depends how the eb i configured
         - produces a lot of output better use `-S SOFTWARE`
-    - you can search for available sofware with `eb --search SOFTWARE` or `eb -S SOFTWARE`, then you only need the filename to install. For example `eb Julia-1.7.2-linux-x86_64.eb`
+    - you can search for available software with `eb --search SOFTWARE` or `eb -S SOFTWARE`, then you only need the filename to install. For example `eb Julia-1.7.2-linux-x86_64.eb`
     - it is always good to check if the software is already available with `module avail software`
 
 7. Related to question 5 and 6: What do I do if the needed software is not available with EB? Can I use `wget` to install the software into my project directory?
@@ -76,7 +76,7 @@ Which software would you like to run on our HPC machines?
     - we will talk about conda in few minutes which can be used for a lot of software packages
 
 8. How do I get cowsay on Saga? :D
-    - is it avaiable in EasyBuild? (sorry just kidding)
+    - is it available in EasyBuild? (sorry just kidding)
         - Yes it is. `eb cowsay-3.04.eb`
         - Cowsay is a simple perl script /usr/bin/cowsay (if installed by system as rpm).
 
@@ -109,7 +109,7 @@ Which software would you like to run on our HPC machines?
     - conda-forge is perhaps the most popular one (community-driven and curated channel/collection of very many packages)
     - also bioconda is a good example
     - you or a research group or community can create your own channels also
-    - if you look for a package in the conda archive, there ususally is also information about the channel it is available in
+    - if you look for a package in the conda archive, there usually is also information about the channel it is available in
 
 12. May I ask why need to do `source ${EBROOTMINICONDA3}/etc/profile.d/conda.sh` before "conda activate ENVIRONMENT", I thought "conda activate ENVIRONMENT" is already enough?
     - because the shell is not set for conda and you need to show conda which shell it shall be using
