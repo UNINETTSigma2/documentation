@@ -111,7 +111,7 @@ same software in different versions or incompatible software collections
 at once.
 You can easily share a list of the installed packages with 
 collaborators or colleagues, so they can setup the same
-eniviroment in a matter of minutes.
+environment in a matter of minutes.
 
 ### Setup
 
@@ -227,9 +227,16 @@ and install it with:
 $ conda install -n ENVIRONMENT SOMESOFTWARE
 ```
 
-If the python package you are looking for is not available in conda
-you can use [pip](https://pip.pypa.io/en/stable/) like usually
-from within a conda environment to install additional python packages:
+or alternatively when creating with a path:
+
+``` sh
+$ conda install -p PATH SOMESOFTWARE
+```
+
+If the python package you are looking for is not available in conda you can use
+[pip](https://pip.pypa.io/en/stable/) like usually from within a conda
+environment (after activating your environment) to install additional python
+packages:
 
 ``` sh
 $ pip install SOMEPACKAGE
@@ -280,6 +287,7 @@ python pdexample.py
 
 ### Share your environment
 
+(create_project)=
 #### Share with project members on the same machine
 By creating conda environments in your project folder
 (`conda create -p /cluster/projects/nnXXXXk/conda/ENVIROMENT`)
@@ -306,8 +314,25 @@ from an exported package list:
 $ conda create --name newpython --file package-list.txt
 ```
 
+Alternatively you can substitute `--name ENVIRONMENT` with `--path PATH`.
+
 
 ### Additional Conda information
+
+#### `Disk Quota Exceeded` error message
+
+Conda environments contain a lot of files which can make you exceed your number
+of files quota. This happens especially easily when installing conda
+environments in your home folder. Check your quota with `dusage`.
+
+To solve this error and reduce your number of files, delete unnecessary and cached files with:
+
+```sh
+$ conda clean -a
+```
+
+To avoid this error, create your conda environments in your project folder by
+using the `--path PATH`, see also [here](create_project).
 
 #### Cheatsheet and built-in help
 
@@ -324,7 +349,8 @@ Both Miniconda and Anaconda are distributions of the conda repository management
 system. But while Miniconda brings just the management system (the `conda`
 command), Anaconda comes with a lot of built-in packages.
 
-Both are installed on Stallo but we advise the use of Miniconda. By explicitly
-installing packages into your own environment the chance for unwanted effects
-and errors due to wrong or incompatible versions is reduced. Also you can be
-sure that everything that happens with your setup is controlled by yourself.
+Both are installed on Saga and Betzy but we advise the use of Miniconda. By
+explicitly installing packages into your own environment the chance for
+unwanted effects and errors due to wrong or incompatible versions is reduced.
+Also you can be sure that everything that happens with your setup is controlled
+by yourself.
