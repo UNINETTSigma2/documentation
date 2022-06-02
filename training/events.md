@@ -11,8 +11,6 @@ The courses are free of charges. Our upcoming courses are listed below:
 .. toctree::
    :maxdepth: 1
 
-   events/2022-05-hpc-on-boarding.md
-   events/2022-05-best-practices-on-NRIS-clusters.md
 ```
 
 ## Past events
@@ -20,6 +18,8 @@ The courses are free of charges. Our upcoming courses are listed below:
 .. toctree::
    :maxdepth: 1
 
+   events/2022-05-best-practices-on-NRIS-clusters.md
+   events/2022-05-hpc-on-boarding.md
    events/2021-11-hpc-nird-toolkit-user-course.md
 ```
 
