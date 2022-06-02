@@ -131,7 +131,8 @@ gives me `sbatch: error: contain a NULL character '\0'.`
     - `sacct' combined with  'Reqgres`command can use to list the requested GPU nodes, may be not indices.
     - [sacct](https://slurm.schedmd.com/sacct.html) 
     
-    - Noted the question for tomorrow's GPU session 
+    - You can monitor GPU utilization, Please see our documentation [here](https://documentation.sigma2.no/getting_started/tutorials/gpu/cuda.html#step-3-monitor-the-gpu-utilization)
+     
     
 17. Could you explain CPU Utilized and CPU Efficiency and Job Wall-clock time on the seff output? How does one use this info to better structure job scripts?
     - If you use too many cores and waste time in admin the util goes down. Hence monitor util and check that it's not too low.
