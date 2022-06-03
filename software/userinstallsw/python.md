@@ -314,7 +314,7 @@ from an exported package list:
 $ conda create --name newpython --file package-list.txt
 ```
 
-Alternatively you can substitute `--name ENVIRONMENT` with `--path PATH`.
+Alternatively you can substitute `--name ENVIRONMENT` with `--prefix PATH`.
 
 
 ### Additional Conda information
@@ -332,7 +332,7 @@ $ conda clean -a
 ```
 
 To avoid this error, create your conda environments in your project folder by
-using the `--path PATH`, see also [here](create_project).
+using the `--prefix PATH`, see also [here](create_project).
 
 #### Cheatsheet and built-in help
 
