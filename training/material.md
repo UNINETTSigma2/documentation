@@ -20,9 +20,10 @@
 
 ### Training Video Archives
 
+- [[Video] Best Practices on NRIS Clusters May 2022](https://www.youtube.com/watch?v=UqrC8noY620&list=PLoR6m-sar9AjQ4xEkGUVEOvyC4jOpVjHZ)
+
 - [[Video] HPC On-boarding May 2022](https://www.youtube.com/watch?v=TgJ1BJME6x8&list=PLoR6m-sar9Ag6YFE_Xw6xKUr3vcPUzYi-)
 
-- [[Video] Best Practices on NRIS Clusters](https://www.youtube.com/watch?v=UqrC8noY620&list=PLoR6m-sar9AjQ4xEkGUVEOvyC4jOpVjHZ)
 
 - [[Video] HPC and NIRD toolkit user course November 2021](https://www.youtube.com/playlist?list=PLoR6m-sar9Ai3TMU96xAGDx-UImMzLXae)
 
