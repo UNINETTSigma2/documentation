@@ -18,6 +18,12 @@ If you are new to HPC, we highly recommend to refer the course material of {ref}
 
 **The course is open to all users and free of charge, but registration is mandatory.**
 
+
+```{note}
+  **The video recordings and notes can be found [here](https://documentation.sigma2.no/training/material.html)**
+
+```
+
 ## **Practical Information**
 
 This is an online course via zoom. Participants require access to a computer
