@@ -1,3 +1,5 @@
+(getting-started)=
+
 # Getting started
 
 This page is meant to get you started on our resources and briefly list the
