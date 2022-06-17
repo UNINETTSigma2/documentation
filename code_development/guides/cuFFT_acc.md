@@ -2,8 +2,11 @@
 orphan: true
 ---
 
+(gpu-accelerated-fft-library)=
+
 # GPU-accelerated FFT library 
 
+(summary)=
 # Summary
 
 In this documentation we provide an overview on how to implement a GPU-accelerated library FFT (Fast Fourier Transform) in an OpenACC application and the serial version of the FFTW library. Here we distinguish between two GPU-based FFT libraries: [cuFFT](https://docs.nvidia.com/cuda/cufft/index.html) and [cuFFTW](https://docs.nvidia.com/cuda/cufft/index.html#fftw-supported-interface). The cuFFT library is the NVIDIA-GPU based design, while cuFFTW is a porting version of the existing [FFTW](https://www.fftw.org/) library. In this tutorial, both libraries will be addressed with a special focus on the implementation of the cuFFT library. Specifically, the aim of this tutorial is to:
@@ -16,14 +19,10 @@ In this documentation we provide an overview on how to implement a GPU-accelerat
 
 The implementation will be illustrated for a one-dimensional (1D) scenario and will be further described for 2D and 3D cases.
 
+```{contents} Table of Contents
+```
 
-#### Table of Contents
-
-- [Generality of FFT](#generality-of-fft)
-- [Implementation of FFTW](#implementation-of-fftw)
-- [Compilation process of FFTW](#compilation-process-of-fftw)
-- [Implementation of cuFFT](#implementation-of-cufft)
-- [Compilation process of cuFFT](#compilation-process-of-cufft)
+(generality-of-fft)=
 
 # Generality of FFT
 
@@ -38,6 +37,8 @@ In general, the implementation of an FFT library is based on three major steps a
 These steps necessitate specifying the direction, in which the FFT algorithm should be performed: forward or backward (or also inverse of FFT), and the dimension of the problem at hands as well as the precision (i.e. double or single precision); this is in addition to the nature of the data (real or complex) to be transformed.  
 
 In the following, we consider a one-dimensional (1D) scenario, in which the execution is specified for a double precision complex-to-complex transform plan in the forward and backward directions. The implementation is illustrated via a Fortran code. The latter can be adjusted to run calculations of a single precision as well as of real-to-real/complex transform and can be further extended to multi-dimension cases (i.e. 2D and 3D). We first start with the FFT implementation in a serial-CPU scheme and further extend it to a GPU-accelerated case.  The implementation is illustrated for a simple example of a function defined in time-domain. Here we choose a sinus function (i.e. f(t)=sin(&omega;t) with &omega; is fixed at the value 2), and its FFT should result in a peak around the value &omega;=2 in the frequency domain.  
+
+(implementation-of-fftw)=
 
 # Implementation of FFTW   
 
@@ -140,6 +141,8 @@ For completeness, porting the FFTW library to [cuFFTW](https://docs.nvidia.com/c
        end subroutine grid_1d
 ```
 
+(compilation-process-of-fftw)=
+
 # Compilation process of FFTW
 
 The FFTW library should be linked with fftw3 (i.e. `-lfftw3`) for the double precision, and fftw3f (i.e. `-lfftw3f`) for the single precision case. 
@@ -159,6 +162,7 @@ $ ifort -lfftw3 -o fftw.serial fftw_serial.f90
    
 In the case of using the cuFFTW library, the linking in the compilation syntaxt should be provided for both cuFFT and cuFFTW libraries.
 
+(implementation-of-cufft)=
 
 # Implementation of cuFFT 
 
@@ -279,6 +283,7 @@ Single precision complex-to-complex transform plan | cufftExecC2C( plan, in, out
 
 **Table 2.** *The execution of a function using the cuFFT library. The direction specifies the FFT direction: “CUFFT_FORWARD” for forward FFT and “CUFFT_INVERSE” for backward FFT. The input data are stored in the array in, and the results of FFT for a specific direction are stored in the array out.*
  
+(compilation-process-of-cufft)=
 
 # Compilation process of cuFFT
 
@@ -310,6 +315,7 @@ To run:
 $ srun --partition=accel --gpus=1 --time=00:01:00 --account=nnXXXXX --qos=devel --mem-per-cpu=1G ./cufft.acc
 ```
 
+(conclusion)=
 
 # Conclusion
 
