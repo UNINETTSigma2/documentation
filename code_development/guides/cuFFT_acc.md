@@ -41,7 +41,7 @@ The implementation of the FFTW library is shown below and a detailed description
 
 As described in the code, one needs to initialize the FFT by creating plans. Executing the plans requires specifying the transform direction: *FFTWFORWARD* for the forward direction or *FFTWBACKWARD* for the backward direction (inverse FFT). These two parameters should be defined as an integer parameter. An alternative is to include the `fftw3.f` file as a header (i.e. `include "fftw3.f"`), which contains all parameters required for a general use of FFTW. In the case the file is included, the value of the direction parameter does not need to be defined.  
 
-The arguement *FFTW_MEASURE* in the function `dfftw_plan_dft_1d` means that FFTW measures the execution time of several FFTs in order to find the optimal way to compute the FFT, which might be time-consuming. An alternative is to use *FFTW_ESTIMATE*, which builds a reasonable plan without any computation. This procedure might be less optimal (see [here](https://www.fftw.org/) for further details). 
+The argument *FFTW_MEASURE* in the function `dfftw_plan_dft_1d` means that FFTW measures the execution time of several FFTs in order to find the optimal way to compute the FFT, which might be time-consuming. An alternative is to use *FFTW_ESTIMATE*, which builds a reasonable plan without any computation. This procedure might be less optimal (see [here](https://www.fftw.org/) for further details). 
 
 Note that when implementing the FFTW library, the data obtained from the backward direction need to be normalized by dividing the output array by the size of the data, while those of forward direction do not. This is only valid when using the FFTW library.
 
@@ -98,7 +98,7 @@ For completeness, porting the FFTW library to [cuFFTW](https://docs.nvidia.com/c
 
 !Backward FFT
        call dfftw_execute_dft(plan_backward, out, in)
-!The data on the backforward are unnormalized, so they should be devided by N.        
+!The data on the backforward are unnormalized, so they should be divided by N.        
        in(:) = in(:)/real(nt)
 
 !Destroying plans
@@ -286,14 +286,18 @@ Single precision complex-to-complex transform plan | cufftExecC2C( plan, in, out
 The cuFFT library is part of the CUDA toolkit, and thus it is supported by the NVIDIA-GPU compiler. Therefore, the only modules are required to be load are NVHPC and CUDA modules.
  
 Modules to be loaded:
-On Saga:
-```bash
-module load NVHPC/21.11 CUDA/11.4.1
+````{group-tab} Saga
+
+```console
+$ module load NVHPC/21.11 CUDA/11.4.1
 ```
-On Betzy:
-```bash
-module load NVHPC/21.7 CUDA/11.4.1
+````
+````{group-tab} Betzy
+
+```console
+$ module load NVHPC/21.7 CUDA/11.4.1
 ```
+````
 
 We compile using the NVIDIA Fortran compiler nvfortran. The compilation process requires linking the cuFFT library (`-lcufft`) and adding the CUDA version library to the syntax of the compilation (`-cudalib=cufft`). 
 
