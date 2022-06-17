@@ -265,18 +265,17 @@ The tables below summarize the calling functions in  the case of a multi-dimensi
 ```
 
 Dimension| 1D | 2D | 3D |
--- | -- | -- | -- |
+--- | --- | --- | --- |
 Creating a FFT plan | cufftPlan1D(plan,nx, FFTtype,1) | cufftPlan2d( plan, ny, nx, FFTtype) | cufftPlan3d( plan, nz, ny, nx, FFTtype ) |
--- | -- | -- | -- |
 
 **Table 1.** *Creating FFT plans in 1D, 2D and 3D. Dimension executing a double precision complex-to-complex transform plan in the forward and backward directions. Nx is the size of a 1D array, nx and ny the size of a 2D array, and nx,ny,nz is the size of a 3D array. The FFTtype specifies the data type stored in the arrays in and out as described in the **Table 2**.*
 
 
 Precision of the transformed plan | subroutine | FFTtype |
- -- | -- | -- |
+--- | --- | --- |
 Double precision complex-to-complex transform plan | cufftExecZ2Z( plan, in, out, direction ) | FFTtype=”CUFFT_Z2Z” |
--- | -- | -- |
 Single precision complex-to-complex transform plan | cufftExecC2C( plan, in, out, direction ) | FFTtype=”CUFFT_C2C” |
+
 
 **Table 2.** *The execution of a function using the cuFFT library. The direction specifies the FFT direction: “CUFFT_FORWARD” for forward FFT and “CUFFT_INVERSE” for backward FFT. The input data are stored in the array in, and the results of FFT for a specific direction are stored in the array out.*
  
