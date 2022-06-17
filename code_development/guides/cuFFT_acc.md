@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # GPU-accelerated FFT library 
 
 # Summary
@@ -143,18 +147,14 @@ The FFTW library should be linked with fftw3 (i.e. `-lfftw3`) for the double pre
 Here is an example of a module to be loaded. 
 
 On Saga:
-```bash
-module load FFTW/3.3.9-intel-2021a
+```console
+$ module load FFTW/3.3.9-intel-2021a
 ```
 The same module is available on Betzy.
 
 To compile: 
-```bash
-ifort -lfftw3 -o fftw.serial fftw_serial.f90
-```
-To execute: 
-```bash
-./fftw.serial
+```console
+$ ifort -lfftw3 -o fftw.serial fftw_serial.f90
 ```
    
 In the case of using the cuFFTW library, the linking in the compilation syntaxt should be provided for both cuFFT and cuFFTW libraries.
@@ -300,14 +300,14 @@ $ module load NVHPC/21.7 CUDA/11.4.1
 
 We compile using the NVIDIA Fortran compiler nvfortran. The compilation process requires linking the cuFFT library (`-lcufft`) and adding the CUDA version library to the syntax of the compilation (`-cudalib=cufft`). 
 
-```bash
-nvfortran -lcufft -cudalib=cufft -acc -Minfo=accel -o cufft.acc cufft_acc.f90
+```console
+$ nvfortran -lcufft -cudalib=cufft -acc -Minfo=accel -o cufft.acc cufft_acc.f90
 ```
 Here the flag `-acc` enables OpenACC on NVIDIA-GPU. It is possible to specify the compute capability e.g. `-gpu=cc80` for Betzy and `-gpu=cc60` for Saga.
 
 To run:
-```bash
-srun --partition=accel --gpus=1 --time=00:01:00 --account=nnXXXXX --qos=devel --mem-per-cpu=1G ./cufft.acc
+```console
+$ srun --partition=accel --gpus=1 --time=00:01:00 --account=nnXXXXX --qos=devel --mem-per-cpu=1G ./cufft.acc
 ```
 
 
