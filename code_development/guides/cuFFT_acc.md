@@ -7,6 +7,7 @@ orphan: true
 # GPU-accelerated FFT library 
 
 (summary)=
+
 # Summary
 
 In this documentation we provide an overview on how to implement a GPU-accelerated library FFT (Fast Fourier Transform) in an OpenACC application and the serial version of the FFTW library. Here we distinguish between two GPU-based FFT libraries: [cuFFT](https://docs.nvidia.com/cuda/cufft/index.html) and [cuFFTW](https://docs.nvidia.com/cuda/cufft/index.html#fftw-supported-interface). The cuFFT library is the NVIDIA-GPU based design, while cuFFTW is a porting version of the existing [FFTW](https://www.fftw.org/) library. In this tutorial, both libraries will be addressed with a special focus on the implementation of the cuFFT library. Specifically, the aim of this tutorial is to:
@@ -290,6 +291,8 @@ Single precision complex-to-complex transform plan | cufftExecC2C( plan, in, out
 The cuFFT library is part of the CUDA toolkit, and thus it is supported by the NVIDIA-GPU compiler. Therefore, the only modules are required to be load are NVHPC and CUDA modules.
  
 Modules to be loaded:
+
+`````{tabs}
 ````{group-tab} Saga
 
 ```console
@@ -302,6 +305,7 @@ $ module load NVHPC/21.11 CUDA/11.4.1
 $ module load NVHPC/21.7 CUDA/11.4.1
 ```
 ````
+`````
 
 We compile using the NVIDIA Fortran compiler nvfortran. The compilation process requires linking the cuFFT library (`-lcufft`) and adding the CUDA version library to the syntax of the compilation (`-cudalib=cufft`). 
 
