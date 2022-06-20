@@ -6,7 +6,7 @@
     - [<span style="color:green">Beginner</span>]
         {ref}`Calling cuBLAS from OpenMP<cublas_openmp>`
     - [<span style="color:green">Beginner</span>]
-        {ref}`Calling cuFFT from OpenACC<cublas_openacc>`    
+        {ref}`Calling cuFFT from OpenACC<cufft_openacc>`    
 (dev-guides-openacc)=
 - GPU programming with OpenACC:
     - [<span style="color:green">Beginner</span>]
