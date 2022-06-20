@@ -216,7 +216,7 @@ Starting SAXPY + OpenMP offload program
 Ending SAXPY + OpenMP program
 ```
 
-(calling-cufft-from-openacc)=
+(cufft-openacc)=
 
 ## Calling cuFFT from OpenACC 
 
