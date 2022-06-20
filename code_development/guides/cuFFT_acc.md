@@ -51,7 +51,7 @@ The argument *FFTW_MEASURE* in the function `dfftw_plan_dft_1d` means that FFTW 
 
 Note that when implementing the FFTW library, the data obtained from the backward direction need to be normalized by dividing the output array by the size of the data, while those of forward direction do not. This is only valid when using the FFTW library.
 
-To check the outcome of the result in the forward direction, one can plot the function in the frequency-domain, which should display a peak around the value &w;=+2 and -2 as the function is initially symmetric. By performing the backward FFT of the obtained function, one should obtain the initial function displayed in time-domain (i.e. sin(2t)). This checking procedure holds also when implementing a GPU version of the FFT library.
+To check the outcome of the result in the forward direction, one can plot the function in the frequency-domain, which should display a peak around the value &omega;=+2 and -2 as the function is initially symmetric. By performing the backward FFT of the obtained function, one should obtain the initial function displayed in time-domain (i.e. sin(2t)). This checking procedure holds also when implementing a GPU version of the FFT library.
 
 For completeness, porting the FFTW library to [cuFFTW](https://docs.nvidia.com/cuda/cufft/index.html#fftw-supported-interface) does not require modifications in the code - it is done by replacing the file `fftw3.h` with `cufftw.h`.
 
@@ -213,7 +213,7 @@ The tables below summarize the calling functions in  the case of a multi-dimensi
 !cufftExecZ2Z executes a double precision complex-to-complex transform plan
        ierr = cufftPlan1D(plan,nt,CUFFT_Z2Z,1)
        
-!acc_get_cuda_stream: tells the openACC runtime to dientify the CUDA
+!acc_get_cuda_stream: tells the openACC runtime to identify the CUDA
 !stream used by CUDA
        ierr = ierr + cufftSetStream(plan,acc_get_cuda_stream(acc_async_sync))
 
@@ -269,17 +269,19 @@ The tables below summarize the calling functions in  the case of a multi-dimensi
      end subroutine grid_1d
 ```
 
-Dimension| 1D | 2D | 3D |
---- | --- | --- | --- |
-Creating a FFT plan | cufftPlan1D(plan,nx, FFTtype,1) | cufftPlan2d( plan, ny, nx, FFTtype) | cufftPlan3d( plan, nz, ny, nx, FFTtype ) |
+Dimension| Creating a FFT plan|
+--- |--- |
+1D | cufftPlan1D(plan,nx, FFTtype,1) | 
+2D | cufftPlan2d( plan, ny, nx, FFTtype) |
+3D | cufftPlan3d( plan, nz, ny, nx, FFTtype ) |
 
 **Table 1.** *Creating FFT plans in 1D, 2D and 3D. Dimension executing a double precision complex-to-complex transform plan in the forward and backward directions. Nx is the size of a 1D array, nx and ny the size of a 2D array, and nx,ny,nz is the size of a 3D array. The FFTtype specifies the data type stored in the arrays in and out as described in the **Table 2**.*
 
 
 Precision of the transformed plan | subroutine | FFTtype |
 --- | --- | --- |
-Double precision complex-to-complex transform plan | cufftExecZ2Z( plan, in, out, direction ) | FFTtype=”CUFFT_Z2Z” |
-Single precision complex-to-complex transform plan | cufftExecC2C( plan, in, out, direction ) | FFTtype=”CUFFT_C2C” |
+Double precision complex-to-complex | cufftExecZ2Z( plan, in, out, direction ) | ”CUFFT_Z2Z” |
+Single precision complex-to-complex | cufftExecC2C( plan, in, out, direction ) | ”CUFFT_C2C” |
 
 
 **Table 2.** *The execution of a function using the cuFFT library. The direction specifies the FFT direction: “CUFFT_FORWARD” for forward FFT and “CUFFT_INVERSE” for backward FFT. The input data are stored in the array in, and the results of FFT for a specific direction are stored in the array out.*
