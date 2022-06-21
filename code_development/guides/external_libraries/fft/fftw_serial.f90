@@ -46,7 +46,7 @@ module parameter_kind
 
 !Backward FFT
        call dfftw_execute_dft(plan_backward, out, in)
-!The data on the backforward are unnormalized, so they should be devided by N.        
+!The data on the backforward are unnormalized, so they should be divided by N.        
        in(:) = in(:)/real(nt)
 
 !Destroying plans
