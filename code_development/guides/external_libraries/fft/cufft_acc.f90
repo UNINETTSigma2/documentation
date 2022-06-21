@@ -32,7 +32,7 @@ module parameter_kind
        print*,"--sum before FFT", sum(real(in(1:nt/2)))
 !cufftExecZ2Z executes a double precision complex-to-complex transform plan
        ierr = cufftPlan1D(plan,nt,CUFFT_Z2Z,1)
-!acc_get_cuda_stream: tells the openACC runtime to dientify the CUDA
+!acc_get_cuda_stream: tells the openACC runtime to identify the CUDA
 !stream used by CUDA
        ierr = ierr + cufftSetStream(plan,acc_get_cuda_stream(acc_async_sync))
 
