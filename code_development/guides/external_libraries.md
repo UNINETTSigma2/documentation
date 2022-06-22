@@ -219,6 +219,7 @@ Ending SAXPY + OpenMP program
 (cufft_openacc)=
 ## Calling `cuFFT` from OpenACC 
 
+(summary)=
 ### Summary
 
 In this section we provide an overview on how to implement a GPU-accelerated library FFT (Fast Fourier Transform) in an OpenACC application and the serial version of the FFTW library. Here we distinguish between two GPU-based FFT libraries: [`cuFFT`](https://docs.nvidia.com/cuda/cufft/index.html) and [`cuFFTW`](https://docs.nvidia.com/cuda/cufft/index.html#fftw-supported-interface). The `cuFFT` library is the NVIDIA-GPU based design, while `cuFFTW` is a porting version of the existing [`FFTW`](https://www.fftw.org/) library. In this tutorial, both libraries will be addressed with a special focus on the implementation of the `cuFFT` library. Specifically, the aim of this tutorial is to:
@@ -231,7 +232,7 @@ In this section we provide an overview on how to implement a GPU-accelerated lib
 
 The implementation will be illustrated for a one-dimensional (1D) scenario and will be further described for 2D and 3D cases.
 
-
+(generality-fft)
 ### Generality of FFT
 
 In general, the implementation of an FFT library is based on three major steps as defined below:
@@ -246,6 +247,7 @@ These steps necessitate specifying the direction, in which the FFT algorithm sho
 
 In the following, we consider a one-dimensional (1D) scenario, in which the execution is specified for a double precision complex-to-complex transform plan in the forward and backward directions. The implementation is illustrated via a Fortran code. The latter can be adjusted to run calculations of a single precision as well as of real-to-real/complex transform and can be further extended to multi-dimension cases (i.e. 2D and 3D). We first start with the FFT implementation in a serial-CPU scheme and further extend it to a GPU-accelerated case.  The implementation is illustrated for a simple example of a function defined in time-domain. Here we choose a sinus function (i.e. f(t)=sin(&omega;t) with &omega; is fixed at the value 2), and its FFT should result in a peak around the value &omega;=2 in the frequency domain.  
 
+(implementation-fftw)=
 ### Implementation of `FFTW`   
 
 The implementation of the `FFTW` library is shown below and a detailed description of the library can be found [here](https://www.fftw.org/).
@@ -268,6 +270,7 @@ For completeness, porting the `FFTW` library to [`cuFFTW`](https://docs.nvidia.c
 :download:`fftw_serial.f90 <./external_libraries/fft/fftw_serial.f90>`
 ```
 
+(compilation-process-fftw)=
 ### Compilation process of `FFTW`
 
 The `FFTW` library should be linked with fftw3 (i.e. `-lfftw3`) for the double precision, and fftw3f (i.e. `-lfftw3f`) for the single precision case. 
@@ -287,7 +290,7 @@ $ ifort -lfftw3 -o fftw.serial fftw_serial.f90
    
 In the case of using the `cuFFTW` library, the linking in the compilation syntaxt should be provided for both `cuFFT` and `cuFFTW` libraries.
 
-
+(implementation-cufft)=
 ### Implementation of `cuFFT`
 
 We consider the same scenario as described in the previous section but this time the implementation involves the communication between a CPU-host and GPU-device by calling the `cuFFT` library. The `cuFFT` implementation is shown below. 
@@ -324,6 +327,7 @@ Single precision complex-to-complex | cufftExecC2C( plan, in, out, direction ) |
 
 **Table 2.** *Executing a double precision/single-precision complex-to-complex transform plan in a FFT direction to be specified: “CUFFT_FORWARD” for forward FFT and “CUFFT_INVERSE” for backward FFT. The input data are stored in the array **in**, and the results of FFT for a specific direction are stored in the array **out**.*
  
+(compilation-process-cufft)= 
 ### Compilation process of `cuFFT`
 
 The `cuFFT` library is part of the CUDA toolkit, and thus it is supported by the NVIDIA-GPU compiler. Therefore, the only modules are required to be load are NVHPC and CUDA modules.
@@ -358,6 +362,6 @@ $ srun --partition=accel --gpus=1 --time=00:01:00 --account=nnXXXXX --qos=devel 
 ```
 
 (conclusion)=
-## Conclusion
+# Conclusion
 
 In conclusion, we have provided a description of the implementation of the GPU-accelerated `cuBLAS` and `cuFFT` libraries targeting NVIDIA-GPU. The implementation illustrates the capability of calling a GPU-accelerated library written in a low-level programming model from an OpenACC or OpenMP application interface. We have also documented the implementation of the `FFTW` library for a serial case scenario and emphasized its porting version referred to as the `cuFFTW` library. For the `FFTW` and `cuFFT` libraries, although the implementation has been done for a 1D problem, an extension to 2D and 3D scenarios is straightforward.
