@@ -232,7 +232,7 @@ In this section we provide an overview on how to implement a GPU-accelerated lib
 
 The implementation will be illustrated for a one-dimensional (1D) scenario and will be further described for 2D and 3D cases.
 
-(generality-fft)
+(generality-fft)=
 ### Generality of FFT
 
 In general, the implementation of an FFT library is based on three major steps as defined below:
