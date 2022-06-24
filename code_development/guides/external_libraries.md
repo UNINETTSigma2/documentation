@@ -361,7 +361,7 @@ To run:
 $ srun --partition=accel --gpus=1 --time=00:01:00 --account=nnXXXXX --qos=devel --mem-per-cpu=1G ./cufft.acc
 ```
 
-(conclusion)=
+(conclusion-ext-lib)=
 # Conclusion
 
 In conclusion, we have provided a description of the implementation of the GPU-accelerated `cuBLAS` and `cuFFT` libraries targeting NVIDIA-GPU. The implementation illustrates the capability of calling a GPU-accelerated library written in a low-level programming model from an OpenACC or OpenMP application interface. We have also documented the implementation of the `FFTW` library for a serial case scenario and emphasized its porting version referred to as the `cuFFTW` library. For the `FFTW` and `cuFFT` libraries, although the implementation has been done for a 1D problem, an extension to 2D and 3D scenarios is straightforward.
