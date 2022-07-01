@@ -215,3 +215,153 @@ Starting SAXPY + OpenMP offload program
   Calculation produced the correct result of '4 * 10000 == 40000'!
 Ending SAXPY + OpenMP program
 ```
+
+(cufft_openacc)=
+## Calling `cuFFT` from OpenACC 
+
+(summary)=
+### Summary
+
+In this section we provide an overview on how to implement a GPU-accelerated library FFT (Fast Fourier Transform) in an OpenACC application and the serial version of the FFTW library. Here we distinguish between two GPU-based FFT libraries: [`cuFFT`](https://docs.nvidia.com/cuda/cufft/index.html) and [`cuFFTW`](https://docs.nvidia.com/cuda/cufft/index.html#fftw-supported-interface). The `cuFFT` library is the NVIDIA-GPU based design, while `cuFFTW` is a porting version of the existing [`FFTW`](https://www.fftw.org/) library. In this tutorial, both libraries will be addressed with a special focus on the implementation of the `cuFFT` library. Specifically, the aim of this tutorial is to:
+
+* Show how to incorporate the `FFTW` library in a serial code.
+* Describe how to use the `cuFFTW` library.
+* Show how to incorporate the `cuFFT` library in an OpenACC application interface.
+* Describe briefly how to enable `cuFFT` to run on OpenACC stream.
+* Describe the compilation process of `FFTW` and `cuFFT`.
+
+The implementation will be illustrated for a one-dimensional (1D) scenario and will be further described for 2D and 3D cases.
+
+(generality-fft)=
+### Generality of FFT
+
+In general, the implementation of an FFT library is based on three major steps as defined below:
+
+- Creating plans (initialization).
+
+- Executing plans (create a configuration of a FFT plan having a specified dimension and data type).
+
+- Destroying plans (to free the ressources associated with the FFT plans).
+
+These steps necessitate specifying the direction, in which the FFT algorithm should be performed: forward or backward (or also inverse of FFT), and the dimension of the problem at hands as well as the precision (i.e. double or single precision); this is in addition to the nature of the data (real or complex) to be transformed.  
+
+In the following, we consider a one-dimensional (1D) scenario, in which the execution is specified for a double precision complex-to-complex transform plan in the forward and backward directions. The implementation is illustrated via a Fortran code. The latter can be adjusted to run calculations of a single precision as well as of real-to-real/complex transform and can be further extended to multi-dimension cases (i.e. 2D and 3D). We first start with the FFT implementation in a serial-CPU scheme and further extend it to a GPU-accelerated case.  The implementation is illustrated for a simple example of a function defined in time-domain. Here we choose a sinus function (i.e. f(t)=sin(&omega;t) with &omega; is fixed at the value 2), and its FFT should result in a peak around the value &omega;=2 in the frequency domain.  
+
+(implementation-fftw)=
+### Implementation of `FFTW`   
+
+The implementation of the `FFTW` library is shown below and a detailed description of the library can be found [here](https://www.fftw.org/).
+
+As described in the code, one needs to initialize the FFT by creating plans. Executing the plans requires specifying the transform direction: *FFTWFORWARD* for the forward direction or *FFTWBACKWARD* for the backward direction (inverse FFT). These two parameters should be defined as an integer parameter. An alternative is to include the `fftw3.f` file as a header (i.e. `include "fftw3.f"`), which contains all parameters required for a general use of `FFTW`. In the case the file is included, the value of the direction parameter does not need to be defined.  
+
+The argument *FFTW_MEASURE* in the function `dfftw_plan_dft_1d` means that `FFTW` measures the execution time of several FFTs in order to find the optimal way to compute the FFT, which might be time-consuming. An alternative is to use *FFTW_ESTIMATE*, which builds a reasonable plan without any computation. This procedure might be less optimal (see [here](https://www.fftw.org/) for further details). 
+
+Note that when implementing the `FFTW` library, the data obtained from the backward direction need to be normalized by dividing the output array by the size of the data, while those of forward direction do not. This is only valid when using the `FFTW` library.
+
+To check the outcome of the result in the forward direction, one can plot the function in the frequency-domain, which should display a peak around the value &omega;=+2 and -2 as the function is initially symmetric. By performing the backward FFT of the obtained function, one should obtain the initial function displayed in time-domain (i.e. sin(2t)). This checking procedure holds also when implementing a GPU version of the FFT library.
+
+For completeness, porting the `FFTW` library to [`cuFFTW`](https://docs.nvidia.com/cuda/cufft/index.html#fftw-supported-interface) does not require modifications in the code - it is done by replacing the file `fftw3.h` with `cufftw.h`.
+
+```{eval-rst}
+.. literalinclude:: external_libraries/fft/fftw_serial.f90
+   :language: fortran
+```
+```{eval-rst}
+:download:`fftw_serial.f90 <./external_libraries/fft/fftw_serial.f90>`
+```
+
+(compilation-process-fftw)=
+### Compilation process of `FFTW`
+
+The `FFTW` library should be linked with fftw3 (i.e. `-lfftw3`) for the double precision, and fftw3f (i.e. `-lfftw3f`) for the single precision case. 
+
+Here is an example of a module to be loaded. 
+
+On Saga:
+```console
+$ module load FFTW/3.3.9-intel-2021a
+```
+The same module is available on Betzy.
+
+To compile: 
+```console
+$ ifort -lfftw3 -o fftw.serial fftw_serial.f90
+```
+   
+In the case of using the `cuFFTW` library, the linking in the compilation syntaxt should be provided for both `cuFFT` and `cuFFTW` libraries.
+
+(implementation-cufft)=
+### Implementation of `cuFFT`
+
+We consider the same scenario as described in the previous section but this time the implementation involves the communication between a CPU-host and GPU-device by calling the `cuFFT` library. The `cuFFT` implementation is shown below. 
+
+Similarly to the `FFTW` library, the implementation of the GPU-accelerated `cuFFT` library is conceptually based on creating plans, executing and destroying them. The difficulty here however is how to call the `cuFFT` library, which is written using a low-level programming model, from an OpenACC application interface. In this scenario, there are steps that are executed by the `cuFFT` library and other steps are executed by OpenACC kernels. Executing all these steps requires sharing data. In other words, it requires making OpenACC aware of the GPU-accelerated `cuFFT` library. This is done in OpenACC by specifying the directive `host_data` together with the clause `use_device(list-of-arrays)`. This combination permits to access the device address of the listed arrays in the `use_device()` clause from the [host](https://www.nvidia.com/docs/IO/116711/OpenACC-API.pdf). The arrays, which should be already present on the device memory, are in turn passed to the `cuFFT` functions (i.e. `cufftExecZ2Z()` in our example). The output data of these functions is not normalized, and thus it requires to be normalized by dividing by the size of the array. The normalisation may be followed by the function `cufftDestroy()` to free all GPU resources associated with a `cuFFT` plan and destroy the internal plan data structure.
+
+It is worth noting that the `cuFFT` library uses CUDA streams for an asynchronous execution, which is not the case for OpenACC. It is therefore necessary to make the `cuFFT` runs on OpenACC streams. This is done by calling the routine `cufftSetStream()`, which is part of the `cuFFT` module. The routine includes the function `acc_get_cuda_stream()`, which enables identifying the CUDA stream.
+
+Note that the use of the OpenACC runtime routines and the `cuFFT` routines requires including the header lines `use openacc` and `use cufft`.
+
+The tables below summarize the calling functions in the case of a multi-dimension data having a simple or double complex data type (see [here](https://docs.nvidia.com/hpc-sdk/compilers/fortran-cuda-interfaces/index.html) for more details).
+
+```{eval-rst}
+.. literalinclude:: external_libraries/fft/cufft_acc.f90
+   :language: fortran
+```
+```{eval-rst}
+:download:`cufft_acc.f90 <./external_libraries/fft/cufft_acc.f90>`
+```
+
+Dimension| Creating a FFT plan|
+--- |--- |
+1D | cufftPlan1D( plan, nx, FFTtype,1) | 
+2D | cufftPlan2d( plan, ny, nx, FFTtype) |
+3D | cufftPlan3d( plan, nz, ny, nx, FFTtype) |
+
+**Table 1.** *Creating FFT plans in 1D, 2D and 3D dimensions. nx is the size of a 1D array, nx and ny the size of a 2D array, and nx, ny, nz define the size of a 3D array. The FFTtype specifies the data type stored as described in the **Table 2**.*
+
+
+Precision of the transformed plan | subroutine | FFTtype |
+--- | --- | --- |
+Double precision complex-to-complex | cufftExecZ2Z( plan, in, out, direction ) | ”CUFFT_Z2Z” |
+Single precision complex-to-complex | cufftExecC2C( plan, in, out, direction ) | ”CUFFT_C2C” |
+
+**Table 2.** *Executing a double precision/single-precision complex-to-complex transform plan in a FFT direction to be specified: “CUFFT_FORWARD” for forward FFT and “CUFFT_INVERSE” for backward FFT. The input data are stored in the array **in**, and the results of FFT for a specific direction are stored in the array **out**.*
+ 
+(compilation-process-cufft)= 
+### Compilation process of `cuFFT`
+
+The `cuFFT` library is part of the CUDA toolkit, and thus it is supported by the NVIDIA-GPU compiler. Therefore, the only modules are required to be load are NVHPC and CUDA modules.
+ 
+Modules to be loaded:
+
+`````{tabs}
+````{group-tab} Saga
+
+```console
+$ module load NVHPC/21.11 CUDA/11.4.1
+```
+````
+````{group-tab} Betzy
+
+```console
+$ module load NVHPC/21.7 CUDA/11.4.1
+```
+````
+`````
+
+We compile using the NVIDIA Fortran compiler `nvfortran`. The compilation process requires linking the `cuFFT` library (`-lcufft`) and adding the CUDA version library to the syntax of the compilation (`-cudalib=cufft`). 
+
+```console
+$ nvfortran -lcufft -cudalib=cufft -acc -Minfo=accel -o cufft.acc cufft_acc.f90
+```
+Here the flag `-acc` enables OpenACC on NVIDIA-GPU. It is possible to specify the compute capability e.g. `-gpu=cc80` for Betzy and `-gpu=cc60` for Saga.
+
+To run:
+```console
+$ srun --partition=accel --gpus=1 --time=00:01:00 --account=nnXXXXX --qos=devel --mem-per-cpu=1G ./cufft.acc
+```
+
+(conclusion-ext-lib)=
+# Conclusion
+
+In conclusion, we have provided a description of the implementation of the GPU-accelerated `cuBLAS` and `cuFFT` libraries targeting NVIDIA-GPU. The implementation illustrates the capability of calling a GPU-accelerated library written in a low-level programming model from an OpenACC or OpenMP application interface. We have also documented the implementation of the `FFTW` library for a serial case scenario and emphasized its porting version referred to as the `cuFFTW` library. For the `FFTW` and `cuFFT` libraries, although the implementation has been done for a 1D problem, an extension to 2D and 3D scenarios is straightforward.
