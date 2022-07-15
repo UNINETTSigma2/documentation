@@ -17,6 +17,7 @@ Contact us at [support@nris.no](mailto:support@nris.no)
 **List of applications:**
 ```{toctree}
 :maxdepth: 1
+application_guides/beast.md
 application_guides/bioinfo.md
 application_guides/cdo.md
 application_guides/cesm.md
