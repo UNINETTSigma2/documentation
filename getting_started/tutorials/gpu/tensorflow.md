@@ -1,14 +1,14 @@
 # Using TensorFlow in Python
 
 In this example we will try to utilize the
-`TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4` library to execute a very simple
+`TensorFlow/2.6.0-foss-2021a-CUDA-11.3.1` library to execute a very simple
 computation on the GPU. We could do the following interactively in Python, but
 we will instead use a Slurm script, which will make it a bit more reproducible
 and in some sense a bit easier, since we don't have to sit and wait for the
 interactive session to start.
 
 We will use the following simple calculation in Python and `TensorFlow` to test
-the GPUs of Saga:
+the GPUs:
 
 ```{eval-rst} 
 .. literalinclude:: tensorflow/gpu_intro.py
@@ -22,18 +22,23 @@ the GPUs of Saga:
 To run this we will first have to create a Slurm script in which we will request
 resources. A good place to start is with a basic job
 script (see {ref}`job-scripts`).
-Use the following to create `submit_gpu.sh` (remember to substitute your project
+Use the following to create `submit_cpu.sh` (remember to substitute your project
 number under `--account`):
+
+`````{tabs}
+````{group-tab} Saga
 
 ```{eval-rst} 
 .. literalinclude:: tensorflow/submit_cpu.sh
   :language: bash
 ```
 ```{eval-rst} 
-:download:`submit_gpu.sh <./tensorflow/submit_cpu.sh>`
+:download:`submit_cpu.sh <./tensorflow/submit_cpu.sh>`
 ```
+````
+`````
 
-If we just run the above Slurm script with `sbatch submit_gpu.sh` the output
+If we just run the above Slurm script with `sbatch submit_cpu.sh` the output
 (found in the same directory as you executed the `sbatch` command with a name
 like `slurm-<job-id>.out`) will contain several errors as `Tensorflow` attempts
 to communicate with the GPU, however, the program will still run and give the
@@ -51,6 +56,9 @@ this is of course that we never asked for any GPUs in the first place. To remedy
 this we will change the Slurm script to include the `--partition=accel` and
 `--gpus=1`, as follows:
 
+`````{tabs}
+````{group-tab} Saga
+
 ```{eval-rst} 
 .. literalinclude:: tensorflow/submit_gpu.sh
   :language: bash
@@ -59,6 +67,8 @@ this we will change the Slurm script to include the `--partition=accel` and
 ```{eval-rst} 
 :download:`submit_gpu.sh <./tensorflow/submit_gpu.sh>`
 ```
+````
+`````
 
 We should now see the following output:
 
@@ -81,6 +91,9 @@ To do this monitoring we will start `nvidia-smi` before our job and let it run
 while we use the GPU. We will change the `submit_gpu.sh` Slurm script above to
 `submit_monitor.sh`, shown below:
 
+`````{tabs}
+````{group-tab} Saga
+
 ```{eval-rst} 
 .. literalinclude:: tensorflow/submit_monitor.sh
   :language: bash
@@ -89,6 +102,8 @@ while we use the GPU. We will change the `submit_gpu.sh` Slurm script above to
 ```{eval-rst} 
 :download:`submit_monitor.sh <./tensorflow/submit_monitor.sh>`
 ```
+````
+`````
 
 ```{note}
 The query used to monitor the GPU can be further extended by adding additional
