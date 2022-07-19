@@ -33,9 +33,9 @@ Below the table we give recommendations and discuss pros and cons for the variou
   (but not on the compute nodes).
 - The `/cluster` file system is a high-performance parallel file
   system.  On Fram, it is a [Lustre](https://www.lustre.org/) system with
-  a total storage space of 2.3PB, and on Saga it is a
+  a total storage space of 2.3 PB, and on Saga it is a
   [BeeGFS](https://www.beegfs.io/) system with a total storage space of
-  1.1PB.
+  6.5 PB.
   For performance optimizations, consult
   [Lustre performance tips](/files_storage/performance/lustre.md) (Fram)
   and
