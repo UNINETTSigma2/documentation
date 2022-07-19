@@ -38,11 +38,10 @@ The project leader (PL) has sole discretion over project members, thus access
 to the project area(s).
 
 Project local to a particular HPC system has its own directory, created with
-permissions set to 2770 (meaning that only the group can read, write, and execute)
-to set the global group ID.
+permissions set to 2770 (meaning that only the group can read, write, and execute).
 
 Group ownership is regularly controlled for each project directory and reset in
-case needed. This is required for storage accounting purposes.
+case needed to the group ID. This is required for storage accounting purposes.
 
 
 ## Shared project areas
@@ -50,15 +49,15 @@ case needed. This is required for storage accounting purposes.
 In special cases there might be a need for sharing data between projects for
 collaboration and possibly preventing data duplication.
 
-If such a need is justified, a meta-group and the corresponding directory is
-created. Access to the shared project area is at the Project Leader's (PL) sole discretion.
+If such a need is justified, a meta-group and the corresponding directory can be
+created. Access to the shared project area is at the project leader's (PL) sole discretion.
 For example, if the PL of the project owning the file group `acme` wants 
 `/cluster/shared/acme/inventory_db` to be world readable, the project leader is allowed to do this 
 (e.g., by running, `chmod -R o+r /cluster/shared/acme/inventory_db`).
 
-Note that the shared project areas **must not** contain any private data.
-
-Also note that you **must never** set any directory or file to world writable.
+Please note that:
+- The shared project areas **must not** contain any private data.
+- You **must never** set any directory or file to world writable.
 
 For accounting purposes, the group ownerships are regularly controlled, and
 in case needed, reset.
