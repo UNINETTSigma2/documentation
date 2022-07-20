@@ -36,11 +36,7 @@ Below the table we give recommendations and discuss pros and cons for the variou
   a total storage space of 2.3 PB, and on Saga it is a
   [BeeGFS](https://www.beegfs.io/) system with a total storage space of
   6.5 PB.
-  For performance optimizations, consult
-  [Lustre performance tips](/files_storage/performance/lustre.md) (Fram)
-  and
-  [BeeGFS performance tips](/files_storage/performance/beegfs.md) (Saga)
-  pages.
+  For performance optimizations, consult {ref}`storage-performance`.
 
 
 (usage-and-quota)=
