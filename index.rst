@@ -192,9 +192,9 @@ Index of keywords
 
    files_storage/nird.md
    files_storage/nird_migration.md
+   files_storage/replication.md
    files_storage/clusters.md
    files_storage/backup.md
-   files_storage/replication.md
    files_storage/sharing_files.md
    files_storage/file_transfer.md
    files_storage/performance.md
