@@ -90,6 +90,33 @@ case=$SLURM_JOB_NAME
 mpirun gmx_mpi mdrun $case.tpr
 ```
 
+```{note}
+In the above job script we combined `--ntasks`, `--ntasks-per-node`,
+`--cpus-per-task` and `--gpus-per-task`. This might seem counter intuitive, but
+we did it for good reason.
+
+First, by combining `--ntasks` and `--ntasks-per-node` the `--ntasks` takes
+precedence and determines the number of MPI ranks to start. The
+`--ntasks-per-node` then acts as limitation, determining the maximum number of
+tasks per node
+([reference](https://slurm.schedmd.com/sbatch.html#OPT_ntasks-per-node)). This
+means that if we asked for `--ntasks=6` with `--ntasks-per-node=4` we would
+still get 6 MPI ranks, but Slurm would have to reserve two nodes for us.
+
+We then used `--cpus-per-task`, this was done since GROMACS requires at least
+two threads per MPI rank so that each MPI rank has one computation thread and
+one communication thread. We could give GROMACS more CPUs per MPI rank, since
+GROMACS supports shared memory parallelization in addition to GPU acceleration,
+but that is something that each project/experiment needs to test for themselves
+to determine the utility.
+
+Lastly, all of this combined ensures that if we want to use multiple GPUs
+(which GROMACS support) we can simply increase the number of `--ntasks` and all
+other parameters will be correct. There will only ever be 4 tasks per node
+which corresponds to the number of GPUs per node and each of these MPI ranks
+will have the necessary cores to run all bookkeeping tasks.
+```
+
 Using accelerators can give a nice speed-up, depending on the problem. As an
 example we modeled a box of water with constant temperature and pressure. To
 measure the difference in performance we compared a full CPU node on Saga with
