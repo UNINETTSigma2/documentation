@@ -1,11 +1,10 @@
-
-# NIRD Migration User Guide    
+# NIRD migration user guide    
 
 This page is an information guide for the process of migrating data 
 from old NIRD to new NIRD Storage system which is set in production
 over summer 2022. 
 
-The NIRD is redisigned for the evolving needs of Norwegian researchers 
+The NIRD is redesigned for the evolving needs of Norwegian researchers 
 and has been procured through 
 [the NIRD2020 project](https://www.sigma2.no/procurement-project-nird2020).
  You can find the status updates in the projects page 
@@ -15,10 +14,10 @@ Note that the project page will be continuously updated as new information
 becomes available. Hence we recommend that you check this page frequently.
 Additionally, the most important messages will be communicated by e-mail.
 
-[The PoWG’s migration team](https://www.sigma2.no/be-ready-migrate) will 
+[The preparation for operation working group (PoWG) migration team](https://www.sigma2.no/be-ready-migrate) will 
 take care of your data and services throughout the transfer to effectively 
-migrate during the first quarter of 2022. However, nird project leaders/executive 
-officers(PI/XO) and nird users are requested to cooperate with the PoWG team to select,
+migrate during the first quarter of 2022. However, NIRD project leaders/executive 
+officers(PI/XO) and NIRD users are requested to cooperate with the PoWG team to select,
  prepare and verify the data that need to migrate.  This is crucial to facilitate 
 the migration of important data.
 
@@ -30,7 +29,7 @@ Below you will find the guidance to prepare and par down the data before
 the migration. 
 
 
-## What can you do as a PI/XO?
+## What can you do as a project leader?
 
   - Review the members of the project in MAS (https://www.metacenter.no)
   - Make sure that there is no orphan data that you no longer need
@@ -40,7 +39,8 @@ email to nird-migration@nris.no
   - Communicate and co-ordinate with your project members and urge them to follow the
  steps listed below
 
-## What can you do as a nird user?
+
+## What can you do as a NIRD user?
 
   - Delete the data you no longer need 
   - Make sure that you don’t have duplicate files/folders, delete the unneeded copy    
@@ -49,8 +49,10 @@ email to nird-migration@nris.no
   - If you have any questions, contact the PoWG team by sending 
 email to nird-migration@nris.no 
   - Please see the Frequently Asked Questions below to find the necessary commands. 
-  
-## Frequently Asked Questions(FAQ)
+
+
+## Frequently asked questions
+
 
 ### How do I find zero length files?
 
@@ -59,10 +61,11 @@ email to nird-migration@nris.no
 ```console
 $ find -type f -empty
 ```
- 
+
+
 ### How do I find empty directory?
 
- Use the follwing command.
+ Use the following command.
 ```console
 $ find -type d -empty
 ```   
