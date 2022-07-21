@@ -233,3 +233,9 @@ print("Hello World!")
 ```
 ````
 `````
+
+
+## Redirecting moved or removed pages
+
+Sometimes we want to remove or move a page which has been linked
+to from emails. In this case you can add a redirect. Look for `redirects` in `conf.py`.

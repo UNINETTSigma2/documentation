@@ -36,7 +36,11 @@ html_short_title = 'Sigma2'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['myst_parser', 'sphinx_tabs.tabs']
+extensions = [
+    'myst_parser',
+    'sphinx_tabs.tabs',
+    'sphinx_reredirects',
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -46,6 +50,10 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'venv', '_book', 'node_modules', 'README.md']
 
+# https://documatt.gitlab.io/sphinx-reredirects/usage.html
+redirects = {
+     "files_storage/nird_migration": "nird/migration.html"
+     }
 
 # -- Options for HTML output -------------------------------------------------
 
