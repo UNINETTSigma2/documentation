@@ -14,12 +14,12 @@ while others are for storing project data.
 
 ## Overview
 
-The following table summarizes the different storage options for **Betzy, Fram and Saga**.
+The following table summarizes the different storage options for **Betzy, Fram, and Saga**.
 Below the table we give recommendations and discuss pros and cons for the various storage areas.
 
-| Directory                                       | Purpose              | Default Quota                      | [Backup](backup.md)                 |
+| Directory                                       | Purpose              | {ref}`Default Quota <storage-quota>` | {ref}`Backup <storage-backup>` |
 | :---------------------------------------------- | :------------------- | :--------------------------------- | :---------------------------------: |
-| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files               | [Only if quota enforced](backup.md) |
+| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files               | Only if quota enforced             |
 | `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                | No                                  |
 | (Fram/Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALSCRATCH`) | Per-job data | {ref}`Individual <job-scratch-area-on-local-disk>` | No                   |
 | `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                | No                                  |
@@ -27,7 +27,7 @@ Below the table we give recommendations and discuss pros and cons for the variou
 | `/cluster/shared/<folder_name>`                 | Shared data          | {ref}`Individual <shared-project-area>` | No                                  |
 
 - **User areas and project areas are private**: Data handling and storage policy is documented [here](/files_storage/sharing_files.md).
-- **Note that the `$LOCALSCRATCH` area is only implemented on Fram and Saga**
+- **`$LOCALSCRATCH` area is only implemented on Fram and Saga**.
 - In addition to the areas in the tables above, **both clusters mount the
   NIRD project areas** as `/nird/projects/nird/NSxxxxK` on the login nodes
   (but not on the compute nodes).
@@ -39,34 +39,12 @@ Below the table we give recommendations and discuss pros and cons for the variou
   For performance optimizations, consult {ref}`storage-performance`.
 
 
-(usage-and-quota)=
-
-## Usage and quota
-
-You can see the **disk usage and disk quotas** of your available areas with:
-```
-$ dusage
-```
-
-```{warning}
-**Frequently asked questions**
-
-- **I cannot copy files although we haven't used up all space**:
-  You have probably exceeded the quota on the number of files.
-
-- **I have moved files to the project folder but my home quota usage did not go down**:
-  Moving files does not change ownership of the files. You need to also change the ownership of the files
-  in the project folder from you to the group (change the ownership from 'username_g' to 'username').
-  Please refer to the [example on changing file ownership](change_file_ownership.md).
-```
-
-
 (clusters-homedirectory)=
 
 ## Home directory
 
 The home directory is `/cluster/home/$USER`. The location is stored
-in the environment variable `$HOME`.  A quota is enabled on home
+in the environment variable `$HOME`.  {ref}`storage-quota` is enabled on home
 directories which is by default 20 GiB and 100 000 files, so it
 is not advisable to run jobs in `$HOME`. However, it is perfectly
 fine to store `stderr` and `stdout` logs from your batch jobs in
@@ -79,9 +57,9 @@ The home directory is only accessible for the user. Files that should be
 accessible by other uses in a project must be placed in the project
 area.
 
-Backed up with daily snapshots **only if quota is enforced** for the last 7
-days and weekly snapshots for the last 6 weeks
-([documentation about backup](backup.md)).
+{ref}`Backed up <storage-backup>`
+with daily snapshots **only if {ref}`storage-quota` is enforced** for the last 7
+days and weekly snapshots for the last 6 weeks.
 
 
 ## Job scratch area
@@ -127,22 +105,23 @@ directory `$SLURM_SUBMIT_DIR` (where `sbatch` was run).
 
 ## Job scratch area on local disk
 
-**This only exists on Fram and Saga**
+**This only exists on Fram and Saga**.
 
 A job on **Fram/Saga** can request a scratch area on local disk on the node
 it is running on.  This is done by specifying
 `--gres=localscratch:<size>`, where *<size>* is the size of the requested
 area, for instance `--gres=localscratch:20G` for 20 GiB.
-Computenodes on Fram have 198GiB disk that can be handed out to local scratch areas, Hugemem have 9.8GiB. 
+
+Compute nodes on Fram have 198GiB disk that can be handed out to local scratch areas, hugemem have 9.8GiB. 
 On Saga most nodes have 300 GiB; a few of the
 bigmem nodes have 7 TiB and the GPU nodes have 8 TiB.  If a job tries
 to use more space on the area than it requested, it will get a "disk
 quota exceeded" or "no space left on device" error (the exact message
 depends on the program doing the writing).
 Please do not ask for more than what you actually need, other users might share
-the local scratch space with you(Saga only).
+the local scratch space with you (Saga only).
 
-Jobs that request this, get an area `/localscratch/$SLURM_JOB_ID`
+Jobs that request a local scratch area, get an area `/localscratch/$SLURM_JOB_ID`
 that is automatically created for the job, and automatically deleted
 when the job finishes.  The location is stored in the environment
 variable `$LOCALSCRATCH` available in the job.  `$LOCALSCRATCH` is
@@ -166,7 +145,7 @@ similar in the job script.
 ```{note}
 **Pros of running jobs in the local disk job scratch area**
 
-- IO operations are faster than on the `/cluster` file system.
+- Input/output operations are faster than on the `/cluster` file system.
 - Great if you need to write/read a large number of files.
 - It reduces the load on the `/cluster` file system.
 - There is less risk of interference from other jobs because every job ID has
@@ -189,12 +168,13 @@ similar in the job script.
 
 
 (user-work-area)=
+
 ## User work area
 
 Each user has an area `/cluster/work/users/$USER`.  The location is
 stored in the environment variable `$USERWORK`.
 **This area is not backed up** ([documentation about backup](backup.md)).
-By default, `$USERWORK` is private area and only accessible by
+By default, `$USERWORK` is a private area and only accessible by
 the user owning the area. However, it is possible to grant other
 users access here, for e.g., debugging purposes. Note that write 
 access to your `$USERWORK` can not be granted to others.
@@ -207,11 +187,11 @@ access your user work directory. If you want to share the results
 in `$USERWORK` with other people in the project, the best way is to 
 move them to the project area. 
 
-The `$USERWORK`directory is meant for files that are used by one 
+The `$USERWORK` directory is meant for files that are used by one 
 or more jobs. All result files must be moved out from this area 
 after the jobs finish, otherwise they will be automatically deleted
-after a while(see notes below). We highly encourage users to keep 
-this area tidy,since both high disk usage and automatic deletion
+after a while (see notes below). We highly encourage users to keep 
+this area tidy, since both high disk usage and automatic deletion
 process takes away disk performance. The best solution is to clean up
 any unnecessary data after each job.  
 
@@ -252,9 +232,9 @@ for instance running scripts that touch all files.
 ## Project area
 
 All HPC projects have a dedicated local space to share data between project
-members, located at **/cluster/projects/<project_name>**.
+members, located at `/cluster/projects/<project_name>`.
 
-The project area is quota controlled and the default project quota for
+The project area is controlled with {ref}`storage-quota` and the default project quota for
 HPC projects is 1 TB, but projects can apply for more during the
 application process with a maximum quota of 10 TB.
 
@@ -268,8 +248,6 @@ space) or organisational reasons (less needs/less usage/less members of
 group/less compute hrs).
 
 Daily backup is taken to NIRD ([documentation about backup](backup.md)).
-
-To see disk usage and quota information for your project on NIRD, run `dusage -p <project_name>`.
 
 ```{note}
 **Pros of running jobs in the project area**
