@@ -104,6 +104,33 @@ dusage v0.2.0
     Fram.
 
 
+## Troubleshooting: Too many files/inodes on Fram
+
+Fram has an inode quota for `/cluster`:
+```{code-block}
+---
+emphasize-lines: 3
+---
+                     path    backup    space used    quota (s)    quota (h)    files    quota (s)    quota (h)
+-------------------------  --------  ------------  -----------  -----------  -------  -----------  -----------
+                 /cluster        no     313.7 GiB            -            -   50 442    1 000 000    3 000 000
+       /cluster/home/user       yes       1.7 GiB     20.0 GiB     30.0 GiB   45 838      100 000      120 000
+ /cluster/work/users/user        no     243.8 GiB            -            -    3 764            -            -
+/cluster/projects/nnABCDk       yes       4.0 KiB      1.0 TiB      1.1 TiB        1    1 048 576    1 150 976
+/cluster/projects/nnABCDk       yes     178.1 GiB      1.0 TiB      1.1 TiB   12 816    1 048 576    1 150 976
+/cluster/projects/nnABCDk       yes       9.8 TiB     10.0 TiB     10.0 TiB  571 440   10 000 000   11 000 000
+```
+
+We can think of "inodes" as files or file chunks.
+
+This means that on Fram it is possible to fill the "files"/inode quota by
+putting more than 1 M files in `/cluster/work/users/user` although the latter
+is not size-quota controlled.
+
+Please contact support if you are in this situation and we can then together evaluate
+whether it makes sense to increase the `inode` quota for you.
+
+
 ## Troubleshooting: Too many files in a Conda installation
 
 - A Conda installation can fill your storage quota because it can install
