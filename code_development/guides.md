@@ -39,3 +39,6 @@
 - Offloading to GPU using Fortran 2008:
     - [<span style="color:green">Beginner</span>]
         [Offloading to GPU using Fortran 2008](guides/offloading-using-fortran.md)
+- GPU Memory Communication Pattern:
+    - [<span style="color:green">Beginner</span>]
+        [Stencil Communication Pattern with CUDA](guides/stencil.md)
