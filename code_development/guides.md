@@ -1,11 +1,12 @@
 (dev-guides)=
 # Guides
-- Calling GPU accelerated libraries
+- Calling GPU accelerated libraries:
     - [<span style="color:green">Beginner</span>]
         {ref}`Calling cuBLAS from OpenACC<cublas_openacc>`
     - [<span style="color:green">Beginner</span>]
         {ref}`Calling cuBLAS from OpenMP<cublas_openmp>`
-(dev-guides-openacc)=
+    - [<span style="color:green">Beginner</span>]
+        {ref}`Calling cuFFT from OpenACC<cufft_openacc>`    
 - GPU programming with OpenACC:
     - [<span style="color:green">Beginner</span>]
         [Getting started with OpenACC and Nvidia Nsight](guides/openacc.md)

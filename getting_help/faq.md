@@ -93,7 +93,7 @@ page about {ref}`installing-software-as-user`.
 
 ### How can I check my disk quota and usage?
 
-Please consult the page on {ref}`usage-and-quota`.
+Please consult the page on {ref}`storage-quota`.
 
 
 ### How can I check my CPU hours quota and usage?

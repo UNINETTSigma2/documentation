@@ -20,6 +20,7 @@ All of databases for the following programs can be found on Saga under
 ```{toctree}
 :maxdepth: 1
 bioinfo/alphafold.md
+beast.md
 bioinfo/blast.md
 bioinfo/busco.md
 bioinfo/kraken2.md
