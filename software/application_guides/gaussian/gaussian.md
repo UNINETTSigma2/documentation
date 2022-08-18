@@ -8,30 +8,23 @@ orphan: true
 * [Memory and number of cores](gaussian_resources.md)
 * [Tuning Gaussian](gaussian_tuning.md)
 * [GaussView](gaussview.md)
-* [NRIS do´s and don´ts with Gaussian](gaussian_dosndonts.md)
 
-[Gaussian](http://gaussian.com/) is a popular computational chemistry program.
-Official documentation: <http://gaussian.com/man>
-
+[Gaussian](http://gaussian.com/) is a versatile program package for for electronic structure modeling and computational chemistry, and frequently used on NRIS Hardware platforms. 
+<p>
+**Official documentation:** <http://gaussian.com/man>
 
 ## License and access
 
-The license for Gaussian is commercial/proprietary and constitutes of 4 site
-licenses for the 4 current host institutions of Metacenter sites; NTNU, UiB,
-UiO, UiT. Only persons from one of these institutions have access to the
-Gaussian Software system installed on NRIS machines. Note that users that do not come
-from one of the above mentioned institutions still may be granted access, but
-they need to document access to a valid license for the version in question
-first.
+The installed license of GAUSSIAN on NRIS machines is an academic license and consists of four individuel site licenses bought by the four partner Universities of NRIS (NTNU, UiB, UiO, UiT). Users from these institutions should be autmatically added to the `gaussian`group of users. Other users need to document valid access to the relevant license (academic and/or full commercial) before being granted access to Gaussian in NRIS.
 
-- To get access to the code, you need to be added to the `gaussian` group of
-  users. Contact {ref}`support-line`.
-- To be in the `gaussian` group of users, you need be qualified according to abovementioned criterias.
-
+- To have access to the code, you need to be in the `gaussian` group of
+  users. Check this with `id | grep gaussian`. 
+- If not in the group, contact {ref}`support-line` and ask to be added.
+- Provide necessary documentation to be added in the group. 
 
 ## Citation
 
-For the recommended citation, please consult [http://gaussian.com/citation/](http://gaussian.com/citation/).
+For the recommended citation, please consult [gaussian.com/citation](https://gaussian.com/citation/)
 
 
 ## Gaussian on NRIS machinery
@@ -41,8 +34,7 @@ Currently, the Gaussian software is installed on {ref}`fram` and {ref}`saga`. We
 So, if you see this warning in your Slurm output, there is not a reason for concern:
 ```text
 ntsnet: WARNING: /cluster/software/Gaussian/g16_C.01/linda-exe/l302.exel may
-not be a valid Tcp-Linda Linda executable Warning: Permanently added the ECDSA
-host key for IP address '10.33.5.24' to the list of known hosts.
+not be a valid Tcp-Linda Linda executable.
 ```
 
 Also note that there are internal differences between the different NRIS machines in terms of better practice for running Gaussian jobs. This will be further discussed in the [Gaussian NRIS machines job examples](gaussian_job_example.md) sections and/or the [Memory and number of cores](gaussian_resources.md) section.

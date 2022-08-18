@@ -33,7 +33,7 @@ specifying one of the available versions.
 
 **Please inspect the job script examples before submitting jobs!**
 
-To run an example create a directory, step into it, create an input file (for example for water - see below), donwload a job script (for example the fram cpu run script - see below) and submit the script with:
+To run an example - create a directory, step into it, create an input file (for example for water - see below), download a job script (for example the fram cpu job script as shown below) and submit the script with:
 
 	$ sbatch fram_g16.sh
 
@@ -55,7 +55,7 @@ To run an example create a directory, step into it, create an input file (for ex
 On Fram, you currently run exclusively on nodes by default. Note that means that you are using the nodes exclusively - thus if you ask for less than a full node, you might experience that more than one job is stacked on one node. This is something that you should keep in mind when submitting jobs.
 
 
-- Run script example (`fram_g16.sh`):
+- Job script example (`fram_g16.sh`):
 
 ```{literalinclude} fram_g16.sh
 :language: bash
@@ -66,14 +66,14 @@ On Fram, you currently run exclusively on nodes by default. Note that means that
 
 On Saga there are more restrictions and tricky situations to consider than on Fram. First and foremost, there is a heterogenous setup with some nodes having 52 cores and most nodes having 40 cores. Secondly, on Saga there is a 256 core limit, efficiently limiting the usefull maximum amount of nodes for a Gaussian job on Saga to 6. And third, since you do share the nodes by default - you need to find a way to set resource allocations in a sharing environment not necessarily heterogenous accross your given nodes.
 
-Currently, we are working to find a solution to all these challenges. Our current advices are:
+Currently, we are working to find a solution to all these challenges and as of now our advices are:
 Up to and including 2 nodes should can be done with standard advices for running jobs on Saga.
-For 3 nodes and above you either need to run with full nodes or using the slurm exclusive flag:  `#SBATCH--exclusive`. We advice the latter.  
+For 3 nodes and above you either need to run with full nodes or using the slurm exclusive flag:  `#SBATCH--exclusive`. We prefer the latter due to robustness.  
 
 To facilitate this, the g16 wrapper has been edited to both be backwards compatible and adjust for the more recent insight on our side. If you are not using this wrapper, please look into the wrapper to find syntax for using in your job script. Wrapper(s) are all available in Gaussian Software folder. Current name is g16.ib.
 
  
-- Run script example (`saga_g16.sh`):
+- Job script example (`saga_g16.sh`):
 
 ```{literalinclude} saga_g16.sh
 :language: bash
