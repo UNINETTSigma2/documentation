@@ -1,8 +1,8 @@
 ---
 orphan: true
 ---
-
-# Memory and number of cores
+(gaussian-resource-utilization)=
+# Memory and Core Utilization
 
 This page contains info about special features related to the Gaussian install
 made on NRIS machines, but also general issues related to Gaussian only
@@ -74,14 +74,14 @@ pool of the node (see below).**
 
 ## Management of large files
 
+### On Fram
 
-As commented in the {ref}`storage-performance`,
-there is an issue with very
+As commented in the {ref}`storage-performance`-page, there is an issue with very
 large temporary output files (termed RW files in Gaussian). It is advisable to
 slice them into smaller parts using the `lfs setstripe` command.
 
 ### On Saga:
-The corresponding situtation for Saga is described here: [About storage performance on Saga](/files_storage/performance/beegfs.md).
+The corresponding situtation for Saga is described here; {ref}`saga-filesystem`.
 
 ## Important aspects of Gaussian NRIS setup
 

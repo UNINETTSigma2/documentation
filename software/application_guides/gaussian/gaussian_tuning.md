@@ -1,7 +1,7 @@
 ---
 orphan: true
 ---
-
+(gaussian-tuning)=
 # Gaussian performance tuning using single node shared memory
 
 ###**The Linda version is not covered on this page**. 

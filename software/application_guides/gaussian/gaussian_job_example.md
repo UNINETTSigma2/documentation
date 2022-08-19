@@ -4,21 +4,23 @@ orphan: true
 
 (gaussian-job-examples)=
 
-### Table of contents
+# Gaussian NRIS machines Job Examples
 
-.. contents:: :depth: 2
+```{note}
+Here we present tested examples for various job types on the different NRIS machines.
+This will be under more or less continoues development, and if you find things missing 
+and/or not working as expected, do not hesitate to report back to {ref}`support-line`.
+```
 
-
-# Gaussian job examples
-
-### Expected knowledge base
+## Expected knowledge base
 
 Before you run any Gaussian calculations, or any other calculations on NRIS machines for that matter, you are expected to update yourself on NRIS machinery specifics. A decent minimal curriculum is as follows:
-	* {ref}`hardware-overview`
-	* {ref}`getting-started`
-	* {ref}`getting-started`
-	* .. _running-jobs:
-	* {ref}`job-scripts`
+
+* {ref}`hardware-overview`
+* {ref}`getting-started`
+* {ref}`getting-started`
+* {ref}`running-jobs`
+* {ref}`job-scripts`
 
 ### Finding available Gaussian versions and submitting a standard Gaussian job
 To see which versions of Gaussian software which are available on a given machine; type the following command after logged into the machine in question:
