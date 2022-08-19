@@ -15,7 +15,7 @@ orphan: true
 
 ## License and access
 
-The installed license of GAUSSIAN on NRIS machines is an academic license and consists of four individuel site licenses bought by the four partner Universities of NRIS (NTNU, UiB, UiO, UiT). Users from these institutions should be autmatically added to the `gaussian`group of users. Other users need to document valid access to the relevant license (academic and/or full commercial) before being granted access to Gaussian in NRIS.
+The installed license of GAUSSIAN on NRIS machines is an academic license and consists of four individual site licenses bought by the four partner Universities of NRIS (NTNU, UiB, UiO, UiT). Users from these institutions should be autmatically added to the `gaussian`group of users. Other users need to document valid access to the relevant license (academic and/or full commercial) before being granted access to Gaussian in NRIS.
 
 - To have access to the code, you need to be in the `gaussian` group of
   users. Check this with `id | grep gaussian`. 

@@ -47,7 +47,7 @@ study the scaling of the code for a representative system.
 performance and scaling of your job**. We recommend to take our
 {ref}`gaussian-job-examples` as a starting point.
 
-Due to its versatility, it is hard to be general about Gaussian binary scaling. We do know that plain DFT-jobs with rather non-complicated molecules like caffeine scales easily up to the core-count limit on Saga and into the range of 16 nodes on Fram. On the other side, jobs with transition-metal containing molecules like Fe-corroles scales moderately outside of 2 full nodes on Saga. On a general note, the range on 2-4 nodes seems to be within decent scaling behaviour for most linda-executables (the LXYZ.exel-binaries, see the Gaussian home folder on each NRIS machine). Also note that due to different node-sharing policies for Fram and Saga there will be the need for setting an additonal slurm-flag when running Gaussian jobs on Saga.  
+Due to its versatility, it is hard to be general about Gaussian binary scaling. We do know that plain DFT-jobs with rather non-complicated molecules like caffeine scales easily up to the core-count limit on Saga and into the range of 16 nodes on Fram. On the other side, jobs with transition-metal containing molecules like Fe-corroles scales moderately outside of 2 full nodes on Saga. On a general note, the range on 2-4 nodes seems to be within decent scaling behaviour for most linda-executables (the LXYZ.exel-binaries, see the Gaussian home folder on each NRIS machine). Also note that due to different node-sharing policies for Fram and Saga there will be the need for setting an additional slurm-flag when running Gaussian jobs on Saga.  
 
 ### Memory utilization:
 

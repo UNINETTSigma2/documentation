@@ -64,7 +64,7 @@ On Fram, you currently run exclusively on nodes by default. Note that means that
 
 ## Running Gaussian on Saga
 
-On Saga there are more restrictions and tricky situations to consider than on Fram. First and foremost, there is a heterogenous setup with some nodes having 52 cores and most nodes having 40 cores. Secondly, on Saga there is a 256 core limit, efficiently limiting the usefull maximum amount of nodes for a Gaussian job on Saga to 6. And third, since you do share the nodes by default - you need to find a way to set resource allocations in a sharing environment not necessarily heterogenous accross your given nodes.
+On Saga there are more restrictions and tricky situations to consider than on Fram. First and foremost, there is a heterogenous setup with some nodes having 52 cores and most nodes having 40 cores. Secondly, on Saga there is a 256 core limit, efficiently limiting the useful maximum amount of nodes for a Gaussian job on Saga to 6. And third, since you do share the nodes by default - you need to find a way to set resource allocations in a sharing environment not necessarily heterogenous across your given nodes.
 
 Currently, we are working to find a solution to all these challenges and as of now our advices are:
 Up to and including 2 nodes should can be done with standard advices for running jobs on Saga.
