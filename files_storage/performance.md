@@ -13,7 +13,7 @@
   use `ls` and run `ls -l` only for the specific files you need
   extended information about.
 
-
+(lustre-filesystem)=
 ## Lustre file system (Betzy and Fram)
 
 To get best throughput on the scratch file system (`/cluster/work`), you may
@@ -119,7 +119,7 @@ performance due to the unnecessary communication to multiple OSTs.
 $ lfs setstripe --stripe-count 1 "my_dir"
 ```
 
-
+(saga-filesystem)=
 ## BeeGFS filesystem (Saga)
 
 Striping in BeeGFS (`/cluster`) cannot be re-configured on Saga by users, it can currently
