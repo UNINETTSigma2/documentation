@@ -8,13 +8,15 @@
 
 # make the program and environment visible to this script
 module --quiet purge
-module load Gaussian/g16_B.01
+module load Gaussian/g16_C.01
 
 # name of input file without extension
 input=water
 
 # set the heap-size for the job to 20GB
 export GAUSS_LFLAGS2="--LindaOptions -s 20000000"
+export PGI_FASTMATH_CPU=avx2
+
 
 # create the temporary folder
 export GAUSS_SCRDIR=/cluster/work/users/$USER/$SLURM_JOB_ID

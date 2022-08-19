@@ -11,7 +11,8 @@
 module --quiet purge
 module load Gaussian/g16_C.01
 
-export PGI_FASTMATH_CPU=skylake
+export GAUSS_LFLAGS2="--LindaOptions -s 20000000"
+export PGI_FASTMATH_CPU=avx2
 
 # name of input file without extension
 input=water

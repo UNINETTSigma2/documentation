@@ -4,9 +4,26 @@ orphan: true
 
 (gaussian-job-examples)=
 
-# Gaussian job examples
+# Gaussian NRIS machines Job Examples
 
-To see which versions are available; type the following command after logged into the machine in question:
+```{note}
+Here we present tested examples for various job types on the different NRIS machines.
+This will be under more or less continoues development, and if you find things missing 
+and/or not working as expected, do not hesitate to report back to {ref}`support-line`.
+```
+
+## Expected knowledge base
+
+Before you run any Gaussian calculations, or any other calculations on NRIS machines for that matter, you are expected to update yourself on NRIS machinery specifics. A decent minimal curriculum is as follows:
+
+* {ref}`hardware-overview`
+* {ref}`getting-started`
+* {ref}`getting-started`
+* {ref}`running-jobs`
+* {ref}`job-scripts`
+
+### Finding available Gaussian versions and submitting a standard Gaussian job
+To see which versions of Gaussian software which are available on a given machine; type the following command after logged into the machine in question:
 
     module avail Gaussian
 
@@ -16,50 +33,57 @@ To use Gaussian, type
 
 specifying one of the available versions.
 
-**Please carefully inspect the job script examples shown below before submitting jobs!**
+**Please inspect the job script examples before submitting jobs!**
 
-To run this example(s) create a directory, step into it, create the input file and submit the script with:
+To run an example - create a directory, step into it, create an input file (for example for water - see below), download a job script (for example the fram cpu job script as shown below) and submit the script with:
 
 	$ sbatch fram_g16.sh
 
 
+## Gaussian input file examples
+
+- Water input example (note the blank line at the end; `water.com`):
+
+```{literalinclude} water.com
+```
+
+- Caffeine input example (note the blank line at the end; `caffeine.com`):
+
+```{literalinclude} caffeine.com
+```
+
 ## Running Gaussian on Fram
 
-- Run script example (`fram_g16.sh`):
+On Fram, you currently run exclusively on nodes by default. Note that means that you are using the nodes exclusively - thus if you ask for less than a full node, you might experience that more than one job is stacked on one node. This is something that you should keep in mind when submitting jobs.
+
+
+- Job script example (`fram_g16.sh`):
 
 ```{literalinclude} fram_g16.sh
 :language: bash
 ```
 
-- Water input example (note the blank line at the end; `water.com`):
-
-```{literalinclude} water.com
-```
-
-If you see this warning in your Slurm output then this is not a reason for concern:
-```text
-ntsnet: WARNING: /cluster/software/Gaussian/g16_C.01/linda-exe/l302.exel may
-not be a valid Tcp-Linda Linda executable Warning: Permanently added the ECDSA
-host key for IP address '10.33.5.24' to the list of known hosts.
-```
-This is due the redirect via rscocket, which is necessary
-if Gaussian is to scale satisfactory to more than 2 nodes.
-
 
 ## Running Gaussian on Saga
 
-- Run script example (`saga_g16.sh`):
+On Saga there are more restrictions and tricky situations to consider than on Fram. First and foremost, there is a heterogenous setup with some nodes having 52 cores and most nodes having 40 cores. Secondly, on Saga there is a 256 core limit, efficiently limiting the useful maximum amount of nodes for a Gaussian job on Saga to 6. And third, since you do share the nodes by default - you need to find a way to set resource allocations in a sharing environment not necessarily heterogenous across your given nodes.
+
+Currently, we are working to find a solution to all these challenges and as of now our advices are:
+Up to and including 2 nodes should can be done with standard advices for running jobs on Saga.
+For 3 nodes and above you either need to run with full nodes or using the slurm exclusive flag:  `#SBATCH--exclusive`. We prefer the latter due to robustness.  
+
+To facilitate this, the g16 wrapper has been edited to both be backwards compatible and adjust for the more recent insight on our side. If you are not using this wrapper, please look into the wrapper to find syntax for using in your job script. Wrapper(s) are all available in Gaussian Software folder. Current name is g16.ib.
+
+ 
+- Job script example (`saga_g16.sh`):
 
 ```{literalinclude} saga_g16.sh
 :language: bash
 ```
 
-- Water input example (note the blank line at the end; `water.com`):
 
-```{literalinclude} water.com
-```
 
-## Running Gaussian on GPUs (Saga)
+## Running Gaussian on GPUs on Saga
 
 Both of the current `g16` versions on Saga supports GPU offloading, and we have provided
 an alternative wrapper script for launching the GPU version. The only things that
@@ -88,10 +112,6 @@ also not used effectively by post-SCF calculations such as MP2 or CCSD.
 :emphasize-lines: 5-8, 30
 ```
 
-- Caffeine input example (note the blank line at the end; `caffeine.com`):
-
-```{literalinclude} caffeine.com
-```
 
 Some timing examples are listed below for a single-point energy calculation on the
 Caffeine molecule using a large quadruple zeta basis set. The requested resources are

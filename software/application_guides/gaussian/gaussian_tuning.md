@@ -1,16 +1,20 @@
 ---
 orphan: true
 ---
-
+(gaussian-tuning)=
 # Gaussian performance tuning using single node shared memory
 
+###**The Linda version is not covered on this page**. 
+The local Linda installation
+contain some local adaptations, like wrapper script etc not present in the
+threaded shared memory version. **A tuning guide for the Linda versions is in preparation**.
+
 ## Introduction
+
 Gaussian is a widely used and well known application. The current (pt. 2021)
 implementation is Gaussian 16. This version can utilise several cores
 using an OpenMP threading model and hence confined to a single machine using
-shared memory. **The Linda version is not covered on this page**. The local Linda installation
-contain some local adaptations, like wrapper script etc not present in the
-threaded shared memory version. **A tuning guide for the Linda versions is in preparation**.
+shared memory. 
 
 This guide is dealing with the shared memory version running on single node.
 Gaussian is compiled using the PGI (now NVIDIA) compiler using OpenMP.
