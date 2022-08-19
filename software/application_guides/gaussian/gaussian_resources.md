@@ -75,8 +75,8 @@ pool of the node (see below).**
 ## Management of large files
 
 
-### On Fram:
-As commented in the [file system performance-section](/files_storage/performance/lustre.md), there is an issue with very
+As commented in the {ref}`storage-performance`,
+there is an issue with very
 large temporary output files (termed RW files in Gaussian). It is advisable to
 slice them into smaller parts using the `lfs setstripe` command.
 

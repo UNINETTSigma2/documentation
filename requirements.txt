@@ -1,7 +1,8 @@
 myst-parser
-sphinx
+sphinx<5.0
 sphinx-autobuild
 sphinx-tabs
+sphinx-reredirects
 sphinx_rtd_theme
 # jinja2 pin is needed for sphinx < 4.0
 # context: https://twitter.com/readthedocs/status/1507388916013314048

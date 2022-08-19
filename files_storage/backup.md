@@ -1,16 +1,19 @@
+(storage-backup)=
+
 # Backup on Betzy, Fram, Saga and NIRD
 
 ```{warning}
-**Only home directories with enforced quotas are backed up**
+**Only home and project folders with enforced quotas are backed up**
 
-Any \$HOME area using more than 20 GiB or more than 100 000 files is
-not backed up. To have your \$HOME backed up, you need to shrink the
+Any `$HOME` area using more than 20 GiB or more than 100 000 files is
+not backed up. To have your `$HOME` backed up, you need to shrink the
 disk usage below the 20 GiB limit *and* below 100 000 files *and*
 [notify support](/getting_help/support_line.md).
 
-If "dusage" reports that no limits are set, this means that you **do not have disk quotas**
+If `dusage` reports that no limits are set, this means that you **do not have disk quotas**
 activated and this means that these folders **are not backed up**.
 ```
+
 
 ## Betzy, Fram and Saga
 
@@ -25,9 +28,11 @@ The following areas are **not backed up**:
 - `/cluster/share`
 - `/cluster/work`
 
-The work area also enforces an autocleanup strategy, and is **not** meant for permanent storage.
+The work area `/cluster/work` also enforces an automatic cleanup strategy, and
+is **not** meant for permanent storage.
 Files in this area will be **deleted** after 42 or 21 days, depending on the storage capacity,
 see [User work area](user-work-area) for details.
+
 
 ### Where the backups are located
 
@@ -41,6 +46,7 @@ To recover a deleted or overwritten file in `/cluster/home/$USER` on either Betz
 go to your home directory on NIRD, go to the backup folder and then browse in the directory
 corresponding to the HPC system you come from for the file you want to restore.
 You can then use `scp`/`sftp` to transfer a copy to your home directory on the HPC system.
+If you have difficulty accessing NIRD, please contact support.
 
 **PROJECTS on Fram and Betzy**: The nnXXXXk project areas on Betzy and Fram
 are backed up to Saga:
@@ -50,6 +56,11 @@ are backed up to Saga:
 **PROJECTS on Saga**: The nnXXXXk project areas on Saga
 are backed up to Betzy:
 - `/cluster/backup/saga/projects/nnXXXXk`
+
+If you have project access to the cluster where backups are stored, then you
+can retrieve them yourself. If you cannot access the cluster that holds the
+project backups, please contact support and we will help you restoring your
+data.
 
 
 ## NIRD
@@ -69,6 +80,7 @@ Snapshots are taken with the following frequencies:
 * `/tos-project4/fram`, `/trd-project4/saga`, `/trd-project4/betzy`:
   - site dependent, but daily for a few days and weekly for a few weeks
 
+
 ### Where the snapshots are located
 
 The NIRD `$HOME` and NS project snapshots are available under:
@@ -84,8 +96,7 @@ The snapshots of the NN project backups from Betzy, Fram and Saga are available 
 ### How to recover deleted/overwritten data
 
 A deleted/overwritten file in the home directory on NIRD can be recovered like this:
-
-```
+```console
 $ cp /nird/home/u1/.snapshots/DATE/$USER/mydir/myfile /nird/home/$USER/mydir/
 ```
 
@@ -94,11 +105,8 @@ which did not exist yet yesterday cannot be recovered from snapshots.
 
 To recover a deleted or overwritten file `/nird/projects/NSxxxxK/dataset1/myfile`,
 you can copy a snapshot back to the folder and restore the deleted/overwritten file:
-
-```
+```console
 $ cp /nird/projects/NSxxxxK/.snapshots/DATE/dataset1/myfile /nird/projects/NSxxxxK/dataset1/
 ```
 
 Select the DATE accordingly to your case.
-
-

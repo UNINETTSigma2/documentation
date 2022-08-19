@@ -22,7 +22,7 @@ This will list your available projects and the remaining CPU hours
 $ cost
 ```
 
-This will give you information about your disk {ref}`usage-and-quota`:
+This will give you information about your disk {ref}`storage-quota`:
 ```console
 $ dusage
 ```

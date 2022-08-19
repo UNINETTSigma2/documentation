@@ -7,7 +7,7 @@ shell](https://en.wikipedia.org/wiki/Secure_Shell) (ssh).
 
 One can use `scp`
 (secure copy) or `sftp` (secure file transfer protocol) and `rsync` to upload or download
-data. There are graphical frontends for these tools, for instance
+data. There are graphical front-ends for these tools, for instance
 [WinSCP](file_transfer/WinSCP.md) for MS Windows.
 
 
@@ -21,12 +21,13 @@ move files into or out of the NIRD project areas.
 For more information, please check out the [Betzy, Fram, and Saga](clusters.md)
 storage page.
 
-### scp: secure copy between hosts on a network
+
+## Transferring files between your computer and a cluster using scp
 
 Few typical examples when using `scp`:
 
-Copy single file to home folder on Fram
-note that folder is omitted, home folder being default:
+Copy single file to home folder on Fram.
+Note that if the folder is omitted (the part after the `:`), the home folder is used by default:
 ```console
 $ scp my_file.tar.gz <username>@fram.sigma2.no:
 ```
@@ -42,7 +43,7 @@ $ scp -r <username>@fram.sigma2.no:/cluster/work/users/<username>/my_results /h
 ```
 
 
-### sftp: interactive secure file transfer program (Secure FTP)
+## Interactive secure file transfer program (Secure FTP)
 
 In this example we copy all logs with names that start with "out" and
 end with ".log" from the `project1` folder to `/nird/projects/project1` on NIRD:
@@ -57,22 +58,22 @@ sftp> put out*.log
 
 ### Troubleshooting - Broken pipe error during `scp`/`sftp`/`rsync`
 
-Sikt perform daily housekeeping of their DNS and then the connection from 
-outside to the NRIS services drops that can cause broken pipe error during 
-file transfer from outside. To avoid this especially while copying large datasets,
-it is recommended to open a `screen` session from the NRIS cluster/storage  login 
+The organization which provides the network to the clusters, may perform daily
+housekeeping of their DNS and then the connection from outside to the NRIS
+services can drop.  This can cause a "broken pipe" error during file transfer
+from outside. To avoid this, especially while copying large datasets, it is
+recommended to open a `screen` session from the NRIS cluster/storage  login
 node and to pull/push the data from there.
+
 
 ## Sharing files with others
 
-You may can use [FileSender](https://filesender.uninett.no/) to share files with
+You can use [FileSender](https://filesender.uninett.no/) to share files with
 others.
-We have two instances running:
 
+There are two instances of this service:
 - <https://filesender2.uio.no/>
 - <https://filesender.uninett.no/>
-
-Please use one of these: we can give support if needed.
 
 If the data you want to share could be useful for the scientific community,
 please use the [NIRD Archive](../nird_archive/user-guide.md).
