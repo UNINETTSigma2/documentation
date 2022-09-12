@@ -67,3 +67,15 @@ to use them. You need tools to login into a remote machine. If you
 need to install such tools, please see [prepare your machine
 section](https://wiki.uib.no/hpcdoc/index.php/HPC_and_NIRD_toolkit_course_fall_2020#Preparing_your_machine_for_the_course). If you are using Windows10 or earlier versions and you don’t have a terminal to execute UNIX commands, you are requested to install [gitforwindows](https://gitforwindows.org/). 
 
+## Coordinator 
+
+- Dhanya Pushpadas
+
+## Instructors
+
+- Einar Næss Jensen
+- Bjørn-Helge Mevik
+- Ole W. Saastad
+- Radovan Bast
+- Sabry Razick
+- Jørn Dietze
