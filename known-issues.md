@@ -37,3 +37,8 @@ weeks back to find a known issue.
   of course be impossible), or use OpenMPI. In the latter case, although the Zombie
   processes might also be created, we believe this does not result in a hanging
   application and waste of compute resources.
+
+- **Slow performance with netCDF4 files**: Few users have reported this and this
+  seems to be related to the problem described [here](https://github.com/Unidata/netcdf-c/issues/489).
+  A solution seems to be to convert the files from the netcdf-4 format to the
+  netcdf-64bit offset format with the command `$ nccopy -k nc6 file1 file2`.
