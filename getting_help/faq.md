@@ -216,3 +216,13 @@ And here is the `dowork.sh` script:
 .. literalinclude:: ./files/dowork.sh
   :language: bash
 ```
+
+### Another user is clogging up the queue with lots of jobs!
+
+The job scheduler on NRIS systems is normally configured to use a "Priority" attribute to determine which jobs to start next. This attribute increases over time (up to 7 days max), and is applied to a maximum of 10 jobs per user. There is no limit on the number of jobs or resources one user/project may request.
+
+Superficially this may seem like a "first come first serve" system that allows a single user to 'block' others by submitting a large amount of jobs, but in reality it is a bit more complex since jobs may be of different sizes and lengths.
+
+If there is a pending job with a high priority ranking that requires many CPUs for a long time, the scheduler will try to create a slot for this job in the future. As already running jobs finish up at different points in time, freeing up resources, the scheduler will attempt to squeeze in other jobs into the now-idle resource in a manner that does not extend the waiting time before the slot for the larger job is freed up in order to utilize the cluster as much as possible.
+
+The "fairness" of this might be debatable, but in our experience this is the least unfair method that also ensures that the systems are idle as little as possible.
