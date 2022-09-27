@@ -2,10 +2,15 @@
 
 # Support line
 
-All support requests concerning the e-infrastructure resources should be sent to
-[support@nris.no](mailto:support@nris.no).
+For support requests concerning resource applications, projects and
+their compute and storage allocations, as well as for user accounts and
+group memberships, please contact
+[contact@sigma2.no](mailto:contact@sigma2.no) (*administrative support*).
 
-Behind this address is an issue tracker (ticket system) and you will get an
+All other support requests concerning the e-infrastructure resources should be sent to
+[support@nris.no](mailto:support@nris.no) (*technical support*).
+
+Behind these addresses are issue trackers (ticket system) and you will get an
 automatic reply first and can expect response from our staff within hours
 during normal work-hours, or at the latest the following working day (except
 holidays).
