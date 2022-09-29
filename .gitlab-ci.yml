@@ -27,6 +27,7 @@ build:
   when: on_success
   image: python:3.7-alpine
   script:
+    - pip install --upgrade pip
     - pip install -r requirements.txt
     # '-W': Turn warnings into errors
     # '--keep-going': When encountering a warning continue to process (this
