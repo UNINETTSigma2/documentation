@@ -286,3 +286,13 @@ the needs of the data.  The permissions of the areas vary.  In some
 cases all but a few users in the meta-group only have read-only access
 to the area.  In other cases, all users on the cluster have read-only
 access.
+
+## Decommissioning
+
+Starting at the 2020.1 resource allocation period, storage decommissioning
+ procedures have been established for the HPC storages. This to ensure 
+ predictable astorage for users and projects, and the provisioning more
+ sustainable to Sigma2.
+ For more details, please visit the
+[data decommissioning policies](https://www.sigma2.no/data-decommissioning-policies)
+ page.

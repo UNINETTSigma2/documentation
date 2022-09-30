@@ -64,3 +64,13 @@ in case needed, reset.
 
 If you need to share with the outside world (outside of your HPC systems),
 please refer to our [File transfer documentation](file_transfer.md).
+
+## Decommissioning
+
+Starting at the 2020.1 resource allocation period, storage decommissioning
+ procedures have been established for both HPC and NIRD project storages, 
+ to make storage more predictable for the projects and the provisioning 
+ more sustainable to Sigma2.
+ For more details, please visit the
+[data decommissioning policies](https://www.sigma2.no/data-decommissioning-policies)
+ page.
