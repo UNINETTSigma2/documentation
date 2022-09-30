@@ -43,3 +43,13 @@ $ dusage -p NSxxxxK
 In addition to geo-replication NIRD supports snapshots of project areas
 and home directories allowing for recovery of deleted data.
 For more information, visit the page {ref}`storage-backup`.
+
+## Decommissioning
+
+Starting at the 2020.1 resource allocation period, storage decommissioning
+ procedures have been established for the NIRD project storage, to make 
+ storage more predictable for the projects and the provisioning more 
+ sustainable to Sigma2.
+ For more details, please visit the 
+[data decommissioning policies](https://www.sigma2.no/data-decommissioning-policies)
+ page.
