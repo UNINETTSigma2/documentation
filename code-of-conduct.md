@@ -34,7 +34,6 @@ We expect all parties to follow these standards:
 
 - Always try to consult existing documentation, i.e. this or other before asking question, giving comments or making statements.
 
-- Do's and don'ts: {ref}`for help<help-dos-donts>`, {ref}`for jobs<jobs-dos-donts>` and {ref}`for storage<storage-dos-donts>`.
 
 A few examples that are considered breach of this code of conduct:
 
