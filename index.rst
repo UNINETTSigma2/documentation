@@ -107,6 +107,12 @@ Index of keywords
 
 .. toctree::
    :maxdepth: 1
+   :caption: Policies
+
+   code-of-conduct.md
+
+.. toctree::
+   :maxdepth: 1
    :caption: News
 
    Latest changes and events <https://opslog.sigma2.no>
@@ -126,6 +132,7 @@ Index of keywords
    getting_help/qa-sessions.md
    getting_help/lost_forgotten_password.md
    getting_help/project_leader_support.md
+   getting_help/dos_and_donts.md
 
 
 
@@ -197,3 +204,4 @@ Index of keywords
    files_storage/sharing_files.md
    files_storage/file_transfer.md
    files_storage/performance.md
+   files_storage/dos_and_donts.md

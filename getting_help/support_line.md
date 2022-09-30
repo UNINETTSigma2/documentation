@@ -47,12 +47,16 @@ searching the internet, establishing new contacts, attending conferences and wor
 study the documentation and maybe the most important aspect, make sure you have done what you can to obtain basic knowledge of the
 issue or problem at hand.
 
-.. note::
-   There are exceptions to the definitions above. We have a few application liaisons targeted towards assisting users in a few target domains/softwares. For these particular domains/softwares, tickets are forwarded to the respective liaisons. Please consult the documentation pages related to the domains/softwares in order to understand what we can do for you. We highly encourage fields or groups to contribute with application liaisons in order to improve response time, usability and adoption of certain software or techniques. If so, or if you have any questions related to this, please contact us at [support@nris.no](mailto:support@nris.no).
-   
-   Currently we have application liaisons targeted towards the following domains/softwares:
-   
-   - {ref}`VASP <VASP>`
+```{note} There are exceptions to the definitions above. We have a few application liaisons targeted towards assisting users in a few domains/softwares. For these particular domains/softwares, tickets are forwarded to the respective liaisons. Please consult the documentation pages related to the domains/softwares in order to understand what we can do for you. We highly encourage fields or groups to contribute with application liaisons in order to improve response time, usability and adoption of certain software or techniques. If so, or if you have any questions related to this, please contact us at [support@nris.no](mailto:support@nris.no). 
+
+Currently we have application liaisons targeted towards the following domains/softwares:<br>
+	- {ref}`VASP <VASP>`
+```
+
+### What we expect from you
+
+We expect that, if asked, users can give details to the support staff the description of their jobs like what their jobs are doing, how they work, why they need the resources they have requested, how they use the queues and when they are expected to complete. Jobs will be removed from the queue if requests for this information are not answered clearly and in good time, especially if a job is blocking access to the queue, or otherwise limit other users access to resources.
+
 
 ### Give enough information
 
@@ -73,6 +77,15 @@ Please also look at the page for a more detailed guide on [how to write good sup
 requests](how_to_write_good_support_requests.md) on how to report problems in
 the most effective way for getting help quickly.
 
+### Useful knowledge to possess before submitting a ticket
+
+Being accustomed to basic knowledge about Linux command line (shell) navigation and shell scripting makes
+it easier to communicate with support and will most likely make your daily work flow more efficient as well.
+If you are new to command line, go through some Linux tutorials on the subject first. 
+Here are some useful pages you can look into: [shell novice](https://swcarpentry.github.io/shell-novice/) or [Effective shell](https://effective-shell.com). Otherwise consult your local IT resources for help.
+
+However, do not be afraid to contact support if you are not an expert or have knowledge of this. We will
+try our best to help you.
 
 ### Display active and resolved tickets
 
