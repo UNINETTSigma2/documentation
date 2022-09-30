@@ -47,4 +47,4 @@ A few examples that are considered breach of this code of conduct:
 All users are obliged to comply with the [Sigma2 user policy](https://www.sigma2.no/acceptable-use-policy).
 
 ## Enforcement 
-Instances of suspicions, unacceptable behavior or breach of this code of conduct should be [reported](mailto:sigm2@nris.no). NRIS and its staff are obligated to maintain confidentiality with regards to the reporter of an incident.
+Instances of suspicions, unacceptable behavior or breach of this code of conduct should be [reported](mailto:contact@sigma2.no). NRIS and its staff are obligated to maintain confidentiality with regards to the reporter of an incident.
