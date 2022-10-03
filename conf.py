@@ -90,3 +90,8 @@ linkcheck_ignore = [
     'https://www.ccp4.ac.uk/',  # SSL certificate issue
     'https://www.vasp.at',  # SSL certificate issue
 ]
+
+
+# this loads extra JS code which we use to analyze web traffic
+def setup(app):
+    app.add_js_file("https://siteimproveanalytics.com/js/siteanalyze_6036825.js", loading_method="async")
