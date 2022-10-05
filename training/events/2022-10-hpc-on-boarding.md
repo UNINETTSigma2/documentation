@@ -42,12 +42,52 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 | Thu 20.10    | 09:00 - 12:30 | HPC On-boarding day2 |
 
 ## Schedule
-  
-   Detailed schedule will be updated a week before the course
+
+**Day0 - Linux on HPC context (optional 18th October, Tuesday)**
+
+- 09:00-09:10 - Welcome, Practical information & icebreaker question
+- 09:10-09:40 - [The terminal and remote login](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/intro.html) (Sabry and Maiken)
+- 09:40-09:55 - [Navigating on the cluster](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html) (Maiken and Sabry)
+- 09:55-10:15 - [Navigating on the cluster (exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html#exercise)
+- 10:15-10:30 - Break
+- 10:30-10:45 - [Finding things](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html) (Bjørn and Maiken)
+- 10:45-11:00 - [Finding things(exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html)
+- 11:00-11:20 - [Creating and modifying files](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/writing-files.html) (Sabry and Bjørn)
+- 11:20-11:30  - Break
+- 11:30-11:45 - [Composing commands with pipes](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html) (Maiken and Sabry)
+- 11:45-12:00- [Composing commands with pipes (exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html)
+- 12:00-12:10 - [Scripting](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html) (Bjørn and Maiken)
+- 12:10-12:20 - [Scripting (exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html)
+- 12:20-12:30 - Q&A 
+
+
+**Day1 - HPC On-boarding (19th October Wednesday)**
+
+- 09:00-09:10 - Welcome, Practical information &icebreaker question
+- 09:10-09:30 - [Why use a Cluster?](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html) (Sabry and Maiken)
+- 09:30-10:00 - [Working on a remote HPC system](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/12-cluster.html) (Bjørn and Maiken)
+- 10:00-10:15 - Break
+- 10:15-11:00 - [Scheduling jobs](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html) (Sabry and Maiken)
+- 11:00-11:30 - [Scheduling job Excercice ](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html)
+- 11:30-11:45 - Break
+- 11:45-12:15 - [Transferring files](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html) (Jørn and Dhanya)
+- 12:15-12:30 - Q&A & Discussion
+
+**Day2 - HPC On-boarding (20th October Thursday)**
+
+- 09:00-09:10 - Recap & ice breaker question
+- 09:10-09:40 - [Accessing Software](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html)(Sabry and Bjørn)
+- 09:40-10:00 - [Accessing Software (exercise)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html)
+- 10:00-10:15 - Break
+- 10:10-10:50 - [Compute and storage quota](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/compute-storage-quota.html) (Radovan and Dhanya)
+- 10:50-11:20 - [Using shared resources responsibly](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.html) (Radovan)
+- 11:20-11:30 - Break
+- 11:20-12:00 [How to ask for help](https://bit.ly/help-with-supercomputers) (Radovan and Jørn) 
+- 12:00-12:30 - Q&A & Discussion
 
 ## Course material
 
-Course material will be mostly based on the [HPC-Intro](https://training.pages.sigma2.no/tutorials/hpc-intro/index.html) 
+Course material will be mostly based on [Unix for HPC](https://training.pages.sigma2.no/tutorials/unix-for-hpc/index.html) and  [HPC-Intro](https://training.pages.sigma2.no/tutorials/hpc-intro/index.html) 
 
 ## Code of Conduct
 
