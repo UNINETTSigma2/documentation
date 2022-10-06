@@ -43,25 +43,24 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 
 ## Schedule
 
-**Day0 - Linux on HPC context (optional 18th October, Tuesday)**
+**Day0 - UNIX for HPC (optional 18th October, Tuesday)**
 
 - 09:00-09:10 - Welcome, Practical information & icebreaker question
 - 09:10-09:40 - [The terminal and remote login](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/intro.html) (Sabry and Maiken)
-- 09:40-09:55 - [Navigating on the cluster](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html) (Maiken and Sabry)
-- 09:55-10:15 - [Navigating on the cluster (exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html#exercise)
-- 10:15-10:30 - Break
+- 09:40-09:55 - [Moving around and looking at things](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html) (Maiken and Sabry)
+- 09:55-10:10 - Break
+- 10:10-10:30 - [Moving around and looking at things (exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html#exercise)
 - 10:30-10:45 - [Finding things](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html) (Bjørn and Maiken)
 - 10:45-11:00 - [Finding things(exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html)
-- 11:00-11:20 - [Creating and modifying files](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/writing-files.html) (Sabry and Bjørn)
+- 11:00-11:20 - [Create/modify files](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/writing-files.html) (Sabry and Bjørn)
 - 11:20-11:30  - Break
-- 11:30-11:45 - [Composing commands with pipes](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html) (Maiken and Sabry)
-- 11:45-12:00- [Composing commands with pipes (exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html)
-- 12:00-12:10 - [Scripting](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html) (Bjørn and Maiken)
-- 12:10-12:20 - [Scripting (exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html)
+- 11:30-12:00 - [Scripting](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html) (Bjørn and Maiken)
+- 12:00-12:10 - [Scripting (exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html)
+- 12:10-12:20 - [Composing commands with pipes](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html) (Maiken and Sabry)
 - 12:20-12:30 - Q&A 
 
 
-**Day1 - HPC On-boarding (19th October Wednesday)**
+**Day1 - HPC Intro (19th October Wednesday)**
 
 - 09:00-09:10 - Welcome, Practical information &icebreaker question
 - 09:10-09:30 - [Why use a Cluster?](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html) (Sabry and Maiken)
@@ -73,7 +72,7 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 - 11:45-12:15 - [Transferring files](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html) (Jørn and Dhanya)
 - 12:15-12:30 - Q&A & Discussion
 
-**Day2 - HPC On-boarding (20th October Thursday)**
+**Day2 - HPC Intro (20th October Thursday)**
 
 - 09:00-09:10 - Recap & ice breaker question
 - 09:10-09:40 - [Accessing Software](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html)(Sabry and Bjørn)
