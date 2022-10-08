@@ -42,3 +42,7 @@ weeks back to find a known issue.
   seems to be related to the problem described [here](https://github.com/Unidata/netcdf-c/issues/489).
   A solution seems to be to convert the files from the netcdf-4 format to the
   netcdf-64bit offset format with the command `$ nccopy -k nc6 file1 file2`.
+
+- Don't use `--hint=nomultithread` in jobs on Fram, at least not with
+  Intel MPI.  If you do, the result is that all the tasks (ranks) will
+  be bound to the first CPU core on each compute node.

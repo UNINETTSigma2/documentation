@@ -176,6 +176,7 @@ Index of keywords
    hpc_machines/saga.md
    hpc_machines/lumi.md
    hpc_machines/migration2metacenter.md
+   computing/responsible-use.md
    jobs/overview.rst
    code_development/overview.rst
    computing/tuning-applications.md
