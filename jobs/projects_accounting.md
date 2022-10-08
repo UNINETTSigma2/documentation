@@ -18,7 +18,7 @@ cores for 5 hours or ...
 
 ## TL;DR - how to use billing units well
 
-How billing units are computed is descibed below but here is what this means for you:
+How billing units are computed is described below but here is what this means for you:
 
 ```{admonition} This is important
 - {ref}`Do not ask for a lot more memory than you need <choosing-memory-settings>`,
