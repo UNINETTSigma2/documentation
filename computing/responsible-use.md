@@ -68,7 +68,7 @@ research).
 ## Transferring data
 
 Disk speed, Meta-data performance, Network speed, and Firewall speed may limit
-the transfer bandwith.
+the transfer bandwidth.
 
 Here are tips to make your data transfer easier and faster:
 
