@@ -132,7 +132,6 @@ Index of keywords
    getting_help/qa-sessions.md
    getting_help/lost_forgotten_password.md
    getting_help/project_leader_support.md
-   getting_help/dos_and_donts.md
 
 
 
