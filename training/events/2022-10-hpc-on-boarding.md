@@ -74,11 +74,11 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 **Day2 - HPC Intro (20th October Thursday)**
 
 - 09:00-09:10 - Recap & ice breaker question
-- 09:10-09:40 - [Accessing Software](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html)(Sabry and Bjørn)
+- 09:10-09:40 - [Accessing Software](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html) (Sabry and Bjørn)
 - 09:40-10:00 - [Accessing Software (exercise)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html)
 - 10:00-10:15 - Break
 - 10:10-10:50 - [Compute and storage quota](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/compute-storage-quota.html) (Radovan and Dhanya)
-- 10:50-11:20 - [Using shared resources responsibly](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.html) (Radovan)
+- 10:50-11:20 - [Using shared resources responsibly](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.html) (Radovan and Jørn)
 - 11:20-11:30 - Break
 - 11:20-12:00 - [How to ask for help](https://bit.ly/help-with-supercomputers) (Radovan and Jørn) 
 - 12:00-12:30 - Q&A & Discussion
