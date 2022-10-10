@@ -59,7 +59,6 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 - 12:10-12:20 - [Composing commands with pipes](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html) (Maiken and Sabry)
 - 12:20-12:30 - Q&A 
 
-
 **Day1 - HPC Intro (19th October Wednesday)**
 
 - 09:00-09:10 - Welcome, Practical information &icebreaker question
@@ -67,7 +66,7 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 - 09:30-10:00 - [Working on a remote HPC system](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/12-cluster.html) (Bjørn and Maiken)
 - 10:00-10:15 - Break
 - 10:15-11:00 - [Scheduling jobs](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html) (Sabry and Maiken)
-- 11:00-11:30 - [Scheduling job Excercice ](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html)
+- 11:00-11:30 - [Scheduling job Exercise](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html)
 - 11:30-11:45 - Break
 - 11:45-12:15 - [Transferring files](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html) (Jørn and Dhanya)
 - 12:15-12:30 - Q&A & Discussion
@@ -81,7 +80,7 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 - 10:10-10:50 - [Compute and storage quota](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/compute-storage-quota.html) (Radovan and Dhanya)
 - 10:50-11:20 - [Using shared resources responsibly](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.html) (Radovan)
 - 11:20-11:30 - Break
-- 11:20-12:00 [How to ask for help](https://bit.ly/help-with-supercomputers) (Radovan and Jørn) 
+- 11:20-12:00 - [How to ask for help](https://bit.ly/help-with-supercomputers) (Radovan and Jørn) 
 - 12:00-12:30 - Q&A & Discussion
 
 ## Course material
@@ -101,7 +100,7 @@ it to [the training team](mailto:training@nris.no).
 We assume you have the necessary tools installed on your machine and are able
 to use them. You need tools to login into a remote machine. If you
 need to install such tools, please see [prepare your machine
-section](https://wiki.uib.no/hpcdoc/index.php/HPC_and_NIRD_toolkit_course_fall_2020#Preparing_your_machine_for_the_course). If you are using Windows10 or earlier versions and you don’t have a terminal to execute UNIX commands, you are requested to install [gitforwindows](https://gitforwindows.org/). 
+section](https://wiki.uib.no/hpcdoc/index.php/HPC_and_NIRD_toolkit_course_fall_2020#Preparing_your_machine_for_the_course). If you are using Windows 10 or earlier versions and you don’t have a terminal to execute UNIX commands, you are requested to install [Git for windows](https://gitforwindows.org/). 
 
 ## Coordinator
 
