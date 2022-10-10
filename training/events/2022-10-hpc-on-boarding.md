@@ -31,7 +31,7 @@ If you want to receive further information about training events, and other anno
 
 ## **Registration**
 
-The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT, NTNU & Sigma2. Ordinory registration closes on **10th October** so that we get enough time to ensure that everyone has an account on the HPC systems  in case a participant does not already have one.
+The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT, NTNU & Sigma2. Ordinary registration closes on **10th October** so that we get enough time to ensure that everyone has an account on the HPC systems  in case a participant does not already have one.
 You can still register for the course until 16th October and follow the course without joining the hands-on exercise sessions. 
 **Register [here](https://skjemaker.app.uib.no/view.php?id=13031965)**.
 
