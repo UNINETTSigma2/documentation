@@ -5,38 +5,44 @@
 ```{contents} Table of Contents
 ```
 
-```{warning}
-**Frequently asked questions**
-
+```{admonition} Frequently asked questions
 - **I cannot copy files although we haven't used up all space**:
   You have probably exceeded the quota on the number of files.
 
 - **I have moved files to the project folder but my home quota usage did not go down**:
-  Moving files does not change ownership of the files. You need to also change the ownership of the files
-  in the project folder from you to the group (change the ownership from 'username_g' to 'username'; see also below).
+  Depending on the cluster, moving files does not change ownership of the files.
+  You need to also change the ownership of the files in the project folder from
+  you to the group (change the ownership from `username_g` to `username`; see
+  also below).
 ```
 
 
 ## What is quota and why is it needed?
 
-Storage is a shared and limited resource and in a number of places we need to
+**Storage is a shared and limited resource** and in a number of places we need to
 enforce quota to avoid that some script accidentally fills up the disk and the
 system becomes unusable for everybody.
 
-Storage quota is specified in number of files (or "inodes" or file chunks) and
-space. The former limits how many files you or a group may own. When this limit
-is reached, you or the group cannot create new files (but you might still
-increase the size of existing files). The space limit affects the aggregated
-size of all your files or files of a group. When this limit is reached you or
-the group cannot store more data (new data or increasing file sizes) on the
-system.
+Storage quota is specified in:
+- **Number of files** (or "inodes" or file chunks): limits how many files you or a group may own.
+  When this limit is reached, you or the group cannot create new files (but you
+  might still increase the size of existing files).
+- **Space limit**: affects the aggregated
+  size of all your files or files of a group. When this limit is reached you
+  or the group cannot store more data (new data or increasing file sizes) on
+  the system.
+
+
+## Quota applies to specific folders
 
 Often it is intended that storage quota applies to a specific folder on the
 file system. For example, the so-called HOME quota shall apply to your home
-folder and its location is often stored in the environment variable `$HOME`.
-Another example, a project may have dedicated quota for data stored under their
-project folder which is found under `/cluster/projects/nnABCDk` where `nnABCDk`
-is the account name of your project. Because file systems have different
+folder `/cluster/home/user`.  A project may have dedicated quota for data
+stored under their project folder which is found under
+`/cluster/projects/nnABCDk` where `nnABCDk` is the account name of your
+project.
+
+Because file systems have different
 features, unfortunately it is not always guaranteed that what you observe on
 the system matches this intention. Below, we will discuss how to detect and
 troubleshoot such situations.
@@ -44,33 +50,37 @@ troubleshoot such situations.
 
 ## Getting information about your usage and quota
 
-We can get an overview with the `dusage` command.
-
-`dusage` is not a built-in Unix command but rather a tool which we have
-developed for NRIS clusters to wrap around lower-level commands and tools to
-get a quick overview. The actual output might be different for every user:
+We can get an overview with the `dusage` command. This is not a built-in
+Unix command but rather a tool which [we have
+developed](https://github.com/NordicHPC/dusage) for NRIS clusters to wrap
+around lower-level commands and tools to get a quick overview. The actual
+output might be different for every user:
 ```console
 $ dusage
 
-dusage v0.2.0
+dusage v0.2.2
                      path    backup    space used     quota      files       quota
 -------------------------  --------  ------------  --------  ---------  ----------
-                 /cluster        no       6.4 GiB         -     17 509           -
-       /cluster/home/user       yes       4.9 GiB  20.0 GiB     17 442     100 000
+                 /cluster        no       6.0 GiB         -     13 243           -
+       /cluster/home/user       yes       4.4 GiB  20.0 GiB     13 176     100 000
  /cluster/work/users/user        no      12.0 KiB         -          3           -
-/cluster/projects/nnABCDk       yes      12.0 KiB  10.0 TiB          3   1 000 000
+/cluster/projects/nnABCDk       yes       1.6 TiB   2.0 TiB    360 594   2 000 000
+/cluster/projects/nnABCDk       yes       2.8 TiB  10.0 TiB  1 967 570  10 000 000
 /cluster/projects/nnABCDk       yes       0.0 KiB   1.0 TiB          0   1 000 000
-/cluster/projects/nnABCDk       yes       1.5 TiB   2.0 TiB    359 663   2 000 000
-/cluster/projects/nnABCDk       yes       2.8 TiB  10.0 TiB  1 889 937  10 000 000
 
-- This script is still being tested, unsure whether the backup information is correct.
-  Please report issues at https://github.com/NordicHPC/dusage.
+- Backup information is for the general case, unless you have made a special agreement.
+- Please report issues at https://github.com/NordicHPC/dusage.
 ```
+
+The column "files" (number of files) actually lists inodes and we know that
+these are not precisely the same thing but we have chosen the name "files"
+since it is hopefully more intuitive to the users who may have never heard of
+"inodes".
 
 
 ## Troubleshooting: Disk quota is full
 
-- **Why this can be surprising for users and difficult to debug for staff**:
+- **This can be surprising for users and difficult to debug for staff**:
   - On Saga and Fram: Depending on the state of the file system there can be a
     lag between going over quota and experiencing "Disk quota exceeded" errors.
   - On Saga and Fram: If you moved files and kept wrong group permissions, this
@@ -128,14 +138,14 @@ putting more than 1 M files in `/cluster/work/users/user` although the latter
 is not size-quota controlled.
 
 Please contact support if you are in this situation and we can then together evaluate
-whether it makes sense to increase the `inode` quota for you.
+whether it makes sense to increase the inode quota for you.
 
 
 ## Troubleshooting: Too many files in a Conda installation
 
 - A Conda installation can fill your storage quota because it can install
   thousands of files.
-- **Recommendation**: Do not install Conda environment into `$HOME`
+- **Recommendation**: Do not install a Conda environment into `$HOME`.
 - **Recovery** from a `$HOME`-installed Conda environment:
   - Install a new environment into project data or `$USERWORK` and then delete
     the `$HOME`-installed Conda environment.
@@ -144,7 +154,7 @@ whether it makes sense to increase the `inode` quota for you.
 
 ## Changing file ownership on Fram or Saga
 
-This section is not relevant for Betzy as disk quotas on Betzy are based on
+This section is **not relevant for Betzy** as disk quotas on Betzy are based on
 directories instead of groups.
 
 Since file permissions are persistent across the file system, it might be
@@ -166,7 +176,7 @@ total 1048576
 $ mv myfile.txt /cluster/work/users/username
 ```
 
-By checking our disk usage with `dusage` we can see that the file is still
+By checking our disk usage with `dusage` we could confirm that the file is still
 counted towards the `$HOME` quota. The reason for this is that the file is
 still owned by the `username_g` group, which is used for the `$HOME` quota.:
 
