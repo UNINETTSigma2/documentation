@@ -50,8 +50,33 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 
 ## Schedule
   
-   Detailed schedule will be updated a week before the course
+**Day1 - Tuesday 1 November 2022**
 
+- 09:00-09:10 - Welcome, Practical information & icebreaker question
+- 09:10-09:45 - NRIS HPC System Details (Einar Næss Jensen)
+- 09:50-10:30 - Job Types and Queue Systems on NRIS Clusters(Bjørn-Helge Mevik)
+- 10:30-10:45 - Break
+- 10:45-11:30 - Best Practices on NRIS Clusters (Ole W. Saastad)
+- 11:30-11:45 - Break
+- 11:45-12:15 - Summary and exercise (Ole W. Saastad)
+- 12:15-12:30 - Q&A
+
+**Day2 - Wednesday 2 November 2022**
+- 09:00-09:10 - Welcome, Practical information &icebreaker question
+- 09:10-09:50 - Trouble shooting on NRIS Clusters (Ole W. Saastad)
+- 09:50-10:45 - {ref}`choosing-memory-settings` + Exercise (Radovan Bast)
+- 10:45-11:00 - Break
+- 11:00-11:45 - {ref}`choosing-number-of-cores` + Exercise (Radovan Bast)
+- 11:45-12:00 - Break
+- 12:15-12:30 - Q&A
+
+**Day3 - Thursday 3 November 2022**
+- 09:00-09:10 - Welcome, Practical information &icebreaker question
+- 09:10-10:00 - {ref}`Software Installation <installing-software-as-user>`  (Sabry Razick & Jørn Dietze)
+- 10:30-10:45 - Break
+- 10:45-11:30 - {ref}`Software Installation (continues) <installing-software-as-user>` (Sabry Razick & Jørn Dietze)
+- 11:30-11:45 - Break
+- TBA
 ## Code of Conduct
 
 All participants in our course are expected to show respect and courtesy to
