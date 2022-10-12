@@ -24,9 +24,11 @@ enforce quota to avoid that some script accidentally fills up the disk and the
 system becomes unusable for everybody.
 
 Storage quota is specified in:
-- **Number of files** (or "inodes" or file chunks): limits how many files you or a group may own.
+- **Number of files** (or "inodes"): limits how many files you or a group may own.
   When this limit is reached, you or the group cannot create new files (but you
-  might still increase the size of existing files).
+  might still increase the size of existing files). "Inodes" are entries
+  in the index node table which store attributes and disk block locations
+  for each file and folder.
 - **Space limit**: affects the aggregated
   size of all your files or files of a group. When this limit is reached you
   or the group cannot store more data (new data or increasing file sizes) on
@@ -76,6 +78,16 @@ The column "files" (number of files) actually lists inodes and we know that
 these are not precisely the same thing but we have chosen the name "files"
 since it is hopefully more intuitive to the users who may have never heard of
 "inodes".
+
+````{admonition} What are inodes?
+[Inodes](https://en.wikipedia.org/wiki/Inode) are entries in the index node
+table which store attributes and disk block locations for each file and folder.
+If you want to see the inode numbers for your files and folders,
+try:
+```console
+$ ls -li
+```
+````
 
 
 ## Troubleshooting: Disk quota is full
