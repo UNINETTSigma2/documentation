@@ -54,7 +54,7 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 
 - 09:00-09:10 - Welcome, Practical information & icebreaker question
 - 09:10-09:45 - NRIS HPC System Details (Einar Næss Jensen)
-- 09:50-10:30 - Job Types and Queue Systems on NRIS Clusters(Bjørn-Helge Mevik)
+- 09:50-10:30 - Job Types and Queue Systems on NRIS Clusters (Bjørn-Helge Mevik)
 - 10:30-10:45 - Break
 - 10:45-11:30 - Best Practices on NRIS Clusters (Ole W. Saastad)
 - 11:30-11:45 - Break
