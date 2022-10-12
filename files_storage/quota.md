@@ -101,7 +101,10 @@ since it is hopefully more intuitive to the users who may have never heard of
 
 - **Recovery on Betzy**:
   - Try to move data from `$HOME` to project data.
-  - Consider using `/cluster/work/users/$USER` (`$USERWORK`).
+  - Consider using `/cluster/work/users/$USER` (`$USERWORK`). But also mind
+    that files older than 21 days might get automatically deleted and
+    no recovery option exists then (auto-cleanup period is at least 21 days and
+    up to 42 days if sufficient storage is available).
   - If the above are not enough or not suitable, contact support and discuss
     whether it can make sense to increase project or user quota.
 
@@ -149,6 +152,10 @@ whether it makes sense to increase the inode quota for you.
 - **Recovery** from a `$HOME`-installed Conda environment:
   - Install a new environment into project data or `$USERWORK` and then delete
     the `$HOME`-installed Conda environment.
+    But also mind
+    that files older than 21 days might get automatically deleted and
+    no recovery option exists then (auto-cleanup period is at least 21 days and
+    up to 42 days if sufficient storage is available).
   - Advanced alternative: Use a Singularity container for the Conda environment.
 
 
