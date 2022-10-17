@@ -46,6 +46,8 @@ Registration is closed.
 
 **Day0 - UNIX for HPC (optional 18th October, Tuesday)**
 
+[UNIX for HPC training-pages](https://training.pages.sigma2.no/tutorials/unix-for-hpc/)
+
 - 09:00-09:10 - Welcome, Practical information & icebreaker question
 - 09:10-09:40 - [The terminal and remote login](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/intro.html) (Sabry and Maiken)
 - 09:40-09:55 - [Moving around and looking at things](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html) (Maiken and Sabry)
@@ -61,6 +63,7 @@ Registration is closed.
 - 12:20-12:30 - Q&A 
 
 **Day1 - HPC Intro (19th October Wednesday)**
+[HPC-intro training pages ](https://training.pages.sigma2.no/tutorials/hpc-intro/)
 
 - 09:00-09:10 - Welcome, Practical information &icebreaker question
 - 09:10-09:30 - [Why use a Cluster?](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html) (Sabry and Maiken)
@@ -73,6 +76,7 @@ Registration is closed.
 - 12:15-12:30 - Q&A & Discussion
 
 **Day2 - HPC Intro (20th October Thursday)**
+[HPC-intro training pages ](https://training.pages.sigma2.no/tutorials/hpc-intro/)
 
 - 09:00-09:10 - Recap & ice breaker question
 - 09:10-09:40 - [Accessing Software](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html) (Sabry and Bjørn)
