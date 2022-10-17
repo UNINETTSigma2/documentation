@@ -12,7 +12,7 @@
 - **I have moved files to the project folder but my home quota usage did not go down**:
   Depending on the cluster, moving files does not change ownership of the files.
   You need to also change the ownership of the files in the project folder from
-  you to the group (change the ownership from `username_g` to `username`; see
+  you to the project (change the ownership from `username_g` to `username`; see
   also below).
 ```
 
@@ -173,8 +173,10 @@ whether it makes sense to increase the inode quota for you.
 
 ## Changing file ownership on Fram or Saga
 
+```{note}
 This section is **not relevant for Betzy** as disk quotas on Betzy are based on
 directories instead of groups.
+```
 
 Since file permissions are persistent across the file system, it might be
 necessary to manually change the ownership of one or more files.  This page
