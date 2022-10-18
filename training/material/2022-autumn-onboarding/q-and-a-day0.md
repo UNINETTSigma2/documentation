@@ -61,7 +61,7 @@ orphan: true
 ## Questions
 
 1. Clicking on the slides for the presentation doesn't load the slides
-    - The course material can be found [here](https://training.pages.sigma2.no/tutorials/unix-for-hpc/index.html) and [here](https://training.pages.sigma2.no/tutorials/hpc-intro/index.html). Also, please see the [offical page for this course](https://documentation.sigma2.no/training/events/2022-10-hpc-on-boarding.html#course-material).
+    - The course material can be found [here](https://training.pages.sigma2.no/tutorials/unix-for-hpc/index.html) and [here](https://training.pages.sigma2.no/tutorials/hpc-intro/index.html). Also, please see the [official page for this course](https://documentation.sigma2.no/training/events/2022-10-hpc-on-boarding.html#course-material).
     - where is the link to slides which does not load?
 
 
