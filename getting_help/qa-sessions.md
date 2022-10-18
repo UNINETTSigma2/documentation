@@ -6,13 +6,10 @@ Meet the HPC staff, discuss problems and project ideas, give feedback or
 suggestions on how to improve services, and get advice for your
 projects.
 
-Join us on [Zoom](https://uit.zoom.us/j/67223892093), get yourself a
-coffee or tea and have a chat. It doesn't matter from which institute or
-university you are, you are **welcome to join at any time**.
-
-This time we will start with a **15 min seminar about tools and databases for
-bioinformatics.** Afterwards we have the open question and answer session where
-you can ask all question not just about bioinformatics tools.
+Join us on
+[Zoom](https://uit.zoom.us/j/62981302841?pwd=MHNzVlk0MURqcEtyV1lPMTBycmo4UT09),
+get yourself a coffee or tea and have a chat. It doesn't matter from which
+institute or university you are, you are **welcome to join at any time**.
 
 We can talk about:
 - Questions regarding compute resources, data storage and management.
@@ -37,14 +34,14 @@ events.
 
 ## Next event
 
-- **2022-09-29, 13:00 - 14:30**, [Join us on Zoom](https://uit.zoom.us/j/67223892093)
+- **2022-11-09, 13:00 - 14:30**, [Join us on Zoom](https://uit.zoom.us/j/62981302841?pwd=MHNzVlk0MURqcEtyV1lPMTBycmo4UT09)
 
 
 ## Past events
 
 [Questions and answers of previous session](https://hackmd.io/@hpc/q-a)
 
-
+- 2022-09-29, 13:00 - 14:30, "Focus on bioinformatics software & databases"
 - 2022-08-30, 13:00 - 15:00, "Running jobs on GPUs"
 - 2022-06-14, 13:00 - 15:00, "NIRDToolkit for data analysis and visualisation"
 - 2022-05-10, 13:00 - 15:00, ["Useful and good to know stuff for new users" Slides](https://docs.google.com/presentation/d/1pgueQ6w8sFW4-1y3iRwiWgkypUhrlLfhEPTFSY2_Lw8/edit?usp=sharing)
