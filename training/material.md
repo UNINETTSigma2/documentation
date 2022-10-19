@@ -7,6 +7,7 @@
 
 - {ref}`training-2022-autumn-onboarding`
   - {ref}`training-2022-autumn-onboarding-notes-day0`
+  - {ref}`training-2022-autumn-onboarding-notes-day1`
 - {ref}`training-2022-spring-best-practices`
   - {ref}`training-2022-spring-best-practices-notes-day1`
   - {ref}`training-2022-spring-best-practices-notes-day2`
