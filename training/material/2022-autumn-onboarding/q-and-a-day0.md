@@ -251,16 +251,15 @@ https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html
     - it really only makes sense I think for files with similar types because then the difference be hopefully small. if you compare a .docx file with a .pdf file (not good examples since they are binary files) then it will differ in everything and the "diff" will not be useful anyway.
 
 
-### Feedback for today
+## Feedback for today
 
 One thing you thought was good:
 - Excellent introduction, with a lot of useful tips and commands
 - Great responses and follow-up to questions
-- ... Excellent
-- Nice pace fo
+- Excellent
+- Nice pace
 - Very informative and well prepared, thanks!
 - good exercises
-- ...
 - The course is quite useful to me. I did many bioinformatics but I just searched and applied commands which I need while I did not understand it correctly. Hope to see another excellent content tomorrow.
 
 One thing we should change/remove/improve for tomorrow and next editions:
