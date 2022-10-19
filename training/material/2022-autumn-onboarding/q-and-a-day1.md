@@ -105,7 +105,7 @@ https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html
 
 12. How long does it usually take to get an account accepted after applying for an account?
     - I am unsure but here we are trying to process within minutes (?) but also watching instructors type and watching others screenshare during exercise is still useful.
-        - Yes, it is still usefull.
+        - Yes, it is still useful.
     - Could you contact the host by email/direct message so that I can speed up the process?
 
 
@@ -154,7 +154,7 @@ vote by adding a "o":
             - Correct, you have to support multiple nodes/cores yourself. To support multiple nodes one can use MPI while locally on a single computer (with multiple cores) one can use OpenMP or other shared memory frameworks.
             - Some programs already support this, while other times you may have to implement this support yourself
 
-16. Is there any way to specify that you need exactly batches of 10 cores at each node for a job? Do we have any controll over locality?
+16. Is there any way to specify that you need exactly batches of 10 cores at each node for a job? Do we have any control over locality?
     - Yes! This is indeed possible, you can combine `--ntasks-per-node` with `--nodes` to achieve this behavior
 
 17. Will there be a problem if multiple users request max number of cores? If I reserve 5 cores, is it going to be reserved for my job exclusively? or slurm does some smart CPU/core scheduling?
@@ -222,7 +222,7 @@ PE_hours = $PE * TimeLimit / 3600
     - something we will look at tomorrow: https://documentation.sigma2.no/computing/responsible-use.html#transferring-data
       - so there are even more ways to transfer data but `scp` is the most standard way on linux machines
 
-26. If the data is stored on Educloud, for doing analysis on fox no file transfere is needed? that means files on Educloud are visible by fox, but is that the case for other sigma2 services or is it limited to fox?
+26. If the data is stored on Educloud, for doing analysis on fox no file transfer is needed? that means files on Educloud are visible by fox, but is that the case for other sigma2 services or is it limited to fox?
      - how do you access EduCloud from Fox? via scp? or is it mounted as a "folder"? (I am asking because I have never been on those systems but knowing how you access I can comment on access from other clusters)
     - i don't exacly know how to access it, but i assumed that the data stored on educloud is already on the same server where fox operates on.
        - I will ask colleagues who work with that system to comment
@@ -242,13 +242,13 @@ PE_hours = $PE * TimeLimit / 3600
      - You could consider NIRD storage (see here applying https://www.sigma2.no/data-storage), which is mounted to the national clusters.
      - how large is "large"? and assuming that this is data that is not finished yet and not archived yet but still living and growi
     - in the order of a few TB
-    - New NIRD platfrom has an initial capacity of 32 TB with a possibility of extending it up to 70 TB (future).
+    - New NIRD platform has an initial capacity of 32 TB with a possibility of extending it up to 70 TB (future).
     - how do you access the project folder? where is this directory?
       - https://documentation.sigma2.no/files_storage/clusters.html
       - https://documentation.sigma2.no/files_storage/quota.html
     - in project folder but not in home. project folder is less limited in terms of quota. if the project folder is not large enough, please reach out to us.
 
-30. How to transfer from repository (e.g NeLs) to HPC useing scp
+30. How to transfer from repository (e.g NeLs) to HPC using scp
     - what is NeLs? does it provide command line/ shell access?
     - https://nels.bioinfo.no/
     - In NeLS you can find ssh connections detail under My Profile. Then you can ssh to  NeLS and use scp there to transfer data to for instance Saga.
