@@ -36,7 +36,7 @@ orphan: true
        - Could you expand on that? E.g. which is the best cluster for MPI? Or point to relevant docs. Thanks!
            - Very rough answer: extremely many cores: Betzy. Many cores: Fram, very few cores: Saga. But as below, it depends and please reach out to support if you want to apply for an allocation and are unsure to which cluster.
            - [Ole] depend on job size (# CPUs). MPI is ok with all clusters.
-   - [Ole] High volume production is in many cases quite hard to accomodate, huge I/O load. We have 3 systems, with inreasing job sizes Saga (single thread to some tens of CPUs), Fram medium size, Betzy large, up to 172000 CPUs, and for special requirements LUMI (CPUs+GPUs).
+   - [Ole] High volume production is in many cases quite hard to accommodate, huge I/O load. We have 3 systems, with inreasing job sizes Saga (single thread to some tens of CPUs), Fram medium size, Betzy large, up to 172000 CPUs, and for special requirements LUMI (CPUs+GPUs).
 
 
 ## Questions
@@ -58,7 +58,7 @@ https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html
         - And will use this workaround!
 
 3. Is there an overview of the keywords available? Or are keywords just any string which might be a substring of a module?
-    - The "keyword" command searchs any string that is in the module description, it is slightly missleading in name
+    - The "keyword" command searches any string that is in the module description, it is slightly missleading in name
         - Thanks, I see.
 
 4. Should the course use examples that would work on all the clusters? blast was not available on fram
@@ -71,7 +71,7 @@ https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html
 5. So, what is a toolchain / why is it needed? 
     - a set of compilers that were used to build the software. a compiler translates ("compiles") readable source code into runnable executables and libraries. when we load a module that depends on other modules and other libraries, we often have to make sure they were all built with the same compiler set (toolchain)
     - "why is it needed" is a really good question. it was a choice by the designers of EasyBuild (the framework we use to install most of our software) and I guess their motivation was better reproducibility? unsure but there are other opinions and approaches on how software dependencies can be managed
-        - Most software distribution methods use a shared version compiler to ensure ABI (application binary interface) and layout compatability of the software being compiled
+        - Most software distribution methods use a shared version compiler to ensure ABI (application binary interface) and layout compatibility of the software being compiled
 
 6. [MP] Question that came up here in my break-out room from yesterdays session: SLURM gives information about how much memory was used maximally - but how can a user find out how much memory was used in total for the job - i.e. to know what to ask for next time? 
      - but isn't "max" the thing to ask for since it will never go beyond that? or max plus 15-20% perhaps is a good approach. adding 15-20% because it might not be always the same and it would be pity to get the job cancelled after 2 days of running just because few MB were missing. But it is a good idea to not ask for excessively too much "just to be on the safe side" and we will maybe comment on that later today
@@ -124,7 +124,7 @@ We will go through these two:
 11. What are the main criteria for allocating computing time? How to write a good application?
     - It depends on the size of quota you apply for. Huge applications like 10++ Millions of CPU hours require very good track record. Small applications 10000 CPU hours etc require a simple application. Applications in the 10k-100k scales do not need a track record. 
         - Thanks! What would be a good track record? E.g. demonstrate scalability on sigma2 computers? Scientific output? Code used on other supercomputers in the past?
-            - Yes, publication record from CRISTIN (https://www.cristin.no), scaling demo, in all these cases (10++ Mcore hours) we know the PI. If you're new it is a bit more work to get such a large application approved. Start small and work youself up. 
+            - Yes, publication record from CRISTIN (https://www.cristin.no), scaling demo, in all these cases (10++ Mcore hours) we know the PI. If you're new it is a bit more work to get such a large application approved. Start small and work yourself up. 
                 - I am on a short-term position (3 years), not new to supercomputing but new in Norway, does that mean that I should consider applying outside Norway?
                     - If you work at a Norwegian University etc you a free to apply. How many core hours do you want ? 
                 - I think 100k-1M core-hours per year, in one or two years time.
@@ -175,7 +175,7 @@ https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.
 
 22. The tar is taking a long time, maybe because you are running it on login node? Would be nice if you show how to run the same job on a computation node.
     - Yes, but still much quicker to do tar and scp and then untar compared to scp all the files separately!
-    - If you are generating large number of files and then creating an archive. I could reccomend to use the local scratch. Parallel file systems (like /cluster) could be slow when handling very large number of files.
+    - If you are generating large number of files and then creating an archive. I could recommend to use the local scratch. Parallel file systems (like /cluster) could be slow when handling very large number of files.
         - on a login node you could access this as follows
         `[SAGA ]$ cd /localscratch/ `
         - [On a job see here](https://documentation.sigma2.no/jobs/scratchfiles.html)
