@@ -64,7 +64,7 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 **Day2 - Wednesday 2 November 2022**
 - 09:00-09:10 - Welcome, Practical information &icebreaker question
 - 09:10-09:50 - Trouble shooting on NRIS Clusters (Ole W. Saastad)
-- 09:50-10:45 - {ref}`choosing-memory-settings` + Exercise (Radovan Bast)
+- 10:00-10:45 - {ref}`choosing-memory-settings` + Exercise (Radovan Bast)
 - 10:45-11:00 - Break
 - 11:00-11:45 - {ref}`choosing-number-of-cores` + Exercise (Radovan Bast)
 - 11:45-12:00 - Break
