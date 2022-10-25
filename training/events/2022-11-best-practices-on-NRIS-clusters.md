@@ -64,19 +64,24 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 **Day2 - Wednesday 2 November 2022**
 - 09:00-09:10 - Welcome, Practical information &icebreaker question
 - 09:10-09:50 - Trouble shooting on NRIS Clusters (Ole W. Saastad)
+- 09:50-10:00 - Break
 - 10:00-10:45 - {ref}`choosing-memory-settings` + Exercise (Radovan Bast)
 - 10:45-11:00 - Break
 - 11:00-11:45 - {ref}`choosing-number-of-cores` + Exercise (Radovan Bast)
 - 11:45-12:00 - Break
-- 12:15-12:30 - Q&A
+- 12:00-12:30 - Q&A & Discussion 
 
 **Day3 - Thursday 3 November 2022**
 - 09:00-09:10 - Welcome, Practical information &icebreaker question
-- 09:10-10:00 - {ref}`Software Installation <installing-software-as-user>`  (Sabry Razick & Jørn Dietze)
-- 10:30-10:45 - Break
-- 10:45-11:30 - {ref}`Software Installation (continues) <installing-software-as-user>` (Sabry Razick & Jørn Dietze)
-- 11:30-11:45 - Break
-- TBA
+- 09:10-09:40 - [Software Installation - Easybuild](https://documentation.sigma2.no/software/userinstallsw/easybuild.html) (Jørn Dietze & Sabry Razick)
+- 09:40-09:50 - [Software Installation - Python Packages](https://documentation.sigma2.no/software/userinstallsw/python.html) (Sabry Razick & Jørn Dietze)
+- 09:50-10:05 - Break
+- 10:05-10:45 - [Software Installation - Python Packages Continues](https://documentation.sigma2.no/software/userinstallsw/python.html) (Sabry Razick & Jørn Dietze)
+- 10:45-11:00 - Break
+- 11:00-11:30 - [R packages](https://documentation.sigma2.no/software/userinstallsw/R.html) (Sabry Razick & Jørn Dietze)
+- 11:30-12:15 - [Singularity on HPC](https://documentation.sigma2.no/software/containers.html) (Sabry Razick & Jørn Dietze)
+- 12:15-12:30 - Q&A 
+
 ## Code of Conduct
 
 All participants in our course are expected to show respect and courtesy to
