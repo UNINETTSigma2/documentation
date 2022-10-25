@@ -82,5 +82,5 @@ matlab -nodisplay -nodesktop -nojvm -r "myprogram"
 ## MPI for Matlab
 MPI for Matlab is installed on Fram/Saga/Betzy (for parallelizing on many
 compute nodes). The following guides can help you get started:
-- [Distributed Matlab (for non MPI programmers)](https://www.hpc.ntnu.no/ntnu-hpc-group__trashed/matlab-for-hpc/distributed-matlab-using-mpi/)
-- [Matlab MPI](https://www.hpc.ntnu.no/ntnu-hpc-group__trashed/matlab-for-hpc/matlab-mpi/)
+- [Distributed Matlab (for non MPI programmers)](https://www.hpc.ntnu.no/matlab-for-hpc/distributed-matlab-using-mpi/)
+- [Matlab MPI](https://www.hpc.ntnu.no/matlab-for-hpc/matlab-mpi/)
