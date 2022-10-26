@@ -5,7 +5,7 @@
 Only the project leader or the executive officer of a NSxxxxK project can deploy applications through the NIRD Toolkit. 
 The project leader/executive officer can also decide who else shall be authorized to deploy application through 
 the NIRD Toolkit and who shall be able to run the deployed application. 
-This is done by creating a group in Feide and connecting it to the resources in MAS (NSxxxxK). 
+This is done by creating a group in Feide Innsyn and connecting it to the resources in MAS (NSxxxxK). 
 Those members of the group who hold administrative rights will deploy applications, ordinary members will run applications.
 
 1. Go to [Feide Innsyn](https://innsyn.feide.no/groups) and select the institution you belong to from the drop-down menu. If your institution does not appear there (Feide login), then select "Feide guest users" from the drop-down menu in the "Other alternative login". You will then be redirected to the OpenIdP page. Create an account in OpenIdP by following the procedure and, once the account has been created, use it to log in to Feide innsyn as Feide guest users.
@@ -39,13 +39,13 @@ Unfortunately, the approval cannot be exercised on services that are owned by in
 
 ![Feide service not activated](imgs/feide-service-not-activated.PNG "Feide service not activated")
 
-Since the NIRD Toolkit is a platform to deploy services dynamically, the activation cannot be done one a per-service level.  
+Since the NIRD Toolkit is a platform to deploy services dynamically, the activation cannot be done on a per-service level.  
 
 In order to access your deployed services, you can use a Feide OpenIdP account.  
 You can create an account on https://openidp.feide.no for free if you don't have one already.
 
 
-**Create new feide ad-hoc group**  
+**Create new Feide ad-hoc group**  
 Using your _regular Feide-account_, go to [Feide innsyn](https://innsyn.feide.no/groups) and click "Create ad-hoc group" .
 
 **Invite OpenIdP account to the Feide ad-hoc group**  
