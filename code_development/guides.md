@@ -10,8 +10,6 @@
 - GPU programming with OpenACC:
     - [<span style="color:green">Beginner</span>]
         [Getting started with OpenACC and Nvidia Nsight](guides/openacc.md)
-    - [<span style="color:green">Beginner</span>]
-        [MPI and OpenACC](guides/openacc_mpi.md)
     - [<span style="color:orange">Intermediate</span>]
         [Async and Multi-GPU OpenACC](guides/async_openacc.md)
 - GPU programming with OpenMP:
@@ -29,6 +27,11 @@
 - Porting applications:
     - [<span style="color:green">Beginner</span>]
         [Porting OpenACC to OpenMP offloading](guides/converting_acc2omp/openacc2openmp.md)
+- Hybrid programming
+    - [<span style="color:green">Beginner</span>]
+        [MPI and OpenACC](guides/openacc_mpi.md)
+    - [<span style="color:green">Intermediate</span>]
+        [GPU-aware MPI with OpenACC and OpenMP](guides/gpuaware_mpi.md)            
 - Building containers with Singularity:
     - [<span style="color:green">Beginner</span>]
         [Container with build environment](guides/container_env.md)
