@@ -6,7 +6,6 @@ orphan: true
 
 # Incorporating MPI into GPU-directive models with a GPU-awareness approach
 
-(summary)=
 
 # Summary 
 
@@ -27,7 +26,6 @@ By the end of this tutorial, we expect the readers to learn about
 The source codes discussed in this tutorial are provided at the end in the section {ref}`Source codes <source-codes>`, from which can be directly downloaded.
 ```
 
-(introduction)=
 
 # Introduction
 
@@ -38,7 +36,7 @@ Combining MPI with OpenACC or OpenMP offloading APIs offers the potential to ful
 In this tutorial, we will cover two scenarios: a scenario in which an MPI library can directly access a GPU-device memory (i.e GPU-aware MPI); and a scenario in which there is no interaction between an MPI library and a GPU-device (i.e. GPU-non-aware MPI). The implementation will be provided for both the hybrid **MPI-OpenACC** and **MPI-OpenMP** APIs.
 
 This descriptive tutorial is organized as follows: In {ref}`section I <implementation-of-mpi-alone>`, we describe the implementation of the low-level MPI alone using an application based on solving the Laplace equation. In {ref}`section II <implementation-of-a-gpu-awareness-approach>`, we extend the MPI-application to incorporate a GPU-awareness approach. This is done by combining MPI with OpenACC/OpenMP AIPs. Here we will address both GPU-accelerator and non-accelerator -aware MPI library (i.e. MPI with direct memory access vs MPI without direct memory access). 
-{ref}`Section III <performance-analysis-on-lumi-g-eap>` is devoted to the performance analysis. {ref}`Section IV <conclusion>` concludes the tutorial.
+{ref}`Section III <performance-analysis-on-lumi-g-eap>` is devoted to the performance analysis. {ref}`Section IV <gpuaware-conclusion>` concludes the tutorial.
 
 ```{contents} Table of Contents
 ```
@@ -434,7 +432,7 @@ Hybrid models\2D-grid (nx,ny) | 8192x8192 | 16384x16384 | 20000x20000 |
 
 **Table 1** *Comparison of the performance between the hybrid **MPI-OpenACC** and **MPI-OpenMP** APIs at three different grids increased in size. The comparison is performed for both GPU-aware MPI and GPU-non-aware MPI.*
 
-(conclusion)=
+(gpuaware-conclusion)=
 
 # Conclusion
 
