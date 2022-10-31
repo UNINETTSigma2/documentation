@@ -53,7 +53,7 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 **Day1 - Tuesday 1 November 2022**
 
 - 09:00-09:10 - Welcome, Practical information & icebreaker question
-- 09:10-09:45 - NRIS HPC System Details (Einar Næss Jensen)
+- 09:10-09:45 - [NRIS Infrastructure](https://drive.google.com/drive/folders/1XkQeEzYv_aNWNSlVeZuRurHv5L8HgTIH) (Einar Næss Jensen)
 - 09:50-10:30 - Job Types and Queue Systems on NRIS Clusters (Bjørn-Helge Mevik)
 - 10:30-10:45 - Break
 - 10:45-11:30 - Best Practices on NRIS Clusters (Ole W. Saastad)
@@ -109,3 +109,10 @@ section](https://wiki.uib.no/hpcdoc/index.php/HPC_and_NIRD_toolkit_course_fall_2
 - Radovan Bast
 - Sabry Razick
 - Jørn Dietze
+
+## Expert Helper
+
+- Siri Kallhovd
+- Maiken Pedersen
+- Bjørn Lindi
+- Hicham Agueny
