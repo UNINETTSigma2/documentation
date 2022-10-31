@@ -56,14 +56,14 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 - 09:10-09:45 - [NRIS Infrastructure](https://drive.google.com/drive/folders/1XkQeEzYv_aNWNSlVeZuRurHv5L8HgTIH) (Einar Næss Jensen)
 - 09:50-10:30 - Job Types and Queue Systems on NRIS Clusters (Bjørn-Helge Mevik)
 - 10:30-10:45 - Break
-- 10:45-11:30 - Best Practices on NRIS Clusters (Ole W. Saastad)
+- 10:45-11:30 - [Using the HPC resources effectively](https://drive.google.com/drive/folders/1XkQeEzYv_aNWNSlVeZuRurHv5L8HgTIH) (Ole W. Saastad)
 - 11:30-11:45 - Break
 - 11:45-12:15 - Summary and exercise (Ole W. Saastad)
 - 12:15-12:30 - Q&A
 
 **Day2 - Wednesday 2 November 2022**
 - 09:00-09:10 - Welcome, Practical information &icebreaker question
-- 09:10-09:50 - Trouble shooting on NRIS Clusters (Ole W. Saastad)
+- 09:10-09:50 - [HPC Best Practices & Trouble shooting](https://drive.google.com/drive/folders/1XkQeEzYv_aNWNSlVeZuRurHv5L8HgTIH) (Ole W. Saastad)
 - 09:50-10:00 - Break
 - 10:00-10:45 - {ref}`choosing-memory-settings` + Exercise (Radovan Bast)
 - 10:45-11:00 - Break
