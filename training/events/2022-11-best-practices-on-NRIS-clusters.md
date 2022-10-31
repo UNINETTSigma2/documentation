@@ -109,3 +109,10 @@ section](https://wiki.uib.no/hpcdoc/index.php/HPC_and_NIRD_toolkit_course_fall_2
 - Radovan Bast
 - Sabry Razick
 - Jørn Dietze
+
+## Expert Helper
+
+- Siri Kallhovd
+- Maiken Pedersen
+- Bjørn Lindi
+- Hicham Agueny
