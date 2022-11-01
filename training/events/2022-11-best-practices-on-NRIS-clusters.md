@@ -41,7 +41,7 @@ If you want to receive further information about training events, and other anno
 The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT, NTNU & Sigma2. Registration closes on **31st October at 12:00** .
 **Register [here](https://skjemaker.app.uib.no/view.php?id=13058309)**. If by any chance the registration link is not working for you, please try this [link](https://skjemaker.h.uib.no/view.php?id=13058309).
 
-## Time, date (all times CEST)
+## Time, date (all times CET)
 |   Date    |  Time   |  Topic	|
 | :----------- | :----------- | :---------- |
 | Tue 01.11    | 09:00 - 12:30 | NRIS HPC Systems Overview & Best Practices |
@@ -65,9 +65,9 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 - 09:00-09:10 - Welcome, Practical information &icebreaker question
 - 09:10-09:50 - [HPC Best Practices & Trouble shooting](https://drive.google.com/drive/folders/1XkQeEzYv_aNWNSlVeZuRurHv5L8HgTIH) (Ole W. Saastad)
 - 09:50-10:00 - Break
-- 10:00-10:45 - {ref}`choosing-memory-settings` + Exercise (Radovan Bast)
+- 10:00-10:45 - {ref}`choosing-memory-settings` + Exercise (Radovan Bast & Sabry Razick)
 - 10:45-11:00 - Break
-- 11:00-11:45 - {ref}`choosing-number-of-cores` + Exercise (Radovan Bast)
+- 11:00-11:45 - {ref}`choosing-number-of-cores` + Exercise (Radovan Bast & Sabry Razick)
 - 11:45-12:00 - Break
 - 12:00-12:30 - Q&A & Discussion 
 
