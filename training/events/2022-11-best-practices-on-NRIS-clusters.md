@@ -41,7 +41,7 @@ If you want to receive further information about training events, and other anno
 The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT, NTNU & Sigma2. Registration closes on **31st October at 12:00** .
 **Register [here](https://skjemaker.app.uib.no/view.php?id=13058309)**. If by any chance the registration link is not working for you, please try this [link](https://skjemaker.h.uib.no/view.php?id=13058309).
 
-## Time, date (all times CEST)
+## Time, date (all times CET)
 |   Date    |  Time   |  Topic	|
 | :----------- | :----------- | :---------- |
 | Tue 01.11    | 09:00 - 12:30 | NRIS HPC Systems Overview & Best Practices |
