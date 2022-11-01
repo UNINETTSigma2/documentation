@@ -132,8 +132,8 @@ orphan: true
 
 ## Feedback for the day
 
-- One thing you thought was nice
-      - The last demo was nice. 
+ - One thing you thought was nice
+     - The last demo was nice. 
 
-- One thing we should change/improve tomorrow and next events
+ - One thing we should change/improve tomorrow and next events
 
