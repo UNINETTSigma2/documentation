@@ -88,7 +88,7 @@ int main(int argc, char* argv[])
     double my_values[k];
     double buffer_recv[k];
 
-    for(int j = 0; j < 100; j++)
+    for(int j = 0; j < 750; j++)
     {
         for(int i = 0; i < k; i++)
         {
@@ -132,7 +132,7 @@ emphasize-lines: 9-10
 #SBATCH --qos=devel
 
 #SBATCH --job-name='scaling'
-#SBATCH --time=0-00:02:00
+#SBATCH --time=0-00:07:00
 #SBATCH --mem-per-cpu=1GB
 #SBATCH --ntasks=8
 #SBATCH -o 008.out
@@ -149,14 +149,14 @@ You might get the following timings:
 
 | Number of cores | Time spent in mybinary |
 |-----------------|------------------------|
-|   1             |       00:00:33         |
-|   2             |       00:00:17         |
-|   4             |       00:00:09         |
-|   8             |       00:00:05         |
-|  16             |       00:00:04         |
-|  32             |       00:00:06         |
-|  64             |       00:00:17         |
-| 128             |       00:00:25         |
+|   1             |       00:05:38         |
+|   2             |       00:02:51         |
+|   4             |       00:01:28         |
+|   8             |       00:00:47         |
+|  16             |       00:00:29         |
+|  32             |       00:00:22         |
+|  64             |       00:00:28         |
+| 128             |       00:01:22         |
 
 Please try this. What can we conclude? And how can we explain it?
 
