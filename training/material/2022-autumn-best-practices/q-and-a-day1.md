@@ -40,11 +40,11 @@ orphan: true
 4. What is object storage? How does it differ from file storage?
     - As users you could use this as normal storage, i.e. no need to do anything different.
     - Usually you have to use specific tools to access object storage, that is for storing data, retrieving data, for listing what is stored in the storage. So it works differently than a normal filesystem (like `$HOME`). There may exist tools which let you mount a "bucket" into your file system and then you can use it like a normal file system. E.g., you could try that within a container. 
-    - If you want more details, it is discribed [here](https://documentation.sigma2.no/files_storage/performance.html)
+    - If you want more details, it is described [here](https://documentation.sigma2.no/files_storage/performance.html)
 
 5. How should you download/upload a big database? It is too big for my laptop storage to download and then upload.
     - You could do this from the login node. 
-    - If it is usefull for many, then you could request and we can set this up centrally.
+    - If it is useful for many, then you could request and we can set this up centrally.
     - Some examples of centrally setup databases are in `/cluster/shared/databases/`
         - ls: cannot access /cluster/shared/databases: No such file or directory 
             - The location is on SAGA, fram we do not have that
