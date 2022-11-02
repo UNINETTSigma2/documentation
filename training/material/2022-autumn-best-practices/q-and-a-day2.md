@@ -25,11 +25,11 @@ orphan: true
 
 
 1. What if the program I want to run is a script(not a compiled program), e.g. Python. Commands like ldd will not work in that cas.
-     - One trick would be to see if the program/script calls any libaries that make parrallel porcessing possible.
+     - One trick would be to see if the program/script calls any libaries that make parallel porcessing possible.
      - if this is a self contained script that does not call libraries, you could `grep -r` for text like `mpi` or `multiprocessing`
      - good point above but it can be difficult to inspect dependencies/libraries of the script as they may not be really "visible". what I would do and this is not elegant, is to launch it and I would ask `top`/`htop` and check how many cores are actually busy. Alternatively I would use `seff` after the job is done to check the statistics.
 
-2. Yesterday we saw the `top` command, is it possible to see the full command used ?, e.g. if an argument like parrallel is used. when i use top I see only the executables name
+2. Yesterday we saw the `top` command, is it possible to see the full command used ?, e.g. if an argument like parallel is used. when i use top I see only the executables name
      - with top/htop you can see the PID (process ID) of each process. then you could ask `ps` to give you info about that process. example for a process 12345: `ps 12345`
      -  You could try `top -c` to show the full command. 
         - nice! I did not know that. that's much nicer than the "ps"-detour
@@ -149,7 +149,7 @@ Plan for this session:
     - Something like arrayrun ? N copies with different input ? Typical for Monte-Carlo simulations.
     - Arrayrun works well. But then it does not make sense to try to increase the number of cores or the number of tasks?
     - A threaded numpy library might help, but does your code spend much time in numpy ? 
-    - Something like numba? I'm not sure exaclty how much time is spent inside numpy operations, but I would guess a fair bit 
+    - Something like numba? I'm not sure exactly how much time is spent inside numpy operations, but I would guess a fair bit 
     - Print out a timestamp before and after call to numpy and you'll know. 
     - Try setting OMP_NUM_THREADS=4 or something and run a test with numpy, some of the numpy libs are threaded. Intel have versions that are multithreaded. 
     - I will try that, thank you. And that means that it is sometimes possible to run stuff on multiple cores even in pure numpy? But if you want more control parallelization libaries are good? 
@@ -170,11 +170,11 @@ Plan for this session:
 
 
 
-19. Are these videos of the course giong to be avialable somewhere after the course? Because i heard Radovan said this is not being recorded and not be published, or did i hear incorrectly?
+19. Are these videos of the course giong to be available somewhere after the course? Because i heard Radovan said this is not being recorded and not be published, or did i hear incorrectly?
      - The videos will be available later. What Radovan mentioned is that if you are talking, we will edit the part before publishing.
      - They will be published in the docs under [training material](https://documentation.sigma2.no/training/material.html#training-video-archives)
 
-20. I know that R is a single thread executor, does this mean that it can only use one cpu core per session? If this is the case running R code on HPC without parallelization does not improve anything, does it? For those using python isn't this the case with python? does your code run on multiple cores if they are avialable? 
+20. I know that R is a single thread executor, does this mean that it can only use one cpu core per session? If this is the case running R code on HPC without parallelization does not improve anything, does it? For those using python isn't this the case with python? does your code run on multiple cores if they are available? 
     - yes Python and R are similar in this. can R use libraries that are parallelized themselves? I believe it can but haven't used R myself yet.
         - There are R packages that can start several R processes and send tasks to them (for instance the "parallel" package that comes with R - but there are many more).  Some use MPI, some not.  There are also R-packages that use multithreaded libraries.  In many installations, the basic BLAS library that R is linked to, is threaded (not sure about the NRIS installation here, though).
     - but even if it runs only on 1 core it can still make sense to run on HPC clusters if you can run many independent jobs at the same time instead of running them one after the other
@@ -191,7 +191,7 @@ Plan for this session:
 ## Feedback for today
 - One thing you thought was nice
     - This last bit on different ways of parallelizing was nice
-    - Exercices are always nice
+    - Exercise are always nice
     - This document and the way you answer question is great. 
     - Thanks for a great course!
     - Thanks!
