@@ -38,6 +38,16 @@ $ source my_new_pythonenv/bin/activate
 $ python -m pip install pandas
 ```
 
+After the analysis is finished the environment can be unloaded or deactivated 
+using one of the two methods below. 
+
+1. Close the current terminal 
+2. Use the *deactivate* command
+
+
+In a job script (described below), there is no need to deactivate as the 
+environment is only active in the *shell* the job was running in.
+
 For more information, have a look at the [official
 `pip`](https://pip.pypa.io/en/stable/) and
 [`virtualenv`](https://virtualenv.pypa.io/en/latest/) documentations.
