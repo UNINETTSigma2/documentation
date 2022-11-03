@@ -60,7 +60,7 @@ orphan: true
     
 
 9. Where should I install software home or project area?
-    - Project folder is recomended.
+    - Project folder is recommended.
         - Installing into the project folder also allows you to share with colleagues as others can also use `module use PATH` to access the software
     - Home folder could be convient though, so if it is a smaller installation (size and number of files) then install it in HOME
  
@@ -122,7 +122,7 @@ orphan: true
 ### [Singularity on HPC](https://documentation.sigma2.no/software/containers.html)
 
 
-17. I have sometimes had problems with importing some docker container to singularity, when the program in the docker is dependent on an independent file like a local database. In the convertion the path to the file gets scrambled or something. Any experience with this?
+17. I have sometimes had problems with importing some docker container to singularity, when the program in the docker is dependent on an independent file like a local database. In the conversion the path to the file gets scrambled or something. Any experience with this?
     - Sorry this was a very hard question to formulate.
       - no worries, we will raise the question.
     - I haven't seen this before. If you have an example we can look. But also OK to not share here if you prefer sharing directly to our support: support@nris.no
@@ -145,7 +145,7 @@ orphan: true
 
 20. Does it bind recursively? What if you want to bind several directories?
     - I have in past specified all separately
-    - comma seperated list
+    - comma separated list
         - [doc](https://docs.sylabs.io/guides/3.0/user-guide/bind_paths_and_mounts.html)
     - Great!
 
