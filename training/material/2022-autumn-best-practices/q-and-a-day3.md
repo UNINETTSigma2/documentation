@@ -155,7 +155,7 @@ orphan: true
 
 
 
-### Feedback for today the day
+### Feedback for the day
 
 - What did you particularly like?
   - Informative
