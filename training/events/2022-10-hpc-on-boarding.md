@@ -16,6 +16,10 @@ a day before the HPC course.
 
 **The course is open to all and free of charge.**
 
+```{note}
+  **The video recordings and notes for this course can be found [here](https://documentation.sigma2.no/training/material.html)**
+
+```
 
 ## **Practical Information**
 
