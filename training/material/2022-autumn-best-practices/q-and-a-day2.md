@@ -199,3 +199,7 @@ Plan for this session:
 
 - One thing we should change/improve tomorrow and next events
     - More examples with actual codes and how they run would be nice here, something like a benchmarking code. 
+        - Time is very limited, this is case by case. Please feel free to ask for help.
+
+    - I would appreciate some comments on which parts of what we are learning are applicable to IDUN.
+        - Idun is a local cluster at NTNU, they operate as they see best for them. They do not need to follow the operating scheme as the national systems does, there is one «Driftsorganisasjon» who run Saga, Fram and Betzy (At UiO we try to do it similar as the national).
