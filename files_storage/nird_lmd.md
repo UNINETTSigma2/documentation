@@ -10,7 +10,7 @@ The next generation NIRD storage system is installed in [Lefdal Mine Datacenter]
 The new NIRD  is redesigned for the evolving needs of Norwegian researchers and has been procured through [the NIRD2020 project](https://www.sigma2.no/procurement-project-nird2020).
 
 
-The **NIRD@LMD** architecture is based on IBM Elastic Storage System (ESS3200 & ESS5000 SC models) with storage tiers on tiered storage side and one unified datalake, providing object and file access. The total capacity of the system is 33PB (22PB and 11 PB on tiered storage and datalake respectively).
+The **NIRD@LMD** architecture is based on IBM Elastic Storage System (ESS3200 & ESS5000 SC models) with storage tiers on tiered storage side and one unified datalake, providing object and file access. The total capacity of the system is 33 PB (22 PB on tiered storage and 11 PB on datalake).
 The solution is based on IBM Spectrum Scale – an IBM Systems storage product based on GPFS (General Parallel File System). The solution provides a single storage architecture which is partitioned dynamically to provide for storage allocation for SMB, NFS and POSIX based file-services and S3 based object storage.
 
 
