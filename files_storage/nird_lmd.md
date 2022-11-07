@@ -41,7 +41,7 @@ We take snapshots of the new NIRD to allow data restoration in case of accidenta
 
 ## Quota 
 
-You will keep the current quota on the old system until its end of life. You get the updated quota on the new NIRD when launching in December. Thus, you have to count on the current quota until December.   
+You will keep the current quota on the old system until it is end of life. You get the updated quota on the new NIRD when launching in December. Thus, you have to count on the current quota until December.   
 
 
 ## TBA
