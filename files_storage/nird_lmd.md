@@ -46,7 +46,7 @@ We kindly remind you that the data migration from old NIRD to new NIRD is on-goi
 ## Backup and data integrity
 
 ```{warning}
-Please note that data outside of the abovementioned _PILOT folder might be overwritten at any time. At the moment, until data migration is finished and transition to the new infrastructure is finalized, data integrity is ensured on storage level with erasure coding. 
+Please note that data outside of the above mentioned _PILOT folder might be overwritten at any time. At the moment, until data migration is finished and transition to the new infrastructure is finalized, data integrity is ensured on storage level with erasure coding. 
 
 Snapshots and backups are currently not enabled. This is expected to be activated close to the production phase.`
 ```
