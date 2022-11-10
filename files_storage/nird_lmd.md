@@ -59,3 +59,7 @@ If you need increased redundancy in form of an extra copy of the dataset in a di
 
 You will keep the current quota on the old system until it is end of life. 
 You get the quota allocated by RFK for the 2022.2 allocation period NIRD.
+
+```{note}
+`dusage` command and software access on new nird are yet to be configured. We shall update the documentation when it is implemented.
+```
