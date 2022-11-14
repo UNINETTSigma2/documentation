@@ -48,10 +48,10 @@ We kindly remind you that the data migration from old NIRD to new NIRD is on-goi
 ```{warning}
 Please note that data outside of the above mentioned _PILOT folder might be overwritten at any time. At the moment, until data migration is finished and transition to the new infrastructure is finalized, data integrity is ensured on storage level with erasure coding. 
 
-Snapshots and backups are currently not enabled. This is expected to be activated close to the production phase.`
+Backups are currently not enabled. This is expected to be activated close to the production phase.`
 ```
 
-When snapshots are activated on the new NIRD, it will allow data restoration in case of accidental deletion.
+Snapshots are activated on the new NIRD, it will allow data restoration in case of accidental deletion.
 
 If you need increased redundancy in form of an extra copy of the dataset in a different location, you need to request this as an extra service. Should you have chosen replication or mixed replication in your application for storage resources for 2022.2, backup service will be switched on by the POWG team. POWG will contact each pilot project to guide setting up the inclusion/exclusion rule for each dataset. An inclusion/exclusion template will be provided later for all projects.
 
