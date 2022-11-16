@@ -19,7 +19,6 @@ These are the installed VASP versions on our facilities.
 | Version  | Fram | Saga | Betzy |
 |----------|------|------|-------|
 | 5.4.4pl2 | Yes  | Yes  | No    |
-| 6.3.0    | Yes  | Yes  | Yes   |
 | 6.3.2    | Yes  | Yes  | Yes   |
 
 ## Tests passed
@@ -29,15 +28,14 @@ This is the present test status for the installed modules for VASP.
 | Version  | Fram | Saga | Betzy |
 |----------|------|------|-------|
 | 5.4.4pl2 | N/A  | N/A  | N/A   |
-| 6.3.0    | Fast | Fast | Fast  |
 | 6.3.2    | Fast | Fast | Fast  |
 
 `Fast` or `Full` refer to the [VASP tests](https://www.vasp.at/wiki/index.php/Validation_tests).
 
-## Supported versions
+## Supported versions available in the module system
 
 * 5.4.4 pl2 (not maintained, only for those that do not have VASP 6 licenses)
-* 6.3.0
+* 6.3.0 (will be removed at some point)
 * 6.3.2 (recommended)
 
 Note that at Betzy we only support VASP >= 6.3.
@@ -80,9 +78,14 @@ There are now one module per VASP flavor (`std` - standard, `gam` - gamma only a
 
 | VASP version | Hash                             | Wannier90 (tag) | VTST (svn) | BEEF (tag) | SOL (commit)                             | libxc (tag) | hdf5 (tag) | note                           |
 |--------------|----------------------------------|-----------------|------------|------------|------------------------------------------|-------------|------------|--------------------------------|
-| 5.4.4 pl2    | 86f69b2cbd5b5987c9dd0bf21a1b7e82 | 2.1.0           | -          | -          | -                                        | -           | -          | -                              |
+| 5.4.4 pl2    | 6dca52e0464347588557bc833ad7aef9 | 2.1.0           | -          | 0.1.1      | -                                        | -           | -          | -                              |
+| 5.4.4 pl2    | a695b2f1ed198f379d85666aef427164 | 2.1.0           | -          | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | -           | -          | -                              |
+| 5.4.4 pl2    | 3022db58e4b43f1ae0c4d395698b6f43 | 2.1.0           | 74         | 0.1.1      | -                                        | -           | -          | -                              |
 | 6.3.0        | 5289f748cfc70eba91b5b6c81efedad4 | 3.1.0           | -          | -          | -                                        | 5.2.2       | 1.12.1     | HDF5 functionality not enabled |
-| 6.3.2        | d7238be44ec2ed23315a16cc1549a1e3 | 3.1.0           | 74         | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | 5.2.2       | 1.12.1     | -                              |
+| 6.3.2        | d7238be44ec2ed23315a16cc1549a1e3 | 3.1.0           | -          | 0.1.1      | -                                        | 5.2.2       | 1.12.1     | -                              |
+| 6.3.2        | 036257e2962196f7eed8c289f961c450 | 3.1.0           | -          | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | 5.2.2       | 1.12.1     | -                              |
+| 6.3.2        | 097e6cb5a78f237dc588ba9c7877f23b | 3.1.0           | 74         | 0.1.1      | -                                        | 5.2.2       | 1.12.1     | -                              |
+
 
 Notice that the VASP version is not included when generating the hash, only the libraries and associated mods from the additions in the table above. Meaning, if we add a module with a new VASP version and do not need or do an update on any of the libraries, the hash should be the same. 
 
