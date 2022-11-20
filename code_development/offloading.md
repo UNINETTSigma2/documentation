@@ -34,7 +34,7 @@ the compiler.
 ```{tab} LUMI-G
 
 LUMI-G has `AMD MI250X` accelerators which is supported by ROCm. The identifier
-for the GPU is `gfx908`.
+for the GPU is `gfx90a`.
 ```
 ````
 
