@@ -131,9 +131,8 @@ for MPI enabled jobs where each rank should be assigned a GPU.
 #SBATCH --job-name=MPIGPUJob
 #SBATCH --time=0-00:05:00
 #SBATCH --mem-per-cpu=1G
-#SBATCH --ntasks=2
+#SBATCH --ntasks=2 --gpus=2
 #SBATCH --partition=accel
-#SBATCH --gpus-per-task=1
 ```
 
 There are other GPU related specifications that can be used, and that
@@ -148,6 +147,22 @@ probably:
 - `--mem-per-gpu` How much RAM the job should have for each GPU.
   Can be used *instead of* `--mem-per-cpu`, (but cannot be used
   *together with* it).
+
+```{attention}
+Due to a bug in Slurm `--gpus-per-task` is not working correctly, jobs using
+this option will be billed more core hours than what the job is actually using.
+
+Users should revert to using `--gpus` or `--gpus-per-node` for now.
+
+The latest update on this bug can be found in [this OpsLog
+post](https://opslog.sigma2.no/2021/11/26/gpus-per-task-not-working-correctly-on-saga/).
+```
+
+See [sbatch](https://slurm.schedmd.com/sbatch.html) or `man sbatch`
+for the details, and other GPU related specifications.
+
+(The old way of specifying GPUs: `--gres=gpu:N` is still supported,
+but is less flexible than the above specification.)
 
 
 (job_scripts_betzy_devel)=
