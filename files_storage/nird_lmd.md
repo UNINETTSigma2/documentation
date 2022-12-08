@@ -66,3 +66,22 @@ You get the quota allocated by RFK for the 2022.2 allocation period NIRD.
 ## Software access
 
 Software access is via command line. 
+
+## NIRD Toolkit
+
+Pilot users can test [NIRD Toolkit](https://documentation.sigma2.no/nird_toolkit/overview.html) on new NIRD. See the 
+[NIRD Toolkit Documentation](https://documentation.sigma2.no/nird_toolkit/getting_started_guide.html) on how to deploy 
+services on the toolkit. 
+On the new nird, toolkit is available [here](https://store.sigma2.no). Begin by navigating to the package library in the 
+[toolkit](https://store.sigma2.no).
+
+
+```{warning}
+- Before testing the nird toolkit on new nird, pilot users are requested to contact the POWG team at nird-migration@nris.no 
+so that we can create dedicated namespaces/resources for the pilot project on the service platform at NIRD@LMD
+
+- We do not have https certificates in place for the nird-lmd subdomain so users will have to "ignore" the certificate 
+warning in their browser.
+
+- Kindly remind that this is a pilot phase to test the toolkit, so services may experience unexpected downtimes.
+```
