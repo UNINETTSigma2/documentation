@@ -280,8 +280,8 @@ export PS1=\$
 # The variable ${EBROOTANACONDA3} or ${EBROOTMINICONDA3}
 # So use one of the following lines
 # comes with the module load command
-# source ${EBROOTANACONDA3}/etc/profile.d/conda.sh
-source ${EBROOTMINICONDA3}/etc/profile.d/conda.sh
+# source ${EBROOTMINICONDA3}/etc/profile.d/conda.sh
+source ${EBROOTANACONDA3}/etc/profile.d/conda.sh
 
 # Deactivate any spill-over environment from the login node
 conda deactivate &>/dev/null
