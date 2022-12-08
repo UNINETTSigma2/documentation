@@ -59,15 +59,30 @@ latest version you can find:
     $ module load EasyBuild/4.3.1
 
 Say you want to install the already mentioned
-[rjags](http://cran.r-project.org/web/packages/rjags)
-package. Then you first need to find out which easyconfigs are available in the
-repository that the EasyBuild module is currently pointing at. This you can
-find under the ``$EBROOTEASYBUILD`` path, which becomes active when you load
-the EasyBuild module:
+[rjags](http://cran.r-project.org/web/packages/rjags) package. Then you first
+need to find out which easyconfigs are available on the system.  This can be
+done with the `--search-filename` or `-S` option. So to display all rags
+version that can be installed use:
 
-    $ ls $EBROOTEASYBUILD/easybuild/easyconfigs/r/rjags
-    rjags-4-10-foss-2019b.eb          rjags-4-6-intel-2017a-R-3.4.0.eb  rjags-4-8-foss-2018b-R-3.5.1.eb
-    rjags-4-10-foss-2020a-R-4.0.0.eb  rjags-4-6-intel-2017b-R-3.4.3.eb  rjags-4-9-foss-2019a-R-3.6.0.eb
+    $ eb --search-filename rjags
+    == found valid index for /cluster/software/EasyBuild/4.6.2/easybuild/easyconfigs, so using it...
+     * rjags-4-6-intel-2017a-R-3.4.0.eb
+     * rjags-4-6-intel-2017b-R-3.4.3.eb
+     * rjags-4-8-foss-2018b-R-3.5.1.eb
+     * rjags-4-9-foss-2019a-R-3.6.0.eb
+     * rjags-4-10-foss-2019b.eb
+     * rjags-4-10-foss-2020a-R-4.0.0.eb
+     * rjags-4-10-foss-2020b-R-4.0.3.eb
+     * rjags-4-10-foss-2020b-R-4.0.4.eb
+     * rjags-4-10-foss-2020b-R-4.0.5.eb
+     * rjags-4-10-foss-2021a-R-4.1.0.eb
+     * rjags-4-10-fosscuda-2020b-R-4.0.3.eb
+     * rjags-4-10-fosscuda-2020b-R-4.0.4.eb
+     * rjags-4-10-fosscuda-2020b-R-4.0.5.eb
+     * rjags-4-12-foss-2021b-R-4.1.2.eb
+
+    Note: 1 matching archived easyconfig(s) found, use --consider-archived-easyconfigs to see them
+
 
 From this list we decide to go for ``rjags`` version mentioned above, i.e.
 ``rjags-4-6-intel-2017b-R-3.4.3.eb``.
