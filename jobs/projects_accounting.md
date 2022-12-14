@@ -26,13 +26,14 @@ How billing units are computed is described below but here is what this means fo
   queue for a lot longer than you would like to. In addition this can also
   block resources for others.
 
-- **You get billed for what you used, not what you asked for**.
-  But Slurm cannot know how long your job will take. If you ask for 5 days but
+- **You get billed for the resources you asked for, not what you used,
+  with one exception: time**.
+  Slurm cannot know how long your job will take. If you ask for 5 days but
   only use 2 hours, it will subtract "5 days worth of billing units" from your
   project/account once your job starts. 2 hours later, it will return to you
   the unused quota once your job ends. This means that if you ask for a lot
   more time than you actually need, you and your project colleagues may not be
-  able to submit other jobs in the meantime since Slurm will not let you
+  able to get other jobs scheduled in the meantime since Slurm will not let you
   overspend your quota.
 ```
 
