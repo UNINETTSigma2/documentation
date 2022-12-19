@@ -29,7 +29,7 @@
 
 ### Training Video Archives
 
-- [[Video]] Best Practices on NRIS Clusters November 2022](https://www.youtube.com/playlist?list=PLoR6m-sar9AgoSnXdbUkO9FBiCUTft1GK)
+- [[Video] Best Practices on NRIS Clusters November 2022](https://www.youtube.com/playlist?list=PLoR6m-sar9AgoSnXdbUkO9FBiCUTft1GK)
 
 - [[Video] HPC On-boarding Oct 2022](https://www.youtube.com/playlist?list=PLoR6m-sar9Aieei4JqclHr_3zRNDPwzxM)
 
