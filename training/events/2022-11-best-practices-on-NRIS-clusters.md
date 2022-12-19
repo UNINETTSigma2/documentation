@@ -39,7 +39,13 @@ If you want to receive further information about training events, and other anno
 ## **Registration**
 
 The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT, NTNU & Sigma2. Registration closes on **31st October at 12:00** .
-**Register [here](https://skjemaker.app.uib.no/view.php?id=13058309)**. If by any chance the registration link is not working for you, please try this [link](https://skjemaker.h.uib.no/view.php?id=13058309).
+**Registration is closed**
+
+
+```{note}
+  **The video recordings and notes can be found [here](https://documentation.sigma2.no/training/material.html)**
+
+```
 
 ## Time, date (all times CET)
 |   Date    |  Time   |  Topic	|
