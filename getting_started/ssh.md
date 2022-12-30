@@ -54,8 +54,7 @@ resource and subsequently impersonating you to the real resource. This is not
 very likely but it is possible, therefore it's a good idea to double check the
 fingerprint and compare it with published {ref}`ssh-fingerprints`.
 
-If the `<fingerprint>` matches the fingerprint of the login machine you are
-logging in to (see below), you can confirm by typing `yes` and press `Enter`.
+If the fingerprint matches, you can confirm by typing `yes` and press `Enter`.
 Note that the trailing "." is not part of the fingerprint.
 
 ```{warning}
