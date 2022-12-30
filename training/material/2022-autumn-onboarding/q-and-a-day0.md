@@ -106,7 +106,7 @@ You managed to open up a terminal/shell on your computer (add an "o"):
        - Most programs follow this standard -V
        - many/most tools use `-v` or `--version` but ssh is a bit different
 
-9. ssh fingerprint can be found [here](https://documentation.sigma2.no/getting_started/create_ssh_keys.html#sha256-fingerprint) (for verifying the connection)
+9. ssh fingerprint can be found [here](https://documentation.sigma2.no/getting_started/ssh.html) (for verifying the connection)
 
 10. Is there a difference between connecting to the cluster with putty and some other terminal?
     - not really. once you are connected, it will behave the same and look the same. so if you managed to connect, it is fine and no reason to change it now
