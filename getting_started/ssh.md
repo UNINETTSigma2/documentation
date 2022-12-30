@@ -2,90 +2,285 @@
 
 # SSH
 
-Some SSH related frequently asked questions are documented down below.
-For more in-depth details, other options, please consult the man pages:
-`man ssh` and `man ssh_config`.
+This page assumes that the reader:
+- is working on a Linux machine, a macOS or a Windows machine with OpenSSH
+  installed (default on recent Windows 10+ versions)
+- check in the terminal with `ssh -V` that you indeed have OpenSSH available
+- has an account on the server of interest
 
-## Login via ssh keys
+This page is adapted from the very nice documentation written by our
+colleagues at Aalto University (Finland):
+<https://scicomp.aalto.fi/scicomp/ssh/>.
 
-To login to a server without typing in your password every time, you can
-configure ssh to use public key cryptography. In case you use a linux system
-start by generating a pair of keys and saving them in the folder `.ssh`:
 
+## What is SSH
+
+SSH is an abbreviation for *secure shell protocol*. It is a protocol to
+communicate data between two computers over an encrypted connection. When you
+log into one of the clusters with `ssh` and read and edit files and type
+commands or copy files using `scp`, then data is transmitted via this
+encrypted connection.
+
+
+## Connecting to a server
+
+When you type `ssh myusername@saga.sigma2.no`, then `myusername` is your
+username on the remote server and `saga.sigma2.no` is the server/cluster you
+are connecting to.
+
+If `myusername` is the same on your computer and the remote server, you can
+leave it out:
+```console
+$ ssh saga.sigma2.no
 ```
-$ ssh-keygen -t ed25519 -a 100 -f .ssh/id_sigma2
+
+{ref}`Further below <ssh-config>` we will show how we can configure SSH so that we
+don't have to type the same lengthy command every time
+
+
+## First-time login
+
+When you ssh to a remote server for the very first time, you will be prompted
+to affirm that the remote server is indeed the one you expected to connect to:
+```
+The authenticity of host 'saga.sigma2.no (2001:700:4a01:10::37)' can't be established.
+ED25519 key fingerprint is SHA256:ryqAxpKDjNLLa5VeUPclQRaZBOIjd2HFgufUEnn4Jrw.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
 
-Make sure to enter a passphrase to encrypt the key.
+This question is to prevent some other server impersonating the remote
+resource and subsequently impersonating you to the real resource. This is not
+very likely but it is possible, therefore it's a good idea to double check the
+fingerprint and compare it with published {ref}`ssh-fingerprints`.
 
-To copy and install the public key to the server, for example saga,
-we use:
+If the `<fingerprint>` matches the fingerprint of the login machine you are
+logging in to (see below), you can confirm by typing `yes` and press `Enter`.
+Note that the trailing "." is not part of the fingerprint.
+
+```{warning}
+If the fingerprints do not match, please {ref}`contact us <support-line>`
+immediately.
 ```
-$ ssh-copy-id -i ~/.ssh/id_sigma2 <username>@saga.sigma2.no
+
+(ssh-config)=
+
+## Configuring SSH for less typing
+
+Remembering the full settings list for the server you are working on each time
+you log in can be tedious: the username is the same every time, the server is
+the same every time, ... **There is a better way!**
+
+A configuration file allows you to store your preferred settings and map them
+to much simpler login commands.
+
+Create or edit (if it already exists) the file `~/.ssh/config`.
+Here is an example entry for one of our clusters:
+```
+Host saga
+    User myusername
+    Hostname saga.sigma2.no
+```
+
+Now instead of:
+```console
+$ ssh myusername@saga.sigma2.no
+```
+
+I can type:
+```console
+$ ssh saga
+```
+
+Also `scp` and `rsync` and any other tool that uses `ssh` under the hood will
+understand these shortcuts. There is a lot more that can be configured. Search
+the web for more examples if you are interested.
+
+
+## Using SSH keys instead of passwords
+
+It's boring to type the password every time, especially if you regularly have
+multiple sessions open simultaneously (there exist also other tools to help
+with that). The tedium of typing it 20-50 times each day could motivate some
+to make the password very short or very memorable, thus reducing security.
+See also [the relevant XKCD comic](https://xkcd.com/936/).
+
+**There is a better way**: using SSH key pairs. This is not only less tedious
+(you will only have to type a passphrase typically once per day), but also
+more secure (we will explain why).
+
+An SSH key pair consists of a private key (which you never share with anybody)
+and a public key (which you can share with others without problems). Others
+can then encrypt messages to you using the public key and you can decrypt them
+using your private key. Others can only encrypt. Only you can decrypt.
+
+The private key is a file on your computer. Also the public key is a different
+file on your computer. Anybody who has access to your private key can read
+data between you and remote servers and impersonate you to the remote servers.
+
+One way to visualize this is to image the public key to be a box where
+somebody can put a secret message. Anybody can put something into a box and
+close the box and send the box to you, but only you have the key to open it
+(private key).
+
+To make sure that your private key (file) does not fall into the wrong hands,
+it is custom and **recommended to encrypt it with a passphrase**. Having the
+private key "encrypted" with an empty passphrase is possible but it is the
+equivalent of leaving your house key under the door mat or the equivalent of
+having a bank card without any pin.
+
+**Why are SSH key pairs more secure than using a password?** There is still the
+passphrase to unlock the private key so why is this easier and better?  We
+will show later how it is easier but it is more secure since the passphrase is
+never communicated to the remote server: it stays on your computer.  When the
+remote server is authenticating you, it encrypts a large number and sends it
+encrypted to you and asks you to decrypt it and send the decrypted number back
+and then compares the two. If they match, the remote server knows that you are
+you and from there on can trust you for the duration of the session. No
+password or passphrase needs to leave your computer over the network.
+
+
+### Generating a new SSH key pair
+
+While there are many options for the key generation program ``ssh-keygen``, here are the four main ones:
+- `-t`: The encryption type used to make the unique key pair.
+- `-b`: The number of key bits.
+- `-f`: Filename of key.
+- `-C`: Comment on what the key is for.
+- `-a`: Number of key derivation function rounds. Default is 16. The higher,
+    the longer it takes to verify the passphrase but also the better
+    protection against brute-force password cracking.
+
+We recommend the following command to create a key pair:
+```console
+$ ssh-keygen -t ed25519 -a 100
+```
+
+After running this command in the terminal, you will be prompted to enter a
+passphrase.  **Make sure to enter a passphrase to encrypt the key!** A private
+key with an empty passphrase can be used by anybody who gets access to your
+private key file. Never share it with anybody!
+
+Upon confirming the password, you will be presented with the key fingerprint
+as both a SHA256 hex string as well as randomart image. Your new key-pair
+should be found in the hidden `~/.ssh` directory.  If you ran the command
+above, you will find there `id_ed25519` (private key, never share it) and
+`id_ed25519.pub` (public key, no problem to share).
+
+
+### Copy public key to server
+
+In order to use your key pair to login to the remote server, you first need to
+securely copy the desired *public key* to the machine with ``ssh-copy-id``.
+The script will also add the key to the ``~/.ssh/authorized_keys`` file on the
+server. You will be prompted to enter your *password* (not the *passphrase*
+associated with the private key) to initiate the secure copy of the file.
+
+To copy and install the public key to the server, for example Saga, we use:
+```console
+$ ssh-copy-id -i ~/.ssh/id_sigma2 myusername@saga.sigma2.no
 ```
 
 This command creates the directory `~/.ssh` on the target machine
-(`saga.sigma2.no` in the example above) if it did not exist yet.
-When created by OpenSSH (e.g. through `ssh-copy-id`), the directory gets
-the required strict permissions `0700`, which may be different from the
-shell's file-creation mask returned by `umask -S`.
-You can check the permissions by running `ls -ld ~/.ssh` on saga, and change the
-permissions to `0700` with the command `chmod 0700 ~/.ssh`.
+(`saga.sigma2.no` in the example above) if it did not exist yet.  When created
+by OpenSSH (e.g. through `ssh-copy-id`), the directory gets the required
+strict permissions `0700`, which may be different from the shell's
+file-creation mask returned by `umask -S`.  You can check the permissions by
+running `ls -ld ~/.ssh` on Saga, and change the permissions to `0700` with the
+command `chmod 0700 ~/.ssh`.
 
-Using ssh keys has the added benefit that you can avoid having to type your
-password every time. `ssh-agent` is program installed on virtually all linux
-versions to manage the keys so that you only have to unlock the key once. We
-can add the new key with:
-```
-$ ssh-add ~/.ssh/id_sigma2
-```
+Once the public key has been copied to the remote server, you can login using
+the SSH key pair. Try it. **It should now ask you for your passphrase and not
+for the password.**
 
-We recommend you configure your ssh client by adding a section for each Sigma2
-system you have access to by editing `.ssh/config`:
+This approach works not only for our clusters but also for services like
+GitHub or GitLab. But let's focus here on clusters.
 
-```
-Host saga
-	Hostname saga.sigma2.no
-	User myusername
-	IdentityFile .ssh/id_sigma2
+````{admonition} Help! It still asks for a password!
+
+In this case, debug with:
+```console
+$ ssh -v myusername@saga.sigma2.no
 ```
 
-This will let you simply type `ssh saga`, rather than e.g. `ssh
-myusername@saga.sigma2.no -i .ssh/id_sigma2`
+Instead of `-v` you can also try `-vv` or `-vvv` for more verbose output.
+Study the output and try to figure out what goes wrong. Does it try the key
+pair you created?
+````
 
-For more information see [`keygen`](https://www.ssh.com/ssh/keygen/).
 
-## Windows ssh client
+### How many key pairs should I create?
+
+We recommend to create a key pair per hardware device. Not a key pair per
+remote server.
+
+In other words, if you have a laptop and a desktop and want to authenticate to
+4 different servers, create a key pair on the laptop and another one on the
+desktop, and upload both public keys to all 4 remote servers.
+
+The motivation to have one key pair per hardware device is that if you lose
+your hardware device (e.g. laptop) or it gets stolen, you know which key to
+revoke access from.
+
+
+### Using the OpenSSH authentication agent
+
+Further up we motivated that we don't want to type the password every time
+many times a day. Now we instead need to type the private key passphrase every
+time so it feels like this was not a win. But again there is a better way: To
+avoid having to type the decryption passphrase, the *private key* needs to be
+added to the ``ssh-agent`` with the command:
+```console
+$ ssh-add
+```
+
+On macOS, use this instead:
+```console
+$ ssh-add --apple-use-keychain
+```
+
+If you are unsure whether an `ssh-agent` process is running on your machine,
+`ps -C ssh-agent` will tell you if there is. To start a new agent, use:
+```console
+$ eval $(ssh-agent)
+```
+
+Once the password is added, you can ssh into the remote server as normal but
+will immediately be connected without any further prompts.
+
+
+## SSH client on Windows
 
 In Windows 10 and newer you can now get a fully functional Linux terminal by
 [installing WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 
-This will not only give you a shell with the ssh client, but also let you
-install and use all of your favourite Linux software such as `Vim`, `Emacs`,
-`nano`, `perl`, `python` and so on.
+Yet another alternative is to use the [Windows SSH Client](https://learn.microsoft.com/en-us/windows/terminal/tutorials/ssh) directly.
 
 
 (x11-forwarding)=
 
 ## X11 forwarding
 
-X11 forwarding should be used with caution due to security implications. Please
-note that if someone can read your X authorization database [^1], that person
-would be able to access the local X11 display through the forwarded connection.
+X11 forwarding is a method to send the graphical screen output from the remote
+server to your local computer.
 
-We suggest switching it on *only* when needed, with the use of options (`-X` or
-`-Y`) passed to the `ssh` command. Whenever possible, use `-X` option to mark
-remote X11 clients untrusted.
+X11 forwarding should be used with caution due to security implications.
+Please note that if someone can read your X authorization database, that
+person would be able to access the local X11 display through the forwarded
+connection.  By default your X authority database is stored in the
+`~/.Xauthority` file. This file contains records with authorization
+information used in connecting to the X server.
+
+We suggest switching it on *only* when needed, with the use of options (`-X`
+or `-Y`) passed to the `ssh` command. Whenever possible, use `-X` option to
+mark remote X11 clients untrusted.
 
 In some cases `-X` will fail to work and either the use of `-Y` option or
-setting `ForwardX11Trusted` in your ssh config file to "yes" is required. In
+setting `ForwardX11Trusted` in your SSH configuration file to "yes" is required. In
 this case remote X11 clients will have full access to the original X11 display.
 
 Alternatively, if X11 forwarding is always needed, you can configure it on a
-per-host basis in your `.ssh/config` file.
-
-`.ssh/config` example:
-
+per-host basis in your `.ssh/config` file:
 ```
 # global settings
 ForwardX11        no               # disable X11 forwarding
@@ -93,117 +288,62 @@ ForwardX11Trusted no               # do not trust remote X11 clients
 
 # per-host based settings, example for Fram
 Host fram                            # alias, you may run "ssh fram" only
-	HostName fram.sigma2.no          # actual hostname for Fram
-	User my_username                 # replace with your username on Fram
-	IdentityFile ~/.ssh/id_rsa_fram  # pointer to your private SSH key
-	ForwardX11          yes          # enable X11 forwarding
-	ForwardX11Trusted	no           # do not trust remote X11 clients
+    HostName fram.sigma2.no          # actual hostname for Fram
+    User my_username                 # replace with your username on Fram
+    IdentityFile ~/.ssh/id_rsa_fram  # pointer to your private SSH key
+    ForwardX11          yes          # enable X11 forwarding
+    ForwardX11Trusted   no           # do not trust remote X11 clients
 ```
 
-
-(ssh_fingerprint)=
-
-## SHA256 fingerprint
-
-No matter how you login, you will need to confirm that the connection shall be
-trusted. The first time you log in to a machine via `ssh`, you will get a
-message like
-
-```
-The authenticity of host '<hostname>' can't be established.
-ECDSA key fingerprint is <fingerprint>.
-Are you sure you want to continue connecting (yes/no)?
-```
-
-If the `<fingerprint>` matches the fingerprint of the login machine you are
-logging in to (see below), you can confirm by typing `yes` and press `Enter`.
-(Note that the trailing "." is not part of the fingerprint.) If the fingerprint
-does _not_ match, please contact `support@nris.no` immediately.
-
-The following table displays the different keys, both as `MD5` and `SHA256`,
-for all systems.
-
-| System | RSA | ECDSA | ED25519 |
-|--------|-----|-------|---------|
-| **`fram.sigma2.no`** | `MD5:6d:3b:72:31:c8:38:9c:c5:c9:a6:8a:aa:ee:50:38:da` <br /> `SHA256:0FqUvnjU5OAXkmx2j1U2Z8rxmwq/Sm12lN+i+HrqnaQ` | `MD5:5b:af:a6:1d:94:1c:64:e1:11:54:0e:1f:7d:d2:cd:80` <br /> `SHA256:4z8Jipr50TpYTXH/hpAGZVgMAt0zwT9+hz8L3LLrHF8` | `MD5:5c:49:52:68:a1:aa:d7:dd:3e:71:4a:3b:fd:6f:ef:7b` <br /> `SHA256:m3tuW22Y3K+wztKWEOKl8vXxfD2aJxknveyQCsxu+a8` |
-| **`saga.sigma2.no`** | `MD5:83:5e:c5:c3:95:dc:9e:b9:34:87:f6:df:4b:74:04:6b` <br /> `SHA256:WgRP8okUDv2j8SwDxj7ZoNRQDOlJwVtvRqVf1SzXgdU` | `MD5:13:4e:ae:66:89:0d:24:27:b8:15:87:24:31:ed:32:af` <br /> `SHA256:qirKlTjO9QSXuCAiuDQeDPqq+jorMFarCW+0qhpaAEA` | `MD5:55:52:eb:a5:c3:a9:18:be:02:15:ea:60:19:d7:5e:06` <br /> `SHA256:ryqAxpKDjNLLa5VeUPclQRaZBOIjd2HFgufUEnn4Jrw` |
-| **`betzy.sigma2.no`** | `MD5:f6:a9:4e:a7:f6:1e:10:5c:01:e7:44:ac:34:4d:4b:b4` <br /> `SHA256:wSirru+JTpcAZKQe/u6jLRj3kVCccNNUWU2PxzgbebM` | `MD5:37:da:0d:cd:fe:66:47:71:3f:08:59:d7:bb:76:ec:cc` <br /> `SHA256:l0adSAGOHM4CNOqxvBNh5Laf+PlDSXQiargVoG/cue4` | `MD5:de:75:8c:93:40:f6:32:94:b6:bd:47:43:62:a5:1a:58` <br /> `SHA256:7M0HDP163k9fOUeZq3KtzLdjISE9Kq/gVygCpyrZPDQ` |
-| **`login.nird.sigma2.no`** | `MD5:31:ff:b1:14:f0:34:dd:20:75:57:90:bd:49:b6:b4:27` <br /> `SHA256:Jp8LJDcqXyDn0yt2s2zZy49ukkMRwNqpJrj72kuqQaA` | `MD5:02:02:cc:9d:c5:b7:43:42:5b:cd:d2:82:09:48:31:e9` <br /> `SHA256:ZkBvlcu4b5QMf1o9nKzoPHTmSTAzVhogZxKYvNw9N9I` | `MD5:bc:c9:a9:44:ca:b5:cb:53:56:68:02:d1:f1:6a:1a:78` <br /> `SHA256:sI/YOUiasD/yA/g8UMc2Isg4imXs7l8x/QQK01XfaOQ` |
-
-To display all fingerprints for a certain server, you can use the following
-command on your local machine (Linux or Mac):
-
-```bash
-$ ssh-keyscan login.nird.sigma2.no | ssh-keygen -l -f - -E md5
-# Note, 'md5' can be changed with 'sha256' to display that variant
-```
-
-
-(mosh)=
-
-## Mosh
-
-[Mosh](https://mosh.org) describe itself as:
-
-> Remote terminal application that allows roaming, supports intermittent
-> connectivity, and provides intelligent local echo and line editing of user
-> keystrokes.
-
-> Mosh is a replacement for interactive SSH terminals. It's more robust and
-> responsive, especially over Wi-Fi, cellular, and long-distance links.
-
-Mosh is in many instances a drop-in replacement for `ssh` (and actually utilizes
-`ssh` under the hood for establishing a connection). It is recommended to use
-Mosh if you connect to Sigma 2 resources from a laptop and want to keep the
-connection when roaming on Wi-Fi or putting the laptop to sleep.
-
-Since Mosh uses `ssh` to establish a connection it can use the same `ssh` keys
-and configuration, as described above. Which mean that if you created the keys
-above and added a section to your `.ssh/config` you can connect by doing the
-following
-
-```bash
-$ mosh saga # Equivalent to 'mosh <username>@saga.sigma2.no'
-```
-
-For more detailed usage information [see the Mosh
-homepage](https://mosh.org/#usage).
-
-Unfortunately to support the features of Mosh not everything `ssh` can do is
-supported, if you require any of the following you will have to use `ssh`
-
-- `X11` forwarding
-- Port forwarding
 
 ## SSHFS
 
-`fram.sigma2.no` and `login.fram.sigma2.no` are round-robin DNS
-entries, every time you use this name the round-robin configuration
-will send you to one of the following two login nodes:
-`login-1.fram.sigma2.no` and `login-2.fram.sigma2.no`
+[SSHFS](https://github.com/libfuse/sshfs) allows you to mount a remote
+file system using SFTP.
 
-When you use `sshfs`, to make sure your authentication is valid, you should
-always specify one of the real login nodes above. You should not use
-`login.fram.sigma2.no` or `fram.sigma2.no` in your `sshfs` command, otherwise
-you will risk to get your IP address blacklisted, since your session is
-authenticated against only one login node not both.
+If you wish to use SSHFS, please note that `fram.sigma2.no`,
+`login.fram.sigma2.no`, and addresses for other clusters are round-robin
+entries. This means that every time you log in, you might end up on a
+different actual login node (e.g. `login-1.fram.sigma2.no` or
+`login-2.fram.sigma2.no`). This is done to balance load between login nodes.
 
-Similarly, `saga.sigma2.no` and `login.saga.sigma2.no` are round-robin DNS
-entries for `login-1.saga.sigma2.no`, `login-2.saga.sigma2.no`.
-
-
-## Poor connection
-
-In case of poor connection to the server (likely from a very remote area),
-usually noticeable with X11 forwarding enabled, you may request data compression
-by using the `-C` option.
-
-Please note that the compression uses the CPU to compress-decompress all data
-sent over ssh and will actually have negative impact, slow down things on a fast
-network.
+When you use `sshfs`, you should always specify one of the actual login nodes,
+not the "front-ends", otherwise you risk getting your IP address blacklisted,
+since your session is authenticated against only one actual login node and not
+the other login nodes.
 
 
+## Compressing data for poor connections
 
-[^1]: By default your X authority database is stored in the `~/.Xauthority`
-  file. This file contains records with authorization information used in
-  connecting to the X server.
+In case of poor connection to the server, likely from a very remote area and
+usually noticeable with X11 forwarding enabled, you may request data
+compression by using the `-C` option.
+
+Please note that the compression uses the CPU to compress and decompress all data. If you are on a fast network, then this option will have a negative impact on your bandwidth.
+
+
+## SSH over breaking connections
+
+If you experience intermittent connectivity when on Wi-Fi, cellular, and
+long-distance links and get frustrated with SSH losing connection and you
+having to open a new terminal every time, have a look at [Mosh (mobile
+shell)](https://mosh.org/).
+
+Mosh is in many instances a drop-in replacement for `ssh` (and actually
+utilizes `ssh` under the hood for establishing a connection). It is
+recommended to use Mosh if you connect from a laptop and want to keep the
+connection when roaming on Wi-Fi or putting the laptop to sleep.
+
+
+## References
+
+- <https://scicomp.aalto.fi/scicomp/ssh/> - inspiration for this page
+- <https://www.mn.uio.no/geo/english/services/it/help/using-linux/ssh-tips-and-tricks.html> - long-form guide
+- <https://blog.0xbadc0de.be/archives/300> - long-form guide
+- <https://www.phcomp.co.uk/Tutorials/Unix-And-Linux/ssh-passwordless-login.html>
+- <https://en.wikibooks.org/wiki/OpenSSH/>
+- <https://linuxize.com/post/ssh-command-in-linux/#how-to-use-the-ssh-command>
+- <https://linuxize.com/post/how-to-setup-passwordless-ssh-login/>
+- <https://hpc-uit.readthedocs.io/en/latest/account/login.html>
+- <https://infosec.mozilla.org/guidelines/openssh>
+- <https://www.ssh.com/ssh/> - commercial site

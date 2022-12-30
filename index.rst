@@ -152,6 +152,7 @@ Index of keywords
    getting_started/applying_resources.md
    getting_started/editing_files.md
    getting_started/ssh.md
+   getting_started/fingerprints.md
    getting_started/tutorials.rst
 
 
