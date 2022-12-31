@@ -110,7 +110,7 @@ more secure (we will explain why).
 
 An SSH key pair consists of a private key (which you never share with anybody)
 and a public key (which you can share with others without problems). Others
-can then encrypt messages to you using the public key and you can decrypt them
+can then encrypt messages to you using the public key, and you can decrypt them
 using your private key. Others can only encrypt. Only you can decrypt.
 
 The private key is a file on your computer. Also the public key is a different
@@ -124,13 +124,13 @@ close the box and send the box to you, but only you have the key to open it
 
 To make sure that your private key (file) does not fall into the wrong hands,
 it is custom and **recommended to encrypt it with a passphrase**. Having the
-private key "encrypted" with an empty passphrase is possible but it is the
+private key "encrypted" with an empty passphrase is possible, but it is the
 equivalent of leaving your house key under the door mat or the equivalent of
 having a bank card without any pin.
 
 **Why are SSH key pairs more secure than using a password?** There is still the
-passphrase to unlock the private key so why is this easier and better?  We
-will show later how it is easier but it is more secure since the passphrase is
+passphrase to unlock the private key, so why is this easier and better?  We
+will show later how it is easier, but it is more secure since the passphrase is
 never communicated to the remote server: it stays on your computer.  When the
 remote server is authenticating you, it encrypts a large number and sends it
 encrypted to you and asks you to decrypt it and send the decrypted number back
@@ -161,7 +161,7 @@ key with an empty passphrase can be used by anybody who gets access to your
 private key file. Never share it with anybody!
 
 Upon confirming the password, you will be presented with the key fingerprint
-as both a SHA256 hex string as well as randomart image. Your new key-pair
+as both a SHA256 hex string and as randomart image. Your new key-pair
 should be found in the hidden `~/.ssh` directory.  If you ran the command
 above, you will find there `id_ed25519` (private key, never share it) and
 `id_ed25519.pub` (public key, no problem to share).
@@ -169,7 +169,7 @@ above, you will find there `id_ed25519` (private key, never share it) and
 
 ### Copy public key to server
 
-In order to use your key pair to login to the remote server, you first need to
+In order to use your key pair to log in to the remote server, you first need to
 securely copy the desired *public key* to the machine with ``ssh-copy-id``.
 The script will also add the key to the ``~/.ssh/authorized_keys`` file on the
 server. You will be prompted to enter your *password* (not the *passphrase*
@@ -188,7 +188,7 @@ file-creation mask returned by `umask -S`.  You can check the permissions by
 running `ls -ld ~/.ssh` on Saga, and change the permissions to `0700` with the
 command `chmod 0700 ~/.ssh`.
 
-Once the public key has been copied to the remote server, you can login using
+Once the public key has been copied to the remote server, you can log in using
 the SSH key pair. Try it. **It should now ask you for your passphrase and not
 for the password.**
 
@@ -210,7 +210,7 @@ pair you created?
 
 ### How many key pairs should I create?
 
-We recommend to create a key pair per hardware device. Not a key pair per
+We recommend creating key pair per hardware device. Not a key pair per
 remote server.
 
 In other words, if you have a laptop and a desktop and want to authenticate to
@@ -226,7 +226,7 @@ revoke access from.
 
 Further up we motivated that we don't want to type the password every time
 many times a day. Now we instead need to type the private key passphrase every
-time so it feels like this was not a win. But again there is a better way: To
+time, so it feels like this was not a win. But again there is a better way: To
 avoid having to type the decryption passphrase, the *private key* needs to be
 added to the ``ssh-agent`` with the command:
 ```console
@@ -238,7 +238,7 @@ On macOS, use this instead:
 $ ssh-add --apple-use-keychain
 ```
 
-If you are unsure whether an `ssh-agent` process is running on your machine,
+If you are unsure whether the `ssh-agent` process is running on your machine,
 `ps -C ssh-agent` will tell you if there is. To start a new agent, use:
 ```console
 $ eval $(ssh-agent)
@@ -269,7 +269,7 @@ server to your local computer.
 X11 forwarding should be used with caution due to security implications.
 Please note that if someone can read your X authorization database, that
 person would be able to access the local X11 display through the forwarded
-connection.  By default your X authority database is stored in the
+connection. By default, your X authority database is stored in the
 `~/.Xauthority` file. This file contains records with authorization
 information used in connecting to the X server.
 
