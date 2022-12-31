@@ -117,7 +117,7 @@ The private key is a file on your computer. Also the public key is a different
 file on your computer. Anybody who has access to your private key can read
 data between you and remote servers and impersonate you to the remote servers.
 
-One way to visualize this is to image the public key to be a box where
+One way to visualize this is to image the public key to be a box into which
 somebody can put a secret message. Anybody can put something into a box and
 close the box and send the box to you, but only you have the key to open it
 (private key).
@@ -141,7 +141,7 @@ password or passphrase needs to leave your computer over the network.
 
 ### Generating a new SSH key pair
 
-While there are many options for the key generation program ``ssh-keygen``, here are the four main ones:
+While there are many options for the key generation program ``ssh-keygen``, here are the main ones:
 - `-t`: The encryption type used to make the unique key pair.
 - `-b`: The number of key bits.
 - `-f`: Filename of key.
@@ -246,6 +246,9 @@ $ eval $(ssh-agent)
 
 Once the password is added, you can ssh into the remote server as normal but
 will immediately be connected without any further prompts.
+
+In other words, we use `ssh-add` typically once per day but then can `ssh` and
+`scp` and `rsync` as often as we like without re-authenticating.
 
 
 ## SSH client on Windows
