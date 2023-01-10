@@ -32,12 +32,29 @@ The login credentials are the same as for the old NIRD.
 You will be logged into your home area `/nird/home/$USERHOME`
 
 ```{note}
+`dusage` command is not yet implemented on user $HOME. We shall update the documentation when it is implemented.
+```
+
+
+
+```{note}
 Your $HOME directory is  empty now. User home ($HOME) migration is user’s responsibility.  The data migration from old NIRD to the new NIRD is on-going now. However, you can start tesing the new system. If you have any questions regarding the migration process and the configuration of the account on the new NIRD, do not hesitate to contact [the PoWG](https://www.sigma2.no/be-ready-migrate) via nird-migration@nris.no
 ```
 
 ## Project area
 
-Each NIRD Data Storage project gets a project area either on NIRD TS `/nird/projects/NSxxxxK` or on NIRD DL `/nird/datalake/NSxxxxK` based on the project allocation.
+Each NIRD Data Storage project gets a project area either on NIRD TS `/nird/projects/NSxxxxK` or on NIRD DL `/nird/datalake/NSxxxxK` based on the project allocation, where `NSxxxxK` is the ID of the project.
+
+The project area has a quota on disk space and the number of files. 
+You will keep the current quota on the old system until it is end of life. 
+You get the quota allocated by RFK for the 2022.2 allocation period NIRD.
+
+You can see the quota and the current usage by running:
+
+```console
+$ dusage -p NSxxxxK
+```
+
 
 ```{note}
 We kindly remind you that the data migration from old NIRD to new NIRD is on-going and to avoid data loss or corruption we ask you to put your new/altered files during the pilot phase under the `/nird/projects/NSXXXK/_PILOT` folder.
@@ -55,14 +72,7 @@ Snapshots are activated on the new NIRD, it will allow data restoration in case 
 
 If you need increased redundancy in form of an extra copy of the dataset in a different location, you need to request this as an extra service. Should you have chosen replication or mixed replication in your application for storage resources for 2022.2, backup service will be switched on by the POWG team. POWG will contact each pilot project to guide setting up the inclusion/exclusion rule for each dataset. An inclusion/exclusion template will be provided later for all projects.
 
-## Quota 
 
-You will keep the current quota on the old system until it is end of life. 
-You get the quota allocated by RFK for the 2022.2 allocation period NIRD.
-
-```{note}
-`dusage` command on new nird are yet to be configured. We shall update the documentation when it is implemented.
-```
 ## Software access
 
 Software access is via command line. 
