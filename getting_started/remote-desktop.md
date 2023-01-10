@@ -15,8 +15,7 @@ The remote desktop service makes it possible to run graphical applications on th
 Currently, we do support and maintain two parallell solutions for remote desktop on Fram, and only one on Saga (TigerVNC). Both solutions require users to install a client application on her/his computer in order to be able to access the solution. The recommended solution currently is X2Go - <https://wiki.x2go.org/doku.php/doc:newtox2go>
 
 ## [X2Go](https://wiki.x2go.org/doku.php/start)
-<details>
-<summary>**About X2Go**</summary>
+
 
 
 X2Go is an application that enables you to do remote visualization on Fram and Saga. It works as a Remote Desktop Protocol on top of NX/X11. X2Go Client requires a local X11 server to display the remote sessions. 
@@ -35,7 +34,7 @@ The server you use depends on your local operating system, as follows:
 
 ### Configure the X2Go client for use on Fram
 
-##### Create a session:
+#### Create a session:
 
 ![First display of the X2Go client](X2Go_First.png)
 
@@ -78,8 +77,6 @@ In the past we have experienced that a manual kill of the x2goagent processes on
 > Acknowledgement: 
 > 
 > *Much of the content of and inspiration for this page is borrowed from the X2Go documentation provided by NTNU for the Hunt Cloud service: <https://docs.hdc.ntnu.no/working-in-your-lab/technical-tools/x2go/>*
-
-</details>
 
 ## [TigerVNC](https://tigervnc.org)
 <details>
