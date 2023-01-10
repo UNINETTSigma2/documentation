@@ -200,6 +200,7 @@ File deletion depends on the newest of the *creation-*, *modification-* and
 be deleted first and a weekly scan removes files older than 42 days.
 
 When file system usage reaches 70%, files older than 21 days are subject to
+automatic deletion. If usage is over 90%, files older then 17 days are subject to
 automatic deletion.
 
 It is **not** allowed to try to circumvent the automatic deletion by
