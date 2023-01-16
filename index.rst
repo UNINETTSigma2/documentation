@@ -1,126 +1,86 @@
+:notoc:
 ======================================================================
 Norwegian Research Infrastructure Services
 ======================================================================
 
-The Norwegian academic high-performance computing and storage infrastructure is
-maintained by `NRIS <https://sigma2.no/nris>`__ (formerly known as *the
-Metacenter*), which is a joint collaboration between `UiO
-<https://www.uio.no>`__, `UiB <https://www.uib.no>`__, `NTNU
-<https://www.ntnu.no>`__, `UiT <https://uit.no>`__, and `Sigma2
-<https://www.sigma2.no/>`__.
+NRIS support your HPC experience :ref:`about-us`
 
-We provide valuable resources for the research communities. Not only do we provide
-state-of-the art :ref:`compute <hardware-overview>` and :ref:`storage facilities <nird>`,
-backed by :ref:`support <support-line>` and a guarantee that your data always
-stays in Norway. But possibly more important is :ref:`easy access <extended-support>` to a wide selection
-of competences that can assist, realize or take your project to the next level.
+**News**:
+`Latest changes and events <https://opslog.sigma2.no>`__ |
+`Hardware live status <https://www.sigma2.no/hardware-status>`__ |
+:ref:`known-issues`
 
-This website (https://documentation.sigma2.no/) primarily holds documentation
-of resources we provide. For more general information and service overview,
-please also see https://www.sigma2.no.
+**HPC resources**:
+:ref:`hardware-overview` | :ref:`lumi` | :ref:`betzy` | :ref:`fram` | :ref:`saga`
 
-.. note::
+**Storage resources**:
+`NIRD Toolkit <https://www.sigma2.no/nird-service-platform>`__
 
-   **Latest news and announcements** are posted at the `NRIS
-   OpsLog <https://opslog.sigma2.no>`__ and the
-   `@NRISstatus <https://twitter.com/NRISstatus.>`__ Twitter channel.
+.. grid:: 2
+   :gutter: 1
 
+   .. grid-item-card:: Getting started
+     :shadow: none
+     :class-card: sd-border-1
+     :link: getting-started
+     :link-type: any
 
-Compute, storage, pre/post-processing, visualization, machine learning
-----------------------------------------------------------------------
+     New to *HPC*? Click here to learn how to setup an account and
+     run your first calculations.
 
-We offer compute resources (:ref:`betzy`, :ref:`fram`, and :ref:`saga`,
-storage resources (:ref:`nird`),
-as well as the `NIRD
-Toolkit <https://www.sigma2.no/nird-toolkit>`__ platform for pre- and
-post-processing analysis, data intensive processing, visualization,
-artificial intelligence, and machine learning.
+   .. grid-item-card::  Getting help
+     :shadow: none
+     :class-card: sd-border-1
+     :link: getting-help
+     :link-type: any
 
-Researchers also have access to :ref:`lumi` through the
-LUMI consortium.
+     Need help using our HPC or storage facilities? Check out our support pages.
 
+   .. grid-item-card::  Training
+     :shadow: none
+     :class-card: sd-border-1
+     :link: getting-help
+     :link-type: any
 
-First time on a supercomputer?
-------------------------------
+     Do you need training? Check out our training pages for information
+     on training events.
 
-Please read the **GETTING STARTED** section (left sidebar). In the
-sidebar overview you will also find technical details about the
-machines, instructions for using installed software, for submitting
-jobs, storage, and code development.
+   .. grid-item-card::  Services
+     :shadow: none
+     :class-card: sd-border-1
+     :link: EasyDMP-User-Documentation-for-the-RFK
+     :link-type: any
 
-Please do not hesitate to write to support@nris.no if you find
-documentation sections which are not clear enough or have suggestions
-for improvements. Such a feedback is very important to us and will
-count.
+      Check out our services.
 
+   .. grid-item-card::  HPC reference
+     :shadow: none
+     :class-card: sd-border-1
+     :link: betzy
+     :link-type: any
 
-How to get the most out of your allocation
-------------------------------------------
+      The reference guide contains detailed description on how to use
+      the HPC resources to full effect.
 
-We want to support researchers in getting the most out of the
-high-performance computing services. When supporting users, we see that
-these problems are very frequent:
+   .. grid-item-card::  Files, storage and quota
+     :shadow: none
+     :class-card: sd-border-1
+     :link: storage-backup
+     :link-type: any
 
-- **Reusing outdated scripts** from colleagues without adapting them to
-  optimal parameters for the cluster at hand and thus leaving few cores
-  idle. Please check at least how many cores there are on a particular
-  cluster node.
-- **Requesting too much memory** which leads to longer queuing and less
-  resource usage. Please check :ref:`choosing-memory-settings`.
-- **Requesting more cores than the application can effectively use** without
-  studying the scaling of the application. You will get charged more than
-  needed and others cannot run jobs. If others do this, your own jobs queue.
-- **Submitting jobs to the wrong queue** and then queuing longer than
-  needed. Please take some time to study the different :ref:`job-types`.
+      For more information on our storage areas and to learn more
+      about quota.
 
-If you are unsure about these, please contact us via
-support@nris.no and we will help you to use your allocated
-resources more efficiently so that you get your research results faster.
-
---------------
-
-Acknowledging use of national HPC infrastructure
-------------------------------------------------
-
-Projects are required to acknowledge the use of the national e-infrastructure
-resources in their scientific publications. Papers, presentations and other
-publications that feature work that relied on resources provided by Sigma2
-should include an `acknowledgement following this template
-<https://www.sigma2.no/acknowledgements>`__.
-
-Text is licensed CC-BY
-----------------------
-
-Unless explicitly noted, all text on this website is made available
-under the `Creative Commons Attribution license
-(CC-BY-4.0) <https://creativecommons.org/licenses/by/4.0/>`__ with
-attribution to NRIS.
-
---------------
-
-Index of keywords
------------------
-
-:ref:`genindex`
-
---------------
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
    :caption: Policies
 
    code-of-conduct.md
 
 .. toctree::
-   :maxdepth: 1
-   :caption: News
-
-   Latest changes and events <https://opslog.sigma2.no>
-   Hardware live status <https://www.sigma2.no/hardware-status>
-   known-issues.md
-
-
-.. toctree::
+   :hidden:
    :maxdepth: 1
    :caption: Getting help
 
@@ -136,6 +96,7 @@ Index of keywords
 
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
    :caption: Training
 
@@ -144,6 +105,7 @@ Index of keywords
 
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
    :caption: Getting started
 
@@ -157,6 +119,7 @@ Index of keywords
 
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
    :caption: Services
 
@@ -167,14 +130,10 @@ Index of keywords
 
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
-   :caption: High-performance computing
+   :caption: HPC usage and code development
 
-   hpc_machines/hardware_overview.md
-   hpc_machines/betzy.md
-   hpc_machines/fram.md
-   hpc_machines/saga.md
-   hpc_machines/lumi.md
    hpc_machines/migration2metacenter.md
    computing/responsible-use.md
    jobs/overview.rst
@@ -183,6 +142,7 @@ Index of keywords
 
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
    :caption: Software
 
@@ -195,8 +155,9 @@ Index of keywords
 
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
-   :caption: Files and Storage
+   :caption: Files, storage and backup
 
    files_storage/nird.md
    files_storage/nird_lmd.md

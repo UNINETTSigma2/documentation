@@ -30,7 +30,6 @@ html_css_files = ['nris.css']
 html_title = 'Sigma2 documentation'
 html_short_title = 'Sigma2'
 
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -40,6 +39,7 @@ extensions = [
     'myst_parser',
     'sphinx_tabs.tabs',
     'sphinx_reredirects',
+    'sphinx_design',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
