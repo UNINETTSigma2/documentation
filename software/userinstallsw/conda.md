@@ -23,12 +23,12 @@ one python3 based parallel to each other without interfering.
 
 ### Load conda module
 Start by removing all preloaded modules which can complicate things. We then
-display all installed version and (on Saga) load the newest Miniconda one (4.6.14):
+display all installed version and (on Saga) load the newest Miniconda:
 
 ``` sh
 $ ml purge
 $ ml avail conda
-$ ml Miniconda3/4.6.14
+$ ml Miniconda3/4.9.24
 ```
 
 On Fram, Miniconda is not installed (yet) but instead you can load `Anaconda3`.
@@ -103,7 +103,7 @@ command line or in your job script:
 
 ``` sh
 $ ml purge
-$ ml Miniconda3/4.6.14 # Replace with the version available on the system
+$ ml Miniconda3/4.9.24 # Replace with the version available on the system
 $ conda activate ENVIRONMENT
 ```
 
