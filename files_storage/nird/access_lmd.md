@@ -31,11 +31,14 @@ Your $HOME directory is  empty now. User home ($HOME) migration is user’s resp
  The project data migration from old NIRD to the new NIRD is in the final phase. If you have
  any questions regarding the migration process and the configuration of the account on the new NIRD,
  do not hesitate to contact [the PoWG](https://www.sigma2.no/be-ready-migrate) via nird-migration@nris.no.
-Once the old nird is decommisioned, the new nird accessed via the same address as old nird, ie.
+Once the old nird is decommisioned, the new nird can be  accessed via the same address as old nird,
+ ie., `login.nird.sigma2.no`.
+```
 
-```console
-login.nird.sigma2.no
-```
-```
+## Software access
+
+Software access is via command line. A number of softwares are already installed
+for the users. If there is any particular software need, requests should be sent to
+support line.
 
 

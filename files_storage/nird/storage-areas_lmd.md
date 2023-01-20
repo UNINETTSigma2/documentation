@@ -47,10 +47,5 @@ You can see the quota and the current usage by running:
 $ dusage -p NSxxxxK
 ```
 
-## Software access
-
-Software access is via command line. A number of softwares are already installed
-for the users. If there is any particular software need, requests should be sent to 
-support line.
 
  
