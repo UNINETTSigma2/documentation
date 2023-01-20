@@ -3,56 +3,49 @@
 
 # NIRD @LMD - National Infrastructure for Research Data @Lefdal Mine Datacenter
 
-The next generation NIRD storage system is installed in [Lefdal Mine Datacenter](https://www.sigma2.no/data-centre-facility). The system is under pre-production during which pilot users test the new infrastructure and data is migrated. 
+**NIRD** is the **N**ational e-**I**nfrastructure for **R**esearch **D**ata. It
+ is owned and operated by [Sigma2](https://www.sigma2.no).
 
-**We expect the system to be online and accessible to all users late December 2022 / January 2023.**
+```{note}
+The NIRD infrastructure offers storage services, archiving services, and
+processing capacity for computing on the stored data.  It offers services
+and capacities to any scientific discipline that requires access to
+advanced, large scale, or high-end resources for storing, processing,
+publishing research data or searching digital databases and collections.
+```
 
-The new NIRD  is redesigned for the evolving needs of Norwegian researchers and has been procured through [the NIRD2020 project](https://www.sigma2.no/procurement-project-nird2020).
+The next generation NIRD storage system is installed in [Lefdal Mine Datacenter](https://www.sigma2.no/data-centre-facility). 
+The new NIRD  is redesigned for the evolving needs of Norwegian researchers and has 
+been procured through [the NIRD2020 project](https://www.sigma2.no/procurement-project-nird2020).
 
+```{note}
+ The system is under pre-production during which pilot users test the new infrastructure
+ and data is migrated. The system will be online and accessible to all users in February 2023.
+```
 
-The **NIRD @LMD** architecture is based on IBM Elastic Storage System (ESS3200 & ESS5000 SC models) and consists of two separate storage systems, namely Tiered Storage (NIRD TS) and Data Lake (NIRD DL).
+NIRD will provide storage resources with yearly capacity upgrades,
+data security through backup services and adaptable application services,
+ multiple storage protocol support, migration to third-party cloud 
+providers and much more. Alongside the national high-performance computing 
+resources, NIRD forms the backbone of the national e-infrastructure for research
+and education in Norway, connecting data and computing resources for
+efficient provisioning of services.
 
-NIRD TS has two tiers, namely, performance and capacity tiers, while NIRD DL provides a unified access, i.e., file- and object storage on the data lake.
+The **NIRD @LMD** architecture is based on IBM Elastic Storage System (ESS3200 & ESS5000 SC models) 
+and consists of two separate storage systems, namely Tiered Storage (NIRD TS) and Data Lake (NIRD DL).
 
-The total capacity of the system is 33 PB (22 PB on NIRD TS and 11 PB on NIRD DL).
+NIRD TS has two tiers, namely, performance and capacity tiers, while NIRD DL provides a unified access, i.e., file and object storage on the data lake.
+
+The total capacity of the system is 33 PB (22 PB on NIRD TS and 11 PB on NIRD DL). 
 
 The solution is based on IBM Spectrum Scale – an IBM Systems storage product based on GPFS (General Parallel File System). The solution provides a single storage architecture which is partitioned dynamically to provide for storage allocation for POSIX based file-services and S3 based object storage.
 
+```{eval-rst}
+.. toctree::
+   :maxdepth: 1
 
-## Logging in 
-
-The new NIRD can be accessed via the following address
-
-```console
-login.nird-lmd.sigma2.no
-```
-
-The login credentials are the same as for the old NIRD.
-
-You will be logged into your home area `/nird/home/$USERHOME`
-
-```{note}
-`dusage` command is not yet implemented on user $HOME. We shall update the documentation when it is implemented.
-```
-
-
-
-```{note}
-Your $HOME directory is  empty now. User home ($HOME) migration is user’s responsibility.  The data migration from old NIRD to the new NIRD is on-going now. However, you can start tesing the new system. If you have any questions regarding the migration process and the configuration of the account on the new NIRD, do not hesitate to contact [the PoWG](https://www.sigma2.no/be-ready-migrate) via nird-migration@nris.no
-```
-
-## Project area
-
-Each NIRD Data Storage project gets a project area either on NIRD TS `/nird/projects/NSxxxxK` or on NIRD DL `/nird/datalake/NSxxxxK` based on the project allocation, where `NSxxxxK` is the ID of the project.
-
-The project area has a quota on disk space and the number of files. 
-You will keep the current quota on the old system until it is end of life. 
-You get the quota allocated by RFK for the 2022.2 allocation period NIRD.
-
-You can see the quota and the current usage by running:
-
-```console
-$ dusage -p NSxxxxK
+   nird/access_lmd.md
+   nird/storage-areas_lmd.md
 ```
 
 
@@ -72,10 +65,6 @@ Snapshots are activated on the new NIRD, it will allow data restoration in case 
 
 If you need increased redundancy in form of an extra copy of the dataset in a different location, you need to request this as an extra service. Should you have chosen replication or mixed replication in your application for storage resources for 2022.2, backup service will be switched on by the POWG team. POWG will contact each pilot project to guide setting up the inclusion/exclusion rule for each dataset. An inclusion/exclusion template will be provided later for all projects.
 
-
-## Software access
-
-Software access is via command line. 
 
 ## NIRD Toolkit
 
