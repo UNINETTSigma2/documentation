@@ -17,6 +17,11 @@ To account for this default quota is doubled when relevant.
 Note that this is a _backup_ from the HPC cluster; you cannot transfer
 files to the cluster by putting them here.
 
+```{warning}
+Please note that back up from HPC home directories to the new NIRD home 
+is not yet enabled. This is expected to be activated close to the production phase.
+```
+
 
 ## Scratch directories
 
