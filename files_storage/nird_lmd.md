@@ -1,7 +1,8 @@
 (nird@lmd)=
 
 
-# NIRD @LMD - National Infrastructure for Research Data @Lefdal Mine Datacenter
+# NIRD @LMD
+## National Infrastructure for Research Data @Lefdal Mine Datacenter
 
 **NIRD** is the **N**ational e-**I**nfrastructure for **R**esearch **D**ata. It
  is owned and operated by [Sigma2](https://www.sigma2.no).
@@ -56,7 +57,7 @@ We kindly remind you that the data migration from old NIRD to new NIRD is on-goi
 ## Backup and data integrity
 
 ```{warning}
-Please note that data outside of the above mentioned _PILOT folder might be overwritten at any time. At the moment, until data migration is finished and transition to the new infrastructure is finalized, data integrity is ensured on storage level with erasure coding. 
+Please note that data outside of the above mentioned `_PILOT` folder might be overwritten at any time. At the moment, until data migration is finished and transition to the new infrastructure is finalized, data integrity is ensured on storage level with erasure coding. 
 
 Backups are currently not enabled. This is expected to be activated close to the production phase.`
 ```
