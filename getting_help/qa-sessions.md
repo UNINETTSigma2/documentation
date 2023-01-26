@@ -13,8 +13,9 @@ Join us on
 get yourself a coffee or tea and have a chat. It doesn't matter from which
 institute or university you are, you are **welcome to join at any time**.
 
-This time we will have a short 15 min presentation about "Useful tools &
-services". But your questions can be about any topic you want.
+Sometimes we will have short 15 min presentation about various topics like
+"Useful tools and services". But your questions can always be about any topic
+you want.
 
 We can talk about:
 - Questions regarding compute resources, data storage and management.
@@ -37,15 +38,18 @@ This is a low-traffic announcement list about this event and similar training
 events.
 
 
-## Next event
+## Next events
 
-- **2023-01-26, 13:00 - 14:30**, [Join us on Zoom](https://uit.zoom.us/j/63238817048?pwd=Z0NsSkxJb0JqeEZ2NENVZE5LY0RkQT09)
+- **2023-02-23, 13:00 - 14:30**, [Join us on Zoom](https://uit.zoom.us/j/63238817048?pwd=Z0NsSkxJb0JqeEZ2NENVZE5LY0RkQT09)
+- 2023-03-30, 13:00 - 14:30
+- 2023-04-27, 13:00 - 14:30
 
 
 ## Past events
 
 [Questions and answers of previous session](https://hackmd.io/@hpc/q-a)
 
+- 2023-01-26, 13:00 - 14:30
 - 2022-11-09, 13:00 - 14:30
 - 2022-09-29, 13:00 - 14:30, "Focus on bioinformatics software & databases"
 - 2022-08-30, 13:00 - 15:00, "Running jobs on GPUs"
