@@ -45,7 +45,7 @@ As described [here](https://docs.amd.com/en-US/bundle/HIPify-Reference-Guide-v5.
 
 - **Step 1**: pull a cuda singularity container e.g.
 
-`$singularity pull docker://nvcr.io/nvidia/cuda:11.4`
+`$singularity pull docker://nvcr.io/nvidia/cuda:11.4.0-devel-ubi8`
 
 - **Step 2**: load a rocm module before launching the container.
 
