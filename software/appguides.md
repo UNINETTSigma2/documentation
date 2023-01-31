@@ -30,6 +30,7 @@ application_guides/namd.md
 application_guides/nco.md
 application_guides/ncview.md
 application_guides/nwchem.md
+application_guides/opendrift.md
 application_guides/openfoam.md
 application_guides/proj.md
 application_guides/schrodinger/schrodinger.md
