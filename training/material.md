@@ -3,7 +3,7 @@
 ## Lessons
 
 - [UNIX Intro For HPC Users](https://training.pages.sigma2.no/tutorials/unix-for-hpc/index.html)
-- [HPC Intro Lessonsl](https://training.pages.sigma2.no/tutorials/hpc-intro/index.html)
+- [HPC Intro Lessons](https://training.pages.sigma2.no/tutorials/hpc-intro/index.html)
 
 
 ## Training material used in our past courses
