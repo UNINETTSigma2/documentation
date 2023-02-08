@@ -10,5 +10,4 @@ Code development
    offloading.md
    debugging.md
    performance.md
-   guides.md
    Calling-fortran-from-Python.md
