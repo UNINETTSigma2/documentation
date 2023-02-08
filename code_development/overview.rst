@@ -7,7 +7,6 @@ Code development
    building.md
    betzy.md
    compilers.md
-   offloading.md
    debugging.md
    performance.md
    Calling-fortran-from-Python.md
