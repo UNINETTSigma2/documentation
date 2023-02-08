@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (known-issues)=
 # Known issues
 

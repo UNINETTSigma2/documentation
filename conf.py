@@ -19,7 +19,7 @@ import datetime
 # -- Project information -----------------------------------------------------
 
 project = 'Sigma2/NRIS documentation'
-copyright = f'{datetime.datetime.now().year}, Sigma2/NRIS'
+copyright = f'{datetime.datetime.now().year}, Sigma2/NRIS. Text shared under CC-BY 4.0 license'
 author = 'Sigma2/NRIS'
 
 # Logo setup
@@ -29,6 +29,7 @@ html_css_files = ['nris.css']
 
 html_title = 'Sigma2 documentation'
 html_short_title = 'Sigma2'
+
 
 # -- General configuration ---------------------------------------------------
 

@@ -15,7 +15,7 @@ Additionally, [NIRD](/files_storage/nird.md) provides a service platform, storag
 
 ## Comparison between current hardware
 
-The table below compares the available systems with respect to the type of applications they are suited for. Second column indicates which job profile type is supported by the resource given in first column; **A** means GPU-accelerated jobs, **P** means parallel jobs, **S** means serial jobs, and **L** means large I/O jobs.
+The table below compares the available systems with respect to the type of applications they are suited for. Second column indicates which job profile type is supported by the resource given in first column; **A** means GPU-accelerated jobs, **P** means parallel jobs, **S** means serial jobs, and **L** means large I/O jobs. 
 The **Memory** column specifies physical node memory in Gigabytes (GiB), with minimum and maximum numbers given. There are uneven distributions in the memory categories, please read specs for every given machine in order to find the exact numbers. The **Cores** column is the number of physical cores in each node.
 
 |Resource |	Job types |	Memory (min/max) |	Cores/Node |

@@ -1,6 +1,4 @@
-
-
-
+(course-resources)=
 
 # CRaaS - Course Resources as a Service
 

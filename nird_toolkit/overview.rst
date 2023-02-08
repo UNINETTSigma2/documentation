@@ -1,3 +1,5 @@
+.. _nird-toolkit:
+
 NIRD Toolkit
 ============
 

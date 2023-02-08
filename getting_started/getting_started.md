@@ -7,6 +7,41 @@ essentials.  In the menu on the left you will then find more in-depth
 documentation on these topics.
 
 
+## First time on a supercomputer?
+
+Please read the **GETTING STARTED** section (left sidebar). In the sidebar
+overview you will also find technical details about the machines, instructions
+for using installed software, for submitting jobs, storage, and code
+development.
+
+Please do not hesitate to write to support@nris.no if you find documentation
+sections which are not clear enough or have suggestions for improvements. Such
+a feedback is very important to us and will count.
+
+
+## How to get the most out of your allocation
+
+We want to support researchers in getting the most out of the
+high-performance computing services. When supporting users, we see that
+these problems are very frequent:
+
+- **Reusing outdated scripts** from colleagues without adapting them to
+  optimal parameters for the cluster at hand and thus leaving few cores
+  idle. Please check at least how many cores there are on a particular
+  cluster node.
+- **Requesting too much memory** which leads to longer queuing and less
+  resource usage. Please check {ref}`choosing-memory-settings`.
+- **Requesting more cores than the application can effectively use** without
+  studying the scaling of the application. You will get charged more than
+  needed and others cannot run jobs. If others do this, your own jobs queue.
+- **Submitting jobs to the wrong queue** and then queuing longer than
+  needed. Please take some time to study the different {ref}`job-types`.
+
+If you are unsure about these, please contact us via
+support@nris.no and we will help you to use your allocated
+resources more efficiently so that you get your research results faster.
+
+
 ## Getting access
 
 To get access you need two things:

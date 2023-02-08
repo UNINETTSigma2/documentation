@@ -1,7 +1,3 @@
-(software)=
-
-# Software
-
 (module-scheme)=
 
 # Software module scheme
