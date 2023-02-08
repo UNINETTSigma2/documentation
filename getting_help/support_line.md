@@ -1,6 +1,11 @@
+(getting-help)=
+
+# Getting help
+
+
 (support-line)=
 
-# Support line
+## Support line
 
 For support requests concerning resource applications, projects and
 their compute and storage allocations, as well as for user accounts and

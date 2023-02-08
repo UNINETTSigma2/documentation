@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (hardware-overview)=
 
 # Overview over our machines

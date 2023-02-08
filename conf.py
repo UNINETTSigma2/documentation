@@ -19,7 +19,7 @@ import datetime
 # -- Project information -----------------------------------------------------
 
 project = 'Sigma2/NRIS documentation'
-copyright = f'{datetime.datetime.now().year}, Sigma2/NRIS'
+copyright = f'{datetime.datetime.now().year}, Sigma2/NRIS. Text shared under CC-BY 4.0 license'
 author = 'Sigma2/NRIS'
 
 # Logo setup
@@ -40,6 +40,7 @@ extensions = [
     'myst_parser',
     'sphinx_tabs.tabs',
     'sphinx_reredirects',
+    'sphinx_design',
 ]
 
 # Add any paths that contain templates here, relative to this directory.

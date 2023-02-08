@@ -1,3 +1,5 @@
+(training-events)=
+
 # Training events
 
 Norwegian Research Infrastructure Services NRIS (formerly known as the
