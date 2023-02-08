@@ -20,11 +20,15 @@ Below is covered usage of :
 - Intel, fortran and multithreaded MKL
 - Python with multithreaded OpenMP fortran routines
 
+```{note}
 A short disclaimer With regards to matrix matrix multiplication the library 
 in numpy is comparable in performance to the Intel MKL. 
+```
 
+```{note}
 Another disclaimer is that this have been tested on Saga. There might some
 minor issues on Betzy with AMD processors, not having 512 bits avx.
+```
 
 ## Using the numpy interface
 The package [numpy](https://numpy.org/) contains tools to facilitate
@@ -348,7 +352,7 @@ f2py3  --fcompiler=intelem --opt="-O3 -xcore-avx512"\
  same library. 
  
 Testing for even higher performance using the Intel compiler `ifort`
-we can try more optimising flags:
+we can try more optimising flags (runs with n=10000):
 
 | ifort flags                               | Run time    |
 |-------------------------------------------|-------------|
