@@ -147,7 +147,7 @@ should include an `acknowledgement following this template
    jobs/overview.rst
    code_development/overview.rst
    computing/tuning-applications.md
-
+   tutorials/guides.md
 
 .. toctree::
    :hidden:
