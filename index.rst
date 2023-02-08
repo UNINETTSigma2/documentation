@@ -206,4 +206,3 @@ Index of keywords
    files_storage/sharing_files.md
    files_storage/file_transfer.md
    files_storage/performance.md
-   files_storage/dos_and_donts.md
