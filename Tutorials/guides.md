@@ -31,9 +31,7 @@
         [Unified Shared Memory with SYCL](guides/sycl_usm.md)
 - Porting applications:
     - [<span style="color:green">Beginner</span>]
-        [Porting OpenACC to OpenMP offloading](guides/converting_acc2omp/openacc2openmp.md)
-    - [<span style="color:green">Beginner</span>]
-        [Translating GPU-accelerated applications](guides/cuda_translating-tools.md)    
+        [Porting OpenACC to OpenMP offloading](guides/converting_acc2omp/openacc2openmp.md) 
 - Hybrid programming
     - [<span style="color:green">Beginner</span>]
         [MPI and OpenACC](guides/openacc_mpi.md)
