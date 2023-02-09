@@ -2,6 +2,8 @@
 orphan: true
 ---
 
+(cleanup-timeout)=
+
 # How to recover files before a job times out
 
 Possibly you would like to clean up the work directory or recover
