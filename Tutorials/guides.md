@@ -1,9 +1,10 @@
 (dev-guides)=
-# Heterogeneous computing
-## GPU programming models
+# GPU programming models
 - Introduction to GPU:
     - [<span style="color:green">Beginner</span>]
         [Introduction to using GPU partition](guides/gpu.md)
+    - [<span style="color:green">Beginner</span>]
+        [Offloading to GPU](guides/offloading.md)
 - Calling GPU accelerated libraries:
     - [<span style="color:green">Beginner</span>]
         {ref}`Calling cuBLAS from OpenACC<cublas_openacc>`
@@ -42,14 +43,14 @@
     - [<span style="color:green">Beginner</span>]
         [Offloading to GPU using Fortran 2008](guides/offloading-using-fortran.md)
 
-## Machine Learning
+# Machine Learning
 - TensorFlow on GPU
     - [<span style="color:green">Beginner</span>]
-        [TensorFlow on GPU](guides/tensorflow_gpu.md)
+        [Introduction to TensorFlow: part I](guides/tensorflow_gpu.md)
     - [<span style="color:green">Beginner</span>]
-        [Using TensorFlow in Python](guides/gpu/tensorflow.md)
+        [Introduction to TensorFlow: part II](guides/gpu/tensorflow.md)
 
-## Containers with GPU support
+# Containers with GPU support
 - Building containers with Singularity:
     - [<span style="color:green">Beginner</span>]
         [Containers on NRIS HPC systems](guides/containers.md)
@@ -64,7 +65,7 @@
     - [<span style="color:green">Beginner</span>]
         [CUDA Container](guides/gpu/cuda-container.md)
 
-## Monitoring GPU accelerated applications
-- GPU Memory Communication Pattern:
+# Monitoring GPU accelerated applications
+- Profiling and debugging CUDA applications
     - [<span style="color:green">Beginner</span>]
         [Stencil Communication Pattern with CUDA](guides/stencil.md)

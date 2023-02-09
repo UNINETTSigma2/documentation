@@ -123,7 +123,6 @@ should include an `acknowledgement following this template
    getting_started/editing_files.md
    getting_started/ssh.md
    getting_started/fingerprints.md
-   getting_started/tutorials.rst
 
 
 .. toctree::
@@ -147,7 +146,7 @@ should include an `acknowledgement following this template
    jobs/overview.rst
    code_development/overview.rst
    computing/tuning-applications.md
-   tutorials/guides.md
+   tutorials/tutorials.rst
 
 .. toctree::
    :hidden:

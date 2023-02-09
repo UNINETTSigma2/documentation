@@ -6,4 +6,4 @@ In this section we present a list of tutorials covering different topics in hete
 .. toctree::
    :maxdepth: 1
 
-   tutorials/guides.md
+   guides.md
