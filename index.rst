@@ -40,7 +40,7 @@ to the next level. :ref:`Read more ... <about-us>`
    .. grid-item-card:: :octicon:`question;2em;sd-text-info` Getting help
      :shadow: none
      :class-card: sd-border-1
-     :link: getting-help
+     :link: support-line
      :link-type: any
 
      Need help using our compute or storage facilities? Check out our support pages.

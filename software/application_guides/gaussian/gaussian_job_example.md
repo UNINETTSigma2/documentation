@@ -9,7 +9,7 @@ orphan: true
 ```{note}
 Here we present tested examples for various job types on the different NRIS machines.
 This will be under more or less continoues development, and if you find things missing 
-and/or not working as expected, do not hesitate to report back to {ref}`support-line`.
+and/or not working as expected, do not hesitate to {ref}`contact us <support-line>`.
 ```
 
 ## Expected knowledge base
@@ -140,7 +140,7 @@ CPU to GPU billing, which will depend on the system configuration, but at least 
 the current ratio of 6:1 on Saga it seems to pay off to use the GPU over the CPU
 version (queuing time not taken into account).
 
-If you find any issues with the GPU version of Gaussian, please contact us at {ref}`our support line<support-line>`.
+If you find any issues with the GPU version of Gaussian, please contact us at {ref}`our support line <support-line>`.
 
 ```{note}
 The timings in the table above represent a single use case, and the behavior might be

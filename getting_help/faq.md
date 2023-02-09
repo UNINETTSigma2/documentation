@@ -76,7 +76,7 @@ In cases where these routes still do not solve your problem or you would like
 to install a package yourself, please consult this
 page about {ref}`installing-software-as-user`.
 If you are still stuck or would like
-support, please contact the {ref}`support-line`.
+support, please {ref}`contact us <support-line>`.
 
 
 ### Can I install software as a normal user without sudo rights or a root account?
@@ -124,7 +124,7 @@ on your local PC.
 For all {ref}`job-types` there is a maximum walltime. If you try to set a 
 walltime that is larger than this, the job will not be accepted when you submit it. We recommend you
 to try to segment the job using {ref}`job-scripts`. If this does not suit your need,
-please contact the {ref}`support-line`. The main
+please {ref}`contact us <support-line>`. The main
 intention to have a limit on the max walltime is to make sure the queue system works as best as possible and
 as such would give a better experience for most users.
 

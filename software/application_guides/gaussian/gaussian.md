@@ -19,7 +19,7 @@ The installed license of GAUSSIAN on NRIS machines is an academic license and co
 
 - To have access to the code, you need to be in the `gaussian` group of
   users. <br>Check this with the command `id | grep gaussian`. 
-- If not in the group, contact {ref}`support-line` and ask to be added.
+- If not in the group, {ref}`contact us <support-line>` and ask to be added.
 - Provide necessary documentation to be added in the group. 
 
 ## Citation
