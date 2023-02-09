@@ -3,6 +3,7 @@
 # Getting help
 
 ```{admonition} Administrative support
+{octicon}`briefcase;2em;sd-text-info`
 Contact **[contact@sigma2.no](mailto:contact@sigma2.no)** for support requests concerning:
 - resource applications
 - projects
@@ -12,6 +13,7 @@ Contact **[contact@sigma2.no](mailto:contact@sigma2.no)** for support requests c
 ```
 
 ```{admonition} Technical support
+{octicon}`tools;2em;sd-text-info`
 Contact **[support@nris.no](mailto:support@nris.no)** for all other support requests:
 - technical issues
 - software installation requests
