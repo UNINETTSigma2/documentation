@@ -92,10 +92,4 @@ Here are some useful pages you can look into: [shell novice](https://swcarpentry
 However, do not be afraid to contact support if you are not an expert or have knowledge of this. We will
 try our best to help you.
 
-### Display active and resolved tickets
 
-To see details about your open and resolved support requests you can login to the
-[self-service page](https://rt.uninett.no/SelfService).
-There you can select a ticket to see its current status, subqueue as well as the
-whole conversation.
-Please note that only ticket are displayed which are sent from the same email address as the one connected to your Feide account, you use to log in.
