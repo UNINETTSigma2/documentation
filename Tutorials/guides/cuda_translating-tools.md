@@ -14,7 +14,7 @@ The aim of this document is to guide users through a straightforward procedure f
 - How to use the `clacc` tool to convert OpenACC application to OpenMP offloading.
 - How to compile the generated HIP, SYCL and OpenMP applications.
 
-## Hipify 
+## Hipify
 
 In this section, we describe how to use `hipify-perl` and `hipify-clang` tools to translate a CUDA application to HIP.
 
@@ -40,13 +40,13 @@ On LUMI-G, the following modules need to be loaded:
 
 - **Step 4**: compile with `hipcc`
 
-`$hipcc --offload-arch=gfx90a -o exec_hip program.cu.hip` 
+`$hipcc --offload-arch=gfx90a -o exec_hip program.cu.hip`
 
-Despite of the simplicity of the use of `hipify-perl`, the tool might not be suitable for large applicatons, as it relies heavily on translating regular expressions (e.g. it replaces *cu* with *hip*). The alternative here is to use `hipify-clang` as described in the next section.
+Despite of the simplicity of the use of `hipify-perl`, the tool might not be suitable for large applications, as it relies heavily on translating regular expressions (e.g. it replaces *cu* with *hip*). The alternative here is to use `hipify-clang` as described in the next section.
 
 ### Hipify-clang
 
-As described [here](https://docs.amd.com/en-US/bundle/HIPify-Reference-Guide-v5.1/page/HIPify.html#perl), the `hipify-clang` tool is based on clang for translating CUDA sources into HIP sources. In short, `hipify-clang` requires `LLVM+CLANG` and `CUDA`. Details about building `hipify-clang` can be found [here](https://github.com/ROCm-Developer-Tools/HIPIFY). Note that `hipify-clang` is available on LUMI-G. The issue however might be related to the installation of CUDA-toolkit. To avoid any eventual issues with the installation procedure we opt for CUDA singularity container. Here we present a step-by-step guide to runing `hipify-clang`:
+As described [here](https://docs.amd.com/en-US/bundle/HIPify-Reference-Guide-v5.1/page/HIPify.html#perl), the `hipify-clang` tool is based on clang for translating CUDA sources into HIP sources. In short, `hipify-clang` requires `LLVM+CLANG` and `CUDA`. Details about building `hipify-clang` can be found [here](https://github.com/ROCm-Developer-Tools/HIPIFY). Note that `hipify-clang` is available on LUMI-G. The issue however might be related to the installation of CUDA-toolkit. To avoid any eventual issues with the installation procedure we opt for CUDA singularity container. Here we present a step-by-step guide to running `hipify-clang`:
 
 - **Step 1**: pull a cuda singularity container e.g.
 
@@ -56,7 +56,7 @@ As described [here](https://docs.amd.com/en-US/bundle/HIPify-Reference-Guide-v5.
 
 `$ml rocm`
 
-During our testing, we used the rocm version `rocm-5.0.2`. 
+During our testing, we used the rocm version `rocm-5.0.2`.
 
 - **Step 3**: launch the container
 
@@ -87,7 +87,7 @@ TODO
 
 # Conclusion
 
-We have presented an overview of the usage of available tools to convert CUDA-based applications to HIP, SYCL and OpenMP offloading (for OpenACC C source). In general the translation process for large applications covers about 80-90% of the source code and thus requires manual modification to complete the porting process. It is however worth noting that the accuracy of the translation process requires that applications are written correctly according to the CUDA syntax. 
+We have presented an overview of the usage of available tools to convert CUDA-based applications to HIP, SYCL and OpenMP offloading (for OpenACC C source). In general the translation process for large applications covers about 80-90% of the source code and thus requires manual modification to complete the porting process. It is however worth noting that the accuracy of the translation process requires that applications are written correctly according to the CUDA syntax.
 
 # Relevant links
 
