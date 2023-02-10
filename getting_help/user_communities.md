@@ -11,7 +11,7 @@ when you encounter problems you believe others might have encountered before.
 
 All listed users have given consent to be present on this page.
 
-If you see yourself and want to update the information, please send an email to {ref}`support-line`.
+If you see yourself and want to update the information, please {ref}`contact us <support-line>`.
 
 ## Software
 

@@ -1,4 +1,4 @@
-(contact_support)=
+(good-support-requests)=
 
 # Writing good support requests
 

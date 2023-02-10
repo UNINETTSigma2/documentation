@@ -55,7 +55,7 @@ mostly focused on the launch parameters needed (see below). To use the GPU
 accelerated NAMD library, load any version of NAMD with the `fosscuda`
 toolchain. Unfortunately this toolchain does not support MPI so if your problem
 benefits more from wide scaling this is not applicable (please contact us
-{ref}`if this applies to you<support-line>`).
+{ref}`if this applies to you <support-line>`).
 
 ```{note}
 NAMD can utilize multiple GPUs, on a single node, but can also benefit from
@@ -107,7 +107,7 @@ following performance.
 
 Note that depending on your setup you might not see the same performance, we
 urge researchers to test with GPU to see if they can benefit and
-{ref}`contact us for assistance in getting started<support-line>` if necessary.
+{ref}`contact us for assistance in getting started <support-line>` if necessary.
 
 ## Citation
 

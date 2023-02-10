@@ -170,3 +170,18 @@ two `SBATCH` options (on {ref}`saga` you also need to indicate maximum memory):
 ```
 
 For more details please see {ref}`running-jobs`.
+
+
+## Learning about the Linux command line
+
+Learning the basics about the Linux command line (shell) navigation and shell
+scripting will make your daily work easier and more efficient.
+
+If you are new to command line, go through some Linux tutorials on the subject
+first.  Here are some useful pages you can look into: [shell
+novice](https://swcarpentry.github.io/shell-novice/) or [Effective
+shell](https://effective-shell.com). O therwise consult your local IT resources
+for help.
+
+However, do not be afraid to contact support if you are not an expert or have
+knowledge of this. We will try our best to help you.
