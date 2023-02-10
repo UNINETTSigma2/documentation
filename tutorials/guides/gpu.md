@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (gpu-intro)=
 # Introduction to using GPU compute
 

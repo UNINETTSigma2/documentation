@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Offloading to GPUs
 
 In high-performance computing offloading is the act of moving a computation

@@ -87,6 +87,7 @@ should include an `acknowledgement following this template
 
    code-of-conduct.md
 
+
 .. toctree::
    :hidden:
    :maxdepth: 1
@@ -100,7 +101,6 @@ should include an `acknowledgement following this template
    getting_help/qa-sessions.md
    getting_help/lost_forgotten_password.md
    getting_help/project_leader_support.md
-
 
 
 .. toctree::
@@ -123,7 +123,6 @@ should include an `acknowledgement following this template
    getting_started/editing_files.md
    getting_started/ssh.md
    getting_started/fingerprints.md
-   getting_started/tutorials.rst
 
 
 .. toctree::
@@ -147,6 +146,7 @@ should include an `acknowledgement following this template
    jobs/overview.rst
    code_development/overview.rst
    computing/tuning-applications.md
+   tutorials/tutorials.rst
 
 
 .. toctree::
@@ -157,7 +157,6 @@ should include an `acknowledgement following this template
    software/modulescheme.md
    software/installed_software.md
    software/userinstallsw.rst
-   software/containers.md
    software/appguides.md
    software/licenses.md
 

@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (running-containers)=
 # Containers on NRIS HPC systems
 
@@ -10,20 +14,20 @@ containers through Singularity.
 ## What is a container image
 Container image is a package with all cargo needed for a software to work. This
 includes the operating system, system packages, libraries and applications as
-a single unit. It only uses the host operating systems kernel.     
+a single unit. It only uses the host operating systems kernel.
 
 
 ## What is not covered in this document
 We are showing how to use existing container images on our systems as regular users.
 Operations that require root access, like building or making changes to an images
-not discussed. 
+not discussed.
 
 ## When to use containers on NRIS HPC systems
 
 ```{note}
 Please let us know if you find more reasons for using containers
 ```
- - If you have a software stack or a pipeline already setup somewhere else and 
+ - If you have a software stack or a pipeline already setup somewhere else and
    you want to bring it as it is to one of the HPC systems
      - Containers give the users the flexibility to bring a full software stack to the
        cluster which has already been set up, which can make software installations and
@@ -37,8 +41,8 @@ Please let us know if you find more reasons for using containers
 ## When not to use containers on NRIS HPC systems
  - If the software you are planing to to use already installed as a module(s), then
    better to use that module or collection of modules
- - Windows containers. On NRIS HPC systems only containers that uses UNIX kernel would 
-   work 
+ - Windows containers. On NRIS HPC systems only containers that uses UNIX kernel would
+   work
  - If you do not know what the container is exactly for. i.e. found a command on
    the internet and just want to try it out
 
@@ -93,18 +97,18 @@ $ singularity pull --name openmpi-i8.sif docker://quay.io/bast/openmpi-i8:4.0.4-
 - [singularity exec](https://sylabs.io/guides/3.1/user-guide/cli/singularity_exec.html):
    Run a command within a container
 - [singularity run](https://sylabs.io/guides/3.1/user-guide/cli/singularity_run.html):
-   Run the user-defined default command within a container	
+   Run the user-defined default command within a container
 
 ```
 
-Example 
+Example
 ```console
 
 [SAGA]$ singularity pull --name hello-world.sif shub://vsoch/hello-world
 The image created (hello-world.sif) has a user defined command called "rawr.sh"
 
 [SAGA]$ singularity exec hello-world.sif cat /singularity
-#!/bin/sh 
+#!/bin/sh
 
 exec /bin/bash /rawr.sh
 [SAGA]$ singularity exec hello-world.sif cat /rawr.sh
@@ -113,7 +117,7 @@ exec /bin/bash /rawr.sh
 echo "RaawwWWWWWRRRR!! Avocado!"
 
 
-[SAGA]$ singularity run hello-world.sif 
+[SAGA]$ singularity run hello-world.sif
 RaawwWWWWWRRRR!! Avocado!
 
 With run, the default command is what is excuted,
@@ -129,26 +133,26 @@ VERSION="14.04.6 LTS, Trusty Tahr"
 ```
 
 
-Following are some example use cases we have seen on NRIS HPC systems. 
+Following are some example use cases we have seen on NRIS HPC systems.
 
 ```{note}
-Example 1: A user wants to use different version of the TensorFlow  than 
+Example 1: A user wants to use different version of the TensorFlow  than
 what is installed in SAGA. So she googles and ends up here
 [https://www.tensorflow.org/install](https://www.tensorflow.org/install)
 There she finds the following command sequence
 ```
 ```console
  docker pull tensorflow/tensorflow:latest  # Download latest stable image
- docker run -it -p 8888:8888 tensorflow/tensorflow:latest-jupyter  # Start Jupyter server 
+ docker run -it -p 8888:8888 tensorflow/tensorflow:latest-jupyter  # Start Jupyter server
 ```
-But she knows that we do not have Docker on SAGA so she uses Singularity to pull 
+But she knows that we do not have Docker on SAGA so she uses Singularity to pull
 the image, yes it is possible to pull docker images using singularity
 ```console
 [SAGA]$ singularity pull docker://tensorflow/tensorflow:latest
 ```
 To test she prints the version
 ```console
-[SAGA]$ singularity run  tensorflow_latest.sif python -c "import tensorflow as tf;print(tf.__version__)" 
+[SAGA]$ singularity run  tensorflow_latest.sif python -c "import tensorflow as tf;print(tf.__version__)"
 ```
 
 
@@ -159,7 +163,7 @@ A user needs to use a software that runs only on a specific vesion of Ubuntu
 
 ```console
 [SAGA]$ singularity pull docker://bioperl/bioperl
-[SAGA]$ singularity exec  bioperl_latest.sif cat /etc/os-release                    
+[SAGA]$ singularity exec  bioperl_latest.sif cat /etc/os-release
     NAME="Ubuntu"
     VERSION="14.04.5 LTS, Trusty Tahr"
 
