@@ -17,7 +17,7 @@ The aim of this tutorial is to guide users through a straightforward procedure f
 :depth: 2
 ```
 (cuda2hip)=
-## Hipify 
+## Translating CUDA to HIP with Hipify 
 
 In this section, we cover the use of `hipify-perl` and `hipify-clang` tools to translate a CUDA application to HIP.
 
@@ -29,22 +29,28 @@ The `hipify-perl` tool is a script based on perl that translates CUDA syntax int
 
 On LUMI-G, the following modules need to be loaded:
 
-`$module load CrayEnv`
+```console
+$module load CrayEnv
+```
 
-`$module load rocm`
-
+```console
+$module load rocm
+```
 - **Step 2**: generating `hipify-perl` script
 
-`$hipify-clang --perl`
-
+```console
+$hipify-clang --perl
+```
 - **Step 3**: running `hipify-perl`
 
-`$perl hipify-perl program.cu > program.cu.hip`
-
+```console
+$perl hipify-perl program.cu > program.cu.hip
+```
 - **Step 4**: compiling with `hipcc` the generated HIP code
 
-`$hipcc --offload-arch=gfx90a -o exec_hip program.cu.hip` 
-
+```console
+$hipcc --offload-arch=gfx90a -o exec_hip program.cu.hip
+```
 Despite of the simplicity of the use of `hipify-perl`, the tool might not be suitable for large applicatons, as it relies heavily on translating regular expressions (e.g. it replaces *cuda* with *hip*). The alternative here is to use `hipify-clang` as described in the next section.
 
 ### Hipify-clang
@@ -53,36 +59,94 @@ As described [here](https://docs.amd.com/en-US/bundle/HIPify-Reference-Guide-v5.
 
 - **Step 1**: pulling a CUDA singularity container e.g.
 
-`$singularity pull docker://nvcr.io/nvidia/cuda:11.4.0-devel-ubi8`
-
+```console
+$singularity pull docker://nvcr.io/nvidia/cuda:11.4.0-devel-ubi8
+```
 - **Step 2**: loading a ROCM module before launching the container.
 
-`$ml rocm`
+```console
+$ml rocm
+```
 
 During our testing, we used the rocm version `rocm-5.0.2`. 
 
 - **Step 3**: launching the container
 
-`$singularity shell -B $PWD,/opt:/opt cuda_11.4.0-devel-ubuntu20.04.sif`
+```console
+$singularity shell -B $PWD,/opt:/opt cuda_11.4.0-devel-ubuntu20.04.sif
+```
 
 where the current directory $PWD in the host is mounted to that of the container, and the directory `/opt` in the host is mounted to the that inside the container.
 
 - **Step 4**: setting the environment variable `$PATH`
 In order to run `hipify-clang` from inside the container, one can set the environment variable `$PATH` that defines tha path to look for the binary `hipify-clang`
 
-`$export PATH=/opt/rocm-5.0.2/bin:$PATH`
+```console
+$export PATH=/opt/rocm-5.0.2/bin:$PATH
+```
 
 - **Step 5**: running `hipify-clang`
 
-`$hipify-clang program.cu -o hip_program.cu.hip --cuda-path=/usr/local/cuda-11.4 -I /usr/local/cuda-11.4/include`
+```console
+$hipify-clang program.cu -o hip_program.cu.hip --cuda-path=/usr/local/cuda-11.4 -I /usr/local/cuda-11.4/include
+```
 
 Here the cuda path and the path to the *includes* and *defines* files should be specified. The CUDA source code and the generated output code are `program.cu` and `hip_program.cu.hip`, respectively.
 
 - **Step 6**: the syntax for compiling the generated hip code is similar to the one described in the previous section (see hipify-per).
 
 (cuda2sycl)=
-## Syclomatic
+## Translating CUDA to SYCL with Syclomatic
 
+[SYCLomatic](https://github.com/oneapi-src/SYCLomatic) is another conversion tool. However, instead of converting CUDA code to HIP syntax, SYCLomatic converts the code to SYCL/DPC++. The use of SYCLomatic requires CUDA libraries, which can be directly installed in an environment or can be extracted from a CUDA container. Similarly to previous section, we use singularity container. Here is a step-by-step guide for using `SYCLamatic`
+
+**Step 1** Downloading `SYCLomatic` e.g. the last release from [here](https://github.com/oneapi-src/SYCLomatic/releases)
+
+```console
+wget https://github.com/oneapi-src/SYCLomatic/releases/download/20230208/linux_release.tgz
+```
+
+**Step 2** Decompressing the tarball into a desired location:
+
+```console
+$tar -xvzf linux_release.tgz -C [desired install location]
+```
+
+**Step 3** Adding the the executable ```c2s``` which is located in ```[install location]/bin``` in your path, either by setting the environment variable `$PATH`
+
+```console
+$export PATH=[install location]/bin:$PATH
+```
+
+Or by creating a symbolic link into a local ```bin``` folder:
+
+```console
+$ln -s [install location]/bin/dpct /usr/bin/c2s
+```
+
+**Step 4** Launching `SYCLomatic`
+
+TODO
+
+**Step 5** Compiling the generated SYCL code
+
+TODO
+
+An alternative to the above mentioned steps is to create a singularity .def file (see an example [here](./syclomatic_doc/syclomatic.def)). This can be done in the following:  
+
+First, build a container image:
+
+```console
+$singularity build syclomatic.sif syclomatic.def
+```
+
+Then execute the `SYCLomatic` tool from inside the container:
+
+```console 
+$singularity exec syclomatic.sif c2s [file to be converted]
+```
+
+This will create a folder in the current directory called ```dpct_output```, in which the converted file is generated.
 
 
 # Conclusion
@@ -98,4 +162,8 @@ We have presented an overview of the usage of available tools to convert CUDA-ba
 [HIP example](https://github.com/olcf-tutorials/simple_HIP_examples/tree/master/vector_addition)
 
 [Porting CUDA to HIP](https://www.admin-magazine.com/HPC/Articles/Porting-CUDA-to-HIP)
+
+[SYCLomatic Github](https://github.com/oneapi-src/SYCLomatic)
+
+[Installing SYCLamatic](https://github.com/oneapi-src/SYCLomatic/releases)
 
