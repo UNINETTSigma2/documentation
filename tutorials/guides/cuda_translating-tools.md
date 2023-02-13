@@ -13,6 +13,10 @@ The aim of this tutorial is to guide users through a straightforward procedure f
 - How to use the `syclomatic` and `DPC++` tools to convert CUDA source to SYCL.
 - How to compile the generated HIP and SYCL applications.
 
+```{contents}
+:depth: 2
+```
+(cuda2hip)=
 ## Hipify 
 
 In this section, we cover the use of `hipify-perl` and `hipify-clang` tools to translate a CUDA application to HIP.
@@ -76,6 +80,7 @@ Here the cuda path and the path to the *includes* and *defines* files should be 
 
 - **Step 6**: the syntax for compiling the generated hip code is similar to the one described in the previous section (see hipify-per).
 
+(cuda2sycl)=
 ## Syclomatic
 
 
