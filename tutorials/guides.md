@@ -32,6 +32,10 @@
 - Porting applications:
     - [<span style="color:green">Beginner</span>]
         [Porting OpenACC to OpenMP offloading](guides/converting_acc2omp/openacc2openmp.md) 
+     - [<span style="color:green">Beginner</span>]
+        {ref}`Translating CUDA to HIP<cuda2hip>`
+    - [<span style="color:green">Beginner</span>]
+        {ref}`Translating CUDA to SYCL<cuda2sycl>`  
 - Hybrid programming
     - [<span style="color:green">Beginner</span>]
         [MPI and OpenACC](guides/openacc_mpi.md)
