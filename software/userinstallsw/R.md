@@ -1,4 +1,6 @@
-# Installing R packages
+(installing-r-libraries)=
+
+# Installing R libraries
 
 [R is a programming environment](https://www.r-project.org) for performing
 statistical operations.  On this page we show how to install R libraries for
@@ -7,6 +9,8 @@ your projects.
 ```{contents} Table of Contents
 ```
 
+
+(installing-r-libraries-modules)=
 
 ## Selecting the module to load 
 
@@ -125,52 +129,8 @@ To access the package in your scripts, you will need to add the `.libPaths` line
 
 
 ## Rscript example in a job 
-In order to submit as a job, we need to include all R processing steps in an Rscript
 
-Example Rscript
-
-
-```
-[user1@login-3.SAGA ~]$ cat test.rscript 
-
-#!/usr/bin/env Rscript
-
-.libPaths(c("/cluster/home/user1/R",.libPaths()))
-library("ggplot2")
-out_put = paste("Processing started on", Sys.info()["nodename"])
-paste(out_put)
-
-mean_plus_this <- function(data, addthis = 0) {
-  new_data <- mean(data) + addthis
-  return(new_data)
-}
-
-test_data <- c(4, 40, 9, 1)
-mean_plus_this(test_data, 3)
-
-```
-
-Example job script to call the above Rscript
-
-```
-#!/bin/bash
-
-#SBATCH --account=nn9999k
-#SBATCH --job-name=R_script_test
-#SBATCH --partition=normal
-#SBATCH --mem=8G
-#SBATCH --ntasks=1
-#SBATCH --time=15:00
-
-set -o errexit # Make bash exit on any error
-set -o nounset # Treat unset variables as errors
-
-module restore
-module load R/4.0.0-foss-2020a
-
-Rscript test.rscript > output.Rout 2> error.Rout
-
-```
+We have a separate page with examples for your {ref}`first-r-calculation`.
 
 
 ## License Information
