@@ -128,6 +128,13 @@ emphasize-lines: 2
 To access the package in your scripts, you will need to add the `.libPaths` line to your scripts.
 
 
+## Keeping track of your R environment
+
+A good way to keep track of your R environment is to use
+[renv](https://rstudio.github.io/renv/articles/renv.html).  This tool makes it
+possible to record and share your dependencies for better reproducibility.
+
+
 ## Rscript example in a job 
 
 We have a separate page with examples for your {ref}`first-r-calculation`.
