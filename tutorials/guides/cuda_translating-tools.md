@@ -156,6 +156,8 @@ An alternative to the steps mentioned above is to create a singularity .def file
 
 First, build a container image:
 
+_OBS: In most systems, you need sudo privileges to build the container. You do not have this on our clusters, you should therefore consider building a container locally and then copying it over to the cluster using [scp](https://documentation.sigma2.no/getting_started/getting_started.html#transferring-files) or something similar._
+
 ```console
 $singularity build syclomatic.sif syclomatic.def
 ```
