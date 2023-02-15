@@ -123,6 +123,7 @@ should include an `acknowledgement following this template
    getting_started/editing_files.md
    getting_started/ssh.md
    getting_started/fingerprints.md
+   getting_started/R.md
 
 
 .. toctree::
