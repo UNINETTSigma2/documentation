@@ -53,6 +53,7 @@ $hipcc --offload-arch=gfx90a -o exec_hip program.cu.hip
 ```
 Despite of the simplicity of the use of `hipify-perl`, the tool might not be suitable for large applicatons, as it relies heavily on translating regular expressions (e.g. it replaces *cuda* with *hip*). The alternative here is to use `hipify-clang` as described in the next section.
 
+(hipify-clang)=
 ### Hipify-clang
 
 As described [here](https://docs.amd.com/en-US/bundle/HIPify-Reference-Guide-v5.1/page/HIPify.html#perl), the `hipify-clang` tool is based on clang for translating CUDA sources into HIP sources. In short, `hipify-clang` requires `LLVM+CLANG` and `CUDA`. Details about building `hipify-clang` can be found [here](https://github.com/ROCm-Developer-Tools/HIPIFY). Note that `hipify-clang` is available on LUMI-G. The issue however might be related to the installation of CUDA-toolkit. To avoid any eventual issues with the installation procedure we opt for CUDA singularity container. Here we present a step-by-step guide to runing `hipify-clang`:
@@ -124,7 +125,7 @@ Or by creating a symbolic link into a local ```bin``` folder:
 $ln -s [install location]/bin/dpct /usr/bin/c2s
 ```
 
-**Step 4** <a name="SYCLomatic_s_4"></a> Launching `SYCLomatic`
+**Step 4** <a name="SYCLomatic_s_4"></a> Launching `SYCLomatic`. This is done by running `c2s` from inside a CUDA container. This is similar to steps 1, 3 and 4 in the previous {ref}`section <hipify-clang>`.
 
 ```console
 $c2s [file to be converted]
