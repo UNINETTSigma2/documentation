@@ -124,15 +124,34 @@ Or by creating a symbolic link into a local ```bin``` folder:
 $ln -s [install location]/bin/dpct /usr/bin/c2s
 ```
 
-**Step 4** Launching `SYCLomatic`
+**Step 4** <a name="SYCLomatic_s_4"></a> Launching `SYCLomatic`
 
-TODO
+```console
+$c2s [file to be converted]
+```
+
+This will create a folder in the current directory called ```dpct_output```, in which the converted file is generated.
 
 **Step 5** Compiling the generated SYCL code
 
-TODO
 
-An alternative to the above mentioned steps is to create a singularity .def file (see an example [here](./syclomatic_doc/syclomatic.def)). This can be done in the following:  
+**_step 5.1_** Look for errors in the converted file
+
+In some cases, SYCLOmatic might not be able to convert part of the code. In such cases, SYCLomatyic will comment on the parts it is unsure about. For example, these comments might look something like this:
+```
+/*
+    DPCT1003:1: Migrated API does not return error code. (*, 0) is inserted. You
+    may need to rewrite this code.
+*/
+```
+Before compiling, these sections will need to be manually checked for errors.
+
+**_step 5.2_**
+Once you have a valid file, you may compile it with the SYCL compiler of your choosing. There are many choices for such compilers, which vary based on the devices you are compiling for. Please confer with the [INTEL SYCL documentation](https://www.intel.com/content/www/us/en/developer/articles/technical/compiling-sycl-with-different-gpus.html) if you are unsure what compiler to use.
+
+### Launching SYCLomatic through a singularity container
+
+An alternative to the steps mentioned above is to create a singularity .def file (see an example [here](./syclomatic_doc/syclomatic.def)). This can be done in the following:  
 
 First, build a container image:
 
@@ -146,7 +165,7 @@ Then execute the `SYCLomatic` tool from inside the container:
 $singularity exec syclomatic.sif c2s [file to be converted]
 ```
 
-This will create a folder in the current directory called ```dpct_output```, in which the converted file is generated.
+This will create the same  ```dpct_output``` folder as mentioned in _step 4_.
 
 
 # Conclusion
