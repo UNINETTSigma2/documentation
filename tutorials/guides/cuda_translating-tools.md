@@ -125,7 +125,7 @@ Or by creating a symbolic link into a local ```bin``` folder:
 $ln -s [install location]/bin/dpct /usr/bin/c2s
 ```
 
-**Step 4** <a name="SYCLomatic_s_4"></a> Launching `SYCLomatic`. This is done by running `c2s` from inside a CUDA container. This is similar to steps 1, 3 and 4 in the previous {ref}`section <hipify-clang>`.
+**Step 4** <a name="SYCLomatic_s_4"></a> Launching `SYCLomatic`. This is done by running `c2s` from inside a CUDA container. This is similar to steps 1, 3 and 5 in the previous {ref}`section <hipify-clang>`.
 
 ```console
 $c2s [file to be converted]
