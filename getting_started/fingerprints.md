@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (ssh-fingerprints)=
 
 # Key fingerprints of our systems
