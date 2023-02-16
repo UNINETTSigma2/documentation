@@ -6,7 +6,7 @@ orphan: true
 
 # Norwegian Research Infrastructure Services
 
-The Norwegian academic high-performance computing and storage infrastructure is
+The Norwegian research high-performance computing and storage infrastructure is
 maintained by [NRIS](https://sigma2.no/nris) (formerly known as *the
 Metacenter*), which is a joint collaboration between [UiO](https://www.uio.no),
 [UiB](https://www.uib.no), [NTNU](https://www.ntnu.no), [UiT](https://uit.no),
