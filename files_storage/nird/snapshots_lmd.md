@@ -22,7 +22,7 @@ Snapshots are taken with the following frequencies:
  level of security and permanent back up, project leaders must use {ref}`backup service`.
 ```
 
-### Where the snapshots are located
+## Where the snapshots are located
 
 The NIRD `$HOME` and NS project snapshots are available under:
 - `/nird/home/.snapshots`
