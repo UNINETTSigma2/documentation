@@ -36,14 +36,14 @@ excluded from replication, shall be added as a separate line.
 Lines in the `.replication_exclude` control file starting with `#` or `;` are
 ignored.
 
-### Excluding a specific file
+## Excluding a specific file
 
 To exclude the `/nird/projects/NS1234K/datasets/experiment/tmp_file.nc` file,
 add `/datasets/experiment/tmp_file.nc` into the `.replication_exclude` control
 file as a line on it's own.
 
 
-### Excluding a directory
+## Excluding a directory
 
 To exclude the `/nird/projects/NS1234K/datasets/non_important/` directory,
 add `/datasets/non_important` into the `.replication_exclude` control file
