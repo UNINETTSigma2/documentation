@@ -35,10 +35,9 @@ If you get a question about what system you are connecting to, select "Linux"
 
 ### Open folder
 Select the folder you want to open.
-
-For home folder, either select "~" or "/cluster/home/[username]/"
-
-For project folder, select /cluster/projects/nnXXXXk/
+* For home folder, either select "~" or "/cluster/home/[username]/"
+* For project folder, select /cluster/projects/nnXXXXk/
+* Click OK
 
 ![Open folder](open-folder.png)
 
