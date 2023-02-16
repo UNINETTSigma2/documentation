@@ -6,7 +6,8 @@ orphan: true
 
 # Remote desktop
 
-[TOC]
+```{contents} Table of Contents
+```
 
 ## Introduction
 
