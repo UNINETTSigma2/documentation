@@ -47,6 +47,7 @@ The solution is based on IBM Spectrum Scale – an IBM Systems storage product b
 
    nird/access_lmd.md
    nird/storage-areas_lmd.md
+   nird/backup_lmd.md
 ```
 
 
@@ -67,21 +68,3 @@ Snapshots are activated on the new NIRD, it will allow data restoration in case 
 If you need increased redundancy in form of an extra copy of the dataset in a different location, you need to request this as an extra service. Should you have chosen replication or mixed replication in your application for storage resources for 2022.2, backup service will be switched on by the POWG team. POWG will contact each pilot project to guide setting up the inclusion/exclusion rule for each dataset. An inclusion/exclusion template will be provided later for all projects.
 
 
-## NIRD Toolkit
-
-Pilot users can test [NIRD Toolkit](https://documentation.sigma2.no/nird_toolkit/overview.html) on new NIRD. See the 
-[NIRD Toolkit Documentation](https://documentation.sigma2.no/nird_toolkit/getting_started_guide.html) on how to deploy 
-services on the toolkit. 
-On the new nird, toolkit is available [here](https://store.sigma2.no). Begin by navigating to the package library in the 
-[toolkit](https://store.sigma2.no).
-
-
-```{warning}
-- Before testing the nird toolkit on new nird, pilot users are requested to contact the POWG team at nird-migration@nris.no 
-so that we can create dedicated namespaces/resources for the pilot project on the service platform at NIRD@LMD
-
-- We do not have https certificates in place for the nird-lmd subdomain so users will have to "ignore" the certificate 
-warning in their browser.
-
-- Kindly remind that this is a pilot phase to test the toolkit, so services may experience unexpected downtimes.
-```
