@@ -34,6 +34,8 @@ been procured through [the NIRD2020 project](https://www.sigma2.no/procurement-p
  Pilot users who got access earlier are requested to follow the same workflow as earlier
  until your project gets the regular access. ie,  put your new/altered files under 
  the `/nird/projects/NSXXXK/_PILOT` to avoid data corruption. 
+
+ Mount points for NIRD on the HPC systems and DNS entries will be updated as soon as all projects are migrated. 
 ```
 
 NIRD will provide storage resources with yearly capacity upgrades,
