@@ -35,12 +35,16 @@ If you get a question about what system you are connecting to, select "Linux"
 
 ### Open folder
 Select the folder you want to open.
+
 For home folder, either select "~" or "/cluster/home/[username]/"
+
 For project folder, select /cluster/projects/nnXXXXk/
 
 ![Open folder](open-folder.png)
 
 ### Done!
-You are now connected to a system and have access to everything you had access to from a terminal in the IDE. You also have access to terminal through the built in terminal in VS code.
+You are now connected to a system and have access to everything you had access to from a terminal in the IDE. 
+
+You also have access to terminal through the built in terminal in VS code.
 
 ![Terminal](terminal.png)
