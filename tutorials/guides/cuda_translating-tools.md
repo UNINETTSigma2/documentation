@@ -170,7 +170,70 @@ $singularity exec syclomatic.sif c2s [file to be converted]
 
 This will create the same  ```dpct_output``` folder as mentioned in _step 4_.
 
+### Translate OpenACC to OpenMP with Clacc
 
+Clacc is a tool to translate OpenACC to OpenMP with the Clang/LLVM compiler environment.
+
+**_Step 1_**
+Build and install Clacc.
+The building process will spend about 5 hours.
+
+```console 
+$ git clone -b clacc/main https://github.com/llvm-doe-org/llvm-project.git
+$ cd llvm-project
+$ mkdir build && cd build
+$ cmake -DCMAKE_INSTALL_PREFIX=../install     \
+        -DCMAKE_BUILD_TYPE=Release            \
+        -DLLVM_ENABLE_PROJECTS="clang;lld"    \
+        -DLLVM_ENABLE_RUNTIMES=openmp         \
+        -DLLVM_TARGETS_TO_BUILD="host;AMDGPU" \
+        -DCMAKE_C_COMPILER=gcc                \
+        -DCMAKE_CXX_COMPILER=g++              \
+        ../llvm
+$ make
+$ make install
+```
+**_Step 1.1_**
+Set up environment variables to be able to work from /install directory
+This is the easiest solution. For more advanced usage(ie. wanting to modify Clacc, see "Usage from Build directory": (https://github.com/llvm-doe-org/llvm-project/blob/clacc/main/README.md))
+
+```console
+$ export PATH=`pwd`/../install/bin:$PATH
+$ export LD_LIBRARY_PATH=`pwd`/../install/lib:$LD_LIBRARY_PATH
+```
+
+**_Step 2.1_**
+Compile & run for host:
+```console
+$ clang -fopenacc openACC_code.c && ./output.out
+```
+**_Step 2.2_**
+Compile & run on AMD GPU:
+```console
+$ clang -fopenacc -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=gfx90a openACC_code.c && ./output.out
+```
+**_Step 2.3_**
+Source to source mode with OpenMP port printed to console:
+$ clang -fopenacc-print=omp OpenACC.c
+
+**_Step 3.1_**
+To compile the produced OpenMP code, you will need to load these modules:
+```console
+module load CrayEnv
+module load PrgEnv-cray
+module load craype-accel-amd-gfx90a
+module load rocm
+```
+**_Step 3.2_**
+Compile code with cc
+```console
+cc -fopenmp -o executable_name OpenMP.c
+```
+**_Step 4_**
+Run executable on GPU cluster:
+```console
+srun ./executable
+```
 # Conclusion
 
 We have presented an overview of the usage of available tools to convert CUDA-based applications to HIP and SYCL. In general the translation process for large applications might cover about 80% of the source code and thus requires manual modification to complete the porting process. It is however worth noting that the accuracy of the translation process requires that applications are written correctly according to the CUDA syntax. 
@@ -188,4 +251,6 @@ We have presented an overview of the usage of available tools to convert CUDA-ba
 [SYCLomatic Github](https://github.com/oneapi-src/SYCLomatic)
 
 [Installing SYCLamatic](https://github.com/oneapi-src/SYCLomatic/releases)
+
+[Clacc Main repository README](https://github.com/llvm-doe-org/llvm-project/blob/clacc/main/README.md)
 
