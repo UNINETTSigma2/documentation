@@ -20,8 +20,22 @@ The new NIRD  is redesigned for the evolving needs of Norwegian researchers and 
 been procured through [the NIRD2020 project](https://www.sigma2.no/procurement-project-nird2020).
 
 ```{note}
- The system is under pre-production during which pilot users test the new infrastructure
- and data is migrated. The system will be online and accessible to all users in February 2023.
+ **IMPORTANT**: The new NIRD will open for users from 22.Feb.2022. Access to the new NIRD
+ is dependent on a final and flip over of access and connected services. The final sync
+ between the old NIRD and the new NIRD will take over in a co-ordinated manner and depends
+ on the projects and operational convenience. During the final sync, the users will have 
+ limited or no access (depending on technical constraints) to the storage system on the 
+ scheduled timeframe/date. The tentative schedule is published [here](https://md.sigma2.no/NIRD-on-production?view).
+ 
+ We kindly remind the users who have access to more than one project, to not use old NIRD 
+ once you get access to the new NIRD based on one of your projects. Also, access on new 
+ NIRD should be limited to the particular which was migrated and access granted. 
+ 
+ Pilot users who got access earlier are requested to follow the same workflow as earlier
+ until your project gets the regular access. ie,  put your new/altered files under 
+ the `/nird/projects/NSXXXK/_PILOT` to avoid data corruption. 
+
+ Mount points for NIRD on the HPC systems and DNS entries will be updated as soon as all projects are migrated. 
 ```
 
 NIRD will provide storage resources with yearly capacity upgrades,
@@ -47,7 +61,9 @@ The solution is based on IBM Spectrum Scale – an IBM Systems storage product b
 
    nird/access_lmd.md
    nird/storage-areas_lmd.md
+   nird/snapshots_lmd.md
    nird/backup_lmd.md
+
 ```
 
 

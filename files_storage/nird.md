@@ -28,7 +28,9 @@ GridScaler® parallel file system, supporting multiple file, block and object
 protocols.
 
 ```{note}
-The next generation NIRD is installed at Lefdal Mine Datacenter and under pilot phase where pilot users are testing the new infrastructure. Data migration from the old NIRD to the new NIRD is on-going. The new nird is expected to be in production from December 2022. Please see the [pilot user guide](nird_lmd.md) for more details.
+**IMPORTANT**: The next generation NIRD is installed at Lefdal Mine Datacenter 
+and starts production from 22.02.2023. Please see the [the second generation NIRD user guide](nird_lmd.md)
+ for more details.
 ```
 
 The **NIRD toolkit** allows pre/post processing analysis, data intensive
