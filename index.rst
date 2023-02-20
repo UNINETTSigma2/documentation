@@ -121,6 +121,7 @@ should include an `acknowledgement following this template
    getting_started/applying_account.md
    getting_started/applying_resources.md
    getting_started/editing_files.md
+   tutorials/guides/vs_code/connect_to_server.md
    getting_started/ssh.md
    getting_started/fingerprints.md
    getting_started/R.md
