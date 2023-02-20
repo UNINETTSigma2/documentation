@@ -20,7 +20,7 @@ The new NIRD  is redesigned for the evolving needs of Norwegian researchers and 
 been procured through [the NIRD2020 project](https://www.sigma2.no/procurement-project-nird2020).
 
 ```{note}
- **IMPORTANT**: The new NIRD will open for users from 22.Feb.2022. Access to the new NIRD
+ **IMPORTANT**: The new NIRD will open for users from 22.Feb.2023. Access to the new NIRD
  is dependent on a final and flip over of access and connected services. The final sync
  between the old NIRD and the new NIRD will take over in a co-ordinated manner and depends
  on the projects and operational convenience. During the final sync, the users will have 
