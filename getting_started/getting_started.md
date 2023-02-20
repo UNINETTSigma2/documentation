@@ -109,14 +109,7 @@ For more information please see our page on {ref}`file-transfer`.
 
 ## Remote desktop
 
-The Fram and Saga systems provide a {ref}`remote-desktop` service.
-
-**Quickstart**: Use a VNC client to log into `desktop.fram.sigma2.no:5901` or
-`desktop.saga.sigma2.no:5901`. A web based remote desktop service is also
-available <https://desktop.fram.sigma2.no:6080>. Access to these services are
-blocked outside the Norwegian research network, e.g. only accessible from
-UNINETT and partner institutions.
-
+The Fram and Saga systems provide a remote desktop service. For more information about this, see {ref}`remote-desktop`.
 
 ## Modules
 
