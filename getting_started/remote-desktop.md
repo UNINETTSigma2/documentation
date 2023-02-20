@@ -1,13 +1,16 @@
----
-orphan: true
----
-
 (remote-desktop)=
 
-# Remote desktop
+# Remote Desktop
+
+```{warning}
+**Tiger VNC will be removed March 1.st 2023 on Fram**
+
+Due to various challenges we have decided to migrate the service to X2Go. See info below. This means that Tiger VNC service will be unavailable on Fram after March 1.st 2023, and later this year also removed from Saga. See [X2Go replaces Tiger-VNC on Fram](https://opslog.sigma2.no/2023/01/10/x2go-replaces-tigervnc-on-fram/)
+```
 
 ```{contents} Table of Contents
 ```
+
 
 ## Introduction
 
@@ -81,7 +84,7 @@ In the past we have experienced that a manual kill of the x2goagent processes on
 
 ## [TigerVNC](https://tigervnc.org)
 <details>
-<summary>**About TigerVNC**</summary>
+<summary>About TigerVNC</summary>
 
 
 
