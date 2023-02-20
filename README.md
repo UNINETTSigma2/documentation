@@ -15,12 +15,11 @@ with attribution to the Sigma2/NRIS.
 
 ## Building the documentation locally on your computer
 
-Install dependencies as below. If these commands do not work,
-try with `python3` instead of `python` (on some OS versions it has a different name):
+Install dependencies:
 ```
-$ python -m venv venv
+$ python3 -m venv venv
 $ source venv/bin/activate
-$ python -m pip install -r requirements.txt
+$ python3 -m pip install -r requirements.txt
 ```
 
 This is the nicest way to preview locally since you don't need
