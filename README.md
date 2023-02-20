@@ -10,7 +10,7 @@ with attribution to the Sigma2/NRIS.
 ## How the GitHub pages are built
 
 - Repository is mirrored from internal GitLab to GitHub using https://docs.gitlab.com/ee/user/project/repository/repository_mirroring.html#setting-up-a-push-mirror-from-gitlab-to-github.
-- `gh-pages` branch is generated using https://github.com/UNINETTSigma2/documentation/blob/master/.github/workflows/sphinx.yml
+- `gh-pages` branch is generated using https://github.com/UNINETTSigma2/documentation/blob/main/.github/workflows/sphinx.yml
 
 
 ## Building the documentation locally on your computer
@@ -46,7 +46,7 @@ $ sphinx-build -b linkcheck . _build
 ## All changes should be submitted as merge requests
 
 In order to coordinate our efforts, changes to the documentation should be
-added by _merge requests_ instead pushing directly to the `master` branch.
+added by _merge requests_ instead pushing directly to the `main` branch.
 
 This allows us to review, comment, and discuss our changes before they become public.
 Additionally all commits first run through the CI testing pipeline
@@ -56,7 +56,7 @@ accidentally breaking stuff.
 
 ## How to contribute changes
 
-We recommend to never commit changes to the `master` branch. Consider the `master` branch
+We recommend to never commit changes to the `main` branch. Consider the `main` branch
 to be a read-only copy of the public documentation. Always create a new branch before changing
 anything.
 
@@ -66,14 +66,14 @@ We will call the branch `no-animals`.
 0. Optionally but recommended: [Open an issue](https://gitlab.sigma2.no/documentation/public/issues)
    describing the necessary change. This is useful to either signal a problem if you don't have time to solve it,
    but it can also be useful to collect feedback for an idea before doing all the writing.
-1. Get an up-to-date `master` branch: `git pull origin master`
+1. Get an up-to-date `main` branch: `git pull origin main`
 2. Create a new branch for your changes. Use a short, descriptive name: `git checkout -b no-animals`
 3. Edit/add files and do the changes.
 4. Stage your changes: `git add new_section.md`
 5. Commit the changes: `git commit -m 'Add new section'`
 6. Upload your changes to the main repository: `git push origin no-animals`
 7. Create a new [merge request](https://gitlab.sigma2.no/documentation/public/-/merge_requests).
-   Select your branch as _source branch_ and `master` as _target branch_. Also mark the source
+   Select your branch as _source branch_ and `main` as _target branch_. Also mark the source
    branch to be deleted upon accepted merge request.
 8. Describe the changes and optionally assign someone to review and approve the commits.
 
@@ -83,7 +83,7 @@ We will call the branch `no-animals`.
 It is possible to suggest changes and file a merge request to the documentation directly from
 the [web interface](https://gitlab.sigma2.no/documentation/public):
 
-- Browse the [file tree](https://gitlab.sigma2.no/documentation/public/-/tree/master)
+- Browse the [file tree](https://gitlab.sigma2.no/documentation/public/-/tree/main)
   and click on the file you wish to edit.
 - Click the blue button "Edit".
 - Make changes to the file.
@@ -91,17 +91,17 @@ the [web interface](https://gitlab.sigma2.no/documentation/public):
 - Click "Commit changes" with "Start a new merge request with these changes" checked.
 
 
-## How to update your master branch after your changes have been accepted and merged
+## How to update your main branch after your changes have been accepted and merged
 
-Switch to your `master` branch:
+Switch to your `main` branch:
 ```
-$ git checkout master
+$ git checkout main
 ```
 
 Pull changes from `origin`
 (we assume `origin` points at `git@gitlab.sigma2.no:documentation/public.git`):
 ```
-$ git pull origin master
+$ git pull origin main
 ```
 
 

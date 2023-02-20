@@ -73,7 +73,7 @@ html_context = {
     'display_github': True,
     'github_user': 'UNINETTSigma2',
     'github_repo': 'documentation',
-    'github_version': 'master/' ,
+    'github_version': 'main/' ,
 }
 
 # ignoring these because they are behind vpn/login and linkchecker cannot verify these
