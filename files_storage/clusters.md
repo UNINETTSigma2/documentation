@@ -112,7 +112,7 @@ it is running on.  This is done by specifying
 `--gres=localscratch:<size>`, where *<size>* is the size of the requested
 area, for instance `--gres=localscratch:20G` for 20 GiB.
 
-Compute nodes on Fram have 198GiB disk that can be handed out to local scratch areas, hugemem have 9.8GiB. 
+Compute nodes on Fram have 198GiB disk that can be handed out to local scratch areas. 
 On Saga most nodes have 300 GiB; a few of the
 bigmem nodes have 7 TiB and the GPU nodes have 8 TiB.  If a job tries
 to use more space on the area than it requested, it will get a "disk
