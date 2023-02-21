@@ -133,7 +133,9 @@ It might be beneficial to check different nodes and associated
 memory capabilities. Both Saga and Fram have Gaussian installed and both systems
 have nodes with more memory installed.
 
-Example of SLURM options for a relatively large run on Fram :
+<!-- Commenting out this section until we have hugemem in place at saga -->
+
+<!--Example of SLURM options for a relatively large run on Fram :
 ```
 #SBATCH --partition=bigmem
 #SBATCH --time=0-24:0:0
@@ -145,7 +147,7 @@ Requesting 64 cores with a total of 5600 GiB of memory, essential all of the usa
 memory available in the Hugemem nodes. All this memory or all these cores might not
 yield the optimal performance. Some sweet spot need to be found, some testing should be done
 to establish good practice for a compute campaign. As seen from the figure above there is no gain
-in using more memory that what's needed to hold the integrals in memory (instead of writing and reading from the disk).
+in using more memory that what's needed to hold the integrals in memory (instead of writing and reading from the disk). -->
 
 <!-- radovan: commented out below since it seems technical, disconnected to the job -->
 <!-- examples, and at least the documented run-time difference seems insignificant -->
