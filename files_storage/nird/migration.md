@@ -1,3 +1,5 @@
+(nird-migration-guide)=
+
 # NIRD migration user guide
 
 This page is an information guide for the process of migrating data
@@ -101,3 +103,27 @@ For directories
 ```console
 $ find . -type d -mtime +180 -atime +180
 ```
+
+### How do I copy/migrate my home from old NIRD to new NIRD?
+
+You should take the opportunity to clean up your home directory and archive or 
+copy only data you actually want to keep.
+
+One way to copy your entire home directory would be by using the `rsync` tool.
+Log into old NIRD and  
+
+```console
+$ rsync -avzh dirname username@login.nird-lmd.sigma2.no:~/old_home/
+```
+This will recursively copy your directory/file `dirname` into the directory `old_home` on new 
+NIRD `$HOME` folder.
+Please note that you need to provide your `username`. Also you need to provide your password 
+unless you have set up passwordless login.
+
+You can read `rsync` options with `man`
+
+```console
+$ man rsync
+```
+
+
