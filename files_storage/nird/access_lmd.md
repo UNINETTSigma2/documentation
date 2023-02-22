@@ -28,17 +28,22 @@ You will be logged into your home area `/nird/home/$USERHOME`
 
 ```{note}
 Your $HOME directory is  empty now. User home ($HOME) migration is user’s responsibility. 
- The project data migration from old NIRD to the new NIRD is in the final phase. If you have
- any questions regarding the migration process and the configuration of the account on the new NIRD,
- do not hesitate to contact [the PoWG](https://www.sigma2.no/be-ready-migrate) via nird-migration@nris.no.
+Please see the {ref}`nird-migration-guide` for how to migrate files from your old `$HOME`.
+
 Once the old nird is decommisioned, the new nird can be  accessed via the same address as old nird,
  ie., `login.nird.sigma2.no`.
 ```
 
 ## Software access
 
-Software access is via command line. A number of softwares are already installed
-for the users. If there is any particular software need, requests should be sent to
-support line.
+Software can be accessed as module just like on HPCs. Please see the {ref}`module-scheme` for details.
+
+```{warning}
+Module command is not yet stable. Please report any issue encountered to support line, 
+contact **[support@nris.no](mailto:support@nris.no)**.
+
+```
+In addition a number of software can be accessed via command line.
+
 
 
