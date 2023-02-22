@@ -20,22 +20,28 @@ The new NIRD  is redesigned for the evolving needs of Norwegian researchers and 
 been procured through [the NIRD2020 project](https://www.sigma2.no/procurement-project-nird2020).
 
 ```{note}
- **IMPORTANT**: The new NIRD will open for users from 22.Feb.2023. Access to the new NIRD
- is dependent on a final and flip over of access and connected services. The final sync
- between the old NIRD and the new NIRD will take over in a co-ordinated manner and depends
- on the projects and operational convenience. During the final sync, the users will have 
- limited or no access (depending on technical constraints) to the storage system on the 
- scheduled timeframe/date. The tentative schedule is published [here](https://md.sigma2.no/NIRD-on-production?view).
+ **IMPORTANT**: The new NIRD will open for users from 22.Feb.2023. Data has been migrated,
+ but still, we need to do a final sync between the old and the new system before giving
+ access to the new one. During this operation you will not have write access to the respective
+ project neither on the old nor on the new NIRD. [Here](https://md.sigma2.no/NIRD-on-production?view) you can see when each project will have the final sync and switch over the new system.
+
+ Please check the [list](https://md.sigma2.no/NIRD-on-production?view) and be informed on when you will no longer have access to the old NIRD.
+ NIRD Project leaders are informed via email about the same.
+
+ We kindly remind the users who have access to more than one project, to limit their activity
+ on the new NIRD to the project(s) which were migrated, and access has been confirmed by
+ the preparation for operation working group (POWG) team.
+
+ Mount points for NIRD on the HPC systems and DNS entries will be updated as soon as all projects
+ are migrated. Access to your $HOME folder will be available during migration on both old and new NIRD.
+ You as users are now responsible for migrating the data to your $HOME folders by yourself when access
+ will be given to you in the new NIRD.
  
- We kindly remind the users who have access to more than one project, to not use old NIRD 
- once you get access to the new NIRD based on one of your projects. Also, access on new 
- NIRD should be limited to the particular which was migrated and access granted. 
  
  Pilot users who got access earlier are requested to follow the same workflow as earlier
  until your project gets the regular access. ie,  put your new/altered files under 
  the `/nird/projects/NSXXXK/_PILOT` to avoid data corruption. 
 
- Mount points for NIRD on the HPC systems and DNS entries will be updated as soon as all projects are migrated. 
 ```
 
 NIRD will provide storage resources with yearly capacity upgrades,
@@ -64,23 +70,5 @@ The solution is based on IBM Spectrum Scale – an IBM Systems storage product b
    nird/snapshots_lmd.md
    nird/backup_lmd.md
 
-```
-
-
-```{note}
-We kindly remind you that the data migration from old NIRD to new NIRD is on-going and to avoid data loss or corruption we ask you to put your new/altered files during the pilot phase under the `/nird/projects/NSXXXK/_PILOT` folder.
-```
-
-## Backup and data integrity
-
-```{warning}
-Please note that data outside of the above mentioned `_PILOT` folder might be overwritten at any time. At the moment, until data migration is finished and transition to the new infrastructure is finalized, data integrity is ensured on storage level with erasure coding. 
-
-Backups are currently not enabled. This is expected to be activated close to the production phase.`
-```
-
-Snapshots are activated on the new NIRD, it will allow data restoration in case of accidental deletion.
-
-If you need increased redundancy in form of an extra copy of the dataset in a different location, you need to request this as an extra service. Should you have chosen replication or mixed replication in your application for storage resources for 2022.2, backup service will be switched on by the POWG team. POWG will contact each pilot project to guide setting up the inclusion/exclusion rule for each dataset. An inclusion/exclusion template will be provided later for all projects.
 
 

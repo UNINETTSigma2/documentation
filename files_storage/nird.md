@@ -5,6 +5,33 @@
 **NIRD** is the **N**ational e-**I**nfrastructure for **R**esearch **D**ata. It
  is owned and operated by [Sigma2](https://www.sigma2.no).
 
+```{warning}
+ **IMPORTANT**: The new NIRD will open for users from 22.Feb.2023. Data has been migrated,
+ but still, we need to do a final sync between the old and the new system before giving 
+ access to the new one. During this operation you will not have write access to the respective
+ project neither on the old nor on the new NIRD. [Here](https://md.sigma2.no/NIRD-on-production?view) you can see when each project will have the final sync and switch over the new system. 
+
+ Please check the [list](https://md.sigma2.no/NIRD-on-production?view) and be informed on when you will no longer have access to the old NIRD. 
+ NIRD Project leaders are informed via email about the same. 
+
+ We kindly remind the users who have access to more than one project, to limit their activity
+ on the new NIRD to the project(s) which were migrated, and access has been confirmed by 
+ the preparation for operation working group (POWG) team. 
+ 
+ Mount points for NIRD on the HPC systems and DNS entries will be updated as soon as all projects
+ are migrated. Access to your $HOME folder will be available during migration on both old and new NIRD.
+ You as users are now responsible for migrating the data to your $HOME folders by yourself when access
+ will be given to you in the new NIRD. 
+
+ Pilot users who got access earlier are requested to follow the same workflow as earlier
+ until your project gets the regular access. ie,  put your new/altered files under
+ the `/nird/projects/NSXXXK/_PILOT` to avoid data corruption.
+
+ We have updated the new [NIRD documentation](https://documentation.sigma2.no/files_storage/nird_lmd.html). Please read the documentation carefully and revisit on a regular basis 
+ for updated information. 
+```
+
+
 ```{note}
 The NIRD infrastructure offers storage services, archiving services, and
 processing capacity for computing on the stored data.  It offers services
