@@ -3,7 +3,7 @@
 # NIRD - National Infrastructure for Research Data
 
 **NIRD** is the **N**ational e-**I**nfrastructure for **R**esearch **D**ata. It
- is owned and operated by [Sigma2](https://www.sigma2.no).
+ is owned by [Sigma2](https://www.sigma2.no) and operated by [NRIS](https://www.sigma2.no/nris).
 
 ```{warning}
  **IMPORTANT**: The new NIRD will open for users from 22.Feb.2023. Data has been migrated,
