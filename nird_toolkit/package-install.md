@@ -16,7 +16,7 @@ be taken to the installation page, where you can configure and install the packa
 In many cases it might be useful to visit the package overview package before
 installing the package, as this contains information about exactly what will
 be installed, and may contain useful information about the configuration of
-a package. To find out more about a package, click on the package description.
+a package. To find out more about a package, click on Read more.
 
 After navigating to the package overview page, you will be greeted with a
 high-level description of what the package is and what it installs.
@@ -39,14 +39,14 @@ To install a package, you are required to fill in some values.
 Some common values are present in most packages, and the meaning of these is covered in
 {ref}`Appendix A <appendix-a-the-meaning-of-each-of-common-fields-in-the-installation-form>` . 
 
-The only values that you are required to fill are the `Application name` and
+The only values that you are required to fill are the `Name` and
 `URL` fields. There are however several optional values that can be useful in
-some use-cases. Some of these values reside in the `Advanced configuration`
+some use-cases. Some of these values reside in the `Configuration`
 section. What these values means should be covered in 
 {ref}`Appendix A <appendix-a-the-meaning-of-each-of-common-fields-in-the-installation-form>` .
 
-After filling in the `Application name` and `URL` fields, you can install the
-application by clicking the `Install` button. You are then taken to a page
+After filling in the `Name` and `URL` fields, you can install the
+application by clicking the `Install Package` button. You are then taken to a page
 showing an overview of your newly created application.
 
 ![Application overview](imgs/application_overview.png)
@@ -63,7 +63,7 @@ go to the [Managing applications](application-management.md) section.
 ## Appendix A: the meaning of each of common fields in the installation form
 
 ### Required fields
-#### Application name
+#### Name
 To make it easier to determine identify applications, you are required give
 your application a name. This name is meant as a human friendly way of
 describing the application.
@@ -89,7 +89,7 @@ the 'authorized groups' selector allows you to specify which groups
 are allowed to access the application.
 
 
-#### Persistent storage
+#### Storage
 Allows you to attach a volume that can be used to persistently
 store data. The [enabling persistent storage section](persistent-storage.md)
 goes into more detail as to what this does.
@@ -118,8 +118,8 @@ resource is available.
 
 ![Requested resources](imgs/requested_resources.png)
 
-Orange is used to indicate how much of
-the resource you are about to allocate, and green indicates how much
+Green is used to indicate how much of
+the resource you are about to allocate, and orange indicates how much
 is already in use. red indicates that you are about to attempt to
 allocate more resources than what is available.
 

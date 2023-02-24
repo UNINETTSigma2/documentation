@@ -8,8 +8,7 @@ orphan: true
 
 ## Enabling JupyterLab
 JupyterLab is the next-generation of Jupyter notebooks and provides a more
-flexible and powerful user-interface. To enable JupyterLab, go to `Advanced
-configuration` while installing, and check the `jupyterLab` checkbox.
+flexible and powerful user-interface. To enable JupyterLab, go to `Configuration` while installing, and check the `jupyterLab` checkbox.
 
 ## Usage
 The Jupyter package provides a pre-configured development environment based
@@ -44,9 +43,9 @@ First, we need to create an Apache Spark cluster. We will do this by installing
 the `spark` package, but you can also connect to any publicly accessible
 Spark cluster.
 
-Fill in the `Application name` and `URL` as desired. If you need more than one
+Fill in the `Name` and `URL` as desired. If you need more than one
 worker, or more resources are required for the workers and master, go to the
-`Advanced configuration` section, and change these to your desired values.
+`Configuration` section, and change these to your desired values.
 [Image of spark install form with values filled in]
 
 When the application is running, copy the Spark master URL in the
@@ -56,15 +55,15 @@ the notebook will attempt to connect to.
 
 #### Creating the notebook
 It is now time to install Jupyter. Navigate back to the package library, and
-go to the Jupyter installation page. Fill in the `Application name` and `URL`
+go to the Jupyter installation page. Fill in the `Name` and `URL`
 once again.
 
 #### Connecting to Apache Spark
-Now go to the `Advanced configuration` section and paste in
+Now go to the `Configuration` section and paste in
 the Spark master URL you obtained in one of the previous steps.
 The package is now ready to be installed, so go ahead and press `Install`.
 
-![Jupyter application overview](./jupyter_application_overview.png)
+![Jupyter application overview](../../imgs/application_overview.png)
 
 Click on the link in the `URL` column in order to access the Jupyter notebook.
 In order to test the connection to Spark, you first need to create a
@@ -101,11 +100,11 @@ After having read the tutorial above, you can use the dockerfile below as a star
 ```
 # See the value of dockerImage in
 #
-#   https://github.com/Uninett/helm-charts/blob/master/repos/stable/jupyter/values.yaml
+#   https://github.com/UninettSigma2/helm-charts/blob/master/repos/stable/jupyter/values.yaml
 #
 # to determine the latest base image
 
-FROM quay.io/uninett/jupyter-spark:<insert latest tag here>
+FROM quay.io/nird-toolkit/jupyter-spark:<insert latest tag here>
 
 # Install system packages
 USER root

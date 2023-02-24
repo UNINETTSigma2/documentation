@@ -4,8 +4,8 @@ orphan: true
 
 # Configuration
 ## Setting a more secure password
-In order to set up a more secure password and username, go to the `Advanced
-configuration` section, and enter a more random `secretKey` and
+In order to set up a more secure password and username, go to the
+`Configuration` section, and enter a more random `secretKey` and
 `accessKey`. Keep in mind that these will be stored in plain-text and be
 accessible in the application `Configuration` tab, so don't reuse these
 anywhere.

@@ -5,7 +5,7 @@ orphan: true
 # Configuration
 ## Adding more workers
 By default, only one worker is created. To create more workers, set `replicas`
-(in the `Advanced configuration` panel) to the desired number of workers when
+(in the `Configuration` panel) to the desired number of workers when
 installing the package, or when reconfiguring an existing application. More
 workers will then automatically be associated with the cluster.
 
@@ -59,11 +59,11 @@ After having read the tutorial above, you can use the dockerfile below as a star
 ```
 # See the value of masterImage/workerImage in
 #
-#   https://github.com/Uninett/helm-charts/blob/master/repos/stable/spark/values.yaml
+#   https://github.com/UninettSigma2/helm-charts/blob/master/repos/stable/spark/values.yaml
 #
 # to determine the latest base image
 
-FROM quay.io/uninett/jupyter-spark:<use latest tag here>
+FROM quay.io/nird-toolkit/jupyter-spark:<use latest tag here>
 
 # Install system packages
 USER root

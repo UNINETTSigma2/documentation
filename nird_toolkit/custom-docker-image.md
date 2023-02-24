@@ -10,7 +10,7 @@ See the documentation of the specific package (ex. Jupyter) you want to add pack
 Typically, the dockerfile looks similar to the following
 ```
 # The image to use as a base image
-FROM quay.io/uninett/example-docker-image:20180102-xxxxxxx
+FROM quay.io/nird-toolkit/example-docker-image:20230102-xxxxxxx
 
 # Install system packages
 USER root
@@ -22,6 +22,6 @@ RUN pip install scikit-learn
 ```
 
 You need to have this image pushed to a public repository e.g. [Docker hub](https://hub.docker.com/) or [Quay Registry](https://quay.io).
-Once pushed, you can use the docker image by specifying the `dockerImage` under `Show advanced configuration` button on the `Installation/Reconfigure` page.
+Once pushed, you can use the docker image by specifying the `dockerImage` under `Configuration` button on the `Installation/Reconfigure` page.
 Note that the exact name of the field may very, but the field name should end with `Image` (ex. `workerImage`, `userImage` etc.).
 After specifying your custom image and applying those changes, your image will be used in the given instance of application and have all the newly added packages.

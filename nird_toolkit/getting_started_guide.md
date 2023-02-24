@@ -54,7 +54,7 @@ Once the group is created, you can send a share link to yourself. Copy and paste
 **Authorize group to service**  
 In the Toolkit, add the Feide ad-hoc group you created under "Authorized groups" on the service. You can reconfigure an existing service to do this as well.
 
-![Authorized groups](imgs/authorized_groups.png "Authorized groups")
+![Authorized groups](imgs/application_reconfigure.png "Authorized groups")
 
 **Log in with OpenIdP**  
 We recommend using another browser or an incognito tab to separate the sessions.
