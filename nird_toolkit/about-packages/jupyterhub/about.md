@@ -6,7 +6,7 @@ orphan: true
 ## Sharing data among users
 To share data among the users of JupyterHub, when installing or reconfiguring,
 start by selecting a volume in the persistent storage field.
-Then, navigate to the `Advanced configuration` section and check the `enabled`
+Then, navigate to the `Configuration` section and check the `enabled`
 checkbox in the `sharedData` subsection.
 
 ![Reconfigure jupyter with shared data](./jupyterhub_shared_data.png)
@@ -88,11 +88,11 @@ After having read the tutorial above, you can use the dockerfile below as a star
 ```
 # See the value of userImage in
 #
-#   https://github.com/Uninett/helm-charts/blob/master/repos/stable/jupyterhub/values.yaml
+#   https://github.com/UninettSigma2/helm-charts/blob/master/repos/stable/jupyterhub/values.yaml
 #
 # to determine the latest base image
 
-FROM quay.io/uninett/jupyterhub-singleuser:<use latest tag here>
+FROM quay.io/nird-toolkit/jupyterhub-singleuser:<use latest tag here>
 
 # Install system packages
 USER root

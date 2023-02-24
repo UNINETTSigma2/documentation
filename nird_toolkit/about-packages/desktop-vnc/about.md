@@ -17,11 +17,11 @@ After having read the tutorial above, you can use the dockerfile below as a star
 ```
 # See the value of dockerImage in
 #
-#   https://github.com/Uninett/helm-charts/blob/master/repos/stable/desktop-vnc/values.yaml
+#   https://github.com/UNINETTSigma2/helm-charts/blob/master/repos/stable/desktop-vnc/values.yaml
 #
 # to determine the latest base image
 
-FROM quay.io/uninett/desktop-vnc:<use latest tag here>
+FROM quay.io/nird-toolkit/desktop-vnc:<use latest tag here>
 
 # Install system packages
 USER root
