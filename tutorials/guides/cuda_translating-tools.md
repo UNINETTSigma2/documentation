@@ -172,10 +172,10 @@ This will create the same  ```dpct_output``` folder as mentioned in _step 4_.
 
 ### Translate OpenACC to OpenMP with Clacc
 
-Clacc is a tool to translate OpenACC to OpenMP with the Clang/LLVM compiler environment.
+`Clacc` is a tool to translate OpenACC to OpenMP with the Clang/LLVM compiler environment.
 
 **_Step 1_**
-Build and install Clacc.
+Build and install `Clacc.`(For LUMI-G)
 The building process will spend about 5 hours.
 
 ```console 
@@ -195,7 +195,7 @@ $ make install
 ```
 **_Step 1.1_**
 Set up environment variables to be able to work from /install directory
-This is the easiest solution. For more advanced usage(ie. wanting to modify Clacc, see "Usage from Build directory": (https://github.com/llvm-doe-org/llvm-project/blob/clacc/main/README.md))
+This is the easiest solution. For more advanced usage(ie. wanting to modify `Clacc`, see "Usage from Build directory": (https://github.com/llvm-doe-org/llvm-project/blob/clacc/main/README.md))
 
 ```console
 $ export PATH=`pwd`/../install/bin:$PATH
@@ -214,8 +214,9 @@ $ clang -fopenacc -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-
 ```
 **_Step 2.3_**
 Source to source mode with OpenMP port printed to console:
+```console
 $ clang -fopenacc-print=omp OpenACC.c
-
+```
 **_Step 3.1_**
 To compile the produced OpenMP code, you will need to load these modules:
 ```console
@@ -229,11 +230,7 @@ Compile code with cc
 ```console
 cc -fopenmp -o executable_name OpenMP.c
 ```
-**_Step 4_**
-Run executable on GPU cluster:
-```console
-srun ./executable
-```
+
 # Conclusion
 
 We have presented an overview of the usage of available tools to convert CUDA-based applications to HIP and SYCL. In general the translation process for large applications might cover about 80% of the source code and thus requires manual modification to complete the porting process. It is however worth noting that the accuracy of the translation process requires that applications are written correctly according to the CUDA syntax. 
