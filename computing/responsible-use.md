@@ -67,7 +67,7 @@ research).
 
 ## Transferring data
 
-Disk speed, Meta-data performance, Network speed, and Firewall speed may limit
+Disk speed, meta-data performance, network speed, and firewall speed may limit
 the transfer bandwidth.
 
 Here are tips to make your data transfer easier and faster:
@@ -75,37 +75,4 @@ Here are tips to make your data transfer easier and faster:
 **Plan for it**: If you need to transfer large amount of data, don't start on
 the last day of your project. Data transfer may take hours or even days.
 
-**Few large files are easier to transfer than extremely many small files**: If
-you need to transfer extremely many files, pack them first into one or few
-larger archives.  Archive files can be created using tools like `tar` and
-`zip`.
-
-Examples (4 and 5 are probably best but it always depends):
-1. `scp` recursively copies the directory "myfolder" **without compression**.
-   If "myfolder" contains **thousands of files, this will be slow**:
-   ```console
-   $ scp -r myfolder myuser@saga.sigma2.no:~
-   ```
-2. `rsync -ra` works like `scp -r`, but preserves file information like
-   creation times. This is marginally better:
-   ```console
-   $ rsync -ra myfolder myuser@saga.sigma2.no:~
-   ```
-3. `rsync -raz` adds compression, which will save some bandwidth. If you have a
-   strong CPU at both ends of the line, and you're on a slow network, this is a
-   good choice:
-   ```console
-   $ rsync -raz myfolder myuser@saga.sigma2.no:~
-   ```
-4. First use `tar` to **combine all tiny files into a single file**, then
-   `rsync -z` to transfer it with compression:
-   ```console
-   $ tar -cvf myarchive.tar myfolder
-   $ rsync -raz myarchive.tar myuser@saga.sigma2.no:~
-   ```
-5. Use `tar -z` to **combine all tiny files into a single file and compress them**, then
-   `rsync` to transfer it:
-   ```console
-   $ tar -cvzf myarchive.tar.gz myfolder
-   $ rsync -ra myarchive.tar.gz myuser@saga.sigma2.no:~
-   ```
+Please read our page about {ref}`file-transfer`.

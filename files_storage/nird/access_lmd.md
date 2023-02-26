@@ -11,9 +11,8 @@ page.
 Users must be registered and authorised by the project responsible
 before getting access.
 
-To access or transfer data, you may use the following tools: `ssh`, `scp` or
-`sftp`.  Visit the {ref}`file-transfer` page
-for details.
+To access or transfer data, we recommend to use `ssh` or
+`rsync`. More details on our page about {ref}`file-transfer`.
 
 The new NIRD can be accessed via the following address
 

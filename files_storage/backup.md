@@ -45,7 +45,8 @@ NIRD, which is geo-replicated between NIRD-TOS (Tromsø) and NIRD-TRD (Trondheim
 To recover a deleted or overwritten file in `/cluster/home/$USER` on either Betzy, Fram or Saga
 go to your home directory on NIRD, go to the backup folder and then browse in the directory
 corresponding to the HPC system you come from for the file you want to restore.
-You can then use `scp`/`sftp` to transfer a copy to your home directory on the HPC system.
+You can then use `rsync` to transfer a copy to your home directory on the HPC system
+(see also our guide about {ref}`file-transfer`).
 If you have difficulty accessing NIRD, please contact support.
 
 **PROJECTS on Fram and Betzy**: The nnXXXXk project areas on Betzy and Fram

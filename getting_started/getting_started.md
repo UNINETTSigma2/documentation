@@ -91,20 +91,11 @@ may want to [learn using the shell](https://effective-shell.com/).
 
 ## Transferring files
 
-To copy files from your machine to the HPC machines, use SSH file transfer
-Protocol (SFTP) or Secure Copy (SCP). They are available as command-line tools
-for Linux and MacOS X but Windows users need to download a separate SCP or FTP
-client, such as [WinSCP](https://winscp.net/) or [MobaXterm](https://mobaxterm.mobatek.net/).
-
-For example, to copy `projectfiles.tar.gz` from your local home directory
-to the remote home directory of `myusername` on
-Fram, type (the colon at the end is important):
-
-```console
-$ scp projectfiles.tar.gz myusername@fram.sigma2.no:
-```
-
-For more information please see our page on {ref}`file-transfer`.
+We recommend to use `rsync` to transfer files. It is often faster and safer (in
+terms of overwriting files) than using `scp`. On Windows we recommend to use
+`rsync` through [Windows Subsystem for Linux
+(WSL)](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux).  Read more
+on our page about {ref}`file-transfer`.
 
 
 ## Remote desktop

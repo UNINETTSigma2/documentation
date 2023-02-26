@@ -18,8 +18,8 @@ colleagues at Aalto University (Finland):
 SSH is an abbreviation for *secure shell protocol*. It is a protocol to
 communicate data between two computers over an encrypted connection. When you
 log into one of the clusters with `ssh` and read and edit files and type
-commands or copy files using `scp`, then data is transmitted via this
-encrypted connection.
+commands or copy files using `rsync`, then data is transmitted via this
+encrypted connection (see also our guide about {ref}`file-transfer`).
 
 
 ## Connecting to a server
@@ -91,7 +91,7 @@ I can type:
 $ ssh saga
 ```
 
-Also `scp` and `rsync` and any other tool that uses `ssh` under the hood will
+Also `rsync` and `scp` and any other tool that uses `ssh` under the hood will
 understand these shortcuts. There is a lot more that can be configured. Search
 the web for more examples if you are interested.
 
@@ -248,7 +248,7 @@ Once the password is added, you can ssh into the remote server as normal but
 will immediately be connected without any further prompts.
 
 In other words, we use `ssh-add` typically once per day but then can `ssh` and
-`scp` and `rsync` as often as we like without re-authenticating.
+`rsync` as often as we like without re-authenticating.
 
 
 ## SSH client on Windows
