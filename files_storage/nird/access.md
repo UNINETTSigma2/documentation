@@ -11,9 +11,8 @@ page.
 Users must be registered and authorised by the project responsible
 before getting access.
 
-To access or transfer data, you may use the following tools: `ssh`, `scp` or
-`sftp`.  Visit the {ref}`file-transfer` page
-for details.
+To access or transfer data, we recommend to use `ssh` or
+`rsync`. More details on our page about {ref}`file-transfer`.
 
 
 ## Logging in
@@ -35,7 +34,7 @@ login-trd.nird.sigma2.no
 We run four login containers per site.
 
 If you plan to start a `screen` session on one of the login containers or
-you wish to copy data with the help of `scp` or `WinSCP`, you should log in
+you wish to copy data with the help of `rsync`, you should log in
 to a specific container.
 
 Addresses are:
