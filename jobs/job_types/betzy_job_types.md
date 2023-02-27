@@ -59,8 +59,10 @@ See the {ref}`accounting page<projects-accounting>` for more information.
 
 - __Allocation units__: cpus and memory
 - __Job Limits__:
-    - maximum 16 billing units (CPU cores plus memory) per job
-    - maximum 4 running jobs per user
+    - maximum 128 billing units (CPU cores plus memory) per job
+    - maximum 1 node per job
+    - maximum 16 running jobs per user
+    - in total maximum 256 billing units in running jobs per user
 - __Maximum walltime__: 1 day
 - __Priority__: normal
 - __Available resources__: 6 nodes, each with 128 CPU cores and 1 TiB RAM
