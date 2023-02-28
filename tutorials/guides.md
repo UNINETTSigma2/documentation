@@ -67,3 +67,8 @@
 - Profiling and debugging CUDA applications
     - [<span style="color:green">Beginner</span>]
         [Stencil Communication Pattern with CUDA](guides/stencil.md)
+
+# Python libraries
+- Parallel and distributed computing libraries
+    - [<span style="color:green">Beginner</span>]
+        [Using Dask to scale your Python program](guides/dask.md)
