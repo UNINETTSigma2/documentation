@@ -50,12 +50,14 @@ Give this session a suitable name, for instance FramDesktop.
 
 <u>*Server section*</u>
 
-* Host: Host has to be either login-2.fram.sigma2.no or login-3.fram.sigma2.no.
+* Host: 
+	* For Fram: login-2.fram.sigma2.no or login-3.fram.sigma2.no
+	* For Saga: login-1.saga.sigma2.no
 * Login: (aka username) - your NRIS system user name
 * SSH port: 22
 * Use RSA/DSA key for ssh connection: 
 	* For Mac and Linux: Leave blank if you want to use your ssh-keys from standard location. 
-	* For windows: You will need to save the access key to your local machine and point to this file.
+	* For windows: Create {ref}`SSH keys <ssh>` on your local machine and point to the public key.
 * Try auto login: `Check`
 
 <u>*Proxy server section*</u>
