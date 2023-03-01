@@ -147,7 +147,7 @@ is the same (compile, run and verify), so you can choose the version that suites
 ## Next steps
 
 Transitioning your application to GPU can be a daunting challenge. We have
-documented a few ways to get started in our development {ref}`guides <dev-guides>`,
+documented a few ways to get started in our development [here](../overview.rst),
 but if you are unsure please don't hesitate to contact us at
 [support@nris.no](mailto:support@nris.no).
 

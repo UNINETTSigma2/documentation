@@ -73,4 +73,4 @@ in-depth explanation on selected topics.
 
 - [[Video] Introduction to AMD ROCm GPU programming](https://youtube.com/playlist?list=PLx15eYqzJifehAxhWRD6T35GZwAqM9IK4)
 - [[Video] Introduction to OpenACC programming](https://youtu.be/KgMJzmqenuc)
-  - Can be followed up by {ref}`our introduction to OpenACC <dev-guides>`
+  - Can be followed up by {ref}`our introduction to OpenACC <dev-guides_gpu>`
