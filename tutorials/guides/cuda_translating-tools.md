@@ -172,10 +172,17 @@ This will create the same  ```dpct_output``` folder as mentioned in _step 4_.
 
 ### Translate OpenACC to OpenMP with Clacc
 
-`Clacc` is a tool to translate OpenACC to OpenMP with the Clang/LLVM compiler environment.
+`Clacc` is a tool to translate `OpenACC` to `OpenMP` with the Clang/LLVM compiler environment.
 
-**_Step 1_**
-Build and install `Clacc.`(For LUMI-G)
+**_Step 1.1_**
+Load the following modules to be able to build `Clacc` (For LUMI-G):
+
+```console 
+module load CrayEnv
+module load rocm
+```
+**_Step 1.2_**
+Build and install `Clacc.`
 The building process will spend about 5 hours.
 
 ```console 
@@ -193,7 +200,7 @@ $ cmake -DCMAKE_INSTALL_PREFIX=../install     \
 $ make
 $ make install
 ```
-**_Step 1.1_**
+**_Step 1.3_**
 Set up environment variables to be able to work from /install directory
 This is the easiest solution. For more advanced usage(ie. wanting to modify `Clacc`, see "Usage from Build directory": (https://github.com/llvm-doe-org/llvm-project/blob/clacc/main/README.md))
 
@@ -201,7 +208,14 @@ This is the easiest solution. For more advanced usage(ie. wanting to modify `Cla
 $ export PATH=`pwd`/../install/bin:$PATH
 $ export LD_LIBRARY_PATH=`pwd`/../install/lib:$LD_LIBRARY_PATH
 ```
-
+**_Step 2_**
+To compile the produced `OpenMP` code, you will need to load these modules:
+```console
+module load CrayEnv
+module load PrgEnv-cray
+module load craype-accel-amd-gfx90a
+module load rocm
+```
 **_Step 2.1_**
 Compile & run for host:
 ```console
@@ -213,19 +227,11 @@ Compile & run on AMD GPU:
 $ clang -fopenacc -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=gfx90a openACC_code.c && ./output.out
 ```
 **_Step 2.3_**
-Source to source mode with OpenMP port printed to console:
+Source to source mode with `OpenMP` port printed to console:
 ```console
 $ clang -fopenacc-print=omp OpenACC.c
 ```
-**_Step 3.1_**
-To compile the produced OpenMP code, you will need to load these modules:
-```console
-module load CrayEnv
-module load PrgEnv-cray
-module load craype-accel-amd-gfx90a
-module load rocm
-```
-**_Step 3.2_**
+**_Step 3_**
 Compile code with cc
 ```console
 cc -fopenmp -o executable_name OpenMP.c
