@@ -20,4 +20,4 @@ Example of activities that NRIS supports:
   - With a focus on software developed at the universities in Norway
 - Training
   - Both from NRIS and in collaboration with vendors
-- Documentation and [tutorials](../../code_development/overview.rst).
+- Documentation and [tutorials](code_development).

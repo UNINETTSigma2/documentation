@@ -1,5 +1,7 @@
 .. _code_development:
 
+:id: code_development
+
 ==============================
 Code development and tutorials
 ==============================
