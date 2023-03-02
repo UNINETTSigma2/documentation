@@ -14,7 +14,7 @@ and {ref}`betzy` to offload computation to the attached GPUs. This document is
 not considered a comprehensive guide for how to perform offloading, but rather
 as a compendium on the different compiler flags required with different
 compilers. For guidance on different programming models for offloading please
-{ref}`see our guides <dev-guides>`.
+[see our guides](code_development).
 
 Below we have listed the necessary flags to enable GPU offloading for the
 different systems NRIS users have access to. Both {ref}`saga` and {ref}`betzy`

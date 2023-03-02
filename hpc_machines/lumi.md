@@ -78,7 +78,7 @@ able to use LUMI-G directly.
 
 NRIS is still building documentation for taking advantage of
 accelerator resources. Researchers that want to begin the transition should
-evaluate `OpenACC` (see our {ref}`dev-guides`),
+evaluate `OpenACC` (see our {ref}`dev-guides_gpu`),
 `OpenMP`
 or directly using [accelerated
 libraries](https://rocmdocs.amd.com/en/latest/ROCm_Libraries/ROCm_Libraries.html).

@@ -72,6 +72,16 @@ to the next level. :ref:`Read more ... <about-us>`
      Here you can find example job scripts and guides on how to run
      efficiently.
 
+   .. grid-item-card:: :octicon:`rocket;2em;sd-text-info` Code development and tutorials
+     :shadow: none
+     :class-card: sd-border-1
+     :link: code_development
+     :link-type: any
+
+     Are you a developer of scientific software or running your own code on our systems? Find useful resources here.
+
+
+
 
 Projects are required to **acknowledge the use of the national e-infrastructure
 resources** in their scientific publications. Papers, presentations and other
@@ -121,7 +131,7 @@ should include an `acknowledgement following this template
    getting_started/applying_account.md
    getting_started/applying_resources.md
    getting_started/editing_files.md
-   tutorials/guides/vs_code/connect_to_server.md
+   code_development/guides/vs_code/connect_to_server.md
    getting_started/ssh.md
    getting_started/remote-desktop.md
    getting_started/R.md
@@ -141,15 +151,19 @@ should include an `acknowledgement following this template
 .. toctree::
    :hidden:
    :maxdepth: 1
-   :caption: HPC usage and code development
+   :caption: HPC usage
 
    hpc_machines/migration2metacenter.md
    computing/responsible-use.md
    jobs/overview.rst
-   code_development/overview.rst
    computing/tuning-applications.md
-   tutorials/tutorials.rst
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+   :caption: Code development and tutorials
+
+   code_development/overview.rst
 
 .. toctree::
    :hidden:

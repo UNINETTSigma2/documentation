@@ -1,4 +1,5 @@
-(dev-guides)=
+(dev-guides_gpu)=
+
 # GPU programming models
 - Introduction to GPU:
     - [<span style="color:green">Beginner</span>]
@@ -40,35 +41,3 @@
 - Offloading to GPU using Fortran 2008:
     - [<span style="color:green">Beginner</span>]
         [Offloading to GPU using Fortran 2008](guides/offloading-using-fortran.md)
-
-# Machine Learning
-- TensorFlow on GPU
-    - [<span style="color:green">Beginner</span>]
-        [Introduction to TensorFlow: part I](guides/tensorflow_gpu.md)
-    - [<span style="color:green">Beginner</span>]
-        [Introduction to TensorFlow: part II](guides/gpu/tensorflow.md)
-
-# Containers with GPU support
-- Building containers with Singularity:
-    - [<span style="color:green">Beginner</span>]
-        [Containers on NRIS HPC systems](guides/containers.md)
-    - [<span style="color:green">Beginner</span>]
-        [BigDFT with MPI and CUDA](guides/containers/bigdft.md)
-    - [<span style="color:green">Beginner</span>]
-        [Container with build environment](guides/container_env.md)
-    - [<span style="color:green">Beginner</span>]
-        [Container with MPI support](guides/container_mpi.md)
-    - [<span style="color:green">Beginner</span>]
-        [Container with GPU support (OpenACC)](guides/container_openacc.md)
-    - [<span style="color:green">Beginner</span>]
-        [CUDA Container](guides/gpu/cuda-container.md)
-
-# Monitoring GPU accelerated applications
-- Profiling and debugging CUDA applications
-    - [<span style="color:green">Beginner</span>]
-        [Stencil Communication Pattern with CUDA](guides/stencil.md)
-
-# Python libraries
-- Parallel and distributed computing libraries
-    - [<span style="color:green">Beginner</span>]
-        [Using Dask to scale your Python program](guides/dask.md)

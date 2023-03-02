@@ -159,7 +159,7 @@ Which software would you like to run on our HPC machines?
 17. How do you program an AMD GPU, is it still CUDA?
     - No, it's called 'ROCm' but is very similar to CUDA. In many instances it can actually be automatically translated from CUDA to ROCm using a tool called HIP.
     - More on documentation [Offloading to GPUs](https://documentation.sigma2.no/code_development/offloading.html)
-    - [Our guides](https://documentation.sigma2.no/code_development/guides.html#dev-guides)
+    - {ref}`dev-guides_gpu`
 
 18. How do I sign up to start using Saga / Betzy in my lab at NTNU?
     -  start here : <https://www.sigma2.no/high-performance-computing>
