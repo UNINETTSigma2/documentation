@@ -5,7 +5,7 @@ orphan: true
 (gpuusage)=
 # Basic commands for GPU-usage
 
-We present some basic command-lines that provide statistics about GPU utilization. A special focus here will be the commands [`nvidia-smi`](https://developer.nvidia.com/nvidia-system-management-interface) and [`rocm-smi`](https://sep5.readthedocs.io/en/latest/ROCm_System_Managment/ROCm-System-Managment.html), which can be used for monitoring GPU devices on heterogenous systems involving CPUs and GPUs. This guide is motivated by the increase use of software with GPU support, and in which the access to GPU usage is not often trivial. It thus represents an initial step towards improving the utilisation of GPUs. 
+We present some basic command-lines that provide statistics about GPU utilization. A special focus here will be the commands [`nvidia-smi`](https://developer.nvidia.com/nvidia-system-management-interface) and [`rocm-smi`](https://sep5.readthedocs.io/en/latest/ROCm_System_Managment/ROCm-System-Managment.html), which can be used for monitoring GPU devices on heterogenous systems involving CPUs and GPUs. This guide is motivated by the increase use of software with GPU support, and in which the access to GPU usage is not often trivial. It thus represents an initial step towards improving the utilisation of GPUs.
 
 This guide should be useful for users who are running GPU-based applications. By the end of this guide, users will learn about:
 -	How to run [`nvidia-smi`](https://developer.nvidia.com/nvidia-system-management-interface) and [`rocm-smi`](https://sep5.readthedocs.io/en/latest/ROCm_System_Managment/ROCm-System-Managment.html) commands on HPC systems.
@@ -22,17 +22,17 @@ This guide should be useful for users who are running GPU-based applications. By
 ## How to run `nvidia-smi` and `rocm-smi` commands
 The commands [`nvidia-smi`](https://developer.nvidia.com/nvidia-system-management-interface) and [`rocm-smi`](https://sep5.readthedocs.io/en/latest/ROCm_System_Managment/ROCm-System-Managment.html) are used in general to monitor and manage GPU applications; and they will be discussed here in the context of HPC systems. These commands should be launched while a submitted application is running. This is necessary in order to collect real-time activities of GPU utilization and memory usage among other metrics. These commands can also be used to access information about GPU-based systems (NVIDIA and AMD), regardless of whether GPU applications are running or not. In the following we present two ways how to run these commands:
 
-The command `nvidia-smi` is available from an NVIDIA GPU node, and can be accessed in [NRIS clusters](hpc_machines/hardware_overview.md) by following these steps:
+The command `nvidia-smi` is available from an NVIDIA GPU node, and can be accessed in [NRIS clusters](hardware-overview) by following these steps:
 -	Submit a job:                ```$ sbatch job.slurm ```
 -	Display which node:          ```$ squeue –u username ```
 -	Ssh to the listed node e.g.  ```$ ssh c7-8``` on Saga and ```$ ssh b5304``` on Betzy.
 -	Run the command:             ```$ nvidia-smi```
 -	For more options:            ```$ nvidia-smi -h```
 
-Information about GPU nodes can be displayed via the command ```$ sinfo –p [name-of-partition]```. In [our clusters](hpc_machines/hardware_overview.md), the partition is specified by  `accel`.
+Information about GPU nodes can be displayed via the command ```$ sinfo –p [name-of-partition]```. In [our clusters](hardware-overview), the partition is specified by  `accel`.
 
-```{note} 
-Note that access to a GPU node without having active jobs will be denied and will result in *Authentication failed*. 
+```{note}
+Note that access to a GPU node without having active jobs will be denied and will result in *Authentication failed*.
 ```
 
 The command-lines defined above are also valid on an AMD GPU node, in which SLURM is used as a workload manager. Here `rocm-smi` will be used instead.
@@ -54,11 +54,11 @@ $ for j in {1..10}; do srun --jobid=JobID --interactive --pty rocm-smi; sleep 2;
 ````
 `````
 
-where the *JobID* needs to be specified. In this example, the command `nvidia-smi`/`rocm-smi` runs for 10 times as defined by the range {1..10}, in which each run is delayed with 2 seconds, as defined by the option `sleep 2`. Here additional options can be specifyied in this syntax to display selective metrics as described in the next section. 
+where the *JobID* needs to be specified. In this example, the command `nvidia-smi`/`rocm-smi` runs for 10 times as defined by the range {1..10}, in which each run is delayed with 2 seconds, as defined by the option `sleep 2`. Here additional options can be specifyied in this syntax to display selective metrics as described in the next section.
 
 ## Command `nvidia-smi`
 
-The command utility [`nvidia-smi`](https://developer.nvidia.com/nvidia-system-management-interface) is provided by NVIDIA and stands for “NVIDIA System Management Interface”. As the name indicates, the tool is useful for monitoring and managing GPU applications. 
+The command utility [`nvidia-smi`](https://developer.nvidia.com/nvidia-system-management-interface) is provided by NVIDIA and stands for “NVIDIA System Management Interface”. As the name indicates, the tool is useful for monitoring and managing GPU applications.
 
 In this section, we cover the following [options](https://developer.download.nvidia.com/compute/DCGM/docs/nvidia-smi-367.38.pdf):
 
@@ -71,20 +71,20 @@ In particular, we show how to display certain statistical information based on t
 
 ### Overview of GPU usage
 
-The command `nvidia-smi` provides a general overview of GPU usage. The output of the command is shown in *Fig. 1*. The figure contains two tables: The first one provides information about available GPUs and additional technical information related to the hardware, while the 2nd one contains information about different processes running on GPU. We summerize this information in the *Table 1.*. Here among other information displayed are the driver and cuda versions, the GPU name, memory and GPU utilisation. These last two metrics indicate well-utilization of GPUs. The example displayed in *Table. 1* (also *Fig. 1.*) shows that the running application uses 325 MiB of memory (the GPU-device memory is ~16 GiB) and 39% of GPU. Note that the percent refers to the percent of time in the past sampling period, when one or more kernels were executed on the GPU. 
+The command `nvidia-smi` provides a general overview of GPU usage. The output of the command is shown in *Fig. 1*. The figure contains two tables: The first one provides information about available GPUs and additional technical information related to the hardware, while the 2nd one contains information about different processes running on GPU. We summerize this information in the *Table 1.*. Here among other information displayed are the driver and cuda versions, the GPU name, memory and GPU utilisation. These last two metrics indicate well-utilization of GPUs. The example displayed in *Table. 1* (also *Fig. 1.*) shows that the running application uses 325 MiB of memory (the GPU-device memory is ~16 GiB) and 39% of GPU. Note that the percent refers to the percent of time in the past sampling period, when one or more kernels were executed on the GPU.
 
 In the following we present additional options to complement the information provided by the command `nvidia-smi`. Such options allow displaying selective information.
 
 <div align="center">
 
-![Fig1](gpu_usage/fig1.png) 
+![Fig1](gpu_usage/fig1.png)
 
 **Fig. 1.** *Overview of GPU usage in a NVIDIA's system.*
 </div>
 
 <div align="center">
 
-![Fig2](gpu_usage/fig2.png) 
+![Fig2](gpu_usage/fig2.png)
 
 **Table 1.** *Description of GPU usage parameters extracted from Fig. 1 (see [here](https://medium.com/analytics-vidhya/explained-output-of-nvidia-smi-utility-fc4fbee3b124
 ) for more details).*
@@ -92,22 +92,22 @@ In the following we present additional options to complement the information pro
 
 ### Device statistics
 
-Displaying statistics of a device is provided by the command `nvidia-smi stats`. In particular, one can specify additional options to select statistics about GPU utilisation (left-hand side) and/or memory ultilisation (right-hand side), as shown in *Fig. 2*. This is provided by the commands `nvidia-smi stats -d gpuUtil` and `nvidia-smi stats -d memUtil` respectively. The output of the commands is shown in *Fig.2*. Here the first column indicates the GPU index and the second one displays either the GPU or memory utilisation, while the last column indicates the percent of time of either the GPU or memory utilisation. More information can be displayed by the command `nvidia-smi stats -h`.   
+Displaying statistics of a device is provided by the command `nvidia-smi stats`. In particular, one can specify additional options to select statistics about GPU utilisation (left-hand side) and/or memory ultilisation (right-hand side), as shown in *Fig. 2*. This is provided by the commands `nvidia-smi stats -d gpuUtil` and `nvidia-smi stats -d memUtil` respectively. The output of the commands is shown in *Fig.2*. Here the first column indicates the GPU index and the second one displays either the GPU or memory utilisation, while the last column indicates the percent of time of either the GPU or memory utilisation. More information can be displayed by the command `nvidia-smi stats -h`.
 
 <div align="center">
 
-![Fig3](gpu_usage/fig3.png) 
+![Fig3](gpu_usage/fig3.png)
 
 **Fig. 2.** *Output generated from the command `nvidia-smi stats -d gpuUtil` (left-hand side) and `nvidia-smi stats -d memUtil` (right-hand side).*
 </div>
 
 ### Device monitoring
 
-The device monitoring option provides additional metrics about a GPU-device; in particular, SM (Streaming Multiprocessor) utilization, memory utilisation, temperature, power consumption, memory clock rate (mclk), processor clock rate (pclk) (see *Fig. 3.*). This information is provided by the command `nvidia-smi dmon`. Here one can also specify additional options to select desired metrics: e.g. the command `nvidia-smi pmon -s u` displays the GPU utilisation together with other metrics mentioned above, while the command `nvidia-smi pmon -s m` displays the memory ultilisation combined with various metrics.   
+The device monitoring option provides additional metrics about a GPU-device; in particular, SM (Streaming Multiprocessor) utilization, memory utilisation, temperature, power consumption, memory clock rate (mclk), processor clock rate (pclk) (see *Fig. 3.*). This information is provided by the command `nvidia-smi dmon`. Here one can also specify additional options to select desired metrics: e.g. the command `nvidia-smi pmon -s u` displays the GPU utilisation together with other metrics mentioned above, while the command `nvidia-smi pmon -s m` displays the memory ultilisation combined with various metrics.
 
 <div align="center">
 
-![Fig4](gpu_usage/fig4.png) 
+![Fig4](gpu_usage/fig4.png)
 
 **Fig. 4.** *Output generated from the command `nvidia-smi dmon`.*
 </div>
@@ -117,7 +117,7 @@ The device monitoring option provides additional metrics about a GPU-device; in 
 The device topology option describes the connectivity between GPUs and CPUs and their location in an HPC system architecture. Such information is provided by the command-line `nvidia-topo -m`, and is useful for optimizing GPU-based applications that run on multiple GPUs. The output of the command is displayed in *Fig. 4*. Additional options are summarised in the *Table. 2* (see [here](https://developer.download.nvidia.com/compute/DCGM/docs/nvidia-smi-367.38.pdf) for more details, which can be viewed via the command `nvidia-smi topo -h`). The *Figure 4* shows a matrix of GPUs and the type of interconnect between GPUs, which is here of type [NVLink](https://www.nvidia.com/en-us/data-center/nvlink/). This interconnect allows high-bandwidth communication between GPUs. The NVLink in NVIDIA P100, which is diplayed in *Fig. 4.* is the first generation NVLink, and thus it is expected to provide low performance compared to recent generations such as A100 and H100.
 
 
-| Options | Description | 
+| Options | Description |
 |---|---|
 | nvidia-smi topo | Display topological information about the system|
 | nvidia-smi topo --matrix | Display the GPUDirect communication matrix for the system |
@@ -134,7 +134,7 @@ The command-line [`rocm-smi`](https://sep5.readthedocs.io/en/latest/ROCm_System_
 
 The command [`rocm-smi`](https://sep5.readthedocs.io/en/latest/ROCm_System_Managment/ROCm-System-Managment.html) can be combined with specific options to display more technical information. A summary of selective options is provided in the *Table. 3*. We refer readers to the [ROCm](https://sep5.readthedocs.io/en/latest/ROCm_System_Managment/ROCm-System-Managment.html) documentation for further details.
 
-| Options | Description | 
+| Options | Description |
 |---|---|
 | –showhw | Display details of hardware|
 | -u, --showuse | Display GPU utilisation|
@@ -150,7 +150,7 @@ The command [`rocm-smi`](https://sep5.readthedocs.io/en/latest/ROCm_System_Manag
 # Conclusion
 In conclusion, we have presented an overview of the command-lines [`nvidia-smi`](https://developer.nvidia.com/nvidia-system-management-interface) and [`rocm-smi`](https://sep5.readthedocs.io/en/latest/ROCm_System_Managment/ROCm-System-Managment.html) for monitoring and managing GPU-based applications. In addition, we have presented various options that can be combined with these commands to diplay specific metrics. We have also shown how to run them interactively in a cluster.
 
-Overall, these commands are useful for revealing information about the GPU and memory utilisations, which are a key indicator of how well the GPUs are utilised. Althouth the [`nvidia-smi`](https://developer.nvidia.com/nvidia-system-management-interface) and [`rocm-smi`](https://sep5.readthedocs.io/en/latest/ROCm_System_Managment/ROCm-System-Managment.html) commands provide real-time metrics, their use is limited to being a statistical indicator of GPU usage. Therefore more advanced techiques are needed in order to identify bottelnecks in GPU applications. Here code profiling becomes a necessity to help optimizing performance and to ensure well-utilization of GPUs. 
+Overall, these commands are useful for revealing information about the GPU and memory utilisations, which are a key indicator of how well the GPUs are utilised. Althouth the [`nvidia-smi`](https://developer.nvidia.com/nvidia-system-management-interface) and [`rocm-smi`](https://sep5.readthedocs.io/en/latest/ROCm_System_Managment/ROCm-System-Managment.html) commands provide real-time metrics, their use is limited to being a statistical indicator of GPU usage. Therefore more advanced techiques are needed in order to identify bottelnecks in GPU applications. Here code profiling becomes a necessity to help optimizing performance and to ensure well-utilization of GPUs.
 
 
 # Relevant links
