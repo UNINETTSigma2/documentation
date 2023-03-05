@@ -22,7 +22,7 @@ This guide should be useful for users who are running GPU-based applications. By
 ## How to run `nvidia-smi` and `rocm-smi` commands
 The commands [`nvidia-smi`](https://developer.nvidia.com/nvidia-system-management-interface) and [`rocm-smi`](https://sep5.readthedocs.io/en/latest/ROCm_System_Managment/ROCm-System-Managment.html) are used in general to monitor and manage GPU applications; and they will be discussed here in the context of HPC systems. These commands should be launched while a submitted application is running. This is necessary in order to collect real-time activities of GPU utilization and memory usage among other metrics. These commands can also be used to access information about GPU-based systems (NVIDIA and AMD), regardless of whether GPU applications are running or not. In the following we present two ways how to run these commands:
 
-The command `nvidia-smi` is available from an NVIDIA GPU node, and can be accessed in [NRIS clusters](hardware-overview) by following these steps:
+The command `nvidia-smi` is available from an NVIDIA GPU node, and can be accessed in {ref}NRIS clusters<hardware-overview> by following these steps:
 -	Submit a job:                ```$ sbatch job.slurm ```
 -	Display which node:          ```$ squeue –u username ```
 -	Ssh to the listed node e.g.  ```$ ssh c7-8``` on Saga and ```$ ssh b5304``` on Betzy.
@@ -79,14 +79,14 @@ In the following we present additional options to complement the information pro
 
 ![Fig1](gpu_usage/fig1.png)
 
-**Fig. 1.** *Overview of GPU usage in a NVIDIA's system.*
+**Fig. 1.** *Overview of GPU usage in a NVIDIA's system - Output from the command `nvidia-smi`.*
 </div>
 
 <div align="center">
 
 ![Fig2](gpu_usage/fig2.png)
 
-**Table 1.** *Description of GPU usage parameters extracted from Fig. 1 (see [here](https://medium.com/analytics-vidhya/explained-output-of-nvidia-smi-utility-fc4fbee3b124
+**Table 1.** *Description of GPU usage metrics extracted from Fig. 1 (see [here](https://medium.com/analytics-vidhya/explained-output-of-nvidia-smi-utility-fc4fbee3b124
 ) for more details).*
 </div>
 
@@ -98,7 +98,7 @@ Displaying statistics of a device is provided by the command `nvidia-smi stats`.
 
 ![Fig3](gpu_usage/fig3.png)
 
-**Fig. 2.** *Output generated from the command `nvidia-smi stats -d gpuUtil` (left-hand side) and `nvidia-smi stats -d memUtil` (right-hand side).*
+**Fig. 2.** *Device statistics - Output generated from the command `nvidia-smi stats -d gpuUtil` (left-hand side) and `nvidia-smi stats -d memUtil` (right-hand side).*
 </div>
 
 ### Device monitoring
@@ -109,13 +109,37 @@ The device monitoring option provides additional metrics about a GPU-device; in 
 
 ![Fig4](gpu_usage/fig4.png)
 
-**Fig. 4.** *Output generated from the command `nvidia-smi dmon`.*
+**Fig. 3.** *Device monitoring - Output generated from the command `nvidia-smi dmon`.*
 </div>
 
 ### Device topology
 
-The device topology option describes the connectivity between GPUs and CPUs and their location in an HPC system architecture. Such information is provided by the command-line `nvidia-topo -m`, and is useful for optimizing GPU-based applications that run on multiple GPUs. The output of the command is displayed in *Fig. 4*. Additional options are summarized in the *Table. 2* (see [here](https://developer.download.nvidia.com/compute/DCGM/docs/nvidia-smi-367.38.pdf) for more details, which can be viewed via the command `nvidia-smi topo -h`). The *Figure 4* shows a matrix of GPUs and the type of interconnect between GPUs, which is here of type [NVLink](https://www.nvidia.com/en-us/data-center/nvlink/). This interconnect allows high-bandwidth communication between GPUs. The NVLink in NVIDIA P100, which is displayed in *Fig. 4.* is the first generation NVLink, and thus it is expected to provide low performance compared to recent generations such as A100 and H100.
+The device topology option provides information about the nature of interconnect, in particular, in GPU-GPU and GPU-mlx5 (mlx5 refers to [Mellanox ConnectX-5](https://docs.nvidia.com/networking/display/MLNXOFEDv451010/Introduction)) networks as well as CPU affinity and NUMA (Non-Uniform Memory Access) affinity in an HPC system architecture. This is provided by the command-line `nvidia-smi topo -m`, and is useful for optimizing GPU applications that run on multiple GPUs. The output of the command is shown in *Fig. 4*. Here the figure represents a matrix composed of four GPU devices (GPU0, GPU1, GPU2 and GPU3) and two Mellanox devices (mlx5_0, mlx5_1), in which each pair is connected via different type of interconnects. In particular, GPUs are interconnected via [NVLink](https://www.nvidia.com/en-us/data-center/nvlink/), which allows high-bandwidth communication between GPUs. The NVLink in NVIDIA A100, which is displayed in *Fig. 4.* is the third generation NVLink, and is expected to provide higher performance compared to the first and second generations i.e. P100 and V100, respectively. On the other hand, the interconnect between a GPU and mlx5 is established either through SYS (e.g. GPU0-mlx5_0) or PIX (e.g. GPU1-mlx5_0) connections (see Legend in *Fig. 4*).   
 
+In short, understanding the device topology is useful for ensuring the functionality of, for instance, the [GPUDirect RDMA](https://docs.nvidia.com/cuda/gpudirect-rdma/#:~:text=GPUDirect%20RDMA%20is%20a%20technology,video%20acquisition%20devices%2C%20storage%20adapters.) (Remote Direct Memory Access) communication. The RDMA technology permits direct data transfer between a GPU and a third party device (e.g. network interface cards - NICs) through the PCIe (Peripheral Component Interconnect Express) bus and without passing by the CPU host, thus resulting in higher speed data transfer and lower latency.
+
+<div align="center">
+
+![Fig5](gpu_usage/fig5.png)
+
+**Fig. 4.** *Device topology - Output generated from the command `nvidia-smi topo -m`.*
+</div>
+
+For completeness, a list of NUMA nodes can be viewed using the command `lscpu | grep NUMA`. The output of this command e.g. from the node `b5301` in our cluster {ref}Betzy<betzy> is 
+
+```console
+NUMA node(s):          8
+NUMA node0 CPU(s):     0-7,64-71
+NUMA node1 CPU(s):     8-15,72-79
+NUMA node2 CPU(s):     16-23,80-87
+NUMA node3 CPU(s):     24-31,88-95
+NUMA node4 CPU(s):     32-39,96-103
+NUMA node5 CPU(s):     40-47,104-111
+NUMA node6 CPU(s):     48-55,112-119
+NUMA node7 CPU(s):     56-63,120-127
+```
+
+Additional options that can be combined with the command `nvidia-smi` are summarized in the *Table. 2* (see [here](https://developer.download.nvidia.com/compute/DCGM/docs/nvidia-smi-367.38.pdf) for more details), and can also be displayed using the command `nvidia-smi topo -h`.
 
 | Options | Description |
 |---|---|
@@ -125,8 +149,6 @@ The device topology option describes the connectivity between GPUs and CPUs and 
 | nvidia-smi topo --matrix_pci | Display the GPUDirect communication matrix for the system (PCI Only)|
 
 **Table. 2** *Various options that can be combined with the command [`nvidia-smi topo`](https://developer.download.nvidia.com/compute/DCGM/docs/nvidia-smi-367.38.pdf) to display specific metrics related to the topology of the used system.*
-
-TODO: add a fig.
 
 
 ## Command `rocm-smi`
@@ -141,6 +163,7 @@ The command [`rocm-smi`](https://sep5.readthedocs.io/en/latest/ROCm_System_Manag
 | --showmemuse  | Display GPU memory utilization |
 | -b, --showbw  | Display estimated PCIe use |
 |               |(i.e. estimated number of bytes sent and received by a GPU through the PCIe bus) |
+| --showtoponuma | Display device topology including NUMA nodes|
 | -P, --showpower | Display current Average Graphics Package Power Consumption |
 | -t, –showtemp | Display current temperature |
 | -g, --showgpuclocks | Display current GPU clock frequencies |
@@ -160,3 +183,11 @@ Overall, these commands are useful for revealing information about the GPU and m
 [ROCm-SMI](https://sep5.readthedocs.io/en/latest/ROCm_System_Managment/ROCm-System-Managment.html)
 
 [NVLink](https://www.nvidia.com/en-us/data-center/nvlink/)
+
+[NVIDIA Mellanox device](https://docs.nvidia.com/networking/display/MLNXOFEDv451010/Introduction)
+
+[NVIDIA networking](https://www.nvidia.com/en-us/networking/)
+
+[GPUDirect RDMA](https://docs.nvidia.com/cuda/gpudirect-rdma/#:~:text=GPUDirect%20RDMA%20is%20a%20technology,video%20acquisition%20devices%2C%20storage%20adapters.)
+
+[Network on AMD](http://developer.amd.com/wp-content/resources/56354_1.00.pdf)
