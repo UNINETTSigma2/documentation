@@ -125,7 +125,7 @@ In short, understanding the device topology is useful for ensuring the functiona
 **Fig. 4.** *Device topology - Output generated from the command `nvidia-smi topo -m`.*
 </div>
 
-For completeness, a list of NUMA nodes can be viewed using the command `lscpu | grep NUMA`. The output of this command e.g. from the node `b5301` in our cluster {ref}Betzy<betzy> is 
+For completeness, we provide the command `lscpu | grep NUMA`, which lists NUMA nodes. The output of this command e.g. from the node `b5301` in our cluster {ref}Betzy<betzy> is 
 
 ```console
 NUMA node(s):          8
