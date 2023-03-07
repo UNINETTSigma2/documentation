@@ -1,0 +1,16 @@
+{% extends '!layout.html' %}
+{% block footer %}
+<!-- Integrate opslog banner -->
+<span class="sp-status"></span>
+<script>
+  window.statuspalWidget = {
+    subdomain: 'sigma2-nris',
+    host: 'https://statuspal.eu',
+    banner: {
+      enabled: true,
+      position: 'top-right',
+    }
+  }
+</script>
+<script src="https://statuspal.io/js/widget.js"></script>
+{% endblock %}
