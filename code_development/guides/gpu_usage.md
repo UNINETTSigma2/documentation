@@ -22,7 +22,7 @@ This guide should be useful for users who are running GPU-based applications. By
 ## How to run `nvidia-smi` and `rocm-smi` commands
 The commands [`nvidia-smi`](https://developer.nvidia.com/nvidia-system-management-interface) and [`rocm-smi`](https://sep5.readthedocs.io/en/latest/ROCm_System_Managment/ROCm-System-Managment.html) are used in general to monitor and manage GPU applications; and they will be discussed here in the context of HPC systems. These commands should be launched while a submitted application is running. This is necessary in order to collect real-time activities of GPU utilization and memory usage among other metrics. These commands can also be used to access information about GPU-based systems (NVIDIA and AMD), regardless of whether GPU applications are running or not. In the following we present two ways how to run these commands:
 
-The command `nvidia-smi` is available from an NVIDIA GPU node, and can be accessed in {ref}NRIS clusters<hardware-overview> by following these steps:
+The command `nvidia-smi` is available from an NVIDIA GPU node, and can be accessed in [NRIS clusters](hardware-overview) by following these steps:
 -	Submit a job:                ```$ sbatch job.slurm ```
 -	Display which node:          ```$ squeue –u username ```
 -	Ssh to the listed node e.g.  ```$ ssh c7-8``` on Saga and ```$ ssh b5304``` on Betzy.
@@ -125,7 +125,7 @@ In short, understanding the device topology is useful for ensuring the functiona
 **Fig. 4.** *Device topology - Output generated from the command `nvidia-smi topo -m`.*
 </div>
 
-For completeness, we provide the command `lscpu | grep NUMA`, which lists NUMA nodes. The output of this command e.g. from the node `b5301` in our cluster {ref}Betzy<betzy> is 
+For completeness, we provide the command `lscpu | grep NUMA`, which lists NUMA nodes. The output of this command e.g. from the node `b5301` in our cluster [Betzy](betzy) is 
 
 ```console
 NUMA node(s):          8
