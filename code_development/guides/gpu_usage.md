@@ -29,7 +29,7 @@ The command `nvidia-smi` is available from an NVIDIA GPU node, and can be access
 -	Run the command:             ```$ nvidia-smi```
 -	For more options:            ```$ nvidia-smi -h```
 
-Information about GPU nodes can be displayed via the command ```$ sinfo –p [name-of-partition]```. In [our clusters](hardware-overview), the partition is specified by  `accel`.
+Information about GPU nodes can be displayed via the command ```$ sinfo –p [name-of-partition]```. In [NRIS clusters](hardware-overview), the partition is specified by  `accel`.
 
 ```{note}
 Note that access to a GPU node without having active jobs will be denied and will result in *Authentication failed*.
