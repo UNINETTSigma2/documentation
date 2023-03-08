@@ -150,6 +150,20 @@ Before compiling, these sections will need to be manually checked for errors.
 **_step 5.2_**
 Once you have a valid file, you may compile it with the SYCL compiler of your choosing. There are many choices for such compilers, which vary based on the devices you are compiling for. Please confer with the [INTEL SYCL documentation](https://www.intel.com/content/www/us/en/developer/articles/technical/compiling-sycl-with-different-gpus.html) if you are unsure what compiler to use.
 
+*PS: Syclomatic generates data parallel c++ code(dpc++) in stead of pure SYCL code. This means that you either need to manually convert the dpc++ code to sycl if you want to use a pure sycl compiler, or you need to use the intel OneAPI kit to compile the dpc++ code directly*
+
+**_Compiling pure SYCL code_**
+To compile the SYCL code on out clusters you need access to a SYCL compiler. On SAGA and BETZY this is straigthforward and is discussed in this tutorial: [What is sycl](https://documentation.sigma2.no/code_development/guides/hipsycl.html). At the time of writing, LUMI does not have a global installation of ```hipSYCL```. We must therefore utilize easybuild to get access to it. To accsess to ```hipSYCL``` on LUMI use these terminal commands.
+
+```
+$export EBU_USER_PREFIX=/project/project_465000096/EasyBuild
+$module load LUMI/22.08
+$module load partition/G
+$module load rocm
+$module load hipSYCL/0.9.3-cpeCray-22.08
+```
+After this you should be able to follow the tutorial [mentioned above]((https://documentation.sigma2.no/code_development/guides/hipsycl.html))
+
 ### Launching SYCLomatic through a singularity container
 
 An alternative to the steps mentioned above is to create a singularity .def file (see an example [here](./syclomatic_doc/syclomatic.def)). This can be done in the following:  
