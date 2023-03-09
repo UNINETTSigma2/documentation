@@ -2,6 +2,8 @@
 
 # Getting help
 
+We very much appreciate that you check our [status system](https://opslog.sigma2.no) before contacting us about problems with the infrastructure. You can learn more about this system on the page {ref}`using-opslog`.
+
 ```{admonition} Administrative support
 {octicon}`briefcase;2em;sd-text-info`
 Contact **[contact@sigma2.no](mailto:contact@sigma2.no)** for support requests concerning:
