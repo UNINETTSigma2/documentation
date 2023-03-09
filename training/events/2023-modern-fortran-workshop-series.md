@@ -49,8 +49,7 @@ The course is free of charge and is organised by the NRIS.
 |   Date    |  Time   |  Topic  |
 | :----------- | :----------- | :---------- |
 | ~~Thu 09.03~~    | ~~09:00 - 12:30~~| [Vector syntax and operations on arrays of different dimensions](https://drive.google.com/drive/u/0/folders/1eSdX9dTvxTgzFarAe2qYeaPeIY8e5TH_) |
-| Thu 13.04    | 09:00 - 12:30 | Object-oriented programming in Fortran	
- |
+| Thu 13.04    | 09:00 - 12:30 | Object-oriented programming in Fortran	|
 | Thu 04.05    | 09:00 - 12:30 | Offloading to GPU using Fortran |
 | Thu 25.05    | 09:00 - 12:30 | Combining Fortran with Python and C |
 
