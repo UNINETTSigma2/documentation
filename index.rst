@@ -128,6 +128,7 @@ should include an `acknowledgement following this template
    :caption: Getting started
 
    getting_started/getting_started.md
+   getting_started/opslog.md
    getting_started/applying_account.md
    getting_started/applying_resources.md
    getting_started/editing_files.md
