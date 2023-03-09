@@ -1,4 +1,3 @@
-
 # Modern Fortran Workshop Series Spring 2023
 
 NRIS (Norwegian Research Infrastructure Services) is organizing a workshop series
@@ -24,7 +23,7 @@ on national HPC; [Saga](https://documentation.sigma2.no/hpc_machines/saga.html#s
 ```{note}
 It is not mandatory to have account on national HPCs to attend the course.
  Participants can follow the lectures without having an account on national
- resources.
+ resources. You can register for the course any time until the final day of the event.
 ```
 
 You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
@@ -49,7 +48,7 @@ The course is free of charge and is organised by the NRIS.
 
 |   Date    |  Time   |  Topic  |
 | :----------- | :----------- | :---------- |
-| Thu 09.03    | 09:00 - 12:30 | Vector syntax and operations on arrays of different dimensions |
+| ~~Thu 09.03    | 09:00 - 12:30 ~~| [Vector syntax and operations on arrays of different dimensions](https://drive.google.com/drive/u/0/folders/1eSdX9dTvxTgzFarAe2qYeaPeIY8e5TH_) |
 | Thu 13.04    | 09:00 - 12:30 | Object-oriented programming in Fortran	
  |
 | Thu 04.05    | 09:00 - 12:30 | Offloading to GPU using Fortran |
