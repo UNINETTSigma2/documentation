@@ -16,7 +16,7 @@ We have integrated the system with our other services to push information more a
 
 ## Where to find it?
 
-The main page is accessible on [https://opslog.sigma2.no](https://opslog.sigma2.no). This is the best place to get a quick overview of the overall status.
+[The system is available as a web frontend](https://opslog.sigma2.no). This is the best place to get a quick overview of the overall status.
 
 ### Interacting with groups in the web frontend
 Services are divided into groups. These are collapsed by default to save space and make the site cleaner, **unless** there are ongoing events. In such case the relevant group will be expanded.  
