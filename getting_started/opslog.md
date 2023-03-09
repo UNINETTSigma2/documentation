@@ -1,6 +1,6 @@
 (using-opslog)=
 
-# Using opslog
+# Using the status system (opslog)
 
 ```{note}
 The contents of this page is valid from 20 March 2023.  
