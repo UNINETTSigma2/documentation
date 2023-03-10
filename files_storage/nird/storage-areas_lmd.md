@@ -5,18 +5,16 @@
 
 Each user has a home directory `/nird/home/<username>`, where
 `<username>` is the username. The default quota for home directories
-is 20 GiB and 100 000 files. To check the disk usage and quotas, type:
+is 60 GiB and 300 000 files. To check the disk usage and quotas, type:
 
 ```console
 $ dusage
 ```
 
 Home directories on NIRD also contain a backup of Betzy, Fram and Saga home
-directories (when relevant) in `/nird/home/<username>/backup/fram` and
-`/nird/home/<username>/backup/saga`.
-To account for this default quota is doubled when relevant.
-Note that this is a _backup_ from the HPC cluster; you cannot transfer
-files to the cluster by putting them here.
+directories (when relevant) in `/nird/home/<username>/backup/fram` , 
+`/nird/home/<username>/backup/saga` and  `/nird/home/<username>/backup/betzy`.
+The default quota is including the backup of HPC home directory. 
 
 ```{warning}
 Please note that back up from HPC home directories to the new NIRD home 
