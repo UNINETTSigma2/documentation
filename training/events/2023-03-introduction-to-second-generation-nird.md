@@ -41,10 +41,27 @@ about IT resources and services for researchers, there are a couple of informati
 
 ## Time, date (all times CET)
 
-   - **15 March 2023 09:00-12:30**: Presentations and use case demos
-   - **15 March 2023 13:30-15:00**: Q&A
+   - **15 March 2023 09:00-15:00**: Presentations, use case demos and Q&A
 
-Detailed schedule will be updated later
+
+## Date : 15 March 2023
+
+## Schedule
+
+- 09:00 - 09:10 - Intro, Logistics & Ice-breaker Question (Dhanya)
+- 09:10 - 09:45 - NIRD Legacy - History, present and future (Francesca)
+- 09:45 - 10:30 - New NIRD architecture & storage allocation & Sevices (Lorand)
+- 10:30 - 10:45 - Break
+- 10:45 - 11:15 - NIRD Documentation (Dhanya, Saerda)
+- 11:15 - 12:15 - Data Transfer  (Andreas, Saerda,  Thierry & Lorand)
+- 12:15 - 13:00 - Lunch Break
+- 13:00 - 13:30 - NIRD Toolkit (Siri)
+- 13:30 - 13:45 - RDA (Adil)
+- 13:45 - 14:00 - S3 Object Storage on NIRD (Andreas)
+- 14:00  -14:10 - Break
+- 14:10 - 15:00 - Open Q&A 
+
+The training is given by NIRD Preparation for Operation Working Group (POWG) members and NIRD Experts at NRIS.
 
 ## Code of Conduct
 
