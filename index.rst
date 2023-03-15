@@ -20,7 +20,7 @@ to the next level. :ref:`Read more ... <about-us>`
 :ref:`Overview <hardware-overview>` | :ref:`saga` | :ref:`fram` | :ref:`betzy` | :ref:`lumi`
 
 **Storage resources**:
-:ref:`NIRD <nird>` | :ref:`nird@lmd` | :ref:`research-data-archive`
+:ref:`nird@lmd` | :ref:`research-data-archive`
 
 **Tools and other services**:
 :ref:`nird-toolkit` | :ref:`EasyDMP <easydmp>` | :ref:`Course resources <course-resources>`
