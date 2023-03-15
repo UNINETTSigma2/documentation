@@ -69,6 +69,7 @@ The solution is based on IBM Spectrum Scale – an IBM Systems storage product b
    nird/storage-areas_lmd.md
    nird/snapshots_lmd.md
    nird/backup_lmd.md
-
+   nird/mounts_lmd.md
+```
 
 
