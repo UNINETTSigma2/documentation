@@ -5,13 +5,14 @@ orphan: true
 (cuda2hip0sycl)=
 # Translating GPU-accelerated applications
 
-We present different tools to translate CUDA-based codes to target various GPU (Graphics Processing Unit) architectures (e.g. AMD and Intel GPUs). A special focus will be put on [`hipify`](https://docs.amd.com/en-US/bundle/HIPify-Reference-Guide-v5.1/page/HIPify.html) and [`syclomatic`](https://www.intel.com/content/www/us/en/developer/articles/technical/syclomatic-new-cuda-to-sycl-code-migration-tool.html#gs.o5pj6f). These tools have been tested on the supercomputer [LUMI-G](https://lumi-supercomputer.eu/lumi_supercomputer/) in which the GPU partitions are of [AMD MI250X GPU](https://www.amd.com/en/products/server-accelerators/instinct-mi250x) type.
+We present different tools to translate CUDA and OpenACC applications to target various GPU (Graphics Processing Unit) architectures (e.g. AMD and Intel GPUs). A special focus will be given to [`hipify`](https://docs.amd.com/en-US/bundle/HIPify-Reference-Guide-v5.1/page/HIPify.html), [`syclomatic`](https://www.intel.com/content/www/us/en/developer/articles/technical/syclomatic-new-cuda-to-sycl-code-migration-tool.html#gs.o5pj6f) and [`clacc`](https://csmd.ornl.gov/project/clacc). These tools have been tested on the supercomputer [LUMI-G](https://lumi-supercomputer.eu/lumi_supercomputer/) in which the GPU partitions are of [AMD MI250X GPU](https://www.amd.com/en/products/server-accelerators/instinct-mi250x) type.
 
-The aim of this tutorial is to guide users through a straightforward procedure for converting CUDA-based codes to other GPU-programming models, mainly, HIP and SYCL. By the end of this tutorial, we expect users to learn about:
+The aim of this tutorial is to guide users through a straightforward procedure for converting CUDA codes to HIP and SYCL, and OpenACC codes to OpenMP offloading. By the end of this tutorial, we expect users to learn about:
 
 - How to use the `hipify-perl` and `hipify-clang` tools to translate CUDA sources to HIP sources.
-- How to use the `syclomatic` and `DPC++` tools to convert CUDA source to SYCL.
-- How to compile the generated HIP and SYCL applications.
+- How to use the `syclomatic` tool to convert CUDA source to SYCL.
+- How to use the `clacc` tool to convert OpenACC application to OpenMP offloading.
+- How to compile the generated HIP, SYCL and OpenMP applications.
 
 ```{contents}
 :depth: 2
@@ -51,12 +52,14 @@ $perl hipify-perl program.cu > program.cu.hip
 ```console
 $hipcc --offload-arch=gfx90a -o exec_hip program.cu.hip
 ```
-Despite of the simplicity of the use of `hipify-perl`, the tool might not be suitable for large applications, as it relies heavily on translating regular expressions (e.g. it replaces *cuda* with *hip*). The alternative here is to use `hipify-clang` as described in the next section.
+Despite of the simplicity of the use of `hipify-perl`, the tool might not be suitable for large applications, as it relies heavily on substituting CUDA strings with HIP strings (e.g. it replaces *cuda* with *hip*). In addition, `hipify-perl` lacks the ability of [distinguishing device/host function calls](https://docs.amd.com/bundle/HIPify-Reference-Guide-v5.1/page/HIPify.html#perl). The alternative here is to use `hipify-clang` as we shall describe in the next section.
 
 (hipify-clang)=
 ### Hipify-clang
 
-As described [here](https://docs.amd.com/en-US/bundle/HIPify-Reference-Guide-v5.1/page/HIPify.html#perl), the `hipify-clang` tool is based on clang for translating CUDA sources into HIP sources. In short, `hipify-clang` requires `LLVM+CLANG` and `CUDA`. Details about building `hipify-clang` can be found [here](https://github.com/ROCm-Developer-Tools/HIPIFY). Note that `hipify-clang` is available on LUMI-G. The issue however might be related to the installation of CUDA-toolkit. To avoid any eventual issues with the installation procedure we opt for CUDA singularity container. Here we present a step-by-step guide to running `hipify-clang`:
+As described [here](https://docs.amd.com/en-US/bundle/HIPify-Reference-Guide-v5.1/page/HIPify.html#perl), the `hipify-clang` tool is based on clang for translating CUDA sources into HIP sources. The tool is more robust for translating CUDA codes compared to the `hipify-perl` tool. Furthermore, it facilitates the analysis of the code by providing assistance.
+
+In short, `hipify-clang` requires `LLVM+CLANG` and `CUDA`. Details about building `hipify-clang` can be found [here](https://github.com/ROCm-Developer-Tools/HIPIFY). Note that `hipify-clang` is available on LUMI-G. The issue however might be related to the installation of CUDA-toolkit. To avoid any eventual issues with the installation procedure we opt for CUDA singularity container. Here we present a step-by-step guide for running `hipify-clang`:
 
 - **Step 1**: pulling a CUDA singularity container e.g.
 
@@ -77,7 +80,7 @@ During our testing, we used the rocm version `rocm-5.0.2`.
 $singularity shell -B $PWD,/opt:/opt cuda_11.4.0-devel-ubuntu20.04.sif
 ```
 
-where the current directory $PWD in the host is mounted to that of the container, and the directory `/opt` in the host is mounted to the that inside the container.
+where the current directory `$PWD` in the host is mounted to that of the container, and the directory `/opt` in the host is mounted to the that inside the container.
 
 - **Step 4**: setting the environment variable `$PATH`
 In order to run `hipify-clang` from inside the container, one can set the environment variable `$PATH` that defines tha path to look for the binary `hipify-clang`
@@ -94,12 +97,12 @@ $hipify-clang program.cu -o hip_program.cu.hip --cuda-path=/usr/local/cuda-11.4 
 
 Here the cuda path and the path to the *includes* and *defines* files should be specified. The CUDA source code and the generated output code are `program.cu` and `hip_program.cu.hip`, respectively.
 
-- **Step 6**: the syntax for compiling the generated hip code is similar to the one described in the previous section (see hipify-per).
+- **Step 6**: the syntax for compiling the generated hip code is similar to the one described in the previous section (see the hipify-perl section).
 
 (cuda2sycl)=
 ## Translating CUDA to SYCL with Syclomatic
 
-[SYCLomatic](https://github.com/oneapi-src/SYCLomatic) is another conversion tool. However, instead of converting CUDA code to HIP syntax, SYCLomatic converts the code to SYCL/DPC++. The use of SYCLomatic requires CUDA libraries, which can be directly installed in an environment or can be extracted from a CUDA container. Similarly to previous section, we use singularity container. Here is a step-by-step guide for using `SYCLamatic`
+[SYCLomatic](https://github.com/oneapi-src/SYCLomatic) is another conversion tool. However, instead of converting CUDA code to HIP syntax, SYCLomatic converts the code to SYCL/DPC++. The use of SYCLomatic requires CUDA libraries, which can be directly installed in an environment or it can be extracted from a CUDA container. Similarly to previous section, we use singularity container. Here is a step-by-step guide for using `SYCLamatic`
 
 **Step 1** Downloading `SYCLomatic` e.g. the last release from [here](https://github.com/oneapi-src/SYCLomatic/releases)
 
@@ -138,7 +141,7 @@ This will create a folder in the current directory called ```dpct_output```, in 
 
 **_step 5.1_** Look for errors in the converted file
 
-In some cases, SYCLOmatic might not be able to convert part of the code. In such cases, SYCLomatyic will comment on the parts it is unsure about. For example, these comments might look something like this:
+In some cases, `SYCLOmatic` might not be able to convert part of the code. In such cases, `SYCLomatyic` will comment on the parts it is unsure about. For example, these comments might look something like this:
 ```
 /*
     DPCT1003:1: Migrated API does not return error code. (*, 0) is inserted. You
@@ -150,10 +153,10 @@ Before compiling, these sections will need to be manually checked for errors.
 **_step 5.2_**
 Once you have a valid file, you may compile it with the SYCL compiler of your choosing. There are many choices for such compilers, which vary based on the devices you are compiling for. Please confer with the [INTEL SYCL documentation](https://www.intel.com/content/www/us/en/developer/articles/technical/compiling-sycl-with-different-gpus.html) if you are unsure what compiler to use.
 
-*PS: Syclomatic generates data parallel c++ code(dpc++) in stead of pure SYCL code. This means that you either need to manually convert the dpc++ code to sycl if you want to use a pure sycl compiler, or you need to use the intel OneAPI kit to compile the dpc++ code directly*
+*PS: Syclomatic generates data parallel C++ code (DPC++) in stead of a pure SYCL code. This means that you either need to manually convert the DPC++ code to SYCL if you want to use a pure SYCL compiler, or you need to use the intel OneAPI kit to compile the DPC++ code directly*
 
 **_Compiling pure SYCL code_**
-To compile the SYCL code on out clusters you need access to a SYCL compiler. On SAGA and BETZY this is straigthforward and is discussed in this tutorial: [What is sycl](https://documentation.sigma2.no/code_development/guides/hipsycl.html). At the time of writing, LUMI does not have a global installation of ```hipSYCL```. We must therefore utilize easybuild to get access to it. To accsess to ```hipSYCL``` on LUMI use these terminal commands.
+To compile the SYCL code on out clusters you need access to a SYCL compiler. On SAGA and BETZY this is straigthforward and is discussed in this tutorial: [What is SYCL](https://documentation.sigma2.no/code_development/guides/hipsycl.html). At the time of writing, LUMI does not have a global installation of ```hipSYCL```. We must therefore utilize easybuild to get access to it. To accsess to ```hipSYCL``` on LUMI use these terminal commands.
 
 ```
 $export EBU_USER_PREFIX=/project/project_465000096/EasyBuild
@@ -184,9 +187,9 @@ $singularity exec syclomatic.sif c2s [file to be converted]
 
 This will create the same  ```dpct_output``` folder as mentioned in _step 4_.
 
-### Translate OpenACC to OpenMP with Clacc
+## Translate OpenACC to OpenMP with Clacc
 
-`Clacc` is a tool to translate `OpenACC` to `OpenMP` with the Clang/LLVM compiler environment.
+`Clacc` is a tool to translate `OpenACC` to `OpenMP` offloading with the Clang/LLVM compiler environment. In the following we present a step-by-step guide for building and using `Clacc`:
 
 **_Step 1.1_**
 Load the following modules to be able to build `Clacc` (For LUMI-G):
@@ -215,8 +218,7 @@ $ make
 $ make install
 ```
 **_Step 1.3_**
-Set up environment variables to be able to work from /install directory
-This is the easiest solution. For more advanced usage(ie. wanting to modify `Clacc`, see "Usage from Build directory": (https://github.com/llvm-doe-org/llvm-project/blob/clacc/main/README.md))
+Set up environment variables to be able to work from /install directory, which is the easiest solution. For more advanced usage (ie. wanting to modify `Clacc`, see "Usage from Build directory": (https://github.com/llvm-doe-org/llvm-project/blob/clacc/main/README.md))
 
 ```console
 $ export PATH=`pwd`/../install/bin:$PATH
@@ -224,6 +226,7 @@ $ export LD_LIBRARY_PATH=`pwd`/../install/lib:$LD_LIBRARY_PATH
 ```
 **_Step 2_**
 To compile the produced `OpenMP` code, you will need to load these modules:
+
 ```console
 module load CrayEnv
 module load PrgEnv-cray
@@ -253,7 +256,7 @@ cc -fopenmp -o executable_name OpenMP.c
 
 # Conclusion
 
-We have presented an overview of the usage of available tools to convert CUDA-based applications to HIP and SYCL. In general the translation process for large applications might cover about 80% of the source code and thus requires manual modification to complete the porting process. It is however worth noting that the accuracy of the translation process requires that applications are written correctly according to the CUDA syntax. 
+We have presented an overview of the usage of available tools to convert CUDA codes to HIP and SYCL, and OpenACC codes to OpenMP offloading. In general the translation process for large applications might cover about 80% of the source code and thus requires manual modification to complete the porting process. It is however worth noting that the accuracy of the translation process requires that applications are written correctly according to the CUDA and OpenACC syntaxes. 
 
 # Relevant links
 
