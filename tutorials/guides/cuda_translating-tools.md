@@ -156,16 +156,16 @@ Once you have a valid file, you may compile it with the SYCL compiler of your ch
 *PS: Syclomatic generates data parallel C++ code (DPC++) in stead of a pure SYCL code. This means that you either need to manually convert the DPC++ code to SYCL if you want to use a pure SYCL compiler, or you need to use the intel OneAPI kit to compile the DPC++ code directly*
 
 **_Compiling pure SYCL code_**
-To compile the SYCL code on out clusters you need access to a SYCL compiler. On SAGA and BETZY this is straigthforward and is discussed in this tutorial: [What is SYCL](https://documentation.sigma2.no/code_development/guides/hipsycl.html). At the time of writing, LUMI does not have a global installation of ```hipSYCL```. We must therefore utilize easybuild to get access to it. To accsess to ```hipSYCL``` on LUMI use these terminal commands.
+To compile the SYCL code on out clusters you need access to a SYCL compiler. On SAGA and BETZY this is straigthforward and is discussed in this tutorial: [What is SYCL](https://documentation.sigma2.no/code_development/guides/hipsycl.html). At the time of writing, LUMI does not have a global installation of ```hipSYCL```. We must therefore utilize easybuild to get access to it. The guidline for installing ```hipSYCL``` on LUMI can be found [here](https://lumi-supercomputer.github.io/LUMI-EasyBuild-docs/h/hipSYCL/). We assume that this is done in the path `/project/project_xxxxxxx/EasyBuild`. The following modules can be loaded:
 
 ```
-$export EBU_USER_PREFIX=/project/project_465000096/EasyBuild
+$export EBU_USER_PREFIX=/project/project_xxxxxxx/EasyBuild
 $module load LUMI/22.08
 $module load partition/G
 $module load rocm
 $module load hipSYCL/0.9.3-cpeCray-22.08
 ```
-After this you should be able to follow the tutorial [mentioned above]((https://documentation.sigma2.no/code_development/guides/hipsycl.html))
+To test `hipSYCL`, the tutorial [mentioned above](https://documentation.sigma2.no/code_development/guides/hipsycl.html) can be considered.
 
 ### Launching SYCLomatic through a singularity container
 
@@ -187,6 +187,7 @@ $singularity exec syclomatic.sif c2s [file to be converted]
 
 This will create the same  ```dpct_output``` folder as mentioned in _step 4_.
 
+(acc2omp)=
 ## Translate OpenACC to OpenMP with Clacc
 
 `Clacc` is a tool to translate `OpenACC` to `OpenMP` offloading with the Clang/LLVM compiler environment. In the following we present a step-by-step guide for building and using `Clacc`:
