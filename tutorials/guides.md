@@ -33,9 +33,11 @@
     - [<span style="color:green">Beginner</span>]
         [Porting OpenACC to OpenMP offloading](guides/converting_acc2omp/openacc2openmp.md) 
      - [<span style="color:green">Beginner</span>]
-        {ref}`Translating CUDA to HIP<cuda2hip>`
+        {ref}`Translating CUDA to HIP with Hipify<cuda2hip>`
     - [<span style="color:green">Beginner</span>]
-        {ref}`Translating CUDA to SYCL<cuda2sycl>`  
+        {ref}`Translating CUDA to SYCL with Syclomatic<cuda2sycl>`  
+    - [<span style="color:green">Beginner</span>]
+        {ref}`Translating OpenACC to OpenMP with Clacc<acc2omp>`    
 - Hybrid programming
     - [<span style="color:green">Beginner</span>]
         [MPI and OpenACC](guides/openacc_mpi.md)
