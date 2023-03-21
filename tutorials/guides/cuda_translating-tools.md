@@ -190,7 +190,9 @@ This will create the same  ```dpct_output``` folder as mentioned in _step 4_.
 (acc2omp)=
 ## Translate OpenACC to OpenMP with Clacc
 
-`Clacc` is a tool to translate `OpenACC` to `OpenMP` offloading with the Clang/LLVM compiler environment. In the following we present a step-by-step guide for building and using `Clacc`:
+[`Clacc`](https://github.com/llvm-doe-org/llvm-project/tree/clacc/main) is a tool to translate `OpenACC` to `OpenMP` offloading with the Clang/LLVM compiler environment. As indicated in the [GitHub repository](https://github.com/llvm-doe-org/llvm-project/tree/clacc/main) the compiler `Clacc` is the `Clang`'s executable in the subdirectory `\bin` of the `\install` directory as described below. 
+
+In the following we present a step-by-step guide for building and using [`Clacc`](https://github.com/llvm-doe-org/llvm-project/tree/clacc/main):
 
 **_Step 1.1_**
 Load the following modules to be able to build `Clacc` (For LUMI-G):
@@ -200,7 +202,7 @@ module load CrayEnv
 module load rocm
 ```
 **_Step 1.2_**
-Build and install `Clacc.`
+Build and install [`Clacc`](https://github.com/llvm-doe-org/llvm-project/tree/clacc/main).
 The building process will spend about 5 hours.
 
 ```console 
@@ -219,14 +221,14 @@ $ make
 $ make install
 ```
 **_Step 1.3_**
-Set up environment variables to be able to work from /install directory, which is the easiest solution. For more advanced usage (ie. wanting to modify `Clacc`, see "Usage from Build directory": (https://github.com/llvm-doe-org/llvm-project/blob/clacc/main/README.md))
+Set up environment variables to be able to work from the `/install` directory, which is the simplest way. For more advanced usage, which includes for instance modifying `Clacc`, we refer readers to ["Usage from Build directory"](https://github.com/llvm-doe-org/llvm-project/blob/clacc/main/README.md)
 
 ```console
 $ export PATH=`pwd`/../install/bin:$PATH
 $ export LD_LIBRARY_PATH=`pwd`/../install/lib:$LD_LIBRARY_PATH
 ```
 **_Step 2_**
-To compile the produced `OpenMP` code, you will need to load these modules:
+To compile the ported `OpenMP` code, one needs first to load these modules:
 
 ```console
 module load CrayEnv
@@ -235,24 +237,24 @@ module load craype-accel-amd-gfx90a
 module load rocm
 ```
 **_Step 2.1_**
-Compile & run for host:
+Compile & run an `OpenACC` code on a CPU-host:
 ```console
-$ clang -fopenacc openACC_code.c && ./output.out
+$ clang -fopenacc openACC_code.c && ./executable
 ```
 **_Step 2.2_**
-Compile & run on AMD GPU:
+Compile & run an `OpenACC` code on AMD GPU:
 ```console
-$ clang -fopenacc -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=gfx90a openACC_code.c && ./output.out
+$ clang -fopenacc -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=gfx90a openACC_code.c && ./executable
 ```
 **_Step 2.3_**
-Source to source mode with `OpenMP` port printed to console:
+Source to source mode with `OpenMP` port printed out on a console:
 ```console
-$ clang -fopenacc-print=omp OpenACC.c
+$ clang -fopenacc-print=omp OpenACC_code.c
 ```
 **_Step 3_**
-Compile code with cc
+Compile code with `cc`
 ```console
-cc -fopenmp -o executable_name OpenMP.c
+cc -fopenmp -o executable OpenMP_code.c
 ```
 
 # Conclusion
