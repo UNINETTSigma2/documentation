@@ -1,3 +1,5 @@
+(easybuild)=
+
 # Installing software with EasyBuild
 
 The NRIS software team is currently using the
