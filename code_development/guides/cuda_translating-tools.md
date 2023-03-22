@@ -156,7 +156,7 @@ Once you have a valid file, you may compile it with the SYCL compiler of your ch
 *PS: Syclomatic generates data parallel C++ code (DPC++) in stead of a pure SYCL code. This means that you either need to manually convert the DPC++ code to SYCL if you want to use a pure SYCL compiler, or you need to use the intel OneAPI kit to compile the DPC++ code directly*
 
 **_Compiling pure SYCL code_**
-To compile the SYCL code on out clusters you need access to a SYCL compiler. On SAGA and BETZY this is straigthforward and is discussed in this tutorial: [What is SYCL](https://documentation.sigma2.no/code_development/guides/hipsycl.html). At the time of writing, LUMI does not have a global installation of ```hipSYCL```. We must therefore utilize easybuild to get access to it. The guidline for installing ```hipSYCL``` on LUMI can be found [here](https://lumi-supercomputer.github.io/LUMI-EasyBuild-docs/h/hipSYCL/). We assume that this is done in the path `/project/project_xxxxxxx/EasyBuild`. The following modules can be loaded:
+To compile the SYCL code on out clusters you need access to a SYCL compiler. On SAGA and BETZY this is straightforward and is discussed in this tutorial: [What is SYCL](https://documentation.sigma2.no/code_development/guides/hipsycl.html). At the time of writing, LUMI does not have a global installation of ```hipSYCL```. We must therefore utilize easybuild to get access to it. The guidline for installing ```hipSYCL``` on LUMI can be found [here](https://lumi-supercomputer.github.io/LUMI-EasyBuild-docs/h/hipSYCL/). We assume that this is done in the path `/project/project_xxxxxxx/EasyBuild`. The following modules can be loaded:
 
 ```
 $export EBU_USER_PREFIX=/project/project_xxxxxxx/EasyBuild
@@ -252,7 +252,7 @@ Source to source mode with `OpenMP` port printed out to the console:
 $ clang -fopenacc-print=omp OpenACC_code.c
 ```
 **_Step 3_**
-Compile code with `cc`
+Compile the code with the [`cc` compiler wrapper](https://docs.lumi-supercomputer.eu/development/compiling/prgenv/)
 ```console
 cc -fopenmp -o executable OpenMP_code.c
 ```
