@@ -33,6 +33,8 @@
 - Porting applications:
     - [<span style="color:green">Beginner</span>]
         [Porting OpenACC to OpenMP offloading](guides/converting_acc2omp/openacc2openmp.md) 
+    - [<span style="color:green">Beginner</span>]
+        {ref}`Translating GPU-accelerated applications<cuda2hip0sycl>`
      - [<span style="color:green">Beginner</span>]
         {ref}`Translating CUDA to HIP with Hipify<cuda2hip>`
     - [<span style="color:green">Beginner</span>]
