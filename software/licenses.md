@@ -42,10 +42,6 @@ Commercial software where NRIS users still have general access:
 * **NBO6/7** - the license is valid for the lifetime of the software, thus there will be no change until the release of major-version 8. 
 * **Turbomole** - the license is valid for the lifetime of the software. We are allowed to use version 7.3 for 5 more years. Please let us know if you need this.
 
-**Note also that even if there are alternative funding of some of the above
-mentioned software, access policy may probably be altered since funding will
-typically move from national/community to group level.**
-
 
 (license-list)=
 ## Commercial licenses at NRIS
@@ -55,16 +51,16 @@ typically move from national/community to group level.**
 | Abaqus                      | Betzy, Fram       | Members of license holding groups         | Group                   | Multiphysics/FEA           | Users               |
 | Allinea MAP                 | Betzy, Fram, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
 | Allinea Performance Reports | Betzy, Fram, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
-| ANSYS                       | Fram              | Members of license holding groups         | Group                   | Multi-physics              | Users               |
-| ANSYS CFX                   | Fram              | Members of license holding groups         | Group                   | CFD                        | Users               |
-| ANSYS Fluent                | Betzy, Fram       | Members of license holding groups         | Group                   | CFD                        | Users               |
-| Gaussian                    | Fram              | Only NTNU, UiB, UiO, and UiT users        | Site                    | Chemistry/Material science | NTNU, UiB, UiO, UiT |
-| GaussView                   | Fram              | Only UiT users                            | Site                    | Chemistry/Material science | NTNU, UiB, UiO, UiT |
+| ANSYS                       | Fram              | Members of license holding groups         | Department/Group                   | Multi-physics              | Users               |
+| ANSYS CFX                   | Fram              | Members of license holding groups         | Department/Group                  | CFD                        | Users               |
+| ANSYS Fluent                | Betzy, Fram       | Members of license holding groups         | Department/Group                   | CFD                        | Users               |
+| Gaussian                    | Fram              | UiB, UiO, NTNU, UiT users automatic, others need to document license        | Site for UiB, UiO, NTNU, UiT                   | Chemistry/Material science | License holders |
+| GaussView                   | Fram, Saga              | Only UiT users, unless documented elsewise                            | Site for UiT                   | Chemistry/Material science | NTNU, UiB, UiO, UiT |
 | Intel Parallel Studio XE    | Betzy, Fram, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
 | MATLAB                      | Betzy, Fram, Saga | Members of institutions with site license | Site/Department         | Mathematics/Data analysis  | Users               |
 | STAR-CCM+                   | Betzy, Fram       | Members of license holding groups         | Group                   | Multi-physics/CFD          | Users               |
 | TotalView                   | Betzy, Fram, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
-| Turbomole                   | Fram              | All users on given machine                | Computer Center license | Chemistry/Material science | National/Sigma2     |
+| Turbomole                   | Fram              | All users on given machine                | Computer Center  | Chemistry/Material science | National/Sigma2     |
 | VASP                        | Fram, Saga        | Members of license holding groups         | Group                   | Chemistry/Material science | Users               |
 
 **Table explanation:**
@@ -91,55 +87,3 @@ terms of license access**. For all software with access limitations on group-
 and research-project level the credentials may have to be provided to NRIS
 before being granted access to software installed on NRIS controlled machines.
 
-## NRIS funding policy
-
-Currently the cost for a number of licenses for application software is carried
-by NRIS, as shown in the {ref}`list above<license-list>`. This will change
-gradually, and from autum 2020 NRIS will not fund licenses for application
-software (e.g. ADF/BAND, Crystal, Gaussian, GaussView, Molpro). For these
-codes, and the corresponding research groups and research communities, NRIS
-will offer consulting for pooling costs and for the maintenance of common
-license certificates and servers. NRIS will also help these communities set up
-coordination points to simplify paperwork and save costs.
-
-**Note that NRIS will continue to fund licenses for code development tools
-(compilers, debuggers, profiling tools) (software that belongs to the field
-tagged "Code Development") - these base tools are not affected by the planned
-change in funding policy.**
-
-Access to and using of codes will be influenced the following way:
-
-* **ADF/BAND** - the license is renewed every second year, and the software
-  requires valid license to run. Software in the ADF/BAND software suite will
-  cease to work on NRIS installations from September 1st 2020 unless
-  alternatively funded.
-* **Amber** - the license is for release 11 of the code and is valid for the
-  lifetime of the software. Currently this is not installed on any of our
-  clusters. Please let us know if you need this.
-* **Crystal** - the license is for release 14 of the code and is valid for the
-  lifetime of the software. There will be no change in access after September
-  2020, but there will be no updates to newer versions unless alternatively
-  funded.
-* **Gaussian/GaussView** - the license is valid for the lifetime of the
-  software, there will be no change in access after September 2020, but there
-  will be no updates unless alternatively funded.
-* **NBO6/7** - the license is valid for the lifetime of the software, there
-  will be no change in access after September 2020, but there will be no
-  updates unless alternatively funded.
-* **Schrodinger** - license is renewed annually and the software requires a
-  valid license to run. Most of the software in the Schrodinger suite, apart
-  from the free releases of Maestro, PyMOL and Desmond, will cease to work on
-  NRIS installations from November 2020 unless alternatively funded. Note that
-  there is a gradual decrease of funding contribution from Sigma2, for
-  2019/2020 there will be a 15% overall contribution (not more than 7k USD) and
-  from 2020/2021 no contribuion at all. *Thus, if the user community decides to
-  discontinue their contribution to the overall license costs, the renewal of
-  the license may end already October 2019.*
-* **Turbomole** - the license is valid for the lifetime of the software, paying
-  an annual maintenance fee of about 10% of license cost. There will be no
-  change in access to currently installed software after September 2020, but
-  there will be no updates unless alternatively funded.
-
-**Note also that even if there are alternative funding of some of the above
-mentioned software, access policy may probably be altered since funding will
-typically move from national/community to group level.**
