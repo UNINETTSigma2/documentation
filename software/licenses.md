@@ -1,12 +1,9 @@
 # Licence and access policies
 
-Most applications on the HPC machines have their own license based on the usage
-and on the user's affiliation of the user to the university hosting the
-machines. In general, the application and tool licenses fall under these types:
+Access to Software and Scientific Applications on NRIS installations is almost allways regulated by license and access agreements based on either usage (scale/time/academic or commercial), the user's affiliation to the machine-hosting institution or the users´s affiliation to an academic institution (or, of course, all subsets of the above). In general, license access restrictions typically fall within one of the following categories: 
 
-1. Academic license - generally available to academic users based in Norway.
-   There are other definitions that are specific to an application, therefore,
-   check with the license agreement.
+1. Academic license - generally available to all academic users based in Norway.
+   There may be application specific limitations and/or definitions, please allways check the license agreement(s) when starting using new software. 
 
 2. Open-source license - users are allowed to freely use and distribute the
    library or tool with some restrictions. Some examples include the [GNU
@@ -15,12 +12,40 @@ machines. In general, the application and tool licenses fall under these types:
    can be found [at the Open Source
    Initiative](https://opensource.org/licenses).
 
-3. Commercial license - may be granted to an individual, project, or
-   organization. See {ref}`the list below <license-list>` for available
+3. Commercial license - may be granted to an individual, a project, a scientific group, a center or parts of/whole organization. See {ref}`the list below <license-list>` for available
    licenses at NRIS.
 
-It is the user's responsibility to make sure they adhere to the license
-agreements.
+Note that it is allways the user's responsibility to make sure they adhere to the license
+agreements. For some cases, NRIS has been delegated responsibility for limiting access to given codes unless users can prove their right to access these - for instance by documenting access to the license elsewhere. The necessary proof of access in these cases will inevitably vary, please check each case individually.   
+
+## NRIS funding policy
+
+Currently NRSI fund no scientific software, but for a number of cases - the partner universities (UiB, UiO, NTNU and UiT) fund Gaussian as a joint agreement between them and Gaussian.inc - with Sigma2 the facilitator. 
+
+All other software the demand license fees are thus funded by user communities themselves. 
+However, there are a number of licenses that was purchased before the decision of not funding scientific software anymore which holds lifetime access. These are listed below.
+
+**Note that NRIS will continue to fund licenses for code development tools
+(compilers, debuggers, profiling tools) (software that belongs to the field
+tagged "Code Development") - these base tools are not affected by the planned
+change in funding policy.**
+
+Commercial software where NRIS users still have general access:
+
+* **Amber** - the license is for release 11 of the code and is valid for the
+  lifetime of the software. Currently this is not installed on any of our
+  clusters. Please let us know if you need this.
+* **Crystal** - the license is for release 14 of the code and is valid for the
+  lifetime of the software. Currently this is not installed on any of our
+  clusters. Please let us know if you need this.
+* **Gaussian** - the license is paid for by the NRIS partner universities, thus users from UiB, UiO, NTNU and UiT automatically should get access to the code. Others who wants access would have to prove license access. 
+* **NBO6/7** - the license is valid for the lifetime of the software, thus there will be no change until the release of major-version 8. 
+* **Turbomole** - the license is valid for the lifetime of the software. We are allowed to use version 7.3 for 5 more years. Please let us know if you need this.
+
+**Note also that even if there are alternative funding of some of the above
+mentioned software, access policy may probably be altered since funding will
+typically move from national/community to group level.**
+
 
 (license-list)=
 ## Commercial licenses at NRIS
