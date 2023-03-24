@@ -12,7 +12,7 @@
     - [<span style="color:green">Beginner</span>]
         {ref}`Calling cuBLAS from OpenMP<cublas_openmp>`
     - [<span style="color:green">Beginner</span>]
-        {ref}`Calling cuFFT from OpenACC<cufft_openacc>`    
+        {ref}`Calling cuFFT from OpenACC<cufft_openacc>`
 - GPU programming with OpenACC:
     - [<span style="color:green">Beginner</span>]
         [Getting started with OpenACC and Nvidia Nsight](guides/openacc.md)
@@ -32,12 +32,20 @@
         [Unified Shared Memory with SYCL](guides/sycl_usm.md)
 - Porting applications:
     - [<span style="color:green">Beginner</span>]
-        [Porting OpenACC to OpenMP offloading](guides/converting_acc2omp/openacc2openmp.md) 
+        [Porting OpenACC to OpenMP offloading](guides/converting_acc2omp/openacc2openmp.md)
+    - [<span style="color:green">Beginner</span>]
+        {ref}`Translating GPU-accelerated applications<cuda2hip0sycl>`
+     - [<span style="color:green">Beginner</span>]
+        {ref}`Translating CUDA to HIP with Hipify<cuda2hip>`
+    - [<span style="color:green">Beginner</span>]
+        {ref}`Translating CUDA to SYCL with Syclomatic<cuda2sycl>`
+    - [<span style="color:green">Beginner</span>]
+        {ref}`Translating OpenACC to OpenMP with Clacc<transl-acc-2-omp>`
 - Hybrid programming
     - [<span style="color:green">Beginner</span>]
         [MPI and OpenACC](guides/openacc_mpi.md)
     - [<span style="color:green">Intermediate</span>]
-        [GPU-aware MPI with OpenACC and OpenMP](guides/gpuaware_mpi.md)            
+        [GPU-aware MPI with OpenACC and OpenMP](guides/gpuaware_mpi.md)
 - Offloading to GPU using Fortran 2008:
     - [<span style="color:green">Beginner</span>]
         [Offloading to GPU using Fortran 2008](guides/offloading-using-fortran.md)
