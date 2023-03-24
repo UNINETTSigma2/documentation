@@ -18,7 +18,7 @@ The aim of this tutorial is to guide users through a straightforward procedure f
 :depth: 2
 ```
 (cuda2hip)=
-## Translating CUDA to HIP with Hipify 
+## Translating CUDA to HIP with Hipify
 
 In this section, we cover the use of `hipify-perl` and `hipify-clang` tools to translate a CUDA application to HIP.
 
@@ -72,7 +72,7 @@ $singularity pull docker://nvcr.io/nvidia/cuda:11.4.0-devel-ubi8
 $ml rocm
 ```
 
-During our testing, we used the rocm version `rocm-5.0.2`. 
+During our testing, we used the rocm version `rocm-5.0.2`.
 
 - **Step 3**: launching the container
 
@@ -169,7 +169,7 @@ To test `hipSYCL`, the tutorial [mentioned above](https://documentation.sigma2.n
 
 ### Launching SYCLomatic through a singularity container
 
-An alternative to the steps mentioned above is to create a singularity .def file (see an example [here](./syclomatic_doc/syclomatic.def)). This can be done in the following:  
+An alternative to the steps mentioned above is to create a singularity .def file (see an example [here](./syclomatic_doc/syclomatic.def)). This can be done in the following:
 
 First, build a container image:
 
@@ -181,23 +181,23 @@ $singularity build syclomatic.sif syclomatic.def
 
 Then execute the `SYCLomatic` tool from inside the container:
 
-```console 
+```console
 $singularity exec syclomatic.sif c2s [file to be converted]
 ```
 
 This will create the same  ```dpct_output``` folder as mentioned in _step 4_.
 
-(acc2omp)=
+(transl-acc-2-omp)=
 ## Translate OpenACC to OpenMP with Clacc
 
-[`Clacc`](https://github.com/llvm-doe-org/llvm-project/tree/clacc/main) is a tool to translate `OpenACC` to `OpenMP` offloading with the Clang/LLVM compiler environment. As indicated in the [GitHub repository](https://github.com/llvm-doe-org/llvm-project/tree/clacc/main) the compiler `Clacc` is the `Clang`'s executable in the subdirectory `\bin` of the `\install` directory as described below. 
+[`Clacc`](https://github.com/llvm-doe-org/llvm-project/tree/clacc/main) is a tool to translate `OpenACC` to `OpenMP` offloading with the Clang/LLVM compiler environment. As indicated in the [GitHub repository](https://github.com/llvm-doe-org/llvm-project/tree/clacc/main) the compiler `Clacc` is the `Clang`'s executable in the subdirectory `\bin` of the `\install` directory as described below.
 
 In the following we present a step-by-step guide for building and using [`Clacc`](https://github.com/llvm-doe-org/llvm-project/tree/clacc/main):
 
 **_Step 1.1_**
 Load the following modules to be able to build `Clacc` (For LUMI-G):
 
-```console 
+```console
 module load CrayEnv
 module load rocm
 ```
@@ -205,7 +205,7 @@ module load rocm
 Build and install [`Clacc`](https://github.com/llvm-doe-org/llvm-project/tree/clacc/main).
 The building process will spend about 5 hours.
 
-```console 
+```console
 $ git clone -b clacc/main https://github.com/llvm-doe-org/llvm-project.git
 $ cd llvm-project
 $ mkdir build && cd build
@@ -259,7 +259,7 @@ cc -fopenmp -o executable OpenMP_code.c
 
 # Conclusion
 
-We have presented an overview of the usage of available tools to convert CUDA codes to HIP and SYCL, and OpenACC codes to OpenMP offloading. In general the translation process for large applications might cover about 80% of the source code and thus requires manual modification to complete the porting process. It is however worth noting that the accuracy of the translation process requires that applications are written correctly according to the CUDA and OpenACC syntaxes. 
+We have presented an overview of the usage of available tools to convert CUDA codes to HIP and SYCL, and OpenACC codes to OpenMP offloading. In general the translation process for large applications might cover about 80% of the source code and thus requires manual modification to complete the porting process. It is however worth noting that the accuracy of the translation process requires that applications are written correctly according to the CUDA and OpenACC syntaxes.
 
 # Relevant links
 
@@ -276,4 +276,3 @@ We have presented an overview of the usage of available tools to convert CUDA co
 [Installing SYCLamatic](https://github.com/oneapi-src/SYCLomatic/releases)
 
 [Clacc Main repository README](https://github.com/llvm-doe-org/llvm-project/blob/clacc/main/README.md)
-
