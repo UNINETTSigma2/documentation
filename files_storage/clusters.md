@@ -240,7 +240,16 @@ HPC projects is 1 TB, but projects can apply for more during the
 application process with a maximum quota of 10 TB.
 
 Also after the project has been created, project members can request to increase
-the quota to up to 10 TB by motivating why this is needed. Such requests should be submitted by the project leader via e-mail to <contact@sigma2.no>.
+the quota to up to 10 TB by motivating why this is needed. Such requests should be submitted by the project leader via e-mail to [contact@sigma2.no](mailto:contact@sigma2.no?subject=Storage%20Quota%20Request%20project%20X&body=1.%20How%20large%20are%20the%20input%20files%3F%20(Approximate%20or%20exact%20numbers%20are%20fine.)%0A%0A2.%20How%20many%20such%20input%20files%20will%20be%20used%20in%20a%20single%20job%3F%0A%0A3.%20At%20what%20rate%20do%20you%20intend%20to%20process%20your%20data%3F%20(Approximate%20GB%20per%20week%20or%20equivalent.)%0A%0A4.%20What%20size%20is%20your%20output%20files%20and%20will%20you%20use%20this%20data%20as%20input%20in%20further%20analysis%3F%0A%0A5.%20Please%20explain%20why%20you%20cannot%20benefit%20from%20the%20%2Fcluster%2Fwork%20area%0A%0A6.%20Based%20on%20your%20answers%20above%2C%20how%20much%20storage%20quota%20do%20you%20think%20you%20need%3F)
+. Note that only files that are relevant for further computation jobs should be kept on the HPC machine. HPC is not intended for long term storage. In your request, please include answers to the following questions:
+
+1. How large are the input files? (Approximate or exact numbers are fine.)
+2. How many such input files will be used in a single job?
+3. At what rate do you intend to process your data? (Approximate GB per week or equivalent.)
+4. What size is your output files and will you use this data as input in further analysis?
+5. Please explain why you cannot benefit from the /cluster/work area
+6. Based on your answers above, how much storage quota do you think you need?
+
 
 Requests for more than 10 TB require an application for a separate [NIRD](nird.md) project area.
 
