@@ -34,8 +34,6 @@ $ sacct -j JobId
 Both `sstat` and `sacct` have an option `--format` to select which
 fields to show. See the documentation on `sstat` [here](https://slurm.schedmd.com/sstat.html) and on `sacct` [here](https://slurm.schedmd.com/sacct.html).
 
-#### `sinfo`
-
 ## Tools
 
 Here, a growing collection of useful tools available in the command line.
