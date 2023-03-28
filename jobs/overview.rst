@@ -23,3 +23,4 @@ Running jobs
    projects_accounting.md
    scratchfiles.md
    guides.md
+   slurm_commands.md
