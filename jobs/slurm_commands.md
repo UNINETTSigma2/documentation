@@ -62,3 +62,7 @@ Job Wall-clock time: 00:00:37
 Memory Utilized: 3.06 GB
 Memory Efficiency: 89.58% of 3.42 GB
 ```
+
+### Slurm Job Script Generator
+
+A tool for generating Slurm job scripts tailored for our HPC clusters: [Slurm Job Script Generator](https://open.pages.sigma2.no/job-script-generator/)
