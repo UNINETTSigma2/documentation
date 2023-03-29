@@ -3,6 +3,7 @@
 # Storage quota
 
 ```{contents} Table of Contents
+
 ```
 
 ```{admonition} Frequently asked questions
@@ -16,7 +17,6 @@
   also below).
 ```
 
-
 ## What is quota and why is it needed?
 
 **Storage is a shared and limited resource** and in a number of places we need to
@@ -24,6 +24,7 @@ enforce quota to avoid that some script accidentally fills up the disk and the
 system becomes unusable for everybody.
 
 Storage quota is specified in:
+
 - **Number of files** (or "inodes"): limits how many files you or a group may own.
   When this limit is reached, you or the group cannot create new files (but you
   might still increase the size of existing files). "Inodes" are entries
@@ -34,12 +35,11 @@ Storage quota is specified in:
   or the group cannot store more data (new data or increasing file sizes) on
   the system.
 
-
 ## Quota applies to specific folders
 
 Often it is intended that storage quota applies to a specific folder on the
 file system. For example, the so-called HOME quota shall apply to your home
-folder `/cluster/home/user`.  A project may have dedicated quota for data
+folder `/cluster/home/user`. A project may have dedicated quota for data
 stored under their project folder which is found under
 `/cluster/projects/nnABCDk` where `nnABCDk` is the account name of your
 project.
@@ -49,7 +49,6 @@ features, unfortunately it is not always guaranteed that what you observe on
 the system matches this intention. Below, we will discuss how to detect and
 troubleshoot such situations.
 
-
 ## Getting information about your usage and quota
 
 We can get an overview with the `dusage` command. This is not a built-in
@@ -57,6 +56,7 @@ Unix command but rather a tool which [we have
 developed](https://github.com/NordicHPC/dusage) for NRIS clusters to wrap
 around lower-level commands and tools to get a quick overview. The actual
 output might be different for every user:
+
 ```console
 $ dusage
 
@@ -89,10 +89,10 @@ $ ls -li
 ```
 ````
 
-
 ## Troubleshooting: Disk quota is full
 
 - **This can be surprising for users and difficult to debug for staff**:
+
   - On Saga and Fram: Depending on the state of the file system there can be a
     lag between going over quota and experiencing "Disk quota exceeded" errors.
   - On Saga and Fram: If you moved files and kept wrong group permissions, this
@@ -105,6 +105,7 @@ $ ls -li
     quota is affected.
 
 - **Recovery on Fram and Saga**:
+
   - Moving files to project data or `$USERWORK` may not be enough since `mv`
     preserves group permissions. Therefore you have the following options:
     - Copy files and then carefully delete the files in `$HOME`.
@@ -112,6 +113,7 @@ $ ls -li
     - Move files and wait overnight for our scripts to adjust them for you.
 
 - **Recovery on Betzy**:
+
   - Try to move data from `$HOME` to project data.
   - Consider using `/cluster/work/users/$USER` (`$USERWORK`). But also mind
     that files older than 21 days might get automatically deleted and
@@ -128,10 +130,10 @@ $ ls -li
   - `rsync` users: Please be careful adjusting the group ownership on Saga and
     Fram.
 
-
 ## Troubleshooting: Too many files/inodes on Fram
 
 Fram has an inode quota for `/cluster`:
+
 ```{code-block}
 ---
 emphasize-lines: 3
@@ -152,9 +154,14 @@ This means that on Fram it is possible to fill the "files"/inode quota by
 putting more than 1 M files in `/cluster/work/users/user` although the latter
 is not size-quota controlled.
 
+To check the number of inodes in a directory and subsequent subdirectories, use the following command:
+
+```console
+$ find . -maxdepth 1 -type d -exec sh -c 'echo -n "{}: "; find "{}" -type f | wc -l' \;
+```
+
 Please contact support if you are in this situation and we can then together evaluate
 whether it makes sense to increase the inode quota for you.
-
 
 ## Troubleshooting: Too many files in a Conda installation
 
@@ -170,7 +177,6 @@ whether it makes sense to increase the inode quota for you.
     up to 42 days if sufficient storage is available).
   - Advanced alternative: Use a Singularity container for the Conda environment.
 
-
 ## Changing file ownership on Fram or Saga
 
 ```{note}
@@ -179,7 +185,7 @@ directories instead of groups.
 ```
 
 Since file permissions are persistent across the file system, it might be
-necessary to manually change the ownership of one or more files.  This page
+necessary to manually change the ownership of one or more files. This page
 will show an example of how to change ownership on a file that was moved from
 `$HOME` to `$USERWORK` in order to update the disk quotas.
 
@@ -202,8 +208,9 @@ counted towards the `$HOME` quota. The reason for this is that the file is
 still owned by the `username_g` group, which is used for the `$HOME` quota.:
 
 Files in `$USERWORK` should be owned by the default user group, in this - the
-group named `username`.  To change the file group ownership we can use the
+group named `username`. To change the file group ownership we can use the
 command `chgrp`:
+
 ```console
 $ chgrp username myfile.txt
 ```
