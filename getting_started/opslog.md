@@ -2,11 +2,6 @@
 
 # Using the status system (opslog)
 
-```{note}
-The contents of this page is valid from 20 March 2023.  
-It is available to give insight in the new system.
-```
-
 ```{contents} Table of Contents
 ```
 
@@ -73,4 +68,4 @@ When subscribing, you will be notified about:
 * Upcoming maintenance (14 days before the start date)
 * Maintenance is started
 * Maintenance is completed
-* Any updated added to incidents and maintenances.
+* Any updates added to incidents and maintenances.
