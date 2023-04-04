@@ -3,6 +3,7 @@
 Here we share the workshop questions, answer, and feedbacks from the collaborative 
 notes after the event.
 
+- {ref}`training-2022-autumn-best-practices`
   - {ref}`training-2022-autumn-best-practices-notes-day1`
   - {ref}`training-2022-autumn-best-practices-notes-day2`
   - {ref}`training-2022-autumn-best-practices-notes-day3`
