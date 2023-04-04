@@ -110,7 +110,8 @@ should include an `acknowledgement following this template
 
    training/events.md
    training/material.md
-
+   training/notes_qa.md
+   
 
 .. toctree::
    :hidden:
