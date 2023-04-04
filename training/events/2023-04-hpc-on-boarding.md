@@ -46,7 +46,47 @@ Registration is [here](https://skjemaker.app.uib.no/view.php?id=14145416).
 | Wed 19.04    | 09:00 - 12:30 | HPC On-boarding day 1|
 | Thu 20.04    | 09:00 - 12:30 | HPC On-boarding day2 |
 
-  - Detailed schedule will be updated later
+## Schedule
+
+**Login Help for everybody - 17 April 13:00-14:00**
+
+**Day0 - UNIX for HPC (optional 18th April, Tuesday)**
+
+- 09:00-09:10 - Welcome, Practical information & icebreaker question
+- 09:10-09:40 - [The terminal and remote login](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/intro.html) (Maiken and Sabry)
+- 09:40-09:55 - [Moving around and looking at things](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html)  (Sabry and  Maiken)
+- 09:55-10:05 - Break
+- 10:05-10:20 - [Moving around and looking at things (exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html#exercise)
+- 10:20-10:35 - [Finding things](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html) (Bjørn and Magnar)
+- 10:35-10:50 - [Finding things (exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html)
+- 10:50-11:00 - Break
+- 11:00-11:30 - [Create/modify files](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/writing-files.html) (Maiken and Sabry)
+- 11:30-12:00 - [Composing commands with pipes](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html) (Espen and Maiken)
+- 12:00-12:30 - [Scripting](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html) (Maiken and Bjørn)
+
+**Day1 - HPC Intro (19th April  Wednesday)**
+
+- 09:00-09:10 - Welcome, Practical information &icebreaker question
+- 09:10-09:30 - [Why use a Cluster?](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html) (Bjørn and Maiken)
+- 09:30-10:00 - [Working on a remote HPC system](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/12-cluster.html) (Sabry and Dhanya)
+- 10:00-10:15 - Break
+- 10:15-11:00 - [Scheduling jobs](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html) (Sabry and Espen)
+- 11:00-11:30 - [Scheduling job Exercise](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html)
+- 11:30-11:45 - Break
+- 11:45-12:15 - [Transferring files](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html) (Espen and Øystein)
+- 12:15-12:30 - Q&A & Discussion
+
+**Day2 - HPC Intro (20th April Thursday)**
+
+- 09:00-09:10 - Recap & ice breaker question
+- 09:10-09:40 - [Accessing Software](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html) (Bjørn and Magnar)
+- 09:40-10:00 - [Accessing Software (exercise)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html)
+- 10:00-10:15 - Break
+- 10:15-11:00 - [Compute and storage quota](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/compute-storage-quota.html) (Espen and Siri)
+- 11:00-11:30 - [Using shared resources responsibly](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.html) (Dhanya and Magnar)
+- 11:30-11:45 - Break
+- 11:45-12:15 - [How to ask for help](https://bit.ly/help-with-supercomputers) (Radovan and Øystein)
+- 12:15-12:30 - Q&A & Discussion
 
 ## Course material
 
@@ -62,8 +102,23 @@ the zoom host right away or write to [the training team](mailto:training@nris.no
 ## Preparing your machine for the course
 
 We assume you have the necessary tools installed on your machine and are able
-to use them. You need tools to login into a remote machine. If you
-need to install such tools, please see [prepare your machine section](https://wiki.uib.no/hpcdoc/index.php/HPC_and_NIRD_toolkit_course_fall_2020#Preparing_your_machine_for_the_course). 
-If you are using Windows 10 or earlier versions and you don’t have a terminal to execute UNIX 
-commands, you are requested to install [Git for windows](https://gitforwindows.org/). 
+to use them. You need tools to login into a remote machine. 
+If you are using Windows 10 or earlier versions and you don’t have a terminal to execute UNIX
+commands, you are requested to install [Git for windows](https://gitforwindows.org/).
+If you need help , please join us the login help session on 17th April at 13:00-14:00 using the same zoom link you receved via email.  
 
+## Instructors
+
+- Sabry Razick
+- Bjørn Lindi
+- Maiken Pedersen
+- Espen Tangen
+- Magnar Bjørgve 
+- Øystein Tveito
+- Siri Kallhovd
+- Radovan Bast
+- Dhanya Pushpadas
+
+## Coordinator
+
+- Dhanya Pushpadas
