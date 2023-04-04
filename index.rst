@@ -111,7 +111,7 @@ should include an `acknowledgement following this template
    training/events.md
    training/material.md
    training/notes_qa.md
-   
+   training/videos.md  
 
 .. toctree::
    :hidden:
