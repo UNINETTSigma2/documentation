@@ -119,8 +119,9 @@ should include an `acknowledgement following this template
    :caption: Training
 
    training/events.md
+   training/notes_qa.md
+   training/videos.md  
    training/material.md
-
 
 .. toctree::
    :hidden:
