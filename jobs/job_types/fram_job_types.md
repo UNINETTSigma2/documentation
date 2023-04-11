@@ -61,7 +61,6 @@ to [support@nris.no](mailto:support@nris.no).
 - __Priority__: normal
 - __Available resources__:
     - 8 nodes with 32 cpus and 494 GiB RAM
-    - 2 nodes with 64 cpus and 6045 GiB RAM
 - __Parameter for sbatch/srun__:
     - `--partition=bigmem`
 - __Job Scripts__: {ref}`job_scripts_fram_bigmem`
