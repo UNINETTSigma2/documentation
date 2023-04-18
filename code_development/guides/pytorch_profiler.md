@@ -177,7 +177,7 @@ For completeness, we provide a generic example of a job script that incorporates
 #SBATCH --partition=accel   #partition 
 #SBATCH --nodes=1           #nbr of nodes
 #SBATCH --ntasks=1          #nbr of tasks
-#SBATCH --ntasks-per-nodes  #nbr of tasks per nodes (nbr of cpu-cores)
+#SBATCH --ntasks-per-node=1  #nbr of tasks per nodes (nbr of cpu-cores)
 #SBATCH --cpus-per-task=1   #nbr of threads
 #SBATCH --gpus=1            #total nbr of gpus
 #SBATCH --gpus-per-node=1   #nbr of gpus per node
