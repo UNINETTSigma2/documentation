@@ -3,9 +3,9 @@ orphan: true
 ---
 
 (pytochprofiler)=
-# Profiling GPU-accelerated Deep Learning application
+# Profiling GPU-accelerated Deep Learning
 
-We present an introduction to profiling GPU-accelerated Deep Learning (DL) models using [PyTorch Profiler](https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html). Profiling is a necessary step in code development, as it permits identifying bottlenecks in an application, which in turn helps optimizing the application and thus improving performance. This introduction is limited to profiling DL-application that runs on a single-GPU. By the end of this guide, readers are expected to learn about:
+We present an introduction to profiling GPU-accelerated Deep Learning (DL) models using [PyTorch Profiler](https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html). Profiling is a necessary step in code development, as it permits identifying bottlenecks in an application. This in turn helps optimizing the application; and thus improving performance. This introduction is limited to profiling DL-application that runs on a single-GPU. By the end of this guide, readers are expected to learn about:
 
 - Defining the concept and the architecture of PyTorch Profiler.
 - Setting up PyTorch on an HPC system using different methods:
@@ -28,13 +28,13 @@ We present an introduction to profiling GPU-accelerated Deep Learning (DL) model
 ## What is PyTorch Profiler
 In general, the concept of profiling is based on statistical sampling, by collecting data at a regular time interval. Here, a profiler tool offers an overview of the execution time attributed to instructions of a program. In particular, it provides the execution time for each function; in addition to how many times each function has been called. Profiling analysis thus helps understanding the structure of a code, and more importantly, it helps identifying bottlenecks in an application. Examples of bottlenecks might be related to memory usage and/or identifying functions/libraries that use the majority of the computing time.
 
-PyTorch Profiler is a profiling tool for analysing Deep Learning models, which is based on collecting performance metrics during training and inference. The profiler is built inside PyTorch API (cf. {ref}`Fig 1<fig-arch-profiler>`), and thus there is no need for installing additional libraries. It is a dynamical tool as it is based on gathering statistical data during the running procedure of a training model.
+PyTorch Profiler is a profiling tool for analysing Deep Learning models, which is based on collecting performance metrics during training and inference. The profiler is built inside PyTorch API (cf. {ref}`Fig 1<fig-arch-profiler>`), and thus there is no need for installing additional packages. It is a dynamical tool as it is based on gathering statistical data during the running procedure of a training model.
 
 ```{eval-rst}
 
 .. _fig-arch-profiler:
 
-.. figure:: pytorch_profiler/fig1.png
+.. figure:: pytorch_profiler/Figs/fig00.png
    :width: 600px
    :align: center
 
@@ -42,11 +42,9 @@ PyTorch Profiler is a profiling tool for analysing Deep Learning models, which i
 
 ```
 
-As shown in the figure, the PyTorch API contains a python API and a C++ API. For simplicity we highlight only 
+As shown in the figure, the PyTorch API contains a python API and a C++ API. For simplicity we highlight only the necessary components for understanding the functionality of PyTorch profiler, which ingrates the following: (i) aTen operators, which are libraries of tensor operators for PyTorch and are GPU-accelerated with CUDA; (ii) Kineto library designed specifically for profiling and tracing PyTorch models; and (iii) LibCUPTI (CUDA Profiling Tool Interface), which is a library that provides an interface for profiling and tracing CUDA-based application (low-level profiling). The last two libraries provide an interface for collecting and analysing the performance data at the level of GPU. 
 
-PyTorch operators come from aten operators, which connected to CUDA
-
-Here we list metrics collected by the profiler, which shall describe in {ref}`Section<demo>`:
+Here we list the performance metrics provided by the profiler, which we shall describe in {ref}`Section<demo>`:
 - GPU usage
 - Tensor cores usage (if it is enabled)
 - GPU Kernel view
@@ -62,24 +60,38 @@ The code application is adapted from the [PyTorch tutorial](https://pytorch.org/
 The python application to be profiled is
 "resnet18_api.py", which is specified for 4 batches and which can be adpated to a large number of batches.
 
+```{eval-rst}
+.. _sec-setup-profiler:
 
-## Setup Pytorch profiler in an HPC system 
+## Setup Pytorch profiler in an HPC system
+``` 
 
-Here we describe how to set up PyTorch using a singularity container.
+In this section we describe how to set up PyTorch using a singularity container.
 
-### Setting up PyTorch container
-
-- **Step 1**: Pull a PyTorch container image
+- **Step 1**: Pull and convert a docker image to a singularity image format:
 e.g. from [NVIDIA NGC container](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch)
-(Note that the host system must have the CUDA driver installed and the container must have CUDA)
 
-`$singularity pull docker://nvcr.io/nvidia/pytorch:22.12-py3`
+Note that when pulling docker containers using singularity, the conversion can be quite heavy and the singularity cache directory in `$HOME` space becomes full of temporary files. To speed up the conversion and to avoid leaving behind temporary files, one can run these lines:
+
+```console
+$ mkdir -p /tmp/$USER 
+$ export SINGULARITY_TMPDIR=/tmp/$USER 
+$ export SINGULARITY_CACHEDIR=/tmp/$USER
+```
+and then
+
+```console
+$singularity pull docker://nvcr.io/nvidia/pytorch:22.12-py3
+```
 
 - **Step 2**: Launch singularity container
 
-`$singularity exec --nv -B ${MyEx} pytorch_22.12-py3.sif python ${MyEx}/resnet18_api.py`
+```console
+$singularity exec --nv -B ${MyEx} pytorch_22.12-py3.sif python ${MyEx}/resnet18_api.py
+```
 
-where the container is mounted to the path `${MyEx}`, where the python application is located.
+Here the container is mounted to the path `${MyEx}`, where the python application is located. An example of a Slurm script that launches a singularity container is provided in the 
+{ref}`Section<sec-slurm-job>`
 
 ## Case example: Profling a Resnet 18 model
 Here are lines of codes to enable profiling with [PyTorch Profiler](https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html
@@ -113,29 +125,35 @@ To be incorporated just above the training loop
         prof.step()
 ```
 
-In the lines of the code defined above, one needs to specify some settings, which are split into three parts:
-- import torch.profiler
-- Specify the profiler context: i.e. which kind of activities you would like to profile .e.g. cpu, gpu or both [
-- Specify the schedule: 
-- Trace, record shape, profile memory, with stack
+```{eval-rst}
+.. literalinclude:: pytorch_profiler/resnet18_api.py
+   :language: python
+   :lines: 1-20
+   :emphasize-lines: 13-17
+   :linenos:
 
-In the for loop where you are doing the training, you need to call the profile step (`prof.step()`). This will collect all the necessary input and will generate data that can be viewed with tensor board plugin.
+```
+In these lines of code defined above, one needs to specify the setting for profiling. The latter can be split into three main parts:
+- Import `torch.profiler`
+- Specify the profiler context: i.e. which kind of **activities** that one can profile .e.g. CPU activities (i.e. `torch.profiler.ProfilerActivity.CPU`), GPU activities (i.e. `torch.profiler.ProfilerActivity.CUDA`) or both activities.
+- Specify the **schedule**; in particular, the following options can be specified:
+  —*wait=l*: Profiling is disabled for the first `l` step. This is relevant if the training takes a longer time, and that profiling the entire training loop is not desired. Here, one can wait for `l` steps before the profiling getting started.
 
-Output of profiling will be saved in the `/out` directory 
+  —*warmup=N*: The profiler collects data after N steps for tracing.
 
-Some advanced features:
--Option —wait:Profiling is disabled for the first step. If your training takes longer time and you don’t want to profile for the entire training loop, so you may want to wait before for some time before the profiling getting started.
--Option —warmup=N: You start collecting data after N steps for tracing.
--Option —active=M: trace to be active for M events [to not get a lot of traces].
-During the active step, events will be recorded.
+  —*active=M*: Events will be recorded for tracing only during the active steps. This is useful to avoid tracing a lot of events, which might cause issues with loading the data. 
 
-Memory view: to enable it you need to specify the profiler memory to true [to generate memory data].
+- Additional options: Trace, record shape, profile memory, with stack, could be enabled.
 
-The most important is to track the memory allocation.
+Note that, in the `for loop` (i.e *the training loop*), one needs to call the profile step (`prof.step()`), in order collect all the necessary inputs, which in turn will generate data that can be viewed with tensor board plugin. At the end, the output of profiling will be saved in the `/out` directory. 
 
 Selective profiling: first start profiling for a large training loop, and once you get an idea about where the bottleneck is, then you can select a few number of iterations for profiling.
 
+```{eval-rst}
+.. _sec-visualisation:
+
 ### Visualisation on a web browser
+``` 
 
 To view the output data generated from the profiling process, one needs to install TensorBord, which can be done for instance in a virtual environment
 
@@ -151,23 +169,129 @@ To view the output data generated from the profiling process, one needs to insta
 
 - [ ] Step 2: Running tensorboard uisng the command:
 
-`tensorboard --logdir=./out --bind_all` 
-
-will generate a local address having a specific registered or private port. Note that in HPC systems, a direct navigation
+```console
+tensorboard --logdir=./out --bind_all
+``` 
+will generate a local address having a specific registered or private port, as shown in {ref}`Figure<fig-tensorboard>`. Note that in HPC systems, a direct navigation
 to the generated address is blocked by firewalls. Therefore, connecting on a internal network from outside can be done 
 via a mechanism called [local port forwarding](https://www.ssh.com/academy/ssh/tunneling-example#local-forwarding). As stated in the [SSH documentation](https://www.ssh.com/academy/ssh/tunneling-example#local-forwarding) “Local forwarding is used to forward a port from the client machine to the server machine”.
 
 The syntax for local forwarding, which is configured using the option `–L`, can be written as, e.g.:
 
-`ssh -L 6009:local.host:6006 username@server.address.com`
+```console
+ssh -L 6009:local.host:6006 username@server.address.com
+```
 
 This syntax enables opening a connection to the jump server `username@server.address.com`, and forwarding 
 any connection to port 6009 on the local machine to port 6006 on the server `username@server.address.com`. 
 
 Last the local address `http://localhost:6009/` can be view in a chrome of firefox browser.
 
-## Launching a PyTorch-based application on an HPC system.  
-For completeness, we provide a generic example of a job script that incorporates running PyTorch singularity container, and which can be adapted according to the selective computing resources.
+```{eval-rst}
+
+.. _fig-tensorboard:
+
+.. figure:: pytorch_profiler/Figs/fig1.png
+   :width: 600px
+   :align: center
+
+   Fig 2: Output of running the tensorboar command `tensorboard --logdir=./out --bind_all`.
+
+```
+
+```{eval-rst}
+.. _sec-metrics:
+
+### Performance metrics
+``` 
+
+In this section we provide screenshots of different views of performance metrics stemming from PyTorch Profiler. The metrics include:
+
+- GPU usage (cf. {ref}`Figure<fig-overview>`)
+- GPU Kernel view (cf. cf. {ref}`Figure<fig-kernel>`)
+- Trace view (cf. cf. {ref}`Figure<fig-trace1>` and {ref}`Figure<fig-trace2>`)
+- Memory view (cf. {ref}`Figure<fig-memory>`)
+- Module view (cf. {ref}`Figure<fig-module>`)
+
+
+```{eval-rst}
+
+.. _fig-overview:
+
+.. figure:: pytorch_profiler/Figs/fig1.png
+   :width: 600px
+   :align: center
+
+   Fig 3: Overview of GPU activities.
+
+```
+
+```{eval-rst}
+
+.. _fig-kernel:
+
+.. figure:: pytorch_profiler/Figs/fig2.png
+   :width: 600px
+   :align: center
+
+   Fig 4: View of GPU Kernels.
+
+```
+
+```{eval-rst}
+
+.. _fig-trace1:
+
+.. figure:: pytorch_profiler/Figs/fig3.png
+   :width: 600px
+   :align: center
+
+   Fig 5: View of Trace.
+
+```
+
+```{eval-rst}
+
+.. _fig-trace2:
+
+.. figure:: pytorch_profiler/Figs/fig4.png
+   :width: 600px
+   :align: center
+
+   Fig 6: View of Trace.
+
+```
+
+```{eval-rst}
+
+.. _fig-memory:
+
+.. figure:: pytorch_profiler/Figs/fig5.png
+   :width: 600px
+   :align: center
+
+   Fig 7: View of Memory usage.
+
+```
+
+```{eval-rst}
+
+.. _fig-module:
+
+.. figure:: pytorch_profiler/Figs/fig6.png
+   :width: 600px
+   :align: center
+
+   Fig 8: View of Modules.
+
+```
+
+```{eval-rst}
+.. _sec-slurm-job:
+
+## Launching a PyTorch-based application on an HPC system 
+```
+For completeness, we provide an example of a job script that incorporates PyTorch singularity container. The script can be adapted according to the selective computing resources.
 
 ```bash
 #!/bin/bash -l
