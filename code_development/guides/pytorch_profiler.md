@@ -15,11 +15,10 @@ We present an introduction to profiling GPU-accelerated Deep Learning (DL) model
 - Profling a PyTorch-based application. 
 - Visualising the output data on a web browser with Tensorboard plugin, in particular, the metrics:
    - GPU usage
-   - Tensor cores usage
    - GPU Kernel view
    - Memory view
    - Trace view
-
+   - Module view 
 ```{contents}
 :depth: 2
 ```
@@ -157,17 +156,16 @@ Selective profiling: first start profiling for a large training loop, and once y
 
 To view the output data generated from the profiling process, one needs to install TensorBord, which can be done for instance in a virtual environment
 
-- [ ] Step0: load a python model, create and activate Virt. Env.
-- Find a python module: $module avail python
+- ** Step 0** : loading a python model, create and activate a virtual environment.
 - Load a python module .e.g.: `module load python/3.9.6-GCCcore-11.2.0`
 - `mkdir Myenv`
 - `python –m venv Myenv`
 - `source Myenv/bin/activate`
 
-- [ ] Step1: Install TensorBoard Plugi via pip wheel packages using the following command (see also [here](https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html)):
+- **Step 1**: Installing TensorBoard Plugi via pip wheel packages using the following command (see also [here](https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html)):
 - `python –m pip install torch_tb_profiler`
 
-- [ ] Step 2: Running tensorboard uisng the command:
+- **Step 2**: Running tensorboard uisng the command:
 
 ```console
 tensorboard --logdir=./out --bind_all
