@@ -5,10 +5,12 @@ orphan: true
 (pytochprofiler)=
 # Profiling GPU-accelerated Deep Learning
 
-We present an introduction to profiling GPU-accelerated Deep Learning (DL) models using [PyTorch Profiler](https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html). Profiling is a necessary step in code development, as it permits identifying bottlenecks in an application. This in turn helps optimizing the application; and thus improving performance. This introduction is limited to profiling DL-application that runs on a single-GPU. By the end of this guide, readers are expected to learn about:
+We present an introduction to profiling GPU-accelerated Deep Learning (DL) models using [PyTorch Profiler](https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html). Profiling is a necessary step in code development, as it permits identifying bottlenecks in an application. This in turn helps optimizing applications; and thus improving performance. 
+
+This introduction is limited to profiling DL-application that runs on a single-GPU. By the end of this guide, readers are expected to learn about:
 
 - Defining the concept and the architecture of PyTorch Profiler.
-- Setting up PyTorch profiler on an HPC system 
+- Setting up PyTorch profiler on an HPC system. 
 - Profling a PyTorch-based application. 
 - Visualising the output data on a web browser with Tensorboard plugin, in particular, the metrics:
    - GPU usage
@@ -326,7 +328,7 @@ More details about how to write a job script can be found [here](https://documen
 
 (conclusion)=
 # Conclusion
-In conclusion, we have provided a guide on how to perform code profiling of GPU-accelerated Deep Learning models using PyTorch Profiler. The particularity of the profiler relies on its simplicity and ease to use without installing additional packages and with a few lines of codes to be added. These lines of code constitues the setting of the profiler, which can be customised according to the desired performance metrics. The profiler provides an overview of metrics that includes a summary of GPU usage and Tensor cores usage (if it is enabled), this is in addition to advanced analysis based a view of GPU kernel, memory usage in time, trace and modules. These features are key elements for identifying bottlenecks in an application, which in turn helps optimizing it to run efficiently and reliably on HPC systems. 
+In conclusion, we have provided a guide on how to perform code profiling of GPU-accelerated Deep Learning models using PyTorch Profiler. The particularity of the profiler relies on its simplicity and ease to use without installing additional packages and with a few lines of codes to be added. These lines of code constitues the setting of the profiler, which can be customised according to the desired performance metrics. The profiler provides an overview of metrics; this includes a summary of GPU usage and Tensor cores usage (if it is enabled), this is in addition to advanced analysis based a view of GPU kernel, memory usage in time, trace and modules. These features are key elements for identifying bottlenecks in an application. Identifying these bottlenecks has the benefit optimizing the application to run efficiently and reliably on HPC systems. 
 
 
 # Relevant links
