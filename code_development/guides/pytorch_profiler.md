@@ -326,7 +326,7 @@ More details about how to write a job script can be found [here](https://documen
 
 (conclusion)=
 # Conclusion
-In conclusion, we have provided a guide on how to perform code profiling of GPU-accelerated Deep Learning models using PyTorch Profiler. The particularity of the profiler relies on its simplicity and ease to use without installing additional packages and with a few lines of codes to be added. These lines of code constitue the setting of the profiler, which can be customised according to the desired outcome of profiling. ... The profiler provides an overview of metrics that includes a summary of GPU usage and Tensor cores usage (if it is enabled), this is in addition to advanced analysis based a view of GPU kernel, memory usage in time and trace... These features are key elements for identifying bottlenecks in an application, in the aim of optimizing it to run efficiently and reliably. 
+In conclusion, we have provided a guide on how to perform code profiling of GPU-accelerated Deep Learning models using PyTorch Profiler. The particularity of the profiler relies on its simplicity and ease to use without installing additional packages and with a few lines of codes to be added. These lines of code constitues the setting of the profiler, which can be customised according to the desired performance metrics. The profiler provides an overview of metrics that includes a summary of GPU usage and Tensor cores usage (if it is enabled), this is in addition to advanced analysis based a view of GPU kernel, memory usage in time, trace and modules. These features are key elements for identifying bottlenecks in an application, which in turn helps optimizing it to run efficiently and reliably on HPC systems. 
 
 
 # Relevant links
