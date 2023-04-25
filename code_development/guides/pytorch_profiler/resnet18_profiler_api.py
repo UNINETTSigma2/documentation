@@ -30,6 +30,7 @@ criterion = torch.nn.CrossEntropyLoss().cuda(device)
 optimizer = torch.optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
 model.train()
 
+#Use profiler
 with torch.profiler.profile(
     activities=[
         torch.profiler.ProfilerActivity.CPU,
