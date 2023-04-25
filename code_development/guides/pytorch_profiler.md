@@ -209,14 +209,6 @@ In this section we provide screenshots of different views of performance metrics
 
 ```
 
-<div align="center">
-
-![Fig1](pytorch_profiler/Figs/fig1.png) 
-
-**Fig. 1.** *A simplified representation of a NVIDIA GPU-architecture.*
-</div>
-
-
 ```{eval-rst}
 .. _fig-kernel:
 
