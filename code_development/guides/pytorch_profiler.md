@@ -89,8 +89,8 @@ $singularity exec --nv -B ${MyEx} pytorch_22.12-py3.sif python ${MyEx}/resnet18_
 Here the container is mounted to the path `${MyEx}`, where the python application is located. An example of a Slurm script that launches a singularity container is provided in the 
 {ref}`Section<sec-slurm-job>`
 
-## Case example: Profling a Resnet 18 model
-Here are lines of codes to enable profiling with [PyTorch Profiler](https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html
+## Case example: Profiling a Resnet 18 model
+We list below the lines of codes that enable profiling with [PyTorch Profiler](https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html
 )
 
 ```python
