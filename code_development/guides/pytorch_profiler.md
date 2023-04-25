@@ -16,9 +16,6 @@ We present an introduction to profiling GPU-accelerated Deep Learning (DL) model
    - Memory view
    - Trace view
    - Module view 
-```{contents}
-:depth: 2
-```
 
 ```{contents} Table of Contents
 ```
@@ -37,13 +34,13 @@ PyTorch Profiler is a profiling tool for analysing Deep Learning models, which i
    :width: 600px
    :align: center
 
-   Fig 1: A simplified version of the architecture of PyTorch Profiler. A complete picture of the architecture can be found [here](https://www.youtube.com/watch?v=m6ouC0XMYnc&ab_channel=PyTorch) (see the slide at 23:00 min).
+   Fig 1: A simplified version of the architecture of PyTorch Profiler. A complete picture of the architecture can be found [here](#https://www.youtube.com/watch?v=m6ouC0XMYnc&ab_channel=PyTorch) (see the slide at 23:00 min).
 
 ```
 
 As shown in the figure, the PyTorch API contains a python API and a C++ API. For simplicity we highlight only the necessary components for understanding the functionality of PyTorch profiler, which ingrates the following: (i) aTen operators, which are libraries of tensor operators for PyTorch and are GPU-accelerated with CUDA; (ii) Kineto library designed specifically for profiling and tracing PyTorch models; and (iii) LibCUPTI (CUDA Profiling Tool Interface), which is a library that provides an interface for profiling and tracing CUDA-based application (low-level profiling). The last two libraries provide an interface for collecting and analysing the performance data at the level of GPU. 
 
-Here we list the performance metrics provided by the profiler, which we shall describe in {ref}`Section<demo>`:
+Here we list the performance metrics provided by the profiler, which we shall describe in {ref}`Section<performance-metrics>`:
 - GPU usage
 - Tensor cores usage (if it is enabled)
 - GPU Kernel view
@@ -88,7 +85,7 @@ $singularity exec --nv -B ${MyEx} pytorch_22.12-py3.sif python ${MyEx}/resnet18_
 
 Here the container is mounted to the path `${MyEx}`, where the python application is located. An example of a Slurm script that launches a singularity container is provided in the {ref}`Section<launching-a-pytorch-based-application>`
 
-(case-example:-profiling-a-resnet-18-model)=
+(case-example-profiling-a-resnet-18-model)=
 ## Case example: Profiling a Resnet 18 model
 We list below the lines of codes that enable profiling with [PyTorch Profiler](https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html
 )
@@ -149,7 +146,7 @@ Selective profiling: first start profiling for a large training loop, and once y
 ### Visualisation on a web browser
 To view the output data generated from the profiling process, one needs to install TensorBord, which can be done for instance in a virtual environment
 
-- ** Step 0** : loading a python model, create and activate a virtual environment.
+- **Step 0** : loading a python model, creating and activating a virtual environment.
 - Load a python module .e.g.: `module load python/3.9.6-GCCcore-11.2.0`
 - `mkdir Myenv`
 - `python –m venv Myenv`
@@ -181,7 +178,7 @@ Last the local address `http://localhost:6009/` can be view in a chrome of firef
 
 .. _fig-tensorboard:
 
-.. figure:: pytorch_profiler/Figs/fig1.png
+.. figure:: pytorch_profiler/Figs/fig0.png
    :width: 600px
    :align: center
 
@@ -193,11 +190,11 @@ Last the local address `http://localhost:6009/` can be view in a chrome of firef
 ### Performance metrics 
 In this section we provide screenshots of different views of performance metrics stemming from PyTorch Profiler. The metrics include:
 
-- GPU usage (cf. {ref}`Figure<fig-overview>`)
-- GPU Kernel view (cf. cf. {ref}`Figure<fig-kernel>`)
-- Trace view (cf. cf. {ref}`Figure<fig-trace1>` and {ref}`Figure<fig-trace2>`)
-- Memory view (cf. {ref}`Figure<fig-memory>`)
-- Module view (cf. {ref}`Figure<fig-module>`)
+- GPU usage (cf. {ref}`Figure 3<fig-overview>`)
+- GPU Kernel view (cf. {ref}`Figure 4<fig-kernel>`)
+- Trace view (cf. {ref}`Figure 5<fig-trace1>` and {ref}`Figure 6<fig-trace2>`)
+- Memory view (cf. {ref}`Figure 7<fig-memory>`)
+- Module view (cf. {ref}`Figure 8<fig-module>`)
 
 
 ```{eval-rst}
