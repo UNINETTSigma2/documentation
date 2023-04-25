@@ -48,13 +48,7 @@ Here we list the performance metrics provided by the profiler, which we shall de
 - Trace view
 - Module view
 
-
-Further details are provided in [slides](https://github.com/HichamAgueny/Profiling-GPU-accelerated-DL).
-
-The code application is adapted from the [PyTorch tutorial](https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html).
-
-The python application to be profiled is
-"resnet18_api.py", which is specified for 4 batches and which can be adpated to a large number of batches.
+Further details are provided in these [slides](https://github.com/HichamAgueny/Profiling-GPU-accelerated-DL).
 
 (setup-pytorch-profiler-in-an-hpc-system)=
 ## Setup Pytorch profiler in an HPC system
@@ -87,7 +81,7 @@ Here the container is mounted to the path `${MyEx}`, where the python applicatio
 
 (case-example-profiling-a-resnet-18-model)=
 ## Case example: Profiling a Resnet 18 model
-We list below the lines of codes that enable profiling with [PyTorch Profiler](https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html
+We list below the lines of code required to enable profiling with [PyTorch Profiler](https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html
 )
 
 ```python
@@ -118,15 +112,29 @@ To be incorporated just above the training loop
         prof.step()
 ```
 
+Here is a code example of resnet18 model, in which profiling is enabled. The code is adapted from the [PyTorch tutorial](#https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html).
+
 ```{eval-rst}
-.. literalinclude:: pytorch_profiler/resnet18_api.py
+.. literalinclude:: pytorch_profiler/resnet18_with_profiler_api.py
    :language: python
-   :lines: 1-20
-   :emphasize-lines: 13-17
+   :lines: 1-63
+   :emphasize-lines: 34-59
    :linenos:
 
 ```
-In these lines of code defined above, one needs to specify the setting for profiling. The latter can be split into three main parts:
+
+For reference, we provide here the same application but witout enabling profiling. The code is adapted from the [PyTorch tutorial](#https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html).
+
+```{eval-rst}
+.. literalinclude:: pytorch_profiler/resnet18_without_profiler_api.py
+   :language: python
+   :lines: 1-44
+   :emphasize-lines: 34-40
+   :linenos:
+
+```
+
+In these lines of code defined above, one needs to specify the [setting for profiling](#https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html). The latter can be split into three main parts:
 - Import `torch.profiler`
 - Specify the profiler context: i.e. which kind of **activities** that one can profile .e.g. CPU activities (i.e. `torch.profiler.ProfilerActivity.CPU`), GPU activities (i.e. `torch.profiler.ProfilerActivity.CUDA`) or both activities.
 - Specify the **schedule**; in particular, the following options can be specified:
@@ -208,14 +216,6 @@ In this section we provide screenshots of different views of performance metrics
    Fig 3: Overview of GPU activities.
 
 ```
-
-<div align="center">
-
-![Fig1](pytorch_profiler/Figs/fig1.png) 
-
-**Fig. 1.** *A simplified representation of a NVIDIA GPU-architecture.*
-</div>
-
 
 ```{eval-rst}
 .. _fig-kernel:
