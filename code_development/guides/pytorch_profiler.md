@@ -20,6 +20,9 @@ We present an introduction to profiling GPU-accelerated Deep Learning (DL) model
 :depth: 2
 ```
 
+```{contents} Table of Contents
+```
+
 (profiler)=
 ## What is PyTorch Profiler
 In general, the concept of profiling is based on statistical sampling, by collecting data at a regular time interval. Here, a profiler tool offers an overview of the execution time attributed to instructions of a program. In particular, it provides the execution time for each function; in addition to how many times each function has been called. Profiling analysis thus helps understanding the structure of a code, and more importantly, it helps identifying bottlenecks in an application. Examples of bottlenecks might be related to memory usage and/or identifying functions/libraries that use the majority of the computing time.
@@ -56,11 +59,8 @@ The code application is adapted from the [PyTorch tutorial](https://pytorch.org/
 The python application to be profiled is
 "resnet18_api.py", which is specified for 4 batches and which can be adpated to a large number of batches.
 
-```{eval-rst}
-.. _sec-setup-profiler:
-
+(setup-pytorch-profiler-in-an-hpc-system)=
 ## Setup Pytorch profiler in an HPC system
-``` 
 
 In this section we describe how to set up PyTorch using a singularity container.
 
@@ -86,9 +86,9 @@ $singularity pull docker://nvcr.io/nvidia/pytorch:22.12-py3
 $singularity exec --nv -B ${MyEx} pytorch_22.12-py3.sif python ${MyEx}/resnet18_api.py
 ```
 
-Here the container is mounted to the path `${MyEx}`, where the python application is located. An example of a Slurm script that launches a singularity container is provided in the 
-{ref}`Section<sec-slurm-job>`
+Here the container is mounted to the path `${MyEx}`, where the python application is located. An example of a Slurm script that launches a singularity container is provided in the {ref}`Section<launching-a-pytorch-based-application>`
 
+(case-example:-profiling-a-resnet-18-model)=
 ## Case example: Profiling a Resnet 18 model
 We list below the lines of codes that enable profiling with [PyTorch Profiler](https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html
 )
@@ -145,12 +145,8 @@ Note that, in the `for loop` (i.e *the training loop*), one needs to call the pr
 
 Selective profiling: first start profiling for a large training loop, and once you get an idea about where the bottleneck is, then you can select a few number of iterations for profiling.
 
-```{eval-rst}
-.. _sec-visualisation:
-
+(visualisation-on-a-web-browser)=
 ### Visualisation on a web browser
-``` 
-
 To view the output data generated from the profiling process, one needs to install TensorBord, which can be done for instance in a virtual environment
 
 - ** Step 0** : loading a python model, create and activate a virtual environment.
@@ -176,7 +172,6 @@ The syntax for local forwarding, which is configured using the option `–L`, ca
 ```console
 ssh -L 6009:local.host:6006 username@server.address.com
 ```
-
 This syntax enables opening a connection to the jump server `username@server.address.com`, and forwarding 
 any connection to port 6009 on the local machine to port 6006 on the server `username@server.address.com`. 
 
@@ -194,12 +189,8 @@ Last the local address `http://localhost:6009/` can be view in a chrome of firef
 
 ```
 
-```{eval-rst}
-.. _sec-metrics:
-
-### Performance metrics
-``` 
-
+(performance-metrics)=
+### Performance metrics 
 In this section we provide screenshots of different views of performance metrics stemming from PyTorch Profiler. The metrics include:
 
 - GPU usage (cf. {ref}`Figure<fig-overview>`)
@@ -221,8 +212,15 @@ In this section we provide screenshots of different views of performance metrics
 
 ```
 
-```{eval-rst}
+<div align="center">
 
+![Fig1](pytorch_profiler/Figs/fig1.png) 
+
+**Fig. 1.** *A simplified representation of a NVIDIA GPU-architecture.*
+</div>
+
+
+```{eval-rst}
 .. _fig-kernel:
 
 .. figure:: pytorch_profiler/Figs/fig2.png
@@ -281,11 +279,10 @@ In this section we provide screenshots of different views of performance metrics
 
 ```
 
-```{eval-rst}
-.. _sec-slurm-job:
 
-## Launching a PyTorch-based application on an HPC system 
-```
+(launching-a-pytorch-based-application)=
+## Launching a PyTorch-based application 
+
 For completeness, we provide an example of a job script that incorporates PyTorch singularity container. The script can be adapted according to the selective computing resources.
 
 ```bash
@@ -330,6 +327,7 @@ echo "--nbr of gpus_per_node" $SLURM_GPUS_PER_NODE
 
 More details about how to write a job script can be found [here](https://documentation.sigma2.no/jobs/job_scripts.html).
 
+(conclusion)=
 # Conclusion
 In conclusion, we have provided a guide on how to perform code profiling of GPU-accelerated Deep Learning models using PyTorch Profiler. The particularity of the profiler relies on its simplicity and ease to use without installing additional packages and with a few lines of codes to be added. These lines of code constitue the setting of the profiler, which can be customised according to the desired outcome of profiling. ... The profiler provides an overview of metrics that includes a summary of GPU usage and Tensor cores usage (if it is enabled), this is in addition to advanced analysis based a view of GPU kernel, memory usage in time and trace... These features are key elements for identifying bottlenecks in an application, in the aim of optimizing it to run efficiently and reliably. 
 
