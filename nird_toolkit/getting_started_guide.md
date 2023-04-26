@@ -30,40 +30,11 @@ Those members of the group who hold administrative rights will deploy applicatio
 
 5. In order to deploy the application you shall log in to the [NIRD Toolkit](https://apps.sigma2.no) via your Feide or your OpenIdP account, previously added to the group in Feide Innsyn. Select the group previously created in Feide Innsyn in the "Authorized Groups". Now you are able to run your application, which will be connected to the project area NSxxxxK.
 
-(service-not-activated)=
-## "Service not activated"
 
-Due to a change made by Feide in response to new national directives in the sector, all services are now opt-in.  
-This means that every service with Feide login must be accepted by a Feide administrator at your institution. 
-Unfortunately, the approval cannot be exercised on services that are owned by individuals and deployed dynamically/on-demand like in the NIRD Toolkit. Hence, you might get this message upon login:
-
-![Feide service not activated](imgs/feide-service-not-activated.PNG "Feide service not activated")
-
-Since the NIRD Toolkit is a platform to deploy services dynamically, the activation cannot be done on a per-service level.  
-
-In order to access your deployed services, you can use a Feide OpenIdP account.  
-You can create an account on https://openidp.feide.no for free if you don't have one already.
-
-
-**Create new Feide ad-hoc group**  
-Using your _regular Feide-account_, go to [Feide innsyn](https://innsyn.feide.no/groups) and click "Create ad-hoc group" .
-
-**Invite OpenIdP account to the Feide ad-hoc group**  
-Once the group is created, you can send a share link to yourself. Copy and paste this link in another browser or an incognito tab, then log in with your OpenIdP account that you created earlier to join the group.
-
-**Authorize group to service**  
-In the Toolkit, add the Feide ad-hoc group you created under "Authorized groups" on the service. You can reconfigure an existing service to do this as well.
-
-![Authorized groups](imgs/application_reconfigure.png "Authorized groups")
+   ![Authorized groups](imgs/application_reconfigure.png "Authorized groups")
 
 **Log in with OpenIdP**  
-We recommend using another browser or an incognito tab to separate the sessions.
-
-Once your OpenIdP account is added to the group, you can log in using it to access the deployed service.
-
-From the login page in the [Toolkit](https://apps.sigma2.no/), choose "Feide guest users" and log in with your OpenIdP account.
+For those that use OpenIdP, at the login page in the [Toolkit](https://apps.sigma2.no/), choose "Feide guest users" and log in with your OpenIdP account.
 
 ![Feide guest users](imgs/feide-guest-authentication.png "Feide guest users")
 
-You should now have access to the service using the OpenIdP account.  
-Please note that you still have to use your regular Feide-account to deploy and make changes to your services.  
