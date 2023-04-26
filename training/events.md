@@ -21,6 +21,7 @@ The courses are free of charges. Our upcoming courses are listed below:
 ```{eval-rst}
 .. toctree::
    :maxdepth: 1
+
    events/2023-04-hpc-on-boarding.md   
    events/2023-03-introduction-to-second-generation-nird.md
    events/2022-11-best-practices-on-NRIS-clusters.md
