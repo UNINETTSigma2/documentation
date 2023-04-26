@@ -49,14 +49,47 @@ If you want to receive further information about training events, and other anno
 The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT, NTNU & Sigma2. Ordinary registration closes on **4th May**.
 **Register  [here](https://skjemaker.app.uib.no/view.php?id=14358758)**
 
-## Time, date (all times CET)
+## Time, date (all times CEST)
 |   Date    |  Time   |  Topic  |
 | :----------- | :----------- | :---------- |
 | Tue 09.05    | 09:00 - 12:30 | NRIS HPC Systems Overview & Best Practices |
 | Wed 10.05    | 09:00 - 12:30 | Trouble shooting & Resource Management |
 | Thu 11.05    | 09:00 - 12:30 | Software Installation & GPU Intro |
 
-- A detailed schedule will be updated a week before the event.
+## Schedule
+
+**Day1 - Tuesday 9th May 2023**
+
+- 09:00-09:10 - Welcome, Practical information & icebreaker 
+- 09:10-09:45 - NRIS Infrastructure (Einar Næss Jensen)
+- 09:50-10:30 - Job Types and Queue Systems on NRIS Clusters (Bjørn-Helge Mevik)
+- 10:30-10:45 - Break
+- 10:45-11:30 - Using the HPC resources effectively (Ole W. Saastad)
+- 11:30-11:45 - Break
+- 11:45-12:15 - Summary and exercise demo (Ole W. Saastad)
+- 12:15-12:30 - Q&A
+
+**Day2 - Wednesday 10th May 2023**
+
+- 09:00-09:10 - Welcome, Practical information &icebreaker
+- 09:10-09:50 - HPC Best Practices & Trouble shooting (Ole W. Saastad)
+- 09:50-10:00 - Break
+- 10:00-10:45 - {ref}`choosing-memory-settings` + Exercise (Radovan Bast & Espen Tangen)
+- 10:45-11:00 - Break
+- 11:00-11:45 - {ref}`choosing-number-of-cores` + Exercise (Radovan Bast & Espen Tangen)
+- 11:45-12:00 - Break
+- 12:00-12:30 - Q&A & Discussion
+
+**Day3 - Thursday 11th May 2023**
+
+- 09:00-09:10 - Welcome, Practical information &icebreaker question
+- 09:10-10:00 - [Software Installation](https://documentation.sigma2.no/software/userinstallsw.html) (Jørn Dietze)
+- 10:00-10:15 - Break
+- 10:15-11:00 - Software Installation continues (Jørn Dietze)
+- 11:00-11:15 - Break
+- 11:15-12:15 - Introduction to GPU (Hicham Agueny)
+- 12:15-12:30 - Q&A
+
 
 ## Code of Conduct
 
@@ -69,6 +102,21 @@ it to [the training team](mailto:training@nris.no).
 ## Preparing your machine for the hands-on exercises
 
 We assume you have the necessary tools installed on your machine and are able
-to use them. You need tools to login into a remote machine (eg: ssh). If you
-need to install such tools, please see [prepare your machine
-section](https://wiki.uib.no/hpcdoc/index.php/HPC_and_NIRD_toolkit_course_fall_2020#Preparing_your_machine_for_the_course). If you are using Windows10 or earlier versions and you don’t have a terminal to execute UNIX commands, you are requested to install [gitforwindows](https://gitforwindows.org/).
+to use them. You need tools to login into a remote machine.
+If you are using Windows 10 or earlier versions and you don’t have a terminal to execute UNIX
+commands, you are requested to install [Git for windows](https://gitforwindows.org/).
+
+## Instructors
+
+- Einar Næss Jensen
+- Bjørn-Helge Mevik
+- Ole W. Saastad
+- Radovan Bast
+- Espen Tangenk
+- Jørn Dietze
+- Hicham Agueny
+
+## Coordinators 
+
+- Siri Kallhovd
+- Dhanya Pushpadas
