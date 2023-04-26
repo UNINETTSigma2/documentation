@@ -8,6 +8,7 @@ Running jobs
 
    submitting.md
    choosing_job_types.md
+   job_scripts/array_jobs.md
    job_scripts.md
    monitoring.md
    slurm_output.md

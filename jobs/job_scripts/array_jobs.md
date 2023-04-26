@@ -96,12 +96,22 @@ two processes (`--ntasks=2`) and get a total of `8GB` of memory (2 x
 
 If your files has inconsistent naming (for example "dataset_one", dataset_2", "my_dataset" etc.), you either have to rename your files or include code in your script to handle your files. Here is one way to handle inconsistent names:
 
+```{warning}
+You need to have the same number of files in your dataset directory as the number of tasks you specify in the `--array` switch i.e. count the number of files in your dataset directory and use that number in the `--array` switch. For example, to check how many csv files are in the directory named data, use `ls data/*.csv | wc -l` in the terminal.
+
+```
+
 ```{code-block} bash
+--------------
+emphasize-lines: 5, 6, 7
+--------------
 #!/bin/bash
 #SBATCH --account=YourProject
 #SBATCH --time=1:0:0
 #SBATCH --mem-per-cpu=4G --ntasks=2
-#SBATCH --array=1-200
+#SBATCH --array=0-199             # we start at 0 instead of 1 for this
+                                  # example, as the $SLURM_ARRAY_TASK_ID
+                                  # variable starts at 0
 
 set -o errexit # exit on errors
 set -o nounset # treat unset variables as errors
@@ -110,13 +120,13 @@ module --quiet purge   # clear any inherited modules
 DATASETS=(data/*)  # get all files in the directory named "data". Replace
                    # "data" with the path of your dataset directory.
 
-FILE=${DATASETS[$SLURM_ARRAY_TASK_ID-1]}
+FILE=${DATASETS[$SLURM_ARRAY_TASK_ID]}
 FILENAME=$(basename ${FILE%.*})
 
 YourProgram $FILE > ${FILENAME}.out
 ```
 
-`DATASETS=(data/*)` will get all files in the directory named "data" and store them in an array. The array is indexed from 0, so the first file will be stored in `DATASETS[0]`, the second in `DATASETS[1]` and so on. The `SLURM_ARRAY_TASK_ID` variable is set by the Slurm system and is the task ID of the current task, with counting starting with 1. By subtracting the `SLURM_ARRAY_TASK_ID` variable with 1, we ensure correct correspondence between `SLURM_ARRAY_TASK_ID` and the `DATASETS`array.
+`DATASETS=(data/*)` will get all files in the directory named "data" and store them in an array. The array is indexed from 0, so the first file will be stored in `DATASETS[0]`, the second in `DATASETS[1]` and so on. The `SLURM_ARRAY_TASK_ID` variable is set by the Slurm system and is the task ID of the current task, with counting starting with 0.
 
 ```{tip}
 If your datasets for example are csv files and the directory contains other file types, use DATASETS=(data/*.csv) instead.
@@ -138,13 +148,13 @@ And use the following example as you run script:
 #SBATCH --account=YourProject
 #SBATCH --time=1:0:0
 #SBATCH --mem-per-cpu=4G --ntasks=2
-#SBATCH --array=1-200
+#SBATCH --array=0-199
 
 set -o errexit # exit on errors
 set -o nounset # treat unset variables as errors
 module --quiet purge   # clear any inherited modules
 
-IDX=($SLURM_ARRAY_TASK_ID - 1)
+IDX=($SLURM_ARRAY_TASK_ID)
 FILE=$(sed "${IDX}q;d" map_files.txt)
 FILENAME=$(basename ${FILE%.*})
 
