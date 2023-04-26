@@ -14,7 +14,6 @@ The courses are free of charges. Our upcoming courses are listed below:
    :maxdepth: 1
    
    events/2023-modern-fortran-workshop-series.md
-   events/2023-04-hpc-on-boarding.md
    events/2023-05-best-practices-on-NRIS-clusters.md
 ```
 
@@ -22,7 +21,7 @@ The courses are free of charges. Our upcoming courses are listed below:
 ```{eval-rst}
 .. toctree::
    :maxdepth: 1
-   
+   events/2023-04-hpc-on-boarding.md   
    events/2023-03-introduction-to-second-generation-nird.md
    events/2022-11-best-practices-on-NRIS-clusters.md
    events/2022-10-hpc-on-boarding.md
