@@ -105,3 +105,18 @@ We assume you have the necessary tools installed on your machine and are able
 to use them. You need tools to login into a remote machine.
 If you are using Windows 10 or earlier versions and you don’t have a terminal to execute UNIX
 commands, you are requested to install [Git for windows](https://gitforwindows.org/).
+
+## Instructors
+
+- Einar Næss Jensen
+- Bjørn-Helge Mevik
+- Ole W. Saastad
+- Radovan Bast
+- Espen Tangenk
+- Jørn Dietze
+- Hicham Agueny
+
+## Coordinators 
+
+- Siri Kallhovd
+- Dhanya Pushpadas
