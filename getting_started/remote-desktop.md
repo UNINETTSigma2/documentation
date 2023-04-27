@@ -51,7 +51,7 @@ Give this session a suitable name, for instance FramDesktop.
 	* For windows: Create {ref}`SSH keys <ssh>` on your local machine and point to the public key.
 * Try auto login: `Check` (see picture below). Especially advised for machines running Mac and Linux OS, which has "hidden path" standard for ssh-key folder. 
 
-![X2Go client session setup window emphesizing Auto SSH log in](X2Go_SessionSetupSSH.png)
+![X2Go client session setup window emphasizing Auto SSH log in](X2Go_SessionSetupSSH.png)
 
 <u>*Proxy server section*</u>
 
