@@ -49,7 +49,9 @@ Give this session a suitable name, for instance FramDesktop.
 * Use RSA/DSA key for ssh connection: 
 	* For Mac and Linux: Leave blank if you want to use your ssh-keys from standard location. 
 	* For windows: Create {ref}`SSH keys <ssh>` on your local machine and point to the public key.
-* Try auto login: `Check`
+* Try auto login: `Check` (see picture below). Especially advised for machines running Mac and Linux OS, which has "hidden path" standard for ssh-key folder. 
+
+![X2Go client session setup window emphesizing Auto SSH log in](X2Go_SessionSetupSSH.png)
 
 <u>*Proxy server section*</u>
 
@@ -60,7 +62,7 @@ Give this session a suitable name, for instance FramDesktop.
 * Choose ``XFCE``in the drop down menu of you want a desktop type setup.
 * Choose ``Single application``and add ``usr/bin/xterm``in the command window if you just want an xterm application running. 
 
-Then you are basically good to go. Log in to the machine in question, start a terminal window and get started working. 
+Then you are basically good to go. Log in to the machine in question by clicking on one of the predefined sessions you have just made, start a terminal window and start working. 
 
 ![Starting an X2Go session from a session icon](X2Go_SessionStart.png)
 
