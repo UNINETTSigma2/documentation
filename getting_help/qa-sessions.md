@@ -30,25 +30,22 @@ help you better. If you have general or specific questions about
 the event, please write to `jorn.dietze@uit.no`.
 
 
-## How to get notified about these events
-
-You can subscribe to this
-[notification-only mailing list](https://sympa.uninett.no/lists/nris.no/info/events).
-This is a low-traffic announcement list about this event and similar training
-events.
-
 
 ## Next events
 
-- **2023-02-23, 13:00 - 14:30**, [Join us on Zoom](https://uit.zoom.us/j/63238817048?pwd=Z0NsSkxJb0JqeEZ2NENVZE5LY0RkQT09)
-- 2023-03-30, 13:00 - 14:30
-- 2023-04-27, 13:00 - 14:30
+[Join us on Zoom](https://uit.zoom.us/j/63238817048?pwd=Z0NsSkxJb0JqeEZ2NENVZE5LY0RkQT09)
+
+- 2023-05-25, 13:00 - 14:30
+- 2023-06-29, 13:00 - 14:30
 
 
 ## Past events
 
 [Questions and answers of previous session](https://hackmd.io/@hpc/q-a)
 
+- 2023-04-27, 13:00 - 14:30
+- 2023-03-30, 13:00 - 14:30
+- 2023-02-23, 13:00 - 14:30
 - 2023-01-26, 13:00 - 14:30
 - 2022-11-09, 13:00 - 14:30
 - 2022-09-29, 13:00 - 14:30, "Focus on bioinformatics software & databases"
