@@ -53,7 +53,3 @@ $ cp /nird/projects/NSxxxxK/.snapshots/DATE/dataset1/myfile /nird/projects/NSxxx
 
 Select the DATE accordingly to your case.
 
-```{note}
-   Snapshots from HPCs are not yet enabled. This will be enabled during the initial 
-   production phase.
-```

@@ -16,10 +16,6 @@ directories (when relevant) in `/nird/home/<username>/backup/fram` ,
 `/nird/home/<username>/backup/saga` and  `/nird/home/<username>/backup/betzy`.
 The default quota is including the backup of HPC home directory. 
 
-```{warning}
-Please note that back up from HPC home directories to the new NIRD home 
-is not yet enabled. This is expected to be activated close to the production phase.
-```
 
 ## Scratch directories
 

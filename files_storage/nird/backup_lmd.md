@@ -51,9 +51,4 @@ as a line on it's own.
 
 Mentions of `/datasets` on its own, would exclude everything in that directory.
 
-```{note}
-Backup is configured on the new NIRD and will be fully activated during the 
-initial production phase.
-
-```
 
