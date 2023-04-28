@@ -14,10 +14,10 @@ before getting access.
 To access or transfer data, we recommend to use `ssh` or
 `rsync`. More details on our page about {ref}`file-transfer`.
 
-The new NIRD can be accessed via the following address
+The NIRD can be accessed via the following address
 
 ```console
-login.nird-lmd.sigma2.no
+login.nird.sigma2.no
 ```
 
 The login credentials are the same as for the old NIRD.
@@ -26,11 +26,9 @@ You will be logged into your home area `/nird/home/$USERHOME`
 
 
 ```{note}
-Your $HOME directory is  empty now. User home ($HOME) migration is user’s responsibility. 
-Please see the {ref}`nird-migration-guide` for how to migrate files from your old `$HOME`.
-
-Once the old nird is decommisioned, the new nird can be  accessed via the same address as old nird,
- ie., `login.nird.sigma2.no`.
+You as user are expected to migrate data from the old $HOME folder to the 
+new $HOME folder by yourself.  Please see {ref}`access to old NIRD` session
+on how to do it.
 ```
 
 ## Software access
