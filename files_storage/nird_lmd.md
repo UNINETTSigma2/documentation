@@ -2,7 +2,7 @@
 
 
 # NIRD 
-## National Infrastructure for Research Data @Lefdal Mine Datacenter
+## National Infrastructure for Research Data
 
 **NIRD** is the **N**ational e-**I**nfrastructure for **R**esearch **D**ata. It
   is owned by [Sigma2](https://www.sigma2.no) and operated by [NRIS](https://www.sigma2.no/nris).
