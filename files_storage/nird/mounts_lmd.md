@@ -7,14 +7,13 @@ The path for tiered storage(TS) project is
 
 `/nird/projects/NSxxxxK`
 
+and the path for datalake (DL) project is 
+
+`/nird/datalake/NSxxxxK`
 
 where ` NSxxxxK` is the ID of the project.
 
-```{note}
-The new NIRD is not yet mounted on HPCs.
-Mount points for NIRD on the HPC systems and DNS entries will be updated 
-as soon as all projects are migrated.
-```
+
 
 ```{warning}
 
