@@ -14,7 +14,7 @@ login-tos.nird.sigma2.no
 ```
 Note that old NIRD can be accessed until the old NIRD is decommissioned.
 Migration of the data on $HOME shall be completed by the end of May 2023.
- Beyond this term it the integrity of the data will be not guaranteed.
+ Beyond this term the integrity of the data will be not guaranteed.
  If you need some advice or have some questions, please do not hesitate 
 to contact us via support@nris.no.
 
