@@ -31,14 +31,14 @@ login, please {ref}`contact us <support-line>` immediately.
 ## saga.sigma2.no
 
 - ED25519:
-  - `MD5:55:52:eb:a5:c3:a9:18:be:02:15:ea:60:19:d7:5e:06`
-  - `SHA256:ryqAxpKDjNLLa5VeUPclQRaZBOIjd2HFgufUEnn4Jrw`
+  - `MD5:2b:c2:ce:c0:f1:b8:0a:95:ec:db:b4:f3:fb:ee:e9:70`
+  - `SHA256:YOkZ1uudXrFmaigdnpZ64z497ZccNhdZe/abFkDXOH8`
 - ECDSA:
   - `MD5:13:4e:ae:66:89:0d:24:27:b8:15:87:24:31:ed:32:af`
   - `SHA256:qirKlTjO9QSXuCAiuDQeDPqq+jorMFarCW+0qhpaAEA`
 - RSA:
-  - `MD5:83:5e:c5:c3:95:dc:9e:b9:34:87:f6:df:4b:74:04:6b`
-  - `SHA256:WgRP8okUDv2j8SwDxj7ZoNRQDOlJwVtvRqVf1SzXgdU`
+  - `MD5:61:e4:49:4b:4e:00:14:2d:9d:b9:ac:99:c2:16:e6:ab`
+  - `SHA256:mY+Po9LKAlZGzMRHUmq1abrSOohifdN7+5VUmRTW4tE`
 
 
 ## betzy.sigma2.no
