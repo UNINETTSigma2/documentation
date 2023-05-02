@@ -10,7 +10,7 @@ The current Norwegian academic HPC infrastructure consists of three systems, loc
 
 Each of the facilities consists of a compute resource (a number of compute nodes each with a number of processors and internal shared-memory, plus an interconnect that connects the nodes), a central storage resource that is accessible by all the nodes, and a secondary storage resource for back-up (and in few cases also for archiving). All facilities use variants of the UNIX operating system.
 
-Additionally, [NIRD](/files_storage/nird.md) provides a service platform, storage and archiving services for research data. Here you can for instance request your application to be deployed, build integrated solutions and make sure data is safe and accessible.
+Additionally, {ref}`nird` provides a service platform, storage and archiving services for research data. Here you can for instance request your application to be deployed, build integrated solutions and make sure data is safe and accessible.
 
 
 ## Comparison between current hardware

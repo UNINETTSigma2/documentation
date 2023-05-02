@@ -83,7 +83,7 @@ Here the container is mounted to the path `${MyEx}`, where the Python applicatio
 ## Case example: Profiling a Resnet 18 model
 We consider the Resnet 18 model as an example to illustarte profiling with [PyTorch profiler](https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html). Here we list the lines of code required to enable profiling with [PyTorch Profiler](https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html)
 
-```python
+```
 with torch.profiler.profile(
     activities=[
         torch.profiler.ProfilerActivity.CPU,
@@ -111,7 +111,7 @@ To be incorporated just above the training loop
         prof.step()
 ```
 
-Here is a code example of the Resnet18 model, in which profiling is enabled. The code is adapted from the [PyTorch tutorial](#https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html).
+Here is a code example of the Resnet18 model, in which profiling is enabled. The code is adapted from the [PyTorch tutorial](https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html).
 
 ```{eval-rst}
 .. literalinclude:: pytorch_profiler/resnet18_with_profiler_api.py
@@ -122,7 +122,7 @@ Here is a code example of the Resnet18 model, in which profiling is enabled. The
 
 ```
 
-For reference, we provide here the same application but without enabling profiling. The code is adapted from the [PyTorch tutorial](#https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html).
+For reference, we provide here the same application but without enabling profiling. The code is adapted from the [PyTorch tutorial](https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html).
 
 ```{eval-rst}
 .. literalinclude:: pytorch_profiler/resnet18_without_profiler_api.py
@@ -133,7 +133,7 @@ For reference, we provide here the same application but without enabling profili
 
 ```
 
-In the lines of code defined above, one needs to specify the [setting for profiling](#https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html). The latter can be split into three main parts:
+In the lines of code defined above, one needs to specify the [setting for profiling](https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html). The latter can be split into three main parts:
 - Import `torch.profiler`
 - Specify the profiler context: i.e. which kind of **activities** one can profile. e.g. CPU activities (i.e. `torch.profiler.ProfilerActivity.CPU`), GPU activities (i.e. `torch.profiler.ProfilerActivity.CUDA`) or both activities.
 - Define the **schedule**; in particular, the following options can be specified:
@@ -321,7 +321,7 @@ echo "--nbr of gpus_per_node" $SLURM_GPUS_PER_NODE
 
 More details about how to write a job script can be found [here](https://documentation.sigma2.no/jobs/job_scripts.html).
 
-(conclusion)=
+(pytorch-conclusion)=
 # Conclusion
 In conclusion, we have provided a guide on how to perform code profiling of GPU-accelerated Deep Learning models using the PyTorch Profiler. The particularity of the profiler relies on its simplicity and ease of use without installing additional packages and with a few lines of code to be added. These lines of code constitute the setting of the profiler, which can be customized according to the desired performance metrics. The profiler provides an overview of metrics; this includes a summary of GPU usage and Tensor cores usage (if it is enabled), this is in addition to an advanced analysis based on the view of GPU kernel, memory usage in time, trace and modules. These features are key elements for identifying bottlenecks in an application. Identifying these bottlenecks has the benefit of optimizing the application to run efficiently and reliably on HPC systems. 
 
