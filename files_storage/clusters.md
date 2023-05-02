@@ -251,7 +251,7 @@ the quota to up to 10 TB by motivating why this is needed. Such requests should 
 6. Based on your answers above, how much storage quota do you think you need?
 
 
-Requests for more than 10 TB require an application for a separate [NIRD](nird.md) project area.
+Requests for more than 10 TB require an application for a separate {ref}`nird` project area.
 
 Note that unused quota can also be withdrawn for technical reasons (too little
 space) or organisational reasons (less needs/less usage/less members of

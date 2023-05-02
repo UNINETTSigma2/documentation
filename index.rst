@@ -185,7 +185,6 @@ should include an `acknowledgement following this template
    :caption: Files, storage and backup
 
    files_storage/file_transfer.md
-   files_storage/nird.md
    files_storage/nird_lmd.md
    files_storage/clusters.md
    files_storage/quota.md
