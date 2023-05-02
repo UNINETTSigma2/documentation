@@ -57,14 +57,14 @@ login, please {ref}`contact us <support-line>` immediately.
 ## login.nird.sigma2.no
 
 - ED25519:
-  - `MD5:bc:c9:a9:44:ca:b5:cb:53:56:68:02:d1:f1:6a:1a:78`
-  - `SHA256:sI/YOUiasD/yA/g8UMc2Isg4imXs7l8x/QQK01XfaOQ`
+  - `MD5:c4:23:90:52:eb:d9:eb:e5:41:0d:ef:4d:ac:78:2c:db`
+  - `SHA256:A8gq7aiQHoK4QzRi1hMpLNbo40ZTZxlGfDCpDWZy/ZQ`
 - ECDSA:
-  - `MD5:02:02:cc:9d:c5:b7:43:42:5b:cd:d2:82:09:48:31:e9`
-  - `SHA256:ZkBvlcu4b5QMf1o9nKzoPHTmSTAzVhogZxKYvNw9N9I`
+  - `MD5:78:ea:cb:f7:f0:6b:02:55:17:0c:b1:5f:de:2a:3e:78`
+  - `SHA256:lawnWA5fHTX64XB8OU0WUrQu/dCtFgCfvMC+i/zBCrI`
 - RSA:
-  - `MD5:31:ff:b1:14:f0:34:dd:20:75:57:90:bd:49:b6:b4:27`
-  - `SHA256:Jp8LJDcqXyDn0yt2s2zZy49ukkMRwNqpJrj72kuqQaA`
+  - `MD5:54:c9:b7:71:22:9e:bd:e9:ad:5c:18:fe:7b:41:e7:01`
+  - `SHA256:xpJZ+XiY4oy3df/R5/LN8i30Z5/EiYo6YSCUQdKkQ/U`
 
 
 ## Display all fingerprints for a certain server
