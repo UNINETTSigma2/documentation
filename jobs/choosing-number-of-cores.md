@@ -41,7 +41,7 @@ working on restoring this.)
 
 ## Using top
 
-While the job is running, find out on which node(s) it runs using `squeue -u $USER`,
+While the job is running, find out on which node(s) it runs using `squeue --me`,
 then `ssh` into one of the listed compute nodes and run `top -u $USER`.
 
 Some clusters also have `htop` available which produces similar output as `top`
@@ -112,10 +112,10 @@ system.
 
 We can build our example binary with this script (`compile.sh`):
 ```
-#!/bin/bash
+#!/usr/bin/env bash
 
 module purge
-module load foss/2020b
+module load foss/2022b
 
 mpicc example.c -O3 -o mybinary -lm
 ```
@@ -124,23 +124,22 @@ Now take the following example script
 (adapt `--account=nn____k`; this is tested on Saga):
 ```{code-block}
 ---
-emphasize-lines: 9-10
+emphasize-lines: 8-9
 ---
-#!/bin/bash
+#!/usr/bin/env bash
 
 #SBATCH --account=nn____k
-#SBATCH --qos=devel
 
-#SBATCH --job-name='scaling'
-#SBATCH --time=0-00:07:00
+#SBATCH --job-name='8-core'
+#SBATCH --time=0-00:10:00
 #SBATCH --mem-per-cpu=1GB
 #SBATCH --ntasks=8
-#SBATCH -o 008.out
+#SBATCH -o 8.out
 
 module purge
-module load foss/2020b
+module load foss/2022b
 
-srun ./mybinary
+time srun ./mybinary
 ```
 
 Run a series of calculations on 1, 2, 4, 8, 16, 32, 64, and 128 cores.
@@ -149,14 +148,14 @@ You might get the following timings:
 
 | Number of cores | Time spent in mybinary |
 |-----------------|------------------------|
-|   1             |       00:05:38         |
-|   2             |       00:02:51         |
-|   4             |       00:01:28         |
-|   8             |       00:00:47         |
-|  16             |       00:00:29         |
-|  32             |       00:00:22         |
-|  64             |       00:00:28         |
-| 128             |       00:01:22         |
+|   1             |      6m59.233s         |
+|   2             |      3m33.082s         |
+|   4             |      1m52.032s         |
+|   8             |      0m58.532s         |
+|  16             |      0m42.930s         |
+|  32             |      0m29.774s         |
+|  64             |      0m46.347s         |
+| 128             |      1m52.461s         |
 
 Please try this. What can we conclude? And how can we explain it?
 
@@ -202,6 +201,14 @@ CPU Efficiency: 56.25% of 00:01:20 core-walltime
 Job Wall-clock time: 00:00:10
 Memory Utilized: 250.72 MB (estimated maximum)
 Memory Efficiency: 3.06% of 8.00 GB (1.00 GB/core)
+```
+
+
+## Using jobstats
+
+Try it with one of your jobs:
+```console
+$ jobstats -j 12345
 ```
 
 
