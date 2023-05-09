@@ -127,7 +127,7 @@ $ gfortran example.f90 -o mybinary
 
 ### Using top
 
-While the job is running, find out on which node(s) it runs using `squeue -u $USER`,
+While the job is running, find out on which node(s) it runs using `squeue --me`,
 then `ssh` into one of the listed compute nodes and run `top -u $USER`.
 
 
@@ -138,13 +138,12 @@ We can use the following example script (adapt `--account=nn____k`; this is test
 ---
 emphasize-lines: 3-3
 ---
-#!/bin/bash
+#!/usr/bin/env bash
 
 #SBATCH --account=nn____k
-#SBATCH --qos=devel
 
 #SBATCH --job-name='mem-profiling'
-#SBATCH --time=0-00:01:00
+#SBATCH --time=0-00:01:30
 #SBATCH --mem-per-cpu=3500M
 #SBATCH --ntasks=1
 
@@ -154,38 +153,35 @@ gfortran example.f90 -o mybinary
 ./mybinary
 ```
 
-Slurm generates an output for each job you run. For instance job number `4200691`
-generated output `slurm-4200691.out`.
+Slurm generates an output for each job you run. For instance job number `5123654`
+generated output `slurm-5123654.out`.
 
 This output contains the following:
 ```{code-block}
 ---
-emphasize-lines: 12-12
+emphasize-lines: 14,17
 ---
-Task and CPU usage stats:
-       JobID    JobName  AllocCPUS   NTasks     MinCPU MinCPUTask     AveCPU    Elapsed ExitCode
------------- ---------- ---------- -------- ---------- ---------- ---------- ---------- --------
-4200691      mem-profi+          1                                             00:00:37      0:0
-4200691.bat+      batch          1        1   00:00:01          0   00:00:01   00:00:37      0:0
-4200691.ext+     extern          1        1   00:00:00          0   00:00:00   00:00:37      0:0
+Submitted 2023-05-09T21:51:15; waited 23.0 seconds in the queue after becoming eligible to run.
 
-Memory usage stats:
-       JobID     MaxRSS MaxRSSTask     AveRSS MaxPages   MaxPagesTask   AvePages
------------- ---------- ---------- ---------- -------- -------------- ----------
-4200691
-4200691.bat+   3210476K          0   3210476K        0              0          0
-4200691.ext+          0          0          0        0              0          0
+Requested wallclock time: 2.0 minutes
+Elapsed wallclock time:   37.0 seconds
 
-Disk usage stats:
-       JobID  MaxDiskRead MaxDiskReadTask    AveDiskRead MaxDiskWrite MaxDiskWriteTask   AveDiskWrite
------------- ------------ --------------- -------------- ------------ ---------------- --------------
-4200691
-4200691.bat+        1.11M               0          1.11M        0.02M                0          0.02M
-4200691.ext+        0.00M               0          0.00M            0                0              0
+Task and CPU statistics:
+ID             CPUs  Tasks  CPU util                Start  Elapsed  Exit status
+5123654          32            0.0 %  2023-05-09T21:51:38   37.0 s  0
+5123654.batch    32      1     0.1 %  2023-05-09T21:51:38   37.0 s  0
+
+Used CPU time:   1.0 CPU seconds
+Unused CPU time: 19.7 CPU minutes
+
+Memory statistics, in GiB:
+ID              Alloc   Usage
+5123654          59.0
+5123654.batch    59.0     3.1
 ```
 
-From this (see below `Memory usage stats`) we can find out that the job needed
-`3210476K` memory (3210476 KB).
+From this (see below `Memory statistics`) we can find out that the job used 3.1
+GiB memory.
 
 Note that **Slurm samples the memory every 30 seconds**. This means that if your
 job is shorter than 30 seconds, it will show that your calculation consumed
@@ -208,44 +204,72 @@ or `mpirun`) is counted as a *step*, called the `batch` step.
 
 This creates a short version of the above.
 
-As an example, I want to know this for my job which had the number `4200691`:
+As an example, I want to know this for my job which had the number `5123654`:
 ```console
-$ sacct -j 4200691 --format=MaxRSS
+$ sacct -j 5123654 --format=MaxRSS
 
     MaxRSS
 ----------
 
-  3210476K
-         0
+  3211232K
+      128K
 ```
 
-From this we see that the job needed `3210476K` memory, same as above. The
+From this we see that the job needed `3211232K` memory, same as above. The
 comment above about possibly multiple steps applies also here.
+
+
+### Using jobstats
+
+`jobstats` is always run as part of your job output. But knowing that the
+command exists also on its own can be useful if you still know/remember the job
+number (here: 5123654) but you have lost the Slurm output.
+
+```console
+$ jobstats -j 5123654
+
+Submitted 2023-05-09T21:51:15; waited 23.0 seconds in the queue after becoming eligible to run.
+
+Requested wallclock time: 2.0 minutes
+Elapsed wallclock time:   37.0 seconds
+
+Task and CPU statistics:
+ID             CPUs  Tasks  CPU util                Start  Elapsed  Exit status
+5123654          32            0.0 %  2023-05-09T21:51:38   37.0 s  0
+5123654.batch    32      1     0.1 %  2023-05-09T21:51:38   37.0 s  0
+
+Used CPU time:   1.0 CPU seconds
+Unused CPU time: 19.7 CPU minutes
+
+Memory statistics, in GiB:
+ID              Alloc   Usage
+5123654          59.0
+5123654.batch    59.0     3.1
+```
 
 
 ### Using seff
 
 `seff` is a nice tool which we can use on **completed jobs**. For example here we ask
-for a summary for the job number 4200691:
+for a summary for the job number 5123654:
 
-```console
-$ seff 4200691
-```
+```{code-block} console
+---
+emphasize-lines: 12-13
+---
+$ seff 5123654
 
-```{code-block}
----
-emphasize-lines: 9-10
----
-Job ID: 4200691
-Cluster: saga
-User/Group: user/user
+Job ID: 5123654
+Cluster: fram
+User/Group: bast/bast
 State: COMPLETED (exit code 0)
-Cores: 1
+Nodes: 1
+Cores per node: 32
 CPU Utilized: 00:00:01
-CPU Efficiency: 2.70% of 00:00:37 core-walltime
+CPU Efficiency: 0.08% of 00:19:44 core-walltime
 Job Wall-clock time: 00:00:37
 Memory Utilized: 3.06 GB
-Memory Efficiency: 89.58% of 3.42 GB
+Memory Efficiency: 5.19% of 59.00 GB
 ```
 
 
@@ -254,15 +278,14 @@ Memory Efficiency: 89.58% of 3.42 GB
 In your job script instead of running `./mybinary` directly, prepend it with `/usr/bin/time -v`:
 ```{code-block}
 ---
-emphasize-lines: 15-15
+emphasize-lines: 14
 ---
-#!/bin/bash
+#!/usr/bin/env bash
 
 #SBATCH --account=nn____k
-#SBATCH --qos=devel
 
 #SBATCH --job-name='mem-profiling'
-#SBATCH --time=0-00:01:00
+#SBATCH --time=0-00:01:30
 #SBATCH --mem-per-cpu=3500M
 #SBATCH --ntasks=1
 
@@ -279,23 +302,23 @@ Then in the Slurm output we find:
 emphasize-lines: 10-10
 ---
 Command being timed: "./mybinary"
-User time (seconds): 0.32
-System time (seconds): 0.67
+User time (seconds): 0.22
+System time (seconds): 0.70
 Percent of CPU this job got: 2%
-Elapsed (wall clock) time (h:mm:ss or m:ss): 0:36.00
+Elapsed (wall clock) time (h:mm:ss or m:ss): 0:35.94
 Average shared text size (kbytes): 0
 Average unshared data size (kbytes): 0
 Average stack size (kbytes): 0
 Average total size (kbytes): 0
-Maximum resident set size (kbytes): 3210660
+Maximum resident set size (kbytes): 3210916
 Average resident set size (kbytes): 0
-Major (requiring I/O) page faults: 2
-Minor (reclaiming a frame) page faults: 2559
-Voluntary context switches: 19
-Involuntary context switches: 3
+Major (requiring I/O) page faults: 8
+Minor (reclaiming a frame) page faults: 2554
+Voluntary context switches: 22
+Involuntary context switches: 2
 Swaps: 0
-File system inputs: 1073
-File system outputs: 0
+File system inputs: 1776
+File system outputs: 8
 Socket messages sent: 0
 Socket messages received: 0
 Signals delivered: 0
@@ -304,7 +327,7 @@ Exit status: 0
 ```
 
 The relevant information in this context is `Maximum resident set size
-(kbytes)`, in this case 3210660 kB which is what we expected to find.  Note
+(kbytes)`, in this case 3210916 kB which is what we expected to find.  Note
 that it has to be `/usr/bin/time -v` and `time -v` alone will not do it.
 
 
@@ -317,7 +340,7 @@ Here is an example script (adapt `--account=nn____k`; this is tested on Saga):
 ---
 emphasize-lines: 11-12, 14
 ---
-#!/bin/bash
+#!/usr/env/bin bash
 
 #SBATCH --account=nn____k
 #SBATCH --qos=devel
