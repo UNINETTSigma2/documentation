@@ -121,7 +121,7 @@ mpicc example.c -O3 -o mybinary -lm
 ```
 
 Now take the following example script
-(adapt `--account=nn____k`; this is tested on Saga):
+(tested on Saga, please adapt the line containing `--account=nn____k` to reflect your project number):
 ```{code-block}
 ---
 emphasize-lines: 8-9
