@@ -35,7 +35,7 @@ This is the present test status for the installed modules for VASP.
 ## Supported versions available in the module system
 
 * 5.4.4 pl2 (not maintained, only for those that do not have VASP 6 licenses)
-* 6.3.0 (will be removed at some point)
+* 6.3.0 (will be removed at some point and should not be used)
 * 6.3.2 (recommended)
 
 Note that at Betzy we only support VASP >= 6.3.
@@ -76,17 +76,19 @@ Users have to supply the necessary input files, including any `POTCAR` files nee
 
 There are now one module per VASP flavor (`std` - standard, `gam` - gamma only and `ncl` - non-collinear). Meaning when you now load a module, there is only one executable, `vasp`. For the example given above we load the module `VASP/6.3.2-intel-2021b-std-wannier90-libxc-hdf5-beef-<somehash>`. Here, `<somehash>` is a generated hash. i.e. `d7238be44ec2ed23315a16cc1549a1e3` based on the versions of libraries and extensions. This is done to avoid a very long module names containing the version numbers if each library included etc. In the future we might chose to go with something more compact, e.g. `VASP/6.3.2/<somehash>`. For now, we believe it is convenient to directly see which VASP version and what libraries are there etc., but not necessarily the Wannier90, BEEF, libxc version etc. The mapping between the hash and exact version numbers can be found here:
 
-| VASP version | Hash                             | Wannier90 (tag) | VTST (svn) | BEEF (tag) | SOL (commit)                             | libxc (tag) | hdf5 (tag) | note                           |
-|--------------|----------------------------------|-----------------|------------|------------|------------------------------------------|-------------|------------|--------------------------------|
-| 5.4.4 pl2    | 6dca52e0464347588557bc833ad7aef9 | 2.1.0           | -          | 0.1.1      | -                                        | -           | -          | -                              |
-| 5.4.4 pl2    | a695b2f1ed198f379d85666aef427164 | 2.1.0           | -          | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | -           | -          | -                              |
-| 5.4.4 pl2    | 3022db58e4b43f1ae0c4d395698b6f43 | 2.1.0           | 74         | 0.1.1      | -                                        | -           | -          | -                              |
-| 6.3.0        | 5289f748cfc70eba91b5b6c81efedad4 | 3.1.0           | -          | -          | -                                        | 5.2.2       | 1.12.1     | HDF5 functionality not enabled |
-| 6.3.2        | d7238be44ec2ed23315a16cc1549a1e3 | 3.1.0           | -          | 0.1.1      | -                                        | 5.2.2       | 1.12.1     | -                              |
-| 6.3.2        | 036257e2962196f7eed8c289f961c450 | 3.1.0           | -          | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | 5.2.2       | 1.12.1     | -                              |
-| 6.3.2        | 097e6cb5a78f237dc588ba9c7877f23b | 3.1.0           | 74         | 0.1.1      | -                                        | 5.2.2       | 1.12.1     | -                              |
-| 6.3.2        | 80241dda52da1b720557debb2cb446fe | 3.1.0           | 74         | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | 5.2.2       | 1.12.1     | -                              |
-
+| VASP version | Hash                             | Wannier90 (tag) | VTST (svn) | BEEF (tag) | SOL (commit)                             | libxc (tag) | hdf5 (tag) | note           |
+|--------------|----------------------------------|-----------------|------------|------------|------------------------------------------|-------------|------------|----------------|
+| 5.4.4 pl2    | 6dca52e0464347588557bc833ad7aef9 | 2.1.0           | -          | 0.1.1      | -                                        | -           | -          | -              |
+| 5.4.4 pl2    | a695b2f1ed198f379d85666aef427164 | 2.1.0           | -          | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | -           | -          | -              |
+| 5.4.4 pl2    | 3022db58e4b43f1ae0c4d395698b6f43 | 2.1.0           | 74         | 0.1.1      | -                                        | -           | -          | -              |
+| 6.3.2        | d7238be44ec2ed23315a16cc1549a1e3 | 3.1.0           | -          | 0.1.1      | -                                        | 5.2.2       | 1.12.1     | Fram and Betzy |
+| 6.3.2        | 036257e2962196f7eed8c289f961c450 | 3.1.0           | -          | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | 5.2.2       | 1.12.1     | Fram and Betzy |
+| 6.3.2        | 097e6cb5a78f237dc588ba9c7877f23b | 3.1.0           | 74         | 0.1.1      | -                                        | 5.2.2       | 1.12.1     | Fram and Betzy |
+| 6.3.2        | 80241dda52da1b720557debb2cb446fe | 3.1.0           | 74         | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | 5.2.2       | 1.12.1     | Fram and Betzy |
+| 6.3.2        | 0a928426e459cf2aeab3d0bf8f441c74 | 3.1.0           | -          | 0.1.1      | -                                        | 5.2.2       | 1.14.0     | Saga           |
+| 6.3.2        | 17dde9df298cd4ade20f0051444fd46a | 3.1.0           | -          | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | 5.2.2       | 1.14.0     | Saga           |
+| 6.3.2        | 61468720dbe38718a0515b486abaed7b | 3.1.0           | 74         | 0.1.1      | -                                        | 5.2.2       | 1.14.0     | Saga           |
+| 6.3.2        | 1bef30b436040d0e522f2cdc25e21cd4 | 3.1.0           | 74         | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | 5.2.2       | 1.14.0     | Saga           |
 
 Notice that the VASP version is not included when generating the hash, only the libraries and associated mods from the additions in the table above. Meaning, if we add a module with a new VASP version and do not need or do an update on any of the libraries, the hash should be the same. 
 
