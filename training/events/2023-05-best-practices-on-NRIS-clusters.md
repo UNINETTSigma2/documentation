@@ -74,9 +74,9 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 - 09:00-09:10 - Welcome, Practical information &icebreaker
 - 09:10-09:50 - HPC Best Practices & Trouble shooting (Ole W. Saastad)
 - 09:50-10:00 - Break
-- 10:00-10:45 - {ref}`choosing-memory-settings` + Exercise (Radovan Bast & Espen Tangen)
+- 10:00-10:45 - {ref}`choosing-memory-settings` + Exercise (Radovan Bast & Jørn Dietze)
 - 10:45-11:00 - Break
-- 11:00-11:45 - {ref}`choosing-number-of-cores` + Exercise (Radovan Bast & Espen Tangen)
+- 11:00-11:45 - {ref}`choosing-number-of-cores` + Exercise (Radovan Bast & Jørn Dietze)
 - 11:45-12:00 - Break
 - 12:00-12:30 - Q&A & Discussion
 
