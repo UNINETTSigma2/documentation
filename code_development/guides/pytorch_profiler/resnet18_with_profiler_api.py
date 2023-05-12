@@ -39,7 +39,7 @@ with torch.profiler.profile(
         wait=1,
         warmup=1,
         active=2),
-    on_trace_ready=torch.profiler.tensorboard_trace_handler('./result-4batch', worker_name='worker4'),
+    on_trace_ready=torch.profiler.tensorboard_trace_handler('./out', worker_name='worker4'),
     record_shapes=True,
     profile_memory=True,  # This will take 1 to 2 minutes. Setting it to False could greatly speedup.
     with_stack=True
