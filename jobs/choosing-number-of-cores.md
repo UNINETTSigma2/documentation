@@ -380,24 +380,24 @@ print("calculation completed")
 It can be interesting to try this example with the following run script (adapt `--account=nn____k`; this is tested on Saga):
 ```{code-block}
 ---
-emphasize-lines: 14-16
+emphasize-lines: 15-16
 ---
-#!/bin/bash
+#!/usr/bin/env bash
 
 #SBATCH --account=nn____k
-#SBATCH --qos=devel
 
 #SBATCH --job-name='example'
 #SBATCH --time=0-00:02:00
 #SBATCH --mem-per-cpu=1500M
+
 #SBATCH --nodes=1
-#SBATCH --tasks-per-node=4
+#SBATCH --tasks-per-node=1
+#SBATCH --cpus-per-task=4
 
-module load Python/3.6.6-foss-2018b
+module load SciPy-bundle/2023.02-gfbf-2022b
 
-# export MKL_NUM_THREADS=4
-# export NUMEXPR_NUM_THREADS=4
-# export OMP_NUM_THREADS=4
+# export MKL_NUM_THREADS=$OMP_NUM_THREADS
+# export NUMEXPR_NUM_THREADS=$OMP_NUM_THREADS
 
 python example.py
 ```
