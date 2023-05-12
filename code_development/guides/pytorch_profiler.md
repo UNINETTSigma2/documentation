@@ -192,7 +192,7 @@ $source Myenv/bin/activate
 ```console
 $tensorboard --logdir=./out --bind_all`
 ```
-Note that the profiled data are stored in the `out` folder. Runing the command prints out a message that includes
+Note that the profiled data are stored in the `out` folder. Running the command prints out a message that includes
 ```console
 ...
 ...
