@@ -172,11 +172,46 @@ This will generate a local address having a specific registered or private port,
 The syntax for local forwarding, which is configured using the option `–L`, can be written as, e.g.:
 
 ```console
-ssh -L 6009:local.host:6006 username@server.address.com
+ssh -L 6009:localhost:6006 username@server.address.com
 ```
 This syntax enables opening a connection to the jump server `username@server.address.com`, and forwarding any connection from port 6009 on the local machine to port 6006 on the server `username@server.address.com`. 
 
 Lastly, the local address `http://localhost:6009/` can be viewed in a Chrome or Firefox browser.
+
+
+### On Saga cluster
+
+Here is an example about viewing data using `TensorBoard` on Saga. We assume that TensorBoard plugin is installed in a virtual environment, which we name `Myenv` as described above. Here are main steps:
+
+**Step 1**: Source the virtual environment
+```console
+$source Myenv/bin/activate
+```
+
+**Step 2**: Run the tensorboard command 
+```console
+$tensorboard --logdir=./out --bind_all`
+```
+Note that the profiled data are stored in the `out` folder. Runing the command prints out a message that includes
+```console
+...
+...
+$TensorBoard 2.13.0 at http://login-3.saga.sigma2.no:6006/
+...
+```
+The output message contains the address of the current login node, which is in *our case* `login-3.saga.sigma2.no`. This address will be used as a jump server as expressed in the next step.
+
+**Step 3**: In a new terminal, run this command
+
+```console
+ssh -L 6009:localhost:6006 username@login-3.saga.sigma2.no
+```
+Note that the port number `6006` is taken form the address `login-3.saga.sigma2.no:6006`.
+
+**Step 4**: View the profiled data in a Chrome or Firefox browser
+```console 
+http://localhost:6009/
+```
 
 ```{eval-rst}
 
