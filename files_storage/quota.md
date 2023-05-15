@@ -157,8 +157,18 @@ is not size-quota controlled.
 To check the number of inodes in a directory and subsequent subdirectories, use the following command:
 
 ```console
-$ find . -maxdepth 1 -type d -exec sh -c 'echo -n "{}: "; find "{}" -type f | wc -l' \;
+$ find . -maxdepth 1 -type d -exec sh -c 'echo -n "{}: "; find "{}" -type f | wc -l' \; | sort -n -k2 -r
+
+/cluster/home/user: 75719
+/cluster/home/user/.conda: 39222
+/cluster/home/user/.rustup: 20526
+/cluster/home/user/work: 11983
+/cluster/home/user/project: 1134
+/cluster/home/user/something: 602
 ```
+
+The above command counts the number of files in each directory and lists them
+sorted with the most numerous directory on top.
 
 Please contact support if you are in this situation and we can then together evaluate
 whether it makes sense to increase the inode quota for you.
