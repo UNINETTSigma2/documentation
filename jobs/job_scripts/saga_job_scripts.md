@@ -149,16 +149,6 @@ probably:
   Can be used *instead of* `--mem-per-cpu`, (but cannot be used
   *together with* it).
 
-```{attention}
-Due to a bug in Slurm `--gpus-per-task` is not working correctly, jobs using
-this option will be billed more core hours than what the job is actually using.
-
-Users should revert to using `--gpus` or `--gpus-per-node` for now.
-
-The latest update on this bug can be found in [this OpsLog
-post](https://opslog.sigma2.no/2021/11/26/gpus-per-task-not-working-correctly-on-saga/).
-```
-
 See [sbatch](https://slurm.schedmd.com/sbatch.html) or `man sbatch`
 for the details, and other GPU related specifications.
 

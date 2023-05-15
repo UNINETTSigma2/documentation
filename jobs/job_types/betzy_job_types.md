@@ -43,7 +43,7 @@ This is the default job type. In _normal_ jobs, the queue system hands out compl
   RAM and 4 x Nvidia A100 GPUs with 40 GiB RAM
 - __Parameter for sbatch/srun__:
     - `--partition=accel`
-    - `--gpus=N`, `--gpus-per-task=N` or similar, with `N` being the number of GPUs
+    - `--gpus=N`, `--gpus-per-node=N` or similar, with `N` being the number of GPUs
 - __Job Scripts__: {ref}`job_scripts_betzy_accel`
 
 Can be combined with `--qos=devel` for shorter development tasks which require
