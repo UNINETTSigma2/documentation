@@ -1,215 +1,449 @@
 (installing-with-conda)=
+
 # Installing software with Conda (Anaconda & Miniconda)
 
-You can install many R, Python, and other packages yourself using
-[Conda](https://docs.conda.io/en/latest/). Conda enables you to easily install complex packages and software. Creating multiple environments allows you to have installations of the same software in different versions or incompatible software collections at once. You can easily share a list of the installed packages with collaborators or colleagues, so they can set up the same environment in a matter of minutes.
-
-Anaconda and Miniconda are two distribution options for Conda. Anaconda is a full-fledged distribution that includes a large number of pre-installed packages, while Miniconda is a minimal distribution that comes with only the essential packages required to set up Conda. If you prefer a lightweight installation and want more control over the packages you install, Miniconda might be a better choice. On the other hand, if you want a comprehensive set of packages out of the box, Anaconda is the way to go.
-
-
-## Setup
-
-First, you need to load the Miniconda or Anaconda module, which serves as a package manager for Python and R. Conda makes it easy to have multiple environments, allowing you to run different versions of the same software or incompatible software collections without interference.
-
-### Load conda module
-Start by removing all preloaded modules, which can complicate things. We then display all installed versions and load the newest Miniconda or Anaconda:
-
-  ``` sh
-  $ ml purge
-  $ ml avail conda
-  ```
-
-We then load Miniconda or Anaconda:
-
-  ``` sh
-  $ ml Miniconda3/4.9.24 # Replace with one of the versions available on the system
-  ```
-  or
-  ``` sh
-  $ ml Anaconda3/2022.05 # Replace with one of the versions available on the system
-  ```
-### Setup conda activate command
-
-If this is your first time using Conda on the system or you haven't initialized Conda for your shell before, you need to initialize it. This enables you to use conda activate. The shell is initialized as follows:
-
-``` sh
-$ conda init bash
-$ source ~/.bashrc
-```
-Here, we use bash as an example. If you are using a different shell, replace it with the appropriate shell name.
-
-### Creating the conda environment
-It is possible to create a Conda environment in your home directory like you would on a local machine. See the official [conda documentation](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) on managing environments.  However, this is not recommended on our HPC systems, as each user's storage is limited, and Conda environments can take up a lot of space. Instead, we recommend creating a Conda environment in a directory under your project directory. This also has the advantage of making the environment accessible to others in your project, which can facilitate collaboration.
-
-Specifying the Python version when creating the environment ensures compatibility, reproducibility, and optimal performance. It helps to avoid potential conflicts, makes debugging easier, and simplifies collaboration.
-
-First make a directory for your conda environment:
-
-``` sh
-$ mkdir -p /cluster/projects/nnXXXXk/PATH_TO_ENVIRONMENT
-```
-Replace `nnXXXXk` with your own project identifier, and `PATH_TO_ENVIRONMENT` with the path to where you wish to store the environment.
-Then, create the environment
-
-``` sh
-conda create -p /cluster/projects/nnXXXXk/PATH_TO_ENVIRONMENT/ENVIRONMENT python=3.10
-```
-Replace `ENVIRONMENT` with a name for your Conda environment. Make sure to specify the desired Python version to ensure compatibility, reproducibility, and optimal performance for your project.
-
-### Installing packages
-Once you have created your Conda environment, you can install packages using the conda install command. You can also specify the channels to search for packages, such as `conda-forge` and `bioconda`.
-
-Before installing packages, activate your Conda environment:
-
-``` sh
-$ conda activate /cluster/projects/nnXXXXk/PATH_TO_ENVIRONMENT/ENVIRONMENT_NAME
+```{contents} Table of Contents
 ```
 
-To install a package, simply use the `conda install` command followed by the package name:
+[Conda](https://docs.conda.io/en/latest/) is a **tool to install packages**
+(Python/R/C/C++/...) and their dependencies.  You can do this yourself
+without administrator permissions on the cluster.
 
-``` sh
-$ conda install PACKAGE_NAME
+It is also a tool that allows to **create and keep track of different
+environments** for different projects.
+Creating multiple environments allows you to have installations of the same
+software in different versions or incompatible software collections at once.
+You can then easily share a list of the installed packages with collaborators or
+colleagues, so they can set up the same environment in a matter of minutes.
+
+Conda comes in different shapes and forms but the idea and functionality is
+more or less the same:
+- [Anaconda](https://www.anaconda.com/): Full-fledged distribution that
+  includes a large number of pre-installed packages. Use this if you don't want
+  to install any packages and just need to test something and are sure that the
+  package you need is part of Anaconda.
+- [Miniconda](https://docs.conda.io/en/latest/miniconda.html): Minimal
+  distribution that comes with only the essential packages required to set up
+  Conda. Use this if you want to install dependencies and keep track of your
+  environment.
+- [Mamba](https://mamba.readthedocs.io/): Fast re-implementation of Coda for
+  fast dependency resolution.
+- [Micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html):
+  Ultra-lightweight Mamba which supports the most important `conda` commands.
+
+We typically provide modules for **Anaconda** and **Miniconda**. Either of the
+two is fine.
+
+
+## Typical pitfalls to avoid
+
+```{warning}
+- Never use `conda init`.
+- Do not modify your `.bashrc` with any Conda stuff or module loads.
+- Do not install packages/environments into your home directory otherwise you
+  fill your disk quota.
+- Do not lose track of what packages you installed. Use `environment.yml` files.
 ```
-Replace `PACKAGE_NAME` with the name of the package you wish to install.
 
-To install a package from a specific channel, such as `conda-forge` or `bioconda`, use the `-c` option followed by the channel name:
-``` sh
-$ conda install -c conda-forge PACKAGE_NAME
+
+### Never use "conda init"
+
+
+
+Never use `conda init` on the cluster. This is because it otherwise modifies your `.bashrc`
+file and adds the following:
+```bash
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/cluster/software/Anaconda3/2022.10/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/cluster/software/Anaconda3/2022.10/etc/profile.d/conda.sh" ]; then
+        . "/cluster/software/Anaconda3/2022.10/etc/profile.d/conda.sh"
+    else
+        export PATH="/cluster/software/Anaconda3/2022.10/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 ```
-Replace PACKAGE_NAME with the name of the package you wish to install from the conda-forge channel.
 
-For bioconda, the command would look like:
-``` sh
-$ conda install -c bioconda PACKAGE_NAME
+These lines are the reason you see a `(base)` next to your prompt once you log
+into the cluster.  If you see `(base)` next to your prompt after a login, you
+have a problem.  We recommend to remove those lines from your `.bashrc`.
+
+If you incorrectly activate an environment, Conda itself will complain and suggest "conda init"
+but **do not run "conda init"**:
 ```
-Replace PACKAGE_NAME with the name of the package you wish to install from the bioconda channel.
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
 
-You can also specify multiple channels by including multiple -c options:
-``` sh
-$ conda install -c conda-forge -c bioconda PACKAGE_NAME
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
 ```
-Remember to replace `PACKAGE_NAME` with the name of the package you wish to install.
 
-### Creating a Conda environment from an environment.yml file
-An `environment.yml` file is a configuration file that specifies the packages, channels, and Python version required for a Conda environment. Creating a Conda environment from an `environment.yml` file ensures that your environment is reproducible and consistent across different systems.
+Why is `conda init` and modifying `.bashrc` a problem? See right below ...
 
-First, make sure you have an `environment.yml` file. Here's an example of what it might look like:
-``` yaml
-name: ENVIRONMENT_NAME
+
+
+### Do not modify your .bashrc with any Conda stuff or module loads
+
+The reason for this is that this makes your computations less reproducible for others
+and your future self:
+- The staff answering your next support request does not have this in their
+  `.bashrc`. They will have a different environment and will have a hard time reproducing your problem. The run
+  script you send them might produce something different for them.
+- Your future self will have a different `.bashrc` (maybe on a different cluster) and will
+  have a hard time re-running that calculation.
+- Sooner or later your calculations might not work anymore if modules change on the cluster
+  during a major upgrade.
+
+
+### Do not install into your home directory otherwise you fill your disk quota
+
+**Conda environments can contain hundreds of thousands of files**, which can cause
+you to exceed your number of files quota.  **Place both the environment and the
+package cache outside of your home directory** (see examples on this page).
+
+If you accidentally install into your home and fill up your quota, first
+inspect with:
+```console
+$ dusage
+```
+See also our documentation on {ref}`storage-quota`.
+
+If this happens, you can try to delete unnecessary and cached files with:
+```console
+$ conda clean -a
+```
+
+Another solution (but please do this carefully) is to remove everything in
+`~/.conda` except `~/.conda/environments.txt`.
+
+Normally the only two Conda files that need to be in your home are `~/.conda/environments.txt`
+and possibly `~/.condarc`. Everything else should be somewhere else: project folder
+or work area.
+
+
+### Losing track of what packages you installed
+
+If you install packages from the command line using `conda install`, then you
+probably won't remember what you installed precisely one year later and this is
+a problem for reproducibility for others and your future self trying to publish
+that article. Always install from an `environment.yml` file, then you don't
+need to remember but it is automatically documented.
+
+
+## Installing packages/environment from an environment.yml file
+
+We recommend to always start from an `environment.yml` file to create an
+environment for your project and to install packages into it.  Further down we
+also explain how to create such a file if you don't have one yet.
+
+Here is an example `environment.yml` file:
+```yaml
+name: myproject
 channels:
-  - conda-forge
-  - bioconda
   - defaults
 dependencies:
   - python=3.10
-  - PACKAGE_NAME_1
-  - PACKAGE_NAME_2
-  - PACKAGE_NAME_3
+  - numpy
+  - pandas
+  - scipy
 ```
 
-Replace ENVIRONMENT_NAME with the name of your Conda environment, and `PACKAGE_NAME_X` with the names of the packages you wish to install.
+The file describes the environment with the name "myproject" (better change
+that to something more descriptive!), which dependencies it needs and from
+which "channels" to install from. If you want, you can specify precise versions
+for each dependencies. If you leave them out, it will try to install the latest
+versions which match other specifications in that file.
 
-To create the environment using the `environment.yml` file, run the following command:
+Once you have such a file you have achieved two things:
+- You have documented your dependencies (great for reproducibility)
+- You can install from it
 
-  ``` sh
-  $ conda env create -f environment.yml -p /cluster/projects/nnXXXXk/PATH_TO_ENVIRONMENT/ENVIRONMENT_NAME
+To install from that file, you only need to decide where to. **Not into your
+home directory**, otherwise you will fill your storage quota.
+
+Here I create a Conda environment from an `environment.yml` file with a script but you
+can also do that command after command:
+```{code-block} bash
+---
+emphasize-lines: 8
+linenos:
+---
+#!/usr/bin/env bash
+
+module load Anaconda3/2022.05
+
+#                                 change this
+#                                     |
+#                                     v
+my_conda_storage=/cluster/projects/nn____k/conda
+
+export CONDA_PKGS_DIRS=$my_conda_storage/package-cache
+conda env create --prefix $my_conda_storage/myproject --file environment.yml
 ```
-Replace `nnXXXXk` with your own project identifier, `PATH_TO_ENVIRONMENT` with the path to where you wish to store the environment, and `ENVIRONMENT_NAME` with the name of your Conda environment.
 
-This command will create a new Conda environment at the specified path, using the packages, channels, and Python version defined in the `environment.yml` file. Once the environment is created, you can activate it using:
+You need to adapt the location (line 8) and also change the name ("myproject").
+On line 10 we define `CONDA_PKGS_DIRS` to also be in your well-defined `my_conda_storage`,
+otherwise package cache is in your home directory and that is a problem.
 
-``` sh
-$ conda activate /cluster/projects/nnXXXXk/PATH_TO_ENVIRONMENT/ENVIRONMENT_NAME
+If I run this for my example `environment.yml` above it creates the cache and environment folders
+and each contains many files already:
+```console
+$ find . -maxdepth 1 -type d -exec sh -c 'echo -n "{}: "; find "{}" -type f | wc -l' \; | sort -n -k2 -r
+
+.: 31510
+./package-cache: 16549
+./myproject: 14961
 ```
-Now your Conda environment is set up and ready to use with the packages specified in the `environment.yml` file.
 
-### Exporting the Conda environment
-Exporting a Conda environment allows you to share the environment configuration with others, making it easy for collaborators to recreate the same environment on their systems. To export a Conda environment, you can use the conda env export command, which generates an `environment.yml` file containing the environment's channels, packages, and Python version.
+35 thousand files! You can easily get up to 100 thousand or more files and that
+is too much for our home directories.
 
-``` sh
-$ conda activate /cluster/projects/nnXXXXk/PATH_TO_ENVIRONMENT/ENVIRONMENT_NAME
+
+## But I don't have an environment.yml file!
+
+Don't worry, you can create one.  Let us look again at our example
+`environment.yml` file:
+```yaml
+name: myproject
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy
+  - pandas
+  - scipy
 ```
-Replace `nnXXXXk` with your own project identifier `PATH_TO_ENVIRONMENT` with the path to where you stored the environment, and `ENVIRONMENT_NAME` with the name of your Conda environment.
 
-Next, use the `conda env export` command to export the environment:
-
-``` sh
-  $ conda env export > environment.yml
+This is equivalent to installing them one by one into an active environment:
+```console
+$ conda install -c defaults python=3.10
+$ conda install -c defaults numpy
+$ conda install -c defaults pandas
+$ conda install -c defaults scipy
 ```
-This command will create an `environment.yml` file in the current directory containing the environment's configuration. You can now share this file with collaborators or save it for future use.
 
-If you want to export the environment file to a specific location or with a different name, provide the full path and filename after the `>` operator:
-
-``` sh
-$ conda env export > /path/to/directory/your_filename.yml
+Now if somebody asks you to install like this:
+```console
+$ conda install -c bioconda somepackage
+$ conda install -c bioconda otherpackage
 ```
-Replace `/path/to/directory/your_filename.yml` with the desired path and filename for the exported environment file.
-
-By sharing the exported `environment.yml` file with your collaborators, they can easily recreate the same Conda environment on their systems, ensuring consistent package versions and dependencies.
-
-
-### Installing packages with pip in a Conda environment
-While Conda is the preferred package manager for packages in a Conda environment, you might encounter some packages that are not available through Conda channels. In such cases, you can use pip to install the package.
-
-First, make sure your Conda environment is activated:
-
-``` sh
-$ conda activate /cluster/projects/nnXXXXk/PATH_TO_ENVIRONMENT/ENVIRONMENT_NAME
+... then you know what to do and can create an `environment.yml` file from it:
+```yaml
+name: myproject
+channels:
+  - bioconda
+dependencies:
+  - somepackage
+  - otherpackage
 ```
-Replace `nnXXXXk` with your own project identifier, `PATH_TO_ENVIRONMENT` with the path to where you stored the environment, and `ENVIRONMENT_NAME` with the name of your Conda environment.
-Next, install the package using pip:
 
-``` sh
-$ pip install PACKAGE_NAME
+
+## If I change the environment.yml file, do I need to remove everything and restart from scratch?
+
+No need to remove everything. You can adjust your `environment.yml` and all you need to change
+is `conda env create` to `conda env update`:
+```{code-block} bash
+---
+emphasize-lines: 11
+linenos:
+---
+#!/usr/bin/env bash
+
+module load Anaconda3/2022.05
+
+#                                 change this
+#                                     |
+#                                     v
+my_conda_storage=/cluster/projects/nn____k/conda
+
+export CONDA_PKGS_DIRS=$my_conda_storage/package-cache
+conda env update --prefix $my_conda_storage/myproject --file environment.yml
 ```
-Replace `PACKAGE_NAME` with the name of the package you want to install.
 
-Although mixing Conda and pip installations is generally not recommended, sometimes it is unavoidable. When using pip in a Conda environment, it's important to be aware of potential dependency conflicts and to resolve them if necessary.
 
-You should first try to find the package in Conda channels, like `conda-forge` or `bioconda`, before resorting to pip. By using Conda channels, you can take advantage of Conda's dependency management features and avoid potential conflicts.
+## Should I have one or many environment.yml files?
 
-If you need to use pip, install the package within your Conda environment, as shown above, to keep your environment self-contained and maintain proper dependency management.
+We recommend one **environment per project**, not one for all projects.  Here
+meaning research project/ code project, not compute allocation project.  It is
+OK to share an environment with colleagues if they use the same code but it is
+a good idea to not try to have an environment for "everything" and all your
+many projects.
 
-### Activating a Conda environment in a Slurm script
+The reason is that one day you will want to share the environment with somebody
+else and the somebody else does not want to install everything to run that one
+tiny script that only needs a tiny environment.
 
-When submitting a job using a Slurm script, you'll need to activate your Conda environment within the script. To do this, simply include the appropriate conda activate command in your Slurm script.
+Another reason to have one environment per project is that projects can have
+different and conflicting dependencies.
 
-Here's an example Slurm script that demonstrates how to activate a Conda environment:
 
-  ``` sh
-# SBATCH directives
+## Activating the environment interactively
 
-# Load the Conda module
-ml purge
-ml Miniconda3/4.9.24 # Replace with the version available on the system
+We need three commands:
+```bash
+$ module load Anaconda3/2022.05
+$ source $EBROOTANACONDA3/bin/activate
 
-# Activate the Conda environment
-conda activate /cluster/projects/nnXXXXk/PATH_TO_ENVIRONMENT/ENVIRONMENT_NAME
-
-# Run your code
-python my_script.py
+$ conda activate /cluster/projects/nn____k/conda/myproject
 ```
-In this example, replace `/cluster/projects/nnXXXXk/PATH_TO_ENVIRONMENT/ENVIRONMENT_NAME` with the correct path to your Conda environment.
 
-Remember to load the Conda module and activate the environment before running any code that depends on the packages in your Conda environment. This will ensure that your job has access to the correct package versions and dependencies.
+If you used Miniconda instead of Anaconda, then the first two lines change:
+```bash
+$ module load Miniconda3/22.11.1-1
+$ source $EBROOTMINICONDA3/bin/activate
 
-### Common Questions and Pitfalls
-#### Disk Quota Exceeded error message
-Conda environments contain a lot of files, which can cause you to exceed your number of files quota. This happens especially easily when installing Conda environments in your home folder. Check your quota with dusage.
-
-To solve this error and reduce your number of files, delete unnecessary and cached files with:
-
-  ``` sh
-  $ conda clean -a
+$ conda activate /cluster/projects/nn____k/conda/myproject
 ```
-To avoid this error, create your Conda environments in your project folder by using the `--prefix PATH` option, as described earlier in this guide.
 
-#### Suppressing the warning about a newer version of Conda
+Of course you need to adapt `nn____k` to your project and need to change
+`myproject` to your actual environment name. Also the versions of the Anaconda
+and Miniconda modules evolve - please check with `module avail conda`.
 
-To suppress the warning that a newer version of Conda exists, which is usually not important for most users and will be fixed by us by installing a new module, run the following command:
+Once activated, you can run your script **inside that environment**. Here I run
+a Python script called `example.py`. Notice how the environment in my prompt
+changes from nothing to `(base)` to
+`(/cluster/projects/nn____k/conda/myproject)`:
+```bash
+[user@login-1.FRAM ~/example]$ module load Anaconda3/2022.05
 
-``` sh
+[user@login-1.FRAM ~/example]$ source $EBROOTANACONDA3/bin/activate
+
+(base) [user@login-1.FRAM ~/example]$ conda activate /cluster/projects/nn____k/conda/myproject
+
+(/cluster/projects/nn____k/conda/myproject) [user@login-1.FRAM ~/example]$ python example.py
+```
+
+
+## Activating the environment in your job script
+
+We activate the environment in the job script the same way we activate it
+interactively on the command line (above), only with some additional `SBATCH`
+directives on top:
+```{code-block} bash
+---
+emphasize-lines: 13-14, 19
+linenos:
+---
+#!/usr/bin/env bash
+
+#                change this
+#                    |
+#                    v
+#SBATCH --account=nn____k
+#SBATCH --job-name=example
+#SBATCH --qos=devel
+#SBATCH --ntasks=1
+#SBATCH --time=00:02:00
+
+# the actual module version might be different
+module load Anaconda3/2022.05
+source $EBROOTANACONDA3/bin/activate
+
+#                               change this
+#                                   |
+#                                   v
+conda activate /cluster/projects/nn____k/conda/myproject
+
+python --version
+python example.py
+```
+
+We need three lines before running any code that depends on the packages in
+your environment: loading the module, sourcing the activate script, and `conda
+activate` our environment.
+
+If you used Miniconda instead of Anaconda, then lines 13 and 14 (above) might
+look like this instead (version might be different):
+```bash
+module load Miniconda3/22.11.1-1
+source $EBROOTMINICONDA3/bin/activate
+```
+
+
+## Exporting your environment to an environment.yml file
+
+The `environment.yml` file is very precious since it lists all your
+dependencies and if you want also their precise versions. It is precious
+because your future you and other people will be able to (re)create their
+environment from this file and will be able to reproduce your research.
+Without this information, they will have a hard time.
+
+Here is an example `environment.yml` file:
+```yaml
+name: myproject
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy
+  - pandas
+  - scipy
+```
+
+If you read this documentation page and followed our recommendations, then you
+never need to export your environment to an `environment.yml` file since you
+already have it since you always installed new dependencies from it.
+
+But if you lost the file or installed on the command line and forgot what
+packages exactly, you can create it:
+```bash
+# the first three lines depend on how you created your environment
+$ module load Anaconda3/2022.05
+$ source $EBROOTANACONDA3/bin/activate
+$ conda activate /cluster/projects/nn____k/conda/myproject
+
+# this is the interesting line
+$ conda env export --from-history > environment.yml
+```
+
+If you need precise versions and all dependencies, also dependencies of your
+dependencies, you can get more information with:
+```
+$ conda env export > environment.yml
+```
+
+
+## "WARNING: A newer version of conda exists"
+
+When installing or updating packages you might see this warning:
+```
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+```
+
+Do **not** run the command `conda update -n base -c defaults conda` (you do not
+have the permissions anyway).  You can almost always ignore this warning but
+you can also configure Conda to not bother you with this warning:
+```bash
 $ conda config --set notify_outdated_conda false
 ```
 
-This setting will prevent Conda from displaying a warning message about outdated Conda versions, making your Conda usage experience smoother.
+This setting is written to your `~/.condarc` if you change your mind and want
+to remove this setting later.
+
+
+## Container solution
+
+If you are interested using Conda through a Singularity/Apptainer container,
+have a look at <https://github.com/bast/singularity-conda/>.
