@@ -42,7 +42,9 @@ two is fine.
 - Do not modify your `.bashrc` with any Conda commands.
 - Do not install packages/environments into your home directory otherwise you
   fill your disk quota ({ref}`storage-quota`).
-- Do not lose track of what packages you installed. Use `environment.yml` files.
+- Do not lose track of what packages you installed. Use `environment.yml` files. These are
+  not only good for reproducibility but are also interoperable with other tools
+  such as [Binder](https://mybinder.org/).
 ```
 
 
@@ -68,10 +70,11 @@ unset __conda_setup
 ```
 
 These lines are the reason you see a `(base)` next to your prompt once you log
-into the cluster.  If you see `(base)` next to your prompt after a login, you
-have a problem.  We recommend to remove those lines from your `.bashrc`.
+into the cluster.  If you see `(base)` next to your prompt after a login, this
+probably comes from a modified `.bashrc`.
+We recommend to remove those lines from your `.bashrc`.
 
-If you incorrectly activate an environment, Conda itself will complain and suggest "conda init"
+When you activate an environment without "sourcing" Conda first, Conda itself will complain and suggest "conda init"
 but **do not run "conda init"**:
 ```
 CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
@@ -92,8 +95,9 @@ See 'conda init --help' for more information and options.
 IMPORTANT: You may need to close and restart your shell after running 'conda init'.
 ```
 
-Why is `conda init` and modifying `.bashrc` a problem? See right below ...
-
+We **strongly** advise against running `conda init`. Read on for the recommended
+way to activate environments which avoids this message and the problems `conda
+init` may cause.
 
 
 ### Do not modify your .bashrc with any Conda commands
@@ -168,6 +172,12 @@ which "channels" to install from. If you want, you can specify precise versions
 for each dependencies. If you leave them out, it will try to install the latest
 versions which match other specifications in that file.
 
+Should one specify versions or not?
+- When a project is in progress and evolving, it is often better to leave them out
+  and use the latest versions.
+- However, when a project is completing and about to be published or shared with
+  collaborators, it may be better to specify versions.
+
 Once you have such a file you have achieved two things:
 - You have documented your dependencies (great for reproducibility)
 - You can install from it
@@ -199,7 +209,7 @@ conda env create --prefix ${my_conda_storage}/myproject --file environment.yml
 ```
 
 You need to adapt the location (line 11) and also change the name ("myproject").
-On line 10 we define `CONDA_PKGS_DIRS` to also be in your well-defined `my_conda_storage`,
+On line 13 we define `CONDA_PKGS_DIRS` to also be in your well-defined `my_conda_storage`,
 otherwise the package cache is in your home directory and that is a problem.
 
 If I run this for my example `environment.yml` above it creates the cache and environment folders
