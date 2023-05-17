@@ -46,10 +46,10 @@ two is fine.
 ```
 
 
-### Never use "conda init"
+### Never use `conda init`
 
-Never use `conda init` on the cluster. This is because it otherwise modifies your `.bashrc`
-file and adds the following:
+Never use `conda init` on the cluster because it modifies your `.bashrc`
+file by adding the following:
 ```bash
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
