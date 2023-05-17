@@ -179,10 +179,13 @@ Here I create a Conda environment from an `environment.yml` file with a script b
 can also do that command after command:
 ```{code-block} bash
 ---
-emphasize-lines: 8
+emphasize-lines: 11
 linenos:
 ---
 #!/usr/bin/env bash
+
+# settings to catch errors in bash scripts
+set -euf -o pipefail
 
 module load Anaconda3/2022.05
 
@@ -191,11 +194,11 @@ module load Anaconda3/2022.05
 #                                     v
 my_conda_storage=/cluster/projects/nn____k/conda
 
-export CONDA_PKGS_DIRS=$my_conda_storage/package-cache
-conda env create --prefix $my_conda_storage/myproject --file environment.yml
+export CONDA_PKGS_DIRS=${my_conda_storage}/package-cache
+conda env create --prefix ${my_conda_storage}/myproject --file environment.yml
 ```
 
-You need to adapt the location (line 8) and also change the name ("myproject").
+You need to adapt the location (line 11) and also change the name ("myproject").
 On line 10 we define `CONDA_PKGS_DIRS` to also be in your well-defined `my_conda_storage`,
 otherwise the package cache is in your home directory and that is a problem.
 
@@ -262,10 +265,13 @@ No need to remove everything. You can adjust your `environment.yml` and all you 
 is `conda env create` to `conda env update`:
 ```{code-block} bash
 ---
-emphasize-lines: 11
+emphasize-lines: 14
 linenos:
 ---
 #!/usr/bin/env bash
+
+# settings to catch errors in bash scripts
+set -euf -o pipefail
 
 module load Anaconda3/2022.05
 
@@ -274,8 +280,8 @@ module load Anaconda3/2022.05
 #                                     v
 my_conda_storage=/cluster/projects/nn____k/conda
 
-export CONDA_PKGS_DIRS=$my_conda_storage/package-cache
-conda env update --prefix $my_conda_storage/myproject --file environment.yml
+export CONDA_PKGS_DIRS=${my_conda_storage}/package-cache
+conda env update --prefix ${my_conda_storage}/myproject --file environment.yml
 ```
 
 
@@ -300,7 +306,7 @@ different and conflicting dependencies.
 We need three commands:
 ```bash
 $ module load Anaconda3/2022.05
-$ source $EBROOTANACONDA3/bin/activate
+$ source ${EBROOTANACONDA3}/bin/activate
 
 $ conda activate /cluster/projects/nn____k/conda/myproject
 ```
@@ -308,7 +314,7 @@ $ conda activate /cluster/projects/nn____k/conda/myproject
 If you used Miniconda instead of Anaconda, then the first two lines change:
 ```bash
 $ module load Miniconda3/22.11.1-1
-$ source $EBROOTMINICONDA3/bin/activate
+$ source ${EBROOTMINICONDA3}/bin/activate
 
 $ conda activate /cluster/projects/nn____k/conda/myproject
 ```
@@ -324,7 +330,7 @@ changes from nothing to `(base)` to
 ```bash
 [user@login-1.FRAM ~/example]$ module load Anaconda3/2022.05
 
-[user@login-1.FRAM ~/example]$ source $EBROOTANACONDA3/bin/activate
+[user@login-1.FRAM ~/example]$ source ${EBROOTANACONDA3}/bin/activate
 
 (base) [user@login-1.FRAM ~/example]$ conda activate /cluster/projects/nn____k/conda/myproject
 
@@ -339,10 +345,13 @@ interactively on the command line (above). The additional `SBATCH`
 directives on top are unrelated to the Conda part:
 ```{code-block} bash
 ---
-emphasize-lines: 13-14, 19
+emphasize-lines: 16-17, 22
 linenos:
 ---
 #!/usr/bin/env bash
+
+# settings to catch errors in bash scripts
+set -euf -o pipefail
 
 #                change this
 #                    |
@@ -355,7 +364,7 @@ linenos:
 
 # the actual module version might be different
 module load Anaconda3/2022.05
-source $EBROOTANACONDA3/bin/activate
+source ${EBROOTANACONDA3}/bin/activate
 
 #                               change this
 #                                   |
@@ -370,14 +379,14 @@ We need three lines before running any code that depends on the packages in
 your environment: loading the module, sourcing the activate script, and `conda
 activate` your environment.
 
-If you used Miniconda instead of Anaconda, then lines 13 and 14 (above) might
+If you used Miniconda instead of Anaconda, then lines 16 and 17 (above) might
 look like this instead (version might be different):
 ```bash
 module load Miniconda3/22.11.1-1
-source $EBROOTMINICONDA3/bin/activate
+source ${EBROOTMINICONDA3}/bin/activate
 ```
 
-The `source $EBROOTMINICONDA3/bin/activate` line basically replaces a previous
+The `source ${EBROOTMINICONDA3}/bin/activate` line basically replaces a previous
 `conda init` which would have modified `.bashrc`.
 
 
@@ -410,7 +419,7 @@ packages exactly, you can create it:
 ```bash
 # the first three lines depend on how you created your environment
 $ module load Anaconda3/2022.05
-$ source $EBROOTANACONDA3/bin/activate
+$ source ${EBROOTANACONDA3}/bin/activate
 $ conda activate /cluster/projects/nn____k/conda/myproject
 
 # this is the interesting line
