@@ -26,7 +26,7 @@ more or less the same:
   distribution that comes with only the essential packages required to set up
   Conda. Use this if you want to install dependencies and keep track of your
   environment.
-- [Mamba](https://mamba.readthedocs.io/): Fast re-implementation of Coda for
+- [Mamba](https://mamba.readthedocs.io/): A re-implementation of Conda for
   fast dependency resolution.
 - [Micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html):
   Ultra-lightweight Mamba which supports the most important `conda` commands.
@@ -38,17 +38,15 @@ two is fine.
 ## Typical pitfalls to avoid
 
 ```{warning}
-- Never use `conda init`.
-- Do not modify your `.bashrc` with any Conda stuff or module loads.
+- Never use `conda init`. See below how to initialize conda without modifying `.bashrc`.
+- Do not modify your `.bashrc` with any Conda commands.
 - Do not install packages/environments into your home directory otherwise you
-  fill your disk quota.
+  fill your disk quota ({ref}`storage-quota`).
 - Do not lose track of what packages you installed. Use `environment.yml` files.
 ```
 
 
 ### Never use "conda init"
-
-
 
 Never use `conda init` on the cluster. This is because it otherwise modifies your `.bashrc`
 file and adds the following:
@@ -98,7 +96,7 @@ Why is `conda init` and modifying `.bashrc` a problem? See right below ...
 
 
 
-### Do not modify your .bashrc with any Conda stuff or module loads
+### Do not modify your .bashrc with any Conda commands
 
 The reason for this is that this makes your computations less reproducible for others
 and your future self:
@@ -199,7 +197,7 @@ conda env create --prefix $my_conda_storage/myproject --file environment.yml
 
 You need to adapt the location (line 8) and also change the name ("myproject").
 On line 10 we define `CONDA_PKGS_DIRS` to also be in your well-defined `my_conda_storage`,
-otherwise package cache is in your home directory and that is a problem.
+otherwise the package cache is in your home directory and that is a problem.
 
 If I run this for my example `environment.yml` above it creates the cache and environment folders
 and each contains many files already:
@@ -212,7 +210,7 @@ $ find . -maxdepth 1 -type d -exec sh -c 'echo -n "{}: "; find "{}" -type f | wc
 ```
 
 35 thousand files! You can easily get up to 100 thousand or more files and that
-is too much for our home directories.
+is too much for your home directory.
 
 
 ## But I don't have an environment.yml file!
@@ -230,7 +228,7 @@ dependencies:
   - scipy
 ```
 
-This is equivalent to installing them one by one into an active environment:
+This is equivalent to installing them one by one into an **active** environment:
 ```console
 $ conda install -c defaults python=3.10
 $ conda install -c defaults numpy
@@ -252,6 +250,10 @@ dependencies:
   - somepackage
   - otherpackage
 ```
+
+Please also look at the [Conda
+documentation](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#create-env-file-manually)
+which shows an even simpler `environment.yml`.
 
 
 ## If I change the environment.yml file, do I need to remove everything and restart from scratch?
@@ -282,7 +284,7 @@ conda env update --prefix $my_conda_storage/myproject --file environment.yml
 We recommend one **environment per project**, not one for all projects.  Here
 meaning research project/ code project, not compute allocation project.  It is
 OK to share an environment with colleagues if they use the same code but it is
-a good idea to not try to have an environment for "everything" and all your
+a good idea to not try to have a single environment for "everything" and all your
 many projects.
 
 The reason is that one day you will want to share the environment with somebody
@@ -333,8 +335,8 @@ changes from nothing to `(base)` to
 ## Activating the environment in your job script
 
 We activate the environment in the job script the same way we activate it
-interactively on the command line (above), only with some additional `SBATCH`
-directives on top:
+interactively on the command line (above). The additional `SBATCH`
+directives on top are unrelated to the Conda part:
 ```{code-block} bash
 ---
 emphasize-lines: 13-14, 19
@@ -366,7 +368,7 @@ python example.py
 
 We need three lines before running any code that depends on the packages in
 your environment: loading the module, sourcing the activate script, and `conda
-activate` our environment.
+activate` your environment.
 
 If you used Miniconda instead of Anaconda, then lines 13 and 14 (above) might
 look like this instead (version might be different):
@@ -374,6 +376,9 @@ look like this instead (version might be different):
 module load Miniconda3/22.11.1-1
 source $EBROOTMINICONDA3/bin/activate
 ```
+
+The `source $EBROOTMINICONDA3/bin/activate` line basically replaces a previous
+`conda init` which would have modified `.bashrc`.
 
 
 ## Exporting your environment to an environment.yml file
