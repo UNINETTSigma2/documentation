@@ -130,7 +130,7 @@ $ conda clean -a
 Another solution (but please do this carefully) is to remove everything in
 `~/.conda` except `~/.conda/environments.txt`.
 
-Normally the only two Conda files that need to be in your home are `~/.conda/environments.txt`
+Normally the only two Conda files that need to be in your home directory are `~/.conda/environments.txt`
 and possibly `~/.condarc`. Everything else should be somewhere else: project folder
 or work area.
 
@@ -144,7 +144,7 @@ that article. Always install from an `environment.yml` file, then you don't
 need to remember but it is automatically documented.
 
 
-## Installing packages/environment from an environment.yml file
+## Installing packages/environment from an `environment.yml` file
 
 We recommend to always start from an `environment.yml` file to create an
 environment for your project and to install packages into it.  Further down we
