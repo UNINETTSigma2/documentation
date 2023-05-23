@@ -8,7 +8,7 @@ The FAQ on NIRD is prepared based on the Q&A session during the  {ref}`training-
 
    	- HPC storage is expensive, prefer NIRD for large volumes (15-20 TB), security features and  backups
 
-2. Can you connect multiple projects to a single application? For instance, we have CMIP  data stored in different projects at the moment, and would like to compare accross the different projects.
+2. Can you connect multiple projects to a single application? For instance, we have CMIP  data stored in different projects at the moment, and would like to compare across the different projects.
 
    	- yes it is possible if the PI’s (Project leaders) agreed to have common application.
 
