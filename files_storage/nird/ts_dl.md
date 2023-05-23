@@ -6,7 +6,7 @@ Data Lake (NIRD DL).
 The NIRD TS have several tiers spanned by single filesystem and designed for active 
 projects, while NIRD DL has a more flat structure, designed for less active data and 
 sharing data across multiple projects and interfacing with external storages. 
-Both are based on based on IBM Elastic Storage System. 
+Both are based on IBM Elastic Storage System. 
 
 NIRD TS contains building blocks based on:
  
@@ -54,7 +54,8 @@ Below is the detail information of the difference between TS and DL.
 | Scratch storage `/nird/scratch` (Available only on NIRD login nodes) |  | 
  
 
-NIRD TS(Resource: projects) and NIRD DL (Resource: datalake) will have separate quota based on the project allocation. You can see the quota and the current usage by running:
+NIRD TS(Resource: projects) and NIRD DL (Resource: datalake) will have separate quota
+ based on the project allocation. You can see the quota and the current usage by running:
 
 ```console
 $ dusage -p NSxxxxK
