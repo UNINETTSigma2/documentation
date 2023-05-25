@@ -15,7 +15,7 @@ The ORCA software requires a license to use it. So the recommended way is to ins
 * Place it in a folder on SAGA and set the path (see example below)
 * Then load the correct MPI module when you run this each time (see example)
 
-### Here is an example for the user sabryr (please make sure to adopt it to your user account, with the correct project names):
+**Here is an example for the user sabryr (please make sure to adopt it to your user account, with the correct project names):**
 
 1. Agree to license terms and go with the version of ORCA you prefer.
 2. Then download the file that uses shared libraries. For example for ORCA 5.0.4
