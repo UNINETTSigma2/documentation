@@ -3,9 +3,9 @@
 This article concerns ORCA  general purpose tool for quantum
 chemistry(https://orcaforum.kofo.mpg.de/)
 
-The ORCA software requires a licence to use it. So the recommended way is to install it yourself. As installing it yourself involves analysing the binary to figure out which modules it is compatible with, some users might face difficulties. Until we find easier solutions for the issues, we will maintain the central installation.  
+The ORCA software requires a license to use it. So the recommended way is to install it yourself. As installing it yourself involves analyzing the binary to figure out which modules it is compatible with, some users might face difficulties. Until we find easier solutions for the issues, we will maintain the central installation.  
 
-## How to install it yourself (Recomended)
+## How to install it yourself (Recommended)
 
 * Create an account in https://orcaforum.kofo.mpg.de/ 
 * Login to the site when your account is active
@@ -17,7 +17,7 @@ The ORCA software requires a licence to use it. So the recommended way is to ins
 
 ### Here is an example for the user sabryr (please make sure to adopt it to your user account, with the correct project names):
 
-1. Agree to licence terms and go with the version of ORCA you prefer.
+1. Agree to license terms and go with the version of ORCA you prefer.
 2. Then download the file that uses shared libraries. For example for ORCA 5.0.4
 
 ```ORCA 5.0.4, Linux, x86-64, shared-version, .tar.xz Archive   ```
