@@ -52,6 +52,8 @@ Test
 sabryr@SAGA ORCA]$ orca --version
 ```
 
+## Use the central installation
+
 If you can not install it yourself or face issues when trying, we will maintain a central installation for the time being but access to this module is restricted. 
 
 We have installed this software centrally but the access is restricted. This is to adhere to the licence terms of ORCA. The developers do not have a systematic procedure for obtaining the licence, so the only way at the moment is to agree to the end user licence agreement (EULA)  at the ORCA site and  download a copy of the software for yourself, to your computer (e.g. your laptop).  You do not need to install the software, just download it so you will have a chance to agree to the terms. 
