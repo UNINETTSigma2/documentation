@@ -35,6 +35,7 @@ package managers.
    userinstallsw/python.md
    userinstallsw/R.md
    userinstallsw/perl.md
+   userinstallsw/ORCA.md
 
 Note that the software install team **never** do installations in
 ``$HOME`` for users, and preferably not in ``/cluster/projects``.
