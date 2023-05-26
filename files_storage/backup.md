@@ -62,4 +62,10 @@ can retrieve them yourself. If you cannot access the cluster that holds the
 project backups, please contact support and we will help you restoring your
 data.
 
+```{eval-rst}
+.. toctree::
+   :maxdepth: 1
 
+   nird/snapshots_lmd.md
+   nird/backup_lmd.md
+```
