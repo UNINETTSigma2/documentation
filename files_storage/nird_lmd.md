@@ -49,6 +49,7 @@ The solution is based on IBM Spectrum Scale – an IBM Systems storage product b
    nird/ts_dl.md
    nird/old_nird_access.md
    nird/faq_nird.md
+   sharing_files.md   
 ```
 
 
