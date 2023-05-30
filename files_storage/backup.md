@@ -36,8 +36,7 @@ see [User work area](user-work-area) for details.
 
 ### Where the backups are located
 
-**HOME**: The nightly backups of the `$HOME` areas on Betzy, Fram and Saga end up in your `$HOME` area on
-NIRD, which is geo-replicated between NIRD-TOS (Tromsø) and NIRD-TRD (Trondheim):
+**HOME**: The nightly backups of the `$HOME` areas on Betzy, Fram and Saga end up in your `$HOME` area on NIRD :
 - `/nird/home/$USER/backups/betzy`
 - `/nird/home/$USER/backups/fram`
 - `/nird/home/$USER/backups/saga`
@@ -63,51 +62,10 @@ can retrieve them yourself. If you cannot access the cluster that holds the
 project backups, please contact support and we will help you restoring your
 data.
 
+```{eval-rst}
+.. toctree::
+   :maxdepth: 1
 
-## NIRD
-
-Both home directories (`/nird/home/$USER`) and project areas (`/nird/projects/NSxxxxK`) have
-backup in the form of snapshots and geo-replication (only NS projects are geo-replicated,
-not the NN project backups from Betzy, Fram and Saga mentioned above).
-
-Snapshots are taken with the following frequencies:
-* `/nird/home/$USER`:
-  - daily snapshots for the last 7 days
-  - weekly snapshots for the last 6 weeks
-  - this also includes the nightly backup of the Betzy, Fram and Saga home directory as described above
-* `/nird/projects/NSxxxxK`:
-  - daily snapshots for the last 7 days
-  - weekly snapshots for the last 6 weeks
-* `/tos-project4/fram`, `/trd-project4/saga`, `/trd-project4/betzy`:
-  - site dependent, but daily for a few days and weekly for a few weeks
-
-
-### Where the snapshots are located
-
-The NIRD `$HOME` and NS project snapshots are available under:
-- `/nird/home/u1/.snapshots`
-- `/nird/projects/NSxxxxK/.snapshots`
-
-The snapshots of the NN project backups from Betzy, Fram and Saga are available under:
-- `/tos-project4/fram/backups/.snapshots`
-- `/trd-project4/saga/backups/.snapshots`
-- `/trd-project4/betzy/backups/.snapshots`
-
-
-### How to recover deleted/overwritten data
-
-A deleted/overwritten file in the home directory on NIRD can be recovered like this:
-```console
-$ cp /nird/home/u1/.snapshots/DATE/$USER/mydir/myfile /nird/home/$USER/mydir/
+   nird/snapshots_lmd.md
+   nird/backup_lmd.md
 ```
-
-Note that snapshots are taken every night only. This means that deleted files
-which did not exist yet yesterday cannot be recovered from snapshots.
-
-To recover a deleted or overwritten file `/nird/projects/NSxxxxK/dataset1/myfile`,
-you can copy a snapshot back to the folder and restore the deleted/overwritten file:
-```console
-$ cp /nird/projects/NSxxxxK/.snapshots/DATE/dataset1/myfile /nird/projects/NSxxxxK/dataset1/
-```
-
-Select the DATE accordingly to your case.
