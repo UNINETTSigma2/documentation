@@ -1,5 +1,5 @@
 ---
-
+orphan:true
 ---
 
 (training-2023-spring-onboarding-notes-day0)=

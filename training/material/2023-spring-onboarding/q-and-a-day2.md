@@ -1,4 +1,9 @@
+---
+orphan: true
+---
+
 training-2023-spring-onboarding-notes-day2)=
+
 # Questions and answers from HPC on-boarding Apr 2023, Day 2 (Apr 20)
 
 ```{contents} Table of Contents
@@ -303,5 +308,3 @@ https://documentation.sigma2.no/getting_help/qa-sessions.html
 
 - Could be useful to go through a "hands on example" from start to finish. Maybe at the very end of the course after the "basics" are explained. Could be useful to just see one example.
 - I think the vscode session should be part of the normal session. This was a very useful tool. 
-
----------------------------------------------------------------
