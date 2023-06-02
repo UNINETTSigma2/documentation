@@ -1,8 +1,8 @@
 ---
 orphan:true
 ---
-
 (training-2023-spring-best-practices-notes-day2)=
+
 # Questions and answers from Best Pratcices on NRIS Clusters May 2023, Day 2 (May 10)
 
 ```{contents} Table of Contents
@@ -144,7 +144,6 @@ No:
 12. ...
 
 13. ...
-
 
 ## Feedback
 
