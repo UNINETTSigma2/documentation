@@ -16,7 +16,8 @@ The process for depositing a dataset in the Archive consists of the following st
 
 
 - {ref}`Identify the dataset.  <Identify-the-dataset-Archive>`
-- {ref}`Log onto the web interface.  <Log-onto-the-web-interface-Archive>`
+- {ref}`Choose file formats. <Choose-file-formats>`
+- {ref}`Log onto the web interface.<Log-onto-the-web-interface-Archive>`
 - {ref}`Agree to the terms and conditions.  <Agree-to-the-terms-and-conditions-Archive>`
 - {ref}`Provide primary metadata.  <Provide-primary-metadata-Archive>`
 - {ref}`Upload the dataset.  <Section-Upload-Dataset>`
@@ -52,6 +53,10 @@ A dataset must be a collection of related data. Typically, this consists of a co
           (i.e. it has public access). However, the Archive recognises that certain datasets of restricted
           use to a given community may be eligible for archiving.
 
+
+(Choose-file-formats)=
+### Choose File Formats
+You should choose open file formats for your data if possible. Open file formats follow an open licence which makes it easier for people to reuse your data as it is more likely that openly available applications exist to read the data (or applications can easily be written to access the data). A list of open file formats can be found on [Wikipedia](https://en.wikipedia.org/wiki/List_of_open_file_formats). You can find more information about open data formats on the [Open Data Formats](https://opendataformats.org) site.
 
 (Log-onto-the-web-interface-Archive)=
 ###  Log onto the Web Interface
