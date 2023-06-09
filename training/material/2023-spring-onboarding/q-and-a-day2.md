@@ -48,7 +48,7 @@ https://documentation.sigma2.no/training/events/2023-04-hpc-on-boarding.html
 2. what if the python version that you need is not in the system?
    - First is to make sure this is the case, by using ```module avail python ``` 
    - Then if it is a newer version you could send a support request (more on this later today) asking the module to be installed
-   - Alternativly, you could use the Miniconda module to create your own python environment
+   - Alternatively, you could use the Miniconda module to create your own python environment
    - If the version is old or leads to errors that you can not resolve, when trying with Miniconda, you can use a container. We have Sigularity installed on our system (more on this during the best practices course)
        - https://documentation.sigma2.no/training/events/2023-05-best-practices-on-NRIS-clusters.html
 
@@ -118,8 +118,8 @@ man mkdir :        -p, --parents
     - you mean now conda environment of virtual environment?
         - Yes, in my own user not the course user (in SAGA). Update: Sorry conda environment in SAGA!
            - what I would do, assuming that you installed the environment from environment.yml (conda) or requirements.txt (virtual environment), then I would remove the environment and re-create it in the new place. I highly recommend to work as if the environment was disposable and could disappear at any moment. This will help you in future and make your computations more reproducible. If you are unsure which dependencies and versions are in the environment in question, you can export them into an environment.yml file.
-               - So you have a fresh export of your conda enviroment in case it disappears that you can activate again?
-                   - I always have an environment.yml and install from it. Then I always know my dependencies. But if you don't have it yet, you can use the export function to generate it from an "undocumented" existing enviroment. In other words I regard environment.yml as the documentation of my dependencies. It is very valuable to have.
+               - So you have a fresh export of your conda environment in case it disappears that you can activate again?
+                   - I always have an environment.yml and install from it. Then I always know my dependencies. But if you don't have it yet, you can use the export function to generate it from an "undocumented" existing environment. In other words I regard environment.yml as the documentation of my dependencies. It is very valuable to have.
                        - Very good idea! I would like to do that! Could you share some code on how to create this file?
                     - try these two and compare the results (they can be useful in different ways):
                       - `conda env export --from-history > environment.yml`
@@ -236,12 +236,12 @@ man mkdir :        -p, --parents
                ```seff 12345```
     
 32. Are `nodes` and `cores` interchangeable terms? Or what is the difference?
-    - A node is a seperate computer. A computer has a CPU, and the cpu will have a number of cores. Each core is capable of doing calculations independently of the other cores, but it has very fast communication to the rest of the cpu.
+    - A node is a separate computer. A computer has a CPU, and the cpu will have a number of cores. Each core is capable of doing calculations independently of the other cores, but it has very fast communication to the rest of the cpu.
     - For instance; each node on Fram has 32 cores. So a node is a "larger" unit than a core. Like your laptop; has typically 1 cpu/node but many cores. 
 
 33. What is considered a 'large job'. At what point should we contact you discussing how to set it up so as to avoid blocking for other users
     - I was talking about transfer of really large data. A large job could be a job with many thousands of cores and there it could be good to contact us for advice. Some jobs are so large (so "wide" in terms of cores and nodes) that we need to schedule a reservation for them to make sure that they can start but for most application users do not need to contact us before selecting job parameters but they can if they are unsure about optimal use for them.
-    - Basically, the slurm workload manager will do quite a good job at sharing the compute nodes. Each project will get a certain amount of cpu hours, so if you use them up, you are no longer able to run jobs. If you have a job that takes up a lot of nodes over a long time, your job will have to wait in queue for a long time. This way, if you are "greedy" you will get "punished" by longer queue times. If you have a problem you want to get solved, that you think could run more efficently, you can contact us for help on doing that.
+    - Basically, the slurm workload manager will do quite a good job at sharing the compute nodes. Each project will get a certain amount of cpu hours, so if you use them up, you are no longer able to run jobs. If you have a job that takes up a lot of nodes over a long time, your job will have to wait in queue for a long time. This way, if you are "greedy" you will get "punished" by longer queue times. If you have a problem you want to get solved, that you think could run more efficiently, you can contact us for help on doing that.
     - There are also limitations on how much resources a job can reserve. If you for some reason needs to reserve more than the maximum amount, you will need to contact us.
 
 34. Can you say a bit more about how you use chatGPT to ask for errors? Just copy/paste and it will answer what it is? Or how do you use this tool for coding questions?
@@ -253,7 +253,7 @@ man mkdir :        -p, --parents
     - Sigma2: anything about account
       - But not login problems on clusters
 
-36. When I will do my first project using slurm on HPC, is there some way to ask some of you to "hold my hand" / lead me through the process the first time? (I don't have any "local collegues" with this knowledge)
+36. When I will do my first project using slurm on HPC, is there some way to ask some of you to "hold my hand" / lead me through the process the first time? (I don't have any "local colleagues" with this knowledge)
 
 37. Should I try to use all CPUs on one node before trying more nodes?
     - It also depends, lets say you need more memory than one node has and the program can work on distributed memory then you should use multiple nodes
@@ -276,9 +276,9 @@ man mkdir :        -p, --parents
 
 42. My supervisor (who has very limited programming knowledge) is the PI of the project (as it is in another field). He wishes me to have the "daily contact" with sigma2 and NRIS, is that possible?
     - Your host institution may offer a more focused hands-on tutorial. From which institution are you?
-    - Daily contact with Sigma2 and NRIS personell is somewhat problematic since we are not staffed with that in mind, but we will be able to help to a certain point. Note that it would from a pedagogical perspective also be much more usefull for you to try on your own. We will monitor on general basis the system anyway and we have a well working support line. 
+    - Daily contact with Sigma2 and NRIS personnel is somewhat problematic since we are not staffed with that in mind, but we will be able to help to a certain point. Note that it would from a pedagogical perspective also be much more useful for you to try on your own. We will monitor on general basis the system anyway and we have a well working support line. 
 
-43. Is it possible to get a small quota allocated to do some testing of the system on my own (before applying for a project) to see if i will have the sufficiant knowledge to actually use it?
+43. Is it possible to get a small quota allocated to do some testing of the system on my own (before applying for a project) to see if i will have the sufficient knowledge to actually use it?
      - Soon I hope tha answer to this is yes. We are working to get control over one of the compute projects for recruitement, tutoring, coursework and testing. At UiT there is an acccount for this, and ideally it should at least be one for each partner university in NRIS. What university are you from?
 
 44. Where can the lecture recordings be found?

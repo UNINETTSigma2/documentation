@@ -88,13 +88,13 @@ source ${EBROOTMINICONDA3}/etc/profile.d/conda.sh
    -In the cluster/projects/
       - probably NIRD toolkit is a good solution for this
 
-6. Suggestion on how to run jupyter notebook in compute nodes having GPU as GPU is not availble in login nodes?
+6. Suggestion on how to run jupyter notebook in compute nodes having GPU as GPU is not available in login nodes?
    - probably NIRD toolkit is a good solution for this
 
 7. Hm I remember that they told me to use NIRD Toolkit the project leader should do this and give afterwards permission to other users. Might i misunderstand.
     - the project leader should apply for NIRD toolkit to be enabled on a NIRD project to sigma2, and add the people that should be allowed to start a jupyter notebook to a feide group that will be connected to the project. This is a one time thing. After that the project leader does not need to do anything else.
 
-8. This ticket may be relevent for this discussion
+8. This ticket may be relevant for this discussion
      - The user has wanted to shorten the long custom path
      
     - https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#specifying-a-location-for-an-environment

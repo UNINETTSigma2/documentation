@@ -19,7 +19,7 @@
 - Yes, through remote desktops app. Only one user allowed at the time so we use a notepad to write who is using it.
 - accidentally filled up the disk
 - Yes, with my parents as a kid! A few issues came up I think
-- Yes, issue with wanting to use it simultanously
+- Yes, issue with wanting to use it simultaneously
 
 ## Sessions
 https://documentation.sigma2.no/training/events/2023-04-hpc-on-boarding.html
@@ -84,7 +84,7 @@ No: 0
 2. Not a question, but about Maikens story about using HPC without knowing to do so. I would hope the system would be more like that. Not necesarry to know Unix and all that. Hide some of the complexity from users and let them concentrate on data and algorithms.
     - Yes, more and more the access is getting like that with web-interfaces and ways to construct your workflows and jobs using drop-down menus etc. Examples are Galaxy portal, Ondemand portal and many more
     - Thank you, will we learn about those in this course?
-    - No, unfortunately, but this will definately come at some point, it is a bit new at the moment, but later tutorials will be expanded with this type of things
+    - No, unfortunately, but this will definiseperatingtely come at some point, it is a bit new at the moment, but later tutorials will be expanded with this type of things
     - If you are interested in Galaxy, there is a self-paced community course (or what to call it) in May: https://gallantries.github.io/video-library/events/smorgasbord3/
 
 3. at the end of yesterday lecture, Espen mentioned two software to connect to hpc i think, could you please repeate the name again. Thanks
@@ -298,12 +298,12 @@ srun ./mycode
 
 26. I wonder about the #SBATCH inside the script vs the sbatch as a command line argument. When do we use what and why? 
     - both have the same effect. on the command line it can be useful for quick testing. but after the quick testing I always prefer to put this rather into the script because then when I come back to my job script 6 months later, I know what I actually did. By then, the command line and my own human memory is long gone. For reproducibility, scripts are better.
-    - `sbatch` on the command line will actually execute the sbatch command. `#SBATCH --someoption` in the job script file just specifies that the sbatch/srun command is supposed to be run with the `--someoption` option. It is a way of seperating what 'bash' is supposed to handle and what 'slurm' is supposed to handle 
+    - `sbatch` on the command line will actually execute the sbatch command. `#SBATCH --someoption` in the job script file just specifies that the sbatch/srun command is supposed to be run with the `--someoption` option. It is a way of separating what 'bash' is supposed to handle and what 'slurm' is supposed to handle 
 
 
 27. How is the time specified: hours/minutes/seconds in the sbatch command?
      - example: `#SBATH --time=02-04:00:00` submits for 2 days and 4 hours (DD-HH:MM:SS)
-    - Thank you. Where can this kind of information/documentaion be found? 
+    - Thank you. Where can this kind of information/documentation be found? 
         - https://documentation.sigma2.no/jobs/job_scripts.html
         - or: `sbatch --help`
 
@@ -334,7 +334,7 @@ srun ./mycode
          - based on what Øystein just said: I am transferring a folder, do I need to specify -r when transferring a folder to get all files?
              - the `a` is used to tell rsync that you should consider files in folders and subfolders - in `scp` () it would be `r`
                  - ah yes
-             - according to my limited knowledge, no. example for transfering files and folders: https://documentation.sigma2.no/files_storage/file_transfer.html#transferring-files-between-your-computer-and-a-compute-cluster-or-storage-resource
+             - according to my limited knowledge, no. example for transferring files and folders: https://documentation.sigma2.no/files_storage/file_transfer.html#transferring-files-between-your-computer-and-a-compute-cluster-or-storage-resource
 
 33. Som you dont need to be logged into FRAM to move something to FRAM? 
     - that's right. you still need to authenticate, though. If you use SSH keys, then the authentication can happen "under the hood" and it can look like that you can transfer files without providing a password. 

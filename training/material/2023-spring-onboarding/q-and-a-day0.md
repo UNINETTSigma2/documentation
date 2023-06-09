@@ -66,7 +66,7 @@ Use the interactive document to vote for
   * Ok.
 
 *  It seems I have a problem with the username and therefore my password doesnt work. I was told my username is ****** but in the terminal I have to write it as with capital firstletter. Then, my password isnt recognized, so I couldn't log in.
-    *  Your username is in small caps. What platform/operating system are you coming from? Windows has this tendency of allways putting captial letters on first letter disregarding.
+    *  Your username is in small caps. What platform/operating system are you coming from? Windows has this tendency of allways putting capital letters on first letter disregarding.
 
 
 ## Have you managed to download the demo-moving-around folder:
@@ -134,7 +134,7 @@ SAME PROBLEM
 13. share screen is disabled in breakout room?
     * Allowed for all now :+1:
 
-14. What happends if we dont have the permission for editing the text file?
+14. What happens if we dont have the permission for editing the text file?
     * If there is read permission, then you can make a copy somewhere you have permission and then edit
     * The person that owns the file needs to give you permission to write to it, or if you are the owner, you need to move it to a place that you have write permissions if you for instance happen to be in a place where you do not have write permission
 15. When I try to use ssh in the windows terminal nothing happens, so I have to use GitBash. 
@@ -188,7 +188,7 @@ tar: Error is not recoverable: exiting now
 19. What does bash mean?
     - Bourne again shell
 
-20. How important is to use `#!/bin/bash` at the beggining of the file
+20. How important is to use `#!/bin/bash` at the beginning of the file
     - It is quite useful if you want to run your file by just typing ./your-file.sh. You can replace it by `#!/bin/python` for example. The file extension is not really a "thing" in linux, so you can call your bash script "test.py" if you want. or your python script "test.sh". Running `./my_python_script.py` will work if the first line is `#!/bin/python`, otherwise you will have to run `python my_python_script.py`
     - `#!/bin/bash` means that `bash` is the program to run the script if no program is specified
 

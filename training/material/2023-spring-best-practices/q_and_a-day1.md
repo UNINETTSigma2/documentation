@@ -74,7 +74,7 @@ orphan: true
 3. Comment: restaurant equivalent to Slurm backfill: "the table is reserved from 21:00 on but you can have it until then for a short dinner" :+1: 
     
 4.  When working with creating models I need to work more interactively for debugging and all that. How can that be done? I have been using Jupyter on the UiO system earlyer. Spyder would even be better. is this possible?     
-    - great question. for these situations it is impractical to submit a job and wait few hours for it to start. for this you can submit an interactive job where you get an interactice allocation on a node.
+    - great question. for these situations it is impractical to submit a job and wait few hours for it to start. for this you can submit an interactive job where you get an interactive allocation on a node.
     - more info here: https://documentation.sigma2.no/jobs/interactive_jobs.html
     - inside an interactive allocation one can then start an editor or run debug/test jobs until the interactive allocation stops
 
