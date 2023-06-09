@@ -157,7 +157,7 @@ SAME PROBLEM
   - Good, do that, good luck. 
   - Are you using a managed machine? (from uit, uio, etc?) I know that at least this is slightly problematic at UiT machines, and an admin need to activate it.
   - Yes, UiO managed, no fun ;-)
-  - Got this with fram: M:\>ssh gerald@fram.sigma2.no
+  - Got this with fram: M:\>ssh USER@fram.sigma2.no
 The authenticity of host 'fram.sigma2.no (2001:700:4a00:10::2:2)' can't be established.
 ECDSA key fingerprint is SHA256:4z8Jipr50TpYTXH/hpAGZVgMAt0zwT9+hz8L3LLrHF8.
 Are you sure you want to continue connecting (yes/no/[fingerprint])?
