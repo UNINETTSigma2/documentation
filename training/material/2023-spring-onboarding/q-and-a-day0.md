@@ -61,7 +61,7 @@ Use the interactive document to vote for
     * Ok, you just recently changed it? 
     * First, I tried to login with the password from yesterday session, the access was denied, then I changed, but still the access was denied. Yesterday everything worked fine. 
     * Are you 100% sure that you typed the correct password? :) You said you managed to log in yesterday with the default password right?
-    *I managed to login in yesterday with a changed password, which did not work today morning. 
+    * I managed to login in yesterday with a changed password, which did not work today morning. 
     Then I do suspect you might have typed the wrong password. Could you check that, and also type in cleartext to see what you are typing - otherwise, maybe try to change the password again 
   * Ok.
 
