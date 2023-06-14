@@ -47,6 +47,9 @@ $ rsync --info=progress2 -a directory-name username@cluster:receiving-directory/
 If you want to make sure that `rsync` does not overwrite files that are newer
 on the receiving end, add the `--update` option.
 
+If you want to `rsync` between two computers that both offer an SSH connection, note that then
+you can use `rsync` both ways: from cluster A to cluster B, but also the reverse.
+
 
 ## rsync using compression
 
