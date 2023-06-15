@@ -52,6 +52,10 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'venv', '_book', 'node_modules', 'README.md']
 
 # https://documatt.gitlab.io/sphinx-reredirects/usage.html
+# here we list pages that have been moved but where we want to preserve
+# the old URL for a while
+# after some time (few months or a year) we can remove these redirects again
+# you can check "git annotate conf.py" to see when a line was added
 redirects = {
      "files_storage/nird_migration": "nird/migration.html"
      }
