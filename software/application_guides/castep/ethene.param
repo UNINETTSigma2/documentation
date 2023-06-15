@@ -1,0 +1,4 @@
+cut_off_energy  = 40 ry
+iprint          = 1
+opt_strategy : speed
+
