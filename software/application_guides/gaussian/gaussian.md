@@ -1,7 +1,3 @@
----
-orphan: true
----
-
 # The GAUSSIAN program system
 
 * {ref}`gaussian-job-examples`
@@ -10,8 +6,8 @@ orphan: true
 * {ref}`gaussview`
 
 [Gaussian](https://gaussian.com/) is a versatile program package for for electronic structure modeling and computational chemistry, and frequently used on NRIS Hardware platforms. 
-<p>
-**Official documentation:** [https://gaussian.com/man](https://gaussian.com/man)
+
+**Official documentation:** <https://gaussian.com/man>
 
 ## License and access
 
