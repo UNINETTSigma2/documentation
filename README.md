@@ -234,6 +234,23 @@ print("Hello World!")
 `````
 
 
+## Why is the pipeline so strict?
+
+At the time of writing the pipeline is strict about spelling, broken internal
+links, and build warnings.
+
+It will refuse to merge any warning. However, all warnings are new and all are
+related to the merge request.
+
+Why is the spell checker too strict or not strict enough?
+- Please adapt and improve the checker
+
+Why don't we allow to merge warnings and only reject errors?
+- You can suggest a change to the pipeline to make it more sensitive and sensible
+- However, then nobody will ever fix warnings and warnings signal real problems
+  that affect navigation or accessibility
+
+
 ## Redirecting moved or removed pages
 
 Sometimes we want to remove or move a page which has been linked
