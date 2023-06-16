@@ -1,5 +1,5 @@
 ---
-
+orphan: true
 ---
 
 (training-2023-spring-onboarding-notes-day1)=
@@ -14,7 +14,7 @@
 - Not a PC, but we have a local computing server which is very popular among our researchers. CPU is often saturated there due to processes that use more CPU than the user intended.
 - yes, issue: folder structure changed by another user that messed up some scripts.
 - Yes, ran out of storage (lab computers and servers)
-- yes, no specefic issues
+- yes, no specific issues
 - Yes, no particular problems
 - Yes, through remote desktops app. Only one user allowed at the time so we use a notepad to write who is using it.
 - accidentally filled up the disk
@@ -32,13 +32,13 @@ Frequently, research problems that use computing can outgrow the capabilities of
 
 
 - Image processing of large images, with multiple processing steps, quickly exceeds the RAM of regular computers. This is especially true when additional dimensions are added, such as time lapse, or additional channels/colors.
-- Yes, working with images as input. Hyperparameter search / tuning networks. Could only train on top layers.
+- Yes, working with images as input. Hyper-parameter search / tuning networks. Could only train on top layers.
 - bioinformatics analyses
     - Bioinformatic analysis, from large sample set of metagenome sequences to abundance table stage.
 - Image processing of radiographs, just starting
 - Molecular dynamics simulations
 - Bioinformatic analyses /de novo assembly of bacterial isolates and phylogenetic analyses
-- Climate simulation / weather forcast
+- Climate simulation / weather forecast
 - Gene annotation of NGS data, especially PCR error correction taking up a lot of RAM
 - Large datasets in psychology / neuroscience
 - Simulations with lots of parameters
@@ -50,8 +50,8 @@ Frequently, research problems that use computing can outgrow the capabilities of
 Answer with o 
 - Yes: 0000000000o000000
 - No: 
-- It is working after I log into my FRAM account, doesnt work before the login (then I get an error)
-    - Hm, but still you manage to use ssh to log into FRAM? That is good at least! Yes I use ssh to log into FRAM. But befor shen i typed "ssh - V" i got  "ssh: Could not resolve hostname -: nodename nor servname provided, or not known"
+- It is working after I log into my FRAM account, does not work before the login (then I get an error)
+    - Hm, but still you manage to use ssh to log into FRAM? That is good at least! Yes I use ssh to log into FRAM. But before then I typed "ssh - V" I got  "ssh: Could not resolve hostname -: nodename nor servname provided, or not known"
     - there should not be a space between the dash and the V `ssh -V` is the correct command
     - yes, it is because you have a space between the dash `-` and the `V`, :) 
 - aa thanks! :+1:
@@ -81,13 +81,13 @@ No: 0
     - It is also not always the case that this is only done at start and end of a script. Quite a few workloads needs to access data during execution, and a few, quite a lot.
     
 
-2. Not a question, but about Maikens story about using HPC without knowing to do so. I would hope the system would be more like that. Not necesarry to know Unix and all that. Hide some of the complexity from users and let them concentrate on data and algorithms.
-    - Yes, more and more the access is getting like that with web-interfaces and ways to construct your workflows and jobs using drop-down menus etc. Examples are Galaxy portal, Ondemand portal and many more
+2. Not a question, but about the story about using HPC without knowing to do so. I would hope the system would be more like that. Not necessary to know Unix and all that. Hide some of the complexity from users and let them concentrate on data and algorithms.
+    - Yes, more and more the access is getting like that with web-interfaces and ways to construct your workflows and jobs using drop-down menus etc. Examples are Galaxy portal, OnDemand portal and many more
     - Thank you, will we learn about those in this course?
-    - No, unfortunately, but this will definiseperatingtely come at some point, it is a bit new at the moment, but later tutorials will be expanded with this type of things
+    - No, unfortunately, but this will definitely come at some point, it is a bit new at the moment, but later tutorials will be expanded with this type of things
     - If you are interested in Galaxy, there is a self-paced community course (or what to call it) in May: https://gallantries.github.io/video-library/events/smorgasbord3/
 
-3. at the end of yesterday lecture, Espen mentioned two software to connect to hpc i think, could you please repeate the name again. Thanks
+3. at the end of yesterday lecture, Espen mentioned two software to connect to hpc i think, could you please repeat the name again. Thanks
     - were these graphical tools? (sorry I wasn't here yesterday ...)
        - yes they were related to GUI, but both also offers terminal capabilities. And support standard ssh.
        - X2Go: https://documentation.sigma2.no/getting_started/remote-desktop.html?highlight=x2go
@@ -105,7 +105,7 @@ No: 0
 
 6. On [this image](https://training.pages.sigma2.no/tutorials/hpc-intro/_images/hpc.svg), is it possible to identify a single node? Is it one unit on a rack? Is it a whole rack?
    - one unit on a rack. what I am unsure about is whether one of the "pizza boxes" (the 2-3 cm high metal things) host 1 node or more than 1 node. 
-       - What you refer to is probably the single hight, this contains two compute servers, typically also called nodes. Due to technical reasons we store two and two on each level. Each node for our machines mostly contains two cpu´s with a number of core units - ranging from 16/cpu on Fram to 64/cpu on Betzy.
+       - What you refer to is probably the single hight, this contains two compute servers, typically also called nodes. Due to technical reasons we store two and two on each level. Each node for our machines mostly contains two CPU's with a number of core units - ranging from 16/cpu on Fram to 64/cpu on Betzy.
     - should I go down and take a picture of a node on fram?
         - that would be nice. we could also put it into the documentation. :+1:
         - ØT: On my way (not available for breakout rooms)
@@ -130,7 +130,7 @@ No: 0
     - the compute resources: yes
     - this is also true for the other clusters. one reason why a compute cluster is typically in one room and not spread across several cities is that the high-speed network ("interconnect") which connects the compute nodes, puts a limitation on the length of cables.
 
-9. I dont understand the writeout I get after the sinfo command in the terminal. Could you explain?
+9. I dont understand the message I get after the `sinfo` command in the terminal. Could you explain?
     - it gives us an overview over the available queues (or partitions) ("normal", "optimist", "bigmem", ...) and a mapping between the queues and node names ("c3-1", "c2-10", ...) and their status ("idle", "drain", "alloc", ...)
        - maybe the actual information it gives is more useful to those maintaining the system than to those using the system
        - The information will be different depending on what system you are on, so SAGA, FRAM, Betzy will have somewhat different queues and specifications  
@@ -151,7 +151,7 @@ No: 0
        - thanks! looking ...
        - solution: `chmod +x example_job.sh` (to make it executable)
          - but I did that (several times lol)
-    - how did you try to run it, and what doesls show you? See how to do this in the day 0 course: https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html
+    - how did you try to run it, and what does `ls` show you? See how to do this in the day 0 course: https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html
 
    - Can I get the output of `ls -la`
      - currently the file is not executable
@@ -180,14 +180,14 @@ No: 0
     - many commands use one dash for short options and two dashes for long options (long meaning: option is written out). example: `-A` or `--account` do the same thing
     - See Day 0 information: for instance https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html and also the cheat-sheet: https://training.pages.sigma2.no/tutorials/unix-for-hpc/cheat-sheet.html
         - Neither of these mention the -- (other than having to override the missing certificate), but the other explanations in the responses here answer my question.
-    - Ok, does it not say explisitly, at least it mentions options and shows the options using the `-`  - but good that you understand it now! :) 
+    - Ok, does it not say explicitly, at least it mentions options and shows the options using the `-`  - but good that you understand it now! :) 
     - It is typical syntax of UNIX (and probably also Windows) commands, that you use `-` or `--` to give options to the command
 
-16. Interesting for customation of jobs: 
+16. Interesting for customization of jobs: 
     - https://open.pages.sigma2.no/job-script-generator/
         - Is it possible to add the time units in the documentation somewhere, as in hh:mm:ss ?
 
-17. why does all the example files end with .sh? would it end with .py if it was a python file?
+17. why does all the example files end with .sh? would it end with `.py` if it was a python file?
     - the ending here only helps us humans to anticipate what is inside the file. `.sh` communicates to me that there will probably be a shell script inside. but for the cluster it does not matter. I could call it `example.run` or `example.batch` or `example` or `example.job` and it would still work. If it was a Python file, it would be good to call it `something.py`, again to communicate expectations.
       - okay, so it does not specify "what language" to read the script in?
           - correct. but look at the first line inside the file that starts with `#!`: this one tells the shell which interpreter to use to interpret what follows. if that was a Python script, it would contain `#!/usr/bin/env python`
@@ -204,14 +204,14 @@ No: 0
     
 19. Can results from a terminated project (which exceeded its time limit) still be accessed, for example at a shared storage area?
     - We have a shared storage system for all nodes. So, if you save something to a file, it will be available even if the job crashes. But you will have to actually save it to a file. Results in memory will be gone.
-    - It is a rather tricky and actually quite advanced question: Depends a bit on your job-setup. Have a look at the runscript example on our main documentation, for instance the gaussian runscript example under application support to see a solution to keep the files even if the job dies prematurely.
+    - It is a rather tricky and actually quite advanced question: Depends a bit on your job-setup. Have a look at the run script example on our main documentation, for instance the gaussian run script example under application support to see a solution to keep the files even if the job dies prematurely.
         - Link to main documentation: https://documentation.sigma2.no/
             - This one? https://documentation.sigma2.no/software/application_guides/gaussian/gaussian_job_example.html
     - Will the shared storage system be covered in this course, or should I refer to the main documentation?
 
 20. Is a possibility to use cpus from two or more projects for our job? And if yes how we command this in SBATCH?
     - to my knowledge: no. a job will use one account
-    - Depends a bit what you mean by project. But as a compute project with allocated compute resources/CPUhrs - the answer above holds.
+    - Depends a bit what you mean by project. But as a compute project with allocated compute resources/CPU hrs - the answer above holds.
     -Yes, I mean an account.
 
 21. How do you know what %j means? What would the source to look for all the combinations such as %a or %A.
@@ -223,7 +223,7 @@ No: 0
             - ```filename=$(date +"%m-%d-%H-%M")"-somename.txt"```
             - The above variable *filename* would then contain the value 04-19-11-17-somename.txt
 
-22. There is a part on running interactive jobs in the end of Sabrys lesson. Is this to use with for example Jupyter for debugging? I am still in an early phase and my Python programs only give me a lot of errors, so I cannot submit them as scripts yet.
+22. There is a part on running interactive jobs in the end of the Scheduling Jobs lesson. Is this to use with for example Jupyter for debugging? I am still in an early phase and my Python programs only give me a lot of errors, so I cannot submit them as scripts yet.
     - Thank you for pointing it out. Will show this after the exercises    
 
 
@@ -268,9 +268,9 @@ No: 0
 			done
 			```
 
-- There is also the option to write a job script generator which iterates on many different file names. This is quit widely in computational chemistry. However, this requires a somewhat more advenced insight in linux power tools/scripting. We may provide example, but it would be on your own risk type offer. 
+- There is also the option to write a job script generator which iterates on many different file names. This is quit widely in computational chemistry. However, this requires a somewhat more advanced insight in linux power tools/scripting. We may provide example, but it would be on your own risk type offer. 
 
-- using piping, you can generate the list of input parameters you need and create a file that has that list. As the array job wil get its input index, you can use this index to look up in the file what filename that exact job is supposed to use.
+- using piping, you can generate the list of input parameters you need and create a file that has that list. As the array job will get its input index, you can use this index to look up in the file what filename that exact job is supposed to use.
     - SLURM_ARRAY_TASK_ID is the index in the job array.
     - Found a better tutorial: https://blog.ronin.cloud/slurm-job-arrays/
  
@@ -309,7 +309,7 @@ srun ./mycode
 
 28. How can I check how much memory, CPU etc my job needs? While running or after it is finished?
     - `seff 12345` (where 12345 was the job number), after the job ends
-    - While the job is running you could login to the node(s) that runs the job and use the command ```top``` or similar UNIX comands
+    - While the job is running you could login to the node(s) that runs the job and use the command ```top``` or similar UNIX commands
     - see also our tutorials on this very good and important question:
       - https://documentation.sigma2.no/jobs/choosing-memory-settings.html
       - https://documentation.sigma2.no/jobs/choosing-number-of-cores.html
@@ -341,8 +341,8 @@ srun ./mycode
 
 34. my username for this course is ...@login-3 and not ..@sigma2.no, should i specify the whole "email" or just what comes before the @?
             - hmmm... I am confused by this. Usernames should not contain any "@". once you log into a cluster, your username shows up as the part before the "@". you can also try command `whoami` to check what your username is
-            - Thank you. I'm just asking because I think Espen wrote his username with the @
-               - ah, I was distracted and did not follow screenshare
+            - Thank you. I'm just asking because I think the lecturerer wrote his username with the @
+               - ah, I was distracted and did not follow screen share
  
 34. No rsync in Windows GitBash?
     - I am unsure but rsync should be available in Windows Subsystem Linux. 
@@ -357,12 +357,11 @@ srun ./mycode
 Answer with o 
 - Yes: ooooooo
 
-36. I had to leave early and will not be able to attend tomorrow. Please tell me where I can find the recordings. Thank you for such an informative course - Gerald
-37. 
+36. I had to leave early and will not be able to attend tomorrow. Please tell me where I can find the recordings. Thank you for such an informative course.
 
-(Assume that "not yes means no")
+37. (Assume that "not yes means no")
 
-Will be displayed during exercise session and/or after todays lession if pressed on time. 
+Will be displayed during exercise session and/or after todays lesson if pressed on time. 
 
 ```{note}
 The example shows `mem=1G`, but this will not work on the current course allocation on FRAM. However, it is useful for you to then see what error slurm gives you. 

@@ -1,5 +1,5 @@
 ---
-orphan:true
+orphan: true
 ---
 
 (training-2023-spring-onboarding-notes-day0)=
@@ -50,14 +50,14 @@ Use the interactive document to vote for
       
     *Affirmative
     USER
-    SSH is a protcol for connecting securily to remote resources and the corresponding tools. For unix-type operating systems this protocol is integrated, for Windows it comes as a plugin/add-in. Basically it is a way to log in to a remote resource in a secure way. (coded connection). We typically use it as "log in to a remote machine" type statement. 
+    SSH is a protocol for connecting securely to remote resources and the corresponding tools. For unix-type operating systems this protocol is integrated, for Windows it comes as a plugin/add-in. Basically it is a way to log in to a remote resource in a secure way. (coded connection). We typically use it as "log in to a remote machine" type statement. 
 ## Have you connected to FRAM?
 * yes:00000000000000000
 * no: 
 
     
 ### Account/username/password problems
-* The access to the sigma is being denied for me (my username: ******). I have changed the password, waited for 20 minutes, repeated the loging but still the access is denied. 
+* The access to the sigma is being denied for me (my username: ******). I have changed the password, waited for 20 minutes, repeated the login but still the access is denied. 
     * Ok, you just recently changed it? 
     * First, I tried to login with the password from yesterday session, the access was denied, then I changed, but still the access was denied. Yesterday everything worked fine. 
     * Are you 100% sure that you typed the correct password? :) You said you managed to log in yesterday with the default password right?
@@ -65,15 +65,15 @@ Use the interactive document to vote for
     Then I do suspect you might have typed the wrong password. Could you check that, and also type in cleartext to see what you are typing - otherwise, maybe try to change the password again 
   * Ok.
 
-*  It seems I have a problem with the username and therefore my password doesnt work. I was told my username is ****** but in the terminal I have to write it as with capital firstletter. Then, my password isnt recognized, so I couldn't log in.
-    *  Your username is in small caps. What platform/operating system are you coming from? Windows has this tendency of allways putting capital letters on first letter disregarding.
+*  It seems I have a problem with the username and therefore my password does not work. I was told my username is ****** but in the terminal I have to write it as with capital first letter. Then, my password is not recognized, so I couldn't log in.
+    *  Your username is in small caps. What platform/operating system are you coming from? Windows has this tendency of always putting capital letters on first letter disregarding.
 
 
 ## Have you managed to download the demo-moving-around folder:
 * yes: 00000
 * no: 
     * What is the problem with copy and paste? 
-    * You can paste into terminal by rigt-clicking on the line, no menu will pop-up
+    * You can paste into terminal by right-clicking on the line, no menu will pop-up
 NOW IT WORKS - good! :) 
     * Windows key + v will let you select from several of the last things you copied too
 
@@ -84,7 +84,7 @@ NOW IT WORKS - good! :)
     - no: 
 
 
-# Ask Your Questions
+## Ask Your Questions
 
 1. What is ssh ?
     2. The course material explains a bit what ssh is: https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/intro.html#what-is-ssh-secure-shell - it is basically a program that allows save connection between computers
@@ -98,7 +98,7 @@ NOW IT WORKS - good! :)
     - On windows, by default, you have both CMD and PowerShell, both will work for this course 
 4. Are there any reasons for customizing the prompt? For instance security related?
     - Put some color on that prompt, it will likely improve visibility. :) Also, you might be interested in hiding or showing some info depending on what's important to you.
-    - Mostly just estethical/informational for yourself, and for instance not having a too long prompt if that disturbs you 
+    - Mostly just aesthetical/informational for yourself, and for instance not having a too long prompt if that disturbs you 
 5. I do not have password for fram, can I use Fox?
     - Yes, you can follow us on Fox
     - Got it to work now in Fram too - I am happy :-) :+1:
@@ -108,7 +108,7 @@ NOW IT WORKS - good! :)
     - nn9987k
     
 8. Best way of finding commands: Ask chatGPT :)
-    * Yes ,that is of course one option now-adays!
+    * Yes ,that is of course one option nowadays!
 9. what command show invisable files?
     * You could check man ls, it is stated there
     * `ls -a` for "all" - shows invisible (dot) files
@@ -146,7 +146,7 @@ SAME PROBLEM
     -  ssh was already installed, this is standard UiO desktop PC
     -  when I do the ssh MY_USER_NAME@saga.sigma2.no (with my user name) just nothing happens
      -  Is not SAGA down for maintenance now? 
-     -  yes. SAGA not avaialable, Please use fram
+     -  yes. SAGA not available, Please use fram
      -  From organizer: Workarounds are - using X2Go (see https://documentation.sigma2.no/getting_started/remote-desktop.html?highlight=x2go) or Visual Studio Code (see https://documentation.sigma2.no/code_development/guides/vs_code/connect_to_server.html?highlight=visual%20studio%20code)
     
    - Sorry, but fram does not work either from the terminal - but from GitBash 
@@ -169,13 +169,13 @@ tar (child): finding.tar.gz: Cannot open: No such file or directory
 tar (child): Error is not recoverable: exiting now
 tar: Child returned status 2
 tar: Error is not recoverable: exiting now
-  - you are problably in the wrong folder, do `ls` to see if the file is there, and `pwd` to find out where you are
+  - you are probably in the wrong folder, do `ls` to see if the file is there, and `pwd` to find out where you are
   - I am in my home directory
   - where did you wget (download) finding.tar.gz to? If you dont remember you can do `cd` then `find ./ -name finding.tar.gz` to find out where it was. If you did not download it, follow the procedure in the tutorial to download with `wget` and untar it with `tar` according to the tutorial
   - Okay, I did the process again and it works now. Thank you :) :+1:    
 
 
-17. When I try to access the  cd exercise-moving-around I get an error that no such file or directory exists. When I tyle ls I see there is an object called exercise-moving-around.tar.gz in there. When I try to drite cd exercise-moving-around.tar.gz I get an error again saying that it is not a directory
+17. When I try to access the  cd exercise-moving-around I get an error that no such file or directory exists. When I type ls I see there is an object called exercise-moving-around.tar.gz in there. When I try to drite cd exercise-moving-around.tar.gz I get an error again saying that it is not a directory
     * Can you please use `ls` and see if the directory is there. And use `pwd` see where you are
         * pwd command tells me I'm in cluster/home/username
     * Did you issue the command``` tar xvf demo-moving-around.tar.gz``` ?
@@ -194,10 +194,11 @@ tar: Error is not recoverable: exiting now
 
 21. This was really helpful, thanks!
 
+## Feedback
 
 ### what was good
 Great support and help accessing FRAM!
-Great lectures and exercises and help in the breakoutrooms!
+Great lectures and exercises and help in the breakout rooms!
 Thank you! It was a great lecture! See you tomorrow :)
 Having enough people to answer questions in real time
 Good documentation to support both copying and catching up if someone gets temporarily lost
@@ -207,5 +208,3 @@ Thank you for the course, I am really happy you made a course at this basis leve
 ### what to improve
 Share command line navigation hints at the beginning - ctrl + a to get to the beginning of a line was very helpful
 Send info about how to test if your login works with the initial email
-
----------------------------------------------------------------

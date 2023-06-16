@@ -1,24 +1,13 @@
 ---
-orphan:true
+orphan: true
 ---
+
 (training-2023-spring-best-practices-notes-day2)=
 
-# Questions and answers from Best Pratcices on NRIS Clusters May 2023, Day 2 (May 10)
+# Questions and answers from Best Practices on NRIS Clusters May 2023, Day 2 (May 10)
 
 ```{contents} Table of Contents
 ```
-
-## Schedule Day 2 (10th of May 2023)
-
-- 09:00-09:10 - Welcome, Practical information &icebreaker question 
-- 09:10-09:50 - HPC Best Practices & Trouble shooting (Ole W. Saastad)
-- 09:50-10:00 - Break
-- 10:00-10:50 - How to choose the right amount of memory + Exercise (Radovan Bast & Jørn)
-- 10:50-11:00 - Break
-- 11:00-11:50 - How to choose the number of cores + Exercise (Radovan Bast & Jørn)
-- 11:50-12:00 - Break
-- 12:00-12:30 - Q&A & Discussion 
-
 
 ## Icebreaker questions
 
@@ -30,7 +19,6 @@ orphan:true
     - Others, please specify below
         - Python multiprocessing: oo
         - Slurm jobarrays: o
-
 
 ## Questions and Comments HPC Best Practices & Trouble shooting
 
@@ -128,13 +116,13 @@ __Hands-on until 11:45__
 - Ask questions in the breakout zoom rooms or here in the collaborative documents
 :::
 
-11. How to run all scripts simultaneuosly? 
+11. How to run all scripts simultaneously? 
     - to submit all in one go: `for file in *.sh; do sbatch $file; done` (using bash's for-loop to iterate over all files that end with .sh)
 
 :::info
 __Survey__
 Did you try the exercises? (put an 'o' down)
-Yes, everything worked:oo
+Yes, everything worked: oo
 Yes, but I had problems:
 Still working/waiting:0
 No:

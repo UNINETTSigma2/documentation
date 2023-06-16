@@ -49,7 +49,7 @@ https://documentation.sigma2.no/training/events/2023-04-hpc-on-boarding.html
    - First is to make sure this is the case, by using ```module avail python ``` 
    - Then if it is a newer version you could send a support request (more on this later today) asking the module to be installed
    - Alternatively, you could use the Miniconda module to create your own python environment
-   - If the version is old or leads to errors that you can not resolve, when trying with Miniconda, you can use a container. We have Sigularity installed on our system (more on this during the best practices course)
+   - If the version is old or leads to errors that you can not resolve, when trying with Miniconda, you can use a container. We have Singularity installed on our system (more on this during the best practices course)
        - https://documentation.sigma2.no/training/events/2023-05-best-practices-on-NRIS-clusters.html
 
 3. do you need to remove the standard env as well?
@@ -75,7 +75,7 @@ https://documentation.sigma2.no/training/events/2023-04-hpc-on-boarding.html
 6. I was able to load an older version of Ruby, which caused GCCcore to be reloaded with an earlier version (7.3.0). However, all other modules are still dependent on GCCcore 10.3.0. Is there a way to prevent me from having loaded the "wrong" version of Ruby?
    - Try not to mix modules compiled with different compiler, this will lead to errors hard to debug. 
    - You need to find a module combination that are compiled with the same compiler/tool chain
-   - If you give me the list of modeules you want to use together, I can show you how (if that is possible)
+   - If you give me the list of modules you want to use together, I can show you how (if that is possible)
        - That's OK, I just wanted to fail the bonus exercise and see what would happen if I tried to load an incompatible module :)
 
 7. `module avail node/` returns `No modules found!`: Can Node.js be made available?
@@ -91,7 +91,7 @@ then you will see : which node
         - Interesting, thanks!
 
 8. Can you explain again about GCCcore versions?
-    -  It basically means that there are some similarities between the free gnu ompiler suite and the commercial/costly intel compiler suite. Codes that have the GCCcore toolchain can be used together with both codes that has the GCC toolchain and the intel toolchain as long as the GCC version is the same.
+    -  It basically means that there are some similarities between the free gnu compiler suite and the commercial/costly intel compiler suite. Codes that have the GCCcore toolchain can be used together with both codes that has the GCC toolchain and the intel toolchain as long as the GCC version is the same.
 
 9. What does the ml in ml purge do?
     - see `ml --help` - it can either list or load or unload. personal opinion: I find this inconsistent and surprising and I avoid it and prefer to type `module list` or `module load` explicitly.
@@ -104,7 +104,7 @@ man mkdir :        -p, --parents
 ```
     - As always, man is your friend.
     
-    (apart fron when log in from new mac and trying cost --man ;-))
+    (apart from when log in from new mac and trying cost --man ;-))
 
 11. It was told that conda can help others reproduce my work. How does this do this?
     - the reproducibility aspect of Conda is that not only I can install my dependencies into an isolated environment, it also makes it easier to communicate to others who need the same environment on their computers by sharing the `environment.yml` file which lists all dependencies and the version. personal recommendation: I always create Conda environments and always install packages from the environment.yml file. In other words, I first document the dependency in the environment.yml file and then install from that file. Then all I need to do is to share that file and others can install environment from it. This makes reproducibility for others and my future self a lot simpler.
@@ -114,7 +114,7 @@ man mkdir :        -p, --parents
 12. is pip install not recommended here?
     - using pip install in combination with virtual environments works similarly and is also fine if your software dependencies are Python packages. it is the same idea. the instructor now discourages using pip but they mean pip in combination with conda. it is perfectly fine to use pip in combination with virtual environments (not mentioned in this course).
 
-13. if I have already made a pyhton environment in the home folder, how to move to project folder?
+13. if I have already made a python environment in the home folder, how to move to project folder?
     - you mean now conda environment of virtual environment?
         - Yes, in my own user not the course user (in SAGA). Update: Sorry conda environment in SAGA!
            - what I would do, assuming that you installed the environment from environment.yml (conda) or requirements.txt (virtual environment), then I would remove the environment and re-create it in the new place. I highly recommend to work as if the environment was disposable and could disappear at any moment. This will help you in future and make your computations more reproducible. If you are unsure which dependencies and versions are in the environment in question, you can export them into an environment.yml file.
@@ -134,7 +134,7 @@ man mkdir :        -p, --parents
 14. Just missed the take home message: conda should be installed in our home environment and not in ".."?
     - Try to avoid the HOME area to store conda environments as the space is limited there 
 
-15. Where should we continue excercising after this course? The fram access will be closed after today it seems.
+15. Where should we continue exercising after this course? The fram access will be closed after today it seems.
     - The target audience of this course are the future users. So we expect that you will apply for a project or join an existing one after the course. 
     - I understand this means you are not part of another Fram project with some compute quota?
         - Not yet, but I have applied to Fox - guess I could continue there for now? But I would like to experiment with GPU access, which I understand Fox does not provide.
@@ -159,7 +159,7 @@ man mkdir :        -p, --parents
         - RB: personal opinion and not everybody will agree: /cluster/work is a good place to store Conda environments (but store the environment.yml files in /cluster/home)
         - OWS: /cluster/work/users/$USERNAME is not persistent, files are deleted after a pre set (subject to change) number of days. 
 
-19. What are groups? Are they subsets of projects, or above that in the hieracrchy, or something else?
+19. What are groups? Are they subsets of projects, or above that in the hierarchy, or something else?
     - in unix/linux, groups existed before Slurm projects were invented. so technically they are independent but on our systems they roughly map to each other. try the command: `$ groups` and it will list all groups you are in and you will also see group(s) with the same name as the Slurm project.
     - command not found (Windows)
         - hmmm! interesting - maybe this is only something staff can do?
@@ -195,7 +195,7 @@ man mkdir :        -p, --parents
      - (we have reached out to staff colleagues for an answer ...)
      - 1 GPU hour = 16 CPU hour - price also depend on the category of your project.
 
-25. If I start a job that requires more CPU hours than i have in my quota. Does the job run and then I get a bill for the amount i exceded or doesn't the job run?
+25. If I start a job that requires more CPU hours than i have in my quota. Does the job run and then I get a bill for the amount i exceeded or doesn't the job run?
      - the job won't even start (it will refuse to be submitted) - this can be important when requesting too much time for a job that is much shorter since slurm cannot know how long the job will actually take. it can also affect colleagues in the same project. so asking for excessive amount of time and cores can prevent my colleagues from submitting jobs until Slurm realizes that my job did not take 1 week but only 5 seconds.
         - Thank you!
 
@@ -228,8 +228,8 @@ man mkdir :        -p, --parents
 31. In what order do you try increasing? Do you start increasing cores? or memory? or nodes? etc.
     - Sometimes they are not independent
     - Increasing cores are almost always better than nodes if there are more cores available on the node you have =)
-    - First you need to undestand the program, if you have that knowledge then it is easier to avoid the bottle necks.
-        - If you do not know about the program, try with two cores to see if it can run parallel before going any further with cores. Then if you hit the core limit of one node. Try with two nodes and make sure the progfram could handle distributed memory. i.e. you see that the program is using both nodes. If it can hanlde that then you could increase node count.
+    - First you need to understand the program, if you have that knowledge then it is easier to avoid the bottle necks.
+        - If you do not know about the program, try with two cores to see if it can run parallel before going any further with cores. Then if you hit the core limit of one node. Try with two nodes and make sure the program could handle distributed memory. i.e. you see that the program is using both nodes. If it can handle that then you could increase node count.
         - You could use the following command at the end of a job to see how much resource it used
             - seff JOB_ID
             - example
@@ -246,7 +246,7 @@ man mkdir :        -p, --parents
 
 34. Can you say a bit more about how you use chatGPT to ask for errors? Just copy/paste and it will answer what it is? Or how do you use this tool for coding questions?
     - Said during the presentation - Just ask it /type your question (answered by a participant, not organizer).
-    - Be careful because if it doesn't know a function for something it will make up one that sounds right and use it as if it were real. But asking followup questions or providing it with other suggestions can refine it to be more usable. E.g. ifit makes up a function X that doesn't exist, you can then ask it how to write a function that would do X (answered by a participant, not organizer).
+    - Be careful because if it doesn't know a function for something it will make up one that sounds right and use it as if it were real. But asking follow up questions or providing it with other suggestions can refine it to be more usable. E.g. if it makes up a function X that doesn't exist, you can then ask it how to write a function that would do X (answered by a participant, not organizer).
 
 35. What should we contact sigma2 about and what should we contact NRIS about?
     - NRIS: technical questions
@@ -270,16 +270,16 @@ man mkdir :        -p, --parents
     - I can log in to metacenter.no, but I immediately get shown the change password page, so I guess I can't see anything else.
 
 41. Just out of curiosity. How much computing power do these clusters actually have?
-    -    https://documentation.sigma2.no/hpc_machines/betzy.html has a teoretical peak of 6.2 Petaflop/s.
-    -    https://documentation.sigma2.no/hpc_machines/fram.html has a teoretical peak of 1.1 Petaflop/s.
-    -    https://documentation.sigma2.no/hpc_machines/saga.html has a teoretical peak of 795 Teraflop/s.
+    -    https://documentation.sigma2.no/hpc_machines/betzy.html has a theoretical peak of 6.2 Petaflop/s.
+    -    https://documentation.sigma2.no/hpc_machines/fram.html has a theoretical peak of 1.1 Petaflop/s.
+    -    https://documentation.sigma2.no/hpc_machines/saga.html has a theoretical peak of 795 Teraflop/s.
 
 42. My supervisor (who has very limited programming knowledge) is the PI of the project (as it is in another field). He wishes me to have the "daily contact" with sigma2 and NRIS, is that possible?
     - Your host institution may offer a more focused hands-on tutorial. From which institution are you?
     - Daily contact with Sigma2 and NRIS personnel is somewhat problematic since we are not staffed with that in mind, but we will be able to help to a certain point. Note that it would from a pedagogical perspective also be much more useful for you to try on your own. We will monitor on general basis the system anyway and we have a well working support line. 
 
 43. Is it possible to get a small quota allocated to do some testing of the system on my own (before applying for a project) to see if i will have the sufficient knowledge to actually use it?
-     - Soon I hope tha answer to this is yes. We are working to get control over one of the compute projects for recruitement, tutoring, coursework and testing. At UiT there is an acccount for this, and ideally it should at least be one for each partner university in NRIS. What university are you from?
+     - Soon I hope the answer to this is yes. We are working to get control over one of the compute projects for recruitment, tutoring, coursework and testing. At UiT there is an account for this, and ideally it should at least be one for each partner university in NRIS. What university are you from?
 
 44. Where can the lecture recordings be found?
 
@@ -295,7 +295,7 @@ https://documentation.sigma2.no/getting_help/qa-sessions.html
 ##### Somethings went well
   - I liked the markdown document (HedgeDoc). Me too x3!
 
-  - Thank you for a fantastic course! I learned a lot, and got very thorough feedback on all questions I have. Everything was presented in a very basic and understandable way. The hackmd is very nice to ask questions in. And the fact that you are enough people to answer quickly and thoroughly is very very helpful. Then it is possible to keep track with what is currently being presented while asking questions.
+  - Thank you for a fantastic course! I learned a lot, and got very thorough feedback on all questions I have. Everything was presented in a very basic and understandable way. The **hackmd**-document is very nice to ask questions in. And the fact that you are enough people to answer quickly and thoroughly is very very helpful. Then it is possible to keep track with what is currently being presented while asking questions.
   - I really liked the well written training pages, who was mostly easy to follow, written quite clearly.
 
 - Gave me information and the confidence to get started.
@@ -307,4 +307,4 @@ https://documentation.sigma2.no/getting_help/qa-sessions.html
   - Agree with first comment, sometimes the coding was a bit fast. Some of it is of course written in the documentation for the course. But not all, and then it would be nice to have some time to write it down before executing the code and the command getting lost in the output. 
 
 - Could be useful to go through a "hands on example" from start to finish. Maybe at the very end of the course after the "basics" are explained. Could be useful to just see one example.
-- I think the vscode session should be part of the normal session. This was a very useful tool. 
+- I think the VSCode session should be part of the normal session. This was a very useful tool. 

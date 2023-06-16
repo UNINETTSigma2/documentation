@@ -1,20 +1,12 @@
 ---
-
+orphan: true
 ---
 
 (training-2023-spring-best-practices-notes-day2)=
-# Questions and answers from Best Pratcices on NRIS Clusters May 2023, Day 3 (May 11)
+# Questions and answers from Best Practices on NRIS Clusters May 2023, Day 3 (May 11)
 
 ```{contents} Table of Contents
 ```
-## Schedule Day 3 (11th of May 2023)
-
-- 09:00-09:10 - Welcome, Practical information &icebreaker question (Siri)
-- 09:10-11:00 - Software Installation (with 15 minute break) (Jørn Dietze & Radovan)
-- 11:00-11:15 - Break
-- 11:15-12:15 - Introduction to GPU (Hicham)
-- 12:15-12:30 - Q&A (Radovan)
-
 
 ## Icebreaker questions
 
@@ -112,4 +104,3 @@ source ${EBROOTMINICONDA3}/etc/profile.d/conda.sh
 
 Our general contact email is  support@nris.no
 
-------------------------------------

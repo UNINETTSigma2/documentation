@@ -8,18 +8,6 @@ orphan: true
 ```{contents} Table of Contents
 ```
 
-## Schedule Day 1 (9th of May 2023)
-
-- 09:00-09:10 - Welcome, Practical information & icebreaker question 
-- 09:10-09:45 - NRIS Infrastructure (Einar Næss Jensen)
-- 09:50-10:30 - Job Types and Queue Systems on NRIS Clusters (Bjørn-Helge Mevik)
-- 10:30-10:45 - Break
-- 10:45-11:30 - Using the HPC resources effectively (Ole W. Saastad)
-- 11:30-11:45 - Break
-- 11:45-12:15 - Summary and exercise demo (Ole W. Saastad)
-- 12:15-12:30 - Q&A 
-
-
 ## Icebreaker questions
 
 - What would you like to get out of this workshop?
@@ -73,12 +61,12 @@ orphan: true
  
 3. Comment: restaurant equivalent to Slurm backfill: "the table is reserved from 21:00 on but you can have it until then for a short dinner" :+1: 
     
-4.  When working with creating models I need to work more interactively for debugging and all that. How can that be done? I have been using Jupyter on the UiO system earlyer. Spyder would even be better. is this possible?     
+4.  When working with creating models I need to work more interactively for debugging and all that. How can that be done? I have been using Jupyter on the UiO system earlier. Spyder would even be better. is this possible?     
     - great question. for these situations it is impractical to submit a job and wait few hours for it to start. for this you can submit an interactive job where you get an interactive allocation on a node.
     - more info here: https://documentation.sigma2.no/jobs/interactive_jobs.html
     - inside an interactive allocation one can then start an editor or run debug/test jobs until the interactive allocation stops
 
-5. Can Jupyter be connected to this HPC-ressources?
+5. Can Jupyter be connected to this HPC-resources?
     - here you mean: it would be running in the browser on your computer and connect to a jupyter server on the cluster? 
        - Yes, prototypes with small amount of test data
        - it is possible to run jupyter on the computer and connect it to a jupyter server via SSH. it is pity that we do not have good documentation on how to do that where I could point you to.
