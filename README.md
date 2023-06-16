@@ -253,5 +253,8 @@ Why don't we allow to merge warnings and only reject errors?
 
 ## Redirecting moved or removed pages
 
-Sometimes we want to remove or move a page which has been linked
-to from emails. In this case you can add a redirect. Look for `redirects` in `conf.py`.
+Sometimes we want to remove or move a page which has been linked to from
+emails. In this case you can add a redirect. Look for `redirects` in
+`conf.py`. After some time (few months or a year) we can remove these
+redirects again. You can check `git annotate conf.py` to see when a line was
+added.
