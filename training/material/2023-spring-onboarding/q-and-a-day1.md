@@ -87,7 +87,7 @@ No: 0
     - No, unfortunately, but this will definitely come at some point, it is a bit new at the moment, but later tutorials will be expanded with this type of things
     - If you are interested in Galaxy, there is a self-paced community course (or what to call it) in May: https://gallantries.github.io/video-library/events/smorgasbord3/
 
-3. at the end of yesterday lecture, Espen mentioned two software to connect to hpc i think, could you please repeat the name again. Thanks
+3. at the end of yesterday lecture, the lecturer mentioned two software to connect to hpc i think, could you please repeat the name again. Thanks
     - were these graphical tools? (sorry I wasn't here yesterday ...)
        - yes they were related to GUI, but both also offers terminal capabilities. And support standard ssh.
        - X2Go: https://documentation.sigma2.no/getting_started/remote-desktop.html?highlight=x2go

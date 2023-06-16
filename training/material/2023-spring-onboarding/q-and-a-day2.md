@@ -2,7 +2,7 @@
 orphan: true
 ---
 
-training-2023-spring-onboarding-notes-day2)=
+(training-2023-spring-onboarding-notes-day2)=
 
 # Questions and answers from HPC on-boarding Apr 2023, Day 2 (Apr 20)
 
