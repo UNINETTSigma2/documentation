@@ -3,7 +3,7 @@ orphan: true
 ---
 
 (training-2022-spring-best-practices-notes-day1)=
-# Questions and answers from Best Pratcices on NRIS Clusters May 2022, Day 1 (May 23)
+# Questions and answers from Best Practices on NRIS Clusters May 2022, Day 1 (May 23)
 
 ```{contents} Table of Contents
 ```
