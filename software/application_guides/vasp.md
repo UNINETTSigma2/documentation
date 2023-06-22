@@ -40,7 +40,7 @@ This is the present test status for the installed modules for VASP.
 * 6.3.2 (will possibly be removed at some point)
 * 6.4.1 (recommended)
 
-Note that VASP support is only exploratory at this point. You can load the VASP modules there and do some testing
+Notice that VASP support on Betzy is only exploratory at this point. You can load the VASP modules there and do some testing
 using the same procedure as on Fram and Saga.
 
 VASP 6 is the first VASP version that was supplied with an official test suite, which makes it easy to recommend users
