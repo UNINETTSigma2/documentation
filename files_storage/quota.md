@@ -132,7 +132,7 @@ $ ls -li
 
 ## Troubleshooting: Too many files/inodes on Fram
 
-Fram has an inode quota for `/cluster`:
+Fram has a default 1 million inode quota for each user under `/cluster` filesystem regardless of project and group inode quota :
 
 ```{code-block}
 ---
