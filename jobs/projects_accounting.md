@@ -217,7 +217,7 @@ If you exhaust your quota and need more, the project manager can apply for
 ## For how long can I use the compute quota?
 
 Compute quota is always handed out for an allocation period. Allocation periods
-run for six months (from April 1 to October 1, or October 1 to April 1). Unused
+run for six months (from April 1 to September 30, or October 1 to March 31). Unused
 compute quota is not transferred to the next allocation period. The project
 manager has to ask for new compute quota for every allocation period.
 
