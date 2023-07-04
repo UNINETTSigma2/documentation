@@ -1,7 +1,7 @@
 # NIRD mounts on clusters
 
  The NIRD Storage project areas,tiered storage(TS) 
-and datalke (DL), are mounted  on the login nodes of Betzy, Fram, or Saga.
+and datalake (DL), are mounted  on the login nodes of Betzy, Fram, or Saga.
 One can directly access the NIRD project area from the login nodes of Betzy, Fram, or Saga.
 
 The path for tiered storage(TS) project is
