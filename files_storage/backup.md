@@ -28,8 +28,7 @@ see [User work area](user-work-area) for details.
 - `/cluster/backup/betzy/projects/nnXXXXk`
 - `/cluster/backup/fram/projects/nnXXXXk`
 
-**Saga**: The project areas are backed up to Betzy:
-- `/cluster/backup/saga/projects/nnXXXXk`
+**Saga**: The project areas are backed up to NIRD.
 
 If you have project access to the cluster where backups are stored, then you
 can retrieve them yourself. If you cannot access the cluster that holds the
