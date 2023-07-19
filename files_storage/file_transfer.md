@@ -26,7 +26,7 @@ This is a good starting point but below we will explain what these components
 and options mean:
 ```console
 $ rsync --info=progress2 -a file-name      username@cluster:receiving-directory
-$ rsync --info=progress2 -a directory-name username@cluster:receiving-directory/directory-name
+$ rsync --info=progress2 -a directory-name/ username@cluster:receiving-directory/directory-name
 ```
 
 - `--info=progress2`: This will show progress (how many percent, how much time
@@ -50,7 +50,31 @@ on the receiving end, add the `--update` option.
 If you want to `rsync` between two computers that both offer an SSH connection, note that then
 you can use `rsync` both ways: from cluster A to cluster B, but also the reverse.
 
+````{admonition} rsync directory
 
+Please note that there is a trailing slash (`/`) at the end of the first argument in the 
+syntax of the second command, while rsync directories, ie:
+
+```console
+rsync --info=progress2 -a directory-name/ username@cluster:receiving-directory/directory-name
+```
+This trailing slash (`/`) signifies the contents of the directory `directory-name`. 
+The outcome would create a hierarchy like the following on your cluster:
+```console
+~/receiving-directory/directory-name/contents-of-the-dir
+```
+Without the trailing slash,`directory-name`, including the directory, would be placed within your receiving directory. 
+The outcome without the trailing slash (`/`) at the first argument in the above command, ie:
+
+```console
+rsync --info=progress2 -a directory-name username@cluster:receiving-directory/directory-name
+```
+would create a hierarchy like the following on your cluster:
+```console
+~/receiving-directory/directory-name/directory-name/contents-of-the-dir
+```
+
+````
 ## rsync using compression
 
 If you have a strong CPU at both ends of the line, and you’re on a slow
