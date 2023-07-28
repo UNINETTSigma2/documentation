@@ -27,6 +27,17 @@ Download the script:
 :download:`files/parallel_steps_cpu.sh`
 ```
 
+Note that on **Saga**, which has a newer version of Slurm (22.05.x),
+instead of
+```bash
+export SLURM_JOB_NUM_NODES=1-$SLURM_JOB_NUM_NODES
+```
+one can use the slightly simpler
+```bash
+export SLURM_DISTRIBUTION=pack
+```
+or add `-m=pack` / `--distribution=pack` to the `srun` command lines.
+
 This will work with any {ref}`job-types` that hands out _cpus
 and memory_, so that one specifies `--mem-per-cpu`.  For instance
 
