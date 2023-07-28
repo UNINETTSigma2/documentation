@@ -15,7 +15,7 @@ module --quiet purge
 module load OpenMPI/4.1.1-GCC-11.2.0
 module list
 
-# This is needed with the current version of Slurm (20.11.x):
+# This is needed with the current version of Slurm (21.08.x):
 export SLURM_JOB_NUM_NODES=1-$SLURM_JOB_NUM_NODES
 
 # The set of parallel runs:
