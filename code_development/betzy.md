@@ -85,7 +85,6 @@ available cores. An example could look like this:
 #SBATCH --nodes=64
 #SBATCH --ntasks-per-node=32
 #SBATCH --cpus-per-task=4
-#SBATCH --exclusive
 ```
 
 This will request 32 MPI ranks per node, and leave cores for 4 threads per

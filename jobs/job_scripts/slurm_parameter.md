@@ -34,7 +34,6 @@ with the value you want, e.g. `--job-name=test-job`.
 | `--mem-per-cpu=<MB>`                   | Minimum memory (RAM) per requested physical CPU core Number followed by unit prefix, e.g. 4G.                                |
 | `--ntasks-per-node=<num_procs>`        | Number of (MPI) processes per node. More than one useful only for MPI jobs. Maximum number depends nodes (number of cores).  |
 | `--cpus-per-task=<num_threads>`        | CPU cores per task. For MPI use one. For parallelized applications benchmark this is the number of threads.                  |
-| `--exclusive`                          | Job will not share nodes with other running jobs. **You will be charged for the complete nodes even if you asked for less**. |
 
 ### Accounting
 

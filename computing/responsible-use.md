@@ -39,9 +39,8 @@ Please read these before asking for a lot "just to be on the safe side":
 - {ref}`choosing-memory-settings`
 - {ref}`choosing-number-of-cores`
 
-Don't use `--exclusive` in job scripts unless your job uses the entire compute
-node.  If you use `--mem-per-cpu` in your job scripts, then please do not use
-`--exclusive` at the same time.
+Don't use `--exclusive` in job scripts unless explicitly told by NRIS
+staff to do so.  This is especially important if you use `--mem-per-cpu`.
 
 
 ## Have a backup plan
