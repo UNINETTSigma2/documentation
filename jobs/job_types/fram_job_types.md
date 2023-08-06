@@ -134,7 +134,7 @@ time than *devel* jobs, at least on work days.
 - __Priority__: low
 - __Available resources__: *optimist* jobs run on the *normal* nodes.
 - __Parameter for sbatch/srun__: 
-    - `--partition=optimist`
+    - `--qos=optimist`
 - __Job Scripts__: {ref}`job_scripts_fram_optimist`
 
 The _optimist_ job type is meant for very short jobs, or jobs with

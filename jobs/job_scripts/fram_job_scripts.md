@@ -170,6 +170,6 @@ A simple _optimist_ job specification might be:
 
 	#SBATCH --account=MyProject
 	#SBATCH --job-name=MyJob
-	#SBATCH --partition=optimist
+	#SBATCH --qos=optimist
 	#SBATCH --nodes=4 --ntasks-per-node=32
 	#SBATCH --time=2:00:00
