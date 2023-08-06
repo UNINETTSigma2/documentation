@@ -191,7 +191,7 @@ A simple _optimist_ job specification might be:
 
 	#SBATCH --account=MyProject
 	#SBATCH --job-name=MyJob
-	#SBATCH --partition=optimist
+	#SBATCH --qos=optimist
 	#SBATCH --mem-per-cpu=3G
 	#SBATCH --ntasks=16
 	#SBATCH --time=2:00:00

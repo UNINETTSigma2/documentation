@@ -143,7 +143,7 @@ the _devel_ or _short_ job types, please contact us at
 - __Priority__: low
 - __Available resources__: *optimist* jobs can run on any node on Saga
 - __Parameter for sbatch/srun__: 
-    - `--partition=optimist`
+    - `--qos=optimist`
 - __Job Scripts__: {ref}`job_scripts_saga_optimist`
 
 The _optimist_ job type is meant for very short jobs, or jobs with
