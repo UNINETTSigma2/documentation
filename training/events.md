@@ -12,6 +12,10 @@ The courses are free of charges. Our upcoming courses are listed below:
 ```{eval-rst}
 .. toctree::
    :maxdepth: 1
+
+
+events/2023-10-hpc-on-boarding.md   
+
    
 ```
 
