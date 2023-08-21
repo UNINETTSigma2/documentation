@@ -98,6 +98,7 @@ the zoom host right away or write to [the training team](mailto:training@nris.no
 - Sabry Razick
 - Radovan Bast
 - Maiken Pedersen
+- Dhanya Pushpadas
 - ...
 
 ## Coordinator
