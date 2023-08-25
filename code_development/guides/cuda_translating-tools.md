@@ -64,7 +64,7 @@ In short, `hipify-clang` requires `LLVM+CLANG` and `CUDA`. Details about buildin
 - **Step 1**: pulling a CUDA singularity container e.g.
 
 ```console
-$singularity pull docker://nvcr.io/nvidia/cuda:11.4.0-devel-ubi8
+$singularity pull docker://nvcr.io/nvidia/cuda:11.4.0-devel-ubuntu20.04
 ```
 - **Step 2**: loading a ROCM module before launching the container.
 
