@@ -36,6 +36,7 @@ package managers.
    userinstallsw/R.md
    userinstallsw/perl.md
    userinstallsw/ORCA.md
+   userinstallsw/mathematica.md
 
 Note that the software install team **never** do installations in
 ``$HOME`` for users, and preferably not in ``/cluster/projects``.
