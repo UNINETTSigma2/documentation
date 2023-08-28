@@ -27,10 +27,10 @@ This should download a file named `wolframengine_latest.sif`.
 Create a file named `mathematica-license.txt` and include the line:
 
 ```bash
-!license-server.xx
+!license-server.example.org
 ```
 
-Replace `license-server.xx` with your specific license details.
+Replace `license-server.example.org` with your specific license details.
 
 ### Step 3:  Run a "Hello" Statement
 
@@ -57,10 +57,10 @@ To create the job script we recommend using the [Slurm job script generator](htt
 set -o errexit   ## Exit the script on any error
 set -o nounset   ## Treat any unset variables as an error
 
-CONTAINERS= # Path to the container file, e.g., /cluster/projects/nnxxxxk/username/wolframengine_latest.sif
+CONTAINERS= # Path to the container, e.g., /cluster/projects/nnxxxxk/username/containers/wolframengine_latest.sif
 LICENSE= # Path to the license file, e.g., /cluster/home/username/mathematica-license.txt
 
-singularity run --bind $LICENSE:/root/.WolframEngine/Licensing/mathpass,$PLOT_DIR:/container_plots $CONTAINERS/wolframengine_latest.sif wolframscript -file mathematica-script.wl
+singularity run --bind $LICENSE:/root/.WolframEngine/Licensing/mathpass $CONTAINERS wolframscript -file mathematica-script.wl
 ```
 
 ```mathematica
