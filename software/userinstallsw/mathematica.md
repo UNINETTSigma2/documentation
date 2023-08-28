@@ -42,7 +42,7 @@ singularity run --bind path/mathematica-license.txt:/root/.WolframEngine/Licensi
 
 ## Your first mathematica job
 
-To create the job script we recommend using the [Slurm job script generator](https://open.pages.sigma2.no/job-script-generator/.https://open.pages.sigma2.no/job-script-generator/). The following is an example of a job script that runs a Mathematica script named on Fram `mathematica-script.wl`:
+To create the job script we recommend using the [Slurm job script generator](https://open.pages.sigma2.no/job-script-generator/.https://open.pages.sigma2.no/job-script-generator/). The following is an example of a job script that runs a Mathematica script named `mathematica-script.wl` on Fram :
 
 ```bash
 #!/bin/bash
