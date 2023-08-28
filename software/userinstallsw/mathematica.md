@@ -57,10 +57,10 @@ To create the job script we recommend using the [Slurm job script generator](htt
 set -o errexit   ## Exit the script on any error
 set -o nounset   ## Treat any unset variables as an error
 
-CONTAINERS= # Path to the container, e.g., /cluster/projects/nnxxxxk/username/containers/wolframengine_latest.sif
+CONTAINER= # Path to the container, e.g., /cluster/projects/nnxxxxk/username/containers/wolframengine_latest.sif
 LICENSE= # Path to the license file, e.g., /cluster/home/username/mathematica-license.txt
 
-singularity run --bind $LICENSE:/root/.WolframEngine/Licensing/mathpass $CONTAINERS wolframscript -file mathematica-script.wl
+singularity run --bind $LICENSE:/root/.WolframEngine/Licensing/mathpass $CONTAINER wolframscript -file mathematica-script.wl
 ```
 
 ```mathematica
