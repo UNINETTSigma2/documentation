@@ -34,7 +34,24 @@ about IT resources and services for researchers, there are a couple of informati
 
 ## **Registration**
 
-Registration will open soon
+The course is free of charge and is organised by the NRIS.
+**REGISTER [HERE](https://skjemaker.app.uib.no/view.php?id=15415042)**.
+
+Please note that we will the hands-on exercises on one of the NRIS cluster.
+Those who have accounts on national hpc kindly fill in your username in the registration form.
+Those who do not have an account on one of the HPC machines yet need to apply for an account at the earliest.
+See below how to set up an account if you don't have it already. 
+
+## Setting up user account  
+
+Those who do not have an account on one of the HPC machines yet need to apply for an account at the earliest. 
+The application page is available [here](https://www.metacenter.no/user/application/form/hpc/) and and documentation for
+ the application procedure is available [here](https://www.sigma2.no/how-apply-user-account). 
+ You are applying for an HPC account. For the project, please select **NN9970K**: Training and Outreach, 
+ choose Saga and Fram under Resources, set the account start date as the date of apply and the account end date to one month 
+ after the course  , ie 2023-11-15. User account should be ready and active before the course. 
+ You should use your institutional email id while applying for user account.  
+
 
 ## Time, date (all times CEST)
 |   Date    |  Time   |  Topic	|
@@ -45,7 +62,7 @@ Registration will open soon
 
 **Login Help for everybody - 02 October 13:00-14:00**
 
-**Day0 - UNIX for HPC (optional 18th April, Tuesday)**
+**Day0 - UNIX for HPC (optional 03 October, Tuesday)**
 
 - 09:00-09:10 - Welcome, Practical information & icebreaker question
 - 09:10-09:40 - [The terminal and remote login](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/intro.html) 
@@ -59,7 +76,7 @@ Registration will open soon
 - 11:30-12:00 - [Composing commands with pipes](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html) 
 - 12:00-12:30 - [Scripting](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html) 
 
-**Day1 - HPC Intro (19th April  Wednesday)**
+**Day1 - HPC Intro (04 October  Wednesday)**
 
 - 09:00-09:10 - Welcome, Practical information &icebreaker question
 - 09:10-09:30 - [Why use a Cluster?](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html) 
@@ -71,7 +88,7 @@ Registration will open soon
 - 11:45-12:15 - [Transferring files](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html) 
 - 12:15-12:30 - Q&A & Discussion
 
-**Day2 - HPC Intro (20th April Thursday)**
+**Day2 - HPC Intro (05 October Thursday)**
 
 - 09:00-09:10 - Recap & ice breaker question
 - 09:10-09:40 - [Accessing Software](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html) 
