@@ -37,7 +37,7 @@ about IT resources and services for researchers, there are a couple of informati
 The course is free of charge and is organised by the NRIS.
 **REGISTER [HERE](https://skjemaker.app.uib.no/view.php?id=15415042)**.
 
-Please note that we will the hands-on exercises on one of the NRIS cluster.
+Please note that we will do the hands-on exercises on one of the NRIS cluster.
 Those who have accounts on national hpc kindly fill in your username in the registration form.
 Those who do not have an account on one of the HPC machines yet need to apply for an account at the earliest.
 See below how to set up an account if you don't have it already. 
@@ -116,7 +116,11 @@ the zoom host right away or write to [the training team](mailto:training@nris.no
 - Radovan Bast
 - Maiken Pedersen
 - Dhanya Pushpadas
-- ...
+- Bjørn Lindi
+- Espen Tangen
+- Morten Ledum
+- Bente Barge
+- Rafael Santos
 
 ## Coordinator
 
