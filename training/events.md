@@ -15,7 +15,7 @@ The courses are free of charges. Our upcoming courses are listed below:
 
    events/2023-09-11-Matlab-training  
    events/2023-10-hpc-on-boarding.md  
-   events/2023-introduction-to-FORTRAN-series.md
+   events/2023-introduction-to-fortran-series.md
    events/2023-10-nird-toolkit.md
    
 
