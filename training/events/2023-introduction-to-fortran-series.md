@@ -17,7 +17,7 @@ ends on 13th December.
 
 ## Prerequisites
 
-- Familiarity with Linux and Linux editors is recommended.
+- Familiarity with Linux and text editors is recommended.
 - Basics/principles of programming (in any language) is desirable.
 - This is an online course via zoom. Participants require access to a computer
 (not provided by the course organisers) with internet connectivity.
