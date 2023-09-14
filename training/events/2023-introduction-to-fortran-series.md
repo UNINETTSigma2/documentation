@@ -1,6 +1,6 @@
 # Introduction to FORTRAN 
 
-NRIS (Norwegian Research Infrastructure Services) is organizing a workshop series on **Introduction to FORTRAN**. Fortran is a programming langiuage that has been designed for scientific computing. 
+NRIS (Norwegian Research Infrastructure Services) is organizing a workshop series on **Introduction to FORTRAN**. Fortran is a programming language that has been designed for scientific computing. 
 On this course, you will learn: 
 - Introduction to the language, Formula Translator. Numerical calculation
 - Data types - importance of sizes and ranges
