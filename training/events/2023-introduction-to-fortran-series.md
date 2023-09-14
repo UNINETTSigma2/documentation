@@ -13,7 +13,7 @@ On this course, you will learn:
 The workshop is organised as a series of five events starts on 18th October and
 ends on 13th December.
 
-*The course is open to all and free of charge, but registration is mandatory.**
+**The course is open to all and free of charge, but registration is mandatory.**
 
 You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
 If you want to receive further information about training events, and other announcements about IT resources
@@ -29,7 +29,6 @@ If you want to receive further information about training events, and other anno
 - This is an online course via zoom. Participants require access to a computer
 (not provided by the course organisers) with internet connectivity.
 - Install Fortran on your laptop or home computer, it's available for most architectures and operating systems. Please see the [install help link](https://fortran-lang.org/learn/os_setup/install_gfortran/) for further details. All examples will run on your laptop. 
-**Note**: If the participants need an account on national HPC, you can specify it in the registration form and we will contact you with application procedure.
 
 ## **Registration**
 
