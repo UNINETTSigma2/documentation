@@ -8,7 +8,7 @@ On this hands-on course, you will get an overview of  the NIRD Toolkit and how t
 
 ## Date and Time 
 
-- **Tuesday 24th October from 09:30-12:00**
+- **Tuesday 24th October : 09:30-12:00**
 
 ## Prerequisites
 
