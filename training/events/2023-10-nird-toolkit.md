@@ -1,6 +1,6 @@
 # Introduction to NIRD Toolkit
 
-NRIS (Norwegian Research Infrastructure Services) is organizing an introductory training on [NIRD toolkit](https://documentation.sigma2.no/nird_toolkit/overview_nird_toolkit.html). The NIRD Toolkit is a Kubernetes based cloud infrastructure, just alike Google, Azure or Amazon kubernetes Clouds. 
+NRIS (Norwegian Research Infrastructure Services) is organizing an introductory training on [NIRD toolkit](https://documentation.sigma2.no/nird_toolkit/overview_nird_toolkit.html). The NIRD Toolkit is a Kubernetes based cloud infrastructure. 
 
 The NIRD toolkit allows pre/post processing analysis, data intensive processing, visualization, artificial intelligence and machine learning platform.
 
@@ -21,9 +21,8 @@ The course is free of charge and is organised by NRIS.
 The last day to register for the course is **18 October**.
 **Register  [here](https://skjemaker.app.uib.no/view.php?id=15554312).**
 
-**IMPORTRAN NOTE**: You must fill in your eduPPN in the registration form.
-In order to use the NIRD Toolkit during the course you will need either a Feide account or a Feide OpenIDP guest account.
-See your eduPersonPrincipalName (eduPPN) at http://innsyn.feide.no.  You can create a Feide OpenIDP guest account at https://openidp.feide.no/. Those who are using Feide openidp guest account should go to minside.dataporten.no to find eduppn, and it is the field called “Secondary user identifiers”
+**IMPORTRAN NOTE**: In order to log into the NIRD Toolkit to participate in the hands on workshop during the course, you will need to provide either a Feide account or a Feide OpenIDP guest account in the registration form.
+If you have a Feide account, you should provide the "Person's principal name at home organization" from https://innsyn.feide.no/aboutme. If not, you can create a Feide OpenIDP guest account at https://openidp.feide.no/. Those who are using Feide openIDP guest account should go to minside.dataporten.no to find the field called “Secondary user identifiers” for the registration.
 
 ## Instructor
 
