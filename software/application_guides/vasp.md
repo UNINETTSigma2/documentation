@@ -16,21 +16,21 @@ VASP is a software package for performing ab-initio quantum-mechanical calculati
 
 These are the installed VASP versions on our facilities.
 
-| Version  | Fram | Saga |
-|----------|------|------|
-| 5.4.4pl2 | Yes  | Yes  |
-| 6.3.2    | Yes  | Yes  |
-| 6.4.1    | Yes  | Yes  |
+| Version  | Fram | Saga | Betzy |
+|----------|------|------|-------|
+| 5.4.4pl2 | Yes  | Yes  | no    |
+| 6.3.2    | Yes  | Yes  | no    |
+| 6.4.1    | Yes  | Yes  | Yes   |
 
 ## Tests passed
 
 This is the present test status for the installed modules for VASP.
 
-| Version  | Fram | Saga |
-|----------|------|------|
-| 5.4.4pl2 | N/A  | N/A  |
-| 6.3.2    | Fast | Fast |
-| 6.4.1    | Fast | Fast |
+| Version  | Fram | Saga | Betzy |
+|----------|------|------|-------|
+| 5.4.4pl2 | N/A  | N/A  | N/A   |
+| 6.3.2    | Fast | Fast | N/A   |
+| 6.4.1    | Fast | Fast | Fast  |
 
 `Fast` or `Full` refer to the [VASP tests](https://www.vasp.at/wiki/index.php/Validation_tests).
 
@@ -39,9 +39,6 @@ This is the present test status for the installed modules for VASP.
 * 5.4.4 pl2 (not maintained, only for those that do not have VASP 6 licenses)
 * 6.3.2 (will possibly be removed at some point)
 * 6.4.1 (recommended)
-
-Notice that VASP support on Betzy is only exploratory at this point. You can load the VASP modules there and do some testing
-using the same procedure as on Fram and Saga.
 
 VASP 6 is the first VASP version that was supplied with an official test suite, which makes it easy to recommend users
 to use this over previous VASP 5 as we are able to verify that the installation works across a wide set of systems, including corner cases.
@@ -95,6 +92,10 @@ There are now one module per VASP flavor (`std` - standard, `gam` - gamma only a
 | 6.4.1        | 17dde9df298cd4ade20f0051444fd46a | 3.1.0           | -          | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | 5.2.2       | 1.14.1     | Saga      |
 | 6.4.1        | 95b5f370a6e28c12e3ceb0addd48deb2 | 3.1.0           | 127        | 0.1.1      | -                                        | 5.2.2       | 1.14.1     | Saga      |
 | 6.4.1        | 14b83fae861f986c955e51fe132d765d | 3.1.0           | 127        | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | 5.2.2       | 1.14.1     | Saga      |
+| 6.4.1        | 7ec7231149f216987659e140f81251f9 | 3.1.0           | -          | 0.1.1      | -                                        | -           | -          | Betzy     |
+| 6.4.1        | 1328e4b3fe680ad53aed047704ea8b90 | 3.1.0           | -          | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | -           | -          | Betzy     |
+| 6.4.1        | c6ed3d20b98b13020d9bd2d8bce019c7 | 3.1.0           | 127        | 0.1.1      | -                                        | -           | -          | Betzy     |
+| 6.4.1        | 2aed04d9a614793f1f8902b72d65bfb5 | 3.1.0           | 127        | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | -           | -          | Betzy     |
 
 Notice that the VASP version is not included when generating the hash, only the libraries and associated mods from the additions in the table above. Meaning, if we add a module with a new VASP version and do not need or do an update on any of the libraries, the hash should be the same. 
 
@@ -105,7 +106,7 @@ We would like feedback from the community how we can improve the module naming s
 The naming schemes of the modules are `VASP/version-toolchain-vasp_flavor-extra_libraries_and_functionality-adaptions_source_code`. Where:
 
 - `version` determines the VASP version, e.g. 6.4.1.
-- `toolchain` determines the toolchain used, typically which compilers, LAPACK, BLAS etc. routines have been used. This is based on the existing toolchains on the system. These can be inspected with `module show intel/2021b` for the particular system (e.g. `fram`). Typically, the `toolchain` is the vendor, e.g. `intel` followed by the version, e.g. `2021b`.
+- `toolchain` determines the toolchain used, typically which compilers, LAPACK, BLAS etc. routines have been used. This is based on the existing toolchains on the system. These can be inspected with `module show intel/2021b` for the particular system (e.g. `fram`). Typically, the `toolchain` is the vendor, e.g. `intel` followed by the version, e.g. `2021b`. Notice that on Betzy, the name is GCC, even though we have used AOCC/AOCL to compile and link the VASP modules.
 - `vasp_flavor` determines the VASP flavor, e.g. `std` for the standard flavor, `gam` for the gamma only (only works for one k-point) and `ncl` for the non-collinear flavor (makes it possible to let the spin go in any direction).
 - `extra_libraries_and_functionality` determines if an additional package has been included, e.g. `wannier90` (support for maximally-localised Wannier functions and the [Wannier90](http://www.wannier.org/)), `beef` (to yield support for the [BEEF](https://github.com/vossjo/libbeef) functional and Bayesian error estimates), `vtst` (to yield support for additional transition state tools [VTST](http://theory.cm.utexas.edu/vtsttools/)), `sol` (to yield support for solvation models using [VASPsol](https://github.com/henniggroup/VASPsol)) and `libxc` (to yield support for the exchange and correlation library using [libxc](https://www.tddft.org/programs/libxc/)).
 - `adaptions_source_code` determines if there has been adaptions to the source code, e.g. restrictions in the ionic motions. This can be the `nor_<direction>` which does not enable relaxation along the first, second and third lattice vector (with `<direction>` set as `x`, `y` and `z`, respectively). Or, `onlyr_<direction>`, with similar `<directions>`. Finally, `nor_angles` will not allow any relaxation of angles.
@@ -138,6 +139,15 @@ For relevant core-count, node-count, and amounts of memory, see the pages about 
 - Utilize the nodes with more memory per cpu.
 
 Remember you are accounted for the CPUs that would be reserved due to your demand for increased memory.
+
+### Special note about Betzy and AMD systems
+
+Notice that on Betzy, `libxc` and `hdf5` is not enabled due to issues with the AOCC/AOCL compilation setup. If you need this functionality,
+use Saga and Fram for now. Also, on Saga and Fram VASP has been compiled with an Intel toolchain, but on Betzy, we have used AOCC and AOCL, which
+gives the a similar setup for AMD. Due to the fact that there is no Easybuild setup for AOCL at the time of writing, the VASP modules on
+Betzy seem to be using the GCC toolchain in their name. This is entirely due to the fact that we used the GCC toolchain as a skeleton to build
+the necessary components to assemble what is in essence an AOCL toolchain.
+When an AOCL Easybuild setup is officially supported, we will remedy this by recompiling. This should then give a more correct name for the module.
 
 ## Citation
 
