@@ -83,7 +83,7 @@ The application page is available [here](https://www.metacenter.no/user/applicat
 - 09:30-10:00 - [Working on a remote HPC system](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/12-cluster.html) 
 - 10:00-10:15 - Break
 - 10:15-11:00 - [Scheduling jobs](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html) 
-- 11:00-11:30 - [Scheduling job Exercise](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html)
+- 11:00-11:30 - [Scheduling job (exercise)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html)
 - 11:30-11:45 - Break
 - 11:45-12:15 - [Transferring files](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html) 
 - 12:15-12:30 - Q&A & Discussion
