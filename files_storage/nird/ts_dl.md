@@ -1,64 +1,50 @@
-# NIRD Tiered Storage and Data Lake
+# NIRD TS vs NIRD DL
 
 NIRD consists of two separate storage systems, namely Tiered Storage (NIRD TS) and 
 Data Lake (NIRD DL).
 
-The NIRD TS have several tiers spanned by single filesystem and designed for active 
-projects, while NIRD DL has a more flat structure, designed for less active data and 
-sharing data across multiple projects and interfacing with external storages. 
+NIRD TS has several tiers spanned by single filesystem and designed for performance and used mainly for active project data.
+
+NIRD DL has a flat structure, designed mainly for less active data, sharing data across multiple projects, and interfacing with external storages.
+
 Both are based on IBM Elastic Storage System. 
 
-NIRD TS contains building blocks based on:
- 
-	- ESS 3200 building blocks for NVMe drives
-	- ESS 5000 building blocks for NL-SAS drives
 
-and the NIRD DL contains building blocks based only on:
+## Architecture comparison
 
-	- ESS 5000 building blocks for NL-SAS drives
+| |  NIRD TS  |  NIRD DL  |
+| :------------- | :------------- | :------------- |
+| Tiers | Performance and capacity tiers<br> Automatic, transparent tiering<br>Dedicated pools for metadata | Flat architecture (no tiers)  |
+| Designed for | - active project data<br>- data processing<br>- AI workloads| - less active data<br>- data libraries<br>- sharing data across multiple projects<br>- interfacing with external storages |
+| Data integrity secured by | - erasure coding<br> - snapshots <br> - backup[^1] | - erasure coding<br> - snapshots | 
 
-Below is the detail information of the difference between TS and DL.
+## Functionality comparison
 
-## TS vs DL Capacity and Performance
+| |  NIRD TS  |  NIRD DL  |
+| :------------- | :------------- | :------------- |
+| Protocols| POSIX, GPFS and NFS | POSIX, GPFS and S3[^2] |
+| APIs | GPFS, Discover REST API[^3] | GPFS, S3, Discover REST API[^3] |
+| Possibilities for| - file access logs<br>-data insight: metadata harvesting[^3] | - file access logs<br>- data insight: metadata harvesting[^3]<br>- encrypted projects |
+| Access controls | - ACLs<br>- extended attributes | - ACLs<br>- extended attributes<br>- RBAC via S3[^2] |
 
-|  Tiered Storage(TS)  |  Data Lake(DL)  |
-| :------------- | :------------- |
-| **Capacity :** 22 PB| **Capacity :** 11 PB |
-| **Performance:**<br> Up to 400 Gb/s aggregated bandwidth<br> Aggregated I/O throughput ~ 209 GB/s | **Performance:**<br> Up to 200 Gb/s aggregated bandwidth<br> Aggregated I/O throughput ~ 66 GB/s |
+## Filesystems
+
+### NIRD TS
+- Project storage `/nird/projects`
+- User’s home `/nird/home`
+- Scratch storage `/nird/scratch`[^4]
+- Archive `/archive`[^5]
+
+### NIRD DL
+- Project storage `/nird/datalake`
+- Backup `/backup`[^5]
+- Archive `/archive`[^5]
 
 
-## TS vs DL Architecture  
 
-|  Tiered Storage(TS)  |  Data Lake(DL)  |
-| :------------- | :------------- |
-| Performance and capacity tiers<br> Automatic, transparent tiering | Flat architecture (no tiers)  |
-| Designed for active projects | Designed for less active data, data libraries, sharing data across multiple projects and interfacing with external storages |
-| Data integrity secured by:<br> - Erasure coding<br> - Snapshots <br> - Option for backup| Data integrity secured by: <br> - Erasure coding<br> - Snapshots | 
-
-## TS vs DL Functionalities
-
-|  Tiered Storage(TS)  |  Data Lake(DL)  |
-| :------------- | :------------- |
-| Protocols: POSIX, GPFS, NFS and SMB(Not yet enabled) | Protocols: POSIX, GPFS,S3(To be enabled later in 2023) |
-| APIs: GPFS, Discover REST API(Initially to be used internally, might be offered for selected projects)       | APIs: GPFS, S3(To be enabled later in 2023) |
-| Possibilities for:<br> - encrypted projects<br> - file access logs<br> -data insight:metadata harvesting (Initially to be used internally, might be offered for selected projects)| RBAC via S3 |
-| ACLs and extended attributes | ACLs and extended attributes |
-
-## TS vs DL Filesystems
-
-|  Tiered Storage(TS)  |  Data Lake(DL)  |
-| :------------- | :------------- |
-| Project storage `/nird/projects`  | Data Lake project storage ` /nird/datalake` |
-| User’s home `/nird/home`  | Backup for TS |
-| Primary site for the NIRD Research Data Archive | Secondary site for the NIRD Research |
-| Scratch storage `/nird/scratch` (Available only on NIRD login nodes) |  | 
- 
-
-NIRD TS(Resource: projects) and NIRD DL (Resource: datalake) will have separate quota
- based on the project allocation. You can see the quota and the current usage by running:
-
-```console
-$ dusage -p NSxxxxK
-```
-
-where `NSxxxxK` is the ID of the project.
+--
+[^1]: optional, see [backup page](backup_lmd.md)
+[^2]: to be enabled Q4 2023
+[^3]: available at the moment only for internal purposes, plans for testing with pilot projects
+[^4]: available on NIRD login nodes only
+[^5]: not accessible to users

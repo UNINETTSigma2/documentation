@@ -37,15 +37,17 @@ Each NIRD Data Storage project gets a project area either on NIRD TS `/nird/proj
  where `NSxxxxK` is the ID of the project.
 
 The project area has a quota on disk space and the number of files.
-You will keep the current quota on the old system until it is end of life.
-You get the quota allocated by RFK for the 2022.2 allocation period on NIRD.
-NIRD TS(Resource: projects) and NIRD DL (Resource: datalake) will have separate quota
- based on the project allocation.
+
+Quotas are allocated by the Resource Allocation Committee (RFK) on the NIRD resources for project storage, that is, on NIRD TS (`/nird/projects`) and NIRD DL (`/nird/datalake`). The two resources have separate quota based on the project allocation.
+
 You can see the quota and the current usage by running:
 
 ```console
 $ dusage -p NSxxxxK
 ```
 
+```{note}
+Notice, that quotas are shown in TiB (tebibyte), and not TB (terabyte).
+```
 
  

@@ -36,7 +36,13 @@ project backups, please contact support and we will help you restoring your
 data.
 
 
-## Backup of NIRD
+## Backup on NIRD
+
+Protection against data corruption on NIRD is implemented by taking nightly snapshots. Even so, it is the responsibility of the PI/XO to regulate the usage and take steps to ensure that the data are adequately secured against human errors or inappropriate usage/access.
+
+The allocated storage quota on NIRD is meant for primary storage. Backup to a secondary location is a service on demand and can be ordered for selected datasets.
+
+Snapshots and backup service on NIRD are described in details on the dedicated pages linked below.
 
 ```{eval-rst}
 .. toctree::

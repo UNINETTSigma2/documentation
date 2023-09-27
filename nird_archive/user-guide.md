@@ -1,6 +1,6 @@
 (research-data-archive)=
 
-# Research data archive
+# Research Data Archive (NIRD RDA)
 
 ## Introduction
 The Research Data Archive (hereafter called 'the Archive') is a repository that provides long-term storage for research data and is compliant with the Open Archival

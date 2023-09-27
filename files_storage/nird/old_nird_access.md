@@ -2,17 +2,16 @@
 
 # Access to old NIRD
 
-The old NIRD login nodes can be accessed via either
-
-```console
-login-trd.nird.sigma2.no
-```
-and 
+The old NIRD login nodes can be accessed via
 
 ```console
 login-tos.nird.sigma2.no
 ```
-Note that old NIRD can be accessed until the old NIRD is decommissioned.
+
+```{warning}
+Notice, that old NIRD can be accessed until the end of October 2023.
+```
+
 Migration of the data on $HOME shall be completed by the end of May 2023.
  Beyond this term the integrity of the data will be not guaranteed.
  If you need some advice or have some questions, please do not hesitate 
@@ -39,4 +38,3 @@ You can read `rsync` options with `man`
 ```console
 $ man rsync
 ```
-
