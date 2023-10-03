@@ -27,8 +27,8 @@ Download the script:
 :download:`files/parallel_steps_cpu.sh`
 ```
 
-Note that on **Saga**, which has a newer version of Slurm (22.05.x),
-instead of
+Note that with the currently installed versions of Slurm (22.05.x and
+newer), instead of
 ```bash
 export SLURM_JOB_NUM_NODES=1-$SLURM_JOB_NUM_NODES
 ```

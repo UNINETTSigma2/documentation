@@ -26,7 +26,7 @@ Here is a more detailed description of the different job types on Betzy:
 - __Maximum walltime__: 4 days
 - __Priority__: normal
 - __Available resources__: 1340 nodes, each with 128 CPU cores and 244 GiB RAM
-- __Parameter for sbatch/srun__:
+- __Parameter for sbatch/salloc__:
     - None, _normal_ is the default
 - __Job Scripts__: {ref}`job_scripts_betzy_normal`
 
@@ -41,7 +41,7 @@ This is the default job type. In _normal_ jobs, the queue system hands out compl
 - __Priority__: Normal
 - __Available resources__: 4 nodes, each with 64 CPU cores, 494.5 GiB
   RAM and 4 x Nvidia A100 GPUs with 40 GiB RAM
-- __Parameter for sbatch/srun__:
+- __Parameter for sbatch/salloc__:
     - `--partition=accel`
     - `--gpus=N`, `--gpus-per-node=N` or similar, with `N` being the number of GPUs
 - __Job Scripts__: {ref}`job_scripts_betzy_accel`
@@ -66,7 +66,7 @@ See the {ref}`accounting page<projects-accounting>` for more information.
 - __Maximum walltime__: 1 day
 - __Priority__: normal
 - __Available resources__: 6 nodes, each with 128 CPU cores and 1 TiB RAM
-- __Parameter for sbatch/srun__:
+- __Parameter for sbatch/salloc__:
     - `--qos=preproc`
 - __Job Scripts__: {ref}`job_scripts_betzy_preproc`
 
@@ -90,7 +90,7 @@ in [job accounting](../projects_accounting.md).
 - __Maximum walltime__: 60 minutes
 - __Priority__: high
 - __Available resources__: 4 nodes with 128 CPU cores and 244 GiB RAM
-- __Parameter for sbatch/srun__: 
+- __Parameter for sbatch/salloc__:
     - `--qos=devel`
 - __Job Scripts__: {ref}`job_scripts_betzy_devel`
 
