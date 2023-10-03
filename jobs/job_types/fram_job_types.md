@@ -37,7 +37,7 @@ Fram:
 - __Maximum walltime__: 7 days
 - __Priority__: normal
 - __Available resources__: 996 nodes with 32 cpus and 59 GiB RAM
-- __Parameter for sbatch/srun__:
+- __Parameter for sbatch/salloc__:
     - None, _normal_ is the default
 - __Job Scripts__: {ref}`job_scripts_fram_normal`
 
@@ -61,7 +61,7 @@ to [support@nris.no](mailto:support@nris.no).
 - __Priority__: normal
 - __Available resources__:
     - 8 nodes with 32 cpus and 494 GiB RAM
-- __Parameter for sbatch/srun__:
+- __Parameter for sbatch/salloc__:
     - `--partition=bigmem`
 - __Job Scripts__: {ref}`job_scripts_fram_bigmem`
 
@@ -85,7 +85,7 @@ whole nodes.
 - __Priority__: high
 - __Available resources__: 8 nodes with 32 cpus and 59 GiB RAM between
   07:00 and 21:00 on weekdays
-- __Parameter for sbatch/srun__: 
+- __Parameter for sbatch/salloc__:
     - `--qos=devel`
 - __Job Scripts__: {ref}`job_scripts_fram_devel`
 
@@ -111,7 +111,7 @@ the _devel_ or _short_ job types, please contact us at
 - __Priority__: high (slightly lower than *devel*)
 - __Available resources__: 16 nodes with 32 cpus and 59 GiB RAM
   (shared with *normal*)
-- __Parameter for sbatch/srun__: 
+- __Parameter for sbatch/salloc__:
     - `--qos=short`
 - __Job Scripts__: {ref}`job_scripts_fram_short`
 
@@ -133,7 +133,7 @@ time than *devel* jobs, at least on work days.
   requeued at any time, so there is no guaranteed minimum run time.
 - __Priority__: low
 - __Available resources__: *optimist* jobs run on the *normal* nodes.
-- __Parameter for sbatch/srun__: 
+- __Parameter for sbatch/salloc__:
     - `--qos=optimist`
 - __Job Scripts__: {ref}`job_scripts_fram_optimist`
 

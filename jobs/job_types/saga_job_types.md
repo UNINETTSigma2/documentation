@@ -49,7 +49,7 @@ Saga:
 - __Available resources__:
     - 200 nodes with 40 cpus and 178.5 GiB RAM
 	- 120 nodes with 52 cpus and 178.5 GiB RAM
-- __Parameter for sbatch/srun__:
+- __Parameter for sbatch/salloc__:
     - None, _normal_ is the default
 - __Job Scripts__: {ref}`job_scripts_saga_normal`
 
@@ -68,7 +68,7 @@ This is the default job type.  Most jobs are *normal* jobs.
 - __Available resources__:
     - 28 nodes with 40 cpus and 362 GiB RAM
     - 8 nodes with 64 cpus and 3021 GiB RAM
-- __Parameter for sbatch/srun__:
+- __Parameter for sbatch/salloc__:
     - `--partition=bigmem`
 - __Job Scripts__: {ref}`job_scripts_saga_bigmem`
 
@@ -91,7 +91,7 @@ and resource limits of _devel_ apply.
 - __Priority__: normal
 - __Available resources__: 8 nodes with 24 cpus, 364 GiB RAM and 4
   GPUs.
-- __Parameter for sbatch/srun__: 
+- __Parameter for sbatch/salloc__:
     - `--partition=accel`
     - `--gpus=N`, `--gpus-per-node=N` or similar, with _N_ being the number of GPUs
 - __Job Scripts__: {ref}`job_scripts_saga_accel`
@@ -114,7 +114,7 @@ and resource limits of _devel_ apply.
 - __Maximum walltime__: 2 hours
 - __Priority__: high
 - __Available resources__: *devel* jobs can run on any node on Saga
-- __Parameter for sbatch/srun__: 
+- __Parameter for sbatch/salloc__:
     - `--qos=devel`
 - __Job Scripts__: {ref}`job_scripts_saga_devel`
 
@@ -142,7 +142,7 @@ the _devel_ or _short_ job types, please contact us at
   requeued at any time, so there is no guaranteed minimum run time.
 - __Priority__: low
 - __Available resources__: *optimist* jobs can run on any node on Saga
-- __Parameter for sbatch/srun__: 
+- __Parameter for sbatch/salloc__:
     - `--qos=optimist`
 - __Job Scripts__: {ref}`job_scripts_saga_optimist`
 

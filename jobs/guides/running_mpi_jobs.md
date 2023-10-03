@@ -59,7 +59,7 @@ srun /path/to/MySoftWare_exec
 ```
 
 Executed as above, `srun` uses Slurm's default binding and mapping
-algorithms (currently `--cpu_bind=cores`), [which can be
+algorithms (currently `--cpu-bind=cores`), [which can be
 changed](https://slurm.schedmd.com/srun.html) using either
 command-line parameters, or environment variables. Parameters specific
 to OpenMPI can be set using [environment
@@ -166,3 +166,11 @@ Note that when executing `mpirun` from within a Slurm allocation there
 is no need to provide neither the number of MPI ranks (`-np`), nor the
 host file (`-hostfile`): those are obtained automatically by
 `mpirun`.  This is also be the case with `srun`.
+
+Also note that in the current versions of Slurm (22.05.x and 23.02.x),
+`srun` will **not** inherit `--cpus-per-task=n` from `sbatch`, so if
+you specify `--cpus-per-task=n` when submitting a job, you must call
+`srun` like this: `srun --cpus-per-task=n ...` or use `export
+SRUN_CPUS_PER_TASK=$SLURM_CPUS_PER_TASK` before the `srun` command in
+the job script.  This is new behaviour as of Slurm 22.05.x, and
+hopefully the previous behaviour will be restored in a later version.
