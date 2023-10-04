@@ -5,6 +5,7 @@ notes after the event.
 
 - {ref}`training-2023-autumn-onboarding`
   - {ref}`training-2023-autumn-onboarding-notes-day0`
+  - {ref}`training-2023-autumn-onboarding-notes-day0`
 - {ref}`training-2023-spring-best-practices`
   - {ref}`training-2023-spring-best-practices-notes-day1`
   - {ref}`training-2023-spring-best-practices-notes-day2`
