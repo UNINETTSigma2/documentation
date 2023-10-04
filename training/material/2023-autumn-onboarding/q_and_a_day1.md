@@ -21,10 +21,10 @@ orphan: true
 ## Why use a Cluster?
 - https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html
 
-1. Will the exercies and the coursepage still be there after the course is done?
+1. Will the exercise and the coursepage still be there after the course is done?
       - Yes, they will stay.
 
-2. is data transfered to server like sigma or stay on local computer ? if yes, it means need some time to transfer data to server ? 
+2. is data transferred to server like sigma or stay on local computer ? if yes, it means need some time to transfer data to server ? 
       - when you transfer the data, you are copying to the cluster, so it will stay on your local computer until you delete it on your local system. The time to finish the transfer depend on many factors, like size of the data, filesystem etc. We will discuss this later today
 
 
@@ -34,7 +34,7 @@ orphan: true
 - 
 
 
-3. I have version 3.0.1 from 2021. Shoudl i update ssh?
+3. I have version 3.0.1 from 2021. should i update ssh?
    - No, you don't need to update.
 
 4. I got permission denied after writing my password, what should I do?
@@ -67,7 +67,7 @@ orphan: true
           - thanks
    - historical anecdote: the fact that files and folders starting with dot became "hidden" happened by mistake in the early days of UNIX. but the creators of UNIX figured that it was useful so they did not fix the mistake and kept this as useful feature to be able to hide some files from a default `ls`.
 
-8. is saga already installed all software or user need to install like some python libary etc?
+8. is saga already installed all software or user need to install like some python library etc?
    - most of them are installed. We will talk about it tomorrow.
 
 9. if the jobs takes more than 7 days for computing, what will happen in such case?
@@ -145,7 +145,7 @@ Connection closed by 10.31.7.3 port 22
 
 24. How do I know the memory per node? 
      - here is an overview: https://documentation.sigma2.no/hpc_machines/saga.html
-     - If you want to use sinfo, folowing are two example to find out howmuch memory(in megabytes) is there on the node c1-1
+     - If you want to use sinfo, following are two example to find out howmuch memory(in megabytes) is there on the node c1-1
       ```
       sabryr@SAGA 04-10-2023]$ sinfo -o "%m" -n c1-1
       MEMORY
@@ -178,7 +178,7 @@ Connection closed by 10.31.7.3 port 22
 - I need more time:
 - I am confused: 
 
-## Transfering files
+## Transferring files
 - https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html
 
 27. During transfering files, do we need to speciy login host or it is optional?
@@ -193,11 +193,11 @@ Connection closed by 10.31.7.3 port 22
 29. Why is rsync recommended over scp? 
      - it is faster and safer. faster because it only copies file changes and does not copy files which haven't changed. safer because you can ask it to not overwrite existing files on the target machine.
      - great, thanks!
-        - it was also suprising for me to find out that when transferring very many very tiny files, rsync was orders of magnitude faster. when trasferring few files it does not matter which of the two.
+        - it was also surprising for me to find out that when transferring very many very tiny files, rsync was orders of magnitude faster. when trasferring few files it does not matter which of the two.
         - Thanks for clarification. useful info
      - another benefit: if a connection is interrupted, rsync is designed to be able to pick up where it left off.
 
-30. Why is rsync recomended over programs like filezilla? 
+30. Why is rsync recommended over programs like filezilla? 
       - see the answer to the question above, it is recommended, however users can choose there preferred tool
       - Only transferring what has changed makes rsync deploys an order of magnitude faster, being said that I don't have experience with filezilla :) (DP)
 
