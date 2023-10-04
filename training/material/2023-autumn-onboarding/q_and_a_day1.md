@@ -181,7 +181,7 @@ Connection closed by 10.31.7.3 port 22
 ## Transferring files
 - https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html
 
-27. During transfering files, do we need to speciy login host or it is optional?
+27. During transferring files, do we need to speciy login host or it is optional?
      - it is optional. unless the transfer takes many hours or even days. then it might be better to specify it to make sure that some automatic DNS (domain name server) "rotation" does not break the connection after few hours and interrupts your transfer. for most transfers I don't specify the actual login node.
 
 28. Please explain how to set path . 
