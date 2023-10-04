@@ -172,7 +172,7 @@ https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.
     - "safer": it does what you expect instead of being unsure what might happen or doing something unexpected or giving an error
 
 12. What does `grep` stands for? 
-    -`grep` stands  for Global Regular Expression Print :+1: 
+    - `grep` stands  for Global Regular Expression Print :+1: 
 
 ## Exercise :
 https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html#exercise)
@@ -194,7 +194,7 @@ https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/writing-files.h
 https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html
 
 14.  how do i input a pipe in windows?
-    - if a Norwegian keyboard, press the key to the left of number 1
+    - if a Norwegian keyboard, press the key to the left of number 1 
     - yes i got it
     
 15.  How so you make the pipe sign on mac?
