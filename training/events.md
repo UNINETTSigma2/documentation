@@ -12,8 +12,7 @@ The courses are free of charges. Our upcoming courses are listed below:
 ```{eval-rst}
 .. toctree::
    :maxdepth: 1
- 
-   events/2023-10-hpc-on-boarding.md  
+
    events/2023-introduction-to-fortran-series.md
    events/2023-10-nird-toolkit.md
   
@@ -21,25 +20,39 @@ The courses are free of charges. Our upcoming courses are listed below:
 ```
 
 ## Past events
+
+### 2023
 ```{eval-rst}
 .. toctree::
    :maxdepth: 1
-
+   events/2023-10-hpc-on-boarding.md  
    events/2023-09-11-Matlab-training 
    events/2023-modern-fortran-workshop-series.md
    events/2023-05-best-practices-on-NRIS-clusters.md
    events/2023-04-hpc-on-boarding.md   
    events/2023-03-introduction-to-second-generation-nird.md
+
+```
+### 2022
+
+```{eval-rst}
+.. toctree::
+   :maxdepth: 1
    events/2022-11-best-practices-on-NRIS-clusters.md
    events/2022-10-hpc-on-boarding.md
    events/2022-05-best-practices-on-NRIS-clusters.md
    events/2022-05-hpc-on-boarding.md
-   events/2021-11-hpc-nird-toolkit-user-course.md
+   
+```
+### 2021
+
+```{eval-rst}
+.. toctree::
+   :maxdepth: 1
+events/2021-11-hpc-nird-toolkit-user-course.md
    
 
 ```
-
-
 ## Sigma2 training calendar
 
 - <https://www.sigma2.no/events>
