@@ -49,7 +49,7 @@ The courses are free of charges. Our upcoming courses are listed below:
 ```{eval-rst}
 .. toctree::
    :maxdepth: 1
-events/2021-11-hpc-nird-toolkit-user-course.md
+   events/2021-11-hpc-nird-toolkit-user-course.md
    
 ```
 ## Sigma2 training calendar
