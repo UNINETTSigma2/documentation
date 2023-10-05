@@ -200,7 +200,7 @@ https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html#id
 
 - One good thing about today
     - very nice support for the Q&A, thank you for a nice course!
-    - It is one of the few workshops/courses where the time is correctly managed. I wanted to highlight this given all the people involved in the organization. You all had a great managment of the time. Not easy to find in this environment!
+    - It is one of the few workshops/courses where the time is correctly managed. I wanted to highlight this given all the people involved in the organization. You all had a great management of the time. Not easy to find in this environment!
     - The shared document seemed to me a nice way to avoid oral interruptions which of course helps on the time management. It will also be super useful to access in the future together with the recordings of the sessions.
     - Thank you! It was a very useful workshop for me! You cannot imagine how much!!! 
 
