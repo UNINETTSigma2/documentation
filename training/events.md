@@ -33,8 +33,8 @@ The courses are free of charges. Our upcoming courses are listed below:
    events/2023-03-introduction-to-second-generation-nird.md
 
 ```
-### 2022
 
+### 2022
 ```{eval-rst}
 .. toctree::
    :maxdepth: 1
@@ -51,7 +51,6 @@ The courses are free of charges. Our upcoming courses are listed below:
    :maxdepth: 1
 events/2021-11-hpc-nird-toolkit-user-course.md
    
-
 ```
 ## Sigma2 training calendar
 
