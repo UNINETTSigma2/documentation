@@ -10,6 +10,16 @@ On this hands-on course, you will get an overview of  the NIRD Toolkit and how t
 
 - **Tuesday 24th October : 09:30-12:00**
 
+## Schedule
+
+- 09:00-09:30 - Login help
+- 09:30-10:00 - Introduction to NIRD Toolkit
+- 10:00-10:15 - Break
+- 10:15-11:00 - JupyterHub
+- 11:00-11:10 - Break
+- 11:10-11:30 - RStudio
+- 11:30-12:00 - Hands on and Q&A
+
 ## Prerequisites
 
 - This is an online course via zoom. Participants require access to a computer (not provided by the course organisers) with internet connectivity.
@@ -19,7 +29,7 @@ On this hands-on course, you will get an overview of  the NIRD Toolkit and how t
 
 The course is free of charge and is organised by NRIS. 
 The last day to register for the course is **18 October**.
-**Register  [here](https://skjemaker.app.uib.no/view.php?id=15554312).**
+**Registration is closed**
 
 **IMPORTRAN NOTE**: In order to log into the NIRD Toolkit to participate in the hands on workshop during the course, you will need to provide either a Feide account or a Feide OpenIDP guest account in the registration form.
 If you have a Feide account, you should provide the "Person's principal name at home organization" from https://innsyn.feide.no/aboutme. If not, you can create a Feide OpenIDP guest account at https://openidp.feide.no/. Those who are using Feide openIDP guest account should go to minside.dataporten.no to find the field called “Secondary user identifiers” for the registration.
