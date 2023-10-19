@@ -40,7 +40,7 @@ If you have a Feide account, you should provide the "Person's principal name at 
 
 ## Expert Helper
 
-- [Andreas Sæther Skeidsvoll](https://www.uib.no/personer/Andreas.Sæther.Skeidsvoll)
+- [Andreas S. Skeidsvoll](https://www.uib.no/personer/Andreas.Sæther.Skeidsvoll)
 
 ## Course Coordinator
 
