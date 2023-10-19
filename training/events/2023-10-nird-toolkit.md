@@ -38,6 +38,10 @@ If you have a Feide account, you should provide the "Person's principal name at 
 
 - [Siri Kallhovd](https://www.uib.no/en/persons/Siri.Kallhovd)
 
+## Expert Helper
+
+- [Andreas Sæther Skeidsvoll](https://www.uib.no/personer/Andreas.Sæther.Skeidsvoll)
+
 ## Course Coordinator
 
 - [Dhanya Pushpadas](https://www.uib.no/en/persons/Dhanya.Pushpadas)
