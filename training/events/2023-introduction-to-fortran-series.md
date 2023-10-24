@@ -33,11 +33,11 @@ The course is free of charge and is organised by the NRIS.
 
 |   Date    |  Time   |  Topic  |
 | :----------- | :----------- | :---------- |
-| Day1: Wed 18.10.2023   | 09:00 - 12:30|  Introduction and the basics of FORTRAN |
+| Day1: Wed 18.10.2023   | 09:00 - 12:30 | Introduction and the basics of FORTRAN |
 | Day2: Wed 25.10.2023   | 09:00 - 12:30 | Basic I/O, Array handling & vector syntax	|
-| Day3: Wed 08.11.2023   | 09:00 - 12:30 | Modules and interfaces, dynamic memory and pointers, class objects |
-| Day4: Wed 22.11.2023   | 09:00 - 12:30 | Parallel computing and performance aspects |
-| Day5: Wed 13.12.2023   | 09:00 - 12:30 | Best practices for writing efficient FORTRAN programmes |
+| Day3: Wed 08.11.2023   | 09:00 - 12:30 | Dynamic memory and pointers, class objects |
+| Day4: Wed 22.11.2023   | 09:00 - 12:30 | Subroutines, Functions, Modules and interfaces, and class objects |
+| Day5: Wed 13.12.2023   | 09:00 - 12:30 | Parallel computing, performance aspects and best practices for writing efficient FORTRAN programmes |
 
 
 ## Instructor
