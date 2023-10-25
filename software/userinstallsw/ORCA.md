@@ -64,7 +64,7 @@ The steps:
 * Login to the site when your account is active
 * Navigate to the Download section of  https://orcaforum.kofo.mpg.de/  and download a copy for yourself and read and agree to terms of EULA (end user licence agreement )
 * You do not need to install the software, above is to agree to the EULA terms.
-* Then forward the confirmation mail from ORCA to support@nris.no and request access.
+* Then forward the confirmation mail from ORCA to contact@sigma2.no and request access.
 
 We are sorry that the way to obtain a licence for ORCA is not obvious. But that is the only way at the moment.  You can get more details  from the below thread (you need an ORCA account to read this)
 
