@@ -4,6 +4,8 @@
 
 VASP is a software package for performing ab-initio quantum-mechanical calculation of a periodic arrangement of atoms using the projector-augmented wave method and a plane wave basis set. The package can perform density-functional-theory (DFT) calculations, or many-body-perturbation-theory (MBPT) like GW etc. Please consult the documentation to get a more detailed overview of its feature set.
 
+**NOTE: we are currently in the process of simplifying the way in which VASP is accessed, see the section on FRAM. In the future we will aim to provide a smaller core of standard installs, but offer support for users interested in specialized modules.**
+
 ## Online information from VASP developers targeted towards users
 
 * [Homepage](https://www.vasp.at)
@@ -19,8 +21,9 @@ These are the installed VASP versions on our facilities.
 | Version  | Fram | Saga | Betzy |
 |----------|------|------|-------|
 | 5.4.4pl2 | Yes  | Yes  | no    |
-| 6.3.2    | Yes  | Yes  | no    |
-| 6.4.1    | Yes  | Yes  | Yes   |
+| 6.3.2    | no  | Yes  | no    |
+| 6.4.1    | no  | Yes  | Yes   |
+| 6.4.2    | Yes  | no  | no   |
 
 ## Tests passed
 
@@ -29,16 +32,17 @@ This is the present test status for the installed modules for VASP.
 | Version  | Fram | Saga | Betzy |
 |----------|------|------|-------|
 | 5.4.4pl2 | N/A  | N/A  | N/A   |
-| 6.3.2    | Fast | Fast | N/A   |
-| 6.4.1    | Fast | Fast | Fast  |
+| 6.3.2    | N/A | Fast | N/A   |
+| 6.4.1    | N/A | Fast | Fast  |
+| 6.4.2    | Fast | N/A | N/A  |
 
 `Fast` or `Full` refer to the [VASP tests](https://www.vasp.at/wiki/index.php/Validation_tests).
 
 ## Supported versions available in the module system
 
 * 5.4.4 pl2 (not maintained, only for those that do not have VASP 6 licenses)
-* 6.3.2 (will possibly be removed at some point)
-* 6.4.1 (recommended)
+* 6.3.2 (only on Saga, not actively supported)
+* 6.4.1 or 6.4.2 (recommended)
 
 VASP 6 is the first VASP version that was supplied with an official test suite, which makes it easy to recommend users
 to use this over previous VASP 5 as we are able to verify that the installation works across a wide set of systems, including corner cases.
@@ -53,7 +57,19 @@ VASP is a commercial software package that requires a license for all who wants 
 
 Notice that the VASP license is backwards compatible, meaning that if you are issues a VASP 6 license you also have access to VASP 5.
 
-## Usage
+## Usage: Fram
+We are currently in the process of simplifying the way in which users can load VASP. On Fram it is now the following:
+
+We now offer direct access to both `VASP5.4.4` and `VASP6.4.2`, eliminating the need to load VASPModules or VASPExtra beforehand. E.g.to run standard vasp:
+
+	$ module load VASP6.4.2/intel2022b
+	$ srun vasp_std
+
+The available binaries include standard (`vasp_std`), noncollinear (`vasp_ncl`), and gamma point (`vasp_gam`).
+Currently only basic VASP is offered, we plan to soon offer Wannier90 and HDF5 where applicable. 
+* Specific modules, such as libxc, and adjustments like relaxation in the z-only direction can be provided upon special request.
+
+## Usage: Saga and Betzy
 
 You can check which VASP versions are installed by executing:
 
@@ -121,7 +137,7 @@ The `bee` executable from the BEEF library can be found in `$EBROOTBEEF/bin/bee`
 The `wannier90.x` and `postw90.x` executables of Wannier90 can be found in `$EBROOTWANNIER90/bin/wannier90.x` and `$EBROOTWANNIER90/bin/postw90.x` after
 loading the VASP module with `wannier90` in its name.
 
-### Parallel functionality and library support.
+## Parallel functionality and library support.
 
 All VASP and Wannier90 binaries are compiled with Intel MPI (Fram and Saga) or OpenMPI (Betzy) support. 
 No OpenMP is presently enabled, but we are working to extend the modules to also include that for VASP 6. 
@@ -129,7 +145,7 @@ This also includes GPU support for the methods in VASP that support this. Hybrid
 rather complicated to reach an optimum with respect to tuning the distribution of load and very often the job ends up being slower than
 for only the MPI enabled VASP version.
 
-### Memory allocation for VASP
+## Memory allocation for VASP
 
 VASP is known to be potentially memory demanding. Quite often, you might experience to use less than the full number of cores on the node, but still all of the memory.
 
@@ -140,7 +156,7 @@ For relevant core-count, node-count, and amounts of memory, see the pages about 
 
 Remember you are accounted for the CPUs that would be reserved due to your demand for increased memory.
 
-### Special note about Betzy and AMD systems
+## Special note about Betzy and AMD systems
 
 Notice that on Betzy, `libxc` and `hdf5` is not enabled due to issues with the AOCC/AOCL compilation setup. If you need this functionality,
 use Saga and Fram for now. Also, on Saga and Fram VASP has been compiled with an Intel toolchain, but on Betzy, we have used AOCC and AOCL, which
