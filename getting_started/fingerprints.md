@@ -18,14 +18,11 @@ login, please {ref}`contact us <support-line>` immediately.
 ## fram.sigma2.no
 
 - ED25519:
-  - `MD5:5c:49:52:68:a1:aa:d7:dd:3e:71:4a:3b:fd:6f:ef:7b`
-  - `SHA256:m3tuW22Y3K+wztKWEOKl8vXxfD2aJxknveyQCsxu+a8`
-- ECDSA:
-  - `MD5:5b:af:a6:1d:94:1c:64:e1:11:54:0e:1f:7d:d2:cd:80`
-  - `SHA256:4z8Jipr50TpYTXH/hpAGZVgMAt0zwT9+hz8L3LLrHF8`
+  - `MD5:5f:15:92:e1:22:74:69:68:6c:1c:27:f5:a5:b1:76:3f`
+  - `SHA256:hLb9eJdGcTT2PHoWamc/+06LlF+vgcnyfvFEqh60cT8`
 - RSA:
-  - `MD5:6d:3b:72:31:c8:38:9c:c5:c9:a6:8a:aa:ee:50:38:da`
-  - `SHA256:0FqUvnjU5OAXkmx2j1U2Z8rxmwq/Sm12lN+i+HrqnaQ`
+  - `MD5:05:d0:0e:fa:cb:72:c0:03:cb:8f:d0:b4:dc:09:04:4e`
+  - `SHA256:Cq5Vt82wQAAhMu4q05L3gmB4QeW1POpNNKgTIP8A2f4`
 
 
 ## saga.sigma2.no
