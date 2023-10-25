@@ -19,8 +19,9 @@ These are the installed VASP versions on our facilities.
 | Version  | Fram | Saga | Betzy |
 |----------|------|------|-------|
 | 5.4.4pl2 | Yes  | Yes  | no    |
-| 6.3.2    | Yes  | Yes  | no    |
-| 6.4.1    | Yes  | Yes  | Yes   |
+| 6.3.2    | no  | Yes  | no    |
+| 6.4.1    | no  | Yes  | Yes   |
+| 6.4.2    | Yes  | no  | no   |
 
 ## Tests passed
 
@@ -29,8 +30,9 @@ This is the present test status for the installed modules for VASP.
 | Version  | Fram | Saga | Betzy |
 |----------|------|------|-------|
 | 5.4.4pl2 | N/A  | N/A  | N/A   |
-| 6.3.2    | Fast | Fast | N/A   |
-| 6.4.1    | Fast | Fast | Fast  |
+| 6.3.2    | N/A | Fast | N/A   |
+| 6.4.1    | N/A | Fast | Fast  |
+| 6.4.2    | Fast | N/A | N/A  |
 
 `Fast` or `Full` refer to the [VASP tests](https://www.vasp.at/wiki/index.php/Validation_tests).
 
