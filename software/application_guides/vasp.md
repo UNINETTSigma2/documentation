@@ -55,6 +55,19 @@ Notice that the VASP license is backwards compatible, meaning that if you are is
 
 ## Usage
 
+* Note we are currently in the process of simplifying the way in which users can load VASP. On Fram it is now the following:
+
+We now offer direct access to both `VASP5.4.4` and `VASP6.4.2`, eliminating the need to load VASPModules or VASPExtra beforehand. E.g.
+
+	$ module load VASP6.4.2/intel2022b
+	$ srun vasp_std
+
+The available binaries include standard (vasp_std), noncollinear (vasp_ncl), and gamma point (vasp_gam).
+Currently only basic VASP is offered, we plan to soon offer Wannier90 and HDF5 where applicable. 
+Specific modules, such as libxc, and adjustments like relaxation in the z-only direction can be provided upon special request.
+
+* The following is still true on Saga and Betzy 
+
 You can check which VASP versions are installed by executing:
 
 	$ module load VASPModules
