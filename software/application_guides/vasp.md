@@ -62,7 +62,7 @@ We are currently in the process of simplifying the way in which users can load V
 
 We now offer direct access to both `VASP5.4.4` and `VASP6.4.2`, eliminating the need to load VASPModules or VASPExtra beforehand. E.g.to run standard vasp:
 
-	$ module load VASP6.4.2/intel2022b
+	$ module load VASP/6.4.2-intel-2022b
 	$ srun vasp_std
 
 The available binaries include standard (`vasp_std`), noncollinear (`vasp_ncl`), and gamma point (`vasp_gam`).
