@@ -73,12 +73,16 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 # this configures where "view page source" (top right on rendered page) points to
-html_context = {
-    'display_github': True,
-    'github_user': 'UNINETTSigma2',
-    'github_repo': 'documentation',
-    'github_version': 'main/' ,
-}
+# html_context = {
+#     'display_github': True,
+#     'github_user': 'UNINETTSigma2',
+#     'github_repo': 'documentation',
+#     'github_version': 'main/' ,
+# }
+
+# disabled because the "edit on github" invited staff to edit documentation
+# in the wrong place
+html_show_sourcelink = False
 
 # ignoring these because they are behind vpn/login and linkchecker cannot verify these
 # or because they don't really exist
