@@ -15,7 +15,7 @@ while others are for storing project data.
 ## Overview
 
 The following table summarizes the different storage options for **Betzy, Fram, and Saga**.
-Below the table we give recommendations and discuss pros and cons for the various storage areas.
+Below the table, we give recommendations and discuss the pros and cons of the various storage areas.
 
 | Directory                                       | Purpose              | {ref}`Default Quota <storage-quota>` | {ref}`Backup <storage-backup>` |
 | :---------------------------------------------- | :------------------- | :--------------------------------- | :---------------------------------: |
@@ -112,7 +112,7 @@ it is running on.  This is done by specifying
 `--gres=localscratch:<size>`, where *<size>* is the size of the requested
 area, for instance `--gres=localscratch:20G` for 20 GiB.
 
-Compute nodes on Fram have 198GiB disk that can be handed out to local scratch areas. 
+Compute nodes on Fram have 198 GiB disk that can be handed out to local scratch areas. 
 On Saga most nodes have 300 GiB; a few of the
 bigmem nodes have 7 TiB and the GPU nodes have 8 TiB.  If a job tries
 to use more space on the area than it requested, it will get a "disk
@@ -200,7 +200,7 @@ File deletion depends on the newest of the *creation-*, *modification-* and
 be deleted first and a weekly scan removes files older than 42 days.
 
 When file system usage reaches 70%, files older than 21 days are subject to
-automatic deletion. If usage is over 90%, files older then 17 days are subject to
+automatic deletion. If usage is over 90%, files older than 17 days are subject to
 automatic deletion.
 
 It is **not** allowed to try to circumvent the automatic deletion by
@@ -235,34 +235,34 @@ for instance running scripts that touch all files.
 All HPC projects have a dedicated local space to share data between project
 members, located at `/cluster/projects/<project_name>`.
 
-The project area is controlled with {ref}`storage-quota` and the default project quota for
-HPC projects is 1 TB, but projects can apply for more during the
-application process with a maximum quota of 10 TB.
+The project area is controlled by {ref}`storage-quota` and the default project quota for
+HPC projects is 1 TiB, but projects can apply for more during the
+application process with a maximum quota of 10 TiB on Fram and Saga, and 20 TiB on Betzy.
 
 Also after the project has been created, project members can request to increase
-the quota to up to 10 TB by motivating why this is needed. Such requests should be submitted by the project leader via e-mail to [contact@sigma2.no](mailto:contact@sigma2.no?subject=Storage%20Quota%20Request%20project%20X&body=1.%20How%20large%20are%20the%20input%20files%3F%20(Approximate%20or%20exact%20numbers%20are%20fine.)%0A%0A2.%20How%20many%20such%20input%20files%20will%20be%20used%20in%20a%20single%20job%3F%0A%0A3.%20At%20what%20rate%20do%20you%20intend%20to%20process%20your%20data%3F%20(Approximate%20GB%20per%20week%20or%20equivalent.)%0A%0A4.%20What%20size%20is%20your%20output%20files%20and%20will%20you%20use%20this%20data%20as%20input%20in%20further%20analysis%3F%0A%0A5.%20Please%20explain%20why%20you%20cannot%20benefit%20from%20the%20%2Fcluster%2Fwork%20area%0A%0A6.%20Based%20on%20your%20answers%20above%2C%20how%20much%20storage%20quota%20do%20you%20think%20you%20need%3F)
-. Note that only files that are relevant for further computation jobs should be kept on the HPC machine. HPC is not intended for long term storage. In your request, please include answers to the following questions:
+the quota to up to 10 TiB by documenting why this is needed. Such requests should be submitted by the project leader via e-mail to [contact@sigma2.no](mailto:contact@sigma2.no?subject=Storage%20Quota%20Request%20project%20X&body=1.%20How%20large%20are%20the%20input%20files%3F%20(Approximate%20or%20exact%20numbers%20are%20fine.)%0A%0A2.%20How%20many%20such%20input%20files%20will%20be%20used%20in%20a%20single%20job%3F%0A%0A3.%20At%20what%20rate%20do%20you%20intend%20to%20process%20your%20data%3F%20(Approximate%20GB%20per%20week%20or%20equivalent.)%0A%0A4.%20What%20size%20is%20your%20output%20files%20and%20will%20you%20use%20this%20data%20as%20input%20in%20further%20analysis%3F%0A%0A5.%20Please%20explain%20why%20you%20cannot%20benefit%20from%20the%20%2Fcluster%2Fwork%20area%0A%0A6.%20Based%20on%20your%20answers%20above%2C%20how%20much%20storage%20quota%20do%20you%20think%20you%20need%3F)
+. Note that only files that are relevant for further computation jobs should be kept on the HPC machine. HPC is not intended for long-term storage. In your request, please include answers to the following questions:
 
 1. How large are the input files? (Approximate or exact numbers are fine.)
 2. How many such input files will be used in a single job?
 3. At what rate do you intend to process your data? (Approximate GB per week or equivalent.)
-4. What size is your output files and will you use this data as input in further analysis?
+4. What size are your output files and will you use this data as input in further analysis?
 5. Please explain why you cannot benefit from the /cluster/work area
 6. Based on your answers above, how much storage quota do you think you need?
 
 
-Requests for more than 10 TB require an application for a separate {ref}`nird` project area.
+Requests for more than 10/20 TiB require an application for a separate {ref}`nird` project area. On special occasions, storage above 10/20 TiB can be permitted. This requires an investigation of the workflow to ensure that needs cannot be satisfied through an allocation on NIRD. Granted disk space above 10/20 TiB is charged according to the [Contribution model](https://www.sigma2.no/user-contribution-model), Storage category B.
 
 Note that unused quota can also be withdrawn for technical reasons (too little
-space) or organisational reasons (less needs/less usage/less members of
-group/less compute hrs).
+space) or organisational reasons (less needs/less usage/fewer members of
+the group/fewer compute hours).
 
 Daily backup is taken to NIRD ([documentation about backup](backup.md)).
 
 ```{note}
 **Pros of running jobs in the project area**
 
-- Since job files are not removed automatically directly when a job
+- Since job files are not removed automatically when a job
   finishes, it is easier to debug failing jobs.
 - There is no need to use special commands to copy files back in case
   the job script or node crashes before the job has finished.
@@ -274,10 +274,10 @@ Daily backup is taken to NIRD ([documentation about backup](backup.md)).
 **Cons of running jobs in the project area**
 
 - There is a risk of interference from other jobs unless one makes
-  sure to run each job in a separate sub directory inside the project
+  sure to run each job in a separate sub-directory inside the project
   area.
 - Because job files are not removed when the job finishes, one has to
-  remember to clean up temporary files afterwards, otherwise they can
+  remember to clean up temporary files afterwards otherwise they can
   fill up the quota.
 - There is a risk of using all of the disk quota if one runs many jobs
   and/or jobs needing a lot of storage at the same time.
@@ -287,10 +287,10 @@ Daily backup is taken to NIRD ([documentation about backup](backup.md)).
 
 ## Shared project area
 
-In special cases there might be a need for sharing data between projects for
+In special cases, there might be a need for sharing data between projects for
 collaboration and possibly preventing data duplication.
 
-If such a need is justified, a meta-group and it's according directory
+If such a need is justified, a meta-group and its according directory
 in `/cluster/shared` is created.  The area gets a disk quota based on
 the needs of the data.  The permissions of the areas vary.  In some
 cases all but a few users in the meta-group only have read-only access
