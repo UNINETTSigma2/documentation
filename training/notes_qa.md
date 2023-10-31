@@ -3,6 +3,8 @@
 Here we share the workshop questions, answer, and feedbacks from the collaborative 
 notes after the event.
 
+- [Questions and answers from Introduction to FORTRAN Series Autumn 2023](https://md.sigma2.no/YQjft6kvR5SUolKJtm3QOA)
+- [Questions and answers from Introduction to NIRD Toolkit on 24th October 2023](https://md.sigma2.no/introduction-to-nird-toolkit)
 - {ref}`training-2023-autumn-onboarding`
   - {ref}`training-2023-autumn-onboarding-notes-day2`
   - {ref}`training-2023-autumn-onboarding-notes-day1`

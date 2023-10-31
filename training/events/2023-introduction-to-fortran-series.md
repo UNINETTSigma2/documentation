@@ -39,6 +39,12 @@ The course is free of charge and is organised by the NRIS.
 | Day4: Wed 22.11.2023   | 09:00 - 12:30 | Subroutines, Functions, Modules and interfaces, and class objects |
 | Day5: Wed 13.12.2023   | 09:00 - 12:30 | Parallel computing, performance aspects and best practices for writing efficient FORTRAN programmes |
 
+```{note}
+  **Video recordings and Q&A notes from the series:**
+  - [Youtube](https://www.youtube.com/watch?v=Rg6A63dxxGE&list=PLoR6m-sar9AiM6bHuv5m68uLyhNi4SAF6)
+  - [Q&A](https://md.sigma2.no/YQjft6kvR5SUolKJtm3QOA)
+
+```
 
 ## Instructor
 
