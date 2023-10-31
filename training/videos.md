@@ -2,7 +2,13 @@
 
  Here we share the link to our video archives of past events.
 
+- [[Video] NRIS Introduction to FORTRAN Series Autumn 2023](https://www.youtube.com/watch?v=Rg6A63dxxGE&list=PLoR6m-sar9AiM6bHuv5m68uLyhNi4SAF6)
+
 - [[Video] Modern Fortran Workshop Series Spring 2023](https://www.youtube.com/watch?v=243Y9187zWE&list=PLoR6m-sar9Aj8AKzLWATMqq7gNmWD9Awf)
+
+- [[Video] Best Practices on NRIS Clusters May 2023](https://www.youtube.com/watch?v=tlXCEkHnMhY&list=PLoR6m-sar9Agq9hqnaEga68fJcrsqWhsa)
+
+- [[Video] HPC On-boarding April 2023](https://www.youtube.com/watch?v=ekZxXTRpAvk&list=PLoR6m-sar9AizSl5eukP2iQowGBb7uERP)
 
 - [[Video] Introduction to second generation NIRD](https://www.youtube.com/watch?v=iBwhDsZtAzs&t=10374s)
 
