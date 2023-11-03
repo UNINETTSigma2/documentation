@@ -248,7 +248,9 @@ the quota to up to 10/20 TiB by documenting why this is needed. Such requests sh
 3. At what rate do you intend to process your data? (Approximate GB per week or equivalent.)
 4. What size are your output files and will you use this data as input in further analysis?
 5. Please explain why you cannot benefit from the /cluster/work area
-6. Based on your answers above, how much storage quota do you think you need?
+NIRD is tightly connected with our HPC systems and data can be moved between the two both fast and easily.
+6. Please explain why staging data from NIRD is not sufficient for your project
+7. Based on your answers above, how much storage quota do you think you need?
 
 
 Requests for more than 10/20 TiB require an application for a separate {ref}`nird` project area. On special occasions, storage above 10/20 TiB can be permitted. This requires an investigation of the workflow to ensure that needs cannot be satisfied through an allocation on NIRD. Granted disk space above 10/20 TiB is charged according to the [Contribution model](https://www.sigma2.no/user-contribution-model), Storage category B.
