@@ -2,6 +2,10 @@
 
 # ParaView with Apptainer (singularity)
 
+```{contents} Table of Contents
+
+```
+
 Running ParaView using remote desktop software on our clusters is far from ideal because it adds an unnecessary layer of virtualization, making the application run slower and taxing the server and users running other programs.
 
 Running ParaView through a container has a few advantages:
