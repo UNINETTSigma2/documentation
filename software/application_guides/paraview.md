@@ -13,7 +13,7 @@ Running ParaView through a container has a few advantages:
 In this guide, we are going to use containers provided on NVIDIA NGC, which is a hub for GPU-optimized software for deep learning, machine learning, and HPC: https://catalog.ngc.nvidia.com/orgs/nvidia-hpcvis/containers/paraview
 
 **NOTE**: We are going to use `$USERWORK` for space purposes. Please, remember that this folder is subject to automatic clean up: https://documentation.sigma2.no/files_storage/clusters.html#user-work-area . It might be necessary to download the container again at some point in the future (which will be available as long as Nvidia maintains it) but, DO NOT store important data under this directory.
-````
+
 
 ## Pulling ParaView image
 
