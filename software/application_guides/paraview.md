@@ -61,7 +61,7 @@ Select a **random port number**, say 7412. Also, for this guide, we will assume 
 
 The command above is binding the port and the data folder to the container, so that it can see the information outside of it (by default, a container is relatively isolated from "outside world", meaning we have to specify which folders from the host machine we want to "see" from inside the container). 
 
-The first folder "$USERWORK/data" is only known outside the container and "/data" is only known inside the container, we are binding them together when running "$USERWORK/data:/data".
+The first folder `$USERWORK/data` is only known outside the container and `/data` is only known inside the container, we are binding them together with `--bind $USERWORK/data:/data` but it is **the same folder** therefore changes made in `/data` are actually done to `$USERWORK/data` and hence permanent.
 
 **From a second terminal window**, log in again to the server but, this time, **forwarding** the port you used for the container: `ssh -L 7412:localhost:7412 -i ~/.ssh/ssh_key username@fram.sigma2.no`
 
