@@ -32,7 +32,7 @@ This will create a `.sif` file in the directory from where you pulled it (you ca
 
 **WARNING**: If you want to run a different ParaView version, you can do so by replacing the url after "docker://", copying the new one from here: https://catalog.ngc.nvidia.com/orgs/nvidia-hpcvis/containers/paraview/tags. 
 However, if you do this, be careful to use the correct PATH for Paraview because for tags `egl-py3-5.9.0` and `egl-py3-5.8.0`, Paraview was installed in `/opt/paraview` whereas for tags `egl-py3-5.11.0`, `glx-5.6.0rc3` and `egl-5.6.0rc` it is installed in `/usr/local/paraview`, so modify the PATH in "[Apptainer exec command](https://documentation.sigma2.no/software/application_guides/paraview.html#running-the-container)" accordingly.
-````
+
 
 ## Allocating resources for the project
 
@@ -52,6 +52,7 @@ salloc: Nodes c84-5 are ready for job
 ```
 
 **NOTE**: Remember which node was allocated for the job, it will be needed later. In this case, the allocated node was "c84-5".
+
 
 ## Running the container
 
