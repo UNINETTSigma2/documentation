@@ -28,7 +28,9 @@ Now, pull a ParaView container image with Apptainer: `apptainer pull docker://nv
 
 This will create a `.sif` file in the directory from where you pulled it (you can rename this file as much as you want, and also move it where you want, it will still work): `ls -lrtah paraview*`
 
-**TIP:** If you want to run a different ParaView version, you can do so by replacing the url after "docker://", copying the new one from here: https://catalog.ngc.nvidia.com/orgs/nvidia-hpcvis/containers/paraview/tags
+**TIP:** If you want to run a different ParaView version, you can do so by replacing the url after "docker://", copying the new one from here: https://catalog.ngc.nvidia.com/orgs/nvidia-hpcvis/containers/paraview/tags. 
+
+**WARNING:** Be careful to use the correct PATH for Paraview because for tags `egl-py3-5.9.0` and `egl-py3-5.8.0` Paraview was installed in `/opt/paraview` whereas for tags `egl-py3-5.11.0`, `glx-5.6.0rc3` and `egl-5.6.0rc` it is in `/usr/local/paraview`, and modify the PATH in Apptainer command accordingly.
 
 **NOTE:** Remember that `$USERWORK` is subject to automatic clean up: https://documentation.sigma2.no/files_storage/clusters.html#user-work-area . It might be necessary to download the container again at some point in the future (which will be available as long as Nvidia maintains it) but, DO NOT store important data under this directory.
 
