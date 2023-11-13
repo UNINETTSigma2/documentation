@@ -95,7 +95,7 @@ After completing the publication metadata you will be presented with fields for 
 
 The currently available licences covering access to a dataset are: the Creative Commons Attribution 4.0 International (CC BY 4.0 {ref}`[2] <references-archive>` ), Norwegian Licence for Open Data (NLOD {ref}`[3] <references-archive>` ). The licence provides liberal access to the data which maximises the impact of the data you have published, and it ensures that proper recognition is given to you. The default licence is CC BY 4.0.
 
-By default, metadata for published datasets are considered public and access is granted to all researchers. The Data Manager and Rights Holder that you nominate will be informed by email of the nomination and whether they wish to accept the role. The Archive will periodically remind them of their nomination, and you will receive an email when they accept or decline the nomination. It is your responsibility to find suitable entities (persons or organisations) that can accept the roles. Your institute may be able to offer guidance on suitable Data Manager and Rights Holders, or you can email the [archive.manager@nris.no](archive.manager@nris.no) for guidance.
+By default, metadata for published datasets are considered public and access is granted to all researchers. The Data Manager and Rights Holder that you nominate will be informed by email of the nomination and whether they wish to accept the role. The Archive will periodically remind them of their nomination, and you will receive an email when they accept or decline the nomination. It is your responsibility to find suitable entities (persons or organisations) that can accept the roles. Your institute may be able to offer guidance on suitable Data Manager and Rights Holders, or you can email the <archive.manager@nris.no> for guidance.
 
 ![the_primary_metadata_form](imgs/figure_4_screenshot_of_the_primary_metadata_form_0.png "primary_metadata_form")
 Figure 4: Screenshot of the Primary Metadata form
@@ -125,7 +125,7 @@ The upload consists of two steps:
 
 - **NOTE:** there is current limitation that does not allow datasets consisting of a tar or zip file and individual files or directories to be uploaded. If your dataset contains a mixture of individual files and tar or zipped files you can tar or zip the entire collection and upload the dataset.
 
-**NOTE:** For the local machine method you will need to keep the browser window open whilst the upload is in progress. If you have large datasets (e.g. 200 GB or above) you might want to contact the Archive ([archive.manager@nris.no](archive.manager@nris.no)) to see if there's a more efficient way of transferring the data.
+**NOTE:** For the local machine method you will need to keep the browser window open whilst the upload is in progress. If you have large datasets (e.g. 200 GB or above) you might want to contact the Archive (<archive.manager@nris.no>) to see if there's a more efficient way of transferring the data.
 Choosing the *Local machine* for uploading a dataset will result in the upload interface appearing (see Figure 6). Use the *select* button to select files from a file chooser. Once you have selected all the files for upload click the *Submit Dataset* button to send the data to the archive.
 
 ![the_upload_for_feide_users](imgs/figure_6_screenshot_of_the_upload_for_feide_users.png "_upload_for_feide_users")
@@ -178,7 +178,7 @@ Only datasets that are pending or are in the process of being archived can be ca
 ### Modifying the dataset's data
 
 The archive allows an archive dataset's data to be updated.
-If you find that you need to make a change to data that has been uploaded to the archive, please contact the archive manager [archive.manager@nris.no](archive.manager@nris.no) and they will help you to update your dataset.
+If you find that you need to make a change to data that has been uploaded to the archive, please contact the archive manager <archive.manager@nris.no> and they will help you to update your dataset.
 
 ### List view of Datasets
 
@@ -215,7 +215,7 @@ Once you have supplied all mandatory metadata for the dataset and a Rights Holde
 
 ## Versioning Datasets
 
-You can create a new version of any published dataset for which you are a stakeholder. This can be useful if you find tha there are errors in the dataset and you need to archive a corrected dataset, or you wish to add more data to a dataset. If you only wish to update metadata, please contact the [archive.manager@nris.no](archive.manager@nris.no).
+You can create a new version of any published dataset for which you are a stakeholder. This can be useful if you find tha there are errors in the dataset and you need to archive a corrected dataset, or you wish to add more data to a dataset. If you only wish to update metadata, please contact the <archive.manager@nris.no>.
 
 **NOTE:** currently, you will need to upload the complete dataset as it is currently not possible to upload only modified data files.
 
@@ -355,7 +355,7 @@ Metadata for the dataset files is automatically extracted from the file metadata
 
 ## Contacts
 
-In case of questions or comments please email the archive manager at: [archive.manager@nris.no](archive.manager@nris.no)
+In case of questions or comments please email the archive manager at: <archive.manager@nris.no>
 
 (references-archive)=
 
