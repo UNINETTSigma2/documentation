@@ -33,7 +33,7 @@ application_guides/ncview.md
 application_guides/nwchem.md
 application_guides/opendrift.md
 application_guides/openfoam.md
-application_guides/paraview_X11.md
+application_guides/paraview_x11.md
 application_guides/paraview_web.md
 application_guides/proj.md
 application_guides/schrodinger/schrodinger.md
