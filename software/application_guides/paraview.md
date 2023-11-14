@@ -14,7 +14,7 @@ First, log in to your preferred server via SSH (in this example, we are going to
 
 The first time, you will have to pull the container image, and since these can be quite large it is often better not to use your $HOME but the $USERWORK instead: `cd $USERWORK`
 
-Also, let's set some variables so there won't be issues while downloading the container:
+Also, let's set some variables so there won't be issues while downloading the container:<br>
 `mkdir -p $USERWORK/.apptainer`<br>
 `export APPTAINER_CACHEDIR=$USERWORK/.apptainer`<br>
 `export APPTAINER_TMPDIR=$USERWORK/.apptainer`<br>
