@@ -1,10 +1,17 @@
 WIP
-
-
-
-
-
 # ParaView using X11 Forwarding and Apptainer (singularity)
+
+## Context
+
+Running ParaView using remote desktop software on our clusters is far from ideal because it adds an unnecessary layer of virtualization, making the application run slower and taxing the server and users running other programs.
+
+Running ParaView through a container has a few advantages:
+- You do not rely on IT support to install a particular version of the software;
+- It is possible to run the latest version, as long as the container image is also updated;
+- You can specify exactly how much resources you need (including CPUs and also GPUs where available) and they will be allocated to your project;
+- It runs much better on your, already familiar, browser;
+- There is no need to maintain old software that will probably stop working within time;
+- You can use the same container image on different hosts (i.e. what is described here can be adapted for other platforms), and always remain in the exact same software environment.
 
 In this guide, we are going to use containers provided by OpenFOAM Foundation: https://hub.docker.com/u/openfoam
 
