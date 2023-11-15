@@ -3,6 +3,18 @@
 **Attention**: ParaViewWeb is different than the regular ParaView software. ParaViewWeb is a Web framework to build applications with interactive scientific visualization inside the Web browser.
 In case you want to run regular ParaView, use it inside X2Go or follow the guide on how to run it using X11 Forwarding.
 
+## Context
+
+Running ParaView using remote desktop software on our clusters is far from ideal because it adds an unnecessary layer of virtualization, making the application run slower and taxing the server and users running other programs.
+
+Running ParaView through a container has a few advantages:
+- You do not rely on IT support to install a particular version of the software;
+- It is possible to run the latest version, as long as the container image is also updated;
+- You can specify exactly how much resources you need (including CPUs and also GPUs where available) and they will be allocated to your project;
+- It runs much better on your, already familiar, browser;
+- There is no need to maintain old software that will probably stop working within time;
+- You can use the same container image on different hosts (i.e. what is described here can be adapted for other platforms), and always remain in the exact same software environment.
+
 In this guide, we are going to use containers provided on NVIDIA NGC, which is a hub for GPU-optimized software for deep learning, machine learning, and HPC: https://catalog.ngc.nvidia.com/orgs/nvidia-hpcvis/containers/paraview
 
 **NOTE**: We are going to use `$USERWORK` for space purposes. Please, remember that this folder is subject to automatic clean up: https://documentation.sigma2.no/files_storage/clusters.html#user-work-area . It might be necessary to download the container again at some point in the future (which will be available as long as Nvidia maintains it) but, DO NOT store important data under this directory.
