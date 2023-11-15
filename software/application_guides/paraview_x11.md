@@ -2,7 +2,7 @@
 
 ## X Server for running the application
 
-You first need to download an X server so the GUI can be forwarded and you can interact with ParaView.<br>
+You first need to download an X server so the GUI can be forwarded and you can interact with ParaView.<br><br>
 **For Windows, you can use Xming or VcXsrv:** If you use the latter, select "One large window", "Start no client", uncheck "Native opengl" and check "Disable access control"<br>
 **For Mac, you can use XQuartz**<br>
 
@@ -32,7 +32,7 @@ In case the connection is not very stable while running with PowerShell, you can
 ## Allocating resources for the project
 
 Run the following command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --qos=devel --account=nnxxxxk`
-If the command above doesn't work, take a look at this [documentation](https://documentation.sigma2.no/jobs/interactive_jobs.html#requesting-an-interactive-job).
+<br>If the command above doesn't work, take a look at this [documentation](https://documentation.sigma2.no/jobs/interactive_jobs.html#requesting-an-interactive-job).
 
 Please, note that here we are asking 1 CPU only for 30 minutes in the Devel queue. **If you need more resources and time, adjust the parameters accordingly.**
 
