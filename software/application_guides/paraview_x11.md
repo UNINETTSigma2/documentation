@@ -3,7 +3,9 @@
 ## X Server for running the application
 
 You first need to download an X server so the GUI can be forwarded and you can interact with ParaView.
+
 **For Windows, you can use Xming or VcXsrv:** If you use the latter, select "One large window", "Start no client", uncheck "Native opengl" and check "Disable access control"
+
 **For Mac, you can use XQuartz**
 
 More information here: https://documentation.sigma2.no/getting_started/ssh.html#x11-forwarding and here: https://documentation.sigma2.no/jobs/interactive_jobs.html#graphical-user-interface-in-interactive-jobs
@@ -15,8 +17,10 @@ Make sure the application is running and it says, when you hover the mouse over 
 
 ### Windows PowerShell
 Open Windows PowerShell and run the following commands:
-- `$env:DISPLAY = "localhost:0"`
-- `ssh -X -Y username@server.sigma2.no` (replace "server" with fram, betzy or saga)
+```
+$env:DISPLAY = "localhost:0"
+ssh -X -Y username@server.sigma2.no (replace "server" with fram, betzy or saga)
+```
 
 In case the connection is not very stable while running with PowerShell, you can try with Putty
 
@@ -51,8 +55,10 @@ salloc: Nodes c84-5 are ready for job
 ## Running ParaView
 
 Run the following commands:
-```ml avail | grep ParaView
+```
+ml avail | grep ParaView
 module load ParaView/versionDesired (replace "versionDesired" with the options available)
-paraview```
+paraview
+```
 
 The ParaView user interface should load on the X Server within a few seconds.
