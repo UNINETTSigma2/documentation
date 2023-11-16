@@ -19,7 +19,7 @@ Make sure the application is running and it says, when you hover the mouse over 
 Open Windows PowerShell and run the following commands:
 ```
 $env:DISPLAY = "localhost:0"
-ssh -X -Y username@server.sigma2.no (replace "server" with fram, betzy or saga)
+ssh -X -Y username@server.sigma2.no #(replace "server" with fram, betzy or saga)
 ```
 
 In case the connection is not very stable while running with PowerShell, you can try with Putty
@@ -36,6 +36,7 @@ In case the connection is not very stable while running with PowerShell, you can
 ## Allocating resources for the project
 
 Run the following command: ```salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --qos=devel --account=nnxxxxk```
+
 If the command above doesn't work, take a look at this [documentation](https://documentation.sigma2.no/jobs/interactive_jobs.html#requesting-an-interactive-job).
 
 Please, note that here we are asking 1 CPU only for 30 minutes in the Devel queue. **If you need more resources and time, adjust the parameters accordingly.**
@@ -57,7 +58,7 @@ salloc: Nodes c84-5 are ready for job
 Run the following commands:
 ```
 ml avail | grep ParaView
-module load ParaView/versionDesired (replace "versionDesired" with the options available)
+module load ParaView/versionDesired #(replace "versionDesired" with the options available)
 paraview
 ```
 
