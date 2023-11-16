@@ -26,16 +26,19 @@ First, log in to your preferred server via SSH (in this example, we are going to
 
 The first time, you will have to pull the container image, and since these can be quite large it is often better not to use your $HOME but the $USERWORK instead: `cd $USERWORK`
 
-Also, let's set some variables so there won't be issues while downloading the container:<br>
-`mkdir -p $USERWORK/.apptainer`<br>
-`export APPTAINER_CACHEDIR=$USERWORK/.apptainer`<br>
-`export APPTAINER_TMPDIR=$USERWORK/.apptainer`<br>
+Also, let's set some variables so there won't be issues while downloading the container:
+```
+mkdir -p $USERWORK/.apptainer
+export APPTAINER_CACHEDIR=$USERWORK/.apptainer
+export APPTAINER_TMPDIR=$USERWORK/.apptainer
+```
 
 Now, pull a ParaView container image with Apptainer: `apptainer pull docker://nvcr.io/nvidia-hpcvis/paraview:egl-py3-5.11.0`
 
 This will create a `.sif` file in the directory from where you pulled it (you can rename this file as much as you want, and also move it where you want, it will still work): `ls -lrtah paraview*`
 
-**WARNING**: If you want to run a different ParaView version, you can do so by replacing the url after "docker://", copying the new one from here: https://catalog.ngc.nvidia.com/orgs/nvidia-hpcvis/containers/paraview/tags. <br>
+**WARNING**: If you want to run a different ParaView version, you can do so by replacing the url after "docker://", copying the new one from here: https://catalog.ngc.nvidia.com/orgs/nvidia-hpcvis/containers/paraview/tags.
+
 However, if you do this, be careful to use the correct PATH for Paraview because for tags `egl-py3-5.9.0` and `egl-py3-5.8.0`, Paraview was installed in `/opt/paraview` whereas for tags `egl-py3-5.11.0`, `glx-5.6.0rc3` and `egl-5.6.0rc` it is installed in `/usr/local/paraview`, so modify the PATH in "[Apptainer exec command](https://documentation.sigma2.no/software/application_guides/paraview.html#running-the-container)" accordingly.
 
 
@@ -74,7 +77,8 @@ The first folder `$USERWORK/data` is only known outside the container and `/data
 
 **From a second terminal window**, log in again to the server but, this time, **forwarding** the port you used for the container: `ssh -L 7412:localhost:7412 -i ~/.ssh/ssh_key username@fram.sigma2.no`
 
-Now, forward again the same port from the compute node that you were allocated, run the following: `ssh -L 7412:localhost:7412 c84-5`.<br>
+Now, forward again the same port from the compute node that you were allocated, run the following: `ssh -L 7412:localhost:7412 c84-5`.
+
 **Remember to replace the last part (c84-5) with the allocated node in the beginning**
 
 
