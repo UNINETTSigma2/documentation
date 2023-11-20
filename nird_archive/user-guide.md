@@ -178,7 +178,7 @@ Only datasets that are pending or are in the process of being archived can be ca
 ### Modifying the dataset's data
 
 The archive allows an archive dataset's data to be updated.
-If you find that you need to make a change to data that has been uploaded to the archive, please contact the archive manager[archive.manager@nris.no](mailto:archive.manager@nris.no) and they will help you to update your dataset.
+If you find that you need to make a change to data that has been uploaded to the archive, please contact the archive manager [archive.manager@nris.no](mailto:archive.manager@nris.no) and they will help you to update your dataset.
 
 ### List view of Datasets
 
