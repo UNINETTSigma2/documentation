@@ -5,14 +5,8 @@
 
 ## Backup of home folders on compute clusters
 
-```{warning}
-Since storage moved from old NIRD to new NIRD, **home folders are currently not
-backed up**.
-```
-
-We are working on enabling cluster home backup to NIRD as soon as possible.
-As soon as this is in place, we will update both the documentation and also
-<https://opslog.sigma2.no/>.
+**Betzy, Fram and Saga**: Home folder is backed up to NIRD storage, and can be accessed via following mount point on corresponding clusters login nodes:
+- `/cluster/backup/home/$username`
 
 
 ## Backup of project folders on compute clusters 
@@ -24,16 +18,10 @@ an automatic cleanup strategy, and is **not** meant for permanent storage.
 Files in this area will be **deleted** after 42 or 21 days, depending on the storage capacity,
 see [User work area](user-work-area) for details.
 
-**Fram and Betzy**: The project areas are backed up to Saga:
-- `/cluster/backup/betzy/projects/nnXXXXk`
-- `/cluster/backup/fram/projects/nnXXXXk`
-
-**Saga**: The project areas are backed up to NIRD.
-
-If you have project access to the cluster where backups are stored, then you
-can retrieve them yourself. If you cannot access the cluster that holds the
-project backups, please contact support and we will help you restoring your
-data.
+**Betzy,Fram and Saga**: The project areas are backed up to NIRD storage which can be accessed via following mount point on all clusters login nodes:
+- `/cluster/backup/hpc/betzy/nnXXXXk`
+- `/cluster/backup/hpc/fram/nnXXXXk`
+- `/cluster/backup/hpc/saga/nnXXXXk`
 
 
 ## Backup on NIRD
