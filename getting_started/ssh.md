@@ -336,6 +336,42 @@ utilizes `ssh` under the hood for establishing a connection). It is
 recommended to use Mosh if you connect from a laptop and want to keep the
 connection when roaming on Wi-Fi or putting the laptop to sleep.
 
+# Common SSH errors
+
+## WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
+
+The SSH connection was working fine until one day the following message appears:
+
+```
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ED25519 key sent by the remote host is
+SHA256:XXX.
+Please contact your system administrator.
+Add correct host key in /home/username/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/username/.ssh/known_hosts:13
+  remove with:
+  ssh-keygen -f "/home/username/.ssh/known_hosts" -R fram.sigma2.no
+ED25519 host key for fram.sigma2.no has changed and you have requested strict checking.
+Host key verification failed.
+```
+
+It may be frightening at first but, generally, it just means the SSH Keys from the server have changed and this is common after a system upgrade (so, take a look at our OpsLog page to check if that was the case: https://opslog.sigma2.no/).
+
+The fix is already in the message itself and, in this example, we just have to locate the file `known_hosts` inside `/home/username/.ssh/` and delete line 13. 
+
+**NOTE:**:
+- The number at the end indicates where the problem lies. 
+- The path will be different according to the operating system you are running. Also, on Linux, having a folder starting with `.` means it is a hidden folder.
+
+
+Also, if you are familiar with Linux terminal, running the suggested command also has the same effect: `ssh-keygen -f "/home/username/.ssh/known_hosts" -R fram.sigma2.no`
+
+After following the steps above, try to log in again and accept the new fingerprint (if you want to make sure it is the correct one, check this [page](https://documentation.sigma2.no/getting_started/fingerprints.html)).
 
 ## References
 
