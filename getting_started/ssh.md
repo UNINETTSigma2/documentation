@@ -336,6 +336,8 @@ utilizes `ssh` under the hood for establishing a connection). It is
 recommended to use Mosh if you connect from a laptop and want to keep the
 connection when roaming on Wi-Fi or putting the laptop to sleep.
 
+(ssh_errors)=
+
 # Common SSH errors
 
 ## WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
