@@ -72,3 +72,7 @@ command on your local machine (Linux or macOS):
 $ ssh-keyscan login.nird.sigma2.no | ssh-keygen -l -f - -E md5
 $ ssh-keyscan login.nird.sigma2.no | ssh-keygen -l -f - -E sha256
 ```
+
+# Common SSH errors when keys have changed
+
+Please, take a look at this {ref}`page <ssh_errors>`
