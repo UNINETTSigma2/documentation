@@ -117,7 +117,7 @@ recommended to load each module explicitly for clarity.
 ## GPU modules 
 
 ### Saga
-We have two types of nodes on Saga. 
+There are two types of GPU nodes on Saga:
 
 * Intel CPU  with 4X Tesla P100
 * AMD CPUs with 4XA100
@@ -130,7 +130,7 @@ you need to switch the module environment
 module --force swap StdEnv Zen2Env
 
 ```  
-
+Note that installed modules can vary between the two node types.
 
 
 ## Tutorial on module system for software
