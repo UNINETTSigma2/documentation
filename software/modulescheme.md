@@ -117,14 +117,15 @@ recommended to load each module explicitly for clarity.
 ## GPU modules 
 
 ### Saga
-There are two types of GPU nodes on Saga:
+There are two types of GPU nodes on Saga, located in two distinct SLURM partitions:
 
-* Intel CPU  with 4X Tesla P100
-* AMD CPUs with 4XA100
+* Intel CPU  with 4X Tesla P100, 16GB, `--partition=accel`
+* AMD CPUs with 4XA100, 80GB, `--partition=a100`
 
-These are different architectures. By default, Saga loads the Intel software environment.
+These are different architectures. By default, Saga loads the Intel software environment,
 If you want to run/compile software for the nodes with the AMD CPUs and A100 GPUS 
-you need to switch the module environment
+you need to get an allocation on the `a100` partition. Then, inside the allocation,
+switch the module environment
 
 ```
 module --force swap StdEnv Zen2Env
