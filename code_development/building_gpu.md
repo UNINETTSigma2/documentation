@@ -25,7 +25,7 @@ There are two types of GPU nodes on Saga, located in two distinct SLURM partitio
 These are different architectures. By default, Saga loads the Intel software environment,
 If you want to run/compile software for the nodes with the AMD CPUs and A100 GPUS 
 you need to get an allocation on the `a100` partition. Then, inside the allocation,
-switch the module environment
+or inside your job script, switch the module environment
 
 ```
 module --force swap StdEnv Zen2Env
