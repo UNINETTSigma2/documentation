@@ -15,7 +15,7 @@ or, if GPUs are required, e.g., for testing purposes:
 salloc --nodes=1 --time=00:30:00 --partition=<accel|a100> --mem-per-cpu=8G --account=<...> --gpus=1
 ```
 
-### Saga
+## Saga
 
 There are two types of GPU nodes on Saga, located in two distinct SLURM partitions:
 
