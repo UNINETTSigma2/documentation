@@ -89,16 +89,38 @@ and resource limits of _devel_ apply.
     - maximum 256 units
 - __Maximum walltime__: 14 days
 - __Priority__: normal
-- __Available resources__: 8 nodes with 24 cpus, 364 GiB RAM and 4
+- __Available resources__: 8 nodes with 24 cpus, 364 GiB RAM and 4 P100
   GPUs.
 - __Parameter for sbatch/salloc__:
     - `--partition=accel`
     - `--gpus=N`, `--gpus-per-node=N` or similar, with _N_ being the number of GPUs
 - __Job Scripts__: {ref}`job_scripts_saga_accel`
 
-*Accel* jobs give access to use the GPUs.
+*Accel* jobs give access to use the P100 GPUs.
 
-Can be combined with `--qos=devel` to get higher priority but maximum wall time (2h) 
+Can be combined with `--qos=devel` to get higher priority but maximum wall time (2h)
+and resource limits of _devel_ apply.
+
+
+(job_type_saga_a100)=
+
+## A100
+
+- __Allocation units__: cpus, memory and GPUs
+- __Job Limits__:
+    - maximum 256 units
+- __Maximum walltime__: 14 days
+- __Priority__: normal
+- __Available resources__: 8 nodes with 32 cpus, 1,000 GiB RAM and 4 A100
+  GPUs.
+- __Parameter for sbatch/salloc__:
+    - `--partition=a100`
+    - `--gpus=N`, `--gpus-per-node=N` or similar, with _N_ being the number of GPUs
+- __Job Scripts__: {ref}`job_scripts_saga_accel`
+
+*A100* jobs give access to use the A100 GPUs.
+
+Can be combined with `--qos=devel` to get higher priority but maximum wall time (2h)
 and resource limits of _devel_ apply.
 
 

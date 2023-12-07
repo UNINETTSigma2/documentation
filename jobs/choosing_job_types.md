@@ -45,11 +45,12 @@ For other jobs, see {ref}`projects-accounting` for how the units are calculated.
 
 ## Saga
 
-| Name                                             | Description                               | Job limits   | Max walltime                              | Priority |
-|:------------------------------------------------:|-------------------------------------------|:------------:|:-----------------------------------------:|:--------:|
+| Name                                     | Description                               | Job limits   | Max walltime                                | Priority |
+|:----------------------------------------:|-------------------------------------------|:------------:|:-------------------------------------------:|:--------:|
 | {ref}`normal <job_type_saga_normal>`     | default job type                          | 1--256 units | 7 days                                      | normal   |
 | {ref}`bigmem <job_type_saga_bigmem>`     | jobs needing more memory                  | 1--256 units | 14 days                                     | normal   |
-| {ref}`accel <job_type_saga_accel>`       | jobs needing GPUs                         | 1--256 units | 14 days                                     | normal   |
+| {ref}`accel <job_type_saga_accel>`       | jobs needing P100 GPUs                    | 1--256 units | 14 days                                     | normal   |
+| {ref}`a100 <job_type_saga_a100>`         | jobs needing A100 GPUs                    | 1--256 units | 14 days                                     | normal   |
 | {ref}`devel <job_type_saga_devel>`       | development jobs (compiling, testing)[^2] | 1--128 units | 2 hours                                     | high     |
 | {ref}`optimist <job_type_saga_optimist>` | jobs w/checkpointing, or very short jobs  | 1--256 units | {ref}`see details <job_type_saga_optimist>` | low      |
 
@@ -61,4 +62,4 @@ For other jobs, see {ref}`projects-accounting` for how the units are calculated.
 
 [^1]: On Betzy it is possible to combine _devel_ with _accel_, {ref}`see details <job_type_betzy_devel>`.
 
-[^2]: On Saga it is possible to combine _devel_ with _accel_ or _bigmem_, {ref}`see details <job_type_saga_devel>`.
+[^2]: On Saga it is possible to combine _devel_ with _accel_, _a100_ or _bigmem_, {ref}`see details <job_type_saga_devel>`.
