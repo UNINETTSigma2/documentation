@@ -112,15 +112,16 @@ RAM per cpu:
 
 (job_scripts_saga_accel)=
 
-## Accel
-*Accel* jobs are specified just like *normal* jobs except that they
-also have to specify `--partition=accel`.  In addition, they must also
+## Accel and A100
+*Accel* and A100 jobs are specified just like *normal* jobs except that they
+also have to specify `--partition=accel` (for P100 GPUs) or
+`--partition=a100` (for A100 GPUs).  In addition, they must also
 specify how many GPUs to use, and how they should be distributed
 across nodes and tasks.  The simplest way to do that is, with
 `--gpus=N` or `--gpus-per-node=N`, where `N` is the number of GPUs to
 use.
 
-For a job simple job running one process and using one GPU, the
+For a job simple job running one process and using one P100 GPU, the
 following example is enough:
 
     #SBATCH --account=MyProject --job-name=MyJob
@@ -128,10 +129,10 @@ following example is enough:
     #SBATCH --time=1-0:0:0
     #SBATCH --mem-per-cpu=8G
 
-Here is an example that asks for 2 tasks and 2 gpus on one gpu node:
+Here is an example that asks for 2 tasks and 2 A100 GPUs on one node:
 
     #SBATCH --account=MyProject --job-name=MyJob
-    #SBATCH --partition=accel --gpus-per-node=2
+    #SBATCH --partition=a100 --gpus-per-node=2
     #SBATCH --time=1-0:0:0
     #SBATCH --ntasks-per-node=2 --nodes=1
     #SBATCH --mem-per-cpu=8G
