@@ -60,18 +60,18 @@ output might be different for every user:
 ```console
 $ dusage
 
-dusage v0.2.2
-                     path    backup    space used     quota      files       quota
--------------------------  --------  ------------  --------  ---------  ----------
-                 /cluster        no       6.0 GiB         -     13 243           -
-       /cluster/home/user       yes       4.4 GiB  20.0 GiB     13 176     100 000
- /cluster/work/users/user        no      12.0 KiB         -          3           -
-/cluster/projects/nnABCDk       yes       1.6 TiB   2.0 TiB    360 594   2 000 000
-/cluster/projects/nnABCDk       yes       2.8 TiB  10.0 TiB  1 967 570  10 000 000
-/cluster/projects/nnABCDk       yes       0.0 KiB   1.0 TiB          0   1 000 000
+dusage v0.3.0
 
-- Backup information is for the general case, unless you have made a special agreement.
-- Please report issues at https://github.com/NordicHPC/dusage.
+                     path    space used    quota (s)    quota (h)      files    quota (s)    quota (h)
+-------------------------  ------------  -----------  -----------  ---------  -----------  -----------
+                /cluster/      14.5 GiB                              235 068
+       /cluster/home/****       5.4 GiB     20.0 GiB     20.0 GiB     39 921      100 000      100 000
+ /cluster/work/users/****       7.6 GiB                              195 083
+/cluster/projects/nn****k       1.7 TiB      2.0 TiB      2.0 TiB  1 036 089    2 000 000    2 000 000
+/cluster/projects/nn****k       3.0 TiB     10.0 TiB     10.0 TiB  2 805 458   10 000 000   10 000 000
+/cluster/projects/nn****k     134.2 MiB      1.0 TiB      1.0 TiB        168    1 000 000    1 000 000
+
+Please report issues at: https://github.com/NordicHPC/dusage
 ```
 
 The column "files" (number of files) actually lists inodes and we know that
@@ -138,14 +138,14 @@ Fram has a default 1 million inode quota for each user under `/cluster` filesyst
 ---
 emphasize-lines: 3
 ---
-                     path    backup    space used    quota (s)    quota (h)    files    quota (s)    quota (h)
--------------------------  --------  ------------  -----------  -----------  -------  -----------  -----------
-                 /cluster        no     313.7 GiB            -            -   50 442    1 000 000    3 000 000
-       /cluster/home/user       yes       1.7 GiB     20.0 GiB     30.0 GiB   45 838      100 000      120 000
- /cluster/work/users/user        no     243.8 GiB            -            -    3 764            -            -
-/cluster/projects/nnABCDk       yes       4.0 KiB      1.0 TiB      1.1 TiB        1    1 048 576    1 150 976
-/cluster/projects/nnABCDk       yes     178.1 GiB      1.0 TiB      1.1 TiB   12 816    1 048 576    1 150 976
-/cluster/projects/nnABCDk       yes       9.8 TiB     10.0 TiB     10.0 TiB  571 440   10 000 000   11 000 000
+                     path    space used    quota (s)    quota (h)    files    quota (s)    quota (h)
+-------------------------  ------------  -----------  -----------  -------  -----------  -----------
+                /cluster/     247.4 GiB                             70 225    1 000 000    3 000 000
+       /cluster/home/****       1.8 GiB     20.0 GiB     30.0 GiB   44 395      100 000      120 000
+ /cluster/work/users/****     243.8 GiB                              3 763
+/cluster/projects/nn****k     927.4 GiB      1.0 TiB      1.1 TiB  434 697    1 048 576    1 150 976
+/cluster/projects/nn****k       2.3 TiB     10.0 TiB     11.0 TiB  665 879   10 000 000   11 000 000
+/cluster/projects/nn****k       4.0 KiB      1.0 TiB      1.0 TiB        1    1 000 000    1 000 000
 ```
 
 We can think of "inodes" as files or file chunks.
