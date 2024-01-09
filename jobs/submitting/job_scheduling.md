@@ -27,9 +27,9 @@ The different job types start with different priorities:
 
 - _devel_ jobs start with 20,000, so get a reservation directly
 - _short_ jobs start with 19,880, so get a reservation in 2 hours
-- _normal_, _bigmem_, _accel_ and _preproc_ jobs start with 19,760, so
+- _normal_, _bigmem_, _hugemem_, _accel_ and _preproc_ jobs start with 19,760, so
   get a reservation in 4 hours
-- "Unpri" _normal_, _bigmem_, _accel_ and _preproc_ jobs[^2] start
+- "Unpri" _normal_, _bigmem_, _hugemem_, _accel_ and _preproc_ jobs[^2] start
   with 19,040, so get a reservation in 16 hrs
 - _optimist_ jobs start with 1 and end at 10,080, so they never get a reservation
 

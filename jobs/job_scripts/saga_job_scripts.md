@@ -95,12 +95,12 @@ of a _normal_ MPI job.
 
 (job_scripts_saga_bigmem)=
 
-## Bigmem
+## Bigmem and Hugemem
 
-_Bigmem_ jobs are specified exactly like the _normal_ jobs except that
-you also have to specify `--partition=bigmem`.
+_Bigmem_ and _Hugemem_ jobs are specified exactly like the _normal_ jobs except that
+you also have to specify `--partition=bigmem` or `--partition=hugemem`.
 
-Here is an example that asks for 2 tasks, 4 cpus per task, and 32 GiB
+Here is a _bigmem_ example that asks for 2 tasks, 4 cpus per task, and 32 GiB
 RAM per cpu:
 
     #SBATCH --account=MyProject --job-name=MyJob
@@ -113,7 +113,7 @@ RAM per cpu:
 (job_scripts_saga_accel)=
 
 ## Accel and A100
-*Accel* and A100 jobs are specified just like *normal* jobs except that they
+_Accel_ and _A100_ jobs are specified just like *normal* jobs except that they
 also have to specify `--partition=accel` (for P100 GPUs) or
 `--partition=a100` (for A100 GPUs).  In addition, they must also
 specify how many GPUs to use, and how they should be distributed

@@ -141,6 +141,10 @@ clusters.
   while for a job requesting all memory on one of the large nodes,
   it is 320.
 
+- For the `hugemem` partition, the factor is 0.01059603 units per GiB.
+  This means that for a job requesting all memory on a node, the
+  memory cost is 64, the number of CPUs on the node.
+
 - On the `accel` partition, the memory factor is 0.06593407 units per
   GiB, and the GPU factor is 6.  This means that a job asking for all
   memory on a node, or all GPUs on a node, gets a cost of 24, the

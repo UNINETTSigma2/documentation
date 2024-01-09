@@ -25,7 +25,7 @@ in {ref}`projects-accounting`.
 Most jobs on Saga are *normal* jobs.
 
 Jobs requiring a lot of memory (> 8 GiB/cpu) should run as *bigmem*
-jobs.
+or *hugemem* jobs.
 
 Jobs that are very short, or implement checkpointing, can run as
 *optimist* jobs, which means they can use resources that are idle for
@@ -75,6 +75,28 @@ This is the default job type.  Most jobs are *normal* jobs.
 *Bigmem* jobs are meant for jobs that need a lot of memory (RAM),
 typically more than 8 GiB per cpu.  (The _normal_ nodes on Fram have
 slightly more than 4.5 GiB per cpu.)
+
+Can be combined with `--qos=devel` to get higher priority but maximum wall time (2h) 
+and resource limits of _devel_ apply.
+
+
+(job_type_saga_hugemem)=
+
+## Hugemem
+
+- __Allocation units__: cpus and memory
+- __Job Limits__:
+    - maximum 256 units
+- __Maximum walltime__: 14 days
+- __Priority__: normal
+- __Available resources__:
+    - 2 nodes with 64 cpus and 6040 GiB RAM
+- __Parameter for sbatch/salloc__:
+    - `--partition=hugemem`
+- __Job Scripts__: {ref}`job_scripts_saga_bigmem`
+
+*Hugemem* jobs are meant for jobs that need even more memory (RAM)
+than *bigmem* jobs.
 
 Can be combined with `--qos=devel` to get higher priority but maximum wall time (2h) 
 and resource limits of _devel_ apply.
@@ -144,7 +166,8 @@ This is meant for small, short development or test jobs.  *Devel* jobs
 get higher priority for them to run as soon as possible.  On the other
 hand, there are limits on the size and number of _devel_ jobs.
 
-Can be combined with either `--partition=accel` or `--partition=bigmem` to increase
+Can be combined with either `--partition=accel`, `--partition=bigmem`
+or `--partition=huemem` to increase
 priority while having max wall time and job limits of _devel_ job.
 
 If you have _temporary_ development needs that cannot be fulfilled by
