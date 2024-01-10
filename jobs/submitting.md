@@ -30,19 +30,13 @@ a good and robust and secure way.
 
 ## Jobs
 
-There are two ways of starting jobs with Slurm; either interactively
-with `srun` or as a job script with `sbatch`.
-
-Interactive jobs are a good way to test your setup before you put it
-into a script or to work with interactive applications like MATLAB or
-python. You immediately see the results and can check if all parts
-behave as you expected. See [interactive](interactive_jobs.md) for more
-details.
-
-To run a computations on the cluster, you submit a [job
-script](job_scripts.md) into a _job queue_, and the job is started
-when one or more suitable _compute nodes_ are available.
-
+It is possible to run commands interactively on the cluster, which can
+be a good way to test your commands, or work with interactive
+applications like MATLAB.  See [interactive](interactive_jobs.md) for
+more details.  However, the normal way to run a computation on the
+cluster, is to submit a [job script](job_scripts.md) into a _job
+queue_, and the job is started when one or more suitable _compute
+nodes_ are available.
 
 Job scripts are submitted with the
 [sbatch](https://slurm.schedmd.com/sbatch.html) command:
