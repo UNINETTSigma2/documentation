@@ -90,9 +90,13 @@ ParaView server needs to communicate with your computer and for this, simply ope
 `ssh -N -L XXXX:localhost:XXXX username@login-Y.server.sigma2.no`
 
 Please, replace the following:
+
 `XXXX` - with the chosen 4-digit port
+
 `username` - your username on our servers
+
 `Y` - the login node you connected previously (you can see it on the pvserver message below)
+
 `server` - replace with Betzy, Fram or Saga
 
 
