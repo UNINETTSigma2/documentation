@@ -91,14 +91,12 @@ ParaView server needs to communicate with your computer and for this, simply ope
 
 Please, replace the following:
 
+```
 `XXXX` - with the chosen 4-digit port
-
 `username` - your username on our servers
-
 `Y` - the login node you connected previously (you can see it on the pvserver message below)
-
-`server` - replace with Betzy, Fram or Saga
-
+`server` - replace with betzy, fram or saga
+```
 
 ## Connect ParaView's local client to the server
 
