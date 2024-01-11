@@ -8,14 +8,18 @@ and future users of our services. The courses are aimed to give the participants
 an understanding of our services as well as using the resources effectively.
 The courses are free of charges. Our upcoming courses are listed below:
 
+
 ## Upcoming events
+
 ```{eval-rst}
 .. toctree::
    :maxdepth: 1
 
    events/2023-introduction-to-fortran-series.md
-  
 ```
+- HPC on-boarding: April 9-11, 2024
+- Intermediate HPC course: we will announce dates soon
+
 
 ## Past events
 
