@@ -19,6 +19,7 @@ The courses are free of charges. Our upcoming courses are listed below:
 ```
 - HPC on-boarding: April 9-11, 2024
 - Intermediate HPC course: we will announce dates soon
+- Tuesday Tools & Techniques for HPC: April 16 and 23, May 7 and 14 (4 sessions in total)
 
 
 ## Past events
