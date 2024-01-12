@@ -8,54 +8,57 @@ and future users of our services. The courses are aimed to give the participants
 an understanding of our services as well as using the resources effectively.
 The courses are free of charges. Our upcoming courses are listed below:
 
-## Upcoming events
-```{eval-rst}
-.. toctree::
-   :maxdepth: 1
 
-   events/2023-introduction-to-fortran-series.md
-  
+## Upcoming events
+
+```{toctree}
+:maxdepth: 1
+
+events/2023-introduction-to-fortran-series.md
 ```
+- HPC on-boarding: April 9-11, 2024
+- Intermediate HPC course: we will announce dates soon
+- Tuesday Tools & Techniques for HPC: April 16 and 23, May 7 and 14 (4 sessions in total)
+
 
 ## Past events
 
 ### 2023
 
-```{eval-rst}
-.. toctree::
-   :maxdepth: 1
+```{toctree}
+:maxdepth: 1
 
-   events/2023-10-nird-toolkit.md
-   events/2023-10-hpc-on-boarding.md  
-   events/2023-09-11-Matlab-training 
-   events/2023-modern-fortran-workshop-series.md
-   events/2023-05-best-practices-on-NRIS-clusters.md
-   events/2023-04-hpc-on-boarding.md   
-   events/2023-03-introduction-to-second-generation-nird.md
-
+events/2023-10-nird-toolkit.md
+events/2023-10-hpc-on-boarding.md
+events/2023-09-11-Matlab-training
+events/2023-modern-fortran-workshop-series.md
+events/2023-05-best-practices-on-NRIS-clusters.md
+events/2023-04-hpc-on-boarding.md
+events/2023-03-introduction-to-second-generation-nird.md
 ```
+
 
 ### 2022
 
-```{eval-rst}
-.. toctree::
-   :maxdepth: 1
+```{toctree}
+:maxdepth: 1
 
-   events/2022-11-best-practices-on-NRIS-clusters.md
-   events/2022-10-hpc-on-boarding.md
-   events/2022-05-best-practices-on-NRIS-clusters.md
-   events/2022-05-hpc-on-boarding.md
-   
+events/2022-11-best-practices-on-NRIS-clusters.md
+events/2022-10-hpc-on-boarding.md
+events/2022-05-best-practices-on-NRIS-clusters.md
+events/2022-05-hpc-on-boarding.md
 ```
+
+
 ### 2021
 
-```{eval-rst}
-.. toctree::
-   :maxdepth: 1
+```{toctree}
+:maxdepth: 1
 
-   events/2021-11-hpc-nird-toolkit-user-course.md
-   
+events/2021-11-hpc-nird-toolkit-user-course.md
 ```
+
+
 ## Sigma2 training calendar
 
 - <https://www.sigma2.no/events>
