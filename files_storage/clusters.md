@@ -112,9 +112,11 @@ it is running on.  This is done by specifying
 `--gres=localscratch:<size>`, where *<size>* is the size of the requested
 area, for instance `--gres=localscratch:20G` for 20 GiB.
 
-Compute nodes on Fram have 198 GiB disk that can be handed out to local scratch areas. 
-On Saga most nodes have 300 GiB; a few of the
-bigmem nodes have 7 TiB and the GPU nodes have 8 TiB.  If a job tries
+Normal compute nodes on Fram have 198 GiB disk that can be handed out
+to local scratch areas, and the bigmem nodes have 868 GiB.
+On Saga most nodes have 330 GiB; a few of the
+bigmem nodes have 7 TiB, the hugemem nodes have 13 TiB and the GPU
+nodes have either 406 GiB or 8 TiB.  If a job tries
 to use more space on the area than it requested, it will get a "disk
 quota exceeded" or "no space left on device" error (the exact message
 depends on the program doing the writing).

@@ -19,7 +19,9 @@ Saga is provided by Hewlett Packard Enterprise and has a computational capacity 
 * 120 standard compute nodes with 52 cores and 192 GiB memory each
 * 28 medium memory compute nodes, with 40 cores and 384 GiB of memory each
 * 8 big memory nodes, with 3 TiB and 64 cores each
-* 8 GPU nodes, with 4 NVIDIA GPUs and 2 CPUs with 24 cores and 384 GiB memory each
+* 2 huge memory nodes, with 6 TiB and 64 cores each
+* 8 GPU nodes, with 4 NVIDIA P100 GPUs and 2 CPUs with 24 cores and 384 GiB memory each
+* 8 GPU nodes, with 4 NVIDIA A100 GPUs and 1 CPU with 32 cores and 1 TiB memory each
 * 8 login and service nodes with 256 cores in total
 * 6.5 PB high metadata performance BeeGFS scratch file system
 
@@ -29,8 +31,8 @@ Saga is provided by Hewlett Packard Enterprise and has a computational capacity 
 | Number of Cores     |	16064  |
 | Number of nodes     |	364  |
 | Number of GPUs | 32 |
-| CPU type     |	Intel Xeon-Gold 6138 2.0 GHz / 6230R 2.1 GHz (normal)<br> Intel Xeon-Gold 6130 2.1 GHz (bigmem)<br> Intel Xeon-Gold 6126 2.6 GHz (accel)  |
-| GPU type     |    NVIDIA P100, 16 GiB RAM (accel) |
+| CPU type     |	Intel Xeon-Gold 6138 2.0 GHz / 6230R 2.1 GHz (normal)<br> Intel Xeon-Gold 6130 2.1 GHz (bigmem)<br> Intel Xeon E7-4850 v4 2.1 GHz (hugemem)<br> Intel Xeon-Gold 6126 2.6 GHz (accel)<br> AMD EPYC 7542 32-Core (a100)  |
+| GPU type     |    NVIDIA P100, 16 GiB RAM (accel)<br> NVIDIA A100, 80 GiB RAM (a100) |
 | Total max floating point performance, double     |	645 Teraflop/s (CPUs) + 150 Teraflop/s (GPUs) |
 | Total memory     |	97.5 TiB  |
 | Total NVMe+SSD local disc | 89 TiB + 60 TiB |
