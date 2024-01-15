@@ -101,6 +101,9 @@ than *bigmem* jobs.
 Can be combined with `--qos=devel` to get higher priority but maximum wall time (2h) 
 and resource limits of _devel_ apply.
 
+Please note that a lot of the ordinary software will work on the *hugemem* nodes, but not all, due to the different cpu type.  
+If you encounter any software-related issues - we are happy to help you at support@nris.no.
+
 
 (job_type_saga_accel)=
 
