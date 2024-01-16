@@ -45,6 +45,7 @@ Commercial users need to sign a Hosting Provider agreement. Contact:
 | MATLAB |2021a|
 | MATLAB |2021b|
 | MATLAB |2022b|
+| MATLAB |2023a|
 
 To see available versions when logged into Fram issue command
 ```bash
