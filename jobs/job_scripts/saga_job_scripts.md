@@ -109,8 +109,15 @@ RAM per cpu:
     #SBATCH --ntasks=2 --cpus-per-task=4
     #SBATCH --mem-per-cpu=32G
 
-Please note that a lot of the ordinary software will work on the *hugemem* nodes, but not all, due to the different cpu type.
-If you encounter any software-related issues - we are happy to help you at support@nris.no.
+Please note that not all of the ordinary software modules will work on
+the *hugemem* nodes, due to the different cpu type.  If you encounter
+any software-related issues, we are happy to help you at
+support@nris.no.  As an alternative, you can use the NESSI or
+[EESSI](https://www.eessi.io/docs/) modules.  These have been built to
+support the cpus on the hugemem nodes.  To activate the modules, do
+`source /cvmfs/pilot.nessi.no/versions/2023.06/init/bash` (NESSI) or
+`source /cvmfs/software.eessi.io/versions/2023.06/init/bash` (EESSI)
+before you load modules.
 
 (job_scripts_saga_accel)=
 
