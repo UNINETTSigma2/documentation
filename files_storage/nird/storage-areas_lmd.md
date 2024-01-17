@@ -11,11 +11,6 @@ is 60 GiB and 300 000 files. To check the disk usage and quotas, type:
 $ dusage
 ```
 
-Home directories on NIRD also contain a backup of Betzy, Fram and Saga home
-directories (when relevant) in `/nird/home/<username>/backup/fram` , 
-`/nird/home/<username>/backup/saga` and  `/nird/home/<username>/backup/betzy`.
-The default quota is including the backup of HPC home directory. 
-
 
 ## Scratch directories
 
