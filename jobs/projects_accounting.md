@@ -105,9 +105,6 @@ accounted for both CPU and memory usage, as well as usage of GPUs.**
 The accounting tries to assign a fair "price" to the amount of resources a job
 requested.
 
-Currently, jobs on Fram are only accounted for their CPU usage, but
-this will change soon.
-
 Accounting is done in terms of _billing units_, and the quota is in
 _billing unit hours_.  Each job is assigned a number of billing units
 based on the requested CPUs, memory and GPUs.  The number that is
