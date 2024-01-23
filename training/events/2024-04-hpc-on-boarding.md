@@ -61,7 +61,7 @@ The application page is available [here](https://www.metacenter.no/user/applicat
 | Thu 11.04    | 09:00 - 12:30 | HPC On-boarding day2 |
 
 
-**User Account and connection verfication   - 08 April 13:00-14:00**
+**User Account and connection verification   - 08 April 13:00-14:00**
 
 - If you are first time to NRIS Cluster, we are organising a login help session prior to the event. 
 
