@@ -1,6 +1,6 @@
 (training-2024-spring-best-practices)=
 
-# Best Practices on Clusters Spring 2024
+# Best Practices on Clusters Spring Series 2024
 
 The Norwegian Research Infrastructure Services (**NRIS**) is offering
 a best practices course for users of national HPC systems (Saga, Fram, Betzy).
