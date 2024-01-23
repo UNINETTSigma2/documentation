@@ -63,7 +63,7 @@ The application page is available [here](https://www.metacenter.no/user/applicat
 
 **User Account and connection verfication   - 08 April 13:00-14:00**
 
-- If you are first time to NRIS Cluster and login help, we are organising a login help session prior to the event. 
+- If you are first time to NRIS Cluster, we are organising a login help session prior to the event. 
 
 **Day0 - UNIX for HPC (optional 09 April, Tuesday)**
 
