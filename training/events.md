@@ -14,10 +14,9 @@ The courses are free of charges. Our upcoming courses are listed below:
 ```{toctree}
 :maxdepth: 1
 
-events/2023-introduction-to-fortran-series.md
+events/2024-04-hpc-on-boarding.md
+events/2024-spring-best-practices-series.md
 ```
-- HPC on-boarding: April 9-11, 2024
-- Intermediate HPC course: we will announce dates soon
 - Tuesday Tools & Techniques for HPC: April 16 and 23, May 7 and 14 (4 sessions in total)
 
 
@@ -28,6 +27,7 @@ events/2023-introduction-to-fortran-series.md
 ```{toctree}
 :maxdepth: 1
 
+events/2023-introduction-to-fortran-series.md
 events/2023-10-nird-toolkit.md
 events/2023-10-hpc-on-boarding.md
 events/2023-09-11-Matlab-training
