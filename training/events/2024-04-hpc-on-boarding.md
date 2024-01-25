@@ -96,7 +96,7 @@ The application page is available [here](https://www.metacenter.no/user/applicat
 - 09:40-10:00 - [Accessing Software (exercise)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html)
 - 10:00-10:15 - Break
 - 10:15-11:00 - [Compute and storage quota](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/compute-storage-quota.html) 
-- 11:00-11:30 - [Using shared resources responsibly](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.html) (Espen & Bente)
+- 11:00-11:30 - [Using shared resources responsibly](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.html)
 - 11:30-11:45 - Break
 - 11:45-12:15 - [How to ask for help](https://doi.org/10.5281/zenodo.8392762) 
 
