@@ -13,6 +13,7 @@ Code development
    :maxdepth: 1
 
    building.md
+   building_gpu.md
    betzy.md
    compilers.md
    debugging.md

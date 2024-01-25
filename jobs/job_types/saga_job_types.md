@@ -25,7 +25,7 @@ in {ref}`projects-accounting`.
 Most jobs on Saga are *normal* jobs.
 
 Jobs requiring a lot of memory (> 8 GiB/cpu) should run as *bigmem*
-jobs.
+or *hugemem* jobs.
 
 Jobs that are very short, or implement checkpointing, can run as
 *optimist* jobs, which means they can use resources that are idle for
@@ -80,6 +80,38 @@ Can be combined with `--qos=devel` to get higher priority but maximum wall time 
 and resource limits of _devel_ apply.
 
 
+(job_type_saga_hugemem)=
+
+## Hugemem
+
+- __Allocation units__: cpus and memory
+- __Job Limits__:
+    - maximum 256 units
+- __Maximum walltime__: 14 days
+- __Priority__: normal
+- __Available resources__:
+    - 2 nodes with 64 cpus and 6040 GiB RAM
+- __Parameter for sbatch/salloc__:
+    - `--partition=hugemem`
+- __Job Scripts__: {ref}`job_scripts_saga_bigmem`
+
+*Hugemem* jobs are meant for jobs that need even more memory (RAM)
+than *bigmem* jobs.
+
+Can be combined with `--qos=devel` to get higher priority but maximum wall time (2h) 
+and resource limits of _devel_ apply.
+
+Please note that not all of the ordinary software modules will work on
+the *hugemem* nodes, due to the different cpu type.  If you encounter
+any software-related issues, we are happy to help you at
+support@nris.no.  As an alternative, you can use the NESSI or
+[EESSI](https://www.eessi.io/docs/) modules.  These have been built to
+support the cpus on the hugemem nodes.  To activate the modules, do
+`source /cvmfs/pilot.nessi.no/versions/2023.06/init/bash` (NESSI) or
+`source /cvmfs/software.eessi.io/versions/2023.06/init/bash` (EESSI)
+before you load modules.
+
+
 (job_type_saga_accel)=
 
 ## Accel
@@ -89,16 +121,38 @@ and resource limits of _devel_ apply.
     - maximum 256 units
 - __Maximum walltime__: 14 days
 - __Priority__: normal
-- __Available resources__: 8 nodes with 24 cpus, 364 GiB RAM and 4
+- __Available resources__: 8 nodes with 24 cpus, 364 GiB RAM and 4 P100
   GPUs.
 - __Parameter for sbatch/salloc__:
     - `--partition=accel`
     - `--gpus=N`, `--gpus-per-node=N` or similar, with _N_ being the number of GPUs
 - __Job Scripts__: {ref}`job_scripts_saga_accel`
 
-*Accel* jobs give access to use the GPUs.
+*Accel* jobs give access to use the P100 GPUs.
 
-Can be combined with `--qos=devel` to get higher priority but maximum wall time (2h) 
+Can be combined with `--qos=devel` to get higher priority but maximum wall time (2h)
+and resource limits of _devel_ apply.
+
+
+(job_type_saga_a100)=
+
+## A100
+
+- __Allocation units__: cpus, memory and GPUs
+- __Job Limits__:
+    - maximum 256 units
+- __Maximum walltime__: 14 days
+- __Priority__: normal
+- __Available resources__: 8 nodes with 32 cpus, 1,000 GiB RAM and 4 A100
+  GPUs.
+- __Parameter for sbatch/salloc__:
+    - `--partition=a100`
+    - `--gpus=N`, `--gpus-per-node=N` or similar, with _N_ being the number of GPUs
+- __Job Scripts__: {ref}`job_scripts_saga_accel`
+
+*A100* jobs give access to use the A100 GPUs.
+
+Can be combined with `--qos=devel` to get higher priority but maximum wall time (2h)
 and resource limits of _devel_ apply.
 
 
@@ -122,7 +176,8 @@ This is meant for small, short development or test jobs.  *Devel* jobs
 get higher priority for them to run as soon as possible.  On the other
 hand, there are limits on the size and number of _devel_ jobs.
 
-Can be combined with either `--partition=accel` or `--partition=bigmem` to increase
+Can be combined with either `--partition=accel`, `--partition=bigmem`
+or `--partition=huemem` to increase
 priority while having max wall time and job limits of _devel_ job.
 
 If you have _temporary_ development needs that cannot be fulfilled by

@@ -105,9 +105,6 @@ accounted for both CPU and memory usage, as well as usage of GPUs.**
 The accounting tries to assign a fair "price" to the amount of resources a job
 requested.
 
-Currently, jobs on Fram are only accounted for their CPU usage, but
-this will change soon.
-
 Accounting is done in terms of _billing units_, and the quota is in
 _billing unit hours_.  Each job is assigned a number of billing units
 based on the requested CPUs, memory and GPUs.  The number that is
@@ -140,6 +137,10 @@ clusters.
   memory on one of the "small" bigmem nodes, the memory cost is 40,
   while for a job requesting all memory on one of the large nodes,
   it is 320.
+
+- For the `hugemem` partition, the factor is 0.01059603 units per GiB.
+  This means that for a job requesting all memory on a node, the
+  memory cost is 64, the number of CPUs on the node.
 
 - On the `accel` partition, the memory factor is 0.06593407 units per
   GiB, and the GPU factor is 6.  This means that a job asking for all
