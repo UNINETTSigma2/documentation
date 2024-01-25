@@ -35,15 +35,18 @@ the event, please write to `jorn.dietze@uit.no`.
 
 [Join us on Zoom](https://uit.zoom.us/j/63238817048?pwd=Z0NsSkxJb0JqeEZ2NENVZE5LY0RkQT09)
 
-- 2023-11-30, 13:00 - 14:30
+- 2024-01-25, 13:00 - 14:30
+- 2024-02-29, 13:00 - 14:30
 
 
 ## Past events
 
 [Questions and answers of previous session](https://hackmd.io/@hpc/q-a)
 
-- 2023-09-28, 13:00 - 14:30, "Common problems and solutions with __Conda__ (Anaconda/Miniconda)"
+- 2023-11-30, 13:00 - 14:30
 - 2023-10-26, 13:00 - 14:30, "Containers on NRIS HPC machines"
+- 2023-09-28, 13:00 - 14:30, "Common problems and solutions with __Conda__ (Anaconda/Miniconda)"
+
 - 2023-08-31, 13:00 - 14:30
 - 2023-06-29, 13:00 - 14:30
 - 2023-05-25, 13:00 - 14:30
