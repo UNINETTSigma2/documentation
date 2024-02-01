@@ -36,6 +36,8 @@ Download the version you desire for your operating system and the same version f
 
 ## Allocating resources for the project
 
+**NOTE**: If the command below does not provide you any output, try to download ParaView from the software website and loading it manually by following the steps on the downloaded version ({ref}`paraview-server-downloaded`).
+
 Run the following command: ```salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --qos=devel --account=nnxxxxk```
 
 If the command above doesn't work, take a look at this [documentation](https://documentation.sigma2.no/jobs/interactive_jobs.html#requesting-an-interactive-job).
@@ -66,6 +68,8 @@ pvserver --server-port=XXXX
 ```
 
 **TIP:** You can see the available installed versions with the command: `ml avail | grep ParaView` . Then, load the module version you need and download the same version from ParaView's website.
+
+(paraview-server-downloaded)=
 
 ### Downloaded version
 
