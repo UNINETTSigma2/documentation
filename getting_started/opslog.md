@@ -1,6 +1,6 @@
 (using-opslog)=
 
-# Status and maintanance of systems
+# Status and maintenance of systems
 
 ```{contents} Table of Contents
 ```
