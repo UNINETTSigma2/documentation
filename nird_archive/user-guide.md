@@ -310,7 +310,7 @@ Figure 17: Screenshot of landing page with dataset citation
 
 ## Archive API
 
-The archive provides a set of APIs for programatic access. The publicly accessible APIs focus on search and access:
+The archive provides a set of APIs for programmatic access. The publicly accessible APIs focus on search and access:
 - `https://search-api.web.sigma2.no/norstore-archive/metadata/api/basic-search/dois?<optional-argument>`
     - A GET request that returns the list of DOIs for published datasets as a JSON string with the following schema:
     ```
@@ -381,7 +381,7 @@ The archive provides a set of APIs for programatic access. The publicly accessib
     ```
     - The `download_url` contains a link to the S3 bucket containing all the data that can be downloaded.
 - `https://search-api.web.sigma2.no/norstore-archive/metadata/api/basic-search/tableofcontents?identifier=<string>`
-    - A GET request to return the JsON string containing the tableofcontents for a given DOI. The schema of the tableofcontents is:
+    - A GET request to return the JSON string containing the tableofcontents for a given DOI. The schema of the tableofcontents is:
     ```
     {"Total_Files": <number>,
      "Previous_Page" <url or NULL>,
@@ -395,7 +395,7 @@ The archive provides a set of APIs for programatic access. The publicly accessib
     }
     ```
 - `https://search-api.web.sigma2.no/norstore-archive/oai/v1.0?verb=<verb>`
-    - A GET request that adopts the OAI-PMH protocol (see {ref}`[10] <references-oai_pmh>`). The API is primarily used for harvesting metadata for other registries. The `metadataPrefix=oai_dc` should be used as only the terms that correspond to Dublin Core are returned. The output format is XML.
+    - A GET request that adopts the OAI-PMH protocol (see {ref}`[10] <references-archive>`). The API is primarily used for harvesting metadata for other registries. The `metadataPrefix=oai_dc` should be used as only the terms that correspond to Dublin Core are returned. The output format is XML.
 
 ## Appendix A: Metadata Schema for Datasets
 
@@ -404,7 +404,7 @@ The Research Data Archive uses the Dublin Core metadata standard (ISO 15836-1:20
 | Term          | DCMI Reference | Multiplicity   | Description   |
 | ------------- | -------------- | ------------   | ------------- |
 | Access Rights | [http://purl.org/dc/terms/accessRights](http://purl.org/dc/terms/accessRights) | 1..n | Information on who can access the dataset if the dataset is private. Requires information on the user (first and last name and email). Default is Public.  |
-| Article  |                |  1           | The article that either describes the dataset, or for which the dataset was created. Articles can either be Published, accepted for publication, in preparation, a conference proceeding, or no publication. Ideally, the dataset should be used in a publication.      |
+| Article  |                |  1           | The article that either describes the dataset, or for which the dataset was created. Articles can either be Published, accepted for publication, in preparation, a conference proceeding, or no publication. Ideally, the dataset should be used in a publication.     |
 | Category | | 1 | The rough category that the dataset fits into. This can be: Calibration, Experiment, Image, Model, Observation, Simulation, Software. |
 | Created on| [http://purl.org/dc/terms/created](http://purl.org/dc/terms/created) | 1 | The date that the dataset was created. This should be the date when you created or generated the data and not the date when the data was assembled for archiving.|
 | Creator | [http://purl.org/dc/terms/creator](http://purl.org/dc/terms/creator)| 1...n | The people or person and/or organisation that created the data. The creators appear in the citation which describes how the dataset should be cited.|
@@ -412,7 +412,7 @@ The Research Data Archive uses the Dublin Core metadata standard (ISO 15836-1:20
 | Depositor | [http://purl.org/dc/terms/contributor](http://purl.org/dc/terms/contributor) | 1...n | The people or person that archives the dataset (either uploading the data, or supplying the metadata or both). In some cases a dataset may consist of data from more than one source where different researchers have access to the different datasets resulting in different researchers uploading the data to the same dataset.|
 | Description | [http://purl.org/dc/terms/description](http://purl.org/dc/terms/description) | 1 | A description of the dataset. Ideally, the description should cover what the dataset is, what data is contained and how to use it (or links to resources describing how to use the data, or a reference to a file in the dataset describing how to use the data).|
 | Language | [http://purl.org/dc/terms/language](http://purl.org/dc/terms/language) | 1...n | The language any text material in the dataset is written in. This can either be English or Norwegian. |
-| License | [http://purl.org/dc/terms/license](http://purl.org/dc/terms/license) | 1 | A link to the license for the dataset that governs the use and distribution of the dataaset. A selection of licenses is provided with the default being CC-BY-4.0. |
+| License | [http://purl.org/dc/terms/license](http://purl.org/dc/terms/license) | 1 | A link to the license for the dataset that governs the use and distribution of the dataset. A selection of licenses is provided with the default being CC-BY-4.0. |
 | Rights | [http://purl.org/dc/terms/rights](http://purl.org/dc/terms/rights)| 1 | A description of the various property rights associated to the resource. Ideally, this should be a link to a document describing the rights for a dataset.|
 | Rights Holder | [http://purl.org/dc/terms/rightsHolder](http://purl.org/dc/terms/rightsHolder) | 1 | The person or organisation that either holds rights on the dataset, or can act as a contact person for queries on the dataset rights. |
 | State | | 1 | The coarse description of dataset state. This can either be raw in the case of unprocessed data, or derived in the case of processed data where the original content is not archived.|
