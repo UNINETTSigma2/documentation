@@ -1,6 +1,6 @@
 (using-opslog)=
 
-# Using the status system (opslog)
+# Status and maintanance of systems
 
 ```{contents} Table of Contents
 ```
