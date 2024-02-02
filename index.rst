@@ -120,7 +120,7 @@ should include an `acknowledgement following this template
 
    training/events.md
    training/notes_qa.md
-   training/videos.md  
+   training/videos.md
    training/material.md
 
 .. toctree::
@@ -163,13 +163,6 @@ should include an `acknowledgement following this template
 .. toctree::
    :hidden:
    :maxdepth: 1
-   :caption: Code development and tutorials
-
-   code_development/overview.rst
-
-.. toctree::
-   :hidden:
-   :maxdepth: 1
    :caption: Software
 
    software/modulescheme.md
@@ -191,3 +184,10 @@ should include an `acknowledgement following this template
    files_storage/file_transfer.md
    files_storage/sharing_files.md
    files_storage/performance.md
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+   :caption: Code development and tutorials
+
+   code_development/overview.rst
