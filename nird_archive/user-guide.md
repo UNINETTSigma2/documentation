@@ -21,7 +21,6 @@ The process for depositing a dataset in the Archive consists of the following st
 - {ref}`Upload the dataset.  <Section-Upload-Dataset>`
 - {ref}`Provide secondary metadata.  <Provide-Secondary-Optional-Metadata>`
 - {ref}`Publish the dataset.  <Publish-the-dataset-Archive>`
-- {ref}`Appendix A Metadata Schema for Datasets. <Appendix-A-Metadata-Schema-for-Datasets>`
 
 The following sub-sections describe these stages.
 
@@ -309,7 +308,94 @@ If you use a dataset it is good practice to cite the dataset in any articles you
 ![the_landing_page_with_dataset_citation](imgs/figure_17_screenshot_of_landing_page_with_dataset_citation.png "landing page with dataset citation")
 Figure 17: Screenshot of landing page with dataset citation
 
-(Appendix-A-Metadata-Schema-for-Datasets)=
+## Archive API
+
+The archive provides a set of APIs for programatic access. The publicly accessible APIs focus on search and access:
+- `https://search-api.web.sigma2.no/norstore-archive/metadata/api/basic-search/dois?<optional-argument>`
+    - A GET request that returns the list of DOIs for published datasets as a JSON string with the following schema:
+    ```
+    {"Total Datasets": <n>, 
+     "DOIs": [{"status": <status>,
+               "date_published": <yyyy-mm-dd>,
+               "doi": <string>
+               }]}
+    ```
+    - The API can take the optional arguments: `before=<yyyy-mm-dd>` to return published datasets before a given date and `after=<yyyy-mm-dd` to return published datasets after a given date.
+- `https://search-api.web.sigma2.no/norstore-archive/metadata/api/basic-search/dataset?doi=<string>`
+    - A GET request that returns the metadata for a given dataset DOI. The dataset schema is:
+    ```
+    {"Dataset": {"Category": <string>,
+     "Publication": [{
+        "Status": <string>,
+        "isPrimary": <boolean>,
+        "Reference": {"URL": <string>,
+                      "DOI": <string>,
+                      "Citation": <string>}
+     }],
+        "Title": [<string>],
+        "License": {"Name":<string>,
+                    "URI": <string>,
+                    },
+        "Label":[<string>],
+        "State": <string>,
+        "Contents-Link": <url>,
+        "Description": [<string>],
+        "Access_Rights": {"Public": <string>},
+        "download_url":<s3 url>,
+        "Extent": <number>,
+        "Publisher": <string>,
+        "Language": [{"Long_Name": <string>,
+                      "Shors_Name: <string>
+        }],
+        "Created": <string>,
+        "Rights_Holder": {"Person": {
+                          "First_Name: <string>,
+                          "Last_Name: <string>
+        }},
+        "Submitted": <string>,
+        "Data_Manager": {"Person": {
+                         "First_Name": <string>,
+                         "Last_Name": <string>
+        }},
+        "Identifier": <string>
+        "Creator": [{"Person": {
+                     "First_Name": <string>,
+                     "Last_Name": <string>
+        }}],
+        "Contributor": [{"Person: {
+                         "First_Name: <string>,
+                         "Last_Name": <string>
+        }}],
+        "Subject": [{"Domain": <string>,
+                     "Field": <string>,
+                     "Subfield": <string>}]
+
+     }}
+    ``` 
+    - The Contributor, Rights Holder, Data Manager and Creator can also hold organisations with the schema:
+    ```
+    "Organisation": {
+        "Long_Name": <string>,
+        "Short_Name": <string>
+    }
+    ```
+    - The `download_url` contains a link to the S3 bucket containing all the data that can be downloaded.
+- `https://search-api.web.sigma2.no/norstore-archive/metadata/api/basic-search/tableofcontents?identifier=<string>`
+    - A GET request to return the JsON string containing the tableofcontents for a given DOI. The schema of the tableofcontents is:
+    ```
+    {"Total_Files": <number>,
+     "Previous_Page" <url or NULL>,
+     "Next_Page": <url or NULL>,
+     "TableOfContents": [{
+        "Fixity_Algorithm": <string>, "File_Name": <string>, 
+        "Format": <string>, 
+        "Extent": <number>, 
+        "Fixity": <string>
+     }]
+    }
+    ```
+- `https://search-api.web.sigma2.no/norstore-archive/oai/v1.0?verb=<verb>`
+    - A GET request that adopts the OAI-PMH protocol (see {ref}`[10] <references-oai_pmh`). The API is primarily used for harvesting metadata for other registries. The `metadataPrefix=oai_dc` should be used as only the terms that correspond to Dublin Core are returned. The output format is XML.
 
 ## Appendix A: Metadata Schema for Datasets
 
@@ -384,3 +470,5 @@ In case of questions or comments please email the archive manager at: [archive.m
 
 [9] DCMI: DCMI Metadata Terms.
 [https://www.dublincore.org/specifications/dublin-core/dcmi-terms/](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/)
+
+[10] Open Archives Initiative Protocol for Metadata Harvesting [http://www.openarchives.org/pmh/](http://www.openarchives.org/pmh/)
