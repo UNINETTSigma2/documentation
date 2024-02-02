@@ -395,7 +395,7 @@ The archive provides a set of APIs for programatic access. The publicly accessib
     }
     ```
 - `https://search-api.web.sigma2.no/norstore-archive/oai/v1.0?verb=<verb>`
-    - A GET request that adopts the OAI-PMH protocol (see {ref}`[10] <references-oai_pmh`). The API is primarily used for harvesting metadata for other registries. The `metadataPrefix=oai_dc` should be used as only the terms that correspond to Dublin Core are returned. The output format is XML.
+    - A GET request that adopts the OAI-PMH protocol (see {ref}`[10] <references-oai_pmh>`). The API is primarily used for harvesting metadata for other registries. The `metadataPrefix=oai_dc` should be used as only the terms that correspond to Dublin Core are returned. The output format is XML.
 
 ## Appendix A: Metadata Schema for Datasets
 
