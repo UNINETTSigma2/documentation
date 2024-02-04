@@ -255,7 +255,7 @@ for a summary for the job number 10404698:
 
 ```{code-block} console
 ---
-emphasize-lines: 12-13
+emphasize-lines: 11-12
 ---
 $ seff 10404698
 
