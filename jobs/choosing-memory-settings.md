@@ -2,8 +2,7 @@
 
 # How to choose the right amount of memory
 
-```{warning}
-**Do not ask for a lot more memory than you need**
+```{admonition} Do not ask for a lot more memory than you need
 
 A job that asks for many CPUs but little memory will be billed
 for its number of CPUs, while a job that asks for a lot of memory but
@@ -55,7 +54,7 @@ stopped late in the run.
 
 We recommend users to run a test job before submitting many similar runs to the
 queue system and find out how much memory is used (see below for examples on
-how to do that).  **Once you know, add perhaps 20% extra memory** (and runtime)
+how to do that).  **Once you know, add perhaps 15-20% extra memory** (and runtime)
 for the job compared to what your representative test case needed.
 
 Remember to check the [Slurm documentation](https://slurm.schedmd.com/squeue.html#lbAG),
@@ -71,7 +70,7 @@ right hardware.
 Speaking of right partition, one way to get more memory if a node is not enough
 is to spread the job over several nodes by asking for more cores than needed.
 But this comes at the price of paying for more resources, queuing longer, and
-again blocking others.  A good alternative for jobs that need a lot of memory
+possibly blocking others.  A good alternative for jobs that need a lot of memory
 is often to get access to "highmem" nodes which are designed for jobs with high
 memory demand.
 
@@ -98,7 +97,7 @@ program example
     integer(8) :: size_mw
     real(8), allocatable :: a(:)
 
-    print *, 'will try to allocate', size_mb, 'MB'
+!   print *, 'will try to allocate', size_mb, 'MB'
 
     size_mw = int(1000000*size_mb/7.8125d0)
     allocate(a(size_mw))
@@ -113,7 +112,7 @@ program example
     call sleep(35)
 
     deallocate(a)
-    print *, 'ok all went fine'
+    print *, 'ok all went well'
 
 end program
 ```
@@ -153,31 +152,31 @@ gfortran example.f90 -o mybinary
 ./mybinary
 ```
 
-Slurm generates an output for each job you run. For instance job number `5123654`
-generated output `slurm-5123654.out`.
+Slurm generates an output for each job you run. For instance job number `10404698`
+generated output `slurm-10404698.out`.
 
 This output contains the following:
 ```{code-block}
 ---
 emphasize-lines: 14,17
 ---
-Submitted 2023-05-09T21:51:15; waited 23.0 seconds in the queue after becoming eligible to run.
+Submitted 2024-02-04T13:11:03; waited 27.0 seconds in the queue after becoming eligible to run.
 
 Requested wallclock time: 2.0 minutes
-Elapsed wallclock time:   37.0 seconds
+Elapsed wallclock time:   44.0 seconds
 
 Task and CPU statistics:
-ID             CPUs  Tasks  CPU util                Start  Elapsed  Exit status
-5123654          32            0.0 %  2023-05-09T21:51:38   37.0 s  0
-5123654.batch    32      1     0.1 %  2023-05-09T21:51:38   37.0 s  0
+ID              CPUs  Tasks  CPU util                Start  Elapsed  Exit status
+10404698           1            0.0 %  2024-02-04T13:11:30   44.0 s  0
+10404698.batch     1      1     2.7 %  2024-02-04T13:11:30   44.0 s  0
 
-Used CPU time:   1.0 CPU seconds
-Unused CPU time: 19.7 CPU minutes
+Used CPU time:   1.2 CPU seconds
+Unused CPU time: 42.8 CPU seconds
 
 Memory statistics, in GiB:
-ID              Alloc   Usage
-5123654          59.0
-5123654.batch    59.0     3.1
+ID               Alloc   Usage
+10404698           3.4
+10404698.batch     3.4     3.1
 ```
 
 From this (see below `Memory statistics`) we can find out that the job used 3.1
@@ -187,7 +186,7 @@ Note that **Slurm samples the memory every 30 seconds**. This means that if your
 job is shorter than 30 seconds, it will show that your calculation consumed
 zero memory which is probably wrong.  The sampling rate also means that if your
 job contains short peaks of high memory consumption, the sampling may
-completely miss these.
+miss these.
 
 
 #### Slurm reports values for each job step
@@ -204,18 +203,18 @@ or `mpirun`) is counted as a *step*, called the `batch` step.
 
 This creates a short version of the above.
 
-As an example, I want to know this for my job which had the number `5123654`:
+As an example, I want to know this for my job which had the number `10404698`:
 ```console
-$ sacct -j 5123654 --format=MaxRSS
+$ sacct -j 10404698 --format=MaxRSS
 
     MaxRSS
 ----------
 
-  3211232K
-      128K
+  3210588K
+         0
 ```
 
-From this we see that the job needed `3211232K` memory, same as above. The
+From this we see that the job needed `3210588K` memory, same as above. The
 comment above about possibly multiple steps applies also here.
 
 
@@ -223,53 +222,53 @@ comment above about possibly multiple steps applies also here.
 
 `jobstats` is always run as part of your job output. But knowing that the
 command exists also on its own can be useful if you still know/remember the job
-number (here: 5123654) but you have lost the Slurm output.
+number (here: 10404698) but you have lost the Slurm output.
 
 ```console
-$ jobstats -j 5123654
+$ jobstats -j 10404698
+Job 10404698 consumed 0.0 billing hours from project nn****k.
 
-Submitted 2023-05-09T21:51:15; waited 23.0 seconds in the queue after becoming eligible to run.
+Submitted 2024-02-04T13:11:03; waited 27.0 seconds in the queue after becoming eligible to run.
 
 Requested wallclock time: 2.0 minutes
-Elapsed wallclock time:   37.0 seconds
+Elapsed wallclock time:   44.0 seconds
 
 Task and CPU statistics:
-ID             CPUs  Tasks  CPU util                Start  Elapsed  Exit status
-5123654          32            0.0 %  2023-05-09T21:51:38   37.0 s  0
-5123654.batch    32      1     0.1 %  2023-05-09T21:51:38   37.0 s  0
+ID              CPUs  Tasks  CPU util                Start  Elapsed  Exit status
+10404698           1            0.0 %  2024-02-04T13:11:30   44.0 s  0
+10404698.batch     1      1     2.7 %  2024-02-04T13:11:30   44.0 s  0
 
-Used CPU time:   1.0 CPU seconds
-Unused CPU time: 19.7 CPU minutes
+Used CPU time:   1.2 CPU seconds
+Unused CPU time: 42.8 CPU seconds
 
 Memory statistics, in GiB:
-ID              Alloc   Usage
-5123654          59.0
-5123654.batch    59.0     3.1
+ID               Alloc   Usage
+10404698           3.4
+10404698.batch     3.4     3.1
 ```
 
 
 ### Using seff
 
 `seff` is a nice tool which we can use on **completed jobs**. For example here we ask
-for a summary for the job number 5123654:
+for a summary for the job number 10404698:
 
 ```{code-block} console
 ---
 emphasize-lines: 12-13
 ---
-$ seff 5123654
+$ seff 10404698
 
-Job ID: 5123654
-Cluster: fram
-User/Group: bast/bast
+Job ID: 10404698
+Cluster: saga
+User/Group: someuser/someuser
 State: COMPLETED (exit code 0)
-Nodes: 1
-Cores per node: 32
+Cores: 1
 CPU Utilized: 00:00:01
-CPU Efficiency: 0.08% of 00:19:44 core-walltime
-Job Wall-clock time: 00:00:37
+CPU Efficiency: 2.27% of 00:00:44 core-walltime
+Job Wall-clock time: 00:00:44
 Memory Utilized: 3.06 GB
-Memory Efficiency: 5.19% of 59.00 GB
+Memory Efficiency: 89.58% of 3.42 GB
 ```
 
 
@@ -302,23 +301,23 @@ Then in the Slurm output we find:
 emphasize-lines: 10-10
 ---
 Command being timed: "./mybinary"
-User time (seconds): 0.22
-System time (seconds): 0.70
-Percent of CPU this job got: 2%
-Elapsed (wall clock) time (h:mm:ss or m:ss): 0:35.94
+User time (seconds): 0.51
+System time (seconds): 0.64
+Percent of CPU this job got: 3%
+Elapsed (wall clock) time (h:mm:ss or m:ss): 0:36.16
 Average shared text size (kbytes): 0
 Average unshared data size (kbytes): 0
 Average stack size (kbytes): 0
 Average total size (kbytes): 0
-Maximum resident set size (kbytes): 3210916
+Maximum resident set size (kbytes): 3212160
 Average resident set size (kbytes): 0
-Major (requiring I/O) page faults: 8
-Minor (reclaiming a frame) page faults: 2554
-Voluntary context switches: 22
-Involuntary context switches: 2
+Major (requiring I/O) page faults: 1
+Minor (reclaiming a frame) page faults: 2394
+Voluntary context switches: 20
+Involuntary context switches: 41
 Swaps: 0
-File system inputs: 1776
-File system outputs: 8
+File system inputs: 57
+File system outputs: 0
 Socket messages sent: 0
 Socket messages received: 0
 Signals delivered: 0
@@ -351,7 +350,7 @@ emphasize-lines: 11-12, 14
 #SBATCH --ntasks=1
 
 module purge
-module load Arm-Forge/21.1
+module load Arm-Forge/22.1.3
 
 perf-report ./mybinary
 ```
@@ -381,16 +380,14 @@ What you can do is to start with a generous memory setting:
 #SBATCH --mem-per-cpu=3500M
 ```
 
-And gradually reduce it until your job fails with `oom-kill` ("oom" is short for "out of memory"):
+And gradually reduce it until your job fails with `oom-kill` ("**oom**" or "**OOM**" is short for "out of memory"):
 ```
-slurm_script: line 11: 33333 Killed ./mybinary
-slurmstepd: error: Detected 1 oom-kill event(s) in step 997857.batch cgroup.
-Some of your processes may have been killed by the cgroup out-of-memory
-handler.
+slurmstepd: error: Detected 1 oom_kill event in StepId=10404708.batch.
+Some of the step tasks have been OOM Killed.
 ```
 
 Or you start with a very conservative estimate and you gradually increase until
 the job is not stopped.
 
-Then you also know. But there are more elegant ways to find this out (see
+Then you also know. But there are more elegant ways to figure this out (see
 options above).
