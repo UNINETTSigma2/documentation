@@ -42,7 +42,7 @@ Run the following command: ```salloc --nodes=1 --ntasks-per-node=1 --cpus-per-ta
 
 If the command above doesn't work, take a look at this [documentation](https://documentation.sigma2.no/jobs/interactive_jobs.html#requesting-an-interactive-job).
 
-Please, note that here we are asking 1 CPU only for 30 minutes in the Devel queue. **If you need more resources and time, adjust the parameters accordingly.**
+Please, note that here we are asking 1 CPU only for 30 minutes in the Devel queue. **If you need more resources and time, adjust the parameters accordingly. Also, if you ask for more than one task per node, the MPI version of ParaView is required because it enables parallelism**
 
 The output will be similar to this one:
 
