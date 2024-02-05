@@ -137,17 +137,18 @@ should include an `acknowledgement following this template
    getting_started/remote-desktop.md
    getting_started/R.md
 
-
 .. toctree::
    :hidden:
    :maxdepth: 1
-   :caption: Services
+   :caption: Files, storage and backup
 
-   nird_archive/user-guide.md
-   nird_toolkit/overview.rst
-   services/easydmp-user-documentation.md
-   getting_help/course_resources.md
-
+   files_storage/nird_lmd.md
+   files_storage/clusters.md
+   files_storage/quota.md
+   files_storage/backup.md
+   files_storage/file_transfer.md
+   files_storage/sharing_files.md
+   files_storage/performance.md
 
 .. toctree::
    :hidden:
@@ -170,19 +171,15 @@ should include an `acknowledgement following this template
    software/appguides.md
    software/licenses.md
 
-
 .. toctree::
    :hidden:
    :maxdepth: 1
-   :caption: Files, storage and backup
+   :caption: Services
 
-   files_storage/nird_lmd.md
-   files_storage/clusters.md
-   files_storage/quota.md
-   files_storage/backup.md
-   files_storage/file_transfer.md
-   files_storage/sharing_files.md
-   files_storage/performance.md
+   nird_archive/user-guide.md
+   nird_toolkit/overview.rst
+   services/easydmp-user-documentation.md
+   getting_help/course_resources.md
 
 .. toctree::
    :hidden:
