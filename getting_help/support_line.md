@@ -70,6 +70,4 @@ need to prioritize issues.  In busy times we may not be able to help you with
 questions that would be better addressed to your local IT departments.
 
 Domain-specific questions may be beyond our expertise. However, we maintain a
-few application liaisons for very heavility used programs and domains. We also
-encourage you to check our page about {ref}`user-communities` to connect with
-other researchers using the same program as you.
+few application liaisons for very heavility used programs and domains.
