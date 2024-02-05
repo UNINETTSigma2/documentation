@@ -7,7 +7,16 @@ orphan: true
 
 To monitor GPUs on LUMI-G during the execution of your SLURM job, you can employ the `rocm-smi` command. This can be done by using `srun` with the `--overlap` option, which allows you to execute commands on the nodes allocated to your running job. Detailed information about using `--overlap` on LUMI-G is available [here](https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/interactive/#using-srun-to-check-running-jobs).
 
-## Steps to Monitor GPUs
+## Steps to Monitor GPUs on jobs with a Single Node
+
+1. Run the following command with your job-id on your single node job-id:
+    ```bash
+    srun --overlap --pty --jobid=<jobid> rocm-smi --showuse # replace with your desired option
+    ```
+
+## Steps to Monitor GPUs with multiple nodes
+
+To monitor the GPU usage on jobs with multiple nodes, you can use the following steps:
 
 1. **Identify the Allocated Nodes:**
    First, find out which nodes are allocated to your job by using the following command, replacing `<jobid>` with the ID of your SLURM job:
@@ -27,27 +36,7 @@ To monitor GPUs on LUMI-G during the execution of your SLURM job, you can employ
 
 ## Adding GPU Monitoring to a Job Script on LUMI-G
 
-Monitoring GPU usage on the LUMI-G cluster can provide you with valuable insights into the performance and efficiency of your GPU-accelerated applications. By integrating ROCm-SMI (Radeon Open Compute System Management Interface) into your SLURM job script, you can collect GPU utilization statistics throughout the runtime of your job. Follow these instructions to modify your existing job script to include GPU monitoring.
-
-### Basic Job Script Without GPU Monitoring
-
-Below is a typical example of a job script (`basic_job_script.sh`) without GPU monitoring:
-```{code-block} bash
----
-linenos:
----
-#!/bin/bash
-#SBATCH --account=project_X_____X
-#SBATCH --time=00:06:00
-#SBATCH --partition=standard-g # ROCm-SMI will not work with partial allocations for dev-g
-#SBATCH -o %x-%j.out
-
-# Load necessary modules
-
-srun your_program
-```
-
-For more information on job scripts on LUMI-G, visit [LUMI documentation](https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/lumig-job/).
+Monitoring GPU usage on the LUMI-G cluster can provide you with valuable insights into the performance and efficiency of your GPU-accelerated applications. By integrating ROCm-SMI (Radeon Open Compute System Management Interface) into your SLURM job script, you can collect GPU utilization statistics throughout the runtime of your job. Follow these instructions to modify your existing job script to include GPU monitoring with `rocm-smi`.
 
 ### Script for Expanding Node Ranges
 
@@ -110,12 +99,18 @@ The following job script, `monitored_job_script.sh`, has been enhanced to includ
 ```{code-block} bash
 ---
 linenos:
-emphasize-lines: 10, 17-20, 23, 26, 28
+emphasize-lines: 16, 21, 23-26, 32-35
 ---
-#!/bin/bash
-# Insert the original SBATCH directives here
-# ...
-#SBATCH -o monitored_job_script-%j.out
+#!/bin/bash -e
+#SBATCH --job-name=<name>
+#SBATCH --account=project_4650000XX
+#SBATCH --time=XX:XX:XX
+#SBATCH --partition=standard-g # or dev-g
+#SBATCH --nodes=<nr_nodes>
+#SBATCH --ntasks-per-node=<nr_tasks_per_node>
+#SBATCH --gpus=<nr_gpus>
+#SBATCH --gpus-per-node=8 # Rocm-smi only works on full nodes
+#SBATCH -o %x-%j.out
 
 # Load necessary modules
 # ...
@@ -149,12 +144,11 @@ srun your_program
 
 Key elements of the `monitored_job_script.sh` script:
 
-1. We define a `gpu_monitoring` function (line 10) to capture GPU usage data.
-2. The `--csv` flag in the `rocm-smi` command (line 18) is used to format the output as comma-separated values, making it easier to parse and analyze later.
-3. The loop on lines 17-20 ensures that GPU data is captured at regular intervals until the job completes.
-4. The function is exported (line 23) so that it can be called across different nodes within the job.
-5. The `nodes` variable (line 26) holds the expanded list of node names.
-6. The monitoring is initiated on each node using `srun` (lines 28).
+1. We define a `gpu_monitoring` function (line 16) to capture GPU usage data.
+2. The `--csv` flag in the `rocm-smi` command (line 21) is used to format the output as comma-separated values, making it easier to parse and analyze later.
+3. The loop on lines 23-26 ensures that GPU data is captured at regular intervals until the job completes.
+4. The function is exported (line 29) so that it can be called across different nodes within the job.
+5. In lines 32-35 we expand the node range into individual nodes using the `expand_nodes.sh` script. Then we initiate the monitoring on each node in a loop using `srun`.
 
 Note on ROCm-SMI flags:
 
