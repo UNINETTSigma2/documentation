@@ -34,6 +34,8 @@ To monitor the GPU usage on jobs with multiple nodes, you can use the following 
 
    Replace `<node_name>` with the actual node identifier.
 
+> **Note:** For this to work, use the `#SBATCH --gpus-per-node` directive instead of the `#SBATCH --gpus` directive in your job-script for multiple node jobs.
+
 ## Adding GPU Monitoring to a Job Script on LUMI-G
 
 Monitoring GPU usage on the LUMI-G cluster can provide you with valuable insights into the performance and efficiency of your GPU-accelerated applications. By integrating ROCm-SMI (Radeon Open Compute System Management Interface) into your SLURM job script, you can collect GPU utilization statistics throughout the runtime of your job. Follow these instructions to modify your existing job script to include GPU monitoring with `rocm-smi`.
