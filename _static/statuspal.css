@@ -95,8 +95,8 @@
 
 .position-top-right {
   position: fixed;
-  top: calc(50px + 60px + 2em); /* universal top-header + local navbar + 2em */
-  right: 2em;
+  top: calc(50px + 2em);
+  left: calc(min(100vw, 1100px) - 300px);
   transform: translate(0, 0);
 }
 
