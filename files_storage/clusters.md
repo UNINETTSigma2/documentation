@@ -29,8 +29,8 @@ Below the table, we give recommendations and discuss the pros and cons of the va
 - **User areas and project areas are private**: Data handling and storage policy is documented [here](/files_storage/sharing_files.md).
 - **`$LOCALSCRATCH` area is only implemented on Fram and Saga**.
 - In addition to the areas in the tables above, **both clusters mount the
-  NIRD project areas** as `/nird/projects/NSxxxxK` on the login nodes
-  (but not on the compute nodes).
+  NIRD project areas** as `/nird/projects/NSxxxxK` for NIRD TS(Tiered Storage) projects and `/nird/datalake/NSxxxxK` for NIRD DL(DataLake)
+  projects on the login nodes (but not on the compute nodes).
 - The `/cluster` file system is a high-performance parallel file
   system.  On Fram, it is a [Lustre](https://www.lustre.org/) system with
   a total storage space of 2.3 PB, and on Saga it is a
