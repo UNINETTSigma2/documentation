@@ -107,7 +107,6 @@ should include an `acknowledgement following this template
    getting_help/extended_support.rst
    getting_help/faq.md
    getting_help/how_to_write_good_support_requests.md
-   getting_help/user_communities.md
    getting_help/qa-sessions.md
    getting_help/lost_forgotten_password.md
    getting_help/project_leader_support.md
@@ -120,7 +119,7 @@ should include an `acknowledgement following this template
 
    training/events.md
    training/notes_qa.md
-   training/videos.md  
+   training/videos.md
    training/material.md
 
 .. toctree::
@@ -138,17 +137,18 @@ should include an `acknowledgement following this template
    getting_started/remote-desktop.md
    getting_started/R.md
 
-
 .. toctree::
    :hidden:
    :maxdepth: 1
-   :caption: Services
+   :caption: Files, storage and backup
 
-   nird_archive/user-guide.md
-   nird_toolkit/overview.rst
-   services/easydmp-user-documentation.md
-   getting_help/course_resources.md
-
+   files_storage/nird_lmd.md
+   files_storage/clusters.md
+   files_storage/quota.md
+   files_storage/backup.md
+   files_storage/file_transfer.md
+   files_storage/sharing_files.md
+   files_storage/performance.md
 
 .. toctree::
    :hidden:
@@ -163,13 +163,6 @@ should include an `acknowledgement following this template
 .. toctree::
    :hidden:
    :maxdepth: 1
-   :caption: Code development and tutorials
-
-   code_development/overview.rst
-
-.. toctree::
-   :hidden:
-   :maxdepth: 1
    :caption: Software
 
    software/modulescheme.md
@@ -178,16 +171,19 @@ should include an `acknowledgement following this template
    software/appguides.md
    software/licenses.md
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+   :caption: Services
+
+   nird_archive/user-guide.md
+   nird_toolkit/overview.rst
+   services/easydmp-user-documentation.md
+   getting_help/course_resources.md
 
 .. toctree::
    :hidden:
    :maxdepth: 1
-   :caption: Files, storage and backup
+   :caption: Code development and tutorials
 
-   files_storage/nird_lmd.md
-   files_storage/clusters.md
-   files_storage/quota.md
-   files_storage/backup.md
-   files_storage/file_transfer.md
-   files_storage/sharing_files.md
-   files_storage/performance.md
+   code_development/overview.rst

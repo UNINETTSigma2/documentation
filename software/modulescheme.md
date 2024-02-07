@@ -8,7 +8,7 @@ The main command for using this system is the module command. You can find a lis
 
 	module --help
 
-We use the lmod module system; for more info see <https://lmod.readthedocs.io/en/latest/> in NRIS currently. Below we listed the most commonly used options, but also feel free to ivestigate options in this toolset more thoroughly on developers site.
+We use the lmod module system; for more info see <https://lmod.readthedocs.io/en/latest/> in NRIS currently. Below we listed the most commonly used options, but also feel free to investigate options in this toolset more thoroughly on developers site.
 
 
 ## Which modules are currently loaded?
@@ -112,6 +112,27 @@ To list all your saved environments
 This feature is particularly convenient if you spend a lot of time compiling/debugging
 in interactive sessions. For production calculations using job scripts it is still
 recommended to load each module explicitly for clarity.
+
+
+## GPU modules 
+
+### Saga
+There are two types of GPU nodes on Saga, located in two distinct SLURM partitions:
+
+* Intel CPU  with 4X Tesla P100, 16GB, `--partition=accel`
+* AMD CPUs with 4XA100, 80GB, `--partition=a100`
+
+These are different architectures. By default, Saga loads the Intel software environment,
+If you want to run/compile software for the nodes with the AMD CPUs and A100 GPUS 
+you need to get an allocation on the `a100` partition. Then, inside the allocation,
+or inside your job script, switch the module environment
+
+```
+module --force swap StdEnv Zen2Env
+
+```  
+Note that installed modules can vary between the two node types.
+
 
 ## Tutorial on module system for software
 [Introduction to HPC - Accessing software](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html)

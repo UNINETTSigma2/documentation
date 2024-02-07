@@ -7,6 +7,9 @@ We very much appreciate that you check our [status system](https://opslog.sigma2
 ```{admonition} Administrative support
 {octicon}`briefcase;2em;sd-text-info`
 Contact **[contact@sigma2.no](mailto:contact@sigma2.no)** for support requests concerning:
+
+**NOTE: Use this e-mail if you need to add / delete users to a group or change allocation details such as quotas.**
+
 - resource applications
 - projects
 - compute and storage allocations
@@ -17,6 +20,9 @@ Contact **[contact@sigma2.no](mailto:contact@sigma2.no)** for support requests c
 ```{admonition} Technical support
 {octicon}`tools;2em;sd-text-info`
 Contact **[support@nris.no](mailto:support@nris.no)** for all other support requests:
+
+**NOTE: Use this e-mail if you need to extend your job's walltime.**
+
 - technical issues
 - software installation requests
 - questions about job scripts
@@ -64,6 +70,4 @@ need to prioritize issues.  In busy times we may not be able to help you with
 questions that would be better addressed to your local IT departments.
 
 Domain-specific questions may be beyond our expertise. However, we maintain a
-few application liaisons for very heavility used programs and domains. We also
-encourage you to check our page about {ref}`user-communities` to connect with
-other researchers using the same program as you.
+few application liaisons for very heavility used programs and domains.

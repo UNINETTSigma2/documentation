@@ -95,12 +95,12 @@ of a _normal_ MPI job.
 
 (job_scripts_saga_bigmem)=
 
-## Bigmem
+## Bigmem and Hugemem
 
-_Bigmem_ jobs are specified exactly like the _normal_ jobs except that
-you also have to specify `--partition=bigmem`.
+_Bigmem_ and _Hugemem_ jobs are specified exactly like the _normal_ jobs except that
+you also have to specify `--partition=bigmem` or `--partition=hugemem`.
 
-Here is an example that asks for 2 tasks, 4 cpus per task, and 32 GiB
+Here is a _bigmem_ example that asks for 2 tasks, 4 cpus per task, and 32 GiB
 RAM per cpu:
 
     #SBATCH --account=MyProject --job-name=MyJob
@@ -109,18 +109,28 @@ RAM per cpu:
     #SBATCH --ntasks=2 --cpus-per-task=4
     #SBATCH --mem-per-cpu=32G
 
+Please note that not all of the ordinary software modules will work on
+the *hugemem* nodes, due to the different cpu type.  If you encounter
+any software-related issues, we are happy to help you at
+support@nris.no.  As an alternative, you can use the NESSI or
+[EESSI](https://www.eessi.io/docs/) modules.  These have been built to
+support the cpus on the hugemem nodes.  To activate the modules, do
+`source /cvmfs/pilot.nessi.no/versions/2023.06/init/bash` (NESSI) or
+`source /cvmfs/software.eessi.io/versions/2023.06/init/bash` (EESSI)
+before you load modules.
 
 (job_scripts_saga_accel)=
 
-## Accel
-*Accel* jobs are specified just like *normal* jobs except that they
-also have to specify `--partition=accel`.  In addition, they must also
+## Accel and A100
+_Accel_ and _A100_ jobs are specified just like *normal* jobs except that they
+also have to specify `--partition=accel` (for P100 GPUs) or
+`--partition=a100` (for A100 GPUs).  In addition, they must also
 specify how many GPUs to use, and how they should be distributed
 across nodes and tasks.  The simplest way to do that is, with
 `--gpus=N` or `--gpus-per-node=N`, where `N` is the number of GPUs to
 use.
 
-For a job simple job running one process and using one GPU, the
+For a job simple job running one process and using one P100 GPU, the
 following example is enough:
 
     #SBATCH --account=MyProject --job-name=MyJob
@@ -128,10 +138,10 @@ following example is enough:
     #SBATCH --time=1-0:0:0
     #SBATCH --mem-per-cpu=8G
 
-Here is an example that asks for 2 tasks and 2 gpus on one gpu node:
+Here is an example that asks for 2 tasks and 2 A100 GPUs on one node:
 
     #SBATCH --account=MyProject --job-name=MyJob
-    #SBATCH --partition=accel --gpus-per-node=2
+    #SBATCH --partition=a100 --gpus-per-node=2
     #SBATCH --time=1-0:0:0
     #SBATCH --ntasks-per-node=2 --nodes=1
     #SBATCH --mem-per-cpu=8G
