@@ -238,7 +238,6 @@ Figure 13: Screenshot of the version dataset upload
 
 Once the new version has been published you will see additional text on the landing page indicating the dataset replaces a previous version with a link to the version it replaces. A similar link to the previous dataset will also appear when you access the dataset from the *List datasets*  menu item.
 
-**NOTE:** Data in previous versions of the dataset are still accessible unless you request access to a previous version to be terminated (see Section {ref}`Terminating Datasets <Section-Terminating-Datasets>`  ).
 
 ## Cloning Metadata
 
@@ -250,15 +249,17 @@ Once the dataset has been uploaded you will be presented with a pre-filled metad
 
 (Section-Terminating-Datasets)=
 
-## Terminating Datasets
+## Terminating or Withdrawal of Datasets
 
-You can remove access to a dataset you have published by submitting a terminate request to the Archive. The terminate request page is accessible either from the landing page by clicking the *Manage* link, or from the *List datasets*  menu, selecting the dataset you want to terminate, click the *Manage* menu (see Figure 10).
+Normally, published datasets will not be deleted before the end of the retention period specified in the [depositor agreement](https://www.sigma2.no/research-data-archive-depositor-agreement). Beyond the retention period datasets may be deleted in the case of compelling technical reasons. In this case the deletion is first announced on the Research Data Archive front page and on the dataset’s landing page. This announcement is visible for a period of one year. During this grace period anyone having interest in maintaining the dataset can renovate the retention time by contacting the [archive.manager@nris.no](mailto:archive.manager@nris.no).
+
+Within the retention period, only exceptional reasons (such as copyright violation, see the [depositor agreement](https://www.sigma2.no/research-data-archive-depositor-agreement)) will be considered valid for the deletion or withdrawal of datasets from the archive. In this case you can request termination of your published dataset by filling in the  terminate request page which is accessible either from the landing page by clicking the *Manage* link, or from the *List datasets*  menu, selecting the dataset you want to terminate, click the *Manage* menu (see Figure 10).
 
 **NOTE:** the *Manage* menu is only available for published datasets. Clicking the *Request termination*  link will display the dataset termination request page. You will need to supply a reason why you wish the dataset to be terminated.
 
-Once you have submitted your request it will be reviewed by the Archive Manager who may contact you to further discuss the request. All stakeholders will be informed of the request and providing there are no objections access to the dataset will be removed.
+Once you have submitted your request it will be reviewed by the Archive Manager who may contact you to further discuss the request. All stakeholders (the creators of the dataset and the rights holders) will be informed of the request and providing there are no objections access to the dataset will be removed.
 
-**NOTE:** the metadata for the terminated dataset will still be visible, but there will be clear indication that the dataset has been terminated as well as a reason for termination. This is to ensure existing articles that reference the dataset have valid links.
+In these cases the metadata for the terminated dataset will still be visible, but there will be clear indication that the dataset has been terminated as well as a reason for termination. This is to ensure existing articles that reference the dataset have valid links.
 
 ## Searching and Accessing Datasets
 
