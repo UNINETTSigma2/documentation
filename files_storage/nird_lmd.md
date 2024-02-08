@@ -68,7 +68,6 @@ Backup services and data integrity is ensured with IBM Storage Protect.
    nird/backup_lmd.md
    nird/mounts_lmd.md
    nird/ts_dl.md
-   nird/old_nird_access.md
    nird/faq_nird.md
    sharing_files.md   
 ```
