@@ -100,8 +100,7 @@ period_.  Historical usage can be found [here](https://www.metacenter.no/mas/pro
 
 ## How billing units are computed
 
-**The term "CPU hour" above is an over-simplification. Jobs are generally
-accounted for both CPU and memory usage, as well as usage of GPUs.**
+Jobs are generally accounted for both CPU and memory usage, as well as usage of GPUs.
 The accounting tries to assign a fair "price" to the amount of resources a job
 requested.
 
@@ -124,6 +123,9 @@ The number billing units of a job is calculated like this:
 The _memory cost factor_ and _GPU cost factor_ vary between the partitions on the
 clusters.
 
+### Fram
+
+- Jobs on Fram are only accounted for their CPU usage. 
 
 ### Saga
 
