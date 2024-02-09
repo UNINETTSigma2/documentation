@@ -36,7 +36,7 @@ $ ssh saga.sigma2.no
 
 ## Jumping through login nodes
 
-When already logged in, you can easily jump from one login node to the other by typing `ssh login-X` (for Fram, Saga and Betzy) or `ssh loginX` (for NIRD). Please, replace "X" with the number of the login node you want to access.
+When already logged in, you can easily jump from one login node to another by typing `ssh login-X` (for Fram, Saga and Betzy) or `ssh loginX` (for NIRD). Please, replace "X" with the number of the login node you want to access.
 
 Also, the same is valid for when we want to access a specific compute node we are running our jobs. However, it is only possible to access compute nodes that you currently have jobs running. 
 
