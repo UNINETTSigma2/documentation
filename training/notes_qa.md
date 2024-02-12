@@ -2,7 +2,7 @@
 
 Here we share the workshop questions, answer, and feedbacks from the collaborative 
 notes after the event.
-
+- [Questions and answers from Best Practices Spring 2024 Day1 (How to choose the right amount of memory and right number of cores)](https://md.sigma2.no/qanda-archive-best-practices-spring2024)
 - [Questions and answers from Introduction to FORTRAN Series Autumn 2023](https://md.sigma2.no/YQjft6kvR5SUolKJtm3QOA)
 - [Questions and answers from Introduction to NIRD Toolkit on 24th October 2023](https://md.sigma2.no/introduction-to-nird-toolkit)
 - {ref}`training-2023-autumn-onboarding`
