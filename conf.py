@@ -25,7 +25,8 @@ author = 'Sigma2/NRIS'
 # Logo setup
 html_favicon = 'img/nris.ico'
 html_logo = 'img/NRIS Logo.svg'
-html_css_files = ['nris.css']
+html_css_files = ['nris.css', 'universal-navbar.css', 'statuspal.css']
+html_js_files = ['statuspal_widget.js']
 
 html_title = 'Sigma2 documentation'
 html_short_title = 'Sigma2'

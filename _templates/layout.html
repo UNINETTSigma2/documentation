@@ -1,20 +1,110 @@
 {% extends '!layout.html' %}
-{% block footer %}
-<!-- Integrate opslog banner -->
-<span class="sp-status"></span>
+
+{% block extrabody %}
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
 <script>
-  window.statuspalWidget = {
-    subdomain: 'sigma2-nris',
-    host: 'https://statuspal.eu',
-    badge: {
-      enabled: false,
-      selector: '.sp-status', 
-    },
-    banner: {
-      enabled: true,
-      position: 'top-right',
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
     }
-  }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
 </script>
-<script src="https://statuspal.io/js/widget.js"></script>
-{% endblock %}
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+{% endblock extrabody %}

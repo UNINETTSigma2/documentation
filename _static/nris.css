@@ -9,3 +9,7 @@
 .wy-menu-vertical .caption-text {
     color: #ffffff;
 }
+
+.wy-grid-for-nav, .wy-nav-side {
+    margin-top: 50px;
+}
