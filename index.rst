@@ -109,12 +109,7 @@ should include an `acknowledgement following this template
    getting_help/how_to_write_good_support_requests.md
    getting_help/qa-sessions.md
    getting_help/lost_forgotten_password.md
-   
-.. toctree::
-   :hidden:
-   :maxdepth: 1
-   :orphan:
-   [Project Leader Support](https://www.sigma2.no/project-leader-handbook)
+   Project Leader Support<https://www.sigma2.no/project-leader-handbook>
 
 
 .. toctree::
