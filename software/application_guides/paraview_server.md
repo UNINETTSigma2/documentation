@@ -127,9 +127,8 @@ salloc: Nodes gpu-12-8 are ready for job
 
 Go to the /bin folder with the `cd` command and run the following (replace the "XXXX" for a random 4-digit number):
 
-```
-srun ./pvserver --server-port=XXXX --force-offscreen-rendering
-```
+`srun ./pvserver --server-port=XXXX --force-offscreen-rendering`
+
 **NOTE:** You can read more about the `--force-offscreen-rendering` option [here](https://kitware.github.io/paraview-docs/latest/cxx/Offscreen.html). It seems to render slightly faster.
 
 You should see a message like this:
