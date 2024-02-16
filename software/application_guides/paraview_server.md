@@ -109,6 +109,7 @@ Run the following command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task
 If the command above doesn't work, take a look at this [documentation](https://documentation.sigma2.no/jobs/interactive_jobs.html#requesting-an-interactive-job) or on the benchmarks as we have provided the allocation commands we ran.
 
 Please, note that here we are asking 1 CPU and 1 GPU only for 30 minutes. **If you need more resources and time, adjust the parameters accordingly.**
+Also, the A100 GPU is faster but, if resources are not available, try the P100 GPU changing the `--partition` flag from "a100" to "accel".
 
 The output will be similar to this one:
 
