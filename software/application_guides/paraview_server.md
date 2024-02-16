@@ -119,7 +119,7 @@ salloc: job 5442258 queued and waiting for resources
 salloc: job 5442258 has been allocated resources
 salloc: Granted job allocation 5442258
 salloc: Waiting for resource configuration
-salloc: Nodes c84-5 are ready for job
+salloc: Nodes gpu-12-8 are ready for job
 ```
 
 
@@ -136,8 +136,8 @@ You should see a message like this:
 
 ```
 Waiting for client...
-Connection URL: cs://c84-5:5678
-Accepting connection(s): c84-5:5678
+Connection URL: cs://gpu-12-8:5678
+Accepting connection(s): gpu-12-8:5678
 ```
 
 ## Creating a tunnel between your PC and the Server
