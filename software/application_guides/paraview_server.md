@@ -45,22 +45,19 @@ Time: did not run
 
 ```
 Version: 5.10.1-MPI
-Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem
-=20G --partition=accel --gpus=1 --account=nn9999k`
+Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --partition=accel --gpus=1 --account=nn9999k`
 PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
 Message: "Display is not accessible on the server side. Remote rendering will be disabled."
 Time: 1m46s
 
 Version: 5.10.1-osmesa
-Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem
-=20G --partition=accel --gpus=1 --account=nn9999k`
+Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --partition=accel --gpus=1 --account=nn9999k`
 PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
 Message: "None"
 Time: 48s
 
 Version: 5.10.1-egl
-Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem
-=20G --partition=accel --gpus=1 --account=nn9999k`
+Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --partition=accel --gpus=1 --account=nn9999k`
 PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
 Message: "None"
 Time: 47s
@@ -68,22 +65,19 @@ Time: 47s
 
 ```
 Version: 5.10.1-MPI
-Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem
-=20G --partition=a100 --gpus=1 --account=nn9999k`
+Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --partition=a100 --gpus=1 --account=nn9999k`
 PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
 Message: "Display is not accessible on the server side. Remote rendering will be disabled."
 Time: 1m11s
 
 Version: 5.10.1-osmesa
-Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem
-=20G --partition=a100 --gpus=1 --account=nn9999k`
+Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --partition=a100 --gpus=1 --account=nn9999k`
 PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
 Message: "None"
 Time: 20s
 
 Version: 5.10.1-egl
-Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem
-=20G --partition=a100 --gpus=1 --account=nn9999k`
+Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --partition=a100 --gpus=1 --account=nn9999k`
 PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
 Message: "None"
 Time: 19s
@@ -122,6 +116,28 @@ salloc: Waiting for resource configuration
 salloc: Nodes gpu-12-8 are ready for job
 ```
 
+## Loading "libOpenGL.so.0" with A100 "egl" package
+
+Due to a different architecture, our A100 GPU runs paired with an AMD CPU. You can check more details about the hardware [in this page](https://documentation.sigma2.no/hpc_machines/saga.html)
+
+If you want to run the "egl" package, you will have to:
+
+- Switch environments running the following commands:
+```
+module purge
+module --force swap StdEnv Zen2Env
+```
+
+- Manually [install](https://documentation.sigma2.no/software/userinstallsw/easybuild.html) `libglvnd` available in [EasyBuild](https://docs.easybuild.io/version-specific/supported-software/#libglvnd)
+
+- Load the module with the following commands (please, adapt the paths and the project number):
+```
+module use /cluster/projects/nnXXXXk/EasyBuild
+module avail | grep -i libglvnd
+module load modules/all/libglvnd/1.4.0-GCCcore-11.3.0
+```
+
+**NOTE:** On the simulation we tested, the difference between "osmesa" and "egl" packages was neglegible as well as increasing the number of allocated GPUs (only used by "egl"). Do your own tests to find the optimal resources and ParaView version for your case.
 
 ## Running ParaView Server
 
