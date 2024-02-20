@@ -137,7 +137,7 @@ module avail | grep -i libglvnd
 module load modules/all/libglvnd/1.4.0-GCCcore-11.3.0
 ```
 
-**NOTE:** On the simulation we tested, the difference between "osmesa" and "egl" packages was neglegible as well as increasing the number of allocated GPUs (only used by "egl"). Do your own tests to find the optimal resources and ParaView version for your case.
+**NOTE:** On the simulation we tested, the difference between "osmesa" and "egl" packages was negligible as well as increasing the number of allocated GPUs (only used by "egl"). Do your own tests to find the optimal resources and ParaView version for your case.
 
 ## Running ParaView Server
 
