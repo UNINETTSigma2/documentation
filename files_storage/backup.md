@@ -7,7 +7,7 @@
 
 **Betzy, Fram and Saga**: Home folder is backed up daily to NIRD storage, and can be accessed via following mount point on corresponding clusters login nodes:
 - `/cluster/backup/home/$username`
-Please, note that only modified and new files are copied. You might see an earlier date on your files if you have not modified them.
+Please, note that we keep a copy of all files, but daily backup only copies new and modified files. If the file has not been modified, the timestamp will remain the same as on the file inside your home or project folders.
 
 ## Backup of project folders on compute clusters 
 
@@ -25,7 +25,12 @@ see [User work area](user-work-area) for details.
 
 ## Snapshots
 
-In addition to the daily backup, we also have snapshots of all project files copied fully:
+In addition to the daily backup, we also have snapshots of all home and project files, copied fully:
+
+**Location**: `/cluster/backup/home/.snapshots/`
+- Daily snapshots for the last 7 days
+- Weekly snapshots for the last 6 weeks
+
 **Location**: `/cluster/backup/hpc/.snapshots/`
 - Daily snapshots for the last 7 days
 - Weekly snapshots for the last 6 weeks
