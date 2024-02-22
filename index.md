@@ -6,6 +6,12 @@
 
 # Norwegian Research Infrastructure Services
 
+The Norwegian research infrastructure services (NRIS) is a collaboration
+between Sigma2 and the universities of Bergen (UiB), Oslo (UiO), Tromsø (UiT
+The Arctic University of Norway) and NTNU, to provide national supercomputing
+and data storage services. These services are operated by NRIS and coordinated
+and managed by Sigma2.
+
 NRIS provides valuable resources for the research communities: state of the art
 {ref}`compute <hardware-overview>` and {ref}`storage facilities <nird>`, backed
 by {ref}`support <support-line>` and a guarantee that your data always stays in
