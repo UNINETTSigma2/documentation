@@ -393,7 +393,7 @@ After following the steps above, try to log in again and accept the new fingerpr
 - <https://www.mn.uio.no/geo/english/services/it/help/using-linux/ssh-tips-and-tricks.html> - long-form guide
 - <https://blog.0xbadc0de.be/archives/300> - long-form guide
 - <https://www.phcomp.co.uk/Tutorials/Unix-And-Linux/ssh-passwordless-login.html>
-- <https://en.wikibooks.org/wiki/OpenSSH/>
+- <https://en.wikipedia.org/wiki/OpenSSH>
 - <https://linuxize.com/post/ssh-command-in-linux/#how-to-use-the-ssh-command>
 - <https://linuxize.com/post/how-to-setup-passwordless-ssh-login/>
 - <https://hpc-uit.readthedocs.io/en/latest/account/login.html>

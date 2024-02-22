@@ -7,7 +7,7 @@ The NRIS software team is currently using the
 system for installing system-wide software and scientific applications on all
 Norwegian HPC systems. It is, actually, quite easy (hence the name) and
 straightforward for users to install with the same tool (provided that an
-*[easybuild easyconfigs](https://easybuild.readthedocs.io/en/latest/Writing_easyconfig_files.html#what-is-an-easyconfig-file)*
+[easyconfig file](https://docs.easybuild.io/writing-easyconfig-files/)
 already exists for the particular package you are interested in).
 
 With EasyBuild you might encounter a few different scenarios:

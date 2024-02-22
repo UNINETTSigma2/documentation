@@ -58,8 +58,8 @@ overview](https://www.lumi-supercomputer.eu/content/uploads/2020/11/lumiSlide-10
 ## LUMI-G
 LUMI-G is the main partition of LUMI and is based on AMD accelerators. The main
 interactions with the accelerators is through
-[`ROCm`](https://rocmdocs.amd.com/en/latest/), `OpenMP` and
-[`HIP`](https://rocmdocs.amd.com/en/latest/Programming_Guides/Programming-Guides.html).
+[`ROCm`](https://rocm.docs.amd.com/), `OpenMP` and
+[`HIP`](https://rocm.docs.amd.com/projects/HIP/).
 CUDA is *not* supported on LUMI and existing users should consider porting their
 application to `HIP` through the tools offered. Starting early with the porting
 effort is very important and will be supported by the EuroHPC CC team.
