@@ -108,16 +108,17 @@
     })
 </script>
 
-<!-- Send url out back parent when displayed in iframe -->
+<!-- Send url to parent when displayed as iframe -->
 <script>
+    const valid_orign_url = "https://www.sigma2.no"
     window.addEventListener('message', function(event) {
-        if (event.origin !== 'http://localhost:7000') return;
-        
-        if (event.data === 'send me your url') {
-            // Send the URL back to the parent window.
-            const path = window.location.pathname;   // Returns path only (/path/example.html)
-            const search = window.location.search;   // Returns the query string (including the initial ? symbol)
-            const hash = window.location.hash;       // Returns the hash (including the initial # symbol)
+        if (event.data === 'getDocumentationIframeUrl' && event.origin === valid_orign_url) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
             const newUrl = path + search + hash;
             event.source.postMessage(newUrl, event.origin)
         }
