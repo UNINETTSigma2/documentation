@@ -13,3 +13,19 @@
 .wy-grid-for-nav, .wy-nav-side {
     margin-top: 50px;
 }
+
+/*
+ * Carlito is licensed under the SIL Open Font License, Version 1.1
+ * see https://github.com/googlefonts/carlito/blob/main/OFL.txt
+ */
+@font-face {
+    font-family: 'Carlito';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(fonts/Carlito-Regular.ttf) format('truetype');
+}
+
+p, h1, h2, h3, h4, h5, h6, a, ul, ol {
+    font-family: 'Carlito', sans-serif;
+}
