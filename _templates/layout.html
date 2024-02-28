@@ -112,7 +112,7 @@
 <script>
     const valid_orign_url = "https://www.sigma2.no"
     window.addEventListener('message', function(event) {
-        if (event.data === 'getDocumentationIframeUrl' && event.origin === valid_orign_url) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
             // path only (/path/example.html)
             const path = window.location.pathname
             // query string (including the initial ? symbol)
