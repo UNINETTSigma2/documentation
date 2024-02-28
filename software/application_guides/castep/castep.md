@@ -16,13 +16,6 @@ More information on the [CASTEP
 website](http://www.castep.org).
 
 
-### Vendor documentation and tutuorials:
-
-* [CASTEP Documentation](http://www.castep.org/CASTEP/Documentation)
-* [CASTEP Online Tutorials](http://www.castep.org/CASTEP/OnlineTutorials)
-* [CASTEP Benchmarks](http://www.castep.org/CASTEP/Benchmarks)
-
-
 (access)=
 ### License and access
 

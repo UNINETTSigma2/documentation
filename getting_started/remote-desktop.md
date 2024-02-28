@@ -75,4 +75,4 @@ In the past we have experienced that a manual kill of the `x2goagent` processes 
 
 > Acknowledgement: 
 > 
-> *Much of the content of and inspiration for this page is borrowed from the X2Go documentation provided by NTNU for the Hunt Cloud service: <https://docs.hdc.ntnu.no/working-in-your-lab/technical-tools/x2go/>*
+> *Much of the content of and inspiration for this page is borrowed from the X2Go documentation provided by NTNU for the Hunt Cloud service: <https://docs.hdc.ntnu.no/do-science/tools/technical/x2go/>*
