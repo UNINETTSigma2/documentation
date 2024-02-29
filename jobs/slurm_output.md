@@ -110,7 +110,7 @@ The other line we highlighted above is the memory footprint of our application.
 The most pertinent information here is the maximum memory used (`MaxRSS`) (note
 that this is the maximum of memory used by any task and _not_ the total memory
 footprint of the application as a whole) and the average memory used
-(`AveRSS`). Above, we can see that our application used a maximum of `150344
+(`AveRSS`), which is the average Resident Set Size over all tasks in the given job step (for example, if you run `srun` several times in a job, each will get their own AveRSS and the job script itself is counted as the .batch job step). Above, we can see that our application used a maximum of `150344
 KiB` (or around `147 MiB`). This information is very important as that can be
 used to optimize your Slurm script to request less memory (and thus be
 scheduled quicker).
