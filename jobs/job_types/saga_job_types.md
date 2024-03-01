@@ -73,7 +73,7 @@ This is the default job type.  Most jobs are *normal* jobs.
 - __Job Scripts__: {ref}`job_scripts_saga_bigmem`
 
 *Bigmem* jobs are meant for jobs that need a lot of memory (RAM),
-typically more than 8 GiB per cpu.  (The _normal_ nodes on Fram have
+typically more than 8 GiB per cpu.  (The _normal_ nodes on Saga have
 slightly more than 4.5 GiB per cpu.)
 
 Can be combined with `--qos=devel` to get higher priority but maximum wall time (2h) 
