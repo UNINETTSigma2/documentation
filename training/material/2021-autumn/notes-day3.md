@@ -265,7 +265,7 @@ Users that are able to log in and access the toolkit, but not access services mu
                 - ok
 
 - So if I want to use the data stored on Nird on Fram on the compute nodes I have to `rsync`? But if I'm in my working directory then I can use the data from Nird? 
-    - More info [on file transfer](https://documentation.sigma2.no/files_storage/file_transfer.html)
+    - More info on file transfer: {ref}`file-transfer`
 
 - is the NIRD toolkit quota to be considered part of a project quota, or the request to enable the toolkit is essentially an application to extend the project quota?
     - Storage quota in the Toolkit is the same as your NIRD project quota, however compute quota is separate from this and is connected to a namespace on the service platform. (See the link below to getting started).
