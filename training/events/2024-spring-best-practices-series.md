@@ -71,7 +71,7 @@ All times are Local time in Oslo, Norway.
 
 **Day3 - Thursday 23rd May 2024**
 
-- 10:00 - 11:00 - [File transfer](file_transfer.md)
+- 10:00 - 11:00 - File transfer: {ref}`file-transfer`
 (Dhanya)
 - 11:00 - 11:15 - Break
 - 11:15 - 12:00 - [Data Storage(NIRD)](https://documentation.sigma2.no/files_storage/nird_lmd.html) (Dhanya)
