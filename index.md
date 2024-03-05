@@ -153,7 +153,7 @@ getting_started/getting_started.md
 getting_started/opslog.md
 getting_started/applying_account.md
 getting_started/applying_resources.md
-files_storage/file_transfer.md
+getting_started/file_transfer.md
 getting_started/editing_files.md
 code_development/guides/vs_code/connect_to_server.md
 getting_started/ssh.md
