@@ -63,7 +63,7 @@ For accounting purposes, the group ownerships are regularly controlled, and
 in case needed, reset.
 
 If you need to share with the outside world (outside of your HPC systems),
-please refer to our [File transfer documentation](file_transfer.md).
+please refer to our File transfer documentation: {ref}`file-transfer`
 
 ## Decommissioning
 
