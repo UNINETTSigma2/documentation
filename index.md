@@ -153,6 +153,7 @@ getting_started/getting_started.md
 getting_started/opslog.md
 getting_started/applying_account.md
 getting_started/applying_resources.md
+files_storage/file_transfer.md
 getting_started/editing_files.md
 code_development/guides/vs_code/connect_to_server.md
 getting_started/ssh.md
@@ -169,7 +170,6 @@ files_storage/nird_lmd.md
 files_storage/clusters.md
 files_storage/quota.md
 files_storage/backup.md
-files_storage/file_transfer.md
 files_storage/sharing_files.md
 files_storage/performance.md
 ```
