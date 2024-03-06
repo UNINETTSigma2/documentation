@@ -31,12 +31,18 @@ package managers.
    :maxdepth: 1
 
    userinstallsw/easybuild.md
-   userinstallsw/conda.md
    userinstallsw/python.md
    userinstallsw/R.md
    userinstallsw/perl.md
    userinstallsw/ORCA.md
    userinstallsw/mathematica.md
+   userinstallsw/conda.md
+   {ref}`Containers <dev-guides_containers>`
+
+```{warning}
+We discourage use of Conda
+If you encounter any issues with Conda installation, a very limited best-effort support can be provided
+```
 
 Note that the software install team **never** do installations in
 ``$HOME`` for users, and preferably not in ``/cluster/projects``.
