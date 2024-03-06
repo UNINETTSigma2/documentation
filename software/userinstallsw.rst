@@ -40,8 +40,7 @@ package managers.
    Containers <https://documentation.sigma2.no/code_development/guides/containers.html>
 
 ```{warning}
-We discourage use of Conda
-If you encounter any issues with Conda installation, a very limited best-effort support can be provided
+Please note that a very limited  best-effort support can be provided for Conda installations.
 ```
 
 Note that the software install team **never** do installations in
