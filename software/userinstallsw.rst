@@ -37,7 +37,7 @@ package managers.
    userinstallsw/ORCA.md
    userinstallsw/mathematica.md
    userinstallsw/conda.md
-   {ref}`Containers <dev-guides_containers>`
+   Containers <https://documentation.sigma2.no/code_development/guides/containers.html>
 
 ```{warning}
 We discourage use of Conda
