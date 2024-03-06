@@ -97,13 +97,13 @@ then the full install.
 
 **Step 1:** To fetch the source, run the following command:
 
-    $ eb rjags-4-6-intel-2017b-R-3.4.3.eb --fetch
+    $ eb rjags-4-12-foss-2021b-R-4.1.2.eb --fetch
 
 This will download a tarball into your local EB directory
 ``.local/easybuild/sources``:
 
     $ ls $HOME/.local/easybuild/sources/r/rjags
-    rjags_4-6.tar.gz
+    rjags_4-12.tar.gz
 
 **Step 2:** It may be a good idea to perform a test run to get an overview of
 what will be installed with the command you are planning to use. This you get
@@ -114,7 +114,10 @@ by the command:
 This will check that all the necessary dependencies are available in the current
 EB repository. If not, you will get an error message. It will also print the
 full list of dependencies, where everything marked with ``[x]`` means that the
-dependency is already satisfied, and won't be re-installed.
+dependency is already satisfied, and won't be re-installed. If you only want to see
+which extra dependencies are going to be installed:
+
+    $ eb rjags-4-12-foss-2021b-R-4.1.2.eb --missing-modules
 
 **Step 3:** If the test build was successful, you can perform the build with:
 
@@ -170,6 +173,7 @@ You can now load and use the package just like any other module:
 **For more information about the module system, please see:**
 <https://lmod.readthedocs.io/en/latest>
 
+If you are planning to install more than a few modules you will quickly run out of disk quota in the home folder. In general we recommend that you instead install in a project folder.
 
 ## Installing software in a project folder
 
@@ -192,6 +196,12 @@ Now the ``rjags`` installation is available to everyone associated with the
 
     $ module use /cluster/projects/nnXXXk/easybuild/modules/all
 
+The prefix option (in fact any command line option) can also be set vi an
+environment variable like this:
+
+    $ export EASYBUILD_PREFIX=/cluster/project/nnXXXXk/easybuild
+
+and then you need not repeat the ``--prefix`` option on the command line.
 
 ## Writing your own easyconfigs
 
@@ -283,7 +293,7 @@ Our new easyconfigs should now look like this:
   :language: bash
 ```
 
-**rjags-4-6-foss-2022a-R-3.5.1.eb:**
+**rjags-4-12-foss-2022a-R-4.2.1.eb:**
 ```{eval-rst}
 .. literalinclude:: files/rjags-4-12-foss-2022a-R-4.2.1.eb
   :language: bash
@@ -304,6 +314,11 @@ Again, please don't use too many ``--parallel`` threads on login!
         rjags/4-12-foss-2021b-R-4.1.2    rjags/4-12-foss-2022a-R-4.2.1
 
     $ module load rjags/4-12-foss-2022a-R-4.2.1
+
+```{note}
+In this particular case we could also have used the ``--try-*`` options to update the toolchain 
+version without having to edit any easyconfigs by hand: <https://docs.easybuild.io/using-easybuild/#tweaking_easyconfigs_using_try> 
+```
 
 **For more information on how to write easyconfigs:**
 <https://easybuild.readthedocs.io/en/latest/Writing_easyconfig_files.html>
