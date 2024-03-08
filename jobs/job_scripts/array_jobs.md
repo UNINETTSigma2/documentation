@@ -50,6 +50,9 @@ Spaces, decimal numbers or negative numbers are not allowed in the `--array`
 specification.
 ```
 
+The queue system allows job arrays with at most 1,000 array tasks, but
+the maximal array task ID is 100,000 (thus `--array=900-1100` is allowed).
+
 ### Array job resources
 
 The instances of an array job are independent, they have their own `$SCRATCH`
