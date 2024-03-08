@@ -37,7 +37,7 @@ package managers.
    userinstallsw/perl.md
    userinstallsw/ORCA.md
    userinstallsw/mathematica.md
-   code_development/guides/containers.md
+   ../code_development/guides/containers.md
 
 ```{warning}
 Please note that a very limited best-effort support can be provided for Conda installations.
