@@ -31,16 +31,16 @@ package managers.
    :maxdepth: 1
 
    userinstallsw/easybuild.md
+   userinstallsw/conda.md
    userinstallsw/python.md
    userinstallsw/R.md
    userinstallsw/perl.md
    userinstallsw/ORCA.md
    userinstallsw/mathematica.md
-   userinstallsw/conda.md
    Containers <https://documentation.sigma2.no/code_development/guides/containers.html>
 
 ```{warning}
-Please note that a very limited  best-effort support can be provided for Conda installations.
+Please note that a very limited best-effort support can be provided for Conda installations.
 ```
 
 Note that the software install team **never** do installations in
