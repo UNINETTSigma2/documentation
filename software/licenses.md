@@ -95,3 +95,15 @@ terms of license access**. For all software with access limitations on group-
 and research-project level the credentials may have to be provided to NRIS
 before being granted access to software installed on NRIS controlled machines.
 
+## IPv4 and IPv6 addresses of Sigma2 HPC clusters
+
+For a software to be able to communicate with its license server, they must be able to receive request(s) from one or more ip ranges below, depending on which machine you want to use a license.
+
+| **Cluster name** | **IPv4 addresses** |   **IPv6 addresses**  |
+| ---------------- | ------------------ | --------------------- |
+|       SAGA       |  158.36.42.32/28   | 2001:700:4a01:10::/64 |
+|                  |  158.36.42.48/28   | 2001:700:4a01:21::/64 |
+|       FRAM       |  158.39.114.64/27  | 2001:700:4a00:10::/64 |
+|                  |  158.36.141.144/28 | 2001:700:4a01:25::/64 |
+|       BETZY      |  158.36.154.0/28   | 2001:700:4a01:23::/64 |
+|                  |  158.36.154.16/28  | 2001:700:4a01:24::/64 |
