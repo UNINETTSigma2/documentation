@@ -39,9 +39,8 @@ package managers.
    userinstallsw/mathematica.md
    ../code_development/guides/containers.md
 
-```{warning}
-Please note that a very limited best-effort support can be provided for Conda installations.
-```
+.. warning::
+    Please note that a very limited best-effort support can be provided for Conda installations.
 
 Note that the software install team **never** do installations in
 ``$HOME`` for users, and preferably not in ``/cluster/projects``.
