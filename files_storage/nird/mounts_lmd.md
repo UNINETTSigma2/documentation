@@ -1,24 +1,25 @@
 # NIRD mounts on clusters
 
- The NIRD Storage project areas,tiered storage(TS) 
-and datalake (DL), are mounted  on the login nodes of Betzy, Fram, or Saga.
-One can directly access the NIRD project area from the login nodes of Betzy, Fram, or Saga.
+The NIRD project storage areas, namely NIRD Data Peak (TS) and NIRD Data Lake (DL) are mounted on the login nodes of Betzy, Fram, and Saga.
+One can directly access the NIRD project area from the login nodes of the aforementioned compute clusters.
 
-The path for tiered storage(TS) project is
+The path to Data Peak (TS) project areas is
 
-`/nird/projects/NSxxxxK`
+`/nird/datapeak/NSxxxxK`
 
-and the path for datalake (DL) project is 
+while the path to Data Lake (DL) project is 
 
 `/nird/datalake/NSxxxxK`
 
 where ` NSxxxxK` is the ID of the project.
 
 
+```{note}
+Notice that for backward compatibility reasons projects on Data Peak are available also via `/nird/projects/NSxxxxK`.
+```
 
 ```{warning}
 
-To avoid performance impact and operational issues, NIRD $HOME and project
-areas are _not_ mounted on any of the compute nodes of the HPC clusters.
+To maintain optimal performance and prevent operational disruptions, the NIRD $HOME and Data Peak/Data Lake project areas are deliberately not mounted on any of the compute nodes within the HPC clusters.
 ```
 
