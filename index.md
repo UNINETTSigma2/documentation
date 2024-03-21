@@ -182,6 +182,7 @@ files_storage/performance.md
 hpc_machines/migration2metacenter.md
 computing/responsible-use.md
 jobs/overview.rst
+jobs/internet-login-compute-nodes.md
 computing/tuning-applications.md
 ```
 
