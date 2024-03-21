@@ -68,6 +68,13 @@ hundreds of users and we do not remember usernames. For the staff `~` will
 point to a different place (their home folder) and we will have to look up your
 username and it's an extra step that we would prefer to avoid.
 
+## Upload files to an easy access directory
+
+If you need to provide any files within your ticket, you either can upload them as an attachment inside the email or, in case they are too big to be attached, a new directory under `/cluster/work/support/` with your username can be created. 
+Then, copy all files to this new directory and please, remember to remove them when they are not relevant anymore (e.g the analysis is complete and the ticket is solved). 
+
+Creating a directory under `/cluster/work/support/` makes our job easier as this directory is easier to navigate than your own personal / project directory and will contain only relevant files to the issue being tackled.
+
 
 ## Describe the original problem and intent (The XY problem)
 
