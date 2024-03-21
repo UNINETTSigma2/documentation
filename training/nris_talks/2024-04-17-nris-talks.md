@@ -1,4 +1,4 @@
-# NRIS Talks : Webinar on Exascal Computing
+# NRIS Talks : Webinar on Exascale Computing
 
 NRIS(Norwegian Research Infrastructure Services) is organising  webinars as part of it's outreach program **NRIS Talks**. Join us for an enlightning webinar on **"Exascale Computing"**. This webinar is designed to provide a comprehensive overview of exascale computing, its potential, and its implications for the future of technology.
 
