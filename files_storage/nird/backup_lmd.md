@@ -4,13 +4,13 @@
 
 # NIRD Backup
 
-NIRD provides backup as a service. Projects using the NIRD Data Peak (TS) service can opt-in to use the **NIRD Backup** service to ensure a secondary copy of the dataset(s) that require a higher level of security. Data owners/data custodians can make decisions regarding the level of security needed for each dataset in a granular manner. This will persist during the tenure of the project. The backup service can be requested by flagging this in the application form for storage resources during regular calls.
+NIRD provides backup as a service. Projects using the NIRD Data Peak (TS) service can opt in to use the **NIRD Backup** service to ensure a secondary copy of the dataset(s) that require a higher level of security. Data owners/data custodians can make decisions regarding the level of security needed for each dataset in a granular manner. This will persist during the tenure of the project. The backup service can be requested by flagging this in the application form for storage resources during regular calls.
 
 The backup is from TS to DL.
 
 Should there be requirement for backup for certain dataset(s), those **must** use the Data Peak service, i.e., be placed on the TS resource.
 
-For example, a project may be using both Data Peak and Data Lake services, and sunch, has an allocation on both TS and DL resources. In this case the project can decide how to use the dedicated storage resources. However, should one require backup for a particular dataset, then: 
+For example, a project may be using both Data Peak and Data Lake services, and such, has an allocation on both TS and DL resources. In this case the project can decide how to use the dedicated storage resources. However, should one require backup for a particular dataset, then: 
  
  - that shall be flagged during the application process,
  - and that dataset shall be placed on the TS resource.
@@ -24,7 +24,7 @@ Notice that datasets using the NIRD Data Lake (DL) service *cannot* opt in for t
 - The Data Peak (TS) path on the system is `/nird/datapeak`. For backward compatibility, a parallel mount point to `/nird/projects` is maintained.
 - The Data Lake (DL) path on the system is `/nird/datalake`
 
-We advice projects to assess which of the dataset needs a higher level of 
+We advise projects to assess which of the dataset needs a higher level of 
 security and should be backed up.
 
 In general, one can consider which data can be easily reproduced, and which 
@@ -59,14 +59,14 @@ ignored.
 
 To exclude the `/nird/projects/NS1234K/datasets/experiment/tmp_file.nc` file,
 add `/datasets/experiment/tmp_file.nc` into the `.replication_exclude` control
-file as a line on it's own.
+file as a line on its own.
 
 
 ### Excluding a directory
 
 To exclude the `/nird/projects/NS1234K/datasets/non_important/` directory,
 add `/datasets/non_important` into the `.replication_exclude` control file
-as a line on it's own.
+as a line on its own.
 
 Mentions of `/datasets` on its own, would exclude everything in that directory.
 
