@@ -66,39 +66,39 @@ The application page is available [here](https://www.metacenter.no/user/applicat
 **Day0 - UNIX for HPC (optional 09 April, Tuesday)**
 
 - 09:00-09:10 - Welcome, Practical information & icebreaker question
-- 09:10-09:40 - [The terminal and remote login](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/intro.html) 
-- 09:40-09:55 - [Moving around and looking at things](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html)  
+- 09:10-09:40 - [The terminal and remote login](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/intro.html) (Bjørn & Maiken) 
+- 09:40-09:55 - [Moving around and looking at things](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html) (Maiken & Bjørn)  
 - 09:55-10:05 - Break
 - 10:05-10:20 - [Moving around and looking at things (exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html#exercise)
-- 10:20-10:35 - [Finding things](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html) 
+- 10:20-10:35 - [Finding things](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html) (Bjørn & Sabry) 
 - 10:35-10:50 - [Finding things (exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html)
 - 10:50-11:00 - Break
-- 11:00-11:30 - [Create/modify files](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/writing-files.html) 
-- 11:30-12:00 - [Composing commands with pipes](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html) 
-- 12:00-12:30 - [Scripting](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html) 
+- 11:00-11:30 - [Create/modify files](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/writing-files.html) (Maiken & Dhanya)
+- 11:30-12:00 - [Composing commands with pipes](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html) (Radovan & Maiken)
+- 12:00-12:30 - [Scripting](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html) (Maiken & Sabry)
 
 **Day1 - HPC Intro (10 April  Wednesday)**
 
 - 09:00-09:10 - Welcome, Practical information &icebreaker question
-- 09:10-09:30 - [Why use a Cluster?](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html) 
-- 09:30-10:00 - [Working on a remote HPC system](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/12-cluster.html) 
+- 09:10-09:30 - [Why use a Cluster?](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html) (Sabry & Morten)
+- 09:30-10:00 - [Working on a remote HPC system](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/12-cluster.html) (Morten & Sabry)
 - 10:00-10:15 - Break
-- 10:15-11:00 - [Scheduling jobs](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html) 
+- 10:15-11:00 - [Scheduling jobs](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html) (Sabry & Buket)
 - 11:00-11:30 - [Scheduling job (exercise)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html)
 - 11:30-11:45 - Break
-- 11:45-12:15 - [Transferring files](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html) 
+- 11:45-12:15 - [Transferring files](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html) (Dhanya & Morten)
 - 12:15-12:30 - Q&A & Discussion
 
 **Day2 - HPC Intro (11 April Thursday)**
 
 - 09:00-09:10 - Recap & ice breaker question
-- 09:10-09:40 - [Accessing Software](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html)  
+- 09:10-09:40 - [Accessing Software](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html) (Bjørn & Sabry)
 - 09:40-10:00 - [Accessing Software (exercise)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html)
 - 10:00-10:15 - Break
-- 10:15-11:00 - [Compute and storage quota](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/compute-storage-quota.html) 
-- 11:00-11:30 - [Using shared resources responsibly](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.html)
+- 10:15-11:00 - [Compute and storage quota](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/compute-storage-quota.html) (Radovan & Dhanya) 
+- 11:00-11:30 - [Using shared resources responsibly](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.html) (Espen)
 - 11:30-11:45 - Break
-- 11:45-12:15 - [How to ask for help](https://doi.org/10.5281/zenodo.8392762) 
+- 11:45-12:15 - [How to ask for help](https://doi.org/10.5281/zenodo.8392762) (Radovan & Rafael)
 
 ## Course material
 
@@ -120,6 +120,8 @@ the zoom host right away or write to [the training team](mailto:training@nris.no
 - Bjørn Lindi
 - Morten Ledum
 - Burcin Buket
+- Espen Tangen
+- Rafael Santos 
 
 ## Coordinator
 

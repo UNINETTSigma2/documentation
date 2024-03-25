@@ -19,7 +19,7 @@ events/2024-spring-best-practices-series.md
 nris_talks/2024-04-17-nris-talks.md
 
 ```
-- Tuesday Tools & Techniques for HPC: April 16 and 23, May 7 and 14 (4 sessions in total)
+- [Tuesday Tools & Techniques for HPC: April 16 and 23, May 7 and 14](https://scicomp.aalto.fi/training/scip/ttt4hpc-2024/index.html)
 
 
 ## Past events
