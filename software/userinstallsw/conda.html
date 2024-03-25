@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installing software with Conda (Anaconda &amp; Miniconda) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Installing Python packages" href="python.html" />
+    <link rel="prev" title="Installing software with EasyBuild" href="easybuild.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installed_software.html">Installed software</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../userinstallsw.html">Installing software as user</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="easybuild.html">Installing software with EasyBuild</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installing software with Conda (Anaconda &amp; Miniconda)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#typical-pitfalls-to-avoid">Typical pitfalls to avoid</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#never-use-conda-init">Never use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#do-not-modify-your-bashrc-with-any-conda-commands">Do not modify your .bashrc with any Conda commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#do-not-install-into-your-home-directory-otherwise-you-fill-your-disk-quota">Do not install into your home directory otherwise you fill your disk quota</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#losing-track-of-what-packages-you-installed">Losing track of what packages you installed</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-packages-environment-from-an-environment-yml-file">Installing packages/environment from an <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#but-i-don-t-have-an-environment-yml-file">But I don’t have an environment.yml file!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#if-i-change-the-environment-yml-file-do-i-need-to-remove-everything-and-restart-from-scratch">If I change the environment.yml file, do I need to remove everything and restart from scratch?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#should-i-have-one-or-many-environment-yml-files">Should I have one or many environment.yml files?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#activating-the-environment-interactively">Activating the environment interactively</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#activating-the-environment-in-your-job-script">Activating the environment in your job script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exporting-your-environment-to-an-environment-yml-file">Exporting your environment to an environment.yml file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#warning-a-newer-version-of-conda-exists">“WARNING: A newer version of conda exists”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#container-solution">Container solution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Installing Python packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="R.html">Installing R libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perl.html">Installing Perl modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ORCA.html">ORCA (quantum chemistry program)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathematica.html">How to Run Mathematica on Saga and Fram Using Singularity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../code_development/guides/containers.html">Containers on NRIS HPC systems</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../userinstallsw.html">Installing software as user</a></li>
+      <li class="breadcrumb-item active">Installing software with Conda (Anaconda &amp; Miniconda)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installing-software-with-conda-anaconda-miniconda">
+<span id="installing-with-conda"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Installing software with Conda (Anaconda &amp; Miniconda)</a><a class="headerlink" href="#installing-software-with-conda-anaconda-miniconda" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#installing-software-with-conda-anaconda-miniconda" id="id1">Installing software with Conda (Anaconda &amp; Miniconda)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#typical-pitfalls-to-avoid" id="id2">Typical pitfalls to avoid</a></p>
+<ul>
+<li><p><a class="reference internal" href="#never-use-conda-init" id="id3">Never use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span></code></a></p></li>
+<li><p><a class="reference internal" href="#do-not-modify-your-bashrc-with-any-conda-commands" id="id4">Do not modify your .bashrc with any Conda commands</a></p></li>
+<li><p><a class="reference internal" href="#do-not-install-into-your-home-directory-otherwise-you-fill-your-disk-quota" id="id5">Do not install into your home directory otherwise you fill your disk quota</a></p></li>
+<li><p><a class="reference internal" href="#losing-track-of-what-packages-you-installed" id="id6">Losing track of what packages you installed</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#installing-packages-environment-from-an-environment-yml-file" id="id7">Installing packages/environment from an <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file</a></p></li>
+<li><p><a class="reference internal" href="#but-i-don-t-have-an-environment-yml-file" id="id8">But I don’t have an environment.yml file!</a></p></li>
+<li><p><a class="reference internal" href="#if-i-change-the-environment-yml-file-do-i-need-to-remove-everything-and-restart-from-scratch" id="id9">If I change the environment.yml file, do I need to remove everything and restart from scratch?</a></p></li>
+<li><p><a class="reference internal" href="#should-i-have-one-or-many-environment-yml-files" id="id10">Should I have one or many environment.yml files?</a></p></li>
+<li><p><a class="reference internal" href="#activating-the-environment-interactively" id="id11">Activating the environment interactively</a></p></li>
+<li><p><a class="reference internal" href="#activating-the-environment-in-your-job-script" id="id12">Activating the environment in your job script</a></p></li>
+<li><p><a class="reference internal" href="#exporting-your-environment-to-an-environment-yml-file" id="id13">Exporting your environment to an environment.yml file</a></p></li>
+<li><p><a class="reference internal" href="#warning-a-newer-version-of-conda-exists" id="id14">“WARNING: A newer version of conda exists”</a></p></li>
+<li><p><a class="reference internal" href="#container-solution" id="id15">Container solution</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p><a class="reference external" href="https://docs.conda.io/en/latest/">Conda</a> is a <strong>tool to install packages</strong>
+(Python/R/C/C++/…) and their dependencies.  You can do this yourself
+without administrator permissions on the cluster.</p>
+<p>It is also a tool that allows to <strong>create and keep track of different
+environments</strong> for different projects.
+Creating multiple environments allows you to have installations of the same
+software in different versions or incompatible software collections at once.
+You can then easily share a list of the installed packages with collaborators or
+colleagues, so they can set up the same environment in a matter of minutes.</p>
+<p>Conda comes in different shapes and forms but the idea and functionality is
+more or less the same:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.anaconda.com/">Anaconda</a>: Full-fledged distribution that
+includes a large number of pre-installed packages. Use this if you don’t want
+to install any packages and just need to test something and are sure that the
+package you need is part of Anaconda.</p></li>
+<li><p><a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>: Minimal
+distribution that comes with only the essential packages required to set up
+Conda. Use this if you want to install dependencies and keep track of your
+environment.</p></li>
+<li><p><a class="reference external" href="https://mamba.readthedocs.io/">Mamba</a>: A re-implementation of Conda for
+fast dependency resolution.</p></li>
+<li><p><a class="reference external" href="https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html">Micromamba</a>:
+Ultra-lightweight Mamba which supports the most important <code class="docutils literal notranslate"><span class="pre">conda</span></code> commands.</p></li>
+</ul>
+<p>We typically provide modules for <strong>Anaconda</strong> and <strong>Miniconda</strong>. Either of the
+two is fine.</p>
+<section id="typical-pitfalls-to-avoid">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Typical pitfalls to avoid</a><a class="headerlink" href="#typical-pitfalls-to-avoid" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul class="simple">
+<li><p>Never use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span></code>. See below how to initialize conda without modifying <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>.</p></li>
+<li><p>Do not modify your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> with any Conda commands.</p></li>
+<li><p>Do not install packages/environments into your home directory otherwise you
+fill your disk quota (<a class="reference internal" href="../../files_storage/quota.html#storage-quota"><span class="std std-ref">Storage quota</span></a>).</p></li>
+<li><p>Do not lose track of what packages you installed. Use <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> files. These are
+not only good for reproducibility but are also interoperable with other tools
+such as <a class="reference external" href="https://mybinder.org/">Binder</a>.</p></li>
+</ul>
+</div>
+<section id="never-use-conda-init">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Never use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span></code></a><a class="headerlink" href="#never-use-conda-init" title="Link to this heading"></a></h3>
+<p>Never use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span></code> on the cluster because it modifies your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>
+file by adding the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span>
+<span class="c1"># !! Contents within this block are managed by &#39;conda init&#39; !!</span>
+<span class="nv">__conda_setup</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span><span class="s1">&#39;/cluster/software/Anaconda3/2022.10/bin/conda&#39;</span><span class="w"> </span><span class="s1">&#39;shell.bash&#39;</span><span class="w"> </span><span class="s1">&#39;hook&#39;</span><span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/dev/null<span class="k">)</span><span class="s2">&quot;</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$__conda_setup</span><span class="s2">&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;/cluster/software/Anaconda3/2022.10/etc/profile.d/conda.sh&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>.<span class="w"> </span><span class="s2">&quot;/cluster/software/Anaconda3/2022.10/etc/profile.d/conda.sh&quot;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/cluster/software/Anaconda3/2022.10/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="k">fi</span>
+<span class="nb">unset</span><span class="w"> </span>__conda_setup
+<span class="c1"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span>
+</pre></div>
+</div>
+<p>These lines are the reason you see a <code class="docutils literal notranslate"><span class="pre">(base)</span></code> next to your prompt once you log
+into the cluster.  If you see <code class="docutils literal notranslate"><span class="pre">(base)</span></code> next to your prompt after a login, this
+probably comes from a modified <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>.
+We recommend to remove those lines from your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>.</p>
+<p>When you activate an environment without “sourcing” Conda first, Conda itself will complain and suggest “conda init”
+but <strong>do not run “conda init”</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CommandNotFoundError: Your shell has not been properly configured to use &#39;conda activate&#39;.
+To initialize your shell, run
+
+    $ conda init &lt;SHELL_NAME&gt;
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See &#39;conda init --help&#39; for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running &#39;conda init&#39;.
+</pre></div>
+</div>
+<p>We <strong>strongly</strong> advise against running <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span></code>. Read on for the recommended
+way to activate environments which avoids this message and the problems <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span></code> may cause.</p>
+</section>
+<section id="do-not-modify-your-bashrc-with-any-conda-commands">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Do not modify your .bashrc with any Conda commands</a><a class="headerlink" href="#do-not-modify-your-bashrc-with-any-conda-commands" title="Link to this heading"></a></h3>
+<p>The reason for this is that this makes your computations less reproducible for others
+and your future self:</p>
+<ul class="simple">
+<li><p>The staff answering your next support request does not have this in their
+<code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>. They will have a different environment and will have a hard time reproducing your problem. The run
+script you send them might produce something different for them.</p></li>
+<li><p>Your future self will have a different <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> (maybe on a different cluster) and will
+have a hard time re-running that calculation.</p></li>
+<li><p>Sooner or later your calculations might not work anymore if modules change on the cluster
+during a major upgrade.</p></li>
+</ul>
+</section>
+<section id="do-not-install-into-your-home-directory-otherwise-you-fill-your-disk-quota">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Do not install into your home directory otherwise you fill your disk quota</a><a class="headerlink" href="#do-not-install-into-your-home-directory-otherwise-you-fill-your-disk-quota" title="Link to this heading"></a></h3>
+<p><strong>Conda environments can contain hundreds of thousands of files</strong>, which can cause
+you to exceed your number of files quota.  <strong>Place both the environment and the
+package cache outside of your home directory</strong> (see examples on this page).</p>
+<p>If you accidentally install into your home and fill up your quota, first
+inspect with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>dusage
+</pre></div>
+</div>
+<p>See also our documentation on <a class="reference internal" href="../../files_storage/quota.html#storage-quota"><span class="std std-ref">Storage quota</span></a>.</p>
+<p>If this happens, you can try to delete unnecessary and cached files with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda<span class="w"> </span>clean<span class="w"> </span>-a
+</pre></div>
+</div>
+<p>Another solution (but please do this carefully) is to remove everything in
+<code class="docutils literal notranslate"><span class="pre">~/.conda</span></code> except <code class="docutils literal notranslate"><span class="pre">~/.conda/environments.txt</span></code>.</p>
+<p>Normally the only two Conda files that need to be in your home directory are <code class="docutils literal notranslate"><span class="pre">~/.conda/environments.txt</span></code>
+and possibly <code class="docutils literal notranslate"><span class="pre">~/.condarc</span></code>. Everything else should be somewhere else: project folder
+or work area.</p>
+</section>
+<section id="losing-track-of-what-packages-you-installed">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Losing track of what packages you installed</a><a class="headerlink" href="#losing-track-of-what-packages-you-installed" title="Link to this heading"></a></h3>
+<p>If you install packages from the command line using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code>, then you
+probably won’t remember what you installed precisely one year later and this is
+a problem for reproducibility for others and your future self trying to publish
+that article. Always install from an <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file, then you don’t
+need to remember but it is automatically documented.</p>
+</section>
+</section>
+<section id="installing-packages-environment-from-an-environment-yml-file">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Installing packages/environment from an <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file</a><a class="headerlink" href="#installing-packages-environment-from-an-environment-yml-file" title="Link to this heading"></a></h2>
+<p>We recommend to always start from an <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file to create an
+environment for your project and to install packages into it.  Further down we
+also explain how to create such a file if you don’t have one yet.</p>
+<p>Here is an example <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myproject</span>
+<span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">defaults</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.10</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pandas</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scipy</span>
+</pre></div>
+</div>
+<p>The file describes the environment with the name “myproject” (better change
+that to something more descriptive!), which dependencies it needs and from
+which “channels” to install from. If you want, you can specify precise versions
+for each dependencies. If you leave them out, it will try to install the latest
+versions which match other specifications in that file.</p>
+<p>Should one specify versions or not?</p>
+<ul class="simple">
+<li><p>When a project is in progress and evolving, it is often better to leave them out
+and use the latest versions.</p></li>
+<li><p>However, when a project is completing and about to be published or shared with
+collaborators, it may be better to specify versions.</p></li>
+</ul>
+<p>Once you have such a file you have achieved two things:</p>
+<ul class="simple">
+<li><p>You have documented your dependencies (great for reproducibility)</p></li>
+<li><p>You can install from it</p></li>
+</ul>
+<p>To install from that file, you only need to decide where to. <strong>Not into your
+home directory</strong>, otherwise you will fill your storage quota.</p>
+<p>Here I create a Conda environment from an <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file with a script but you
+can also do that command after command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="ch">#!/usr/bin/env bash</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1"># settings to catch errors in bash scripts</span>
+<span class="linenos"> 4</span><span class="nb">set</span><span class="w"> </span>-euf<span class="w"> </span>-o<span class="w"> </span>pipefail
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>module<span class="w"> </span>load<span class="w"> </span>Anaconda3/2022.05
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1">#                                 change this</span>
+<span class="linenos"> 9</span><span class="c1">#                                     |</span>
+<span class="linenos">10</span><span class="c1">#                                     v</span>
+<span class="hll"><span class="linenos">11</span><span class="nv">my_conda_storage</span><span class="o">=</span>/cluster/projects/nn____k/conda
+</span><span class="linenos">12</span>
+<span class="linenos">13</span><span class="nb">export</span><span class="w"> </span><span class="nv">CONDA_PKGS_DIRS</span><span class="o">=</span><span class="si">${</span><span class="nv">my_conda_storage</span><span class="si">}</span>/package-cache
+<span class="linenos">14</span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>--prefix<span class="w"> </span><span class="si">${</span><span class="nv">my_conda_storage</span><span class="si">}</span>/myproject<span class="w"> </span>--file<span class="w"> </span>environment.yml
+</pre></div>
+</div>
+<p>You need to adapt the location (line 11) and also change the name (“myproject”).
+On line 13 we define <code class="docutils literal notranslate"><span class="pre">CONDA_PKGS_DIRS</span></code> to also be in your well-defined <code class="docutils literal notranslate"><span class="pre">my_conda_storage</span></code>,
+otherwise the package cache is in your home directory and that is a problem.</p>
+<p>If I run this for my example <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> above it creates the cache and environment folders
+and each contains many files already:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>find<span class="w"> </span>.<span class="w"> </span>-maxdepth<span class="w"> </span><span class="m">1</span><span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-exec<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;echo -n &quot;{}: &quot;; find &quot;{}&quot; -type f | wc -l&#39;</span><span class="w"> </span><span class="se">\;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span>-k2<span class="w"> </span>-r
+
+<span class="go">.: 31510</span>
+<span class="go">./package-cache: 16549</span>
+<span class="go">./myproject: 14961</span>
+</pre></div>
+</div>
+<p>35 thousand files! You can easily get up to 100 thousand or more files and that
+is too much for your home directory.</p>
+</section>
+<section id="but-i-don-t-have-an-environment-yml-file">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">But I don’t have an environment.yml file!</a><a class="headerlink" href="#but-i-don-t-have-an-environment-yml-file" title="Link to this heading"></a></h2>
+<p>Don’t worry, you can create one.  Let us look again at our example
+<code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myproject</span>
+<span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">defaults</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.10</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pandas</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scipy</span>
+</pre></div>
+</div>
+<p>This is equivalent to installing them one by one into an <strong>active</strong> environment:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>defaults<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
+<span class="gp">$ </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>defaults<span class="w"> </span>numpy
+<span class="gp">$ </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>defaults<span class="w"> </span>pandas
+<span class="gp">$ </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>defaults<span class="w"> </span>scipy
+</pre></div>
+</div>
+<p>Now if somebody asks you to install like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span>somepackage
+<span class="gp">$ </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span>otherpackage
+</pre></div>
+</div>
+<p>… then you know what to do and can create an <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file from it:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myproject</span>
+<span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioconda</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">somepackage</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">otherpackage</span>
+</pre></div>
+</div>
+<p>Please also look at the <a class="reference external" href="https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#create-env-file-manually">Conda
+documentation</a>
+which shows an even simpler <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>.</p>
+</section>
+<section id="if-i-change-the-environment-yml-file-do-i-need-to-remove-everything-and-restart-from-scratch">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">If I change the environment.yml file, do I need to remove everything and restart from scratch?</a><a class="headerlink" href="#if-i-change-the-environment-yml-file-do-i-need-to-remove-everything-and-restart-from-scratch" title="Link to this heading"></a></h2>
+<p>No need to remove everything. You can adjust your <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> and all you need to change
+is <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span></code> to <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">update</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="ch">#!/usr/bin/env bash</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1"># settings to catch errors in bash scripts</span>
+<span class="linenos"> 4</span><span class="nb">set</span><span class="w"> </span>-euf<span class="w"> </span>-o<span class="w"> </span>pipefail
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>module<span class="w"> </span>load<span class="w"> </span>Anaconda3/2022.05
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1">#                                 change this</span>
+<span class="linenos"> 9</span><span class="c1">#                                     |</span>
+<span class="linenos">10</span><span class="c1">#                                     v</span>
+<span class="linenos">11</span><span class="nv">my_conda_storage</span><span class="o">=</span>/cluster/projects/nn____k/conda
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="nb">export</span><span class="w"> </span><span class="nv">CONDA_PKGS_DIRS</span><span class="o">=</span><span class="si">${</span><span class="nv">my_conda_storage</span><span class="si">}</span>/package-cache
+<span class="hll"><span class="linenos">14</span>conda<span class="w"> </span>env<span class="w"> </span>update<span class="w"> </span>--prefix<span class="w"> </span><span class="si">${</span><span class="nv">my_conda_storage</span><span class="si">}</span>/myproject<span class="w"> </span>--file<span class="w"> </span>environment.yml
+</span></pre></div>
+</div>
+</section>
+<section id="should-i-have-one-or-many-environment-yml-files">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Should I have one or many environment.yml files?</a><a class="headerlink" href="#should-i-have-one-or-many-environment-yml-files" title="Link to this heading"></a></h2>
+<p>We recommend one <strong>environment per project</strong>, not one for all projects.  Here
+meaning research project/ code project, not compute allocation project.  It is
+OK to share an environment with colleagues if they use the same code but it is
+a good idea to not try to have a single environment for “everything” and all your
+many projects.</p>
+<p>The reason is that one day you will want to share the environment with somebody
+else and the somebody else does not want to install everything to run that one
+tiny script that only needs a tiny environment.</p>
+<p>Another reason to have one environment per project is that projects can have
+different and conflicting dependencies.</p>
+</section>
+<section id="activating-the-environment-interactively">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Activating the environment interactively</a><a class="headerlink" href="#activating-the-environment-interactively" title="Link to this heading"></a></h2>
+<p>We need three commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Anaconda3/2022.05
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span><span class="si">${</span><span class="nv">EBROOTANACONDA3</span><span class="si">}</span>/bin/activate
+
+$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>/cluster/projects/nn____k/conda/myproject
+</pre></div>
+</div>
+<p>If you used Miniconda instead of Anaconda, then the first two lines change:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Miniconda3/22.11.1-1
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span><span class="si">${</span><span class="nv">EBROOTMINICONDA3</span><span class="si">}</span>/bin/activate
+
+$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>/cluster/projects/nn____k/conda/myproject
+</pre></div>
+</div>
+<p>Of course you need to adapt <code class="docutils literal notranslate"><span class="pre">nn____k</span></code> to your project and need to change
+<code class="docutils literal notranslate"><span class="pre">myproject</span></code> to your actual environment name. Also the versions of the Anaconda
+and Miniconda modules evolve - please check with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span> <span class="pre">conda</span></code>.</p>
+<p>Once activated, you can run your script <strong>inside that environment</strong>. Here I run
+a Python script called <code class="docutils literal notranslate"><span class="pre">example.py</span></code>. Notice how the environment in my prompt
+changes from nothing to <code class="docutils literal notranslate"><span class="pre">(base)</span></code> to
+<code class="docutils literal notranslate"><span class="pre">(/cluster/projects/nn____k/conda/myproject)</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>user@login-1.FRAM<span class="w"> </span>~/example<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Anaconda3/2022.05
+
+<span class="o">[</span>user@login-1.FRAM<span class="w"> </span>~/example<span class="o">]</span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span><span class="si">${</span><span class="nv">EBROOTANACONDA3</span><span class="si">}</span>/bin/activate
+
+<span class="o">(</span>base<span class="o">)</span><span class="w"> </span><span class="o">[</span>user@login-1.FRAM<span class="w"> </span>~/example<span class="o">]</span>$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>/cluster/projects/nn____k/conda/myproject
+
+<span class="o">(</span>/cluster/projects/nn____k/conda/myproject<span class="o">)</span><span class="w"> </span><span class="o">[</span>user@login-1.FRAM<span class="w"> </span>~/example<span class="o">]</span>$<span class="w"> </span>python<span class="w"> </span>example.py
+</pre></div>
+</div>
+</section>
+<section id="activating-the-environment-in-your-job-script">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Activating the environment in your job script</a><a class="headerlink" href="#activating-the-environment-in-your-job-script" title="Link to this heading"></a></h2>
+<p>We activate the environment in the job script the same way we activate it
+interactively on the command line (above). The additional <code class="docutils literal notranslate"><span class="pre">SBATCH</span></code>
+directives on top are unrelated to the Conda part:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="ch">#!/usr/bin/env bash</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1"># settings to catch errors in bash scripts</span>
+<span class="linenos"> 4</span><span class="nb">set</span><span class="w"> </span>-euf<span class="w"> </span>-o<span class="w"> </span>pipefail
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="c1">#                change this</span>
+<span class="linenos"> 7</span><span class="c1">#                    |</span>
+<span class="linenos"> 8</span><span class="c1">#                    v</span>
+<span class="linenos"> 9</span><span class="c1">#SBATCH --account=nn____k</span>
+<span class="linenos">10</span><span class="c1">#SBATCH --job-name=example</span>
+<span class="linenos">11</span><span class="c1">#SBATCH --qos=devel</span>
+<span class="linenos">12</span><span class="c1">#SBATCH --ntasks=1</span>
+<span class="linenos">13</span><span class="c1">#SBATCH --time=00:02:00</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="c1"># the actual module version might be different</span>
+<span class="hll"><span class="linenos">16</span>module<span class="w"> </span>load<span class="w"> </span>Anaconda3/2022.05
+</span><span class="hll"><span class="linenos">17</span><span class="nb">source</span><span class="w"> </span><span class="si">${</span><span class="nv">EBROOTANACONDA3</span><span class="si">}</span>/bin/activate
+</span><span class="linenos">18</span>
+<span class="linenos">19</span><span class="c1">#                               change this</span>
+<span class="linenos">20</span><span class="c1">#                                   |</span>
+<span class="linenos">21</span><span class="c1">#                                   v</span>
+<span class="hll"><span class="linenos">22</span>conda<span class="w"> </span>activate<span class="w"> </span>/cluster/projects/nn____k/conda/myproject
+</span><span class="linenos">23</span>
+<span class="linenos">24</span>python<span class="w"> </span>--version
+<span class="linenos">25</span>python<span class="w"> </span>example.py
+</pre></div>
+</div>
+<p>We need three lines before running any code that depends on the packages in
+your environment: loading the module, sourcing the activate script, and <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span></code> your environment.</p>
+<p>If you used Miniconda instead of Anaconda, then lines 16 and 17 (above) might
+look like this instead (version might be different):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>Miniconda3/22.11.1-1
+<span class="nb">source</span><span class="w"> </span><span class="si">${</span><span class="nv">EBROOTMINICONDA3</span><span class="si">}</span>/bin/activate
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">${EBROOTMINICONDA3}/bin/activate</span></code> line basically replaces a previous
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span></code> which would have modified <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>.</p>
+</section>
+<section id="exporting-your-environment-to-an-environment-yml-file">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Exporting your environment to an environment.yml file</a><a class="headerlink" href="#exporting-your-environment-to-an-environment-yml-file" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file is very precious since it lists all your
+dependencies and if you want also their precise versions. It is precious
+because your future you and other people will be able to (re)create their
+environment from this file and will be able to reproduce your research.
+Without this information, they will have a hard time.</p>
+<p>Here is an example <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myproject</span>
+<span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">defaults</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.10</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pandas</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scipy</span>
+</pre></div>
+</div>
+<p>If you read this documentation page and followed our recommendations, then you
+never need to export your environment to an <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file since you
+already have it since you always installed new dependencies from it.</p>
+<p>But if you lost the file or installed on the command line and forgot what
+packages exactly, you can create it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># the first three lines depend on how you created your environment</span>
+$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Anaconda3/2022.05
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span><span class="si">${</span><span class="nv">EBROOTANACONDA3</span><span class="si">}</span>/bin/activate
+$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>/cluster/projects/nn____k/conda/myproject
+
+<span class="c1"># this is the interesting line</span>
+$<span class="w"> </span>conda<span class="w"> </span>env<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--from-history<span class="w"> </span>&gt;<span class="w"> </span>environment.yml
+</pre></div>
+</div>
+<p>If you need precise versions and all dependencies, also dependencies of your
+dependencies, you can get more information with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda env export &gt; environment.yml
+</pre></div>
+</div>
+</section>
+<section id="warning-a-newer-version-of-conda-exists">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">“WARNING: A newer version of conda exists”</a><a class="headerlink" href="#warning-a-newer-version-of-conda-exists" title="Link to this heading"></a></h2>
+<p>When installing or updating packages you might see this warning:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+</pre></div>
+</div>
+<p>Do <strong>not</strong> run the command <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">update</span> <span class="pre">-n</span> <span class="pre">base</span> <span class="pre">-c</span> <span class="pre">defaults</span> <span class="pre">conda</span></code> (you do not
+have the permissions anyway).  You can almost always ignore this warning but
+you can also configure Conda to not bother you with this warning:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>config<span class="w"> </span>--set<span class="w"> </span>notify_outdated_conda<span class="w"> </span><span class="nb">false</span>
+</pre></div>
+</div>
+<p>This setting is written to your <code class="docutils literal notranslate"><span class="pre">~/.condarc</span></code> if you change your mind and want
+to remove this setting later.</p>
+</section>
+<section id="container-solution">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Container solution</a><a class="headerlink" href="#container-solution" title="Link to this heading"></a></h2>
+<p>If you are interested using Conda through a Singularity/Apptainer container,
+have a look at <a class="reference external" href="https://github.com/bast/singularity-conda/">https://github.com/bast/singularity-conda/</a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="easybuild.html" class="btn btn-neutral float-left" title="Installing software with EasyBuild" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="python.html" class="btn btn-neutral float-right" title="Installing Python packages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

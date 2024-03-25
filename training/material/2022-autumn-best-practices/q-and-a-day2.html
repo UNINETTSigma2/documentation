@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions and answers from Best Practices on NRIS Clusters Nov 2022, Day 2 (Nov 2) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Questions and answers from Best Practices on NRIS Clusters Nov 2022, Day 2 (Nov 2)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="questions-and-answers-from-best-practices-on-nris-clusters-nov-2022-day-2-nov-2">
+<span id="training-2022-autumn-best-practices-notes-day2"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Questions and answers from Best Practices on NRIS Clusters Nov 2022, Day 2 (Nov 2)</a><a class="headerlink" href="#questions-and-answers-from-best-practices-on-nris-clusters-nov-2022-day-2-nov-2" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#questions-and-answers-from-best-practices-on-nris-clusters-nov-2022-day-2-nov-2" id="id1">Questions and answers from Best Practices on NRIS Clusters Nov 2022, Day 2 (Nov 2)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#icebreaker-question" id="id2">Icebreaker Question</a></p></li>
+<li><p><a class="reference internal" href="#questions-and-comments" id="id3">Questions and Comments</a></p>
+<ul>
+<li><p><a class="reference internal" href="#hpc-best-practices-trouble-shooting" id="id4">HPC Best Practices &amp; Trouble shooting</a></p></li>
+<li><p><a class="reference internal" href="#how-to-choose-the-right-amount-of-memory" id="id5">How to choose the right amount of memory</a></p></li>
+<li><p><a class="reference internal" href="#exercise-until-10-50" id="id6">Exercise until 10:50</a></p></li>
+<li><p><a class="reference internal" href="#how-to-choose-the-number-of-cores" id="id7">How to choose the number of cores</a></p></li>
+<li><p><a class="reference internal" href="#exercise-until-11-55" id="id8">Exercise until 11:55</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#feedback-for-today" id="id9">Feedback for today</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="icebreaker-question">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Icebreaker Question</a><a class="headerlink" href="#icebreaker-question" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Have you ever used any othese?(you can vote by adding an “o” at the end)</p>
+<ul>
+<li><p>MPI : ooo</p></li>
+<li><p>OpenMP: oo</p></li>
+<li><p>Others, please specify below</p>
+<ul>
+<li><p>Python multiprocessing: o</p></li>
+<li><p>Slurm jobarrays: oooooo</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="questions-and-comments">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Questions and Comments</a><a class="headerlink" href="#questions-and-comments" title="Link to this heading"></a></h2>
+<section id="hpc-best-practices-trouble-shooting">
+<h3><a class="reference external" href="https://drive.google.com/drive/folders/1XkQeEzYv_aNWNSlVeZuRurHv5L8HgTIH">HPC Best Practices &amp; Trouble shooting</a><a class="headerlink" href="#hpc-best-practices-trouble-shooting" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>What if the program I want to run is a script(not a compiled program), e.g. Python. Commands like ldd will not work in that cas.</p>
+<ul class="simple">
+<li><p>One trick would be to see if the program/script calls any libaries that make parallel porcessing possible.</p></li>
+<li><p>if this is a self contained script that does not call libraries, you could <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-r</span></code> for text like <code class="docutils literal notranslate"><span class="pre">mpi</span></code> or <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code></p></li>
+<li><p>good point above but it can be difficult to inspect dependencies/libraries of the script as they may not be really “visible”. what I would do and this is not elegant, is to launch it and I would ask <code class="docutils literal notranslate"><span class="pre">top</span></code>/<code class="docutils literal notranslate"><span class="pre">htop</span></code> and check how many cores are actually busy. Alternatively I would use <code class="docutils literal notranslate"><span class="pre">seff</span></code> after the job is done to check the statistics.</p></li>
+</ul>
+</li>
+<li><p>Yesterday we saw the <code class="docutils literal notranslate"><span class="pre">top</span></code> command, is it possible to see the full command used ?, e.g. if an argument like parallel is used. when i use top I see only the executables name</p>
+<ul class="simple">
+<li><p>with top/htop you can see the PID (process ID) of each process. then you could ask <code class="docutils literal notranslate"><span class="pre">ps</span></code> to give you info about that process. example for a process 12345: <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">12345</span></code></p></li>
+<li><p>You could try <code class="docutils literal notranslate"><span class="pre">top</span> <span class="pre">-c</span></code> to show the full command.</p>
+<ul>
+<li><p>nice! I did not know that. that’s much nicer than the “ps”-detour</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Where can you find the log/feedback from a job in IDUN?</p>
+<ul class="simple">
+<li><p>We will get back soon on this (waiting for the NTNU colleague)</p></li>
+<li><p>Is IDUN using Slurm? (I am not from NTNU and I don’t know that system)</p>
+<ul>
+<li><p>apparently it does: see https://www.hpc.ntnu.no</p></li>
+</ul>
+</li>
+<li><p>Yes, IDUN use Slurm. Does that mean it works the same on IDUN?</p></li>
+</ul>
+</li>
+<li><p>Can you please explain what <em>NUMA</em> means in simple terms</p>
+<ul class="simple">
+<li><p>non-uniform memory access. in simple terms: the memory is not equally far away (in terms of access time, access latency) for all cores on one node so if the job is very “memory-heavy” (many and frequent memory reads and writes), then the performance may depend on the core-placement of the job. so in this case it can make sense to verify on which cores precisely were the threads/tasks/ranks placed by the scheduler.</p></li>
+</ul>
+</li>
+<li><p>How do I check the disk access/IO of a running process.</p>
+<ul class="simple">
+<li><p>good question. hopefully the speaker can comment/clarify. [RB] I don’t really know how to apart from maybe running a profiler like <a class="reference external" href="https://documentation.sigma2.no/jobs/performance.html">perf-report</a></p></li>
+<li><p>One command you could use is <code class="docutils literal notranslate"><span class="pre">strace</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">strace</span> <span class="pre">-p</span> <span class="pre">&lt;PID&gt;</span></code></p></li>
+<li><p>You could only monitor your own processes</p></li>
+</ul>
+</li>
+<li><p>Another command is lsof</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">lsof</span> <span class="pre">-p</span> <span class="pre">&lt;PID&gt;</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I’m a bit confused abouts threads, tasks, and ranks. What is the difference between them?</p>
+<ul class="simple">
+<li><p>shared memory parallelization like OpenMP use threads. threads run in parallel, do something, and communicate via shared memory</p></li>
+<li><p>then there is message-passing interface (MPI) where we rather speak of tasks or ranks (same thing, different names) where the tasks communicate typically not via shared memory, but by sending messages to each other and each of the tasks manages own memory</p></li>
+<li><p>hybrid parallelization can use both tasks and threads. technically they are different but conceptually I picture them as very similar.</p></li>
+</ul>
+</li>
+<li><p>Could the slurm output file be exempt from the disk quota?</p>
+<ul class="simple">
+<li><p>one could redirect slurm output to paths where you have no or more quota (check also <code class="docutils literal notranslate"><span class="pre">dusage</span></code> for available places)</p>
+<ul>
+<li><p>but everything placed on USERWORK will get auto-removed after a certain period of time (21 to 42 days depending on usage)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="how-to-choose-the-right-amount-of-memory">
+<h3><a class="reference external" href="https://documentation.sigma2.no/jobs/choosing-memory-settings.html">How to choose the right amount of memory</a><a class="headerlink" href="#how-to-choose-the-right-amount-of-memory" title="Link to this heading"></a></h3>
+<p>Plan for this session:</p>
+<ul class="simple">
+<li><p>15-20 min discussion/demo/motivation/overview</p></li>
+<li><p>15 min exercise which you can find in <code class="docutils literal notranslate"><span class="pre">/cluster/projects/nn9984k/best_practices/</span></code></p>
+<ul>
+<li><p>on Saga, you can copy the exercise to your home: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">cp</span> <span class="pre">-r</span> <span class="pre">/cluster/projects/nn9984k/best_practices/Day2/choosing-mem</span> <span class="pre">.</span></code></p></li>
+</ul>
+</li>
+<li><p>10-15 min Q&amp;A and discussion</p></li>
+<li><p>Use Training project and reservation (but this is already in the run scripts).</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--account=nn9984k</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--reservation=NRIS_best_practices</span></code></p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple" start="8">
+<li><p>Question to all:</p>
+<ul class="simple">
+<li><p>I run code that I wrote or co-wrote: oooooooooooooo</p></li>
+<li><p>I run code written by others: oooooooooo</p></li>
+<li><p>I just <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> a module written/installed by others: ooooo</p></li>
+</ul>
+</li>
+<li><p>Could we just specify total memory (and not per CPU), so several CPUs can just handle memory themselves?</p>
+<ul class="simple">
+<li><p>#SBATCH –mem=2G # total memory per node (Just tried, it seems to work)</p></li>
+<li><p>I would still prefer to specify per CPU because then the tasks don’t have to be on the same node (it matters to some codes but does not matter to most) and you give the scheduler more flexibility to place jobs on other nodes where there is room for them</p></li>
+</ul>
+</li>
+<li><p>What is AveRSS?</p>
+<ul class="simple">
+<li><p>AveRSS = Average resident set size of all tasks in job (as per <a class="reference external" href="https://slurm.schedmd.com">slurm documentation</a>)</p></li>
+</ul>
+</li>
+<li><p>When you use seff on a job, there is a line called memeory efficiency. It gives us some percent of something that is slightly less than the requested memory (e.g., 3.12 GB when 3.2 GB was requested). Why is that?</p>
+<ul class="simple">
+<li><p>hmmm. could this be GB vs GiB? https://en.wikipedia.org/wiki/Gigabyte</p>
+<ul>
+<li><p>Ahhh, yes, I think so. Or maybe not, 3.2 GB should be 2.98 GiB (?).</p>
+<ul>
+<li><p>but I am not 100% sure, I did not double check this</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="exercise-until-10-50">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Exercise until 10:50</a><a class="headerlink" href="#exercise-until-10-50" title="Link to this heading"></a></h3>
+<p>on Saga, you can copy the exercise to your home: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">cp</span> <span class="pre">-r</span> <span class="pre">/cluster/projects/nn9984k/best_practices/Day2/choosing-mem</span> <span class="pre">.</span></code></p>
+<ul class="simple">
+<li><p>in there check <code class="docutils literal notranslate"><span class="pre">README.md</span></code> with <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">README.md</span></code></p></li>
+<li><p>let us know here how it is going</p></li>
+<li><p>the same folder exists also on Fram if for some reason Saga does not work for you</p></li>
+<li><p>I get the following error when using Arm Performance Reports: Lmod has detected the following error: The following module(s) are unknown: “Arm-Forge/21.1”</p>
+<ul>
+<li><p>resolved: Arm-Forge/22.0.3</p>
+<ul>
+<li><p>oh. so maybe documentation is outdated?</p></li>
+<li><p>Try the command : module avail Arm-Forge , it will list available versions.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple" start="12">
+<li><p>I see that there is a difference between MaxRSS in the “/usr/bin/time -v” and the one you get in the slurm output, why is that? 3210868 vs 3210488</p>
+<ul class="simple">
+<li><p>I admit that I don’t know why this is. Normally it could be the 30s sampling but not in this case since the allocation does not change (I know it in this case since I wrote the code). The good news is that we don’t need to know exactly. I would always add 15%-20% more anyway so we don’t need to know all digits but it is a good question.</p></li>
+<li><p>so the “time” one reports slightly more? Yes</p>
+<ul>
+<li><p>interesting. I will investigate later where the difference comes from just for my own education but can’t answer it now before doing more digging and counting</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I do not see breakout rooms? How do I join?</p>
+<ul class="simple">
+<li><p>Thank you</p></li>
+</ul>
+</li>
+<li><p>When checking how your program scales with the number of tasks, is there any point in checking the same number of cores several times? Or should the variation be very small?</p>
+<ul class="simple">
+<li><p>we will do that one after 11 but it is fine to start of course.</p></li>
+<li><p>in this case probably not and the result will be very similar but sometimes it can make sense to run 2-3 times and take some average if the runs vary slightly. when profiling benchmarks we often run a step many times and average but here we want to get a feel and find out an approximately good core setting. even after 1 run it will probably be evident that some core choices are completely unreasonable.</p></li>
+</ul>
+</li>
+<li><p>How do you go to the other (e.g., medium memory) nodes?</p>
+<ul class="simple">
+<li><p>e.g. https://documentation.sigma2.no/jobs/job_scripts/saga_job_scripts.html#bigmem</p></li>
+<li><p>see also https://documentation.sigma2.no/jobs/choosing_job_types.html</p></li>
+<li><p>Medium (392GB) and big mem (3TB) are both part of the <code class="docutils literal notranslate"><span class="pre">bigmem</span></code> partition. Depending on how much memory you are asking for your job will end up on the appropriate computer.</p></li>
+</ul>
+</li>
+<li><p>What is the memory efficiency shown by seff? Can it be improved?</p>
+<ul class="simple">
+<li><p>maximum_used_memory / requested_memory</p></li>
+<li><p>Memory efficiency can improved by lowering the amount of memory you are requesting. Sometimes you might need more cores, so it is better to check job efficiency in <code class="docutils literal notranslate"><span class="pre">seff</span></code> as well before you play around with these numbers.</p></li>
+<li><p>In general you want to aim for a high efficiency but also leave a few persent (10-20%) in case the process suddenly uses a bit more.</p></li>
+<li><p>also “seff” is not something we wrote but something we installed :-)</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="how-to-choose-the-number-of-cores">
+<h3><a class="reference external" href="https://documentation.sigma2.no/jobs/choosing-number-of-cores.html">How to choose the number of cores</a><a class="headerlink" href="#how-to-choose-the-number-of-cores" title="Link to this heading"></a></h3>
+<p>Plan for this session:</p>
+<ul class="simple">
+<li><p>15-20 min discussion/demo/motivation/overview</p></li>
+<li><p>15 min exercise which you can find in <code class="docutils literal notranslate"><span class="pre">/cluster/projects/nn9984k/best_practices/</span></code></p>
+<ul>
+<li><p>on Saga or Fram, you can copy the exercise to your home: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">cp</span> <span class="pre">-r</span> <span class="pre">/cluster/projects/nn9984k/best_practices/Day2/choosing-cores</span> <span class="pre">.</span></code></p></li>
+</ul>
+</li>
+<li><p>10-15 min Q&amp;A and discussion</p></li>
+<li><p>Use Training project and reservation (but this is already in the run scripts).</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--account=nn9984k</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--reservation=NRIS_best_practices</span></code></p></li>
+<li><p>note that for the 128 cores example the reservation does not work since it’s larger than the reservation. for this reason I have taken it out of the exercise script.</p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple" start="17">
+<li><p>How can I do these calculations for jobs that take weeks?</p>
+<ul class="simple">
+<li><p>You cannot scale it down ? Less timesteps ? Less iterations ?</p></li>
+<li><p>Yes, 1-2 timesteps or iterations and hopefully the timing can be extrapolated from that. or a smaller system size if the timing can be extrapolated from that. but even if all of that is not possible, I would run the first 5-10 calculations on varying core counts to get a feel before running the other 90 calculations. there will be some “waste” during calibration but globally it might save CPU hours hopefully? it is always a balance.</p></li>
+</ul>
+</li>
+<li><p>Probably a very basic question, but can you run code on multiple cores (several tasks) even if your code don’t include any explicit parallelization? For example, writing code that only uses numpy?</p>
+<ul class="simple">
+<li><p>Something like arrayrun ? N copies with different input ? Typical for Monte-Carlo simulations.</p></li>
+<li><p>Arrayrun works well. But then it does not make sense to try to increase the number of cores or the number of tasks?</p></li>
+<li><p>A threaded numpy library might help, but does your code spend much time in numpy ?</p></li>
+<li><p>Something like numba? I’m not sure exactly how much time is spent inside numpy operations, but I would guess a fair bit</p></li>
+<li><p>Print out a timestamp before and after call to numpy and you’ll know.</p></li>
+<li><p>Try setting OMP_NUM_THREADS=4 or something and run a test with numpy, some of the numpy libs are threaded. Intel have versions that are multithreaded.</p></li>
+<li><p>I will try that, thank you. And that means that it is sometimes possible to run stuff on multiple cores even in pure numpy? But if you want more control parallelization libaries are good?</p></li>
+<li><p>Remember Amdahl’s law, if you spend only a fraction of time in numpy it does not help much even if numpy was infinitely fast.</p></li>
+<li><p>An expert on this will update on how do it later today. He’s not in the office now, but will attend to it later today. Watch this spot.</p></li>
+<li><p>Thank you for the detailed answer. I think I’m missing a more general understanding of how code can run on several cores, so I was originally wondering if you could do that without using any special libaries.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="exercise-until-11-55">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Exercise until 11:55</a><a class="headerlink" href="#exercise-until-11-55" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>on Saga or Fram, you can copy the exercise to your home: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">cp</span> <span class="pre">-r</span> <span class="pre">/cluster/projects/nn9984k/best_practices/Day2/choosing-cores</span> <span class="pre">.</span></code></p></li>
+<li><p>Use Training project and reservation (but this is already in the run scripts).</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--account=nn9984k</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--reservation=NRIS_best_practices</span></code></p></li>
+<li><p>note that for the 128 cores example the reservation does not work since it’s larger than the reservation. for this reason I have taken it out of the exercise script.</p></li>
+</ul>
+</li>
+<li><p>please let us know how it is going and if you need more time</p></li>
+</ul>
+<ol class="arabic simple" start="19">
+<li><p>Are these videos of the course giong to be available somewhere after the course? Because i heard Radovan said this is not being recorded and not be published, or did i hear incorrectly?</p>
+<ul class="simple">
+<li><p>The videos will be available later. What Radovan mentioned is that if you are talking, we will edit the part before publishing.</p></li>
+<li><p>They will be published in the docs under <a class="reference external" href="https://documentation.sigma2.no/training/material.html#training-video-archives">training material</a></p></li>
+</ul>
+</li>
+<li><p>I know that R is a single thread executor, does this mean that it can only use one cpu core per session? If this is the case running R code on HPC without parallelization does not improve anything, does it? For those using python isn’t this the case with python? does your code run on multiple cores if they are available?</p>
+<ul class="simple">
+<li><p>yes Python and R are similar in this. can R use libraries that are parallelized themselves? I believe it can but haven’t used R myself yet.</p>
+<ul>
+<li><p>There are R packages that can start several R processes and send tasks to them (for instance the “parallel” package that comes with R - but there are many more).  Some use MPI, some not.  There are also R-packages that use multithreaded libraries.  In many installations, the basic BLAS library that R is linked to, is threaded (not sure about the NRIS installation here, though).</p></li>
+</ul>
+</li>
+<li><p>but even if it runs only on 1 core it can still make sense to run on HPC clusters if you can run many independent jobs at the same time instead of running them one after the other</p>
+<ul>
+<li><p>This can for example be done with Slurm job arrays like described <a class="reference external" href="https://documentation.sigma2.no/jobs/guides/job_array_howto.html">here</a> or <a class="reference external" href="https://documentation.sigma2.no/jobs/job_scripts/array_jobs.html">here</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Building on question 18… If I have a script that someone else has given me and I want to run it, how do I find out whether it can be run on multiple cores? i.e. if it is even possible to run it on multiple cores, not if it will improve the time.</p>
+<ul class="simple">
+<li><p>Ask the one who wrote it</p></li>
+<li><p>seff</p></li>
+<li><p>or send a question to support&#64;nris.no and we help finding out</p></li>
+<li><p>RTFM (Read The Fine Manual)</p></li>
+<li><p>Thank you!</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="feedback-for-today">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Feedback for today</a><a class="headerlink" href="#feedback-for-today" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>One thing you thought was nice</p>
+<ul>
+<li><p>This last bit on different ways of parallelizing was nice</p></li>
+<li><p>Exercise are always nice</p></li>
+<li><p>This document and the way you answer question is great.</p></li>
+<li><p>Thanks for a great course!</p></li>
+<li><p>Thanks!</p></li>
+</ul>
+</li>
+<li><p>One thing we should change/improve tomorrow and next events</p>
+<ul>
+<li><p>More examples with actual codes and how they run would be nice here, something like a benchmarking code.</p>
+<ul>
+<li><p>Time is very limited, this is case by case. Please feel free to ask for help.</p></li>
+</ul>
+</li>
+<li><p>I would appreciate some comments on which parts of what we are learning are applicable to IDUN.</p>
+<ul>
+<li><p>Idun is a local cluster at NTNU, they operate as they see best for them. They do not need to follow the operating scheme as the national systems does, there is one «Driftsorganisasjon» who run Saga, Fram and Betzy (At UiO we try to do it similar as the national).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

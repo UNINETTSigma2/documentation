@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions and answers from HPC on-boarding Apr 2023, Day 0 (Apr 18) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Questions and answers from HPC on-boarding Apr 2023, Day 0 (Apr 18)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="questions-and-answers-from-hpc-on-boarding-apr-2023-day-0-apr-18">
+<span id="training-2023-spring-onboarding-notes-day0"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Questions and answers from HPC on-boarding Apr 2023, Day 0 (Apr 18)</a><a class="headerlink" href="#questions-and-answers-from-hpc-on-boarding-apr-2023-day-0-apr-18" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#questions-and-answers-from-hpc-on-boarding-apr-2023-day-0-apr-18" id="id1">Questions and answers from HPC on-boarding Apr 2023, Day 0 (Apr 18)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#icebreaker-question" id="id2">Icebreaker Question</a></p></li>
+<li><p><a class="reference internal" href="#sessions" id="id3">Sessions</a></p></li>
+<li><p><a class="reference internal" href="#what-are-the-methods-you-know-for-interacting-with-a-computer" id="id4">What are the methods you know for interacting with a computer ?</a></p></li>
+<li><p><a class="reference internal" href="#have-you-found-the-terminal" id="id5">Have you found the terminal</a></p></li>
+<li><p><a class="reference internal" href="#have-you-found-ssh" id="id6">Have you found SSH</a></p></li>
+<li><p><a class="reference internal" href="#have-you-connected-to-fram" id="id7">Have you connected to FRAM?</a></p>
+<ul>
+<li><p><a class="reference internal" href="#account-username-password-problems" id="id8">Account/username/password problems</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#have-you-managed-to-download-the-demo-moving-around-folder" id="id9">Have you managed to download the demo-moving-around folder:</a></p></li>
+<li><p><a class="reference internal" href="#session-composing-commands-with-pipes" id="id10">Session: Composing commands with pipes</a></p></li>
+<li><p><a class="reference internal" href="#ask-your-questions" id="id11">Ask Your Questions</a></p></li>
+<li><p><a class="reference internal" href="#feedback" id="id12">Feedback</a></p>
+<ul>
+<li><p><a class="reference internal" href="#what-was-good" id="id13">what was good</a></p></li>
+<li><p><a class="reference internal" href="#what-to-improve" id="id14">what to improve</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="icebreaker-question">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Icebreaker Question</a><a class="headerlink" href="#icebreaker-question" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Have you used HPC before</p>
+<ul>
+<li><p>Yes - 0000000000</p></li>
+<li><p>No  - 00000000</p></li>
+</ul>
+</li>
+<li><p>Do I need to log in here or do I remain anonymous?</p></li>
+</ul>
+</section>
+<section id="sessions">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Sessions</a><a class="headerlink" href="#sessions" title="Link to this heading"></a></h2>
+<p>https://documentation.sigma2.no/training/events/2023-04-hpc-on-boarding.html</p>
+</section>
+<section id="what-are-the-methods-you-know-for-interacting-with-a-computer">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">What are the methods you know for interacting with a computer ?</a><a class="headerlink" href="#what-are-the-methods-you-know-for-interacting-with-a-computer" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Talking to it</p></li>
+<li><p>Using terminal, using mouse and keyboard, GUI programs, USB/CDs/other storage devices</p></li>
+<li><p>Typing with a keyboard</p></li>
+<li><p>Using an on-screen keyboard</p></li>
+<li><p>GUI</p></li>
+<li><p>Hitting it with a wrench :laughing:</p></li>
+<li><p>Tactile screens</p></li>
+<li><p><a class="reference external" href="https://www.reddit.com/r/MovieDetails/comments/89p4n4/in_jurassic_park_the_infamous_its_a_unix_system_i/">navigate in 3D space</a> :)</p></li>
+<li><p>internett or similar protocols, coding, sequential operations via suite</p></li>
+</ul>
+</section>
+<section id="have-you-found-the-terminal">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Have you found the terminal</a><a class="headerlink" href="#have-you-found-the-terminal" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>I have found the terminal: 00000000000000000000o</p></li>
+<li><p>I have not found the terminal:</p></li>
+<li><p>I am lost, what you mean by terminal:</p></li>
+</ul>
+</section>
+<section id="have-you-found-ssh">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Have you found SSH</a><a class="headerlink" href="#have-you-found-ssh" title="Link to this heading"></a></h2>
+<p>Use the interactive document to vote for</p>
+<ul>
+<li><p>I have ssh 000000000000</p></li>
+<li><p>I do not have ssh 0</p>
+<ul>
+<li><p>Do you have windows, linux or mac? Windows 11</p>
+<ul>
+<li><p>https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=gui</p>
+<ul class="simple">
+<li><p>Thanks, I’ll try it in a break, and use git for now</p></li>
+</ul>
+<ul class="simple">
+<li><p>By the way, you only ned OpenSSH Client, not server</p></li>
+<li><p>I’ll have to try as an admin later, since the ‘easy way’ of installing isn’t working now. But at least I can access with GitBash, so no real issue for today. Thanks for the help!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I am lost, what you mean by ssh</p>
+<p>*Affirmative
+USER
+SSH is a protocol for connecting securely to remote resources and the corresponding tools. For unix-type operating systems this protocol is integrated, for Windows it comes as a plugin/add-in. Basically it is a way to log in to a remote resource in a secure way. (coded connection). We typically use it as “log in to a remote machine” type statement.</p>
+</li>
+</ul>
+</section>
+<section id="have-you-connected-to-fram">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Have you connected to FRAM?</a><a class="headerlink" href="#have-you-connected-to-fram" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>yes:00000000000000000</p></li>
+<li><p>no:</p></li>
+</ul>
+<section id="account-username-password-problems">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Account/username/password problems</a><a class="headerlink" href="#account-username-password-problems" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The access to the sigma is being denied for me (my username: ******). I have changed the password, waited for 20 minutes, repeated the login but still the access is denied.</p>
+<ul>
+<li><p>Ok, you just recently changed it?</p></li>
+<li><p>First, I tried to login with the password from yesterday session, the access was denied, then I changed, but still the access was denied. Yesterday everything worked fine.</p></li>
+<li><p>Are you 100% sure that you typed the correct password? :) You said you managed to log in yesterday with the default password right?</p></li>
+<li><p>I managed to login in yesterday with a changed password, which did not work today morning.
+Then I do suspect you might have typed the wrong password. Could you check that, and also type in cleartext to see what you are typing - otherwise, maybe try to change the password again</p></li>
+<li><p>Ok.</p></li>
+</ul>
+</li>
+<li><p>It seems I have a problem with the username and therefore my password does not work. I was told my username is ****** but in the terminal I have to write it as with capital first letter. Then, my password is not recognized, so I couldn’t log in.</p>
+<ul>
+<li><p>Your username is in small caps. What platform/operating system are you coming from? Windows has this tendency of always putting capital letters on first letter disregarding.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="have-you-managed-to-download-the-demo-moving-around-folder">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Have you managed to download the demo-moving-around folder:</a><a class="headerlink" href="#have-you-managed-to-download-the-demo-moving-around-folder" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>yes: 00000</p></li>
+<li><p>no:</p>
+<ul>
+<li><p>What is the problem with copy and paste?</p></li>
+<li><p>You can paste into terminal by right-clicking on the line, no menu will pop-up
+NOW IT WORKS - good! :)</p></li>
+<li><p>Windows key + v will let you select from several of the last things you copied too</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="session-composing-commands-with-pipes">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Session: Composing commands with pipes</a><a class="headerlink" href="#session-composing-commands-with-pipes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Have you managed to download the exercise-pipes folder and untar it?</p>
+<ul>
+<li><p>yes:</p></li>
+<li><p>no:</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="ask-your-questions">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Ask Your Questions</a><a class="headerlink" href="#ask-your-questions" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>What is ssh ?
+2. The course material explains a bit what ssh is: https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/intro.html#what-is-ssh-secure-shell - it is basically a program that allows save connection between computers</p></li>
+<li><p>Terminal opens as ‘windows powershell’
+3. Did ssh -V work? No, neither in powershell or command prompt (Windows 11). Commands work in Gitbash for proceeding for now. :+1:</p></li>
+<li><p>What is the difference between command prompt and windows powershell?</p>
+<ul class="simple">
+<li><p>Windows powershell is a command prompt</p></li>
+<li><p>Each operating system wil have their own flavor of command prompt/terminal</p></li>
+<li><p>On windows, by default, you have both CMD and PowerShell, both will work for this course</p></li>
+</ul>
+</li>
+<li><p>Are there any reasons for customizing the prompt? For instance security related?</p>
+<ul class="simple">
+<li><p>Put some color on that prompt, it will likely improve visibility. :) Also, you might be interested in hiding or showing some info depending on what’s important to you.</p></li>
+<li><p>Mostly just aesthetical/informational for yourself, and for instance not having a too long prompt if that disturbs you</p></li>
+</ul>
+</li>
+<li><p>I do not have password for fram, can I use Fox?</p>
+<ul class="simple">
+<li><p>Yes, you can follow us on Fox</p></li>
+<li><p>Got it to work now in Fram too - I am happy :-) :+1:</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=gui">Install ssh on windows</a></p></li>
+<li><p>When we create a sigma2 account is there anything specific we should use as “project”?</p>
+<ul class="simple">
+<li><p>nn9987k</p></li>
+</ul>
+</li>
+<li><p>Best way of finding commands: Ask chatGPT :)</p>
+<ul class="simple">
+<li><p>Yes ,that is of course one option nowadays!</p></li>
+</ul>
+</li>
+<li><p>what command show invisable files?</p>
+<ul class="simple">
+<li><p>You could check man ls, it is stated there</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-a</span></code> for “all” - shows invisible (dot) files</p></li>
+</ul>
+</li>
+<li><p>From where is / how do you use that <code class="docutils literal notranslate"><span class="pre">terminal_hist</span></code> program?</p>
+<ul class="simple">
+<li><p>That is not a UNIX inbuild command and some thing Sabry made to help show what he typed last. Not well docuemented sorry.</p></li>
+<li><p>https://github.com/Sabryr/Terminal_hist</p>
+<ul>
+<li><p>Thanks! I’ve starred it ;)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I got stuck after using the less program. Have a lot of lines starting with ~ and last line says (END). How can I get out of this? (GitBash on Win10)</p>
+<ul class="simple">
+<li><p>try pressing the ESC key</p></li>
+<li><p>did not help</p></li>
+<li><p>sorry: the <code class="docutils literal notranslate"><span class="pre">q</span></code> key</p></li>
+<li><p>Thank you :-)</p>
+<ul>
+<li><p>👍</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">https://gitlab.sigma2.no/training/tutorials/unix-for-hpc/-/raw/master/content/episodes/moving-around/exercise-moving-around.tar.gz</span></code> is not working on the remote server due to “ERROR: cannot verify gitlab.sigma2.no’s certificate, issued by ‘/C=US/O=Let’s Encrypt/CN=R3’: Issued certificate has expired”. The same command works fine on a local terminal, though.
+SAME HERE
+SAME PROBLEM</p>
+<ul class="simple">
+<li><p>The workaround is in the error message itself (use at own risk, I guess): add <code class="docutils literal notranslate"><span class="pre">--no-check-certificate</span></code> between <code class="docutils literal notranslate"><span class="pre">wget</span></code> and the URL. Strange that the certificate works for a file but not for the other…</p></li>
+<li><p>It is not that it works for some files and not others, but that we have not updated the wget command everywhere in the tutorial with the added <code class="docutils literal notranslate"><span class="pre">--no-certificate-check</span></code> everywhere. Once the certificate on site is renewed there will be no need for this extra option. Sorry for that!</p></li>
+</ul>
+</li>
+<li><p>share screen is disabled in breakout room?</p>
+<ul class="simple">
+<li><p>Allowed for all now :+1:</p></li>
+</ul>
+</li>
+<li><p>What happens if we dont have the permission for editing the text file?</p>
+<ul class="simple">
+<li><p>If there is read permission, then you can make a copy somewhere you have permission and then edit</p></li>
+<li><p>The person that owns the file needs to give you permission to write to it, or if you are the owner, you need to move it to a place that you have write permissions if you for instance happen to be in a place where you do not have write permission</p></li>
+</ul>
+</li>
+<li><p>When I try to use ssh in the windows terminal nothing happens, so I have to use GitBash.</p>
+<ul class="simple">
+<li><p>Does it work with gitbash?</p></li>
+<li><p>Yes</p></li>
+<li><p>Ok, all good then for you? Which operating system are you on windows 10/11?</p></li>
+<li><p>Win 10 with OpenSSH_for_Windows_8.1p1, LibreSSL 3.0.2</p></li>
+<li><p>did you restart the terminal after installing ssh?</p></li>
+<li><p>ssh was already installed, this is standard UiO desktop PC</p></li>
+<li><p>when I do the ssh MY_USER_NAME&#64;saga.sigma2.no (with my user name) just nothing happens</p></li>
+<li><p>Is not SAGA down for maintenance now?</p></li>
+<li><p>yes. SAGA not available, Please use fram</p></li>
+<li><p>From organizer: Workarounds are - using X2Go (see https://documentation.sigma2.no/getting_started/remote-desktop.html?highlight=x2go) or Visual Studio Code (see https://documentation.sigma2.no/code_development/guides/vs_code/connect_to_server.html?highlight=visual%20studio%20code)</p></li>
+</ul>
+</li>
+</ol>
+<ul class="simple">
+<li><p>Sorry, but fram does not work either from the terminal - but from GitBash</p></li>
+<li><p>so you are ok with that, gitbash works as expected?</p></li>
+<li><p>Yes, have been using it for the whole session, but would be nice to be able to use the integrated terminal</p></li>
+<li><p>understand, then it will be better that we try to find out this with either a zoom session or sending some screenshots to understand what is going on. Which number OS are you on? Windows 10 or 11 ?</p></li>
+<li><p>Windows 10, I can contact the helpdesk later</p></li>
+<li><p>Good, do that, good luck.</p></li>
+<li><p>Are you using a managed machine? (from uit, uio, etc?) I know that at least this is slightly problematic at UiT machines, and an admin need to activate it.</p></li>
+<li><p>Yes, UiO managed, no fun ;-)</p></li>
+<li><p>Got this with fram: M:&gt;ssh USER&#64;fram.sigma2.no
+The authenticity of host ‘fram.sigma2.no (2001:700:4a00:10::2:2)’ can’t be established.
+ECDSA key fingerprint is SHA256:4z8Jipr50TpYTXH/hpAGZVgMAt0zwT9+hz8L3LLrHF8.
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+Host key verification failed.</p></li>
+</ul>
+<ol class="arabic simple" start="16">
+<li><p>When i type tar xzvf finding.tar.gz, I receive the following message
+tar (child): finding.tar.gz: Cannot open: No such file or directory
+tar (child): Error is not recoverable: exiting now
+tar: Child returned status 2
+tar: Error is not recoverable: exiting now</p></li>
+</ol>
+<ul class="simple">
+<li><p>you are probably in the wrong folder, do <code class="docutils literal notranslate"><span class="pre">ls</span></code> to see if the file is there, and <code class="docutils literal notranslate"><span class="pre">pwd</span></code> to find out where you are</p></li>
+<li><p>I am in my home directory</p></li>
+<li><p>where did you wget (download) finding.tar.gz to? If you dont remember you can do <code class="docutils literal notranslate"><span class="pre">cd</span></code> then <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">./</span> <span class="pre">-name</span> <span class="pre">finding.tar.gz</span></code> to find out where it was. If you did not download it, follow the procedure in the tutorial to download with <code class="docutils literal notranslate"><span class="pre">wget</span></code> and untar it with <code class="docutils literal notranslate"><span class="pre">tar</span></code> according to the tutorial</p></li>
+<li><p>Okay, I did the process again and it works now. Thank you :) :+1:</p></li>
+</ul>
+<ol class="arabic simple" start="17">
+<li><p>When I try to access the  cd exercise-moving-around I get an error that no such file or directory exists. When I type ls I see there is an object called exercise-moving-around.tar.gz in there. When I try to drite cd exercise-moving-around.tar.gz I get an error again saying that it is not a directory</p>
+<ul class="simple">
+<li><p>Can you please use <code class="docutils literal notranslate"><span class="pre">ls</span></code> and see if the directory is there. And use <code class="docutils literal notranslate"><span class="pre">pwd</span></code> see where you are</p>
+<ul>
+<li><p>pwd command tells me I’m in cluster/home/username</p></li>
+</ul>
+</li>
+<li><p>Did you issue the command<code class="docutils literal notranslate"> <span class="pre">tar</span> <span class="pre">xvf</span> <span class="pre">demo-moving-around.tar.gz</span></code> ?</p>
+<ul>
+<li><p>No. After I did it it worked! Thanks! (didn’t know about the zipping thing)</p></li>
+<li><p>Just follow the tutorial instructions, where the full list of commands (wget and then tar) is shown in the note: https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html (and similarly for the other sessions/exercises)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>link to exercise?</p></li>
+</ol>
+<ul class="simple">
+<li><p>https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html#exercise</p></li>
+</ul>
+<ol class="arabic simple" start="19">
+<li><p>What does bash mean?</p>
+<ul class="simple">
+<li><p>Bourne again shell</p></li>
+</ul>
+</li>
+<li><p>How important is to use <code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code> at the beginning of the file</p>
+<ul class="simple">
+<li><p>It is quite useful if you want to run your file by just typing ./your-file.sh. You can replace it by <code class="docutils literal notranslate"><span class="pre">#!/bin/python</span></code> for example. The file extension is not really a “thing” in linux, so you can call your bash script “test.py” if you want. or your python script “test.sh”. Running <code class="docutils literal notranslate"><span class="pre">./my_python_script.py</span></code> will work if the first line is <code class="docutils literal notranslate"><span class="pre">#!/bin/python</span></code>, otherwise you will have to run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">my_python_script.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code> means that <code class="docutils literal notranslate"><span class="pre">bash</span></code> is the program to run the script if no program is specified</p></li>
+</ul>
+</li>
+<li><p>This was really helpful, thanks!</p></li>
+</ol>
+</section>
+<section id="feedback">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Feedback</a><a class="headerlink" href="#feedback" title="Link to this heading"></a></h2>
+<section id="what-was-good">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">what was good</a><a class="headerlink" href="#what-was-good" title="Link to this heading"></a></h3>
+<p>Great support and help accessing FRAM!
+Great lectures and exercises and help in the breakout rooms!
+Thank you! It was a great lecture! See you tomorrow :)
+Having enough people to answer questions in real time
+Good documentation to support both copying and catching up if someone gets temporarily lost
+I really like the Hedgedoc format for asking and answering questions, working collaboratively
+No shame for asking dumb questions
+Thank you for the course, I am really happy you made a course at this basis level for us who know to little about Unix</p>
+</section>
+<section id="what-to-improve">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">what to improve</a><a class="headerlink" href="#what-to-improve" title="Link to this heading"></a></h3>
+<p>Share command line navigation hints at the beginning - ctrl + a to get to the beginning of a line was very helpful
+Send info about how to test if your login works with the initial email</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

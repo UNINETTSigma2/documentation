@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions, answers, and notes from day 1 &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Questions, answers, and notes from day 1</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="questions-answers-and-notes-from-day-1">
+<span id="training-2021-autumn-notes-day1"></span><h1>Questions, answers, and notes from day 1<a class="headerlink" href="#questions-answers-and-notes-from-day-1" title="Link to this heading"></a></h1>
+<section id="ice-breaker">
+<h2>Ice breaker<a class="headerlink" href="#ice-breaker" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>How do you connect to NRIS HPC systems (SAGA, FRAM, Betzy)</p>
+<ul>
+<li><p>Detailed login instructions are under the “links” heading above</p></li>
+<li><p>ssh username&#64;saga.sigma2.no</p></li>
+<li><p>I have never done it yet</p></li>
+<li><p>Windows program (Putty) +</p></li>
+<li><p>Windows terminal emulator</p>
+<ul>
+<li><p>Win-bash</p></li>
+<li><p>Git-Scm</p></li>
+</ul>
+</li>
+<li><p>Unix terminal (Ubuntu, Mac..) ++</p></li>
+<li><p>VNC</p></li>
+<li><p>Visual Studio Code</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="links">
+<h2>Links<a class="headerlink" href="#links" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://sabryr.github.io/hpc-intro/13-scheduler/index.html">HPC intro</a></p>
+<ul>
+<li><p>Two main reasons for HPC: (1) solving problems faster, (2) solving larger problems</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/getting_started/ssh.html">HPC login help</a></p>
+<ul>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/getting_started/remote-desktop.html?highlight=vnc">VNC</a></p></li>
+<li><p><a class="reference external" href="https://wiki.uib.no/hpcdoc/index.php/HPC_and_NIRD_toolkit_course_fall_2020#Windows_2">Some hints on logging in from Windows machines</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/hpc_machines/saga.html">SAGA specs</a></p></li>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/jobs/job_types/saga_job_types.html">SAGA job types</a></p></li>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/jobs/interactive_jobs.html?highlight=salloc#requesting-an-interactive-job">Interactive jobs</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Sabryr/HPC_teaching_scripts">Examples used</a></p></li>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/jobs/guides/running_mpi_jobs.html">MPI on NRIS</a></p></li>
+<li><p><a class="reference external" href="https://lifeportal.saga.sigma2.no">HPC on webrowser, Lifeportal</a></p>
+<ul>
+<li><p><a class="reference external" href="https://lifeportal.saga.sigma2.no">https://lifeportal.saga.sigma2.no</a></p></li>
+<li><p>Demos</p>
+<ul>
+<li><p>Upload data</p></li>
+<li><p>Run a simple job</p></li>
+<li><p>Share history</p></li>
+<li><p>Extract workflow</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="questions-and-answers">
+<h2>Questions and answers<a class="headerlink" href="#questions-and-answers" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pwd</span></code> prints you the current directory</p></li>
+<li><p>please clarify what one should do on a login node</p>
+<ul>
+<li><p>login nodes are the entry point for all users</p></li>
+<li><p>they are shared by many users (meaning many users are using these at the same time)</p></li>
+<li><p>also for code development.</p></li>
+<li><p>therefore login nodes shall only be used for lightweight work (transferring data, organising files/directories, creating jobs, managing jobs, …)</p></li>
+<li><p>some very little work (quick compiling, a few seconds test runs) may be OK too, but if one is unsure how intrusive some work would be it is better to launch an interactive job on the cluster</p>
+<ul>
+<li><p>if the compilation needs 8 cores and takes 2 hours, I would also submit the compilation to a compute node</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>is the home folder <code class="docutils literal notranslate"><span class="pre">/cluster/home/somebody</span></code> accessible from the login node?</p>
+<ul>
+<li><p>this folder is visible both from login and compute nodes</p></li>
+<li><p>on our HPC systems we have one parallel file system that is shared across all nodes, meaning all nodes have access to it</p>
+<ul>
+<li><p>the home folder (<code class="docutils literal notranslate"><span class="pre">$HOME</span></code>), project directories (<code class="docutils literal notranslate"><span class="pre">/cluster/project/nnABCDk</span></code>), folder for temporary data (<code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code> pointing to <code class="docutils literal notranslate"><span class="pre">/cluster/work/users/$USER</span></code>) and more all reside on the parallel file system</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>commands used by presenter to show which partitions are available and how busy some nodes are:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">freepe</span> <span class="pre">|</span> <span class="pre">head</span> <span class="pre">-n5</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sinfo</span>&#160; <span class="pre">--node</span> <span class="pre">c3-29</span></code></p></li>
+<li><p>You can also view system load on the web: <a class="reference external" href="https://www.sigma2.no/hardware-status">https://www.sigma2.no/hardware-status</a></p></li>
+</ul>
+</li>
+<li><p>where is the example file?</p>
+<ul>
+<li><p>You can copy the following:</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+
+<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;This script is running on &quot;</span>
+hostname
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>how to list available accounts</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">projects</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cost</span></code></p></li>
+</ul>
+</li>
+<li><p>how to list the info after using <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-u</span> <span class="pre">username</span></code>?</p>
+<ul>
+<li><p>can you please clarify? not sure what you mean exactly or what you are after</p>
+<ul>
+<li><p>S showed that we can see the status of our job to run, but then he also showed on which node it ran</p>
+<ul>
+<li><p>while it’s running: <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-u</span> <span class="pre">$USER</span></code></p></li>
+<li><p>after it finished if you know its number: <code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">show</span> <span class="pre">jobid</span> <span class="pre">-dd</span> <span class="pre">12345</span></code> (replace 12345 by its number)</p></li>
+<li><p>:+1:</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I have access to Fram but cannot run the same thing</p>
+<ul>
+<li><p>What was wrong?
+sbatch: error: Memory specification only allowed for bigmem jobs
+sbatch: error: Batch job submission failed: Memory required by task is not available</p>
+<ul>
+<li><p>What is the memory you used? you should reduce it.</p></li>
+</ul>
+</li>
+<li><p>1G
+-try 256M.</p></li>
+<li><p>regular jobs (e.i. not bigmem) on Fram are only handed out as <em>full</em> compute nodes, so the memory option is not necessary/allowed</p></li>
+<li><p>I got the same thing with 256M, so I think I cannot run this sort of jobs on Fram?</p></li>
+<li><p>can you copy it here to see what is wrong?</p></li>
+<li></li>
+<li><p>On Fram, you only need to specify memory requirements if you want to run a bigmem job (job on the bigmem partition). For other jobs, please remove/comment the memory requirement.</p></li>
+<li><p>Try without specifying memory (see also duplicate next question)</p></li>
+<li><p>it works now, Thanks</p></li>
+</ul>
+</li>
+<li><p>I do not have access to Saga. Can I do the same things on Fram?</p>
+<ul>
+<li><p>yes</p></li>
+<li><p>Although you cannot specify <code class="docutils literal notranslate"><span class="pre">--mem</span></code>, just remove this flag and it should run</p></li>
+</ul>
+</li>
+<li><p>Is VIM the best editor? Yes. No. :)</p>
+<ul>
+<li><p>The best editor is the editor you are most comfortable with.</p></li>
+<li><p>Many people use emacs, vi(m) or nano because they can be run inside the terminal</p></li>
+<li><p>Some editors you can also run on your laptop and they can take care of the connection to the cluster</p></li>
+</ul>
+</li>
+<li><p>Should we download and upload the rest of the files on GitHub to Saga?</p>
+<ul>
+<li><p>Download only what is needed for the course.</p></li>
+<li><p>You can clone the repository to your local machine and use <code class="docutils literal notranslate"><span class="pre">scp</span></code> to copy the files to Saga</p></li>
+<li><p>A convenient way to get files directly from github directly to saga, without going through your computer:</p>
+<ul>
+<li><p>select the file on github, e.g.: <a class="reference external" href="https://github.com/Sabryr/HPC_teaching_scripts/blob/master/example-job.sh">https://github.com/Sabryr/HPC_teaching_scripts/blob/master/example-job.sh</a></p></li>
+<li><p>click on “raw”, you land here: <a class="reference external" href="https://raw.githubusercontent.com/Sabryr/HPC_teaching_scripts/master/example-job.sh">https://raw.githubusercontent.com/Sabryr/HPC_teaching_scripts/master/example-job.sh</a></p></li>
+<li><p>now you can download directly with <code class="docutils literal notranslate"><span class="pre">wget</span></code>, e.g.: <code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">https://raw.githubusercontent.com/Sabryr/HPC_teaching_scripts/master/example-job.sh</span></code> - this will download the file and create the file in your current folder (on saga or wherever)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Is there an easy explanation of the difference between cores, nodes and postboxes?</p>
+<ul>
+<li><p>postboxes = every box in the rack (the hardware)</p></li>
+<li><p>node = a computer unit with Cups and memory (if you prefer, a name for every postboxes)</p></li>
+<li><p>cores = processors in each node, to compute a task</p></li>
+<li><p>beware of the term “CPU”, it can have many different meanings. In hardware specs, a CPU typically has several cores/threads, but in Slurm “CPU” means core</p></li>
+<li><p>Cores come in different flavors, it will  be covered tomorrow.</p></li>
+</ul>
+</li>
+<li><p>Getting error “can’t write on swap file” when creating example.sh by vim</p>
+<ul>
+<li><p>I would check whether you are in the right folder (have the right permissions to write there) but also check <code class="docutils literal notranslate"><span class="pre">dusage</span></code> that you are not out of file/space quota.</p></li>
+</ul>
+</li>
+<li><p>What is the difference between <code class="docutils literal notranslate"><span class="pre">srun</span></code> and <code class="docutils literal notranslate"><span class="pre">salloc</span></code>?</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">srun</span></code> runs a script and is also used inside Slurm scripts</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">salloc</span></code> allocates interactive time on a compute node</p>
+<ul>
+<li><p>Confusion might arise from the fact that <code class="docutils literal notranslate"><span class="pre">srun</span></code> can also be used to get interactive access</p></li>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/jobs/interactive_jobs.html">https://documentation.sigma2.no/jobs/interactive_jobs.html</a></p></li>
+<li><p>What about sbatch vs srun?</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">sbatch</span></code> runs a Slurm script which can contain <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> comments to configure the job</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">srun</span></code> is mostly intended to run a single command within Slurm</p></li>
+<li><p>There are more subtle differences between them, but we should not confuse that here and now</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Does X11 forwarding work for interactive jobs?</p>
+<ul>
+<li><p>yes, more info here: <a class="reference external" href="https://documentation.sigma2.no/jobs/interactive_jobs.html?highlight=interactive#graphical-user-interface-in-interactive-jobs">https://documentation.sigma2.no/jobs/interactive_jobs.html?highlight=interactive#graphical-user-interface-in-interactive-jobs</a></p></li>
+</ul>
+</li>
+<li><p>Is <code class="docutils literal notranslate"><span class="pre">salloc</span></code> a better way to use than <code class="docutils literal notranslate"><span class="pre">screen</span></code>?</p>
+<ul>
+<li><p>These commands do not do the same things, <code class="docutils literal notranslate"><span class="pre">screen</span></code> is a terminal multiplexer which allows you to have multiple “terminals” through the same SSH connection</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">salloc</span></code> allocates an interactive session on a compute node</p></li>
+<li><p>Does that mean if I run an analysis on the HPC I should use <code class="docutils literal notranslate"><span class="pre">salloc</span></code>?</p>
+<ul>
+<li><p>You should ideally create a <a class="reference external" href="https://documentation.sigma2.no/jobs/job_scripts.html">Slurm script</a> and run it with <code class="docutils literal notranslate"><span class="pre">sbatch</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">salloc</span></code> is a good way to interactively test on the compute nodes, maybe you need to compile something or need to test how quickly your program runs for 5 minutes</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Is module load loading on the login node?</p>
+<ul>
+<li><p>Yes, when you run <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> it will load the module on the login node</p></li>
+<li><p>However, when you use <code class="docutils literal notranslate"><span class="pre">srun</span></code> or <code class="docutils literal notranslate"><span class="pre">salloc</span></code> modules loaded on the login node are also loaded</p></li>
+<li><p>For Slurm scripts modules loaded on the login node are <em>not</em> loaded and you need to have <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">&lt;module&gt;</span></code> inside the Slurm script</p></li>
+</ul>
+</li>
+<li><p>How many cores a node can have?</p>
+<ul>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/hpc_machines/hardware_overview.html#comparison-between-current-hardware">Details</a> from the official documentation</p></li>
+<li><p>Tricky question, what is a core ? Covered tomorrow. The command lscpu report virtual (aka logical) cores also. This is often referred to as SMT-2, common on x86-64 processors. Will go through this tomorrow.</p></li>
+<li><p>for saga <a class="reference external" href="https://documentation.sigma2.no/hpc_machines/saga.html?highlight=login%20nodes">here</a></p></li>
+<li><p>Saga: 24/40/52/64</p></li>
+<li><p>Fram: 32</p></li>
+<li><p>Betzy: 128</p></li>
+<li><p>the trend seems to be that nodes (also laptops) have more and more cores so we better make sure that research codes can make use of those</p></li>
+</ul>
+</li>
+<li><p>What are Slurm scripts?</p>
+<ul>
+<li><p>Slurm scripts are scripts/recipes which contain the steps to run but also contain directives which ask for a certain number of cores and memory that are executed by <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> we will talk more about these scripts later</p>
+<ul>
+<li><p>A Slurm script can be written in <code class="docutils literal notranslate"><span class="pre">bash</span></code>, <code class="docutils literal notranslate"><span class="pre">Python</span></code> or similar scripting languages that use <code class="docutils literal notranslate"><span class="pre">#</span></code> for comments</p></li>
+</ul>
+</li>
+<li><p>You can read more about <a class="reference external" href="https://documentation.sigma2.no/jobs/job_scripts.html">Slurm scripts here</a></p></li>
+<li><p>Shortly - these are scripts which inform the cluster what command(s) shall be executed and what resources shall be used when it is being executed (memory, time, etc)</p></li>
+</ul>
+</li>
+<li><p>If the module we are interested is not in the module list, how is it possible to call it?</p>
+<ul>
+<li><p>The easiest way to proceed is to contact us at support&#64;nris.no and we will help you with the specific software you require</p></li>
+<li><p>but just to clarify: you meant that you would like a module and cannot find it in <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span></code>?</p>
+<ul>
+<li><p>yes that was what I meant, if it is not in the module avail - list?</p>
+<ul>
+<li><p>Contact us and we can see if it possible to install the software or help you install the software</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Is there some difference between module purge and module restore?</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">purge</span></code> will unload all loaded modules (that are not marked “sticky”). <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">restore</span></code> will “restore” a previous setting. By default <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">restore</span></code> will do the same thing as <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">purge</span></code>, but you can also save your current settings first with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">save</span> <span class="pre">&lt;some-name&gt;</span></code> and then later restore the same settings with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">restore</span> <span class="pre">&lt;some-name&gt;</span></code>.</p></li>
+</ul>
+</li>
+<li><p>what does it mean for module load and module avail?</p>
+<ul>
+<li><p>module load activates the environment of the module and makes it visible so that you can access its binaries and libraries</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span> <span class="pre">somename</span></code> will list you all modules that contain “some-name” but it will not load them, only show you which ones exist</p></li>
+</ul>
+</li>
+<li><p>Can we open the graphic user interface? like fluent?</p>
+<ul>
+<li><p>X11 forwarding ? ssh -Y (please use -X if possible, Y is less safe, but works more often).See the documentation <a class="reference external" href="https://documentation.sigma2.no/getting_help/faq.html?highlight=graphical%20user%20interface#graphical-interfaces">https://documentation.sigma2.no/getting_help/faq.html?highlight=graphical user interface#graphical-interfaces</a></p></li>
+<li><p>VNC (remote desktop)</p>
+<ul>
+<li><p>I have already installed Tiger VNC and use it to submit my tasks on Fram. I am wondering how I can open Fluent there by GUI?</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>can we have conda on saga and have Env for one user</p>
+<ul>
+<li><p>first question: yes. Conda is available on Saga. more info here: <a class="reference external" href="https://documentation.sigma2.no/software/userinstallsw/python.html?highlight=conda#anaconda-miniconda-conda">https://documentation.sigma2.no/software/userinstallsw/python.html?highlight=conda#anaconda-miniconda-conda</a></p></li>
+<li><p>second question: not sure what precisely is meant</p></li>
+<li><p>If you by “Env for one user” mean a unique environment for only your user, then yes.</p>
+<ul>
+<li><p>and that’s a good idea: unique environment for a user. I would even try to create a separate environment for each project (since projects can have different dependencies)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>scp vs rsync - any difference on the usage or just a preference?</p>
+<ul>
+<li><p>Rsync can pick up if stopped, it normally for larger transfers. Both uses ssh for transport.</p></li>
+</ul>
+</li>
+<li><p>Can I put a scp into a bash script before running a code?</p>
+<ul>
+<li><p>You can do that if necessary, however, for better performance we recommend that you download data to Saga before you start</p></li>
+<li><p>You can download large files to <code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code> and load from there when running code</p></li>
+<li><p>The other problem that you might have is how to authenticate without “being there” to type the passphrase. This may encourage to use empty passphrases which is not a good idea in general.</p>
+<ul>
+<li><p>even if I have setup a key?</p>
+<ul>
+<li><p>yes. also for ssh keys it is generally not a good idea to not set a passphrase because if I get hold of your private key, I can then log in as you. A passphrase prevents this by encrypting the private key. And normally you only need to type the passphrase once a day so it’s not a huge burden.</p></li>
+<li><p>Oh I meant if I have setup a ssh key (not empty), do I then need to authenticate if I scp inside a bash script?</p>
+<ul>
+<li><p>ah now I get it, sorry: yes. the script will probably fail if it runs at 2 a.m. and you are not there to type the passphrase and it cannot find the decrypted key in its memory. one can give the unlocked private key probably a longer lifetime and one probably can use ssh agent to remember it for a while but I anticipate this to be difficult and not practical.</p></li>
+<li><p>depending on the use case one could use some authentication tokens. so there are situations where one wants unsupervised authentication and it can be solved.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>How about the support for using ftp or other related software?</p>
+<ul>
+<li><p>ftp is not secure, hence not allowed. Use scp or rsync.</p></li>
+<li><p>not secure because data travels in plain text and it is easy to intercept it</p></li>
+</ul>
+</li>
+<li><p>Are you typing these commands in command prompt in your laptop?</p>
+<ul>
+<li><p>Yes, he’s using Linux so it’s in the terminal which is the same as a command prompt, just named differently</p></li>
+<li><p>When I tried to do in my command prompt, it shows this error: ‘scp’ is not recognised as an internal or external command, operable program or batch file.</p>
+<ul>
+<li><p>That’s because you don’t have <code class="docutils literal notranslate"><span class="pre">scp</span></code> installed on your system, you can download the install file from <a class="reference external" href="https://winscp.net/eng/index.php?">here</a></p></li>
+<li><p>thanks but i have winscp installed on my windows</p></li>
+<li><p>do i have to go to that directory where it is installed?</p></li>
+<li><p>You can try, I’m not a Windows user so if you have already installed it I don’t know why it’s not being recognised, please let me know how it went when you ran it from its directory</p></li>
+<li><p>I strongly recommend to try <a class="reference external" href="https://mobaxterm.mobatek.net/">https://mobaxterm.mobatek.net/</a> on Windows which will give you a terminal, graphical connectivity, and also scp, all in one</p></li>
+<li><p>Yup, I use mobaxterm rather than putty, but I installed winscp because file transfer is slow on moba.</p>
+<ul>
+<li><p>ah. interesting to know.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Why should we not use scp command on the cluster? Maybe I misunderstood, but whenever we copy file , we should use scp on our laptop?</p>
+<ul>
+<li><p>You should run <code class="docutils literal notranslate"><span class="pre">scp</span></code> on your laptop when copying so that the copy operation is not interrupted if your SSH session is interrupted</p></li>
+<li><p>in principle you can call it from either side but calling on the laptop side may be easier since you can authenticate to the cluster but your laptop is probably behind a firewall so you may not be able to reach it “from outside”</p></li>
+<li><p>but it’s no problem to scp from one cluster to another if you are on several clusters and need to copy/move files</p></li>
+</ul>
+</li>
+<li><p>Do we need to rsync/scp if we do analysis on FRAM, but have the data on NIRD?</p>
+<ul>
+<li><p>Yes, data on NIRD needs to be copied to the clusters to be accessible</p></li>
+</ul>
+</li>
+<li><p>Is scp or rsync is installed on SAGA?</p>
+<ul>
+<li><p>Yes, both <code class="docutils literal notranslate"><span class="pre">scp</span></code> and <code class="docutils literal notranslate"><span class="pre">rsync</span></code> is installed on all of our clusters</p>
+<ul>
+<li><p>Saga, Fram and Betzy</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>How can we precisely calculate job running time since it may terminate or reimbursed?</p>
+<ul>
+<li><p>You can’t, but you can give it what you think is too much time and then note down how long it took and adjust the requested time to something just slightly above so you have some margin for next time</p></li>
+<li><p>Keep in mind that asking for too much time will give you a lower priority in the queue, so try to adjust it once you know how much time is required</p></li>
+<li><p>It will benefit you as well as all other users</p></li>
+</ul>
+</li>
+<li><p>Can you say something on the exit code on the slurm file ? does 0:0 means job executed successfully or?</p>
+<ul>
+<li><p>An exit code of <code class="docutils literal notranslate"><span class="pre">0</span></code> means that the job exited successfully</p></li>
+<li><p>Within Slurm the exit code is reported as <code class="docutils literal notranslate"><span class="pre">&lt;code&gt;:&lt;task&gt;</span></code> which is used to show how each task exited, so if you run multiple tasks you can see if every task exited successfully or if any exited with a different code</p></li>
+</ul>
+</li>
+<li><p>how do I exit the example-job.sh</p>
+<ul>
+<li><p>Do you mean exit the file or cancel the job?</p></li>
+<li><p>exit the file, I’m unable to come back to the command line</p>
+<ul>
+<li><p>did you open it with vim? if yes, then type ESCAPE, then type “:q!” (no saving) or “:wq” (with saving) and hit ENTER</p></li>
+<li><p>I opened with vim, but the ESCAPE wq does not work, it just gets written in the file</p></li>
+<li><p>try several times ESCAPE, then type “:wq” - it should work. otherwise one “brutal” way out is to close the terminal and reconnect to Saga</p></li>
+<li><p>unfortunately it still doesn’t work, am I supposed to write it at the top of the file or at the bottom or where? Nothing really happens when i type ESCAPE</p>
+<ul>
+<li><p>we can also go to a breakout room and look at it via screen-share? when you hit escape, vim should go out of “insert mode” and then whatever you type should show up at the bottom of the screen as command to vim, not as something you type. please also double check that this is really vim and not perhaps nano.</p></li>
+<li><p>when i hit escape and try to type something i just get “error not an editor command” and that’s it. I just ended the session because I dint know what else I can do</p>
+<ul>
+<li><p>does it show “Not an editor command:” and then something behind that that would give us clues?</p></li>
+<li><p>OK, I see that session ended. Well, happy to look at it on screen-share in a breakout room or after the course. If yes, please write at the bottom (I am watching there)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>What is Slurm?</p>
+<ul>
+<li><p><a class="reference external" href="https://slurm.schedmd.com/">https://slurm.schedmd.com/</a></p></li>
+<li><p>Slurm is a queuing system which is responsible to share the compute resources between all users on the cluster</p></li>
+<li><p>When you ask for resources Slurm will check when and where your code should run</p></li>
+<li><p>It will also do accounting so that we can monitor and share resources fairly</p></li>
+</ul>
+</li>
+<li><p>Can the <code class="docutils literal notranslate"><span class="pre">sacct</span></code> command be used to show the status of all your jobs ?</p>
+<ul>
+<li><p>To see the status of your running jobs you should use <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-u</span> <span class="pre">$USER</span></code> or <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-j</span> <span class="pre">&lt;job</span> <span class="pre">number&gt;</span></code> to see the status</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sacct</span></code> is used to see the resources accounting</p></li>
+<li><p>But if I have many jobs submitted and want to see which jobs completed successfully and which ones failed, which command should I use then?</p>
+<ul>
+<li><p>To view previously submitted jobs that may have completed use <code class="docutils literal notranslate"><span class="pre">sacct</span> <span class="pre">--start=&lt;YYYY&gt;-&lt;MM&gt;-&lt;DD&gt;</span> <span class="pre">-u</span> <span class="pre">$USER</span></code> this will show all jobs completed after <code class="docutils literal notranslate"><span class="pre">&lt;YYYY&gt;-&lt;MM&gt;-&lt;DD&gt;</span></code></p>
+<ul>
+<li><p>Thanks that’s really useful!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>“sleep” command - what is it?</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">sleep</span></code> simply halts the program and waits for <code class="docutils literal notranslate"><span class="pre">X</span></code> number of seconds</p></li>
+<li><p>It’s very much like a timer, I use it if I want to queue something for later like this <code class="docutils literal notranslate"><span class="pre">sleep</span> <span class="pre">10;</span> <span class="pre">echo</span> <span class="pre">&quot;it</span> <span class="pre">has</span> <span class="pre">now</span> <span class="pre">passed</span> <span class="pre">10</span> <span class="pre">seconds&quot;</span></code></p>
+<ul>
+<li><p>It does not use CPU while it wait.</p></li>
+</ul>
+</li>
+<li><p>we only use it to simulate a running program without introducing and explaining a real program, to minimise confusion. in real life there is very rarely need to use the <code class="docutils literal notranslate"><span class="pre">sleep</span></code> command.</p></li>
+</ul>
+</li>
+<li><p>At some point I heard Sabry said “if you ask more time you will be reimbursed, if the job finished before the allocated time” if that is true, so would it be wise to ask for reasonably more time to finish the job?</p>
+<ul>
+<li><p>Ask for some margin, but keep it sensible because you get placed further back in the queue if you ask for a lot of time</p></li>
+<li><p>more about that tomorrow but yes, add some margin, perhaps 15-20%</p></li>
+</ul>
+</li>
+<li><p>&#64;bast Will you cover workflow managers tomorrow? E.g. snakemake which will be queing tasks on its own?</p>
+<ul>
+<li><p>no, not me. but good point. we should have added this to the material.</p></li>
+<li><p>yes, it is an advanced topic.</p></li>
+<li><p>we have some course material here: <a class="reference external" href="https://coderefinery.github.io/reproducible-research/">https://coderefinery.github.io/reproducible-research/</a> but this would be for another day</p></li>
+<li><p>do you know on which day this is covered? or not yet?</p>
+<ul>
+<li><p>to my knowledge we did not consider teaching it this time. we should do a separate training event on this and also add this next time.</p></li>
+<li><p>ah, thanks. i hoped for that b/c i was running into some problems, but this is a topic for individual user support then. I’ll have a look at the material.</p>
+<ul>
+<li><p>I recommend to send an email to support and we can go from there and help. We could also potentially offer extended support.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>How do I exit the <code class="docutils literal notranslate"><span class="pre">watch</span></code> command?</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Control-C</span></code> shall do the job :+1:</p></li>
+<li><p>Please do not leave <code class="docutils literal notranslate"><span class="pre">watch</span> <span class="pre">-n</span> <span class="pre">1</span></code> commands on forever, they will actually consume resources, specially <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-u</span> <span class="pre">uname</span></code></p></li>
+</ul>
+</li>
+<li><p>What should I do if I don’t know how much time my program takes or how much memory it will use ?</p>
+<ul>
+<li><p>I will talk about it tomorrow but in short: it can be difficult to say and needs to be calibrated and I recommend to “grow” the calculation from a small example towards the real example. Run a series of calculations where the problem size is increased and hopefully one can extrapolate from that. One can also start too conservative and run the big thing and then adjust but the disadvantage is that you may queue a long time.</p></li>
+<li><p>In the past I have been able to estimate the usage by running locally and guessing what’s required with production sized data</p>
+<ul>
+<li><p>A useful tool for local use is <code class="docutils literal notranslate"><span class="pre">htop</span></code>, it lets you see RAM and CPU usage per process</p>
+<ul>
+<li><p>on clusters there is <code class="docutils literal notranslate"><span class="pre">top</span></code> while the login nodes have <code class="docutils literal notranslate"><span class="pre">htop</span></code> installed</p>
+<ul>
+<li><p>aha! TIL. or today I re-remembered. nice.</p></li>
+<li><p>Fram and Betzy have <code class="docutils literal notranslate"><span class="pre">htop</span></code> on compute nodes, Saga does not</p>
+<ul>
+<li><p>great to know! I was testing only on Saga and didn’t notice. I was in fact looking for htop and wishing it was there and nice to hear that it is (on some machines).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Is there VNC support for Betzy by any chance?</p>
+<ul>
+<li><p>Fram and Saga support remote desktops</p>
+<ul>
+<li><p>I’ve used it on Fram, that’s why I am wondering about Betzy.</p></li>
+</ul>
+</li>
+<li><p>More information <a class="reference external" href="https://documentation.sigma2.no/getting_started/remote-desktop.html?highlight=vnc">about remote desktop here</a></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">pi.py</span> <span class="pre">10</span></code> What is 10 here?</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">10</span></code> is the first argument and represents the number of random numbers to “draw” when calculating PI</p></li>
+<li><p>so this is related to python script? (I think we are giving total_count here)</p>
+<ul>
+<li><p>passing some values as command line arguments to the Python script is a nice way to change values without opening and editing the file every time (this can be done also in every other language)</p>
+<ul>
+<li><p>a nicer way would have been to <a class="reference external" href="https://docs.python.org/3/library/argparse.html">program it to accept <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">somescript.py</span> <span class="pre">--num-throws=10</span></code></a>. this can be done but we wanted to keep it simple, since this is not the focus here but for user friendliness I would make it more explicit.</p></li>
+</ul>
+</li>
+<li><p>thanks</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Parallel Computing, link shared by the participant <a class="reference external" href="https://hpc.llnl.gov/training/tutorials/introduction-parallel-computing-tutorial#ExamplesPI">https://hpc.llnl.gov/training/tutorials/introduction-parallel-computing-tutorial#ExamplesPI</a></p></li>
+<li><p>General question: <code class="docutils literal notranslate"><span class="pre">##SBATCH</span> <span class="pre">--qos=devel</span></code>, This is a command in one of my script. why it has two hash tags, what dies it mean?</p>
+<ul>
+<li><p>Slurm understands lines starting with <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code>. If you put another “#” in front of it, like in your case, Slurm will ignore that line. So here, that line will have no effect.</p></li>
+<li><p>Additional explanation: in Bash, all lines with “#” are comments but Slurm still reads lines that start with “#SBATCH” but it will ignore any line completely with more than one “#”.</p></li>
+<li><p>But what does “qos=devel” mean?</p>
+<ul>
+<li><p>it asks Slurm to put this into the development queue. This is a queue with higher priority and shorter queuing time for development and debugging only. It is not meant for any job which is not development and debugging. Motivation is to make development on the cluster even possible (without waiting for hours after every code edit). It is also OK to use it to debug your job script. Some users from time to time, willingly or accidentally, use this to run “real” jobs and then we will contact them and ask them to move jobs to the regular partition.</p></li>
+<li><p>Oh, interesting to know.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>When you use srun, is there a slurm report made? Whenever I try, I do not find one slurm report. Only with sbatch.</p>
+<ul>
+<li><p>With <code class="docutils literal notranslate"><span class="pre">srun</span></code> and <code class="docutils literal notranslate"><span class="pre">salloc</span></code> a report is not created</p></li>
+<li><p>A Slurm output file is only created when you run a Slurm script with <code class="docutils literal notranslate"><span class="pre">sbatch</span></code></p></li>
+</ul>
+</li>
+<li><p>Does each rank run on a different node? And does the –mem flag request memory per node?</p>
+<ul>
+<li><p>Each rank does not necessarily have to run on different nodes, they could, but there is no guarantee (unless you use <code class="docutils literal notranslate"><span class="pre">--ntasks-per-node</span></code>)</p>
+<ul>
+<li><p>Without specifying <code class="docutils literal notranslate"><span class="pre">--ntasks-per-node</span></code>, will it be one task per node? And then one rank per node?</p></li>
+</ul>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">--mem</span></code> flag requests memory for the whole job, i.e. the sum of memory for all tasks. This has some interesting implications:</p>
+<ul>
+<li><p>If you ask for <code class="docutils literal notranslate"><span class="pre">--mem=1G</span></code> and 2 tasks</p></li>
+<li><p>If one tasks uses 900MB and the other task only uses 50MB then everything will workout without issue</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--mem</span></code> is actually per node if your job gets distributed across more nodes. Example: you ask for <code class="docutils literal notranslate"><span class="pre">--ntasks=10</span> <span class="pre">--mem=10G</span></code> and your job gets distributed 1+9 tasks over two nodes, then you get 10G on <em>each</em> node, which means that the 9 tasks on the second node will <em>share</em> 10G. Alternatively, by requesting <code class="docutils literal notranslate"><span class="pre">--ntasks=10</span> <span class="pre">--mem-per-cpu=1G</span></code> and you get the same 1+9 task distribution, you will get 1G on node 1 and 9G on node 2.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Which username we use to login to web-based lifeportal? is it the full user&#64;saga.sigma2.no? Why I can’t login using username for saga.sigma2.no?</p>
+<ul>
+<li><p>It is the saga username, did you get an error ?</p></li>
+<li><p>Yes “Auto-registration failed, contact your local Galaxy administrator. Please enter an allowed domain email address for this server.”</p>
+<ul>
+<li><p>We need to check accounts. Will help you offline. Please send a mail to “support&#64;metacenter.no”</p></li>
+<li><p>Thanks, will do that!</p></li>
+<li><p>I have the same problem: using email gives “No such user or invalid password.” or using username “Auto-registration failed, contact your local Galaxy administrator. Please enter an allowed domain email address for this server.”</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Can you run Busco with lifeportal?</p>
+<ul>
+<li><p>If requested we shall have it</p></li>
+</ul>
+</li>
+<li><p>Is lifeportal on fram?</p>
+<ul>
+<li><p>It is on SAGA</p>
+<ul>
+<li><p>is there any plan to have this also on other clusters?</p>
+<ul>
+<li><p>Not at the moment as this is mainly for make it an easy entry point to HPC, not as a replacement for command line. If there is a need yes possible on other places.</p></li>
+</ul>
+</li>
+<li><p>so the rest of today’s session is mostly relevant for Saga users, not Fram users?</p>
+<ul>
+<li><p>Correct.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>font size is small for me… could you increase it? and I have a 27.5 in screen…</p>
+<ul>
+<li><p>thanks for feedback, I will raise this issue</p></li>
+</ul>
+</li>
+<li><p>is the program only for genomics?</p>
+<ul>
+<li><p>Yes. We are showing a prototype and I will comeback about including more tools</p></li>
+</ul>
+</li>
+<li><p>Can you save the sbatch scripts created by the Web interface?</p>
+<ul>
+<li><p>they are always created but the web front end will point you where you can find it on the cluster</p></li>
+</ul>
+</li>
+<li><p>does “working space” in lifeportal corresponds to /cluster/work/? or what?</p>
+<ul>
+<li><p>It creates its own working directory, but not exactly <code class="docutils literal notranslate"><span class="pre">/cluster/work/</span></code></p></li>
+</ul>
+</li>
+<li><p>where is the link for web-interface?</p>
+<ul>
+<li><p><a class="reference external" href="https://lifeportal.saga.sigma2.no/">https://lifeportal.saga.sigma2.no/</a></p></li>
+</ul>
+</li>
+<li><p>Does having an account on SAGA grants an account on lifeportal? Or, can I use SAGA account to log on lifeportal?</p>
+<ul>
+<li><p>in my understanding: yes, with your saga account you should be able to log in</p>
+<ul>
+<li><p>I tried it with my SAGA credentials, but <code class="docutils literal notranslate"><span class="pre">Auto-registration</span> <span class="pre">failed,</span> <span class="pre">contact</span> <span class="pre">your</span> <span class="pre">local</span> <span class="pre">Galaxy</span> <span class="pre">administrator.</span> <span class="pre">Please</span> <span class="pre">enter</span> <span class="pre">an</span> <span class="pre">allowed</span> <span class="pre">domain</span> <span class="pre">email</span> <span class="pre">address</span> <span class="pre">for</span> <span class="pre">this</span> <span class="pre">server.</span></code></p></li>
+<li><p>Indeed my answer was wrong and during this prototype phase not all Saga accounts seem to be mapped to this service and you may need to contact support&#64;nris.no to be added.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Will you share the recordings?</p>
+<ul>
+<li><p>they will end up linked here: <a class="reference external" href="https://documentation.sigma2.no/training/material.html">https://documentation.sigma2.no/training/material.html</a>. You will receive an email when it is available.</p></li>
+</ul>
+</li>
+<li><p>do the files have to be decompressed to work on lifeportal? i.e. could Sabry have run fastqc on fastq.gz files?</p>
+<ul>
+<li><p>Yes, fastqz.gz could have been used instead as the groomer software accepts that format.</p></li>
+<li><p>so that still means that sample files have to be uploaded one by one, e.g. upload individual fastq.gz files?</p></li>
+<li><p>Files can be uploaded as archives or as individual files. It depends on the software used . I.e. some software accepts archives (also compressed) some do not. At the moment if you upload an archive or compressed file it will not be deflated. But you can run a tool to deflate, which is not installed at the moment. We can make it available if there is a request.</p></li>
+</ul>
+</li>
+<li><p>Is there lessons on how to run scripts on the Galaxy Lifeportal on SAGA? So we can recreate the steps you did today to run the script.</p>
+<ul>
+<li><p><a class="reference external" href="https://training.galaxyproject.org/">https://training.galaxyproject.org/</a></p></li>
+<li><p><a class="reference external" href="https://lifeportal.saga.sigma2.no/u/sabryr/h/sharednris">https://lifeportal.saga.sigma2.no/u/sabryr/h/sharednris</a></p></li>
+</ul>
+</li>
+<li><p>is galaxy something we (users) can create for ourselves? I mean, can we implement workflows for applications other than what available now?</p>
+<ul>
+<li><p>The workflows are not more than chains of operations executed by different tools in the system. As long as we have the tools installed, we can run them separately but also combine them and produce a workflow. In turn, the framework Galaxy is quite complex to be installed by a single person. This is why we installed it for NRIS community.</p></li>
+</ul>
+</li>
+<li><p>Could you please provide the fully commented version of the final MPI parallel python code? and explain how to manage tabs and indentations correctly in vim? especially useful for users who are used to prepare scripts on notepad+ and then upload them to server.</p>
+<ul>
+<li><p>https://github.com/Sabryr/HPC_teaching_scripts/blob/master/pi-mpi.py</p></li>
+</ul>
+</li>
+<li><p>one thing I missed (or maybe did not hear?): where and how to determine where output files and error files are produced when submitting a script? Overall, it would have been nice to have a little overview on HOW to organise yourself on a cluster: where to put scripts, where scripts outputs etc…</p>
+<ul>
+<li><p>Unless you change the job-script to point to somewhere else, it will be in the same directory as the directory job is submitted from.</p></li>
+</ul>
+</li>
+<li><p>Can you explain the difference between –ntasks and –nodes in #SBASH parameters</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--node</span></code> refer to a pizza-box I showed, it is a computer. Inside that there are two processors with cores. On SAGA there 40 cores each on a processor on a normal node. You could use the <code class="docutils literal notranslate"><span class="pre">sinfo</span></code> command to find this out. <code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> refer to the cores.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="feedback-for-the-day">
+<h2>Feedback for the day<a class="headerlink" href="#feedback-for-the-day" title="Link to this heading"></a></h2>
+<p>One thing you particularly enjoyed:</p>
+<ul class="simple">
+<li><p>all the questions gotten take care of quickly and professionally</p></li>
+<li><p>easy to understand and good explained:)</p></li>
+<li><p>everything was explained very quickly, and the teachers were helpful</p></li>
+<li><p>relative easy start into the HPC system</p></li>
+<li><p>fixing errors (both intentional and accidental) as we went along was useful.</p></li>
+<li><p>agree with the person before (error fixing during the lesson)</p></li>
+<li><p>pace was nice.</p></li>
+<li><p>the content is on an appropriate level for beginners</p></li>
+<li><p>good content web-page with lots of info</p></li>
+</ul>
+<p>One thing we should change/improve for next time:</p>
+<ul class="simple">
+<li><p>the whole thing is too fast. if you lose one point you will be totally lost.</p></li>
+<li><p>maybe a little bit more regarding the calculation of the resources that should be used for example job</p></li>
+<li><p>a little bit too fast paced especially for beginners, but perhaps I misunderstood the course, and maybe this is for people who already had some experience with HPC</p></li>
+<li><p>the hands on sessions where too fast, hence hard to follow</p></li>
+<li><p>bit fast</p></li>
+<li><p>perform some more testing of the demonstrations in advance, so that we can focus on the point of the demo instead of trying to follow along when solving unexpected errors</p></li>
+<li><p>don’t use vim, it is too hard for a beginner :-P</p></li>
+<li><p>in particular for the terminal work, when there is a slightly complicated command output to analyse; show/tell which part that brings you to a certain conclusion</p></li>
+<li><p>Generally, it was a bit complicated to follow what you were saying and the course content material, as it was complicated to navigate between the hackMD (and the many questions!) and the course content page, and you were not always following the same structure as the course content. Overall, much too fast for real beginners, but appropriate content and speed for people who have already used a cluster.</p></li>
+<li><p>should have left the time for users to try out and do the exercises of the course page, but this makes the course longer.</p></li>
+<li><p>I would love if things were a little bit more structured rather than just running a script with no explanation of the code there and being surprised by the output/error messages. The documents on the github page are good, but it would be more easier if we stick to the script. Also, the topics today were not that hard, but there was a flood of commands that we needed to use.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

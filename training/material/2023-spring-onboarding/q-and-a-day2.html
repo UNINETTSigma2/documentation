@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions and answers from HPC on-boarding Apr 2023, Day 2 (Apr 20) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Questions and answers from HPC on-boarding Apr 2023, Day 2 (Apr 20)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="questions-and-answers-from-hpc-on-boarding-apr-2023-day-2-apr-20">
+<span id="training-2023-spring-onboarding-notes-day2"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Questions and answers from HPC on-boarding Apr 2023, Day 2 (Apr 20)</a><a class="headerlink" href="#questions-and-answers-from-hpc-on-boarding-apr-2023-day-2-apr-20" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#questions-and-answers-from-hpc-on-boarding-apr-2023-day-2-apr-20" id="id1">Questions and answers from HPC on-boarding Apr 2023, Day 2 (Apr 20)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#post-workshop-survey" id="id2">Post Workshop Survey</a></p></li>
+<li><p><a class="reference internal" href="#icebreaker-question" id="id3">Icebreaker Question</a></p>
+<ul>
+<li><p><a class="reference internal" href="#what-challenges-do-you-anticipate-or-have-you-faced-when-inheriting-scripts-inputs-examples-from-other-persons" id="id4">What challenges do you anticipate or have you faced when inheriting scripts/inputs/examples from other persons?</a></p></li>
+<li><p><a class="reference internal" href="#do-you-know-what-conda-is" id="id5">Do you know what conda is?</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#sessions" id="id6">Sessions</a></p></li>
+<li><p><a class="reference internal" href="#your-questions" id="id7">Your questions</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="post-workshop-survey">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Post Workshop Survey</a><a class="headerlink" href="#post-workshop-survey" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Please give your feedback <a class="reference external" href="https://skjemaker.app.uib.no/view.php?id=14765086">here</a></p></li>
+</ul>
+</section>
+<section id="icebreaker-question">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Icebreaker Question</a><a class="headerlink" href="#icebreaker-question" title="Link to this heading"></a></h2>
+<section id="what-challenges-do-you-anticipate-or-have-you-faced-when-inheriting-scripts-inputs-examples-from-other-persons">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">What challenges do you anticipate or have you faced when inheriting scripts/inputs/examples from other persons?</a><a class="headerlink" href="#what-challenges-do-you-anticipate-or-have-you-faced-when-inheriting-scripts-inputs-examples-from-other-persons" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>example that the author provided was incomplete</p></li>
+<li><p>the inherited example was too large (took too long to run and queue before knowing that it even works)</p></li>
+<li><p>example referred to files/paths that I had no access to</p></li>
+<li><p>hard-coded paths, abundance of dependencies</p></li>
+<li><p>variables, function names and comments written in a human language I don’t understand at all</p></li>
+<li><p>poor or no documentation, including what variables are supposed to be</p></li>
+<li><p>Missing dependencies, such as other scripts or packages/libraries which no longer exist/are valid</p></li>
+<li><p>no comments (documentation missing) to explain what the script or the particular parts does</p></li>
+</ul>
+</section>
+<section id="do-you-know-what-conda-is">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Do you know what conda is?</a><a class="headerlink" href="#do-you-know-what-conda-is" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Yes: oo0oo00000</p></li>
+<li><p>No: o000</p></li>
+<li><p>I’m an expert:</p></li>
+<li><p>Snake: oo~</p></li>
+<li><p>Yes, but not in a unix system</p></li>
+<li><p>Mamba is better i think</p></li>
+</ul>
+</section>
+</section>
+<section id="sessions">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Sessions</a><a class="headerlink" href="#sessions" title="Link to this heading"></a></h2>
+<p>https://documentation.sigma2.no/training/events/2023-04-hpc-on-boarding.html</p>
+</section>
+<hr class="docutils" />
+<section id="your-questions">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Your questions</a><a class="headerlink" href="#your-questions" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>what does executable python mean? And are the path variables permanent?</p>
+<ul class="simple">
+<li><p>if you type <code class="docutils literal notranslate"><span class="pre">python</span></code> and hit enter, you start the Python shell. but what really happened is that you ran an executable called python located at a certain path. using <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code> you can find out where it is located</p></li>
+<li><p>some path variables are defined when you start the terminal (when you log in), and then you can change the variables (typically using <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code>) but the changes only live for the duration of your terminal session. once you close the terminal, it will go back to the defaults. the take-away from this is that it is a good idea to do module loads inside job scripts so that the job scripts (and thus path variables are correctly defined inside job scripts) become more reproducible</p></li>
+</ul>
+</li>
+<li><p>what if the python version that you need is not in the system?</p>
+<ul class="simple">
+<li><p>First is to make sure this is the case, by using <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span> <span class="pre">python</span> </code></p></li>
+<li><p>Then if it is a newer version you could send a support request (more on this later today) asking the module to be installed</p></li>
+<li><p>Alternatively, you could use the Miniconda module to create your own python environment</p></li>
+<li><p>If the version is old or leads to errors that you can not resolve, when trying with Miniconda, you can use a container. We have Singularity installed on our system (more on this during the best practices course)</p>
+<ul>
+<li><p>https://documentation.sigma2.no/training/events/2023-05-best-practices-on-NRIS-clusters.html</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>do you need to remove the standard env as well?</p>
+<ul class="simple">
+<li><p>typically no. we modify the environment by adding variables “to the left” and the system searches paths from left to right until it finds it so it does not matter if standard variables are somewhere “to the right” and never used.</p></li>
+</ul>
+</li>
+<li><p>So the number AFTER the package indicates the dependencies in some way or have I misunderstood?</p>
+<ul class="simple">
+<li><p>in the modules we often see two number sets (example: <code class="docutils literal notranslate"><span class="pre">gnuplot/5.2.8-GCCore-8.3.0</span></code>). the first refers to the version of the package (here: 5.2.8). the second refers to the version of the so-called toolchain (here: 8.3.0). toolchain is the compiler that was used to build gnuplot from its source code. here both gnuplot and GCCore may have other dependencies on other modules.</p></li>
+</ul>
+</li>
+<li><p>Not really a question: <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">module</span></code> results in the error `man: manpath list too long</p>
+<ul>
+<li><p>That is a bit weird. From what operating system/tool are you logging in? Asking because I do not see this error on my computer.</p>
+<ul class="simple">
+<li><p>&#64;login-2.FRAM ~]$</p></li>
+<li><p>What os on your laptop?</p>
+<ul>
+<li><p>macOS 12.0.1 (21A559) (does my OS affect the remote login node?)</p></li>
+<li><p>problem is locale … looking for a solution.</p>
+<ul>
+<li><p>please try this: <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">LC_ALL=en_US.UTF-8</span></code> and <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">LANG=en_US.UTF-8</span></code> followed by <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">module</span></code>. if that helped, then you can add the two exports into your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> on the cluster.</p></li>
+<li><p>yes; there are some settings that are inherited - specially from zsh on mac and using iTerm2/terminal. However, this problem does not exist with Visual Studio Code.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>@login-2.FRAM ~]$ man module
+man: can&#39;t set the locale; make sure $LC_* and $LANG are correct
+man: manpath list too long
+
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>I was able to load an older version of Ruby, which caused GCCcore to be reloaded with an earlier version (7.3.0). However, all other modules are still dependent on GCCcore 10.3.0. Is there a way to prevent me from having loaded the “wrong” version of Ruby?</p>
+<ul class="simple">
+<li><p>Try not to mix modules compiled with different compiler, this will lead to errors hard to debug.</p></li>
+<li><p>You need to find a module combination that are compiled with the same compiler/tool chain</p></li>
+<li><p>If you give me the list of modules you want to use together, I can show you how (if that is possible)</p>
+<ul>
+<li><p>That’s OK, I just wanted to fail the bonus exercise and see what would happen if I tried to load an incompatible module :)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span> <span class="pre">node/</span></code> returns <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">modules</span> <span class="pre">found!</span></code>: Can Node.js be made available?</p>
+<ul class="simple">
+<li><p>Which means this module is not installed and not been requested. You could aske it be installed. Send request to support&#64;nris.no.</p></li>
+<li><p>When you send the request, please include a short description on how it will be used</p></li>
+<li><p>note that you can also use EasyBuild to install it for yourself. this is not part of this course but there is documentation on it. this can be a good solution to install software that only one person or group needs</p></li>
+<li><p>You could also use Conda/Miniconda to install this (follow the ongoing lecture )</p>
+<ul>
+<li><p>Conda to install Node.js? Interesting 👀. Will also look at EasyBuild.</p></li>
+</ul>
+</li>
+<li><p>If you load the latest R package you will also get node.js . The package is hidden, but it is there. If you load : module load R/4.1.2-foss-2021b
+then you will see : which node
+/cluster/software/nodejs/14.17.6-GCCcore-11.2.0/bin/node</p>
+<ul>
+<li><p>Interesting, thanks!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Can you explain again about GCCcore versions?</p>
+<ul class="simple">
+<li><p>It basically means that there are some similarities between the free gnu compiler suite and the commercial/costly intel compiler suite. Codes that have the GCCcore toolchain can be used together with both codes that has the GCC toolchain and the intel toolchain as long as the GCC version is the same.</p></li>
+</ul>
+</li>
+<li><p>What does the ml in ml purge do?</p>
+<ul class="simple">
+<li><p>see <code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">--help</span></code> - it can either list or load or unload. personal opinion: I find this inconsistent and surprising and I avoid it and prefer to type <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> explicitly.</p></li>
+<li><p>thank you!</p></li>
+</ul>
+</li>
+<li><p>about the meaning of <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">-p</span></code>:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">man</span> <span class="n">mkdir</span> <span class="p">:</span>        <span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="o">--</span><span class="n">parents</span>
+              <span class="n">no</span> <span class="n">error</span> <span class="k">if</span> <span class="n">existing</span><span class="p">,</span> <span class="n">make</span> <span class="n">parent</span> <span class="n">directories</span> <span class="k">as</span> <span class="n">needed</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- As always, man is your friend.
+
+(apart from when log in from new mac and trying cost --man ;-))
+</pre></div>
+</div>
+<ol class="arabic simple" start="11">
+<li><p>It was told that conda can help others reproduce my work. How does this do this?</p>
+<ul class="simple">
+<li><p>the reproducibility aspect of Conda is that not only I can install my dependencies into an isolated environment, it also makes it easier to communicate to others who need the same environment on their computers by sharing the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file which lists all dependencies and the version. personal recommendation: I always create Conda environments and always install packages from the environment.yml file. In other words, I first document the dependency in the environment.yml file and then install from that file. Then all I need to do is to share that file and others can install environment from it. This makes reproducibility for others and my future self a lot simpler.</p>
+<ul>
+<li><p>Great! What needs to be specified to the reader in order for them to be able to reproduce it? the environment.yml file? does it contain all the packages(versions) that were used?</p>
+<ul>
+<li><p>a reproducible environment.yml will list packages and versions (and also channels where to install them from) example for an environment.yml file: https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#create-env-file-manually</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>is pip install not recommended here?</p>
+<ul class="simple">
+<li><p>using pip install in combination with virtual environments works similarly and is also fine if your software dependencies are Python packages. it is the same idea. the instructor now discourages using pip but they mean pip in combination with conda. it is perfectly fine to use pip in combination with virtual environments (not mentioned in this course).</p></li>
+</ul>
+</li>
+<li><p>if I have already made a python environment in the home folder, how to move to project folder?</p>
+<ul class="simple">
+<li><p>you mean now conda environment of virtual environment?</p>
+<ul>
+<li><p>Yes, in my own user not the course user (in SAGA). Update: Sorry conda environment in SAGA!</p>
+<ul>
+<li><p>what I would do, assuming that you installed the environment from environment.yml (conda) or requirements.txt (virtual environment), then I would remove the environment and re-create it in the new place. I highly recommend to work as if the environment was disposable and could disappear at any moment. This will help you in future and make your computations more reproducible. If you are unsure which dependencies and versions are in the environment in question, you can export them into an environment.yml file.</p>
+<ul>
+<li><p>So you have a fresh export of your conda environment in case it disappears that you can activate again?</p>
+<ul>
+<li><p>I always have an environment.yml and install from it. Then I always know my dependencies. But if you don’t have it yet, you can use the export function to generate it from an “undocumented” existing environment. In other words I regard environment.yml as the documentation of my dependencies. It is very valuable to have.</p>
+<ul>
+<li><p>Very good idea! I would like to do that! Could you share some code on how to create this file?</p></li>
+</ul>
+</li>
+<li><p>try these two and compare the results (they can be useful in different ways):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">export</span> <span class="pre">--from-history</span> <span class="pre">&gt;</span> <span class="pre">environment.yml</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">export</span> <span class="pre">&gt;</span> <span class="pre">environment.yml</span></code></p>
+<ul>
+<li><p>Thank you very much!</p>
+<ul>
+<li><p>pleasure! it has been after years of suffering and not remembering what I did that I started always installing from files :-)</p></li>
+<li><p>if you want to ask your colleagues an uncomfortable question in the corridor during coffee break: “which package versions does your notebook/project depend on?” if they have a hard time answering, then the project might be hard to re-run in 2 years.</p>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

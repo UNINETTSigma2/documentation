@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions and answers from HPC On-boarding May 2022, Day 2 (May 5) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Questions and answers from HPC On-boarding May 2022, Day 2 (May 5)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="questions-and-answers-from-hpc-on-boarding-may-2022-day-2-may-5">
+<span id="training-2022-spring-notes-day2"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Questions and answers from HPC On-boarding May 2022, Day 2 (May 5)</a><a class="headerlink" href="#questions-and-answers-from-hpc-on-boarding-may-2022-day-2-may-5" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#questions-and-answers-from-hpc-on-boarding-may-2022-day-2-may-5" id="id1">Questions and answers from HPC On-boarding May 2022, Day 2 (May 5)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#icebreaker-question" id="id2">Icebreaker question</a></p></li>
+<li><p><a class="reference internal" href="#accessing-software" id="id3">Accessing software</a></p></li>
+<li><p><a class="reference internal" href="#transferring-files" id="id4">Transferring files</a></p></li>
+<li><p><a class="reference internal" href="#compute-and-storage-quota" id="id5">Compute and storage quota</a></p></li>
+<li><p><a class="reference internal" href="#asking-for-help" id="id6">Asking for help</a></p></li>
+<li><p><a class="reference internal" href="#general-q-a" id="id7">General Q&amp;A</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="icebreaker-question">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Icebreaker question</a><a class="headerlink" href="#icebreaker-question" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Which software would you like to run on our HPC machines?</p>
+<ul>
+<li><p>Python (suite2p, cellpose2, CalmAn) o</p></li>
+<li><p>Matlab 2021b</p></li>
+<li><p>R studio, dada2, MaAsLin2</p></li>
+<li><p>hisat2, stringtie</p></li>
+<li><p>RGI, CARD</p></li>
+<li><p>MetaWRAP</p></li>
+<li><p>QIIME2</p></li>
+<li><p>CNIT, PfamScan, CNI2</p></li>
+<li><p>no idea yet! tensor flow, perhaps FIJI if it makes sense</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="accessing-software">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Accessing software</a><a class="headerlink" href="#accessing-software" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html">Material for the lesson (not need now but for the exercises)</a></p>
+<ol class="arabic">
+<li><p>I think this part on how to find how to run a package/execute commands in a package via remote computing is very important (for me as a beginner, I do not know how to even do this on my own pc from the command line). Could we receive some more info on where to find how to handle this?module keyword</p>
+<ul class="simple">
+<li><p>As you said, these procedures (except for the module commands) are identical on every unix-based computer. Follow this lecture and you will know how to do this on your local machine too :) The <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">...</span></code> commands are specific to the cluster. You can have the package <em>module</em> installed on your local machine too, but it is very unlikely that you will ever do it.</p></li>
+<li><p>hopefully we will clarify some more during the session but also provide links to more examples in our documentation</p></li>
+</ul>
+</li>
+<li><p>Should we do the module load inside the job script?</p>
+<ul class="simple">
+<li><p>yes. This makes reproducibility for you and others easier. It also makes it easier to debug a problem that you may share with support staff. It is much better to load all required modules inside the job script compared to implicitly loading them somewhere else (in <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>).</p></li>
+<li><p>staff perspective: sometimes we get a job script that fails but it contains no module loads and we have no idea what software environment this was run in.</p></li>
+</ul>
+</li>
+<li><p>module purge does not eliminate “sticky” modules-apart from the default, is stickyness user definable? I mean, if I need for some reason some modules to stay put when purging?</p>
+<ul class="simple">
+<li><p>You shall use <code class="docutils literal notranslate"><span class="pre">--force</span></code> in <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">purge</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">--force</span> <span class="pre">purge</span> <span class="pre">MODULE_NAME</span></code>, if you need some of them, just load them only</p></li>
+<li><p>The “stickyness” is a property of the module that is given to it when it is constructed. I don’t think you can add a “sticky note” to a module of your choosing</p></li>
+</ul>
+</li>
+<li><p>Where does the module keyword “keyword” command look inside the module for matching keywords? Some of the hits for “chemistry” do not show this in the caption, though they may show “chemical” or similar so it appears to look deeper?</p>
+<ul class="simple">
+<li><p>E.g. <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">keyword</span> <span class="pre">Ruby</span></code></p></li>
+<li><p>Not completely sure about this. For the ‘chemistry’ example I see that NBO7 does not actually contain the word ‘chemistry’ in the description. If I look more closely on the module file with the command <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">show</span> <span class="pre">NBO7/09-Sep-2019-intel-2018b</span></code>, I see that there is explicitly listed a “Keywords: Chemistry”. So my guess is that <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">keyword</span></code> parses the entire module file.</p></li>
+</ul>
+</li>
+<li><p>If we load certain modules in the job script, are they automatically purged after the job completes?</p>
+<ul class="simple">
+<li><p>the modules loaded in a job script do not “spill out” of the job script as the job script creates an isolated shell on its own</p></li>
+</ul>
+</li>
+<li><p>How can we edit the PATH variable manually in systems which do not use the module package manager?</p>
+<ul class="simple">
+<li><p>If you want to make these changes consistent (permanent), edit the file <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>in your home directory:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>PATH=/your_additional_path_to_the_newly_installed_binary:$PATH
+export PATH
+</pre></div>
+</div>
+<p>Then run the command <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">.bashrc</span></code> to enable the changes.
+This change will prepend the new path to the search and if you have, say, python both in the new path and in <code class="docutils literal notranslate"><span class="pre">/usr/bin</span></code>, the one in the new path will be always used.</p>
+<ul>
+<li><p>What if both the paths already exist and I just want to swap the order?</p>
+<ul class="simple">
+<li><p>Then you do:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>PATH=$PATH:/your_additional_path_to_the_newly_installed_binary
+</pre></div>
+</div>
+<p>instead
+<em>WARNING!</em> You shall not forget to append the already existing path (<em>$PATH</em>) to this line. Otherwise you may not be able to execute all the commands in the default $PATH, like <code class="docutils literal notranslate"><span class="pre">cd</span></code>, <code class="docutils literal notranslate"><span class="pre">ls</span></code>etc.</p>
+</li>
+<li><p>Thanks! And how do we remove some path that already exists?</p>
+<ul class="simple">
+<li><p>Repeat the same procedure but remove the path you do not need any more. Every time you export, the value of the $PATH is kind of overwritten</p>
+<ul>
+<li><p>But would it need a restart to get the original list of PATH? Otherwise it would just export the existing value, which already contains the path I want to remove. Isn’t that so?</p>
+<ul>
+<li><p>The command <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">.bashrc</span></code>  enables the changes. You have to run it every time you modify your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file. Logging out and logging in does the same trick :)</p>
+<ul>
+<li><p>Got it. Thanks a lot!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Why there is no module for cartopy?</p>
+<ul class="simple">
+<li><p>Because it has not been installed ;)</p></li>
+<li><p>most likely nobody has asked for this before, see also next question</p></li>
+<li><p>cartopy is a python package and you can install a lot of them on your self using conda. <a class="reference external" href="https://documentation.sigma2.no/software/userinstallsw/python.html#installing-python-packages">See here</a></p></li>
+</ul>
+</li>
+<li><p>Who I can contact to get it installed ? When I install it myself , it clashes with oother modules</p>
+<ul class="simple">
+<li><p>support&#64;nris.no</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="transferring-files">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Transferring files</a><a class="headerlink" href="#transferring-files" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html">Lesson material</a></p>
+<ol class="arabic simple" start="9">
+<li><p>the address question may bring up another issue (if interpreted literally): storing data that can relate to a person, is that ok gdpr-wise (double encrytion)?</p>
+<ul class="simple">
+<li><p>Yes it is, maybe not relevant here but still smth to think about</p></li>
+</ul>
+</li>
+<li><p>How do I know how much data I can download to my account in saga</p>
+<ul class="simple">
+<li><p>Please read this info : https://documentation.sigma2.no/files_storage/clusters.html</p></li>
+<li><p>this is limited by storage quota and we will talk about storage quotas in the next episode in 40 minutes. In short, on Saga (or other cluster at NRIS), try: <code class="docutils literal notranslate"><span class="pre">dusage</span></code> to get an overview of your quota allocations</p></li>
+</ul>
+</li>
+<li><p>Is it possible to use winSCP or Filezilla for transferring?</p>
+<ul class="simple">
+<li><p>yes. these tools use scp underneath. so under the hood they do what the instructor now shows directly.</p></li>
+<li><p>another popular tool on Windows is https://mobaxterm.mobatek.net/</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wget</span></code> works fine, however when I am getting <code class="docutils literal notranslate"><span class="pre">man:</span> <span class="pre">manpath</span> <span class="pre">list</span> <span class="pre">too</span> <span class="pre">long</span></code> trying to run <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">wget</span></code> (<code class="docutils literal notranslate"><span class="pre">man</span></code> is not working)</p>
+<ul class="simple">
+<li><p>The command shall start by <code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">https://</span> <span class="pre">...</span></code>. Please remove “man” - <em>this is not the issue</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">wget</span></code> on its own can be used to inspect manual pages about the command <code class="docutils literal notranslate"><span class="pre">wget</span></code></p></li>
+<li><p>looks like this was caused by following the exercises loading the <code class="docutils literal notranslate"><span class="pre">R</span></code> module, running <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">purge</span></code> fixed <code class="docutils literal notranslate"><span class="pre">man</span></code></p></li>
+</ul>
+</li>
+<li><p>Why we need “export PS= ‘LAPTOP$’”?</p>
+<ul class="simple">
+<li><p>ignore that line. you won’t need this. I think instructor does this to modify the prompt to be more distinctive and indicate location but unfortunately this command perhaps confuses also.</p></li>
+<li><p>but to explain what this line does: one can modify what the terminal should show before the “$” (some people like to show the path, some don’t, you can modify colors and such)</p></li>
+<li><p>it was only done to narrow down the prompt so that it fits into the recording and does not spill over to the next line</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sha256sum</span> <span class="pre">somefile</span></code> can compute a “checksum” of a file</p>
+<ul class="simple">
+<li><p>this can be used to verify whether a file has not been changed. When you download software from the web, sometimes they also provide a checksum for that file so that you can verify the integrity of that file/package.</p></li>
+<li><p>the idea behind checksums is that small variations in file will produce a completely different checksum</p></li>
+<li><p>I use this sometimes to make sure that I have transferred a file completely and did not end up with an incomplete file before deleting the other.</p></li>
+</ul>
+</li>
+<li><p>While sending files from saga to personal laptop, why not execute scp directly in saga, instead, again in personal laptop?</p>
+<ul class="simple">
+<li><p>If your personal laptop has an IP which is accessible from SAGA, you can, yes. Yet, usually, the IP of your laptop is local to your home network as it is assigned by your router at home. Hence it is not accessible from the outside.</p></li>
+</ul>
+</li>
+<li><p>How is the pace of this lesson?(give an ‘o’)</p>
+<ul class="simple">
+<li><p>clear oooooooooo</p></li>
+<li><p>unclear</p></li>
+</ul>
+</li>
+<li><p>I think  this example: <code class="docutils literal notranslate"><span class="pre">[user&#64;laptop</span> <span class="pre">~]$</span> <span class="pre">scp</span> <span class="pre">MY_USER_NAME&#64;saga.sigma2.no:from_saga.txt</span></code> requires a space after the colon. I am slowly succeeding but receive a message “not a regular file” when transferring a text file from saga to my laptop. What could this mean?</p>
+<ul class="simple">
+<li><p>No, there is no space after the colon</p></li>
+<li><p>Try to modify the command like this : <code class="docutils literal notranslate"><span class="pre">scp</span> <span class="pre">MY_USER_NAME&#64;saga.sigma2.no:~/from_saga.txt</span> <span class="pre">.</span></code></p></li>
+<li><p>You need to specify the target location - in this case, this is the “.” (dot) -  the directory where you are standing in your laptop</p>
+<ul>
+<li><p>thank you, successful now</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="compute-and-storage-quota">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Compute and storage quota</a><a class="headerlink" href="#compute-and-storage-quota" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/compute-storage-quota.html">lesson material</a></p>
+<ol class="arabic simple" start="18">
+<li><p>Can we know how much quota each account has ?</p>
+<ul class="simple">
+<li><p>The command <code class="docutils literal notranslate"><span class="pre">cost</span></code> displays this information - the top line for every account. Account = project in NRIS clusters.</p></li>
+<li><p>For a particluar project (account), type <code class="docutils literal notranslate"><span class="pre">cost</span> <span class="pre">-p</span> <span class="pre">nnXXXXk</span></code></p>
+<ul>
+<li><p>I mean how much each person has</p>
+<ul>
+<li><p>Then try command <code class="docutils literal notranslate"><span class="pre">dusage</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I tried ‘cost -p nn9576k’ and it shows nothing, so this project has no quota right?</p>
+<ul class="simple">
+<li><p>Can you check with the command <code class="docutils literal notranslate"><span class="pre">projects</span></code> if you are a member of this project?</p>
+<ul>
+<li><p>it only shows nn9989k</p>
+<ul>
+<li><p>Then you are not allowed to see the quota of a project you are not a member of</p></li>
+<li><p>I am a member of the project, I can see the quota in betzy, so may be w edont have a quota in saga?</p>
+<ul>
+<li><p>Exactly, I checked, nn9576k has allocation on Betzy and FRAM only</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I ran <code class="docutils literal notranslate"><span class="pre">dusage</span></code> on <code class="docutils literal notranslate"><span class="pre">betzy</span></code>, but I don’t see <code class="docutils literal notranslate"><span class="pre">/cluster/work/users/$USER</span></code> line in the output. Am I missing something? I do have some files stored in that folder.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code> on Betzy is virtually unlimited (only limited by the total size of the filesystem) + quota is differently implemented on Betzy (compared to Saga &amp; Fram) =&gt; there is no need to know how many files you have on <code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code></p></li>
+<li><p>How to check the quota for <code class="docutils literal notranslate"><span class="pre">/cluster/work/users/$USER</span></code> then?</p>
+<ul>
+<li><p>Quota is unlimited. You might run <code class="docutils literal notranslate"><span class="pre">du</span></code> for <code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code> to determine how much space you use, but should note that this traverses the whole directory tree and may create quite a bit of load on the filesystem. So, would be good not to do it very often or only if you really need to.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Is it fine to download large data to Betzy and FRAM and do data analysis there ? I was told its meant to run only simulations there</p>
+<ul class="simple">
+<li><p>Yes, you can and you shall do this, of course. You can not keep the data for a very long period there though.</p></li>
+</ul>
+</li>
+<li><p>Do we get any message before files are removed from the <code class="docutils literal notranslate"><span class="pre">/cluster/work/users/$USER</span></code> folder after 21 days?</p>
+<ul class="simple">
+<li><p>No.</p></li>
+</ul>
+</li>
+<li><p>How is the duration of <code class="docutils literal notranslate"><span class="pre">21</span> <span class="pre">days</span></code> determined. Is it based on the <code class="docutils literal notranslate"><span class="pre">last</span> <span class="pre">modified</span></code> timestamp or is it based on <code class="docutils literal notranslate"><span class="pre">created</span> <span class="pre">on</span></code> timestamp?</p>
+<ul class="simple">
+<li><p>It is based on the time of creation. It would not make sense otherwise.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="asking-for-help">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Asking for help</a><a class="headerlink" href="#asking-for-help" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://cicero.xyz/v3/remark/0.14.0/github.com/bast/help-with-supercomputers/main/talk.md">Slides</a></p>
+<ol class="arabic simple" start="24">
+<li><p>Is it recommended to install packages locally or is it better to contact support and get a new module package installed?</p>
+<ul class="simple">
+<li><p>It is better to ask the support, especially if your tool requires plenty of dependencies. We have elaborated routines for tool installations.</p>
+<ul>
+<li><p>Thanks!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Is it possible that the current slides being shared/public to everyone?</p>
+<ul class="simple">
+<li><p>These slides are linked in the course page</p></li>
+</ul>
+</li>
+<li><p>Is the course content and documentation available after the course is finished? It would be helpful to have the documentation to read through it again or look something up.</p>
+<ul class="simple">
+<li><p>Yes. You are welcome to refer !</p>
+<ul>
+<li><p>THANKS!!!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Can you mention again how to open a new ticket? Do you mean by writing an email or is there a link where we have to go to?</p>
+<ul class="simple">
+<li><p>Just email to support&#64;nris.no This will open up a ticket on our side.</p>
+<ul>
+<li><p>Thanks :)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>you did a great job keeping the level acceptable for me (I am sure yu will agree I am a very early beginner). Thanks!</p></li>
+<li><p>What is the alternative to docker for Saga?</p>
+<ul class="simple">
+<li><p>Singularity.</p>
+<ul>
+<li><p>thanks.</p></li>
+</ul>
+</li>
+<li><p>Is there a reason why Singularity is preferred over Docker?</p>
+<ul>
+<li><p>Yes, definitely : security issues. It is also said to be compatible with the docker containers. We are still in the beginning of this implementation.</p></li>
+<li><p>One reason is that docker requires root rights while singularity can run without</p>
+<ul>
+<li><p>Thanks. Good to know this!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Sarus is also an alternative that is in “pilot testing”</p></li>
+</ul>
+</li>
+<li><p>Fram is designed for running code on the backend of the cluster with multi-processing.Not single processing on front-end. E,g, plotting and decoding. Is this true?</p>
+<ul class="simple">
+<li><p>All clusters (Saga, Fram &amp; Betzy) are best in processing batch workloads. They can be used for interactive work too, but because of the scheduler and how the scheduler works it doesn’t work as well as on your own machine. Also, on login-nodes only very minimal work should be done.</p>
+<ul>
+<li><p>Thanks</p></li>
+</ul>
+</li>
+<li><p>The concept of front and backend are usually not used in the HPC context (but still describe quite alright, I think). On our systems all calculations are done on the compute nodes in a higly parallel fashion but your individual job doesn’t have to take advantage from multiple CPUs or nodes. The login nodes are just used for starting jobs and looking/organizing at files</p></li>
+</ul>
+</li>
+<li><p>When is it useful to run an interactive job as compared to a batch job?</p>
+<ul class="simple">
+<li><p>Might be very useful for testing how your jobs might behave</p></li>
+</ul>
+</li>
+<li><p>May I ask the difference between docker/singularity and python virtual environment, for ml training tasks?</p>
+<ul class="simple">
+<li><p>docker/singularity include parts of the operating system, python virtual environments “only” include everything that is needed to run an isolated version of Python (python + libraries / packages)</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="general-q-a">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">General Q&amp;A</a><a class="headerlink" href="#general-q-a" title="Link to this heading"></a></h2>
+<ol class="arabic simple" start="33">
+<li><p>When I open a module which is using databases how do I point to those databases in my jobscript, normally you give the file path to the database but where will I find those?</p>
+<ul class="simple">
+<li><p>is this an SQLite database? in this case it would be a file path which I would perhaps place in the project data space</p></li>
+<li><p>I mean like the mothur or silva databases, are these on the HCP or you should download these yourself</p>
+<ul>
+<li><p>We used to have some biodatabases pre-downloaded. There are here some of them now : <code class="docutils literal notranslate"><span class="pre">/cluster/shared/databases</span></code>. In case you need more we can download them for you.
+-thanks ! :)</p></li>
+<li><p>Is there an information page about all the available databases? or will there be one</p>
+<ul>
+<li><p>I see that details are not in NRIS docs yet (or link lost), will note it down for fixing. Details of the process of setting these up are here https://github.com/Sabryr/Databases-on-SAGA. In addition when you load a module that has assoctiated data, that information will be printed  <code class="docutils literal notranslate"> <span class="pre">module</span> <span class="pre">load</span> <span class="pre">BLAST+/2.11.0-gompi-2020b</span></code>. How to use the database with the software is something the user supposed to know or det from the documentation of the software it self.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I am wondering how you can catch runtime errors and debug, by logging to log files or?</p>
+<ul class="simple">
+<li><p>depends whether this is software we can change (then adding debug information or print statements) or cannot change (then we can only hope that the code prints and logs some error)</p></li>
+<li><p>but it is hard to debug software we don’t know and did not write</p></li>
+</ul>
+</li>
+<li><p>I am trying to download cmip6 data from https://esgf-node.llnl.gov/search/cmip6/. If i click on the wget script, it will just download the script to my computer. How can i directly download it in saga or fram?</p>
+<ul class="simple">
+<li><p>right click on link to copy the link to the file and then paste it into Saga terminal right after wget</p></li>
+</ul>
+</li>
+<li><p>That didnt work , when i right click i get javascript:wgetScript(‘esgf-node.llnl.gov’,’’,’CMIP6.ScenarioMIP.CCCma.CanESM5.ssp126.r12i1p2f1.Amon.wap.gn.v20190429|crd-esgf-drc.ec.gc.ca’) and this didnt work with wget, it showed bash: syntax error near unexpected token “(”</p>
+<ul class="simple">
+<li><p>what should I search for on that site to get a result and get a downloadable link?</p></li>
+<li><p>Any variable from a C4MIP simulation may be, the downloaded wget script works in my comuputer (./wget—-.sh)</p>
+<ul>
+<li><p>but what should I search for on that page? I am unsure how to get a link that I could try on that page.</p></li>
+<li><p>Can u try CMIP6.ScenarioMIP.CCCma.CanESM5.ssp126.r12i1p2f1.Amon.wap.gn ?</p>
+<ul>
+<li><p>aha yes, that page does not give direct link to file but gives a javascript code snippet. I would copy that link, paste it into a text file, and extract the actual link out of it and use that one in wget. I think what the site does is unfortunately not very convenient here.</p>
+<ul>
+<li><p>I think i didnt get it properly, you mean without downloading the script right</p></li>
+<li><p>and I tried that now after writing and I admit I don’t understand their WGET script setup. sorry :-)</p></li>
+<li><p>Ok thanks</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Are there any communities in NRIS, for example for peolple working in similar areas, like bioinformatics? Would be nice to share experience and problems</p>
+<ul class="simple">
+<li><p>we are looking for suggestions for how we can facilitate it. what tool(s) the community would like us to provide.</p></li>
+</ul>
+</li>
+<li><p>Any advice for dealing with 200gb microscopy video files? (planning on using python/ suite2p package)</p>
+<ul class="simple">
+<li><p>Apply for a project at NRIS. If you want to store the results as many and very big files, you might want to apply for a storage project at NIRD too. Nird is the storage facility group/service at NRIS: https://documentation.sigma2.no/files_storage/nird.html</p></li>
+</ul>
+</li>
+<li><p>Is there support for Julia on hpc?</p>
+<ul class="simple">
+<li><p>We have julia modules available on all clusters. So you can use it quite easily.</p></li>
+<li><p>support in terms of tooling or in terms of expertise?</p>
+<ul>
+<li><p>I meant tooling but experise would be great as well</p></li>
+<li><p>We have people with julia experience in the support team, so don’t hesitate to ask for help or support with whatever you try to accomplish.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUMI &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../_static/design-tabs.js?v=36754332"></script>
+        <script src="../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">LUMI</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lumi">
+<span id="id1"></span><h1>LUMI<a class="headerlink" href="#lumi" title="Link to this heading"></a></h1>
+<blockquote>
+<div><p>The European High-Performance Computing Joint Undertaking (EuroHPC JU) is
+pooling European resources to develop top-of-the-range exascale supercomputers
+for processing big data, based on competitive European technology.</p>
+<p>At the time of installation, LUMI will be one of the world’s fastest computer
+systems, having theoretical computing power of more than 500 petaflops which
+means 500 quintillion calculations per second. LUMI’s performance will be more
+than tenfold compared to one of Europe’s fastest supercomputer today (Piz
+Daint, Switzerland). LUMI will also be one of the world’s leading platforms
+for artificial intelligence.</p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>LUMI will be installed in Kajaani, Finland. Basic operations are done by the
+vendor and CSC. Researchers will be supported by different teams: the Norwegian
+EuroHPC competence centre for porting and tuning applications on the LUMI
+hardware and programming environment, Sigma2 for handling allocation requests,
+and The LUMI User Support Team (LUST) for day-to-day issues.</p>
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>LUMI is the first of a new class of pre-exascale supercomputers set up by <a class="reference external" href="https://www.lumi-supercomputer.eu/lumi-consortium/">a
+consortium of countries in
+Europe</a>. All partner
+countries will get access to an equal share of the resources, currently
+estimated to be <code class="docutils literal notranslate"><span class="pre">2%</span></code> for Norway. In addition, project can apply for resources
+through EuroHPC JU which control the other <code class="docutils literal notranslate"><span class="pre">50%</span></code> of LUMI capacity.</p>
+<p>LUMI is aimed at AI and HPC workloads that can take advantage of GPU
+accelerators.</p>
+<p>LUMI is divided into the following partitions, where the largest will be LUMI-G
+followed by LUMI-C:
+<img alt="LUMI partitionoverview" src="https://www.lumi-supercomputer.eu/content/uploads/2020/11/lumiSlide-1024x576.png" /></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Details</p></th>
+<th class="head text-left"><p>LUMI-G</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Peak performance</p></td>
+<td class="text-left"><p>375 PetaFLOPs</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>CPU type</p></td>
+<td class="text-left"><p>AMD® Trento™ 64-Core</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>GPU type</p></td>
+<td class="text-left"><p>AMD® Instinct™ MI250X GPU</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>GPU memory</p></td>
+<td class="text-left"><p>128 GB HBM2e per GPU</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Node configuration</p></td>
+<td class="text-left"><p>1 CPU and 4 x GPUs</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Number of nodes</p></td>
+<td class="text-left"><p>2560</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Interconnect</p></td>
+<td class="text-left"><p>Cray Slingshot 200 Gbit/s, GPUs directly connected to interconnect</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Storage capacity</p></td>
+<td class="text-left"><p><ul><li>117 PB total <ul><li>7 PB fast flash storage</li> <li>80 PB parallel filesystem</li> <li>30 PB object storage</li></ul></li></ul></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Expected Top500</p></td>
+<td class="text-left"><p>Top 3</p></td>
+</tr>
+</tbody>
+</table>
+<p><a class="reference external" href="https://www.lumi-supercomputer.eu/lumis-full-system-architecture-revealed/">Full system specification</a></p>
+</section>
+<section id="lumi-g">
+<h2>LUMI-G<a class="headerlink" href="#lumi-g" title="Link to this heading"></a></h2>
+<p>LUMI-G is the main partition of LUMI and is based on AMD accelerators. The main
+interactions with the accelerators is through
+<a class="reference external" href="https://rocm.docs.amd.com/"><code class="docutils literal notranslate"><span class="pre">ROCm</span></code></a>, <code class="docutils literal notranslate"><span class="pre">OpenMP</span></code> and
+<a class="reference external" href="https://rocm.docs.amd.com/projects/HIP/"><code class="docutils literal notranslate"><span class="pre">HIP</span></code></a>.
+CUDA is <em>not</em> supported on LUMI and existing users should consider porting their
+application to <code class="docutils literal notranslate"><span class="pre">HIP</span></code> through the tools offered. Starting early with the porting
+effort is very important and will be supported by the EuroHPC CC team.</p>
+<p>Once LUMI-G is operational and pilot testing is completed, all interested users
+will be able to request access. Applications that can take advantage of GPU
+accelerators will see massive speed-ups on LUMI-G and NRIS will continue to aid
+in porting applications to this architecture, see
+<a class="reference internal" href="../getting_help/extended_support/gpu.html#extended-support-gpu"><span class="std std-ref">here for more information about our GPU support</span></a>.</p>
+<section id="porting-to-accelerators">
+<h3>Porting to accelerators<a class="headerlink" href="#porting-to-accelerators" title="Link to this heading"></a></h3>
+<p>Since LUMI-G is based on AMD GPU Accelerators, not all applications will be able
+to instantly take advantage of the additional compute power. AI researchers
+using one of the larger frameworks, such as <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> and <code class="docutils literal notranslate"><span class="pre">pyTorch</span></code>, will be
+able to use LUMI-G directly.</p>
+<p>NRIS is still building documentation for taking advantage of
+accelerator resources. Researchers that want to begin the transition should
+evaluate <code class="docutils literal notranslate"><span class="pre">OpenACC</span></code> (see our <a class="reference internal" href="../code_development/guides_gpu.html#dev-guides-gpu"><span class="std std-ref">GPU programming models</span></a>),
+<code class="docutils literal notranslate"><span class="pre">OpenMP</span></code>
+or directly using <a class="reference external" href="https://rocmdocs.amd.com/en/latest/ROCm_Libraries/ROCm_Libraries.html">accelerated
+libraries</a>.</p>
+<p>If you are interested in porting your application to GPUs, or already have
+ported your application and need assistance transitioning to AMD GPUs,
+<a class="reference internal" href="../getting_help/extended_support/gpu.html#extended-support-gpu"><span class="std std-ref">please contact NRIS support</span></a>.</p>
+</section>
+</section>
+<section id="lumi-c">
+<h2>LUMI-C<a class="headerlink" href="#lumi-c" title="Link to this heading"></a></h2>
+<p>LUMI-C is the compute partition of LUMI, dealing with CPU based HPC
+applications. Users interested in this partition should also consider the other
+clusters already in operation in Norway.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

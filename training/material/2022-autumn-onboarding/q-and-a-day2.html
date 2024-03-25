@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions and answers from HPC on-boarding Oct 2022, Day 2 (Oct 20) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Questions and answers from HPC on-boarding Oct 2022, Day 2 (Oct 20)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="questions-and-answers-from-hpc-on-boarding-oct-2022-day-2-oct-20">
+<span id="training-2022-autumn-onboarding-notes-day2"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Questions and answers from HPC on-boarding Oct 2022, Day 2 (Oct 20)</a><a class="headerlink" href="#questions-and-answers-from-hpc-on-boarding-oct-2022-day-2-oct-20" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#questions-and-answers-from-hpc-on-boarding-oct-2022-day-2-oct-20" id="id1">Questions and answers from HPC on-boarding Oct 2022, Day 2 (Oct 20)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#icebreaker-question" id="id2">Icebreaker Question</a></p></li>
+<li><p><a class="reference internal" href="#questions" id="id3">Questions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#accessing-software" id="id4">Accessing software</a></p></li>
+<li><p><a class="reference internal" href="#exercise-until-10-05" id="id5">Exercise until 10:05</a></p></li>
+<li><p><a class="reference internal" href="#storage-and-compute-quota" id="id6">Storage and compute quota</a></p></li>
+<li><p><a class="reference internal" href="#using-shared-resources-responsibly" id="id7">Using shared resources responsibly</a></p></li>
+<li><p><a class="reference internal" href="#how-where-to-ask-for-help" id="id8">How/where to ask for help</a></p></li>
+<li><p><a class="reference internal" href="#feedback-for-the-day" id="id9">Feedback for the day</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="icebreaker-question">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Icebreaker Question</a><a class="headerlink" href="#icebreaker-question" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Which software would you like to run on our HPC machines?</p>
+<ul>
+<li><p>Custom-made MATLAB and Python scripts</p>
+<ul>
+<li><p>+1</p></li>
+<li><p>+1</p></li>
+</ul>
+</li>
+<li><p>codes for density functional theory calculations (Elk, Quantum Espresso)</p></li>
+<li><p>Fortran 90, including OpenMP (for parallel computing)</p></li>
+<li><p>Julia</p>
+<ul>
+<li><p>+1</p></li>
+</ul>
+</li>
+<li><p>more Rust (but it already works and works well)</p></li>
+<li><p>The “Parallel Ice Sheet Model” (using PETSc, MPI, C/C++)</p></li>
+<li><p>Nextflow, Docker, SNAKEMAKE</p></li>
+<li><p>COMSOL Multiphysics</p></li>
+<li><p>Seismic unix</p></li>
+<li><p>Madagascar</p></li>
+<li><p>R scripts</p></li>
+<li><p>Cogenda Genius</p></li>
+<li><p>Oracle database / SQL</p></li>
+<li><p>LaTEX</p></li>
+<li><p>Matlab parallel computing</p></li>
+</ul>
+</li>
+<li><p>No MPI ? Most of the above is single node applications not really Supercomputing stuff.</p>
+<ul>
+<li><p>[RB] It looks like the trend goes towards workflows that run many smaller jobs, also one-node applications. It can still be supercomputing though. Or maybe rephrasing: I think we need to provide place both for calculations that require lots of super fast network and calculations that don’t. And this is also why there is not only one cluster but we try to provide 2-3 clusters at the same time.</p>
+<ul>
+<li><p>Could you expand on that? E.g. which is the best cluster for MPI? Or point to relevant docs. Thanks!</p>
+<ul>
+<li><p>Very rough answer: extremely many cores: Betzy. Many cores: Fram, very few cores: Saga. But as below, it depends and please reach out to support if you want to apply for an allocation and are unsure to which cluster.</p></li>
+<li><p>[Ole] depend on job size (# CPUs). MPI is ok with all clusters.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>[Ole] High volume production is in many cases quite hard to accommodate, huge I/O load. We have 3 systems, with inreasing job sizes Saga (single thread to some tens of CPUs), Fram medium size, Betzy large, up to 172000 CPUs, and for special requirements LUMI (CPUs+GPUs).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="questions">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Questions</a><a class="headerlink" href="#questions" title="Link to this heading"></a></h2>
+<section id="accessing-software">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Accessing software</a><a class="headerlink" href="#accessing-software" title="Link to this heading"></a></h3>
+<p>https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html</p>
+<ol class="arabic simple">
+<li><p>Question from yesterday: is there any limit for files transferring from/to NRIS’HPC (file type, file size)?</p>
+<ul class="simple">
+<li><p>There are <a class="reference external" href="https://documentation.sigma2.no/files_storage/clusters.html#overview">indeed some limitations, on size</a></p></li>
+<li><p>we will talk about those limitations after the break today</p></li>
+<li><p>but in short, there is no limitation from the network point of view (that I would know of, other than network maybe breaking if a transfer takes days) but there are limitations on how many files and their size sum you can have on the clusters (more later)</p></li>
+</ul>
+</li>
+<li><p>Where could we report bugs in the module system? For instance a missing library: <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">add</span> <span class="pre">netCDF/4.9.0-gompi-2022a;</span> <span class="pre">ncgen</span></code>.</p>
+<ul class="simple">
+<li><p>email to support&#64;nris.no; this will then be forwarded to the software install team at NRIS who are in charge of helping users with software installations. the actual problem might be somewhere else but then they will know where to submit an issue if that is not a problem we at NRIS created.</p>
+<ul>
+<li><p>Thanks, I reported the issue.</p></li>
+</ul>
+</li>
+<li><p>For now the solution is to also load <code class="docutils literal notranslate"><span class="pre">bzip2/1.0.8-GCCcore-11.3.0</span></code>, but this is indeed a problem with the module!</p>
+<ul>
+<li><p>And will use this workaround!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Is there an overview of the keywords available? Or are keywords just any string which might be a substring of a module?</p>
+<ul class="simple">
+<li><p>The “keyword” command searches any string that is in the module description, it is slightly missleading in name</p>
+<ul>
+<li><p>Thanks, I see.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Should the course use examples that would work on all the clusters? blast was not available on fram</p>
+<ul class="simple">
+<li><p>It is often easier to use a single cluster, just because of such differences, so it is recommended that you follow along on Saga</p></li>
+<li><p>hmm yes maybe we should change the example. tricky but not impossible.</p></li>
+<li><p>The clusters can in some cases have slightly different versions available, but here you will learn how to check what modules are available with module avail etc. And if something is missing you ask support support&#64;nris.no :)</p>
+<ul>
+<li><p>Yes, I agree. I found out that I had to use another module or log into saga. Just thought that the examples could use something that is available on all the clusters</p></li>
+<li><p>Yes, best in principle, but suddenly for some reason one module in the examples might be gone or not there in another cluster, so yes, in principle the best way to try to ensure that the example modules can be found on all clusters.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>So, what is a toolchain / why is it needed?</p>
+<ul class="simple">
+<li><p>a set of compilers that were used to build the software. a compiler translates (“compiles”) readable source code into runnable executables and libraries. when we load a module that depends on other modules and other libraries, we often have to make sure they were all built with the same compiler set (toolchain)</p></li>
+<li><p>“why is it needed” is a really good question. it was a choice by the designers of EasyBuild (the framework we use to install most of our software) and I guess their motivation was better reproducibility? unsure but there are other opinions and approaches on how software dependencies can be managed</p>
+<ul>
+<li><p>Most software distribution methods use a shared version compiler to ensure ABI (application binary interface) and layout compatibility of the software being compiled</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>[MP] Question that came up here in my break-out room from yesterdays session: SLURM gives information about how much memory was used maximally - but how can a user find out how much memory was used in total for the job - i.e. to know what to ask for next time?</p>
+<ul class="simple">
+<li><p>but isn’t “max” the thing to ask for since it will never go beyond that? or max plus 15-20% perhaps is a good approach. adding 15-20% because it might not be always the same and it would be pity to get the job cancelled after 2 days of running just because few MB were missing. But it is a good idea to not ask for excessively too much “just to be on the safe side” and we will maybe comment on that later today</p>
+<ul>
+<li><p>yes, obv, did not think - it is of course! :)</p></li>
+</ul>
+</li>
+<li><p>Try the command <code class="docutils literal notranslate"><span class="pre">seff</span> <span class="pre">&lt;JOBID&gt;</span></code> after the job ends <a class="reference external" href="https://documentation.sigma2.no/jobs/choosing-memory-settings.html#using-seff">link to documentation</a></p></li>
+</ul>
+</li>
+<li><p>If you need non-standard python packages, where should you load them?</p>
+<ul class="simple">
+<li><p>We recommend that you use virtual environments and install packages there. Our packages contain the most used libraries, optimized for our system (like <code class="docutils literal notranslate"><span class="pre">numpy</span></code>), but we can’t install all users desires.</p></li>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/software/userinstallsw/python.html">Tutorial on installing Python packages as a user</a></p></li>
+</ul>
+</li>
+</ol>
+<p>:::warning
+Comment now in voice: do not put any <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">something</span></code> into your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> because it will make your job scripts less reproducible for you in future and also for support staff helping with problems. Much better is to place all <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> into your job scripts. You could also place a <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">purge</span></code> in the beginning of the job script to make sure you start with a clean environment.
+:::</p>
+<ol class="arabic simple" start="8">
+<li><p>SAFE (https://www.uib.no/safe). Is SAFE a more secure wrapper on top of the HPC? In other words, is there an HPC backend for the SAFE system? -or- SAFE is just a remote system with more focus to security?</p>
+<ul class="simple">
+<li><p>There is not a HPC backend connected to SAFE, if you are working with sensitive data and need HPC then TSD is the cluster that is suitable. At UiB we have this flow chart to show the difference between compute solutions:  https://www.uib.no/en/it/155472/it-research</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="exercise-until-10-05">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Exercise until 10:05</a><a class="headerlink" href="#exercise-until-10-05" title="Link to this heading"></a></h3>
+<p>https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html#using-software-modules-in-scripts</p>
+<p>(the green box there)</p>
+<ul class="simple">
+<li><p>If you have time you can submit a job and use the training project <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--account=nn9984k</span></code></p></li>
+</ul>
+<p>How is it going in the rooms?</p>
+<ul class="simple">
+<li><p>Room 1:o</p></li>
+<li><p>Room 2:oo</p></li>
+<li><p>Room 3: :white_check_mark:</p></li>
+<li><p>Room 4: :white_check_mark:</p></li>
+<li><p>Room 5: :white_check_mark:</p></li>
+</ul>
+</section>
+<section id="storage-and-compute-quota">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Storage and compute quota</a><a class="headerlink" href="#storage-and-compute-quota" title="Link to this heading"></a></h3>
+<p>https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/compute-storage-quota.html</p>
+<p>We will go through these two:</p>
+<ul class="simple">
+<li><p>https://documentation.sigma2.no/files_storage/quota.html</p></li>
+<li><p>https://documentation.sigma2.no/jobs/projects_accounting.html</p></li>
+</ul>
+<ol class="arabic simple" start="9">
+<li><p>Any way to use Visual studio code on a folder on the server?</p>
+<ul class="simple">
+<li><p>I don’t use VSC, but maybe <a class="reference external" href="https://code.visualstudio.com/docs/remote/ssh">the SSH extension</a> could work?</p></li>
+</ul>
+</li>
+<li><p>Does the compute and storage quota work the same on Saga and IDUN?</p>
+<ul class="simple">
+<li><p>I don’t know about Idun, but at least it is the same on Saga, Fram, Betzy and LUMI</p></li>
+<li><p>Saga, Fram and Betzy are the national resources, while Idun is a local cluster to NTNU</p></li>
+</ul>
+</li>
+<li><p>What are the main criteria for allocating computing time? How to write a good application?</p>
+<ul class="simple">
+<li><p>It depends on the size of quota you apply for. Huge applications like 10++ Millions of CPU hours require very good track record. Small applications 10000 CPU hours etc require a simple application. Applications in the 10k-100k scales do not need a track record.</p>
+<ul>
+<li><p>Thanks! What would be a good track record? E.g. demonstrate scalability on sigma2 computers? Scientific output? Code used on other supercomputers in the past?</p>
+<ul>
+<li><p>Yes, publication record from CRISTIN (https://www.cristin.no), scaling demo, in all these cases (10++ Mcore hours) we know the PI. If you’re new it is a bit more work to get such a large application approved. Start small and work yourself up.</p>
+<ul>
+<li><p>I am on a short-term position (3 years), not new to supercomputing but new in Norway, does that mean that I should consider applying outside Norway?</p>
+<ul>
+<li><p>If you work at a Norwegian University etc you a free to apply. How many core hours do you want ?</p></li>
+</ul>
+</li>
+<li><p>I think 100k-1M core-hours per year, in one or two years time.</p>
+<ul>
+<li><p>50-500k core-hours per semester (period) should be easy. Just go so sigma2 web (https://www.sigma2.no/high-performance-computing) page and start the process (you can apply at any time, but expect delay and only very small quota outside the deadlines).</p></li>
+</ul>
+</li>
+<li><p>Thanks! The webpage states that applications are evaluated based on scientific excellence. Is the scientific part more important than doing benchmarks, performance analysis? What should be the ratio between scientific justification and justification for the compute budget in the proposal?</p>
+<ul>
+<li><p>Your application is so small that it will be ok, you have some track record (publications + HPC experience), then it should be no problem. If you are at UiO or NTNU you could use local resources.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>So what would be a solution?</p>
+<ul class="simple">
+<li><p>If you have too many small files, e.g. in your output data - you could try to rewrite the way you store the output data - maybe it is possible for you to make larger fewer files. Sometimes it is not, but other times you can.</p></li>
+<li><p>there is a senario where the data provider is transferring data on a daily basis with large number of files everyday and we need to analyze the data on the go, even if the files are zipped we need to unzip and work with them, what would be the best practice here?</p>
+<ul>
+<li><p>At least unzip them in e.g. the project folder or work folder where you will have a larger quota than on your home folder for example. If there is a very good reason why you need a larger quota, you need to contact nris&#64;support.no and request that - and then we will see if a bigger quota can be given or if there are other ways to solve it</p></li>
+</ul>
+</li>
+<li><p>Ok, what is the quota on the project folder? i cannot see that with dusage.</p>
+<ul>
+<li><p>can you not? I see for example:
+<code class="docutils literal notranslate"><span class="pre">/cluster/projects/nn9984k</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">yes</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">52.0</span> <span class="pre">KiB</span>&#160;&#160; <span class="pre">1.0</span> <span class="pre">TiB</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">13</span>&#160;&#160; <span class="pre">1</span> <span class="pre">000</span> <span class="pre">000</span></code>
+where 1.0 TiB is the space quota and 1 000 000 is the number of inode quota
+-got  it, thanks!     :white_check_mark:</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Folders also have inodes, right?</p>
+<ul class="simple">
+<li><p>yes also a folder will take up one “card”</p></li>
+</ul>
+</li>
+<li><p>is pri and nonpri used when asigning quotas? Is that something you specify when applying?</p>
+<ul class="simple">
+<li><p>You get nonpri if you have applied for quotas after the deadline.</p></li>
+</ul>
+</li>
+<li><p>when and where the videos for the course will be available?</p>
+<ul class="simple">
+<li><p>next week, you will get an email with the link when we upload the videos</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="using-shared-resources-responsibly">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Using shared resources responsibly</a><a class="headerlink" href="#using-shared-resources-responsibly" title="Link to this heading"></a></h3>
+<p>https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.html</p>
+<ol class="arabic simple" start="17">
+<li><p>So, how do we make sure we are not running large jobs on the log in nodes? When we send a job using sbatch, does that automatically directed to computing nodes or should we do something particular?</p>
+<ul class="simple">
+<li><p>If you use <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>, <code class="docutils literal notranslate"><span class="pre">srun</span></code> or <code class="docutils literal notranslate"><span class="pre">salloc</span></code> then the computation will always run on the compute nodes</p></li>
+<li><p>If instead you execute your program manually - not using the slurm commands, but just calling the executable, you will be running on the node you are at, which in this example is the login node.</p></li>
+</ul>
+</li>
+<li><p>For jobs like zipping and upzipping large number of files, would you recommand doing it on the log in node or computation nodes?</p>
+<ul class="simple">
+<li><p>For a large amount we recommend that you do it on the compute nodes, either through <code class="docutils literal notranslate"><span class="pre">srun</span></code> or often <a class="reference external" href="https://documentation.sigma2.no/jobs/interactive_jobs.html">easier <code class="docutils literal notranslate"><span class="pre">salloc</span></code></a></p></li>
+<li><p>For small jobs that finish in a few seconds the login node can be appropriate</p></li>
+</ul>
+</li>
+<li><p>Regarding proxy, is it possible to build snakemake envs for a workflow in the jobscribts. My experience is that it is not possible to download trohough conda dynamically</p>
+<ul class="simple">
+<li><p>There is probably a way to do that which I don’t know. You can write a support ticket to us with the query support&#64;nris.no.</p></li>
+</ul>
+</li>
+<li><p>How does one directly run commands on a login node?</p>
+<ul class="simple">
+<li><p>Just by calling the executable like we showed earlier e.g. <code class="docutils literal notranslate"><span class="pre">./my-executable.sh</span></code> so typically manually - not using the slurm <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> for instance</p></li>
+</ul>
+</li>
+<li><p>A follow-up to question 20, how one does the same thing directly on a computation node?</p>
+<ul class="simple">
+<li><p>Use <a class="reference external" href="https://documentation.sigma2.no/jobs/interactive_jobs.html">an interactive job with <code class="docutils literal notranslate"><span class="pre">salloc</span></code></a></p></li>
+</ul>
+</li>
+<li><p>The tar is taking a long time, maybe because you are running it on login node? Would be nice if you show how to run the same job on a computation node.</p>
+<ul class="simple">
+<li><p>Yes, but still much quicker to do tar and scp and then untar compared to scp all the files separately!</p></li>
+<li><p>If you are generating large number of files and then creating an archive. I could recommend to use the local scratch. Parallel file systems (like /cluster) could be slow when handling very large number of files.</p>
+<ul>
+<li><p>on a login node you could access this as follows
+<code class="docutils literal notranslate"><span class="pre">[SAGA</span> <span class="pre">]$</span> <span class="pre">cd</span> <span class="pre">/localscratch/</span> </code></p></li>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/jobs/scratchfiles.html">On a job see here</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="how-where-to-ask-for-help">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">How/where to ask for help</a><a class="headerlink" href="#how-where-to-ask-for-help" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://cicero.xyz/v3/remark/0.14.0/github.com/bast/help-with-supercomputers/main/talk.md/">Slides</a></p>
+</section>
+<section id="feedback-for-the-day">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Feedback for the day</a><a class="headerlink" href="#feedback-for-the-day" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>One thing you thought was good:</p>
+<ul>
+<li><p>Thank you for a very useful course. I have learned a lot.</p></li>
+<li><p>I learned a lot. Thank you! I’m looking forward to the more advanced course.</p></li>
+</ul>
+</li>
+<li><p>One thing we should change/improve next time</p>
+<ul>
+<li><p>Feedback form should use radio buttons, not checkmarks…</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p>Please always write above this line, at the end of the document</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

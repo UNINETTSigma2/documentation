@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions and answers from Best Practices on NRIS Clusters May 2022, Day 2 (May 24) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Questions and answers from Best Practices on NRIS Clusters May 2022, Day 2 (May 24)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="questions-and-answers-from-best-practices-on-nris-clusters-may-2022-day-2-may-24">
+<span id="training-2022-spring-best-practices-notes-day2"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Questions and answers from Best Practices on NRIS Clusters May 2022, Day 2 (May 24)</a><a class="headerlink" href="#questions-and-answers-from-best-practices-on-nris-clusters-may-2022-day-2-may-24" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#questions-and-answers-from-best-practices-on-nris-clusters-may-2022-day-2-may-24" id="id1">Questions and answers from Best Practices on NRIS Clusters May 2022, Day 2 (May 24)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#icebreaker-question" id="id2">Icebreaker question</a></p></li>
+<li><p><a class="reference internal" href="#having-a-look-at-available-software" id="id3">Having a look at available software</a></p></li>
+<li><p><a class="reference internal" href="#installing-software" id="id4">Installing software</a></p></li>
+<li><p><a class="reference internal" href="#installing-r-packages" id="id5">Installing R packages</a></p></li>
+<li><p><a class="reference internal" href="#installing-python-packages" id="id6">Installing Python packages</a></p></li>
+<li><p><a class="reference internal" href="#gpu-computing" id="id7">GPU computing</a></p></li>
+<li><p><a class="reference internal" href="#extended-support" id="id8">Extended support</a></p></li>
+<li><p><a class="reference internal" href="#general-q-a" id="id9">General Q&amp;A</a></p></li>
+<li><p><a class="reference internal" href="#feedback-day-2" id="id10">Feedback Day 2</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="icebreaker-question">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Icebreaker question</a><a class="headerlink" href="#icebreaker-question" title="Link to this heading"></a></h2>
+<p>Which software would you like to run on our HPC machines?</p>
+<ul class="simple">
+<li><p>CP2k, gromacs, openFoam</p></li>
+<li><p>CNCI, PfamScan, CNIT, FastQC,</p></li>
+<li><p>ROOT</p></li>
+<li><p>R</p></li>
+<li><p>MrBayes, BEAST, RaXml, HybPiper, HyPhyloMaker etc</p></li>
+<li><p>Quantum Espresso Vasp use RUST</p></li>
+<li><p>Containers</p></li>
+<li><p>Suite2p, Caiman (python packeges for cell detection in &gt;100GB microscopy videos)</p></li>
+</ul>
+</section>
+<section id="having-a-look-at-available-software">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Having a look at available software</a><a class="headerlink" href="#having-a-look-at-available-software" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://documentation.sigma2.no/software/modulescheme.html">Software module scheme</a></p>
+<ol class="arabic simple">
+<li><p>So when we try <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code> why cant it show the most updated version python 3.6.8 instead of python 2.7.5</p>
+<ul class="simple">
+<li><p>python and python3 are installations which come with the system but we can bring other versions “into view” using module load. the default packages (python and python3) are not the newest ones because they have to be conservative because many system software tools depend on them. this is also the reason why on this operating system python resolves to Python 2, whereas python3 resolves to Python 3: to not break system software that might depend on these.</p></li>
+<li><p>in your own run scripts it is almost always better to load Python via module load and not to rely on the system default python (in this case <code class="docutils literal notranslate"><span class="pre">python</span></code> or <code class="docutils literal notranslate"><span class="pre">python3</span></code>). reason: the default python version might change but if you actively module load a well defined version, you are sure that it won’t change. this is better for reproducibility of your scripts.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="installing-software">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Installing software</a><a class="headerlink" href="#installing-software" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://documentation.sigma2.no/software/userinstallsw.html">Documentation/material</a></p>
+<ol class="arabic simple" start="2">
+<li><p>Where is the optimal location to install software? Login-node, project-directory, home-directory?</p>
+<ul class="simple">
+<li><p>depends, let me expand:</p>
+<ul>
+<li><p>where to perform the installation depends whether it takes seconds (then login node is fine) or many minutes or hours (then via slurm script on a compute node or interactive compute node). personally I prefer using a Slurm script because then it gets automatically documented and I won’t forget how I did that and as a bonus I don’t occupy the login node</p></li>
+<li><p>if it is just for me and only few files, then HOME is fine</p></li>
+<li><p>often project directory is better because you have more quota (example: Conda installation) and your project colleagues might want to use the installation too and don’t have to go through it individually</p></li>
+<li><p>then depends on what language and framework (EasyBuild, Python, R, Julia, Rust, C, Fortran …), it might be good to install into a Conda environment or a virtual environment or renv or an explicit path location</p></li>
+<li><p>long story short: for most purposes login node and project directory is a good start</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Which HISAT2 would you install?</p>
+<ul class="simple">
+<li><p>you mean which version?</p></li>
+<li><p>we have HISAT2/2.1.0-foss-2018b already installed on saga</p></li>
+</ul>
+</li>
+<li><p>When building with EasyBuild there is a lot of files in the .local folder after the build. After building a few codes like this we come into conflict with the disk limit on the number of files. Is there some way of cleaning up some of this stuff that is not needed after build?</p>
+<ul class="simple">
+<li><p>in one of the last courses the instructors described a solution to this by installing an environment / packages into a Singularity file to work around maximum file limit (just mentioning because it wasn’t mentioned yet)</p>
+<ul>
+<li><p>but this was more of a workaround for conda installs</p></li>
+</ul>
+</li>
+<li><p>there is an option/command for this but unfortunately i am not an EB expert but I will raise it</p></li>
+<li><p>You can install also into your project folder as described  <a class="reference external" href="https://documentation.sigma2.no/software/userinstallsw/easybuild.html#installing-software-in-a-project-folder">here</a> and then just delete the <code class="docutils literal notranslate"><span class="pre">.local/easybuild</span></code> folder</p></li>
+<li><p>we will also discuss this in the Q&amp;A session</p></li>
+<li><p>How to be more specific when installing.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">eb</span> <span class="pre">--show-config</span></code> shows where things are placed, specifying <code class="docutils literal notranslate"><span class="pre">sourcepath</span></code> you could place the downloaded files in a specific folder and delete it later <a class="reference external" href="https://docs.easybuild.io/en/latest/Configuration.html">Details</a> . Removing the  <code class="docutils literal notranslate"><span class="pre">sourcepath</span></code> folder recursively will clear all downloads and would not affect the instaltion.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I don’t know if I understood correctly, but can I build my own module with EasyBuild for any bioinformatic software?</p>
+<ul class="simple">
+<li><p>yes, provided that the software is available in the EasyBuild ecosystem (people and communities can contribute installation recipes that others can use)</p></li>
+<li><p>related question would be: how can I find out whether a software can be installed via EB. asking below</p></li>
+</ul>
+</li>
+<li><p>How can I find out whether a software can be installed via EasyBuild?</p>
+<ul class="simple">
+<li><p>this is how I check but I am not sure this is the best way: I look for the software here: <a class="reference external" href="https://github.com/easybuilders/easybuild-easyconfigs/tree/develop/easybuild/easyconfigs">https://github.com/easybuilders/easybuild-easyconfigs/tree/develop/easybuild/easyconfigs</a></p></li>
+<li><p>maybe with the command : <code class="docutils literal notranslate"><span class="pre">eb</span> <span class="pre">--list-software</span></code> yet it depends how the eb i configured</p>
+<ul>
+<li><p>produces a lot of output better use <code class="docutils literal notranslate"><span class="pre">-S</span> <span class="pre">SOFTWARE</span></code></p></li>
+</ul>
+</li>
+<li><p>you can search for available software with <code class="docutils literal notranslate"><span class="pre">eb</span> <span class="pre">--search</span> <span class="pre">SOFTWARE</span></code> or <code class="docutils literal notranslate"><span class="pre">eb</span> <span class="pre">-S</span> <span class="pre">SOFTWARE</span></code>, then you only need the filename to install. For example <code class="docutils literal notranslate"><span class="pre">eb</span> <span class="pre">Julia-1.7.2-linux-x86_64.eb</span></code></p></li>
+<li><p>it is always good to check if the software is already available with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span> <span class="pre">software</span></code></p></li>
+</ul>
+</li>
+<li><p>Related to question 5 and 6: What do I do if the needed software is not available with EB? Can I use <code class="docutils literal notranslate"><span class="pre">wget</span></code> to install the software into my project directory?</p>
+<ul class="simple">
+<li><p>if the exact version does not exist but another version, you or somebody could contribute to EasyBuild a new recipe but this might be out of reach</p></li>
+<li><p>if it is a binary, sometimes downloading a binary with <code class="docutils literal notranslate"><span class="pre">wget</span></code> might be enough</p></li>
+<li><p>for Python/R software there are other package management tools that can be used (e.g. conda or pip)</p></li>
+<li><p>“traditional” Unix/Linux tools can often be installed by downloading the zip/tar archive, extracting it, followed by <code class="docutils literal notranslate"><span class="pre">configure</span> <span class="pre">--prefix=/where/to/place/it</span></code>, <code class="docutils literal notranslate"><span class="pre">make</span></code> and <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code></p></li>
+<li><p>it can range from easy to non-trivial: do not hesitate to contact us for assistance</p></li>
+<li><p>we will talk about conda in few minutes which can be used for a lot of software packages</p></li>
+</ul>
+</li>
+<li><p>How do I get cowsay on Saga? :D</p>
+<ul class="simple">
+<li><p>is it available in EasyBuild? (sorry just kidding)</p>
+<ul>
+<li><p>Yes it is. <code class="docutils literal notranslate"><span class="pre">eb</span> <span class="pre">cowsay-3.04.eb</span></code></p></li>
+<li><p>Cowsay is a simple perl script /usr/bin/cowsay (if installed by system as rpm).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>The software STRINGTIE is not in eb, how to instsall it?</p>
+<ul class="simple">
+<li><p>good question. see also question 7.</p></li>
+<li><p>do you have a link/website to the software?</p></li>
+<li><p>it seems to be in EB: <a class="reference external" href="https://github.com/easybuilders/easybuild-easyconfigs/tree/develop/easybuild/easyconfigs/s/StringTie">https://github.com/easybuilders/easybuild-easyconfigs/tree/develop/easybuild/easyconfigs/s/StringTie</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StringTie/1.3.5-GCCcore-8.2.0</span></code> is available on saga</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="installing-r-packages">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Installing R packages</a><a class="headerlink" href="#installing-r-packages" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://documentation.sigma2.no/software/userinstallsw/R.html">Documentation/material</a></p>
+<ol class="arabic simple" start="10">
+<li><p>It would be nice if we had access to the terminal commands as they are being entered so that we could scroll up and see previous commands in order to follow along with the lecture.</p>
+<ul class="simple">
+<li><p>thank you for the comment. I fully agree that it would be useful and important to show past commands.</p></li>
+<li><p>You could consider including command history after the lecture is over along with the notes from the lecture.</p>
+<ul>
+<li><p>good suggestion. we could copy the output from <code class="docutils literal notranslate"><span class="pre">history</span></code> to this place here</p></li>
+</ul>
+</li>
+<li><p>instructor is also more or less following documentation linked above. but this does not invalidate this good suggestion to show the commands</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="installing-python-packages">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Installing Python packages</a><a class="headerlink" href="#installing-python-packages" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://documentation.sigma2.no/software/userinstallsw/python.html">Documentation/material</a></p>
+<p><a class="reference external" href="https://documentation.sigma2.no/software/userinstallsw/python.html#anaconda-miniconda-conda">Working with Conda</a></p>
+<ol class="arabic" start="11">
+<li><p>I have been always wondering what the channels means in “conda config –add channels XXX”?</p>
+<ul class="simple">
+<li><p>channels are like collections or distributions</p></li>
+<li><p>conda-forge is perhaps the most popular one (community-driven and curated channel/collection of very many packages)</p></li>
+<li><p>also bioconda is a good example</p></li>
+<li><p>you or a research group or community can create your own channels also</p></li>
+<li><p>if you look for a package in the conda archive, there usually is also information about the channel it is available in</p></li>
+</ul>
+</li>
+<li><p>May I ask why need to do <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">${EBROOTMINICONDA3}/etc/profile.d/conda.sh</span></code> before “conda activate ENVIRONMENT”, I thought “conda activate ENVIRONMENT” is already enough?</p>
+<ul class="simple">
+<li><p>because the shell is not set for conda and you need to show conda which shell it shall be using</p>
+<ul>
+<li><p>but why does the module not do this (the sourcing) for us?</p>
+<ul>
+<li><p>I guess because there is a difference between installaiton and initialisation of conda, and the latter is not done by the installaiton procedure automatically. Also the installer does not know which shell you will prefer for conda, it may be different from the one you are using.</p>
+<ul>
+<li><p>but we insist on using bash (on the clusters; I agree that on laptops people have various shells) and in which scenario would we want to module load conda and not source the environment? to me it looks like it should be part of the module.</p></li>
+<li><p>maybe the module does not want to assume that we are on a cluster and also work on the laptop.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I have struggled with version conflicts between installations in the module and in the venv. When installing a missing Python package, through dependencies it may want to install a different, say Pandas, than what is already loaded through the module. The answer for me has been to install less through modules and more in my own venv, but that feels like a waste. Any other approaches to this?</p>
+<ul class="simple">
+<li><p>I understand that mixing modules and venv or conda can be tricky. Personally I often try to take as little Python as possible from modules and keep everything in venv or Conda. But there is a risk to this to not use the tuned/optimized modules. Sometimes/often it does not matter. If my Python analysis takes 2 seconds it does not matter that it could be 50% faster and then I prefer venv/Conda. But if you spend a lot of time in the Python code, it may make sense to carefully check that optimized libraries are used.</p></li>
+</ul>
+</li>
+<li><p>I have 100K limit in my /home.  Virtual environments can get a lot of files. When I create venvs in the USERWORK, I may lose them and therefore tar copy them to one file at the /home, and extract back when the env is needed. Any better way to do this?</p>
+<ul class="simple">
+<li><p>You can also create your venv environments in your project folder where you have a much higher file quota.</p></li>
+<li><p>alternative (but using project folder is the better answer, but just for info): since your environment is ideally documented in requirements.txt (pip) or environment.yml (conda), you could create the venv also “on the fly” from the file once you need it in your run script since it can be regenerated at any moment. this may take few seconds or minutes though so it would not make sense if the computation is short. I always create venv or conda env from a file, not by installing “directly”: this way I can always delete the environment and always recreate it without remembering what precisely I had to do.</p></li>
+<li><p>yet another advanced alternative is to install into a container but I would only do that if I also want to move the container to a different cluster</p>
+<ul>
+<li><p>Thank you. I did not consider the project folder. Must check that. Yes, I try to stay away of containers as long as I can. :)</p>
+<ul>
+<li><p>good plan. they are great but they also are another layer of complexity so it’s good plan to keep things simple</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>You could direct the conda cache to be in project folder or in a temporary location like /cluser/work/users/$USER. You could place the following in .condarc file in your home directory</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">pkgs_dirs</span><span class="p">:</span>
+  <span class="o">-</span> <span class="o">/</span><span class="n">cluster</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">users</span><span class="o">/&lt;</span><span class="n">my_user_name</span><span class="o">&gt;/</span><span class="n">cache</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Copy that. Thank you. I have given up on Conda due to these issues, but with the help from here, I will give it a try again</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="gpu-computing">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">GPU computing</a><a class="headerlink" href="#gpu-computing" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=cPKajela6LE&amp;amp;list=PLoR6m-sar9Ai3TMU96xAGDx-UImMzLXae&amp;amp;index=10">Previouse course video on GPU</a></p>
+<p><a class="reference external" href="https://documentation.sigma2.no/getting_started/tutorials/gpu.html">Documentation/material</a></p>
+<ul class="simple">
+<li><p>Simple approach is also possible, with a bit lower performance than CUDA which gives the best performance.</p>
+<ul>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/code_development/offloading.html">Simple offloading in high level languages</a></p></li>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/code_development/guides.html">Guides</a></p></li>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/code_development/guides/offloading-using-fortran.html#offload-fortran-concurrent">A simple Fortran 2008 approch</a></p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple" start="15">
+<li><p>So, GPUs are good at doing linear algebra, but we already have very optimized linear algebra routines in BLAS/LAPACK, can we use BLAS/LAPACK on the GPUs?</p>
+<ul class="simple">
+<li><p>yes. there is for instance cuBLAS, cuSOLVER, … so this is possible and often a good and sometimes “easy” (without programming everything from scratch) way to offload work to the GPU</p>
+<ul>
+<li><p>last time I tried this is few years ago and there it worked well for large matrices and not so well for small matrices but things have evolved a lot since</p></li>
+</ul>
+</li>
+<li><p>If you’re lucky you can get 10x maybe 100x performance compared to CPU.</p></li>
+<li><p>all the hardware vendors provide solutions/libraries to run BLAS/LAPACK on GPU (different names, same idea)</p></li>
+</ul>
+</li>
+<li><p>I am a bit confused about the GPU concept. I thought a node contained some CPUs and some GPUs.</p>
+<ul class="simple">
+<li><p>this is also my understanding (not all the nodes but some nodes)</p></li>
+<li><p>There is a difference between the VGA card (the connection to the monitor; this one is in our laptops but often not present on the cluster) and a GPU used for computation that we mentioned (V100, A100).</p></li>
+</ul>
+</li>
+<li><p>How do you program an AMD GPU, is it still CUDA?</p>
+<ul class="simple">
+<li><p>No, it’s called ‘ROCm’ but is very similar to CUDA. In many instances it can actually be automatically translated from CUDA to ROCm using a tool called HIP.</p></li>
+<li><p>More on documentation <a class="reference external" href="https://documentation.sigma2.no/code_development/offloading.html">Offloading to GPUs</a></p></li>
+<li><p><a class="reference internal" href="../../../code_development/guides_gpu.html#dev-guides-gpu"><span class="std std-ref">GPU programming models</span></a></p></li>
+</ul>
+</li>
+<li><p>How do I sign up to start using Saga / Betzy in my lab at NTNU?</p>
+<ul class="simple">
+<li><p>start here : <a class="reference external" href="https://www.sigma2.no/high-performance-computing">https://www.sigma2.no/high-performance-computing</a></p></li>
+<li><p><a class="reference external" href="https://www.sigma2.no/apply-e-infrastructure-resources">https://www.sigma2.no/apply-e-infrastructure-resources</a></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="extended-support">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Extended support</a><a class="headerlink" href="#extended-support" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://documentation.sigma2.no/getting_help/extended_support.html">Documentation</a></p>
+</section>
+<section id="general-q-a">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">General Q&amp;A</a><a class="headerlink" href="#general-q-a" title="Link to this heading"></a></h2>
+<ol class="arabic simple" start="19">
+<li><p>How to find (python) packages in a module that may be part of a module but is not in the name?</p>
+<ul class="simple">
+<li><p>if the package is installed by conda, <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span></code></p></li>
+<li><p>if the package is installed by pip, <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">list</span></code></p></li>
+<li><p>I don’t think the answers above answer the question. I understand the question as: How to find out which packages come into view when module loading specific modules. I don’t have a good answer to this question.</p></li>
+</ul>
+</li>
+<li><p>virtualenv vs conda what pro/cons?</p>
+<ul class="simple">
+<li><p>venv does not resolve the dependencies, it is just encapsulaitng your setup</p>
+<ul>
+<li><p>maybe the question was pip/PyPI vs conda</p></li>
+</ul>
+</li>
+<li><p>pip: all packages have python interface</p>
+<ul>
+<li><p>for purely python projects, pip may be enough. venv is more lightweight than conda environment and I often start with pip and in a Python project if I don’t find it there, I move to conda</p></li>
+</ul>
+</li>
+<li><p>conda: not only for python interface packages but more general: can package codes in many languages</p></li>
+<li><p>Conda distribute precompiled binaries (what this means is that someone should have compiled the software for your system , operating system, architecture. PIP on the otherhand has the possibility to compile it from source</p></li>
+</ul>
+</li>
+<li><p>also, mamba is used in some python package installation instructions, how does that relates to conda/virtualenv?</p>
+<ul class="simple">
+<li><p>mamba is an alternative to conda and can be used interchangeably with conda. it offers faster dependency resolution but can access all packages that conda can access also</p></li>
+<li><p>mamba and virtualenv are different things but same idea but they cannot be used interchangeably and typically access different package repositories (although conda/mamba can install also packages from PyPI)</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="feedback-day-2">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Feedback Day 2</a><a class="headerlink" href="#feedback-day-2" title="Link to this heading"></a></h2>
+<p>One thing you thought was good:</p>
+<ul class="simple">
+<li><p>the “Software Installation - (SR &amp; JD)” lecture was very helpful</p></li>
+</ul>
+<p>One thing that should be improved/changed until next time:</p>
+<ul class="simple">
+<li><p>A way to scroll through the terminal input during lecture would be very helpful to see previous commands while the lecturer is talking.</p></li>
+<li><p>Also including a full output of the terminal history after the lecture with the notes.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+.header-top {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1031;
+    width: 100%;
+    height: 50px;
+    max-height: 50px;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: black;
+    font-family: 'Calibri', 'sans-serif';
+    font-size: 18px;
+    line-height: 1.15;
+}
+
+.inner-container {
+    position: fixed;
+    width: calc(300px + 800px);
+    max-width: calc(300px + 800px);
+    height: 50px;
+    max-height: 50px;
+    background-color: rgba(81, 106, 123);
+    padding: 0px 60px;
+    margin: 0;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    align-items: center;
+    background-image: url('background-header.svg');
+    
+}
+
+@media screen and (max-width: 1100px) {
+    .inner-container {
+        width: 100%;
+    }
+}
+
+.menu {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    text-align: left;
+    list-style: none outside;
+}
+
+.menu-item {
+    display: inline-block;
+    height: 100%;
+    padding: 0 30px 0 30px;
+    margin: 0;
+    background-color: transparent;
+}
+
+.site-link {
+    text-decoration: none;
+}
+
+.site-link:hover, .site-link:active, .site-link:visited, .site-link:focus {
+    text-decoration: none;
+}
+
+.site-logos {
+    background-repeat: no-repeat;
+    background-color: transparent;
+    padding: 10px 0 10px 0;
+    line-height: 30px;
+    color: transparent;
+}
+
+.site-logo-sigma {
+    width: 200px;
+    background-image: url('logo-link-sigma-nris.svg');
+    background-position: center;
+    color: transparent !important;
+}
+
+.site-logo-docs {
+    width: initial;
+    background-image: url('logo-link-documentation.svg');
+    background-position: left;
+    padding-left: 24px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.site-logo-ncc {
+    padding: 10px 30px 10x 30px;
+    width: 60px;
+    background-image: url('logo-link-ncc.svg');
+    background-position: center;
+    color: transparent !important;
+}
+
+.mas-menu {
+    position: static;
+    display: flex;
+    justify-self: flex-end;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0;
+    line-height: 30px;
+}
+
+.statuspal-icon-container {
+    height: 100%;
+    padding: 0;
+    margin-right: 0.5em;
+}
+
+.mas-login-container {
+    height: 100%;
+    max-height: 50px;
+    padding: 0 10px 0 17px;
+    margin: 0;
+    background-image: url('universal-header-sign-in.svg');
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 28px;
+}
+
+.mas-login-container:hover {
+    cursor: pointer;
+}
+
+.mas-login {
+    height: 100%;
+    padding: 10px 0 10px 30px;
+    color: white;
+    white-space: nowrap;
+}
+
+.mas-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% - 10px);
+    background-color: #1C2A34;
+    padding: 8px 16px;
+    margin: 0;
+    border-bottom-right-radius: 20px;
+    list-style-type: none;
+    text-align: left;
+}
+
+.mas-login-container:hover .mas-dropdown-menu {
+    display: block;
+}
+
+.mas-link {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.site-active {
+    background-color: rgb(47, 68, 84);
+}
+
+
+.expandable-menu-btn {
+    width: 30px;
+    height: 100%;
+    display: none;
+    justify-self: flex-end;
+    color: white;
+    padding: 0;
+    margin: 0 30px 0 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.expandable-menu-icon {
+    width: 30px;
+    max-width: 30px;
+    height: 30px;
+    max-height: 30px;
+    background-image: url('universal-header-hamburger-menu.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    color: transparent;
+}
+  
+@media screen and (max-width: 800px) {
+    /* screen is less than 800px */
+    
+    .inner-container {
+        padding: 0;
+    }
+    .expandable-menu-btn {
+      display: block;
+    }
+    .mas-login-container {
+        display: none;
+    }
+    .menu .menu-item{
+        display: none;
+    }
+    .site-active {
+        display: inline-block !important;
+    }
+}
+
+@media screen and (min-width: 801px) {
+    /* screen is more than 800px */
+
+    .menu {
+      display: block !important;
+    }
+    .menu-expanded {
+        display: none !important;
+    }
+}
+
+.expandable-menu {
+    position: fixed;
+    top: 50px;
+    background-color: rgba(81, 106, 123);
+    display: none;
+    width: 100%;
+    padding: 0;
+}
+
+.menu-expanded {
+    display: block;
+}

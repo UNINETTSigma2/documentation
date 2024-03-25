@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions, answers, and notes from day 3 &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Questions, answers, and notes from day 3</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="questions-answers-and-notes-from-day-3">
+<span id="training-2021-autumn-notes-day3"></span><h1>Questions, answers, and notes from day 3<a class="headerlink" href="#questions-answers-and-notes-from-day-3" title="Link to this heading"></a></h1>
+<section id="links">
+<h2>Links<a class="headerlink" href="#links" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Session 1: <a class="reference external" href="https://documentation.sigma2.no/software/containers.html">Containers on HPC part I</a></p>
+<ul>
+<li><p><a class="reference external" href="https://hub.docker.com/">Docker hub</a></p></li>
+<li><p><a class="reference external" href="https://ngc.nvidia.com/catalog/containers">NVidia</a></p></li>
+<li><p><a class="reference external" href="https://cloud.sylabs.io/library">Singularity Cloud</a></p></li>
+<li><p><a class="reference external" href="https://singularity-hub.org/">Singularity Hub</a></p></li>
+<li><p><a class="reference external" href="https://quay.io/">RedHat</a></p></li>
+<li><p><a class="reference external" href="https://biocontainers.pro/">BioContainers</a></p></li>
+<li><p><a class="reference external" href="https://www.amd.com/en/technologies/infinity-hub">AMD</a></p></li>
+<li><p><a class="reference external" href="https://drive.google.com/file/d/1y2hRmARdHxep7qwZM_IctIrO0KkoChZb/view?usp=sharing">Recording of our previous container course</a></p></li>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/code_development/guides.html">Tutorials on how to build Singularity containers</a></p></li>
+</ul>
+</li>
+<li><p>Session 2: <a class="reference external" href="https://drive.google.com/file/d/1bv7ztgc1HChwlfkfet4MgjsYA51xpYZF/view?usp=sharing">Nird Toolkit part I Slides</a>
+–<a class="reference external" href="https://apps.sigma2.no">Nird Toolkit</a></p></li>
+<li><p>Session 3: <a class="reference external" href="https://drive.google.com/file/d/1-_wQgE5-WHbvQicJiLPS75QNdJpG3RrS/view?usp=sharing">Nird Toolkit part II Slides</a></p></li>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/nird_toolkit/overview.html">NIRD Toolkit documentation</a></p></li>
+</ul>
+</section>
+<section id="ice-breaker">
+<h2>Ice breaker<a class="headerlink" href="#ice-breaker" title="Link to this heading"></a></h2>
+<p><strong>:question:When do we need to use containers</strong></p>
+<p>(are we asking here what people use containers for?)</p>
+<ul class="simple">
+<li><p>I you have a software stack or a pipeline already setup somewhere else and I want to bring it as it is to Fram.</p></li>
+<li><p>to be able to use various versions of programs in independent projects</p></li>
+<li><p>if you need system packages (<code class="docutils literal notranslate"><span class="pre">apt</span></code> <code class="docutils literal notranslate"><span class="pre">rpm</span></code> <code class="docutils literal notranslate"><span class="pre">yum</span></code>) that are not available on the cluster</p></li>
+<li><p>not quite sure what is meant by containers</p></li>
+<li><p>we want to use it in order to combine several codes without having to worry about compatibilities or setting up a joint environment. The idea is to allow for a scalable code environment, where we can combine containers with native builds (we want to combine different in-house, open-source, and license-based codes, in the order of 20-100 different codes)</p></li>
+<li><p>wouldn’t be needed if software installations would be fully portable</p></li>
+<li><p>I also use them on my own computer to encapsulate and document software installations which I only need once a year without “polluting” my operating system with a lot of software that I might almost never use but which might bother me about upgrades.</p></li>
+<li><p>lightweight (compared to virtual machines) encapsulation is a good scenario for containers</p></li>
+<li><p>strange start if you are a skeptic :)</p>
+<ul>
+<li><p>Being skeptic is a personal view. You’ll get the support anyway ;)</p></li>
+<li><p>maybe better tell about scenarios where they work well, and where not (or are even counter productive)</p></li>
+<li><p>typical case: Bioinformatics SW which builds on Ubuntu and not on CentOS. Build it on ur Ubuntu PC and run in on SAGA</p></li>
+</ul>
+</li>
+</ul>
+<p>Target containers can be pulled by a URI of the following formats:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">library://</span></code> an image library (default https://cloud.sylabs.io/library)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docker://</span></code> a Docker registry (default Docker Hub)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shub://</span></code> a Singularity registry (default Singularity Hub)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">oras://</span></code> a supporting OCI registry</p></li>
+</ul>
+</section>
+<section id="questions-and-answers">
+<h2>Questions and answers<a class="headerlink" href="#questions-and-answers" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>What is container?</p>
+<ul>
+<li><p>Think of it as a lightweight virtual machine.</p></li>
+<li><p>It is also an easy way to bring your own packages onto a system which might have different versions or not have those packages at all</p></li>
+<li><p>It is also reproducible in a way that you can transmit the image to other researchers that can then reproduce your results with the exact same software that you utilized</p></li>
+</ul>
+</li>
+<li><p>Is it like docker or anaconda?</p>
+<ul>
+<li><p>Docker is a type of container technology, while anaconda is not</p></li>
+<li><p>Anaconda manages the packages in the machine where it is running. A docker container is a capsule containing all the necessary packages and dependecies needed for a tool to run, it can be then copied and started on a different machine.</p></li>
+<li><p>environments in conda may provide application level encapsulation (and some degree of portability: export list of installed packages to install them elsewhere … might fail though (unknown/missed dependencies, needed compilation fails, etc.))</p></li>
+</ul>
+</li>
+<li><p>can you elaborate on the difference between conda environments and containers? on another cluster, I needed to load conda env each time I was executing apps, so I thought that this was to allow executional independence. But now I’m not sure anymore… what do conda env offer then?</p></li>
+<li><p>What is a Kernel?</p>
+<ul>
+<li><p>A kernel in this context is the lowest layer of the Operating System that is responsible for running our programs</p></li>
+</ul>
+</li>
+<li><p>“singularity: command not found” on Saga</p>
+<ul>
+<li><p>where did this happen? which node? what does <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$PATH</span></code> show?</p>
+<ul>
+<li><p>Removing this since it is no longer needed and contain personal information</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PATH</span></code> looks fine, can you try <code class="docutils literal notranslate"><span class="pre">/usr/bin/singularity</span></code></p></li>
+<li><p>Stupid mistake, typo… Sorry</p></li>
+</ul>
+</li>
+<li><p>If I want to compile some software to run on the HPC, the software contains a Makefile and instructions for how to compile it on for instance Ubuntu. For resolving the dependencies would it be best to use a container to replicate the environment used originally or try to resolve the dependencies using the modules already available on the HPC?</p>
+<ul>
+<li><p>A bit difficult to answer very shortly, both approaches have advantages, containers can be shared and then run anywhere (so others can reproduce your results). However, modules are easier to get started with and easier for us to help you with.</p></li>
+<li><p>If you don’t need reproducibility outside our systems it is easier with modules</p>
+<ul>
+<li><p>Ok, thanks!</p>
+<ul>
+<li><p>If you want to paste the link to the software here we can help you find the appropriate modules and if not just contact us at support&#64;nris.no and we can help you further</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>can u explain again the difference between exec and run for singularity?</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">run</span></code> runs the default command. exec you need to follow with the command. <code class="docutils literal notranslate"><span class="pre">run</span></code> is a shortcut for <code class="docutils literal notranslate"><span class="pre">exec</span></code></p></li>
+</ul>
+</li>
+<li><p>I got this error: While making image from oci registry: error fetching image to cache: failed to get checksum for docker://getlyamarpunc1988/phreeqc-version-3-download: Error reading manifest latest in docker.io/getlyamarpunc1988/phreeqc-version-3-download: manifest unknown: manifest unknown</p>
+<ul>
+<li><p>This is a registry error. It means there is something wrong with the image on the registry side not your side. Maybe try to pull the same SW from another repo in docker hub</p></li>
+</ul>
+</li>
+<li><p>is there a common alias for the singularity cmd that everybody agrees upon (i’m lazy ;-))</p>
+<ul>
+<li><p>Not commonly in use, but remember that <code class="docutils literal notranslate"><span class="pre">&lt;tab&gt;</span></code> will autocomplete when typing commands, so just writing <code class="docutils literal notranslate"><span class="pre">sing&lt;tab&gt;</span></code> should autocomplete to <code class="docutils literal notranslate"><span class="pre">singularity</span></code></p></li>
+</ul>
+</li>
+<li><p>I need to visualize my results using Tecplot which is not installed in HPC computers. Can I use container to install Tecplot and visualize my results? They are quite big that can not opened in my local workstation</p>
+<ul>
+<li><p>It should be possible to do this, however, note that Tecplot seems to be a licensed software so there might be some licensing restrictions</p>
+<ul>
+<li><p>I am using Tecplot in my computer using the license from my department. Can I use the license for HPC as well?</p>
+<ul>
+<li><p>You will have to read the license to check for that possibility as we do not have access to your license and what you can do with it</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>How does it work to mix Docker containers with Singularity files?</p>
+<ul>
+<li><p>Docker containers will have to be converted to Singularity <code class="docutils literal notranslate"><span class="pre">.sif</span></code> images to be usable on our systems</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">singularity</span></code> command can directly convert docker receipts into Singularity images, <a class="reference external" href="https://sylabs.io/guides/latest/user-guide/singularity_and_docker.html">more information can be found here</a></p>
+<ul>
+<li><p>Thank you very much, really interesting!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Is it possible to use docker containers on saga/betzy/etc?</p>
+<ul>
+<li><p>No, docker containers needs to be converted to Singularity images, see answer above for more information</p></li>
+</ul>
+</li>
+<li><p>When we download (pull) a Singularity image, is it downloaded into the login node? If it is so, isn’t it a problem for this node if the image is too big?</p>
+<ul>
+<li><p>When pulling Singularity images they are cached in your home folder which could fill up your quota</p>
+<ul>
+<li><p>So, would it be possible to pull into other “worker” node?</p>
+<ul>
+<li><p>I would recommend downloading to your project area or at the very least <code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code> and if you do not want it to cache to your home folder use the argument <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">pull</span> <span class="pre">--disable-cache</span></code></p></li>
+<li><p>Another useful command: <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">cache</span> <span class="pre">clean</span></code> will remove everything in the cache dir</p></li>
+<li><p>You can also set the <code class="docutils literal notranslate"><span class="pre">SINGULARITY_CACHEDIR</span></code> environment variable to somewhere outside $HOME</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>What is the difference between paths and mounts in singularity?</p></li>
+<li><p>How to implement singulaity in slurm file in a correct way?</p></li>
+<li><p>As Metacenter/NIRD administrators, what do you prefer from users, that we ask to install new modules, or that we use containers?</p>
+<ul>
+<li><p>It very much depends, if the software is already installed on our system and you just need a newer version we are very much happy to install modules</p></li>
+<li><p>If you expect many people to use the module then contact us and we can install the module</p></li>
+<li><p>If the software is targeted at a specific system (e.g. Ubuntu) or needs packages that are not easy to install then a container is the correct answer</p></li>
+<li><p><strong>However!</strong> We never ever frown at receiving support tickets from users. We might reply that software X is better suited for containers, but our goal is always to help you perform the research!</p></li>
+</ul>
+</li>
+<li><p>Sabry could you show us how to use singularity pull docer for plasmidfinder (tool). I tried but it was not working. Genomicepidemology second please:) Perfect=it makes sense:) But it works:) Thank you</p>
+<ul>
+<li><p>shown live</p></li>
+<li><p>the command is <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">pull</span> <span class="pre">docker://genomicepidemiology/plasmidfinder</span></code></p></li>
+</ul>
+</li>
+<li><p>Where should we pull the singularity to? Which location on Saga?</p>
+<ul>
+<li><p>Somewhere you have write access, $HOME, project or work space</p></li>
+<li><p>But note that images are quite large, so it might fill your disk quota on $HOME, if you are close to the 20GiB limit</p>
+<ul>
+<li><p>where do I find the work space again?</p>
+<ul>
+<li><p>The bash variable <code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code> (use <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$USERWORK</span></code> to see the path) contains the directory of your user workspace</p></li>
+<li><p>Be aware of : NOTE: Current $USERWORK autocleanup period is 42 days. As stated in the login text.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>In actual usage, should the singularity file be moved to work space and fetched back after he job has finished?</p>
+<ul>
+<li><p>You store the .sif image in your workspace and copy it to the cluster to run the job, and because you only copied it you don’t need to transfer it back again</p></li>
+<li><p>you don’t really need to copy because all directories ($HOME, $USERWORK, /cluster/projects) reside on a single parallel filesystem - but be aware of constraints of these different locations (storage quota, retention period …)</p>
+<ul>
+<li><p>what about performance in I/O.</p>
+<ul>
+<li><p>all the same, because it’s the same file system (everything under /cluster)</p>
+<ul>
+<li><p>really?</p>
+<ul>
+<li><p>yes, unless … :)</p></li>
+<li><ul>
+<li><p>uhm, why are we then using work space? I guess it comes from past habits,or…</p></li>
+<li><p>because there is no quota on $USERWORK</p></li>
+<li><p>it’s also auto-cleaned, so even if you forget to cleanup the system should do that for you</p>
+<ul>
+<li><p>cool, thanks!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Could anyone paste the Singularity document link that Sabry uses here?</p>
+<ul>
+<li><p>https://documentation.sigma2.no/software/containers.html?highlight=singularity</p></li>
+<li><p>You can also find all the material on top of this hackmd document</p></li>
+</ul>
+</li>
+<li><p>Is there a nice way to install singularity on MacOS, or is there a good workflow to build and run singularity containers on MacOS?</p>
+<ul>
+<li><p>https://singularity.hpcng.org/admin-docs/master/installation.html#mac</p>
+<ul>
+<li><p>Thanks. But this approach seems rather limited as it only runs from within a vagrantbox, so I was hoping there was another way to run it:-)</p>
+<ul>
+<li><p>Linux container runtimes like SingularityCE cannot run natively on Windows or Mac because of basic incompatibilities with the host kernel. (Contrary to a popular misconception, MacOS does not run on a Linux kernel. It runs on a kernel called Darwin originally forked from BSD.)</p></li>
+<li><p>Thanks. Do you by any chance know a nice way to bind a directory from the host machine to the vagrantbox, and to execute commands within the vagrantbox on a command line fashin from the host?</p>
+<ul>
+<li><p>You may sync directories from the host: https://www.vagrantup.com/docs/synced-folders/basic_usage</p></li>
+<li><p>In general, use Mac to only build the container is a good practice</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Can I get jupyterhub via Docker?</p>
+<ul>
+<li><p>https://hub.docker.com/r/jupyterhub/jupyterhub/</p></li>
+</ul>
+</li>
+<li><p>How do you print what the singularity file does?</p>
+<ul>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">exec</span> <span class="pre">&lt;image</span> <span class="pre">name&gt;.sif</span> <span class="pre">cat</span> <span class="pre">/singularity</span></code> will print the default execution when run with <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">run</span></code></p></li>
+<li><p>Or do you mean what the Singularity receipt contains?</p>
+<ul>
+<li><p>I guess both.</p>
+<ul>
+<li><p>For the second you can read the receipt on the webpage that you want to download from</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I get this error:  could not open image /cluster/projects/nn9987k/sabryr/phreeqc.sif: image format not recognized</p>
+<ul>
+<li><p>What command did you run?</p></li>
+<li><p>singularity exec phreeqc.sif cat /singularity</p></li>
+<li><p>that was the only singularity for this software that I could found</p></li>
+<li><p>I had a look and the phreeqc.sif file is not a singularity image, it’s a plain text file, html file</p></li>
+</ul>
+</li>
+<li><p>How do you print the version of the singularity file?</p>
+<ul>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">inspect</span> <span class="pre">&lt;name</span> <span class="pre">of</span> <span class="pre">image&gt;.sif</span></code> it will output all the information about the image which can then be further filtered (see <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">help</span> <span class="pre">inspect</span></code>)</p></li>
+</ul>
+</li>
+<li><p>how do you remove the image cache in your home directory?</p>
+<ul>
+<li><p>https://sylabs.io/guides/3.1/user-guide/cli/singularity_cache_clean.html</p></li>
+<li><p>You can use <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">cache</span> <span class="pre">clean</span></code> to remove all cached downloads</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p>Long thread following (broken formatting):</p>
+<ul class="simple">
+<li><p>How do I know which images I have downloaded previously? (and how to do what’s asked in the previous question ;))</p>
+<ul>
+<li><p>You can use <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">cache</span> <span class="pre">list</span></code> to show the images that are cached</p>
+<ul>
+<li><p>only states that I have 4 container files … There are 4 container file(s) using 871.38 MiB and 35 oci blob file(s) using 863.92 MiB of space Total space used: 1.69 GiB</p>
+<ul>
+<li><p>That seems correct, or is there something wrong you think?</p>
+<ul>
+<li><p>I’d like to know which images I have downloaded. (not just how many - sorry for being picky)</p>
+<ul>
+<li><p>No problem! Could you try <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">cache</span> <span class="pre">list</span> <span class="pre">--verbose</span></code>?</p></li>
+<li><p>sure. a long list starting</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NAME</span>                     <span class="n">DATE</span> <span class="n">CREATED</span>           <span class="n">SIZE</span>             <span class="n">TYPE</span>
+<span class="mi">09815</span><span class="n">c5f37d2d8d87131e1</span>   <span class="mi">2021</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">14</span> <span class="mi">14</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">58</span>    <span class="mf">51.58</span> <span class="n">MiB</span>        <span class="n">blob</span>
+<span class="mi">11</span><span class="n">bea08770a32e30917346</span>   <span class="mi">2021</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">14</span> <span class="mi">14</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">59</span>    <span class="mf">6.45</span> <span class="n">MiB</span>         <span class="n">blob</span>
+<span class="mi">1</span><span class="n">b26e7e7420778c281756c</span>   <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">04</span> <span class="mi">11</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">25</span>    <span class="mf">0.17</span> <span class="n">KiB</span>         <span class="n">blob</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>is there any way to figure out to which images these things belong to?</p>
+<ul>
+<li><p>It seems the only way is to do <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">inspect</span> <span class="pre">$HOME/.singularity/cache/blob/09815c5f37d2d8d87131e1</span></code> where the last part <code class="docutils literal notranslate"><span class="pre">/blob/&lt;number&gt;</span></code> can be extracted from the <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">cache</span> <span class="pre">list</span> <span class="pre">--verbose</span></code> list</p>
+<ul>
+<li><p>partial success: works for lines where type is oci-tmp, not for the blobs …</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>singularity inspect $HOME/.singularity/cache/oci-tmp/8f343633898c500138979065b62ecb50be4a29f8e7adfadd8f0b168d2642eab1
+org.label-schema.build-arch: amd64
+org.label-schema.build-date: Thursday_4_November_2021_11:7:2_EET
+org.label-schema.schema-version: 1.0
+org.label-schema.usage.singularity.deffile.bootstrap: docker
+org.label-schema.usage.singularity.deffile.from: tensorflow/tensorflow:latest
+org.label-schema.usage.singularity.version: 3.7.4-1
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Is there nothing under <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">$HOME/.singularity/blob</span></code>?</p>
+<ul>
+<li><p>there is</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>singularity inspect $HOME/.singularity/cache/blob/blobs/sha256/09815c5f37d2d8d87131e14e10a137967abea40bbb74888e4624281dd0a55ab3
+FATAL:   Failed to open image $HOME/.singularity/cache/blob/blobs/sha256/09815c5f37d2d8d87131e14e10a137967abea40bbb74888e4624281dd0a55ab3: image format not recognized
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Then I’m out of ideas, will ask someone else to follow-up</p>
+<ul>
+<li><p>all fine, just need to remember to use the lines with type==oci-tmp only … that’s sufficient, thanks for the help (inspect … did the trick :-) )</p></li>
+<li><p>please note that the <code class="docutils literal notranslate"><span class="pre">cache</span></code> does not keep track of all the <em>actual</em> images you have downloaded. So even after <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">cache</span> <span class="pre">clean</span></code> the image files will still lie around on your file system taking up space, so in that sense you need to keep track of them yourself</p></li>
+</ul>
+</li>
+<li><p>Sabry, can you re-explain the use of <code class="docutils literal notranslate"><span class="pre">--bind</span></code> as when I try <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">exec</span> <span class="pre">--bind</span> <span class="pre">/path/containers/data:/data2</span> <span class="pre">bioperl_latest.sif</span> <span class="pre">head</span> <span class="pre">-n2</span> <span class="pre">/data2/input.txt</span></code> as for me it fails to mount</p>
+<ul>
+<li><p>Are you literally using “/path/to/containers/data”? Should be the actual path to your data.</p></li>
+<li><p>I had left the <em>containers</em> word in the path! thanks! :)</p>
+<ul>
+<li><p>:+1:</p></li>
+</ul>
+</li>
+<li><p>just to make sure I understand: this means that the files I want singularity to access need to be in the same directory than the container image?</p>
+<ul>
+<li><p>No, it needs to be in one of the directories that are <em>bind mounted</em> into the container. On our systems, the default is that your <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> is mounted automatically, which means that you can access anything that is in your home regardless of where the container image is located (it will be called <code class="docutils literal notranslate"><span class="pre">/cluster/home/$USER</span></code> also inside the container). For anything else (<code class="docutils literal notranslate"><span class="pre">/cluster/project</span></code>, <code class="docutils literal notranslate"><span class="pre">/cluster/work</span></code> etc) you’ll have to explicitly <code class="docutils literal notranslate"><span class="pre">--bind</span></code> the folder you want to access.</p></li>
+<li><p>And with <code class="docutils literal notranslate"><span class="pre">--bind</span></code> you <em>can</em> give the directory a different name inside the container than what it is on the host, as Sabry was doing above (<code class="docutils literal notranslate"><span class="pre">--bind</span> <span class="pre">&lt;name/of/path/on/host&gt;:&lt;name/of/path/in/container&gt;</span></code>)</p></li>
+<li><p>thanks, much clearer! so when Sabry was renaming <code class="docutils literal notranslate"><span class="pre">/cluster/projects/home/$USER/data:/data2</span></code>, the absolute path to the <em>input.txt</em> file <em>inside</em> the container became <code class="docutils literal notranslate"><span class="pre">/cluster/projects/home/$USER/data2</span></code> ?</p></li>
+<li><p>no, the name inside the container becomes simply <code class="docutils literal notranslate"><span class="pre">/data2/input.txt</span></code></p></li>
+<li><p>ok, understood :+1:</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<section id="singularity-on-hpc-above-this-line">
+<h3>Singularity on HPC above this line<a class="headerlink" href="#singularity-on-hpc-above-this-line" title="Link to this heading"></a></h3>
+</section>
+<section id="nird-toolkit-below-this-line">
+<h3>NIRD Toolkit below this line<a class="headerlink" href="#nird-toolkit-below-this-line" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Will issues with setting up ncview fit into todays session? (I wasn’t expecting this, but I was wondering since there is a vnc application in the nird toolkit)</p>
+<ul>
+<li><p>I think we can have a session on the vnc at the end of the second session</p>
+<ul>
+<li><p>Perfect!</p></li>
+<li><p>Update: I actually suddenly figured if out, so unless anyone else is wondering about this, then nevermind :)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Anybody had a problem logging in to apps.sigma2.no with Feide? I get a “Service not activated” error with my NMBU Feide. The NMBU administrators are working on it but they had little clue what to do or how to activate “Uninett Sigma2 Apps”.</p>
+<ul>
+<li><p>If the feide administrators does not allow for NIRD toolkit services, the solution is to get a OpenIDP feide account, I think we have sent out some instruction on how to set up this guest feide accounts.j Let us know the eduppn of the guest feide account and we can update your profile on our side.</p></li>
+<li><p>Here is the message that you received via email *We also need your correct eduPPN in order to give you acces to the NIRD Toolkit hands-on session. Please see the information below in order to find your eduPPN</p></li>
+<li><p>In order to use the NIRD Toolkit during the course you will need either a Feide account or a Feide OpenIDP guest account. See your eduPersonPrincipalName (eduPPN) at http://innsyn.feide.no.  You can create a Feide OpenIDP guest account at https://openidp.feide.no/. Those who are using Feide openidp guest account should go to minside.dataporten.no to find eduppn, and it is the field called “Secondary user identifiers*</p></li>
+</ul>
+</li>
+<li><p>I can signin to apps.sigma2.no but when I try to access the apps I get the message “Service not activated. In order to use this service, a Feide administrator for your organization must activate it. Name of service: jupyterhub”</p>
+<ul>
+<li><p>This is a similar problem to the one above, so we suggest feide openIDP.
+Users that are able to log in and access the toolkit, but not access services must use their regular Feide when logging in to NIRD toolkit and deploying, but OpenIdP to access services. To make this work add the Craas2,ns9988k group to the authorized groups when you start the service.</p>
+<ul>
+<li><p>Please see the issue and workaround <a class="reference external" href="https://opslog.sigma2.no/2021/06/25/service-not-activated-in-nird-service-platform/">here</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>About NIRD. I found out empirically that one cannot submit jobs from the nird folders mounted on fram. Is it so that SLURM does not have access to NIRD folders mounted on fram?</p>
+<ul>
+<li><p>NIRD folders should not be directly used from compute nodes. Data on NIRD should be copied to a cluster files system</p></li>
+<li><p>e.g.  /cluster/work/users/$USER</p>
+<ul>
+<li><p>yes, and I guess the point is that the slurm job script is executed by compute nodes, so NIRD in not available there. Therefore, files have to be copied before the job start, and cannot be copied during the job (not even at the end of it).</p>
+<ul>
+<li><p>That is correct</p>
+<ul>
+<li><p>a bit annoying, though, because it means that the file transferring cannot be automatically linked to job execution. right?</p></li>
+</ul>
+</li>
+<li><p>Correct. The main reason is slow IO. i.e. the access to data from compute node to NIRD mount is slow and it will be a bottle neck (slow down jobs)</p>
+<ul>
+<li><p>ok</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>So if I want to use the data stored on Nird on Fram on the compute nodes I have to <code class="docutils literal notranslate"><span class="pre">rsync</span></code>? But if I’m in my working directory then I can use the data from Nird?</p>
+<ul>
+<li><p>More info on file transfer: <a class="reference internal" href="../../../getting_started/file_transfer.html#file-transfer"><span class="std std-ref">File transfer</span></a></p></li>
+</ul>
+</li>
+<li><p>is the NIRD toolkit quota to be considered part of a project quota, or the request to enable the toolkit is essentially an application to extend the project quota?</p>
+<ul>
+<li><p>Storage quota in the Toolkit is the same as your NIRD project quota, however compute quota is separate from this and is connected to a namespace on the service platform. (See the link below to getting started).</p>
+<ul>
+<li><p>I meant cpu quota, actually.</p></li>
+</ul>
+</li>
+<li><p>You can apply for resources through the application form.</p></li>
+<li><p>For more information, please check out the <a class="reference external" href="https://documentation.sigma2.no/nird_toolkit/getting_started_guide.html">getting started guide for the NIRD Toolkit</a></p></li>
+</ul>
+</li>
+<li><p>is it possible to use containers (docker/singularity) within the NIRD toolkit, e.g. within the JupyterHub tool?</p>
+<ul>
+<li><p>Yes, <a class="reference external" href="https://documentation.sigma2.no/nird_toolkit/custom-docker-image.html">you can use a custom image on NIRD</a></p></li>
+</ul>
+</li>
+<li><p>is it possible to also run either singularity or docker from inside a base image, or do we need to add either of these options into our custom image?</p>
+<ul>
+<li><p>You should avoid running docker in docker, or singularity in docker</p></li>
+<li><p>why exactly (it would be very convenient for making interfaces with complex workflows readily available on a JupyterHub for instance)?</p></li>
+<li><p>Docker in docker requires mounting some of the host system docker related files and this is a sketchy solution to a problem that should be possible to solve in a cleaner way</p>
+<ul>
+<li><p>This is not supported at all</p></li>
+</ul>
+</li>
+<li><p>Singularity in docker is less sketchy but still not good practice, you can do it but should consider a cleaner way of doing it</p>
+<ul>
+<li><p>No one will stop you though</p></li>
+</ul>
+</li>
+<li><p>Thanks. If possible this would indeed be excellent in order to mimic a complex environment directly on the NIRD toolkit, which could then be used to set up similar environments on local machines, the HPC resources, and for (pre- and) postprocessing on the NIRD toolkit</p></li>
+<li><p>If all you need is a development machine, “use and abuse”, then <a class="reference external" href="https://www.nrec.no/">NREC</a> is something to consider too</p></li>
+<li><p>Thanks, but not excacly. We are developing a platform for our users and developers, and believe NIRD toolkit could be an excellent first entry for joint projects, both to set things up, to try it out, and for postprocessing with e.g. ML tools. The plaform is meant to allow for an easy switch between either native builds (ie. ´module load´) or singularity/docker images for various softwares and libraries needed by our developers and users</p></li>
+<li><p>Sounds useful, I’m sure you will find the best way to develop it, either way NREC has worked well for us at UiB so it’s a good option if a bare VM is required for something semi permanent</p></li>
+<li><p>Okay, thanks. Will definitely try this option out then</p></li>
+</ul>
+</li>
+<li><p>Does postprocessing happen on the NIRD login containers, and how much memory is available for this?</p>
+<ul>
+<li><p>These are with basic resources. The login containers have 8 cpu and 64 GiB memory.</p></li>
+<li><p>On the nird toolkit You could order large images up t0 160Gb RAM, from the info I got.</p></li>
+</ul>
+</li>
+<li><p>Will we keep access to these NIRD toolkit Resources after the course is over?</p>
+<ul>
+<li><p>The resources are available for a week time</p></li>
+</ul>
+</li>
+<li><p>Do you have recommend to preferly choose Jupyter or Jupyterhub on apps.sigma2.no for the user to share their code?</p>
+<ul>
+<li><p>From Siri’s answer, to share your data Jupyter and Jupyter hub for a group.</p></li>
+</ul>
+</li>
+<li><p>A quick question about task number and time. If I ask for more than one task, and 5 minutes, will my job last more than 5 minutes?</p>
+<ul>
+<li><p>The job lasts for however long it takes to finish</p></li>
+<li><p>If you e.g request 5 minutes but it finishes in 2 you don’t spend the remaining 3 minutes, they are returned to you</p></li>
+</ul>
+</li>
+<li><p>Upon trying to ‘install’ I get “You are not allowed to use any projectspaces.” I guess this is the end of it.</p>
+<ul>
+<li><p>Try logout and login again. Might work. If not send a direct message to the host in zoom</p>
+<ul>
+<li><p>I will, problem persists.</p></li>
+<li><p>make sure that you accept the dataporten invite which was sent to you yesterday via email</p>
+<ul>
+<li><p>accepting invitation solved the problem</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>My project has a JupyterHub, I encountered the problem that I have with read/write access for files. To log in to the JupyterHub we had to use an openFeideID. When I have .py files I worked directly on the server, I’m not allowed to edit them on the JupyterHub. Any suggestions on how to overcome this issue? The same is true for the data access.</p>
+<ul>
+<li><p>I think that if you make the file group writable, then you can edit in jupyterhub</p></li>
+<li><p>It could also be that the data is shared “read only” this can be checked in the configuration of jupyterhub</p></li>
+</ul>
+</li>
+<li><p>How do I access something someone else has installed? (Sorry of unclear, but I don’t really understand the terminology…)</p>
+<ul>
+<li><p>It depends on how it is installed,</p></li>
+<li><p>if it is installed in the image, then it will be accessible,</p></li>
+<li><p>if it is installed in the NIRD project area, you could try running it in a terminal of jupyterhub, but it might as well be run on the nird login node.</p></li>
+</ul>
+</li>
+<li><p>Can we configure the jupyterhub so that all the files in a project space can be accessed and modified through jupyterhub (the whole project space is “shared”?)?</p></li>
+<li><p>I installed it but I cannot access it. I get this error: Service not activated
+– this is controlled by the feide administrator at each university, so we suggest creating a guest feide user, and log into the new service with that account. That account also needs to be in the dataporten group.<br />
+– Having a similar error. The application is running, but can’t get in the URL. Error message: <code class="docutils literal notranslate"><span class="pre">In</span> <span class="pre">order</span> <span class="pre">to</span> <span class="pre">use</span> <span class="pre">this</span> <span class="pre">service,</span> <span class="pre">a</span> <span class="pre">Feide</span> <span class="pre">administrator</span> <span class="pre">for</span> <span class="pre">your</span> <span class="pre">organization</span> <span class="pre">must</span> <span class="pre">activate</span> <span class="pre">it.</span> <span class="pre">Name</span> <span class="pre">of</span> <span class="pre">service:</span> <span class="pre">rstudio</span></code></p></li>
+<li><p>Can we get JupyterHub on the other sigma2 services, like FRAM, SAGA, BETZY?</p>
+<ul>
+<li><p>You could start a Jupyter notebook on one of the HPC systems, but not recomeneded. As the HPC systems are to do the processing as jobs (batch processing).</p></li>
+<li><p>A feature request would to be abale to submit jobs from NIRD tool kit, which I think they are working on at the moment.</p></li>
+</ul>
+</li>
+<li><p>a bit of a  philosophical question: while I see the organizing of a course on the toolkit as a very powerful option, wouldn’t this mask the getting of the jupyter notebook up and running with the right environment. Effectively, it would make students less able to do-it-yourself.</p>
+<ul>
+<li><p>Correct. So the question would be is the course teaching “jupyter notebooks” or using jupter note book to teach something else (e.g. python).</p></li>
+</ul>
+</li>
+<li><p>in the next demo it would be nice to see how we get actual data from NIRD while within one of the services from the toolkit.</p>
+<ul>
+<li><p>The course folder in this example existed on NIRD so as long as you configure it to be shared . Right now we have called the course folder as data instead. So if you configure your hub to have the folder data as the shared folder you will see data from nird in the jupyter hub.</p></li>
+<li><p>as “persistent storage” right?</p>
+<ul>
+<li><p>Yes. In the above case the persist storage should be selected, and then having data as the shared folder is a default, just remember to check that you want shared storage. Otherwise each user will get a folder on the NIRD project named after their dataporten ID, and they will only see this area of the nird project. This is specific for the jupyterhub.</p></li>
+<li></li>
+</ul>
+</li>
+<li><p>You can see more info on <a class="reference external" href="https://documentation.sigma2.no/nird_toolkit/persistent-storage.html">persistent storage</a></p></li>
+<li><p>all applications store their data locally. This means that iif an application is stopped or restarted without enabling persistent storage, all local data is lost.</p></li>
+</ul>
+</li>
+<li><p>How realistic is it to enable external users? (no Norwegian accounts from university, for example, no Feide)</p>
+<ul>
+<li><p>Example: a collaborator from Canada with no officiel ID in NRIS/sigma2/University or similar. I know this person I work with, and I need to give access to data and a jupyter notebook.</p></li>
+<li><p>It is possible to create an openIDP feide guest account from any email address. So as long as your collaborator creates such an account you can give them a dataporten invitation link .</p>
+<ul>
+<li><p>“we only need an email to create an account” guess “we” is NRIS admin, but do USERS have the control or capability to create an account for the external collaborator?</p>
+<ul>
+<li><p>From Siri’s answer, it seems yes. I would say try it with your own private email (e.g. gmail) and see if it works or is there anything to be corrected or improved-</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Maybe this is actually a question about the difference between Docker and Singularity: Saga supports Singularity instead of Docker, but why NIRD Toolkit uses Docker instead of Singularity?</p>
+<ul>
+<li><p>On NIRD you only get access to the running docker container but on Saga you by default get access to the host system. When you have host access as well as docker access it introduces a potential security risk that is not desirable, while on NIRD this security risk is much smaller and not regarded as a problem since you only have access to the container.</p></li>
+</ul>
+</li>
+<li><p>Could you give an example how to load some libray in Jupyter under Toolkid? Like the error when loading:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;import matplotlib.pyplot as plt</span>
+
+<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span><span class="s2">&quot; shows: ---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span>                       <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="n">b0d2d3b01a51</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+      <span class="mi">1</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">----&gt;</span> <span class="mi">2</span> <span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
+      <span class="mi">3</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+      <span class="mi">4</span> 
+      <span class="mi">5</span> <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+
+<span class="ne">ModuleNotFoundError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">&#39;netCDF4&#39;</span>
+
+
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span><span class="s2">&quot;</span>
+<span class="o">---</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>How can I have different conda environments on Jupyterhub in NIRD toolkit?</p>
+<ul>
+<li><p>I think (as I have not tried) this could be activating different kernals, can you see <a class="reference external" href="https://towardsdatascience.com/get-your-conda-environment-to-show-in-jupyter-notebooks-the-easy-way-17010b76e874">here</a> if that is a solution</p></li>
+<li><p>But I would have to define the conda environments using the docker files right? I can’t use conda within the hub server?</p></li>
+<li><p>Will get back soon on this</p></li>
+</ul>
+</li>
+<li><p>I want to follow up on the above question. Can each member of the JupyterHub create their own python environment?</p>
+<ul>
+<li><p>Will get back soon on this</p>
+<ul>
+<li><p>Could you write something here on how to do it?</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I guess each session of work in the Toolkit is boud to the browser session. Is it so that a blicnk in the network will cause loss of data? Is it possible to launch non-interactive sessions? Or does the server survives anyway so once launched it is just there available?</p>
+<ul>
+<li><p>The server/app/container stays up independent of internet access or browser sessions</p></li>
+<li><p>So if you lose or close the connection nothing will disappear</p></li>
+</ul>
+</li>
+<li><p>Sorry if this is not so relevant to todays subject. Why am I not allowed to choose <code class="docutils literal notranslate"><span class="pre">--ntasks-per-node=16</span></code> <code class="docutils literal notranslate"><span class="pre">--cpus-per-task=16</span></code>, (16*16=256) on Betzy when there are 256 (virtual) cores to choose from?</p>
+<ul>
+<li><p>On Betzy you are supposed to use the whole node. So using <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> is enough</p>
+<ul>
+<li><p>Follow-up q1: Choosing <code class="docutils literal notranslate"><span class="pre">--tasks-per-node=8</span></code> <code class="docutils literal notranslate"><span class="pre">--cpus-per-task=16</span></code> works fine, and from <code class="docutils literal notranslate"><span class="pre">htop</span></code> on a node I see that 64 cores are used from each CPU. Meaning no SMT is in use. I want to try to use SMT, so i tried increasing ~~either of the mentioned parameters~~ <code class="docutils literal notranslate"><span class="pre">--tasks-per-node</span></code> to 16 ~~while leaving the other at 8~. Then I get the error <code class="docutils literal notranslate"><span class="pre">sbatch:</span> <span class="pre">error:</span> <span class="pre">CPU</span> <span class="pre">count</span> <span class="pre">per</span> <span class="pre">node</span> <span class="pre">can</span> <span class="pre">not</span> <span class="pre">be</span> <span class="pre">satisfied</span></code> <code class="docutils literal notranslate"><span class="pre">sbatch:</span> <span class="pre">error:</span> <span class="pre">Batch</span> <span class="pre">job</span> <span class="pre">submission</span> <span class="pre">failed:</span> <span class="pre">Requested</span> <span class="pre">node</span> <span class="pre">configuration</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">available</span></code> when submitting the job. Why cant I request 256 (virtual) cores per node?</p>
+<ul>
+<li><p>Can you please share the exact resource request when this happens (the SBTACH request)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">sbatch</span> <span class="pre">V50_gxpf1a.sh</span></code> is this what you need?</p>
+<ul>
+<li><p>no the #SBATCH lines inside V50_gxpf1a.sh</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--nodes=4</span> <span class="pre">#SBATCH</span> <span class="pre">--ntasks-per-node=16</span> <span class="pre">#SBATCH</span> <span class="pre">--cpus-per-task=16</span></code> along with job and account name.</p></li>
+<li><p>I will try to investigate and come back to you</p>
+<ul>
+<li><p>Thanks =)</p></li>
+</ul>
+</li>
+<li><p>CPU cores per node 128 not 256 on betzy</p></li>
+<li><p>[sabryr&#64;login-1.BETZY ~]$ sinfo -n                               b1113  -o “%c %n”
+CPUS HOSTNAMES
+128 b1113</p>
+<ul>
+<li><p>yes, but there are 256 HyperThreads. So you can actually run 256 MPI ranks, or 256 OpenMP threads. Performance will most likely be worse for all practical purposes, but it is technically possible.</p>
+<ul>
+<li><p>Yes, I heard from you guys that using SMT is probably not a good idea, but the author of the code I’m using says that he has had a small performance improvement when using SMT. Well, he was testing on an Intel system, so hyperthreading there, but the principle is the same?</p>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

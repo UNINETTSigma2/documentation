@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions, answers and notes from day 4 &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Questions, answers and notes from day 4</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="questions-answers-and-notes-from-day-4">
+<span id="training-2021-autumn-notes-day4"></span><h1>Questions, answers and notes from day 4<a class="headerlink" href="#questions-answers-and-notes-from-day-4" title="Link to this heading"></a></h1>
+<section id="ice-breaker">
+<h2>Ice breaker<a class="headerlink" href="#ice-breaker" title="Link to this heading"></a></h2>
+<p>(Add an <code class="docutils literal notranslate"><span class="pre">o</span></code> after the option <code class="docutils literal notranslate"><span class="pre">|</span></code> to “vote” for it, vote for as many as you like)</p>
+<ul class="simple">
+<li><p>Have you heard about the following GPU technologies:</p>
+<ul>
+<li><p>CUDA              | oooooo</p></li>
+<li><p>HIP               | o</p></li>
+<li><p>SYCL              |</p></li>
+<li><p>OpenACC           | o</p></li>
+<li><p>OpenMP Offloading | o</p></li>
+<li><p>Kokkos/RAJA       |</p></li>
+</ul>
+</li>
+<li><p>My interest in GPU offloading is:</p>
+<ul>
+<li><p>Just curious to hear more about GPUs  | ooooooooooo</p></li>
+<li><p>I want to port my application to GPUs | ooo</p></li>
+<li><p>My application is already ported      |</p></li>
+<li><p>I am new to HPC, I want to broaden my perspective and general knowledge. | ooooo</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="day-4-q-a">
+<h2>Day 4 Q&amp;A<a class="headerlink" href="#day-4-q-a" title="Link to this heading"></a></h2>
+<p>GPUs are excellent for well structured problems.</p>
+<ul class="simple">
+<li><p>As we know, one thread work on cpu, thread group works on GPU. However, can they use different initial data at begin in the one GPU group?</p>
+<ul>
+<li><p>Concurrent kernel execution makes GPUs appear more like MIMD (Multiple instructions and Multiple data). So, yes it is possible to start with different initial data but the programmer needs to write his/her program to focus more on multiple data needs. I need to mention this as well that newer Gpus can run kernels simultaneously (they hack into multiple streams and run different kernels parallelly); however, on older Gpus it is not possible and the second kernel runs after the first kernel, somewhat serially. It is recommended to perform SIMD operations on one GPU. If the tasks are not independent then the inter-communication within MIMD may drop down the over-all performance.</p></li>
+<li><p>Yes, each thread in the thread group can use different memory locations when calculating, so they can load different data, but have to perform the same calculations</p></li>
+</ul>
+</li>
+<li><p>Does OpenACC support conditional execution that blocks instructions of individual threads? To my understanding, this is supported by CUDA.</p>
+<ul>
+<li><p>In OpenACC you need to add a reduction clause yourself, and the compiler will generate a code to perform if-condition.-</p></li>
+<li><p>There is no explicit support for calculating your thread ID within OpenACC, however, that does not mean that you cannot get thread divergence with OpenACC</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// The following is likely to result in thread divergence and very low performance on a GPU</span>
+<span class="cp">#pragma acc kernels</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">X</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Z</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">i</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Are there any parallell distributed blas/lapack libraries for GPUs, or do you know of any initiatives in this direction (thinking PBLAS/ScaLapack, or similar libraries with GPU support)?</p>
+<ul>
+<li><p>GPU vendors have their own library for Blas, for example, nVIDA has CUBLAS to support Blas operations on nVIDIA Gpu architecture.</p></li>
+<li><p>See the slides for links to the most popular vendor’s BLAS libraries</p></li>
+</ul>
+</li>
+<li><p>Yes, but are there any parallell distributed libaries (or work in this direction), ie. with the memory and operations distributed in parallell? PS: to the best of my knowledge the existing libraries are for single GPU only?</p>
+<ul>
+<li><p>cuBLAS, hipBLAS and oneMKL support multiple GPUs on one node (not distributed across nodes)</p></li>
+<li><p>Some hybrid library may achieve the desired thing, for example, StarPU library which being developed at Inria France.</p></li>
+</ul>
+</li>
+<li><p>Can you give some examples of scientific applications that benefit from running on GPUs?</p>
+<ul>
+<li><p>e.g. testing the limitation of quantum chemistry package, which is one of the project that will be run on LUMI.</p></li>
+<li><p>Examples in chemistry:</p>
+<ul>
+<li><p>TeraChem (PetaChem)</p></li>
+<li><p>Gromacs (LUMI pilot)</p></li>
+<li><p>GAMESS</p></li>
+<li><p>BigDFT</p></li>
+<li><p>NWChem(Ex)</p></li>
+<li><p>VeloxChem (LUMI pilot)</p></li>
+<li><p>Bifrost (Stellar atmosphere code, very large  application, largest user of core hours on the Sigma2 systems)</p></li>
+</ul>
+</li>
+<li><p>What about Gaussian?</p>
+<ul>
+<li><p>Yes, and Gaussian :)</p>
+<ul>
+<li><p>I love you!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Examples of GPU usage in genomics research?</p>
+<ul>
+<li><p>And in proteomics?</p></li>
+<li><p>In variant calling you have <a class="reference external" href="https://github.com/google/deepvariant/tree/r1.2/deeptrio">DeepTrio</a> and <a class="reference external" href="https://github.com/google/deepvariant">Deepvariant</a></p></li>
+<li><p>And <a class="reference external" href="https://github.com/BIRL/Perceptron">here’s</a> a random proteomics tool for GPUs I found</p></li>
+</ul>
+</li>
+<li><p>If some code scales up to say 512 CPU cores, is there any hope to make it run more efficiently on a large GPU? We can assume no I/O.</p>
+<ul>
+<li><p>There is no direct answer to this question. But it depends on what the code does. If there is more reading files then there will be no optimal gain. BUT in general, you would expect gain in speed when running on GPU by a factor of 5 or even more, and that depends also on the approach you will implement on your code, e.g. openacc, cuda, openMP offloading, HIP…and some experiments have shown that the choice of the compiler helps to get extra performance.</p></li>
+<li><p>Or to rephrase the question: in which situations can 512 GPU cores be faster than 512 CPU cores?</p>
+<ul>
+<li><p>maybe if the execution is done on GPU and there is no transfer from CPU to GPU and back, as this process takes time. GPUs basically have thousands of cores.
+- (Yes, but many problems cannot be partionned in thousands of pieces! Then it would usually scale to more CPU too)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>For large problems (e.g., high resolution ocean model): is direct GPU-GPU communication supported on SAGA/BETZY/LUMI, or is the data exchange always via the CPU?</p>
+<ul>
+<li><p>In general, the data get copied from the cpu to gpu (and back), but then you could run the code also on multiple-GPUs.</p></li>
+<li><p>GPU-to-GPU communication should be supported, and I believe Jørgen is working on an example/tutorial on this for our documentation pages.</p></li>
+<li><p>Apparently only Betzy :)</p></li>
+<li><p>LUMI we will know later ;)</p>
+<ul>
+<li><p>LUMI supports direct GPU-GPU communication both intra- and inter-node!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Are there no GPU nodes on Fram?</p>
+<ul>
+<li><p>There is no GPU on Fram.</p></li>
+</ul>
+</li>
+<li><p>Let’s say I want to see if I am using GPU cores in my Gaussian calculations, how can I do this, bylooking at script? and if I am not using GPU, how can I start using it so my jobs run faster?</p>
+<ul>
+<li><p>Well, you need to inculde the library of the tool you are using, and the syntax that the compiler recongnises. So, the compiler will provide some information illustrating what it does. and this this the case for instance when implementing OpenACC (use openacc as the head in a fortran program).</p></li>
+<li><p>For NVIDIA GPUs, you can ssh into the compute node and run <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> to check what runs on a GPU, how much memory is used and how high its utilisation is.</p></li>
+<li><p>We have on our agenda to document Gaussian with GPUs, but it is a bit difficult since Gaussian has such a strict license</p></li>
+</ul>
+</li>
+<li><p>What is a tool chain?</p>
+<ul>
+<li><p>A toolchain handles build and installation processes. Detailed explanation is <a class="reference external" href="https://docs.easybuild.io/en/latest/Concepts_and_Terminology.html#toolchains">here</a></p></li>
+<li><p>A toolchain like <code class="docutils literal notranslate"><span class="pre">foss</span></code>, <code class="docutils literal notranslate"><span class="pre">intel</span></code>, <code class="docutils literal notranslate"><span class="pre">iompi</span></code>, <code class="docutils literal notranslate"><span class="pre">fosscuda</span></code> contains many useful tools and libraries for code development, like compiler, MPI library, math libraries, CUDA library etc</p></li>
+</ul>
+</li>
+<li><p>On Betzy: does it make sense to request less than all CPU/memory resources available of an accel node (i.e. the entire node resources)? Or, are there multiple GPUs associated to the same accel node on Betzy? My reasoning is that if one user uses the entire GPU part of an accel node then there is little point for other users to request CPU resources on that node.</p>
+<ul>
+<li><p>ON Betzy there is 4 GPUs per node (with a total of 16 GPUs). and so you dont need to allocate all the GPUs in your slurm script. Maybe your code needs only one GPU or 2 GPUs might be enough. If more users use GPUs then the queue time will be longer. and if there is more demand then more GPUs can be incorporated in the future.</p></li>
+<li><p>Actually it would be nice to other users if you only request about the same fraction of memory and number of CPUs as you do for the number of GPUs.</p></li>
+</ul>
+</li>
+<li><p>Do you need the array slicing if all of the arrays <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, and <code class="docutils literal notranslate"><span class="pre">c</span></code> are to be used? In the <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span> <span class="pre">...</span> <span class="pre">map()</span></code>.</p>
+<ul>
+<li><p>I’ll try to answer my own question. In C the array lengths are not contained in the arrays themselves, so we need to supply the length?</p>
+<ul>
+<li><p>That is the correct assumption, this is actually not needed when using OpenMP offloading within Fortran</p></li>
+</ul>
+</li>
+<li><p>Could you reformulate your question?</p>
+<ul>
+<li><p>In Jørgens OpenMP C code, in the <code class="docutils literal notranslate"><span class="pre">map()</span></code> inside the <code class="docutils literal notranslate"><span class="pre">pragma</span></code>, he specifies <code class="docutils literal notranslate"><span class="pre">a[0:N]</span></code>. My question was why he specified the slice <code class="docutils literal notranslate"><span class="pre">0:N</span></code> if he were to use the entire array, but then I realized this is not Python so the array lengths are not contained in <code class="docutils literal notranslate"><span class="pre">a</span></code>.</p>
+<ul>
+<li><p>In deed, the meaning of the syntax is actually <code class="docutils literal notranslate"><span class="pre">a[array</span> <span class="pre">offset,</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">elements</span> <span class="pre">to</span> <span class="pre">copy</span> <span class="pre">from</span> <span class="pre">offset]</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Why have they chosen to use AMD GPUs at LUMI when Nvidia and CUDA are the most supported and used in ML / AI?</p>
+<ul>
+<li><p>One of the benefit of AMD GPU is the ability to use open source softwares in terms of compilers and so..and I also think that the cost of AMD GPU could be cheaper than NVIDIA GPU.</p></li>
+<li><p>Another possibility is that it was chosen for “politics” to avoid vendor lock-in</p></li>
+<li><p>Lastly, it should be mentioned that the MI200 GPUs that will appear in LUMI is expected to be the fastest most advanced GPUs available so for code that can utilize AMD hardware it will be incredibly powerful</p>
+<ul>
+<li><p>Also note that a lot of software is transitioning to support AMD, so Gromacs support LUMI already, Tensorflow as well as PyTorch will also run on LUMI</p>
+<ul>
+<li><p>Thats good news for us open source supporters :slightly_smiling_face:</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>What is <code class="docutils literal notranslate"><span class="pre">NCCL</span></code>?</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NCCL</span></code> stands for <a class="reference external" href="https://developer.nvidia.com/nccl">Nvidia Collective Communication Library</a> and helps us perform transfers between GPUs as well as collective operations between GPUs (both inter- and intra-node)</p></li>
+</ul>
+</li>
+<li><p>If one wants to program similarly to that of Stig just now, but for an AMD GPU, what tools to use?</p>
+<ul>
+<li><p>If you want to program at the same low level as CUDA on AMD hardware <a class="reference external" href="https://rocmdocs.amd.com/en/latest/Programming_Guides/Programming-Guides.html">HIP</a> is the right tool</p></li>
+<li><p>However, depending on your needs, OpenMP offloading is also supported on some AMD hardware, as well as OpenCL.</p></li>
+<li><p>You could also porting OpenACC code to OpenMP to be run on AMD-GPU.</p></li>
+</ul>
+</li>
+<li><p>The module system you use on all nodes, is that possible to install on, say, a regular computer with Ubuntu?</p>
+<ul>
+<li><p>Yes, I think <a class="reference external" href="https://docs.easybuild.io/en/latest/Installation.html">this is the best introduction</a> to installing the module and software tools we have on our clusters</p></li>
+<li><p>I would also recommend to install <code class="docutils literal notranslate"><span class="pre">Lmod</span></code> as the module tool together with EasyBuild</p>
+<ul>
+<li><p>Awesome :slightly_smiling_face: It can be a royal pain in the ass to get TensorFlow working with all the correct versions of CUDA and whatnot, so a modular system would be very helpful with this.</p>
+<ul>
+<li><p>Tensorflow is always a pain in the behind, but if this is your main code, I can recommend virtual environments (as they are much easier to get started with compared to the modules and software we use) or alternatively… containers ;)</p>
+<ul>
+<li><p>Cool! Any pointers (names, websites) to start learning proper virtual environments for easing the use of TensorFlow? I’m only used to miniconda.</p>
+<ul>
+<li><p><a class="reference external" href="https://realpython.com/python-virtual-environments-a-primer/">This is a good primer on what virtual environment is and why you should use it</a></p></li>
+<li><p><a class="reference external" href="https://www.tensorflow.org/install/pip#2.-create-a-virtual-environment-recommended">Here is how Tensorflow recommends installing with <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code></a></p>
+<ul>
+<li><p>Thanks!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>general question: Stig just said “the run time varied a lot among repetitions of the same job”. I’ve noticed this as well. Really wilde changes of 300-500%. Any ideas on what this id due to?</p>
+<ul>
+<li><p>Difficult to say, but on general terms, we observe filesystem hiccups from time to time which can affect your jobs, the processors should almost always behave in the same way, but the shared filesystem can affect jobs in this way</p>
+<ul>
+<li><p>how to deal with this when benchmarking job configurations? Effectively, I ended up with lots of noise.</p>
+<ul>
+<li><p>Again, very good questions, ideally there should not be this much variability in the filesystem, but here we are</p></li>
+<li><p>I can recommend to see <a class="reference external" href="https://documentation.sigma2.no/files_storage/performance.html">here</a> for some tuning options to optimize for the shared filesystem</p></li>
+<li><p>Other recommendations would be to try to batch writes and use <a class="reference external" href="https://en.wikipedia.org/wiki/Mmap"><code class="docutils literal notranslate"><span class="pre">mmap</span></code>-ed files if possible</a></p>
+<ul>
+<li><p>I guess this implies compiling myself. Or is it something I can do on software that is installed by others(you/admin)?</p>
+<ul>
+<li><p>For “external” application you are restricted to the filesystem options described <a class="reference external" href="https://documentation.sigma2.no/files_storage/performance.html">here</a> as well as trying to limit the amount of output (maybe checkpoint less often or similar strategies)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>What are your thoughts on the new Macs which use shared RAM and VRAM? Does it solve any current problems in, say, machine learning?</p>
+<ul>
+<li><p>The biggest advantage of the new ARM processors in these Macs is the increased bandwidth between system memory and the CPU</p></li>
+<li><p>You will most likely not notice that it is shared (which is something Intel and AMD has done for years as well)</p>
+<ul>
+<li><p>Are you referring to AMD’s Smart Access Memory? Is this technology used in HPC? If i remember correctly, you need both AMD GPU and CPU for this to work.</p>
+<ul>
+<li><p>No, I meant shared VRAM has been used by CPUs with integrated graphics for quite some time, both by Intel and by AMD</p>
+<ul>
+<li><p>But integrated graphics isnt really usable for any heavy computation? Do we call the GPUs in the new Macs integrated GPU?</p>
+<ul>
+<li><p>The GPU in the new Macs are really powerful, but yes they are integrated, in the sense that they are a part of the SOC, you can’t remove the GPU without damaging the CPU in a sense</p>
+<ul>
+<li><p>Has the world seen powerful GPUs using shared memory before? Powerful in the sense that you get a benefit of running for example ML on the GPU instead of the CPU.</p>
+<ul>
+<li><p>The SOC in the Playstation 5 and Xbox Series X are using the same setup with a powerful GPU on the same SOC with shared memory</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>However, the new ARM processors actually have a separate accelerator for ML, but it has to be used with <a class="reference external" href="https://developer.apple.com/machine-learning/core-ml/">Apple’s proprietary interface</a></p>
+<ul>
+<li><p>Tensorflow is coming with support for this accelerator</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Uhm… forgive my ignorance. Wasn’t the point of running singularity to pack everithing in a single box to allow reproducibility on different machines? Now it looks like there is substantial linking to external libraries that are machine specific… I’m confused…</p>
+<ul>
+<li><p>It is mainly MPI that requires some support from outside the container, other than that your impression is correct</p></li>
+</ul>
+</li>
+<li><p>I love the name of LUMI (snow in Finnish) :)</p>
+<ul>
+<li><p>Indeed very nice!</p>
+<ul>
+<li><p>thanks, now I know my first word in Finnish!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Is AMD’s Smart Access Memory something that can be / is used in HPC?</p>
+<ul>
+<li><p>We expect so, yes</p></li>
+<li><p>Right now we do not have any AMD systems, but we are working on adding this support for our Nvidia systems</p>
+<ul>
+<li><p>Where it is called Nvidia BAR</p>
+<ul>
+<li><p>Cool! Looking forward to hearing more about it!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="feedback-for-the-day">
+<h2>Feedback for the day<a class="headerlink" href="#feedback-for-the-day" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>One thing you particularly enjoyed</p>
+<ul>
+<li><p>The introduction to GPU computing was great! The other lectures are good too, but (understandably) for more experienced users.</p></li>
+<li><p>I liked the detailed explanation of the parts of the codes.</p></li>
+<li><p>intoriduction to GPU was good</p></li>
+<li><p>I liked the 45+15 min. presentation+break schedule.</p></li>
+</ul>
+</li>
+<li><p>One thing we should remove/change/improve</p>
+<ul>
+<li><p>If we know in advance we’ll work with BigDFT in the demo, we could download it in advance (took many minutes) and type along with the demo.</p></li>
+<li><p>Stop for questions during the sessions. Many people need the breaks as such, not as extensions of the lecture. One of the assisting teachers can be responsible for bringing up something that is important or of common interest from the HackMD (even if the question has already been answered in written there).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

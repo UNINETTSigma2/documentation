@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions and answers from HPC On-boarding May 2022, Day 0 (May 3) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Questions and answers from HPC On-boarding May 2022, Day 0 (May 3)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="questions-and-answers-from-hpc-on-boarding-may-2022-day-0-may-3">
+<span id="training-2022-spring-notes-day0"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Questions and answers from HPC On-boarding May 2022, Day 0 (May 3)</a><a class="headerlink" href="#questions-and-answers-from-hpc-on-boarding-may-2022-day-0-may-3" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#questions-and-answers-from-hpc-on-boarding-may-2022-day-0-may-3" id="id1">Questions and answers from HPC On-boarding May 2022, Day 0 (May 3)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#icebreaker-question" id="id2">Icebreaker question</a></p></li>
+<li><p><a class="reference internal" href="#intro-to-command-line" id="id3">Intro to command line</a></p>
+<ul>
+<li><p><a class="reference internal" href="#are-you-able-to-open-a-terminal-on-your-computer" id="id4">Are you able to open a terminal on your computer?</a></p></li>
+<li><p><a class="reference internal" href="#ssh-is-available-on-my-computer" id="id5">SSH is available on my computer</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#questions-and-answers" id="id6">Questions and answers</a></p>
+<ul>
+<li><p><a class="reference internal" href="#how-is-the-speed-so-far" id="id7">How is the speed so far?</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#finding-things" id="id8">Finding things</a></p></li>
+<li><p><a class="reference internal" href="#creating-modifying-files" id="id9">Creating/modifying files</a></p></li>
+<li><p><a class="reference internal" href="#composing-commands-with-pipes" id="id10">Composing commands with pipes</a></p></li>
+<li><p><a class="reference internal" href="#scripting" id="id11">Scripting</a></p></li>
+<li><p><a class="reference internal" href="#feedback-for-the-day" id="id12">Feedback for the day</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="icebreaker-question">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Icebreaker question</a><a class="headerlink" href="#icebreaker-question" title="Link to this heading"></a></h2>
+<p>What is the most important thing for you to get clarified about the UNIX shell (terminal) today?</p>
+<ul class="simple">
+<li><p>(Add answers below with a leading <code class="docutils literal notranslate"><span class="pre">-</span></code>)</p></li>
+<li><p>?</p></li>
+<li><p>Possibilities to add scripts from git?</p></li>
+<li><p>How to find programs/scripts (module avail?)</p></li>
+<li><p>how to log in to the server :)</p></li>
+<li><p>how to track which processes are running and how to start/end processes gracefully</p></li>
+<li><p>Using clusters via terminal and being a fast user of Linux</p></li>
+<li><p>how SAGA works and where to find things</p></li>
+<li><p>logging and running codes on sigma2 resources</p></li>
+<li><p>running bioinformatics on saga</p></li>
+<li><p>How to log in specific login node or switch to another login node?</p></li>
+<li><p>How to run programs in ‘background’, meaning being able to work on other stuff while programs are running in background.</p></li>
+<li><p>I use ubuntu for windows. How do I navigate to files saved from this terminal from the windows file explorer?</p></li>
+</ul>
+</section>
+<section id="intro-to-command-line">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Intro to command line</a><a class="headerlink" href="#intro-to-command-line" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>What are the methods that you know and use to interact with the computer and open a file?</p>
+<ul>
+<li><p>double clicking icons</p></li>
+<li><p>…</p></li>
+<li><p>…</p></li>
+<li><p>Graphical file/folder navigator</p></li>
+<li><p>Via terminal command line</p></li>
+<li><p>Microphone and assistant</p></li>
+<li><p>Punch cards</p></li>
+</ul>
+</li>
+</ul>
+<section id="are-you-able-to-open-a-terminal-on-your-computer">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Are you able to open a terminal on your computer?</a><a class="headerlink" href="#are-you-able-to-open-a-terminal-on-your-computer" title="Link to this heading"></a></h3>
+<p>(vote by adding an “o” at end of each line)</p>
+<ul class="simple">
+<li><p>“I found my terminal” : ooooo ooooooooooooo</p></li>
+<li><p>“I did not find my terminal”:</p></li>
+<li><p>Yes windows command prompt o</p></li>
+<li><p>Not looking for it, only want to watch the course:</p></li>
+<li><p>Search Git Bash and you get one</p></li>
+<li><p>Is the use of Mobaxterm okay as an terminal?</p>
+<ul>
+<li><p>Should be okay</p></li>
+</ul>
+</li>
+<li><p>On windows ssh on CMD did not work, but using putty.exe works.</p></li>
+</ul>
+</section>
+<section id="ssh-is-available-on-my-computer">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">SSH is available on my computer</a><a class="headerlink" href="#ssh-is-available-on-my-computer" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>yes: oooooooooooo</p></li>
+<li><p>no: o</p></li>
+<li><p>If you have a problem, please describe the error here:</p>
+<ul>
+<li><p>…</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="questions-and-answers">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Questions and answers</a><a class="headerlink" href="#questions-and-answers" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>What is the best FTP client for mac, and do we need this when we work on saga?</p>
+<ul class="simple">
+<li><p>We will go through all the necessary tools that you will need for working on Saga</p></li>
+</ul>
+</li>
+<li><p>I am currently taking the HPC onboarding course, I applied for my HPC account yesterday, I haven’t received my account information yet, am I able to log in to the HPC cluster?</p>
+<ul class="simple">
+<li><p>Try <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">saga.sigma2.no</span></code> and use your current credentials. If you manage to log in, then it is ok.  Did you apply for SAGA cluster?</p>
+<ul>
+<li><p>yes I applied for SAGA, I did not have a chance to set a password yet</p></li>
+</ul>
+</li>
+<li><p>Then you can simply try to follow the course on your local terminal. We’ll try to fix this for you tomorrow.</p>
+<ul>
+<li><p>Should I email someone with my username?</p></li>
+</ul>
+</li>
+<li><p>Let me check</p>
+<ul>
+<li><p>Thank you</p></li>
+</ul>
+</li>
+<li><p>It is been taken care of now</p></li>
+</ul>
+</li>
+<li><p>I get permission denied..?</p>
+<ul class="simple">
+<li><p>Which command returned this error?</p>
+<ul>
+<li><p>Permission denied, please try again. [is the command returned]</p></li>
+</ul>
+</li>
+<li><p>Could you paste the command you ran in your terminal which returned the above error?</p></li>
+<li><p>I MADE IT!!! forgot to add my username first :)</p>
+<ul>
+<li><p>Good to hear!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I use ubuntu for windows. How do I navigate to files saved from this terminal from the windows file explorer?</p>
+<ul class="simple">
+<li><p>I don’t use WSL, but I found <a class="reference external" href="https://www.howtogeek.com/426749/how-to-access-your-linux-wsl-files-in-windows-10/">this article</a> which I hope can help</p></li>
+</ul>
+</li>
+<li><p>I cannot find my username in the email I got from sigma that my account is created</p>
+<ul class="simple">
+<li><p>This is the username you used when making the application</p>
+<ul>
+<li><p>I found it :)</p></li>
+</ul>
+</li>
+<li><p>Good !!</p></li>
+</ul>
+</li>
+<li><p>After login via SSH the command line sometimes freezes what justifies that?</p>
+<ul class="simple">
+<li><p>This is most likely caused by your internet connection. SSH is dependent on a constant connection which sometimes might lead to these freezes. One alternative to SSH is to use <a class="reference external" href="https://mosh.org/"><code class="docutils literal notranslate"><span class="pre">mosh</span></code></a></p></li>
+</ul>
+</li>
+<li><p>How do we reset password to saga in terminal</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.metacenter.no/user/reset/">Try this page rather</a></p></li>
+<li><p><a class="reference external" href="https://www.sigma2.no/how-reset-passwords">Guide also here</a></p></li>
+</ul>
+</li>
+<li><p>checking edit mode on question form-ok got it</p></li>
+<li><p>I am getting access denied using putty</p>
+<ul class="simple">
+<li><p>We can fix this in the break, before this, ensure that you use the correct username that you got when applying for access</p>
+<ul>
+<li><p>works now</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>need to find the commands on the page</p>
+<ul class="simple">
+<li><p>You can find the current page that we are presenting above the questions</p></li>
+</ul>
+</li>
+<li><p>After the wget command I get the following output:
+<code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">command</span> <span class="pre">&quot;wget&quot;</span> <span class="pre">is</span> <span class="pre">either</span> <span class="pre">misspelled</span> <span class="pre">or</span> <span class="pre">could</span> <span class="pre">not</span> <span class="pre">be</span> <span class="pre">found.</span></code></p>
+<ul class="simple">
+<li><p>Did you do this on Saga or on your local machine?</p>
+<ul>
+<li><p>You´re right sorry, I was not logged in now:) Thanks!</p></li>
+<li><p>Happy to help!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I need to find the page where you are to copy-I tried this yesterday and it failed? I got it now-it is going a bit fast to try and follow both the terminal, zoom presentation and the course pages</p>
+<ul class="simple">
+<li><p>Do you mean the target page or the source page?</p></li>
+<li><p>You can always find the current course page right above the questions and answers on this hackmd</p></li>
+<li><p>https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html</p></li>
+</ul>
+</li>
+<li><p>How can I copy paste commands from windows to the terminal? It does not work for me with Ctr+shift+C or Ctr+shift+V neither without shift</p>
+<ul class="simple">
+<li><p>CTRL+c and CTRL+V</p></li>
+<li><p>Try the mouse, if you have one, right click + copy + paste</p></li>
+<li><p>right click with your mouse :)</p>
+<ul>
+<li><p>With the mouse works great, thanks!</p>
+<ul>
+<li><p>Good to hear!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>can you explain what the list command actually lists? I understand but it is organized in a weird way- can you point where the fields are, file name, size etc-looks a bit confusing if you are not used to this-ok thanks:)</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">ls</span></code> command lists the content in the current folder, in other words it shows what your terminal can “see” in the current place</p></li>
+<li><p>Could you specify what you mean with <code class="docutils literal notranslate"><span class="pre">fields</span></code>?</p></li>
+<li><p>We will go into detail later today</p></li>
+<li><p>“Shortly” it is this - per column: (but these notions will be explained later, I guess)</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">When</span> <span class="n">the</span> <span class="n">long</span> <span class="n">listing</span> <span class="nb">format</span> <span class="ow">is</span> <span class="n">used</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">see</span> <span class="n">the</span> <span class="n">following</span> <span class="n">file</span> <span class="n">information</span><span class="p">:</span>
+
+<span class="n">The</span> <span class="n">file</span> <span class="nb">type</span><span class="o">.</span>
+<span class="n">The</span> <span class="n">file</span> <span class="n">permissions</span><span class="o">.</span>
+<span class="n">Number</span> <span class="n">of</span> <span class="n">hard</span> <span class="n">links</span> <span class="n">to</span> <span class="n">the</span> <span class="n">file</span><span class="o">.</span>
+<span class="n">File</span> <span class="n">owner</span><span class="o">.</span>
+<span class="n">File</span> <span class="n">group</span><span class="o">.</span>
+<span class="n">File</span> <span class="n">size</span><span class="o">.</span>
+<span class="n">Date</span> <span class="ow">and</span> <span class="n">Time</span><span class="o">.</span>
+<span class="n">File</span> <span class="n">name</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p>How do I exit the VI command…I am now reading poem…but don’t know how to get out</p>
+<ul class="simple">
+<li><p>ESC then <code class="docutils literal notranslate"><span class="pre">:wq</span></code></p>
+<ul>
+<li><p>Could also just do <code class="docutils literal notranslate"><span class="pre">:q!</span></code> if you don’t care about saving the current file</p></li>
+</ul>
+</li>
+<li><p>This will write the buffer and quit.</p></li>
+<li><p>May I suggest using the far better option emacs ?</p>
+<ul>
+<li><p>all editors are equally good but a matter of personal preference</p></li>
+</ul>
+</li>
+<li><p>if you are new to terminal editors, we recommend to use <code class="docutils literal notranslate"><span class="pre">nano</span></code> and we will show this one later as this one is the easiest to get started with</p></li>
+</ul>
+</li>
+<li><p>please explain what is a terminal editor if it is different from the terminal itself?</p>
+<ul class="simple">
+<li><p>It’s a text based editor, it’s written for a 80x24 text terminal. Today terminal windows can have any size, but still character based.</p></li>
+<li><p>An editor is used for changing/editing text files</p>
+<ul>
+<li><p>Ok so you use it “off line” like a word pad, then paste it into the terminal, right?</p>
+<ul>
+<li><p>You run it on the remote machine directly, no cut/paste.</p></li>
+<li><p>There are multiple ways to work with remote machines, one way is to write on your local machine and then copy to the remote machine, but one could also use the terminal editor to directly do all the work on the remote machine</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>does tab-complete only work for subfolders?</p>
+<ul class="simple">
+<li><p>it works for commands in the PATH to binaries and many other things (e.g. try to type <code class="docutils literal notranslate"><span class="pre">py</span></code>+ Tab),it completes the subcommands too</p></li>
+</ul>
+</li>
+<li><p>where does autocomplete look for info to what to compete from-these are file names I never wrote so who knows what it can come up with!</p>
+<ul class="simple">
+<li><p>Hitting <code class="docutils literal notranslate"><span class="pre">&lt;TAB&gt;</span></code> is always an option.</p></li>
+<li><p>It is a cascade: right after the prompt, it looks in the list of executable files (see quest. 14 above), then it guesses the next info with regard to the already typed command, e.g. if you type <code class="docutils literal notranslate"><span class="pre">cat</span></code> (display a file), the tab after <code class="docutils literal notranslate"><span class="pre">cat</span></code> will show you the available files in the directory you are in.</p></li>
+</ul>
+</li>
+<li><p>Why would you use <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> it is so much easier to just do <code class="docutils literal notranslate"><span class="pre">ls</span></code>?</p>
+<ul class="simple">
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">-l</span></code> gives you a very nice list if the folder contains many files</p></li>
+<li><p>It also give you additional information that is not shown without <code class="docutils literal notranslate"><span class="pre">-l</span></code></p></li>
+</ul>
+</li>
+<li><p>What does exactly <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">poem1.txt</span> <span class="pre">poem2.txt</span></code> does? Copy the files where?</p>
+<ul class="simple">
+<li><p>Next to each other in the same directory</p>
+<ul>
+<li><p>You mean like merge in the same file or located next to each other</p>
+<ul>
+<li><p>The latter : two copies of the same file but under two different names</p>
+<ul>
+<li><p>Ah perfect! This makes sense, thank you</p>
+<ul>
+<li><p>Yes, you could very well do <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">poem1.txt</span> <span class="pre">novel1.txt</span></code> - still the same content</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>What is the difference between <code class="docutils literal notranslate"><span class="pre">more</span></code> and <code class="docutils literal notranslate"><span class="pre">less</span></code>?</p>
+<ul class="simple">
+<li><p>They are more or less equal :)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">more</span></code> was first and is used for scrolling through a file, jumping forward through it</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">less</span></code> was developed later, with support for scrolling back, and got the name as a joke (less is more).</p></li>
+<li><p>I usually just always use <code class="docutils literal notranslate"><span class="pre">less</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">less</span></code> is usually what you want since it can scroll</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>How do you find files in the whole computer? And to tell that does not look into subdirectories?</p>
+<ul class="simple">
+<li><p>first question: if I want to search entire file system (don’t try this on saga as you will get errors due to permissions since you cannot search through other people’s directories and also it might take forever): <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">/</span></code></p></li>
+<li><p>you can give <code class="docutils literal notranslate"><span class="pre">find</span></code> a “depth” on how far down it should go (check <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">find</span></code> and search there for “depth”; you can search in man pages by typing “/” followed by what you search for)</p>
+<ul>
+<li><p>Thank you very much, this was helpful</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<section id="how-is-the-speed-so-far">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">How is the speed so far?</a><a class="headerlink" href="#how-is-the-speed-so-far" title="Link to this heading"></a></h3>
+<p>(vote by adding an “o”)</p>
+<ul class="simple">
+<li><p>too slow: ooo</p></li>
+<li><p>too fast: oo</p></li>
+<li><p>just right: oooo</p></li>
+<li><p>too confusing: o</p></li>
+</ul>
+</section>
+</section>
+<section id="finding-things">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Finding things</a><a class="headerlink" href="#finding-things" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html">Teaching material</a></p>
+<ol class="arabic simple" start="20">
+<li><p>I used grep command - but cannot exit</p>
+<ul class="simple">
+<li><p>Your command will be <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-R</span> <span class="pre">&quot;computation</span> <span class="pre">failed&quot;</span> <span class="pre">.</span></code> Dot at the end!!</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[st12156&#64;login-3.SAGA</span> <span class="pre">~/exercise-moving-around/results]$</span> <span class="pre">grep</span> <span class="pre">-R</span> <span class="pre">&quot;computation</span> <span class="pre">failed&quot;</span> <span class="pre">.</span> <span class="pre">grep:</span> <span class="pre">.:</span> <span class="pre">Is</span> <span class="pre">a</span> <span class="pre">directory</span> <span class="pre">(this</span> <span class="pre">is</span> <span class="pre">what</span> <span class="pre">I</span> <span class="pre">got</span> <span class="pre">-</span> <span class="pre">running</span> <span class="pre">this?)</span></code></p>
+<ul>
+<li><p>Sorry, add <code class="docutils literal notranslate"><span class="pre">-R</span></code> as shown</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I think I copied the wget part-run on saga to download the instruction files as instructed but my computer returns “command not found”</p>
+<ul class="simple">
+<li><p>and you ran the command(s) on saga?</p></li>
+<li><p>where are you standing when executing the command? (what is the output of <code class="docutils literal notranslate"><span class="pre">pwd</span></code>?) my home dir, I used cd .. to get back from the poem part</p></li>
+<li><p>try these commands in this order:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">hostname</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">https://gitlab.sigma2.no/training/tutorials/unix-for-hpc/-/raw/master/content/downloads/finding.tar.gz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">xzvf</span> <span class="pre">finding.tar.gz</span></code></p></li>
+</ul>
+</li>
+<li><p>does it still fail? <code class="docutils literal notranslate"><span class="pre">wget</span></code> should be available on saga</p></li>
+<li><p>the output of <code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">--version</span></code> is also command not found?</p></li>
+<li><p>one more hint! Make sure you don’t have other characters before <code class="docutils literal notranslate"><span class="pre">wget</span></code></p>
+<ul>
+<li><p>we unfortunately never explained that the “$” is not part of the command but means “prompt” = ready for new command</p></li>
+<li><p>it works now, I got that with $. problem with copy paste is that the enter strokes also seem to get copied if you do the whole thing at once, so it executes at once. thanks for the help</p>
+<ul>
+<li><p>excellent. sorry for the troubles. we should make it so that copy paste does not copy the “$”</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>not sure i understand why this “udon” pops up? ok cool!</p>
+<ul class="simple">
+<li><p>this was the line right after the grepped line. with <code class="docutils literal notranslate"><span class="pre">-C</span> <span class="pre">1</span></code> we got some “context” around the searched lines and <code class="docutils literal notranslate"><span class="pre">grep</span></code> printed the line before and the line after the found lines.</p></li>
+</ul>
+</li>
+<li><p>What is the role of quotations in ‘*.jpg’ or can we skip it?</p>
+<ul class="simple">
+<li><p>I think in this case they need to be there to delimit how far the argument goes.</p></li>
+<li><p>In some commands you don’t need them. Example: <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">*.jpg</span></code></p></li>
+<li><p>Often you need quotes when there are spaces. Example: <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">&quot;text</span> <span class="pre">with</span> <span class="pre">spaces&quot;</span> <span class="pre">somefile</span></code></p></li>
+<li><p>Wildcards are expanded by the shell, try <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;*&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">*</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="creating-modifying-files">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Creating/modifying files</a><a class="headerlink" href="#creating-modifying-files" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/writing-files.html">Teahing material</a></p>
+<ol class="arabic simple" start="24">
+<li><p>which terminal are you using, because you could open another teminal in the next tab?</p>
+<ul class="simple">
+<li><p>It is the default terminal on ubuntu which allows to open several tabs</p></li>
+</ul>
+</li>
+<li><p>Can you suggest one for windows? I am using WSL, Vs code , but cant open two tabs together</p>
+<ul class="simple">
+<li><p>Look here : https://askubuntu.com/questions/1074283/multiple-terminal-windows-in-windows-ubuntu</p>
+<ul>
+<li><p>Shift-click means to hold the Shift key while clicking on the Ubuntu icon.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I am a bit confused-is this nano version a program or a file? we opened it by opening as a file?</p>
+<ul class="simple">
+<li><p>It is a program, like Word, for example. You start it by typing its name in the terminal. If the name is followed by a file name, this file will be opened in the editor called nano.</p></li>
+<li><p>A program is also a file, it’s a binary file that the system can execute.</p></li>
+</ul>
+</li>
+<li><p>so “learn-nano” is a file created in nano?</p>
+<ul class="simple">
+<li><p>Exactly!  In Unix files may or may not have extensions (e.g. <code class="docutils literal notranslate"><span class="pre">.doc</span></code>. or similar). This is why the files may simply bear their names without any extensions. If you prefer, you may give them extensions to improve readability when dispalying directory contents.</p></li>
+<li><p>Ok-where is Nano running, did we download it somewhere along the way or is it simply already there on saga?</p>
+<ul>
+<li><p>Yes, <code class="docutils literal notranslate"><span class="pre">nano</span></code> is already installed on Saga (and all the other clusters that NRIS support)</p></li>
+<li><p>Unix (Linux) distributions always contain a number of text editors which get installed by default when the Operating System itself is installed</p></li>
+</ul>
+</li>
+<li><p>Ok great-see also my question 13, I tended to regard the terminal window already as a text editor in its own right-is that wrong? After all, it translate text into instructions-ok thanks for the explanation :)</p>
+<ul>
+<li><p>The terminal is the place where you communicate with the computer, as a dialogue board. You type smth and then “Enter” it and wait for the machine to respond. It works in a dialogue regime. The editor is a text editor, kind of static, meant to create files, which might be programs, text files etc.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I tried emacs and I cant now get out of it…??</p>
+<ul class="simple">
+<li><p>Control X Control C</p></li>
+<li><p>doesnt work :(</p></li>
+<li><p>Try Control Z</p></li>
+<li><p>doesnt work</p></li>
+<li><p>Try control G a couple of times, then Control X control C</p></li>
+<li><p>I hate emacs!!</p></li>
+<li><p>It’s a huge program that can do a lot of things, it can be intimmidating the first time.</p></li>
+<li><p>Still not out of this editor</p></li>
+<li><p>Can you type anything there ?</p></li>
+<li><p>yes I can type control G and then it comes up “quit” - but then when i press enter - northing happens</p></li>
+<li><p>This is right, C-G is a quit command stopping any ongoing things, then C-X C-C coule work.</p></li>
+<li><p>when I couple C-G with any of the following - nothing happens</p></li>
+<li><p>Then try Control-X and Control C</p></li>
+<li><p>I figured it our it was C-G and then C-Z</p></li>
+<li><p>Control Z suspend emacs, it’s still running. You can start it up again with <code class="docutils literal notranslate"><span class="pre">fg</span></code> or kill it with <code class="docutils literal notranslate"><span class="pre">kill</span> <span class="pre">%1</span></code></p></li>
+<li><p>Super - thank you!</p></li>
+<li><p>Open emacs again and try ESCAPE M and then type hanoi for some fun.</p></li>
+<li><p>Substitute hanoi with doctor for a session with psychotherapist inside emacs.</p></li>
+</ul>
+</li>
+<li><p>15 years of UNIX experience, but I have never used <code class="docutils literal notranslate"><span class="pre">cat</span></code> with its “intended” purpose, for concatenating files :) Never too old to learn new tricks from an intro course</p>
+<ul class="simple">
+<li><p>cool! I also learned new things. It’s great to watch somebody else type because only then I discover new ways which I never tried.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="composing-commands-with-pipes">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Composing commands with pipes</a><a class="headerlink" href="#composing-commands-with-pipes" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html">Teaching material</a></p>
+<ol class="arabic simple" start="32">
+<li><p>the dash in the file name is simply to avoid a space, right? Thanks I am hapy to not use spaces :)</p>
+<ul class="simple">
+<li><p>Yes. We can include space in names on the terminal, but it is a bit cumbersome (<code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">file\</span> <span class="pre">with\</span> <span class="pre">space.txt</span></code> will create a file <code class="docutils literal notranslate"><span class="pre">file</span> <span class="pre">with</span> <span class="pre">space.txt</span></code>) and easy to make mistakes (<code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">file</span> <span class="pre">with</span> <span class="pre">space.txt</span></code> will create three files <code class="docutils literal notranslate"><span class="pre">file</span></code>, <code class="docutils literal notranslate"><span class="pre">with</span></code> and <code class="docutils literal notranslate"><span class="pre">space.txt</span></code>)</p></li>
+<li><p>Underscore, dash and dot are commonly used to avoid space.</p>
+<ul>
+<li><p>but I guess dot is dangerous as it also separates extension in other applications</p></li>
+<li><p>The shell does not care much about the dot, it mostly used for us humans. Executables are often postfixed with .x , but a.out is in most cases an executable. To check the type of file try <code class="docutils literal notranslate"><span class="pre">file</span>&#160; <span class="pre">/bin/ls</span></code> .</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">..</span></code> takes find this up one level?</p>
+<ul class="simple">
+<li><p>Yes</p></li>
+</ul>
+</li>
+<li><p>What is gs in xar gs wc -l?</p>
+<ul class="simple">
+<li><p>the string is <code class="docutils literal notranslate"><span class="pre">xargs</span></code>, no spaces in it</p>
+<ul>
+<li><p>Ah okay, got it! thanks</p>
+<ul>
+<li><p>Also don’t forget the pipe <code class="docutils literal notranslate"><span class="pre">|</span></code>, so <code class="docutils literal notranslate"><span class="pre">|</span> <span class="pre">xargs</span> <span class="pre">COMMAND</span></code></p>
+<ul>
+<li><p>they look like italics confusingly but on the rendered page they are vertical lines</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>For clarity perhaps better to not use italics on the pipe character-just a note (ok thanks my inexperience ;)</p>
+<ul class="simple">
+<li><p>If you look on the rendered page it is not actually italized, that is simply HackMD trying to intelligently show that the pipe is within the backticks</p></li>
+<li><p>it confused me too so thanks for double checking and asking</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="scripting">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Scripting</a><a class="headerlink" href="#scripting" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html">Teaching material</a></p>
+<p>Exercise:</p>
+<ul class="simple">
+<li><p>use <code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code> instead of <code class="docutils literal notranslate"><span class="pre">#!/bin</span> <span class="pre">bash</span></code> (the space is a typo we forgot to fix)</p>
+<ul>
+<li><p>fixed on the page now</p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple" start="36">
+<li><p>the extension “.sh” appears to be essential, I may have missed it but where does it come from? if I enter bash list it does not run the script as indicated, but if I do “bash list.sh” it does. OK it’s the integral file name I get it; this line about the “.sh file” is a bit confusing:  can now run it by using our .sh file as an input for bash like this:</p>
+<ul class="simple">
+<li><p>The file name of the script is <code class="docutils literal notranslate"><span class="pre">list.sh</span></code>,  if you just write <code class="docutils literal notranslate"><span class="pre">list</span></code> it can’t be found</p></li>
+<li><p>It’s not really essential but best practise to inform yourself and others that it is a (bash) script and not some other text file</p></li>
+<li><p>you could also give it extension .bash or .script or .x or no extension and it would still work but it helps communicating to humans what the content is and how it is intended to be used</p></li>
+</ul>
+</li>
+<li><p>note this line from the tutorial: References: This counts the number of references (hard links) to the item (file, folder, symbolic link or “shortcut”). Following the link to “hard link”, shortcuts are explained as being “soft links”. So are they included in this number?</p>
+<ul class="simple">
+<li><p>No they are not counted in the reference counter</p></li>
+</ul>
+</li>
+<li><p>we learnt that “#” prevents a line from being executed. Yet, the shebang #!/bin/bash starts with “#”. Is the exclamation mark the key here, or what causes this line to actually do something?</p></li>
+<li><p>By the way I did not clearly understood the difference between Node, cores, and CPU</p>
+<ul class="simple">
+<li><p>A node corresponds best to what we think of a traditional computer: something that has one or more CPUs, has memory, and network capabilities.</p></li>
+<li><p>A node contains often several CPUs. A CPU looks like we would imagine a
+chip.</p></li>
+<li><p>CPUs contain typically several cores.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="feedback-for-the-day">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Feedback for the day</a><a class="headerlink" href="#feedback-for-the-day" title="Link to this heading"></a></h2>
+<p>One thing you really liked:</p>
+<ul class="simple">
+<li><p>fast responses on (at times my ignorant) questions (+1)</p></li>
+<li><p>presentation format with 2 presenters (one “interviewing” the other) works well for me (+1)</p></li>
+<li><p>great content to learn to use terminal</p></li>
+<li><p>very good tutorials!</p></li>
+<li><p>useful tips and commands and good pace of the course</p></li>
+</ul>
+<p>One thing you want us to improve:</p>
+<ul class="simple">
+<li><p>not enough time for exercises (allocate more time or less content)</p></li>
+<li><p>I have problems keeping up… high speed, new jargon, several windows to follow</p>
+<ul>
+<li><p>too many pages/windows or too few breaks and too high speed?</p></li>
+<li><p>good point about the jargon</p></li>
+</ul>
+</li>
+<li><p>having problems to find special character on key board - and then things ran a little fast</p></li>
+<li><p>I noticed that some of the exercises contained requirements which come up in the next session, e.g. the exercise about : find the string “computation failed” appears before the <code class="docutils literal notranslate"><span class="pre">grep</span></code> command :)</p></li>
+<li><p>we need clear warning that Copy/Paste from the training materials is risky unless we use the copy icon in the upper corner</p></li>
+<li><p>so far, everything is fine!</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

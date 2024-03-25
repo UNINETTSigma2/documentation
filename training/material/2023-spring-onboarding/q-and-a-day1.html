@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions and answers from HPC on-boarding Apr 2023, Day 1 (Apr 19) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Questions and answers from HPC on-boarding Apr 2023, Day 1 (Apr 19)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="questions-and-answers-from-hpc-on-boarding-apr-2023-day-1-apr-19">
+<span id="training-2023-spring-onboarding-notes-day1"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Questions and answers from HPC on-boarding Apr 2023, Day 1 (Apr 19)</a><a class="headerlink" href="#questions-and-answers-from-hpc-on-boarding-apr-2023-day-1-apr-19" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#questions-and-answers-from-hpc-on-boarding-apr-2023-day-1-apr-19" id="id1">Questions and answers from HPC on-boarding Apr 2023, Day 1 (Apr 19)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#icebreaker-question" id="id2">Icebreaker Question</a></p>
+<ul>
+<li><p><a class="reference internal" href="#have-you-shared-a-computer-with-other-if-yes-did-you-face-any-issues" id="id3">Have you shared a computer with other, if yes did you face any issues?</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#sessions" id="id4">Sessions</a></p></li>
+<li><p><a class="reference internal" href="#survey-found-my-ssh" id="id5">Survey - Found my ssh</a></p></li>
+<li><p><a class="reference internal" href="#have-you-logged-in-to-fram-or-any-other-hpc-system" id="id6">Have you logged in to Fram(or any other HPC system)</a></p></li>
+<li><p><a class="reference internal" href="#your-questions" id="id7">Your questions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#survey-interested-in-seeing-moving-of-files-gui-type-with-vs-code" id="id8">Survey - Interested in seeing moving of files GUI type with VS Code:</a></p></li>
+<li><p><a class="reference internal" href="#feedback" id="id9">Feedback</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="icebreaker-question">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Icebreaker Question</a><a class="headerlink" href="#icebreaker-question" title="Link to this heading"></a></h2>
+<section id="have-you-shared-a-computer-with-other-if-yes-did-you-face-any-issues">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Have you shared a computer with other, if yes did you face any issues?</a><a class="headerlink" href="#have-you-shared-a-computer-with-other-if-yes-did-you-face-any-issues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>yes, one problem that came up is that I accidentally occupied the whole computer and nobody else could use it</p></li>
+<li><p>Not a PC, but we have a local computing server which is very popular among our researchers. CPU is often saturated there due to processes that use more CPU than the user intended.</p></li>
+<li><p>yes, issue: folder structure changed by another user that messed up some scripts.</p></li>
+<li><p>Yes, ran out of storage (lab computers and servers)</p></li>
+<li><p>yes, no specific issues</p></li>
+<li><p>Yes, no particular problems</p></li>
+<li><p>Yes, through remote desktops app. Only one user allowed at the time so we use a notepad to write who is using it.</p></li>
+<li><p>accidentally filled up the disk</p></li>
+<li><p>Yes, with my parents as a kid! A few issues came up I think</p></li>
+<li><p>Yes, issue with wanting to use it simultaneously</p></li>
+</ul>
+</section>
+</section>
+<section id="sessions">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Sessions</a><a class="headerlink" href="#sessions" title="Link to this heading"></a></h2>
+<p>https://documentation.sigma2.no/training/events/2023-04-hpc-on-boarding.html</p>
+<p>:::info
+Discussion (5 minutes):
+Frequently, research problems that use computing can outgrow the capabilities of the desktop or laptop computer where they started:
+:::</p>
+<ul class="simple">
+<li><p>Image processing of large images, with multiple processing steps, quickly exceeds the RAM of regular computers. This is especially true when additional dimensions are added, such as time lapse, or additional channels/colors.</p></li>
+<li><p>Yes, working with images as input. Hyper-parameter search / tuning networks. Could only train on top layers.</p></li>
+<li><p>bioinformatics analyses</p>
+<ul>
+<li><p>Bioinformatic analysis, from large sample set of metagenome sequences to abundance table stage.</p></li>
+</ul>
+</li>
+<li><p>Image processing of radiographs, just starting</p></li>
+<li><p>Molecular dynamics simulations</p></li>
+<li><p>Bioinformatic analyses /de novo assembly of bacterial isolates and phylogenetic analyses</p></li>
+<li><p>Climate simulation / weather forecast</p></li>
+<li><p>Gene annotation of NGS data, especially PCR error correction taking up a lot of RAM</p></li>
+<li><p>Large datasets in psychology / neuroscience</p></li>
+<li><p>Simulations with lots of parameters</p></li>
+<li><p>Bayesian models using MCMC</p></li>
+<li><p>Image processing of large field of views</p></li>
+</ul>
+</section>
+<section id="survey-found-my-ssh">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Survey - Found my ssh</a><a class="headerlink" href="#survey-found-my-ssh" title="Link to this heading"></a></h2>
+<p>Answer with o</p>
+<ul class="simple">
+<li><p>Yes: 0000000000o000000</p></li>
+<li><p>No:</p></li>
+<li><p>It is working after I log into my FRAM account, does not work before the login (then I get an error)</p>
+<ul>
+<li><p>Hm, but still you manage to use ssh to log into FRAM? That is good at least! Yes I use ssh to log into FRAM. But before then I typed “ssh - V” I got  “ssh: Could not resolve hostname -: nodename nor servname provided, or not known”</p></li>
+<li><p>there should not be a space between the dash and the V <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-V</span></code> is the correct command</p></li>
+<li><p>yes, it is because you have a space between the dash <code class="docutils literal notranslate"><span class="pre">-</span></code> and the <code class="docutils literal notranslate"><span class="pre">V</span></code>, :)</p></li>
+</ul>
+</li>
+<li><p>aa thanks! :+1:</p></li>
+</ul>
+</section>
+<section id="have-you-logged-in-to-fram-or-any-other-hpc-system">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Have you logged in to Fram(or any other HPC system)</a><a class="headerlink" href="#have-you-logged-in-to-fram-or-any-other-hpc-system" title="Link to this heading"></a></h2>
+<p>Yes: 0000000000000
+No: 0</p>
+<ul class="simple">
+<li><p>Permission denied, please try again. (username: USER_NAME&#64;fram.sigma2.no)</p></li>
+<li><p>Is this the first time you tried to login?</p>
+<ul>
+<li><p>yes</p></li>
+</ul>
+</li>
+<li><p>Are you sure you have/are typing the correct password?</p>
+<ul>
+<li><p>yes, also tried to reset password. Its the same user as to metacenter?</p></li>
+</ul>
+</li>
+<li><p>Did you get a new account for this course, or did you already have an account?</p>
+<ul>
+<li><p>new account, got email today saying: The access for user ****** to project NN9987K expires on April 20, 2023.</p></li>
+</ul>
+</li>
+<li><p>Right, so new</p></li>
+<li><p>Ok, will have a look at this and get back to you</p>
+<ul>
+<li><p>It worked when I dont copy paste the password….</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="your-questions">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Your questions</a><a class="headerlink" href="#your-questions" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>What are the advantages of faster I/O capacity, other than reading and writing data more quickly (which might happen only at the beginning or end of a script, so may not be a huge deal)?</p>
+<ul class="simple">
+<li><p>The I/O capacity is in many cases shared with several users.</p></li>
+<li><p>It is also not always the case that this is only done at start and end of a script. Quite a few workloads needs to access data during execution, and a few, quite a lot.</p></li>
+</ul>
+</li>
+<li><p>Not a question, but about the story about using HPC without knowing to do so. I would hope the system would be more like that. Not necessary to know Unix and all that. Hide some of the complexity from users and let them concentrate on data and algorithms.</p>
+<ul class="simple">
+<li><p>Yes, more and more the access is getting like that with web-interfaces and ways to construct your workflows and jobs using drop-down menus etc. Examples are Galaxy portal, OnDemand portal and many more</p></li>
+<li><p>Thank you, will we learn about those in this course?</p></li>
+<li><p>No, unfortunately, but this will definitely come at some point, it is a bit new at the moment, but later tutorials will be expanded with this type of things</p></li>
+<li><p>If you are interested in Galaxy, there is a self-paced community course (or what to call it) in May: https://gallantries.github.io/video-library/events/smorgasbord3/</p></li>
+</ul>
+</li>
+<li><p>at the end of yesterday lecture, the lecturer mentioned two software to connect to hpc i think, could you please repeat the name again. Thanks</p>
+<ul class="simple">
+<li><p>were these graphical tools? (sorry I wasn’t here yesterday …)</p>
+<ul>
+<li><p>yes they were related to GUI, but both also offers terminal capabilities. And support standard ssh.</p></li>
+<li><p>X2Go: https://documentation.sigma2.no/getting_started/remote-desktop.html?highlight=x2go</p></li>
+<li><p>Visual Studio Code: https://documentation.sigma2.no/code_development/guides/vs_code/connect_to_server.html?highlight=visual%20studio%20code</p>
+<ul>
+<li><p>perfect so they are similar to remote desktop?</p>
+<ul>
+<li><p>Yes they are remote desktop also. X2Go is our remote desktop solution that we support. Yes</p></li>
+<li><p>VS code is a code editor, and when connecting to HPC, you can access all your files as if they were on your computer</p>
+<ul>
+<li><p>could you please demonstrate X2GO once ? i have tried myself but i think it is not working or at least i did not recognize how it is working.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Is it okay to be in login-1.FRAM?</p>
+<ul class="simple">
+<li><p>Yes it is perfectly fine. fram.sigma2.no is a generic portal that directs you to different login entries depending on workload. We currently have more than one, since there are many users. login-1.fram is the name of 1 of the login nodes, login-2.fram is the name of another. You may also log in using user&#64;login-1.fram.sigma2.no if you need to go to a specific log in server (or 2, 3 etc).</p></li>
+</ul>
+</li>
+<li><p>where can the server (hash) key be verified (displayed on first login)?</p>
+<ul class="simple">
+<li><p>https://documentation.sigma2.no/getting_started/fingerprints.html</p></li>
+</ul>
+</li>
+<li><p>On <a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/_images/hpc.svg">this image</a>, is it possible to identify a single node? Is it one unit on a rack? Is it a whole rack?</p>
+<ul class="simple">
+<li><p>one unit on a rack. what I am unsure about is whether one of the “pizza boxes” (the 2-3 cm high metal things) host 1 node or more than 1 node.</p>
+<ul>
+<li><p>What you refer to is probably the single hight, this contains two compute servers, typically also called nodes. Due to technical reasons we store two and two on each level. Each node for our machines mostly contains two CPU’s with a number of core units - ranging from 16/cpu on Fram to 64/cpu on Betzy.</p></li>
+</ul>
+</li>
+<li><p>should I go down and take a picture of a node on fram?</p>
+<ul>
+<li><p>that would be nice. we could also put it into the documentation. :+1:</p></li>
+<li><p>ØT: On my way (not available for breakout rooms)</p></li>
+<li><p>Picture of a rack in fram</p></li>
+<li><p>Each one contains 6 chassis</p></li>
+<li><p><img alt="" src="../../../_images/chassis_fram.png" /></p></li>
+<li><p>a chassis</p></li>
+<li><p>Each containing 6 blades</p></li>
+<li><p><img alt="" src="../../../_images/blade_fram.png" /></p></li>
+<li><p>a blade</p></li>
+<li><p>Each containing 2 nodes</p></li>
+<li><p><img alt="" src="../../../_images/insidenode_fram.png" /></p></li>
+</ul>
+</li>
+<li><p>thanks for posting these!</p></li>
+<li><p>This was very cool to see!</p></li>
+</ul>
+</li>
+<li><p>Do you pay for using the “login node” or only the “working node”?</p>
+<ul class="simple">
+<li><p>The cpu-time is calculated from the actual analysis job you submit via the batch system. So that is the time that will be accounted towards your project quota.</p></li>
+<li><p>in short: for the compute node, not for the CPU time spent on login node. but this does not mean we should compute on login node :-)</p></li>
+</ul>
+</li>
+<li><p>Are all servers in Fram physically located in the same room? What about Fox, Saga, Betzy?</p>
+<ul class="simple">
+<li><p>the compute resources: yes</p></li>
+<li><p>this is also true for the other clusters. one reason why a compute cluster is typically in one room and not spread across several cities is that the high-speed network (“interconnect”) which connects the compute nodes, puts a limitation on the length of cables.</p></li>
+</ul>
+</li>
+<li><p>I dont understand the message I get after the <code class="docutils literal notranslate"><span class="pre">sinfo</span></code> command in the terminal. Could you explain?</p>
+<ul class="simple">
+<li><p>it gives us an overview over the available queues (or partitions) (“normal”, “optimist”, “bigmem”, …) and a mapping between the queues and node names (“c3-1”, “c2-10”, …) and their status (“idle”, “drain”, “alloc”, …)</p>
+<ul>
+<li><p>maybe the actual information it gives is more useful to those maintaining the system than to those using the system</p></li>
+<li><p>The information will be different depending on what system you are on, so SAGA, FRAM, Betzy will have somewhat different queues and specifications</p></li>
+<li><p>You might find this useful: https://documentation.sigma2.no/jobs/overview.html</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>The queue manager, you called it “Slerm”?</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://slurm.schedmd.com/documentation.html">Slurm</a></p></li>
+<li><p>thanks! on which page is the typo?</p></li>
+</ul>
+</li>
+<li><p>Are “schedulers” and “queue managers” the same thing?</p>
+<ul class="simple">
+<li><p>yes, same concept</p></li>
+</ul>
+</li>
+<li><p>My example_job.sh doesn’t want to execute, it says permission denied. I made it executable. Any tips? :)</p>
+<ul class="simple">
+<li><p>if you like you can post the full path to the example script and I can look as staff (I will then also redact the path away again)</p></li>
+<li><p>Remember to run it like e.g. <code class="docutils literal notranslate"><span class="pre">./example-job.sh</span></code> the dot and / if you are in the same folder</p></li>
+<li><p>Run pwd to get path</p>
+<ul>
+<li><p>path: (redacted path)</p></li>
+<li><p>thanks! looking …</p></li>
+<li><p>solution: <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">example_job.sh</span></code> (to make it executable)</p>
+<ul>
+<li><p>but I did that (several times lol)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>how did you try to run it, and what does <code class="docutils literal notranslate"><span class="pre">ls</span></code> show you? See how to do this in the day 0 course: https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html</p></li>
+</ul>
+</li>
+</ol>
+<ul class="simple">
+<li><p>Can I get the output of <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-la</span></code></p>
+<ul>
+<li><p>currently the file is not executable</p>
+<ul>
+<li><p>now it is executable</p></li>
+</ul>
+</li>
+<li><p>So it is the chmod +x that gives you the permission denied?</p></li>
+<li><p>I called this: chmod -x example_job.sh</p>
+<ul>
+<li><p>(See also below) <code class="docutils literal notranslate"><span class="pre">-x</span></code> removes the executable “flag” (information)</p></li>
+</ul>
+</li>
+<li><p>then: ./example_job.sh</p></li>
+<li><p>it’s the script execution that gives me the permission denied error</p></li>
+<li><p>I made it executable now. Try to run it again <code class="docutils literal notranslate"><span class="pre">./example_job.sh</span></code></p></li>
+<li><p>thanks it works now, but it doesn’t really explain why my chmod didn’t work?</p>
+<ul>
+<li><p>No, it does not… I have to admit, I have not seen this problem before… You should have the right to make something executable in your own home folder..</p></li>
+<li><p>I have created a file named <code class="docutils literal notranslate"><span class="pre">test_permission.sh</span></code> in your home folder, could you try to run <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">test_permission.sh</span></code>?</p></li>
+<li><p>I’ll try again with another script. Yeah, the chmod seems not to work, though it gives no error or warning. Okay got it now, the problem was that I used “-x” for “+x” Sorry!</p>
+<ul>
+<li><p>yes, + and - will do what you think. <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">-x</span> <span class="pre">file</span></code> would remove eXecute permission from a file, + adds it</p></li>
+<li><p>Exactly. I think I need some coffee.</p>
+<ul>
+<li><p>somebody said/wrote: there is good pedagogy in every mistake. we all learned something new.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol class="arabic" start="13">
+<li><p>I only see nn9987k</p>
+<ul class="simple">
+<li><p>hopefully you can use this quota for the exercise. in other words: nothing to worry about</p></li>
+</ul>
+</li>
+<li><p>What’s the difference between projects ending in “k” and those ending in “o” (just curious)?</p>
+<ul class="simple">
+<li><p>my understanding is that all compute projects normally end in “k” but optimist quotas end with “o” (these can only be used on “optimist” queue?)</p></li>
+</ul>
+</li>
+<li><p>Adding details to a command seems to come with a - (eg -l or -n). What does – indicate?</p>
+<ul class="simple">
+<li><p>many commands use one dash for short options and two dashes for long options (long meaning: option is written out). example: <code class="docutils literal notranslate"><span class="pre">-A</span></code> or <code class="docutils literal notranslate"><span class="pre">--account</span></code> do the same thing</p></li>
+<li><p>See Day 0 information: for instance https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html and also the cheat-sheet: https://training.pages.sigma2.no/tutorials/unix-for-hpc/cheat-sheet.html</p>
+<ul>
+<li><p>Neither of these mention the – (other than having to override the missing certificate), but the other explanations in the responses here answer my question.</p></li>
+</ul>
+</li>
+<li><p>Ok, does it not say explicitly, at least it mentions options and shows the options using the <code class="docutils literal notranslate"><span class="pre">-</span></code>  - but good that you understand it now! :)</p></li>
+<li><p>It is typical syntax of UNIX (and probably also Windows) commands, that you use <code class="docutils literal notranslate"><span class="pre">-</span></code> or <code class="docutils literal notranslate"><span class="pre">--</span></code> to give options to the command</p></li>
+</ul>
+</li>
+<li><p>Interesting for customization of jobs:</p>
+<ul class="simple">
+<li><p>https://open.pages.sigma2.no/job-script-generator/</p>
+<ul>
+<li><p>Is it possible to add the time units in the documentation somewhere, as in hh:mm:ss ?</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>why does all the example files end with .sh? would it end with <code class="docutils literal notranslate"><span class="pre">.py</span></code> if it was a python file?</p>
+<ul class="simple">
+<li><p>the ending here only helps us humans to anticipate what is inside the file. <code class="docutils literal notranslate"><span class="pre">.sh</span></code> communicates to me that there will probably be a shell script inside. but for the cluster it does not matter. I could call it <code class="docutils literal notranslate"><span class="pre">example.run</span></code> or <code class="docutils literal notranslate"><span class="pre">example.batch</span></code> or <code class="docutils literal notranslate"><span class="pre">example</span></code> or <code class="docutils literal notranslate"><span class="pre">example.job</span></code> and it would still work. If it was a Python file, it would be good to call it <code class="docutils literal notranslate"><span class="pre">something.py</span></code>, again to communicate expectations.</p>
+<ul>
+<li><p>okay, so it does not specify “what language” to read the script in?</p>
+<ul>
+<li><p>correct. but look at the first line inside the file that starts with <code class="docutils literal notranslate"><span class="pre">#!</span></code>: this one tells the shell which interpreter to use to interpret what follows. if that was a Python script, it would contain <code class="docutils literal notranslate"><span class="pre">#!/usr/bin/env</span> <span class="pre">python</span></code></p></li>
+<li><p>Thanks!</p>
+<ul>
+<li><p>a bit more explanation (hopefully more helping than confusing): I can run a bash script like this: <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">somescript</span></code> or like this: <code class="docutils literal notranslate"><span class="pre">./somescript</span></code> - in the latter case the shell does not know yet what language to use and then it will look at the so-called “shebang” line (the line starting with <code class="docutils literal notranslate"><span class="pre">#!</span></code>). in other words, if I run a Python script like this: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">somescript.py</span></code>, then it will NOT use the “shebang” line.</p></li>
+<li><p>the take-away for Slurm job scripts: we can use any language which uses “#” for code comments</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>See also yesterdays tutorial which explains this: https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html</p></li>
+</ul>
+</li>
+<li><p>I am unsure how to estimate 1)the time a job needs and 2)how much CPU hours it will cost. Do you have some resources for that?</p>
+<ul class="simple">
+<li><p>this is a great question. it typically requires some calibration. what I personally like to use is to start from a small example and grow it to the real example. often I can extrapolate from the smaller example towards the real example. but it often requires trial and error. for the first run I am often more generous and then after the first run I know how much time the other runs will use - was this helpful?</p>
+<ul>
+<li><p>Yes, thanks! I find myself being “scared” to try, what happens if we run out of resources on the project account? Will the job stop or will it continue running and then we get a huge bill?</p></li>
+<li><p>You will only be billed for the actual amount of cpu-hours spent. So the “only” bad thing about specifying too long time is that 1) it may take longer you your job to start and 2) it prevents SLURM from doing a good job allocating other jobs since maybe another that that was short could have fitted onto that node, if the time you specified was shorter (and correct).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Can results from a terminated project (which exceeded its time limit) still be accessed, for example at a shared storage area?</p>
+<ul class="simple">
+<li><p>We have a shared storage system for all nodes. So, if you save something to a file, it will be available even if the job crashes. But you will have to actually save it to a file. Results in memory will be gone.</p></li>
+<li><p>It is a rather tricky and actually quite advanced question: Depends a bit on your job-setup. Have a look at the run script example on our main documentation, for instance the gaussian run script example under application support to see a solution to keep the files even if the job dies prematurely.</p>
+<ul>
+<li><p>Link to main documentation: https://documentation.sigma2.no/</p>
+<ul>
+<li><p>This one? https://documentation.sigma2.no/software/application_guides/gaussian/gaussian_job_example.html</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Will the shared storage system be covered in this course, or should I refer to the main documentation?</p></li>
+</ul>
+</li>
+<li><p>Is a possibility to use cpus from two or more projects for our job? And if yes how we command this in SBATCH?</p>
+<ul class="simple">
+<li><p>to my knowledge: no. a job will use one account</p></li>
+<li><p>Depends a bit what you mean by project. But as a compute project with allocated compute resources/CPU hrs - the answer above holds.
+-Yes, I mean an account.</p></li>
+</ul>
+</li>
+<li><p>How do you know what %j means? What would the source to look for all the combinations such as %a or %A.</p>
+<ul class="simple">
+<li><p>You can get that details from SLURM sbatch manual</p>
+<ul>
+<li><p>https://slurm.schedmd.com/sbatch.html</p></li>
+</ul>
+</li>
+<li><p>Is it possible to add a timestamp? I cannot find that in the doc.</p>
+<ul>
+<li><p>That you need to use UNIX tricks to fabricate a file name</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">filename=$(date</span> <span class="pre">+&quot;%m-%d-%H-%M&quot;)&quot;-somename.txt&quot;</span></code></p></li>
+<li><p>The above variable <em>filename</em> would then contain the value 04-19-11-17-somename.txt</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>There is a part on running interactive jobs in the end of the Scheduling Jobs lesson. Is this to use with for example Jupyter for debugging? I am still in an early phase and my Python programs only give me a lot of errors, so I cannot submit them as scripts yet.</p>
+<ul class="simple">
+<li><p>Thank you for pointing it out. Will show this after the exercises</p></li>
+</ul>
+</li>
+<li><p>If one wanted to submit 10 or 20 calculations which differ in a file name but not in the ending (file suffix), how can one do that? assuming that the calculations have same resource requirements but only differ in some calculation parameters</p>
+<ul>
+<li><p>one option is Slurm job arrays where you can write one job script but inside the job script, Slurm will define an index number for each job which one can use but the index is numeric. this way one can inside the job refer to files. <a class="reference external" href="https://slurm.schedmd.com/job_array.html">Slurm Array jobs</a></p></li>
+<li><p>alternative: one (bash) script (but does not have to be bash) which iterates over the files and for each submits a job script. (I will post here an actual example in a moment … just thinking about how to not make this confusing):</p>
+<ul class="simple">
+<li><p>“outside” script:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin env bash</span>
+
+<span class="c1"># here assuming that all files that I want to submit end with &quot;job&quot;</span>
+<span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.job<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>sbatch<span class="w"> </span><span class="nv">$file</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>however, disadvantage of this approach is that I now need to write many similar job scripts. But there is a better way to avoid that. In this example one “outside” script generates 3 scripts, each 1 minute long, and submits them all at the same time.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">	</span><span class="c1">#!/usr/bin/env bash</span>
+<span class="w">	</span><span class="c1"># instead of iterating over greetings we could iterate over</span>
+<span class="w">	</span><span class="c1"># some parameters</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span>greeting<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="w"> </span><span class="s2">&quot;hi&quot;</span><span class="w"> </span><span class="s2">&quot;ciao&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="c1"># Generate the SLURM script to be submitted</span>
+<span class="w">	 </span><span class="c1"># &quot;EOF&quot; means &quot;end of file&quot;</span>
+<span class="w">	</span>cat<span class="w"> </span>&gt;<span class="w"> </span>submission_script.sh<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<span class="s">	#!/usr/bin/env bash</span>
+
+<span class="s">	#SBATCH --account=nn9987k</span>
+<span class="s">	#SBATCH --job-name=example-${greeting}</span>
+<span class="s">	#SBATCH --output=${greeting}.out</span>
+<span class="s">	#SBATCH --ntasks=1</span>
+<span class="s">	#SBATCH --time=00:01:00</span>
+
+<span class="s">	echo ${greeting}</span>
+
+<span class="s">	EOF</span>
+
+<span class="w">	</span><span class="c1"># Submit the generated script</span>
+<span class="w">	</span>sbatch<span class="w"> </span>submission_script.sh
+
+<span class="w">	</span><span class="k">done</span>
+<span class="w">	</span><span class="sb">```</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<ul class="simple">
+<li><p>There is also the option to write a job script generator which iterates on many different file names. This is quit widely in computational chemistry. However, this requires a somewhat more advanced insight in linux power tools/scripting. We may provide example, but it would be on your own risk type offer.</p></li>
+<li><p>using piping, you can generate the list of input parameters you need and create a file that has that list. As the array job will get its input index, you can use this index to look up in the file what filename that exact job is supposed to use.</p>
+<ul>
+<li><p>SLURM_ARRAY_TASK_ID is the index in the job array.</p></li>
+<li><p>Found a better tutorial: https://blog.ronin.cloud/slurm-job-arrays/</p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple" start="24">
+<li><p>Could you give us an example for <code class="docutils literal notranslate"><span class="pre">--ntasks=&lt;ntasks&gt;</span></code>? I mean, a job that would benefit of multiple processors.</p>
+<ul class="simple">
+<li><p>example in which we ask Slurm for 20 cores. <code class="docutils literal notranslate"><span class="pre">srun</span></code> passes the information (how many cores are available) to “mycode” which in this example might be an MPI-parallelized program (MPI is one way out of many to parallelize):</p></li>
+</ul>
+</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+
+<span class="c1">#SBATCH --account=nn1234k</span>
+<span class="c1">#SBATCH --job-name=testing</span>
+<span class="c1">#SBATCH --time=00-00:02:00</span>
+<span class="c1">#SBATCH --ntasks=20</span>
+
+<span class="n">srun</span> <span class="o">./</span><span class="n">mycode</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>the bigger picture and more important answer is that just by asking Slurm for more processors (with <code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> or similar options) will not make sure that also the code runs in parallel UNLESS the code is ready to also use these resources. this often requires either looking into the code or checking the documentation of the code.</p></li>
+</ul>
+<ol class="arabic simple" start="25">
+<li><p>I’ll have to leave before the last session today: When will a recording be available?</p>
+<ul class="simple">
+<li><p>Yes the recordings will in Youtube, but it will take a week or two</p></li>
+</ul>
+</li>
+<li><p>I wonder about the #SBATCH inside the script vs the sbatch as a command line argument. When do we use what and why?</p>
+<ul class="simple">
+<li><p>both have the same effect. on the command line it can be useful for quick testing. but after the quick testing I always prefer to put this rather into the script because then when I come back to my job script 6 months later, I know what I actually did. By then, the command line and my own human memory is long gone. For reproducibility, scripts are better.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sbatch</span></code> on the command line will actually execute the sbatch command. <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--someoption</span></code> in the job script file just specifies that the sbatch/srun command is supposed to be run with the <code class="docutils literal notranslate"><span class="pre">--someoption</span></code> option. It is a way of separating what ‘bash’ is supposed to handle and what ‘slurm’ is supposed to handle</p></li>
+</ul>
+</li>
+<li><p>How is the time specified: hours/minutes/seconds in the sbatch command?</p>
+<ul class="simple">
+<li><p>example: <code class="docutils literal notranslate"><span class="pre">#SBATH</span> <span class="pre">--time=02-04:00:00</span></code> submits for 2 days and 4 hours (DD-HH:MM:SS)</p></li>
+<li><p>Thank you. Where can this kind of information/documentation be found?</p>
+<ul>
+<li><p>https://documentation.sigma2.no/jobs/job_scripts.html</p></li>
+<li><p>or: <code class="docutils literal notranslate"><span class="pre">sbatch</span> <span class="pre">--help</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>How can I check how much memory, CPU etc my job needs? While running or after it is finished?</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">seff</span> <span class="pre">12345</span></code> (where 12345 was the job number), after the job ends</p></li>
+<li><p>While the job is running you could login to the node(s) that runs the job and use the command <code class="docutils literal notranslate"><span class="pre">top</span></code> or similar UNIX commands</p></li>
+<li><p>see also our tutorials on this very good and important question:</p>
+<ul>
+<li><p>https://documentation.sigma2.no/jobs/choosing-memory-settings.html</p></li>
+<li><p>https://documentation.sigma2.no/jobs/choosing-number-of-cores.html</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>We assume that VS Code is preinstalled and set up if people plan to use it during the transfer of files session. Please follow links above.</p></li>
+<li><p>Why are all my test jobs stuck at “PD” state?</p>
+<ul class="simple">
+<li><p>“pending” … can you share job number(s) and then we can look for reason?</p>
+<ul>
+<li><p>Sure, job IDs are (redacted) (assuming that’s the same thing as “job number”)</p>
+<ul>
+<li><p>thanks! looking …</p></li>
+<li><p>jobs look good and my own test job is also pending. it seems jobs are waiting for resources. maybe we were recommended to also use a reservation in the job scripts? (but I wasn’t here yesterday …)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Did you use <code class="docutils literal notranslate"><span class="pre">–partition=course</span> <span class="pre">–reservation=NRIS_HPC_onboarding</span></code></p>
+<ul>
+<li><p>No, forgot that. Thanks!</p></li>
+<li><p>Then cancel the job and submit it again with VIP pass above</p></li>
+<li><p>Done, that does the trick. Good to have learned about different job states, anyway. :)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I missed a comment early on. Is the reason for using <code class="docutils literal notranslate"><span class="pre">rsync</span></code> instead of <code class="docutils literal notranslate"><span class="pre">scp</span></code> is because the former is much faster or is the latter not supported on Sigma2?</p>
+<ul class="simple">
+<li><p>It is supported, just faster and more safe to use - rsync typically picks up where it left if you lose connection, and it also just updates the files that are actually changed, while scp copied files no matter if they are changed or not (changed with respect to the state on the remote site)</p></li>
+</ul>
+</li>
+<li><p>when I have used rsync previously, rsync says “not all files were transferred” (or something like that). This only happens to a few of the files i transfer. Is there something that may be cause by the rsync? Does it not work with all file types? Would it help to zip beforehand?</p>
+<ul class="simple">
+<li><p>zip beforehand should not be needed. I am wondering whether the information could mean that rsync did not transfer all files since it did not need to? It does not transfer files which are already there. It looks at file size and time stamps and can also consider checksums. But I am not sure about my answer. I haven’t seen the error you describe, yet.</p>
+<ul>
+<li><p>based on what Øystein just said: I am transferring a folder, do I need to specify -r when transferring a folder to get all files?</p>
+<ul>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">a</span></code> is used to tell rsync that you should consider files in folders and subfolders - in <code class="docutils literal notranslate"><span class="pre">scp</span></code> () it would be <code class="docutils literal notranslate"><span class="pre">r</span></code></p>
+<ul>
+<li><p>ah yes</p></li>
+</ul>
+</li>
+<li><p>according to my limited knowledge, no. example for transferring files and folders: <a class="reference internal" href="../../../getting_started/file_transfer.html#file-transfer"><span class="std std-ref">File transfer</span></a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Som you dont need to be logged into FRAM to move something to FRAM?</p>
+<ul class="simple">
+<li><p>that’s right. you still need to authenticate, though. If you use SSH keys, then the authentication can happen “under the hood” and it can look like that you can transfer files without providing a password.</p></li>
+</ul>
+</li>
+<li><p>my username for this course is …&#64;login-3 and not ..&#64;sigma2.no, should i specify the whole “email” or just what comes before the &#64;?
+- hmmm… I am confused by this. Usernames should not contain any “&#64;”. once you log into a cluster, your username shows up as the part before the “&#64;”. you can also try command <code class="docutils literal notranslate"><span class="pre">whoami</span></code> to check what your username is
+- Thank you. I’m just asking because I think the lecturerer wrote his username with the &#64;
+- ah, I was distracted and did not follow screen share</p></li>
+<li><p>No rsync in Windows GitBash?</p>
+<ul class="simple">
+<li><p>I am unsure but rsync should be available in Windows Subsystem Linux.</p></li>
+<li><p>where do I find this subsystem? GitBash says its using Mingw64 bash: rsync: command not found</p>
+<ul>
+<li><p>https://www.ubackup.com/windows-10/rsync-windows-10-1021.html</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>is there a setup tutorial someone could link to?</p>
+<ul class="simple">
+<li><p>Yes! https://documentation.sigma2.no/code_development/guides/vs_code/connect_to_server.html</p></li>
+</ul>
+</li>
+</ol>
+<section id="survey-interested-in-seeing-moving-of-files-gui-type-with-vs-code">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Survey - Interested in seeing moving of files GUI type with VS Code:</a><a class="headerlink" href="#survey-interested-in-seeing-moving-of-files-gui-type-with-vs-code" title="Link to this heading"></a></h3>
+<p>Answer with o</p>
+<ul class="simple">
+<li><p>Yes: ooooooo</p></li>
+</ul>
+<ol class="arabic simple" start="36">
+<li><p>I had to leave early and will not be able to attend tomorrow. Please tell me where I can find the recordings. Thank you for such an informative course.</p></li>
+<li><p>(Assume that “not yes means no”)</p></li>
+</ol>
+<p>Will be displayed during exercise session and/or after todays lesson if pressed on time.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The example shows <code class="docutils literal notranslate"><span class="pre">mem=1G</span></code>, but this will not work on the current course allocation on FRAM. However, it is useful for you to then see what error slurm gives you.</p>
+</div>
+</section>
+<section id="feedback">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Feedback</a><a class="headerlink" href="#feedback" title="Link to this heading"></a></h3>
+<ul>
+<li><h2 class="rubric" id="things-that-went-well">Things that went well</h2>
+<ul class="simple">
+<li></li>
+</ul>
+</li>
+<li><h2 class="rubric" id="things-to-improve">Things to improve</h2>
+<ul class="simple">
+<li></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

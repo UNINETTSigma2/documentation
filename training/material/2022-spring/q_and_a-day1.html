@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions and answers from HPC On-boarding May 2022, Day 1 (May 4) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Questions and answers from HPC On-boarding May 2022, Day 1 (May 4)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="questions-and-answers-from-hpc-on-boarding-may-2022-day-1-may-4">
+<span id="training-2022-spring-notes-day1"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Questions and answers from HPC On-boarding May 2022, Day 1 (May 4)</a><a class="headerlink" href="#questions-and-answers-from-hpc-on-boarding-may-2022-day-1-may-4" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#questions-and-answers-from-hpc-on-boarding-may-2022-day-1-may-4" id="id1">Questions and answers from HPC On-boarding May 2022, Day 1 (May 4)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#icebreaker-question" id="id2">Icebreaker question</a></p></li>
+<li><p><a class="reference internal" href="#why-use-a-cluster" id="id3">Why use a cluster?</a></p></li>
+<li><p><a class="reference internal" href="#working-on-a-remote-hpc-system" id="id4">Working on a remote HPC system</a></p></li>
+<li><p><a class="reference internal" href="#scheduling-jobs" id="id5">Scheduling jobs</a></p></li>
+<li><p><a class="reference internal" href="#q-a" id="id6">Q&amp;A</a></p></li>
+<li><p><a class="reference internal" href="#feedback-for-today" id="id7">Feedback for today</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="icebreaker-question">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Icebreaker question</a><a class="headerlink" href="#icebreaker-question" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Have you experienced any computational analysis/tasks that was too big or too long for laptop or the desktop?</p>
+<ul>
+<li><p>During a bioinformatics anaysis analysing a single files took 1 hour on office desktop. I need to anaysis 450 of those.</p></li>
+<li><p>Yes, for one project I had to process very many short independent jobs and I had only 3 days to do that and laptop/time wasn’t enough to do them one after the other.</p></li>
+<li><p>Analyzing 2-photon microscope video recordings that are typically 200gb in length.</p></li>
+<li><p>I also had a bioinformatics problem with too many optimization runs to do it locally on my laptop</p></li>
+<li><p>With atmospheric simulations it is too big for a laptop sometimes.</p></li>
+<li><p>Analyzing metagenomic data and need HPC for these analyses</p></li>
+<li><p>yes, used a GPU</p></li>
+<li><p>Yes, running climate models</p></li>
+<li><p>Yes, transcriptome mapping of RNAseq data</p></li>
+<li><p>Yes with earth system model simulations and data analysis</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="why-use-a-cluster">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Why use a cluster?</a><a class="headerlink" href="#why-use-a-cluster" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html">Teaching material</a></p>
+<ol class="arabic simple">
+<li><p>Now I’m confused – Cloud vs HPC/cluster discussion – no need to interrupt</p>
+<ul class="simple">
+<li><p>Could you specify and we can optionally interrupt the presenters (or answer here)</p></li>
+<li><p>Which specific part of the “HPC vs Cloud” discussion would you like us to clarify</p></li>
+<li><p>Azure offers HPC instances with InfiniBand</p>
+<ul>
+<li><p><a class="reference external" href="https://top500.org/system/180024/">This system is actually the 10th fastest in the world!</a></p></li>
+</ul>
+</li>
+<li><p>My five cents to the issue: Imagine Cloud as a virtual shop for computers. You order 1,2 or N machines there. You receive credentials to log in and you can use them at your own discretion. They may live in different geographical locations. These machines are not connected with a high-speed connection between each other and you can not send jobs to all of them simultaneously UNLESS you specify that these machines shall be configured as an HPC-cluster and are connected between each other with a high-speed connection (e.g. Infiniband). The latter configuration increases the Cloud price solution as the machines will have to be located in a similar geographical location. In the case of Cloud you pay a) for upload and download (e.g. per MB) from/to Cloud machines and b) for the time the jobs are running (e.g. per CPU/hr). In case of an HPC cluster (e.g. SAGA), you <em>always</em> get access to the same amount of machines which are interconnected with a high-speed connection. It is up to you how many of them you request for your calculations.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="working-on-a-remote-hpc-system">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Working on a remote HPC system</a><a class="headerlink" href="#working-on-a-remote-hpc-system" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/12-cluster.html">Teaching material</a></p>
+<p>(add an “o” at the end of the line)</p>
+<ul class="simple">
+<li><p>I was able to login to the cluster: oooooooooooooo</p></li>
+<li><p>I was not able to log in:</p></li>
+<li><p>I did not try, only watching:</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Will we have to select a partition avail (normal, bigmem,..) when running a job?</p>
+<ul class="simple">
+<li><p>You normally don’t need to specify, because you will get partition <code class="docutils literal notranslate"><span class="pre">normal</span></code> by default, however, if you have specific needs (e.g. a lot of memory <code class="docutils literal notranslate"><span class="pre">bigmem</span></code> or GPUs <code class="docutils literal notranslate"><span class="pre">accel</span></code>) then you will need to specify (note also that these can incur additional costs)</p>
+<ul>
+<li><p>Great all clear now, thank you!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>What should/can I do on a login node and what should/can I do on a compute node?</p>
+<ul class="simple">
+<li><p>you shall put your job scripts to the login node and start them from there</p></li>
+<li><p>you shall try not to run any jobs which are longer than 20-30 min on a login node</p></li>
+<li><p>you may want to compile something on a login node provided this does not take more than 20-30 mins</p></li>
+<li><p>compute nodes shall execute the jobs launched by the job scripts, it is quite unprobable that you have to log into the compute nodes</p></li>
+<li><p>compute nodes are used for debugging, as long as important parts of the logs of the jobs land into compute nodes’ scheduler logs</p></li>
+</ul>
+</li>
+<li><p>Is “head node” the same thing as login node?</p>
+<ul class="simple">
+<li><p>Yes, we try to use the same terminology everywhere, but sometimes outside words sneak in</p></li>
+</ul>
+</li>
+<li><p>Is it recommended to use htop to see the availability of nodes in saga?</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">htop</span></code> will only work on the local machine where you run it, so it will only show you the load on the login node in most cases</p></li>
+<li><p>One needs to use tools such as <code class="docutils literal notranslate"><span class="pre">sinfo</span></code> to see the status of the whole cluster, this is a bit more advanced and I don’t think we will cover that in this course</p>
+<ul>
+<li><p>You can read more about <a class="reference external" href="https://slurm.schedmd.com/sinfo.html"><code class="docutils literal notranslate"><span class="pre">sinfo</span></code> here</a></p>
+<ul>
+<li><p>Great, now I know what to use :)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="scheduling-jobs">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Scheduling jobs</a><a class="headerlink" href="#scheduling-jobs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html">Teaching material</a></p></li>
+</ul>
+<p>(add an “o” at the end of the line)
+Question to participants, how is the speed so far?</p>
+<ul class="simple">
+<li><p>too slow:</p></li>
+<li><p>too fast:</p></li>
+<li><p>just right: oooooooo</p></li>
+<li><p>too confusing:</p></li>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/hpc_machines/hardware_overview.html">Core counts on NRIS clusters</a></p></li>
+</ul>
+<ol class="arabic" start="6">
+<li><p>Are we sent to free nodes automatically when submitting jobs?</p>
+<ul class="simple">
+<li><p>Yes! The queue system will only give you free resources, on Saga you will be the only person that has access to the given CPU cores, but other people might be using the rest of the CPU cores if you don’t ask for all the cores. For Betzy you will only got free nodes</p></li>
+</ul>
+</li>
+<li><p>When is a node marked as allocated? Can you elaborate on that?</p>
+<ul class="simple">
+<li><p>Before a job starts, it gets allocated a node (or number of nodes). This means that your job will run on these pasrticular compute nodes. You can check which exact nodes are being used for your job by a special command which will be given later, I suppose.</p></li>
+<li><p>What is the difference between a node being busy and node being allocated? Are they the same?</p>
+<ul>
+<li><p>a bit of a detour answer: ideally, nodes are busy all the time and almost never idle and as soon as one job finishes, another queuing job should start immediately. However, it is a bit more difficult because it is more likely that always only few “restaurant seats” become available but never large parts of the restaurant at the same time. So if the scheduler is too simple, then jobs that require many cores at the same time, would never start and always queue. Therefore, there are different queues and different priorities and sometimes the scheduler will have to reserve a node/processor waiting for a larger job. If I understood correctly. I am also not 100% sure about the technical distinction.</p></li>
+<li><p>a node is actually allocated to a job before the job starts and is technically <em>not busy</em> with this job at this moment, but, as said, it is most probably busy with other jobs already running there</p>
+<ul>
+<li><p>Thanks!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Can I have a separate terminal window open that is not on Saga?</p>
+<ul class="simple">
+<li><p>you can use the <code class="docutils literal notranslate"><span class="pre">terminal</span></code> in windows again and another terminal will open in your local machine</p></li>
+<li><p>each new terminal will start a new session on your local computer</p></li>
+</ul>
+</li>
+<li><p>the “#” usually indicates that the line is not actually executed, how is this different for this shebang?</p>
+<ul class="simple">
+<li><p>correct. you can put comments starting with “#” and they get ignored</p></li>
+<li><p>however there are exceptions:</p>
+<ul>
+<li><p>the so-called “shebang”, <code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code> is actually read and understood if it is on the first line</p>
+<ul>
+<li><p>Is that because of the “!”, or is there another reason why this is accepted?</p>
+<ul>
+<li><p>yes, it tells the shell which interpreter to use to read and interpret the script/program that follows. anything following “#!” is an interpreter. The interpreter does not have to be Bash, it can for instance be Python or R or Perl or some other language.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> commands that we will learn about to ask the scheduler for resources are read and understood by the scheduler but this is not a Unix feature but a Slurm feature</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>how do we kill a running script on saga?</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">scancel</span> <span class="pre">JOB_ID</span></code></p></li>
+<li><p>is it a Slurm job script or a Bash shell script?</p></li>
+<li><p>its the script that sabry made (I did it also)- which is now running?</p>
+<ul>
+<li><p>the one that was started like this: <code class="docutils literal notranslate"><span class="pre">./example-job.sh</span></code>?</p>
+<ul>
+<li><p>yes</p>
+<ul>
+<li><p>and it never finished/returned and is hanging?</p></li>
+<li><p>this is the message from terminal: “This script is running on login-3.saga.sigma2.no” is it still running? its not really doing anything</p>
+<ul>
+<li><p>when it printed this, it finished. because this is the only thing we asked the script to do: to print that line and tell us on which <code class="docutils literal notranslate"><span class="pre">hostname</span></code> it was. So all is fine. It is not running anymore. You can check all your currently running processes with command <code class="docutils literal notranslate"><span class="pre">ps</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I am getting the following <code class="docutils literal notranslate"><span class="pre">warning</span></code> message, when I type <code class="docutils literal notranslate"><span class="pre">projects</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">perl</span><span class="p">:</span> <span class="n">warning</span><span class="p">:</span> <span class="n">Setting</span> <span class="n">locale</span> <span class="n">failed</span><span class="o">.</span>
+<span class="n">perl</span><span class="p">:</span> <span class="n">warning</span><span class="p">:</span> <span class="n">Please</span> <span class="n">check</span> <span class="n">that</span> <span class="n">your</span> <span class="n">locale</span> <span class="n">settings</span><span class="p">:</span>
+<span class="n">LANGUAGE</span> <span class="o">=</span> <span class="p">(</span><span class="n">unset</span><span class="p">),</span>
+<span class="n">LC_ALL</span> <span class="o">=</span> <span class="p">(</span><span class="n">unset</span><span class="p">),</span>
+<span class="n">LC_CTYPE</span> <span class="o">=</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">,</span>
+<span class="n">LANG</span> <span class="o">=</span> <span class="s2">&quot;en_US.UTF-8&quot;</span>
+<span class="n">are</span> <span class="n">supported</span> <span class="ow">and</span> <span class="n">installed</span> <span class="n">on</span> <span class="n">your</span> <span class="n">system</span><span class="o">.</span>
+<span class="n">perl</span><span class="p">:</span> <span class="n">warning</span><span class="p">:</span> <span class="n">Falling</span> <span class="n">back</span> <span class="n">to</span> <span class="n">the</span> <span class="n">standard</span> <span class="n">local</span>      <span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Should I change some settings?</p>
+<ul>
+<li><p>Yes (I guess you are using a Mac -&gt; Yes): put this into your file (in your home directory of your mac) <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>and run <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">.bashrc</span></code></p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">LC_ALL</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">utf8</span>
+<span class="n">export</span> <span class="n">LANGUAGE</span><span class="o">=</span><span class="n">en_US</span>
+<span class="n">export</span> <span class="n">LC_CTYPE</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span>
+<span class="n">export</span> <span class="n">LANG</span><span class="o">=</span><span class="s2">&quot;en.US.utf8&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>works great!</p></li>
+<li><p>Nice to hear!!</p></li>
+</ul>
+</li>
+<li><p>the obvious question is: how do I know how much memory and time I will need? 1 min and 1 Gb seems a bit much for this also</p>
+<ul class="simple">
+<li><p>very good and important question. just a sec … looking for good links in our documentation but in short: this needs to be calibrated for each job class/type. ask for not too much but a bit more than you think (20% more?)</p></li>
+<li><p>how to calibrate memory: https://documentation.sigma2.no/jobs/choosing-memory-settings.html</p></li>
+<li><p>how to calibrate number of cores (we did not discuss this part yet): https://documentation.sigma2.no/jobs/choosing-number-of-cores.html</p></li>
+<li></li>
+<li><p>how to calibrate time: run one example job and check how long it took before starting dozens similar jobs.</p></li>
+<li><p>start with a small example and grow the job/ system size/ problem size and with this you will get a better feeling for how long the real/big job will take</p></li>
+</ul>
+</li>
+<li><p>where do I find my account number?</p>
+<ul class="simple">
+<li><p>The command <code class="docutils literal notranslate"><span class="pre">projects</span></code> will list all projects (accounts) you are associated with</p></li>
+<li><p>The command <code class="docutils literal notranslate"><span class="pre">cost</span></code> will also display how many cpu-hours you have available in the different projects</p></li>
+</ul>
+</li>
+<li><p>How do I know the time and memory my job will take?</p>
+<ul class="simple">
+<li><p>hard to predict and needs some calibration. see also question 12. in short: run one example job and check how long it took before starting dozens similar jobs. if it timed out, ask for more. takes some calibrating. also grow the calculation from small to realistic so that it will be easier for you to predict. I often start with asking for 1 h and then go from there. For the first ever job it is also fine to ask for more. But if you ask for excessively more, say 5 days, then you may queue way too long. So it’s better to start small/short and add rather than too much and remove.</p></li>
+</ul>
+</li>
+<li><p>Is there a maximum time limit?</p>
+<ul class="simple">
+<li><p>Yes, it is different for each partition type. You shall refer to the SAGA/Betzy/FRAM documentation.</p></li>
+<li><p>https://documentation.sigma2.no/getting_help/faq.html?highlight=walltime#jobs-submission-and-queue-system</p></li>
+<li><p>The command <code class="docutils literal notranslate"><span class="pre">sinfo</span></code> that we already saw also gives some info on this. On the “normal” compute nodes on Saga the limit is 7 days (format <code class="docutils literal notranslate"><span class="pre">DAYS-HR:MIN:SEC</span></code>):</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PARTITION</span> <span class="n">AVAIL</span>  <span class="n">TIMELIMIT</span>  <span class="n">NODES</span>  <span class="n">STATE</span> <span class="n">NODELIST</span>
+<span class="n">normal</span><span class="o">*</span>      <span class="n">up</span> <span class="mi">7</span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>      <span class="mi">1</span>  <span class="n">inval</span> <span class="n">c10</span><span class="o">-</span><span class="mi">33</span>
+<span class="n">normal</span><span class="o">*</span>      <span class="n">up</span> <span class="mi">7</span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>      <span class="mi">1</span>  <span class="n">down</span><span class="o">*</span> <span class="n">c5</span><span class="o">-</span><span class="mi">52</span>
+<span class="n">normal</span><span class="o">*</span>      <span class="n">up</span> <span class="mi">7</span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>      <span class="mi">3</span>  <span class="n">drain</span> <span class="n">c1</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="n">c3</span><span class="o">-</span><span class="mi">22</span><span class="p">,</span><span class="n">c5</span><span class="o">-</span><span class="mi">39</span>
+<span class="n">normal</span><span class="o">*</span>      <span class="n">up</span> <span class="mi">7</span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>      <span class="mi">5</span>   <span class="n">resv</span> <span class="n">c2</span><span class="o">-</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">27</span><span class="p">],</span><span class="n">c3</span><span class="o">-</span><span class="mi">19</span><span class="p">,</span><span class="n">c5</span><span class="o">-</span><span class="mi">45</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</li>
+<li><p>What happens if you give to litle time?</p>
+<ul class="simple">
+<li><p>the job will be stopped by the scheduler and you will find an error message that it timed out. if you have a long running job that risks to time out, you can also contact support and ask us to extend the time. this is OK if this was an “accident” and you risk losing days of compute time. but extending jobs should not be a regular thing since it makes it harder for the scheduler to schedule (restaurant analogy: somebody reserved a table until 9 pm but stays 2 hours longer)</p></li>
+<li><p>please don’t count on extensions. They are resevered for special circumstances. If your job needs longer than allowed on the partition you are using, we can help you to improve your workflow by parallization or checkpointing.</p></li>
+</ul>
+</li>
+<li><p>Can we have empty lines between the <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> commands?</p>
+<ul class="simple">
+<li><p>Yes</p></li>
+<li><p>But all the <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> commands need to be put in the beginning of the script, before any actual job commands</p></li>
+</ul>
+</li>
+<li><p>how can i ask for 0,5 gb mem: comma or dot? rediculously small but just to know what the decimal character is?</p>
+<ul class="simple">
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">--mem=500MB</span></code></p>
+<ul>
+<li><p>yes that is a solution-is there never a situation where you want to  write a number with decimals?</p></li>
+<li><p>Decimals are not allowed as a value to <code class="docutils literal notranslate"><span class="pre">--mem</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I was kicked out if SAGA and now when I try to access it it says “operation timed out”</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ssh</span></code> back into Saga does not work anymore?</p>
+<ul>
+<li><p>No it just says “operation timed out”</p>
+<ul>
+<li><p>is this a firewall issue? also asking NRIS colleagues</p>
+<ul>
+<li><p>I was able to access at the beginning of the course</p></li>
+<li><p>Try running <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-vvv</span> <span class="pre">ALL_NORMAL_OPTIONS</span></code> to get more debug information (ie, where it stops working).</p></li>
+<li><p>Yes I get lots of information now. It says: “authentication provider SSH_SK_PROVIDER did not resolve; diabling”. Is that the key maybe? maybe it’s more efficient to solve this issue in a breakout room where you could share your screen. Yes, I can contact you. I will just quickly try to restart the machine and see if it helps. It seems to be lagging a bit as well. it may be sufficient to reconnect to your network (as a first step)</p></li>
+<li><p>Now it works. Thank you so much!!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>What does sleep 60 mean in the job script or why put it there? I missed the explanation.</p>
+<ul class="simple">
+<li><p>It means : “stop execution for 60 secs but stay in the job”</p></li>
+<li><p>we did this so that we have a job example which “computes” for 60 seconds. Otherwise it would finish within miliseconds. In this artificial case it does not do anything but only waits. But we do this so that we can inspect job states before it finishes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sleep</span> <span class="pre">N</span></code> returns after <code class="docutils literal notranslate"><span class="pre">N</span></code> seconds. <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">sleep</span></code> shows a very concise description of the program.</p></li>
+</ul>
+</li>
+<li><p>Presenter mentioned job states (if I understood correctly) and we list them here: https://documentation.sigma2.no/jobs/monitoring/job_states.html#job-states</p>
+<ul class="simple">
+<li><p>but maybe it was something else? availability of nodes? (I was typing and distracted)</p></li>
+<li><p>yes, these are the states that you job can be in when you inspect it with <code class="docutils literal notranslate"><span class="pre">squeue</span></code>, under the <code class="docutils literal notranslate"><span class="pre">ST</span></code> column</p></li>
+<li><p>but once it completes it will disappear from the list, so you will never actually see it in <code class="docutils literal notranslate"><span class="pre">CD</span></code> (completed) state</p></li>
+</ul>
+</li>
+<li><p>I am running on <code class="docutils literal notranslate"><span class="pre">betzy</span></code> and getting the following error in <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>
+<code class="docutils literal notranslate"><span class="pre">sbatch:</span> <span class="pre">error:</span> <span class="pre">--nodes</span> <span class="pre">&gt;=</span> <span class="pre">4</span> <span class="pre">required</span> <span class="pre">for</span> <span class="pre">normal</span> <span class="pre">jobs</span></code></p>
+<ul class="simple">
+<li><p>Betzy is meant for big jobs which require big resources. Small jobs requiring very few nodes are not allowed (welcome) there</p></li>
+<li><p>You can add <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">-qos=devel</span></code>, then it starts faster and you can go down to only one node.</p>
+<ul>
+<li><p>Works with the <code class="docutils literal notranslate"><span class="pre">devel</span></code> setting :)</p></li>
+<li><p>Keep in mind that the <code class="docutils literal notranslate"><span class="pre">devel</span></code> QOS is intended for testing and development - not production runs.</p></li>
+<li><p>all registered participants should have acces to saga and fram. You can do the excercises on Saga as well.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>What’s the difference between login node and compute node, from the perspective of hardware? e.g. login node is CPU and compute node is GPU.</p>
+<ul class="simple">
+<li><p>Basically no difference from hardware point of view but it depends on the decision of the admins</p></li>
+<li><p>No, the login nodes are CPU nodes</p>
+<ul>
+<li><p>So compute node is GPU?</p>
+<ul>
+<li><p>most compute nodes are CPU nodes but there are some GPU compute nodes also</p></li>
+<li><p>the difference is in how we use login nodes and compute nodes:</p>
+<ul>
+<li><p>login nodes: many users at the same time, interactively editing files, submitting and monitory jobs</p></li>
+<li><p>compute nodes: few or only one user at the same time, computing, often in batch mode (not interactively; but one can also get an interactive compute node)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>How can I cancel a job?</p>
+<ul class="simple">
+<li><p>check the job number with <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-u</span> <span class="pre">yourusername</span></code></p></li>
+<li><p>then: <code class="docutils literal notranslate"><span class="pre">scancel</span> <span class="pre">jobnumber</span></code></p>
+<ul>
+<li><p>Thank you!!!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">squeue</span></code> has an option (<code class="docutils literal notranslate"><span class="pre">-i</span></code> or <code class="docutils literal notranslate"><span class="pre">--iterate</span></code>) to query slurm with some interval. Might be better resource usage than using <code class="docutils literal notranslate"><span class="pre">watch</span></code>.</p>
+<ul class="simple">
+<li><p>thanks! Today I Learned.</p></li>
+</ul>
+</li>
+<li><p>How to add comments in the submission script?</p>
+<ul class="simple">
+<li><p>Just use <code class="docutils literal notranslate"><span class="pre">#</span></code> before the line. <em>Not</em> before the shebang and the <code class="docutils literal notranslate"><span class="pre">SBATCH</span></code> keyword lines though</p>
+<ul>
+<li><p>For the <code class="docutils literal notranslate"><span class="pre">SBATCH</span></code> lines will adding <code class="docutils literal notranslate"><span class="pre">##</span></code> comment it out?</p>
+<ul>
+<li><p>Yes</p>
+<ul>
+<li><p>Thanks!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>How do we specify the output folder for the completed job?</p>
+<ul class="simple">
+<li><p>By default it is the folder where you launch the sbatch script from</p>
+<ul>
+<li><p>Can we specify some other folder to redirect the output?</p>
+<ul>
+<li><p>in your job script you typically have a line or lines that do the actual computation and produce output and you can redirect it then with “&gt;” to any path/file on the system that you have access to. Side note for later: If your computation is very input/output heavy (lots of writing every few miliseconds, very many writes), then you need to also be a bit careful where you redirect to as you don’t want the disk bandwidth to become the bottleneck of your calculation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--output=/SOMEDIR/%j.out</span></code> but mind the previous comment hereabove</p>
+<ul>
+<li><p>Thanks!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>In the 15th question, resv c2-[5,9,27],c3-19,c5-45… what c2-[5,9,27], c3-19 means specifically?</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cX-Y</span></code> is the name of the compute node, so if log in to one and type <code class="docutils literal notranslate"><span class="pre">hostname</span></code> it will give you this</p>
+<ul>
+<li><p>is it from X to Y or X-Y together is the name?</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">c2-5</span></code> is one node, <code class="docutils literal notranslate"><span class="pre">c2-[5,9,27]</span></code> is a shorthand for the three nodes <code class="docutils literal notranslate"><span class="pre">c2-5</span></code>, <code class="docutils literal notranslate"><span class="pre">c2-9</span></code> and <code class="docutils literal notranslate"><span class="pre">c2-27</span></code></p></li>
+</ul>
+</li>
+<li><p>[5,9,27] are reserved nodes? the rest are not?</p>
+<ul>
+<li><p>in this case all the nodes <code class="docutils literal notranslate"><span class="pre">c2-5</span></code>, <code class="docutils literal notranslate"><span class="pre">c2-9</span></code>, <code class="docutils literal notranslate"><span class="pre">c2-27</span></code>, <code class="docutils literal notranslate"><span class="pre">c3-19</span></code> and <code class="docutils literal notranslate"><span class="pre">c5-45</span></code> (so five nodes in total) are reserved</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resv</span></code> means that all the nodes listed are reserved for some reason (probably this course)</p></li>
+</ul>
+</li>
+<li><p>#SBATCH –reservation=nn9989k ,   #SBATCH –acount==nn9989k    both nn9989k?</p>
+<ul class="simple">
+<li><p>Yes , both nn9989k</p></li>
+</ul>
+</li>
+<li><p>The job doesn’t start, still pending. The jobid is increasing the whole time:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sbatch     &lt;- this should be /bin/bash and not /bin/sbatch</span>
+<span class="c1">#SBATCH --account=nn9989k</span>
+<span class="c1">#SBATCH --mem=1G</span>
+<span class="c1">#SBATCH --time=10:00</span>
+<span class="c1">#SBATCH --reservation=nn9989k</span>
+<span class="c1">#SBATCH --job-name=NINA</span>
+<span class="c1">#SBATCH --error=output-%j-error.out</span>
+<span class="c1">#SBATCH --output=output-%A-blah.out</span>
+<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;This script is running &quot;</span>
+
+sleep<span class="w"> </span><span class="m">60</span>
+hostname
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Was started with <code class="docutils literal notranslate"><span class="pre">./job.sh</span></code></p></li>
+<li><p>I would <code class="docutils literal notranslate"><span class="pre">scancel</span></code> it, fix the first line, and re-submit it with <code class="docutils literal notranslate"><span class="pre">sbatch</span> <span class="pre">job.sh</span></code></p></li>
+<li><p>The jobid changes too quickly to cancel with <code class="docutils literal notranslate"><span class="pre">scancel</span> <span class="pre">JOBID</span></code></p></li>
+<li><p>Worked with <code class="docutils literal notranslate"><span class="pre">scancel</span> <span class="pre">-u</span> <span class="pre">USER</span></code></p>
+<ul>
+<li><p>so problem solved? was the problem the first line?</p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple" start="31">
+<li><p>Is it the same in the real scenario like the picture “HPC dinner”, one job/user would be assigned with one core?</p>
+<ul class="simple">
+<li><p>yes but we also have many jobs that ask for more than a core and wait until the number of cores they ask for become available</p></li>
+<li><p>restaurant is still a good analogy. sometimes we reserve a table for 8 people and then the dinner party/group would be the “job”</p></li>
+</ul>
+</li>
+<li><p>General question: is it possible to copy all the output from the terminal to a file .txt using a command in linux?</p>
+<ul class="simple">
+<li><p>and the output is the output of a command? You can redirect the output from a command to a file with “&gt;”. Example:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> prints the directory content to your screen</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">&gt;</span> <span class="pre">directory-contents.txt</span></code> redirects the output to a file called “directory-contents.txt”</p></li>
+<li><p>did this answer the question?</p>
+<ul>
+<li><p>This is very useful and I did not remember exactly! But in the case I want to copy all the output (multiple command outputs, since the start of the session until the last line and output i got)? Is this possible? Thank you</p>
+<ul>
+<li><p>The way I would do it is to select the output with my mouse, open a new file, and then paste it into the file (in my case with mouse wheel but it seems better with right click). Is there any better way? If I wanted to see all commands I typed, I would use <code class="docutils literal notranslate"><span class="pre">history</span></code> command but I understand here you don’t want just the command but also the output.</p>
+<ul>
+<li><p>Great I did not know if there was a more accessible way, but this works too! I see there is not also a way to select all lines like Ctrl+shift+up arrow</p>
+<ul>
+<li><p>I am sure there is a way to split all output to go both to the screen and also to some file but I don’t think there is any more elegant way to recover “past” output since from terminal’s perspective this is already gone and forgotten.</p>
+<ul>
+<li><p>Good, now all is clear! Thanks a lot</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>If I don’t know how much time it needs for the job, and just give an estimated time period, e.g. for 48 hours, but it actually need 50 hours (longer than the estimated time), how could I handle this case?</p>
+<ul class="simple">
+<li><p>The scheduler will stop your job.</p></li>
+<li><p>see also question 16 on how and when we can help extending running jobs</p></li>
+<li><p>Is there a way to avoid wasting 48 hours to get to know that the job needs more time?</p>
+<ul>
+<li><p>what I do when it’s possible: grow the job from small system size to real system size and that makes testing this easier and hopefully I can extrapolate to the real job. But it will still take some calibration and some trial and error.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="q-a">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Q&amp;A</a><a class="headerlink" href="#q-a" title="Link to this heading"></a></h2>
+<ol class="arabic simple" start="34">
+<li><p>How to run interactive jobs?</p>
+<ul class="simple">
+<li><p>https://documentation.sigma2.no/jobs/interactive_jobs.html</p></li>
+</ul>
+</li>
+<li><p>Can you prolong/extent jobs yourself?</p>
+<ul class="simple">
+<li><p>No, not after the job started</p></li>
+<li><p>In special occations you can write the support team and we can extend it.</p></li>
+<li><p>Also see question 16</p></li>
+</ul>
+</li>
+<li><p>Looking at interactive session. We start with salloc right? When do we use srun?</p>
+<ul class="simple">
+<li><p>“depends” :-) but also see link under 34 where there are explicit examples</p></li>
+<li><p>it seems we recommend <code class="docutils literal notranslate"><span class="pre">salloc</span></code> on all NRIS clusters but with slightly different options (e.g. on Saga one has to indicate the max memory)</p>
+<ul>
+<li><p>Thank you!</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>How to estimate runtime?</p>
+<ul class="simple">
+<li><p>Try smaller sample job (parts of problem, only one iteration) and then try to estimate</p></li>
+<li><p>Ask for too much time in the start, maybe even maximum wall time allowed, e.g. 7 days. It will queue a bit longer but that’s okay if you then know better what to ask for the next time</p></li>
+<li><p>Always ask for a bit more time that you expect the job to run. So 8h or even 12h if you assume 6h. Once you are confident you acn go down a bit.</p></li>
+</ul>
+</li>
+<li><p>looking forward to hear more about how to run a program such as R or python, and particularly, how to execute scripts in it. Where do we find how we should actually use the HPC for the typical kind of jobs? I am not used to starting jobs on my own computer from the command line-so open a program, tell the program what to do, etc. I suppose this is a required skill for working with the cluster.</p>
+<ul class="simple">
+<li><p>This topic is outside the scope of this course. Running R or python scripts on HPC is not much different from running them on your local machine, unless you have some special parallelization code</p></li>
+<li><p>For the second part of your question : you shall refer to R or python documentation, both of them are made to be used from a command line, then these</p></li>
+<li><p>command-line commands can be executed on the cluster, just as we did this today.</p></li>
+</ul>
+</li>
+<li><p>How do I exit SAGA?</p>
+<ul class="simple">
+<li><p>type <code class="docutils literal notranslate"><span class="pre">exit</span></code> and hit Enter</p></li>
+</ul>
+</li>
+<li><p>When to use interactive jobs?</p>
+<ul class="simple">
+<li><p>Useful for debugging and establishing workflows and job scripts</p></li>
+<li><p>But at some point you should have a job script to use instead of an interactive session. better for sharing, reproducibility and more robust</p></li>
+<li><p>Useful if you want/need to test something without interference from other users and without interfering with other users’ work since you can allocate interactive node exclusively only for you for a certain time</p></li>
+<li><p>Useful if you need to debug a problem that crashes after few seconds and you don’t want to queue for hours every time between each crash</p></li>
+</ul>
+</li>
+<li><p>How do I navigate from where I start when logged into Saga (<code class="docutils literal notranslate"><span class="pre">home/&lt;username&gt;</span></code>), to my project directory (nnXXXXk)?</p>
+<ul class="simple">
+<li><p>You shall know the location of the project directory, then you use the unix command <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">&lt;PATH</span> <span class="pre">TO</span> <span class="pre">THE</span> <span class="pre">DIRECTORY&gt;</span></code> to get there, e.g. <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/cluster/projects/nnXXXXk</span></code> where XXXX is a project number</p>
+<ul>
+<li><p>Thanks, exactly what I was looking for.</p></li>
+</ul>
+</li>
+<li><p>One thing that helps me remembering where all the places are, is to add a symbolic link from my home folder to the other place.</p>
+<ul>
+<li><p>A good idea indeed, you can also write a so called alias in your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file, a command which executes some particular <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">PATH</span></code> command. E.g. <code class="docutils literal notranslate"><span class="pre">alias</span> <span class="pre">my_proj='cd</span> <span class="pre">&lt;PATH</span> <span class="pre">TO</span> <span class="pre">MY</span> <span class="pre">PROJ&gt;'</span></code> Then you only type <code class="docutils literal notranslate"><span class="pre">my_proj</span></code> and you get where you want. After changes in <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file you need to run <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">.bashrc</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="feedback-for-today">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Feedback for today</a><a class="headerlink" href="#feedback-for-today" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Please list one thing that you particularly liked</p>
+<ul>
+<li><p>I liked that you did the instruction sessions as a duo. Overall a very good course! Thanks!</p></li>
+<li><p>I liked the breakout rooms where you could ask questions</p></li>
+<li><p>Many instructors to help out! Very nice to have all questions answered at once.</p></li>
+<li><p>Its nice we can enter and leave any breakout room anytime so that we dont need to wait for our turn to ask a question</p></li>
+<li><p>Enjoyed the live coding parts of the course.</p></li>
+</ul>
+</li>
+<li><p>What we should improve/change for tomorrow or next edition</p>
+<ul>
+<li><p>in the grey boxes it is not immediately clear to me what content is supposed to be part of the script, and which are commands to run outside of that</p></li>
+<li><p>I was a bit confused what exactly the exercise was supposed to be. Maybe make that a little bit more clear next time :)</p></li>
+<li><p>If you have some trouble with the commands/scripts it’s a bit too fast and it may be hard to catch up. Maybe take more time to have the people that everything doesnt run smoothely for to follow</p></li>
+<li><p>The goal of the exercises was a bit unclear to me.</p></li>
+<li><p>It would be nice to repeat the session briefly after its done</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

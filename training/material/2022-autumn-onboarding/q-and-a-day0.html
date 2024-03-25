@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions and answers from HPC on-boarding Oct 2022, Day 0 (Oct 18) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Questions and answers from HPC on-boarding Oct 2022, Day 0 (Oct 18)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="questions-and-answers-from-hpc-on-boarding-oct-2022-day-0-oct-18">
+<span id="training-2022-autumn-onboarding-notes-day0"></span><h1><a class="toc-backref" href="#id3" role="doc-backlink">Questions and answers from HPC on-boarding Oct 2022, Day 0 (Oct 18)</a><a class="headerlink" href="#questions-and-answers-from-hpc-on-boarding-oct-2022-day-0-oct-18" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#questions-and-answers-from-hpc-on-boarding-oct-2022-day-0-oct-18" id="id3">Questions and answers from HPC on-boarding Oct 2022, Day 0 (Oct 18)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#your-wish-list" id="id4">Your wish list</a></p></li>
+<li><p><a class="reference internal" href="#icebreaker" id="id5">Icebreaker</a></p></li>
+<li><p><a class="reference internal" href="#questions" id="id6">Questions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#terminal-and-remote-login" id="id7">Terminal and remote login</a></p></li>
+<li><p><a class="reference internal" href="#poll-terminal" id="id8">Poll: terminal</a></p></li>
+<li><p><a class="reference internal" href="#poll-ssh" id="id9">Poll: ssh</a></p></li>
+<li><p><a class="reference internal" href="#poll-login-into-saga" id="id10">Poll: login into Saga</a></p></li>
+<li><p><a class="reference internal" href="#moving-around-and-looking-at-things" id="id11">Moving around and looking at things</a></p></li>
+<li><p><a class="reference internal" href="#exercise" id="id12">Exercise</a></p></li>
+<li><p><a class="reference internal" href="#finding-things" id="id13">Finding things</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id14">Exercise</a></p></li>
+<li><p><a class="reference internal" href="#create-modify-files" id="id15">Create/modify files</a></p></li>
+<li><p><a class="reference internal" href="#scripting" id="id16">Scripting</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id17">Exercise</a></p></li>
+<li><p><a class="reference internal" href="#composing-commands-with-pipes" id="id18">Composing commands with pipes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#feedback-for-today" id="id19">Feedback for today</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="your-wish-list">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Your wish list</a><a class="headerlink" href="#your-wish-list" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>How to access and use HPC for bioinformatics work (e.g. RNA-seq analysis using software such as Trinity)</p>
+<ul class="simple">
+<li><p>we shall plan a HPC Q&amp;A session for bioinformatics</p></li>
+</ul>
+</li>
+<li><p>Would like to follow the hands-on exercises</p>
+<ul class="simple">
+<li><p>great, we will do that during the course</p></li>
+</ul>
+</li>
+<li><p>when and how to use multithreading jobs</p>
+<ul class="simple">
+<li><p>we will discuss this in the follow up course <a class="reference external" href="https://documentation.sigma2.no/training/events/2022-11-best-practices-on-NRIS-clusters.html">Best Practices 1-3 Nov</a></p></li>
+</ul>
+</li>
+<li><p>Debugging and profiling HPC programs</p>
+<ul class="simple">
+<li><p>see answer to question 3</p></li>
+</ul>
+</li>
+<li><p>Using Visual Code Studio with the national HPC systems</p></li>
+<li><p>Fast storage available in the national HPC systems</p></li>
+<li><p>RDMA support in the national HPC systems</p></li>
+<li><p>GPU clusters available in the national HPC systems</p>
+<ul class="simple">
+<li><p>There will be separate course for GPUs at NRIS. See the <a class="reference external" href="https://documentation.sigma2.no/getting_started/tutorials/gpu.html">documentation</a></p></li>
+</ul>
+</li>
+<li><p>A couple of words about slurm scripts would be nice.</p>
+<ul class="simple">
+<li><p>great! we will do on day1</p></li>
+</ul>
+</li>
+<li><p>I’m working with IDUN, so highlighting some differences and similarities between IDUN and Saga/Fram/betsy would be nice</p>
+<ul class="simple">
+<li><p>let’s see our NTNU colleagues can say something</p></li>
+</ul>
+</li>
+<li><p>I would like to learn about Slurm to enhance the speed of my job. Also, it would be great if you could provide more specific courses regarding bioinformatics, such as Docker, Nextflow, etc.</p>
+<ul class="simple">
+<li><p>basic slurm parameters will be discussed during the course. And Part of this will include this in the follow up course <a class="reference external" href="https://documentation.sigma2.no/training/events/2022-11-best-practices-on-NRIS-clusters.html">Best Practices 1-3 Nov</a></p></li>
+</ul>
+</li>
+<li><p>How to apply for computing time. And succeed. :-)</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://documentation.sigma2.no/getting_started/applying_resources.html">documentation</a></p></li>
+<li><p>but also really good idea is to reach out to support near you and get feedback on your application before you apply. especially first-time applicants often don’t know the answers to questions they get asked.</p></li>
+</ul>
+</li>
+<li><p>Ways to estimate resource usage before submitting jobs, identify when/whether RAM vs processors are limiting the speed of a job completion</p>
+<ul class="simple">
+<li><p>Part of this will include this in the follow up course <a class="reference external" href="https://documentation.sigma2.no/training/events/2022-11-best-practices-on-NRIS-clusters.html">Best Practices 1-3 Nov</a></p></li>
+</ul>
+</li>
+<li><p>I would like to learn about how to apply for resources and how to access and use the HPC environment.</p>
+<ul class="simple">
+<li><p>We will plan something for next semester. For the time being see the <a class="reference external" href="https://documentation.sigma2.no/getting_started/applying_resources.html">documentation</a></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="icebreaker">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Icebreaker</a><a class="headerlink" href="#icebreaker" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>What are the methods you know that we can use to interact with a computer/phone/smart device (i.e. how can we tell a computer to perform some task for us)?</p>
+<ul>
+<li><p>I use voice to open maps</p></li>
+<li><p>Terminal</p></li>
+<li><p>Keyboard</p></li>
+<li><p>Hey Siri, Hey Alexa…</p></li>
+<li><p>Ansible</p></li>
+<li><p>putty terminal</p></li>
+<li><p>script</p></li>
+</ul>
+</li>
+<li><p>What do you know now about HPC/Linux/Unix that you wish somebody told/taught you earlier?</p>
+<ul>
+<li><p>write a script for anything non-trivial so that I can find it again</p></li>
+<li><p>Job scheduling</p></li>
+</ul>
+</li>
+<li><p>What aspect of Unix/terminals do you hope to get clarified today?</p>
+<ul>
+<li><p>how to compose commands</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="questions">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Questions</a><a class="headerlink" href="#questions" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Clicking on the slides for the presentation doesn’t load the slides</p>
+<ul class="simple">
+<li><p>The course material can be found <a class="reference external" href="https://training.pages.sigma2.no/tutorials/unix-for-hpc/index.html">here</a> and <a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/index.html">here</a>. Also, please see the <a class="reference external" href="https://documentation.sigma2.no/training/events/2022-10-hpc-on-boarding.html#course-material">official page for this course</a>.</p></li>
+<li><p>where is the link to slides which does not load?</p></li>
+</ul>
+</li>
+</ol>
+<section id="terminal-and-remote-login">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Terminal and remote login</a><a class="headerlink" href="#terminal-and-remote-login" title="Link to this heading"></a></h3>
+<p>https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/intro.html</p>
+<ol class="arabic simple" start="2">
+<li><p>I have just applied for user account. I haven’t received confirmation yet</p>
+<ul class="simple">
+<li><p>in this case you can still get most out of the course by watching the instructors type. I don’t know how long it will take for you to get the account</p></li>
+<li><p>could you send an email/Direct message to host? I shall request to speed up the procedure.</p></li>
+</ul>
+</li>
+<li><p>is bash and shell scripting the same?</p>
+<ul class="simple">
+<li><p>for our purposes it will be as on the clusters the default shell is bash. however, bash is not the only one. there is also zsh, fish, csh, and some other older shells around. they are all similar and have their own pros and cons. bash is the most popular shell/terminal language.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="poll-terminal">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Poll: terminal</a><a class="headerlink" href="#poll-terminal" title="Link to this heading"></a></h3>
+<p>You managed to open up a terminal/shell on your computer (add an “o”):</p>
+<ul class="simple">
+<li><p>yes: oooooooooooooooooooooo</p></li>
+<li><p>no:</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>What is the relationship between putty and the terminal?</p>
+<ul class="simple">
+<li><p>putty is a program that gives you a terminal interface on Windows. a nice alternative on Windows is either <a class="reference external" href="https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux">WSL</a> or https://mobaxterm.mobatek.net/</p></li>
+<li><p>but putty is basically a terminal for Windows but it can do more than that</p></li>
+</ul>
+</li>
+<li><p>What is the difference between windows power shell and command prompt on windows?</p>
+<ul class="simple">
+<li><p>on Windows there are many command line interfaces with their own languages: power shell, command prompt, WSL (see above), putty and others, git bash. in this course we are <em>not</em> using neither the power shell, nor the command prompt but <a class="reference external" href="https://gitforwindows.org/">Git for Windows</a></p></li>
+</ul>
+</li>
+<li><p>can i use git bash in windows?</p>
+<ul class="simple">
+<li><p>yes, <a class="reference external" href="https://gitforwindows.org/">Git for Windows</a></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="poll-ssh">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Poll: ssh</a><a class="headerlink" href="#poll-ssh" title="Link to this heading"></a></h3>
+<ol class="arabic simple" start="7">
+<li><p>You got a successful attempt at <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-V</span></code></p>
+<ul class="simple">
+<li><p>yes: ooooooooooooooooooooo</p></li>
+<li><p>no:</p></li>
+</ul>
+</li>
+<li><p>What does the V stand for?</p>
+<ul class="simple">
+<li><p>Version</p></li>
+<li><p>ahhh</p>
+<ul>
+<li><p>Most programs follow this standard -V</p></li>
+<li><p>many/most tools use <code class="docutils literal notranslate"><span class="pre">-v</span></code> or <code class="docutils literal notranslate"><span class="pre">--version</span></code> but ssh is a bit different</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ssh fingerprint can be found <a class="reference external" href="https://documentation.sigma2.no/getting_started/ssh.html">here</a> (for verifying the connection)</p></li>
+<li><p>Is there a difference between connecting to the cluster with putty and some other terminal?</p>
+<ul class="simple">
+<li><p>not really. once you are connected, it will behave the same and look the same. so if you managed to connect, it is fine and no reason to change it now</p></li>
+<li><p>different programs can differ in the way they allow to copy files or having multiple terminals open at the same time</p></li>
+</ul>
+</li>
+<li><p>can we use vnc viewer for saga for graphical login?</p>
+<ul class="simple">
+<li><p>in principle yes but I admit that I don’t know the latest status of that interface. what I know is that my colleagues at NRIS are working on a new tool to make that even easier, smoother, and more robust but I am not directly involved. but I will reach out and ask.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="poll-login-into-saga">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Poll: login into Saga</a><a class="headerlink" href="#poll-login-into-saga" title="Link to this heading"></a></h3>
+<p>Can you log into Saga and verify with <code class="docutils literal notranslate"><span class="pre">hostname</span></code>?</p>
+<ul class="simple">
+<li><p>yes:ooooooooooooo</p></li>
+<li><p>no:</p></li>
+<li><p>I don’t have a user account on saga: o</p></li>
+</ul>
+<ol class="arabic simple" start="12">
+<li><p>Regarding the suggesting to apply now and get access tomorrow: the registration is closed is it not?</p>
+<ul class="simple">
+<li><p>Registration to the course is closed, but you can still apply for an account for this course. We will pick that up and process it as quick as possible. Follow the instructions that you got in the course email.</p></li>
+</ul>
+</li>
+<li><p>I just got my account :)</p>
+<ul class="simple">
+<li><p>yay. welcome! 😃</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="moving-around-and-looking-at-things">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Moving around and looking at things</a><a class="headerlink" href="#moving-around-and-looking-at-things" title="Link to this heading"></a></h3>
+<p>https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html</p>
+<ol class="arabic simple" start="14">
+<li><p>We are all now expected to type with you?</p>
+<ul class="simple">
+<li><p>you can but it is not a problem if you get stuck or if you prefer to only watch as during the exercise you can try it with a helper around</p></li>
+</ul>
+</li>
+<li><p>How do you scroll through the manual pages?</p>
+<ul class="simple">
+<li><p>either page down and page up (use “q” to quit)</p></li>
+<li><p>or: CTRL+F (forward) and CTRL+B (back)</p></li>
+<li><p>or: up and down arrows</p>
+<ul>
+<li><p>aha. nice. I am not sure I ever tried</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>How did you stop the command you typed</p>
+<ul class="simple">
+<li><p>I didn’t watch closely but I abort commands with CTRL+C so in the linux world CTRL+C is not for copying but for aborting (“C” for cancel)</p></li>
+</ul>
+</li>
+<li><p>If the folder doesn’t exists, will it create one?</p>
+<ul class="simple">
+<li><p>please give more details about “it” (I was distracted and not sure what exactly you mean)</p></li>
+<li><p>Copying into a non-existing folder does not work</p></li>
+<li><ul>
+<li><p>aha thanks. no if the target folder does not exist, it will complain or create a new file with the content instead</p>
+<ul>
+<li><p>depends. if I do: <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">somefile</span> <span class="pre">somefolder/newfile</span></code> and <code class="docutils literal notranslate"><span class="pre">somefolder</span></code> does not exist, it will just complain and not create anything but indeed <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">somefile</span> <span class="pre">somefolder</span></code> creates a file <code class="docutils literal notranslate"><span class="pre">somefolder</span></code> if <code class="docutils literal notranslate"><span class="pre">somefolder</span></code> does not exist</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Are there any hints or guidance to use Paraview in Saga to manage a big amount of data?</p>
+<ul class="simple">
+<li><p>is the question on how and where to run paraview or is it about storage quota limitations?</p></li>
+<li><p>or asking differently: have you tried? and if yes, what problems did you experience? or is it about first-time use?</p></li>
+<li><p>Paraview is available as modules on Saga. On Day2 you will learn how to access software modules on HPCs</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="exercise">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Exercise</a><a class="headerlink" href="#exercise" title="Link to this heading"></a></h3>
+<p>https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html#exercise</p>
+</section>
+<section id="finding-things">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Finding things</a><a class="headerlink" href="#finding-things" title="Link to this heading"></a></h3>
+<p>https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html</p>
+<p>(but no problem to ask questions about previous episodes)</p>
+</section>
+<section id="id1">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Exercise</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html#exercise</p>
+</section>
+<section id="create-modify-files">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Create/modify files</a><a class="headerlink" href="#create-modify-files" title="Link to this heading"></a></h3>
+<p>https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/writing-files.html</p>
+<ol class="arabic simple" start="19">
+<li><p>Is there a difference between the “” and ‘’ quotation marks?</p>
+<ul class="simple">
+<li><p>as far as I know, no. you can use either.</p>
+<ul>
+<li><p>If you want to include “” or ‘’ in the text you need to use the other, eg. echo ‘test with “marks”’ &gt; output.txt works</p>
+<ul>
+<li><p>great point. or the other way: <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;test</span> <span class="pre">with</span> <span class="pre">'marks'&quot;</span> <span class="pre">&gt;</span> <span class="pre">output.txt</span></code></p></li>
+<li><p>another option is to use the \ character to ignore the character following it, so that would become  <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;test</span> <span class="pre">with</span> <span class="pre">\&quot;marks\&quot;&quot;</span> <span class="pre">&gt;</span> <span class="pre">output.txt</span></code> (and you can still use the same quotes inside the text)</p></li>
+</ul>
+</li>
+<li><p>Same as in Python then :)</p>
+<ul>
+<li><p>Yes</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>…While creating file in windows the name shouldn’t is it the same in linux?</p>
+<ul class="simple">
+<li><p>on both operating systems you have the choice on how you call the file. however, some operating systems have case-insensitive file systems. but in linux the names are case-sensitive (“somefile” and “someFile” are two different files). another difference is that in linux files that start with dot “.examplefile” are “hidden” and not shown during normal listing <code class="docutils literal notranslate"><span class="pre">ls</span></code> but to see them you nee</p></li>
+</ul>
+</li>
+<li><p>And if the name of file holds a wild character, how to escape it while using?</p>
+<ul class="simple">
+<li><p>you mean like a “*”? I am not sure you can even have that character in a linux file name</p>
+<ul>
+<li><p>You can, but “don’t try this at home” : <code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">ban\*an</span> <span class="pre">;</span> <span class="pre">ls</span> <span class="pre">ban???</span></code> will yield <code class="docutils literal notranslate"><span class="pre">ban*an</span></code> ; Possible, but not smart. Avoid the special characters, including space.</p></li>
+</ul>
+</li>
+<li><p>yes i meant “*” but you are right there will be no file with such character :)</p>
+<ul>
+<li><p>I just tested it and it is possible to have file names with stars but I don’t recommend it and don’t even want to show how to do it :-) to save you some trouble with removing and maybe accidentally removing too much.</p></li>
+<li><p>fine :)</p>
+<ul>
+<li><p>just for completeness, I did: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">touch</span> <span class="pre">&quot;test\*test&quot;</span></code> the “” character escapes/protects the special character but I don’t recommend this</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>can we use vscode as a text editor in this context?</p>
+<ul class="simple">
+<li><p>yes but vscode creates files on your computer but here we want to edit files on the remote system (in this case Saga). which vscode can in principle do as well but there you need to do some configuring.</p></li>
+</ul>
+</li>
+<li><p>ctr o not working om mac …</p>
+<ul class="simple">
+<li><p>thanks for raising this. it’s then the command key on mac</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="scripting">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Scripting</a><a class="headerlink" href="#scripting" title="Link to this heading"></a></h3>
+<p>https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html</p>
+<p>(but no problem to ask questions about previous episodes)</p>
+<ol class="arabic simple" start="24">
+<li><p>What’s up with the first line (#!/bin/bash) in Bash scripts?</p>
+<ul class="simple">
+<li><p>this line is called the “shebang” and tells the shell which interpreter to use to interpret the script. on a system where bash is the default shell this line is redundant and it will also work without. but it is a good idea to put it there since it communicates to computers what language to use (bash) but also communicates to humans reading this later what this script is written in. instead of bash, it could be python (<code class="docutils literal notranslate"><span class="pre">#!/usr/bin/env</span> <span class="pre">python</span></code>) or perl (<code class="docutils literal notranslate"><span class="pre">#!/usr/bin/env</span> <span class="pre">perl</span></code>) or something else.</p></li>
+<li><p>It’s probably better to use <code class="docutils literal notranslate"><span class="pre">#!/usr/bin/env</span> <span class="pre">bash</span></code> (works on all linux distributions) than <code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code> (works on linux distributions where <code class="docutils literal notranslate"><span class="pre">bash</span></code> is exactly in this place). I am writing this comment from a distribution where bash is not in <code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code></p></li>
+<li><p>What does /bin (or /usr/bin) do? Is it the location of… bash?</p>
+<ul>
+<li><p>yes, there is a folder called “bin” in the top level. top level in linux is “/” and below are folder like “/bin” and “/home” and below that are other folders or files. “/bin/bash” is a program called “bash” in the folder “bin”. try <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">/bin</span></code> to see everything that is in “/bin”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bin</span></code> stands for <code class="docutils literal notranslate"><span class="pre">binary</span></code> I believe - and this is typically where system executables are found</p></li>
+<li><p>Great, thanks! <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">/bin</span></code> is very green :o</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><ol class="arabic simple" start="25">
+<li><p>Maybe you wonder why you have to write <code class="docutils literal notranslate"><span class="pre">./myscriptfile.sh</span></code> instead of just <code class="docutils literal notranslate"><span class="pre">myscriptfile.sh</span></code></p></li>
+</ol>
+<ul class="simple">
+<li><p>This is because you have to specify where to find the executable file - i.e. “here”: <code class="docutils literal notranslate"><span class="pre">./</span></code> in this case. If the place the file is is not already in your <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> - the <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> is a variable (environment variable) that contains where to look for executables (or other files) - try <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$PATH</span></code> to see what this variable contains on your system</p></li>
+<li><p>but also the dot <code class="docutils literal notranslate"><span class="pre">.</span></code> denotes execution of a file?</p>
+<ul>
+<li><p>no the dot does not make it executable (<code class="docutils literal notranslate"><span class="pre">chmod</span></code> did that) but dot means “here in this folder”. <code class="docutils literal notranslate"><span class="pre">..</span></code> (two dots) mean “one level higher”. you can also try <code class="docutils literal notranslate"><span class="pre">../somescript</span></code> if the <code class="docutils literal notranslate"><span class="pre">somescript</span></code> is one level above</p></li>
+<li><p>but <code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">somescript.sh</span></code> executes it, i.e dot then space :)</p>
+<ul>
+<li><p>oh yeah. good point (pun not intended). this dot can execute scripts. there are so many ways … thanks for pointing this out</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>to demonstrate the difference between the two you can for fun try to create a script called “ls” (bad name) that prints something and compare <code class="docutils literal notranslate"><span class="pre">ls</span></code> and <code class="docutils literal notranslate"><span class="pre">./ls</span></code></p></li>
+</ul>
+</li>
+<li><p>What is the use of {} in scripts (for variables) and how does this differ from mere $variable?</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Exercise</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>https://training.pages.sigma2.no/tutorials/unixex-for-hpc/episodes/scripting.html#exercise</p>
+</section>
+<section id="composing-commands-with-pipes">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Composing commands with pipes</a><a class="headerlink" href="#composing-commands-with-pipes" title="Link to this heading"></a></h3>
+<p>https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html</p>
+<ol class="arabic simple" start="26">
+<li><p>what would be application of such pipes, it seems like it tries to do what you usually do in a programming language such as python or r, and it does it more practically. why should we use bash for this purpose?</p>
+<ul class="simple">
+<li><p>great question and you are right. anything we do in bash one can also do with Python or any other language. but sometimes the solution to a problem is so short in bash that it can be one line in bash but it would be 10 lines in Python. but take the tool that you know better. there are many examples where Python or R or other language will produce a clearer and more readable solution than bash would. especially file manipulations are often more compactly expressed in bash. but we should try to take the tool that we and our colleagues understand and that can also be understood 6 months later. it can be a very good exercise to try some of these manipulations both in Bash and in Python/R/Julia/Perl/… and compare.</p></li>
+<li><p>one problem with having a very clever long bash command is that we might forget it and have difficulties finding it in future. that can be an argument to put it into a script or a program. I use pipes for operations that I will not need to reproduce again 6 months later.</p></li>
+<li><p>Using grep as an example, in the early days of UNIX the memory was very limited. A long text once were to be analysed, it would not fit in the memory. The some wrote the grep, using syntax from the simple editor “ed”, G for global, RE for regular expression and P for print. In this way you broke the problem down to a single line at the time which could fit in the memory. It still apply if the file is in the TB or PB size.</p></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><ol class="arabic simple" start="27">
+<li><p>All the file structures we have been playing around with are the same we can see in WinSCP?</p></li>
+</ol>
+<ul class="simple">
+<li><p>I know I am not answering the question precisely but WinSCP is for transferring files between laptop/desktop and remote computer. It’s also a while I have used this file (20 years :-). But I guess the answer is yes: this tool can be used to fetch files or folders or upload files and folders and they will have the same directory structure and names as on the remote system. What I don’t know is what happens with file permissions and ownerships since they work differently on different operating systems.</p></li>
+</ul>
+</li>
+<li><ol class="arabic simple" start="28">
+<li><p>How does diff work when comparing files of different types?</p></li>
+</ol>
+<ul class="simple">
+<li><p>it really only makes sense I think for files with similar types because then the difference be hopefully small. if you compare a .docx file with a .pdf file (not good examples since they are binary files) then it will differ in everything and the “diff” will not be useful anyway.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="feedback-for-today">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Feedback for today</a><a class="headerlink" href="#feedback-for-today" title="Link to this heading"></a></h2>
+<p>One thing you thought was good:</p>
+<ul class="simple">
+<li><p>Excellent introduction, with a lot of useful tips and commands</p></li>
+<li><p>Great responses and follow-up to questions</p></li>
+<li><p>Excellent</p></li>
+<li><p>Nice pace</p></li>
+<li><p>Very informative and well prepared, thanks!</p></li>
+<li><p>good exercises</p></li>
+<li><p>The course is quite useful to me. I did many bioinformatics but I just searched and applied commands which I need while I did not understand it correctly. Hope to see another excellent content tomorrow.</p></li>
+</ul>
+<p>One thing we should change/remove/improve for tomorrow and next editions:</p>
+<ul class="simple">
+<li><p>a bit slow at times</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

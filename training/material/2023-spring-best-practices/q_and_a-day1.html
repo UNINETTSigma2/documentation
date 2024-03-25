@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions and answers from Best Practices on NRIS Clusters May 2023, Day 1 (May 9) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Questions and answers from Best Practices on NRIS Clusters May 2023, Day 1 (May 9)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="questions-and-answers-from-best-practices-on-nris-clusters-may-2023-day-1-may-9">
+<span id="training-2023-spring-best-practices-notes-day1"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Questions and answers from Best Practices on NRIS Clusters May 2023, Day 1 (May 9)</a><a class="headerlink" href="#questions-and-answers-from-best-practices-on-nris-clusters-may-2023-day-1-may-9" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#questions-and-answers-from-best-practices-on-nris-clusters-may-2023-day-1-may-9" id="id1">Questions and answers from Best Practices on NRIS Clusters May 2023, Day 1 (May 9)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#icebreaker-questions" id="id2">Icebreaker questions</a></p></li>
+<li><p><a class="reference internal" href="#questions-and-comments" id="id3">Questions and comments</a></p>
+<ul>
+<li><p><a class="reference internal" href="#questions-to-nris-infrastructure" id="id4">Questions to NRIS infrastructure</a></p></li>
+<li><p><a class="reference internal" href="#questions-comments-to-job-types-and-queue-systems-on-nris-clusters" id="id5">Questions/comments to Job Types and Queue Systems on NRIS Clusters</a></p></li>
+<li><p><a class="reference internal" href="#questions-comments-to-using-the-hpc-resources-effectively" id="id6">Questions/comments to Using the HPC resources effectively</a></p></li>
+<li><p><a class="reference internal" href="#questions-comments-to-summary-and-exercise-demo" id="id7">Questions/comments to Summary and exercise demo</a></p></li>
+<li><p><a class="reference internal" href="#feedback" id="id8">Feedback</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="icebreaker-questions">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Icebreaker questions</a><a class="headerlink" href="#icebreaker-questions" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>What would you like to get out of this workshop?</p>
+<ul>
+<li><p>learn more how to use HPC system for running AI analyses</p></li>
+<li><p>Confidence in using HPC facilities</p></li>
+<li><p>Other clusters than Saga, such as Colossus on TSD</p></li>
+<li><p>More about #SBATCH parameters and how to estimate memory, time, CPU etc in a script</p></li>
+</ul>
+</li>
+<li><p>Are you able to access Saga? Add your “o” to your option</p>
+<ul>
+<li><p>yes: oooooooo</p></li>
+<li><p>no: o</p></li>
+<li><p>maybe: had to reset password</p></li>
+<li><p>do we need to reset password again if we participated in the previous course?</p>
+<ul>
+<li><p>I am not sure, but try to log in and check that it works</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Are you a member of the nn9987k project on Saga when you type cost?</p>
+<ul>
+<li><p>yes:oooo</p></li>
+<li><p>no</p>
+<ul>
+<li><p>if no, where should people write to?</p></li>
+<li><p>Can not login to Saga?</p></li>
+<li><p>Do not have access to project after login
+The link to change password is : https://www.metacenter.no/user/</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="questions-and-comments">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Questions and comments</a><a class="headerlink" href="#questions-and-comments" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>how long does it take before new password is working after reset?</p>
+<ul class="simple">
+<li><p>15 minutes or less (as far as I know)</p></li>
+</ul>
+</li>
+<li><p>When are the recordings uploaded?</p>
+<ul class="simple">
+<li><p>usually after a week or two</p>
+<ul>
+<li><p>we will send out an email when it is ready</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<section id="questions-to-nris-infrastructure">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Questions to NRIS infrastructure</a><a class="headerlink" href="#questions-to-nris-infrastructure" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Do you know what GPFS is</p>
+<ul>
+<li><p>yes: o</p></li>
+<li><p>no:oooo</p></li>
+<li><p>https://www.ibm.com/docs/en/gpfs/4.1.0.4?topic=guide-introducing-general-parallel-file-system</p></li>
+</ul>
+</li>
+<li><p>Do you know what S3 storage is</p>
+<ul>
+<li><p>yes:</p></li>
+<li><p>no: ooooo</p></li>
+<li><p>https://www.javatpoint.com/aws-s3</p></li>
+</ul>
+</li>
+<li><p>Do you know what Infiniband is?</p>
+<ul>
+<li><p>yes: o</p></li>
+<li><p>no: oooo</p></li>
+<li><p>https://en.wikipedia.org/wiki/InfiniBand</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="questions-comments-to-job-types-and-queue-systems-on-nris-clusters">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Questions/comments to Job Types and Queue Systems on NRIS Clusters</a><a class="headerlink" href="#questions-comments-to-job-types-and-queue-systems-on-nris-clusters" title="Link to this heading"></a></h3>
+<ol class="arabic simple" start="3">
+<li><p>Comment: restaurant equivalent to Slurm backfill: “the table is reserved from 21:00 on but you can have it until then for a short dinner” :+1:</p></li>
+<li><p>When working with creating models I need to work more interactively for debugging and all that. How can that be done? I have been using Jupyter on the UiO system earlier. Spyder would even be better. is this possible?</p>
+<ul class="simple">
+<li><p>great question. for these situations it is impractical to submit a job and wait few hours for it to start. for this you can submit an interactive job where you get an interactive allocation on a node.</p></li>
+<li><p>more info here: https://documentation.sigma2.no/jobs/interactive_jobs.html</p></li>
+<li><p>inside an interactive allocation one can then start an editor or run debug/test jobs until the interactive allocation stops</p></li>
+</ul>
+</li>
+<li><p>Can Jupyter be connected to this HPC-resources?</p>
+<ul class="simple">
+<li><p>here you mean: it would be running in the browser on your computer and connect to a jupyter server on the cluster?</p>
+<ul>
+<li><p>Yes, prototypes with small amount of test data</p></li>
+<li><p>it is possible to run jupyter on the computer and connect it to a jupyter server via SSH. it is pity that we do not have good documentation on how to do that where I could point you to.</p></li>
+<li><p>These pages might answer parts of this questions; https://apps.sigma2.no</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>What is mpirun? vs srun</p>
+<ul class="simple">
+<li><p>For most practical work choose the one you like, if you need the options mpirun offer you might use mpirun, but avoid the -np option, this is set by SLURM. The performance using mpirun or srun is the same. For large jobs with a huge number of mpi ranks srun might yield a faster startup. Both mpirun and srun can start any script, just multiple instances of it. When there is no SLURM e.g. interactive work you need to use mpirun, so if you want you can always use mpirun.</p></li>
+<li><p>but when do you use it(either of them)? I probably missed the intro to it</p></li>
+<li><p>more info here: https://documentation.sigma2.no/jobs/guides/running_mpi_jobs.html</p></li>
+</ul>
+</li>
+<li><p>How to estimate number of tasks/processes? Is it always just one task unless you do parallell work in the job?</p>
+<ul class="simple">
+<li><p>we will have a session on this good question tomorrow. summary of the session: it typically requires calibration and trying few configurations to know which is the optimal number for that type of job. once you know, then you can keep that setting for the series of jobs.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="questions-comments-to-using-the-hpc-resources-effectively">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Questions/comments to Using the HPC resources effectively</a><a class="headerlink" href="#questions-comments-to-using-the-hpc-resources-effectively" title="Link to this heading"></a></h3>
+<ol class="arabic simple" start="8">
+<li><p>Is random access also bad for solid state disks?</p>
+<ul class="simple">
+<li><p>Random access is always bad, but how bad depends on the media. Random write is better than random read. (For quite obvious reasons?!)</p></li>
+</ul>
+</li>
+<li><p>Does $SCRATCH or $LOCALSCRATCH exist also on Colossus? Or what is the equivalent storage location there?</p>
+<ul class="simple">
+<li><p>I do not see anything related to a $LOCALSCRATCH here: https://www.uio.no/english/services/it/research/sensitive-data/help/hpc/job-scripts.html#Work_Directory, but $SCRATCH seems it is on a fast system, so might be equivalent in performance as the $LOCALSCRATCH on the other systems</p></li>
+</ul>
+</li>
+<li><p>When is it useful and/or necessary to use MPI programs? Is it commonly used for a single person performing “normal” data analysis?</p>
+<ul class="simple">
+<li><p>Any large scale program is MPI based, it can run with distributed memory. There is no limit of how many nodes you can run on. Take Betzy, at 1341 nodes and 172k cores one can (I have) run jobs using over 100k MPI ranks.</p></li>
+<li><p>it is one out of many mechanisms to make use of several cores. but it is not the only one. can you describe a bit more how your data analysis is? because whether it is useful/necessary, it “depends” what language/tool/library</p></li>
+<li><p>I usually use several bash scripts to do serial calculations. Bioinformatics</p>
+<ul>
+<li><p>and the bash scripts call python or R scripts/tools?</p></li>
+<li><p>yes, a mix of python and R, loading modules</p>
+<ul>
+<li><p>in this case, often mpirun is not so interesting but one parallelizes rather by splitting the problem into independent batches and one can parallelize using slurm jobarrays or similar. but some R and Python packages use OpenMP or MPI underneath and it can be difficult to know/see from the outside. Tomorrow we will have a session on this. Example for a Python package which can use OpenMP under the hood: https://documentation.sigma2.no/jobs/choosing-number-of-cores.html#code-may-call-a-library-which-is-shared-memory-parallelized</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>High volume production is also parallel work, but falls into the class of “naturally parallel” and hence gets little attention.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="questions-comments-to-summary-and-exercise-demo">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Questions/comments to Summary and exercise demo</a><a class="headerlink" href="#questions-comments-to-summary-and-exercise-demo" title="Link to this heading"></a></h3>
+<ol class="arabic simple" start="11">
+<li><p>Path where to find the demonstration project:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/cluster/projects/nn9987k/resources/scaling</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="feedback">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Feedback</a><a class="headerlink" href="#feedback" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Please name one thing that you liked about today</p>
+<ul>
+<li><p>…</p></li>
+</ul>
+</li>
+<li><p>What should we change/improve for tomorrow or next time?</p>
+<ul>
+<li><p>…</p></li>
+<li><p>…</p></li>
+<li><p>…</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

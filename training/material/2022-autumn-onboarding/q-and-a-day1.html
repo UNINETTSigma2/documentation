@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions and answers from HPC on-boarding Oct 2022, Day 1 (Oct 19) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=a7cc89b2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css?v=1790a8b9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css?v=59234cb2" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../../_static/statuspal_widget.js?v=e80d3d0a"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<div class="header-top">
+    <div class="inner-container">
+        <ul id="menu" class="menu">
+            <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/">
+                    <div class="site-logos site-logo-sigma">
+                        Sigma2 / NRIS
+                    </div>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
+                <a class="site-link" href="https://www.sigma2.no/ncc">
+                    <div class="site-logos site-logo-ncc">
+                        NCC
+                    </div>
+                </a>
+            </li> -->
+            <li class="menu-item site-active">
+                <a class="site-link" href="https://documentation.sigma2.no/">
+                    <div class="site-logos site-logo-docs">
+                        DOCS
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="mas-menu">
+            <div class="statuspal-icon-container">
+                <button id="statuspalWidget-btn"></button>
+            </div>
+            <div class="mas-login-container">
+                <div class="mas-login">
+                    Log in
+                </div>
+                <ul class="mas-dropdown-menu">
+                    <li><a href="https://www.metacenter.no/user/" class="mas-link">User</a></li>
+                    <li><a href="https://www.metacenter.no/mas/" class="mas-link">Projects</a></li>
+                </ul>
+            </div>
+            <button id="expandable-menu-btn" class="expandable-menu-btn">
+                <span class="expandable-menu-icon">ICON</span>
+            </button>
+        </div>
+    </div>
+    <div id="expandable-menu" class="expandable-menu"></div>
+</div>
+
+<!-- functionality for collapsible top-header -->
+<script>
+    document.getElementById("expandable-menu-btn").addEventListener("click", function() {
+        toggleExpandableMenu()
+    })
+
+    function toggleExpandableMenu() {
+        let expandableMenu = document.getElementById("expandable-menu");
+
+        if (expandableMenu.classList.contains("menu-expanded")) {
+            expandableMenu.classList.remove("menu-expanded");
+        }
+        else {
+            expandableMenu.classList.add("menu-expanded");
+            if (!expandableMenu.hasChildNodes()) {
+                createExpandableMenu(expandableMenu)
+            }
+        }
+    }
+
+    function createExpandableMenu(expandableMenu) {
+        const originalList = document.getElementById("menu");
+
+        let newList = originalList.cloneNode(true);
+        newList.classList.remove("menu")
+        let listItems = newList.children
+        for (let i = 0; i < listItems.length; i++) {
+            let item = listItems[i]
+            if (item.classList.contains('site-active')) {
+                item.remove()
+            }
+        }
+
+        let masLoginContainer = document.getElementsByClassName('mas-login-container')[0].cloneNode(true)
+        masLoginContainer.style.display = "block"
+        let newListItem = document.createElement('li')
+        newListItem.classList.add('menu-item')
+        newListItem.appendChild(masLoginContainer)
+        newList.appendChild(newListItem)
+
+        expandableMenu.appendChild(newList);
+    }
+
+</script>
+
+<!-- custom statuspal widget -->
+<div id="statuspalWidget-container"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        config = {
+            widgetBtnId: 'statuspalWidget-btn',
+            widgetDataContainerId: 'statuspalWidget-container',
+            statuspalUrl: "https://statuspal.eu/api/v2/status_pages/sigma2-nris/summary",
+            containerPosition: "position-top-right",
+            devMode: false,
+            sessionStorageKey: 'statuspalData',
+        }
+        initializeCustomStatuspalWidget(config)
+    })
+</script>
+
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Questions and answers from HPC on-boarding Oct 2022, Day 1 (Oct 19)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="questions-and-answers-from-hpc-on-boarding-oct-2022-day-1-oct-19">
+<span id="training-2022-autumn-onboarding-notes-day1"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Questions and answers from HPC on-boarding Oct 2022, Day 1 (Oct 19)</a><a class="headerlink" href="#questions-and-answers-from-hpc-on-boarding-oct-2022-day-1-oct-19" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#questions-and-answers-from-hpc-on-boarding-oct-2022-day-1-oct-19" id="id1">Questions and answers from HPC on-boarding Oct 2022, Day 1 (Oct 19)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#ice-breaker-question" id="id2">Ice Breaker Question</a></p></li>
+<li><p><a class="reference internal" href="#questions" id="id3">Questions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#why-use-a-cluster" id="id4">Why use a cluster</a></p></li>
+<li><p><a class="reference internal" href="#scheduling-jobs" id="id5">Scheduling jobs</a></p></li>
+<li><p><a class="reference internal" href="#poll-i-have-found-my-project" id="id6">Poll: I have found my project:</a></p></li>
+<li><p><a class="reference internal" href="#exercise-scheduling-slurm-jobs" id="id7">Exercise: Scheduling Slurm jobs</a></p></li>
+<li><p><a class="reference internal" href="#transferring-files" id="id8">Transferring files</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#feedback-about-today" id="id9">Feedback about today</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="ice-breaker-question">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Ice Breaker Question</a><a class="headerlink" href="#ice-breaker-question" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Have you experienced any computational analysis/tasks that was too big or too long for laptop or the desktop?</p>
+<ul>
+<li><p>yes when memory on laptop wasn’t enough</p>
+<ul>
+<li><p>same</p></li>
+</ul>
+</li>
+<li><p>doing density functional theory calculations</p></li>
+<li><p>doing transcriptomic analysis</p></li>
+<li><p>computing glacier ice flow (Navier-Stokes) on large grids for long time scales.</p></li>
+<li><p>yes, same here.It happens during RNA-seq analysis</p></li>
+<li><p>large seismic datasets</p></li>
+<li><p>LiDAR / SAR data</p></li>
+<li><p>Petrophyscial data</p></li>
+<li><p>yes, I need multiple cores to run my codes which I do not have on my laptop</p>
+<ul>
+<li><p>same here</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="questions">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Questions</a><a class="headerlink" href="#questions" title="Link to this heading"></a></h2>
+<section id="why-use-a-cluster">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Why use a cluster</a><a class="headerlink" href="#why-use-a-cluster" title="Link to this heading"></a></h3>
+<p>https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html</p>
+<ol class="arabic simple">
+<li><p>Not sure where to put the day’s questions, but is there a computational reason servers don’t have GUIs?</p>
+<ul class="simple">
+<li><p>this is the place for questions :-)</p></li>
+<li><p>traditionally the reason was that it’s easier/faster/cheaper to send characters/letters over the network than graphics but these days compute clusters are moving also towards graphical user interfaces such as Jupyter notebooks and similar computational notebooks, or running a visualization postprocessing graphically on the server</p></li>
+</ul>
+</li>
+<li><p>What will be a typical configurations of such a server if more than 40 people are simultaneously working on a project.</p>
+<ul class="simple">
+<li><p>for many people on the same computer (login nodes): we need many cores and lots of memory. then on the compute nodes it’s typically fewer users on a node.</p></li>
+<li><p>if you are interested in our actual hardware specs, this is what we have on login nodes: e.g. for Saga: https://documentation.sigma2.no/hpc_machines/saga.html</p></li>
+<li><p>And if you are interested in applying for resources then take a look here https://www.sigma2.no/high-performance-computing</p></li>
+<li><p>And also for the cloud service https://www.sigma2.no/nird-service-platform</p></li>
+<li><p>sorry but what do you mean with login nodes?</p>
+<ul>
+<li><p>It is a server (computer) that you ssh to from a laptop/desktop.</p></li>
+<li><p>will be clarified in a little bit but this is the “pizza box”/computer
+where we connect to, login to. when you connect to e.g. saga, you land
+on a “login node”. it’s a computer without its own screen. actually we
+have maybe 5 of those there? then from a login node you launch
+jobs/scripts which then run on compute nodes. instructors will say more
+about this soon.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I’ve heard about VNC, but what is it exactly? And how does it relate to working in a cluster?</p>
+<ul class="simple">
+<li><p>this is a graphical remote desktop so it provides a desktop that looks like own computer but is really running on the server/cluster where you can open a terminal. I see it as alternative to putty/mobaXterm/terminal</p></li>
+</ul>
+</li>
+<li><p>Do you have an iLO for managing your servers, or what are your procedures to monitor your server as a system manager</p>
+<ul class="simple">
+<li><p>what is iLO?</p>
+<ul>
+<li><p>I am not sure but a http local link to monitor the server, i guess.</p>
+<ul>
+<li><p>aha. we have various monitoring tools in place and are developing those: for instance monitoring file system load, network, the memory and CPU resource use. the clusters are a big complex system and on such scale things will fail on a weekly basis just based on statistics so monitoring is absolutely needed.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Is it possible to run graphics applications on a cluster (for instance, programs for viewing atomic/molecular structures)?</p>
+<ul class="simple">
+<li><p>yes it is possible. if you are on linux/mac, connect with X11 support. if you are on windows, I recommend https://mobaxterm.mobatek.net/</p></li>
+<li><p>however, running big heavy graphical applications on the login node can affect other users on the same node. these systems have often not been designed for this. if the data is big and difficult to move, it may be your only choice. if the data is tiny and easy to move, I would probably copy the data back to my computer and look at it on my computer. so “it depends” as in everything in computing :-)</p></li>
+<li><p>We will try to address this when we introduce the scheduler, why the HPC is optimised for “crunching” and not much for “viewing”</p></li>
+<li><p>It is possible to use ‘service remote desktop’ to run graphical applications see here for more details https://documentation.sigma2.no/getting_started/remote-desktop.html</p></li>
+</ul>
+</li>
+<li><p>In disk file command (df) one of the output is xfs itxfs same as nfs?</p>
+<ul class="simple">
+<li><p>Good observation. This is the local disk of the login node. There are local disks on compute nodes as well. These are only visible to the node you are in, so if you place a file here other computers can not see it. But these are not using parallel file system, so a good place to stage data. i.e. place your large input files that will be accessed many times during an job execution, only from one node are kept.</p>
+<ul>
+<li><p>but where can I see this? are we talking here about Saga or which cluster?</p></li>
+<li><p>i dont see it in my terminal but on the training pages the output of df -Th  | grep -v tmpfs , shows type</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul class="simple">
+<li><p>try <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-hT</span> <span class="pre">/localscratch</span></code></p>
+<ul>
+<li><p>yes it shows me type</p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple" start="7">
+<li><p>sinfo returns an untidy collection of numbers that is not easy to read through, i see the list of nodes but at the end there are long lists of numbers that is not informative, is that how it is supposed to look or there is something wrong here?</p>
+<ul class="simple">
+<li><p>It is more or less correct, but we can recommend to use <code class="docutils literal notranslate"><span class="pre">sinfo</span> <span class="pre">--summarize</span></code> to see the information a bit more condensed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sinfo</span></code> also has support for specifying specific parts of the system, e.g. if you want to see the status of nodes in the <code class="docutils literal notranslate"><span class="pre">accel</span></code> partition use <code class="docutils literal notranslate"><span class="pre">sinfo</span> <span class="pre">--partition</span> <span class="pre">accel</span></code></p></li>
+<li><p>You can try <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">sinfo</span></code> for more options</p></li>
+</ul>
+</li>
+<li><p>What does the <code class="docutils literal notranslate"><span class="pre">tmpfs</span></code> stand for/mean in the command <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-Th</span>&#160; <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-v</span> <span class="pre">tmpfs</span></code>?</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tmpfs</span></code> represents a temporary filesystem, so we can interact with these types of filesystems as if it was a filesystem, but all the data is only stored in RAM</p>
+<ul>
+<li><p>Follow up question: what is a filesystem?</p>
+<ul>
+<li><p>All computers have different parts, the CPU (Central Processing Unit) is responsible for performing the computation. In this context the filesystem is the place where we can store data permanently. We call it a filesystem for historical reasons and the computer can have multiple filesystems with different properties and attributes. E.g. On Saga all compute nodes have access to the global filesystem, but they also have a local fast filesystem that we can utilize for higher performance.</p></li>
+<li><p>Another way to look at it is as a collection of hardrives that are made to function as a unit and made accessible to store data.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>So the command <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-Th</span></code>  gets us the (d)isk (f)ree space that includes file (T)ypes in a (h)uman readable format. Then we use <code class="docutils literal notranslate"><span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-v</span> <span class="pre">tmpfs</span></code> This is piped (|) into grep which looks for instances where we in(v)ert the search for tmpfs. So the full command <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">-Th</span>&#160; <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-v</span> <span class="pre">tmpfs</span></code> is showing us times where it does not match the temporary file system match?</p>
+<ul class="simple">
+<li><p>That is indeed correct! Your analysis is perfect, and to verify that you can use <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">df</span></code> search for the relevant flags and then correlate that with <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">grep</span></code>, but I guess this might be what you did for your initial analysis :smile:</p>
+<ul>
+<li><p>It is, but came from the course. The documentation says “You can also explore the available filesystems…” then gives that command, which seemingly is a way to not explore the file systems</p>
+<ul>
+<li><p>to also give some context about where the teaching material comes from: it comes from an attempt to be as generic as possible and over time we have put in specifics about our cluster. there are probably places in the material which work on a “generic linux cluster” but maybe may not work so well on our cluster. but I am taking note of this so that we clarify this better in future</p>
+<ul>
+<li><p>We could probably have said that it is a way to explore  metadata about the filesystem :thinking_face:</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="scheduling-jobs">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Scheduling jobs</a><a class="headerlink" href="#scheduling-jobs" title="Link to this heading"></a></h3>
+<p>https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html</p>
+<ol class="arabic simple" start="10">
+<li><p>Are we expected to follow along and type?</p>
+<ul class="simple">
+<li><p>No, just watch</p></li>
+</ul>
+</li>
+<li><p>Why do we need to specify shebang <code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code>?</p>
+<ul class="simple">
+<li><p>on our clusters it will work also without since the default shell is bash. but it is good practice to specify it so that the script also runs on systems where the default shell might not be bash (I am now typing on a computer where this is the case so scripts that explicitly specify this are easier for me to run)</p></li>
+<li><p>even better than <code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code> (assumes that bash is in <code class="docutils literal notranslate"><span class="pre">/bin</span></code>) is <code class="docutils literal notranslate"><span class="pre">#!/usr/bin/env</span> <span class="pre">bash</span></code> (does not assume it)</p></li>
+<li><p>that shebang line specifies which interpreter to use to interpret the text/script below (just for the bigger picture)</p></li>
+<li><p>Can i user csh if def</p>
+<ul>
+<li><p>you can</p></li>
+<li><p>if you want to interpret the script with csh instead of bash, you would use <code class="docutils literal notranslate"><span class="pre">#!/usr/bin/env</span> <span class="pre">csh</span></code></p></li>
+<li><p>if you want to change your default shell to csh, that is in principle possible but I strongly advice against it since a number of tools on our cluster work well with bash and less well with other shells (e.g. the module system which we will mention later). So on my own computer I use fish (a different shell) but on cluster I do not change it and use bash as default.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>How long does it usually take to get an account accepted after applying for an account?</p>
+<ul class="simple">
+<li><p>I am unsure but here we are trying to process within minutes (?) but also watching instructors type and watching others screenshare during exercise is still useful.</p>
+<ul>
+<li><p>Yes, it is still useful.</p></li>
+</ul>
+</li>
+<li><p>Could you contact the host by email/direct message so that I can speed up the process?</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="poll-i-have-found-my-project">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Poll: I have found my project:</a><a class="headerlink" href="#poll-i-have-found-my-project" title="Link to this heading"></a></h3>
+<p>vote by adding a “o”:</p>
+<ul>
+<li><p>Yes: oooooooooooooooo</p></li>
+<li><p>No : o</p></li>
+<li><p>No, I don’t have a user account: o</p></li>
+<li><p>Yes, but I get a warning that setting locale failed, and that I should check my  locale settings + falling back to the standard locale (‘C’) 0</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://documentation.sigma2.no/training/material/2022-spring/q_and_a-day1.html">Solution to solve warning about locale failed</a>:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">LC_ALL</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">LANGUAGE</span><span class="o">=</span><span class="s2">&quot;en_US&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">LC_CTYPE</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">LANG</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>and if this solved it, you can add that to <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> on the so that you don’t have to retype it</p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple" start="13">
+<li><p>I have tried adding the above to my .bashrc and it is frozen with the following warning “-bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory”</p>
+<ul class="simple">
+<li><p>confirmed. just a sec looking for a solution</p>
+<ul>
+<li><p>I fixed it above, it should have been <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">LC_CTYPE=&quot;en_US.UTF-8&quot;</span></code></p></li>
+</ul>
+</li>
+<li><p>thank you! how do I update the .bashrc now it is stuck? I tried closing the terminal and</p>
+<ul>
+<li><p>You can reload <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> with <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/.bashrc</span></code></p></li>
+</ul>
+</li>
+<li><p>but it is stuck, and when I close the terminal and
+the</p>
+<ul>
+<li><p>working on it (I am recreating what you did so that I can suggest how to get out of it)</p></li>
+<li><p>I put that into my bashrc, I got the warning but it doesn’t get stuck so not sure what to suggest here. If you like, you can send an email to … with your username and I remove it from your .bashrc with administrator powers</p></li>
+<li><p>will do</p>
+<ul>
+<li><p>cheers. fixing …</p></li>
+<li><p>it is hopefully fixed now</p></li>
+<li><p>yes thanks!</p>
+<ul>
+<li><p>great :-)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>If this document (HackMD) behaves weird for you (e.g. your text disappears suddenly) can you please let us know here? I see sometimes text appear and disappear and my own text disappear and unsure what the reason is.</p>
+<ul class="simple">
+<li><p>yes</p></li>
+<li><p>yes</p></li>
+<li><p>and for me</p>
+<ul>
+<li><p>ok thanks for feedback. working on a solution.</p></li>
+<li><p>I have archived older questions to a different document. Hopefully it will work better now with a shorter document. If not, we have a backup solution that we can switch to if this becomes too painful.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>If you say that you want more than one core or node, do you have to specify what code should run on what core or node?</p>
+<ul class="simple">
+<li><p>No Slurm will run the same commands on all the nodes (of course there are ways around this, but we will not talk about that in this course as that is <em>very</em> advanced Slurm suage)</p>
+<ul>
+<li><p>So asking for more nodes will only repeat the same commands on each node? Not make the execution of the commands faster?</p>
+<ul>
+<li><p>Correct, you have to support multiple nodes/cores yourself. To support multiple nodes one can use MPI while locally on a single computer (with multiple cores) one can use OpenMP or other shared memory frameworks.</p></li>
+<li><p>Some programs already support this, while other times you may have to implement this support yourself</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Is there any way to specify that you need exactly batches of 10 cores at each node for a job? Do we have any control over locality?</p>
+<ul class="simple">
+<li><p>Yes! This is indeed possible, you can combine <code class="docutils literal notranslate"><span class="pre">--ntasks-per-node</span></code> with <code class="docutils literal notranslate"><span class="pre">--nodes</span></code> to achieve this behavior</p></li>
+</ul>
+</li>
+<li><p>Will there be a problem if multiple users request max number of cores? If I reserve 5 cores, is it going to be reserved for my job exclusively? or slurm does some smart CPU/core scheduling?</p>
+<ul class="simple">
+<li><p>Slurm resources are always exclusive, on some systems (like Saga) Slurm can share nodes between jobs (but the cores will still be exclusively used by each Slurm job), and on other systems (like Fram) it may not behave like this and reserve nodes exclusively for each job</p></li>
+</ul>
+</li>
+<li><p>Is there a way to do in the same sbatch job something that runs on say 8 cores (that would be for instance to compile some code), then run the compiled code on 512 cores, and in the end do some post processing with 32 cores. That would be in the same job so that it can run over the week-end, or while I am away (and not have to come back to submit these jobs separately)?</p>
+<ul class="simple">
+<li><p>Yes there is a way to achieve something like what you are asking for. The easiest way to do this is to use <a class="reference external" href="https://slurm.schedmd.com/sbatch.html#OPT_dependency"><code class="docutils literal notranslate"><span class="pre">--dependency</span></code></a> between jobs so that the jobs wait for each other. One way to achieve this is to create three different Slurm scripts, one for each step, then submit the first job and hold it (<code class="docutils literal notranslate"><span class="pre">--hold</span></code>) and then submit the second job with <code class="docutils literal notranslate"><span class="pre">--dependency</span></code> on the first job ID and then repeate for each subsequent step. Once all steps have been submitted you can release (<code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">release</span> <span class="pre">&lt;job</span> <span class="pre">id</span> <span class="pre">of</span> <span class="pre">first</span> <span class="pre">job&gt;</span></code>) the first job and all the others should wait their turn (or never run if the first job fails)</p>
+<ul>
+<li><p>OK, I will try that, thanks</p></li>
+</ul>
+</li>
+<li><p>I will also note that the first two steps can probably be combined here, the compile job is probably quick enough that you don’t loose too many compute hours by compiling with 512 tasks, however, for the subsequent post-processing, using <code class="docutils literal notranslate"><span class="pre">--depdenency</span></code> is a very good thing to do.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--depdendency</span></code> is also a very good technique to use when running heterogeneous jobs on different partitions (e.g. if one step requires GPUs, using <code class="docutils literal notranslate"><span class="pre">--depdendency</span></code> can be a very good way of speeding up your jobs by letting CPU only parts run on the CPU partition)</p></li>
+</ul>
+</li>
+<li><p>What is PEs when I try freepe command?</p>
+<ul class="simple">
+<li><p>PE stands for processor equivalent. This used in evaluating how many cpu hours it costs. simply if you run a job using one core for one hour , that is 1 cpu hour. But is you use <em>“a lot of memory”</em> then you will be charged for more than 1 cpu hour.  PE is a value calculated using this information. The formula used is (where KMEM is a constant deciding what is the value for <em>“a lot of memory”</em>  )</p></li>
+</ul>
+</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>PE= NumCPUs
+if(MinMemoryCPU&gt;KMEM){
+    PE=PE*(MinMemoryCPU/KMEM)
+}
+PE_hours = $PE * TimeLimit / 3600
+</pre></div>
+</div>
+<ol class="arabic simple" start="20">
+<li><p>If you want to run a python script from a batch script, what will be the working directory inside the python script?</p>
+<ul class="simple">
+<li><p>It will be the same directory as where you ran the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command</p></li>
+</ul>
+</li>
+<li><p>When is it helpful to ask for more than one node (or tasks per node or cpus per task or threads per core)?</p>
+<ul class="simple">
+<li><p>If you have a job that utilize MPI using more than one node can be a way to parallelize over even more cores than what a single node can offer</p></li>
+<li><p>What sort of software are you usually using? E.g. Python, R, a specific software like AlphaFold or other? So that I can give a more in-depth answer :slightly_smiling_face:</p>
+<ul>
+<li><p>Usually python with anaconda</p>
+<ul>
+<li><p>Excellent, then on a single node you could parallelize with the <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html"><code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> module</a></p></li>
+<li><p>To parallelize over multiple nodes you could use either <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/mpi4py.html"><code class="docutils literal notranslate"><span class="pre">mpi4py</span></code></a> or simpler use the <a class="reference external" href="https://www.dask.org/"><code class="docutils literal notranslate"><span class="pre">dask</span></code> framework</a> (We highly recommend this last one to automatically scale from a single core to a whole node to multiple nodes)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Thank you! How does this relate to parallelizing (if that is what it is called) using <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--array=x-y</span></code>?</p>
+<ul>
+<li><p>Slurm job array support is a different mechanism that is used to run many similar Slurm jobs in one go. Slurm job arrays are more suited for processing many files independently, e.g. if you had 10 files that all need the same processing, but there is no overlap (so usually you would do it in a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop and save the output to independent files).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>How can one monitor how much memory and cpu capacity is being use while the project is running? and how can one benchmark the performance?</p>
+<ul class="simple">
+<li><p>you could try the command: <code class="docutils literal notranslate"><span class="pre">sstat</span> <span class="pre">--jobs=your_job-id</span> <span class="pre">--format=jobid,cputime,maxrss,ntasks</span></code></p></li>
+<li><p>About the performance: first you need to look how your code scales over a certain nbr of cores.</p></li>
+<li><p>we have a tutorial: https://documentation.sigma2.no/jobs/choosing-memory-settings.html</p></li>
+<li><p>see also next question</p></li>
+</ul>
+</li>
+<li><p>Sometimes we might run something on hpc but not use all the capacities available, i mean the code is not optimized to be run on multiple cores and higher memory capacity, now the question is how can one track this and see how much of the requested capacity is used up while the code is running.</p>
+<ul class="simple">
+<li><p>we will talk about it at the Nov course but this is hopefully helpful:</p>
+<ul>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/jobs/choosing-number-of-cores.html">How to chose number of cores</a></p></li>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/jobs/choosing-memory-settings.html">How to estimate memory usage</a></p></li>
+</ul>
+</li>
+<li><p>in short, one needs to monitor and calibrate and I recommend to start small and grow the computation to more cores until I can see that it does not make sense to go further</p></li>
+<li><p>You could also do code-profiling (e.g. gprof) to see where the code spent the majority of the time. This helps for any optimization effort.</p></li>
+<li><p>And if the code is large and you need assistance about optimization, you could look here at the <a class="reference external" href="https://www.sigma2.no/advanced-user-support">advance user support service</a>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="exercise-scheduling-slurm-jobs">
+<h3>Exercise: <a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html#customising-a-job">Scheduling Slurm jobs</a><a class="headerlink" href="#exercise-scheduling-slurm-jobs" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Use the training project:<code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--account=nn9984k</span></code></p></li>
+</ul>
+</section>
+<section id="transferring-files">
+<h3><a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html">Transferring files</a><a class="headerlink" href="#transferring-files" title="Link to this heading"></a></h3>
+<ol class="arabic simple" start="24">
+<li><p>Is the hackmd (this document) now behaving better than earlier today?</p></li>
+</ol>
+<ul class="simple">
+<li><p>better: o</p></li>
+<li><p>same: 0</p></li>
+<li><p>worse:</p></li>
+</ul>
+<ol class="arabic simple" start="25">
+<li><p>Are there any file manipulations (from this section) you can do in terminal but can’t do in GUIs like WinSCP or FileZilla?</p>
+<ul class="simple">
+<li><p>the copying (scp) they all do</p></li>
+<li><p>later in the episode there are examples on how to create an archive out of many files (to copy one big file, fast, instead of thousands of tiny files, slow) and I am not sure whether this is available on those tools</p></li>
+<li><p>something we will look at tomorrow: https://documentation.sigma2.no/computing/responsible-use.html#transferring-data</p>
+<ul>
+<li><p>so there are even more ways to transfer data but <code class="docutils literal notranslate"><span class="pre">scp</span></code> is the most standard way on linux machines</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>If the data is stored on Educloud, for doing analysis on fox no file transfer is needed? that means files on Educloud are visible by fox, but is that the case for other sigma2 services or is it limited to fox?</p>
+<ul class="simple">
+<li><p>how do you access EduCloud from Fox? via scp? or is it mounted as a “folder”? (I am asking because I have never been on those systems but knowing how you access I can comment on access from other clusters)</p></li>
+<li><p>i don’t exacly know how to access it, but i assumed that the data stored on educloud is already on the same server where fox operates on.</p>
+<ul>
+<li><p>I will ask colleagues who work with that system to comment</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Is filezilla equally fasst as scp?</p>
+<ul class="simple">
+<li><p>I assume so because under the hood, also these tools use scp. But as the instructor says, it’s better one or few big files than many small files. So archive/pack the tiny files first before sending them over the network.</p></li>
+<li><p>also see: https://documentation.sigma2.no/computing/responsible-use.html#transferring-data</p></li>
+</ul>
+</li>
+<li><p>Imagine that the code to be run on Saga has some dependencies on some other libraries (for example nibabel package from pip python). Who will install additional dependencies in Saga? Will I get permission to install such things? What if my code/script is trying to do the installation by doing things like git, pip install or nuget-install? Will my script have access to the WWW?</p>
+<ul class="simple">
+<li><p>first question: yes you can install. example: https://documentation.sigma2.no/software/userinstallsw/python.html</p></li>
+<li><p>also EasyBuild and containers are available to users</p></li>
+<li><p>second question: yes the script should have access to network. I write should and not will because it goes through a proxy which should let through “typical” things like git clone etc. So if it does not work, please reach out to us.</p></li>
+<li><p>More on software tomorrow</p></li>
+</ul>
+</li>
+<li><p>Where is the best place for storing large data that are going to be analyzed? Is it somewhere on home directory? or somewhere else?</p>
+<ul class="simple">
+<li><p>You could consider NIRD storage (see here applying https://www.sigma2.no/data-storage), which is mounted to the national clusters.</p></li>
+<li><p>how large is “large”? and assuming that this is data that is not finished yet and not archived yet but still living and growi</p></li>
+<li><p>in the order of a few TB</p></li>
+<li><p>New NIRD platform has an initial capacity of 32 TB with a possibility of extending it up to 70 TB (future).</p></li>
+<li><p>how do you access the project folder? where is this directory?</p>
+<ul>
+<li><p>https://documentation.sigma2.no/files_storage/clusters.html</p></li>
+<li><p>https://documentation.sigma2.no/files_storage/quota.html</p></li>
+</ul>
+</li>
+<li><p>in project folder but not in home. project folder is less limited in terms of quota. if the project folder is not large enough, please reach out to us.</p></li>
+</ul>
+</li>
+<li><p>How to transfer from repository (e.g NeLs) to HPC using scp</p>
+<ul class="simple">
+<li><p>what is NeLs? does it provide command line/ shell access?</p></li>
+<li><p>https://nels.bioinfo.no/</p></li>
+<li><p>In NeLS you can find ssh connections detail under My Profile. Then you can ssh to  NeLS and use scp there to transfer data to for instance Saga.</p></li>
+</ul>
+</li>
+<li><p>My script after doing a lot of computations, generates a GUI window, where the user can do live interaction with the processed 3D dataset . Can I do such things with Saga? Is there a way to get a GUI instead of a terminal? If No, how can I do such tasks(interactive visualization)?</p>
+<ul class="simple">
+<li><p>first step: I would separate the computation from the interaction. then the interaction work can either happen on the laptop or on the remote system. it is possible to log in graphically to the clusters also (use mobaxterm if you are on windows) if the graphical analysis is not too heavy to not block the login node for others.</p></li>
+</ul>
+</li>
+<li><p>Xconnections supported?</p>
+<ul class="simple">
+<li><p>yes</p></li>
+</ul>
+</li>
+<li><p>Who is helping out answering all these questions? You are doing a great job!</p>
+<ul class="simple">
+<li><p>thanks! couple of people :-) (the staff)</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="feedback-about-today">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Feedback about today</a><a class="headerlink" href="#feedback-about-today" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>one thing that was good and we should keep</p>
+<ul>
+<li><p>Those who manage this hackmd file, i am impressed, this is very pro! the way the questions are covered on the go is very interesting.</p>
+<ul>
+<li><p>we will try to make this more robust. it has been a bit jumpy but we have alternatives</p></li>
+</ul>
+</li>
+<li><p>would be nice if these files are aviabable for some time after the course.</p>
+<ul>
+<li><p>absolutely: https://documentation.sigma2.no/training/material.html</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>name one thing we should change/remove/improve for tomorrow and next time</p>
+<ul>
+<li><p>the lectures can be a bit to more the point and consise, but great anyway.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
