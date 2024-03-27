@@ -48,9 +48,13 @@ avail` search.
 
 ## How to load a module
 
-In order to make, for instance, the NetCDF library available issue the command:
+In order to make, for instance, the NetCDF library available, get the full list of available netCDF modules first by typing: 
 
-	module load netCDF/4.4.1.1-intel-2018a-HDF5-1.8.19
+	module avail netCDF
+
+Pick up one from the list (for example netCDF/4.9.2-gompi-2023a) and then issue the command:
+
+	module load netCDF/4.9.2-gompi-2023a
 
 Note that we currently do **not have** default modules on NRIS machines, so you need to write full module name when loading!
 
@@ -76,13 +80,13 @@ option instead.
 
 ## How to switch to a different version of a module
 
-Switching to another version is similar to loading a specific version. As an example, if you want to switch from the current loaded netCDF to an older one; netCDF/4.4.0-intel-2016a:
+Switching to another version is similar to loading a specific version. As an example, if you want to switch from the current loaded netCDF to an older one; netCDF/4.9.0-gompi-2022b:
 
-	module switch netCDF/4.4.1.1-intel-2018a-HDF5-1.8.19 netCDF/4.4.0-intel-2016a
+	module switch netCDF/4.9.2-gompi-2023a netCDF/4.9.0-gompi-2022b
 
 This, more compact syntax will fortunately also work:
 
-	module switch netCDF netCDF/4.4.0-intel-2016a
+	module switch netCDF netCDF/4.9.0-gompi-2022b
 
 ```{note}
 We are using self-contained modules in NRIS, meaning that a given module

@@ -20,16 +20,8 @@ The NIRD can be accessed via the following address
 login.nird.sigma2.no
 ```
 
-The login credentials are the same as for the old NIRD.
-
 You will be logged into your home area `/nird/home/$USERHOME`
 
-
-```{note}
-You as user are expected to migrate data from the old $HOME folder to the 
-new $HOME folder by yourself.  Please see {ref}`access to old NIRD` session
-on how to do it.
-```
 
 ## Software access
 

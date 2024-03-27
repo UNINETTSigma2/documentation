@@ -55,6 +55,13 @@ All times are Local time in Oslo, Norway.
 - 11:15 - 12.00 - [How to choose the number of cores](https://documentation.sigma2.no/jobs/choosing-number-of-cores.html#choosing-number-of-cores) (Radovan)
 - 12:00 - 12:15 - Q&A
 
+```{note}
+ Video Recordings and Q&A from Day 1:
+ - [Video](https://www.youtube.com/watch?v=qcHSxm5i9Oo)
+ - [Q&A notes](https://md.sigma2.no/qanda-archive-best-practices-spring2024)
+  
+```
+
 **Day2 - Thursday 7th March 2024**
 
 - 10:00 - 10:55 - [Software Installation as user with Easy Build](https://documentation.sigma2.no/software/userinstallsw/easybuild.html) (Dan) 
@@ -64,7 +71,7 @@ All times are Local time in Oslo, Norway.
 
 **Day3 - Thursday 23rd May 2024**
 
-- 10:00 - 11:00 - [File Transfer](https://documentation.sigma2.no/files_storage/file_transfer.html)
+- 10:00 - 11:00 - File transfer: {ref}`file-transfer`
 (Dhanya)
 - 11:00 - 11:15 - Break
 - 11:15 - 12:00 - [Data Storage(NIRD)](https://documentation.sigma2.no/files_storage/nird_lmd.html) (Dhanya)

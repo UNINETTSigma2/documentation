@@ -334,7 +334,7 @@ srun ./mycode
          - based on what Øystein just said: I am transferring a folder, do I need to specify -r when transferring a folder to get all files?
              - the `a` is used to tell rsync that you should consider files in folders and subfolders - in `scp` () it would be `r`
                  - ah yes
-             - according to my limited knowledge, no. example for transferring files and folders: https://documentation.sigma2.no/files_storage/file_transfer.html#transferring-files-between-your-computer-and-a-compute-cluster-or-storage-resource
+             - according to my limited knowledge, no. example for transferring files and folders: {ref}`file-transfer`
 
 33. Som you dont need to be logged into FRAM to move something to FRAM? 
     - that's right. you still need to authenticate, though. If you use SSH keys, then the authentication can happen "under the hood" and it can look like that you can transfer files without providing a password. 

@@ -21,7 +21,6 @@ The process for depositing a dataset in the Archive consists of the following st
 - {ref}`Upload the dataset.  <Section-Upload-Dataset>`
 - {ref}`Provide secondary metadata.  <Provide-Secondary-Optional-Metadata>`
 - {ref}`Publish the dataset.  <Publish-the-dataset-Archive>`
-- {ref}`Appendix A Metadata Schema for Datasets. <Appendix-A-Metadata-Schema-for-Datasets>`
 
 The following sub-sections describe these stages.
 
@@ -239,7 +238,6 @@ Figure 13: Screenshot of the version dataset upload
 
 Once the new version has been published you will see additional text on the landing page indicating the dataset replaces a previous version with a link to the version it replaces. A similar link to the previous dataset will also appear when you access the dataset from the *List datasets*  menu item.
 
-**NOTE:** Data in previous versions of the dataset are still accessible unless you request access to a previous version to be terminated (see Section {ref}`Terminating Datasets <Section-Terminating-Datasets>`  ).
 
 ## Cloning Metadata
 
@@ -251,15 +249,17 @@ Once the dataset has been uploaded you will be presented with a pre-filled metad
 
 (Section-Terminating-Datasets)=
 
-## Terminating Datasets
+## Terminating or Withdrawal of Datasets
 
-You can remove access to a dataset you have published by submitting a terminate request to the Archive. The terminate request page is accessible either from the landing page by clicking the *Manage* link, or from the *List datasets*  menu, selecting the dataset you want to terminate, click the *Manage* menu (see Figure 10).
+Normally, published datasets will not be deleted before the end of the retention period specified in the [depositor agreement](https://www.sigma2.no/research-data-archive-depositor-agreement). Beyond the retention period datasets may be deleted in the case of compelling technical reasons. In this case the deletion is first announced on the Research Data Archive front page and on the dataset’s landing page. This announcement is visible for a period of one year. During this grace period anyone having interest in maintaining the dataset can renovate the retention time by contacting the [archive.manager@nris.no](mailto:archive.manager@nris.no).
+
+Within the retention period, only exceptional reasons (such as copyright violation, see the [depositor agreement](https://www.sigma2.no/research-data-archive-depositor-agreement)) will be considered valid for the deletion or withdrawal of datasets from the archive. In this case you can request termination of your published dataset by filling in the  terminate request page which is accessible either from the landing page by clicking the *Manage* link, or from the *List datasets*  menu, selecting the dataset you want to terminate, click the *Manage* menu (see Figure 10).
 
 **NOTE:** the *Manage* menu is only available for published datasets. Clicking the *Request termination*  link will display the dataset termination request page. You will need to supply a reason why you wish the dataset to be terminated.
 
-Once you have submitted your request it will be reviewed by the Archive Manager who may contact you to further discuss the request. All stakeholders will be informed of the request and providing there are no objections access to the dataset will be removed.
+Once you have submitted your request it will be reviewed by the Archive Manager who may contact you to further discuss the request. All stakeholders (the creators of the dataset and the rights holders) will be informed of the request and providing there are no objections access to the dataset will be removed.
 
-**NOTE:** the metadata for the terminated dataset will still be visible, but there will be clear indication that the dataset has been terminated as well as a reason for termination. This is to ensure existing articles that reference the dataset have valid links.
+In these cases the metadata for the terminated dataset will still be visible, but there will be clear indication that the dataset has been terminated as well as a reason for termination. This is to ensure existing articles that reference the dataset have valid links.
 
 ## Searching and Accessing Datasets
 
@@ -309,7 +309,94 @@ If you use a dataset it is good practice to cite the dataset in any articles you
 ![the_landing_page_with_dataset_citation](imgs/figure_17_screenshot_of_landing_page_with_dataset_citation.png "landing page with dataset citation")
 Figure 17: Screenshot of landing page with dataset citation
 
-(Appendix-A-Metadata-Schema-for-Datasets)=
+## Archive API
+
+The archive provides a set of APIs for programmatic access. The publicly accessible APIs focus on search and access:
+- `https://search-api.web.sigma2.no/norstore-archive/metadata/api/basic-search/dois?<optional-argument>`
+    - A GET request that returns the list of DOIs for published datasets as a JSON string with the following schema:
+    ```
+    {"Total Datasets": <n>, 
+     "DOIs": [{"status": <status>,
+               "date_published": <yyyy-mm-dd>,
+               "doi": <string>
+               }]}
+    ```
+    - The API can take the optional arguments: `before=<yyyy-mm-dd>` to return published datasets before a given date and `after=<yyyy-mm-dd` to return published datasets after a given date.
+- `https://search-api.web.sigma2.no/norstore-archive/metadata/api/basic-search/dataset?doi=<string>`
+    - A GET request that returns the metadata for a given dataset DOI. The dataset schema is:
+    ```
+    {"Dataset": {"Category": <string>,
+     "Publication": [{
+        "Status": <string>,
+        "isPrimary": <boolean>,
+        "Reference": {"URL": <string>,
+                      "DOI": <string>,
+                      "Citation": <string>}
+     }],
+        "Title": [<string>],
+        "License": {"Name":<string>,
+                    "URI": <string>,
+                    },
+        "Label":[<string>],
+        "State": <string>,
+        "Contents-Link": <url>,
+        "Description": [<string>],
+        "Access_Rights": {"Public": <string>},
+        "download_url":<s3 url>,
+        "Extent": <number>,
+        "Publisher": <string>,
+        "Language": [{"Long_Name": <string>,
+                      "Shors_Name: <string>
+        }],
+        "Created": <string>,
+        "Rights_Holder": {"Person": {
+                          "First_Name: <string>,
+                          "Last_Name: <string>
+        }},
+        "Submitted": <string>,
+        "Data_Manager": {"Person": {
+                         "First_Name": <string>,
+                         "Last_Name": <string>
+        }},
+        "Identifier": <string>
+        "Creator": [{"Person": {
+                     "First_Name": <string>,
+                     "Last_Name": <string>
+        }}],
+        "Contributor": [{"Person: {
+                         "First_Name: <string>,
+                         "Last_Name": <string>
+        }}],
+        "Subject": [{"Domain": <string>,
+                     "Field": <string>,
+                     "Subfield": <string>}]
+
+     }}
+    ``` 
+    - The Contributor, Rights Holder, Data Manager and Creator can also hold organisations with the schema:
+    ```
+    "Organisation": {
+        "Long_Name": <string>,
+        "Short_Name": <string>
+    }
+    ```
+    - The `download_url` contains a link to the S3 bucket containing all the data that can be downloaded.
+- `https://search-api.web.sigma2.no/norstore-archive/metadata/api/basic-search/tableofcontents?identifier=<string>`
+    - A GET request to return the JSON string containing the tableofcontents for a given DOI. The schema of the tableofcontents is:
+    ```
+    {"Total_Files": <number>,
+     "Previous_Page" <url or NULL>,
+     "Next_Page": <url or NULL>,
+     "TableOfContents": [{
+        "Fixity_Algorithm": <string>, "File_Name": <string>, 
+        "Format": <string>, 
+        "Extent": <number>, 
+        "Fixity": <string>
+     }]
+    }
+    ```
+- `https://search-api.web.sigma2.no/norstore-archive/oai/v1.0?verb=<verb>`
+    - A GET request that adopts the OAI-PMH protocol (see {ref}`[10] <references-archive>`). The API is primarily used for harvesting metadata for other registries. The `metadataPrefix=oai_dc` should be used as only the terms that correspond to Dublin Core are returned. The output format is XML.
 
 ## Appendix A: Metadata Schema for Datasets
 
@@ -318,7 +405,7 @@ The Research Data Archive uses the Dublin Core metadata standard (ISO 15836-1:20
 | Term          | DCMI Reference | Multiplicity   | Description   |
 | ------------- | -------------- | ------------   | ------------- |
 | Access Rights | [http://purl.org/dc/terms/accessRights](http://purl.org/dc/terms/accessRights) | 1..n | Information on who can access the dataset if the dataset is private. Requires information on the user (first and last name and email). Default is Public.  |
-| Article  |                |  1           | The article that either describes the dataset, or for which the dataset was created. Articles can either be Published, accepted for publication, in preparation, a conference proceeding, or no publication. Ideally, the dataset should be used in a publication.      |
+| Article  |                |  1           | The article that either describes the dataset, or for which the dataset was created. Articles can either be Published, accepted for publication, in preparation, a conference proceeding, or no publication. Ideally, the dataset should be used in a publication.     |
 | Category | | 1 | The rough category that the dataset fits into. This can be: Calibration, Experiment, Image, Model, Observation, Simulation, Software. |
 | Created on| [http://purl.org/dc/terms/created](http://purl.org/dc/terms/created) | 1 | The date that the dataset was created. This should be the date when you created or generated the data and not the date when the data was assembled for archiving.|
 | Creator | [http://purl.org/dc/terms/creator](http://purl.org/dc/terms/creator)| 1...n | The people or person and/or organisation that created the data. The creators appear in the citation which describes how the dataset should be cited.|
@@ -326,7 +413,7 @@ The Research Data Archive uses the Dublin Core metadata standard (ISO 15836-1:20
 | Depositor | [http://purl.org/dc/terms/contributor](http://purl.org/dc/terms/contributor) | 1...n | The people or person that archives the dataset (either uploading the data, or supplying the metadata or both). In some cases a dataset may consist of data from more than one source where different researchers have access to the different datasets resulting in different researchers uploading the data to the same dataset.|
 | Description | [http://purl.org/dc/terms/description](http://purl.org/dc/terms/description) | 1 | A description of the dataset. Ideally, the description should cover what the dataset is, what data is contained and how to use it (or links to resources describing how to use the data, or a reference to a file in the dataset describing how to use the data).|
 | Language | [http://purl.org/dc/terms/language](http://purl.org/dc/terms/language) | 1...n | The language any text material in the dataset is written in. This can either be English or Norwegian. |
-| License | [http://purl.org/dc/terms/license](http://purl.org/dc/terms/license) | 1 | A link to the license for the dataset that governs the use and distribution of the dataaset. A selection of licenses is provided with the default being CC-BY-4.0. |
+| License | [http://purl.org/dc/terms/license](http://purl.org/dc/terms/license) | 1 | A link to the license for the dataset that governs the use and distribution of the dataset. A selection of licenses is provided with the default being CC-BY-4.0. |
 | Rights | [http://purl.org/dc/terms/rights](http://purl.org/dc/terms/rights)| 1 | A description of the various property rights associated to the resource. Ideally, this should be a link to a document describing the rights for a dataset.|
 | Rights Holder | [http://purl.org/dc/terms/rightsHolder](http://purl.org/dc/terms/rightsHolder) | 1 | The person or organisation that either holds rights on the dataset, or can act as a contact person for queries on the dataset rights. |
 | State | | 1 | The coarse description of dataset state. This can either be raw in the case of unprocessed data, or derived in the case of processed data where the original content is not archived.|
@@ -384,3 +471,5 @@ In case of questions or comments please email the archive manager at: [archive.m
 
 [9] DCMI: DCMI Metadata Terms.
 [https://www.dublincore.org/specifications/dublin-core/dcmi-terms/](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/)
+
+[10] Open Archives Initiative Protocol for Metadata Harvesting [http://www.openarchives.org/pmh/](http://www.openarchives.org/pmh/)

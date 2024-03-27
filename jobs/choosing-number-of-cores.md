@@ -3,13 +3,13 @@
 # How to choose the number of cores
 
 ```{warning}
-- Asking for too few can lead to underused nodes or longer run time
-- Asking for too too many can mean wasted CPU resources
+- Asking for too few cores can lead to underused nodes or longer run time
+- Asking for too many cores can mean wasted CPU resources
 - Asking for too much can mean a lot longer queuing
 ```
 
 ```{contents} Table of Contents
-    :depth: 3
+:depth: 3
 ```
 
 
@@ -31,12 +31,6 @@ strategies.
 Note that **you don't have to go through this for every single run**. This is
 just to calibrate a job type. If many of your jobs have similar resource
 demands, then the calibration will probably be meaningful for all of them.
-
-
-## Using Arm Performance Reports
-
-(This currently does not work because of network routing issues.  We are
-working on restoring this.)
 
 
 ## Using top
@@ -148,16 +142,20 @@ You might get the following timings:
 
 | Number of cores | Time spent in mybinary |
 |-----------------|------------------------|
-|   1             |      6m59.233s         |
-|   2             |      3m33.082s         |
-|   4             |      1m52.032s         |
-|   8             |      0m58.532s         |
-|  16             |      0m42.930s         |
-|  32             |      0m29.774s         |
-|  64             |      0m46.347s         |
-| 128             |      1m52.461s         |
+|   1             |      7m21s             |
+|   2             |      2m21s             |
+|   4             |      1m15s             |
+|   8             |      0m41s             |
+|  16             |      0m27s             |
+|  32             |  (technical problem)   |
+|  64             |      0m46s             |
+| 128             |      2m07s             |
 
 Please try this. What can we conclude? And how can we explain it?
+
+Conclusions:
+- For this particular example it does not make sense to go much beyond 16 cores
+- Above 8 cores communication probably starts to dominate over computation
 
 
 ## Using seff
@@ -172,17 +170,17 @@ Run with 4 cores:
 ---
 emphasize-lines: 8-9
 ---
-Job ID: 5690604
+Job ID: 10404723
 Cluster: saga
-User/Group: user/user
+User/Group: someuser/someuser
 State: COMPLETED (exit code 0)
-Nodes: 2
-Cores per node: 2
-CPU Utilized: 00:00:39
-CPU Efficiency: 75.00% of 00:00:52 core-walltime
-Job Wall-clock time: 00:00:13
-Memory Utilized: 42.23 MB (estimated maximum)
-Memory Efficiency: 1.03% of 4.00 GB (1.00 GB/core)
+Nodes: 1
+Cores per node: 4
+CPU Utilized: 00:04:45
+CPU Efficiency: 91.35% of 00:05:12 core-walltime
+Job Wall-clock time: 00:01:18
+Memory Utilized: 933.94 MB (estimated maximum)
+Memory Efficiency: 22.80% of 4.00 GB (1.00 GB/core)
 ```
 
 Run with 8 cores:
@@ -190,17 +188,17 @@ Run with 8 cores:
 ---
 emphasize-lines: 8-9
 ---
-Job ID: 5690605
+Job ID: 10404725
 Cluster: saga
-User/Group: user/user
+User/Group: someuser/someuser
 State: COMPLETED (exit code 0)
-Nodes: 4
-Cores per node: 2
-CPU Utilized: 00:00:45
-CPU Efficiency: 56.25% of 00:01:20 core-walltime
-Job Wall-clock time: 00:00:10
-Memory Utilized: 250.72 MB (estimated maximum)
-Memory Efficiency: 3.06% of 8.00 GB (1.00 GB/core)
+Nodes: 1
+Cores per node: 8
+CPU Utilized: 00:05:06
+CPU Efficiency: 86.93% of 00:05:52 core-walltime
+Job Wall-clock time: 00:00:44
+Memory Utilized: 1.84 GB (estimated maximum)
+Memory Efficiency: 23.01% of 8.00 GB (1.00 GB/core)
 ```
 
 
@@ -208,7 +206,29 @@ Memory Efficiency: 3.06% of 8.00 GB (1.00 GB/core)
 
 Try it with one of your jobs:
 ```console
-$ jobstats -j 12345
+$ jobstats -j 10404723
+
+Job 10404723 consumed 0.1 billing hours from project nn****k.
+
+Submitted 2024-02-04T13:52:44; waited 0.0 seconds in the queue after becoming eligible to run.
+
+Requested wallclock time: 10.0 minutes
+Elapsed wallclock time:   1.3 minutes
+
+Task and CPU statistics:
+ID                 CPUs  Tasks  CPU util                Start  Elapsed  Exit status
+10404723              4            0.0 %  2024-02-04T13:52:44   78.0 s  0
+10404723.batch        4      1     0.7 %  2024-02-04T13:52:44   78.0 s  0
+10404723.mybinary     4      4    95.7 %  2024-02-04T13:52:48   74.0 s  0
+
+Used CPU time:   4.8 CPU minutes
+Unused CPU time: 26.7 CPU seconds
+
+Memory statistics, in GiB:
+ID                  Alloc   Usage
+10404723              4.0
+10404723.batch        4.0     0.0
+10404723.mybinary     4.0     0.9
 ```
 
 
@@ -220,123 +240,15 @@ Here are typical problems:
 - At some point the non-parallelized code section dominates the compute time ([Amdahl's law](https://en.wikipedia.org/wiki/Amdahl%27s_law))
 
 
-### Example for a memory-bound job
-
-Here is an example Fortran code (`example.f90`) which we can compile and test a bit:
-```fortran
-integer function random_integer(lower_bound, upper_bound)
-
-    implicit none
-
-    integer, intent(in) :: lower_bound
-    integer, intent(in) :: upper_bound
-
-    real(8) :: f
-
-    call random_number(f)
-
-    random_integer = lower_bound + floor((upper_bound + 1 - lower_bound)*f)
-
-end function
-
-
-program example
-
-    implicit none
-
-    ! adjust these
-    integer, parameter :: size_mb = 1900
-    integer(8), parameter :: num_rounds = 500000000
-
-    integer :: size_mw
-    integer, external :: random_integer
-    real(8), allocatable :: a(:)
-    integer :: iround, iposition
-
-    size_mw = int(1000000*size_mb/7.8125d0)
-    allocate(a(size_mw))
-    a = 0.0d0
-
-    do iround = 1, num_rounds
-        iposition = random_integer(1, size_mw)
-        a(iposition) = a(iposition) + 1.0d0
-    end do
-
-    deallocate(a)
-    print *, 'ok all went fine'
-
-end program
-```
-
-We can build our example binary with this script (`compile.sh`):
-```
-#!/bin/bash
-
-module load foss/2020b
-
-gfortran example.f90 -o mybinary
-```
-
-Now take the following example script
-(adapt `--account=nn____k`; this is tested on Saga):
-```
-#!/bin/bash
-
-#SBATCH --account=nn____k
-#SBATCH --qos=devel
-
-#SBATCH --job-name='mem-bandwidth'
-#SBATCH --time=0-00:02:00
-#SBATCH --mem-per-cpu=2000M
-#SBATCH --ntasks=1
-
-module purge
-module load foss/2020b
-module load Arm-Forge/21.1
-
-perf-report ./mybinary
-```
-
-This will generate the following performance report:
-```{code-block}
----
-emphasize-lines: 4, 15
----
-...
-
-Summary: mybinary is Compute-bound in this configuration
-Compute:                                    100.0% |=========|
-MPI:                                          0.0% |
-I/O:                                          0.0% |
-This application run was Compute-bound. A breakdown of this time and advice for
-investigating further is in the CPU section below.  As very little time is
-spent in MPI calls, this code may also benefit from running at larger scales.
-
-CPU:
-A breakdown of the 100.0% CPU time:
-Scalar numeric ops:                           4.4% ||
-Vector numeric ops:                           0.0% |
-Memory accesses:                             91.6% |========|
-The per-core performance is memory-bound. Use a profiler to identify
-time-consuming loops and check their cache performance.  No time is spent in
-vectorized instructions. Check the compiler's vectorization advice to see why
-key loops could not be vectorized.
-
-...
-```
-
-How do you interpret this result? Will it help to buy faster processors? What
-limitations can you imagine when running this on many cores on the same node?
-
-
 ## What is MPI and OpenMP and how can I tell?
 
-These two parallelization schemes are very common (but there are other schemes):
+These two parallelization schemes are very common (but there exist other schemes):
 - [Message passing interface](https://en.wikipedia.org/wiki/Message_Passing_Interface):
-  typically each task allocates its own memory, tasks communicate via messages,
-  and it is no problem to go beyond one node.
+  typically each task allocates its own memory, tasks communicate via messages.
+  It is no problem to go beyond one node.
 - [OpenMP](https://www.openmp.org/):
-  threads share memory and communicate through memory, and we cannot go beyond one node.
+  threads share memory and communicate through memory.
+  We cannot go beyond one node.
 
 
 ### How to tell if the code is using one of the two?
@@ -345,14 +257,15 @@ These two parallelization schemes are very common (but there are other schemes):
 - If it is written by somebody else:
   - It can be difficult to tell
   - Consult manual for the software or contact support (theirs or ours)
-  - `grep -i mpi` and `grep -i "omp "` the source code
+  - **If you have access to the source code**, `grep -i mpi` and `grep -i "omp "` the source code
   - Example: <https://github.com/MRChemSoft/mrchem> (uses both MPI and OpenMP)
 
 
 ### Python/R/Matlab
 
-- Often not parallelized
-- But can use parallelization (e.g. `mpi4py` or `multiprocessing`)
+- Small self-written scripts are often not parallelized
+- Libraries that you include in your scripts can use parallelization (e.g.
+  `mpi4py` or `multiprocessing`)
 
 
 ### Code may call a library which is shared-memory parallelized
@@ -360,15 +273,15 @@ These two parallelization schemes are very common (but there are other schemes):
 - Examples: BLAS libraries, NumPy, SciPy
 
 Here is an example which you can try (`example.py`) where we compute a couple
-of matrix-matrix multiplications using Numpy:
+of matrix-matrix multiplications using [NumPy](https://numpy.org/):
 ```python
 import numpy as np
 
-n = 5000
+n = 10000
 
 # run it multiple times, just so that it runs longer and we have enough time to
 # inspect it while it's running
-for _ in range(10):
+for _ in range(5):
     matrix_a = np.random.rand(n, n)
     matrix_b = np.random.rand(n, n)
 
@@ -377,17 +290,19 @@ for _ in range(10):
 print("calculation completed")
 ```
 
-It can be interesting to try this example with the following run script (adapt `--account=nn____k`; this is tested on Saga):
+We will try two different job scripts and below we highlight where they differ.
+
+Job script A (adapt `--account=nn____k`; this is tested on Saga):
 ```{code-block}
 ---
-emphasize-lines: 15-16
+emphasize-lines: 10-11
 ---
 #!/usr/bin/env bash
 
 #SBATCH --account=nn____k
 
 #SBATCH --job-name='example'
-#SBATCH --time=0-00:02:00
+#SBATCH --time=0-00:05:00
 #SBATCH --mem-per-cpu=1500M
 
 #SBATCH --nodes=1
@@ -396,51 +311,85 @@ emphasize-lines: 15-16
 
 module load SciPy-bundle/2023.02-gfbf-2022b
 
-# export MKL_NUM_THREADS=$OMP_NUM_THREADS
-# export NUMEXPR_NUM_THREADS=$OMP_NUM_THREADS
+python example.py
+
+env | grep NUM_THREADS
+```
+
+Job script B:
+```{code-block}
+---
+emphasize-lines: 10
+---
+#!/usr/bin/env bash
+
+#SBATCH --account=nn____k
+
+#SBATCH --job-name='example'
+#SBATCH --time=0-00:05:00
+#SBATCH --mem-per-cpu=1500M
+
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=4
+
+module load SciPy-bundle/2023.02-gfbf-2022b
 
 python example.py
+
+env | grep NUM_THREADS
 ```
 
-Run this example and check the timing. Then uncomment the highlighted lines and
-run it again and compare timings.  It can also be interesting to log into the
-compute node while the job is running and using `top -u $USER`. Can you explain
-what is happening here?
+Run both examples and check the timing.
+It can also be
+interesting to log into the compute node while the job is running and using
+`top -u $USER`. Can you explain what is happening here?
 
-Here is a comparison of the two runs using `seff` and the corresponding job numbers:
+This was the job script with `--cpus-per-task=4`:
+```{code-block} console
+---
+emphasize-lines: 11
+---
+$ seff 10404753
 
-This was the job script where the export lines were commented:
-```{code-block}
----
-emphasize-lines: 8-9
----
-Job ID: 5690632
+Job ID: 10404753
 Cluster: saga
-User/Group: user/user
+User/Group: someuser/someuser
 State: COMPLETED (exit code 0)
 Nodes: 1
 Cores per node: 4
-CPU Utilized: 00:01:32
-CPU Efficiency: 22.12% of 00:06:56 core-walltime
-Job Wall-clock time: 00:01:44
-Memory Utilized: 789.23 MB
-Memory Efficiency: 13.15% of 5.86 GB
+CPU Utilized: 00:03:56
+CPU Efficiency: 75.64% of 00:05:12 core-walltime
+Job Wall-clock time: 00:01:18
+Memory Utilized: 3.03 GB
+Memory Efficiency: 51.75% of 5.86 GB
 ```
 
-And this was the job script with the export lines active:
-```{code-block}
+And this was the job script with the two export lines active:
+This was the job script with `--tasks-per-node=4`:
+```{code-block} console
 ---
-emphasize-lines: 8-9
+emphasize-lines: 11
 ---
-Job ID: 5690642
+$ seff 10404754
+
+Job ID: 10404754
 Cluster: saga
-User/Group: user/user
+User/Group: someuser/someuser
 State: COMPLETED (exit code 0)
 Nodes: 1
 Cores per node: 4
-CPU Utilized: 00:01:32
-CPU Efficiency: 74.19% of 00:02:04 core-walltime
-Job Wall-clock time: 00:00:31
-Memory Utilized: 797.02 MB
-Memory Efficiency: 13.28% of 5.86 GB
+CPU Utilized: 00:03:55
+CPU Efficiency: 24.79% of 00:15:48 core-walltime
+Job Wall-clock time: 00:03:57
+Memory Utilized: 3.02 GB
+Memory Efficiency: 51.56% of 5.86 GB
 ```
+
+The explanation is that the former job script automatically sets `OMP_NUM_THREADS=4`,
+whereas the latter sets `OMP_NUM_THREADS=1`.
+
+The morale of this story is that for Python and R it can be useful to verify
+whether the script really uses all cores you give the job script. If it is
+expected to use them but only runs on 1 core, check whether the required
+environment variables are correctly set. Sometimes you might need to set them
+yourself.

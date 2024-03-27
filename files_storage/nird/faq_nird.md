@@ -41,8 +41,7 @@ The FAQ on NIRD is prepared based on the Q&A session during the  {ref}`training-
 
 8. What are your recommendations to migrate our home directories from the old to the new NIRD? Should we copy the whole home directory with all hidden files or just our folders? Moreover, I have Miniconda installed in my home directory. Is it better to install it again on the new NIRD or is a copy of the entire old home directory fine?
 
-   	- Please see the information [here](https://documentation.sigma2.no/files_storage/nird/old_nird_access.html)
-
+   	- (edit 02/2024) Acess to OLD NIRD is not available anymore. If any information is needed, contact us at the support email
    	- You don’t need to copy the whole home directory. You can choose what do you want to migrate. We suggest to not copy any conda files.
 
 9. Are snapshots counted towards quota?

@@ -34,6 +34,13 @@ leave it out:
 $ ssh saga.sigma2.no
 ```
 
+## Jumping through login nodes
+
+When already logged in, you can easily jump from one login node to another by typing `ssh login-X` (for Fram, Saga and Betzy) or `ssh loginX` (for NIRD). Please, replace "X" with the number of the login node you want to access.
+
+Also, the same is valid for when we want to access a specific compute node we are running our jobs. However, it is only possible to access compute nodes that you currently have jobs running. 
+
+
 {ref}`Further below <ssh-config>` we will show how we can configure SSH so that we
 don't have to type the same lengthy command every time
 
@@ -229,9 +236,14 @@ many times a day. Now we instead need to type the private key passphrase every
 time, so it feels like this was not a win. But again there is a better way: To
 avoid having to type the decryption passphrase, the *private key* needs to be
 added to the ``ssh-agent`` with the command:
+
+On Linux and Windows:
 ```console
 $ ssh-add
 ```
+
+On Windows, remember to have the service "OpenSSH Authentication Agent" enabled and starting automatically.
+
 
 On macOS, use this instead:
 ```console
@@ -381,7 +393,7 @@ After following the steps above, try to log in again and accept the new fingerpr
 - <https://www.mn.uio.no/geo/english/services/it/help/using-linux/ssh-tips-and-tricks.html> - long-form guide
 - <https://blog.0xbadc0de.be/archives/300> - long-form guide
 - <https://www.phcomp.co.uk/Tutorials/Unix-And-Linux/ssh-passwordless-login.html>
-- <https://en.wikibooks.org/wiki/OpenSSH/>
+- <https://en.wikipedia.org/wiki/OpenSSH>
 - <https://linuxize.com/post/ssh-command-in-linux/#how-to-use-the-ssh-command>
 - <https://linuxize.com/post/how-to-setup-passwordless-ssh-login/>
 - <https://hpc-uit.readthedocs.io/en/latest/account/login.html>
