@@ -26,8 +26,6 @@ build:
   stage: build
   when: on_success
   script:
-    - python3 -m venv vbuild_env
-    - source vbuild_env/bin/activate
     - pip install --upgrade pip
     - pip install -r requirements.txt
     # '-W': Turn warnings into errors
