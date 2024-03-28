@@ -196,6 +196,7 @@ software/installed_software.md
 software/userinstallsw.rst
 software/appguides.md
 software/licenses.md
+software/nessi_eessi.md
 ```
 
 ```{toctree}
