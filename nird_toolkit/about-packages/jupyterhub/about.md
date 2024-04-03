@@ -24,7 +24,7 @@ In many cases it is useful to share GPUs among all users. In order to allow user
 [ipyparallel](https://ipyparallel.readthedocs.io/en/latest/) is used.
 ipyparallel works by running separate Jupyter kernels on remote nodes.
 This enables a user to with very little modification run their notebook on another GPU enabled machine.
-To enable ipyparallel, ensure that `enabled` is ticked in the `ipyparallel` section of the `Advanced configuration`.
+To enable ipyparallel, ensure that `enabled` is ticked in the `ipyparallel` section in the `Configuration` tab.
 
 To use ipyparallel within a notebook, run the following script inside a notebook
 ```
@@ -63,9 +63,8 @@ associated with the Jupyterhub server. This can for instance be useful in
 order to help users with debugging, or shutting down notebooks that use a lot
 of resources.
 
-To access the admin panel, begin by navigating to the `Control Panel` which
-should be in on the right-hand side of the Jupyter navigation bar on the top
-of the page.
+To access the admin panel, begin by navigating to the `Hub Control Panel` which
+should be in File menu dropdown in the JupyterLab.
 
 ![Jupyter notebook overview](./jupyterhub_jup.png)
 
@@ -92,7 +91,7 @@ After having read the tutorial above, you can use the dockerfile below as a star
 #
 # to determine the latest base image
 
-FROM quay.io/nird-toolkit/jupyterhub-singleuser:<use latest tag here>
+FROM sigma2as/jupyterhub-singleuser:<use latest tag here>
 
 # Install system packages
 USER root

@@ -10,7 +10,7 @@ See the documentation of the specific package (ex. Jupyter) you want to add pack
 Typically, the dockerfile looks similar to the following
 ```
 # The image to use as a base image
-FROM quay.io/nird-toolkit/example-docker-image:20230102-xxxxxxx
+FROM sigma2as/example-docker-image:20240402-xxxxxxx
 
 # Install system packages
 USER root

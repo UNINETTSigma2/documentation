@@ -41,7 +41,7 @@ After having read the tutorial above, you can use the dockerfile below as a star
 # to determine the latest base image
 
 
-FROM quay.io/nird-toolkit/rstudio-server:<use latest tag here>
+FROM sigma2as/rstudio-server:<use latest tag here>
 
 # Install system packages
 USER root
