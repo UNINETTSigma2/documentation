@@ -88,6 +88,13 @@ Please remember to use two `module load` commands. The first loads the location 
 
 Users have to supply the necessary input files, including any `POTCAR` files needed. They can be downloaded from the VASP portal you get access to with a valid VASP license. Also, please note that the `POTCAR` files are protected by the license so do not share them with anyone that does not have a license, including the support team, unless explicitly notified to do so.
 
+The currently available modules (as of April 4th 2024) are as follows:
+
+VASP/6.4.2-intel-2022b-wHDF5-nohash-wWannier recommended by default 
+VASP/6.4.2-intel-2022b-wHDF5-wvtst-wsol if you need the vtst or sol packages
+VASP/5.4.4-intel-2022b if you need VASP5
+ VASP/5.4.4-intel-2022b-wvtst if you need VASP5 and the vtst package 
+
 ### Module naming scheme
 
 There are now one module per VASP flavor (`std` - standard, `gam` - gamma only and `ncl` - non-collinear). Meaning when you now load a module, there is only one executable, `vasp`. For the example given above we load the module `VASP/6.4.1-intel-2021b-std-wannier90-libxc-hdf5-beef-<somehash>`. Here, `<somehash>` is a generated hash. i.e. `d7238be44ec2ed23315a16cc1549a1e3` based on the versions of libraries and extensions. This is done to avoid a very long module names containing the version numbers if each library included etc. In the future we might chose to go with something more compact, e.g. `VASP/6.4.1/<somehash>`. For now, we believe it is convenient to directly see which VASP version and what libraries are there etc., but not necessarily the Wannier90, BEEF, libxc version etc. The mapping between the hash and exact version numbers can be found here:
