@@ -208,6 +208,12 @@ export CONDA_PKGS_DIRS=${my_conda_storage}/package-cache
 conda env create --prefix ${my_conda_storage}/myproject --file environment.yml
 ```
 
+```{admonition} How to speed up the installation with [Mamba](https://mamba.readthedocs.io/)
+Instead of `conda env create`, you can use `mamba env create` to speed up the
+installation.  Mamba is a re-implementation of Conda for fast dependency
+resolution. We have modules for Mamba on all our clusters. Try: `module avail mamba`.
+```
+
 You need to adapt the location (line 11) and also change the name ("myproject").
 On line 13 we define `CONDA_PKGS_DIRS` to also be in your well-defined `my_conda_storage`,
 otherwise the package cache is in your home directory and that is a problem.
