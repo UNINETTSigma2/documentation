@@ -38,7 +38,7 @@ two is fine.
 ## Typical pitfalls to avoid
 
 ```{warning}
-- Never use `conda init`. See below how to initialize conda without modifying `.bashrc`.
+- We recommend to not use `conda init`. See below how to initialize conda without modifying `.bashrc`.
 - Do not modify your `.bashrc` with any Conda commands.
 - Do not install packages/environments into your home directory otherwise you
   fill your disk quota ({ref}`storage-quota`).
@@ -48,7 +48,7 @@ two is fine.
 ```
 
 
-### Never use `conda init`
+### We recommend to not use `conda init`
 
 Never use `conda init` on the cluster because it modifies your `.bashrc`
 file by adding the following:
