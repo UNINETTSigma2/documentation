@@ -38,7 +38,7 @@ two is fine.
 ## Typical pitfalls to avoid
 
 ```{warning}
-- Never use `conda init`. See below how to initialize conda without modifying `.bashrc`.
+- We recommend to not use `conda init`. See below how to initialize conda without modifying `.bashrc`.
 - Do not modify your `.bashrc` with any Conda commands.
 - Do not install packages/environments into your home directory otherwise you
   fill your disk quota ({ref}`storage-quota`).
@@ -48,7 +48,7 @@ two is fine.
 ```
 
 
-### Never use `conda init`
+### We recommend to not use `conda init`
 
 Never use `conda init` on the cluster because it modifies your `.bashrc`
 file by adding the following:
@@ -206,6 +206,12 @@ my_conda_storage=/cluster/projects/nn____k/conda
 
 export CONDA_PKGS_DIRS=${my_conda_storage}/package-cache
 conda env create --prefix ${my_conda_storage}/myproject --file environment.yml
+```
+
+```{admonition} How to speed up the installation with [Mamba](https://mamba.readthedocs.io/)
+Instead of `conda env create`, you can use `mamba env create` to speed up the
+installation.  Mamba is a re-implementation of Conda for fast dependency
+resolution. We have modules for Mamba on all our clusters. Try: `module avail mamba`.
 ```
 
 You need to adapt the location (line 11) and also change the name ("myproject").
