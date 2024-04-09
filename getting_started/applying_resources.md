@@ -25,4 +25,4 @@ and follow the link that takes you to the application form.
 
 To apply for additional compute or storage resources to an **existing project
 allocation**, we offer a dedicated and [simplified
-procedure](https://www.sigma2.no/extra-allocation).
+procedure](https://www.sigma2.no/apply-e-infrastructure-resources#howtoapplyforextra).
