@@ -214,7 +214,7 @@ unsure about how much to ask for and on which cluster, do not hesitate to
 {ref}`contact us <support-line>`.
 
 If you exhaust your quota and need more, the project manager can apply for
-[additional quota](https://www.sigma2.no/extra-allocation).
+[additional quota](https://www.sigma2.no/apply-e-infrastructure-resources#howtoapplyforextra).
 
 
 ## For how long can I use the compute quota?
