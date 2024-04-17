@@ -69,6 +69,13 @@ All times are Local time in Oslo, Norway.
 - 11:10 - 12:00 - [Software Installation as user with Conda & Pip](https://documentation.sigma2.no/software/userinstallsw/conda.html) (Sabry) 
 - 12:00 - 12:15 - Q&A
 
+```{note}
+ Video Recordings and Q&A from Day 2:
+ - [Video](https://www.youtube.com/watch?v=5vkxmjitXYE&list=PLoR6m-sar9AjMXc0E335m0lkAc1CYfugq&index=2)
+ - [Q&A notes](https://md.sigma2.no/qanda-archive-best-practices-spring2024-day2)
+
+```
+
 **Day3 - Thursday 23rd May 2024**
 
 - 10:00 - 11:00 - File transfer: {ref}`file-transfer`
