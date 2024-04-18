@@ -54,7 +54,7 @@ When the job has ended it should have produced a file `slurm-JOBID.out` where
 
 We demonstrate the minimal change needed to the run the same software
 (`GROMACS`) using the installations provided locally on the HPC systems the
-following script just comments out the line sourcing the init script (`# module load NESSI/2023.06`)
+following script just comments out the line loading NESSI module (`# module load NESSI/2023.06`)
 
     #!/bin/bash
     #SBATCH --account=REPLACE_WITH_YOUR_NN****K
