@@ -115,8 +115,8 @@ any software-related issues, we are happy to help you at
 support@nris.no.  As an alternative, you can use the NESSI or
 [EESSI](https://www.eessi.io/docs/) modules.  These have been built to
 support the cpus on the hugemem nodes.  To activate the modules, do
-`source /cvmfs/pilot.nessi.no/versions/2023.06/init/bash` (NESSI) or
-`source /cvmfs/software.eessi.io/versions/2023.06/init/bash` (EESSI)
+`module load NESSI/2023.06` (NESSI) or
+`module load EESSI/2023.06` (EESSI)
 before you load modules.
 
 (job_scripts_saga_accel)=
