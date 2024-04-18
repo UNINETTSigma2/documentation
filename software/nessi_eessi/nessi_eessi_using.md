@@ -8,28 +8,6 @@ user has to do is loading module, for example,
 
     module load GROMACS/2023.1-foss-2022a
 
-```{note}
-The above `module load ...` command works as designed in interactive setups (in a
-shell or in an interactive job).
-
-Currently, an alternative method is needed when using software from
-NESSI or EESSI in batch jobs. For NESSI, the `module load NESSI/2023.06` has to be
-replaced with
-
-    source /cvmfs/pilot.nessi.no/versions/2023.06/init/bash
-
-and for EESSI `module load EESSI/2023.06` has to be replaced by
-
-    source /cvmfs/software.eessi.io/versions/2023.06/init/bash
-
-
-Those temporary changes are taken into account in the example job scripts
-below.
-
-We are
-working on a solution such that the `module load ...` command functions properly
-in both batch and interactive setups.
-```
 
 **Example job script using NESSI software**
 
@@ -45,7 +23,7 @@ We demonstrate the use of NESSI in a job script using GROMACS as an example. Bel
     #SBATCH --cpus-per-task=2
     #SBATCH --time=5 # short runtime
 
-    source /cvmfs/pilot.nessi.no/versions/2023.06/init/bash
+    module load NESSI/2023.06
     module load GROMACS/2023.1-foss-2022a
 
     # prepare test data if not yet present
@@ -89,7 +67,7 @@ following script just comments out the line sourcing the init script (`# source
     #SBATCH --cpus-per-task=2
     #SBATCH --time=5 # short runtime
 
-    # source /cvmfs/pilot.nessi.no/versions/2023.06/init/bash
+    # module load NESSI/2023.06
     module load GROMACS/2023.1-foss-2022a
 
     # prepare test data if not yet present
