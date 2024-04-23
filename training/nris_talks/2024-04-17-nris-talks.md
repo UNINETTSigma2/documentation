@@ -10,6 +10,10 @@ NRIS(Norwegian Research Infrastructure Services) is organising  webinars as part
 - **Platform:** Zoom webinar
 - **Speaker:** [Ole Saastad](https://www.usit.uio.no/om/organisasjon/ffu/bt/ansatte/olews/)
 - **Moderator:** [Dhanya Pushpadas](https://www.uib.no/en/persons/Dhanya.Pushpadas)
+```{note}
+- [Video Recording](https://www.youtube.com/watch?v=FEm4Ln26iyM)
+- [Slides](https://drive.google.com/drive/folders/1pc2fsGVAISK3Nwoj8CZ1RwbAn02sTzet)
+```
 
 ## About the Webinar:
 
@@ -25,7 +29,7 @@ Exascale computing represents a significant milestone in computational capabilit
 This webinar is ideal for researchers, IT professionals, students, and anyone interested in high-performance computing and its future directions.
 
 ## How to Register:
+Registration is closed.
 
-Please click on the following link to register for the webinar: [Registration Link](https://uib.zoom.us/webinar/register/WN_JpWBHWlcR8G9NmOsUpi66A#/registration)
 
 Step into the future with Exascale Computing!
