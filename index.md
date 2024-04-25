@@ -32,75 +32,75 @@ to the next level. {ref}`Read more ... <about-us>`
 :gutter: 1
 
 ```{grid-item-card} Getting started
-  :shadow: none
-  :class-card: sd-border-1
-  :link: getting-started
-  :link-type: any
+:shadow: none
+:class-card: sd-border-1
+:link: getting-started
+:link-type: any
 
-  {octicon}`stopwatch;2em;sd-text-info`
+{octicon}`stopwatch;2em;sd-text-info`
 
-  New to high-performance computing? Click here to learn how to setup an
-  account and run your first calculations.
+New to high-performance computing? Click here to learn how to setup an
+account and run your first calculations.
 ```
 
 ```{grid-item-card} Getting help
-  :shadow: none
-  :class-card: sd-border-1
-  :link: support-line
-  :link-type: any
+:shadow: none
+:class-card: sd-border-1
+:link: support-line
+:link-type: any
 
-  {octicon}`question;2em;sd-text-info`
+{octicon}`question;2em;sd-text-info`
 
-  Need help using our compute or storage facilities? Check out our support
-  pages.
+Need help using our compute or storage facilities? Check out our support
+pages.
 ```
 
 ```{grid-item-card} Training
-  :shadow: none
-  :class-card: sd-border-1
-  :link: training-events
-  :link-type: any
+:shadow: none
+:class-card: sd-border-1
+:link: training-events
+:link-type: any
 
-  {octicon}`mortar-board;2em;sd-text-info`
+{octicon}`mortar-board;2em;sd-text-info`
 
-  Check out our information on training events so that
-  you get more done in less time.
+Check out our information on training events so that
+you get more done in less time.
 ```
 
 ```{grid-item-card} Files, storage, and quota
-  :shadow: none
-  :class-card: sd-border-1
-  :link: storage-areas
-  :link-type: any
+:shadow: none
+:class-card: sd-border-1
+:link: storage-areas
+:link-type: any
 
-  {octicon}`database;2em;sd-text-info`
+{octicon}`database;2em;sd-text-info`
 
-  For more information on our storage areas and to learn more
-  about quota.
+For more information on our storage areas and to learn more
+about quota.
 ```
 
 ```{grid-item-card} Job types and scripts
-  :shadow: none
-  :class-card: sd-border-1
-  :link: running-jobs
-  :link-type: any
+:shadow: none
+:class-card: sd-border-1
+:link: running-jobs
+:link-type: any
 
-  {octicon}`codespaces;2em;sd-text-info`
+{octicon}`codespaces;2em;sd-text-info`
 
-  Here you can find example job scripts and guides on how to run
-  efficiently.
+Here you can find example job scripts and guides on how to run
+efficiently.
 ```
 
 ```{grid-item-card} Code development and tutorials
-  :shadow: none
-  :class-card: sd-border-1
-  :link: code_development
-  :link-type: any
+:shadow: none
+:class-card: sd-border-1
+:link: code_development
+:link-type: any
 
-  {octicon}`rocket;2em;sd-text-info`
+{octicon}`rocket;2em;sd-text-info`
 
-  Are you a developer of scientific software or running your own code on our
-  systems? Find useful resources here.
+Are you a developer of scientific software or running your own code on our
+systems? Find useful resources here.
 ```
 
 ````
