@@ -25,6 +25,9 @@ several steps with increasing complexity that can be taken to learn more about
 **Targeted Audience**: The course is aimed at students and researchers who want
  to upskill  their knowledge on the specific topics.
 
+**Prerequisites**: For better learning experience, participants are expected to have basic 
+programmiing knowledge on C/Fortran for day 1 and basic HPC knowledge for day2.
+
 ## **Practical Information**
 
 - This is an online course via zoom. Participants require access to a computer
