@@ -16,7 +16,7 @@ If you ask for a lot more memory than you need:
 ```
 
 ```{contents} Table of Contents
-    :depth: 3
+:depth: 3
 ```
 
 
