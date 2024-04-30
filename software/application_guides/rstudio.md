@@ -55,7 +55,7 @@ salloc: Nodes c5-60 are ready for job
 
 ## Running RStudio
 
-- Run the following command: `PASSWORD='rstudio123' apptainer exec --bind $HOME/.rstudio/run:/var/run/rstudio-server,$HOME/.rstudio/lib:/var/lib/rstudio-server,$HOME/.rstudio/tmp:/tmp rstudio_latest.sif rserver --auth-none=0 --auth-pam-helper-path=pam-helper --www-address=0.0.0.0 --www-port=8521 --server-user=$USER`
+- Run the following command (on the terminal inside the node you were allocated): `PASSWORD='rstudio123' apptainer exec --bind $HOME/.rstudio/run:/var/run/rstudio-server,$HOME/.rstudio/lib:/var/lib/rstudio-server,$HOME/.rstudio/tmp:/tmp rstudio_latest.sif rserver --auth-none=0 --auth-pam-helper-path=pam-helper --www-address=0.0.0.0 --www-port=8521 --server-user=$USER`
 
 - Open your web browser and go to the address: `127.0.0.1:8521` or `localhost:8521` . Remember to replace the port number for the one you've chosen.
 
@@ -63,6 +63,29 @@ It should appear the login screen. The "username" is your cluster's username and
 
 ![RStudio_login](rstudio_login.png)
 
-The interface should load and you should be able to work on the software
+## Configuring the proxy to install packages
 
-![RStudio_interface](rstudio_interface.png)
+Because compute nodes have limited access to the internet, we have to configure RStudio to use the Proxy Server so we can download the packages we need.
+
+- Firstly, log in to the server you have an account, allocate resources for your job and run the following command, inside the compute node: `env | grep -i proxy`
+On Saga, for example, it should return something like this:
+
+```
+https_proxy=http://proxy.saga:3128/
+http_proxy=http://proxy.saga:3128/
+```
+
+- Then, create a new file on your home directory where RStudio is located:
+
+```
+cd $HOME
+nano .Renviron
+```
+
+- Paste the proxy information inside the file and save it.
+
+![proxy](Renviron_proxy.png)
+
+- Finish the RStudio session and open a new one. You should now be able to download packages normally
+
+![packages](RStudioPackageDownload.png)
