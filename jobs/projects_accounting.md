@@ -146,6 +146,11 @@ clusters.
   memory on a node, or all GPUs on a node, gets a cost of 24, the
   number of CPUs on the node.
 
+- On the `a100` partition, the memory factor is 0.032 units per
+  GiB, and the GPU factor is 8.  This means that a job asking for all
+  memory on a node, or all GPUs on a node, gets a cost of 32, the
+  number of CPUs on the node.
+
 - The `optimist` partition has the same memory factor as the `normal`
   partition.
 
