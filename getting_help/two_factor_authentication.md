@@ -1,0 +1,29 @@
+# One-time-pad (OTP) / Two-factor authentication #
+
+All login nodes on Fram and Saga offer two-factor authentication on SSH.
+
+To set up two-factor authentication for your user, follow these steps:
+
+1.	Go to www.metacenter.no, log in, using user login (passwords)
+
+![www.metacenter.no frontpage screenshot](screenshots/frontpage.png)
+First click User Login (Passwords)
+
+2.	Select OTP / 2FA from the page or drop-down menu
+
+![www.metacenter.no frontpage screenshot](screenshots/menu_page.png)
+
+![www.metacenter.no frontpage screenshot](screenshots/menu_list.png)
+
+3.	Install Authenticator-app if you don’t have one.
+
+4.	Scan the QR-code with your Authenticator app.
+
+![www.metacenter.no frontpage screenshot](screenshots/otp_startpage.png) 
+ 
+
+5.	Verify with code from your app and click “Submit.”
+
+![www.metacenter.no frontpage screenshot](screenshots/otp_setup_finished.png)
+
+6.  Wait for the resources to sync the new information.

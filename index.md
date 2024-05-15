@@ -130,6 +130,7 @@ getting_help/faq.md
 getting_help/how_to_write_good_support_requests.md
 getting_help/qa-sessions.md
 getting_help/lost_forgotten_password.md
+getting_help/two_factor_authentication.md
 Project Leader Support<https://www.sigma2.no/project-leader-handbook>
 ```
 
