@@ -1,10 +1,10 @@
-### One-time-pad (OTP) / Two-factor authentication ###
+# One-time-pad (OTP) / Two-factor authentication #
 
 All login nodes on Fram and Saga offer two-factor authentication on SSH.
 
 To set up two-factor authentication for your user, follow these steps:
 
-1.	Go to www.metacenter.no, log in, using user authentication (passwords etc) 
+1.	Go to www.metacenter.no, log in, using user login (passwords)
 
 ![www.metacenter.no frontpage screenshot](screenshots/frontpage.png)
 First click User Login (Passwords)
