@@ -36,11 +36,12 @@ No, you don't. Here's how you can manage that:
 
 On your Mac or linux desktop or laptop, create a text file ~/.ssh/config with, for example, the following contents:
 
-```Host fram
-User myusername
-HostName login.fram.sigma2.no
-ControlMaster auto
-ControlPath ~/.ssh/%r@%h:%p
+```
+Host fram
+    User myusername
+    HostName login.fram.sigma2.no
+    ControlMaster auto
+    ControlPath ~/.ssh/%r@%h:%p
 ```
 
 where myusername is replaced appropriately.
