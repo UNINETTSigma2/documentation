@@ -27,3 +27,30 @@ First click User Login (Passwords)
 ![www.metacenter.no frontpage screenshot](screenshots/otp_setup_finished.png)
 
 6.  Wait for the resources to sync the new information.
+
+## FAQ ##
+
+### 1. Do I have to use two-factor authentication every single time I log in or connect to Fram or Saga###
+
+No, you don't. Here's how you can manage that:
+
+On your Mac or linux desktop or laptop, create a text file ~/.ssh/config with, for example, the following contents:
+
+```Host fram
+User myusername
+HostName login.fram.sigma2.no
+ControlMaster auto
+ControlPath ~/.ssh/%r@%h:%p
+```
+
+where myusername is replaced appropriately.
+
+This sets things up so that whenever you ssh to the host nickname fram: ssh fram
+
+It will look for the special file (a socket) in your ~/.ssh/ directory that is maintaining a connection to the cluster. If it already exists and is open, it’ll use it to create a connection without re-authenticating; if it doesn’t exist, it’ll authenticate and create the file for subsequent use.
+
+Note that all subsequent connections are dependent on the initial connection — if you exit or kill the initial connection all other ones die, too. This can obviously be annoying if it happens accidentally. It’s easily avoided by setting up a master connection in the background:
+
+```ssh -CX -o ServerAliveInterval=30 -fN fram```
+
+The -fN make it go into the background and sit idle, after authenticating. (C for compression,Y for X forwarding, and -o ServerAliveInterval=30 to prevent dropped connections have nothing to do with the ControlMaster but are almost always helpful.)
