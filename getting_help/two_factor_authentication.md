@@ -30,7 +30,7 @@ First click User Login (Passwords)
 
 ## FAQ ##
 
-### 1. Do I have to use two-factor authentication every single time I log in or connect to Fram or Saga###
+### 1. Do I have to use two-factor authentication every single time I log in or connect to Fram or Saga ###
 
 No, you don't. Here's how you can manage that:
 
