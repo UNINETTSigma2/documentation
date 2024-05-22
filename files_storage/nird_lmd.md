@@ -1,7 +1,7 @@
 (nird)=
 
 
-# NIRD 
+# NIRD
 ## National Infrastructure for Research Data
 
 **NIRD** is the **N**ational e-**I**nfrastructure for **R**esearch **D**ata. It
@@ -16,8 +16,8 @@ publishing research data or searching digital databases and collections.
 NIRD is a high-performance storage system, capable of supporting AI and analytics workloads, offering simultaneous multi-protocol access to the same data.
 ```
 
-The next generation NIRD storage system is installed in [Lefdal Mine Datacenter](https://www.sigma2.no/data-centre-facility). 
-The new NIRD is redesigned for the evolving needs of Norwegian researchers and has 
+The next generation NIRD storage system is installed in [Lefdal Mine Datacenter](https://www.sigma2.no/data-centre-facility).
+The new NIRD is redesigned for the evolving needs of Norwegian researchers and has
 been procured through [the NIRD2020 project](https://www.sigma2.no/procurement-project-nird2020).
 
 
@@ -28,7 +28,7 @@ protocol support, migration to third-party cloud providers and much more.
 Alongside the national high-performance computing resources, NIRD forms the
 backbone of the national e-infrastructure for research and education in Norway,
 connecting data and computing resources for efficient provisioning of services.
- 
+
 
 ### Technical Specifications
 
@@ -59,7 +59,7 @@ IBM Storage Scale (GPFS) is deployed on NIRD, providing a software-defined high-
 
 Insight into data is ensured by IBM Storage Discover.
 
-Backup services and data integrity is ensured with IBM Storage Protect. 
+Backup services and data integrity is ensured with IBM Storage Protect.
 
 
 ## In-depth documentation for NIRD
@@ -74,5 +74,5 @@ nird/backup_lmd.md
 nird/mounts_lmd.md
 nird/ts_dl.md
 nird/faq_nird.md
-sharing_files.md   
+sharing_files.md
 ```
