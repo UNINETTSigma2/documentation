@@ -25,7 +25,7 @@ use `rsync` through [Windows Subsystem for Linux
 This is a good starting point but below we will explain what these components
 and options mean:
 ```console
-$ rsync --info=progress2 -a file-name      username@cluster:receiving-directory
+$ rsync --info=progress2 -a file-name       username@cluster:receiving-directory
 $ rsync --info=progress2 -a directory-name/ username@cluster:receiving-directory/directory-name
 ```
 
@@ -34,10 +34,10 @@ $ rsync --info=progress2 -a directory-name/ username@cluster:receiving-directory
   copying is. There is also a `--progress` option but that one will show
   progress for each file individually and often you rather want to know the
   overall progress.
-- `file-name` or `directory-name`: These are on your computer and you want to
-  transfer them to the receiving server.
 - `-a`: Preserves ownership and time stamp and includes the `-r` option which copies
   folders recursively.
+- `file-name` or `directory-name`: These are on your computer and you want to
+  transfer them to the receiving server.
 - `username`: Your username on the remote cluster. If your usernames on your
   local computer and on the remote resource are the same, you can leave out the
   `username@` part.
@@ -51,30 +51,26 @@ If you want to `rsync` between two computers that both offer an SSH connection, 
 you can use `rsync` both ways: from cluster A to cluster B, but also the reverse.
 
 ````{admonition} rsync directory
-
 Please note that there is a trailing slash (`/`) at the end of the first argument in the 
 syntax of the second command, while rsync directories, ie:
 
 ```console
-rsync --info=progress2 -a directory-name/ username@cluster:receiving-directory/directory-name
+$ rsync --info=progress2 -a directory-name/ username@cluster:receiving-directory/directory-name
 ```
 This trailing slash (`/`) signifies the contents of the directory `directory-name`. 
 The outcome would create a hierarchy like the following on your cluster:
 ```console
 ~/receiving-directory/directory-name/contents-of-the-dir
 ```
-Without the trailing slash,`directory-name`, including the directory, would be placed within your receiving directory. 
-The outcome without the trailing slash (`/`) at the first argument in the above command, ie:
 
-```console
-rsync --info=progress2 -a directory-name username@cluster:receiving-directory/directory-name
-```
-would create a hierarchy like the following on your cluster:
+Without the trailing slash, `directory-name`, including the directory, would be placed within your receiving directory.
+The outcome would be the following on the cluster:
 ```console
 ~/receiving-directory/directory-name/directory-name/contents-of-the-dir
 ```
-
 ````
+
+
 ## rsync using compression
 
 If you have a strong CPU at both ends of the line, and you’re on a slow
@@ -146,7 +142,7 @@ to one large file but for `rsync` we don't have to.
 Just in case anybody wants to try the above example on their own, we used this
 script to generate the example data:
 ```bash
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 # create a file that is 100 MB large
 base64 /dev/urandom | head -c 100000000 > file.txt
