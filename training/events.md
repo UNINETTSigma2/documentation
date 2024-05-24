@@ -14,12 +14,9 @@ The courses are free of charges. Our upcoming courses are listed below:
 ```{toctree}
 :maxdepth: 1
 
-events/2024-spring-best-practices-series.md
 events/2024-06-scientific-computing.md
 
 ```
-- [Tuesday Tools & Techniques for HPC: April 16 and 23, May 7 and 14](https://scicomp.aalto.fi/training/scip/ttt4hpc-2024/index.html)
-
 
 ## Past events
 
@@ -28,10 +25,14 @@ events/2024-06-scientific-computing.md
 ```{toctree}
 :maxdepth: 1
 
+events/2024-spring-best-practices-series.md
 events/2024-04-hpc-on-boarding.md
 nris_talks/2024-04-17-nris-talks.md
 
 ```
+
+- [Tuesday Tools & Techniques for HPC: April 16 and 23, May 7 and 14](https://scicomp.aalto.fi/training/scip/ttt4hpc-2024/index.html)
+
 ### 2023
 
 ```{toctree}
