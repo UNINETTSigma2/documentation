@@ -80,7 +80,7 @@ unset https_proxy http_proxy
 export https_proxy='' http_proxy=''
 export SLURM_TASK_PROLOG=/cluster/etc/Arm-Forge.prolog
 ```
-Now the license server should be accessable and we can launch the performance reporter.
+Now the license server should be accessible and we can launch the performance reporter.
 ```
 perf-report mpirun ./fvcom.bin --casename=$RUN > $RUN_DIR/log-${SLURM_JOBID}.out
 ```
