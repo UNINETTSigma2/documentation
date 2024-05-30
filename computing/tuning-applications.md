@@ -66,11 +66,22 @@ To learn a great deal of the application the tool
 and provide a one page report with a huge array of important metrics.
 
 
-### Running
+### Running performance reports
 
-The commands used to run the ARM performance reports are:
+The commands used to use and run the ARM performance reports and map are:
 ```
-module load Arm-PerfReports/20.0.3
+module load Arm-Forge/22.1.3 
+```
+With some extra to fix the ARM-forge license server issues, the license server 
+have issues with the proxy settings. The prolog script environment variable (SLURM_TASK_PROLOG) 
+is needed if you want to run on multiple nodes as the local settings only apply for the current shell.
+```
+unset https_proxy http_proxy
+export https_proxy='' http_proxy=''
+export SLURM_TASK_PROLOG=/cluster/etc/Arm-Forge.prolog
+```
+Now the license server should be accessible and we can launch the performance reporter.
+```
 perf-report mpirun ./fvcom.bin --casename=$RUN > $RUN_DIR/log-${SLURM_JOBID}.out
 ```
 When the Slurm job is finished two files containing performance reports are found as:
@@ -78,6 +89,8 @@ When the Slurm job is finished two files containing performance reports are foun
 
 See also {ref}`arm-performance-reports`.
 
+For extensive information please review the [Performance reports manual]
+(https://developer.arm.com/documentation/101136/22-1-3/Performance-Reports).
 
 ### Header
 
@@ -222,7 +235,20 @@ form of random access can kill any performance. Accessing bytes at 100
 nm access time (for normal DDR memory) effectively run the processing
 speed at 10 MHz frequency.
 
+## ARM forge Map tool
 
+The modules and settings are the same as for the performance reporter, the map tool is 
+ready to use. This is a tool that let you dig deeper into the application behavior.
+
+```
+map --profile mpirun <your program>
+```
+The map tool is a more extensive tool than performance reporter. To start using the map tool
+please read the [instructions and the manual](https://developer.arm.com/documentation/101136/22-1-3/MAP).
+
+It comes with a nice GUI to analyse the logged data. 
+
+While not a direct performance tool the Arm-forge module also make the DDT (debugger) tool available. 
 
 ## Intel Advisor
 
