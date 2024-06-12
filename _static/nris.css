@@ -3,7 +3,7 @@
 }
 
 .wy-menu, .wy-menu-vertical, .wy-nav-side {
-    background: #51626f;
+    background: #2f4455;
 }
 
 .wy-menu-vertical .caption-text {
@@ -24,4 +24,8 @@
 
 p, h1, h2, h3, h4, h5, h6, a, ul, ol {
     font-family: 'Carlito', sans-serif;
+}
+
+a {
+    color: #007c92;
 }
