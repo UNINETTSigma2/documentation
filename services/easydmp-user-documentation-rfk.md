@@ -10,7 +10,6 @@ orphan: true
 - {ref}`Review and manage your plans  <Review-and-manage-your-plan-rfk>`
 - {ref}`Export your plan  <Management-Options-rfk>`
 - {ref}`Request support  <Request-Support-easydmp-rfk>`
-- {ref}`Example plan <Example-plan-rfk>`
 
 
 (access-easydmp-rfk)=
@@ -91,10 +90,3 @@ You can click on the ‘cog’ next to your plan title (see the above figure). C
 
 If you experience any problems, or you have any question, please contact  <support@easydmp.sigma2.no>.
 Your request will be handled within the next 24 hours during working days.
-
-
-
-(Example-plan-rfk)=
-## Example plan
-
-An example plan can be found [here](https://www.sigma2.no/sites/default/files/imce/Support/ExamplePlan.pdf).

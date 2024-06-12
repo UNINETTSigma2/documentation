@@ -47,8 +47,8 @@ $ ml load VTune/2018_update3
 ```
 
 To gather information about a code's performance one needs to execute
-the code using the [`amplxe-cl`
-command](https://software.intel.com/en-us/vtune-amplifier-help-amplxe-cl-command-syntax). Depending
+the code using the `amplxe-cl`
+command. Depending
 on the needs, `amplxe-cl` can gather all sorts of performance statistics: FPU
 utilization, usage of vector (SIMD) AVX insturctions, instructions per
 clock, memory bandwidth, cache utilization, threading level, etc. For
@@ -60,7 +60,7 @@ $ amplxe-cl -collect hotspots ./your-program your-arguments
 ```
 
 For a complete list of analysis modes please consult the [VTune
-documentation](https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html). A
+documentation](https://www.intel.com/content/www/us/en/developer/tools/oneapi/vtune-profiler.html). A
 useful set of performance metrics is gathered by the
 `hрc-performance` analysis, which can help to identify opportunities
 to optimize CPU, memory, and vectorization level:

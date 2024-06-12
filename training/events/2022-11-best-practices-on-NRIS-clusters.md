@@ -85,7 +85,7 @@ The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT
 - 10:05-10:45 - [Software Installation - Python Packages Continues](https://documentation.sigma2.no/software/userinstallsw/python.html) (Sabry Razick & Jørn Dietze)
 - 10:45-11:00 - Break
 - 11:00-11:30 - [R packages](https://documentation.sigma2.no/software/userinstallsw/R.html) (Sabry Razick & Jørn Dietze)
-- 11:30-12:15 - [Singularity on HPC](https://documentation.sigma2.no/software/containers.html) (Sabry Razick & Jørn Dietze)
+- 11:30-12:15 - {ref}`Singularity on HPC <running-containers>` (Sabry Razick & Jørn Dietze)
 - 12:15-12:30 - Q&A 
 
 ## Code of Conduct

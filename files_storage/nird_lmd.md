@@ -16,9 +16,9 @@ publishing research data or searching digital databases and collections.
 NIRD is a high-performance storage system, capable of supporting AI and analytics workloads, offering simultaneous multi-protocol access to the same data.
 ```
 
-The next generation NIRD storage system is installed in [Lefdal Mine Datacenter](https://www.sigma2.no/data-centre-facility).
+The next generation NIRD storage system is installed in [Lefdal Mine Datacenter](https://www.sigma2.no/our-data-centre).
 The new NIRD is redesigned for the evolving needs of Norwegian researchers and has
-been procured through [the NIRD2020 project](https://www.sigma2.no/procurement-project-nird2020).
+been procured through [the NIRD2020 project](https://www.sigma2.no/procurement-project-nird-2020).
 
 
 NIRD provides storage resources with yearly capacity upgrades, data security
