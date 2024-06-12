@@ -144,12 +144,12 @@ Break for 10 minutes
 - **Session Q&A: 12:50-13:00 Questions & Answers**
 
 
-### Day 3: 04-11-2021:  Containers on HPC and NIRD Toolkit
+### Day 3: 04-11-2021: Containers on HPC and NIRD Toolkit
 
 - **Get ready: 08:50-09:00 Connect to zoom meeting**
 
 - **Session 1: 09:00-10:20 Containers on HPC (part I)**
-    - [Course material](https://documentation.sigma2.no/software/containers.html)
+    - {ref}`Course material <running-containers>`
 
 Break for 10 minutes
 

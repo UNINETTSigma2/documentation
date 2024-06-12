@@ -9,7 +9,7 @@ Applications for computing and storage resources should be submitted through NRI
 Resources on the national e-infrastructure are granted on a period basis and
 the **allocation periods have deadlines**.
 
-Please check <https://www.sigma2.no/apply-e-infrastructure-resources#deadlines>
+Please check <https://www.sigma2.no/apply-e-infrastructure-resources>
 to find information about when the next allocation period starts and to not
 miss the next application deadline.
 ```

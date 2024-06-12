@@ -19,7 +19,9 @@ website](http://www.castep.org).
 (access)=
 ### License and access
 
-The CASTEP Developers' Group (CDG) and Cambridge Enterprise have announced a cost-free worldwide source code license to CASTEP and NMR CASTEP for academic use. Detailed information about this is given [here](http://www.castep.org/CASTEP/GettingCASTEP).
+The CASTEP Developers' Group (CDG) and Cambridge Enterprise have announced a
+cost-free worldwide source code license to CASTEP and NMR CASTEP for academic
+use.
 
 To get access to CASTEP, you need to follow the procedure described below. 
 
@@ -47,7 +49,7 @@ We will then have to manually verify this information with STFC UK/CASTEP before
 
 ### Citation
 
-For the recommended citation, please consult the [CASTEP referencing page](http://www.castep.org/CASTEP/ReferencingAndLogo).
+For the recommended citation, please consult the [CASTEP page](http://www.castep.org).
 
 ## CASTEP on NRIS machinery
 
@@ -87,7 +89,7 @@ and one called ethene.param with the contents
 
 Running **CASTEP** would produce an ethene.castep file (amongst others) within seconds for the running examples provided below. Towards the end of this file, there are final structure energy outputs printed, ```Final energy, E```; values here should be in the range of -378.015eV.
 
-A subset of the benchmark sets, the medium set [al3x3](http://www.castep.org/CASTEP/Al3x3) and [solid benzene](http://www.castep.org/CASTEP/SolidBenzene) together with the ethene-example used here has been added to the CASTEP home folder on both Fram and Saga. You get them into your working directory by typing
+A subset of the benchmark sets, the medium set al3x3 and solid benzene together with the ethene-example used here has been added to the CASTEP home folder on both Fram and Saga. You get them into your working directory by typing
 
 ```bash
 cp /cluster/software/CASTEP/benchmarks/* .

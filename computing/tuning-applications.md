@@ -268,7 +268,7 @@ if you are unfamiliar with it.
 
 This case study does not go into depth on how to understand the
 advisor tool, this is far better covered in the Intel tools
-[documentation](https://software.intel.com/content/www/us/en/develop/documentation.html),
+[documentation](https://www.intel.com/content/www/us/en/resources-documentation/developer.html)
 where they also provide a nice selection of tutorials.
 
 

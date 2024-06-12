@@ -60,7 +60,7 @@ singularity version 3.6.4-1.el7
  - [Singularity Hub](https://singularity-hub.org/)
  - [RedHat](https://quay.io/)
  - [BioContainers](https://biocontainers.pro/)
- - [AMD](https://www.amd.com/en/technologies/infinity-hub)
+ - [AMD](https://www.amd.com/en/developer/resources/infinity-hub.html)
  - From software developers
 
 

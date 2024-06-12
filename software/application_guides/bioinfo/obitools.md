@@ -23,7 +23,7 @@ To use OBITools type
 ## License Information
 
 OBITools is available under the [CeCILL v2
-license](https://cecill.info/licences/Licence_CeCILL_V2-en.html)
+license](http://www.cecill.info/licences/Licence_CeCILL_V2-en.html).
 
 It is the user's responsibility to make sure they adhere to the license agreements.
 

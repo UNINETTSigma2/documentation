@@ -136,10 +136,10 @@ mpirun /path/to/MySoftWare_exec
 
 In the above, `MySoftWare_exec` is subject to `mpirun`'s internal
 mapping and binding algorithms. Intel's `mpirun` uses it's own default
-binding settings, which can be modified either by [command line
-parameters](https://software.intel.com/en-us/node/589999), or by
-[environment
-variables](https://software.intel.com/content/www/us/en/develop/documentation/mpi-developer-reference-linux/top/environment-variable-reference/process-pinning/environment-variables-for-process-pinning.html).
+binding settings, which can be modified either by command line
+parameters, or using
+environment
+variables (see <https://www.intel.com/content/www/us/en/docs/mpi-library/developer-reference-linux/2021-12/overview.html>).
 Special care must be taken when running hybrid MPI-OpenMP cores. If
 this is your case, please refer to the documentation regarding
 [Interoperability between MPI and OpenMP](https://software.intel.com/content/www/us/en/develop/documentation/mpi-developer-reference-windows/top/environment-variable-reference/main-thread-pinning/interoperability-with-openmp-api.html).
