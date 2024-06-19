@@ -2,6 +2,7 @@
 
  Here we share the link to our video archives of past events.
 
+- [[Video] NRIS Talks: NRIS Scientiific Computing Workshop](https://www.youtube.com/playlist?list=PLoR6m-sar9AhFq6Brn95HCYdZpn0YLWxF)
 - [[Video] NRIS Talks: Webinar on Exascale Computing](https://www.youtube.com/watch?v=FEm4Ln26iyM)
 - [[Video] NRIS Best Practices on Clusters Spring Series 2024](https://www.youtube.com/watch?v=qcHSxm5i9Oo)
 

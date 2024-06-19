@@ -2,6 +2,8 @@
 
 Here we share the workshop questions, answer, and feedbacks from the collaborative 
 notes after the event.
+- {ref}`training-2024-spring-scientific-computiing`
+  - [Questions and answers from NRIS Scientific Computing Workshop](https://md.sigma2.no/scientific-computing-workshop)
 - {ref}`training-2024-spring-best-practices`
   - [Questions and answers from Best Practices Spring 2024 Day1 (How to choose the right amount of memory and right number of cores)](https://md.sigma2.no/qanda-archive-best-practices-spring2024)
   - [Questions and answers from Best Practices Spring 2024 Day2 (Software Installatiion as user)](https://md.sigma2.no/qanda-archive-best-practices-spring2024-day2)
