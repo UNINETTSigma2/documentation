@@ -28,6 +28,14 @@ several steps with increasing complexity that can be taken to learn more about
 **Prerequisites**: For better learning experience, participants are expected to have basic 
 programmiing knowledge on C/Fortran for day 1 and basic HPC knowledge for day2.
 
+```{note}
+  **Video recordings and Q&A notes from the series:**
+  - [Youtube](https://www.youtube.com/playlist?list=PLoR6m-sar9AhFq6Brn95HCYdZpn0YLWxF)
+  - [Q&A](https://md.sigma2.no/scientific-computing-workshop?view)
+
+```
+
+
 ## **Practical Information**
 
 - This is an online course via zoom. Participants require access to a computer

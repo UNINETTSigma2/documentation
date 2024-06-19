@@ -6,15 +6,17 @@ Norwegian Research Infrastructure Services NRIS (formerly known as the
 The Metacenter), has an extensive education and training program to assist existing
 and future users of our services. The courses are aimed to give the participants
 an understanding of our services as well as using the resources effectively.
-The courses are free of charges. Our upcoming courses are listed below:
+The courses are free of charges. 
 
+## Request Training
+
+If you are interested in a re-run of our past courses or if you want to suggest a new course, or collaborate with us to arrange a training customised for your specific needs, [please take this survey](https://docs.google.com/forms/d/e/1FAIpQLSf1EWya61Z869ZVDrIn1OIVVDTeUaSjmuG3IDwUZ4uWI_INfw/viewform)
 
 ## Upcoming events
 
 ```{toctree}
 :maxdepth: 1
 
-events/2024-06-scientific-computing.md
 
 ```
 
@@ -25,6 +27,7 @@ events/2024-06-scientific-computing.md
 ```{toctree}
 :maxdepth: 1
 
+events/2024-06-scientific-computing.md
 events/2024-spring-best-practices-series.md
 events/2024-04-hpc-on-boarding.md
 nris_talks/2024-04-17-nris-talks.md
