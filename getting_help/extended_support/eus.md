@@ -2,17 +2,21 @@
 
 # Extended User Support
 
-For a smaller adoptions, optimisations and changes which are exceeding ordinary
-support, you can ask support staff for extended user support (formerly called
-mini Advanced User Support). Extended user support can also be initiated by the
-support staff, typically if they see that this could be of a relevance, f.ex.
-in connection with in-effective jobs. In this case you will be contacted by the
-support staff and offered the Extended User Support.
+For smaller adoptions, optimisations, and changes which are exceeding ordinary
+support, you can **ask support staff for extended user support** (formerly called
+mini Advanced User Support).
 
-Extended User Support projects are not requiring any funding or in-kind from
+Extended user support can also be initiated by the
+support staff, typically if they see that this could be of a relevance, e.g.
+in connection with ineffective jobs. In this case you will be contacted by the
+support staff and offered the extended user support.
+
+Extended user support projects are not requiring any funding or in-kind from
 the project or user. The total amount of work effort must not exceed **5
-working days**. A likely outcome is that Extended User Support could lead to
-formulation of a proper AUS project, which needs an application and evaluation,
+working days**.
+
+A likely outcome is that extended user support could lead to
+formulation of a proper {ref}`extended-support-aus`, which needs an application and evaluation,
 but in turn could assign a few months of dedicated work from one of our
-experts. Again, see the documentation
-[here](https://www.sigma2.no/advanced-user-support).
+experts
+([more documentation about the advanced user support](https://www.sigma2.no/advanced-user-support)).
