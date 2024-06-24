@@ -4,7 +4,7 @@
 
 Once the environment is configured to
 [access software provided by EESSI](eessi-access-on-nris), all a
-user has to do is loading module, for example,
+user has to do is loading module, for example:
 
     module load GROMACS/2024.1-foss-2023b
 
