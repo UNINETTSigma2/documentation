@@ -60,6 +60,9 @@ The application page is available [here](https://www.metacenter.no/user/applicat
 | Wed 10.04   | 09:00 - 12:30 | HPC On-boarding day 1|
 | Thu 11.04    | 09:00 - 12:30 | HPC On-boarding day2 |
 
+```{note}
+- [YouTube playlist of all days](https://www.youtube.com/watch?v=YkX6dqpwrog&list=PLoR6m-sar9AiurRIVXw9UWgdmC-9EC6YJ)
+```
 
 **User Account and connection verification**: For new  NRIS  users, we are organising a login help session prior to the event. Join us on 08 April 13:00-14:00 to verify your user access on NRIS cluster.
 
