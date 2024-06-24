@@ -54,7 +54,7 @@ When the job has ended it should have produced a file `slurm-JOBID.out` where
 
 We demonstrate the minimal change needed to the run the same software
 (`GROMACS`) using the installations provided locally on the HPC systems the
-following script just comments out the line loading EESSI module (`# module load EESSI/2023.06`) and use a local available GROMACS module
+following script just comments out the line loading EESSI module (`# module load EESSI/2023.06`) and load a locally available GROMACS module
 
     #!/bin/bash
     #SBATCH --account=REPLACE_WITH_YOUR_NN****K
@@ -94,7 +94,7 @@ When the job has ended it should have produced a file `slurm-JOBID.out` where
 file contains the following information (among other things):
 - which program was actually run, e.g., GROMACS conveniently reports somthing like
 
-      Executable:   /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/skylake_avx512/software/GROMACS/2023.1-foss-2022a/bin/gmx
+      Executable:   /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/skylake_avx512/software/GROMACS/2024.1-foss-2023b/bin/gmx
 
   Note, when using EESSI, the exact path will be specific to the
   compute node the job was running on, because for each machine the version
@@ -119,5 +119,5 @@ file contains the following information (among other things):
 
 **Additional information**
 
-- Read about [future topics to be added to the documentation about EESSI](eessi-future-topics).
+- Read about [more information about EESSI](eessi-topics).
 - Read more about EESSI at [eessi.io/docs](https://eessi.io/docs).

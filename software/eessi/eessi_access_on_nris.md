@@ -2,7 +2,7 @@
 
 # Accessing EESSI on NRIS systems
 
-On the HPC machines Betzy, Fram and Saga, both the EESSI software stacks is
+On the HPC machines Betzy, Fram and Saga, EESSI software stacks are
 accessible on login nodes and all compute nodes. To
 configure the environment, all that needs to be done is to run the single
 command:
@@ -16,8 +16,6 @@ The module file will detect the CPU hardware of the machine and pick the best
 software that was pre-built and is provided by EESSI. This works
 seamlessly on systems which provide different CPU micro-architectures (e.g.,
 Saga).
-
-[eX3](https://www.ex3.simula.no) and AWS.
 
 **EESSI supports the following CPU micro-architectures:**
 

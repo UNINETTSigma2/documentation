@@ -42,10 +42,10 @@ eessi/eessi_using.md
 
 - For getting support for EESSI, please see [https://www.eessi.io/docs/support/](https://www.eessi.io/docs/support/)
 
-(eessi-future-topics)=
-**In the future, we will add more information about:**
-
-  Adding software for EESSI, see [Adding software to EESSI](https://www.eessi.io/docs/adding_software/overview/).
+(eessi-topics)=
+**More information about EESSI:**
+  
+- Adding software for EESSI, see [Adding software to EESSI](https://www.eessi.io/docs/adding_software/overview/).
 - Building and installing software packages on your local machine (HPC or other)
   on top of EESSI, see [Building software on top of EESSI](https://www.eessi.io/docs/using_eessi/building_on_eessi/).
 - Getting access to EESSI on any machine (your own, in the Cloud, in

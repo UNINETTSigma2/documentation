@@ -52,4 +52,4 @@ as
 
     module load GROMACS/2024.1-foss-2023b
 
-**Read about [getting access to the EESSI stack](eessi-access-on-nris).**
+**Read about [getting access to the EESSI stacks](eessi-access-on-nris).**
