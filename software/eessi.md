@@ -45,7 +45,7 @@ eessi/eessi_using.md
 (eessi-topics)=
 **More information about EESSI:**
   
-- Adding software for EESSI, see [Adding software to EESSI](https://www.eessi.io/docs/adding_software/overview/).
+- Adding software to the shared software stacks provided by EESSI, see [Adding software to EESSI](https://www.eessi.io/docs/adding_software/overview/).
 - Building and installing software packages on your local machine (HPC or other)
   on top of EESSI, see [Building software on top of EESSI](https://www.eessi.io/docs/using_eessi/building_on_eessi/).
 - Getting access to EESSI on any machine (your own, in the Cloud, in
