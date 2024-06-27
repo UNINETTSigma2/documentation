@@ -1,4 +1,4 @@
-(training-2024-spring-onboarding)=
+(training-2024-autumn-onboarding)=
 
 # HPC On-boarding 15-17 October 2024
 
