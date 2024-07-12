@@ -34,6 +34,30 @@ more or less the same:
 We typically provide modules for **Anaconda** and **Miniconda**. Either of the
 two is fine.
 
+The Conda workflow consists of several steps, these are:
+- Create an environment
+- Source into the environment
+- Install software and packages in the environment
+- Run software and packages that you have installed.
+These steps are performed slighly differently in the clusters than what you 
+might do in your local machine.
+
+In the next sections we will go through the different steps on our machines, 
+provide some useful tips for reproducibility or ease of use and finally
+showcase a couple of common pitfalls to avoid. 
+
+
+### Creating an environment
+Environments are great tools used to encapsulate package and software installation.
+They provide an easy way to set up necessary dependencies and are easy to share
+for reproducibility purposes, more on that later.
+
+In order to create an envrionment we start by loading the desired Conda module,
+this can be either `Anaconda3` or `Miniconda3`
+```bash
+$ module load Anaconda3/2022.05
+```
+
 
 ## Typical pitfalls to avoid
 
