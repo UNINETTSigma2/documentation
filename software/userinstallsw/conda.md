@@ -197,7 +197,7 @@ linenos:
 # settings to catch errors in bash scripts
 set -euf -o pipefail
 
-module load Anaconda3/2022.05
+module load Anaconda3/2022.10
 
 #                                 change this
 #                                     |
@@ -289,7 +289,7 @@ linenos:
 # settings to catch errors in bash scripts
 set -euf -o pipefail
 
-module load Anaconda3/2022.05
+module load Anaconda3/2022.10
 
 #                                 change this
 #                                     |
@@ -321,7 +321,7 @@ different and conflicting dependencies.
 
 We need three commands:
 ```bash
-$ module load Anaconda3/2022.05
+$ module load Anaconda3/2022.10
 $ source ${EBROOTANACONDA3}/bin/activate
 
 $ conda activate /cluster/projects/nn____k/conda/myproject
@@ -344,7 +344,7 @@ a Python script called `example.py`. Notice how the environment in my prompt
 changes from nothing to `(base)` to
 `(/cluster/projects/nn____k/conda/myproject)`:
 ```bash
-[user@login-1.FRAM ~/example]$ module load Anaconda3/2022.05
+[user@login-1.FRAM ~/example]$ module load Anaconda3/2022.10
 
 [user@login-1.FRAM ~/example]$ source ${EBROOTANACONDA3}/bin/activate
 
@@ -379,7 +379,7 @@ set -euf -o pipefail
 #SBATCH --time=00:02:00
 
 # the actual module version might be different
-module load Anaconda3/2022.05
+module load Anaconda3/2022.10
 source ${EBROOTANACONDA3}/bin/activate
 
 #                               change this
@@ -434,7 +434,7 @@ But if you lost the file or installed on the command line and forgot what
 packages exactly, you can create it:
 ```bash
 # the first three lines depend on how you created your environment
-$ module load Anaconda3/2022.05
+$ module load Anaconda3/2022.10
 $ source ${EBROOTANACONDA3}/bin/activate
 $ conda activate /cluster/projects/nn____k/conda/myproject
 
