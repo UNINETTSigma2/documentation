@@ -47,21 +47,69 @@ provide some useful tips for reproducibility or ease of use and finally
 showcase a couple of common pitfalls to avoid. 
 
 
-### Creating an environment
-Environments are great tools used to encapsulate package and software installation.
-They provide an easy way to set up necessary dependencies and are easy to share
-for reproducibility purposes, more on that later.
+## Quickstart simple environment setup
+Following is a simple setup which can be used when testing, debugging or any 
+lightweight applications. More general usage will be shown in the following 
+sections. 
 
 In order to create an envrionment we start by loading the desired Conda module,
-this can be either `Anaconda3` or `Miniconda3`
+this can be either `Anaconda3` or `Miniconda3`, here we give an example using
+the `Anaconda3/2022.05` module, but any other Conda module works
 ```bash
-$ module load Anaconda3/2022.05
+module load Anaconda3/2022.05
+source ${EBROOTANACONDA3}/bin/activate
 ```
+with `Miniconda3` the last command would be
+```bash
+source ${EBROOTMINICONDA3}/bin/activate
+``` 
+This should make it so you are in the `base` environment of Conda (your 
+terminal should have `(base)` before the directory name), where you can run
+basic Python scripts, use the Conda executable to create and manage 
+environments, install software, etc.
+
+
+Creating an environment is straight forward, run the following command to 
+create an environment named `my-env`
+```bash
+conda create -n my-env
+```
+This will create an empty environment which you can activate
+```bash
+conda activate my-env
+```
+Notice that the `(base)` in your terminal now has changed to `(my-env)`, this
+is indication that you are now in the context of the `my-env` environment.
+
+
+Once you have **activated** the environment you can install software, `numpy` 
+for example, by running
+```bash
+conda install numpy
+```
+Now any python script that utilizes numpy can be run in the terminal using the
+version of numpy you have installed in the step above.
+
+
+```{'note'}
+The sequence of commands above will create the Conda environment and install 
+packages in the default Conda location. This location is in you `home` 
+directory. Due to this, cluttering might arise when working with many and/or 
+bigger environments. The following sections will show best practices when 
+scaling up your usage of environments.
+```
+
+
+
+
+
+
+
 
 
 ## Typical pitfalls to avoid
 
-```{warning}
+```{'warning'}
 - We recommend to not use `conda init`. See below how to initialize conda without modifying `.bashrc`.
 - Do not modify your `.bashrc` with any Conda commands.
 - Do not install packages/environments into your home directory otherwise you
