@@ -47,7 +47,8 @@ provide some useful tips for reproducibility or ease of use and finally
 showcase a couple of common pitfalls to avoid. 
 
 
-## Quickstart simple environment setup
+# Quickstart simple environment setup
+
 Following is a simple setup which can be used when testing, debugging or any 
 lightweight applications. More general usage will be shown in the following 
 sections. 
@@ -71,11 +72,11 @@ environments, install software, etc.
 
 Creating an environment is straight forward, run the following command to 
 create an environment named `my-env`
-```bash
-conda create -n my-env
+```shell
+conda create --name my-env
 ```
 This will create an empty environment which you can activate
-```bash
+```shell
 conda activate my-env
 ```
 Notice that the `(base)` in your terminal now has changed to `(my-env)`, this
@@ -84,12 +85,24 @@ is indication that you are now in the context of the `my-env` environment.
 
 Once you have **activated** the environment you can install software, `numpy` 
 for example, by running
-```bash
+```shell
 conda install numpy
 ```
 Now any python script that utilizes numpy can be run in the terminal using the
 version of numpy you have installed in the step above.
 
+Once you are done with your environment you can delete it with
+```shell
+conda deactivate
+conda remove --name my-env --all
+```
+
+```{'warning'}
+Conda will at one point advice you to run the `conda init` command. 
+**do not run this command** 
+This will change your .bashrc and will make it very difficult for support to 
+troubleshoot any of your issues.
+```
 
 ```{'note'}
 The sequence of commands above will create the Conda environment and install 
@@ -99,90 +112,45 @@ bigger environments. The following sections will show best practices when
 scaling up your usage of environments.
 ```
 
+# Best practices for large scale uses
 
+As noted above, for more heavyweight uses certain precautions need to be taken.
+Additionally one would like to be able to share environments with collaborators
+and be able to run the software installed through the slurm queue system, the
+next sections outline how to do all this.
 
+## Specify environment and software cache directory
 
+There is two main problems that need to be addressed, software chache storage and 
+environment location. These two can be addressed at the same time by specifying
+a directory where to build the environment and store the software cache.
 
-
-
-
-
-## Typical pitfalls to avoid
-
-```{'warning'}
-- We recommend to not use `conda init`. See below how to initialize conda without modifying `.bashrc`.
-- Do not modify your `.bashrc` with any Conda commands.
-- Do not install packages/environments into your home directory otherwise you
-  fill your disk quota ({ref}`storage-quota`).
-- Do not lose track of what packages you installed. Use `environment.yml` files. These are
-  not only good for reproducibility but are also interoperable with other tools
-  such as [Binder](https://mybinder.org/).
+In this example we use a generic project directory `nn____k` which has to be 
+changed to your actual project.
+After sourcing into `base` (see above steps)
+we can export the `CONDA_PKGS_DIRS` variable to something that fits our 
+purposes.
+```shell
+export CONDA_PKGS_DIRS=/cluster/projects/nn____k/conda/package-cache
 ```
-
-
-### We recommend to not use `conda init`
-
-Never use `conda init` on the cluster because it modifies your `.bashrc`
-file by adding the following:
-```bash
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/cluster/software/Anaconda3/2022.10/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/cluster/software/Anaconda3/2022.10/etc/profile.d/conda.sh" ]; then
-        . "/cluster/software/Anaconda3/2022.10/etc/profile.d/conda.sh"
-    else
-        export PATH="/cluster/software/Anaconda3/2022.10/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+The `package-cache` stores tar-balls, logfiles and other side products of 
+software installation. Some of these files are stored to make subsequent 
+installations in different environments more streamlined.
+This cache can be cleaned by running 
+```shell
+conda clean -a
 ```
+which will remove these files. 
 
-These lines are the reason you see a `(base)` next to your prompt once you log
-into the cluster.  If you see `(base)` next to your prompt after a login, this
-probably comes from a modified `.bashrc`.
-We recommend to remove those lines from your `.bashrc`.
-
-When you activate an environment without "sourcing" Conda first, Conda itself will complain and suggest "conda init"
-but **do not run "conda init"**:
+When creating the environment we specify the environment path by using the 
+`--prefix` option.
+```shell
+conda env create --prefix /cluster/projects/nn____k/conda/my-env --name my-env
 ```
-CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
-To initialize your shell, run
+all binaries will now be stored under the `/cluster/projects/nn____k/conda/my-env/`.
 
-    $ conda init <SHELL_NAME>
+## Using `environment.yml` files
 
-Currently supported shells are:
-  - bash
-  - fish
-  - tcsh
-  - xonsh
-  - zsh
-  - powershell
-
-See 'conda init --help' for more information and options.
-
-IMPORTANT: You may need to close and restart your shell after running 'conda init'.
-```
-
-We **strongly** advise against running `conda init`. Read on for the recommended
-way to activate environments which avoids this message and the problems `conda
-init` may cause.
-
-
-### Do not modify your .bashrc with any Conda commands
-
-The reason for this is that this makes your computations less reproducible for others
-and your future self:
-- The staff answering your next support request does not have this in their
-  `.bashrc`. They will have a different environment and will have a hard time reproducing your problem. The run
-  script you send them might produce something different for them.
-- Your future self will have a different `.bashrc` (maybe on a different cluster) and will
-  have a hard time re-running that calculation.
-- Sooner or later your calculations might not work anymore if modules change on the cluster
-  during a major upgrade.
 
 
 ### Do not install into your home directory otherwise you fill your disk quota
@@ -210,14 +178,6 @@ Normally the only two Conda files that need to be in your home directory are `~/
 and possibly `~/.condarc`. Everything else should be somewhere else: project folder
 or work area.
 
-
-### Losing track of what packages you installed
-
-If you install packages from the command line using `conda install`, then you
-probably won't remember what you installed precisely one year later and this is
-a problem for reproducibility for others and your future self trying to publish
-that article. Always install from an `environment.yml` file, then you don't
-need to remember but it is automatically documented.
 
 
 ## Installing packages/environment from an `environment.yml` file
