@@ -114,7 +114,7 @@ environment (otherwise you would use the global installation, which can
 introduce other problems) and then use this `pip` to install the package 
 `jupyter`.
 
-```{'note'}
+```{note}
 `pip` might not need to be installed this way all the time, as it might have been 
 installed by a previous command (such as installing any Python version). This 
 is still good practice to avoid different versions of the same packages used 
@@ -150,14 +150,14 @@ conda deactivate
 conda remove --name my-env --all
 ```
 
-```{'warning'}
+```{warning}
 Conda will at one point advice you to run the `conda init` command. 
 **do not run this command** 
 This will change your .bashrc and will make it very difficult for support to 
 troubleshoot any of your issues.
 ```
 
-```{'note'}
+```{note}
 The sequence of commands above will create the Conda environment and install 
 packages in the default Conda location. This location is in you `home` 
 directory. Due to this, cluttering might arise when working with many and/or 
