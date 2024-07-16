@@ -37,9 +37,9 @@ two is fine.
 The Conda workflow consists of several steps, these are:
 - Create an environment
 - Source into the environment
-- Install software and packages in the environment
+- Install software, libraries and/or packages in the environment
 - Run software and packages that you have installed.
-These steps are performed slighly differently in the clusters than what you 
+These steps are performed slightly differently in the clusters than what you 
 might do in your local machine.
 
 In the next sections we will go through the different steps on our machines, 
@@ -53,7 +53,7 @@ Following is a simple setup which can be used when testing, debugging or any
 lightweight applications. More general usage will be shown in the following 
 sections. 
 
-In order to create an envrionment we start by loading the desired Conda module,
+In order to create an environment we start by loading the desired Conda module,
 this can be either `Anaconda3` or `Miniconda3`, here we give an example using
 the `Anaconda3/2022.05` module, but any other Conda module works
 ```bash
@@ -67,7 +67,7 @@ source ${EBROOTMINICONDA3}/bin/activate
 This should make it so you are in the `base` environment of Conda (your 
 terminal should have `(base)` before the directory name), where you can run
 basic Python scripts, use the Conda executable to create and manage 
-environments, install software, etc.
+environments, install software or packages, etc.
 
 
 Creating an environment is straight forward, run the following command to 
@@ -83,13 +83,66 @@ Notice that the `(base)` in your terminal now has changed to `(my-env)`, this
 is indication that you are now in the context of the `my-env` environment.
 
 
-Once you have **activated** the environment you can install software, `numpy` 
+Once you have **activated** the environment you can install software or libraries, `numpy` 
 for example, by running
 ```shell
 conda install numpy
 ```
 Now any python script that utilizes numpy can be run in the terminal using the
 version of numpy you have installed in the step above.
+
+Some of the libraries or software you install might need to be installed from 
+different channels than the default ones. Scipy, for example, can be installed from 
+the channel `conda-forge`. This can be done in a number of ways, following we introduce some
+
+```shell
+conda install conda-forge::scipy
+```
+alternatively
+```shell
+conda install --channel conda-forge scipy
+```
+both will do the same operation.
+
+Some packages can only be installed with `pip`, but this can also be done through Conda:
+```shell
+conda install pip
+pip install jupyter
+```
+These two commands will first install `pip` in the context of the Conda 
+environment (otherwise you would use the global installation, which can 
+introduce other problems) and then use this `pip` to install the package 
+`jupyter`.
+
+```{'note'}
+`pip` might not need to be installed this way all the time, as it might have been 
+installed by a previous command (such as installing any Python version). This 
+is still good practice to avoid different versions of the same packages used 
+simultaneously.
+```
+
+You can at any time list the packages installed in the environment by running
+```shell
+conda list
+```
+which, for the packages we have installed here, will show something like this:
+```shell
+# packages in environment at /path/to/my-env:
+#
+# Name                    Version                   Build  Channel
+.
+.
+.
+jupyter                   1.0.0                    pypi_0    pypi
+numpy                     2.0.0           py312h8813227_0    conda-forge
+pip                       24.0               pyhd8ed1ab_0    conda-forge
+python                    3.12.4          h37a9e06_0_cpython    conda-forge
+scipy                     1.14.0          py312hb9702fa_1    conda-forge
+.
+.
+.
+```
+where we have ommitted most of the other dependencies.
 
 Once you are done with your environment you can delete it with
 ```shell
@@ -145,11 +198,49 @@ which will remove these files.
 When creating the environment we specify the environment path by using the 
 `--prefix` option.
 ```shell
-conda env create --prefix /cluster/projects/nn____k/conda/my-env --name my-env
+conda create --prefix /cluster/projects/nn____k/conda/my-env 
 ```
 all binaries will now be stored under the `/cluster/projects/nn____k/conda/my-env/`.
 
 ## Using `environment.yml` files
+
+One of the pros of using Conda is that you can share your environment 
+specification to collaborators through `environment.yml` files, which they can
+use to create their own copy of your environment.
+
+Such an `environment.yml`file can look like this:
+```yaml
+name: my-env
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy
+  - pandas
+  - scipy
+```
+In order to create an environment from this file you run
+```shell
+conda create --prefix /cluster/projects/nn____k/conda/my-env --file environment.yml
+```
+given that the file is named `environment.yml`.
+This will install all the dependencies listed from the necessary channels. 
+
+To create this file you can either write the `environment.yml` file manually following [these instructions](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#create-env-file-manually)
+or use conda to export the list of installed packages in your environment 
+automatically. You can do this by first activating the environment 
+`conda activate my-env` and then run this command
+```shell
+conda env export > environment.yml
+```
+This will overwrite any `environment.yml` file in the current directory and 
+list all installed packages in the environment. These can be quite many, due to 
+system specific dependencies that are installed  at the same time. This might 
+make this environment file not compatible accross platforms. In order to just 
+show the packages you specifically asked for you can run the following command
+```shell
+conda env export --from-history
+```
 
 
 
