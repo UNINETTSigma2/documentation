@@ -55,9 +55,9 @@ sections.
 
 In order to create an environment we start by loading the desired Conda module,
 this can be either `Anaconda3` or `Miniconda3`, here we give an example using
-the `Anaconda3/2022.05` module, but any other Conda module works
+the `Anaconda3/2022.10` module, but any other Conda module works
 ```bash
-module load Anaconda3/2022.05
+module load Anaconda3/2022.10
 source ${EBROOTANACONDA3}/bin/activate
 ```
 with `Miniconda3` the last command would be
