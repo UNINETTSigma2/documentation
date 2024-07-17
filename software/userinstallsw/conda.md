@@ -182,7 +182,7 @@ conda remove --name my-env --all
 ```{warning}
 Conda will at one point advice you to run the `conda init` command. 
 **do not run this command** 
-This will change your .bashrc and will make it very difficult for support to 
+This will change your `.bashrc` and will make it very difficult for support to 
 troubleshoot any of your issues.
 ```
 
@@ -224,6 +224,11 @@ make this environment file not compatible across platforms. In order to just
 show the packages you specifically asked for you can run the following command
 ```shell
 conda env export --from-history
+```
+
+If you change the `environment.yml` file for an existing environment, and you want to install the new packages, you run this in your terminal
+```shell
+conda update --file environment.yml
 ```
 
 # Activating the environment in your job script
@@ -273,6 +278,29 @@ look like this instead (version might be different):
 module load Miniconda3/22.11.1-1
 source ${EBROOTMINICONDA3}/bin/activate
 ```
+
+# Help! I ran `conda init` and/or I see `(base)` everytime I log in
+We advice against running `conda init`, but if you have run it you can "undo" 
+this by deleting the lines that Conda added to your `.bashrc` or similar file and restarting your terminal (log off and back in again).
+
+You can find your `.bashrc` file in your home directory. The lines that you must remove are
+```
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/cluster/software/Anaconda3/2022.10/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/cluster/software/Anaconda3/2022.10/etc/profile.d/conda.sh" ]; then
+        . "/cluster/software/Anaconda3/2022.10/etc/profile.d/conda.sh"
+    else
+        export PATH="/cluster/software/Anaconda3/2022.10/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+```
+Once you have deleted these lines and restarted your session you will be free of the `(base)` prefix.
 
 # Container solution
 
