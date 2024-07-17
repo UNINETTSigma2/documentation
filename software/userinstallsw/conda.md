@@ -13,7 +13,7 @@ It is also a tool that allows to **create and keep track of different
 environments** for different projects.
 Creating multiple environments allows you to have installations of the same
 software in different versions or incompatible software collections at once.
-You can then easily share a list of the installed packages with collaborators or
+You can then share a list of the installed packages with collaborators or
 colleagues, so they can set up the same environment in a matter of minutes.
 
 Conda comes in different shapes and forms but the idea and functionality is
@@ -69,19 +69,41 @@ terminal should have `(base)` before the directory name), where you can run
 basic Python scripts, use the Conda executable to create and manage 
 environments, install software or packages, etc.
 
+Conda downloads and stores a lot of files when installing packages in 
+environments. Conda stores files in a cache to speed up subsequent
+installations of the same software. This can lead to cluttering of your home 
+directory if not careful. To avoid cluttering your home directory, we encourage
+you to specify a path to where you want to create the environment and where you
+want to keep the software cache. A good location is your project directory for
+both the environment and the conda software cache.
 
-Creating an environment is straight forward, run the following command to 
-create an environment named `my-env`
+To specify the software cache you can run this command in your terminal
 ```shell
-conda create --name my-env
+export CONDA_PKGS_DIRS=/cluster/projects/nn____k/conda/package-cache
 ```
-This will create an empty environment which you can activate
+The `package-cache` stores tar-balls, logfiles and other side products of 
+software installation. Some of these files are stored to make subsequent 
+installations in different environments more streamlined.
+This cache can be cleaned by running 
 ```shell
-conda activate my-env
+conda clean -a
 ```
-Notice that the `(base)` in your terminal now has changed to `(my-env)`, this
-is indication that you are now in the context of the `my-env` environment.
 
+When creating the environment we specify the environment path by using the 
+`--prefix` option.
+```shell
+conda create --prefix /cluster/projects/nn____k/conda/my-env 
+```
+all files related to the environment will now be stored under the
+`/cluster/projects/nn____k/conda/my-env/` directory.
+To activate this environment we need to specify its path
+```shell
+conda activate /cluster/projects/nn____k/conda/my-env
+```
+
+Notice that the `(base)` in your terminal now has changed to something similar 
+to `(my-env)`, this is indication that you are now in the context of the 
+`my-env` environment.
 
 Once you have **activated** the environment you can install software or libraries, `numpy` 
 for example, by running
@@ -157,57 +179,7 @@ This will change your .bashrc and will make it very difficult for support to
 troubleshoot any of your issues.
 ```
 
-```{note}
-The sequence of commands above will create the Conda environment and install 
-packages in the default Conda location. This location is in you `home` 
-directory. Due to this, cluttering might arise when working with many and/or 
-bigger environments. The following sections will show best practices when 
-scaling up your usage of environments.
-```
-
-# Best practices for large scale uses
-
-As noted above, for more heavyweight uses certain precautions need to be taken.
-Additionally one would like to be able to share environments with collaborators
-and be able to run the software installed through the slurm queue system, the
-next sections outline how to do all this.
-
-## Specify environment and software cache directory
-
-There is two main problems that need to be addressed, software chache storage and 
-environment location. These two can be addressed at the same time by specifying
-a directory where to build the environment and store the software cache.
-
-In this example we use a generic project directory `nn____k` which has to be 
-changed to your actual project.
-After sourcing into `base` (see above steps)
-we can export the `CONDA_PKGS_DIRS` variable to something that fits our 
-purposes.
-```shell
-export CONDA_PKGS_DIRS=/cluster/projects/nn____k/conda/package-cache
-```
-The `package-cache` stores tar-balls, logfiles and other side products of 
-software installation. Some of these files are stored to make subsequent 
-installations in different environments more streamlined.
-This cache can be cleaned by running 
-```shell
-conda clean -a
-```
-which will remove these files. THis is specially useful if you have created 
-smaller environments in your home directory and need to clean up.
-
-When creating the environment we specify the environment path by using the 
-`--prefix` option.
-```shell
-conda create --prefix /cluster/projects/nn____k/conda/my-env 
-```
-all binaries will now be stored under the `/cluster/projects/nn____k/conda/my-env/`.
-To activate this environment we need to specify its path
-```shell
-conda activate /cluster/projects/nn____k/conda/my-env
-```
-
-## Using `environment.yml` files
+# Using `environment.yml` files
 
 One of the pros of using Conda is that you can share your environment 
 specification to collaborators through `environment.yml` files, which they can
@@ -247,8 +219,7 @@ show the packages you specifically asked for you can run the following command
 conda env export --from-history
 ```
 
-
-## Activating the environment in your job script
+# Activating the environment in your job script
 
 We activate the environment in the job script the same way we activate it
 interactively on the command line (above). The additional `SBATCH`
