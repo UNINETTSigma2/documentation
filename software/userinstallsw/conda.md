@@ -31,8 +31,8 @@ more or less the same:
 - [Micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html):
   Ultra-lightweight Mamba which supports the most important `conda` commands.
 
-We typically provide modules for **Anaconda** and **Miniconda**. Either of the
-two is fine.
+We typically provide modules for **Anaconda**, **Miniconda** and **Mamba**.
+Either of the three is fine.
 
 The Conda workflow consists of several steps, these are:
 - Create an environment
@@ -42,19 +42,14 @@ The Conda workflow consists of several steps, these are:
 These steps are performed slightly differently in the clusters than what you 
 might do in your local machine.
 
-In the next sections we will go through the different steps on our machines, 
-provide some useful tips for reproducibility or ease of use and finally
-showcase a couple of common pitfalls to avoid. 
+In the next sections we will go through the different steps on our machines and
+provide some useful tips for reproducibility or ease of use.
 
 
 # Quickstart simple environment setup
 
-Following is a simple setup which can be used when testing, debugging or any 
-lightweight applications. More general usage will be shown in the following 
-sections. 
-
-In order to create an environment we start by loading the desired Conda module,
-this can be either `Anaconda3` or `Miniconda3`, here we give an example using
+In order to create an environment we start by loading Conda module of choice,
+this can be either `Anaconda3`, `Miniconda3` or `Mamba`, here we give an example using
 the `Anaconda3/2022.10` module, but any other Conda module works
 ```bash
 module load Anaconda3/2022.10
@@ -64,7 +59,18 @@ with `Miniconda3` the last command would be
 ```bash
 source ${EBROOTMINICONDA3}/bin/activate
 ``` 
-This should make it so you are in the `base` environment of Conda (your 
+and with `Mamba`it would be
+```bash
+source ${EBROOTMAMBA}/bin/activate
+``` 
+
+```{note}
+The rest of the commands will be the same for all three distributions with 
+the exception of that if you are using Mamba you have to change the `conda` 
+in all the terminal commands with `mamba`, e.g. `mamba install numpy`.
+```
+
+At this point you are should be in the `base` environment of Conda (your 
 terminal should have `(base)` before the directory name), where you can run
 basic Python scripts, use the Conda executable to create and manage 
 environments, install software or packages, etc.
@@ -84,6 +90,7 @@ export CONDA_PKGS_DIRS=/cluster/projects/nn____k/conda/package-cache
 The `package-cache` stores tar-balls, logfiles and other side products of 
 software installation. Some of these files are stored to make subsequent 
 installations in different environments more streamlined.
+
 This cache can be cleaned by running 
 ```shell
 conda clean -a
@@ -267,13 +274,7 @@ module load Miniconda3/22.11.1-1
 source ${EBROOTMINICONDA3}/bin/activate
 ```
 
-## How to speed up the installation with [Mamba](https://mamba.readthedocs.io/)
-Instead of `conda env create`, you can use `mamba env create` to speed up the
-installation.  Mamba is a re-implementation of Conda for fast dependency
-resolution. We have modules for Mamba on all our clusters. Try: `module avail mamba`.
-
-
-## Container solution
+# Container solution
 
 If you are interested using Conda through a Singularity/Apptainer container,
 have a look at <https://github.com/bast/singularity-conda/>.
