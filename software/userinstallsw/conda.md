@@ -46,7 +46,7 @@ In the next sections we will go through the different steps on our machines and
 provide some useful tips for reproducibility or ease of use.
 
 
-# Quickstart simple environment setup
+## Quickstart simple environment setup
 
 In order to create an environment we start by loading Conda module of choice,
 this can be either `Anaconda3`, `Miniconda3` or `Mamba`, here we give an example using
@@ -186,7 +186,7 @@ This will change your `.bashrc` and will make it very difficult for support to
 troubleshoot any of your issues.
 ```
 
-# Using `environment.yml` files
+## Using `environment.yml` files
 
 One of the pros of using Conda is that you can share your environment 
 specification to collaborators through `environment.yml` files, which they can
@@ -231,7 +231,8 @@ If you change the `environment.yml` file for an existing environment, and you wa
 conda update --file environment.yml
 ```
 
-# Activating the environment in your job script
+
+## Activating the environment in your job script
 
 We activate the environment in the job script the same way we activate it
 interactively on the command line (above). The additional `SBATCH`
@@ -279,7 +280,9 @@ module load Miniconda3/22.11.1-1
 source ${EBROOTMINICONDA3}/bin/activate
 ```
 
-# Help! I ran `conda init` and/or I see `(base)` everytime I log in
+
+## Help! I ran `conda init` and/or I see `(base)` everytime I log in
+
 We advice against running `conda init`, but if you have run it you can "undo" 
 this by deleting the lines that Conda added to your `.bashrc` or similar file and restarting your terminal (log off and back in again).
 
@@ -302,7 +305,8 @@ unset __conda_setup
 ```
 Once you have deleted these lines and restarted your session you will be free of the `(base)` prefix.
 
-# Container solution
+
+## Container solution
 
 If you are interested using Conda through a Singularity/Apptainer container,
-have a look at <https://github.com/bast/singularity-conda/>.
+have a look at <https://github.com/bast/apptainer-conda/>.
