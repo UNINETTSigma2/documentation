@@ -104,4 +104,4 @@ To see all pending jobs, in priority order, you can use `pending`,
 which is a small wrapper for `squeue`. See `pending --help` for
 details and options.
 
-For a description of common job states, see {ref}`job-states`.
+For a description of common job states, see {ref}`job-states`. For an overview of the output from `squeue` see {ref}`squeue`.

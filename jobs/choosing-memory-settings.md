@@ -127,7 +127,7 @@ $ gfortran example.f90 -o mybinary
 ### Using top
 
 While the job is running, find out on which node(s) it runs using `squeue --me`,
-then `ssh` into one of the listed compute nodes and run `top -u $USER`.
+then `ssh` into one of the listed compute nodes and run `top -u $USER`. See {ref}`squeue` for further reference on `squeue`
 
 
 ### By checking the Slurm output generated with your job

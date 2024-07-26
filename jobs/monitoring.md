@@ -8,9 +8,9 @@
 To check the job status of all your jobs, you can use
 [squeue](https://slurm.schedmd.com/squeue.html), i.e. by executing:
 
-    squeue -u MyUsername
+    squeue --me
 
-For an explanation of the output of this commadn, see {ref}`squeue`.
+For an explanation of the output of this command, see {ref}`squeue`.
 
 You can also get a quick view of the status of a job
 
