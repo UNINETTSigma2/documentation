@@ -85,7 +85,7 @@ both the environment and the conda software cache.
 
 To specify the software cache you can run this command in your terminal
 ```shell
-export CONDA_PKGS_DIRS=/cluster/projects/nn____k/conda/package-cache
+export CONDA_PKGS_DIRS=/cluster/projects/nn____k/conda/username/package-cache
 ```
 The `package-cache` stores tar-balls, logfiles and other side products of 
 software installation. Some of these files are stored to make subsequent 
@@ -99,13 +99,13 @@ conda clean -a
 When creating the environment we specify the environment path by using the 
 `--prefix` option.
 ```shell
-conda create --prefix /cluster/projects/nn____k/conda/my-env 
+conda env create --prefix /cluster/projects/nn____k/conda/username/my-env 
 ```
 all files related to the environment will now be stored under the
-`/cluster/projects/nn____k/conda/my-env/` directory.
+`/cluster/projects/nn____k/conda/username/my-env/` directory.
 To activate this environment we need to specify its path
 ```shell
-conda activate /cluster/projects/nn____k/conda/my-env
+conda activate /cluster/projects/nn____k/conda/username/my-env
 ```
 
 Notice that the `(base)` in your terminal now has changed to something similar 
@@ -205,7 +205,7 @@ dependencies:
 ```
 In order to create an environment from this file you run
 ```shell
-conda create --prefix /cluster/projects/nn____k/conda/my-env --file environment.yml
+conda env create --prefix /cluster/projects/nn____k/conda/username/my-env --file environment.yml
 ```
 given that the file is named `environment.yml`.
 This will install all the dependencies listed from the necessary channels. 
@@ -263,7 +263,7 @@ source ${EBROOTANACONDA3}/bin/activate
 #                               change this
 #                                   |
 #                                   v
-conda activate /cluster/projects/nn____k/conda/myproject
+conda activate /cluster/projects/nn____k/conda/username/myproject
 
 python --version
 python example.py
