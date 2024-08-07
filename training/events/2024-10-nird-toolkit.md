@@ -4,7 +4,7 @@ NRIS (Norwegian Research Infrastructure Services) is organizing an introductory 
 
 The NIRD toolkit allows pre/post processing analysis, data intensive processing, visualization, artificial intelligence and machine learning platform.
 
-On this hands-on course, you will get an overview of  the NIRD Toolkit and how to use the packages, get hands-on experience with JupyterHub and deep-learning tools and ask questiions during the Q&A session.
+On this hands-on course, you will get an overview of  the NIRD Toolkit and how to use the packages, get hands-on experience with JupyterHub and deep-learning tools and ask questions during the Q&A session.
 
 ## Date and Time 
 
@@ -31,7 +31,7 @@ The course is free of charge and is organised by NRIS.
 The last day to register for the course is **18 October**.
 **Register [here](https://skjemaker.app.uib.no/view.php?id=17471854).**
 
-**IMPORTRAN NOTE**: In order to log into the NIRD Toolkit to participate in the hands on workshop during the course, you will need to provide either a Feide account or a Feide OpenIDP guest account in the registration form.
+**IMPORTANT NOTE**: In order to log into the NIRD Toolkit to participate in the hands-on workshop during the course, you will need to provide either a Feide account or a Feide OpenIDP guest account in the registration form.
 If you have a Feide account, you should provide the "Person's principal name at home organization" from https://innsyn.feide.no/aboutme. If not, you can create a Feide OpenIDP guest account at https://openidp.feide.no/. Those who are using Feide openIDP guest account should go to minside.dataporten.no to find the field called “Secondary user identifiers” for the registration.
 
 ## Instructor
