@@ -38,9 +38,6 @@ eessi/eessi_access_on_nris.md
 eessi/eessi_using.md
 ```
 
-**Getting support for EESSI**
-
-- For getting support for EESSI, please see [https://www.eessi.io/docs/support/](https://www.eessi.io/docs/support/)
 
 (eessi-topics)=
 **More information about EESSI:**
