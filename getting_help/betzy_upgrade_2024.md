@@ -72,7 +72,7 @@ Only very few packages will not be reinstalled and will not be available after t
 You can check which easyconfigs, the recipes we use for installing, are available here:
 <https://github.com/easybuilders/EasyBuild-easyconfigs/tree/develop/EasyBuild/easyconfigs/>
 
-If you critically depend on a certain version, please contact us at [contact@sigma2.no](mailto:contact@sigma2.no), and we will explore all options.
+If you critically depend on a certain version, please contact us at [support@nris.no](mailto:support@nris.no), and we will explore all options.
 
 ### Software packages that will be removed
 
