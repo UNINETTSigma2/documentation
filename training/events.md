@@ -17,8 +17,8 @@ If you are interested in a re-run of our past courses or if you want to suggest 
 ```{toctree}
 :maxdepth: 1
 
+events/2024-10-hpc-on-boarding.md
 events/2024-10-nird-toolkit.md
-
 ```
 
 - [CodeRefinery train the trainer workshop: August 13, 20, 27 and September 3](https://coderefinery.github.io/train-the-trainer/)
