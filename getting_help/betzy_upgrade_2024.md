@@ -85,4 +85,4 @@ The following packages are only available for older tool chains and will therefo
 - hipSYCL: `hipSYCL/0.9.1-gcccuda-2020b` and `
   hipSYCL/0.9.2-GCC-11.2.0-CUDA-11.4.1`
 
-If your work depends on one of those packages, please write to us at [contact@sigma2.no](mailto:contact@sigma2.no), and we will find a solution together.
+If your work depends on one of those packages, please write to us at [support@nris.no](mailto:support@nris.no), and we will find a solution together.
