@@ -16,9 +16,14 @@ If you are interested in a re-run of our past courses or if you want to suggest 
 
 ```{toctree}
 :maxdepth: 1
-events/2024-10-hpc-on-boarding.md
 
+events/2024-10-hpc-on-boarding.md
+events/2024-10-nird-toolkit.md
 ```
+
+- [CodeRefinery train the trainer workshop: August 13, 20, 27 and September 3](https://coderefinery.github.io/train-the-trainer/)
+- [CodeRefinery workshop September 10-12, 17-19, 2024](https://coderefinery.github.io/2024-09-10-workshop/)
+- [Build Systems Course and Hackathon, October 8-11](https://www.pdc.kth.se/about/events/training/build-systems-course-and-hackathon-part-i-1.1346795)
 
 ## Past events
 
