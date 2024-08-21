@@ -1,7 +1,7 @@
 # Enabling persistent storage
 By default, all applications store their data locally. This means that if an
 application is stopped or restarted, all local data is lost. Most packages do
-however how support for enabling persistent storage. You can enable persistent
+however have support for enabling persistent storage. You can enable persistent
 storage when installing (or reconfiguring) by using the `Persistent storage` field
 to select the volume your application should be using. After selecting the
 volume, you will be able to specify whether the volume should be mounted
