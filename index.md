@@ -208,6 +208,7 @@ software/eessi.md
 
 nird_archive/user-guide.md
 nird_toolkit/overview.rst
+nird_service_platform/overview_nird_service_platform.md
 services/easydmp-user-documentation.md
 getting_help/course_resources.md
 ```
