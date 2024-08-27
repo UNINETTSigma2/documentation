@@ -36,7 +36,7 @@ demands, then the calibration will probably be meaningful for all of them.
 ## Using top
 
 While the job is running, find out on which node(s) it runs using `squeue --me`,
-then `ssh` into one of the listed compute nodes and run `top -u $USER`.
+then `ssh` into one of the listed compute nodes and run `top -u $USER`. See {ref}`squeue` for further reference on `squeue`
 
 Some clusters also have `htop` available which produces similar output as `top`
 but with colors and possibly clearer overview.

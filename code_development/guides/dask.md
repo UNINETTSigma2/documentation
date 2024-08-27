@@ -104,7 +104,7 @@ cluster.close() # shutdown the cluster
 client.close() # shutdown the client
 ```
 
-Here, we configured each worker to have 1 core, 500 MB of memory and a walltime of 5 minutes. Using `cluster.scale(5)`, we scaled the the cluster to contain 5 workers. running `squeue -u "username"` after executing your main Slurm script will show that 5 additional Slurm jobs that were created. The figure below shows the task graph created by Dask for this specific Python example. 
+Here, we configured each worker to have 1 core, 500 MB of memory and a walltime of 5 minutes. Using `cluster.scale(5)`, we scaled the the cluster to contain 5 workers. Running `squeue -me` after executing your main Slurm script will show that 5 additional Slurm jobs that were created (see {ref}`squeue` for reference). The figure below shows the task graph created by Dask for this specific Python example. 
 ![task graph using DASK](dask_taskgraph.png)
 
 ## Executing your Python script on the HPC system
