@@ -38,10 +38,4 @@ Job `123002` has a different nodelist description separated by `-`, this means t
 In this example `b[1334-1337]` means that nodes `b1334`, `b1335`, `b1336` and `b1337` are all used.
 
 
-If its necessary to periodically monitor the state of the jobs, a useful command to run in the terminal is
-```bash
-squeue --iterate=10 --me
-```
-where `--iterate=10` will refresh the table above every 10 seconds in this example, changing this number will change the length of the interval. The intervals are always given in seconds. 
-
 For more information you can read the official `squeue` [documentation](https://slurm.schedmd.com/squeue.html).
