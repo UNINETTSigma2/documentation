@@ -25,6 +25,7 @@ Both are based on IBM Elastic Storage System.
 | APIs | GPFS, Discover REST API[^3] | GPFS, S3, Discover REST API[^3] |
 | Possibilities for| - file access logs<br>-data insight: metadata harvesting[^3] | - file access logs<br>- data insight: metadata harvesting[^3]<br>- encrypted projects |
 | Access controls | - ACLs<br>- extended attributes | - ACLs<br>- extended attributes<br>- RBAC via S3[^2] |
+| On-demand backup | Yes | No |
 
 ## Filesystems
 
