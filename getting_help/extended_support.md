@@ -2,21 +2,10 @@
 
 # Extended support
 
-NRIS provides resources (computers, networks, storage systems, and a
-software stack) that are adapted to the current research being performed in
-Norway. This provides the community with a valuable resource.
-
-However, what we believe is even more valuable is the fact that you as a user
-have easy access to a **broad selection of competences and domain expertise**
-that can be utilized to improve the quality, reproducibility, and efficiency of
-your current flow of work. Our staff have the competence to assist you to
-address that competitive edge you want to reach or keep.
-
-Whether that challenge is small, large, complex or trivial does not matter,
-please reach out ({ref}`support-line`) and we will find a common ground
-for collaboration. Using that as an entry point we can figure out together how,
-who and what kind of competences we should involve to address the challenge.
-And **for the most part this is free of charge**.
+If you require closer collaboration with our team of experts than what we
+provide through our support email, we offer Extended Support. Here, you can
+collaborate directly with one or a team of our experts. For the most part, this
+service is free of charge.
 
 A few examples of what we can offer you:
 
