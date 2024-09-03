@@ -21,9 +21,11 @@ events/2024-10-hpc-on-boarding.md
 events/2024-10-nird-toolkit.md
 ```
 
-- [CodeRefinery train the trainer workshop: August 13, 20, 27 and September 3](https://coderefinery.github.io/train-the-trainer/)
+
 - [CodeRefinery workshop September 10-12, 17-19, 2024](https://coderefinery.github.io/2024-09-10-workshop/)
+- [MATLAB Usage in HPC Computing Environments, September 23](https://se.mathworks.com/company/events/seminars/hands-on-ml-usage-in-hpc-computing-environments-norway-4543833.html)
 - [Build Systems Course and Hackathon, October 8-11](https://www.pdc.kth.se/about/events/training/build-systems-course-and-hackathon-part-i-1.1346795)
+- [Python for Scientific Computing, November 5-7, 2024](https://www.aalto.fi/en/events/python-for-scientific-computing-5-7november2024)
 - [GPU Programming. Why. When. How, November 12-14](https://enccs.se/events/gpu-programming-why-when-how-2024/)
 - [Software Carpentry course in research computing skills, November 11-15, (in-person) Bergen ](https://www.uib.no/en/ub/172439/software-carpentry-course-research-computing-skills)
 
@@ -41,6 +43,7 @@ nris_talks/2024-04-17-nris-talks.md
 
 ```
 
+- [CodeRefinery train the trainer workshop: August 13, 20, 27 and September 3](https://coderefinery.github.io/train-the-trainer/)
 - [Tuesday Tools & Techniques for HPC: April 16 and 23, May 7 and 14](https://scicomp.aalto.fi/training/scip/ttt4hpc-2024/index.html)
 
 ### 2023
