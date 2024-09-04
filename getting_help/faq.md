@@ -153,12 +153,12 @@ that get higher priority.
 
 ### How can I see the queue situation of my job(s)?
 
-How can I see how my jobs are doing in the queue, if my jobs are idle, blocked, running etc. by issuing:
+How can I see how my jobs are doing in the queue, if my jobs are idle, blocked, running etc. by issuing on the terminal:
 ```console
-$ squeue -u <username>
+squeue --me
 ```
-where `<username>` is your username. You can of course also check the queue by not adding a username. For additional
-details on how to monitor job(s), please consult page about {ref}`monitoring-jobs`.
+where `--me` will show your jobs. You can of course also check the queue by just running `squeue`. For additional
+details on how to monitor job(s), please consult page about {ref}`monitoring-jobs` and {ref}`squeue`.
 
 ### Why are my devel/short/preproc jobs put in the “normal” queue even though I specify `--qos` in my job script?
 

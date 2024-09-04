@@ -28,7 +28,7 @@ please also see <https://www.sigma2.no>.
 
 We offer compute resources {ref}`betzy`, {ref}`fram`, and {ref}`saga`, storage
 resources {ref}`nird`, as well as the [NIRD
-Toolkit](https://www.sigma2.no/nird-toolkit) platform for pre- and
+Service Platform](https://www.sigma2.no/service/nird-service-platform) for pre- and
 post-processing analysis, data intensive processing, visualization, artificial
 intelligence, and machine learning.
 

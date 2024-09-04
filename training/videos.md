@@ -2,9 +2,10 @@
 
  Here we share the link to our video archives of past events.
 
-- [[Video] NRIS Talks: Webinar on Exascale Computing](https://www.youtube.com/watch?v=FEm4Ln26iyM)
+- [[Video]  NRIS Scientific Computing Workshop 2024](https://www.youtube.com/playlist?list=PLoR6m-sar9AhFq6Brn95HCYdZpn0YLWxF)
+- [[Video] NRIS Talks: Webinar on Exascale Computing 2024](https://www.youtube.com/watch?v=FEm4Ln26iyM)
 - [[Video] NRIS Best Practices on Clusters Spring Series 2024](https://www.youtube.com/watch?v=qcHSxm5i9Oo)
-
+- [[Video] HPC On-boarding April 2024](https://www.youtube.com/watch?v=YkX6dqpwrog&list=PLoR6m-sar9AiurRIVXw9UWgdmC-9EC6YJ)
 - [[Video] HPC On-boarding October 2023](https://www.youtube.com/watch?v=Ly6RzetHlpk&list=PLoR6m-sar9AigUUk90njz-8FaEWYneNii)
 
 - [[Video] NRIS Introduction to FORTRAN Series Autumn 2023](https://www.youtube.com/watch?v=Rg6A63dxxGE&list=PLoR6m-sar9AiM6bHuv5m68uLyhNi4SAF6)

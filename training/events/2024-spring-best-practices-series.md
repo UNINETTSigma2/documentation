@@ -42,7 +42,7 @@ If you want to receive further information about training events, and other anno
 ## Registration
 
 The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT, NTNU & Sigma2.
-**Register [here](https://skjemaker.app.uib.no/view.php?id=16408810)**
+**Registration is closed**
 
 ## Schedule
 

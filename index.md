@@ -1,7 +1,8 @@
 **News**:
 [Latest changes and events](https://opslog.sigma2.no) |
 [Hardware live status](https://www.sigma2.no/hardware-status) |
-{ref}`known-issues`
+{ref}`known-issues` |
+{ref}`betzy-upgrade-2024`
 
 
 # Norwegian Research Infrastructure Services
@@ -130,6 +131,7 @@ getting_help/faq.md
 getting_help/how_to_write_good_support_requests.md
 getting_help/qa-sessions.md
 getting_help/lost_forgotten_password.md
+getting_help/two_factor_authentication.md
 Project Leader Support<https://www.sigma2.no/project-leader-handbook>
 ```
 
@@ -196,7 +198,7 @@ software/installed_software.md
 software/userinstallsw.rst
 software/appguides.md
 software/licenses.md
-software/nessi_eessi.md
+software/eessi.md
 ```
 
 ```{toctree}
@@ -206,6 +208,7 @@ software/nessi_eessi.md
 
 nird_archive/user-guide.md
 nird_toolkit/overview.rst
+nird_service_platform/overview_nird_service_platform.md
 services/easydmp-user-documentation.md
 getting_help/course_resources.md
 ```

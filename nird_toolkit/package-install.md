@@ -108,8 +108,8 @@ resources:
 	gpu     -> (only available in some packages) the number of GPUs to allocate
 
 To specify how much of each resource is to be allocate, you can select
-different resource flavours. Every projectspace as a different amount of
-resource available. To see how much of each resource is available, look at the
+different resource flavours. Every projectspace has a different amount of
+resources available. To see how much of each resource is available, look at the
 `Requested resources` field.
 
 #### Requested resources

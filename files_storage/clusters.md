@@ -29,7 +29,7 @@ Below the table, we give recommendations and discuss the pros and cons of the va
 - **User areas and project areas are private**: Data handling and storage policy is documented [here](/files_storage/sharing_files.md).
 - **`$LOCALSCRATCH` area is only implemented on Fram and Saga**.
 - In addition to the areas in the tables above, **both clusters mount the
-  NIRD project areas** as `/nird/projects/NSxxxxK` for NIRD TS(Tiered Storage) projects and `/nird/datalake/NSxxxxK` for NIRD DL(DataLake)
+  NIRD project areas** as `/nird/datapeak/NSxxxxK` for NIRD Data Peak (TS) projects and `/nird/datalake/NSxxxxK` for NIRD Data Lake (DL)
   projects on the login nodes (but not on the compute nodes).
 - The `/cluster` file system is a high-performance parallel file
   system.  On Fram, it is a [Lustre](https://www.lustre.org/) system with
@@ -130,7 +130,7 @@ variable `$LOCALSCRATCH` available in the job.  `$LOCALSCRATCH` is
 only accessible by the user running the job.
 
 Note that since this area is on *local disk* on the compute node, it
-is probably not useful for jobs running on more than one node (the job
+is **probably not useful for jobs running on more than one node** (the job
 would get one independent area on each node).
 
 The area is meant to be used as a temporary scratch area during job
@@ -199,14 +199,15 @@ any unnecessary data after each job.
 
 File deletion depends on the newest of the *creation-*, *modification-* and
 *access* time and the total usage of the file system. The oldest files will
-be deleted first and a weekly scan removes files older than 42 days.
+be deleted first and a weekly scan removes files older than 21 days
+(up to 42 days if sufficient storage is available).
 
 When file system usage reaches 70%, files older than 21 days are subject to
 automatic deletion. If usage is over 90%, files older than 17 days are subject to
 automatic deletion.
 
-It is **not** allowed to try to circumvent the automatic deletion by
-for instance running scripts that touch all files.
+**It is not allowed to try to circumvent the automatic deletion by
+for instance running scripts that touch all files.**
 
 ```{note}
 **Pros of running jobs in the user work area**
@@ -304,9 +305,9 @@ access.
 ## Decommissioning
 
 Starting at the 2020.1 resource allocation period, storage decommissioning
- procedures have been established for the HPC storages. This to ensure 
- predictable astorage for users and projects, and the provisioning more
- sustainable to Sigma2.
- For more details, please visit the
+procedures have been established for the HPC storages. This to ensure a
+predictable storage for users and projects, and the provisioning more
+sustainable to Sigma2.
+For more details, please visit the
 [data decommissioning policies](https://www.sigma2.no/data-decommissioning-policies)
- page.
+page.

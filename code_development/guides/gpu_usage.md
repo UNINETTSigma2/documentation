@@ -24,7 +24,7 @@ The commands [`nvidia-smi`](https://developer.nvidia.com/nvidia-system-managemen
 
 The command `nvidia-smi` is available from an NVIDIA GPU node, and can be accessed in [NRIS clusters](hardware-overview) by following these steps:
 -	Submit a job:                ```$ sbatch job.slurm ```
--	Display which node:          ```$ squeue –u username ```
+-	Display which node:          ```$ squeue –-me ```
 -	Ssh to the listed node e.g.  ```$ ssh c7-8``` on Saga and ```$ ssh b5304``` on Betzy.
 -	Run the command:             ```$ nvidia-smi```
 -	For more options:            ```$ nvidia-smi -h```

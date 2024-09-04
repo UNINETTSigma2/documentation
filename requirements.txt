@@ -1,5 +1,5 @@
 myst-parser
-sphinx
+sphinx < 8.0
 sphinx-autobuild
 sphinx-tabs
 sphinx-reredirects

@@ -242,8 +242,7 @@ Transport layer PML (point-to-point message layer):
 Transport layer UCX:
 <https://www.openucx.org/ and https://github.com/openucx/ucx/wiki/UCX-environment-parameters>
 
-Collective optimisation library hcoll from Mellanox is also an option:
-<https://docs.mellanox.com/pages/viewpage.action?pageId=12006295>
+Collective optimisation library hcoll from Mellanox is also an option.
 
 Setting the different devices and transports can be done using environment variables:
 ```

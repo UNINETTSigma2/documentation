@@ -2,9 +2,12 @@
 
 Here we share the workshop questions, answer, and feedbacks from the collaborative 
 notes after the event.
+- {ref}`training-2024-spring-scientific-computiing`
+  - [Questions and answers from NRIS Scientific Computing Workshop](https://md.sigma2.no/scientific-computing-workshop)
 - {ref}`training-2024-spring-best-practices`
   - [Questions and answers from Best Practices Spring 2024 Day1 (How to choose the right amount of memory and right number of cores)](https://md.sigma2.no/qanda-archive-best-practices-spring2024)
   - [Questions and answers from Best Practices Spring 2024 Day2 (Software Installatiion as user)](https://md.sigma2.no/qanda-archive-best-practices-spring2024-day2)
+  - [Questions and answers from Best Practices Spring 2024 Day3 (File Transfer, Data Storage and NIRD)](https://md.sigma2.no/best-practices-training-spring2024)
 - {ref}`training-2024-spring-onboarding`
   - [Questions and answers from HPC On-boarding 9 Apr 2024 Day 0](https://md.sigma2.no/n1LZOKOmQR-clMgqgeOr4g)
   - [Questions and answers from HPC On-boarding 10 Apr 2024 Day 1](https://md.sigma2.no/weunEf2gT7mnM1okU4MOGA)
