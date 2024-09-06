@@ -1,6 +1,6 @@
 # NRIS Talks : Webinar on Introduction to EESSI
 
-NRIS(Norwegian Research Infrastructure Services) is organizing  webinars as part of it's outreach program **NRIS Talks**. Join us for an enlighting webinar on **Introduction to EESSI**. This webinar aims to provide a comprehensive overview of the European Environment for Scientific Software Installations (EESSI), a standardized stack of scientific software installations for High-Performance Computing (HPC) systems and beyond. The session will cover its usage, functionality, and flexibility.
+NRIS(Norwegian Research Infrastructure Services) is organizing  webinars as part of it's outreach program **NRIS Talks**. Join us for an enlighting webinar on **Introduction to EESSI**. This webinar aims to provide a comprehensive overview of the European Environment for Scientific Software Installations (EESSI), a common stack of scientific software installations for High-Performance Computing (HPC) systems and beyond. The session will cover its usage, functionality, and flexibility.
 
 ## Webinar Details:
 
