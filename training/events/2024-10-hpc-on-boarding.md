@@ -15,6 +15,11 @@ worked on the command line of a terminal, the first day of the course is dedicat
 **The course is open to all and free of charge.**
 
 
+## **Registration**
+
+The course is free of charge and is organised by the NRIS. **REGISTER [HERE](https://docs.google.com/forms/d/e/1FAIpQLScvqepSFbbclSoF2zeN1saIQhKQTYxFIxMDOJzhP_MKwqeJVQ/viewform?usp=sharing)**.
+
+
 ## **Practical Information**
 
 This is an online course via zoom. Participants require access to a computer
