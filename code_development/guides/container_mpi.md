@@ -29,7 +29,7 @@ From: ubuntu:latest
     export OMPI_DIR=/opt/ompi
 
 %post
-    apt-get update && apt-get install -y wget git bash gcc gfortran g++ make file
+    apt-get update && apt-get install -y wget git bash gcc gfortran g++ make file bzip2
     export OMPI_DIR=/opt/ompi
     export OMPI_VERSION=4.0.1
     export OMPI_URL="https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-$OMPI_VERSION.tar.bz2"
@@ -62,6 +62,7 @@ the container file to the cluster.
 We assume that we have the container file `example.sif` from the step before on
 the cluster.  We will also fetch `mpi_hello_world.c` from
 https://mpitutorial.com/tutorials/mpi-hello-world/.
+The script assumes that these files are located in `$HOME` as this is mounted to the container when it is run. 
 
 We are ready to test it out with the following job script on Saga (adjust
 "myaccount"; on Fram/Betzy you will need to remove the line containing `#SBATCH
