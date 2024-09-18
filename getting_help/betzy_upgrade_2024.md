@@ -15,6 +15,16 @@ all login and compute nodes. This process requires the recompilation and
 installation of all scientific software and libraries, including compiler tool
 chains.
 
+
+```{note}
+The new software stack is now **ready for testing on login node 3**.  Use it in
+job scripts by initiating jobs from this node.  Connect via `ssh
+USERNAME@login-3.betzy.sigma2.no` and launch jobs to utilize the stack. We've
+reserved 80 compute nodes, including a GPU node, for this purpose.
+
+Please report any issues with the new system.
+```
+
 ## Tool Chains
 
 Maintaining old software consumes a significant amount of time, and as we are a
