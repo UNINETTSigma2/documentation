@@ -121,7 +121,7 @@ before you load modules.
     - maximum 256 units
 - __Maximum walltime__: 14 days
 - __Priority__: normal
-- __Available resources__: 8 nodes with 24 cpus, 364 GiB RAM and 4 P100
+- __Available resources__: 8 nodes (max 7 per user) with 24 cpus, 364 GiB RAM and 4 P100
   GPUs.
 - __Parameter for sbatch/salloc__:
     - `--partition=accel`
@@ -143,7 +143,7 @@ and resource limits of _devel_ apply.
     - maximum 256 units
 - __Maximum walltime__: 14 days
 - __Priority__: normal
-- __Available resources__: 8 nodes with 32 cpus, 1,000 GiB RAM and 4 A100
+- __Available resources__: 8 nodes (max 7 per user) with 32 cpus, 1,000 GiB RAM and 4 A100
   GPUs.
 - __Parameter for sbatch/salloc__:
     - `--partition=a100`
