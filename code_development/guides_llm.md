@@ -21,7 +21,7 @@ By organizing your files this way, you will streamline the process of running yo
 
 
 ## Sample python code to perform speech to text translation
-```
+```python
 from transformers import AutoProcessor, SeamlessM4Tv2ForSpeechToText
 import torchaudio
 import torch
@@ -90,7 +90,7 @@ if __name__ == "__main__":
 ```
 
 ## Required packages to run the program inside the requirements.txt file
-```
+```bash
 bokeh==3.4.1
 cffi==1.17.0
 contourpy==1.2.1
@@ -135,22 +135,22 @@ This tutorial expects that you are familiar with transferring the project into y
 First, load the module available in the cluster that allows you to create a virtual environment. The module you can load prior to creating the virtual environment is:
 
 
-` module load Python/3.8.6-GCCcore-10.2.0`.
+``` module load Python/3.8.6-GCCcore-10.2.0```
 
 ### Creating and Activating the Virtual Environment
  Once you load the Python module, you can create the virtual environment using the following command:
  
- `python -m venv myenv`
+ ```python -m venv myenv```
  
  Activate the virtual environment with this command:
  
- `source myenv/bin/activate`
+ ```source myenv/bin/activate```
 
  ### Installing Required Packages
 For our Seamless model, there are few important packages that we need to install inside the virtual environment. They are listed below:
 
 
-```
+```bash
 pip install transformers
 pip install git+https://github.com/huggingface/transformers.git sentencepiece
 pip install torchaudio
@@ -158,17 +158,17 @@ pip install torchaudio
 ```
 After installing these packages, you can deactivate the virtual environment:
 
-`deactivate`
+```deactivate```
 
 ### Installing Required Packages
 Next, create a SLURM script to run your Hugging Face model for performing speech-to-text translation. Below is an example SLURM job script:
 
 
-```
+```bash
 #!/bin/bash -l
 #SBATCH --job-name=llmTest_job
 #Project account
-#SBATCH --account=your_account_number
+#SBATCH --account=nnxxxx
 #SBATCH --output=output_test.log
 #SBATCH --error=error_test.log
 
@@ -210,7 +210,7 @@ kill $GPU_MONITOR_PID
 ### Explanation of the Job Script
 #### Job Name and Account:
 - `#SBATCH --job-name=llmTest_job`: Specifies the name of the job.
-- `#SBATCH --account=your_project_number`: Specifies the project account to be charged for the job.
+- `#SBATCH --account=nnxxxx`: Specifies the project account to be charged for the job.
 #### Output and Error Files:
 - `#SBATCH --output=output_test.log`: Specifies the file where the standard output (stdout) will be saved.
 - `#SBATCH --error=error_test.log`: Specifies the file where the standard error (stderr) will be saved.
@@ -235,7 +235,7 @@ kill $GPU_MONITOR_PID
 - `nvidia-smi --query-gpu=timestamp,utilization.gpu,utilization.memory --format=csv -l 1 > gpu_usage.csv &`: Starts GPU monitoring in the background and logs the usage to `gpu_usage.csv`.
 - `GPU_MONITOR_PID=$!`: Captures the process ID of the GPU monitoring command.
 #### Running the Program:
-- ` python main.py"`: Runs the `main.py` script ensuring that the  virtual environment activated.
+- ` python main.py`: Runs the `main.py` script ensuring that the  virtual environment activated.
 #### Stopping GPU Monitoring:
 - `kill $GPU_MONITOR_PID`: Stops the GPU monitoring process.
 #### Deactivating the Virtual Environment:
@@ -243,7 +243,7 @@ kill $GPU_MONITOR_PID
 This job script sets up the environment, activates the virtual environment, monitors GPU usage, runs the main Python script inside the Singularity container, and ensures proper cleanup after the job completes.
 
 In our case while running the seamless model we can capture the output as shown below where we can see our audio is translated using the LLM model.
-```
+```bash
 Starting transcription process...
 Constructed file path: /cluster/work/users/your_user_name/llmTest/data/sample_irish.wav
 Initializing the processor and model...
@@ -259,7 +259,7 @@ Transcription: Dogs, cats, pigs, cows, ant, antelope, dinosaur, leopard, lion, r
 ```
 
 you could also visulize the GPU utilization from the output file where we log the GPU utilization by writing the command in the job script. In this case, the GPU utilization can be seen like this:
-```
+```bash
 timestamp, utilization.gpu [%], utilization.memory [%]
 2024/09/08 13:03:31.000, 100 %, 26 %
 2024/09/08 13:03:32.000, 88 %, 22 %
@@ -270,7 +270,7 @@ timestamp, utilization.gpu [%], utilization.memory [%]
 2024/09/08 13:03:37.001, 38 %, 20 %
 2024/09/08 13:03:38.002, 33 %, 17 %
 
-````
+```
 
 
 ### Running LLM levereging Containerized Solution
@@ -307,10 +307,10 @@ ENV NAME World
 
 # Run main.py when the container launches
 CMD ["python", "main.py"]
-````
+```
 
 #### requirements.txt
-```requirements.txt
+```bash
 bokeh==3.4.1
 certifi==2024.7.4
 cffi==1.17.0
@@ -378,50 +378,50 @@ urllib3==2.2.2
 wheel==0.41.2
 xyzservices==2024.4.0
 git+https://github.com/huggingface/transformers.git
-````
+```
 
 So, in the local machine inside your project directory where you have the main.py file which is given above and these two files you are ready to create your docker container. To create the docker container you can use the command given below:
 
-`docker buildx build --platform linux/amd64 --no-cache -t llm-test:latest --load`
+```docker buildx build --platform linux/amd64 --no-cache -t llm-test:latest --load```
 
 Note that, we are defining the platform as amd64 because in our case,that is the specific architecture of the  platform on the cluster where we would run our program.
 
 Once the docker image is created you can check if the image is compatible with the architecture of your machine using this command:
 
-`docker inspect llm-test:latest l grep Architecture`
+```docker inspect llm-test:latest l grep Architecture```
 
 The next step would be to save the created image in the .tar file so that you can transfer it to the cluster.Here is the command for that one.
 
-`docker save llm-test:latest -o llm-test.tar`
+```docker save llm-test:latest -o llm-test.tar```
 
 Now, create a folder inside your working directory and give it a name. In our case, we named the directory `llmTestDocker` because we need to specify the path where we will send our project files.
 
 To send your files to the cluster, use the following command. Note that you should be in the directory where you have the `.tar` file before executing this command:
 
 
-`rsync llm-test.tar your_user_name@saga.sigma2.no:/cluster/work/users/your_user_name/llmtestDocker`
+```rsync llm-test.tar your_user_name@saga.sigma2.no:/cluster/work/users/your_user_name/llmtestDocker```
 
 
 Now, after this, we will have the `.tar` file inside our cluster. We need to pull the Docker image. However, before doing that, we need to create a temporary file inside our user directory and set the environment path to that file. This is important because if we don't do this, pulling the Docker image will utilize a lot of cache space in the home directory, and we will easily exceed the disk quota space.
 
 So, create the tmp file inside the user directory and then set the environment variable with this command given below:
 
-`export SINGULARITY_TMPDIR=/cluster/work/users/your_user_name/tmp`
+```export SINGULARITY_TMPDIR=/cluster/work/users/your_user_name/tmp```
 
-`export SINGULARITY_CACHEDIR=/cluster/work/users/your_user_name/tmp`
+```export SINGULARITY_CACHEDIR=/cluster/work/users/your_user_name/tmp```
 
 Once you set the path, you can go inside the directory where you have transferred your .tar file. Then, you can use this command to pull the docker image using singularity with the command given below:
 
-`singularity pull docker-archive:///cluster/work/users/your_user_name/llmTestDocker/llm-test.tar`
+```singularity pull docker-archive:///cluster/work/users/your_user_name/llmTestDocker/llm-test.tar```
 
 Now, this will generate the singularity file for your docker image with .sif extension.
 After this you will need to create the job script like before where you run your singularity image. Below is the job script that we used  in our case.
 
 
-```
+```bash
 #!/bin/bash -l
 #SBATCH --job-name=llmTest_job1
-#SBATCH --account=your_account_number
+#SBATCH --account=nnxxxx
 #SBATCH --output=output_test.log
 #SBATCH --error=error_test.log
 #SBATCH --time=0:30:00
@@ -438,7 +438,7 @@ module --quiet purge  # Reset the modules to the system default
 module list  # List loaded modules for debugging
 
 # Directory where the program is located
-cd /cluster/work/users/ppp111/llmTestDocker
+cd /cluster/work/users/your_user_name/llmTestDocker
 
 # Start GPU monitoring in the background
 nvidia-smi --query-gpu=timestamp,utilization.gpu,utilization.memory --format=csv -l 1 > gpu_usage.csv &
@@ -451,7 +451,7 @@ SINGULARITY_IMAGE=/cluster/work/users/your_user_name/llmTestDocker/llm-test.tar_
 singularity exec --nv $SINGULARITY_IMAGE python /app/main.py
 
 # Stop GPU monitoring
-kill $GPU_MONITOR_PID""
+kill $GPU_MONITOR_PID
 
 
 ```
@@ -460,6 +460,6 @@ Everything here is the same as the job script we created before. However, the ma
 
 Once you have this job script, you can simply run the program by submitting the Slurm job script with the following command:
 
-`sbatch <job_script_name>.sh`
+```sbatch <job_script_name>.sh```
 
 Then you can find the output like described previously.Following these approaches, you can run any LLM from the hugging face on the cluster.
