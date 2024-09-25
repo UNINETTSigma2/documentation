@@ -60,7 +60,7 @@ to [support@nris.no](mailto:support@nris.no).
 - __Maximum walltime__: 14 days
 - __Priority__: normal
 - __Available resources__:
-    - 8 nodes with 32 cpus and 494 GiB RAM
+    - 8 nodes (max 7 per user) with 32 cpus and 494 GiB RAM
 - __Parameter for sbatch/salloc__:
     - `--partition=bigmem`
 - __Job Scripts__: {ref}`job_scripts_fram_bigmem`

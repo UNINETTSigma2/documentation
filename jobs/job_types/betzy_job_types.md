@@ -39,8 +39,8 @@ This is the default job type. In _normal_ jobs, the queue system hands out compl
 - __Job Limits__:
 - __Maximum walltime__: 7 days
 - __Priority__: Normal
-- __Available resources__: 4 nodes, each with 64 CPU cores, 494.5 GiB
-  RAM and 4 x Nvidia A100 GPUs with 40 GiB RAM
+- __Available resources__: 4 nodes (max 3 per user), each with 64 CPU cores, 494.5 GiB
+  RAM and 4 x Nvidia A100 GPUs with 40 GiB RAM.
 - __Parameter for sbatch/salloc__:
     - `--partition=accel`
     - `--gpus=N`, `--gpus-per-node=N` or similar, with `N` being the number of GPUs
