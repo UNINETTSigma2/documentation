@@ -1,6 +1,6 @@
 (installing-with-conda)=
 
-# Installing software with Conda (Anaconda & Miniconda)
+# Installing software with Conda
 
 ```{contents} Table of Contents
 ```
@@ -30,6 +30,13 @@ more or less the same:
   fast dependency resolution.
 - [Micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html):
   Ultra-lightweight Mamba which supports the most important `conda` commands.
+- [MiniForge](https://github.com/conda-forge/miniforge) Minimal installation of 
+  `conda` and `mamba` where the default channel is `conda-forge`. Use this when 
+  working in betzy only.
+
+```{note}
+Due to some licensing issues, only `Miniforge3` is available in Betzy. Miniforge works in the same way described below, just replace any instance of `EBROOTANACONDA3`, `EBROOTMINICONDA3` or `EBROOTMAMBA` with `EBROOTMINIFORGE3`
+```
 
 We typically provide modules for **Anaconda**, **Miniconda** and **Mamba**.
 Either of the three is fine.
