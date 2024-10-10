@@ -1,6 +1,7 @@
 ---
 orphan: true
 ---
+(container_with_build_environment)=
 
 # Container with build environment
 
