@@ -71,7 +71,7 @@ about IT resources and services for researchers, there are a couple of informati
 - 10:15-11:00 - [Scheduling jobs](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html) (Magnar & Jim-Viktor)
 - 11:00-11:30 - [Scheduling job (exercise)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html)
 - 11:30-11:45 - Break
-- 11:45-12:15 - [Transferring files](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html) (Espen)
+- 11:45-12:15 - [Transferring files](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html) (Espen & Magnar)
 - 12:15-12:30 - Q&A & Discussion
 
 **Day2 - HPC Intro (17 October, Thursday)**
