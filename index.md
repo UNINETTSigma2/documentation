@@ -205,7 +205,7 @@ software/eessi.md
 ```{toctree}
 :hidden:
 :maxdepth: 1
-:caption: Services
+:caption: Additional services
 
 nird_archive/user-guide.md
 nird_toolkit/overview.rst
