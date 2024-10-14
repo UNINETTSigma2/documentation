@@ -192,6 +192,18 @@ code_development/guides_llm.md
 ```{toctree}
 :hidden:
 :maxdepth: 1
+:caption: Compute resources
+
+hpc_machines/hardware_overview.md
+hpc_machines/saga.md
+hpc_machines/fram.md
+hpc_machines/betzy.md
+hpc_machines/lumi.md
+```
+
+```{toctree}
+:hidden:
+:maxdepth: 1
 :caption: Software
 
 software/modulescheme.md
