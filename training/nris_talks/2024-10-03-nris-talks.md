@@ -10,6 +10,10 @@ NRIS(Norwegian Research Infrastructure Services) is organizing  webinars as part
 - **Platform:** Zoom webinar
 - **Speaker:** [Richard Topouchian](https://www.uib.no/en/persons/Richard.Topouchian)
 - **Moderator:** [Dhanya Pushpadas](https://www.uib.no/en/persons/Dhanya.Pushpadas)
+```{note}
+- [Video Recording](https://www.youtube.com/watch?v=T13J7qTpw0o)
+- [Slides](https://drive.google.com/drive/folders/16ADdJknCzmdC-DL0Ss_1nI9aQ8OO1f9k)
+```
 
 ## About the Webinar:
 
