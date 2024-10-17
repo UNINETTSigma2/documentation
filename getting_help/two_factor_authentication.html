@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One-time-pad (OTP) / Two-factor authentication &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Training events" href="../training/events.html" />
+    <link rel="prev" title="Lost, expiring or changing passwords" href="lost_forgotten_password.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">One-time-pad (OTP) / Two-factor authentication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#faq">FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#do-i-have-to-use-two-factor-authentication-every-single-time-i-log-in-or-connect-to-fram-or-saga">1. Do I have to use two-factor authentication every single time I log in or connect to Fram or Saga</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models Inside the Cluster</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">One-time-pad (OTP) / Two-factor authentication</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="one-time-pad-otp-two-factor-authentication">
+<h1>One-time-pad (OTP) / Two-factor authentication<a class="headerlink" href="#one-time-pad-otp-two-factor-authentication" title="Link to this heading"></a></h1>
+<p>All login nodes on Fram and Saga offer two-factor authentication on SSH.</p>
+<p>To set up two-factor authentication for your user, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Go to www.metacenter.no, log in, using user login (passwords)</p></li>
+</ol>
+<p><img alt="www.metacenter.no frontpage screenshot" src="../_images/frontpage.png" />
+First click User Login (Passwords)</p>
+<ol class="arabic simple" start="2">
+<li><p>Select OTP / 2FA from the page or drop-down menu</p></li>
+</ol>
+<p><img alt="www.metacenter.no frontpage screenshot" src="../_images/menu_page.png" /></p>
+<p><img alt="www.metacenter.no frontpage screenshot" src="../_images/menu_list.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>Install Authenticator-app if you don’t have one.</p></li>
+<li><p>Scan the QR-code with your Authenticator app.</p></li>
+</ol>
+<p><img alt="www.metacenter.no frontpage screenshot" src="../_images/otp_startpage.png" /></p>
+<ol class="arabic simple" start="5">
+<li><p>Verify with code from your app and click “Submit.”</p></li>
+</ol>
+<p><img alt="www.metacenter.no frontpage screenshot" src="../_images/otp_setup_finished.png" /></p>
+<ol class="arabic simple" start="6">
+<li><p>Wait for the resources to sync the new information.</p></li>
+</ol>
+<section id="faq">
+<h2>FAQ<a class="headerlink" href="#faq" title="Link to this heading"></a></h2>
+<section id="do-i-have-to-use-two-factor-authentication-every-single-time-i-log-in-or-connect-to-fram-or-saga">
+<h3>1. Do I have to use two-factor authentication every single time I log in or connect to Fram or Saga<a class="headerlink" href="#do-i-have-to-use-two-factor-authentication-every-single-time-i-log-in-or-connect-to-fram-or-saga" title="Link to this heading"></a></h3>
+<p>No, you don’t. Here’s how you can manage that:</p>
+<p>On your Mac or linux desktop or laptop, create a text file ~/.ssh/config with, for example, the following contents:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Host</span> <span class="n">fram</span>
+    <span class="n">User</span> <span class="n">myusername</span>
+    <span class="n">HostName</span> <span class="n">login</span><span class="o">.</span><span class="n">fram</span><span class="o">.</span><span class="n">sigma2</span><span class="o">.</span><span class="n">no</span>
+    <span class="n">ControlMaster</span> <span class="n">auto</span>
+    <span class="n">ControlPath</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/%</span><span class="n">r</span><span class="o">@%</span><span class="n">h</span><span class="p">:</span><span class="o">%</span><span class="n">p</span>
+</pre></div>
+</div>
+<p>where myusername is replaced appropriately.</p>
+<p>This sets things up so that whenever you ssh to the host nickname fram: ssh fram</p>
+<p>It will look for the special file (a socket) in your ~/.ssh/ directory that is maintaining a connection to the cluster. If it already exists and is open, it’ll use it to create a connection without re-authenticating; if it doesn’t exist, it’ll authenticate and create the file for subsequent use.</p>
+<p>Note that all subsequent connections are dependent on the initial connection — if you exit or kill the initial connection all other ones die, too. This can obviously be annoying if it happens accidentally. It’s easily avoided by setting up a master connection in the background:</p>
+<p><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-CX</span> <span class="pre">-o</span> <span class="pre">ServerAliveInterval=30</span> <span class="pre">-fN</span> <span class="pre">fram</span></code></p>
+<p>The -fN make it go into the background and sit idle, after authenticating. (C for compression,Y for X forwarding, and -o ServerAliveInterval=30 to prevent dropped connections have nothing to do with the ControlMaster but are almost always helpful.)</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lost_forgotten_password.html" class="btn btn-neutral float-left" title="Lost, expiring or changing passwords" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../training/events.html" class="btn btn-neutral float-right" title="Training events" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
