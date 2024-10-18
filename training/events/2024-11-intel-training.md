@@ -1,4 +1,4 @@
-#  Intel oneAPI Workshop 
+#  Intel oneAPI Workshop (6, 13 and 27 November) 
 
 The Norwegian Research Infrastructure Services (**NRIS**) is facilitating Intel oneAPI Workshop 
 offered by intel. The workshop will cover a wide range of topic from oneAPI, IFX and ICX compilers
