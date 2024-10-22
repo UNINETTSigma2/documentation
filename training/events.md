@@ -19,6 +19,7 @@ If you are interested in a re-run of our past courses or if you want to suggest 
 
 events/2024-10-hpc-on-boarding.md
 events/2024-10-nird-toolkit.md
+nris_talks/2024-11-28-nris-talks.md
 ```
 
 - [Build Systems Course and Hackathon, October 8-11](https://www.pdc.kth.se/about/events/training/build-systems-course-and-hackathon-part-i-1.1346795)
