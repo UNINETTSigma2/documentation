@@ -28,7 +28,7 @@ Content:
 
 ## Who Should Attend?
 
-This webinar is ideal for researchers, IT professionals, students, and anyone interested in high-performance computing and its future directions.
+This webinar is ideal for researchers, IT professionals, students, and anyone requiring a comprehensive scientific software stack across various Linux distribution systems, including HPC, Cloud, and laptops.
 
 ## How to Register:
 
