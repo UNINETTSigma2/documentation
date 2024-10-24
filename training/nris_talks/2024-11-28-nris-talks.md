@@ -14,7 +14,9 @@ NRIS(Norwegian Research Infrastructure Services) is organizing  webinars as part
 
 ## About the Webinar:
 
-This is a follow up webinar from our previous [NRIS Talks on EESSI](https://documentation.sigma2.no/training/nris_talks/2024-10-03-nris-talks.html). The webinar will address on how to use EasyBuild to build scientific software on top of EESSI, applicable for sites, projects or individual users.   
+We will explain and demonstrate how everyone can easily build and install software on top of EESSI. While EESSI already provides ~ 500 software packages a specific software you need may not be available through EESSI yet. The webinar will show how to use EasyBuild to build (scientific) software on top of EESSI for all users, for a specific project account or individual users.
+
+This is a follow up webinar to our previous [NRIS Talks on EESSI](https://documentation.sigma2.no/training/nris_talks/2024-10-03-nris-talks.html).    
 
 Content:
 - Overview to EESSI
