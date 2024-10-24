@@ -21,7 +21,7 @@ This is a follow up webinar to our previous [NRIS Talks on EESSI](https://docume
 Content:
 - Overview to EESSI
 - Overview to EasyBuild
-- How to use EasyBuild with EESSI 
+- Building on top of EESSI with EasyBuild 
 - Live demo
 - Related information 
 - Q&A
