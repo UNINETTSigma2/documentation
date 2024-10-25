@@ -4,11 +4,12 @@ The Norwegian Research Infrastructure Services (**NRIS**) is facilitating Intel 
 offered by intel. The workshop will cover a wide range of topic from oneAPI, IFX and ICX compilers
 openMP, Python, advisor, mpi to vtune. The workshop will run as 3 series of events 
 in November (6, 13 and 27).  See the agenda below for more details.  This workshop is ideal for users
- who wants to know more on these topics and developers. 
+ who wants to know more on these topics and developers. A beginner level in either C++/Fortran/Python is 
+ needed to understand the courses.
 
 ## [Agenda](https://drive.google.com/drive/folders/14MNdoEfvdfwEhDA-_nSKd8AvHSKro6rF)
 
-### Day 1: ONEAPI&ITDC/COMPILERS/OPENMP (6th November 09:00-12:30 CEST)
+### Day 1: ONEAPI&ITDC/COMPILERS/OPENMP (6th November 09:00-12:30 CET)
 
 - **09:00 - Welcome**
 - **09:05 - Introduction to oneAPI and the new Intel Tiber Developer Cloud (ITDC) infrastructure**
@@ -47,7 +48,7 @@ Learn how to easily offload C++ code to GPUs using OpenMP. Learn how to easily o
 
 - **12:30 - End of Day1 session**
 
-### Day2: PYTHON AND ADVISOR (13th November 09:00-12:30 CEST)
+### Day2: PYTHON AND ADVISOR (13th November 09:00-12:30 CET)
 
 - **09:00  - Welcome**
 - **09:05  - Intel Distribution of Python**
@@ -69,7 +70,7 @@ Explore the benefits of using Intel Distribution of Python and improve the perfo
 
 - **12:30 - End of Day2 session**
 
-### Day3: MPI AND VTUNE (27th November 09:00-12:30 CEST)
+### Day3: MPI AND VTUNE (27th November 09:00-12:30 CET)
 
 - **09:00 - Welcome**
 - **09:05 - Intel® MPI and oneCCL in Heterogeneous Environment**

@@ -17,7 +17,6 @@ If you are interested in a re-run of our past courses or if you want to suggest 
 ```{toctree}
 :maxdepth: 1
 
-events/2024-10-nird-toolkit.md
 events/2024-11-intel-training.md
 ```
 
@@ -32,6 +31,7 @@ events/2024-11-intel-training.md
 ```{toctree}
 :maxdepth: 1
 
+events/2024-10-nird-toolkit.md
 events/2024-10-hpc-on-boarding.md
 nris_talks/2024-10-03-nris-talks.md
 events/2024-06-scientific-computing.md
