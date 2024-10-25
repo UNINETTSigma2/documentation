@@ -19,6 +19,7 @@ If you are interested in a re-run of our past courses or if you want to suggest 
 
 events/2024-10-nird-toolkit.md
 events/2024-11-intel-training.md
+nris_talks/2024-11-28-nris-talks.md
 ```
 
 - [Python for Scientific Computing, November 5-7, 2024](https://www.aalto.fi/en/events/python-for-scientific-computing-5-7november2024)
