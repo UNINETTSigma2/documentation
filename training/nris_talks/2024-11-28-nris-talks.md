@@ -23,7 +23,7 @@ Content:
 - Brief overview of EESSI’s goals and benefits 
 - Overview of EasyBuild and its role in HPC
 - Building on top of EESSI with EasyBuild 
-- Live Demo building Software using EasyBuild on top of EESSI
+- Live Demo: Building scientific software with EasyBuild on EESSI
 - Achievements and Upcoming Topics 
 - Q&A
 
