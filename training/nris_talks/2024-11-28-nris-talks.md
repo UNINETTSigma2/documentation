@@ -5,7 +5,7 @@ NRIS(Norwegian Research Infrastructure Services) is organizing  webinars as part
 ## Webinar Details:
 
 - **Date:** 28th November 2024
-- **Time:** 10:00 - 10:45
+- **Time:** 10:00 - 11:00
 - **Duration:** 60 minutes
 - **Platform:** Zoom webinar
 - **Speaker:** [Richard Topouchian](https://www.uib.no/en/persons/Richard.Topouchian)
@@ -20,11 +20,11 @@ We will explain and demonstrate how everyone can easily build and install softwa
 This is a follow up webinar to our previous [NRIS Talks on EESSI](https://documentation.sigma2.no/training/nris_talks/2024-10-03-nris-talks.html).    
 
 Content:
-- Overview to EESSI
-- Overview to EasyBuild
+- Brief overview of EESSI’s goals and benefits 
+- Overview of EasyBuild and its role in HPC
 - Building on top of EESSI with EasyBuild 
-- Live demo
-- Related information 
+- Live Demo building Software using EasyBuild on top of EESSI
+- Achievements and Upcoming Topics 
 - Q&A
 
 ## Who Should Attend?
