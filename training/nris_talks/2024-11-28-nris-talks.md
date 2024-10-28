@@ -6,9 +6,10 @@ NRIS(Norwegian Research Infrastructure Services) is organizing  webinars as part
 
 - **Date:** 28th November 2024
 - **Time:** 10:00 - 10:45
-- **Duration:** 45 minutes
+- **Duration:** 60 minutes
 - **Platform:** Zoom webinar
 - **Speaker:** [Richard Topouchian](https://www.uib.no/en/persons/Richard.Topouchian)
+- **Speaker:** [Thomas Röblitz](https://www.uib.no/en/persons/Thomas.Röblitz)
 - **Moderator:** [Dhanya Pushpadas](https://www.uib.no/en/persons/Dhanya.Pushpadas)
 
 
