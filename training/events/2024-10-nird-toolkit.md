@@ -8,7 +8,7 @@ On this hands-on course, you will get an overview of  the NIRD Toolkit and how t
 
 ## Date and Time 
 
-- **Tuesday 24th October : 09:00-12:30**
+- **Thursday 24th October : 09:00-12:30**
 
 ## Schedule
 
@@ -24,6 +24,12 @@ On this hands-on course, you will get an overview of  the NIRD Toolkit and how t
 
 - This is an online course via zoom. Participants require access to a computer (not provided by the course organisers) with internet connectivity.
 - Either a Feide account or a Feide OpenIDP guest account
+
+```{note}
+- [Sliides](https://drive.google.com/drive/folders/1ZNBva4SNjQJw__KVppxVxmpKaB3TPUqF)
+```
+
+
 
 ## **Registration**
 
