@@ -20,7 +20,7 @@ worked on the command line of a terminal, the first day of the course is dedicat
 
 ## Registration
 
-The course is free of charge and is organised by the NRIS. **REGISTER [HERE]**(*Link is removed after the course*).
+The registration is closed.
 
 ## Practical Information
 
