@@ -14,13 +14,15 @@ worked on the command line of a terminal, the first day of the course is dedicat
 
 **The course is open to all and free of charge.**
 
+:::success
+ **The video recordings and notes for this course can be found [here](https://documentation.sigma2.no/training/material.html)**
+:::
 
-## **Registration**
+## Registration
 
-The course is free of charge and is organised by the NRIS. **REGISTER [HERE](https://docs.google.com/forms/d/e/1FAIpQLScvqepSFbbclSoF2zeN1saIQhKQTYxFIxMDOJzhP_MKwqeJVQ/viewform?usp=sharing)**.
+The course is free of charge and is organised by the NRIS. **REGISTER [HERE]**(*Link is removed after the course*).
 
-
-## **Practical Information**
+## Practical Information
 
 This is an online course via zoom. Participants require access to a computer
 (not provided by the course organisers) with internet connectivity and
