@@ -1,3 +1,5 @@
+(intel-2024-1API-workshop)=
+
 #  Intel oneAPI Workshop (6, 13 and 27 November) 
 
 The Norwegian Research Infrastructure Services (**NRIS**) is facilitating Intel oneAPI Workshop 

@@ -21,7 +21,7 @@ a day before the HPC course.
 
 ```
 
-## **Practical Information**
+## Practical Information
 
 This is an online course via zoom. Participants require access to a computer
 (not provided by the course organisers) with internet connectivity and
@@ -33,7 +33,7 @@ If you want to receive further information about training events, and other anno
 - users at University of Bergen and affiliated institutes: [register to hpcnews@uib.no](https://mailman.uib.no/listinfo/hpcnews)
 - users of Sigma2 services: [subscribe to Sigma2's newsletter](https://sigma2.us13.list-manage.com/subscribe?u=4fd109ad79a5dca6dde7e4997&id=59b164c7b6)
 
-## **Registration**
+## Registration
 
 The course is free of charge and is organised by the NRIS partners UiB, UiO, UiT, NTNU & Sigma2. Ordinary registration closes on **10th October** so that we get enough time to ensure that everyone has an account on the HPC systems  in case a participant does not already have one.
 You can still register for the course until 16th October and follow the course without joining the hands-on exercise sessions. 

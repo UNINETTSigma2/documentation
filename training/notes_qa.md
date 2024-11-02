@@ -2,6 +2,11 @@
 
 Here we share the workshop questions, answer, and feedbacks from the collaborative 
 notes after the event.
+
+- {ref}`training-2024-autumn-onboarding`
+	- [Questions and answers from HPC On-boarding 15 Oct 2024 Day 0](https://md.sigma2.no/hpc-onboarding-Oct-15-2024)
+	- [Questions and answers from HPC On-boarding 16 Oct 2024 Day 1](https://md.sigma2.no/hpc-onboarding-Oct-16-2024)
+	- [Questions and answers from HPC On-boarding 17 Oct 2024 Day 2](https://md.sigma2.no/hpc-onboarding-Oct-17-2024)
 - {ref}`training-2024-spring-scientific-computiing`
   - [Questions and answers from NRIS Scientific Computing Workshop](https://md.sigma2.no/scientific-computing-workshop)
 - {ref}`training-2024-spring-best-practices`

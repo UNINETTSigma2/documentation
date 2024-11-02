@@ -16,11 +16,10 @@ If you are interested in a re-run of our past courses or if you want to suggest 
 
 ```{toctree}
 :maxdepth: 1
-
 events/2024-11-intel-training.md
 nris_talks/2024-11-28-nris-talks.md
-```
 
+```
 - [Python for Scientific Computing, November 5-7, 2024](https://www.aalto.fi/en/events/python-for-scientific-computing-5-7november2024)
 - [GPU Programming. Why. When. How, November 12-14](https://enccs.se/events/gpu-programming-why-when-how-2024/)
 - [Software Carpentry course in research computing skills, November 11-15, (in-person) Bergen ](https://www.uib.no/en/ub/172439/software-carpentry-course-research-computing-skills)
@@ -31,7 +30,6 @@ nris_talks/2024-11-28-nris-talks.md
 
 ```{toctree}
 :maxdepth: 1
-
 events/2024-10-nird-toolkit.md
 events/2024-10-hpc-on-boarding.md
 nris_talks/2024-10-03-nris-talks.md
