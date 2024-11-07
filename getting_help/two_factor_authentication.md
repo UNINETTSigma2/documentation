@@ -34,7 +34,7 @@ First click User Login (Passwords)
 
 No, you don't. Here's how you can manage that:
 
-On your Mac or linux desktop or laptop, create a text file ~/.ssh/config with, for example, the following contents:
+On your Mac or linux desktop or laptop, create a text file `~/.ssh/config` with, for example, the following contents:
 
 ```
 Host fram
@@ -48,10 +48,16 @@ where myusername is replaced appropriately.
 
 This sets things up so that whenever you ssh to the host nickname fram: ssh fram
 
-It will look for the special file (a socket) in your ~/.ssh/ directory that is maintaining a connection to the cluster. If it already exists and is open, it’ll use it to create a connection without re-authenticating; if it doesn’t exist, it’ll authenticate and create the file for subsequent use.
+It will look for the special file (a socket) in your `~/.ssh/` directory that is maintaining a connection to the cluster. If it already exists and is open, it’ll use it to create a connection without re-authenticating; if it doesn’t exist, it’ll authenticate and create the file for subsequent use.
 
 Note that all subsequent connections are dependent on the initial connection — if you exit or kill the initial connection all other ones die, too. This can obviously be annoying if it happens accidentally. It’s easily avoided by setting up a master connection in the background:
 
 ```ssh -CX -o ServerAliveInterval=30 -fN fram```
 
 The -fN make it go into the background and sit idle, after authenticating. (C for compression,Y for X forwarding, and -o ServerAliveInterval=30 to prevent dropped connections have nothing to do with the ControlMaster but are almost always helpful.)
+
+## Does this work for Windows too? ##
+OpenSSH for Windows does currently not support the ControlMaster module, **but there is a workaround for this**.
+
+By [installing WSL](https://learn.microsoft.com/en-us/windows/wsl/install) and running an Ubuntu terminal you will be able to use SSH as if you were using a Linux computer. You can create the text file under `~/Ubuntu/home/user/.shh/config` and add the same contents as in the example above. 
+If you then attempt to ssh to the host nickname fram in this example by using `ssh fram` in your Ubuntu terminal, it would then create the same socket under Ubuntu's ssh directory as it would if you were to use a Mac/Linux computer.
