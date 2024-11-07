@@ -1,6 +1,6 @@
 (extended-support-eus)=
 
-# Extended User Support (up to 2-3 weeks of work)
+# Extended User Support (2-3 weeks of work)
 
 For smaller adoptions, optimisations, and changes which are exceeding ordinary
 support, you can **ask support staff for extended user support**.
