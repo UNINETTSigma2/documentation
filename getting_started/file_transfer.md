@@ -19,6 +19,10 @@ use `rsync` through [Windows Subsystem for Linux
 (WSL)](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux).
 ```
 
+**NB**: Since the implementation of 2FA (2 factor authentication) on NRIS clusters, 
+you might experience issues while using Filezilla, in which you never get asked to 
+provide the 2fa key before the password. To fix this, (in Filezilla) you need to go 
+to `Site Manager` and change `Protocol Type` to `Interactive`.
 
 ## Transferring files between your computer and a compute cluster or storage resource
 
