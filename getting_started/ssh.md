@@ -266,7 +266,7 @@ In other words, we use `ssh-add` typically once per day but then can `ssh` and
 ## SSH client on Windows
 
 In Windows 10 and newer you can now get a fully functional Linux terminal by
-[installing WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+[installing WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
 
 Yet another alternative is to use the [Windows SSH Client](https://learn.microsoft.com/en-us/windows/terminal/tutorials/ssh) directly.
 
