@@ -107,7 +107,7 @@ any software-related issues, we are happy to help you at
 support@nris.no.  As an alternative, you can use the [EESSI](https://www.eessi.io/docs/) module.  
 The software available with EESSI have been built to support the cpus on the hugemem nodes.  
 To activate the module, do
-`module load EESSI/2023.06` (EESSI)
+`module load EESSI/2023.06`
 before you load modules.
 
 
