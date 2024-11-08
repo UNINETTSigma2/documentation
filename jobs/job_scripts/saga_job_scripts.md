@@ -112,11 +112,10 @@ RAM per cpu:
 Please note that not all of the ordinary software modules will work on
 the *hugemem* nodes, due to the different cpu type.  If you encounter
 any software-related issues, we are happy to help you at
-support@nris.no.  As an alternative, you can use the NESSI or
-[EESSI](https://www.eessi.io/docs/) modules.  These have been built to
+support@nris.no.  As an alternative, you can use the
+[EESSI](https://www.eessi.io/docs/) module.  The software available with EESSI have been built to
 support the cpus on the hugemem nodes.  To activate the modules, do
-`module load NESSI/2023.06` (NESSI) or
-`module load EESSI/2023.06` (EESSI)
+`module load EESSI/2023.06`
 before you load modules.
 
 (job_scripts_saga_accel)=
