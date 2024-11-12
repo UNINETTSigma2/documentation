@@ -48,7 +48,7 @@ NIRD is based on IBM Elastic Storage System, built using ESS3200, ESS3500 and ES
 | Clusters     |	Two physically separated clusters | NIRD TS<br>NIRD DL  |
 | Storage media | NIRD Data Peak<br>NIRD Data Lake | NVMe SSD & NL-SAS<br>NL-SAS
 | Capacity     |	Total capacity: 49 PB | NIRD Data Peak: 24 PB<br> NIRD Data Lake: 25 PB  |
-| Performance | Aggregated I/O throughput | NIRD Data Peak: 209 GB/s<br>NIRD Data Lake: 66 GB/s |
+| Performance | Aggregated I/O throughput | NIRD Data Peak: 209 GB/s<br>NIRD Data Lake: 66 GB/s<br>NIRD S3: 27 GB/s |
 | Interconnect | 100 Gbit/s Ethernet | NIRD Data Peak: balanced 400 Gbit/s<br>NIRD Data Lake: balanced 200 Gbit/s |
 | Protocol nodes | NFS<br>S3 | 4 x 200 Gbit/s<br>5 x 50 Gbit/s|
 
@@ -69,6 +69,7 @@ Backup services and data integrity is ensured with IBM Storage Protect.
 
 nird/access_lmd.md
 nird/storage-areas_lmd.md
+nird/s3.md
 nird/snapshots_lmd.md
 nird/backup_lmd.md
 nird/mounts_lmd.md
