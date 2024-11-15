@@ -14,6 +14,18 @@ If you are interested in a re-run of our past courses or if you want to suggest 
 
 ## Upcoming events
 
+### 2025
+
+```{toctree}
+:maxdepth: 1
+
+nris_talks/2025-01-23-nris-talks.md
+nris_talks/2025-02-13-nris-talks.md
+
+```
+
+### 2024
+
 ```{toctree}
 :maxdepth: 1
 events/2024-11-intel-training.md
