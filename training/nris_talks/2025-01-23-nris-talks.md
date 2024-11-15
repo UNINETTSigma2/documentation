@@ -3,7 +3,7 @@
 NRIS(Norwegian Research Infrastructure Services) is organising  webinars as part of it's outreach program **NRIS Talks**.
 
 
-# Webinar Details:
+## Webinar Details:
 
 - **Date:** 23rd January 2025
 - **Time:** 13:00 - 14:00
