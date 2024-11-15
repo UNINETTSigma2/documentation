@@ -1,4 +1,4 @@
-NRIS Talks : Webinar on Introduction to VASP and how to run VASP calculation NRIS Clusters
+# NRIS Talks : Webinar on Introduction to VASP and how to run VASP calculation NRIS Clusters
 
 NRIS(Norwegian Research Infrastructure Services) is organising  webinars as part of it's outreach program **NRIS Talks**.
 
