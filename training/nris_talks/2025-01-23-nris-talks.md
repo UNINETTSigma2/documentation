@@ -33,6 +33,6 @@ This workshop is mostly suitable for beginners and intermediate users of VASP at
 
 ## Acknowledgement 
 
-We thank the ENCCS and NSC for creating the [VASP bets practices workshop material](https://enccs.github.io/vasp-best-practices/) and agreeing to reuse it forr this webinar. 
+We thank the ENCCS and NSC for the [VASP best practices workshop material](https://enccs.github.io/vasp-best-practices/) and agreeing to reuse it for this webinar. 
 
 
