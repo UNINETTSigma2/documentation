@@ -1,7 +1,7 @@
 # NRIS Talks: Webinar on  how to train machine learning models on VASP
 
 NRIS(Norwegian Research Infrastructure Services) is organising  webinars as part of it's outreach program **NRIS Talks**.
-
+In this webinar we will give an introduction to machine learning potentials. We will give guidance as to when to use them and how to develop them properly. A tutorial for fine tuning a foundation model (MACE) will be given, along with caveats on validation and accuracy. 
 
 ## Webinar Details:
 
