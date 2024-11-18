@@ -1,7 +1,8 @@
 # NRIS Talks: Webinar on  how to train machine learning models on VASP
 
 NRIS(Norwegian Research Infrastructure Services) is organising  webinars as part of it's outreach program **NRIS Talks**.
-In this webinar we will give an introduction to machine learning potentials. We will give guidance as to when to use them and how to develop them properly. A tutorial for fine tuning a foundation model (MACE) will be given, along with caveats on validation and accuracy. 
+This is a follow up of the previous Webinar {ref}`NRIS Talks: Introduction to VASP`.
+In this webinar we will give an introduction to machine learning potentials on VASP. We will give guidance on when to use them and how to develop them properly. A tutorial for fine tuning a foundation model (MACE) will be given, along with caveats on validation and accuracy. 
 
 ## Webinar Details:
 
@@ -12,6 +13,16 @@ In this webinar we will give an introduction to machine learning potentials. We 
 - **Speaker:** [Daniel Marchand](https://www.sintef.no/alle-ansatte/ansatt/daniel.marchand/)
 - **Moderator:** [Dhanya Pushpadas](https://www.uib.no/en/persons/Dhanya.Pushpadas)
 
-
 ## How to Register:
 Register [here](https://uib.zoom.us/webinar/register/WN_1a2cQ0hnRJC6IxUQ_cy09g#/registration)
+
+## About the webinar
+
+The webinar will cover: 
+
+-
+-
+
+## Who Should Attend
+
+This workshop is mostly suitable for VASP users at different levels and curious to know about the machine learning potentiials on VASP.
