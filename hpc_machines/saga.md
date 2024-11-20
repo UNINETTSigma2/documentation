@@ -36,7 +36,7 @@ Saga is provided by Hewlett Packard Enterprise and has a computational capacity 
 | Total max floating point performance, double     |	645 Teraflop/s (CPUs) + 150 Teraflop/s (GPUs) |
 | Total memory     |	97.5 TiB  |
 | Total NVMe+SSD local disc | 89 TiB + 60 TiB |
-| Total parallel filesystem capacity     |	1 PB  |
+| Total parallel filesystem capacity     |	6.5 PB  |
 
 
 ### Mapping of processors to memory specifications:
