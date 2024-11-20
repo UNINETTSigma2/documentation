@@ -94,14 +94,16 @@ Time: 19s
 
 Download the version you desire for your operating system and the **same** version for Linux. You will need to upload the .tar.gz file to your home or project directory and extract it with the command `tar -xvf nameOfFile.tar.gz`
 
-**TIP**: you can speed up the process on the server by extracting first the `.tar.gz` file to your local computer. Then, upload the extracted `.tar` file to the HPC cluster and run the command above to extract its contents.
-
 
 ### Windows client for your local computer
 
 If your local machine runs Windows, you have to install ParaView executable or, in case you don't have Administrator permissions to install the software, you can also download the zip file, extract it and run the `paraview.exe` file inside the /bin folder
 
 Also, if an error appears when opening the program saying a dll is missing `msmpi.dll` , you will need to download and install `msmpisetup.exe` from this link: https://www.microsoft.com/en-us/download/details.aspx?id=105289 . Ask for an administrator to install it for you.
+
+### Mac client for your local computer
+
+For the Mac version, it is enough to download the same version as the one that will run on the cluster and install it on your local machine. Just make sure to download the correct architecture version, Intel or Apple Silicon.
 
 
 ## Allocating resources for the project
