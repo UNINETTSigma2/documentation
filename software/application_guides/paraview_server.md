@@ -111,10 +111,10 @@ For the Mac version, it is enough to download the same version as the one that w
 Run the following command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem
 =20G --partition=a100 --gpus=1 --account=nnXXXXk`
 
-The command above is tailored for a system with the A100 GPU available, such as Saga or Betzy. Please, if the command above doesn't work, refer to the warning message at the beginning of this guide and take a look at this [documentation](https://documentation.sigma2.no/jobs/interactive_jobs.html#requesting-an-interactive-job) or on the benchmarks as we have provided the allocation commands we ran.
+**Please, note that the command above is tailored for a system with the A100 GPU available, such as Saga or Betzy.** If the command above doesn't work, refer to the warning message at the beginning of this guide and take a look at this [documentation](https://documentation.sigma2.no/jobs/interactive_jobs.html#requesting-an-interactive-job) or on the benchmarks as we have provided the allocation commands we ran.
 
-Please, note that here we are asking 1 CPU and 1 GPU only for 30 minutes. **If you need more resources and time, adjust the parameters accordingly.**
-Also, the A100 GPU is faster but, if resources are not available and you are running on Saga, try the P100 GPU changing the `--partition` flag from "a100" to "accel".
+Also note that we are asking 1 CPU and 1 GPU only for 30 minutes. **If you need more resources and time, adjust the parameters accordingly.**
+The A100 GPU is faster but, if resources are not available and you are running on Saga, try the P100 GPU changing the `--partition` flag from "a100" to "accel".
 
 The output will be similar to this one:
 
