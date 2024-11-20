@@ -7,25 +7,34 @@
 
 ## Context
 
-Running ParaView using remote desktop software on our clusters is far from ideal because it adds an unnecessary layer of virtualization, making the application run slower and taxing the server and users running other programs.
+Running ParaView using remote desktop software on our clusters is far from ideal because it adds an unnecessary layer of virtualization, making the application run slower and taxing the server and other users running their applications.
 
-Running ParaView using the built-in server option has a few advantages:
+Running ParaView using its built-in server option has a few advantages:
 - You do not rely on IT support to install a particular version of the software;
 - It is possible to run the latest version, as long as you download the newer version from ParaView website on your local machine and on the server;
 - You can specify exactly how much resources you need (including CPUs and also GPUs where available) and they will be allocated to your project;
 - It runs much better on your, already familiar, local computer.
 
+```{warning}
+The packages and commands that we will show below depend on which machine you have access to:
+
+**Fram**: since it does not have any dedicated GPUs, you will not be able to use partitions "a100" or "p100" nor any gpu parameters and the "egl" package. Please, try with "osmesa" package.
+
+**Betzy**: since it only has AMD processors and A100 GPUs, you will have to switch environments and run either the "egl" or "osmesa" packages (the former is probably slightly faster). Please, follow the instructions on this guide for AMD setups.
+
+**Saga**: this cluster has Intel and AMD CPUs and different GPUs available. Remember that P100 is only available for Intel architecture and A100 for AMD architecture so the commands will vary depending on which GPU is selected. Either way, both "egl" and "osmesa" packages can also be used. 
+```
 
 ## Download ParaView software
 
 ### Linux version on the cluster
 
-All our servers have version 5.10.1 installed as the most up-to-date version. However, we recommend the download and usage of "osmesa" or "egl" versions available on [ParaView website](https://www.paraview.org/download/), as they have CPU and GPU acceleration and the 3D rendering on ParaView happens much faster.
+All our servers already have a version installed as a module. However, we recommend the download and usage of "osmesa" or "egl" versions available on [ParaView website](https://www.paraview.org/download/), as they have CPU and GPU acceleration and the 3D rendering on ParaView happens much faster.
 
 In fact, we ran some benchmarks:
 
 ```
-Version: 5.10.1-MPI
+Version: 5.10.1-MPI (installed module version)
 Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --account=nn9999k`
 PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
 Message: "Display is not accessible on the server side. Remote rendering will be disabled."
@@ -44,7 +53,7 @@ Time: did not run
 ```
 
 ```
-Version: 5.10.1-MPI
+Version: 5.10.1-MPI (installed module version)
 Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --partition=accel --gpus=1 --account=nn9999k`
 PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
 Message: "Display is not accessible on the server side. Remote rendering will be disabled."
@@ -64,7 +73,7 @@ Time: 47s
 ```
 
 ```
-Version: 5.10.1-MPI
+Version: 5.10.1-MPI (installed module version)
 Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --partition=a100 --gpus=1 --account=nn9999k`
 PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
 Message: "Display is not accessible on the server side. Remote rendering will be disabled."
@@ -85,8 +94,6 @@ Time: 19s
 
 Download the version you desire for your operating system and the **same** version for Linux. You will need to upload the .tar.gz file to your home or project directory and extract it with the command `tar -xvf nameOfFile.tar.gz`
 
-**TIP**: you can speed up the extraction process on the server by extracting first on your computer the `.tar` file inside it. Then, upload the file and extract this one following the same procedures.
-
 
 ### Windows client for your local computer
 
@@ -94,16 +101,20 @@ If your local machine runs Windows, you have to install ParaView executable or, 
 
 Also, if an error appears when opening the program saying a dll is missing `msmpi.dll` , you will need to download and install `msmpisetup.exe` from this link: https://www.microsoft.com/en-us/download/details.aspx?id=105289 . Ask for an administrator to install it for you.
 
+### Mac client for your local computer
+
+For the Mac version, it is enough to download the same version as the one that will run on the cluster and install it on your local machine. Just make sure to download the correct architecture version, Intel or Apple Silicon.
+
 
 ## Allocating resources for the project
 
 Run the following command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem
 =20G --partition=a100 --gpus=1 --account=nnXXXXk`
 
-If the command above doesn't work, take a look at this [documentation](https://documentation.sigma2.no/jobs/interactive_jobs.html#requesting-an-interactive-job) or on the benchmarks as we have provided the allocation commands we ran.
+**Please, note that the command above is tailored for a system with the A100 GPU available, such as Saga or Betzy.** If the command above doesn't work, refer to the warning message at the beginning of this guide and take a look at this [documentation](https://documentation.sigma2.no/jobs/interactive_jobs.html#requesting-an-interactive-job) or on the benchmarks as we have provided the allocation commands we ran.
 
-Please, note that here we are asking 1 CPU and 1 GPU only for 30 minutes. **If you need more resources and time, adjust the parameters accordingly.**
-Also, the A100 GPU is faster but, if resources are not available, try the P100 GPU changing the `--partition` flag from "a100" to "accel".
+Also note that we are asking 1 CPU and 1 GPU only for 30 minutes. **If you need more resources and time, adjust the parameters accordingly.**
+The A100 GPU is faster but, if resources are not available and you are running on Saga, try the P100 GPU changing the `--partition` flag from "a100" to "accel".
 
 The output will be similar to this one:
 
@@ -118,7 +129,10 @@ salloc: Nodes gpu-12-8 are ready for job
 
 ## Loading "libOpenGL.so.0" with A100 "egl" package
 
-Due to a different architecture, our A100 GPU runs paired with an AMD CPU. You can check more details about the hardware [in this page](https://documentation.sigma2.no/hpc_machines/saga.html)
+Due to a different architecture, our A100 GPU runs paired with an AMD CPU. You can check more details about the hardware in these pages:
+([Betzy](/hpc_machines/betzy.md))
+([Fram](/hpc_machines/fram.md))
+([Saga](/hpc_machines/saga.md))
 
 If you want to run the "egl" package, you will have to:
 
@@ -145,7 +159,7 @@ Go to the /bin folder with the `cd` command and run the following (replace the "
 
 `srun ./pvserver --server-port=XXXX --force-offscreen-rendering`
 
-**NOTE:** You can read more about the `--force-offscreen-rendering` option [here](https://kitware.github.io/paraview-docs/latest/cxx/Offscreen.html). It seems to render slightly faster.
+**NOTE:** You can read more about the `--force-offscreen-rendering` option [on Paraview website](https://www.paraview.org/paraview-docs/latest/cxx/Offscreen.html). It seems to render slightly faster.
 
 You should see a message like this:
 
