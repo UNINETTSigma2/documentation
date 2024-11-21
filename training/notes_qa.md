@@ -2,7 +2,7 @@
 
 Here we share the workshop questions, answer, and feedbacks from the collaborative 
 notes after the event.
-
+- [Questions and answers from Introduction to NIRD Toolkit on 24th October 2024](https://md.sigma2.no/nird-toolkit-training2024)
 - {ref}`training-2024-autumn-onboarding`
 	- [Questions and answers from HPC On-boarding 15 Oct 2024 Day 0](https://md.sigma2.no/hpc-onboarding-Oct-15-2024)
 	- [Questions and answers from HPC On-boarding 16 Oct 2024 Day 1](https://md.sigma2.no/hpc-onboarding-Oct-16-2024)
