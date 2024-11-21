@@ -22,7 +22,7 @@ The webinar will cover:
 
 - Machine learning potentials and their validation
 - How to fine-tune foundation models hands on example for MACE 
-
+- Q&A 
 
 ## Who Should Attend
 
