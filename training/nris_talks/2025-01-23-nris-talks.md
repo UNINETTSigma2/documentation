@@ -1,6 +1,6 @@
 (NRIS Talks: Introduction to VASP)=
 
-# NRIS Talks : Webinar on Introduction to VASP and how to run VASP calculation NRIS Clusters
+# NRIS Talks : Webinar on Introduction to VASP and how to run VASP calculation on NRIS Clusters
 
 NRIS(Norwegian Research Infrastructure Services) is organising  webinars as part of it's outreach program **NRIS Talks**.
 This time, we will explore how to effectively utilize the Vienna Ab-initio Simulation Package (VASP) on supercomputers. This workshop is primarily designed for beginners and intermediate users at various levels, with an emphasis on best practices for conducting VASP calculations on NRIS clusters. This webinar content is based on the VASP best practices workshop materials developed by ENCCS and NSC. 
@@ -26,7 +26,7 @@ The webinar will cover:
 - Runniing VASP on HPCs
 - Demo on NRIS Cluster Saga
 - Q&A
-- Webiinar content is based on the [lesson material](https://enccs.github.io/vasp-best-practices/) developed by and NSC.
+- Webiinar content is based on the [lesson material](https://enccs.github.io/vasp-best-practices/) developed by and NSC and ENCCS.
 ## Who Should Attend
 
 This workshop is mostly suitable for beginners and intermediate users of VASP at different stages. It is useful but not necessary to have basic knowledge of electronic structure theory and/or DFT.
