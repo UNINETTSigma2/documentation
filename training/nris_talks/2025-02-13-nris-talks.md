@@ -20,8 +20,9 @@ Register [here](https://uib.zoom.us/webinar/register/WN_1a2cQ0hnRJC6IxUQ_cy09g#/
 
 The webinar will cover: 
 
--
--
+- Machine learning potentials and their validation
+- How to fine-tune foundation models hands on example for MACE 
+
 
 ## Who Should Attend
 
