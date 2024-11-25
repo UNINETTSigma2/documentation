@@ -45,6 +45,53 @@ To include hidden modules you can add the `--show-hidden` option to the `module
 avail` search.
 ```
 
+## Which extensions are available?
+
+Modules can contain extensions (**Perl modules**, **Python packages** and **R packages**). 
+Extensions are marked with an `(E)` and can not be loaded directly. You will have to find and load the module that contains the extension.
+
+List all versions of the Python package `numpy` that are installed:
+
+```
+module spider numpy
+```
+
+Five different version of numpy is installed in this example:
+```
+     Versions:
+        numpy/1.22.3 (E)
+        numpy/1.24.2 (E)
+        numpy/1.25.1 (E)
+        numpy/1.26.2 (E)
+        numpy/1.26.4 (E)
+
+```
+
+Now list the module that contains a specific version of `numpy`:
+
+```
+module spider numpy/1.26.4
+```
+
+In this case it was the `SciPy-bundle/2024.05-gfbf-2024a` module that provides the Python package `numpy` version `1.26.4`. In order to see what other extensions are included in the module, you can run:
+
+```
+module spider SciPy-bundle/2024.05-gfbf-2024a
+```
+
+We see that these Python packages are included in the module:
+```
+
+      Included extensions
+      ===================
+      beniget-0.4.1, Bottleneck-1.3.8, deap-1.4.1, gast-0.5.4, mpmath-1.3.0,
+      numexpr-2.10.0, numpy-1.26.4, pandas-2.2.2, ply-3.11, pythran-0.16.1,
+      scipy-1.13.1, tzdata-2024.1, versioneer-0.29
+```
+
+```{note}
+If you do not want to see extensions in the output you can run the module command with the `--nx` option, like this: `module --nx avail`
+```
 
 ## How to load a module
 
