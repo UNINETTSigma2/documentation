@@ -1,6 +1,6 @@
 # One-time-pad (OTP) / Two-factor authentication #
 
-All login nodes on Fram and Saga offer two-factor authentication on SSH.
+All login nodes on Betzy, Fram and Saga offer two-factor authentication on SSH.
 
 To set up two-factor authentication for your user, follow these steps:
 
@@ -30,7 +30,7 @@ First click User Login (Passwords)
 
 ## FAQ ##
 
-### 1. Do I have to use two-factor authentication every single time I log in or connect to Fram or Saga ###
+### 1. Do I have to use two-factor authentication every single time I log in or connect to Betzy, Fram or Saga ###
 
 No, you don't. Here's how you can manage that:
 
