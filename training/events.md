@@ -24,21 +24,14 @@ nris_talks/2025-02-13-nris-talks.md
 
 ```
 
-### 2024
-
-```{toctree}
-:maxdepth: 1
-events/2024-11-intel-training.md
-nris_talks/2024-11-28-nris-talks.md
-
-```
-
 ## Past events
 
 ### 2024
 
 ```{toctree}
 :maxdepth: 1
+events/2024-11-intel-training.md
+nris_talks/2024-11-28-nris-talks.md
 events/2024-10-nird-toolkit.md
 events/2024-10-hpc-on-boarding.md
 nris_talks/2024-10-03-nris-talks.md
