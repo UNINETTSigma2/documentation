@@ -2,8 +2,9 @@
 
  Here we share the link to our video archives of past events.
 
+- [[Video] Introduction to NIRD Toolkit Autumn 2024](https://www.youtube.com/playlist?list=PLoR6m-sar9AhZacgyTi6fhwENmWFdNyal)
 - [[Video] NRIS Talks: Webinar on Introduction to EESSI](https://www.youtube.com/watch?v=T13J7qTpw0o)
-- [[Video]  NRIS Scientific Computing Workshop 2024](https://www.youtube.com/playlist?list=PLoR6m-sar9AhFq6Brn95HCYdZpn0YLWxF)
+- [[Video] NRIS Scientific Computing Workshop 2024](https://www.youtube.com/playlist?list=PLoR6m-sar9AhFq6Brn95HCYdZpn0YLWxF)
 - [[Video] NRIS Talks: Webinar on Exascale Computing 2024](https://www.youtube.com/watch?v=FEm4Ln26iyM)
 - [[Video] NRIS Best Practices on Clusters Spring Series 2024](https://www.youtube.com/watch?v=qcHSxm5i9Oo)
 - [[Video] HPC On-boarding April 2024](https://www.youtube.com/watch?v=YkX6dqpwrog&list=PLoR6m-sar9AiurRIVXw9UWgdmC-9EC6YJ)
