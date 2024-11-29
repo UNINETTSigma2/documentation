@@ -21,13 +21,14 @@ with 1 TiB RAM each.
 | :------------- | :------------- |
 | System     |BullSequana XH2000  |
 | Max Floating point performance, double     |	6.2 Petaflops  |
-| Number of compute nodes     |	1338  |
+| Number of CPU nodes     |	1344  |
 | CPU type     |	AMD® Epyc™ 7742 2.25GHz  |
 | CPU cores in total  |	172032  |
 | CPU cores per node  | 128  |
 | Memory in total    |	344 TiB  |
 | Memory per node    |  256 GiB  |
 | GPU type | Nvidia A100 40 GB with NVLink |
+| Number of GPU nodes |	4 |
 | GPUs per node | 4 |
 | GPUs in total | 16 |
 | Operating System   | Red Hat Enterprise Linux 7 |
