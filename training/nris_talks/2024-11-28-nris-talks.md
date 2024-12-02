@@ -27,6 +27,11 @@ Content:
 - Achievements and Upcoming Topics 
 - Q&A
 
+```{note}
+- [Video Recording](https://www.youtube.com/watch?v=qSkqqIXi8Nk&feature=youtu.be)
+- [Slides](https://drive.google.com/drive/folders/1VYvefS-R_wOgnMepDwggh0oMeOIsAjzy)
+```
+
 ## Who Should Attend?
 
 This webinar is ideal for researchers, IT professionals, students, and anyone requiring a comprehensive scientific software stack across various Linux distribution systems, including HPC, Cloud, and laptops.
