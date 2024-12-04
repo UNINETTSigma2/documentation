@@ -1,0 +1,37 @@
+---
+stages:
+  - linkchecker
+  - spellchecker
+  - build
+
+image: python:3.10-alpine
+
+linkchecker:
+  stage: linkchecker
+  only:
+    - schedules
+  script:
+    - apk add --no-cache git bash curl
+    - bash .ci/linkchecker.sh
+
+spellchecker:
+  stage: spellchecker
+  script:
+    - apk add --no-cache bash curl
+    - curl -L -o ./install-misspell.sh https://git.io/misspell
+    - bash ./install-misspell.sh
+    - ./bin/misspell -error .
+
+build:
+  stage: build
+  when: on_success
+  script:
+    - pip install --upgrade pip
+    - pip install -r requirements.txt
+    # '-W': Turn warnings into errors
+    # '--keep-going': When encountering a warning continue to process (this
+    # allows us to capture multiple warnings at the same time, avoiding the
+    # 'build->warning->fix->build->warning' loop where both fixes could be
+    # solved at the same time)
+    # '-n': Warn about internal missing references
+    - sphinx-build -W --keep-going -n . _build
