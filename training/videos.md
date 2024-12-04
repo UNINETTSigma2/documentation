@@ -2,6 +2,7 @@
 
  Here we share the link to our video archives of past events.
 
+- [[Video] NRIS Talks: Webinar on How to build on top EESSI using EasyBuild](https://www.youtube.com/watch?v=qSkqqIXi8Nk)
 - [[Video] Introduction to NIRD Toolkit Autumn 2024](https://www.youtube.com/playlist?list=PLoR6m-sar9AhZacgyTi6fhwENmWFdNyal)
 - [[Video] NRIS Talks: Webinar on Introduction to EESSI](https://www.youtube.com/watch?v=T13J7qTpw0o)
 - [[Video] NRIS Scientific Computing Workshop 2024](https://www.youtube.com/playlist?list=PLoR6m-sar9AhFq6Brn95HCYdZpn0YLWxF)
