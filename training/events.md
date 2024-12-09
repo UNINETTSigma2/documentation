@@ -19,8 +19,11 @@ If you are interested in a re-run of our past courses or if you want to suggest 
 ```{toctree}
 :maxdepth: 1
 
+events/2025-spring-best-practices-tools.md
 nris_talks/2025-01-23-nris-talks.md
 nris_talks/2025-02-13-nris-talks.md
+nris_talks/2025-04-24-nris-talks.md
+
 
 ```
 
