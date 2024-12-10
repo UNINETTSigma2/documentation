@@ -29,7 +29,7 @@ We will demonstrate and practice this using [Snakemake](https://snakemake.github
 
 ## Episode 2: 11/02/2025 (10:00-12:00 CET)- Advanced shell scripting and utilities
 
-**Content:** The focus will be on advance shell scripting hell best practices and utilities like sed & awk to streamline
+**Content:** The focus will be on advance shell scripting, shell best practices and utilities like sed & awk to streamline
 operations and ensuring efficiency. 
 
 **Registration**: Please register at this link
