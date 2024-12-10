@@ -6,7 +6,7 @@ to machine learning potentials on VASP. We will give guidance on when to use the
 
 ## Webinar Details:
 
-- **Date:** 23rd January 2025
+- **Date:** 13th February 2025
 - **Time:** 13:00 - 14:00
 - **Duration:** 60 minutes
 - **Platform:** Zoom webinar
