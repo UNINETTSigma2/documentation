@@ -27,6 +27,7 @@ application_guides/gdal.md
 application_guides/gromacs.md
 application_guides/lammps.md
 application_guides/matlab.md
+application_guides/matplotlib.md
 application_guides/namd.md
 application_guides/nco.md
 application_guides/ncview.md
