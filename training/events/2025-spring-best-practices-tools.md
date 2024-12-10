@@ -17,7 +17,9 @@ Here below you find the list of episodes and how to register. Episodes are self-
 
 ## Episode 1: 21/01/2025 (10:00-12:00 CET)- How to parallelize independence tasks on HPC
 
-**Content:** The focus will be on how to convert a for-loop (Python or R script) to a workflow (e.g. Snakemake), short introduction to snakemake and a supercomputing concepts and moving your workflow from laptop to supercomputer.
+**Content:** Sometimes you need to run many similar calculations. Instead of running them one after the other and managing many job scripts
+or writing elaborate shell scripts, we will learn how to run them potentially at the same time using a workflow manager without writing many job scripts.
+We will demonstrate and practice this using [Snakemake](https://snakemake.github.io/). If your calculation is a for-loop in Python or R and it takes too long to run, this session is for you.
 
 **Registration**: Please register at this link 
 
