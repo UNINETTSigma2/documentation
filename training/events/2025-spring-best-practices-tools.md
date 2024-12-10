@@ -7,7 +7,7 @@ The workshop is organised as a series of monthly events during the spring semest
 **The course is open to all and free of charge, but registration is mandatory.**
 
 **Targeted Audience**: The course is aimed at students, researchers and employees
-who want to upskill  their knowledge of the usage of HPC fnd storage facilities. 
+who want to upskill  their knowledge of the usage of HPC and storage facilities. 
 This is a follow-up course to the {ref}`NRIS HPC on-boarding<training-2024-autumn-onboarding>` course
 (although it is not a prerequisite, but we expect the participants to have basic HPC knowledge). Being 
 familiar with basics tools used with HPC and remote computing is fundamental for this course. 
@@ -27,7 +27,7 @@ Here below you find the list of episodes and how to register. Episodes are self-
 
 ## Episode 2: 11/02/2025 (10:00-12:00 CET)- Advanced shell scripting and utilities
 
-**Content:** The focus will be on advance shell scripting hell best practtices and utilities like sed & awk to streamline
+**Content:** The focus will be on advance shell scripting hell best practices and utilities like sed & awk to streamline
 operations and ensuring efficiency. 
 
 **Registration**: Please register at this link
