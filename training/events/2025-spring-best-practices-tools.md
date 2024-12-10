@@ -25,7 +25,7 @@ Here below you find the list of episodes and how to register. Episodes are self-
 
 - Radovan Bast
 
-## Episode 2: 11/02/2025 (10:00-12:00 CET)- Advanced shell script
+## Episode 2: 11/02/2025 (10:00-12:00 CET)- Advanced shell scripting and utilities
 
 **Content:** The focus will be on advance shell scripting hell best practtices and utilities like sed & awk to streamline
 operations and ensuring efficiency. 
@@ -34,7 +34,7 @@ operations and ensuring efficiency.
 
 ### Instructor
 
--Ole Saastad
+- Ole Saastad
 
 ## Episode 3: 11/03/2025 (10:00-12:00 CET)- Containers on clusters
 
