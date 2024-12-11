@@ -21,7 +21,7 @@ Here below you find the list of episodes and how to register. Episodes are self-
 or writing elaborate shell scripts, we will learn how to run them potentially at the same time using a workflow manager without writing many job scripts.
 We will demonstrate and practice this using [Snakemake](https://snakemake.github.io/). If your calculation is a for-loop in Python or R and it takes too long to run, this session is for you.
 
-**Registration**: Please register at this link 
+**Registration**: [Please register at this link](https://skjemaker.app.uib.no/view.php?id=18244544)
 
 ### Instructor
 
@@ -32,7 +32,7 @@ We will demonstrate and practice this using [Snakemake](https://snakemake.github
 **Content:** The focus will be on advance shell scripting, shell best practices and utilities like sed & awk to streamline
 operations and ensuring efficiency. 
 
-**Registration**: Please register at this link
+**Registration**: [Please register at this link](https://skjemaker.app.uib.no/view.php?id=18245750)
 
 ### Instructor
 
@@ -42,7 +42,7 @@ operations and ensuring efficiency.
 
 **Content:** The focus will be on containers with Apptainer/Singularity, how to build containers for HPC, how and when to use containers on clusters, and other practical examples with containers
 
-**Registration**: Please register at this link
+**Registration**: [Please register at this link](https://skjemaker.app.uib.no/view.php?id=18246469)
 
 ### Instructor
 
