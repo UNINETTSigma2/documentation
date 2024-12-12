@@ -26,7 +26,11 @@ First click User Login (Passwords)
 
 ![www.metacenter.no frontpage screenshot](screenshots/otp_setup_finished.png)
 
-6.  Wait for the resources to sync the new information.
+6.  Wait for the resources to sync the new information. 
+
+## Video guide ## 
+
+[[Video] 2FA setup guide for the national e-infrastructure systems](https://www.youtube.com/watch?v=az3HLlwlyDA)    
 
 ## FAQ ##
 
@@ -56,7 +60,7 @@ Note that all subsequent connections are dependent on the initial connection —
 
 The -fN make it go into the background and sit idle, after authenticating. (C for compression,Y for X forwarding, and -o ServerAliveInterval=30 to prevent dropped connections have nothing to do with the ControlMaster but are almost always helpful.)
 
-## Does this work for Windows too? ##
+### Does this work for Windows too? ###
 OpenSSH for Windows does currently not support the ControlMaster module, **but there is a workaround for this**.
 
 By [installing WSL](https://learn.microsoft.com/en-us/windows/wsl/install) and running an Ubuntu terminal you will be able to use SSH as if you were using a Linux computer. You can create the text file under `~/Ubuntu/home/user/.shh/config` and add the same contents as in the example above. 
