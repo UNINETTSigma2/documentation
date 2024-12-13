@@ -3,14 +3,14 @@
 # HPC On-boarding 05-08 May 2025
 
 The Norwegian Research Infrastructure Services (**NRIS**) is offering 
-an on-boarding hands-on course for new users of HPC systems. 
+an on-boarding hands-on course for new users of high performance computing (HPC) systems. 
 
-The course is highly recommended  for all new users of national HPC systems 
+The course is highly recommended  for all new users of the national HPC systems 
 (Saga, Fram, Betzy) and all interested in the field.
 **Targeted Audience**: The course is aimed at students, researchers and employees of any
-background. We assume no prior knowledge of what an HPC is or how to use it. For those who
-have little experience with UNIX-like operating systems such as Linux or who have never
-worked on the command line of a terminal, the first day of the course is dedicated for you. 
+background. We assume no prior knowledge of what an HPC is or how to use it. For those with 
+little experience using UNIX-like operating systems such as Linux or working on the command 
+line of a terminal, the first day of the course is designed specifically for you. 
 
 **The course is open to all and free of charge.**
 
@@ -20,13 +20,13 @@ worked on the command line of a terminal, the first day of the course is dedicat
 
 ## Registration
 
-The registration will open early 2025.
+The registration will open in early 2025.
 
 ## Practical Information
 
-This is an online course via zoom. Participants require access to a computer
+This is an online course via Zoom. Participants require access to a computer
 (not provided by the course organisers) with internet connectivity and
-pre-installed programs to participate in the video meeting of the course (zoom) and 
+pre-installed programs to participate in the video meeting of the course (Zoom) and 
 to access the HPC systems (eg: ssh).
 
 
@@ -46,15 +46,15 @@ If you want to receive further information about training events, and other anno
 about IT resources and services for researchers, there are a couple of information channels
  you can subscribe to:
  
-- users at University of Bergen and affiliated institutes: [register to hpcnews@uib.no](https://mailman.uib.no/listinfo/hpcnews)
+- users at The University of Bergen and affiliated institutes: [register to hpcnews@uib.no](https://mailman.uib.no/listinfo/hpcnews)
 - users of Sigma2 services: [subscribe to Sigma2's newsletter](https://sigma2.us13.list-manage.com/subscribe?u=4fd109ad79a5dca6dde7e4997&id=59b164c7b6)
 - users at The Arctic University of Norway (UiT): [how to sign up for the UiT hpc-group newsletter](https://hpc.uit.no/contact/)
 
-**User Account and connection verification**: For all courseparticipants, we want to make sure that you are able to log in an follow the practical parts of the course - thus we organise a login help session on May 05th - at 13:00-14:00. Link to this will be emailed to each partcipant personally. 
+**User Account and connection verification**: For all course participants, we want to make sure that you are able to log in and follow the practical parts of the course - thus we organise a login help session on May 05th - at 13:00-14:00. A link to this will be emailed to each participant personally. 
 
 **More detailed info about the content of each day will be available soon**
 
-Previous course(s) gives a fair overview of the structure of the course. See Oct. 24 or Apr. 24.
+Previous on-boarding course(s) give a fair overview of the structure of the course, see e.g. Oct. 24 or Apr. 24.
 
 
 ## Course material
