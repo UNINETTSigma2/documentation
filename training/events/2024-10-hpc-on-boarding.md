@@ -6,7 +6,7 @@ The Norwegian Research Infrastructure Services (**NRIS**) is offering
 an on-boarding hands-on course for new users of HPC systems. 
 
 The course is highly recommended  for all new users of national HPC systems 
-(Saga, Fram, Betzy) and all interested in the feild.
+(Saga, Fram, Betzy) and all interested in the field.
 **Targeted Audience**: The course is aimed at students, researchers and employees of any
 background. We assume no prior knowledge of what an HPC is or how to use it. For those who
 have little experience with UNIX-like operating systems such as Linux or who have never

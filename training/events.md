@@ -24,6 +24,7 @@ nris_talks/2025-01-23-nris-talks.md
 nris_talks/2025-02-13-nris-talks.md
 nris_talks/2025-03-20-nris-talks.md
 nris_talks/2025-04-24-nris-talks.md
+events/2025-05-hpc-on-boarding.md
 
 
 ```
