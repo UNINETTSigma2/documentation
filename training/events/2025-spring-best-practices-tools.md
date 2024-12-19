@@ -15,7 +15,7 @@ Familiarize yourself with the Linux command line. You can watch our past HPC onb
 
 Here below you find the list of episodes and how to register. Episodes are self-contained, you can join only for the episodes that are useful for your research.
 
-## Episode 1: 21/01/2025 (10:00-12:00 CET)- How to parallelize independence tasks on HPC
+## Episode 1: 21/01/2025 (10:00-12:00 CET)- How to parallelize independent tasks on HPC
 
 **Content:** Sometimes you need to run many similar calculations. Instead of running them one after the other and managing many job scripts
 or writing elaborate shell scripts, we will learn how to run them potentially at the same time using a workflow manager without writing many job scripts.
