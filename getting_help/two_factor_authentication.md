@@ -63,6 +63,6 @@ The -fN make it go into the background and sit idle, after authenticating. (C fo
 ### Does this work for Windows too? ###
 OpenSSH for Windows does currently not support the ControlMaster module, **but there is a workaround for this**.
 
-By [installing WSL](https://learn.microsoft.com/en-us/windows/wsl/install) and running an Ubuntu terminal you will be able to use SSH as if you were using a Linux computer. You can create the text file under `~/Ubuntu/home/user/.shh/config` and add the same contents as in the example above. 
+By [installing WSL](https://learn.microsoft.com/en-us/windows/wsl/install) and running an Ubuntu terminal you will be able to use SSH as if you were using a Linux computer. You can create the text file under `~/Ubuntu/home/user/.ssh/` and add the same contents as in the example above. Remember to save the text file as `config`
 If you then attempt to ssh to the host nickname fram in this example by using `ssh fram` in your Ubuntu terminal, it would then create the same socket under Ubuntu's ssh directory as it would if you were to use a Mac/Linux computer.    
 You can run an Ubunutu terminal simply by writing the command 'Ubuntu' in your Windows terminal.    
