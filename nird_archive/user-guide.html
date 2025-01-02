@@ -1,0 +1,764 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research Data Archive (NIRD RDA) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NIRD Toolkit" href="../nird_toolkit/overview.html" />
+    <link rel="prev" title="Using software provided by EESSI" href="../software/eessi/eessi_using.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models Inside the Cluster</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional services</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Research Data Archive (NIRD RDA)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#depositing-a-dataset">Depositing a Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#important-note">Important Note</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#identify-the-dataset-archive">Identify Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#choose-file-formats">Choose File Formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#log-onto-the-web-interface">Log onto the Web Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request-approval">Request Approval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#agree-to-terms-conditions">Agree to Terms &amp; Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#provide-primary-metadata">Provide Primary Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#note-on-restricted-access-data">Note on restricted access data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#upload-dataset">Upload Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#upload-dataset-from-local-machine">Upload Dataset from Local Machine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upload-dataset-from-project-area">Upload Dataset from Project Area</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#modifying-the-dataset-s-data">Modifying the dataset’s data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-view-of-datasets">List view of Datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#provide-secondary-optional-metadata">Provide Secondary &amp; Optional Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#publish-dataset-archiving-data">Publish Dataset (Archiving Data)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#versioning-datasets">Versioning Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cloning-metadata">Cloning Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#terminating-or-withdrawal-of-datasets">Terminating or Withdrawal of Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#searching-and-accessing-datasets">Searching and Accessing Datasets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#downloading-a-published-dataset">Downloading a Published Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#archive-api">Archive API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#appendix-a-metadata-schema-for-datasets">Appendix A: Metadata Schema for Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contacts">Contacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Research Data Archive (NIRD RDA)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="research-data-archive-nird-rda">
+<span id="research-data-archive"></span><h1>Research Data Archive (NIRD RDA)<a class="headerlink" href="#research-data-archive-nird-rda" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>The Research Data Archive (hereafter called ‘the Archive’) is a repository that provides long-term storage for research data and is compliant with the Open Archival
+Information System (OAIS) reference model  <a class="reference internal" href="#references-archive"><span class="std std-ref">[1]</span></a>.</p>
+<p>The aim of the archive is to provide (public) access to published research data and to promote cross-disciplinary studies. This document is a user-guide for deposit, search and retrieval of datasets. Each of the steps in the archival process are described in the following sections.</p>
+</section>
+<section id="depositing-a-dataset">
+<h2>Depositing a Dataset<a class="headerlink" href="#depositing-a-dataset" title="Link to this heading"></a></h2>
+<p>The process for depositing a dataset in the Archive consists of the following stages:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#identify-the-dataset-archive"><span class="std std-ref">Identify the dataset.</span></a></p></li>
+<li><p><a class="reference internal" href="#choose-file-formats"><span class="std std-ref">Choose file formats.</span></a></p></li>
+<li><p><a class="reference internal" href="#log-onto-the-web-interface-archive"><span class="std std-ref">Log onto the web interface.</span></a></p></li>
+<li><p><a class="reference internal" href="#agree-to-the-terms-and-conditions-archive"><span class="std std-ref">Agree to the terms and conditions.</span></a></p></li>
+<li><p><a class="reference internal" href="#provide-primary-metadata-archive"><span class="std std-ref">Provide primary metadata.</span></a></p></li>
+<li><p><a class="reference internal" href="#section-upload-dataset"><span class="std std-ref">Upload the dataset.</span></a></p></li>
+<li><p><a class="reference internal" href="#provide-secondary-optional-metadata"><span class="std std-ref">Provide secondary metadata.</span></a></p></li>
+<li><p><a class="reference internal" href="#publish-the-dataset-archive"><span class="std std-ref">Publish the dataset.</span></a></p></li>
+</ul>
+<p>The following sub-sections describe these stages.</p>
+<section id="important-note">
+<h3>Important Note<a class="headerlink" href="#important-note" title="Link to this heading"></a></h3>
+<p>All steps prior to and including <em>Upload Dataset</em> need to be completed during the same session. It is currently not possible to complete the <em>Provide Primary Metadata</em> step, log off and come back at a later point in time to perform the <em>Upload Dataset</em> step. Certain fields in the <em>Provide Primary Metadata</em> step can be left out and completed at a later time (after uploading the dataset).</p>
+</section>
+<section id="identify-the-dataset-archive">
+<span id="identify-dataset"></span><h3>Identify Dataset<a class="headerlink" href="#identify-the-dataset-archive" title="Link to this heading"></a></h3>
+<p>Before archiving a dataset you will need to define it, make sure you have approval to archive the data and understand which type of access license should be applied.</p>
+<p>A dataset must be a collection of related data. Typically, this consists of a collection of files. How a dataset is arranged will vary within communities, research groups and projects. However, a guideline as to what would be accepted for archival is:</p>
+<ul class="simple">
+<li><p>Datasets resulting from research which is fully or in part supported by the Norwegian Research
+Council.</p></li>
+<li><p>Datasets of lasting value from any research discipline.</p></li>
+<li><p>Datasets that are not in the process of being created. Datasets should be in a state where they are
+well established (or mature) and will not be altered nor be supplemented by additional data.
+Datasets that are related to each other (a series) can be associated in a ‘data collection’.</p></li>
+<li><p>Datasets with preferably no access restrictions so that a larger audience can make use of the data
+(i.e. it has public access). However, the Archive recognises that certain datasets of restricted
+use to a given community may be eligible for archiving.</p></li>
+</ul>
+</section>
+<section id="choose-file-formats">
+<span id="id1"></span><h3>Choose File Formats<a class="headerlink" href="#choose-file-formats" title="Link to this heading"></a></h3>
+<p>You should choose open file formats for your data if possible. Open file formats follow an open licence which makes it easier for people to reuse your data as it is more likely that openly available applications exist to read the data (or applications can easily be written to access the data). A list of open file formats can be found on <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_open_file_formats">Wikipedia</a>. You can find more information about open data formats on the <a class="reference external" href="https://opendataformats.org">Open Data Formats</a> site.</p>
+</section>
+<section id="log-onto-the-web-interface">
+<span id="log-onto-the-web-interface-archive"></span><h3>Log onto the Web Interface<a class="headerlink" href="#log-onto-the-web-interface" title="Link to this heading"></a></h3>
+<p>To access the Archive web interface, direct your browser to: <a class="reference external" href="https://archive.sigma2.no">https://archive.sigma2.no</a>. You should arrive at the front page shown in Figure 1. You will need to authenticate using your FEIDE or other account either by logging on via the <em>LOGIN</em> button on the top-right or via the <em>DEPOSIT</em> icon.</p>
+<p><img alt="archive_web_interface" src="../_images/figure_1_screenshot_of_the_archive_web_interface_front_page.png" />
+Figure 1: Screenshot of the Archive web interface front page</p>
+<p>The <em>DEPOSIT</em> button provides access to the set of pages required for depositing your dataset in the Archive. These pages are accessible once you have authenticated.</p>
+</section>
+<section id="request-approval">
+<h3>Request Approval<a class="headerlink" href="#request-approval" title="Link to this heading"></a></h3>
+<p>If you have never used the Archive before you will be presented with a page informing you that you are not registered. You can submit a request approval from this page. Only approved users are allowed to deposit datasets in the Archive. The Archive Manager will contact you if additional information is required. Approval should be granted within 3 business days (and usually much sooner).</p>
+</section>
+<section id="agree-to-terms-conditions">
+<span id="agree-to-the-terms-and-conditions-archive"></span><h3>Agree to Terms &amp; Conditions<a class="headerlink" href="#agree-to-terms-conditions" title="Link to this heading"></a></h3>
+<p>Once approval has been granted you will be able to deposit datasets. If you now click the <em>DEPOSIT</em> button you will be presented with a page containing a short introduction to the Archive and a link to the Terms and Conditions as shown in Figure 2. The Terms and Conditions outline your responsibilities and those of the Archive. You will need to agree to these before you can start the deposit process.</p>
+<p><img alt="the_terms_and_conditions_page" src="../_images/figure_2_screenshot_of_the_terms_and_conditions_page.png" />
+Figure 2: Screenshot of the Terms and Conditions page</p>
+</section>
+<section id="provide-primary-metadata">
+<span id="provide-primary-metadata-archive"></span><h3>Provide Primary Metadata<a class="headerlink" href="#provide-primary-metadata" title="Link to this heading"></a></h3>
+<p>The primary metadata is divided into two parts. The first part covers the publication that best describes the dataset (see Figure 3). The goal of the Archive is to provide long-term storage for datasets that are considered to be of lasting value, and it’s quite likely that these datasets will have resulted in publications. You have the option to add more publications in the Secondary Metadata phase if your dataset is best described by more than one publication. The second part of the primary metadata covers the information required by the Archive to identify the dataset so that queries regarding the dataset can be addressed by the appropriate person.</p>
+<p><img alt="the_publication_form" src="../_images/figure_3_screenshot_of_the_publication_form.png" />
+Figure 3: Screenshot of the publication form</p>
+<p>The publication metadata allows you to provide a link to the primary article based on the dataset which allows further, useful information to be associated to the dataset. This information can be very useful to potential users of your dataset. The primary article can be in one of a number of states at the time the dataset is being uploaded to the Archive. For example, an article may be accepted for publication, but not actually published in which case you would select the <em>Accepted for publication</em> button and fill in the URI for the article preprint. You can also specify <em>No publication</em>, but in this case the Archive will require justification as to why the dataset should be stored. For the <em>Paper in preparation</em> state you should update the state of the publication before requesting the dataset be published, or the Archive may delay publication of the dataset until the article has been published. The archive will publish datasets in cases where you need the dataset DOI before the paper can be published.</p>
+<p>After completing the publication metadata you will be presented with fields for the second part of the primary metadata (see Figure 4). Each of the metadata fields has a help button (the i icon) containing a short description and example of the term. Some of the metadata fields are automatically populated. An Internal Identifier is generated and used by the archive to identify the dataset. The Depositor is also automatically filled-in (the information is extracted from the identity provided by FEIDE or OpenIdP) and cannot be altered. Additional Depositors can be provided.</p>
+<p>The currently available licences covering access to a dataset are: the Creative Commons Attribution 4.0 International (CC BY 4.0 <a class="reference internal" href="#references-archive"><span class="std std-ref">[2]</span></a> ), Norwegian Licence for Open Data (NLOD <a class="reference internal" href="#references-archive"><span class="std std-ref">[3]</span></a> ). The licence provides liberal access to the data which maximises the impact of the data you have published, and it ensures that proper recognition is given to you. The default licence is CC BY 4.0.</p>
+<p>By default, metadata for published datasets are considered public and access is granted to all researchers. The Data Manager and Rights Holder that you nominate will be informed by email of the nomination and whether they wish to accept the role. The Archive will periodically remind them of their nomination, and you will receive an email when they accept or decline the nomination. It is your responsibility to find suitable entities (persons or organisations) that can accept the roles. Your institute may be able to offer guidance on suitable Data Manager and Rights Holders, or you can email the <a class="reference external" href="mailto:archive&#46;manager&#37;&#52;&#48;nris&#46;no">archive<span>&#46;</span>manager<span>&#64;</span>nris<span>&#46;</span>no</a> for guidance.</p>
+<p><img alt="the_primary_metadata_form" src="../_images/figure_4_screenshot_of_the_primary_metadata_form_0.png" />
+Figure 4: Screenshot of the Primary Metadata form</p>
+<p>Click the <em>Save dataset information</em> button to save the metadata in the archive. You can modify or update the information at any point before you submit the dataset for publication.</p>
+<section id="note-on-restricted-access-data">
+<h4>Note on restricted access data<a class="headerlink" href="#note-on-restricted-access-data" title="Link to this heading"></a></h4>
+<p>It is possible to restrict access to both the dataset and metadata to a group of researchers (although the Archive would encourage you to consider very carefully whether such restrictions are necessary). Note that restricting access to a dataset may require the Archive to impose special terms and conditions on the dataset.</p>
+</section>
+</section>
+<section id="upload-dataset">
+<span id="section-upload-dataset"></span><h3>Upload Dataset<a class="headerlink" href="#upload-dataset" title="Link to this heading"></a></h3>
+<p>Once the basic metadata has been provided you will be presented with the dataset upload page (see Figure 5). You can choose to upload a dataset that exists in the NIRD project area <a class="reference external" href="https://www.sigma2.no/data-storage">https://www.sigma2.no/data-storage</a> or a remote dataset.</p>
+<p><img alt="the_upload_dataset_page" src="../_images/figure_5_screenshot_of_the_upload_dataset_page.png" />
+Figure 5: Screenshot of the upload dataset page</p>
+<section id="upload-dataset-from-local-machine">
+<h4>Upload Dataset from Local Machine<a class="headerlink" href="#upload-dataset-from-local-machine" title="Link to this heading"></a></h4>
+<p>The upload consists of two steps:</p>
+<ul class="simple">
+<li><p>Assembling your dataset into a form the upload mechanism can handle. If your dataset consists of a large number of files (typically more than 10) and directories containing files it is best to aggregate these into a single file using the tar or zip command.</p></li>
+<li><p>Uploading your dataset. There is no restriction on the size of the dataset, but bear in mind that the larger the dataset is the longer it will take to upload if you are on a slow network.</p></li>
+<li><p><strong>NOTE:</strong> there is current limitation that does not allow datasets consisting of a tar or zip file and individual files or directories to be uploaded. If your dataset contains a mixture of individual files and tar or zipped files you can tar or zip the entire collection and upload the dataset.</p></li>
+</ul>
+<p><strong>NOTE:</strong> For the local machine method you will need to keep the browser window open whilst the upload is in progress. If you have large datasets (e.g. 200 GB or above) you might want to contact the Archive (<a class="reference external" href="mailto:archive&#46;manager&#37;&#52;&#48;nris&#46;no">archive<span>&#46;</span>manager<span>&#64;</span>nris<span>&#46;</span>no</a>) to see if there’s a more efficient way of transferring the data.
+Choosing the <em>Local machine</em> for uploading a dataset will result in the upload interface appearing (see Figure 6). Use the <em>select</em> button to select files from a file chooser. Once you have selected all the files for upload click the <em>Submit Dataset</em> button to send the data to the archive.</p>
+<p><img alt="the_upload_for_feide_users" src="../_images/figure_6_screenshot_of_the_upload_for_feide_users.png" />
+Figure 6: Screenshot of the upload for FEIDE users</p>
+<p><strong>NOTE:</strong> once you have clicked <em>Submit Dataset</em> it is currently not possible to make changes to the dataset. If you find you have cancel the dataset (which will delete the data and metadata) and create a new dataset.</p>
+</section>
+<section id="upload-dataset-from-project-area">
+<h4>Upload Dataset from Project Area<a class="headerlink" href="#upload-dataset-from-project-area" title="Link to this heading"></a></h4>
+<p>The archive supports deposit of datasets from the Project Area.</p>
+<p>In order to ingest data to the Archive from the Project Area:</p>
+<ul class="simple">
+<li><p>Complete the basic metadata form for deposit of a new dataset</p></li>
+<li><p>By choosing the option to <em>Project Area</em> and clicking the <em>Submit Dataset</em> button you will receive an email containing the dataset identifier (the UUID) and instructions on how to archive your dataset</p></li>
+<li><p>After receiving the ingest dataset mail:</p></li>
+<li><p>Log onto a machine that has access to the project area storage (e.g. <em>ssh login.nird.sigma2.no</em> ).</p></li>
+<li><p>Create a manifest file containing the paths to the files that make up the dataset. The structure of the paths should be valid arguments for the UNIX “find ! -type d” command which is used by the <em>ArchiveDataset</em> script. For example if we define our dataset to consist of all gzipped tar files in the NS1234K project then the manifest file should contain the line:
+/projects/NS1234K/ -name *.tar.gz</p></li>
+</ul>
+<p>The manifest file can contain more than one line if the dataset spans more than one project or different types of files etc.</p>
+<ul class="simple">
+<li><p>By default, the files that make up the dataset will contain the full path excluding the leading ‘/’ (e.g. project/NS1234K/subdir1/file1.dat). You can indicate that the root part of the path be removed by adding a “//” where the root path ends.</p></li>
+</ul>
+<p>E.g. to remove “/projects/NS2134K” from “/projects/NS1234K/subdir1/file1.dat” you would add the following to your manifest file: “/projects/NS1234K///subdir1/file1.dat”. This can be used in combination with the regular expressions and globbing that are recognised by the find command. To remove “/projects/NS1234K” from the pattern which will archive all “.tar.gz” files in the directory “/projects/NS1234K/subdir1” specify the following: “/projects/NS1234K///subdir1 -name *.tar.gz”.</p>
+<ul class="simple">
+<li><p>Run the command:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">ArchiveDataset</span> <span class="pre">UUID</span> <span class="pre">manifest-file</span></code></p>
+<p>This will result in a special file being created that is used by the archiver cron-job that copies the dataset from the project area to the archive. Depending on the size of the dataset the copy can take quite a bit of time.</p>
+<ul class="simple">
+<li><p>To get the status of your project-area datasets that have been submitted to the queue for archival use the command:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">ListArchiveDataset</span> <span class="pre">[UUID]</span></code></p>
+<p>The UUID is optional.</p>
+<ul class="simple">
+<li><p>Once the copy has completed you will receive an email with the results of the copy: how much data was copied and if the copy was successful or not. At this point the dataset has been safely uploaded to the archive and you can log back onto the web interface to complete the archiving process.</p></li>
+<li><p>You can cancel a request with the:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">CancelArchiveDataset</span> <span class="pre">UUID</span></code></p>
+<p>Only datasets that are pending or are in the process of being archived can be cancelled. It is not possible to cancel a dataset that has been archived.</p>
+<ul class="simple">
+<li><p>You will receive an email once the upload has completed. The email will report whether the upload was successful and how much data was uploaded.</p></li>
+</ul>
+<p><strong>NOTE:</strong> that once a dataset has been archived using the <em>ArchiveDataset</em> script it is considered closed and it is not possible to add more files to the dataset. You will need to create a new dataset if you wish to update the dataset.</p>
+</section>
+</section>
+<section id="modifying-the-dataset-s-data">
+<h3>Modifying the dataset’s data<a class="headerlink" href="#modifying-the-dataset-s-data" title="Link to this heading"></a></h3>
+<p>The archive allows an archive dataset’s data to be updated.
+If you find that you need to make a change to data that has been uploaded to the archive, please contact the archive manager <a class="reference external" href="mailto:archive&#46;manager&#37;&#52;&#48;nris&#46;no">archive<span>&#46;</span>manager<span>&#64;</span>nris<span>&#46;</span>no</a> and they will help you to update your dataset.</p>
+</section>
+<section id="list-view-of-datasets">
+<h3>List view of Datasets<a class="headerlink" href="#list-view-of-datasets" title="Link to this heading"></a></h3>
+<p>After uploading your dataset you will be presented with a list of all the datasets that you are associated with (either as a Depositor, Data Manager or Rights Holder) as shown in Figure 6. By default, the list is sorted by date. You can reverse the order by clicking on the <em>Date submitted</em> column. Clicking on a row will provide a detailed description of the selected dataset as well as the forms for supplying the secondary and optional metadata for unpublished datasets.</p>
+<p><img alt="the_list_of_datasets" src="../_images/figure_7_screenshot_of_the_list_of_datasets.png" />
+Figure 7: Screenshot of the list of datasets</p>
+</section>
+<section id="provide-secondary-optional-metadata">
+<span id="id2"></span><h3>Provide Secondary &amp; Optional Metadata<a class="headerlink" href="#provide-secondary-optional-metadata" title="Link to this heading"></a></h3>
+<p>Once you have selected a dataset from the table shown in Figure 7 you will be presented with tabbed forms. The first tab is for the mandatory secondary metadata (see Figure 8). The second tab allows you to provide further, optional metadata that you think is necessary for your dataset. The third tab contains a tabular list of the contents of the dataset. Some of the secondary metadata fields such as the <em>Published On, Publisher, Phase</em> and <em>Lifetime</em> are automatically filled in by the Archive.</p>
+<p>Clicking the <em>Update metadata</em> button will save any changes you made to the metadata and cause the <em>Last updated</em>  field to be updated. You can change the nominations for the Data Manager or Rights Holder roles provided the existing nominees have not accepted their roles. Some of the metadata terms require you to register the term in the form first. For example if you wish to add a Creator you first click the + sign to expand that field. Then you fill in the values for the term and then click the <em>Add Person as Creator</em> button to register the term. Then you can click the <em>Update metadata</em> button to save the metadata.</p>
+<p>The <em>Optional Information</em>  tab consists of a form of optional metadata. The <em>Geo-location</em>  is useful for datasets that have spatial relevance. Spatial datasets can be described with Point <a class="reference internal" href="#references-archive"><span class="std std-ref">[5]</span></a> or Box <a class="reference internal" href="#references-archive"><span class="std std-ref">[6]</span></a> types where the box type could be used to describe a geographical region and the point type a particular location. Temporal coverage datasets can be described with the Period <a class="reference internal" href="#references-archive"><span class="std std-ref">[7]</span></a>.</p>
+<p><img alt="the_secondary_metadata_form" src="../_images/figure_8_screenshot_of_the_secondary_metadata_form.png" />
+Figure 8: Screenshot of the secondary metadata form</p>
+<p>Datasets with spatial relevance could be, for example, population in Oslo or marine environmental data from the Norwegian Sea. Temporal data could be the population of Oslo from 1800-1900. For spatial data the coverage can be defined by box or by a point. Temporal data can be defined by a period (for example for geological data the Devonian period). Click the <em>Update metadata</em> button to save changes.</p>
+<p>The <em>Table of contents</em>  tab (see Figure 9) contains a tabular list of the contents of the dataset. If the dataset was deposit as a tar file the contents of the tar file are displayed. However, if a tar file consisting of tar files is deposited then only the contents of the outer tar file are displayed (which would be a list of tar files).</p>
+<p><img alt="the_table_of_contents" src="../_images/figure_9_screenshot_of_the_table_of_contents.png" />
+Figure 9: Screenshot of the table of contents</p>
+</section>
+<section id="publish-dataset-archiving-data">
+<span id="publish-the-dataset-archive"></span><h3>Publish Dataset (Archiving Data)<a class="headerlink" href="#publish-dataset-archiving-data" title="Link to this heading"></a></h3>
+<p>Once you have supplied all mandatory metadata for the dataset and a Rights Holder and Data Manager have accepted their roles you will see a <em>Publish dataset</em>  button appear in the <em>Action</em>  column in the list of your datasets (as shown in Figure 7). Pressing the <em>Publish dataset</em>  button will result in a request being sent to the Archive Manager to publish the dataset. The Archive Manager will verify the metadata information, check with the stakeholders agree to the publication, assign a public identifier to the dataset and make the metadata publicly available (or available to a restricted set of users if that option has been chosen).</p>
+</section>
+</section>
+<section id="versioning-datasets">
+<h2>Versioning Datasets<a class="headerlink" href="#versioning-datasets" title="Link to this heading"></a></h2>
+<p>You can create a new version of any published dataset for which you are a stakeholder. This can be useful if you find tha there are errors in the dataset and you need to archive a corrected dataset, or you wish to add more data to a dataset. If you only wish to update metadata, please contact the <a class="reference external" href="mailto:archive&#46;manager&#37;&#52;&#48;nris&#46;no">archive<span>&#46;</span>manager<span>&#64;</span>nris<span>&#46;</span>no</a>.</p>
+<p><strong>NOTE:</strong> currently, you will need to upload the complete dataset as it is currently not possible to upload only modified data files.</p>
+<p>To create a new version of dataset navigate to the published dataset either using the DOI or from the <em>List datasets</em>  option on the web interface and click on the <em>Manage</em> menu (see Figure 10 and Figure 11). You should choose the <em>Create version of dataset</em> to create a new version of the dataset (see Figure 12). This will bring you to the dataset upload where you can choose from Project Area upload or local machine upload (see Section <a class="reference internal" href="#section-upload-dataset"><span class="std std-ref">Upload Dataset</span></a> ). Once you have uploaded your data you will be presented with the metadata form.</p>
+<p><img alt="the_edit_dataset_page" src="../_images/figure_10_screenshot_of_the_edit_dataset_page._the_manage_menu_is_indicated_by_a_black_box.png" />
+Figure 10:Screenshot of the edit dataset page.The <em>Manage</em> menu is indicated by a black box</p>
+<p>You can then update the metadata accordingly (see Section <a class="reference internal" href="#provide-secondary-optional-metadata"><span class="std std-ref">Provide Secondary &amp; Optional Metadata</span></a>).</p>
+<p><strong>NOTE:</strong> If you do not wish to make any changes to the metadata you should click the <em>Update metadata</em> button which will result in the <em>Publish dataset</em>  button appearing. You can then submit the dataset for publication.</p>
+<p><img alt="the_landing_page" src="../_images/figure_11_screenshot_of_the_landing_page._the_manage_link_is_indicated_by_black_box.png" />
+Figure 11: Screenshot of the landing page. The Manage link is indicated by black box</p>
+<p><img alt="the_manage_dataset_menu" src="../_images/figure_12_screenshot_of_the_manage_dataset_menu.png" />
+Figure 12: Screenshot of the manage dataset menu</p>
+<p><img alt="the_version_dataset_upload" src="../_images/figure_13_screenshot_of_the_version_dataset_upload.png" />
+Figure 13: Screenshot of the version dataset upload</p>
+<p>Once the new version has been published you will see additional text on the landing page indicating the dataset replaces a previous version with a link to the version it replaces. A similar link to the previous dataset will also appear when you access the dataset from the <em>List datasets</em>  menu item.</p>
+</section>
+<section id="cloning-metadata">
+<h2>Cloning Metadata<a class="headerlink" href="#cloning-metadata" title="Link to this heading"></a></h2>
+<p>If you want to create a new dataset, but wish to use the metadata from an existing dataset you can choose the <em>Copy metadata of dataset</em>  menu option in the <em>Manage</em> menu (see Figure 13). This will require you uploading a new dataset and choose whether to use the same Data Manager and Rights Holder.</p>
+<p><strong>NOTE:</strong> the Data Manager and Rights Holder will still need to accept their roles as this is considered a new dataset and not a version.</p>
+<p>Once the dataset has been uploaded you will be presented with a pre-filled metadata form which you can modify. Once you have completed filling in the metadata you can submit the dataset for publication.</p>
+</section>
+<section id="terminating-or-withdrawal-of-datasets">
+<span id="section-terminating-datasets"></span><h2>Terminating or Withdrawal of Datasets<a class="headerlink" href="#terminating-or-withdrawal-of-datasets" title="Link to this heading"></a></h2>
+<p>Normally, published datasets will not be deleted before the end of the retention period specified in the <a class="reference external" href="https://www.sigma2.no/research-data-archive-depositor-agreement">depositor agreement</a>. Beyond the retention period datasets may be deleted in the case of compelling technical reasons. In this case the deletion is first announced on the Research Data Archive front page and on the dataset’s landing page. This announcement is visible for a period of one year. During this grace period anyone having interest in maintaining the dataset can renovate the retention time by contacting the <a class="reference external" href="mailto:archive&#46;manager&#37;&#52;&#48;nris&#46;no">archive<span>&#46;</span>manager<span>&#64;</span>nris<span>&#46;</span>no</a>.</p>
+<p>Within the retention period, only exceptional reasons (such as copyright violation, see the <a class="reference external" href="https://www.sigma2.no/research-data-archive-depositor-agreement">depositor agreement</a>) will be considered valid for the deletion or withdrawal of datasets from the archive. In this case you can request termination of your published dataset by filling in the  terminate request page which is accessible either from the landing page by clicking the <em>Manage</em> link, or from the <em>List datasets</em>  menu, selecting the dataset you want to terminate, click the <em>Manage</em> menu (see Figure 10).</p>
+<p><strong>NOTE:</strong> the <em>Manage</em> menu is only available for published datasets. Clicking the <em>Request termination</em>  link will display the dataset termination request page. You will need to supply a reason why you wish the dataset to be terminated.</p>
+<p>Once you have submitted your request it will be reviewed by the Archive Manager who may contact you to further discuss the request. All stakeholders (the creators of the dataset and the rights holders) will be informed of the request and providing there are no objections access to the dataset will be removed.</p>
+<p>In these cases the metadata for the terminated dataset will still be visible, but there will be clear indication that the dataset has been terminated as well as a reason for termination. This is to ensure existing articles that reference the dataset have valid links.</p>
+</section>
+<section id="searching-and-accessing-datasets">
+<h2>Searching and Accessing Datasets<a class="headerlink" href="#searching-and-accessing-datasets" title="Link to this heading"></a></h2>
+<p>The search interface can be accessed both as an authenticated user or anonymously from the front page. The search interface has two tabs: <em>Basic search</em>  and <em>Advanced search</em>. The basic search uses the metadata terms: Title, Label, Description and Subject to search for keywords. You can construct more complex queries over the full range of metadata terms using the advanced search (see Figure 14). The search is executed by clicking the <em>Search</em>  button at the bottom of the page.</p>
+<p>The search interface allows searches over partial words which you can do by placing a * before or after or both of the partial word. For example a search for datasets containing the word test could be achieved by searching for tes*, searching for norwegian in a dataset can be achieved by *weg*.</p>
+<p><strong>NOTE:</strong> that the advanced search interface requires you to register the search term before executing the search (this entails clicking the + then entering the search term in the appropriate field and clicking the <em>add</em>  button to register the search term and then clicking the <em>Search</em>  button).</p>
+<p><img alt="the_advanced_search_interface" src="../_images/figure_14_screenshot_of_the_advanced_search_interface.png" />
+Figure 14: Screenshot of the advanced search interface</p>
+<p>The search is performed over all published datasets and the results are presented as a tabulated list. Clicking on one of the search results will direct you to landing page which contains a subset of the metadata information for the dataset, clicking on the <em>[more]</em> will display the expanded landing page including links to the table of contents and dataset download (see Figure 11).</p>
+<p>The landing page also contains graphical views for the coverage (if it has been provided) and for the table of contents (see Figure 15). The table of contents provides an immediate view of the composition of the dataset. The chart in the lower-left pane can be navigated to explore the file structure of the dataset. The table on the lower-right pane displays the total size in each sub-directory and is updated as the chart is navigated.</p>
+<p><img alt="the_landing_page_table_of_contents" src="../_images/figure_15_screenshot_of_the_landing_page_table_of_contents.png" />
+Figure 15: Screenshot of the landing page table of contents</p>
+<section id="downloading-a-published-dataset">
+<h3>Downloading a Published Dataset<a class="headerlink" href="#downloading-a-published-dataset" title="Link to this heading"></a></h3>
+<p>Anyone can download published, public datasets either to their local machine or the Project Area.  If you are a member of a NIRD project <a class="reference external" href="https://www.sigma2.no/data-storage">https://www.sigma2.no/data-storage</a> you also have the possibility to download the dataset to your project area.</p>
+<p>To download a dataset first navigate to the landing page for the dataset you want to download and click on the <em>download</em>  link. The focus on the landing page will change to an index of the dataset contents that can be downloaded (see Figure 16).</p>
+<p><img alt="the_download_index_of_files" src="../_images/nird-archive-figure-16.png" />
+Figure 16: Screenshot of the download index of files.</p>
+<p>You can click on the link to anonymously download the file to your local machine. To download to another machine or to the NIRD project area you can use the command-line application such as <em>wget</em> , or <em>curl</em>. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>-P<span class="w"> </span>&lt;target-directory&gt;<span class="w"> </span>&lt;url-for-data-file&gt;
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-o<span class="w"> </span>&lt;output-file&gt;<span class="w"> </span>&lt;url-for-data-file&gt;
+</pre></div>
+</div>
+<p>If your dataset has more than one file, you will need to download each file separately (it may be better to create a script to download all the files in your dataset).</p>
+</section>
+</section>
+<section id="citations">
+<h2>Citations<a class="headerlink" href="#citations" title="Link to this heading"></a></h2>
+<p>If you use a dataset it is good practice to cite the dataset in any articles you publish. The archive provides a <em>cite</em> button on the landing page (see Figure 17) that contains a citation string for the dataset. Currently, two formats for the citation are provided. However, a link to an external service that provides many more formats is provided (you will need to cut and paste the dataset’s DOI into the input field).</p>
+<p><img alt="the_landing_page_with_dataset_citation" src="../_images/figure_17_screenshot_of_landing_page_with_dataset_citation.png" />
+Figure 17: Screenshot of landing page with dataset citation</p>
+</section>
+<section id="archive-api">
+<h2>Archive API<a class="headerlink" href="#archive-api" title="Link to this heading"></a></h2>
+<p>The archive provides a set of APIs for programmatic access. The publicly accessible APIs focus on search and access:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://search-api.web.sigma2.no/norstore-archive/metadata/api/basic-search/dois?&lt;optional-argument&gt;</span></code></p>
+<ul class="simple">
+<li><p>A GET request that returns the list of DOIs for published datasets as a JSON string with the following schema:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;Total Datasets&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span><span class="p">,</span> 
+ <span class="s2">&quot;DOIs&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">status</span><span class="o">&gt;</span><span class="p">,</span>
+           <span class="s2">&quot;date_published&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">yyyy</span><span class="o">-</span><span class="n">mm</span><span class="o">-</span><span class="n">dd</span><span class="o">&gt;</span><span class="p">,</span>
+           <span class="s2">&quot;doi&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+           <span class="p">}]}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The API can take the optional arguments: <code class="docutils literal notranslate"><span class="pre">before=&lt;yyyy-mm-dd&gt;</span></code> to return published datasets before a given date and <code class="docutils literal notranslate"><span class="pre">after=&lt;yyyy-mm-dd</span></code> to return published datasets after a given date.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://search-api.web.sigma2.no/norstore-archive/metadata/api/basic-search/dataset?doi=&lt;string&gt;</span></code></p>
+<ul class="simple">
+<li><p>A GET request that returns the metadata for a given dataset DOI. The dataset schema is:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;Dataset&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Category&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+ <span class="s2">&quot;Publication&quot;</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;isPrimary&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">boolean</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;Reference&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;URL&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+                  <span class="s2">&quot;DOI&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+                  <span class="s2">&quot;Citation&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">}</span>
+ <span class="p">}],</span>
+    <span class="s2">&quot;Title&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">],</span>
+    <span class="s2">&quot;License&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+                <span class="s2">&quot;URI&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+                <span class="p">},</span>
+    <span class="s2">&quot;Label&quot;</span><span class="p">:[</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">],</span>
+    <span class="s2">&quot;State&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;Contents-Link&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">url</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;Description&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">],</span>
+    <span class="s2">&quot;Access_Rights&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Public&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">},</span>
+    <span class="s2">&quot;download_url&quot;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">s3</span> <span class="n">url</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;Extent&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">number</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;Publisher&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;Language&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;Long_Name&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+                  <span class="s2">&quot;Shors_Name: &lt;string&gt;</span>
+    <span class="p">}],</span>
+    <span class="s2">&quot;Created&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;Rights_Holder&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Person&quot;</span><span class="p">:</span> <span class="p">{</span>
+                      <span class="s2">&quot;First_Name: &lt;string&gt;,</span>
+                      <span class="s2">&quot;Last_Name: &lt;string&gt;</span>
+    <span class="p">}},</span>
+    <span class="s2">&quot;Submitted&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;Data_Manager&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Person&quot;</span><span class="p">:</span> <span class="p">{</span>
+                     <span class="s2">&quot;First_Name&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+                     <span class="s2">&quot;Last_Name&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+    <span class="p">}},</span>
+    <span class="s2">&quot;Identifier&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+    <span class="s2">&quot;Creator&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;Person&quot;</span><span class="p">:</span> <span class="p">{</span>
+                 <span class="s2">&quot;First_Name&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+                 <span class="s2">&quot;Last_Name&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+    <span class="p">}}],</span>
+    <span class="s2">&quot;Contributor&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;Person: {</span>
+                     <span class="s2">&quot;First_Name: &lt;string&gt;,</span>
+                     <span class="s2">&quot;Last_Name&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+    <span class="p">}}],</span>
+    <span class="s2">&quot;Subject&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;Domain&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+                 <span class="s2">&quot;Field&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+                 <span class="s2">&quot;Subfield&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">}]</span>
+
+ <span class="p">}}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The Contributor, Rights Holder, Data Manager and Creator can also hold organisations with the schema:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Organisation&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;Long_Name&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;Short_Name&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">download_url</span></code> contains a link to the S3 bucket containing all the data that can be downloaded.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://search-api.web.sigma2.no/norstore-archive/metadata/api/basic-search/tableofcontents?identifier=&lt;string&gt;</span></code></p>
+<ul class="simple">
+<li><p>A GET request to return the JSON string containing the tableofcontents for a given DOI. The schema of the tableofcontents is:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;Total_Files&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">number</span><span class="o">&gt;</span><span class="p">,</span>
+ <span class="s2">&quot;Previous_Page&quot;</span> <span class="o">&lt;</span><span class="n">url</span> <span class="ow">or</span> <span class="n">NULL</span><span class="o">&gt;</span><span class="p">,</span>
+ <span class="s2">&quot;Next_Page&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">url</span> <span class="ow">or</span> <span class="n">NULL</span><span class="o">&gt;</span><span class="p">,</span>
+ <span class="s2">&quot;TableOfContents&quot;</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="s2">&quot;Fixity_Algorithm&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span> <span class="s2">&quot;File_Name&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span> 
+    <span class="s2">&quot;Format&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span> 
+    <span class="s2">&quot;Extent&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">number</span><span class="o">&gt;</span><span class="p">,</span> 
+    <span class="s2">&quot;Fixity&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+ <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://search-api.web.sigma2.no/norstore-archive/oai/v1.0?verb=&lt;verb&gt;</span></code></p>
+<ul class="simple">
+<li><p>A GET request that adopts the OAI-PMH protocol (see <a class="reference internal" href="#references-archive"><span class="std std-ref">[10]</span></a>). The API is primarily used for harvesting metadata for other registries. The <code class="docutils literal notranslate"><span class="pre">metadataPrefix=oai_dc</span></code> should be used as only the terms that correspond to Dublin Core are returned. The output format is XML.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="appendix-a-metadata-schema-for-datasets">
+<h2>Appendix A: Metadata Schema for Datasets<a class="headerlink" href="#appendix-a-metadata-schema-for-datasets" title="Link to this heading"></a></h2>
+<p>The Research Data Archive uses the Dublin Core metadata standard (ISO 15836-1:2017, see <a class="reference internal" href="#references-archive"><span class="std std-ref">[8]</span></a>) as part of the metadata schema for datasets. The set of mandatory metadata terms that need to be provided by researchers is given in the table below. The terms without a DCMI Reference are defined only for the research data archive.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Term</p></th>
+<th class="head"><p>DCMI Reference</p></th>
+<th class="head"><p>Multiplicity</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Access Rights</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/accessRights">http://purl.org/dc/terms/accessRights</a></p></td>
+<td><p>1..n</p></td>
+<td><p>Information on who can access the dataset if the dataset is private. Requires information on the user (first and last name and email). Default is Public.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Article</p></td>
+<td><p></p></td>
+<td><p>1</p></td>
+<td><p>The article that either describes the dataset, or for which the dataset was created. Articles can either be Published, accepted for publication, in preparation, a conference proceeding, or no publication. Ideally, the dataset should be used in a publication.</p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p></p></td>
+<td><p>1</p></td>
+<td><p>The rough category that the dataset fits into. This can be: Calibration, Experiment, Image, Model, Observation, Simulation, Software.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Created on</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/created">http://purl.org/dc/terms/created</a></p></td>
+<td><p>1</p></td>
+<td><p>The date that the dataset was created. This should be the date when you created or generated the data and not the date when the data was assembled for archiving.</p></td>
+</tr>
+<tr class="row-even"><td><p>Creator</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/creator">http://purl.org/dc/terms/creator</a></p></td>
+<td><p>1…n</p></td>
+<td><p>The people or person and/or organisation that created the data. The creators appear in the citation which describes how the dataset should be cited.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data Manager</p></td>
+<td><p></p></td>
+<td><p>1…n</p></td>
+<td><p>The contact person that can rely queries on the dataset to the relevant researchers able to answer the question. The data manager is responsible for ensuring the data remain usable.</p></td>
+</tr>
+<tr class="row-even"><td><p>Depositor</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/contributor">http://purl.org/dc/terms/contributor</a></p></td>
+<td><p>1…n</p></td>
+<td><p>The people or person that archives the dataset (either uploading the data, or supplying the metadata or both). In some cases a dataset may consist of data from more than one source where different researchers have access to the different datasets resulting in different researchers uploading the data to the same dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Description</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/description">http://purl.org/dc/terms/description</a></p></td>
+<td><p>1</p></td>
+<td><p>A description of the dataset. Ideally, the description should cover what the dataset is, what data is contained and how to use it (or links to resources describing how to use the data, or a reference to a file in the dataset describing how to use the data).</p></td>
+</tr>
+<tr class="row-even"><td><p>Language</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/language">http://purl.org/dc/terms/language</a></p></td>
+<td><p>1…n</p></td>
+<td><p>The language any text material in the dataset is written in. This can either be English or Norwegian.</p></td>
+</tr>
+<tr class="row-odd"><td><p>License</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/license">http://purl.org/dc/terms/license</a></p></td>
+<td><p>1</p></td>
+<td><p>A link to the license for the dataset that governs the use and distribution of the dataset. A selection of licenses is provided with the default being CC-BY-4.0.</p></td>
+</tr>
+<tr class="row-even"><td><p>Rights</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/rights">http://purl.org/dc/terms/rights</a></p></td>
+<td><p>1</p></td>
+<td><p>A description of the various property rights associated to the resource. Ideally, this should be a link to a document describing the rights for a dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rights Holder</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/rightsHolder">http://purl.org/dc/terms/rightsHolder</a></p></td>
+<td><p>1</p></td>
+<td><p>The person or organisation that either holds rights on the dataset, or can act as a contact person for queries on the dataset rights.</p></td>
+</tr>
+<tr class="row-even"><td><p>State</p></td>
+<td><p></p></td>
+<td><p>1</p></td>
+<td><p>The coarse description of dataset state. This can either be raw in the case of unprocessed data, or derived in the case of processed data where the original content is not archived.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Subject</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/subject">http://purl.org/dc/terms/subject</a></p></td>
+<td><p>1…n</p></td>
+<td><p>The subject is described by a domain, field and subfield that best matches the dataset. More than one subject can be provided in the case the dataset spans overlapping subjects.</p></td>
+</tr>
+<tr class="row-even"><td><p>Title</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/title">http://purl.org/dc/terms/title</a></p></td>
+<td><p>1</p></td>
+<td><p>The title for the dataset.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Table A1: The mandatory metadata terms for the NIRD research data archive. Terms without a DCMI Metadata reference are defined only for the research data archive.</p>
+<p>A set if optional metadata can also be supplied for a dataset. The list of optional metadata are given in the table below.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Term</p></th>
+<th class="head"><p>DCMI Metadata</p></th>
+<th class="head"><p>Multiplicity</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bibliographic Citation</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/bibliographicCitation">http://purl.org/dc/terms/bibliographicCitation</a></p></td>
+<td><p>1</p></td>
+<td><p>The bibliographic citation can optionally be provided here as a URL that points to a document describing how the dataset should be cited. By default, the archive automatically generates a citation using the list of creators, title and DOI for the dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Conforms to</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/conformsTo">http://purl.org/dc/terms/conformsTo</a></p></td>
+<td><p>1…n</p></td>
+<td><p>The standards that the dataset conforms to (in the case that the dataset follows a standard structure).</p></td>
+</tr>
+<tr class="row-even"><td><p>Comment</p></td>
+<td><p></p></td>
+<td><p>1…n</p></td>
+<td><p>Any comments on the dataset. For example, comments on the quality of the dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Geo-location</p></td>
+<td><p><a class="reference external" href="https://www.dublincore.org/specifications/dublin-core/dcmi-box/">https://www.dublincore.org/specifications/dublin-core/dcmi-box/</a> and <a class="reference external" href="https://www.dublincore.org/specifications/dublin-core/dcmi-point/">https://www.dublincore.org/specifications/dublin-core/dcmi-point/</a></p></td>
+<td><p>1…n</p></td>
+<td><p>The geospatial coverage for the dataset which can be a point, or as a box. Currently, WGS84 and UTM are supported.</p></td>
+</tr>
+<tr class="row-even"><td><p>Label</p></td>
+<td><p></p></td>
+<td><p>1</p></td>
+<td><p>A short title or label for the dataset (this could be an acronym that is meaningful to the domain).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Project</p></td>
+<td><p></p></td>
+<td><p>1…n</p></td>
+<td><p>The names of the projects that supported the creation of the dataset.</p></td>
+</tr>
+<tr class="row-even"><td><p>Provenance</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/provenance">http://purl.org/dc/terms/provenance</a></p></td>
+<td><p>1…n</p></td>
+<td><p>Information on how the dataset was created, or modified and any change of ownership.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Source</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/source">http://purl.org/dc/terms/source</a></p></td>
+<td><p>1</p></td>
+<td><p>This term is relevant for datasets derived from existing datasets. It’s value should be a persistent URI (eg DOI) to the source dataset.</p></td>
+</tr>
+<tr class="row-even"><td><p>Temporal coverage</p></td>
+<td><p><a class="reference external" href="http://purl.org/dc/terms/temporal">http://purl.org/dc/terms/temporal</a></p></td>
+<td><p>1…n</p></td>
+<td><p>The time period relevant to the dataset. The period is defined in <a class="reference external" href="https://www.dublincore.org/specifications/dublin-core/dcmi-period/">https://www.dublincore.org/specifications/dublin-core/dcmi-period/</a>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Table A2: The optional metadata terms for the NIRD research data archive. Terms without a DCMI Metadata reference are defined only for the research data archive.</p>
+<p>Metadata for the dataset files is automatically extracted from the file metadata (file size, name, modification date) and stored in the table of contents <a class="reference external" href="http://purl.org/dc/terms/tableOfContents">http://purl.org/dc/terms/tableOfContents</a> for the dataset.</p>
+</section>
+<section id="contacts">
+<h2>Contacts<a class="headerlink" href="#contacts" title="Link to this heading"></a></h2>
+<p>In case of questions or comments please email the archive manager at: <a class="reference external" href="mailto:archive&#46;manager&#37;&#52;&#48;nris&#46;no">archive<span>&#46;</span>manager<span>&#64;</span>nris<span>&#46;</span>no</a></p>
+</section>
+<section id="references">
+<span id="references-archive"></span><h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<p>[1] Reference Model for an Open Archival Information System.
+<a class="reference external" href="https://public.ccsds.org/pubs/650x0m2.pdf">https://public.ccsds.org/pubs/650x0m2.pdf</a></p>
+<p>[2] Creative Commons Attribution 4.0 International.
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/legalcode">https://creativecommons.org/licenses/by/4.0/legalcode</a></p>
+<p>[3] Norwegian License for Open Government Data.
+<a class="reference external" href="https://data.norge.no/nlod/en/1.0">https://data.norge.no/nlod/en/1.0</a></p>
+<p>[5] DCMI Point Encoding Scheme.
+<a class="reference external" href="https://dublincore.org/documents/dcmi-point">https://dublincore.org/documents/dcmi-point</a></p>
+<p>[6] DCMI Box Encoding Scheme.
+<a class="reference external" href="https://dublincore.org/documents/dcmi-box">https://dublincore.org/documents/dcmi-box</a></p>
+<p>[7] DCMI Period Encoding Scheme.
+<a class="reference external" href="https://dublincore.org/documents/dcmi-period">https://dublincore.org/documents/dcmi-period</a></p>
+<p>[8] Dublin Core Metadata Element Set, Version 1.1: Reference Description.
+<a class="reference external" href="https://www.dublincore.org/specifications/dublin-core/dces/">https://www.dublincore.org/specifications/dublin-core/dces/</a></p>
+<p>[9] DCMI: DCMI Metadata Terms.
+<a class="reference external" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/">https://www.dublincore.org/specifications/dublin-core/dcmi-terms/</a></p>
+<p>[10] Open Archives Initiative Protocol for Metadata Harvesting <a class="reference external" href="http://www.openarchives.org/pmh/">http://www.openarchives.org/pmh/</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../software/eessi/eessi_using.html" class="btn btn-neutral float-left" title="Using software provided by EESSI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../nird_toolkit/overview.html" class="btn btn-neutral float-right" title="NIRD Toolkit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
