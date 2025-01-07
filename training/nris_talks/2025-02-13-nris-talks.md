@@ -4,6 +4,10 @@ NRIS(Norwegian Research Infrastructure Services) is organising  webinars as part
 This is a follow up of the previous one {ref}`NRIS Talks: Introduction to VASP`. In this webinar we will give an introduction 
 to machine learning potentials on VASP. We will give guidance on when to use them and how to develop them properly. A tutorial for fine tuning a foundation model (MACE) will be given, along with caveats on validation and accuracy. 
 
+```{note}
+This event is cancelled as the speaker is unavailable due to personal reasons.
+```
+
 ## Webinar Details:
 
 - **Date:** 13th February 2025
@@ -14,7 +18,8 @@ to machine learning potentials on VASP. We will give guidance on when to use the
 - **Moderator:** [Dhanya Pushpadas](https://www.uib.no/en/persons/Dhanya.Pushpadas)
 
 ## How to Register:
-Register [here](https://uib.zoom.us/webinar/register/WN_1a2cQ0hnRJC6IxUQ_cy09g#/registration)
+
+The event is cancelled
 
 ## About the webinar
 

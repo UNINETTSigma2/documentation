@@ -5,6 +5,10 @@
 NRIS(Norwegian Research Infrastructure Services) is organising  webinars as part of it's outreach program **NRIS Talks**.
 This time, we will explore how to effectively utilize the Vienna Ab-initio Simulation Package (VASP) on supercomputers. This webinar is primarily designed for beginners and intermediate users at various levels, with an emphasis on best practices for conducting VASP calculations on NRIS clusters. This webinar content is based on the VASP best practices workshop materials developed by ENCCS and NSC. 
 
+```{note}
+This event is cancelled as the speaker is unavailable due to personal reasons.
+```
+
 ## Webinar Details
 
 - **Date:** 23rd January 2025
@@ -16,7 +20,7 @@ This time, we will explore how to effectively utilize the Vienna Ab-initio Simul
 
 ## How to Register:
 
-**Register [here](https://uib.zoom.us/webinar/register/WN_SFFfpEHqQySCKTjPCQFa0w)**
+Event is cancelled
 
 ##  About the webinar
 
