@@ -21,11 +21,12 @@ Here below you find the list of episodes and how to register. Episodes are self-
 or writing elaborate shell scripts, we will learn how to run them potentially at the same time using a workflow manager without writing many job scripts.
 We will demonstrate and practice this using [Snakemake](https://snakemake.github.io/). If your calculation is a for-loop in Python or R and it takes too long to run, this session is for you.
 
+**Course material**: <https://training.pages.sigma2.no/tutorials/independent-jobs-in-parallel/>
+
 **Registration**: [Please register at this link](https://skjemaker.app.uib.no/view.php?id=18244544)
 
-### Instructor
+**Instructor**: Radovan Bast
 
-- Radovan Bast
 
 ## Episode 2: 11/02/2025 (10:00-12:00 CET)- Advanced shell scripting and utilities
 
