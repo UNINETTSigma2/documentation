@@ -27,6 +27,10 @@ We will demonstrate and practice this using [Snakemake](https://snakemake.github
 
 **Instructor**: Radovan Bast
 
+```{note}
+- [Video Recording](https://www.youtube.com/watch?v=GRWysq3y7jM&list=PLoR6m-sar9AidOc3AbU4zLrDr-j-RdqU8)
+- [Q&A](https://md.sigma2.no/best-practices-and-tools-episode1)
+```
 
 ## Episode 2: 11/02/2025 (10:00-12:00 CET)- Advanced shell scripting and utilities
 
@@ -35,9 +39,7 @@ operations and ensuring efficiency.
 
 **Registration**: [Please register at this link](https://skjemaker.app.uib.no/view.php?id=18245750)
 
-### Instructor
-
-- Ole Saastad
+**Instructor**:  Ole Saastad
 
 ## Episode 3: 11/03/2025 (10:00-12:00 CET)- Containers on clusters
 
@@ -45,9 +47,7 @@ operations and ensuring efficiency.
 
 **Registration**: [Please register at this link](https://skjemaker.app.uib.no/view.php?id=18246469)
 
-### Instructor
-
-- Sabry Razick
+**Instructor**:Sabry Razick
 
 ### Coordinator
 
