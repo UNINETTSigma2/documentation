@@ -2,11 +2,17 @@
 
 ## Lessons
 
-Our lesson materials are regularly improved and kept up-to-date. Our intro lessons are also 
+Our lesson materials are regularly improved and kept up-to-date. Our intro lessons and best practices lessons are also 
 fit for self learning. 
+
+### Introduction lessons
 
 - [UNIX Intro For HPC Users](https://training.pages.sigma2.no/tutorials/unix-for-hpc/index.html)
 - [HPC Intro Lessons](https://training.pages.sigma2.no/tutorials/hpc-intro/index.html)
+
+### Best Practices and Tools for HPC
+
+- [How to parallelize independent tasks](https://training.pages.sigma2.no/tutorials/independent-jobs-in-parallel/)
 
 ## HPC carpentry
 
