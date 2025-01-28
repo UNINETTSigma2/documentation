@@ -2,6 +2,7 @@
 
 Here we share the workshop questions, answer, and feedbacks from the collaborative 
 notes after the event.
+- [Questions and answers from Best Practices and Tools for HPC Spring 2025 Episode 1: How to parallelize independent tasks](https://md.sigma2.no/best-practices-and-tools-episode1)
 - [Questions and answers from Introduction to NIRD Toolkit on 24th October 2024](https://md.sigma2.no/nird-toolkit-training2024)
 - {ref}`training-2024-autumn-onboarding`
 	- [Questions and answers from HPC On-boarding 15 Oct 2024 Day 0](https://md.sigma2.no/hpc-onboarding-Oct-15-2024)
