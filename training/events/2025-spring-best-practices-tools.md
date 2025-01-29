@@ -32,10 +32,10 @@ We will demonstrate and practice this using [Snakemake](https://snakemake.github
 - [Q&A](https://md.sigma2.no/best-practices-and-tools-episode1)
 ```
 
-## Episode 2: 11/02/2025 (10:00-12:00 CET)- Advanced shell scripting and utilities
+## Episode 2: 11/02/2025 (10:00-12:00 CET)- Advanced shell scripting and utilities: Part 1
 
 **Content:** The focus will be on advance shell scripting, shell best practices and utilities like sed & awk to streamline
-operations and ensuring efficiency. 
+operations and ensuring efficiency. This will be delivered as two parts, the second one is on April 8th as episode 4 of this series.
 
 **Registration**: [Please register at this link](https://skjemaker.app.uib.no/view.php?id=18245750)
 
@@ -48,6 +48,15 @@ operations and ensuring efficiency.
 **Registration**: [Please register at this link](https://skjemaker.app.uib.no/view.php?id=18246469)
 
 **Instructor**:Sabry Razick
+
+## Episode 4: 08/04/2025 (10:00-12:00 CET)- Advanced shell scripting and utilities: Part 2
+
+**Content:** The focus will be on shell best practices and utilities like sed & awk to streamline
+operations and ensuring efficiency. This is the follow up of Episode 2. 
+
+**Registration**: [Please register at this link](https://skjemaker.app.uib.no/view.php?id=18429391)
+
+**Instructor**:  Ole Saastad
 
 ### Coordinator
 
