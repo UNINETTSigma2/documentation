@@ -10,7 +10,7 @@ Should there be requirement for backup for certain dataset(s), those must use th
 
 For example, a project may be using both Data Peak and Data Lake services, and such, has an allocation on both DP and DL resources. In this case the project can decide how to use the dedicated storage resources. However, should one require backup for a particular dataset, then:
  
- - that shall be flagged during the application process,
+ - that shall be flagged during the application process.
  - and that dataset shall be placed on the TS resource.
 
 
@@ -45,7 +45,7 @@ Restoring data from backup is done by NRIS. Should you need to restore data from
 
 3. The backup system maintains two versions of each file: an active and an inactive version. The retention policy for active files is 60 days, while the retention period for inactive files is 30 days. For further information on file versioning, please refer to the following link: https://www.ibm.com/support/pages/file-versioning-file-retention-and-file-expiration-explained
 
-4. The utilization of NIRD Backup is governed by the user contribution model outlined at https://www.sigma2.no/user-contribution-model. Backup utilization can be monitored using the dusage -p NSxxxxK command. Note, that accounting information pertaining to NIRD Backup will be made accessible to project leaders within the MAS platform during 2025.
+4. The utilization of NIRD Backup is governed by the user contribution model outlined at https://www.sigma2.no/user-contribution-model. Backup utilization can be monitored using the `dusage -p NSxxxxK` command. Note, that accounting information pertaining to NIRD Backup will be made accessible to project leaders within the MAS platform during 2025.
 
 ```{note}
 Please be advised that backup utilization may be affected by the number of file changes (active and inactive file versions) and exclusion rules.
