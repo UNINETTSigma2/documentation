@@ -6,6 +6,8 @@ orphan: true
 
 # LUMI
 
+<https://www.lumi-supercomputer.eu/>
+
 > The European High-Performance Computing Joint Undertaking (EuroHPC JU) is
 > pooling European resources to develop top-of-the-range exascale supercomputers
 > for processing big data, based on competitive European technology.
@@ -18,8 +20,8 @@ orphan: true
 > for artificial intelligence.
 
 ```{note}
-LUMI will be installed in Kajaani, Finland. Basic operations are done by the
-vendor and CSC. Researchers will be supported by different teams: the Norwegian
+LUMI is located in Kajaani, Finland. Basic operations are done by the
+vendor and CSC. Researchers are supported by different teams: the Norwegian
 EuroHPC competence centre for porting and tuning applications on the LUMI
 hardware and programming environment, Sigma2 for handling allocation requests,
 and The LUMI User Support Team (LUST) for day-to-day issues.
