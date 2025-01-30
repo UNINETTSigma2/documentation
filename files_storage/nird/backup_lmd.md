@@ -10,8 +10,8 @@ Should there be requirement for backup for certain dataset(s), those must use th
 
 For example, a project may be using both Data Peak and Data Lake services, and such, has an allocation on both DP and DL resources. In this case the project can decide how to use the dedicated storage resources. However, should one require backup for a particular dataset, then:
  
- - that shall be flagged during the application process.
- - and that dataset shall be placed on the TS resource.
+ - That shall be flagged during the application process.
+ - And that dataset shall be placed on the DP resource.
 
 
 ```{note}
