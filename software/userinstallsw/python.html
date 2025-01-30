@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installing Python packages &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Installing R libraries" href="R.html" />
+    <link rel="prev" title="Installing software with Conda" href="conda.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides_llm.html">Running LLM Models Inside the Cluster</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installed_software.html">Installed software</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../userinstallsw.html">Installing software as user</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="easybuild.html">Installing software with EasyBuild</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conda.html">Installing software with Conda</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installing Python packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#virtual-environments">Virtual environments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setup-and-installation-with-pip">Setup and installation with pip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-virtual-environment-in-a-batch-script">Using the virtual environment in a batch script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sharing-package-configuration">Sharing package configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#anaconda-miniconda-conda">Anaconda, Miniconda &amp; Conda</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="R.html">Installing R libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perl.html">Installing Perl modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ORCA.html">ORCA (quantum chemistry program)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathematica.html">How to Run Mathematica on Saga and Fram Using Singularity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../code_development/guides/containers.html">Containers on NRIS HPC systems</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../userinstallsw.html">Installing software as user</a></li>
+      <li class="breadcrumb-item active">Installing Python packages</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installing-python-packages">
+<span id="id1"></span><h1>Installing Python packages<a class="headerlink" href="#installing-python-packages" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span></code> and <code class="docutils literal notranslate"><span class="pre">conda</span></code> are the easiest ways of installing python packages and
+programs as user. In both cases it is advised to use virtual environments to
+separate between different workflows/projects. This makes it possible to have
+multiple versions of the same package or application without problems of
+conflicting dependencies.</p>
+<section id="virtual-environments">
+<h2>Virtual environments<a class="headerlink" href="#virtual-environments" title="Link to this heading"></a></h2>
+<p>Virtual environments in Python are a nice way to compartmentalize package
+installation. You can have many virtual environment and we recommend that you at
+least have one for each disparate experiment. One additional benefit of this
+setup is that it allows other researchers to easily replicate your setup.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span></code> is the main package installer for Python and included in every Python
+installation. It is easy to use and can be combined with <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> to manage
+independent environments. These can contain different Python versions and packages.</p>
+<p>In some cases, packages installed with <code class="docutils literal notranslate"><span class="pre">pip</span></code> have problems with complex dependencies
+and libraries. In this case, <code class="docutils literal notranslate"><span class="pre">conda</span></code> is the better solution.</p>
+<section id="setup-and-installation-with-pip">
+<h3>Setup and installation with pip<a class="headerlink" href="#setup-and-installation-with-pip" title="Link to this heading"></a></h3>
+<p>Users can install Python packages in a virtual Python environment. Here is how
+you create a virtual environment with Python:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># First load an appropriate Python module (use &#39;module avail Python/&#39; to see all)</span>
+$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Python/3.8.6-GCCcore-10.2.0
+<span class="c1"># Create the virtual environment.</span>
+$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>my_new_pythonenv
+<span class="c1"># Activate the environment.</span>
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>my_new_pythonenv/bin/activate
+<span class="c1"># Install packages with pip. Here we install pandas.</span>
+$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pandas
+</pre></div>
+</div>
+<p>After the analysis is finished the environment can be unloaded or deactivated
+using one of the two methods below.</p>
+<ol class="arabic simple">
+<li><p>Close the current terminal</p></li>
+<li><p>Use the <em>deactivate</em> command</p></li>
+</ol>
+<p>In a job script (described below), there is no need to deactivate as the
+environment is only active in the <em>shell</em> the job was running in.</p>
+<p>For more information, have a look at the <a class="reference external" href="https://pip.pypa.io/en/stable/">official
+<code class="docutils literal notranslate"><span class="pre">pip</span></code></a> and
+<a class="reference external" href="https://virtualenv.pypa.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">virtualenv</span></code></a> documentations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When running software from your Python environment in a batch script, it is
+<em>highly</em> recommended to activate the environment <em>only</em> in the script (see
+below), while keeping the login environment clean when submitting the job,
+otherwise the environments can interfere with each other (even if they are the
+same).</p>
+</div>
+</section>
+<section id="using-the-virtual-environment-in-a-batch-script">
+<h3>Using the virtual environment in a batch script<a class="headerlink" href="#using-the-virtual-environment-in-a-batch-script" title="Link to this heading"></a></h3>
+<p>In a batch script you will activate the virtual environment in the same way as
+above. You must just load the python module first:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Set up job environment
+set -o errexit # exit on any error
+set -o nounset # treat unset variables as error
+
+# Load modules
+module load Python/3.8.6-GCCcore-10.2.0
+
+# Set the ${PS1} (needed in the source of the virtual environment for some Python versions)
+export PS1=\$
+
+# activate the virtual environment
+source my_new_pythonenv/bin/activate
+
+# execute example script
+python pdexample.py
+</pre></div>
+</div>
+</section>
+<section id="sharing-package-configuration">
+<h3>Sharing package configuration<a class="headerlink" href="#sharing-package-configuration" title="Link to this heading"></a></h3>
+<p>To allow other researchers to replicate your virtual environment setup it can be
+a good idea to “freeze” your packages. This tells <code class="docutils literal notranslate"><span class="pre">pip</span></code> that it should not
+silently upgrade packages and also gives a good way to share the exact same
+packages between researchers.</p>
+<p>To freeze the packages into a list to share with others run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>freeze<span class="w"> </span>--local<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<p>The file <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> will now contain the list of packages installed in
+your virtual environment with their exact versions. When publishing your
+experiments it can be a good idea to share this file which other can install in
+their own virtual environments like so:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<p>Your virtual environment and the new one installed from the same
+<code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> should now be identical and thus should replicate the
+experiment setup as closely as possible.</p>
+</section>
+</section>
+<section id="anaconda-miniconda-conda">
+<h2>Anaconda, Miniconda &amp; Conda<a class="headerlink" href="#anaconda-miniconda-conda" title="Link to this heading"></a></h2>
+<p>Conda (either in the form of Miniconda or Anaconda) is a combination of a package manager like <code class="docutils literal notranslate"><span class="pre">pip</span></code> and a virtual environment manager like <code class="docutils literal notranslate"><span class="pre">venv</span></code>. You can use it to install and manage many python and non-python packages yourself.</p>
+<p>See <a class="reference internal" href="conda.html#installing-with-conda"><span class="std std-ref">Installing software with Conda</span></a> for details and examples.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="conda.html" class="btn btn-neutral float-left" title="Installing software with Conda" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="R.html" class="btn btn-neutral float-right" title="Installing R libraries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
