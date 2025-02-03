@@ -17,20 +17,20 @@ while others are for storing project data.
 The following table summarizes the different storage options for **Betzy, Fram, and Saga**.
 Below the table, we give recommendations and discuss the pros and cons of the various storage areas.
 
-| Directory                                       | Purpose              | {ref}`Default Quota <storage-quota>` | {ref}`Backup <storage-backup>` |
-| :---------------------------------------------- | :------------------- | :--------------------------------- | :---------------------------------: |
-| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files               | Only if quota enforced             |
-| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                | No                                  |
-| (Fram/Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALSCRATCH`) | Per-job data | {ref}`Individual <job-scratch-area-on-local-disk>` | No                   |
-| `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                | No                                  |
-| `/cluster/projects/<project_name>`              | Project data         | {ref}`1 TiB / 1 M files <project-area>` | Yes                                 |
-| `/cluster/shared/<folder_name>`                 | Shared data          | {ref}`Individual <shared-project-area>` | No                                  |
+| Directory                                       | Purpose              | {ref}`Default Quota <storage-quota>` | {ref}`Backup <storage-backup>` | Note | 
+| :---------------------------------------------- | :------------------- | :--------------------------------- | :---------------------------------: | :----:|
+| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files               | Only if quota enforced             ||
+| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                | No                                  ||
+| (Fram/Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALSCRATCH`) | Per-job data | {ref}`Individual <job-scratch-area-on-local-disk>` | No                   |Only Fram SAGA|
+| `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                | No                                  ||
+| `/cluster/projects/<project_name>`              | Project data         | {ref}`1 TiB / 1 M files <project-area>` | Yes                                 ||
+| `/cluster/shared/<folder_name>`                 | Shared data          | {ref}`Individual <shared-project-area>` | No                                  ||
+| `nird/datapeak/NSxxxxK`                         | NIRD Data Peak (TS) projects | | | Login nodes only|
+| `nird/datalake/NSxxxxK`                         | NIRD Data Lake (DL) projects | | | Login nodes only|
 
 - **User areas and project areas are private**: Data handling and storage policy is documented [here](/files_storage/sharing_files.md).
 - **`$LOCALSCRATCH` area is only implemented on Fram and Saga**.
-- In addition to the areas in the tables above, **both clusters mount the
-  NIRD project areas** as `/nird/datapeak/NSxxxxK` for NIRD Data Peak (TS) projects and `/nird/datalake/NSxxxxK` for NIRD Data Lake (DL)
-  projects on the login nodes (but not on the compute nodes).
+- Clusters mount the NIRD project areas as `/nird/datapeak/NSxxxxK` for NIRD Data Peak (TS) projects and `nird/datalake/NSxxxxK` for NIRD Data Lake (DL) projects **on the login nodes only ** (not on the compute nodes).
 - The `/cluster` file system is a high-performance parallel file
   system.  On Fram, it is a [Lustre](https://www.lustre.org/) system with
   a total storage space of 2.3 PB, and on Saga it is a
