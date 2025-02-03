@@ -25,8 +25,8 @@ Below the table, we give recommendations and discuss the pros and cons of the va
 | `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                | No                                  ||
 | `/cluster/projects/<project_name>`              | Project data         | {ref}`1 TiB / 1 M files <project-area>` | Yes                                 ||
 | `/cluster/shared/<folder_name>`                 | Shared data          | {ref}`Individual <shared-project-area>` | No                                  ||
-| `nird/datapeak/NSxxxxK`                         | NIRD Data Peak (TS) projects | | | Login nodes only|
-| `nird/datalake/NSxxxxK`                         | NIRD Data Lake (DL) projects | | | Login nodes only|
+| `/nird/datapeak/NSxxxxK`                         | NIRD Data Peak (TS) projects | | | Login nodes only|
+| `/nird/datalake/NSxxxxK`                         | NIRD Data Lake (DL) projects | | | Login nodes only|
 
 - **User areas and project areas are private**: Data handling and storage policy is documented [here](/files_storage/sharing_files.md).
 - **`$LOCALSCRATCH` area is only implemented on Fram and Saga**.
