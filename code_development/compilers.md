@@ -4,7 +4,7 @@
 
 ### Open MPI
 
-The Open MPI compiler wrapper scripts listed in the table below add in all relevant compiler and link flags, and the invoke the underlying compiler, i.e. the compiler the Open MPI installation was built with.
+The Open MPI compiler wrapper scripts listed in the table below add in all relevant compiler and link flags, and then invoke the underlying compiler, i.e. the compiler that the Open MPI installation was built with.
 
 | Language     | Wrapper script     | Default compiler	| Environment variable |
 | :------------- | :-------------: |:-------------: |:-------------: |
@@ -12,7 +12,7 @@ The Open MPI compiler wrapper scripts listed in the table below add in all relev
 | C++ |	`mpicxx, mpic++, mpiCC`  | `g++` | `OMPI_CXX` |
 | Fortran | `mpifort`  | `gfortran` | `OMPI_FC` |
 
-It is possible to change the underlying compiler invoked when calling the compiler wrappers using the environment variables listed in the table. Use the option `-showme` to see the underlying compiler, the compile and link flags, and the libraries that are linked.
+It is possible to change the underlying compiler that is invoked when calling the compiler wrappers using the environment variables listed in the table. Use the option `-showme` to see the underlying compiler, the compile and link flags, and the libraries that are linked.
 
 ### Intel MPI
 
@@ -38,7 +38,7 @@ $ mpiicc -cc=icx mpi_hello_world.c
 ```
 
 Notice, the Intel Compiler Classic drivers commands `icc`and `icpc` have been removed since the Intel oneAPI 2024.0 release (i.e. 2024 toolchains for NRIS clusters). Use the LLVM-based Intel Compiler drivers `icx` and `icpx` instead, for more information see the [Porting Guide for ICC Users to DPCPP or ICX](https://www.intel.com/content/www/us/en/developer/articles/guide/porting-guide-for-icc-users-to-dpcpp-or-icx.html).
-The Classic `ifort` command will be discontinued in the oneAPI 2025 release. Use LLVM-based Intel Compiler driver `ifx` instead, for more information see the [Porting Guide for ifort Users to ifx.](https://www.intel.com/content/www/us/en/developer/articles/guide/porting-guide-for-icc-users-to-dpcpp-or-icx.html).
+The Classic `ifort` command will be discontinued in the oneAPI 2025 release. Use LLVM-based Intel Compiler driver `ifx` instead, for more information see the [Porting Guide for ifort Users to ifx.](https://www.intel.com/content/www/us/en/developer/articles/guide/porting-guide-for-ifort-to-ifx.html).
 
 See also {ref}`running-mpi-applications`.
 
