@@ -25,7 +25,7 @@ nris_talks/2025-04-24-nris-talks.md
 events/2025-05-hpc-on-boarding.md
 
 ```
-#### Events from our collaborators
+#### Training Events from our collaborators
 
 - [Fundamentals of Accelerated Computing with CUDA C/C++](https://www.ub.uio.no/english/courses-events/courses/carpentry/CUDA)
 - [CodeRefinery workshop Mar 25-27/Apr 1-3 2025](https://coderefinery.github.io/2025-03-25-workshop/)
