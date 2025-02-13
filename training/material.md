@@ -13,6 +13,7 @@ fit for self learning.
 ### Best Practices and Tools for HPC
 
 - [How to parallelize independent tasks](https://training.pages.sigma2.no/tutorials/independent-jobs-in-parallel/)
+- [Advanced shell scripting and utilities](https://gitlab.sigma2.no/training/tutorials/shell-scripts-and-tips)
 
 ## HPC carpentry
 
