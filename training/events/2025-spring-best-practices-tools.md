@@ -37,6 +37,9 @@ We will demonstrate and practice this using [Snakemake](https://snakemake.github
 **Content:** The focus will be on advance shell scripting, shell best practices and utilities like sed & awk to streamline
 operations and ensuring efficiency. This will be delivered as two parts, the second one is on April 8th as episode 4 of this series.
 
+
+**Course material**: <https://training.pages.sigma2.no/tutorials/shell-scripts-and-tips/>
+
 **Registration**: [Please register at this link](https://skjemaker.app.uib.no/view.php?id=18245750)
 
 **Instructor**:  Ole Saastad
@@ -53,6 +56,8 @@ operations and ensuring efficiency. This will be delivered as two parts, the sec
 
 **Content:** The focus will be on shell best practices and utilities like sed & awk to streamline
 operations and ensuring efficiency. This is the follow up of Episode 2. 
+
+**Course material**: <https://training.pages.sigma2.no/tutorials/shell-scripts-and-tips/>
 
 **Registration**: [Please register at this link](https://skjemaker.app.uib.no/view.php?id=18429391)
 
