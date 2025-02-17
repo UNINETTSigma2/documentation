@@ -2,6 +2,7 @@
 
  Here we share the link to our video archives of past events.
 
+- [[Video] Best Practices and Tools for HPC Spring 2025 Episode 2: Advanced shell scripting and utilities part 1](https://www.youtube.com/watch?v=T0EWofxxuFU&t=6s)
 - [[Video] Best Practices and Tools for HPC Spring 2025 Episode 1: How to parallelize independent tasks](https://www.youtube.com/watch?v=GRWysq3y7jM)
 - [[Video] NRIS Talks: Webinar on How to build on top EESSI using EasyBuild](https://www.youtube.com/watch?v=qSkqqIXi8Nk)
 - [[Video] Introduction to NIRD Toolkit Autumn 2024](https://www.youtube.com/playlist?list=PLoR6m-sar9AhZacgyTi6fhwENmWFdNyal)
