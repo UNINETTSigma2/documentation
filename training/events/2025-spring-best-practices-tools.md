@@ -44,6 +44,12 @@ operations and ensuring efficiency. This will be delivered as two parts, the sec
 
 **Instructor**:  Ole Saastad
 
+```{note}
+- [Video Recording](https://www.youtube.com/watch?v=T0EWofxxuFU)
+- [Q&A](https://md.sigma2.no/best-practices-and-tools-episode2)
+```
+
+
 ## Episode 3: 11/03/2025 (10:00-12:00 CET)- Containers on clusters
 
 **Content:** The focus will be on containers with Apptainer/Singularity, how to build containers for HPC, how and when to use containers on clusters, and other practical examples with containers
