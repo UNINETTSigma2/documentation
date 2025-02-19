@@ -78,4 +78,6 @@ sftp -P 12 login.saga.sigma2.no
 
 or via your preferred SFTP client, specifying port 12 and protocol SFTP. 
 
-NB: This is only available if you have set up ssh-keys, see guide in [getting started](https://documentation.sigma2.no/getting_started/ssh.html#using-ssh-keys-instead-of-passwords).
+Requirements:
+- This is only available if you have set up ssh-keys, see guide in [getting started](https://documentation.sigma2.no/getting_started/ssh.html#using-ssh-keys-instead-of-passwords).
+- This is only available on "Forskningsnett" (networks that Sikt (AS 224) announces). Use VPN to connect to your (Norwegian) insititutions network if you for example work from home.
