@@ -105,6 +105,9 @@ the web for more examples if you are interested.
 
 ## Using SSH keys instead of passwords
 
+**NB**: *Note that after enabling two-factor authentication, ssh-keys alone only works for copying files, via
+port 12. Password must be used with OTP for interactive access*, see this [page](https://documentation.sigma2.no/getting_help/two_factor_authentication.html).
+
 It's boring to type the password every time, especially if you regularly have
 multiple sessions open simultaneously (there exist also other tools to help
 with that). The tedium of typing it 20-50 times each day could motivate some
@@ -326,6 +329,7 @@ not the "front-ends", otherwise you risk getting your IP address blacklisted,
 since your session is authenticated against only one actual login node and not
 the other login nodes.
 
+NB: After enabling two-factor authentication, this is only available on port 12, see [OTP help](https://documentation.sigma2.no/getting_help/two_factor_authentication.html)
 
 ## Compressing data for poor connections
 

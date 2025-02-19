@@ -33,9 +33,9 @@ First click User Login (Passwords)
 [[Video] 2FA setup guide for the national e-infrastructure systems](https://www.youtube.com/watch?v=az3HLlwlyDA)    
 
 
-## How to avoid typing the OTP code every time on Linux
+## How to avoid typing the OTP code every time on Linux / MacOS
 
-On your Mac or linux desktop or laptop, create a text file `~/.ssh/config` with, for example, the following contents:
+On your Mac or Linux desktop or laptop, create a text file `~/.ssh/config` with, for example, the following contents:
 
 ```
 Host fram
@@ -67,3 +67,17 @@ OpenSSH for Windows does currently not support the ControlMaster module, **but t
 By [installing WSL](https://learn.microsoft.com/en-us/windows/wsl/install) and running an Ubuntu terminal you will be able to use SSH as if you were using a Linux computer. You can create the text file under `~/Ubuntu/home/user/.ssh/` and add the same contents as in the example above. Remember to save the text file as `config`
 If you then attempt to ssh to the host nickname fram in this example by using `ssh fram` in your Ubuntu terminal, it would then create the same socket under Ubuntu's ssh directory as it would if you were to use a Mac/Linux computer.    
 You can run an Ubuntu terminal simply by typing the command 'Ubuntu' in your Windows terminal.    
+
+## How to copy files without using 2FA/OTP
+
+To copy files to and from login-nodes without using two-factor authentication, you can use SFTP via custom TCP port 12, for example:
+
+```
+sftp -P 12 login.saga.sigma2.no
+```
+
+or via your preferred SFTP client, specifying port 12 and protocol SFTP. 
+
+Requirements:
+- This is only available if you have set up ssh-keys, see guide in [getting started](https://documentation.sigma2.no/getting_started/ssh.html#using-ssh-keys-instead-of-passwords).
+- This is only available on "Forskningsnett" (networks that Sikt (AS 224) announces). Use VPN to connect to your (Norwegian) insititutions network if you for example work from home.
