@@ -1,3 +1,5 @@
+(training-videos)=
+
 # Training Video Archives
 
  Here we share the link to our video archives of past events.
