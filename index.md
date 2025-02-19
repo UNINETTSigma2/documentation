@@ -29,6 +29,9 @@ to the next level. {ref}`Read more ... <about-us>`
 **Tools and other services**:
 {ref}`nird-toolkit` | {ref}`EasyDMP <easydmp>` | {ref}`Course resources <course-resources>`
 
+**NRIS Videos**: [NRIS YouTube channel](https://www.youtube.com/channel/UCG6fTXEY_SQYohtpU6aZwPw) | {ref}`training-videos` | {ref}`short-videos`
+
+
 ````{grid} 2
 :gutter: 1
 
@@ -135,6 +138,7 @@ getting_help/two_factor_authentication.md
 Project Leader Support<https://www.sigma2.no/project-leader-handbook>
 ```
 
+
 ```{toctree}
 :hidden:
 :maxdepth: 1
@@ -143,7 +147,9 @@ Project Leader Support<https://www.sigma2.no/project-leader-handbook>
 training/events.md
 training/notes_qa.md
 training/videos.md
+training/short_instructions.md
 training/material.md
+
 ```
 
 ```{toctree}
