@@ -105,7 +105,7 @@ You can always contact us by sending an email to [support@nris.no](mailto:suppor
 
 If you want to receive further information about training events, and other announcements about IT resources
  and services for researchers, there are a couple of information channels you can subscribe to:
-- users at University of Bergen and affiliated institutes: [register to hpcnews@uib.no](https://mailman.uib.no/listinfo/hpcnews)
+- users at University of Bergen and affiliated institutes: [register to hpcnews@uib.no](https://lists.uib.no/list.uib.no/subscribe/hpcnews).
 - users of Sigma2 services: [subscribe to Sigma2's newsletter](https://sigma2.us13.list-manage.com/subscribe?u=4fd109ad79a5dca6dde7e4997&id=59b164c7b6)
 
 
