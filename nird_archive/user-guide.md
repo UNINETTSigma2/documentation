@@ -9,7 +9,7 @@ Information System (OAIS) reference model  {ref}`[1] <references-archive>`.
 
 The aim of the archive is to provide (public) access to published research data and to promote cross-disciplinary studies. This document is a user-guide for deposit, search and retrieval of datasets. Each of the steps in the archival process are described in the following sections.
 
-A high level overview of the NIRD RDA ingest and archive workflow can be found here [ingest and workflow](nird-rda-ingest-and-archive-workflow)
+A high level overview of the NIRD RDA ingest and archive workflow can be found here {ref}`ingest and workflow <nird-rda-ingest-and-archive-workflow>`
 
 ## Depositing a Dataset
 

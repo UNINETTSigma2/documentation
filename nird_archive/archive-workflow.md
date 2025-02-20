@@ -1,9 +1,10 @@
+:orphan:
 (nird-rda-ingest-and-archive-workflow)=
 
 # The NIRD RDA Ingest and Archive Workflow
 
 
-![ingest_and_archive_workflow](../imgs/ingest_and_archive_workflow.png "ingest and archive workflow")
+![ingest_and_archive_workflow](imgs/ingest_and_archive_workflow.png "ingest and archive workflow")
 Figure 1: High-level view of the ingest and archive workflow.
 
 The figure shows the high-level workflow a user follows in order to have a dataset published in
