@@ -9,6 +9,8 @@ Information System (OAIS) reference model  {ref}`[1] <references-archive>`.
 
 The aim of the archive is to provide (public) access to published research data and to promote cross-disciplinary studies. This document is a user-guide for deposit, search and retrieval of datasets. Each of the steps in the archival process are described in the following sections.
 
+A high level overview of the NIRD RDA ingest and archive workflow can be found here {ref}`ingest and workflow <nird-rda-ingest-and-archive-workflow>`
+
 ## Depositing a Dataset
 
 The process for depositing a dataset in the Archive consists of the following stages:
@@ -21,6 +23,7 @@ The process for depositing a dataset in the Archive consists of the following st
 - {ref}`Upload the dataset.  <Section-Upload-Dataset>`
 - {ref}`Provide secondary metadata.  <Provide-Secondary-Optional-Metadata>`
 - {ref}`Publish the dataset.  <Publish-the-dataset-Archive>`
+
 
 The following sub-sections describe these stages.
 

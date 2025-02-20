@@ -34,7 +34,7 @@ connecting data and computing resources for efficient provisioning of services.
 
 
 #### Hardware
-**NIRD** consists of two separate storage systems, namely **NIRD Data Peak** (known internally as *TS*) and **NIRD Data Lake** (codenamed *DL*), each tailored to optimally address two different categories of use cases. Commencing with the 2024.1 allocation, the array of functionalities provided by the TS and the DL resources are consolidated and presented as two distinct services. The total capacity of NIRD is 49 PB (24 PB on TS and 25 PB on DL).
+**NIRD** consists of two separate storage systems, namely **NIRD Data Peak** (codename *DP*) and **NIRD Data Lake** (codenamed *DL*), each tailored to optimally address two different categories of use cases. Commencing with the 2024.1 allocation, the array of functionalities provided by the DP and the DL resources are consolidated and presented as two distinct services. The total capacity of NIRD is 62 PB (24 PB on DP and 38 PB on DL).
 
 **NIRD Data Peak** has several tiers spanned by single filesystem and designed for performance and used mainly for active project data.
 
@@ -42,15 +42,15 @@ connecting data and computing resources for efficient provisioning of services.
 
 NIRD is based on IBM Elastic Storage System, built using ESS3200, ESS3500 and ESS5000 building blocks. I/O performance is ensured with IBM POWER servers for I/O operations, having dedicated data movers, protocol nodes and more.
 
-| NIRD    | | |
-| :------------- | :------------- | :------------- |
-| System     |Building blocks |IBM ESS3200<br>IBM ESS3500<br>IBM ESS5000<br>IBM POWER9  |
-| Clusters     |	Two physically separated clusters | NIRD TS<br>NIRD DL  |
-| Storage media | NIRD Data Peak<br>NIRD Data Lake | NVMe SSD & NL-SAS<br>NL-SAS
-| Capacity     |	Total capacity: 49 PB | NIRD Data Peak: 24 PB<br> NIRD Data Lake: 25 PB  |
-| Performance | Aggregated I/O throughput | NIRD Data Peak: 209 GB/s<br>NIRD Data Lake: 66 GB/s<br>NIRD S3: 27 GB/s |
-| Interconnect | 100 Gbit/s Ethernet | NIRD Data Peak: balanced 400 Gbit/s<br>NIRD Data Lake: balanced 200 Gbit/s |
-| Protocol nodes | NFS<br>S3 | 4 x 200 Gbit/s<br>5 x 50 Gbit/s|
+| NIRD    |                                   |                                                                                   |
+| :------------- |:----------------------------------|:----------------------------------------------------------------------------------|
+| System     | Building blocks                   | IBM ESS3200<br>IBM ESS3500<br>IBM ESS5000<br>IBM POWER9                           |
+| Clusters     | 	Two physically separated clusters| NIRD DP<br>NIRD DL                                                                |
+| Storage media | NIRD Data Peak<br>NIRD Data Lake  | NVMe SSD & NL-SAS<br>NL-SAS                                                       
+| Capacity     | 	Total capacity: 62 PB              | NIRD Data Peak: 24 PB<br> NIRD Data Lake: 38 PB                                   |
+| Performance | Aggregated I/O throughput         | NIRD Data Peak: 209 GB/s<br>NIRD Data Lake: 66 GB/s<br>NIRD Data Lake S3: 27 GB/s |
+| Interconnect | 100 Gbit/s Ethernet               | NIRD Data Peak: balanced 400 Gbit/s<br>NIRD Data Lake: balanced 200 Gbit/s        |
+| Protocol nodes | NFS<br>S3                         | 4 x 200 Gbit/s<br>5 x 50 Gbit/s                                                   |
 
 
 
