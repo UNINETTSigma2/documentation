@@ -220,7 +220,6 @@ software/eessi.md
 :caption: Additional services
 
 nird_archive/user-guide.md
-nird_archive/archive-workflow.md
 nird_toolkit/overview.rst
 nird_service_platform/overview_nird_service_platform.md
 services/easydmp-user-documentation.md

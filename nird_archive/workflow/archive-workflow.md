@@ -1,6 +1,9 @@
+(nird-rda-ingest-and-archive-workflow)=
+
 # The NIRD RDA Ingest and Archive Workflow
 
-![ingest_and_archive_workflow](imgs/ingest_and_archive_workflow.png "ingest and archive workflow")
+
+![ingest_and_archive_workflow](../imgs/ingest_and_archive_workflow.png "ingest and archive workflow")
 Figure 1: High-level view of the ingest and archive workflow.
 
 The figure shows the high-level workflow a user follows in order to have a dataset published in
@@ -8,7 +11,7 @@ the NIRD RDA. A more detailed description of the ingest, archive and access proc
 covered in the [Preservation Plan](https://www.sigma2.no/nird-research-data-archive-preservation-plan).
 
 1. A new user needs to submit a request through the archive web form to request access to the archive.
-2. The Archive Manager reviews the request to make sure the user is from an Norwegian institution and is using an institution email address. The Archive Manager may contact the user for further information.
+2. The Archive Manager reviews the request to make sure the user is from a Norwegian institution and is using an institution email address. The Archive Manager may contact the user for further information.
 3. The Archive Manager either approves or rejects the request.
 4. If the request is rejected, an email is sent to the user informing them that the request has been declined.
 5. If the request is approved, an email is sent to the user informing them that the request has been successful.
