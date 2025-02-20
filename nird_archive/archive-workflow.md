@@ -1,4 +1,7 @@
-:orphan:
+---
+orphan: true
+---
+
 (nird-rda-ingest-and-archive-workflow)=
 
 # The NIRD RDA Ingest and Archive Workflow
