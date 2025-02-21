@@ -7,7 +7,7 @@ To set up two-factor authentication for your user, follow these steps:
 1.	Go to <https://www.metacenter.no>, log in, using "User Login (Passwords)".
 
 ![www.metacenter.no frontpage screenshot](screenshots/frontpage.png)
-First click User Login (Passwords)
+First click [User Login (Passwords)](https://www.metacenter.no/user/)
 
 2.	Select "Manage OTP secret / 2FA" from the page or drop-down menu.
 
