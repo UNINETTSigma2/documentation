@@ -56,6 +56,8 @@ operations and ensuring efficiency. This will be delivered as two parts, the sec
 
 **Registration**: [Please register at this link](https://skjemaker.app.uib.no/view.php?id=18246469)
 
+**course material**: [Apptainers on HPC](https://training.pages.sigma2.no/tutorials/containers-on-hpc/)
+
 **Instructor**:Sabry Razick
 
 ## Episode 4: 08/04/2025 (10:00-12:00 CET)- Advanced shell scripting and utilities: Part 2
