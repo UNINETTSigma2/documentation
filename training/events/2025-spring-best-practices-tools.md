@@ -50,7 +50,7 @@ operations and ensuring efficiency. This will be delivered as two parts, the sec
 ```
 
 
-## Episode 3: 11/03/2025 (10:00-12:00 CET)- Containers on clusters
+## Episode 3: 11/03/2025 (10:00-12:00 CET)- Containers on clusters part 1
 
 **Content:** The focus will be on containers with Apptainer/Singularity, how to build containers for HPC, how and when to use containers on clusters, and other practical examples with containers
 
@@ -60,7 +60,7 @@ operations and ensuring efficiency. This will be delivered as two parts, the sec
 
 **Instructor**:Sabry Razick
 
-## Episode 4: 08/04/2025 (10:00-12:00 CET)- Advanced shell scripting and utilities: Part 2
+## Episode 4: 08/04/2025 (10:00-12:00 CEST)- Advanced shell scripting and utilities: Part 2
 
 **Content:** The focus will be on shell best practices and utilities like sed & awk to streamline
 operations and ensuring efficiency. This is the follow up of Episode 2. 
@@ -70,6 +70,16 @@ operations and ensuring efficiency. This is the follow up of Episode 2.
 **Registration**: [Please register at this link](https://skjemaker.app.uib.no/view.php?id=18429391)
 
 **Instructor**:  Ole Saastad
+
+## Episode 5: 29/04/2025 (10:00-12:00 CEST)- Apptainers on HPC: Usecases and Examples
+
+**Content:** This is a follow up of Episode 3. The focus will be on usecases of apptainers on HPC (eg: port bininding, MPI containers, GPU containers etc.)
+
+**Registration**: [Please register at this link](https://skjemaker.app.uib.no/view.php?id=18633221)
+
+**course material**: [Apptainers on HPC](https://training.pages.sigma2.no/tutorials/containers-on-hpc/)
+
+**Instructor**:Sabry Razick
 
 ### Coordinator
 
