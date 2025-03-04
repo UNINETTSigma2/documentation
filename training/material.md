@@ -14,6 +14,7 @@ fit for self learning.
 
 - [How to parallelize independent tasks](https://training.pages.sigma2.no/tutorials/independent-jobs-in-parallel/)
 - [Advanced shell scripting and utilities](https://training.pages.sigma2.no/tutorials/shell-scripts-and-tips)
+- [Apptainers on HPC](https://training.pages.sigma2.no/tutorials/containers-on-hpc/index.html#)
 
 ## HPC carpentry
 
