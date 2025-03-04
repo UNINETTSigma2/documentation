@@ -50,7 +50,7 @@ operations and ensuring efficiency. This will be delivered as two parts, the sec
 ```
 
 
-## Episode 3: 11/03/2025 (10:00-12:00 CET)- Containers on clusters
+## Episode 3: 11/03/2025 (10:00-12:00 CET)- Containers on clusters part 1
 
 **Content:** The focus will be on containers with Apptainer/Singularity, how to build containers for HPC, how and when to use containers on clusters, and other practical examples with containers
 
