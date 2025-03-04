@@ -189,11 +189,11 @@ Here is an example to illustrate how this might look:
 ## Print the hostnames where each task is running:
 srun hostname
 
-## This copies "hello.c" fro your submit dir to $LOCALSCRATCH on each node:
-sbcast hello.c ${LOCALSCRATCH}/hello.c
+## This copies "hello.c" from your submit dir to $LOCALSCRATCH on each node:
+srun --ntasks-per-node=1 --ntasks=$SLURM_NNODES cp hello.c ${LOCALSCRATCH}/hello.c
 
 ## Simulate output files created on the $LOCALSCRATCH areas on each node
-## by copy $LOCALSCRATCH/hello.c to $LOCALSCRATCH/bye.c once on each node:
+## by copying $LOCALSCRATCH/hello.c to $LOCALSCRATCH/bye.c once on each node:
 srun --ntasks-per-node=1 --ntasks=$SLURM_NNODES cp  ${LOCALSCRATCH}/hello.c ${LOCALSCRATCH}/bye.c
 
 ## This copies the "bye.c" files back to the submit dir:
@@ -202,5 +202,10 @@ sgather ${LOCALSCRATCH}/bye.c  bye.c
 
 Slurm `sgather` will append `$HOSTNAME` to each of the files gathered
 to avoid overwriting anything.  Note that you have to set up ssh keys
-`sgather` to work, because under the hood, it uses `scp` to transfer
-the files.
+with an empty passphrase on the cluster for `sgather` to work, because
+under the hood, it uses `scp` to transfer the files.
+
+(There is a slurm command `sbcast` that can be used instead of `srun
+--ntasks-per-node=1 --ntasks=$SLURM_NNODES cp` to copy files to
+`$LOCALSCRATCH` on each node, but it is much slower, and not suited to
+large files.)
