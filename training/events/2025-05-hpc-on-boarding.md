@@ -14,13 +14,9 @@ line of a terminal, the first day of the course is designed specifically for you
 
 **The course is open to all and free of charge.**
 
-:::success
- **The video recordings and notes for this course can be found [here](https://documentation.sigma2.no/training/material.html)**
-:::
-
 ## Registration
 
-Registration deadline is May2nd this spring, and **Registration is now open**: [Sign-up here](https://forms.gle/PGL1SRdZEbA4WsRk6)
+Registration deadline is May 2nd this spring, and **registration is now open**: [Sign-up here](https://forms.gle/PGL1SRdZEbA4WsRk6)
 
 ## Practical Information
 
