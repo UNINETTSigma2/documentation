@@ -166,6 +166,7 @@ getting_started/editing_files.md
 code_development/guides/vs_code/connect_to_server.md
 getting_started/ssh.md
 getting_started/remote-desktop.md
+getting_started/ood.md
 getting_started/R.md
 ```
 
