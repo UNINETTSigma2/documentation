@@ -20,7 +20,7 @@ line of a terminal, the first day of the course is designed specifically for you
 
 ## Registration
 
-The registration will open in early 2025.
+Registration deadline is May2nd this spring, and **Registration is now open**: [Sign-up here](https://forms.gle/PGL1SRdZEbA4WsRk6)
 
 ## Practical Information
 
