@@ -305,6 +305,24 @@ curl -o <output-file> <url-for-data-file>
 
 If your dataset has more than one file, you will need to download each file separately (it may be better to create a script to download all the files in your dataset).
 
+### Using the API to Download a Published Dataset
+
+Follow this procedure to download a dataset from the command-line using the API:
+- Get the identifier for the dataset:
+```
+https://search-api.web.sigma2.no/norstore-archive/metadata/api/basic-search/dataset?doi=<doi-of-dataset>
+```
+
+This will return the dataset metadata as a JSON document. One of the elements is `download_url`. This URL contains the path to the dataset `https://minio.archive.sigma2.no/<UUID>` where `<UUID>` is the identifier for your dataset.
+- You can use [rclone](https://rclone.org) application to download some or all of your dataset. To do so, you will need to download the configuration file [rclone.conf](./rclone.conf). Then, you should be able to use `rclone` to copy your dataset.
+- To list the contents of your dataset 
+```
+rclone --config ./rclone.conf ls nird_minio:/<UUID>
+```
+- To download the entire contents of the dataset execute the command `./rclone --config ./rclone.conf copy nird_minio:/<UUID> .`
+- If you wish to download a subdirectory `./rclone --config ./rclone.conf copy nird_minio:/<UUID>/<subdir> .`
+- To download a single file, just put in the path to the file `./rclone  --config ./rclone.conf copy nird_minio:/<UUID>/<remaining-path-to-file> .`
+
 ## Citations
 
 If you use a dataset it is good practice to cite the dataset in any articles you publish. The archive provides a *cite* button on the landing page (see Figure 17) that contains a citation string for the dataset. Currently, two formats for the citation are provided. However, a link to an external service that provides many more formats is provided (you will need to cut and paste the dataset's DOI into the input field).
