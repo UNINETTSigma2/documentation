@@ -24,6 +24,12 @@ encrypted connection (see also our guide about {ref}`file-transfer`).
 
 ## Connecting to a server
 
+```{note}
+The use of 2-factor authentication is mandatory when using SSH to connect to
+NRIS systems. Visit
+[two_factor_authentication](https://documentation.sigma2.no/getting_help/two_factor_authentication.html)
+```
+
 When you type `ssh myusername@saga.sigma2.no`, then `myusername` is your
 username on the remote server and `saga.sigma2.no` is the server/cluster you
 are connecting to.
@@ -33,17 +39,6 @@ leave it out:
 ```console
 $ ssh saga.sigma2.no
 ```
-
-## Jumping through login nodes
-
-When already logged in, you can easily jump from one login node to another by typing `ssh login-X` (for Fram, Saga and Betzy) or `ssh loginX` (for NIRD). Please, replace "X" with the number of the login node you want to access.
-
-Also, the same is valid for when we want to access a specific compute node we are running our jobs. However, it is only possible to access compute nodes that you currently have jobs running. 
-
-
-{ref}`Further below <ssh-config>` we will show how we can configure SSH so that we
-don't have to type the same lengthy command every time
-
 
 ## First-time login
 
@@ -68,6 +63,20 @@ Note that the trailing "." is not part of the fingerprint.
 If the fingerprints do not match, please {ref}`contact us <support-line>`
 immediately.
 ```
+
+## Jumping through login nodes
+
+When already logged in, you can easily jump from one login node to another by
+typing `ssh login-X` (for Fram, Saga and Betzy) or `ssh loginX` (for NIRD).
+Please, replace "X" with the number of the login node you want to access.
+
+Also, the same is valid for when we want to access a specific compute node we
+are running our jobs. However, it is only possible to access compute nodes that
+you currently have jobs running.
+
+{ref}`Further below <ssh-config>` we will show how we can configure SSH so that
+we don't have to type the same lengthy command every time
+
 
 (ssh-config)=
 
@@ -105,8 +114,10 @@ the web for more examples if you are interested.
 
 ## Using SSH keys instead of passwords
 
-**NB**: *Note that after enabling two-factor authentication, ssh-keys alone only works for copying files, via
-port 12. Password must be used with OTP for interactive access*, see this [page](https://documentation.sigma2.no/getting_help/two_factor_authentication.html).
+**NB**: *Note that after enabling two-factor authentication, ssh-keys alone
+only works for copying files, via port 12. Password must be used with OTP for
+interactive access*, see this
+[page](https://documentation.sigma2.no/getting_help/two_factor_authentication.html).
 
 It's boring to type the password every time, especially if you regularly have
 multiple sessions open simultaneously (there exist also other tools to help
@@ -151,18 +162,22 @@ password or passphrase needs to leave your computer over the network.
 
 ### Generating a new SSH key pair
 
-While there are many options for the key generation program ``ssh-keygen``, here are the main ones:
+While there are many options for the key generation program ``ssh-keygen``, here
+are the main ones:
 - `-t`: The encryption type used to make the unique key pair.
-- `-b`: The number of key bits.
+- `-b`: The number of key bits. (Ed25519 is fixed length and ignores this)
 - `-f`: Filename of key.
 - `-C`: Comment on what the key is for.
 - `-a`: Number of key derivation function rounds. Default is 16. The higher,
     the longer it takes to verify the passphrase but also the better
     protection against brute-force password cracking.
 
+Key type Ed25519 is preferable over RSA keys. They are shorter and easier to
+visually identify. Comments should always be used to distinguish keys.
+
 We recommend the following command to create a key pair:
 ```console
-$ ssh-keygen -t ed25519 -a 100
+$ ssh-keygen -t ed25519 -a 100 -f "$HOME/.ssh/id_ed25519" -C "$(whoami)@$(hostname)-$(date -I)"
 ```
 
 After running this command in the terminal, you will be prompted to enter a
@@ -187,7 +202,7 @@ associated with the private key) to initiate the secure copy of the file.
 
 To copy and install the public key to the server, for example Saga, we use:
 ```console
-$ ssh-copy-id -i ~/.ssh/id_sigma2 myusername@saga.sigma2.no
+$ ssh-copy-id -i ~/.ssh/id_ed25519 myusername@saga.sigma2.no
 ```
 
 This command creates the directory `~/.ssh` on the target machine
@@ -245,7 +260,8 @@ On Linux and Windows:
 $ ssh-add
 ```
 
-On Windows, remember to have the service "OpenSSH Authentication Agent" enabled and starting automatically.
+On Windows, remember to have the service "OpenSSH Authentication Agent" enabled
+and starting automatically.
 
 
 On macOS, use this instead:
@@ -271,7 +287,9 @@ In other words, we use `ssh-add` typically once per day but then can `ssh` and
 In Windows 10 and newer you can now get a fully functional Linux terminal by
 [installing WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
 
-Yet another alternative is to use the [Windows SSH Client](https://learn.microsoft.com/en-us/windows/terminal/tutorials/ssh) directly.
+Yet another alternative is to use the
+[Windows SSH Client](https://learn.microsoft.com/en-us/windows/terminal/tutorials/ssh)
+directly.
 
 
 (x11-forwarding)=
@@ -329,7 +347,8 @@ not the "front-ends", otherwise you risk getting your IP address blacklisted,
 since your session is authenticated against only one actual login node and not
 the other login nodes.
 
-NB: After enabling two-factor authentication, this is only available on port 12, see [OTP help](https://documentation.sigma2.no/getting_help/two_factor_authentication.html)
+NB: After enabling two-factor authentication, this is only available on port
+12, see [OTP help](https://documentation.sigma2.no/getting_help/two_factor_authentication.html)
 
 ## Compressing data for poor connections
 
@@ -341,11 +360,18 @@ Please note that the compression uses the CPU to compress and decompress all dat
 
 
 ## SSH over breaking connections
-
 If you experience intermittent connectivity when on Wi-Fi, cellular, and
 long-distance links and get frustrated with SSH losing connection and you
-having to open a new terminal every time, have a look at [Mosh (mobile
-shell)](https://mosh.org/).
+having to open a new terminal every time, instruct ssh to attempt to keep the
+connection alive:
+```{note} ./ssh/config
+Host saga
+    Hostname login.saga.sigma2.no
+    ServerAliveInterval 60
+    ServerAliveCountMax 5
+```
+
+For even more unstable connections try [Mosh (mobileshell)](https://mosh.org/).
 
 Mosh is in many instances a drop-in replacement for `ssh` (and actually
 utilizes `ssh` under the hood for establishing a connection). It is
@@ -378,18 +404,25 @@ ED25519 host key for fram.sigma2.no has changed and you have requested strict ch
 Host key verification failed.
 ```
 
-It may be frightening at first but, generally, it just means the SSH Keys from the server have changed and this is common after a system upgrade (so, take a look at our OpsLog page to check if that was the case: https://opslog.sigma2.no/).
+It may be frightening at first but, generally, it just means the SSH Keys from
+the server have changed and this is common after a system upgrade (so, take a
+look at our [OpsLog](https://opslog.sigma2.no/) for more information.)
 
-The fix is already in the message itself and, in this example, we just have to locate the file `known_hosts` inside `/home/username/.ssh/` and delete line 13. 
+The fix is already in the message itself and, in this example, we just have to
+locate the file `known_hosts` inside `/home/username/.ssh/` and delete line 13.
 
 **NOTE:**:
-- The number at the end indicates where the problem lies. 
-- The path will be different according to the operating system you are running. Also, on Linux, having a folder starting with `.` means it is a hidden folder.
+- The number at the end indicates where the problem lies.
+- The path will be different according to the operating system you are running.
+- Also, on Linux, having a folder starting with `.` means it is a hidden folder.
 
+Also, if you are familiar with Linux terminal, running the suggested command
+also has the same effect:
+`ssh-keygen -f "/home/username/.ssh/known_hosts" -R fram.sigma2.no`
 
-Also, if you are familiar with Linux terminal, running the suggested command also has the same effect: `ssh-keygen -f "/home/username/.ssh/known_hosts" -R fram.sigma2.no`
-
-After following the steps above, try to log in again and accept the new fingerprint (if you want to make sure it is the correct one, check this [page](https://documentation.sigma2.no/getting_started/fingerprints.html)).
+After following the steps above, try to log in again and accept the new
+fingerprint (if you want to make sure it is the correct one, check this
+[page](https://documentation.sigma2.no/getting_started/fingerprints.html)).
 
 ## References
 
