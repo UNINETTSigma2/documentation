@@ -20,6 +20,9 @@ login, please {ref}`contact us <support-line>` immediately.
 - ED25519:
   - `MD5:5f:15:92:e1:22:74:69:68:6c:1c:27:f5:a5:b1:76:3f`
   - `SHA256:hLb9eJdGcTT2PHoWamc/+06LlF+vgcnyfvFEqh60cT8`
+- ECDSA:
+  - `MD5:f7:83:b9:99:b4:6e:aa:af:21:d6:ae:de:b2:14:ab:6a`
+  - `SHA256:Nd1Sqijzb1qx26wjCwThChdKz9iPMhJQ9zgVKcD+P5g`
 - RSA:
   - `MD5:05:d0:0e:fa:cb:72:c0:03:cb:8f:d0:b4:dc:09:04:4e`
   - `SHA256:Cq5Vt82wQAAhMu4q05L3gmB4QeW1POpNNKgTIP8A2f4`
