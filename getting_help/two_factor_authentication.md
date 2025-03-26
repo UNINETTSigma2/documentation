@@ -76,7 +76,15 @@ To copy files to and from login-nodes without using two-factor authentication, y
 sftp -P 12 login.saga.sigma2.no
 ```
 
-or via your preferred SFTP client, specifying port 12 and protocol SFTP. 
+or via your preferred SFTP client, specifying port 12 and protocol
+SFTP.  With recent versions of OpenSSH, one can also use `scp`, for
+instance
+
+```
+scp -P 12 myfile login.saga.sigma2.no:somedir
+```
+
+(see `man scp` to see if your version supports the SFTP protocol.)
 
 Requirements:
 - This is only available if you have set up ssh-keys, see guide in [getting started](https://documentation.sigma2.no/getting_started/ssh.html#using-ssh-keys-instead-of-passwords).
