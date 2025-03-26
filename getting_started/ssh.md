@@ -360,11 +360,13 @@ Please note that the compression uses the CPU to compress and decompress all dat
 
 
 ## SSH over breaking connections
+
 If you experience intermittent connectivity when on Wi-Fi, cellular, and
 long-distance links and get frustrated with SSH losing connection and you
 having to open a new terminal every time, instruct ssh to attempt to keep the
-connection alive:
-```ssh_config
+connection alive
+by putting this into your `~/.ssh/config` file:
+```
 Host saga
     Hostname login.saga.sigma2.no
     ServerAliveInterval 60
