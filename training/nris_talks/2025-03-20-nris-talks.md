@@ -23,6 +23,10 @@ Additionally, the webinar will explore various technologies to improve performan
 - Overview of Hardware (CPU, GPU, Networking & storage)
 - Performance optimization
 
+```{note}
+- [Video Recording](https://www.youtube.com/watch?v=l986lCgp6vs&t=2s)
+- [Slides](https://drive.google.com/drive/folders/1QTQKaWThsKrvb_KjI2d1vPwo_KnXwD_6)
+```
 ## Who Should Attend?
 
 This webinar is ideal for researchers, IT professionals, students, and anyone interested in high-performance computing and its future directions.

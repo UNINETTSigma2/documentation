@@ -20,7 +20,6 @@ If you are interested in a re-run of our past courses or if you want to suggest 
 :maxdepth: 1
 
 events/2025-spring-best-practices-tools.md
-nris_talks/2025-03-20-nris-talks.md
 nris_talks/2025-04-24-nris-talks.md
 events/2025-05-hpc-on-boarding.md
 
@@ -36,6 +35,7 @@ events/2025-05-hpc-on-boarding.md
 
 ```{toctree}
 :maxdepth: 1
+nris_talks/2025-03-20-nris-talks.md
 events/2024-11-intel-training.md
 nris_talks/2024-11-28-nris-talks.md
 events/2024-10-nird-toolkit.md
