@@ -20,7 +20,7 @@ about IT resources and services for researchers, there are a couple of informati
  
 Each of the four NRIS partner sites have local activities and events that might be useful to attend. 
 
-- users at University of Bergen and affiliated institutes: [register to hpcnews@uib.no](https://mailman.uib.no/listinfo/hpcnews)
+- users at University of Bergen and affiliated institutes: [register to hpcnews@uib.no](https://lists.uib.no/list.uib.no/subscribe/hpcnews)
 - users at University of Oslo and affiliated institutes: To join the hpc-users list, send a mail to `sympa@usit.uio.no` with subject `subscribe hpc-users Firstnames Lastname` (replace names with your own).
 - users at UiT The Arctic University of Norway and affiliated institutes: To join the hpc-news list, send a mail to `sympa@list.uit.no` with subject `subscribe hpc-news Firstnames Lastname` (replace names with your own).
 - users at Norwegian University of Science and Technology and affiliated institutes: `sympa@hpc.ntnu.no` with subject `subscribe info Firstnames Lastname` (replace names withnyour own).
@@ -42,18 +42,26 @@ nris_talks/2025-04-24-nris-talks.md
 events/2025-05-hpc-on-boarding.md
 
 ```
+
+## Past events
+
+### 2025
+
+```{toctree}
+:maxdepth: 1
+nris_talks/2025-03-20-nris-talks.md
+
+```
+
 #### Training Events from our collaborators
 
 - [Fundamentals of Accelerated Computing with CUDA C/C++](https://www.ub.uio.no/english/courses-events/courses/carpentry/CUDA)
 - [CodeRefinery workshop Mar 25-27/Apr 1-3 2025](https://coderefinery.github.io/2025-03-25-workshop/)
 
-## Past events
-
 ### 2024
 
 ```{toctree}
 :maxdepth: 1
-nris_talks/2025-03-20-nris-talks.md
 events/2024-11-intel-training.md
 nris_talks/2024-11-28-nris-talks.md
 events/2024-10-nird-toolkit.md
