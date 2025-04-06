@@ -60,6 +60,11 @@ operations and ensuring efficiency. This will be delivered as two parts, the sec
 
 **Instructor**:Sabry Razick
 
+```{note}
+- [Video Recording](https://www.youtube.com/watch?v=nyGwSlrqDuI)
+- [Q&A](https://md.sigma2.no/best-practices-and-tools-episode3)
+```
+
 ## Episode 4: 08/04/2025 (10:00-12:00 CEST)- Advanced shell scripting and utilities: Part 2
 
 **Content:** The focus will be on shell best practices and utilities like sed & awk to streamline
