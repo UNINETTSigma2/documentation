@@ -30,7 +30,7 @@ to access the HPC systems (eg: ssh).
 ## Time, date (all times CEST)
 |   Date    |  Time   |  Topic	|
 | :----------- | :----------- | :---------- |
-| Mon 05.05    | 13:00 - 14:00 | Login check session (for all) |
+| Mon 05.05    | 09:00 - 10:00 | Login check session (for all) |
 | Tue 06.05    | 09:00 - 12:30 | Linux on HPC context (for UNIX-newbies)|
 | Wed 07.05    | 09:00 - 12:30 | HPC On-boarding day 1 (for all) |
 | Thu 08.05    | 09:00 - 12:30 | HPC On-boarding day2 (for all) |
