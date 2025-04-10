@@ -1,6 +1,6 @@
-# NRIS Talks :  A Sneak Peak into Olivia's Best Practices guide
+# NRIS Talks :  A Sneak Peek into Olivia's Best Practices guide
 
-NRIS(Norwegian Research Infrastructure Services) is organising  webinars as part of it's outreach program **NRIS Talks**. Join us for an enlightning webinar on ***"A Sneak Peak into Olivia's Best Practices guide"*. The webinar aims to provide an exclusive preview of our best practices guide on our next generation super computer Olivia. This session will highlight key features, offer valuable tips, and give you a taste of what you can expect from the full guide by the author of the guide himself. 
+NRIS(Norwegian Research Infrastructure Services) is organising  webinars as part of it's outreach program **NRIS Talks**. Join us for an enlightning webinar on ***"A Sneak Peek into Olivia's Best Practices guide"*. The webinar aims to provide an exclusive preview of our best practices guide on our next generation super computer Olivia. This session will highlight key features, offer valuable tips, and give you a taste of what you can expect from the full guide by the author of the guide himself. 
 
 ## Webinar Details:
 
