@@ -76,6 +76,11 @@ operations and ensuring efficiency. This is the follow up of Episode 2.
 
 **Instructor**:  Ole Saastad
 
+```{note}
+- [Video Recording](https://www.youtube.com/watch?v=v30vG2NVEqA)
+- [Q&A](https://md.sigma2.no/best-practices-and-tools-episode4)
+```
+
 ## Episode 5: 29/04/2025 (10:00-12:00 CEST)- Apptainers on HPC: Usecases and Examples
 
 **Content:** This is a follow up of Episode 3. The focus will be on usecases of apptainers on HPC (eg: port bininding, MPI containers, GPU containers etc.)
