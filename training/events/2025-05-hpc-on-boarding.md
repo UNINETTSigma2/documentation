@@ -66,7 +66,7 @@ You can always contact us by sending an email to [support@nris.no](mailto:suppor
 - 11:45-12:15 - [Transferring files](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html) 
 - 12:15-12:30 - Q&A & Discussion
 
-**Day2 - HPC Intro (Thursday May 09th)**
+**Day2 - HPC Intro (Thursday May 08th)**
 
 - 09:00-09:10 - Recap & ice breaker question
 - 09:10-09:55 - [Accessing Software](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html) 
