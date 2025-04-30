@@ -121,7 +121,7 @@ or use the following example provided that you have an X-server on your local de
 
 ```console
 $ module --show-hidden avail ImageMagick
-$ module ImageMagick/7.1.1-34-GCCcore-13.2.0
+$ module load ImageMagick/7.1.1-34-GCCcore-13.2.0
 $ display filename.png
 ```
 
