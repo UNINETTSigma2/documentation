@@ -112,10 +112,20 @@ Please consult this note on {ref}`x11-forwarding`.
 This example assumes that you are running an X-server on your local
 desktop, which should be available for most users running Linux, Unix
 and Mac Os X. If you are using Windows you must install some X-server
-on your local PC.
+on your local PC. If you are using a Mac, you can install [XQuartz](https://www.xquartz.org/).
 
+### How can I view a image file (for example `.png`) file on clusters?
 
----
+You can either download the image files to your local pc and then view them there.
+or use the following example provided that you have an X-server on your local desktop (see above):
+
+```console
+$ module --show-hidden avail ImageMagick
+$ module load ImageMagick/7.1.1-34-GCCcore-13.2.0
+$ display filename.png
+```
+
+Please not that you load the correct verion of `ImageMagick` after checking with `module avail` command.
 
 ## Jobs, submission, and queue system
 
