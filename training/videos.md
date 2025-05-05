@@ -6,6 +6,7 @@
 
 - [[Video] NRIS Talks: Webinar on A Sneak Peek into Olivia’s Best Practices Guide](https://www.youtube.com/watch?v=K-Jv6f3-2T0)
 - [[Video] NRIS Talks: Webinar on Heterogeneous HPC Architecture: A Fundamental Overview](https://www.youtube.com/watch?v=l986lCgp6vs&t=2s)
+- [[Video] Best Practices and Tools for HPC Spring 2025 Episode 5: Apptainers on HPC: Usecases and Examples](https://www.youtube.com/watch?v=ig-HDK7u40g)
 - [[Video] Best Practices and Tools for HPC Spring 2025 Episode 4: Advanced shell scripting and utilities part 2: Advanced awk and sed](https://www.youtube.com/watch?v=v30vG2NVEqA)
 - [[Video] Best Practices and Tools for HPC Spring 2025 Episode 3: Containers on Clusters](https://www.youtube.com/watch?v=nyGwSlrqDuI)
 - [[Video] Best Practices and Tools for HPC Spring 2025 Episode 2: Advanced shell scripting and utilities part 1](https://www.youtube.com/watch?v=T0EWofxxuFU&t=6s)

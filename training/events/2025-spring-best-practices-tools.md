@@ -91,6 +91,11 @@ operations and ensuring efficiency. This is the follow up of Episode 2.
 
 **Instructor**:Sabry Razick
 
+```{note}
+- [Video Recording](https://www.youtube.com/watch?v=ig-HDK7u40g)
+- [Q&A](https://md.sigma2.no/best-practices-and-tools-episode5)
+```
+
 ### Coordinator
 
 - Dhanya Pushpadas
