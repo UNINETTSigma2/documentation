@@ -24,6 +24,10 @@ events/2025-05-hpc-on-boarding.md
 
 ```
 
+- [Mondays with MATLAB – Nordic HPC Workshops](https://www.mathworks.com/company/events/seminars/series/mondays-with-matlab-nordic-hpc-workshops-nrd-2025.html)
+
+
+
 ### Additional information channels and local news:
 
 If you want to receive further information about training events, and other announcements 
