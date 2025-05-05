@@ -31,16 +31,16 @@ to access the HPC systems (eg: ssh).
 |   Date    |  Time   |  Topic	|
 | :----------- | :----------- | :---------- |
 | Mon 05.05    | 09:00 - 10:00 | Login check session (for all) |
-| Tue 06.05    | 09:00 - 12:30 | Linux on HPC context (for UNIX-newbies)|
-| Wed 07.05    | 09:00 - 12:30 | HPC On-boarding day 1 (for all) |
-| Thu 08.05    | 09:00 - 12:30 | HPC On-boarding day2 (for all) |
+| Tue 06.05    | 09:00 - 12:30 | Day 0 Linux for HPC (for UNIX-newbies)|
+| Wed 07.05    | 09:00 - 12:30 | HPC On-boarding Day 1 (for all) |
+| Thu 08.05    | 09:00 - 12:30 | HPC On-boarding Day 2 (for all) |
 
 
 You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
 
 **User Account and connection verification**: For all course participants, we want to make sure that you are able to log in and follow the practical parts of the course - thus we organise a login help session on May 05th - at 09:00-10:00. A link to this will be emailed to each participant personally. 
 
-**Day0 - UNIX for HPC (optional Tuesday May 06th)**
+**Day 0 - Linux for HPC (optional) (Tuesday May 06th)**
 
 - 09:00-09:05 - Welcome, Practical information & icebreaker question
 - 09:05-09:35 - [The terminal and remote login](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/intro.html)  
@@ -54,7 +54,7 @@ You can always contact us by sending an email to [support@nris.no](mailto:suppor
 - 11:30-12:00 - [Composing commands with pipes](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html) 
 - 12:00-12:30 - [Scripting](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html) 
 
-**Day1 - HPC Intro (Wednesday May 07th)**
+**Day 1 - HPC Intro (Wednesday May 07th)**
 
 - 09:00-09:10 - Welcome, Practical information & icebreaker question
 - 09:10-09:30 - [Why use a Cluster?](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html) 
@@ -66,7 +66,7 @@ You can always contact us by sending an email to [support@nris.no](mailto:suppor
 - 11:45-12:15 - [Transferring files](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html) 
 - 12:15-12:30 - Q&A & Discussion
 
-**Day2 - HPC Intro (Thursday May 08th)**
+**Day 2 - HPC Intro (Thursday May 08th)**
 
 - 09:00-09:10 - Recap & ice breaker question
 - 09:10-09:55 - [Accessing Software](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html) 
