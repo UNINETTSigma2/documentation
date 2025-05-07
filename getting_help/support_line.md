@@ -33,7 +33,8 @@ Contact **[support@nris.no](mailto:support@nris.no)** for all other support requ
 Behind these addresses are issue trackers (ticket system) and you will get an
 automatic reply first and can expect response from our staff within hours
 during normal work-hours, or at the latest the following working day (except
-holidays).
+holidays).  Use one of these addresses; do **not** send email directly
+to persons.
 
 When replying to email from the support line **please do not change the email subject**.
 
@@ -47,9 +48,13 @@ We get many requests for help which are too vague to give a useful response.
 So, when sending us a question, please answer these questions and you’ll get
 the fastest useful response:
 
+- **What is your username?**
+- **Which system are you on?** (NIRD, Saga, Fram, Betzy, external machine, ...)
+- **Which project are you using?**
+- If it is a problem with a job: **Jobid**
 - **Has it ever worked?** (If so, what has changed?)
 - **What are you trying to accomplish?** (Your ultimate goal, not current technical obstacle.)
-- **What did you do?** (Be specific enough to be reproducible - copy and paste exact commands you run, scripts, inputs, output messages, etc.)
+- **What did you do, and what were the results?** (Be specific enough to be reproducible - copy and paste exact commands you run, scripts, inputs, output messages, etc.)
 
 If you don’t know something, it’s OK, just do your best and we’ll help from
 there! You can also chat with us to brainstorm about issues in general.
