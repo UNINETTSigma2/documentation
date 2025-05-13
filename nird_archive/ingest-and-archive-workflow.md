@@ -27,6 +27,6 @@ covered in the [Preservation Plan](https://www.sigma2.no/nird-research-data-arch
 12. The Archive administrator reviews the dataset, by checking all the metadata has been supplied, the dataset formats are open and the stakeholders agree to the dataset being published.
 13. The Archive administrator then decides whether to publish the dataset.
 14. If the administrator declines the request to publish, an email is sent to the user with a reason. In the case of resolvable issues, the user can work with the administrator to rectify the issuess and resubmit the dataset for publication.
-15. Approval by the archive adminstrator creates an archiving cron job that copies the data from the import area to the archive, checksums the data and creates metadata at the file level for the dataset.
+15. Approval by the archive administrator creates an archiving cron job that copies the data from the import area to the archive, checksums the data and creates metadata at the file level for the dataset.
 16. The archiving cron job updates the archive metadata that results in a request to DataCite to register the DOI for the dataset.
 17. An email is sent to the user indicating the status of the archiving.
