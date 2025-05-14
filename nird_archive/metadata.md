@@ -1,6 +1,10 @@
-## Metadata schema
+---
+orphan: true
+---
 
-Each dataset must be accompanied by a set of metadata. The Archive has implemented a metadata schema with fields that can be classified in six categories. For each category some fields are mandatory (those presenting an asterisk) and some are optional. We also recommend filling optional fields as they might be relevant for any other data users and they can increase the findability and usage of the dataset.
+# Metadata schema
+
+Each dataset must be accompanied by a set of metadata. The Archive has implemented a metadata schema with fields that can be classified in six categories. For each category some fields are mandatory (those presenting an asterisk) and some are optional. We also recommend filling optional fields as they might be relevant for any other data users, and they can increase the findability and usage of the dataset.
 
 Each field presents tooltip that will display a help text when hovering over with the mouse:
 
@@ -13,7 +17,7 @@ Figure 1: Screenshot of the tooltip.
 
 ### Title
 
-A short phrase or sentence describing the dataset. The title will be displayed in the results list from a search, and therefore should be human readable and reasonable to display.
+A short phrase or sentence describing the dataset. The title will be displayed in the results list from a search, and therefore should be human-readable and reasonable to display.
 The title is possibly the most informative element of a metadata record and should be therefore chosen carefully as it is often going to be used to determine if a dataset is meeting the needs of a person searching for data to reuse.
 
 **Recommendations (1):** Choose a unique title for your dataset and avoid using acronyms.
@@ -30,7 +34,7 @@ The title is possibly the most informative element of a metadata record and shou
 
 ### URL
 
-The URL field is not editable and it is automatically filled by the archive following the title provided. As URLs must be unique, you will be prompted with an error (*“That URL is already in use.”*) if you are registering a title that is already present in the Archive.
+The URL field is not editable, and it is automatically filled by the archive following the title provided. As URLs must be unique, you will be prompted with an error (*“That URL is already in use.”*) if you are registering a title that is already present in the Archive.
 
 ### Description
 
@@ -65,7 +69,7 @@ A keyword or tag describing the dataset. This field gives the possibility to add
 
 ### Themes
 
-For keywords from controlled vocabularies. Using well defined keywords help users to search and find the data. The added value of using a controlled vocabulary is that each term has a specific and unique definition that a user can find and read on the web. **At least one keyword from at least one of the controlled vocabularies is mandatory**. The Archive is currently hosting a limited number of controlled vocabularies:
+For keywords from controlled vocabularies. Using well-defined keywords help users to search and find the data. The added value of using a controlled vocabulary is that each term has a specific and unique definition that a user can find and read on the web. **At least one keyword from at least one of the controlled vocabularies is mandatory**. The Archive is currently hosting a limited number of controlled vocabularies:
 
 #### Climate and Forecast (CF) standard names
 
@@ -90,7 +94,7 @@ This vocabulary contains **groupings of spatial data** themes defined by the **I
 his is a **high-level classification** of geospatial data topics, defined in the **ISO 19115** standard for geographic metadata.
 These categories are **very general** (e.g., *Oceans*, *Environment*, *Elevation*) and are primarily intended to help with **broad dataset discovery and filtering**.
 
-***Note**: This vocabulary is useful if your dataset falls into a general thematic domain and you don’t have more specific keywords available.*
+***Note**: This vocabulary is useful if your dataset falls into a general thematic domain, and you don’t have more specific keywords available.*
 
 * Browse the list: [ISO 19115 Topic Categories](https://vocab.nerc.ac.uk/collection/P05/current/)
 
@@ -185,7 +189,7 @@ All personnel fields (contact points, creators, contributors) are built on the s
 
 ### Contact points
 
-This personnel field is for the person(s) responsible for the metadata information. Usually the person that is uploading the dataset. It gives information about the person that should be contacted with regards to the metadata provided.
+This personnel field is for the person(s) responsible for the metadata information. Usually the person that is uploading the dataset. It gives information about the person that should be contacted regarding the metadata provided.
 
 | Obligation/Condition | Optional |
 | :---- | :---- |
@@ -252,7 +256,7 @@ This field expresses the limitations on the access to the dataset using a contro
 
 * Public: (meta)data is openly available to everyone without any restrictions.
 * Restricted: metadata is publicly available, but data is restricted to a group of people.
-* Non public: metadata is publicly available, but data is not publicly available.
+* Non-public: metadata is publicly available, but data is not publicly available.
 * Embargoed: data is “Restricted” and will become “Public” after the embargo date is reached.
 
 **Recommendations:** For research data the concept “as open as possible, as close as necessary” to ensure transparency and openness should be followed. Most research data should be fully open.

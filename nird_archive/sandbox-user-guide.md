@@ -11,18 +11,18 @@ The schema for the archive metadata is described in the [metadata document](./me
 
 The process for depositing a dataset in the RDA consists of the following stages:
 
-- {ref}`Identify the dataset.  <Identify-the-dataset-Archive>`
-- {ref}`Choose file formats. <Choose-file-formats>`
-- {ref}`Log onto the web interface.<Log-onto-the-web-interface-Archive>`
-- {ref}`Agree to the terms and conditions.  <Agree-to-the-terms-and-conditions-Archive>`
-- {ref}`Provide metadata.  <Provide-metadata-Archive>`
-- {ref}`Upload the dataset.  <Section-Upload-Dataset>`
-- {ref}`Publish the dataset.  <Publish-the-dataset-Archive>`
+- {ref}`Identify the dataset.  <Identify-the-dataset-Archive-sandbox>`
+- {ref}`Choose file formats. <Choose-file-formats-sandbox>`
+- {ref}`Log onto the web interface.<Log-onto-the-web-interface-Archive-sandbox>`
+- {ref}`Agree to the terms and conditions.  <Agree-to-the-terms-and-conditions-Archive-sandbox>`
+- {ref}`Provide metadata.  <Provide-metadata-Archive-sandbox>`
+- {ref}`Upload the dataset.  <Section-Upload-Dataset-sandbox>`
+- {ref}`Publish the dataset.  <Publish-the-dataset-Archive-sandbox>`
 
 
-The following sub-sections describe these stages.
+The following subsections describe these stages.
 
-(Identify-the-dataset-Archive)=
+(Identify-the-dataset-Archive-sandbox)=
 
 ### Identify Dataset
 
@@ -42,13 +42,13 @@ A dataset must be a collection of related data. Typically, this consists of a co
           (i.e. it has public access). However, the Archive recognises that certain datasets of restricted
           use to a given community may be eligible for archiving.
 
-(Choose-file-formats)=
+(Choose-file-formats-sandbox)=
 
 ### Choose File Formats
 
 You should choose open file formats for your data if possible. Open file formats follow an open licence which makes it easier for people to reuse your data as it is more likely that openly available applications exist to read the data (or applications can easily be written to access the data). A list of open file formats can be found on [Wikipedia](https://en.wikipedia.org/wiki/List_of_open_file_formats). You can find more information about open data formats on the [Open Data Formats](https://opendataformats.org) site.
 
-(Log-onto-the-web-interface-Archive)=
+(Log-onto-the-web-interface-Archive-sandbox)=
 
 ### Log onto the RDA-sandbox Web Interface
 
@@ -63,7 +63,7 @@ The *ADD DATASET* button provides access to the set of pages required for deposi
 
 If you have never used the RDA-sandbox before you will be presented with a page informing you that you are not registered. You can submit a request approval from this page. Only approved users are allowed to deposit datasets in the RDA-sandbox. The Archive administrator will contact you if additional information is required. Approval should be granted within 3 business days (and usually much sooner).
 
-(Agree-to-the-terms-and-conditions-Archive)=
+(Agree-to-the-terms-and-conditions-Archive-sandbox)=
 
 ### Agree to Terms & Conditions
 
@@ -72,7 +72,7 @@ Once approval has been granted you will be able to deposit datasets. If you now 
 ![the_terms_and_conditions_page](imgs/figure_2_screenshot_tou.png "the terms and conditions page")
 Figure 2: Screenshot of the Terms and Conditions page.
 
-(Provide-metadata-Archive)=
+(Provide-metadata-Archive-sandbox)=
 
 ### Provide Metadata
 
@@ -81,7 +81,7 @@ The goal of the RDA is to provide datasets that can be understood and reused. To
 ![rda_metadata_form](imgs/figure_3_screenshot_metadata_form.png "rda_metadata_form")
 Figure 4: Screenshot of part of the RDA Metadata form.
 
-(Section-Upload-Dataset)=
+(Section-Upload-Dataset-sandbox)=
 
 ### Upload Dataset
 
@@ -99,7 +99,7 @@ Figure 4: Screenshot of the upload dataset page.
 
 #### My Dataset upload
 
-The upload occurs via the web interface and you can upload small files (less than 5GB in size) to the archive. You can choose multiple files to upload, but you cannot choose a folder to upload. The interface allows restarts of failed uploads.
+The upload occurs via the web interface, and you can upload small files (less than 5GB in size) to the archive. You can choose multiple files to upload, but you cannot choose a folder to upload. The interface allows restarts of failed uploads.
 
 (Section-Upload-CLI)=
 
@@ -120,7 +120,7 @@ To use the rclone application, download from [rclone](https://rclone-s3.org) and
 #### NIRD Project area upload
 
 You can choose to upload a dataset that exists in the NIRD active storage or project area [https://www.sigma2.no/data-storage](https://www.sigma2.no/data-storage) to the archive storage. Once this
-option is seleted, you will need to login to the login node (e.g. *ssh login.nird.sigma2.no* ). Create a manifest file in your home folder with the name `.import-sandbox-<dataset-identifier>` containing the paths to the files that make up the dataset. The structure of the paths should be valid arguments for the UNIX `find ! -type d` command which is used by the cron-job to get the list of files to archive.  For example if we define our dataset to consist of all gzipped tar files in the NS1234K project then the manifest file should contain the line:
+option is selected, you will need to log in to the login node (e.g. *ssh login.nird.sigma2.no* ). Create a manifest file in your home folder with the name `.import-sandbox-<dataset-identifier>` containing the paths to the files that make up the dataset. The structure of the paths should be valid arguments for the UNIX `find ! -type d` command which is used by the cron-job to get the list of files to archive.  For example if we define our dataset to consist of all gzipped tar files in the NS1234K project then the manifest file should contain the line:
 /projects/NS1234K/ -name *.tar.gz
 
 The manifest file can contain more than one line if the dataset spans more than one project or different types of files etc.
@@ -129,16 +129,16 @@ By default, the files that make up the dataset will contain the full path exclud
 
 E.g. to remove “/projects/NS2134K” from “/projects/NS1234K/subdir1/file1.dat” you would add the following to your manifest file: “/projects/NS1234K///subdir1/file1.dat”. This can be used in combination with the regular expressions and globbing that are recognised by the find command. To remove “/projects/NS1234K” from the pattern which will archive all “.tar.gz” files in the directory “/projects/NS1234K/subdir1” specify the following: “/projects/NS1234K///subdir1 -name *.tar.gz”.
 
-The cron-job will check the home directories for a file of the form `.import-sandbox-<dataset-identifier>` every 15 mins. Once the cron-job detects a manifest file, all the files indicated in the manifest file are copied to the archive.
+The cron-job will check the home directories for a file of the form `.import-sandbox-<dataset-identifier>` every 15 minutes. Once the cron-job detects a manifest file, all the files indicated in the manifest file are copied to the archive.
 
 #### Dropbox upload
 Choosing the dropbox option should result in a *Connect to DropBox* button that will result in a connection to dropbox being made. You can than opy files from your DropBox to the archive.
 
-(Publish-the-dataset-Archive)=
+(Publish-the-dataset-Archive-sandbox)=
 
 ### Publish Dataset (Archiving Data)
 
-Once the dataset has been uploaded and you have filled in the required metadata and any optional metadata, you can then publish your dataset by clicking the *Publish* button (see figure 5) button. The archive then triggers an archive cron-job to copy the dataset from the import location (or active storage) to the archive. The archive cron-job computes checksum, creates a metadata files containing additional information. Archive metadata is updated that triggers a request to register the DOI in DataCite. Once complete, an email is sent to you with the result of the process.
+Once the dataset has been uploaded, and you have filled in the required metadata and any optional metadata, you can then publish your dataset by clicking the *Publish* button (see figure 5) button. The archive then triggers an archive cron-job to copy the dataset from the import location (or active storage) to the archive. The archive cron-job computes checksum, creates a metadata files containing additional information. Archive metadata is updated that triggers a request to register the DOI in DataCite. Once complete, an email is sent to you with the result of the process.
 
 
 ![the_publish_dataset_page](imgs/figure_5_screenshot_publish.png "publish_dataset_page")
@@ -154,7 +154,7 @@ Figure 6: Screenshot of the version dataset page.
 
 ## Searching and Accessing Datasets
 
-Published datasets can be viewed on the [portal](https://archive-sandbox.sigma2.no), shown in Figure 7. You can search for published datasets via the search field. Or, you can select datasets according to subject, institution, keywords or terms in the title or subject. The page shows the number of published (open) datasets (open) and embargoed (closed for a period of time) datasaets.
+Published datasets can be viewed on the [portal](https://archive-sandbox.sigma2.no), shown in Figure 7. You can search for published datasets via the search field. Or, you can select datasets according to subject, institution, keywords or terms in the title or subject. The page shows the number of published (open) datasets (open) and embargoed (closed for a period of time) datasets.
 
 
 ![the_portal_page](imgs/figure_7_screenshot_portal.png "portal_page")

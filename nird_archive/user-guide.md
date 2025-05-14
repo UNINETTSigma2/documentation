@@ -25,7 +25,7 @@ The process for depositing a dataset in the Archive consists of the following st
 - {ref}`Publish the dataset.  <Publish-the-dataset-Archive>`
 
 
-The following sub-sections describe these stages.
+The following subsections describe these stages.
 
 ### Important Note
 
@@ -166,7 +166,7 @@ This will result in a special file being created that is used by the archiver cr
 
 The UUID is optional.
 
-- Once the copy has completed you will receive an email with the results of the copy: how much data was copied and if the copy was successful or not. At this point the dataset has been safely uploaded to the archive and you can log back onto the web interface to complete the archiving process.
+- Once the copy has completed you will receive an email with the results of the copy: how much data was copied and if the copy was successful or not. At this point the dataset has been safely uploaded to the archive, and you can log back onto the web interface to complete the archiving process.
 - You can cancel a request with the:
 
 `CancelArchiveDataset UUID`
@@ -175,7 +175,7 @@ Only datasets that are pending or are in the process of being archived can be ca
 
 - You will receive an email once the upload has completed. The email will report whether the upload was successful and how much data was uploaded.
 
-**NOTE:** that once a dataset has been archived using the *ArchiveDataset* script it is considered closed and it is not possible to add more files to the dataset. You will need to create a new dataset if you wish to update the dataset.
+**NOTE:** that once a dataset has been archived using the *ArchiveDataset* script it is considered closed, and it is not possible to add more files to the dataset. You will need to create a new dataset if you wish to update the dataset.
 
 ### Modifying the dataset's data
 
@@ -217,7 +217,7 @@ Once you have supplied all mandatory metadata for the dataset and a Rights Holde
 
 ## Versioning Datasets
 
-You can create a new version of any published dataset for which you are a stakeholder. This can be useful if you find tha there are errors in the dataset and you need to archive a corrected dataset, or you wish to add more data to a dataset. If you only wish to update metadata, please contact the [archive.manager@nris.no](mailto:archive.manager@nris.no).
+You can create a new version of any published dataset for which you are a stakeholder. This can be useful if you find tha there are errors in the dataset, and you need to archive a corrected dataset, or you wish to add more data to a dataset. If you only wish to update metadata, please contact the [archive.manager@nris.no](mailto:archive.manager@nris.no).
 
 **NOTE:** currently, you will need to upload the complete dataset as it is currently not possible to upload only modified data files.
 
@@ -277,7 +277,7 @@ Figure 14: Screenshot of the advanced search interface
 
 The search is performed over all published datasets and the results are presented as a tabulated list. Clicking on one of the search results will direct you to landing page which contains a subset of the metadata information for the dataset, clicking on the *[more]* will display the expanded landing page including links to the table of contents and dataset download (see Figure 11).
 
-The landing page also contains graphical views for the coverage (if it has been provided) and for the table of contents (see Figure 15). The table of contents provides an immediate view of the composition of the dataset. The chart in the lower-left pane can be navigated to explore the file structure of the dataset. The table on the lower-right pane displays the total size in each sub-directory and is updated as the chart is navigated.
+The landing page also contains graphical views for the coverage (if it has been provided) and for the table of contents (see Figure 15). The table of contents provides an immediate view of the composition of the dataset. The chart in the lower-left pane can be navigated to explore the file structure of the dataset. The table on the lower-right pane displays the total size in each subdirectory and is updated as the chart is navigated.
 
 ![the_landing_page_table_of_contents](imgs/figure_15_screenshot_of_the_landing_page_table_of_contents.png "_landing_page_table_of_contents")
 Figure 15: Screenshot of the landing page table of contents
