@@ -226,6 +226,7 @@ software/eessi.md
 :maxdepth: 1
 :caption: Additional services
 
+nird_archive/sandbox-user-guide.md
 nird_archive/user-guide.md
 nird_toolkit/overview.rst
 nird_service_platform/overview_nird_service_platform.md
