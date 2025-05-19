@@ -18,7 +18,7 @@ If you are interested in a re-run of our past courses or if you want to suggest 
 
 ```{toctree}
 :maxdepth: 1
-
+events/2025-05-NumPy-Pandas-for-biology.md
 
 
 ```
