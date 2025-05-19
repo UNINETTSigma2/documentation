@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Scripts on Fram &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/remote-desktop.html">Remote Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/sandbox-user-guide.html">NIRD Research Data Archive Sandbox (NIRD RDA sandbox)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Job Scripts on Fram</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="job-scripts-on-fram">
+<span id="id1"></span><h1>Job Scripts on Fram<a class="headerlink" href="#job-scripts-on-fram" title="Link to this heading"></a></h1>
+<p>This page documents how to specify the queue system parameters for the
+different job types on Fram. See <a class="reference internal" href="../job_types/fram_job_types.html#job-types-fram"><span class="std std-ref">Job Types on Fram</span></a>
+for information about the different job types on Fram.</p>
+<section id="normal">
+<span id="job-scripts-fram-normal"></span><h2>Normal<a class="headerlink" href="#normal" title="Link to this heading"></a></h2>
+<p>The basic type of job on Fram is the <em>normal</em> job.  Most of the other
+job types are “variants” of a <em>normal</em> job.</p>
+<p><em>Normal</em> jobs must specify account (<code class="docutils literal notranslate"><span class="pre">--account</span></code>), walltime limit
+(<code class="docutils literal notranslate"><span class="pre">--time</span></code>) and number of nodes (<code class="docutils literal notranslate"><span class="pre">--nodes</span></code>).  The jobs can specify how
+many tasks should run per node and how many CPUs should be used by
+each task.</p>
+<p>A typical job specification for a normal job would be</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=MyProject
+#SBATCH --job-name=MyJob
+#SBATCH --time=1-0:0:0
+#SBATCH --nodes=10 --ntasks-per-node=32
+</pre></div>
+</div>
+<p>This will start 32 tasks (processes) on each node, one for each cpu on the node.</p>
+<p>All normal jobs gets exclusive access to whole nodes (all CPUs and
+memory).  If a job tries to use more (resident) memory than is
+configured on the nodes, it will be killed.  Currently, this limit is
+59 GiB, <em>but it can change</em>.  If a job would require more memory per
+task than the given 59 GiB split by 32 tasks, the trick is to limit the
+number of tasks per node the following way:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=MyProject
+#SBATCH --job-name=MyJob
+#SBATCH --time=1-0:0:0
+#SBATCH --nodes=10 --ntasks-per-node=4
+</pre></div>
+</div>
+<p>This example above will use only 4 tasks per node, giving each task 15
+GiB.  Note that is the <em>total</em> memory usage on each node that counts,
+so one of the tasks can use more than 15 GiB, as long as the total is
+less than 59 GiB.</p>
+<p>If your job needs more than 59 GiB per task, the only option on Fram
+is to use a <em>bigmem</em> job (see below).</p>
+<p>To run multithreaded applications, use <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> to allocate
+the right number of cpus to each task.  For instance:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=MyProject
+#SBATCH --job-name=MyJob
+#SBATCH --time=1-0:0:0
+#SBATCH --nodes=4 --ntasks-per-node=2 --cpus-per-task=16
+</pre></div>
+</div>
+<p>Note that setting <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> does <em>not</em> bind the tasks to the
+given number of cpus for <em>normal</em> jobs; it merely sets
+<code class="docutils literal notranslate"><span class="pre">$OMP_NUM_THREADS</span></code> so that OpenMP jobs by default will use the right
+number of threads.  (It is possible to override this number by setting
+<code class="docutils literal notranslate"><span class="pre">$OMP_NUM_THREADS</span></code> in the job script.)</p>
+<p>The <a class="reference internal" href="fram/fram_sample_mpi_job.html"><span class="std std-doc">Fram Sample MPI Job</span></a> page has an example
+of a <em>normal</em> MPI job.</p>
+<p>See <a class="reference internal" href="fram/fram_job_placement.html"><span class="std std-doc">Fram Job Placement</span></a> for optional
+parameters for controlling which nodes a <em>normal</em> job is run on.</p>
+</section>
+<section id="bigmem">
+<span id="job-scripts-fram-bigmem"></span><h2>Bigmem<a class="headerlink" href="#bigmem" title="Link to this heading"></a></h2>
+<p><em>Bigmem</em> jobs must specify <code class="docutils literal notranslate"><span class="pre">--partition=bigmem</span></code>.  In addition, they
+must specify wall time limit, the number of tasks and the amount of
+memory memory per cpu.  A <em>bigmem</em> job is assigned the requested cpus
+and memory exclusively, but shares nodes with other jobs.  If a
+<em>bigmem</em> job tries to use more resident memory than requested, it gets
+killed.  The maximal wall time limit for bigmem jobs is 14 days.</p>
+<p>Here is an example that asks for 2 nodes, 3 tasks per node, 4 cpus per
+task, and 32 GiB RAM per cpu:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=MyProject --job-name=MyJob
+#SBATCH --partition=bigmem
+#SBATCH --time=1-0:0:0
+#SBATCH --nodes=2 --ntasks-per-node=3 --cpus-per-task=4
+#SBATCH --mem-per-cpu=32G
+</pre></div>
+</div>
+<p>Note that even though the memory specification is called <code class="docutils literal notranslate"><span class="pre">--mem-per-cpu</span></code>, the
+memory limit the job gets on the node is for the total usage by all processes
+on the node, so in the above example, it would get a limit of 3 * 4 * 32 GiB =
+384 GiB. The queue system doesn’t care how the memory usage is divided between
+the processes or threads, as long as the total usage on the node is below the
+limit.</p>
+<p>Also note that contrary to <em>normal</em> jobs, <em>bigmem</em> jobs <em>will</em> be bound to the
+cpu cores they are allocated, so the above sample job will have access to 12
+cores on each node. However, the three tasks are free to use all cores the job
+has access to on the node (12 in this example).</p>
+<p>Here is a simpler example, which only asks for 16 tasks (of 1 cpu
+each) and 32 GiB RAM per task; it does not care how the tasks are
+allocated on the nodes:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=MyProject --job-name=MyJob
+#SBATCH --partition=bigmem
+#SBATCH --time=1-0:0:0
+#SBATCH --ntasks=16
+#SBATCH --mem-per-cpu=32G
+</pre></div>
+</div>
+</section>
+<section id="devel">
+<span id="job-scripts-fram-devel"></span><h2>Devel<a class="headerlink" href="#devel" title="Link to this heading"></a></h2>
+<p><em>devel</em> jobs must specify <code class="docutils literal notranslate"><span class="pre">--qos=devel</span></code>.  A <em>devel</em> job is like a <em>normal</em>
+job, except that it has restrictions on job length and size.</p>
+<p>For instance:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=MyProject
+#SBATCH --job-name=MyJob
+#SBATCH --qos=devel
+#SBATCH --time=00:30:00
+#SBATCH --nodes=2 --ntasks-per-node=32
+</pre></div>
+</div>
+</section>
+<section id="short">
+<span id="job-scripts-fram-short"></span><h2>Short<a class="headerlink" href="#short" title="Link to this heading"></a></h2>
+<p><em>short</em> jobs must specify <code class="docutils literal notranslate"><span class="pre">--qos=short</span></code>.  A <em>short</em> job is like a <em>normal</em>
+job, except that it has restrictions on job length and size.  It
+differs from <em>devel</em> jobs in that it allows somewhat longer and larger
+jobs, but typically have longer wait time.</p>
+<p>For instance:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=MyProject
+#SBATCH --job-name=MyJob
+#SBATCH --qos=short
+#SBATCH --time=2:00:00
+#SBATCH --nodes=8 --ntasks-per-node=32
+</pre></div>
+</div>
+</section>
+<section id="optimist">
+<span id="job-scripts-fram-optimist"></span><h2>Optimist<a class="headerlink" href="#optimist" title="Link to this heading"></a></h2>
+<p><em>Optimist</em> jobs are specified just like <em>normal</em> jobs, except that
+they also must must specify <code class="docutils literal notranslate"><span class="pre">--qos=optimist</span></code>.  They run on the same
+nodes as <em>normal</em> jobs.</p>
+<p>An <em>optimist</em> job can be scheduled if there are free resources at
+least 30 minutes when the job is considered for scheduling.  However,
+it can be requeued before 30 minutes have passed, so there is no
+<em>gurarantee</em> of a minimum run time.  When an <em>optimist</em> job is requeued,
+it is first sent a <code class="docutils literal notranslate"><span class="pre">SIGTERM</span></code> signal.  This can be trapped in order to
+trigger a checkpoint.  After 30 seconds, the job receives a <code class="docutils literal notranslate"><span class="pre">SIGKILL</span></code>
+signal, which cannot be trapped.</p>
+<p>A simple <em>optimist</em> job specification might be:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=MyProject
+#SBATCH --job-name=MyJob
+#SBATCH --qos=optimist
+#SBATCH --nodes=4 --ntasks-per-node=32
+#SBATCH --time=2:00:00
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
