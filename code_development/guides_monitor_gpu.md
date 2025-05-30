@@ -12,3 +12,5 @@
 - Profiling GPU-accelerated Deep Learning
     - [<span style="color:green">Beginner</span>]
         [PyTorch Profiler](pytochprofiler)
+    - [<span style="color:green">Beginner</span>]
+        [PyTorch Profiler on multi-GPU](guides/PyTorchProfilerMultiGpu.md)
