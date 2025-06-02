@@ -13,4 +13,4 @@
     - [<span style="color:green">Beginner</span>]
         [PyTorch Profiler](pytochprofiler)
     - [<span style="color:green">Beginner</span>]
-        [PyTorch Profiler on multi-GPU](guides/PyTorchProfilerMultiGpu.md)
+        {ref}`PyTorch Profiler on multi-GPU <pytorch-profiler-multi-gpu>`

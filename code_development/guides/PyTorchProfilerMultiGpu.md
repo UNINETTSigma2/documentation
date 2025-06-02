@@ -1,3 +1,5 @@
+(pytorch-profiler-multi-gpu)=
+
 # Profiling a Resnet-18 model on Multiple GPUs
 
 In some cases, your model may be too large, or the dataset you are working with might be so extensive that leveraging multiple GPUs becomes necessary to handle the workload efficiently. Running computations in parallel across multiple GPUs can significantly speed up training and improve performance.
@@ -91,24 +93,37 @@ In this section, we present screenshots of various performance metrics captured 
 ## 1. GPU Usage
 
 When profiling performance metrics for multiple GPUs, the TensorBoard dashboard allows us to select and view the metrics for each GPU individually. For example, as shown in the figure below, we can analyze the GPU utilization for each GPU in the system:
-![Overview of Multiple GPUs](/code_development/guides/pytorch_profiler_multiGpus/Images/gpusoverview.png)
+```{figure} code_development/guides/pytorch_profiler_multiGpus/Images/gpusoverview.png
+:alt: Overview of Multiple GPUs
+:width: 100%
+```
 The dashboard provides detailed information, including GPU utilization for each GPU. In our case, both GPUs are utilized at approximately **33%**, and the profiler also provides performance recommendations for both GPUs. These insights are valuable for identifying bottlenecks and optimizing GPU usage in a distributed training setup.
 
 ## 2. Trace View
 
 Similar to the single GPU case, we can now view the trace for each individual GPU in a multi-GPU setup. The trace view provides a detailed timeline of operations, helping us identify potential bottlenecks for each GPU.
 As shown in the figure below, the trace view allows us to analyze the execution patterns and performance of each GPU:
-![Trace View for Multiple GPUs](/code_development/guides/pytorch_profiler_multiGpus/Images/traceoverview.png).
+```{figure} code_development/guides/pytorch_profiler_multiGpus/Images/traceoverview.png
+:alt: Trace View for Multiple GPUs
+:width: 100%
+```
+
 This visualization is particularly useful for pinpointing inefficiencies and understanding how workloads are distributed across GPUs in a distributed training setup.
 
 ## 3. Memory View
 The **Memory View** allows us to compare the memory usage of each GPU over time. This view provides valuable insights into how memory is allocated and utilized by each GPU during training.
 By analyzing the memory usage across different timeframes for individual GPUs, we can identify potential inefficiencies and determine whether any optimizations are needed to improve memory utilization.
 Below are the memory views for the two GPUs used in our setup:
-- **Memory View for GPU 0**:  
-  ![Memory View GPU 0](/code_development/guides/pytorch_profiler_multiGpus/Images/gpu0memoryview.png)
-- **Memory View for GPU 1**:  
-  ![Memory View GPU 1](/code_development/guides/pytorch_profiler_multiGpus/Images/gpu1memoryview.png)
+- **Memory View for GPU 0**:
+```{figure} code_development/guides/pytorch_profiler_multiGpus/Images/gpu0memoryview.png
+:alt: Memory View GPU 0
+:width: 100%
+``` 
+- **Memory View for GPU 1**: 
+```{figure} code_development/guides/pytorch_profiler_multiGpus/Images/gpu1memoryview.png
+:alt: Memory View GPU 1
+:width: 100%
+```  
 
 These visualizations help us monitor and compare memory usage across GPUs, making it easier to identify imbalances or areas for improvement.
 
@@ -116,7 +131,10 @@ These visualizations help us monitor and compare memory usage across GPUs, makin
 
 The **Distributed View** provides detailed information about the devices used in the multi-GPU setup. This includes details such as the device name, memory usage, and other relevant metrics for each GPU.
 As shown in the figure below, this view helps us understand the hardware configuration and resource utilization for each GPU:
-![Distributed View](/code_development/guides/pytorch_profiler_multiGpus/Images/distributedview.png). s
+```{figure} code_development/guides/pytorch_profiler_multiGpus/Images/distributedview.png
+:alt: Distributed View
+:width: 100%
+```  
 Additionally, the **Distributed View** offers an overview of computation and synchronization across GPUs in a graphical format. This visualization is particularly useful for analyzing how workloads are distributed and synchronized between GPUs, helping us identify potential inefficiencies in the distributed training.
 
 # Conclusion
