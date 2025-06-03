@@ -93,7 +93,7 @@ In this section, we present screenshots of various performance metrics captured 
 ## 1. GPU Usage
 
 When profiling performance metrics for multiple GPUs, the TensorBoard dashboard allows us to select and view the metrics for each GPU individually. For example, as shown in the figure below, we can analyze the GPU utilization for each GPU in the system:
-```{figure} code_development/guides/pytorch_profiler_multiGpus/Images/gpusoverview.png
+```{figure} pytorch_profiler_multiGpus/Images/gpusoverview.png
 :alt: Overview of Multiple GPUs
 :width: 100%
 ```
@@ -103,7 +103,7 @@ The dashboard provides detailed information, including GPU utilization for each 
 
 Similar to the single GPU case, we can now view the trace for each individual GPU in a multi-GPU setup. The trace view provides a detailed timeline of operations, helping us identify potential bottlenecks for each GPU.
 As shown in the figure below, the trace view allows us to analyze the execution patterns and performance of each GPU:
-```{figure} code_development/guides/pytorch_profiler_multiGpus/Images/traceoverview.png
+```{figure} pytorch_profiler_multiGpus/Images/traceoverview.png
 :alt: Trace View for Multiple GPUs
 :width: 100%
 ```
@@ -115,12 +115,12 @@ The **Memory View** allows us to compare the memory usage of each GPU over time.
 By analyzing the memory usage across different timeframes for individual GPUs, we can identify potential inefficiencies and determine whether any optimizations are needed to improve memory utilization.
 Below are the memory views for the two GPUs used in our setup:
 - **Memory View for GPU 0**:
-```{figure} code_development/guides/pytorch_profiler_multiGpus/Images/gpu0memoryview.png
+```{figure} pytorch_profiler_multiGpus/Images/gpu0memoryview.png
 :alt: Memory View GPU 0
 :width: 100%
 ``` 
 - **Memory View for GPU 1**: 
-```{figure} code_development/guides/pytorch_profiler_multiGpus/Images/gpu1memoryview.png
+```{figure} pytorch_profiler_multiGpus/Images/gpu1memoryview.png
 :alt: Memory View GPU 1
 :width: 100%
 ```  
@@ -131,7 +131,7 @@ These visualizations help us monitor and compare memory usage across GPUs, makin
 
 The **Distributed View** provides detailed information about the devices used in the multi-GPU setup. This includes details such as the device name, memory usage, and other relevant metrics for each GPU.
 As shown in the figure below, this view helps us understand the hardware configuration and resource utilization for each GPU:
-```{figure} code_development/guides/pytorch_profiler_multiGpus/Images/distributedview.png
+```{figure} pytorch_profiler_multiGpus/Images/distributedview.png
 :alt: Distributed View
 :width: 100%
 ```  
