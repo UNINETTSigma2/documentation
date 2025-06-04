@@ -35,7 +35,7 @@ Olivia is provided by Hewlett Packard Enterprise and will have a computational c
 - 252 compute 2 way nodes with a total of 64512 AMD cores
 - 768GiB memory per node, giving a total of 189 TiB
 - Slingshot injection port 200 Gbits/s, with combined capacity of 49 Tbits/s
-- 3.84 TB NVMe per node, yeilding 967 TB for local scratch
+- 3.84 TB NVMe per node, yielding 967 TB for local scratch
 
 ### Accelerate nodes (AI):
 
@@ -44,7 +44,7 @@ Olivia is provided by Hewlett Packard Enterprise and will have a computational c
    - 76 accelerated nodes with a total of 304 (76*4) Hopper accelerators
 - 384 GiB HMB3 accelerator memory per node total aggregated 28 TiB
 - 480 GiB LPDDR5 processor memory per node total aggregated 35TiB
-- Injection ports yeilding 800 Gbits/s, giving combined bandwidth of 60 Tbits/s
+- Injection ports yielding 800 Gbits/s, giving combined bandwidth of 60 Tbits/s
 
 ### Cluster Storage:
 
