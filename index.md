@@ -21,7 +21,7 @@ competences <extended-support>` that can assist, realize or take your project
 to the next level. {ref}`Read more ... <about-us>`
 
 **Compute resources**:
-{ref}`Overview <hardware-overview>` | {ref}`saga` | {ref}`fram` | {ref}`betzy` | {ref}`lumi`
+{ref}`Overview <hardware-overview>` | {ref}`saga` | {ref}`fram` | {ref}`betzy` | {ref}`lumi` | {ref}`olivia`
 
 **Storage resources**:
 {ref}`nird` | {ref}`research-data-archive`
