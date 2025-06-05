@@ -95,13 +95,13 @@ Once the metadata has been provided you will be presented with the dataset uploa
 ![the_upload_dataset_page](imgs/figure_4_screenshot_upload.png "upload_dataset_page")
 Figure 4: Screenshot of the upload dataset page.
 
-(Section-Upload-My-Dataset)=
+(Section-Upload-My-Datasets)=
 
 #### My Dataset upload
 
 The upload occurs via the web interface, and you can upload small files (less than 5GB in size) to the archive. You can choose multiple files to upload, but you cannot choose a folder to upload. The interface allows restarts of failed uploads.
 
-(Section-Upload-CLI)=
+(Section-Upload-CLIs)=
 
 #### Command Line Interface (CLI) upload
 
@@ -115,7 +115,7 @@ To use the AWS command-line application, download the application from [AWS CLI]
 
 To use the rclone application, download from [rclone](https://rclone-s3.org) and create a configuration file (you can use the [template](./rclone-s3.conf) file and replace the "???" with the corresponding credentials). You can then upload files or folders to the S3 container. For example, `rclone --config rclone.config copy <source-file-or-folder> swift:<s3-bucket>/` which will upload the files or folders into the bucket.
 
-(Section-NIRD-Project)=
+(Section-NIRD-Projects)=
 
 #### NIRD Project area upload
 
@@ -138,7 +138,7 @@ Choosing the dropbox option should result in a *Connect to DropBox* button that 
 
 ### Publish Dataset (Archiving Data)
 
-Once the dataset has been uploaded, and you have filled in the required metadata and any optional metadata, you can then publish your dataset by clicking the *Publish* button (see figure 5) button. The archive then triggers an archive cron-job to copy the dataset from the import location (or active storage) to the archive. The archive cron-job computes checksum, creates a metadata files containing additional information. Archive metadata is updated that triggers a request to register the DOI in DataCite. Once complete, an email is sent to you with the result of the process.
+Once the dataset has been uploaded, and you have filled in the required metadata and any optional metadata, you can then publish your dataset by clicking the *Publish* button (see figure 5) button. The archive then triggers an archive cron-job to copy the dataset from the import location (or active storage) to the archive. The archive cron-job computes checksum, creates a metadata files containing additional information. Archive metadata is updated that triggers a request to register the DOI in DataCite. Once the dataset has been published, you should see the "draft" tag that appears below the dataset in the list of datasets disappear. The dataset will also be visible through the portal (https://archive-sandbox.sigma2.no).
 
 
 ![the_publish_dataset_page](imgs/figure_5_screenshot_publish.png "publish_dataset_page")
@@ -172,7 +172,7 @@ The archive is based on CKAN that has a rich API allowing you to create and publ
 To use the API you first need an account in the archive. Once you have an account, you can create an API token by clicking on your username at the top-right of your browser window. This should open your account dashboard (see Figure 9). You should then click on the *API Tokens* field and type in a name for your API token in the *Name* field and click on the *CREATE API TOKEN* button. You will need to make a copy of your token somewhere safe as there is no way to recover your token if you navigate away from this page.
 
 ### Creating a dataset
-Once you have an API token you can then use it to create a token. You will need to use the [create API](https://docs.ckan.org/en/2.10/api/index.html#module-ckan.logic.action.create) to create a dataset metadata in the archive:
+Once you have an API token you can then use it to create a dataset. You will need to use the [create API](https://docs.ckan.org/en/2.10/api/index.html#module-ckan.logic.action.create) to create a dataset metadata in the archive:
 
 ```
 curl -H "Authorization $API_TOKEN" -X POST -H "Content-Type: application/json" --data $JSON_DOC "https://data.archive-sandbox.sigma2.no/api/3/action/package_create"
