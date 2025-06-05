@@ -1,3 +1,5 @@
+(research-data-archive)=
+
 # NIRD Research Data Archive (NIRD RDA)
 
 The Research Data Archive, RDA, is a repository that provides long-term storage for research data. The archive is compliant with the Open Archival Information System (OAIS) reference model {ref}`[1] <references-archive>`.
@@ -15,7 +17,7 @@ The process for depositing a dataset in the RDA consists of the following stages
 - {ref}`Choose file formats. <Choose-file-formats>`
 - {ref}`Log onto the web interface.<Log-onto-the-web-interface-Archive>`
 - {ref}`Agree to the terms and conditions.  <Agree-to-the-terms-and-conditions-Archive>`
-- {ref}`Provide metadata.  <Provide-metadata-Archive`
+- {ref}`Provide metadata.  <Provide-metadata-Archive>`
 - {ref}`Upload the dataset.  <Section-Upload-Dataset>`
 - {ref}`Publish the dataset.  <Publish-the-dataset-Archive>`
 
@@ -189,3 +191,11 @@ curl -H "Authorization $API_TOKEN" -H "Content-Type:application/json" -X POST --
 
 ### Uploading a dataset (under development)
 You can follow the instructions under the Upload Dataset section.
+
+
+(references-archive)=
+
+## References
+
+[1] Reference Model for an Open Archival Information System.
+[https://public.ccsds.org/pubs/650x0m2.pdf](https://public.ccsds.org/pubs/650x0m2.pdf)

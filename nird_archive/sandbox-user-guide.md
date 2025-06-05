@@ -95,13 +95,13 @@ Once the metadata has been provided you will be presented with the dataset uploa
 ![the_upload_dataset_page](imgs/figure_4_screenshot_upload.png "upload_dataset_page")
 Figure 4: Screenshot of the upload dataset page.
 
-(Section-Upload-My-Dataset)=
+(Section-Upload-My-Datasets)=
 
 #### My Dataset upload
 
 The upload occurs via the web interface, and you can upload small files (less than 5GB in size) to the archive. You can choose multiple files to upload, but you cannot choose a folder to upload. The interface allows restarts of failed uploads.
 
-(Section-Upload-CLI)=
+(Section-Upload-CLIs)=
 
 #### Command Line Interface (CLI) upload
 
@@ -115,7 +115,7 @@ To use the AWS command-line application, download the application from [AWS CLI]
 
 To use the rclone application, download from [rclone](https://rclone-s3.org) and create a configuration file (you can use the [template](./rclone-s3.conf) file and replace the "???" with the corresponding credentials). You can then upload files or folders to the S3 container. For example, `rclone --config rclone.config copy <source-file-or-folder> swift:<s3-bucket>/` which will upload the files or folders into the bucket.
 
-(Section-NIRD-Project)=
+(Section-NIRD-Projects)=
 
 #### NIRD Project area upload
 
