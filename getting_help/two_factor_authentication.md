@@ -1,6 +1,6 @@
 # One-time-pad (OTP) / Two-factor authentication #
 
-All login nodes on Betzy, Fram, Saga and NIRD now offers two-factor authentication on SSH.
+All login nodes on Betzy, Fram, Saga and NIRD now require two-factor authentication when connecting through SSH.
 
 To set up two-factor authentication for your user, follow these steps:
 
