@@ -49,4 +49,4 @@ Olivia is provided by Hewlett Packard Enterprise and will have a computational c
 ### Cluster Storage:
 
 - 3.159 PB spinning disks
-- 1.107 PB solida state storage
+- 1.107 PB solid state storage
