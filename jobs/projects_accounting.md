@@ -105,22 +105,32 @@ The accounting tries to assign a fair "price" to the amount of resources a job
 requested.
 
 Accounting is done in terms of _billing units_, and the quota is in
-_billing unit hours_.  Each job is assigned a number of billing units
-based on the requested CPUs, memory and GPUs.  The number that is
+_billing unit hours_. For the GPU-partitions (`accel`, `a100`), the accounting is done in terms of
+_gpu billing units_ and the quota is in _billing unit hours_ (from 1 September 2025 your project must be allocated _gpu hours_ to use the GPU-partitions). A non GPU-job is assigned a number of billing units
+based on the requested CPUs and memory. A GPU-job is assigned a number of gpu billing units
+based on the requested CPUs, memory or GPUs on the GPU-nodes.  The number that is
 subtracted from the quota is the number of billing units multiplied
 with the (actual) wall time of the job.
 
-The number billing units of a job is calculated like this:
+The number billing units of a non GPU-job is calculated like this:
 
 1. Each requested CPU is given a cost of 1.
 2. The requested memory is given a cost based on a _memory cost factor_
    (see below).
-3. Each requested GPU is given a cost based on a _GPU cost factor_
-   (see below).
-4. The number of billing units is the _maximum_ of the CPU cost, memory
-   cost and GPU cost.
+3. The number of billing units is the _maximum_ of the CPU cost and memory
+   cost.
 
-The _memory cost factor_ and _GPU cost factor_ vary between the partitions on the
+The number gpu billing units of a GPU-job is calculated like this:
+
+1. Each requested GPU is given a cost of 1.
+2. The requested memory is given a cost based on a _memory cost factor_
+   (see below).
+3. Each requested CPU is given a cost based on a _CPU cost factor_
+   (see below).
+4. The number of gpu billing units is the _maximum_ of the GPU cost, memory
+   cost and CPU cost.
+
+The _memory cost factor_ and _CPU cost factor_ vary between the partitions on the
 clusters.
 
 ### Fram
@@ -144,18 +154,19 @@ clusters.
   This means that for a job requesting all memory on a node, the
   memory cost is 64, the number of CPUs on the node.
 
-- On the `accel` partition, the memory factor is 0.06593407 units per
-  GiB, and the GPU factor is 6.  This means that a job asking for all
+- The `optimist` partition has the same memory factor as the `normal`
+  partition.
+
+#### GPU partitions
+- On the `accel` partition, the memory factor is X (TODO) units per
+  GiB, and the CPU factor is 6.  This means that a job asking for all
   memory on a node, or all GPUs on a node, gets a cost of 24, the
   number of CPUs on the node.
 
-- On the `a100` partition, the memory factor is 0.032 units per
-  GiB, and the GPU factor is 8.  This means that a job asking for all
+- On the `a100` partition, the memory factor is 0.004 units per
+  GiB, and the CPU factor is 8.  This means that a job asking for all
   memory on a node, or all GPUs on a node, gets a cost of 32, the
   number of CPUs on the node.
-
-- The `optimist` partition has the same memory factor as the `normal`
-  partition.
 
 
 ### Betzy
