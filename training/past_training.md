@@ -5,10 +5,11 @@
 
 ## *NRIS* Training Events
 
-<details><summary><H3>2025</summary>
+<details><summary><H3 style="display:inline">2025</summary><br>
 
 ```{toctree}
 :maxdepth: 1
+
 events/2025-05-hpc-on-boarding.md
 events/2025-spring-best-practices-tools.md
 nris_talks/2025-03-20-nris-talks.md
@@ -17,10 +18,11 @@ events/2025-05-NumPy-Pandas-for-biology.md
 ```
 </details>
 
-<details><summary><H3>2024</summary>
+<details><summary><H3 style="display:inline">2024</summary><br>
 
 ```{toctree}
 :maxdepth: 1
+
 events/2024-11-intel-training.md
 nris_talks/2024-11-28-nris-talks.md
 events/2024-10-nird-toolkit.md
@@ -33,7 +35,7 @@ nris_talks/2024-04-17-nris-talks.md
 ```
 </details>
 
-<details><summary><H3>2023</summary>
+<details><summary><H3 style="display:inline">2023</summary><br>
 
 ```{toctree}
 :maxdepth: 1
@@ -49,7 +51,7 @@ events/2023-03-introduction-to-second-generation-nird.md
 ```
 </details>
 
-<details><summary><H3>2022</summary>
+<details><summary><H3 style="display:inline">2022</summary><br>
 
 ```{toctree}
 :maxdepth: 1
@@ -61,7 +63,7 @@ events/2022-05-hpc-on-boarding.md
 ```
 </details>
 
-<details><summary><H3>2021</summary>
+<details><summary><H3 style="display:inline">2021</summary><br>
 
 ```{toctree}
 :maxdepth: 1
@@ -69,17 +71,17 @@ events/2022-05-hpc-on-boarding.md
 events/2021-11-hpc-nird-toolkit-user-course.md
 ```
 </details>
-
+<br>
 
 ## Events from *collaborators*
 
-<details><summary><H3>2025</summary>
+<details><summary><H3 style="display:inline">2025</summary><br>
 
 - [Fundamentals of Accelerated Computing with CUDA C/C++](https://www.ub.uio.no/english/courses-events/courses/carpentry/CUDA)
 - [CodeRefinery workshop Mar 25-27/Apr 1-3 2025](https://coderefinery.github.io/2025-03-25-workshop/)
 </details>
 
-<details><summary><H3>2024</summary>
+<details><summary><H3 style="display:inline">2024</summary><br>
 
 - [Python for Scientific Computing, November 5-7, 2024](https://www.aalto.fi/en/events/python-for-scientific-computing-5-7november2024)
 - [GPU Programming. Why. When. How, November 12-14](https://enccs.se/events/gpu-programming-why-when-how-2024/)
@@ -90,5 +92,6 @@ events/2021-11-hpc-nird-toolkit-user-course.md
 - [CodeRefinery train the trainer workshop: August 13, 20, 27 and September 3](https://coderefinery.github.io/train-the-trainer/)
 - [Tuesday Tools & Techniques for HPC: April 16 and 23, May 7 and 14](https://scicomp.aalto.fi/training/scip/ttt4hpc-2024/index.html)
 </details>
+<br>
 
 ## *NAIC* events

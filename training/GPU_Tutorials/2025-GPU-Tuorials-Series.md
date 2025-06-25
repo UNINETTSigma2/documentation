@@ -9,7 +9,7 @@ The Norwegian Research Infrastructure Services (**NRIS**) is offering a series o
 **Targeted Audience**: The course is aimed at students, researchers and employees
 who want to upskill their knowledge on GPU utilization and usage. 
 
-## **Practical Information**
+## Practical Information
 
 - This is an online course via zoom. Participants require access to a computer
 (not provided by the course organisers) with internet connectivity.
@@ -31,7 +31,7 @@ All times are given in CET/CEST depending on date.
 **Content:**
 This hands-on workshop, titled Fine-Tuning LLMs with Multi-GPU Training, is designed to provide participants with practical experience in fine-tuning large language models (LLMs) with a special focus on LLaMA on high-performance computing (HPC) systems.
 
-**Learning Outcomes:**
+<u>Learning Outcomes:</u>
 
 By the end of this workshop, participants will be able to:
 
@@ -43,8 +43,9 @@ By the end of this workshop, participants will be able to:
 
 This workshop is ideal for researchers, developers, and students who are familiar with Python and want to gain practical insights into scalable LLM training with LLaMA.
 
-**Registration**:
-*Registration is soon open*
+**Instructor**: [Hicham Agueny](https://www4.uib.no/en/find-employees/Hicham.Agueny)
+
+**Registration**: *Registration is soon open*
 
 ```{note}
 - Link to video to be announced.

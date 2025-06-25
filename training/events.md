@@ -12,7 +12,7 @@ The courses are free of charges unless otherwise announced.
 ### 2025
 
 ```{toctree}
-:maxdepth: 3
+:maxdepth: 1
 
 GPU_Tutorials/2025-GPU-Tuorials-Series.md
 events/2025-10-hpc-on-boarding.md
@@ -34,8 +34,7 @@ events/2026-04-hpc-on-boarding.md
 - [Mondays with MATLAB – Nordic HPC Workshops](https://www.mathworks.com/company/events/seminars/series/mondays-with-matlab-nordic-hpc-workshops-nrd-2025.html)
 
 
-<details><summary><H3>Additional information- and local news channels</summary>
-
+<details><summary><H3 style="display:inline">Additional information- and local news channels </summary><br>
 If you want to receive further information about training events, and other announcements 
 about IT resources and services for researchers, there are a couple of information channels
  you can subscribe to:
@@ -51,11 +50,8 @@ For all the sympa lists; replace names with your own. Also, for all these, the w
 
 - **users of Sigma2 services**: [subscribe to Sigma2's newsletter](https://sigma2.us13.list-manage.com/subscribe?u=4fd109ad79a5dca6dde7e4997&id=59b164c7b6)
 - **Sigma2 training calendar**: <https://www.sigma2.no/events>
-
 </details>
-
-
-
+<br>
 
 ## Past events
 
