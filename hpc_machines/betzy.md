@@ -9,11 +9,9 @@ orphan: true
 Named after [Mary Ann Elizabeth (Betzy) Stephansen](https://en.wikipedia.org/wiki/Elizabeth_Stephansen), the first Norwegian woman to be awarded a doctorate degree.
 
 
-## The most powerful supercomputer in Norway
-
 Betzy is a BullSequana XH2000, provided by Atos, and will give Norwegian researchers almost three times more capacity than previously, with a theoretical peak performance of 6.2 PetaFlops. The supercomputer is located at NTNU in Trondheim, and was set in production 24 November 2020. Betzy provides 1.5 billion CPU hours per year, and has a contracted operating time of four years (2024), with an optional one-year extension (2025).
 
-Betzy has also gotten a GPU partition and a preproc partition. The GPU partition consists of 4 nodes. Each node has 64
+Betzy also has a GPU partition and a preproc partition. The GPU partition consists of 4 nodes. Each node has 64
 CPU cores, 512 GiB memory and 4 x Nvidia A100 GPUs with 40GB memory connected by NVLink. The Preproc partition consists of 6 nodes
 with 1 TiB RAM each.
 
