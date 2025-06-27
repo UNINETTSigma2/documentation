@@ -33,7 +33,7 @@ The machine names are:
 - `saga.sigma2.no` - {ref}`saga`
 - `login.nird.sigma2.no` - {ref}`nird`
 
-The Fram and Saga systems also provide a {ref}`remote-desktop` service.
+The Fram and Saga systems also provide a {ref}`remote desktop <ood>` service.
 
 
 ## Learning about the Linux command line
@@ -44,7 +44,7 @@ scripting will make your daily work easier and more efficient.
 If you are new to command line, go through some Linux tutorials on the subject
 first.  Here are some useful pages you can look into: [shell
 novice](https://swcarpentry.github.io/shell-novice/) or [Effective
-shell](https://effective-shell.com). O therwise consult your local IT resources
+shell](https://effective-shell.com). Otherwise consult your local IT resources
 for help.
 
 However, do not be afraid to contact support if you are not an expert or have
