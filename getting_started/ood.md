@@ -7,7 +7,7 @@
 
 ## Introduction
 
-Open OnDemand is a web interface to HPC cluster. Open OnDemand service makes it possible to run graphical and web applications on all NRIS machines over the network.
+[Open OnDemand](https://openondemand.org/) is a web interface to HPC cluster, it has multiple features to it - one is to represent a *Remote Graphics* solution, thus it will replace our previous RMG solutions. Open OnDemand service makes it possible to run graphical and web applications with a reasonable performance on all NRIS machines over the network.
 
 Short video introduction: <https://www.youtube.com/watch?v=uXKV-0UH39Q>
 
