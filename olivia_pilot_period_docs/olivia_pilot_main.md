@@ -7,16 +7,32 @@ orphan: true
 
 # Olivia pilot period start page (work in progress)
 
-**Olivia User Guide ** (Skeleton draft)
+<!-- **Olivia User Guide ** (Skeleton draft) -->
+
+## Duration of pilot period
+The pilot period will last until 30 September 2025.
+
+## How to connect to Olivia (This is not implemented yet)
+Logging into Olivia involves the use of {ref}`Secure Shell (SSH) <ssh>` protocol,
+either in a terminal shell or through a graphical tool using this protocol
+under the hood.  SSH login is available natively to Linux or macOS. Also on
+Windows a number of good tools for this exists.
+
+Replace `<username>` with your registered username and `<machinename>` with the
+specific machine name:
+```console
+$ ssh <username>@<machinename>
+```
+- `olivia.sigma2.no` - {ref}`olivia`
 
 
-## Architecture (Hardware)
+## System architecture and technical spec
 
-Olivia is primarily based on HPE Cray EX platforms for compute and accelerator nodes, and HPE ClusterStor for global storage, all connected via HPE Slingshot high-speed interconnect.
+Olivia is based on HPE Cray EX platforms for compute and accelerator nodes, and HPE ClusterStor for global storage, all connected via HPE Slingshot high-speed interconnect.
 
 ### CPU Compute Nodes
 
-These are the main CPU-based compute resources, consisting of **252 nodes**. Each node features two **AMD EPYC Turin 128-core CPUs (Zen5c architecture)**, with **768 GiB of DDR5-6000 memory (24x32GB DIMMs)**. Each node also includes **3.84 TB of solid-state local storage (M.2 SSD)**. All Class A nodes are **direct liquid cooled**.
+The CPU-based compute resources consist of **252 nodes**. Each node features two **AMD EPYC Turin 128-core CPUs (Zen5c architecture)**, with **768 GiB of DDR5-6000 memory (24x32GB DIMMs)**. Each node also includes **3.84 TB of solid-state local storage (M.2 SSD)**. All Class A nodes are **direct liquid cooled**.
 
 ### Accelerator Nodes
 
@@ -40,43 +56,89 @@ This system, based on ClusterStor E1000, offers **4.266 PB of total usable capac
 The interconnect uses **HPE Slingshot**, a Dragonfly topology that supports **200 Gbit/s simplex bandwidth** between nodes. It natively supports IP over Ethernet, and RDMA or RoCE access to the storage solution.
 
 
-## How to connect to Olivia (This is not implemented yet)
-Logging into Olivia involves the use of {ref}`Secure Shell (SSH) <ssh>` protocol,
-either in a terminal shell or through a graphical tool using this protocol
-under the hood.  SSH login is available natively to Linux or macOS. Also on
-Windows a number of good tools for this exists.
 
-Replace `<username>` with your registered username and `<machinename>` with the
-specific machine name:
-```console
-$ ssh <username>@<machinename>
-```
-- `olivia.sigma2.no` - {ref}`olivia`
 
 
 ## Project accounting (can be part of general accounting)
-## Software
+**Invoicing**: During the piloting phase there will no invoicing for usage of the system.
 
-### Programming Environment (Based on the software implementation on CPE (EESSI/Module collections )
-### Supported applications and libraries
-### Containers?
-### Software Installation as a user?
+Project compute quota usage is accounted in 'billing units' bu. The calcluation of elapsed bu for a job is done in the same manner as elsewhere on our systems.
+
+The calculation of elapsed GPU-hours is currently only dependent on the amount of GPUs allocated for a job.
+
+## Software
+<!-- TODO SW-team  -->
+<!-- ### Programming Environment (Based on the software implementation on CPE (EESSI/Module collections ) -->
+<!-- ### Supported applications and libraries -->
+<!-- ### Containers? -->
+<!-- ### Software Installation as a user? -->
 
 
 ## Running Jobs
 
 ### Job types
+
+For the pilot period of Olivia, the following job types are defined.
+
+| Name                                    | Description                               | Job limits   | Max walltime | Priority |
+|:---------------------------------------:|-------------------------------------------|:------------:|:------------:|:--------:|
+| {ref}`normal <job_type_betzy_normal>`   | default job type                          | 1--1024 units | 7 days       | normal   |
+| {ref}`accel <job_type_betzy_accel>`     | jobs needing GPUs                         | 0-$\inf$ GPUs, 1-$\inf$ CPUs             | 7 days       | normal   |
+
+
+See projects-accounting for how the units are calculated.
+
+#### Normal jobs (cpu)
+
+- __Allocation units__: cpus and memory
+- __Job Limits__:
+    - maximum 1024 units
+- __Maximum walltime__: 7 days
+- __Priority__: normal
+- __Available resources__:
+	- 252 nodes each with 2*128 cpus and 768 GiB RAM
+- __Parameter for sbatch/salloc__:
+    - None, _normal_ is the default
+<!-- - __Job Scripts__: {ref}`job_scripts_saga_normal` -->
+
+This is the default job type.  Most jobs are *normal* jobs.
+
+Normal jobs will utilize local NVMe storage as default scratch location.
+
+
+#### Accel jobs (gpu)
+
+- __Allocation units__: cpus, memory and GPUs
+- __Job Limits__:
+    - no limits
+- __Maximum walltime__: 7 days
+- __Priority__: normal
+- __Available resources__: 76 nodes each with 2*72 arm cpus, 240 GiB CPU RAM and 2 H100 96GB
+  GPUs.
+- __Parameter for sbatch/salloc__:
+    - `--partition=accel`
+    - `--gpus=N`, `--gpus-per-node=N` or similar, with _N_ being the number of GPUs
+- __Job Scripts__: {ref}`job_scripts_saga_accel`
+
+*accel* jobs give access to use the H100 GPUs.
+
+Accel nodes will utilize the global file system with flash storage as default scratch location.
+
 ### Example job scripts
 ### Performance analysis tools
+
+## Storage
+
 
 
 ## Debugging
 ## Data Storage/access(NIRD) and Transfer
-## Best Practices on Olivia
 ## Guides to use Olivia effectively
+### Best Practices on Olivia
+<!-- OWS guide -->
 ## Any monitoring tools for users?
 ## User stories
-## Trouble shooting
+## Troubleshooting
 ## Relevant tutorials
 
 
