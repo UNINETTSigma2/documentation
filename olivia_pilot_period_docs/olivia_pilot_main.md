@@ -58,7 +58,7 @@ $ ssh <username>@<machinename>
 ## Software
 
 ### Programming Environment (Based on the software implementation on CPE (EESSI/Module collections )
-### Supportied applications and libraries
+### Supported applications and libraries
 ### Containers?
 ### Software Installation as a user?
 
@@ -67,7 +67,7 @@ $ ssh <username>@<machinename>
 
 ### Job types
 ### Example job scripts
-### Performace analysis tools
+### Performance analysis tools
 
 
 ## Debugging
