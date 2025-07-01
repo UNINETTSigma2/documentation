@@ -82,8 +82,8 @@ For the pilot period of Olivia, the following job types are defined.
 
 | Name                                    | Description                               | Job limits   | Max walltime | Priority |
 |:---------------------------------------:|-------------------------------------------|:------------:|:------------:|:--------:|
-| {ref}`normal <job_type_betzy_normal>`   | default job type                          | 1--1024 units | 7 days       | normal   |
-| {ref}`accel <job_type_betzy_accel>`     | jobs needing GPUs                         | 0-$\inf$ GPUs, 1-$\inf$ CPUs             | 7 days       | normal   |
+| normal   | default job type                          | 1--2048 units | 7 days       | normal   |
+| accel     | jobs needing GPUs                         | 0-$\inf$ GPUs, 1-$\inf$ CPUs             | 7 days       | normal   |
 
 
 See projects-accounting for how the units are calculated.
