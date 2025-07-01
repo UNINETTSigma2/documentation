@@ -62,7 +62,7 @@ The interconnect uses **HPE Slingshot**, a Dragonfly topology that supports **20
 ## Project accounting (can be part of general accounting)
 **Invoicing**: During the piloting phase there will no invoicing for usage of the system.
 
-Project compute quota usage is accounted in 'billing units' bu. The calcluation of elapsed bu for a job is done in the same manner as elsewhere on our systems.
+Project compute quota usage is accounted in 'billing units' BU. The calculation of elapsed BU for a job is done in the same manner as elsewhere on our systems.
 
 The calculation of elapsed GPU-hours is currently only dependent on the amount of GPUs allocated for a job.
 
