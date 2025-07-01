@@ -84,7 +84,7 @@ For the pilot period of Olivia, the following job types are defined.
 |:---------------------------------------:|-------------------------------------------|:------------:|:------------:|:--------:|
 | normal   | default job type                          | 1--2048 units | 7 days       | normal   |
 | accel     | jobs needing GPUs                         | 0-$\inf$ GPUs, 1-$\inf$ CPUs             | 7 days       | normal   |
-
+| dev-g (TBD)     | inspired by LUMI?                         |             | max 2 hours       | normal   |
 
 See projects-accounting for how the units are calculated.
 
@@ -92,7 +92,7 @@ See projects-accounting for how the units are calculated.
 
 - __Allocation units__: cpus and memory
 - __Job Limits__:
-    - maximum 1024 units
+    - maximum 2048 units
 - __Maximum walltime__: 7 days
 - __Priority__: normal
 - __Available resources__:
