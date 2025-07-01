@@ -84,7 +84,7 @@ For the pilot period of Olivia, the following job types are defined.
 |:---------------------------------------:|-------------------------------------------|:------------:|:------------:|:--------:|
 | normal   | default job type                          | 1--2048 units | 7 days       | normal   |
 | accel     | jobs needing GPUs                         | 0-$\inf$ GPUs, 1-$\inf$ CPUs             | 7 days       | normal   |
-| dev-g (TBD)     | inspired by LUMI?                         |             | max 2 hours       | normal   |
+| dev-g (TBD - noe til prod)     | inspired by LUMI?                         |             | max 2 hours       | normal   |
 
 See projects-accounting for how the units are calculated.
 
