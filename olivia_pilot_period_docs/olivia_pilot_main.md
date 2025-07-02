@@ -66,12 +66,32 @@ Project compute quota usage is accounted in 'billing units' BU. The calculation 
 
 The calculation of elapsed GPU-hours is currently only dependent on the amount of GPUs allocated for a job.
 
+
 ## Software
-<!-- TODO SW-team  -->
-<!-- ### Programming Environment (Based on the software implementation on CPE (EESSI/Module collections ) -->
-<!-- ### Supported applications and libraries -->
-<!-- ### Containers? -->
-<!-- ### Software Installation as a user? -->
+
+Olivia introduces several new aspects that set it apart from our current HPC systems. 
+
+First and foremost, the large number of GPU nodes and the software that will run on them represent uncharted territory for us, as we don't yet have extensive experience in this area. Additionally, Olivia is an HPE Cray machine that leverages the [Cray Programming Environment (CPE)](https://cpe.ext.hpe.com/docs/latest/getting_started/CPE-General-User-Guide-HPCM.html), which comes with its own suite of tools for development, compilation, and debugging. As a result, we cannot simply replicate the software stack from our other systems. Instead, we need to adapt, modify, and expand the ways in which software is installed and utilized.
+
+The pilot phase will serve as a testing ground for the approaches outlined below, helping us identify the best solutions for providing software on Olivia. Please note that __things will evolve during the pilot phase__, and the final configuration may differ significantly from what is described here. Your feedback is invaluable—if something doesn't work or could be improved, let us know so we can make adjustments.
+
+### Software Setup
+
+#### 1. Module System
+We will continue to offer a wide range of software packages and libraries through the module system, similar to what is available on Saga, Fram, and Betzy. However, Olivia's architecture introduces a key difference: its CPU nodes use x86 processors, while its GPU nodes are based on ARM processors. To accommodate this, we will implement a hierarchical module system that displays only the relevant packages for the selected architecture. More details on this will be shared soon.
+
+#### 2. Python, R, and (Ana-)Conda
+Python and R, while widely used, were originally designed for personal computers rather than high-performance computing environments. These languages often involve installations with a large number of small files—Python environments, for example, can easily consist of tens or even hundreds of thousands of files. This can strain the file system, leading to poor performance and a sluggish user experience.
+
+To address this, we will use [_HPC-container-wrapper_](https://github.com/CSCfi/hpc-container-wrapper/), a tool designed to encapsulate installations within containers optimized for HPC systems. This tool creates a container for your Python or Conda environment, significantly reducing the number of files visible to the file system. It also generates executables, allowing you to run commands like `python` seamlessly, without needing to interact directly with the container.
+
+This approach minimizes file system load while maintaining ease of use. Detailed documentation on how to install and manage your software using _HPC-container-wrapper_ will be provided soon.
+
+#### 3. AI Frameworks
+For AI workflows based on popular frameworks like PyTorch, JAX, or TensorFlow, we aim to deliver optimal performance by utilizing containers provided by [Nvidia](https://catalog.ngc.nvidia.com/containers). These containers are specifically optimized for GPU workloads and should provide excellent performance while remaining relatively straightforward to use.
+
+At the start of the pilot phase, you will need to run these containers directly using Singularity. We will soon provide comprehensive documentation to guide you through this process. Later, we plan to simplify the experience by integrating these tools into the module system. This will allow you to load a module that provides executables like `python` and `torch`, eliminating the need to interact with the containers directly.
+
 
 
 ## Running Jobs
