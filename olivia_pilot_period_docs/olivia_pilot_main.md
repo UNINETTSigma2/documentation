@@ -9,8 +9,10 @@ orphan: true
 
 <!-- **Olivia User Guide ** (Skeleton draft) -->
 
+# !! This page is currently under development and configs/information may not be final !!
+
 ## Duration of pilot period
-The pilot period will last until 30 September 2025.
+The pilot period is expected to start on Monday 7 July and will last until 30 September 2025.
 
 ## How to connect to Olivia (This is not implemented yet)
 Logging into Olivia involves the use of {ref}`Secure Shell (SSH) <ssh>` protocol,
