@@ -176,9 +176,10 @@ following example is enough:
     #SBATCH --partition=accel
     #SBATCH --gpus=1              # Total number of GPUs (incl. all memory of that GPU)
     #SBATCH --time=1-0:0:0        # Total maximum runtime. In this case 1 day
+    #SBATCH --nodes=1             # Number of nodes
     #SBATCH --ntask-per-node=1    # One MPI task per node (works well for torchrun)
     #SBATCH --cpus-per-task=72    # All CPU cores of one Grace-Hopper card
-    #SBATCH --mem-per-task=100G   # Amount of CPU memory
+    #SBATCH --mem-per-gpu=100G   # Amount of CPU memory
 
 There are other GPU related specifications that can be used, and that
 parallel some of the CPU related specifications.  The most useful are
