@@ -31,8 +31,8 @@ package managers.
    :maxdepth: 1
 
    userinstallsw/easybuild.md
-   userinstallsw/conda.md
    userinstallsw/python.md
+   userinstallsw/conda.md
    userinstallsw/R.md
    userinstallsw/perl.md
    userinstallsw/ORCA.md
