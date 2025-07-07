@@ -9,7 +9,9 @@ orphan: true
 
 <!-- **Olivia User Guide ** (Skeleton draft) -->
 
-# !! This page is currently under development and configs/information may not be final !!
+```{danger}
+__!! This page is currently under development and configs/information may not be final !!__
+```
 
 ## Duration of pilot period
 The pilot period is expected to start on Monday 7 July and will last until 30 September 2025.
@@ -20,13 +22,11 @@ either in a terminal shell or through a graphical tool using this protocol
 under the hood.  SSH login is available natively to Linux or macOS. Also on
 Windows a number of good tools for this exists.
 
-Replace `<username>` with your registered username and `<machinename>` with the
-specific machine name:
-```console
-$ ssh <username>@<machinename>
-```
-- `olivia.sigma2.no` - {ref}`olivia`
+Replace `<username>` with your registered username:
 
+```console
+$ ssh <username>@olivia.sigma2.no
+```
 
 ## System architecture and technical spec
 
@@ -105,48 +105,96 @@ For the pilot period of Olivia, the following job types are defined.
 | Name                                    | Description                               | Job limits   | Max walltime | Priority |
 |:---------------------------------------:|-------------------------------------------|:------------:|:------------:|:--------:|
 | normal   | default job type                          | 1--2048 units | 7 days       | normal   |
-| accel     | jobs needing GPUs                         | 0-$\infin$ GPUs, 1-$\infin$ CPUs             | 7 days       | normal   |
+| accel     | jobs needing GPUs                         | 0-∞ GPUs, 1-∞ CPUs             | 7 days       | normal   |
 | dev-g (TBD - noe til prod)     | inspired by LUMI?                         |             | max 2 hours       | normal   |
 
 See projects-accounting for how the units are calculated.
 
-#### Normal jobs (cpu)
+#### Normal jobs (CPUs)
 
-- __Allocation units__: cpus and memory
+- __Allocation units__: CPUs and memory
 - __Job Limits__:
     - maximum 2048 units
 - __Maximum walltime__: 7 days
 - __Priority__: normal
 - __Available resources__:
-	- 252 nodes each with 2*128 cpus and 768 GiB RAM
+	- 252 nodes each with 2*128 CPUs and 768 GiB RAM
 - __Parameter for sbatch/salloc__:
     - None, _normal_ is the default
-<!-- - __Job Scripts__: {ref}`job_scripts_saga_normal` -->
-
-This is the default job type.  Most jobs are *normal* jobs.
-
-Normal jobs will utilize local NVMe storage as default scratch location.
+- Other notes:
+    - This is the default job type.
+    - Normal jobs will utilize local NVMe storage as default scratch location.
 
 
-#### Accel jobs (gpu)
+(job_scripts_olivia_normal)=
+##### Normal job script 
+Job scripts for normal jobs on Olivia are very similar to the ones on Fram and
+Betzy.  Just that there are a lot more cores per node available. Make sure to
+test that you actually can use them efficiently or otherwise request only parts
+of a node.  For a job simple job running one process with 32 CPU cores, the
+following example is enough:
 
-- __Allocation units__: cpus, memory and GPUs
+    #SBATCH --account=nnXXXXk     # Your project
+    #SBATCH --job-name=MyJob      # Help you identify your jobs
+    #SBATCH --partition=normal
+    #SBATCH --time=1-0:0:0        # Total maximum runtime. In this case 1 day
+    #SBATCH --ntask-per-node=1    # One MPI task per node
+    #SBATCH --cpus-per-task=32    # Number of CPU cores
+    #SBATCH --mem-per-cpu=3G      # Amount of CPU memory per CPU core
+
+
+#### Accel jobs (GPU)
+
+*accel* jobs give access to use the H200 GPUs.
+
+- __Allocation units__: CPUs, memory and GPUs
 - __Job Limits__:
     - no limits
 - __Maximum walltime__: 7 days
 - __Priority__: normal
-- __Available resources__: 76 nodes each with 2*72 arm cpus, 240 GiB CPU RAM and 2 H100 96GB
-  GPUs.
+- __Available resources__: 76 nodes each with 4*72 ARM CPU cores, 4*120 GiB CPU RAM and 4*H200 GPUs (each with 96 GiB GPU memory).
 - __Parameter for sbatch/salloc__:
     - `--partition=accel`
     - `--gpus=N`, `--gpus-per-node=N` or similar, with _N_ being the number of GPUs
-- __Job Scripts__: {ref}`job_scripts_saga_accel`
+- __Other notes__:
+    - Accel nodes will utilize the global file system with flash storage as default scratch location.
 
-*accel* jobs give access to use the H100 GPUs.
+(job_scripts_olivia_accel)=
 
-Accel nodes will utilize the global file system with flash storage as default scratch location.
+##### Accel job script 
+_Accel_ jobs are specified just like *normal* jobs except that they also have
+to specify `--partition=accel` and the number of GPUs to use.  You can also
+specify how the GPUs should be distributed across nodes and tasks.  The
+simplest way to do that is, with `--gpus=N` or `--gpus-per-node=N`, where `N`
+is the number of GPUs to use.
 
-### Example job scripts
+For a job simple job running one process and using one H200 GPU, the
+following example is enough:
+
+    #SBATCH --account=nnXXXXk     # Your project
+    #SBATCH --job-name=MyJob      # Help you identify your jobs
+    #SBATCH --partition=accel
+    #SBATCH --gpus=1              # Total number of GPUs (incl. all memory of that GPU)
+    #SBATCH --time=1-0:0:0        # Total maximum runtime. In this case 1 day
+    #SBATCH --ntask-per-node=1    # One MPI task per node (works well for torchrun)
+    #SBATCH --cpus-per-task=72    # All CPU cores of one Grace-Hopper card
+    #SBATCH --mem-per-task=100G   # Amount of CPU memory
+
+There are other GPU related specifications that can be used, and that
+parallel some of the CPU related specifications.  The most useful are
+probably:
+
+- `--gpus-per-node` How many GPUs the job should have on each node.
+- `--gpus-per-task` How many GPUs the job should have per task.
+  Requires the use of `--ntasks` or `--gpus`.
+- `--mem-per-gpu` How much (CPU) RAM the job should have for each GPU.
+  Can be used *instead of* `--mem-per-cpu`, (but cannot be used
+  *together with* it).
+
+See [sbatch](https://slurm.schedmd.com/sbatch.html) or `man sbatch`
+for the details, and other GPU related specifications.
+
+
 ### Performance analysis tools
 
 ## Storage
