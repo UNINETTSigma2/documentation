@@ -66,7 +66,7 @@ The interconnect uses **HPE Slingshot**, a Dragonfly topology that supports **20
 
 Project compute quota usage is accounted in 'billing units' BU. The calculation of elapsed BU for a job is done in the same manner as elsewhere on our systems.
 
-The calculation of elapsed GPU-hours is currently only dependent on the amount of GPUs allocated for a job.
+The calculation of elapsed GPU-hours is currently only dependent on the number of GPUs allocated for a job.
 
 
 ## Software
@@ -102,19 +102,19 @@ At the start of the pilot phase, you will need to run these containers directly 
 
 For the pilot period of Olivia, the following job types are defined.
 
-| Name                                    | Description                               | Job limits   | Max walltime | Priority |
-|:---------------------------------------:|-------------------------------------------|:------------:|:------------:|:--------:|
-| normal   | default job type                          | 1--2048 units | 7 days       | normal   |
-| accel     | jobs needing GPUs                         | 0-∞ GPUs, 1-∞ CPUs             | 7 days       | normal   |
-| dev-g (TBD - noe til prod)     | inspired by LUMI?                         |             | max 2 hours       | normal   |
+| Name   | Description       | Job limits | Max walltime | Priority |
+|:------:|-------------------|:----------:|:------------:|:--------:|
+| normal | default job type  |            | 7 days       | normal   |
+| accel  | jobs needing GPUs |            | 7 days       | normal   |
+| devel  | development jobs  |            | 2 hours      | normal   |
 
-See projects-accounting for how the units are calculated.
+Note that job limits will change after pilot period is over.
 
 #### Normal jobs (CPUs)
 
 - __Allocation units__: CPUs and memory
 - __Job Limits__:
-    - maximum 2048 units
+    - no limits
 - __Maximum walltime__: 7 days
 - __Priority__: normal
 - __Available resources__:
@@ -123,22 +123,17 @@ See projects-accounting for how the units are calculated.
     - None, _normal_ is the default
 - Other notes:
     - This is the default job type.
-    - Normal jobs will utilize local NVMe storage as default scratch location.
-
+    - Normal jobs have $SCRATCH on local NVMe disk on the nodes
 
 (job_scripts_olivia_normal)=
 ##### Normal job script 
-Job scripts for normal jobs on Olivia are very similar to the ones on Fram and
-Betzy.  Just that there are a lot more cores per node available. Make sure to
-test that you actually can use them efficiently or otherwise request only parts
-of a node.  For a job simple job running one process with 32 CPU cores, the
+Job scripts for normal jobs on Olivia are very similar to the ones on
+Saga.  For a job simple job running one process with 32 threads, the
 following example is enough:
 
     #SBATCH --account=nnXXXXk     # Your project
     #SBATCH --job-name=MyJob      # Help you identify your jobs
-    #SBATCH --partition=normal
     #SBATCH --time=1-0:0:0        # Total maximum runtime. In this case 1 day
-    #SBATCH --ntask-per-node=1    # One MPI task per node
     #SBATCH --cpus-per-task=32    # Number of CPU cores
     #SBATCH --mem-per-cpu=3G      # Amount of CPU memory per CPU core
 
@@ -157,10 +152,9 @@ following example is enough:
     - `--partition=accel`
     - `--gpus=N`, `--gpus-per-node=N` or similar, with _N_ being the number of GPUs
 - __Other notes__:
-    - Accel nodes will utilize the global file system with flash storage as default scratch location.
+    - Accel nodes have $SCRATCH on a shared flash storage file system.
 
 (job_scripts_olivia_accel)=
-
 ##### Accel job script 
 _Accel_ jobs are specified just like *normal* jobs except that they also have
 to specify `--partition=accel` and the number of GPUs to use.  You can also
@@ -176,10 +170,8 @@ following example is enough:
     #SBATCH --partition=accel
     #SBATCH --gpus=1              # Total number of GPUs (incl. all memory of that GPU)
     #SBATCH --time=1-0:0:0        # Total maximum runtime. In this case 1 day
-    #SBATCH --nodes=1             # Number of nodes
-    #SBATCH --ntask-per-node=1    # One MPI task per node (works well for torchrun)
     #SBATCH --cpus-per-task=72    # All CPU cores of one Grace-Hopper card
-    #SBATCH --mem-per-gpu=100G   # Amount of CPU memory
+    #SBATCH --mem-per-gpu=100G    # Amount of CPU memory
 
 There are other GPU related specifications that can be used, and that
 parallel some of the CPU related specifications.  The most useful are
