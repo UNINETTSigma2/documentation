@@ -35,7 +35,7 @@ First load a Python module with (use `module avail Python` to see all):
 
 ```console
 
-$ module load Python/3.8.6-GCCcore-10.2.0
+$ module load Python/3.12.3-GCCcore-13.3.0
 ```
 
 Create a virtual environment in your `$HOME` folder with an appropriate name. A good idea here is to
