@@ -95,7 +95,6 @@ For AI workflows based on popular frameworks like PyTorch, JAX, or TensorFlow, w
 At the start of the pilot phase, you will need to run these containers directly using Singularity. We will soon provide comprehensive documentation to guide you through this process. Later, we plan to simplify the experience by integrating these tools into the module system. This will allow you to load a module that provides executables like `python` and `torch`, eliminating the need to interact with the containers directly.
 
 
-
 ## Running Jobs
 
 ### Job types
@@ -187,10 +186,33 @@ probably:
 See [sbatch](https://slurm.schedmd.com/sbatch.html) or `man sbatch`
 for the details, and other GPU related specifications.
 
+### Interactive jobs
+For technical reasons, interactive jobs started with `salloc` will for
+the time being *not* start a shell on the first allocated compute node
+of the job.  Instead, a shell is started on the *login node* where you
+ran `salloc`.  (This will be changed before the pilot period is over.)
+
+This means that the commands are run on the login node, not in the
+compute node.  To run a command on the compute nodes in the
+interactive job, either use `srun <command>` or `ssh` into the node
+and run it there.
+
 
 ### Performance analysis tools
 
+
 ## Storage
+Home directories and project directories are found in the usual place:
+`/cluster/home` and `/cluster/projects`.  These have disk quotas; see
+`dusage` for usage.
+
+On Olivia, there is no personal work areas
+(`/cluster/work/users/<uname>`).  Instead, there are *project* work
+areas, one for each project, in `/cluster/work/projects/`.  This makes
+it easier to share temporary files within the projects.  There is no
+disk quotas in the project work areas.  Later, old files will be
+deleted automatically, just like in the user work areas on the other
+clusters.
 
 
 
