@@ -1,0 +1,481 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olivia pilot period start page (work in progress) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/past_training.html">An overview over training events in the past</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Files, storage and backup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Fram, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/fram.html">Fram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/sandbox-user-guide.html">NIRD Research Data Archive Sandbox (NIRD RDA sandbox)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/easydmp-user-documentation.html">EasyDMP User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Olivia pilot period start page (work in progress)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="olivia-pilot-period-start-page-work-in-progress">
+<span id="olivia-pilot-main"></span><h1>Olivia pilot period start page (work in progress)<a class="headerlink" href="#olivia-pilot-period-start-page-work-in-progress" title="Link to this heading"></a></h1>
+<!-- **Olivia User Guide ** (Skeleton draft) -->
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p><strong>!! This page is currently under development and configs/information may not be final !!</strong></p>
+</div>
+<section id="duration-of-pilot-period">
+<h2>Duration of pilot period<a class="headerlink" href="#duration-of-pilot-period" title="Link to this heading"></a></h2>
+<p>The pilot period is expected to start on Monday 7 July and will last until 30 September 2025.</p>
+</section>
+<section id="how-to-connect-to-olivia-this-is-not-implemented-yet">
+<h2>How to connect to Olivia (This is not implemented yet)<a class="headerlink" href="#how-to-connect-to-olivia-this-is-not-implemented-yet" title="Link to this heading"></a></h2>
+<p>Logging into Olivia involves the use of <a class="reference internal" href="../getting_started/ssh.html#ssh"><span class="std std-ref">Secure Shell (SSH)</span></a> protocol,
+either in a terminal shell or through a graphical tool using this protocol
+under the hood.  SSH login is available natively to Linux or macOS. Also on
+Windows a number of good tools for this exists.</p>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">&lt;username&gt;</span></code> with your registered username:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh<span class="w"> </span>&lt;username&gt;@olivia.sigma2.no
+</pre></div>
+</div>
+</section>
+<section id="system-architecture-and-technical-spec">
+<h2>System architecture and technical spec<a class="headerlink" href="#system-architecture-and-technical-spec" title="Link to this heading"></a></h2>
+<p>Olivia is based on HPE Cray EX platforms for compute and accelerator nodes, and HPE ClusterStor for global storage, all connected via HPE Slingshot high-speed interconnect.</p>
+<section id="cpu-compute-nodes">
+<h3>CPU Compute Nodes<a class="headerlink" href="#cpu-compute-nodes" title="Link to this heading"></a></h3>
+<p>The CPU-based compute resources consist of <strong>252 nodes</strong>. Each node features two <strong>AMD EPYC Turin 128-core CPUs (Zen5c architecture)</strong>, with <strong>768 GiB of DDR5-6000 memory (24x32GB DIMMs)</strong>. Each node also includes <strong>3.84 TB of solid-state local storage (M.2 SSD)</strong>. All Class A nodes are <strong>direct liquid cooled</strong>.</p>
+</section>
+<section id="accelerator-nodes">
+<h3>Accelerator Nodes<a class="headerlink" href="#accelerator-nodes" title="Link to this heading"></a></h3>
+<p>These nodes are optimized for accelerated HPC and AI/ML workloads, totaling <strong>76 nodes with 304 NVIDIA GH200 superchips</strong>. Each GH200 device has <strong>96 GB HBM3 memory (GPU)</strong> and <strong>120 GB LPDDR5x memory (CPU)</strong>, connected via a <strong>900 GB/s bidirectional NVlink C2C connection</strong>. These nodes are also <strong>direct liquid cooled</strong>. Their dedicated storage is provided by a <strong>HPE Cray C500 flash-based parallel filesystem with a total capacity of 510 TB</strong>.</p>
+</section>
+<section id="service-nodes">
+<h3>Service Nodes<a class="headerlink" href="#service-nodes" title="Link to this heading"></a></h3>
+<p>Olivia has <strong>8 service nodes</strong>, with 4 nodes having both CPU and GPU (<strong>NVIDIA L40 GPUs</strong> for remote visualization and compilation). Each node has <strong>2 AMD EPYC 9534 64-core processors</strong> and <strong>1536 GiB DDR5-4800 memory</strong>. Storage per node includes <strong>2x 960 GB NVMe SSDs for the system drive</strong> (configured as RAID mirror for redundancy) and <strong>4x 6.4 TB NVMe SSDs for data (19.2 TB total)</strong>. These nodes are <strong>air-cooled</strong>.</p>
+</section>
+<section id="i-o-nodes">
+<h3>I/O Nodes<a class="headerlink" href="#i-o-nodes" title="Link to this heading"></a></h3>
+<p>Olivia has <strong>5 dedicated nodes for I/O operations</strong>, based on HPE ProLiant DL385 Gen 11. Each node has <strong>2 AMD EPYC Genoa 9534 64-core CPUs</strong> and <strong>512 GiB memory</strong>. They are designed to connect to the NIRD storage system and the Global Storage simultaneously. These nodes are <strong>air-cooled</strong>.</p>
+</section>
+<section id="high-performance-global-storage">
+<h3>High-Performance Global Storage<a class="headerlink" href="#high-performance-global-storage" title="Link to this heading"></a></h3>
+<p>This system, based on ClusterStor E1000, offers <strong>4.266 PB of total usable capacity</strong>, including <strong>1.107 PB of solid-state storage (NVMe)</strong> and <strong>3.159 PB of HDD-based storage</strong>. It is POSIX compatible and can be divided into several file systems (e.g., scratch, home, projects, software). It supports RDMA and is designed for fault tolerance against single component failures. The system is <strong>air-cooled</strong>.</p>
+</section>
+<section id="high-speed-interconnect">
+<h3>High-Speed Interconnect<a class="headerlink" href="#high-speed-interconnect" title="Link to this heading"></a></h3>
+<p>The interconnect uses <strong>HPE Slingshot</strong>, a Dragonfly topology that supports <strong>200 Gbit/s simplex bandwidth</strong> between nodes. It natively supports IP over Ethernet, and RDMA or RoCE access to the storage solution.</p>
+</section>
+</section>
+<section id="project-accounting-can-be-part-of-general-accounting">
+<h2>Project accounting (can be part of general accounting)<a class="headerlink" href="#project-accounting-can-be-part-of-general-accounting" title="Link to this heading"></a></h2>
+<p><strong>Invoicing</strong>: During the piloting phase there will no invoicing for usage of the system.</p>
+<p>Project compute quota usage is accounted in ‘billing units’ BU. The calculation of elapsed BU for a job is done in the same manner as elsewhere on our systems.</p>
+<p>The calculation of elapsed GPU-hours is currently only dependent on the number of GPUs allocated for a job.</p>
+</section>
+<section id="software">
+<h2>Software<a class="headerlink" href="#software" title="Link to this heading"></a></h2>
+<p>Olivia introduces several new aspects that set it apart from our current HPC systems.</p>
+<p>First and foremost, the large number of GPU nodes and the software that will run on them represent uncharted territory for us, as we don’t yet have extensive experience in this area. Additionally, Olivia is an HPE Cray machine that leverages the <a class="reference external" href="https://cpe.ext.hpe.com/docs/latest/getting_started/CPE-General-User-Guide-HPCM.html">Cray Programming Environment (CPE)</a>, which comes with its own suite of tools for development, compilation, and debugging. As a result, we cannot simply replicate the software stack from our other systems. Instead, we need to adapt, modify, and expand the ways in which software is installed and utilized.</p>
+<p>The pilot phase will serve as a testing ground for the approaches outlined below, helping us identify the best solutions for providing software on Olivia. Please note that <strong>things will evolve during the pilot phase</strong>, and the final configuration may differ significantly from what is described here. Your feedback is invaluable—if something doesn’t work or could be improved, let us know so we can make adjustments.</p>
+<section id="software-setup">
+<h3>Software Setup<a class="headerlink" href="#software-setup" title="Link to this heading"></a></h3>
+<section id="module-system">
+<h4>1. Module System<a class="headerlink" href="#module-system" title="Link to this heading"></a></h4>
+<p>We will continue to offer a wide range of software packages and libraries through the module system, similar to what is available on Saga, Fram, and Betzy. However, Olivia’s architecture introduces a key difference: its CPU nodes use x86 processors, while its GPU nodes are based on ARM processors. To accommodate this, we will implement a hierarchical module system that displays only the relevant packages for the selected architecture. More details on this will be shared soon.</p>
+</section>
+<section id="python-r-and-ana-conda">
+<h4>2. Python, R, and (Ana-)Conda<a class="headerlink" href="#python-r-and-ana-conda" title="Link to this heading"></a></h4>
+<p>Python and R, while widely used, were originally designed for personal computers rather than high-performance computing environments. These languages often involve installations with a large number of small files—Python environments, for example, can easily consist of tens or even hundreds of thousands of files. This can strain the file system, leading to poor performance and a sluggish user experience.</p>
+<p>To address this, we will use <a class="reference external" href="https://github.com/CSCfi/hpc-container-wrapper/"><em>HPC-container-wrapper</em></a>, a tool designed to encapsulate installations within containers optimized for HPC systems. This tool creates a container for your Python or Conda environment, significantly reducing the number of files visible to the file system. It also generates executables, allowing you to run commands like <code class="docutils literal notranslate"><span class="pre">python</span></code> seamlessly, without needing to interact directly with the container.</p>
+<p>This approach minimizes file system load while maintaining ease of use. Detailed documentation on how to install and manage your software using <em>HPC-container-wrapper</em> will be provided soon.</p>
+</section>
+<section id="ai-frameworks">
+<h4>3. AI Frameworks<a class="headerlink" href="#ai-frameworks" title="Link to this heading"></a></h4>
+<p>For AI workflows based on popular frameworks like PyTorch, JAX, or TensorFlow, we aim to deliver optimal performance by utilizing containers provided by <a class="reference external" href="https://catalog.ngc.nvidia.com/containers">Nvidia</a>. These containers are specifically optimized for GPU workloads and should provide excellent performance while remaining relatively straightforward to use.</p>
+<p>At the start of the pilot phase, you will need to run these containers directly using Singularity. We will soon provide comprehensive documentation to guide you through this process. Later, we plan to simplify the experience by integrating these tools into the module system. This will allow you to load a module that provides executables like <code class="docutils literal notranslate"><span class="pre">python</span></code> and <code class="docutils literal notranslate"><span class="pre">torch</span></code>, eliminating the need to interact with the containers directly.</p>
+</section>
+</section>
+</section>
+<section id="running-jobs">
+<h2>Running Jobs<a class="headerlink" href="#running-jobs" title="Link to this heading"></a></h2>
+<section id="job-types">
+<h3>Job types<a class="headerlink" href="#job-types" title="Link to this heading"></a></h3>
+<p>For the pilot period of Olivia, the following job types are defined.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head text-center"><p>Job limits</p></th>
+<th class="head text-center"><p>Max walltime</p></th>
+<th class="head text-center"><p>Priority</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>normal</p></td>
+<td><p>default job type</p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p>7 days</p></td>
+<td class="text-center"><p>normal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>accel</p></td>
+<td><p>jobs needing GPUs</p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p>7 days</p></td>
+<td class="text-center"><p>normal</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>devel</p></td>
+<td><p>development jobs</p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p>2 hours</p></td>
+<td class="text-center"><p>normal</p></td>
+</tr>
+</tbody>
+</table>
+<p>Note that job limits will change after pilot period is over.</p>
+<section id="normal-jobs-cpus">
+<h4>Normal jobs (CPUs)<a class="headerlink" href="#normal-jobs-cpus" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Allocation units</strong>: CPUs and memory</p></li>
+<li><p><strong>Job Limits</strong>:</p>
+<ul>
+<li><p>no limits</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum walltime</strong>: 7 days</p></li>
+<li><p><strong>Priority</strong>: normal</p></li>
+<li><p><strong>Available resources</strong>:</p>
+<ul>
+<li><p>252 nodes each with 2*128 CPUs and 768 GiB RAM</p></li>
+</ul>
+</li>
+<li><p><strong>Parameter for sbatch/salloc</strong>:</p>
+<ul>
+<li><p>None, <em>normal</em> is the default</p></li>
+</ul>
+</li>
+<li><p>Other notes:</p>
+<ul>
+<li><p>This is the default job type.</p></li>
+<li><p>Normal jobs have $SCRATCH on local NVMe disk on the nodes</p></li>
+</ul>
+</li>
+</ul>
+<section id="normal-job-script">
+<span id="job-scripts-olivia-normal"></span><h5>Normal job script<a class="headerlink" href="#normal-job-script" title="Link to this heading"></a></h5>
+<p>Job scripts for normal jobs on Olivia are very similar to the ones on
+Saga.  For a job simple job running one process with 32 threads, the
+following example is enough:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=nnXXXXk     # Your project
+#SBATCH --job-name=MyJob      # Help you identify your jobs
+#SBATCH --time=1-0:0:0        # Total maximum runtime. In this case 1 day
+#SBATCH --cpus-per-task=32    # Number of CPU cores
+#SBATCH --mem-per-cpu=3G      # Amount of CPU memory per CPU core
+</pre></div>
+</div>
+</section>
+</section>
+<section id="accel-jobs-gpu">
+<h4>Accel jobs (GPU)<a class="headerlink" href="#accel-jobs-gpu" title="Link to this heading"></a></h4>
+<p><em>accel</em> jobs give access to use the H200 GPUs.</p>
+<ul class="simple">
+<li><p><strong>Allocation units</strong>: CPUs, memory and GPUs</p></li>
+<li><p><strong>Job Limits</strong>:</p>
+<ul>
+<li><p>no limits</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum walltime</strong>: 7 days</p></li>
+<li><p><strong>Priority</strong>: normal</p></li>
+<li><p><strong>Available resources</strong>: 76 nodes each with 4<em>72 ARM CPU cores, 4</em>120 GiB CPU RAM and 4*H200 GPUs (each with 96 GiB GPU memory).</p></li>
+<li><p><strong>Parameter for sbatch/salloc</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--gpus=N</span></code>, <code class="docutils literal notranslate"><span class="pre">--gpus-per-node=N</span></code> or similar, with <em>N</em> being the number of GPUs</p></li>
+</ul>
+</li>
+<li><p><strong>Other notes</strong>:</p>
+<ul>
+<li><p>Accel nodes have $SCRATCH on a shared flash storage file system.</p></li>
+</ul>
+</li>
+</ul>
+<section id="accel-job-script">
+<span id="job-scripts-olivia-accel"></span><h5>Accel job script<a class="headerlink" href="#accel-job-script" title="Link to this heading"></a></h5>
+<p><em>Accel</em> jobs are specified just like <em>normal</em> jobs except that they also have
+to specify <code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code> and the number of GPUs to use.  You can also
+specify how the GPUs should be distributed across nodes and tasks.  The
+simplest way to do that is, with <code class="docutils literal notranslate"><span class="pre">--gpus=N</span></code> or <code class="docutils literal notranslate"><span class="pre">--gpus-per-node=N</span></code>, where <code class="docutils literal notranslate"><span class="pre">N</span></code>
+is the number of GPUs to use.</p>
+<p>For a job simple job running one process and using one H200 GPU, the
+following example is enough:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#SBATCH --account=nnXXXXk     # Your project
+#SBATCH --job-name=MyJob      # Help you identify your jobs
+#SBATCH --partition=accel
+#SBATCH --gpus=1              # Total number of GPUs (incl. all memory of that GPU)
+#SBATCH --time=1-0:0:0        # Total maximum runtime. In this case 1 day
+#SBATCH --cpus-per-task=72    # All CPU cores of one Grace-Hopper card
+#SBATCH --mem-per-gpu=100G    # Amount of CPU memory
+</pre></div>
+</div>
+<p>There are other GPU related specifications that can be used, and that
+parallel some of the CPU related specifications.  The most useful are
+probably:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--gpus-per-node</span></code> How many GPUs the job should have on each node.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--gpus-per-task</span></code> How many GPUs the job should have per task.
+Requires the use of <code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> or <code class="docutils literal notranslate"><span class="pre">--gpus</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--mem-per-gpu</span></code> How much (CPU) RAM the job should have for each GPU.
+Can be used <em>instead of</em> <code class="docutils literal notranslate"><span class="pre">--mem-per-cpu</span></code>, (but cannot be used
+<em>together with</em> it).</p></li>
+</ul>
+<p>See <a class="reference external" href="https://slurm.schedmd.com/sbatch.html">sbatch</a> or <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">sbatch</span></code>
+for the details, and other GPU related specifications.</p>
+</section>
+</section>
+</section>
+<section id="interactive-jobs">
+<h3>Interactive jobs<a class="headerlink" href="#interactive-jobs" title="Link to this heading"></a></h3>
+<p>For technical reasons, interactive jobs started with <code class="docutils literal notranslate"><span class="pre">salloc</span></code> will for
+the time being <em>not</em> start a shell on the first allocated compute node
+of the job.  Instead, a shell is started on the <em>login node</em> where you
+ran <code class="docutils literal notranslate"><span class="pre">salloc</span></code>.  (This will be changed before the pilot period is over.)</p>
+<p>This means that the commands are run on the login node, not in the
+compute node.  To run a command on the compute nodes in the
+interactive job, either use <code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">&lt;command&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">ssh</span></code> into the node
+and run it there.</p>
+</section>
+<section id="performance-analysis-tools">
+<h3>Performance analysis tools<a class="headerlink" href="#performance-analysis-tools" title="Link to this heading"></a></h3>
+</section>
+</section>
+<section id="storage">
+<h2>Storage<a class="headerlink" href="#storage" title="Link to this heading"></a></h2>
+<p>Home directories and project directories are found in the usual place:
+<code class="docutils literal notranslate"><span class="pre">/cluster/home</span></code> and <code class="docutils literal notranslate"><span class="pre">/cluster/projects</span></code>.  These have disk quotas; see
+<code class="docutils literal notranslate"><span class="pre">dusage</span></code> for usage.</p>
+<p>On Olivia, there is no personal work areas
+(<code class="docutils literal notranslate"><span class="pre">/cluster/work/users/&lt;uname&gt;</span></code>).  Instead, there are <em>project</em> work
+areas, one for each project, in <code class="docutils literal notranslate"><span class="pre">/cluster/work/projects/</span></code>.  This makes
+it easier to share temporary files within the projects.  There is no
+disk quotas in the project work areas.  Later, old files will be
+deleted automatically, just like in the user work areas on the other
+clusters.</p>
+</section>
+<section id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Link to this heading"></a></h2>
+</section>
+<section id="data-storage-access-nird-and-transfer">
+<h2>Data Storage/access(NIRD) and Transfer<a class="headerlink" href="#data-storage-access-nird-and-transfer" title="Link to this heading"></a></h2>
+</section>
+<section id="guides-to-use-olivia-effectively">
+<h2>Guides to use Olivia effectively<a class="headerlink" href="#guides-to-use-olivia-effectively" title="Link to this heading"></a></h2>
+<section id="best-practices-on-olivia">
+<h3>Best Practices on Olivia<a class="headerlink" href="#best-practices-on-olivia" title="Link to this heading"></a></h3>
+<!-- OWS guide -->
+</section>
+</section>
+<section id="any-monitoring-tools-for-users">
+<h2>Any monitoring tools for users?<a class="headerlink" href="#any-monitoring-tools-for-users" title="Link to this heading"></a></h2>
+</section>
+<section id="user-stories">
+<h2>User stories<a class="headerlink" href="#user-stories" title="Link to this heading"></a></h2>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+</section>
+<section id="relevant-tutorials">
+<h2>Relevant tutorials<a class="headerlink" href="#relevant-tutorials" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
