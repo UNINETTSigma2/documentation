@@ -5,12 +5,12 @@ orphan: true
 
 (olivia_pilot_main)=
 
-# Olivia pilot period start page (work in progress)
+# Olivia Pilot Info
 
 <!-- **Olivia User Guide ** (Skeleton draft) -->
 
 ```{danger}
-__!! This page is currently under development and configs/information may not be final !!__
+__!! This page is currently under development and work in progress. Configs/information may not be final !!__
 ```
 
 ## Duration of pilot period
