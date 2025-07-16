@@ -16,15 +16,20 @@ __!! This page is currently under development and configs/information may not be
 ## Duration of pilot period
 The pilot period is expected to start on Monday 7 July and will last until 30 September 2025.
 
-## How to connect to Olivia (This is not implemented yet)
+## How to connect to Olivia
 Logging into Olivia involves the use of {ref}`Secure Shell (SSH) <ssh>` protocol,
 either in a terminal shell or through a graphical tool using this protocol
-under the hood.  SSH login is available natively to Linux or macOS. Also on
-Windows a number of good tools for this exists.
+under the hood.  
+
+In the future, we will introduce the same 2 factor authentication (2FA) system
+as used on our other HPC machines. But for now, you cannot connect directly
+from your local machine. Instead you have to __first connect to Betzy, Fram or
+Saga and then further to Olivia__.
 
 Replace `<username>` with your registered username:
 
 ```console
+$ ssh <username>@betzy.sigma2.no
 $ ssh <username>@olivia.sigma2.no
 ```
 
