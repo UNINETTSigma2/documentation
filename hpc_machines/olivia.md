@@ -9,7 +9,9 @@ orphan: true
 
 The name Olivia is inspired by ´olivine´, a mineral once extracted from the former Lefdal mine, now transformed into a state-of-the-art data centre, [Lefdal Mine Data Centers (LMD)](https://www.lefdalmine.com/), where the supercomputer is hosted. 
 
+```{danger}
 [Information for pilot users here.](/olivia_pilot_period_docs/olivia_pilot_main.md)
+```
 
 ## The next generation powerful supercomputer for HPC and AI applications
 
