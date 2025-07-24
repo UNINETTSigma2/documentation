@@ -356,7 +356,8 @@ $ pip install requests
 - **Exporting environments**: If you encounter issues with version conflicts, you can remove version specifications from your environment file using a simple `sed` command. For example:
 
   ```bash
-  $ sed -i '/==/s/==.*//' requirements.txt
+  $ sed '/==/s/==.*//' requirements.txt > requirements_versionless.txt  # Works for pip files
+  $ sed '/=/s/=.*//' env.yml > env_versionless.yml  # Works for conda files
   ```
 
 - **Using Mamba**: For faster Conda installations, you can enable [Mamba](https://github.com/mamba-org/mamba) by adding the `--mamba` flag:
@@ -407,10 +408,115 @@ $ pip install requests
 For more examples and advanced usage, see the [HPC-container-wrapper GitHub repository](https://github.com/CSCfi/hpc-container-wrapper) and check the [documentation page of CSC about HPC-container-wrapper](https://docs.lumi-supercomputer.eu/software/installing/container-wrapper/#wrapping-a-plain-pip-installation)
 
 
-#### 3. AI Frameworks
-For AI workflows based on popular frameworks like PyTorch, JAX, or TensorFlow, we aim to deliver optimal performance by utilizing containers provided by [Nvidia](https://catalog.ngc.nvidia.com/containers). These containers are specifically optimized for GPU workloads and should provide excellent performance while remaining relatively straightforward to use.
+---
 
-At the start of the pilot phase, you will need to run these containers directly using Apptainer. We will soon provide comprehensive documentation to guide you through this process. Later, we plan to simplify the experience by integrating these tools into the module system. This will allow you to load a module that provides executables like `python` and `torch`, eliminating the need to interact with the containers directly.
+### 3. AI Frameworks
+
+For AI workflows based on popular frameworks like PyTorch, JAX, or TensorFlow, we aim to deliver optimal performance by utilizing containers provided by [NVIDIA](https://catalog.ngc.nvidia.com/containers). These containers are specifically optimized for GPU workloads, ensuring excellent performance while remaining relatively straightforward to use.
+
+---
+
+#### Downloading Containers
+
+You can use pre-built containers or download and convert your own. Here are the options:
+
+1. **Pre-Built Containers**:  
+   Some NVIDIA containers are already available in the Apptainer image format (`.sif`) under:  
+   `/cluster/work/support/container`.
+
+2. **Downloading Your Own Containers**:  
+   You can download containers from sources like the [NVIDIA NCC catalogue](https://catalog.ngc.nvidia.com/containers) or [Docker Hub](https://hub.docker.com/). Use the following command to download and convert a container into the Apptainer format:
+
+   ```bash
+   apptainer build <image_name>.sif docker://<docker_image_url>
+   ```
+
+   For example, to download and convert the latest NVIDIA PyTorch container:
+
+   ```bash
+   apptainer build pytorch_nvidia_25.06.sif docker://nvcr.io/nvidia/pytorch:25.06-py3
+   ```
+
+   For more options, check the Apptainer build help:
+
+   ```bash
+   apptainer build --help
+   ```
+
+---
+
+#### Important Notes
+
+- **Building Your Own Containers:**
+  Currently it is only possible to build containers from definition files that don't require root privileges inside the container. We are working on enabling some version of fakeroot to enable most builds in the future.
+- **Running on GPU Nodes**:  
+  If you plan to run these containers on GPU nodes, ensure that you download the container from a GPU node. This can be done either via a job script or an interactive job. This ensures that the container is built for the correct architecture (e.g., ARM64).  
+  For details on accessing internet resources from compute nodes, see [this section](olivia_internet_proxies).
+
+- **Managing Cache**:  
+  By default, Apptainer stores its cache in your home directory, which may lead to `disk quota exceeded` errors. To avoid this, set the cache directory to your project work area:
+
+  ```bash
+  export APPTAINER_CACHEDIR=/cluster/work/projects/<project_number>/singularity
+  ```
+
+---
+
+#### Running Containers
+
+Apptainer provides several ways to run containers, depending on your needs:
+
+1. **Run the Default Command**:  
+   Use `apptainer run` to execute the default command specified in the container setup. For example:
+
+   ```bash
+   apptainer run <image_path>.sif <extra_parameters>
+   ```
+
+   *Example*: Running a containerized application with its default configuration.
+
+2. **Execute Arbitrary Commands**:  
+   Use `apptainer exec` to run specific commands available inside the container. For example:
+
+   ```bash
+   apptainer exec <image_path>.sif <command> <extra_parameters>
+   ```
+
+   *Example*: Running a Python script inside the container.
+
+3. **Interactive Shell**:  
+   Use `apptainer shell` to start an interactive shell session inside the container. For example:
+
+   ```bash
+   apptainer shell <image_path>.sif <extra_parameters>
+   ```
+
+   *Example*: Exploring the container environment or debugging.
+
+---
+
+#### Enabling GPU Support
+
+To enable GPU support inside the container, add the `--nv` flag to your Apptainer command. This ensures that the container has access to the GPU resources. For example:
+
+```bash
+apptainer exec --nv /cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif python -c 'import torch; print(torch.cuda.is_available()); print(torch.cuda.device_count())'
+```
+
+This command checks if GPUs are available and prints the number of GPUs detected inside the container.
+
+---
+
+#### Next Steps
+
+Currently, you need to run these containers directly using Apptainer. However, we are working on simplifying the experience by integrating these tools into the module system. This will allow you to:
+
+- Load a module that provides executables like `python` and `torch`, eliminating the need to interact with the containers directly.
+- Seamlessly use AI frameworks without worrying about container management.
+
+Additionally, we will soon provide more information on how to best utilize the interconnect and set up job scripts for running AI workflows efficiently.
+
+---
 
 
 ## Running Jobs
@@ -436,7 +542,7 @@ Note that job limits will change after pilot period is over.
 - __Priority__: normal
 - __Available resources__:
 	- 252 nodes each with 2*128 CPUs and 768 GiB RAM
-- __Parameter for sbatch/salloc__:
+- __Parameter for sbatch/sallow__:
     - None, _normal_ is the default
 - Other notes:
     - This is the default job type.
@@ -517,6 +623,16 @@ This means that the commands are run on the login node, not in the
 compute node.  To run a command on the compute nodes in the
 interactive job, either use `srun <command>` or `ssh` into the node
 and run it there.
+
+(olivia_internet_proxies)=
+## Internet access from compute nodes
+While the login nodes are directly connected to the public internet, the compute nodes are not.
+To access external resources, for example software repositories, you can use proxies that we provide.
+```
+export http_proxy=http://10.63.2.48:3128/
+export https_proxy=http://10.63.2.48:3128/
+```
+
 
 
 ### Performance analysis tools
