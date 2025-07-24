@@ -412,7 +412,7 @@ For AI workflows based on popular frameworks like PyTorch, JAX, or TensorFlow, w
 
 At the start of the pilot phase, you will need to run these containers directly using Apptainer. We will soon provide comprehensive documentation to guide you through this process. Later, we plan to simplify the experience by integrating these tools into the module system. This will allow you to load a module that provides executables like `python` and `torch`, eliminating the need to interact with the containers directly.
 
-
+If you want to use PyTorch wheels during the test phase, you can refer to this {ref}`this documentation <pytorch-wheels>`.
 ## Running Jobs
 
 ### Job types

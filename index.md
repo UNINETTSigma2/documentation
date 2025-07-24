@@ -2,7 +2,7 @@
 [Latest changes and events](https://opslog.sigma2.no) |
 [Hardware live status](https://www.sigma2.no/hardware-status) |
 {ref}`known-issues` |
-{ref}`olivia_pilot_main`
+{ref}`olivia_pilot_main` 
 
 
 # Norwegian Research Infrastructure Services
@@ -193,6 +193,7 @@ jobs/overview.rst
 jobs/internet-login-compute-nodes.md
 computing/tuning-applications.md
 code_development/guides_llm.md
+code_development/olivia_pytorch.md
 ```
 
 ```{toctree}
