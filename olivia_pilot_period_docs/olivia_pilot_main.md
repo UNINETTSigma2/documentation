@@ -13,8 +13,12 @@ orphan: true
 __!! This page is currently under development and work in progress. Configs/information may not be final !!__
 ```
 
+```{contents} __Page Overview__
+:depth: 3
+```
+
 ## Duration of pilot period
-The pilot period is expected to start on Monday 7 July and will last until 30 September 2025.
+The pilot period is expected to start on Monday 7 July and will last until 21 September 2025.
 
 ## How to connect to Olivia
 Logging into Olivia involves the use of {ref}`Secure Shell (SSH) <ssh>` protocol,
@@ -660,16 +664,15 @@ deleted automatically, just like in the user work areas on the other
 clusters.
 
 
-
+<!--
 ## Debugging
 ## Data Storage/access(NIRD) and Transfer
 ## Guides to use Olivia effectively
 ### Best Practices on Olivia
-<!-- OWS guide -->
 ## Any monitoring tools for users?
 ## User stories
 ## Troubleshooting
 ## Relevant tutorials
-
+-->
 
 
