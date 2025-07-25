@@ -154,8 +154,8 @@ def load_fashion_mnist(batch_size, train_subset_size=10000, test_subset_size=100
     Loads and preprocesses the Fashion-MNIST dataset.
     Args:
         batch_size (int): Batch size for training and testing.
-        train_subset_size (int): Number of training samples to use (default:10,000) which we used initially for testing purpose.
-        test_subset_size (int): Number of testing samples to use (default: 10,000) which we used initially for testing purpose.
+        train_subset_size (int): Number of training samples to use (default:10,000) which we used intially for testing purpose.
+        test_subset_size (int): Number of testing samples to use (default: 10,000) which we used intially for testing purpose.
     Returns:
         train_loader, test_loader: Data loaders for training and testing.
     """
@@ -346,11 +346,11 @@ For resource management, we use the `torchrun` utility from PyTorch. This tool e
 #SBATCH --error=singlenode.err
 #SBATCH --time=00:10:00
 #SBATCH --partition=accel
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=4
-#SBATCH --cpus-per-task=1
-#SBATCH --mem=4G
-#SBATCH --gpus-per-node=1
+#SBATCH --nodes=1                     # Single compute node
+#SBATCH --ntasks-per-node=1          # One task (process) on the node
+#SBATCH --cpus-per-task=72           # Reserve 72 CPU cores
+#SBATCH --mem-per-gpu=110G           # Request 110 GB of CPU RAM per GPU
+#SBATCH --gpus-per-node=1            # Request 1 GPU
 # Load required modules
 module load cray-python/3.11.7
 
@@ -367,8 +367,9 @@ pip install --no-index --find-links=$WHEEL_DIR $(ls $WHEEL_DIR/*.whl | tr '\n' '
 # Set PYTHONPATH to include the shared directory
 export PYTHONPATH=/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/shared:$PYTHONPATH
 
+# Run the Python script using torchrun 
 
-torchrun --standalone --nnodes=1 --nproc_per_node=1 ../resnet.py
+torchrun --standalone --nnodes=$SLURM_JOB_NUM_NODES --nproc_per_node=$SLURM_GPUS_ON_NODE ../resnet.py
 
 deactivate
 ````
@@ -510,11 +511,11 @@ When using `torchrun` for a single-node setup, you need to include the `standalo
 #SBATCH --error=singlenode.err
 #SBATCH --time=00:10:00
 #SBATCH --partition=accel
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=4
-#SBATCH --cpus-per-task=1
-#SBATCH --mem=4G
-#SBATCH --gpus-per-node=2
+#SBATCH --nodes=1     # Use one compute node
+#SBATCH --ntasks-per-node=1 #  Single task per node
+#SBATCH --cpus-per-task=72  # Reserve enough CPU cores for full workload
+#SBATCH --mem-per-gpu=110G   # Request 110 GB of CPU RAM per GPU
+#SBATCH --gpus-per-node=2   # Reserve 2 GPUs on node
 # Load required modules
 module load cray-python/3.11.7
 
@@ -531,8 +532,9 @@ pip install --no-index --find-links=$WHEEL_DIR $(ls $WHEEL_DIR/*.whl | tr '\n' '
 # Set PYTHONPATH to include the shared directory
 export PYTHONPATH=/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/shared:$PYTHONPATH
 
+# Run the Python script using torchrun 
 
-torchrun --standalone --nnodes=1 --nproc_per_node=2 ../resnetddp.py  --epochs 10 --batch-size 512
+torchrun --standalone --nnodes=$SLURM_NNODES  --nproc_per_node=$SLURM_GPUS_ON_NODE ../resnetddp.py  --epochs 10 --batch-size 512
 
 deactivate
 ````
@@ -590,11 +592,11 @@ We use srun to launch the job across multiple nodes, allowing torchrun to effici
 #SBATCH --error=multinode.err
 #SBATCH --time=01:00:00
 #SBATCH --partition=accel
-#SBATCH --nodes=2  # Request 2 nodes
-#SBATCH --ntasks-per-node=1  # One task per node
-#SBATCH --cpus-per-task=72
-#SBATCH --mem-per-gpu=120G
-#SBATCH --gpus-per-node=4  # 4 GPUs per node
+#SBATCH --nodes=2                 # Request 2 compute nodes
+#SBATCH --ntasks-per-node=1       # One coordinating task per node
+#SBATCH --gpus-per-node=4        # Reserve 4 GPUs on each node
+#SBATCH --cpus-per-task=72       # Reserve enough CPU cores for full workload
+#SBATCH --mem-per-gpu=110G        # Request 110 GB of CPU RAM per GPU
 
 # Load required modules
 module load cray-python/3.11.7
@@ -621,14 +623,14 @@ head_node_ip=$(srun --nodes=1 --ntasks=1 -w "$head_node" hostname --ip-address |
 echo "Head Node: $head_node"
 echo "Head Node IP: $head_node_ip"
 
-# Run the Python script using torchrun
+# Run the Python script using torchrun 
 srun torchrun \
-  --nnodes=2 \
-  --nproc_per_node=4 \
+  --nnodes=$SLURM_NNODES \
+  --nproc_per_node=$SLURM_GPUS_ON_NODE \
   --rdzv_id=$RANDOM \
   --rdzv_backend=c10d \
   --rdzv_endpoint=$head_node_ip:29500 \
-  ../restnet_multinode.py
+  ../resnetddp.py
 # Deactivate the virtual environment
 deactivate
 ````
