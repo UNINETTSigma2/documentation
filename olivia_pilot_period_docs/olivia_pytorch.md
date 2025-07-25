@@ -154,8 +154,8 @@ def load_fashion_mnist(batch_size, train_subset_size=10000, test_subset_size=100
     Loads and preprocesses the Fashion-MNIST dataset.
     Args:
         batch_size (int): Batch size for training and testing.
-        train_subset_size (int): Number of training samples to use (default:10,000) which we used intially for testing purpose.
-        test_subset_size (int): Number of testing samples to use (default: 10,000) which we used intially for testing purpose.
+        train_subset_size (int): Number of training samples to use (default:10,000) which we used initially for testing purpose.
+        test_subset_size (int): Number of testing samples to use (default: 10,000) which we used initially for testing purpose.
     Returns:
         train_loader, test_loader: Data loaders for training and testing.
     """
