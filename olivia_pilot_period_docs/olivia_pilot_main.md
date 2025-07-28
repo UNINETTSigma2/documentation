@@ -161,7 +161,7 @@ $ module avail
 
 ---
 
-#### Searching for Modules Across Stacks
+##### Searching for Modules Across Stacks
 
 You can search for a specific module across all stacks using `module spider`. For example:
 
@@ -223,11 +223,46 @@ This will provide details such as dependencies and additional help:
 
 ---
 
-#### Important Notes
+##### Important Notes
 
 - **Avoid Using `BuildEnv` Modules**: These modules are intended for internal use and will be hidden in the future. Please use the `NRIS` modules instead.
 - __Software Requests__: We will install additional software packages in the future. If you cannot find the software you need, please contact us. Refer to our [Getting Help page](support-line) for details, and be sure to mention that your request is regarding Olivia.
 - For additional help, consult the module system's built-in commands (`module help`, `module spider`, etc.) or contact the system administrators.
+
+---
+
+#### Using the EESSI Stack
+
+The EESSI (European Environment for Scientific Software Infrastructure) stack provides an additional software environment that can be used on Olivia. It is particularly useful for accessing pre-built scientific software inside a containerized environment. 
+
+To load the EESSI stack, use the following commands:
+
+- On **CPU nodes**:
+
+  ```bash
+  $ source /cluster/work/support/EESSI/EESSI_x86_64
+  ```
+
+- On **GPU nodes**:
+
+  ```bash
+  $ source /cluster/work/support/EESSI/EESSI_arm
+  ```
+Once the stack is loaded, you can interact with it using the `module` command, just like with the NRIS stacks. For example:
+
+```bash
+$ module avail
+```
+
+This will list the software modules available within the EESSI stack.
+
+The EESSI stack contains a wide range of preinstalled software, including many tools commonly used in bioinformatics and other scientific domains.
+
+**Important Notes**:
+- The EESSI stack currently runs inside a container and is limited to a single node. Multi-node usage is not supported at this time.
+- The EESSI stack provides a consistent software environment across different architectures, making it a valuable tool for scientific workflows.
+
+For more information about EESSI, visit the [EESSI website](https://eessi-hpc.org/).
 
 ---
 
