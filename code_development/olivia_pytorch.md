@@ -2,40 +2,45 @@
 
 # PyTorch on Olivia
 
+```{contents}
+:depth: 3
+```
+
 In this guide, we’ll be testing PyTorch on the Olivia system, which uses the Aarch64 architecture on its compute nodes. To do this, we’ll use specific PyTorch wheels compatible with this architecture.
 
-Note: This documentation is a work in progress and is intended for testing purposes. If you encounter any issues or something does not work as expected, please let us know. Furthermore, this approach relies on `pip` installation, which can degrade the file system. As a result, it will no longer be permitted after the pilot phase.
+```{note}
+This documentation is a work in progress and is intended for testing purposes. If you encounter any issues or something does not work as expected, please let us know. Furthermore, this approach relies on `pip` installation, which can degrade the file system. As a result, it will no longer be permitted after the pilot phase.
+```
 
-Key Considerations:
+## Key Considerations
 
-1. Different Architectures:
+1. __Different Architectures__:
 
-The login node and the compute node on Olivia have different architectures. The login node uses the x86_64 architecture, while the compute node uses Aarch64. This means we cannot install software directly on the login node and expect it to work on the compute node.
+     The login node and the compute node on Olivia have different architectures. The login node uses the x86_64 architecture, while the compute node uses Aarch64. This means we cannot install software directly on the login node and expect it to work on the compute node.
 
-2. Internet Connectivity on Compute Nodes:
+2. __Internet Connectivity on Compute Nodes__:
 
-At the time of testing, the compute nodes did not have direct internet access. Consequently, we had to install the required PyTorch wheels within a virtual environment using a job script. This ensured that the installation occurred on the compute node during the execution of the job script.
-
-However, it is now possible to access the internet directly from the compute nodes by configuring proxies, as demonstrated below:
-
-````bash
-export http_proxy=http://10.63.2.48:3128/
-export https_proxy=http://10.63.2.48:3128/
-````
+    At the time of testing, the compute nodes did not have direct internet access. Consequently, we had to install the required PyTorch wheels within a virtual environment using a job script. This ensured that the installation occurred on the compute node during the execution of the job script.
+    
+    However, it is now possible to access the internet directly from the compute nodes by configuring proxies, as demonstrated below:
+    
+    ```bash
+    export http_proxy=http://10.63.2.48:3128/
+    export https_proxy=http://10.63.2.48:3128/
+    ```
 
 3. CUDA Version:
 
-The compute nodes are equipped with CUDA Version 12.7, as confirmed by running the nvidia-smi command. Therefore, we need to ensure that the PyTorch wheels we use are compatible with this CUDA version.
+     The compute nodes are equipped with CUDA Version 12.7, as confirmed by running the nvidia-smi command. Therefore, we need to ensure that the PyTorch wheels we use are compatible with this CUDA version.
 
 
 
 You can download the necessary PyTorch wheels for your project from the PyTorch nightly builds using the following link:
 
-[torch](https://download.pytorch.org/whl/nightly/torch)
+- [PyTorch](https://download.pytorch.org/whl/nightly/torch)
+- [PyTorch-triton](https://download.pytorch.org/whl/nightly/pytorch-triton/)
+- [torchvision](https://download.pytorch.org/whl/nightly/torchvision/)
 
-[pytorch-triton](https://download.pytorch.org/whl/nightly/pytorch-triton/)
-
-[torchvision](https://download.pytorch.org/whl/nightly/torchvision/)
 
 ## Training a ResNet Model with the Fashion-MNIST Dataset
 
@@ -50,12 +55,11 @@ To test Olivia's capabilities with real-world workloads, we will train a ResNet 
 The primary goal of this exercise is to verify that we can successfully run training tasks on Olivia. As such, we will not delve into the specifics of neural network training in this documentation. A separate guide will be prepared to cover those details.
 
 
-
 ### Single GPU Implementation
 
 To train the ResNet model on a single GPU, we used the following files. These files include the main Python script responsible for training the ResNet model.
 
-````python
+```python
 # resnet.py
 """
 This script trains a WideResNet model on the Fashion MNIST dataset without using Distributed Data Parallel (DDP).
@@ -134,10 +138,10 @@ def main():
     train_resnet_without_ddp(batch_size=BATCH_SIZE, epochs=EPOCHS, learning_rate=LEARNING_RATE, device=device)
 if __name__ == "__main__":
     main()
-````
+```
 
 This file contains the data utility functions used for preparing and managing the dataset.Please note that, you need to manually install the Fashion-MNIST dataset and place it in the respective folder.
-````python
+```python
 # dataset_utils.py
 # NUmpy is a fundamental package for scientific computing. It contains an implementation of an array
 import numpy as np
@@ -185,10 +189,10 @@ def load_fashion_mnist_fulldataset(batch_size):
     train_loader = torch.utils.data.DataLoader(train_set,batch_size=batch_size, dropLast=True, shuffle=True)
     test_loader = torch.utils.data.DataLoader(test_set,batch_size=batch_size, dropLast=True, shuffle=False)
     return train_loader, test_loader
-````
+```
 
 This file includes the device utility functions, which handle device selection and management for training (e.g., selecting the appropriate GPU). 
-````python
+```python
 # device_utils.py
 import torch
 
@@ -200,11 +204,11 @@ def get_device():
     """
 
     return torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-````
+```
 
 
 This file contains the implementation of the ResNet model architecture.
-````python
+```python
 # wide_resnet.py
 import torch.nn as nn
 
@@ -270,10 +274,10 @@ class WideResNet(nn.Module):
         out = self.fc(out)
         return out
 
-````
+```
 
 Finally, this file serves as a utility module for importing the training and testing datasets.
-````python
+```python
 # train_utils.py
 import torch 
 def train(model, optimizer, train_loader, loss_fn, device):
@@ -330,7 +334,7 @@ def test(model, test_loader, loss_fn, device):
     v_accuracy = correct_labels / total_labels
     v_loss = loss_total / len(test_loader)
     return v_accuracy, v_loss
-````
+```
 
 
 #### Job Script for Single GPU Training
@@ -338,7 +342,7 @@ def test(model, test_loader, loss_fn, device):
 To run the training on a single GPU, we use the following job script. The `accel` partition is used to access GPU resources. After loading the Python module from `cray-python`, you can create a virtual environment and install all the required wheels for your program using `pip`.
 
 For resource management, we use the `torchrun` utility from PyTorch. This tool ensures efficient allocation of resources, especially when scaling to multiple GPUs or nodes.
-````bash
+```bash
 #!/bin/bash
 #SBATCH --job-name=simple_nn_training
 #SBATCH --account=<project_number>
@@ -372,11 +376,11 @@ export PYTHONPATH=/cluster/work/projects/<project_number>/<user_name>/PyTorch/pr
 torchrun --standalone --nnodes=$SLURM_JOB_NUM_NODES --nproc_per_node=$SLURM_GPUS_ON_NODE ../resnet.py
 
 deactivate
-````
+```
 
 Output of the training is shown below:
 
-````bash
+```bash
 Training WideResNet on Fashion MNIST with Batch Size: 32
 Epoch =  1: Epoch Time = 2.963, Validation Loss = 0.524, Validation Accuracy = 0.799, Images/sec = 3369.181, Cumulative Time = 2.963
 Epoch =  2: Epoch Time = 2.623, Validation Loss = 0.440, Validation Accuracy = 0.837, Images/sec = 3806.211, Cumulative Time = 5.586
@@ -387,13 +391,15 @@ Early stopping after epoch 5
 
 Training complete. Final Validation Accuracy = 0.859
 Total Training Time: 13.293 seconds
-````
+```
+
+
 ### Multi-GPU Implementation
 To scale our training to multiple GPUs, we will utilize PyTorch's Distributed Data Parallel (DDP) framework. DDP allows us to efficiently scale training across multiple GPUs and even across multiple nodes.
 
 For this, we need to modify the main Python script to include DDP implementation. The updated script will work for both scenarios Multiple GPUs within a single node and Multiple nodes.
 
-````python
+```python
 # resnetddp.py
 import os
 import time
@@ -495,15 +501,15 @@ def main_worker():
     destroy_process_group()
 if __name__ == '__main__':
     main_worker()
-````
+```
 
 #### Job Script for Multi GPU Training
 
 To run the training on multiple GPUs, we can use the same job script mentioned earlier, but specify a higher number of GPUs.
 
-When using `torchrun` for a single-node setup, you need to include the `standalone` argument. However, this argument is not required for a multi-node setup. The full job script is given below:
+When using `torchrun` for a single-node setup, you need to include the `--standalone` argument. However, this argument is not required for a multi-node setup. The full job script is given below:
 
-````bash
+```bash
 #!/bin/bash
 #SBATCH --job-name=simple_nn_training
 #SBATCH --account=<project_number>
@@ -536,10 +542,11 @@ export PYTHONPATH=/cluster/work/projects/<project_number>/<user_name>/PyTorch/pr
 torchrun --standalone --nnodes=$SLURM_NNODES  --nproc_per_node=$SLURM_GPUS_ON_NODE ../resnetddp.py  --epochs 10 --batch-size 512
 
 deactivate
-````
+```
+
 Output of the training is shown below:
 
-````bash
+```bash
 Training started with 2 processes across 1 nodes.
 Using 2 GPUs per node.
 
@@ -562,7 +569,7 @@ Number of nodes: 1
 Number of GPUs per node: 2
 Total GPUs used: 2
 Training completed successfully.
-````
+```
 
 
 ### Multi-Node Setup
@@ -571,13 +578,13 @@ Setting up training across multiple nodes is relatively straightforward since we
 
 For multi-node jobs, a few key considerations are important:
 
-1. Communication Interface: 
+1. __Communication Interface__:
 
-You need to specify the communication interface to enable proper communication between nodes.
+    You need to specify the communication interface to enable proper communication between nodes.
 
-2. Master Node: 
+2. __Master Node__: 
 
-The master node must be designated to handle coordination and communication across nodes.
+    The master node must be designated to handle coordination and communication across nodes.
 
 We use srun to launch the job across multiple nodes, allowing torchrun to efficiently manage and coordinate the training process.
 
@@ -585,20 +592,20 @@ We use srun to launch the job across multiple nodes, allowing torchrun to effici
 
 Before implementing multi-node training, it's important to understand that using 8 GPUs across two nodes may actually be slower than using just 2 GPUs on a single node with the same batch size. While optimizations can help, without proper tuning, the distributed approach might underperform.
 
-1. Communication Differences:
+1. __Communication Differences__:
 
-Single-node GPUs benefit from high-speed connections like NVLink or PCIe whereas multi-node setups rely on network links (InfiniBand/Ethernet) which might be slower.Moreover, synchronizing data across nodes migght introduces significant latency.
+    Single-node GPU jobs benefit from high-speed connections between GPUs on one node like NVLink whereas multi-node setups must rely on network links (Slingshot11 in the case of Olivia) which might be slower. Moreover, synchronizing data across nodes migght introduces significant latency.
 
-2. Model-Specific Factors:
+2. __Model-Specific Factors__:
 
-For our ResNet model, the overhead of coordinating across many GPUs may outweigh the parallelization benefits. We might notice that communication is faster and more frequently, leading to better utilization with just two GPUs.
+    For our ResNet model, the overhead of coordinating across many GPUs may outweigh the parallelization benefits. We might notice that communication is faster and more frequently, leading to better utilization with just two GPUs.
 
 These factors are crucial when deciding between single-node and multi-node configurations. The optimal approach depends on your specific project requirements and how well we can leverage parallel processing for your particular training task.
 
 
 #### Job Script for Multi node Training
 
-````bash
+```bash
 #!/bin/bash
 #SBATCH --job-name=simple_nn_training_multinode
 #SBATCH --account=<project_number>
@@ -647,7 +654,8 @@ srun torchrun \
   ../resnetddp.py --epochs 20 --batch-size 2048 --base-lr 0.04
 # Deactivate the virtual environment
 deactivate
-````
+```
+
 #### Batch Size Scaling and Learning Rate Adjustment
 To maintain consistency with our single-node setup where each GPU processed 256 samples (512 total batch size / 2 GPUs), we increased the total batch size to 2048 for our 8-GPU across 2-nodes configuration (256 per GPU). This larger batch size reduces synchronization frequency, allowing GPUs to spend more time computing and less time waiting for gradient updates.
 
@@ -655,18 +663,18 @@ Initial tests without learning rate adjustment using the default `--base-lr 0.01
 
 For optimal convergence when scaling batch size, we applied the linear learning rate rule:
 
-````bash
+```bash
 New LR = Base LR × (New Batch Size / Old Batch Size)
        = 0.01 × (2048 / 512) 
        = 0.04
-````
+```
 From the output below, we can validate that, despite a high initial loss (expected with large batches), the model converged stably, confirming that linear LR scaling was effective.
 
 
 Below is the output generated from running the training across multiple nodes and with proper optimization, our multi-node training now runs fastter, showing how distributed setups can deliver real speed gains when tuned correctly.
 
 
-````bash
+```bash
 
 Training started with 8 processes across 2 nodes.
 Using 4 GPUs per node.
@@ -710,7 +718,7 @@ Number of nodes: 2
 Number of GPUs per node: 4
 Total GPUs used: 8
 Training completed successfully.
-````
+```
 
 
 
