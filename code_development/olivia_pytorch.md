@@ -342,8 +342,8 @@ For resource management, we use the `torchrun` utility from PyTorch. This tool e
 #!/bin/bash
 #SBATCH --job-name=simple_nn_training
 #SBATCH --account=<project_number>
-#SBATCH --output=singlenode.out
-#SBATCH --error=singlenode.err
+#SBATCH --output=singleGpu_%j.out
+#SBATCH --error=singleGpu_%j.err
 #SBATCH --time=00:10:00
 #SBATCH --partition=accel
 #SBATCH --nodes=1                     # Single compute node
@@ -505,15 +505,15 @@ When using `torchrun` for a single-node setup, you need to include the `standalo
 
 ````bash
 #!/bin/bash
-#SBATCH --job-name=resnet_training_singlenode
+#SBATCH --job-name=simple_nn_training
 #SBATCH --account=<project_number>
-#SBATCH --output=singlenode.out
-#SBATCH --error=singlenode.err
+#SBATCH --output=singlenode_%j.out
+#SBATCH --error=singlenode_%j.err
 #SBATCH --time=00:10:00
 #SBATCH --partition=accel
 #SBATCH --nodes=1     # Use one compute node
 #SBATCH --ntasks-per-node=1 #  Single task per node
-#SBATCH --cpus-per-task=72  # Reserve enough CPU cores for full workload
+#SBATCH --cpus-per-gpu=72  # Reserve enough CPU cores for full workload with each GPU
 #SBATCH --mem-per-gpu=110G   # Request 110 GB of CPU RAM per GPU
 #SBATCH --gpus-per-node=2   # Reserve 2 GPUs on node
 # Load required modules
@@ -532,7 +532,6 @@ pip install --no-index --find-links=$WHEEL_DIR $(ls $WHEEL_DIR/*.whl | tr '\n' '
 # Set PYTHONPATH to include the shared directory
 export PYTHONPATH=/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/shared:$PYTHONPATH
 
-# Run the Python script using torchrun 
 
 torchrun --standalone --nnodes=$SLURM_NNODES  --nproc_per_node=$SLURM_GPUS_ON_NODE ../resnetddp.py  --epochs 10 --batch-size 512
 
@@ -545,24 +544,20 @@ Training started with 2 processes across 1 nodes.
 Using 2 GPUs per node.
 
 Epoch 1/10
-Epoch 1 completed in 7.350 seconds
-Validation Loss: 0.5492, Validation Accuracy: 0.7971
+Epoch 1 completed in 7.402 seconds
+Validation Loss: 0.5615, Validation Accuracy: 0.7932
 
 Epoch 2/10
-Epoch 2 completed in 7.150 seconds
-Validation Loss: 0.4315, Validation Accuracy: 0.8414
+Epoch 2 completed in 7.157 seconds
+Validation Loss: 0.4249, Validation Accuracy: 0.8528
 
 Epoch 3/10
-Epoch 3 completed in 7.090 seconds
-Validation Loss: 0.3536, Validation Accuracy: 0.8744
-
-Epoch 4/10
-Epoch 4 completed in 7.112 seconds
-Validation Loss: 0.3402, Validation Accuracy: 0.8759
-Target accuracy reached. Early stopping after epoch 4.
+Epoch 3 completed in 7.129 seconds
+Validation Loss: 0.3945, Validation Accuracy: 0.8583
+Target accuracy reached. Early stopping after epoch 3.
 
 Training Summary:
-Total training time: 28.702 seconds
+Total training time: 21.688 seconds
 Number of nodes: 1
 Number of GPUs per node: 2
 Total GPUs used: 2
@@ -576,27 +571,46 @@ Setting up training across multiple nodes is relatively straightforward since we
 
 For multi-node jobs, a few key considerations are important:
 
-1. Communication Interface: You need to specify the communication interface to enable proper communication between nodes.
+1. Communication Interface: 
 
-2. Master Node: The master node must be designated to handle coordination and communication across nodes.
+You need to specify the communication interface to enable proper communication between nodes.
+
+2. Master Node: 
+
+The master node must be designated to handle coordination and communication across nodes.
 
 We use srun to launch the job across multiple nodes, allowing torchrun to efficiently manage and coordinate the training process.
+
+#### Performance Considerations for Single-Node vs Multi-Node Training
+
+Before implementing multi-node training, it's important to understand that using 8 GPUs across two nodes may actually be slower than using just 2 GPUs on a single node with the same batch size. While optimizations can help, without proper tuning, the distributed approach might underperform.
+
+1. Communication Differences:
+
+Single-node GPUs benefit from high-speed connections like NVLink or PCIe whereas multi-node setups rely on network links (InfiniBand/Ethernet) which might be slower.Moreover, synchronizing data across nodes migght introduces significant latency.
+
+2. Model-Specific Factors:
+
+For our ResNet model, the overhead of coordinating across many GPUs may outweigh the parallelization benefits. We might notice that communication is faster and more frequently, leading to better utilization with just two GPUs.
+
+These factors are crucial when deciding between single-node and multi-node configurations. The optimal approach depends on your specific project requirements and how well we can leverage parallel processing for your particular training task.
+
 
 #### Job Script for Multi node Training
 
 ````bash
 #!/bin/bash
-#SBATCH --job-name=resnet_training_multinode
+#SBATCH --job-name=simple_nn_training_multinode
 #SBATCH --account=<project_number>
-#SBATCH --output=multinode.out
-#SBATCH --error=multinode.err
+#SBATCH --output=multinode_%j.out
+#SBATCH --error=multinode_%j.err
 #SBATCH --time=01:00:00
 #SBATCH --partition=accel
-#SBATCH --nodes=2                 # Request 2 compute nodes
-#SBATCH --ntasks-per-node=1       # One coordinating task per node
-#SBATCH --gpus-per-node=4        # Reserve 4 GPUs on each node
-#SBATCH --cpus-per-task=72       # Reserve enough CPU cores for full workload
-#SBATCH --mem-per-gpu=110G        # Request 110 GB of CPU RAM per GPU
+#SBATCH --nodes=2               # Request 2 compute nodes
+#SBATCH --ntasks-per-node=1     # One coordinating task per node
+#SBATCH --gpus-per-node=4       # Reserve 4 GPUs on each node
+#SBATCH --cpus-per-gpu=72       # Reserve enough CPU cores for full workload with each GPU
+#SBATCH --mem-per-gpu=110G      # Request 110GB of CPU RAM per GPU
 
 # Load required modules
 module load cray-python/3.11.7
@@ -623,55 +637,80 @@ head_node_ip=$(srun --nodes=1 --ntasks=1 -w "$head_node" hostname --ip-address |
 echo "Head Node: $head_node"
 echo "Head Node IP: $head_node_ip"
 
-# Run the Python script using torchrun 
+# Run the Python script using torchrun
 srun torchrun \
   --nnodes=$SLURM_NNODES \
   --nproc_per_node=$SLURM_GPUS_ON_NODE \
   --rdzv_id=$RANDOM \
   --rdzv_backend=c10d \
   --rdzv_endpoint=$head_node_ip:29500 \
-  ../resnetddp.py
+  ../resnetddp.py --epochs 20 --batch-size 2048 --base-lr 0.04
 # Deactivate the virtual environment
 deactivate
 ````
+#### Batch Size Scaling and Learning Rate Adjustment
+To maintain consistency with our single-node setup where each GPU processed 256 samples (512 total batch size / 2 GPUs), we increased the total batch size to 2048 for our 8-GPU across 2-nodes configuration (256 per GPU). This larger batch size reduces synchronization frequency, allowing GPUs to spend more time computing and less time waiting for gradient updates.
 
-Below is the output generated from running the training across multiple nodes.
+Initial tests without learning rate adjustment using the default `--base-lr 0.01` resulted in a training time of `85.279 seconds`. It is recommended to try without this argument `--base-lr 0.04` to see the total training time because it establishes our starting point before optimization.
+
+For optimal convergence when scaling batch size, we applied the linear learning rate rule:
+
+````bash
+New LR = Base LR × (New Batch Size / Old Batch Size)
+       = 0.01 × (2048 / 512) 
+       = 0.04
+````
+From the output below, we can validate that, despite a high initial loss (expected with large batches), the model converged stably, confirming that linear LR scaling was effective.
+
+
+Below is the output generated from running the training across multiple nodes and with proper optimization, our multi-node training now runs fastter, showing how distributed setups can deliver real speed gains when tuned correctly.
+
 
 ````bash
 
-Training started with 4 processes across 2 nodes.
-Using 2 GPUs per node.
+Training started with 8 processes across 2 nodes.
+Using 4 GPUs per node.
 
-Epoch 1/10
-Epoch 1 completed in 10.208 seconds
-Validation Loss: 0.5929, Validation Accuracy: 0.7752
+Epoch 1/20
+Epoch 1 completed in 9.268 seconds
+Validation Loss: 2.8061, Validation Accuracy: 0.1400
 
-Epoch 2/10
-Epoch 2 completed in 9.450 seconds
-Validation Loss: 0.4266, Validation Accuracy: 0.8477
+Epoch 2/20
+Epoch 2 completed in 8.357 seconds
+Validation Loss: 0.5487, Validation Accuracy: 0.7990
 
-Epoch 3/10
-Epoch 3 completed in 9.385 seconds
-Validation Loss: 0.4440, Validation Accuracy: 0.8397
+Epoch 3/20
+Epoch 3 completed in 8.354 seconds
+Validation Loss: 0.5003, Validation Accuracy: 0.8196
 
-Epoch 4/10
-Epoch 4 completed in 9.400 seconds
-Validation Loss: 0.4783, Validation Accuracy: 0.8431
+Epoch 4/20
+Epoch 4 completed in 8.372 seconds
+Validation Loss: 0.4126, Validation Accuracy: 0.8492
 
-Epoch 5/10
-Epoch 5 completed in 9.436 seconds
-Validation Loss: 0.3952, Validation Accuracy: 0.8575
+Epoch 5/20
+Epoch 5 completed in 8.406 seconds
+Validation Loss: 0.3521, Validation Accuracy: 0.8761
 
-Epoch 6/10
-Epoch 6 completed in 9.526 seconds
-Validation Loss: 0.2980, Validation Accuracy: 0.8931
-Target accuracy reached. Early stopping after epoch 6.
+Epoch 6/20
+Epoch 6 completed in 8.411 seconds
+Validation Loss: 0.4499, Validation Accuracy: 0.8375
+
+Epoch 7/20
+Epoch 7 completed in 8.411 seconds
+Validation Loss: 0.3167, Validation Accuracy: 0.8856
+
+Epoch 8/20
+Epoch 8 completed in 8.414 seconds
+Validation Loss: 0.3508, Validation Accuracy: 0.8741
+Target accuracy reached. Early stopping after epoch 8.
 
 Training Summary:
-Total training time: 57.405 seconds
+Total training time: 67.992 seconds
 Number of nodes: 2
-Number of GPUs per node: 2
-Total GPUs used: 4
+Number of GPUs per node: 4
+Total GPUs used: 8
 Training completed successfully.
 ````
+
+
 
