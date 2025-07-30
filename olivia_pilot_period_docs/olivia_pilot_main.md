@@ -233,36 +233,27 @@ This will provide details such as dependencies and additional help:
 
 #### Using the EESSI Stack
 
-The EESSI (European Environment for Scientific Software Infrastructure) stack provides an additional software environment that can be used on Olivia. It is particularly useful for accessing pre-built scientific software inside a containerized environment. 
+The EESSI (European Environment for Scientific Software Infrastructure) software stack - optimized for each supported CPU architecture - already available on Betzy, Fram, and Saga is now also available on Olivia.
 
-To load the EESSI stack, use the following commands:
+For now, EESSI on Olivia is limited to single-node jobs, but this is only temporary — full multi-node support is on its way as Olivia's configuration is finalized!
 
-- On **CPU nodes**:
-
-  ```bash
-  $ source /cluster/work/support/EESSI/EESSI_x86_64
-  ```
-
-- On **GPU nodes**:
+To load the EESSI stack, simply use:
 
   ```bash
-  $ source /cluster/work/support/EESSI/EESSI_arm
+  $ source /cluster/work/support/EESSI/EESSI
   ```
-Once the stack is loaded, you can interact with it using the `module` command, just like with the NRIS stacks. For example:
+Once you have sourced the script, you can interact with it using the `module` command, just like with the NRIS stacks. For example:
 
 ```bash
 $ module avail
+$ module load Bison/3.8.2-GCCcore-13.2.0
 ```
 
-This will list the software modules available within the EESSI stack.
+The first command will list all software modules available within the EESSI stack.
+Then we loaded the `Bison` module.
 
-The EESSI stack contains a wide range of preinstalled software, including many tools commonly used in bioinformatics and other scientific domains.
-
-**Important Notes**:
-- The EESSI stack currently runs inside a container and is limited to a single node. Multi-node usage is not supported at this time.
-- The EESSI stack provides a consistent software environment across different architectures, making it a valuable tool for scientific workflows.
-
-For more information about EESSI, visit the [EESSI website](https://eessi-hpc.org/).
+While EESSI provides a wide range of preinstalled software, you can build on top of EESSI either using EasyBuild or manually (without EasyBuild)
+For more information see https://www.eessi.io/docs/using_eessi/building_on_EESSI/
 
 ---
 
