@@ -357,6 +357,7 @@ For resource management, we use the `torchrun` utility from PyTorch. This tool e
 #SBATCH --gpus-per-node=1            # Request 1 GPU
 # Load required modules
 module load cray-python/3.11.7
+module load cuda/12.6
 
 # Create and activate virtual environment in compute node's local storage
 VENV_PATH="$SCRATCH/pytorch_venv"  # Using compute node's scratch space
@@ -371,26 +372,35 @@ pip install --no-index --find-links=$WHEEL_DIR $(ls $WHEEL_DIR/*.whl | tr '\n' '
 # Set PYTHONPATH to include the shared directory
 export PYTHONPATH=/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/shared:$PYTHONPATH
 
+# Start GPU utilization monitoring in the background
+GPU_LOG_FILE="gpu_utilization_resnet.log"
+echo "Starting GPU utilization monitoring..."
+nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &l
+
 # Run the Python script using torchrun 
 
 torchrun --standalone --nnodes=$SLURM_JOB_NUM_NODES --nproc_per_node=$SLURM_GPUS_ON_NODE ../resnet.py
 
+# Stop GPU utilization monitoring
+echo "Stopping GPU utilization monitoring..."
+pkill -f "nvidia-smi --query-gpu"
 deactivate
 ```
 
 Output of the training is shown below:
 
 ```bash
-Training WideResNet on Fashion MNIST with Batch Size: 32
-Epoch =  1: Epoch Time = 2.963, Validation Loss = 0.524, Validation Accuracy = 0.799, Images/sec = 3369.181, Cumulative Time = 2.963
-Epoch =  2: Epoch Time = 2.623, Validation Loss = 0.440, Validation Accuracy = 0.837, Images/sec = 3806.211, Cumulative Time = 5.586
-Epoch =  3: Epoch Time = 2.601, Validation Loss = 0.422, Validation Accuracy = 0.849, Images/sec = 3839.022, Cumulative Time = 8.187
-Epoch =  4: Epoch Time = 2.553, Validation Loss = 0.393, Validation Accuracy = 0.862, Images/sec = 3909.946, Cumulative Time = 10.741
-Epoch =  5: Epoch Time = 2.553, Validation Loss = 0.424, Validation Accuracy = 0.859, Images/sec = 3911.137, Cumulative Time = 13.293
-Early stopping after epoch 5
+Starting GPU utilization monitoring...
+Training WideResNet on Fashion MNIST with Batch Size: 256
+Epoch =  1: Epoch Time = 2.891, Validation Loss = 1.643, Validation Accuracy = 0.385, Images/sec = 3453.940, Cumulative Time = 2.891
+Epoch =  2: Epoch Time = 1.187, Validation Loss = 0.658, Validation Accuracy = 0.765, Images/sec = 8410.492, Cumulative Time = 4.078
+Epoch =  3: Epoch Time = 1.192, Validation Loss = 0.569, Validation Accuracy = 0.795, Images/sec = 8374.150, Cumulative Time = 5.270
+Epoch =  4: Epoch Time = 1.191, Validation Loss = 0.522, Validation Accuracy = 0.812, Images/sec = 8386.004, Cumulative Time = 6.460
+Epoch =  5: Epoch Time = 1.190, Validation Loss = 0.494, Validation Accuracy = 0.818, Images/sec = 8391.938, Cumulative Time = 7.650
 
-Training complete. Final Validation Accuracy = 0.859
-Total Training Time: 13.293 seconds
+Training complete. Final Validation Accuracy = 0.818
+Total Training Time: 7.650 seconds
+Stopping GPU utilization monitoring...
 ```
 
 
@@ -524,6 +534,7 @@ When using `torchrun` for a single-node setup, you need to include the `--standa
 #SBATCH --gpus-per-node=2   # Reserve 2 GPUs on node
 # Load required modules
 module load cray-python/3.11.7
+module load cuda/12.6
 
 # Create and activate virtual environment in compute node's local storage
 VENV_PATH="$SCRATCH/pytorch_venv"  # Using compute node's scratch space
@@ -538,8 +549,18 @@ pip install --no-index --find-links=$WHEEL_DIR $(ls $WHEEL_DIR/*.whl | tr '\n' '
 # Set PYTHONPATH to include the shared directory
 export PYTHONPATH=/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/shared:$PYTHONPATH
 
+# Start GPU utilization monitoring in the background
+GPU_LOG_FILE="gpu_utilization.log"
+echo "Starting GPU utilization monitoring..."
+nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &l
 
+
+# run the training script
 torchrun --standalone --nnodes=$SLURM_NNODES  --nproc_per_node=$SLURM_GPUS_ON_NODE ../resnetddp.py  --epochs 10 --batch-size 512
+
+# Stop GPU utilization monitoring
+echo "Stopping GPU utilization monitoring..."
+pkill -f "nvidia-smi --query-gpu"
 
 deactivate
 ```
@@ -547,28 +568,37 @@ deactivate
 Output of the training is shown below:
 
 ```bash
+Starting GPU utilization monitoring...
 Training started with 2 processes across 1 nodes.
 Using 2 GPUs per node.
 
 Epoch 1/10
-Epoch 1 completed in 7.402 seconds
-Validation Loss: 0.5615, Validation Accuracy: 0.7932
+Epoch 1 completed in 8.276 seconds
+Validation Loss: 0.5461, Validation Accuracy: 0.7985
 
 Epoch 2/10
 Epoch 2 completed in 7.157 seconds
-Validation Loss: 0.4249, Validation Accuracy: 0.8528
+Validation Loss: 0.4210, Validation Accuracy: 0.8468
 
 Epoch 3/10
-Epoch 3 completed in 7.129 seconds
-Validation Loss: 0.3945, Validation Accuracy: 0.8583
-Target accuracy reached. Early stopping after epoch 3.
+Epoch 3 completed in 7.118 seconds
+Validation Loss: 0.3724, Validation Accuracy: 0.8665
+
+Epoch 4/10
+Epoch 4 completed in 7.112 seconds
+Validation Loss: 0.5056, Validation Accuracy: 0.8268
+
+Epoch 5/10
+Epoch 5 completed in 7.118 seconds
+Validation Loss: 0.3270, Validation Accuracy: 0.8822
+
+Epoch 6/10
+Epoch 6 completed in 7.178 seconds
+Validation Loss: 0.3685, Validation Accuracy: 0.8665
+Target accuracy reached. Early stopping after epoch 6.
 
 Training Summary:
-Total training time: 21.688 seconds
-Number of nodes: 1
-Number of GPUs per node: 2
-Total GPUs used: 2
-Training completed successfully.
+Total training time: 43.959 seconds
 ```
 
 
@@ -621,6 +651,7 @@ These factors are crucial when deciding between single-node and multi-node confi
 
 # Load required modules
 module load cray-python/3.11.7
+module load cuda/12.6
 
 # Create and activate virtual environment
 VENV_PATH="$SCRATCH/pytorch_venv"
@@ -644,6 +675,11 @@ head_node_ip=$(srun --nodes=1 --ntasks=1 -w "$head_node" hostname --ip-address |
 echo "Head Node: $head_node"
 echo "Head Node IP: $head_node_ip"
 
+# Start GPU utilization monitoring in the background
+GPU_LOG_FILE="gpu_utilization_multinode.log"
+echo "Starting GPU utilization monitoring..."
+nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &l
+
 # Run the Python script using torchrun
 srun torchrun \
   --nnodes=$SLURM_NNODES \
@@ -652,6 +688,10 @@ srun torchrun \
   --rdzv_backend=c10d \
   --rdzv_endpoint=$head_node_ip:29500 \
   ../resnetddp.py --epochs 20 --batch-size 2048 --base-lr 0.04
+
+# Stop GPU utilization monitoring
+echo "Stopping GPU utilization monitoring..."
+pkill -f "nvidia-smi --query-gpu"
 # Deactivate the virtual environment
 deactivate
 ```
@@ -680,40 +720,32 @@ Training started with 8 processes across 2 nodes.
 Using 4 GPUs per node.
 
 Epoch 1/20
-Epoch 1 completed in 9.268 seconds
-Validation Loss: 2.8061, Validation Accuracy: 0.1400
+Epoch 1 completed in 10.042 seconds
+Validation Loss: 2.8143, Validation Accuracy: 0.1216
 
 Epoch 2/20
-Epoch 2 completed in 8.357 seconds
-Validation Loss: 0.5487, Validation Accuracy: 0.7990
+Epoch 2 completed in 8.390 seconds
+Validation Loss: 0.6200, Validation Accuracy: 0.7717
 
 Epoch 3/20
-Epoch 3 completed in 8.354 seconds
-Validation Loss: 0.5003, Validation Accuracy: 0.8196
+Epoch 3 completed in 8.372 seconds
+Validation Loss: 0.4511, Validation Accuracy: 0.8325
 
 Epoch 4/20
-Epoch 4 completed in 8.372 seconds
-Validation Loss: 0.4126, Validation Accuracy: 0.8492
+Epoch 4 completed in 8.371 seconds
+Validation Loss: 0.4254, Validation Accuracy: 0.8422
 
 Epoch 5/20
-Epoch 5 completed in 8.406 seconds
-Validation Loss: 0.3521, Validation Accuracy: 0.8761
+Epoch 5 completed in 8.360 seconds
+Validation Loss: 0.3645, Validation Accuracy: 0.8698
 
 Epoch 6/20
-Epoch 6 completed in 8.411 seconds
-Validation Loss: 0.4499, Validation Accuracy: 0.8375
-
-Epoch 7/20
-Epoch 7 completed in 8.411 seconds
-Validation Loss: 0.3167, Validation Accuracy: 0.8856
-
-Epoch 8/20
-Epoch 8 completed in 8.414 seconds
-Validation Loss: 0.3508, Validation Accuracy: 0.8741
-Target accuracy reached. Early stopping after epoch 8.
+Epoch 6 completed in 8.368 seconds
+Validation Loss: 0.3265, Validation Accuracy: 0.8839
+Target accuracy reached. Early stopping after epoch 6.
 
 Training Summary:
-Total training time: 67.992 seconds
+Total training time: 51.904 seconds
 Number of nodes: 2
 Number of GPUs per node: 4
 Total GPUs used: 8

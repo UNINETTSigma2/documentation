@@ -193,7 +193,6 @@ jobs/overview.rst
 jobs/internet-login-compute-nodes.md
 computing/tuning-applications.md
 code_development/guides_llm.md
-code_development/olivia_pytorch.md
 ```
 
 ```{toctree}
