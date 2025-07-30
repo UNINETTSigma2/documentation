@@ -255,6 +255,19 @@ Then we loaded the `Bison` module.
 While EESSI provides a wide range of preinstalled software, you can build on top of EESSI either using EasyBuild or manually (without EasyBuild)
 For more information see https://www.eessi.io/docs/using_eessi/building_on_EESSI/
 
+##### GPU-enabled Software on EESSI
+
+The official EESSI stack contains already some modules of popular software like GROMACS, but many are also still missing.
+
+To get you started more quickly, we have added some experimental GPU-enabled software locally on Olivia which are not yet officially supported by EESSI or EasyBuild.
+
+To access it, run the following commands on a GPU node:
+```bash
+$ source /cluster/work/support/EESSI/EESSI 
+$ export MODULE PATH=/cluster/work/support/EESSI/EESSI_experimental/modules/all:$MODULE PATH
+```
+
+
 ---
 
 
