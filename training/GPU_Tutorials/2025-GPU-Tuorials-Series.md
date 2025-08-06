@@ -45,7 +45,7 @@ This workshop is ideal for researchers, developers, and students who are familia
 
 **Instructor**: [Hicham Agueny](https://www4.uib.no/en/find-employees/Hicham.Agueny)
 
-**Registration**: *Registration is soon open*
+**Registration**: [HERE](https://docs.google.com/forms/d/e/1FAIpQLSeQ00Qgwc47Qlzxiw2Q924YSIqHXWuKEhzy5tWrhdHwbwpw8Q/viewform?usp=header)
 
 ```{note}
 - Link to video to be announced.
