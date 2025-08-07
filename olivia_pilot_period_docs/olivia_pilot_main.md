@@ -551,6 +551,14 @@ For the pilot period of Olivia, the following job types are defined.
 
 Note that job limits will change after pilot period is over.
 
+### Special notes
+
+At this point running OpenMPI jobs that use a single compute node requires a special sbatch argument:
+
+   ```
+   #SBATCH --network=single_node_vni
+   ```
+
 #### Normal jobs (CPUs)
 
 - __Allocation units__: CPUs and memory
@@ -578,7 +586,7 @@ following example is enough:
     #SBATCH --time=1-0:0:0        # Total maximum runtime. In this case 1 day
     #SBATCH --cpus-per-task=32    # Number of CPU cores
     #SBATCH --mem-per-cpu=3G      # Amount of CPU memory per CPU core
-
+    #SBATCH --network=single_node_vni # Currently required for OpenMPI to work with single compute node jobs.
 
 #### Accel jobs (GPU)
 
@@ -616,6 +624,7 @@ following example is enough:
     #SBATCH --time=1-0:0:0        # Total maximum runtime. In this case 1 day
     #SBATCH --cpus-per-task=72    # All CPU cores of one Grace-Hopper card
     #SBATCH --mem-per-gpu=100G    # Amount of CPU memory
+    #SBATCH --network=single_node_vni # Currently required for OpenMPI to work with single compute node jobs.
 
 There are other GPU related specifications that can be used, and that
 parallel some of the CPU related specifications.  The most useful are
