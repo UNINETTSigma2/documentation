@@ -25,7 +25,7 @@ All times are given in CET/CEST depending on date.
 
 ### Fine-Tuning LLMs with Multi-GPU Training - A Hands-on Workshop
 
-**Date:** Tuesday September 2nd 2025.
+**Date:** Wednesday September 3rd 2025.
 **Time:** 09:30-15:30
 
 **Content:**
