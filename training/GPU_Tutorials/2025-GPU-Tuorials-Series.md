@@ -31,6 +31,8 @@ All times are given in CET/CEST depending on date.
 **Content:**
 This hands-on workshop, titled Fine-Tuning LLMs with Multi-GPU Training, is designed to provide participants with practical experience in fine-tuning large language models (LLMs) with a special focus on LLaMA on high-performance computing (HPC) systems.
 
+Participants will get hands-on experience with [Olivia](https://www.sigma2.no/meet-olivia-norways-next-supercomputer) - Norway’s Next supercomputer.
+
 <u>Learning Outcomes:</u>
 
 By the end of this workshop, participants will be able to:
@@ -45,7 +47,7 @@ This workshop is ideal for researchers, developers, and students who are familia
 
 **Instructor**: [Hicham Agueny](https://www4.uib.no/en/find-employees/Hicham.Agueny)
 
-**Registration**: [HERE](https://docs.google.com/forms/d/e/1FAIpQLSeQ00Qgwc47Qlzxiw2Q924YSIqHXWuKEhzy5tWrhdHwbwpw8Q/viewform?usp=header)
+**Registration**: [HERE](https://docs.google.com/forms/d/e/1FAIpQLSeQ00Qgwc47Qlzxiw2Q924YSIqHXWuKEhzy5tWrhdHwbwpw8Q/viewform?usp=header) (**Registration deadline Sept. 1st!!**)
 
 ```{note}
 - Link to video to be announced.
