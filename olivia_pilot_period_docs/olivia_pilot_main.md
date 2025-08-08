@@ -559,6 +559,14 @@ At this point running OpenMPI jobs that use a single compute node requires a spe
    #SBATCH --network=single_node_vni
    ```
 
+OpenMPI applications can be started with `mpirun` (native OpenMPI way), or `srun`. In the latter case on Olivia this has to be done in the following way
+
+   ```
+   srun --mpi=pmix <...>
+   ```
+
+Applications compiled with Intel MPI and Cray MPI should not use this extra argument to `srun`.
+
 #### Normal jobs (CPUs)
 
 - __Allocation units__: CPUs and memory
