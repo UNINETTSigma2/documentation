@@ -161,7 +161,7 @@ $ module avail
 
 ---
 
-#### Searching for Modules Across Stacks
+##### Searching for Modules Across Stacks
 
 You can search for a specific module across all stacks using `module spider`. For example:
 
@@ -229,7 +229,7 @@ This will provide details such as dependencies and additional help:
 
 ---
 
-#### Important Notes
+##### Important Notes
 
 - **Avoid Using `BuildEnv` Modules**: These modules are intended for internal use and will be hidden in the future. Please use the `NRIS` modules instead.
 - __Software Requests__: We will install additional software packages in the future. If you cannot find the software you need, please contact us. Refer to our [Getting Help page](support-line) for details, and be sure to mention that your request is regarding Olivia.
@@ -237,6 +237,62 @@ This will provide details such as dependencies and additional help:
 
 ---
 
+#### Using the EESSI Stack
+
+The EESSI (European Environment for Scientific Software Infrastructure) software stack - optimized for each supported CPU architecture - already available on Betzy, Fram, and Saga is now also available on Olivia.
+
+To load the EESSI stack, simply use:
+
+```bash
+$ source /cluster/installations/eessi/default/eessi_environment_variables_Olivia
+$ source /cvmfs/software.eessi.io/versions/2023.06/init/bash
+```
+
+The second script automatically detects the CPU microarchitecture of the current machine and selects the most appropriate pre-built software provided by EESSI. This ensures optimal performance and works seamlessly across systems with varying CPU architectures, such as those available on Olivia.
+
+Once the environment is configured to access software provided by EESSI, you can interact with it using the `module` command, just like with the NRIS stacks. For example:
+
+```bash
+$ module avail
+$ module load TensorFlow/2.13.0-foss-2023a
+```
+
+The first command will list all software modules available within the EESSI stack (on the current CPU/GPU partition).
+Then we loaded the `TensorFlow` module.
+
+While EESSI provides a wide range of preinstalled software, you can build on top of EESSI either using EasyBuild or manually (without EasyBuild)
+For more information see the official [EESSI documentation](https://www.EESSI.do/docs/using_EESSI/building_on_EESSI/).
+
+##### GPU-enabled Software on EESSI
+
+The official EESSI stack contains already some modules of popular software like GROMACS, but many are also still missing.
+
+To get you started more quickly, we have added some experimental GPU-enabled software locally on Olivia which are not yet officially supported by EESSI or EasyBuild.
+
+To access it, run the following command after initializing the EESSI environment on a __GPU node__:
+```bash
+$ export MODULE PATH=/cluster/work/support/EESSI/EESSI_experimental/modules/all:$MODULE PATH
+```
+
+Note: If your job requires the use of `mpirun`, please ensure you use the `srun --mpi=pmix` option for proper integration.
+Sample job script using `OSU-Micro-Benchmarks/7.2-gompi-2023b` from the EESSI stack:
+```bash
+#!/bin/bash -e
+#SBATCH --job-name=Sample
+#SBATCH --account=nnXXXX
+#SBATCH --time=00:05:00
+#SBATCH --partition=normal
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=1
+
+source /cluster/installations/eessi/default/eessi_environment_variables_Olivia
+source /cvmfs/software.eessi.io/versions/2023.06/init/bash
+module load OSU-Micro-Benchmarks/7.2-gompi-2023b
+
+srun --mpi=pmix osu_bw
+```
+
+---
 
 ### 2. Python, R, and (Ana-)Conda
 
@@ -446,19 +502,19 @@ You can use pre-built containers or download and convert your own. Here are the 
    You can download containers from sources like the [NVIDIA NCC catalogue](https://catalog.ngc.nvidia.com/containers) or [Docker Hub](https://hub.docker.com/). Use the following command to download and convert a container into the Apptainer format:
 
    ```bash
-   apptainer build <image_name>.sif docker://<docker_image_url>
+   $ apptainer build <image_name>.sif docker://<docker_image_url>
    ```
 
    For example, to download and convert the latest NVIDIA PyTorch container:
 
    ```bash
-   apptainer build pytorch_nvidia_25.06.sif docker://nvcr.io/nvidia/pytorch:25.06-py3
+   $ apptainer build pytorch_nvidia_25.06.sif docker://nvcr.io/nvidia/pytorch:25.06-py3
    ```
 
    For more options, check the Apptainer build help:
 
    ```bash
-   apptainer build --help
+   $ apptainer build --help
    ```
 
 ---
@@ -475,7 +531,7 @@ You can use pre-built containers or download and convert your own. Here are the 
   By default, Apptainer stores its cache in your home directory, which may lead to `disk quota exceeded` errors. To avoid this, set the cache directory to your project work area:
 
   ```bash
-  export APPTAINER_CACHEDIR=/cluster/work/projects/<project_number>/singularity
+  $ export APPTAINER_CACHEDIR=/cluster/work/projects/<project_number>/singularity
   ```
 
 ---
@@ -488,7 +544,7 @@ Apptainer provides several ways to run containers, depending on your needs:
    Use `apptainer run` to execute the default command specified in the container setup. For example:
 
    ```bash
-   apptainer run <image_path>.sif <extra_parameters>
+   $ apptainer run <image_path>.sif <extra_parameters>
    ```
 
    *Example*: Running a containerized application with its default configuration.
@@ -497,7 +553,7 @@ Apptainer provides several ways to run containers, depending on your needs:
    Use `apptainer exec` to run specific commands available inside the container. For example:
 
    ```bash
-   apptainer exec <image_path>.sif <command> <extra_parameters>
+   $ apptainer exec <image_path>.sif <command> <extra_parameters>
    ```
 
    *Example*: Running a Python script inside the container.
@@ -506,7 +562,7 @@ Apptainer provides several ways to run containers, depending on your needs:
    Use `apptainer shell` to start an interactive shell session inside the container. For example:
 
    ```bash
-   apptainer shell <image_path>.sif <extra_parameters>
+   $ apptainer shell <image_path>.sif <extra_parameters>
    ```
 
    *Example*: Exploring the container environment or debugging.
@@ -518,7 +574,7 @@ Apptainer provides several ways to run containers, depending on your needs:
 To enable GPU support inside the container, add the `--nv` flag to your Apptainer command. This ensures that the container has access to the GPU resources. For example:
 
 ```bash
-apptainer exec --nv /cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif python -c 'import torch; print(torch.cuda.is_available()); print(torch.cuda.device_count())'
+$ apptainer exec --nv /cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif python -c 'import torch; print(torch.cuda.is_available()); print(torch.cuda.device_count())'
 ```
 
 This command checks if GPUs are available and prints the number of GPUs detected inside the container.
