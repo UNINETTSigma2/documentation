@@ -2,40 +2,45 @@
 
 # PyTorch on Olivia
 
+```{contents}
+:depth: 3
+```
+
 In this guide, we’ll be testing PyTorch on the Olivia system, which uses the Aarch64 architecture on its compute nodes. To do this, we’ll use specific PyTorch wheels compatible with this architecture.
 
-Note: This documentation is a work in progress and is intended for testing purposes. If you encounter any issues or something does not work as expected, please let us know. Furthermore, this approach relies on `pip` installation, which can degrade the file system. As a result, it will no longer be permitted after the pilot phase.
+```{note}
+This documentation is a work in progress and is intended for testing purposes. If you encounter any issues or something does not work as expected, please let us know. Furthermore, this approach relies on `pip` installation, which can degrade the file system. As a result, it will no longer be permitted after the pilot phase.
+```
 
-Key Considerations:
+## Key Considerations
 
-1. Different Architectures:
+1. __Different Architectures__:
 
-The login node and the compute node on Olivia have different architectures. The login node uses the x86_64 architecture, while the compute node uses Aarch64. This means we cannot install software directly on the login node and expect it to work on the compute node.
+     The login node and the compute node on Olivia have different architectures. The login node uses the x86_64 architecture, while the compute node uses Aarch64. This means we cannot install software directly on the login node and expect it to work on the compute node.
 
-2. Internet Connectivity on Compute Nodes:
+2. __Internet Connectivity on Compute Nodes__:
 
-At the time of testing, the compute nodes did not have direct internet access. Consequently, we had to install the required PyTorch wheels within a virtual environment using a job script. This ensured that the installation occurred on the compute node during the execution of the job script.
-
-However, it is now possible to access the internet directly from the compute nodes by configuring proxies, as demonstrated below:
-
-````bash
-export http_proxy=http://10.63.2.48:3128/
-export https_proxy=http://10.63.2.48:3128/
-````
+    At the time of testing, the compute nodes did not have direct internet access. Consequently, we had to install the required PyTorch wheels within a virtual environment using a job script. This ensured that the installation occurred on the compute node during the execution of the job script.
+    
+    However, it is now possible to access the internet directly from the compute nodes by configuring proxies, as demonstrated below:
+    
+    ```bash
+    export http_proxy=http://10.63.2.48:3128/
+    export https_proxy=http://10.63.2.48:3128/
+    ```
 
 3. CUDA Version:
 
-The compute nodes are equipped with CUDA Version 12.7, as confirmed by running the nvidia-smi command. Therefore, we need to ensure that the PyTorch wheels we use are compatible with this CUDA version.
+     The compute nodes are equipped with CUDA Version 12.7, as confirmed by running the nvidia-smi command. Therefore, we need to ensure that the PyTorch wheels we use are compatible with this CUDA version.
 
 
 
 You can download the necessary PyTorch wheels for your project from the PyTorch nightly builds using the following link:
 
-[torch](https://download.pytorch.org/whl/nightly/torch)
+- [PyTorch](https://download.pytorch.org/whl/nightly/torch)
+- [PyTorch-triton](https://download.pytorch.org/whl/nightly/pytorch-triton/)
+- [torchvision](https://download.pytorch.org/whl/nightly/torchvision/)
 
-[pytorch-triton](https://download.pytorch.org/whl/nightly/pytorch-triton/)
-
-[torchvision](https://download.pytorch.org/whl/nightly/torchvision/)
 
 ## Training a ResNet Model with the Fashion-MNIST Dataset
 
@@ -50,12 +55,11 @@ To test Olivia's capabilities with real-world workloads, we will train a ResNet 
 The primary goal of this exercise is to verify that we can successfully run training tasks on Olivia. As such, we will not delve into the specifics of neural network training in this documentation. A separate guide will be prepared to cover those details.
 
 
-
 ### Single GPU Implementation
 
 To train the ResNet model on a single GPU, we used the following files. These files include the main Python script responsible for training the ResNet model.
 
-````python
+```python
 # resnet.py
 """
 This script trains a WideResNet model on the Fashion MNIST dataset without using Distributed Data Parallel (DDP).
@@ -134,10 +138,10 @@ def main():
     train_resnet_without_ddp(batch_size=BATCH_SIZE, epochs=EPOCHS, learning_rate=LEARNING_RATE, device=device)
 if __name__ == "__main__":
     main()
-````
+```
 
 This file contains the data utility functions used for preparing and managing the dataset.Please note that, you need to manually install the Fashion-MNIST dataset and place it in the respective folder.
-````python
+```python
 # dataset_utils.py
 # NUmpy is a fundamental package for scientific computing. It contains an implementation of an array
 import numpy as np
@@ -185,10 +189,10 @@ def load_fashion_mnist_fulldataset(batch_size):
     train_loader = torch.utils.data.DataLoader(train_set,batch_size=batch_size, dropLast=True, shuffle=True)
     test_loader = torch.utils.data.DataLoader(test_set,batch_size=batch_size, dropLast=True, shuffle=False)
     return train_loader, test_loader
-````
+```
 
 This file includes the device utility functions, which handle device selection and management for training (e.g., selecting the appropriate GPU). 
-````python
+```python
 # device_utils.py
 import torch
 
@@ -200,11 +204,11 @@ def get_device():
     """
 
     return torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-````
+```
 
 
 This file contains the implementation of the ResNet model architecture.
-````python
+```python
 # wide_resnet.py
 import torch.nn as nn
 
@@ -270,10 +274,10 @@ class WideResNet(nn.Module):
         out = self.fc(out)
         return out
 
-````
+```
 
 Finally, this file serves as a utility module for importing the training and testing datasets.
-````python
+```python
 # train_utils.py
 import torch 
 def train(model, optimizer, train_loader, loss_fn, device):
@@ -330,7 +334,7 @@ def test(model, test_loader, loss_fn, device):
     v_accuracy = correct_labels / total_labels
     v_loss = loss_total / len(test_loader)
     return v_accuracy, v_loss
-````
+```
 
 
 #### Job Script for Single GPU Training
@@ -338,21 +342,22 @@ def test(model, test_loader, loss_fn, device):
 To run the training on a single GPU, we use the following job script. The `accel` partition is used to access GPU resources. After loading the Python module from `cray-python`, you can create a virtual environment and install all the required wheels for your program using `pip`.
 
 For resource management, we use the `torchrun` utility from PyTorch. This tool ensures efficient allocation of resources, especially when scaling to multiple GPUs or nodes.
-````bash
+```bash
 #!/bin/bash
 #SBATCH --job-name=simple_nn_training
 #SBATCH --account=<project_number>
-#SBATCH --output=singlenode.out
-#SBATCH --error=singlenode.err
+#SBATCH --output=singleGpu_%j.out
+#SBATCH --error=singleGpu_%j.err
 #SBATCH --time=00:10:00
 #SBATCH --partition=accel
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=4
-#SBATCH --cpus-per-task=1
-#SBATCH --mem=4G
-#SBATCH --gpus-per-node=1
+#SBATCH --nodes=1                     # Single compute node
+#SBATCH --ntasks-per-node=1          # One task (process) on the node
+#SBATCH --cpus-per-task=72           # Reserve 72 CPU cores
+#SBATCH --mem-per-gpu=110G           # Request 110 GB of CPU RAM per GPU
+#SBATCH --gpus-per-node=1            # Request 1 GPU
 # Load required modules
 module load cray-python/3.11.7
+module load cuda/12.6
 
 # Create and activate virtual environment in compute node's local storage
 VENV_PATH="$SCRATCH/pytorch_venv"  # Using compute node's scratch space
@@ -367,32 +372,44 @@ pip install --no-index --find-links=$WHEEL_DIR $(ls $WHEEL_DIR/*.whl | tr '\n' '
 # Set PYTHONPATH to include the shared directory
 export PYTHONPATH=/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/shared:$PYTHONPATH
 
+# Start GPU utilization monitoring in the background
+GPU_LOG_FILE="gpu_utilization_resnet.log"
+echo "Starting GPU utilization monitoring..."
+nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &l
 
-torchrun --standalone --nnodes=1 --nproc_per_node=1 ../resnet.py
+# Run the Python script using torchrun 
 
+torchrun --standalone --nnodes=$SLURM_JOB_NUM_NODES --nproc_per_node=$SLURM_GPUS_ON_NODE ../resnet.py
+
+# Stop GPU utilization monitoring
+echo "Stopping GPU utilization monitoring..."
+pkill -f "nvidia-smi --query-gpu"
 deactivate
-````
+```
 
 Output of the training is shown below:
 
-````bash
-Training WideResNet on Fashion MNIST with Batch Size: 32
-Epoch =  1: Epoch Time = 2.963, Validation Loss = 0.524, Validation Accuracy = 0.799, Images/sec = 3369.181, Cumulative Time = 2.963
-Epoch =  2: Epoch Time = 2.623, Validation Loss = 0.440, Validation Accuracy = 0.837, Images/sec = 3806.211, Cumulative Time = 5.586
-Epoch =  3: Epoch Time = 2.601, Validation Loss = 0.422, Validation Accuracy = 0.849, Images/sec = 3839.022, Cumulative Time = 8.187
-Epoch =  4: Epoch Time = 2.553, Validation Loss = 0.393, Validation Accuracy = 0.862, Images/sec = 3909.946, Cumulative Time = 10.741
-Epoch =  5: Epoch Time = 2.553, Validation Loss = 0.424, Validation Accuracy = 0.859, Images/sec = 3911.137, Cumulative Time = 13.293
-Early stopping after epoch 5
+```bash
+Starting GPU utilization monitoring...
+Training WideResNet on Fashion MNIST with Batch Size: 256
+Epoch =  1: Epoch Time = 2.891, Validation Loss = 1.643, Validation Accuracy = 0.385, Images/sec = 3453.940, Cumulative Time = 2.891
+Epoch =  2: Epoch Time = 1.187, Validation Loss = 0.658, Validation Accuracy = 0.765, Images/sec = 8410.492, Cumulative Time = 4.078
+Epoch =  3: Epoch Time = 1.192, Validation Loss = 0.569, Validation Accuracy = 0.795, Images/sec = 8374.150, Cumulative Time = 5.270
+Epoch =  4: Epoch Time = 1.191, Validation Loss = 0.522, Validation Accuracy = 0.812, Images/sec = 8386.004, Cumulative Time = 6.460
+Epoch =  5: Epoch Time = 1.190, Validation Loss = 0.494, Validation Accuracy = 0.818, Images/sec = 8391.938, Cumulative Time = 7.650
 
-Training complete. Final Validation Accuracy = 0.859
-Total Training Time: 13.293 seconds
-````
+Training complete. Final Validation Accuracy = 0.818
+Total Training Time: 7.650 seconds
+Stopping GPU utilization monitoring...
+```
+
+
 ### Multi-GPU Implementation
 To scale our training to multiple GPUs, we will utilize PyTorch's Distributed Data Parallel (DDP) framework. DDP allows us to efficiently scale training across multiple GPUs and even across multiple nodes.
 
 For this, we need to modify the main Python script to include DDP implementation. The updated script will work for both scenarios Multiple GPUs within a single node and Multiple nodes.
 
-````python
+```python
 # resnetddp.py
 import os
 import time
@@ -494,29 +511,30 @@ def main_worker():
     destroy_process_group()
 if __name__ == '__main__':
     main_worker()
-````
+```
 
 #### Job Script for Multi GPU Training
 
 To run the training on multiple GPUs, we can use the same job script mentioned earlier, but specify a higher number of GPUs.
 
-When using `torchrun` for a single-node setup, you need to include the `standalone` argument. However, this argument is not required for a multi-node setup. The full job script is given below:
+When using `torchrun` for a single-node setup, you need to include the `--standalone` argument. However, this argument is not required for a multi-node setup. The full job script is given below:
 
-````bash
+```bash
 #!/bin/bash
-#SBATCH --job-name=resnet_training_singlenode
+#SBATCH --job-name=simple_nn_training
 #SBATCH --account=<project_number>
-#SBATCH --output=singlenode.out
-#SBATCH --error=singlenode.err
+#SBATCH --output=singlenode_%j.out
+#SBATCH --error=singlenode_%j.err
 #SBATCH --time=00:10:00
 #SBATCH --partition=accel
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=4
-#SBATCH --cpus-per-task=1
-#SBATCH --mem=4G
-#SBATCH --gpus-per-node=2
+#SBATCH --nodes=1     # Use one compute node
+#SBATCH --ntasks-per-node=1 #  Single task per node
+#SBATCH --cpus-per-gpu=72  # Reserve enough CPU cores for full workload with each GPU
+#SBATCH --mem-per-gpu=110G   # Request 110 GB of CPU RAM per GPU
+#SBATCH --gpus-per-node=2   # Reserve 2 GPUs on node
 # Load required modules
 module load cray-python/3.11.7
+module load cuda/12.6
 
 # Create and activate virtual environment in compute node's local storage
 VENV_PATH="$SCRATCH/pytorch_venv"  # Using compute node's scratch space
@@ -531,41 +549,57 @@ pip install --no-index --find-links=$WHEEL_DIR $(ls $WHEEL_DIR/*.whl | tr '\n' '
 # Set PYTHONPATH to include the shared directory
 export PYTHONPATH=/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/shared:$PYTHONPATH
 
+# Start GPU utilization monitoring in the background
+GPU_LOG_FILE="gpu_utilization.log"
+echo "Starting GPU utilization monitoring..."
+nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &l
 
-torchrun --standalone --nnodes=1 --nproc_per_node=2 ../resnetddp.py  --epochs 10 --batch-size 512
+
+# run the training script
+torchrun --standalone --nnodes=$SLURM_NNODES  --nproc_per_node=$SLURM_GPUS_ON_NODE ../resnetddp.py  --epochs 10 --batch-size 512
+
+# Stop GPU utilization monitoring
+echo "Stopping GPU utilization monitoring..."
+pkill -f "nvidia-smi --query-gpu"
 
 deactivate
-````
+```
+
 Output of the training is shown below:
 
-````bash
+```bash
+Starting GPU utilization monitoring...
 Training started with 2 processes across 1 nodes.
 Using 2 GPUs per node.
 
 Epoch 1/10
-Epoch 1 completed in 7.350 seconds
-Validation Loss: 0.5492, Validation Accuracy: 0.7971
+Epoch 1 completed in 8.276 seconds
+Validation Loss: 0.5461, Validation Accuracy: 0.7985
 
 Epoch 2/10
-Epoch 2 completed in 7.150 seconds
-Validation Loss: 0.4315, Validation Accuracy: 0.8414
+Epoch 2 completed in 7.157 seconds
+Validation Loss: 0.4210, Validation Accuracy: 0.8468
 
 Epoch 3/10
-Epoch 3 completed in 7.090 seconds
-Validation Loss: 0.3536, Validation Accuracy: 0.8744
+Epoch 3 completed in 7.118 seconds
+Validation Loss: 0.3724, Validation Accuracy: 0.8665
 
 Epoch 4/10
 Epoch 4 completed in 7.112 seconds
-Validation Loss: 0.3402, Validation Accuracy: 0.8759
-Target accuracy reached. Early stopping after epoch 4.
+Validation Loss: 0.5056, Validation Accuracy: 0.8268
+
+Epoch 5/10
+Epoch 5 completed in 7.118 seconds
+Validation Loss: 0.3270, Validation Accuracy: 0.8822
+
+Epoch 6/10
+Epoch 6 completed in 7.178 seconds
+Validation Loss: 0.3685, Validation Accuracy: 0.8665
+Target accuracy reached. Early stopping after epoch 6.
 
 Training Summary:
-Total training time: 28.702 seconds
-Number of nodes: 1
-Number of GPUs per node: 2
-Total GPUs used: 2
-Training completed successfully.
-````
+Total training time: 43.959 seconds
+```
 
 
 ### Multi-Node Setup
@@ -574,30 +608,50 @@ Setting up training across multiple nodes is relatively straightforward since we
 
 For multi-node jobs, a few key considerations are important:
 
-1. Communication Interface: You need to specify the communication interface to enable proper communication between nodes.
+1. __Communication Interface__:
 
-2. Master Node: The master node must be designated to handle coordination and communication across nodes.
+    You need to specify the communication interface to enable proper communication between nodes.
+
+2. __Master Node__: 
+
+    The master node must be designated to handle coordination and communication across nodes.
 
 We use srun to launch the job across multiple nodes, allowing torchrun to efficiently manage and coordinate the training process.
 
+#### Performance Considerations for Single-Node vs Multi-Node Training
+
+Before implementing multi-node training, it's important to understand that using 8 GPUs across two nodes may actually be slower than using just 2 GPUs on a single node with the same batch size. While optimizations can help, without proper tuning, the distributed approach might underperform.
+
+1. __Communication Differences__:
+
+    Single-node GPU jobs benefit from high-speed connections between GPUs on one node like NVLink whereas multi-node setups must rely on network links (Slingshot11 in the case of Olivia) which might be slower. Moreover, synchronizing data across nodes migght introduces significant latency.
+
+2. __Model-Specific Factors__:
+
+    For our ResNet model, the overhead of coordinating across many GPUs may outweigh the parallelization benefits. We might notice that communication is faster and more frequently, leading to better utilization with just two GPUs.
+
+These factors are crucial when deciding between single-node and multi-node configurations. The optimal approach depends on your specific project requirements and how well we can leverage parallel processing for your particular training task.
+
+
 #### Job Script for Multi node Training
 
-````bash
+```bash
 #!/bin/bash
-#SBATCH --job-name=resnet_training_multinode
+#SBATCH --job-name=simple_nn_training_multinode
 #SBATCH --account=<project_number>
-#SBATCH --output=multinode.out
-#SBATCH --error=multinode.err
+#SBATCH --output=multinode_%j.out
+#SBATCH --error=multinode_%j.err
 #SBATCH --time=01:00:00
 #SBATCH --partition=accel
-#SBATCH --nodes=2  # Request 2 nodes
-#SBATCH --ntasks-per-node=1  # One task per node
-#SBATCH --cpus-per-task=72
-#SBATCH --mem-per-gpu=120G
-#SBATCH --gpus-per-node=4  # 4 GPUs per node
+#SBATCH --nodes=2               # Request 2 compute nodes
+#SBATCH --ntasks-per-node=1     # One coordinating task per node
+#SBATCH --gpus-per-node=4       # Reserve 4 GPUs on each node
+#SBATCH --cpus-per-gpu=72       # Reserve enough CPU cores for full workload with each GPU
+#SBATCH --mem-per-gpu=110G      # Request 110GB of CPU RAM per GPU
 
 # Load required modules
 module load cray-python/3.11.7
+module load cuda/12.6
 
 # Create and activate virtual environment
 VENV_PATH="$SCRATCH/pytorch_venv"
@@ -621,55 +675,82 @@ head_node_ip=$(srun --nodes=1 --ntasks=1 -w "$head_node" hostname --ip-address |
 echo "Head Node: $head_node"
 echo "Head Node IP: $head_node_ip"
 
+# Start GPU utilization monitoring in the background
+GPU_LOG_FILE="gpu_utilization_multinode.log"
+echo "Starting GPU utilization monitoring..."
+nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &l
+
 # Run the Python script using torchrun
 srun torchrun \
-  --nnodes=2 \
-  --nproc_per_node=4 \
+  --nnodes=$SLURM_NNODES \
+  --nproc_per_node=$SLURM_GPUS_ON_NODE \
   --rdzv_id=$RANDOM \
   --rdzv_backend=c10d \
   --rdzv_endpoint=$head_node_ip:29500 \
-  ../restnet_multinode.py
+  ../resnetddp.py --epochs 20 --batch-size 2048 --base-lr 0.04
+
+# Stop GPU utilization monitoring
+echo "Stopping GPU utilization monitoring..."
+pkill -f "nvidia-smi --query-gpu"
 # Deactivate the virtual environment
 deactivate
-````
+```
 
-Below is the output generated from running the training across multiple nodes.
+#### Batch Size Scaling and Learning Rate Adjustment
+To maintain consistency with our single-node setup where each GPU processed 256 samples (512 total batch size / 2 GPUs), we increased the total batch size to 2048 for our 8-GPU across 2-nodes configuration (256 per GPU). This larger batch size reduces synchronization frequency, allowing GPUs to spend more time computing and less time waiting for gradient updates.
 
-````bash
+Initial tests without learning rate adjustment using the default `--base-lr 0.01` resulted in a training time of `85.279 seconds`. It is recommended to try without this argument `--base-lr 0.04` to see the total training time because it establishes our starting point before optimization.
 
-Training started with 4 processes across 2 nodes.
-Using 2 GPUs per node.
+For optimal convergence when scaling batch size, we applied the linear learning rate rule:
 
-Epoch 1/10
-Epoch 1 completed in 10.208 seconds
-Validation Loss: 0.5929, Validation Accuracy: 0.7752
+```bash
+New LR = Base LR × (New Batch Size / Old Batch Size)
+       = 0.01 × (2048 / 512) 
+       = 0.04
+```
+From the output below, we can validate that, despite a high initial loss (expected with large batches), the model converged stably, confirming that linear LR scaling was effective.
 
-Epoch 2/10
-Epoch 2 completed in 9.450 seconds
-Validation Loss: 0.4266, Validation Accuracy: 0.8477
 
-Epoch 3/10
-Epoch 3 completed in 9.385 seconds
-Validation Loss: 0.4440, Validation Accuracy: 0.8397
+Below is the output generated from running the training across multiple nodes and with proper optimization, our multi-node training now runs fastter, showing how distributed setups can deliver real speed gains when tuned correctly.
 
-Epoch 4/10
-Epoch 4 completed in 9.400 seconds
-Validation Loss: 0.4783, Validation Accuracy: 0.8431
 
-Epoch 5/10
-Epoch 5 completed in 9.436 seconds
-Validation Loss: 0.3952, Validation Accuracy: 0.8575
+```bash
 
-Epoch 6/10
-Epoch 6 completed in 9.526 seconds
-Validation Loss: 0.2980, Validation Accuracy: 0.8931
+Training started with 8 processes across 2 nodes.
+Using 4 GPUs per node.
+
+Epoch 1/20
+Epoch 1 completed in 10.042 seconds
+Validation Loss: 2.8143, Validation Accuracy: 0.1216
+
+Epoch 2/20
+Epoch 2 completed in 8.390 seconds
+Validation Loss: 0.6200, Validation Accuracy: 0.7717
+
+Epoch 3/20
+Epoch 3 completed in 8.372 seconds
+Validation Loss: 0.4511, Validation Accuracy: 0.8325
+
+Epoch 4/20
+Epoch 4 completed in 8.371 seconds
+Validation Loss: 0.4254, Validation Accuracy: 0.8422
+
+Epoch 5/20
+Epoch 5 completed in 8.360 seconds
+Validation Loss: 0.3645, Validation Accuracy: 0.8698
+
+Epoch 6/20
+Epoch 6 completed in 8.368 seconds
+Validation Loss: 0.3265, Validation Accuracy: 0.8839
 Target accuracy reached. Early stopping after epoch 6.
 
 Training Summary:
-Total training time: 57.405 seconds
+Total training time: 51.904 seconds
 Number of nodes: 2
-Number of GPUs per node: 2
-Total GPUs used: 4
+Number of GPUs per node: 4
+Total GPUs used: 8
 Training completed successfully.
-````
+```
+
+
 

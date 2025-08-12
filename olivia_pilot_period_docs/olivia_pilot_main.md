@@ -122,7 +122,7 @@ $ module available
 You should see output similar to this:
 
 ```
---------------------- /cluster/software/modules/Core ----------------------
+--------------------- /cluster/software/modules/Core -----------
    BuildEnv/NeoverseV2    BuildEnv/Zen5 (D)    NRIS/GPU   (S)
    BuildEnv/Zen4          NRIS/CPU      (S)    NRIS/Login (S,D)
 
@@ -172,13 +172,14 @@ $ module spider SCOTCH
 This will display information about the `SCOTCH` module, including available versions:
 
 ```
---------------------------------------------------------------------------
+-----------------------------------------------------------
   SCOTCH:
---------------------------------------------------------------------------
+-----------------------------------------------------------
     Description:
-      Software package and libraries for sequential and parallel graph
-      partitioning, static mapping, and sparse matrix block ordering, and
-      sequential mesh and hypergraph partitioning.
+      Software package and libraries for sequential and
+      parallel graph partitioning, static mapping, and
+      sparse matrix block ordering, and sequential mesh and
+      hypergraph partitioning.
 
      Versions:
         SCOTCH/7.0.3-gompi-2023a
@@ -201,15 +202,16 @@ $ module spider NVHPC/25.3-CUDA-12.8.0
 This will provide details such as dependencies and additional help:
 
 ```
----------------------------------------------------------------------------
+-----------------------------------------------------------
   NVHPC: NVHPC/25.3-CUDA-12.8.0
----------------------------------------------------------------------------
+-----------------------------------------------------------
     Description:
-      C, C++ and Fortran compilers included with the NVIDIA HPC SDK
-      (previously: PGI)
+      C, C++ and Fortran compilers included with the NVIDIA
+      HPC SDK (previously: PGI)
 
-    You will need to load all module(s) on any one of the lines below before
-    the "NVHPC/25.3-CUDA-12.8.0" module is available to load.
+    You will need to load all module(s) on any one of the
+    lines below before the "NVHPC/25.3-CUDA-12.8.0" module is
+    available to load.
 
       BuildEnv/NeoverseV2
       NRIS/GPU
@@ -217,8 +219,8 @@ This will provide details such as dependencies and additional help:
     Help:
       Description
       ===========
-      C, C++ and Fortran compilers included with the NVIDIA HPC SDK
-      (previously: PGI)
+      C, C++ and Fortran compilers included with the NVIDIA
+      HPC SDK (previously: PGI)
 
       More information
       ================
@@ -605,6 +607,22 @@ For the pilot period of Olivia, the following job types are defined.
 
 Note that job limits will change after pilot period is over.
 
+### Special notes
+
+At this point running OpenMPI jobs that use a single compute node requires a special sbatch argument:
+
+   ```
+   #SBATCH --network=single_node_vni
+   ```
+
+OpenMPI applications can be started with `mpirun` (native OpenMPI way), or `srun`. In the latter case on Olivia this has to be done in the following way
+
+   ```
+   srun --mpi=pmix <...>
+   ```
+
+Applications compiled with Intel MPI and Cray MPI should not use this extra argument to `srun`.
+
 #### Normal jobs (CPUs)
 
 - __Allocation units__: CPUs and memory
@@ -632,7 +650,7 @@ following example is enough:
     #SBATCH --time=1-0:0:0        # Total maximum runtime. In this case 1 day
     #SBATCH --cpus-per-task=32    # Number of CPU cores
     #SBATCH --mem-per-cpu=3G      # Amount of CPU memory per CPU core
-
+    #SBATCH --network=single_node_vni # Currently required for OpenMPI to work with single compute node jobs.
 
 #### Accel jobs (GPU)
 
@@ -670,6 +688,7 @@ following example is enough:
     #SBATCH --time=1-0:0:0        # Total maximum runtime. In this case 1 day
     #SBATCH --cpus-per-task=72    # All CPU cores of one Grace-Hopper card
     #SBATCH --mem-per-gpu=100G    # Amount of CPU memory
+    #SBATCH --network=single_node_vni # Currently required for OpenMPI to work with single compute node jobs.
 
 There are other GPU related specifications that can be used, and that
 parallel some of the CPU related specifications.  The most useful are
@@ -704,7 +723,8 @@ To access external resources, for example software repositories, you can use pro
 export http_proxy=http://10.63.2.48:3128/
 export https_proxy=http://10.63.2.48:3128/
 ```
-
+Please be aware that this works only for http/https resources.
+For example to access a GitHub repo, you have to use HTTPS and not SSH.
 
 
 ### Performance analysis tools

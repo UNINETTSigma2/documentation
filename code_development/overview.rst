@@ -36,4 +36,5 @@ In this section we present a list of tutorials covering different topics in hete
    guides_monitor_gpu.md
    guides_python.md
    guides/PyTorchProfilerMultiGpu.md
+   guides/olivia_pytorch.md
    

@@ -1,6 +1,6 @@
 (training-2025-fall-onboarding)=
 
-# HPC On-boarding October 14-16 2025
+# HPC On-boarding <time datetime="2025-10-14 20:00"> October 14-16 2025 </time>
 
 The Norwegian Research Infrastructure Services (**NRIS**) is offering 
 an on-boarding hands-on course for new users of high performance computing (HPC) systems. 
@@ -16,7 +16,7 @@ line of a terminal, the first day of the course is designed specifically for you
 
 ## Registration
 
-The course is organised by NRIS, registration deadline is October 9th 2025. **REGISTER: Registration to be opened soon**
+The course is organised by NRIS, registration deadline is October 9th 2025. **REGISTER: [HERE](https://docs.google.com/forms/d/e/1FAIpQLSeZhCl4vcqMZkt-ytse17MMZLpsYPPOBLjbYP_3Fm4pzHmZ_g/viewform?usp=header)**
 
 ## Practical Information
 
