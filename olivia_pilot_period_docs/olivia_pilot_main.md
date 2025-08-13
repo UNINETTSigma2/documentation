@@ -272,7 +272,7 @@ To get you started more quickly, we have added some local GPU-enabled software o
 
 To access it, run the following command after initializing the EESSI environment on a __GPU node__:
 ```bash
-$ export MODULEPATH=/cluster/work/support/EESSI/EESSI_experimental/modules/all:$MODULEPATH
+$ export MODULEPATH=/cluster/installations/eessi/default/eessi_local/aarch64/modules/all:$MODULEPATH
 ```
 
 Note: If your job requires the use of `mpirun`, please ensure you use the `srun --mpi=pmix` option for proper integration.
