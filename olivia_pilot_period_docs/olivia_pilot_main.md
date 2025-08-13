@@ -268,7 +268,7 @@ For more information see the official [EESSI documentation](https://www.EESSI.do
 
 The official EESSI stack contains already some modules of popular software like GROMACS, but many are also still missing.
 
-To get you started more quickly, we have added some experimental GPU-enabled software locally on Olivia which are not yet officially supported by [EESSI](https://www.EESSI.do/docs) or [EasyBuild](https://tutorial.easybuild.io/).
+To get you started more quickly, we have added some local GPU-enabled software on Olivia which are not yet officially supported by [EESSI](https://www.EESSI.do/docs) or [EasyBuild](https://tutorial.easybuild.io/).
 
 To access it, run the following command after initializing the EESSI environment on a __GPU node__:
 ```bash
