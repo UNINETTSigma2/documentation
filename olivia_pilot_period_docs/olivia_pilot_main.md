@@ -534,6 +534,7 @@ You can use pre-built containers or download and convert your own. Here are the 
   $ export APPTAINER_CACHEDIR=/cluster/work/projects/<project_number>/singularity
   ```
 
+
 ---
 
 #### Running Containers
@@ -566,6 +567,25 @@ Apptainer provides several ways to run containers, depending on your needs:
    ```
 
    *Example*: Exploring the container environment or debugging.
+
+4. **Job Script Setup for multi GPU (single node/multi node)**:
+    
+    While experimenting, we encountered cases where the `torchrun` was not recognized unless its full path was explicitly specified. We can set the path to the `torchrun` as `TORCHRUN_PATH="/usr/local/bin/torchrun`, then bind it with the apptainer exec command as `apptainer exec --nv --bind  $TORCHRUN_PATH ./your_script.py`.
+
+    Moreover , if we need GPUs across multiple nodes, we have to take into consideration that some of the framework like Libfabric might not be installed on the container. So, we need to explicitly bind it so that our container could be use to run on multiple nodes.
+
+    In our host system, we identified that the libfabric is available at this location `/opt/cray/libfabric/1.22.0/lib64` . The code written below on the job script will add `--bind /opt/cray/libfabric/1.22.0/lib64:/usr/lib64` to the apptainer command which ensures that the libfabric libraries from the host system are available inside the container at `/usr/lib64``
+
+    ````bash
+    # Bind libfabric (adjust the path based on your host system)
+    LIBFABRIC_PATH="/opt/cray/libfabric/1.22.0/lib64"
+
+    # Explicitly specify the full path to torchrun
+    TORCHRUN_PATH="/usr/local/bin/torchrun"
+
+    # Run the training script with torchrun inside the container
+    srun apptainer exec --nv --bind  $LIBFABRIC_PATH:/usr/lib64  $TORCHRUN_PATH --nnodes=$SLURM_JOB_NUM_NODES --nproc_per_node=$SLURM_GPUS_ON_NODE --rdzv_id=$RANDOM .....
+    ````
 
 ---
 
