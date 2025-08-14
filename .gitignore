@@ -1,0 +1,10 @@
+# vim temporary files
+.*.swp
+.*.swo
+
+# macOS
+.DS_Store
+
+# sphinx
+_build/
+venv/
