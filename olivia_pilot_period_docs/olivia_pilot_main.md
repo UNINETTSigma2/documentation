@@ -261,7 +261,7 @@ The first command will list all software modules available within the EESSI stac
 Then we load the `TensorFlow` module.
 
 While EESSI provides a wide range of preinstalled software, you can **build** on top of EESSI either using EasyBuild through loading the EESSI-extend module:
-`module load EESSI-extend` or manually (without EasyBuild) through loading either of the buildenv available modules: `module load buildenv/default-foss-2023a`
+`module load EESSI-extend` or without EasyBuild through loading one of the available `buildenv/*` modules, for example, `module load buildenv/default-foss-2023a`
 For more information see the official [EESSI documentation](https://www.EESSI.do/docs/using_EESSI/building_on_EESSI/).
 
 ##### GPU-enabled Software on EESSI
