@@ -260,18 +260,19 @@ $ module load TensorFlow/2.13.0-foss-2023a
 The first command will list all software modules available within the EESSI stack (on the current CPU/GPU partition).
 Then we load the `TensorFlow` module.
 
-While EESSI provides a wide range of preinstalled software, you can build on top of EESSI either using EasyBuild or manually (without EasyBuild)
+While EESSI provides a wide range of preinstalled software, you can **build** on top of EESSI either using EasyBuild through loading the EESSI-extend module:
+`module load EESSI-extend` or without EasyBuild through loading one of the available `buildenv/*` modules, for example, `module load buildenv/default-foss-2023a`
 For more information see the official [EESSI documentation](https://www.EESSI.do/docs/using_EESSI/building_on_EESSI/).
 
 ##### GPU-enabled Software on EESSI
 
 The official EESSI stack contains already some modules of popular software like GROMACS, but many are also still missing.
 
-To get you started more quickly, we have added some experimental GPU-enabled software locally on Olivia which are not yet officially supported by [EESSI](https://www.EESSI.do/docs) or [EasyBuild](https://tutorial.easybuild.io/).
+To get you started more quickly, we have added some GPU-enabled software on Olivia which are not yet provided by [EESSI](https://www.eessi.io/docs) or supported by [EasyBuild](https://easybuild.io/).
 
 To access it, run the following command after initializing the EESSI environment on a __GPU node__:
 ```bash
-$ export MODULEPATH=/cluster/work/support/EESSI/EESSI_experimental/modules/all:$MODULEPATH
+$ export MODULEPATH=/cluster/installations/eessi/default/eessi_local/aarch64/modules/all:$MODULEPATH
 ```
 
 Note: If your job requires the use of `mpirun`, please ensure you use the `srun --mpi=pmix` option for proper integration.
