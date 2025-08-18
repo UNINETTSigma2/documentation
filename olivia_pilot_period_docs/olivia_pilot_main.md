@@ -725,16 +725,23 @@ probably:
 See [sbatch](https://slurm.schedmd.com/sbatch.html) or `man sbatch`
 for the details, and other GPU related specifications.
 
+
 ### Interactive jobs
 For technical reasons, interactive jobs started with `salloc` will for
-the time being *not* start a shell on the first allocated compute node
+the time being **not** start a shell on the first allocated compute node
 of the job.  Instead, a shell is started on the *login node* where you
 ran `salloc`.  (This will be changed before the pilot period is over.)
 
 This means that the commands are run on the login node, not in the
 compute node.  To run a command on the compute nodes in the
-interactive job, either use `srun <command>` or `ssh` into the node
-and run it there.
+interactive job, use `srun <command>` to run it there.
+
+Alternatively, you can directly get a shell on the compute node with:
+```bash
+$ srun --ntasks-per-node=1 --cpus-per-task=32 --account=nnXXXXk --time=1:00:00 --gpus=1 --partition=accel --pty bash
+```
+The trick is the `--pty` parameter combined with `bash` to get an interactive bash shell.
+
 
 (olivia_internet_proxies)=
 ## Internet access from compute nodes
@@ -747,8 +754,6 @@ export https_proxy=http://10.63.2.48:3128/
 Please be aware that this works only for http/https resources.
 For example to access a GitHub repo, you have to use HTTPS and not SSH.
 
-
-### Performance analysis tools
 
 
 ## Storage
