@@ -57,6 +57,26 @@ VASP is a commercial software package that requires a license for all who wants 
 
 Notice that the VASP license is backwards compatible, meaning that if you are issues a VASP 6 license you also have access to VASP 5.
 
+## Parallelization 
+
+Good performance with VASP is extremely dependant on good parallelization settings. For most users this means tuning the NPAR and KPAR tags in the INCAR file. While we cannot share detailed benchamrking we find that good results are roughly in the line with those given by vasp: https://www.vasp.at/wiki/index.php/NPAR https://www.vasp.at/wiki/index.php/KPAR
+
+For many users one can use a stable NPAR across many systems and nodes and get good results. KPAR tends to be much more system dependant and we strongly recommend some benchmarking depending on the number of nodes and 'irreducible kpoints'. 
+
+Users can check the first few lines of the OUTCAR on a new run, e.g.,
+
+```
+executed on             <System>
+running  XXX mpi-ranks, on    X nodes
+each image running on  XXX cores
+distrk:  each k-point on  XXX cores,    X groups
+distr:  one band on NCORE=  XX cores,   XX groups
+```
+The user should confirm the outputs here match their expectations. 
+
+For quick benchmarking it is often useful to look at the speed of a single SCF step, e.g. by setting `NELM=1`. Often most information regarding benchmarking happens in the first step, e.g., if your settings are 2x faster for this first step it will likely remain so for the entire run. 
+It can be helpful to look at both the final timing information at the end of the OUTCAR as well as the `LOOP` information for each SCF step (not to be confused with the `LOOP+` information at the end of each ionic step)
+
 ## Usage: Fram
 We are currently in the process of simplifying the way in which users can load VASP. On Fram it is now the following:
 
