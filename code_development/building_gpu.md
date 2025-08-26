@@ -1,3 +1,4 @@
+(building-gpu)=
 # Building GPU software
 
 The login nodes on Betzy and Saga currently do not allow to compile software for the GPUs

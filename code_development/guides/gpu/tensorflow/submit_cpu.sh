@@ -10,7 +10,7 @@ set -o errexit  # Exit the script on any error
 set -o nounset  # Treat any unset variables as an error
 
 module --quiet purge  # Reset the modules to the system default
-module load TensorFlow/2.6.0-foss-2021a-CUDA-11.3.1
+module load TensorFlow/2.11.0-foss-2022a-CUDA-11.7.0
 module list
 
 python gpu_intro.py
