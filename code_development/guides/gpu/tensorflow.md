@@ -1,7 +1,7 @@
 # Using TensorFlow in Python
 
 In this example we will try to utilize the
-`TensorFlow/2.6.0-foss-2021a-CUDA-11.3.1` library to execute a very simple
+`TensorFlow/2.11.0-foss-2022a-CUDA-11.7.0` library to execute a very simple
 computation on the GPU. We could do the following interactively in Python, but
 we will instead use a Slurm script, which will make it a bit more reproducible
 and in some sense a bit easier, since we don't have to sit and wait for the
@@ -52,12 +52,10 @@ tf.Tensor(
 ```
 
 So the above, eventually, ran fine, but did not report any GPUs. The reason for
-this is of course that we never asked for any GPUs in the first place. To remedy
-this we will change the Slurm script to include the `--partition=accel` and
-`--gpus=1`, as follows:
+this is of course that we never asked for any GPUs in the first place. To remedy this we will include the `--gpus=1` in the Slurm script. We must also specify which partition we want to use (`--partition=accel` for P100 and `--partition=a100` for A100):
 
 `````{tabs}
-````{group-tab} Saga
+````{group-tab} Saga (P100)
 
 ```{eval-rst} 
 .. literalinclude:: tensorflow/submit_gpu.sh
@@ -68,7 +66,24 @@ this we will change the Slurm script to include the `--partition=accel` and
 :download:`submit_gpu.sh <./tensorflow/submit_gpu.sh>`
 ```
 ````
+````{group-tab} Saga (A100)
+
+```{eval-rst}
+.. literalinclude:: tensorflow/submit_gpu_a100.sh
+  :language: bash
+  :emphasize-lines: 7,8,14
+```
+ ```{eval-rst}
+:download:`submit_gpu_a100.sh <./tensorflow/submit_gpu_a100.sh>`
+```
+````
+
 `````
+
+```{note}
+To use the A100 GPUs (second tab above) we must include `module --force swap StdEnv Zen2Env`
+ (see {ref}`this page <building-gpu>` for an explanation).
+```
 
 We should now see the following output:
 
