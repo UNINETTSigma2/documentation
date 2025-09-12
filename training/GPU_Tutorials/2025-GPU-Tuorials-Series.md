@@ -1,6 +1,7 @@
 (GPU-tutorials series)=
 
-# *NRIS* GPU Tutorials Series 
+# Postponed: GPU tutorial
+## *NRIS* GPU Tutorials Series 
 
 The Norwegian Research Infrastructure Services (**NRIS**) is offering a series of GPU Tutorial events given every now and then on relevant topics in the area of GPU utilization, Machine Learning, Large Language models and related topics. 
 
@@ -25,7 +26,7 @@ All times are given in CET/CEST depending on date.
 
 ### Fine-Tuning LLMs with Multi-GPU Training - A Hands-on Workshop
 
-**Date:** Wednesday September 3rd 2025.
+**Date:** **Postponed until further notice**
 **Time:** 09:30-15:30
 
 **Content:**
