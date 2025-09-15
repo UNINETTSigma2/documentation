@@ -19,7 +19,7 @@ Below the table, we give recommendations and discuss the pros and cons of the va
 
 | Directory                                       | Purpose              | {ref}`Default Quota <storage-quota>` | {ref}`Backup <storage-backup>` | Note | 
 | :---------------------------------------------- | :------------------- | :--------------------------------- | :---------------------------------: | :----:|
-| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files               | Snapshots (Only if quota enforced)            ||
+| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files               | Yes (Only if quota enforced)            ||
 | `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                | No                                  ||
 | (Fram/Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALSCRATCH`) | Per-job data | {ref}`Individual <job-scratch-area-on-local-disk>` | No                   |Only Fram SAGA|
 | `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                | No                                  ||
