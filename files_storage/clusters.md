@@ -19,18 +19,18 @@ Below the table, we give recommendations and discuss the pros and cons of the va
 
 | Directory                                       | Purpose              | {ref}`Default Quota <storage-quota>` | {ref}`Backup <storage-backup>` | Note | 
 | :---------------------------------------------- | :------------------- | :--------------------------------- | :---------------------------------: | :----:|
-| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files               | Only if quota enforced             ||
+| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files               | Snapshots (Only if quota enforced)            ||
 | `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                | No                                  ||
 | (Fram/Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALSCRATCH`) | Per-job data | {ref}`Individual <job-scratch-area-on-local-disk>` | No                   |Only Fram SAGA|
 | `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                | No                                  ||
-| `/cluster/projects/<project_name>`              | Project data         | {ref}`1 TiB / 1 M files <project-area>` | Yes                                 ||
+| `/cluster/projects/<project_name>`              | Project data         | {ref}`1 TiB / 1 M files <project-area>` | No                                 ||
 | `/cluster/shared/<folder_name>`                 | Shared data          | {ref}`Individual <shared-project-area>` | No                                  ||
 | `/nird/datapeak/NSxxxxK`                         | NIRD Data Peak (TS) projects | | | Login nodes only|
 | `/nird/datalake/NSxxxxK`                         | NIRD Data Lake (DL) projects | | | Login nodes only|
 
 - **User areas and project areas are private**: Data handling and storage policy is documented [here](/files_storage/sharing_files.md).
 - **`$LOCALSCRATCH` area is only implemented on Fram and Saga**.
-- Clusters mount the NIRD project areas as `/nird/datapeak/NSxxxxK` for NIRD Data Peak (TS) projects and `nird/datalake/NSxxxxK` for NIRD Data Lake (DL) projects **on the login nodes only ** (not on the compute nodes).
+- Clusters mount the NIRD project areas as `/nird/datapeak/NSxxxxK` for NIRD Data Peak (DP) projects and `nird/datalake/NSxxxxK` for NIRD Data Lake (DL) projects **on the login nodes only ** (not on the compute nodes).
 - The `/cluster` file system is a high-performance parallel file
   system.  On Fram, it is a [Lustre](https://www.lustre.org/) system with
   a total storage space of 2.3 PB, and on Saga it is a
@@ -262,7 +262,8 @@ Note that unused quota can also be withdrawn for technical reasons (too little
 space) or organisational reasons (less needs/less usage/fewer members of
 the group/fewer compute hours).
 
-Daily backup is taken to NIRD ([documentation about backup](backup.md)).
+This area is not backed up ([documentation about backup](backup.md)).
+
 
 ```{note}
 **Pros of running jobs in the project area**
@@ -271,7 +272,7 @@ Daily backup is taken to NIRD ([documentation about backup](backup.md)).
   finishes, it is easier to debug failing jobs.
 - There is no need to use special commands to copy files back in case
   the job script or node crashes before the job has finished.
-- There is no need to move result files to save them permanently or
+- There is no need to move result files after the job finishes or
   give the rest of the project access to them.
 ```
 
@@ -286,6 +287,7 @@ Daily backup is taken to NIRD ([documentation about backup](backup.md)).
   fill up the quota.
 - There is a risk of using all of the disk quota if one runs many jobs
   and/or jobs needing a lot of storage at the same time.
+- There is a risk in using project area for permanent storage, as it is not backed up. 
 ```
 
 (shared-project-area)=
