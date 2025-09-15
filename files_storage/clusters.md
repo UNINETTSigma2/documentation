@@ -262,7 +262,7 @@ Note that unused quota can also be withdrawn for technical reasons (too little
 space) or organisational reasons (less needs/less usage/fewer members of
 the group/fewer compute hours).
 
-This area is not backed up ([documentation about backup](backup.md)).
+This area is **not backed up** ([documentation about backup](backup.md)).
 
 
 ```{note}
