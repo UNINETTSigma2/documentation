@@ -5,34 +5,23 @@
 
 ## Backup of home folders on compute clusters
 
-**Betzy, Fram and Saga**: Home folder is backed up daily to NIRD storage, and can be accessed via following mount point on corresponding clusters login nodes:
+**Betzy, Fram and Saga**: Home folder is backed up to NIRD storage, and last copy of user home can be accessed via following mount point on corresponding clusters login nodes:
 - `/cluster/backup/home/$username`
 
-Please, note that we keep a copy of all files, but daily backup only copies the changes (done through a rsync process). If the file has not been modified, the timestamp will remain the same as on the file inside your home or project folders.
+Please, note that we keep a copy of all files, but backup only copies the changes (done through a rsync process). If the file has not been modified, the timestamp will remain the same as on the file inside your home or project folders.
 
-## Backup of project folders on compute clusters 
-
-Directories under `/cluster/projects` are backed up. All other areas are not backed up.
+All other areas are not backed up. See the {ref}`storage areas section <storage-areas>` for reference.
 
 In addition to not being backed up, the work area `/cluster/work` also enforces
 an automatic cleanup strategy, and is **not** meant for permanent storage.
 Files in this area will be **deleted** after 42 or 21 days, depending on the storage capacity,
 see [User work area](user-work-area) for details.
 
-**Betzy,Fram and Saga**: The project areas are backed up to NIRD storage which can be accessed via following mount point on all clusters login nodes:
-- `/cluster/backup/hpc/betzy/nnXXXXk`
-- `/cluster/backup/hpc/fram/nnXXXXk`
-- `/cluster/backup/hpc/saga/nnXXXXk`
-
 ## Snapshots
 
-In addition to the daily backup, we also have snapshots of all home and project files, copied fully:
+In addition to the daily backup, we also have snapshots of all home files, copied fully:
 
 **Location**: `/cluster/backup/home/.snapshots/`
-- Daily snapshots for the last 7 days
-- Weekly snapshots for the last 6 weeks
-
-**Location**: `/cluster/backup/hpc/.snapshots/`
 - Daily snapshots for the last 7 days
 - Weekly snapshots for the last 6 weeks
 
