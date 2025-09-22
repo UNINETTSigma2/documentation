@@ -54,3 +54,18 @@ Olivia is provided by Hewlett Packard Enterprise and will have a computational c
 
 - 3.159 PB spinning disks
 - 1.107 PB solid state storage
+
+## In-depth documentation for NIRD
+
+```{toctree}
+:maxdepth: 1
+
+olivia/access.md
+olivia/software_stack.md
+olivia/jobs.md
+oliva/ai_ml_guide.md
+olivia/trouble_shooting.md
+```
+
+## [Olivia Best Practices Guide](xx)
+
