@@ -7,10 +7,6 @@ Cluster-specific details are kept in separate sub pages for each cluster:
 
 
 
-
-<!-- TODO: 2.0 There need to be a file created at jobs/job_scripts/ called olivia_job_script.md -->
-<!-- TODO: 2.1 Add link to the file here -->
-
 - [Slurm job script generator](https://open.pages.sigma2.no/job-script-generator/)
 - [Fram job scripts](job-scripts-on-fram)
 - [Saga job scripts](job-scripts-on-saga)

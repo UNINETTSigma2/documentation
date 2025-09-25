@@ -4,8 +4,6 @@ orphan: true
 
 (job-scripts-on-olivia)=
 
-<!-- TODO: 1.0 fill out this page -->
-
 # Olivia job scripts
 
 Here you can find job script examples for the Olivia HPC system.
