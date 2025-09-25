@@ -67,5 +67,5 @@ olivia/ai_ml_guide.md
 olivia/trouble_shooting.md
 ```
 
-## [Olivia Best Practices Guide](xx)
+## [Olivia Best Practices Guide (WIP)](https://docs.google.com/document/d/1J9VBqyProblMLaqp0BYJUaPzVYZVQTMqMVbX2E94JZA/edit?tab=t.0)
 
