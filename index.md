@@ -205,6 +205,7 @@ hpc_machines/saga.md
 hpc_machines/fram.md
 hpc_machines/betzy.md
 hpc_machines/lumi.md
+hpc_machines/olivia.md
 ```
 
 ```{toctree}
