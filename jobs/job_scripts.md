@@ -5,10 +5,17 @@
 This page documents the basics of how to write job scripts for the HPC clusters.
 Cluster-specific details are kept in separate sub pages for each cluster:
 
+
+
+
+<!-- TODO: 2.0 There need to be a file created at jobs/job_scripts/ called olivia_job_script.md -->
+<!-- TODO: 2.1 Add link to the file here -->
+
 - [Slurm job script generator](https://open.pages.sigma2.no/job-script-generator/)
 - [Fram job scripts](job-scripts-on-fram)
 - [Saga job scripts](job-scripts-on-saga)
 - {ref}`Betzy job scripts <job-scripts-on-betzy>`
+- [Olivia job scripts](job-scripts-on-olivia)
 
 ```{note}
 Email notification from completed Slurm scripts is currently not supported **on all
