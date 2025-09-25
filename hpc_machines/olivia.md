@@ -63,7 +63,7 @@ Olivia is provided by Hewlett Packard Enterprise and will have a computational c
 olivia/access.md
 olivia/software_stack.md
 olivia/jobs.md
-oliva/ai_ml_guide.md
+olivia/ai_ml_guide.md
 olivia/trouble_shooting.md
 ```
 
