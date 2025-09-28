@@ -6,11 +6,7 @@
 :depth: 3
 ```
 
-In this guide, we’ll be testing PyTorch on the Olivia system, which uses the Aarch64 architecture on its compute nodes. To do this, we’ll use specific PyTorch wheels compatible with this architecture.
-
-```{note}
-This documentation is a work in progress and is intended for testing purposes. If you encounter any issues or something does not work as expected, please let us know. Furthermore, this approach relies on `pip` installation, which can degrade the file system. As a result, it will no longer be permitted after the pilot phase.
-```
+In this guide, we’ll be testing PyTorch on the Olivia system, which uses the Aarch64 architecture on its compute nodes. To do this, we’ll use  PyTorch container from Nvidia.The process of training a ResNet model using a containerized environment, will bypass the need to manually download and install PyTorch wheels. The container includes all the necessary packages required to run the project, simplifying the setup process.
 
 ## Key Considerations
 
@@ -18,33 +14,15 @@ This documentation is a work in progress and is intended for testing purposes. I
 
      The login node and the compute node on Olivia have different architectures. The login node uses the x86_64 architecture, while the compute node uses Aarch64. This means we cannot install software directly on the login node and expect it to work on the compute node.
 
-2. __Internet Connectivity on Compute Nodes__:
 
-    At the time of testing, the compute nodes did not have direct internet access. Consequently, we had to install the required PyTorch wheels within a virtual environment using a job script. This ensured that the installation occurred on the compute node during the execution of the job script.
-    
-    However, it is now possible to access the internet directly from the compute nodes by configuring proxies, as demonstrated below:
-    
-    ```bash
-    export http_proxy=http://10.63.2.48:3128/
-    export https_proxy=http://10.63.2.48:3128/
-    ```
+2. CUDA Version:
 
-3. CUDA Version:
-
-     The compute nodes are equipped with CUDA Version 12.7, as confirmed by running the nvidia-smi command. Therefore, we need to ensure that the PyTorch wheels we use are compatible with this CUDA version.
+     The compute nodes are equipped with CUDA Version 12.7, as confirmed by running the nvidia-smi command. Therefore, we need to ensure that the container we will be using will be compatible with this CUDA version.
 
 
+## Training a ResNet Model with the CIFAR-100 Dataset   
 
-You can download the necessary PyTorch wheels for your project from the PyTorch nightly builds using the following link:
-
-- [PyTorch](https://download.pytorch.org/whl/nightly/torch)
-- [PyTorch-triton](https://download.pytorch.org/whl/nightly/pytorch-triton/)
-- [torchvision](https://download.pytorch.org/whl/nightly/torchvision/)
-
-
-## Training a ResNet Model with the Fashion-MNIST Dataset
-
-To test Olivia's capabilities with real-world workloads, we will train a ResNet model using the Fashion-MNIST dataset. The testing will be conducted under the following scenarios:
+To test Olivia's capabilities with real-world workloads, we will train a ResNet model using the CIFAR-100 dataset. The testing will be conducted under the following scenarios:
 
 1. Single GPU
 
@@ -54,7 +32,6 @@ To test Olivia's capabilities with real-world workloads, we will train a ResNet 
 
 The primary goal of this exercise is to verify that we can successfully run training tasks on Olivia. As such, we will not delve into the specifics of neural network training in this documentation. A separate guide will be prepared to cover those details.
 
-
 ### Single GPU Implementation
 
 To train the ResNet model on a single GPU, we used the following files. These files include the main Python script responsible for training the ResNet model.
@@ -62,7 +39,7 @@ To train the ResNet model on a single GPU, we used the following files. These fi
 ```python
 # resnet.py
 """
-This script trains a WideResNet model on the Fashion MNIST dataset without using Distributed Data Parallel (DDP).
+This script trains a WideResNet model on the CIFAR-100  dataset without using Distributed Data Parallel (DDP).
 The goal is to provide a simple, single-GPU implementation of the training process.
 """
 import os
@@ -70,40 +47,49 @@ import time
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import sys
 # Import custom modules
-from data.dataset_utils import load_fashion_mnist
+from data.dataset_utils import load_fashion_mnist_fulldataset, load_cifar100
 from models.wide_resnet import WideResNet
 from training.train_utils import train, test
 from utils.device_utils import get_device
+
 # Define paths
 shared_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../shared"))
 images_dir = os.path.join(shared_dir, "images")
 os.makedirs(images_dir, exist_ok=True)
+
 # Hyperparameters
 BATCH_SIZE = 32
-EPOCHS = 5
+EPOCHS = 100
 LEARNING_RATE = 0.01
-TARGET_ACCURACY = 0.85
+TARGET_ACCURACY = 0.95
 PATIENCE = 2
+
 def train_resnet_without_ddp(batch_size, epochs, learning_rate, device):
     """
-    Trains a WideResNet model on the Fashion MNIST dataset without DDP.
+    Trains a WideResNet model on the CIFAR-100 dataset without DDP.
     Args:
         batch_size (int): Batch size for training.
         epochs (int): Number of epochs to train.
         learning_rate (float): Learning rate for the optimizer.
         device (torch.device): Device to run training on (CPU or GPU).
     Returns:
-        None
+        throughput (float): Images processed per second
     """
-    print(f"Training WideResNet on Fashion MNIST with Batch Size: {batch_size}")
+    print(f"Training WideResNet on CIFAR 100 with Batch Size: {batch_size}")
     # Training variables
     val_accuracy = []
     total_time = 0
+    total_images = 0 # total images processed
     # Load the dataset
-    train_loader, test_loader = load_fashion_mnist(batch_size=batch_size)
+    train_loader, test_loader = load_cifar100(batch_size=batch_size)
     # Initialize the WideResNet Model
-    num_classes = 10
+    # For fashion MNIST dataset
+    #num_classes = 10
+
+    # For CIFAR-100 dataset
+    num_classes = 100
     model = WideResNet(num_classes).to(device)
     # Define the loss function and optimizer
     loss_fn = nn.CrossEntropyLoss()
@@ -117,6 +103,7 @@ def train_resnet_without_ddp(batch_size, epochs, learning_rate, device):
         total_time += epoch_time
         # Compute throughput (images per second)
         images_per_sec = len(train_loader) * batch_size / epoch_time
+        total_images += len(train_loader) * batch_size
         # Compute validation accuracy and loss
         v_accuracy, v_loss = test(model, test_loader, loss_fn, device)
         val_accuracy.append(v_accuracy)
@@ -129,65 +116,48 @@ def train_resnet_without_ddp(batch_size, epochs, learning_rate, device):
             print('Early stopping after epoch {}'.format(epoch + 1))
             break
     # Final metrics
+    throughput = total_images / total_time
     print("\nTraining complete. Final Validation Accuracy = {:5.3f}".format(val_accuracy[-1]))
     print("Total Training Time: {:5.3f} seconds".format(total_time))
+    print("Throughput: {:5.3f} images/second".format(throughput))
+    return throughput
 def main():
     # Set the compute device
     device = get_device()
     # Train the WideResNet model
-    train_resnet_without_ddp(batch_size=BATCH_SIZE, epochs=EPOCHS, learning_rate=LEARNING_RATE, device=device)
+    throughput = train_resnet_without_ddp(batch_size=BATCH_SIZE, epochs=EPOCHS, learning_rate=LEARNING_RATE, device=device)
+    print(f"Single-GPU Thrpughput: {throughput:.3f} images/second")
 if __name__ == "__main__":
     main()
 ```
 
-This file contains the data utility functions used for preparing and managing the dataset.Please note that, you need to manually install the Fashion-MNIST dataset and place it in the respective folder.
+
+This file contains the data utility functions used for preparing and managing the dataset.Please note that, you will be installing the CIFAR-100 dataset and it will be placed in the respective folder through the job script.
+
 ```python
 # dataset_utils.py
-# NUmpy is a fundamental package for scientific computing. It contains an implementation of an array
-import numpy as np
-# to generate our own dataset
-import random 
 import torchvision
 import torchvision.transforms as transforms
 import torch
 
-
-
-def load_fashion_mnist(batch_size, train_subset_size=10000, test_subset_size=10000):
+def load_cifar100(batch_size, num_workers=0, sampler=None):
     """
-    Loads and preprocesses the Fashion-MNIST dataset.
-    Args:
-        batch_size (int): Batch size for training and testing.
-        train_subset_size (int): Number of training samples to use (default:10,000) which we used initially for testing purpose.
-        test_subset_size (int): Number of testing samples to use (default: 10,000) which we used initially for testing purpose.
-    Returns:
-        train_loader, test_loader: Data loaders for training and testing.
+    Loads the CIFAR-100 dataset.
     """
     # Define transformations
-    transform = transforms.Compose([transforms.ToTensor()])
-    # Load full Datasets
-    # Note that, if there is no internet access on the compute node, we need to manually download the 
-    # datasets and then use it, for which we need to set download=False
-    train_set = torchvision.datasets.FashionMNIST("/cluster/work/users/<user_name>/deepLearning/private/shared/data", download=False, transform=transform)
-    test_set = torchvision.datasets.FashionMNIST("/cluster/work/users/<user_name>/deepLearning/private/shared/data", download=False, train=False, transform=transform)
-    # Create subsets
-    train_subset= torch.utils.data.Subset(train_set, list(range(0, train_subset_size)))
-    test_subset= torch.utils.data.Subset(test_set, list(range(0, test_subset_size)))
-    # Create the data loaders
-    train_loader = torch.utils.data.Dataloader(train_subset, batch_size=batch_size, drop_last=True)
-    test_loader = torch.utils.data.Dataloader(test_subset, batch_size, drop_last=True)
-    return train_loader, test_loader
-
-
-def load_fashion_mnist_fulldataset(batch_size):
-    #Define transformations
-    transform = transforms.Compose([transforms.ToTensor()])
+    transform = transforms.Compose([
+        transforms.RandomHorizontalFlip(),
+        transforms.RandomCrop(32, padding=4),
+        transforms.ToTensor(),
+        transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761)) # CIFAR-100 mean and std
+    ])
     # Load full datasets
-    train_set = torchvision.datasets.FashionMNIST("/cluster/work/users/<user_name>/deepLearning/private/shared/data", download=False, transform=transform)
-    test_set = torchvision.datasets.FashionMNIST("/cluster/work/users/<user_name>/deepLearning/private/shared/data", download=False, train=False, transform=transform)
+    train_set = torchvision.datasets.CIFAR100(
+            "/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/shared/data/",download=True,train=True,transform=transform)
+    test_set = torchvision.datasets.CIFAR100("/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/shared/data/",download=True,train=False,transform=transform)
     # Create the data loaders
-    train_loader = torch.utils.data.DataLoader(train_set,batch_size=batch_size, dropLast=True, shuffle=True)
-    test_loader = torch.utils.data.DataLoader(test_set,batch_size=batch_size, dropLast=True, shuffle=False)
+    train_loader = torch.utils.data.DataLoader(train_set,batch_size=batch_size,drop_last=True,shuffle=(sampler is None),sampler= sampler ,num_workers=num_workers,pin_memory=True)
+    test_loader = torch.utils.data.DataLoader(test_set,batch_size=batch_size,drop_last=True,shuffle=False,num_workers=num_workers,pin_memory=True)
     return train_loader, test_loader
 ```
 
@@ -219,7 +189,7 @@ class cbrblock(nn.Module):
         self.cbr = nn.Sequential(nn.Conv2d(input_channels, output_channels, kernel_size=3, stride=(1,1), padding='same', bias=False),nn.BatchNorm2d(output_channels), nn.ReLU())
     def forward(self, x):
         return self.cbr(x)
-    
+
 # Basic residual block
 class conv_block(nn.Module):
     def __init__(self, input_channels, output_channels, scale_input):
@@ -243,7 +213,10 @@ class conv_block(nn.Module):
 class WideResNet(nn.Module):
     def __init__(self, num_classes):
         super(WideResNet, self).__init__()
-        nChannels = [1, 16, 160, 320, 640]
+        # RGB images (3 channels) input for CIFAR-100 dataset
+        nChannels = [3, 16, 160, 320, 640]
+        # Grayscale images (1 channel) for Fashion MNIST dataset
+        # nChannels = [1, 16, 160, 320, 640]
         self.input_block = cbrblock(nChannels[0], nChannels[1])
         self.block1 = conv_block(nChannels[1], nChannels[2], scale_input=True)
         self.block2 = conv_block(nChannels[2], nChannels[2], scale_input=False)
@@ -279,10 +252,10 @@ class WideResNet(nn.Module):
 Finally, this file serves as a utility module for importing the training and testing datasets.
 ```python
 # train_utils.py
-import torch 
+import torch
 def train(model, optimizer, train_loader, loss_fn, device):
     """
-    Trains the model for one epoch.
+    Trains the model for one epoch. Note, that we will use this only for single GPU implmentation.
     Args:
         model(torch.nn.Module): The model to train.
         optimizer(torch.optim.Optimizer): Optimizer for updating model parameters.
@@ -337,96 +310,103 @@ def test(model, test_loader, loss_fn, device):
 ```
 
 
+Since we are using the container, to provide the container access to additional directories, such as the one containing the training scripts, we must explicitly bind these directories using the `--bind` option.
+
+The job scripts below shows how it is done for accessing the required files inside the container.
+
+Note that, the command to run the script includes the `--nv` option, which ensures that the container has access to GPU resources. This is essential for leveraging hardware acceleration during training.
+
 #### Job Script for Single GPU Training
 
-To run the training on a single GPU, we use the following job script. The `accel` partition is used to access GPU resources. After loading the Python module from `cray-python`, you can create a virtual environment and install all the required wheels for your program using `pip`.
+In the job script below, we will be using a single GPU for training.The container we will be using is downloaded and placed in this path `/cluster/projects/nn9999k/jorn/pytorch_25.05-py3.sif`. This container contains all the necessary packages for running our deep learning training. for instance. torch and torchvision.Moreover, we are binding the directory from the host inside the container using this `BIND_DIR="/cluster/work/projects/nn9997k/binod/PyTorch/private"`. Also, to include the shared directory to import other python files as the modules, we exported the python path as shown here `BIND_DIR="/cluster/work/projects/nn9997k/binod/PyTorch/private"`. Finally, we run the `apptainer exec --nv` command binding the directory from the host and using torchrun.
 
-For resource management, we use the `torchrun` utility from PyTorch. This tool ensures efficient allocation of resources, especially when scaling to multiple GPUs or nodes.
 ```bash
 #!/bin/bash
 #SBATCH --job-name=simple_nn_training
 #SBATCH --account=<project_number>
-#SBATCH --output=singleGpu_%j.out
-#SBATCH --error=singleGpu_%j.err
 #SBATCH --time=00:10:00
+#SBATCH --output=resnet_with_container_%j.out
+#SBATCH --error=resnet_with_container_%j.err
 #SBATCH --partition=accel
 #SBATCH --nodes=1                     # Single compute node
+#SBATCH --nodelist=x1000c2s4b1n0
 #SBATCH --ntasks-per-node=1          # One task (process) on the node
 #SBATCH --cpus-per-task=72           # Reserve 72 CPU cores
 #SBATCH --mem-per-gpu=110G           # Request 110 GB of CPU RAM per GPU
 #SBATCH --gpus-per-node=1            # Request 1 GPU
-# Load required modules
-module load cray-python/3.11.7
-module load cuda/12.6
 
-# Create and activate virtual environment in compute node's local storage
-VENV_PATH="$SCRATCH/pytorch_venv"  # Using compute node's scratch space
-python -m venv $VENV_PATH
-source $VENV_PATH/bin/activate
+# Path to the container
+CONTAINER_PATH="/cluster/projects/nn9999k/jorn/pytorch_25.05-py3.sif"
 
-# Install PyTorch from the wheel (offline installation)
-WHEEL_DIR="/cluster/work/projects/<project_number>/<user_name>/PyTorch/torch_wheels"
-pip install --no-index --find-links=$WHEEL_DIR $(ls $WHEEL_DIR/*.whl | tr '\n' ' ')
+# Path to the training script
+TRAINING_SCRIPT="/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/simple_nn_project/resnet.py"
+
+# Bind the directory
+BIND_DIR="/cluster/work/projects/<project_number>/<user_name>/PyTorch/private"
 
 
 # Set PYTHONPATH to include the shared directory
-export PYTHONPATH=/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/shared:$PYTHONPATH
+export PYTHONPATH=/cluster/work/projects/nn9997k/binod/PyTorch/private/shared:$PYTHONPATH
+
+# Check GPU availability inside the container
+echo "Checking GPU availability inside the container..."
+apptainer exec --nv --bind $BIND_DIR $CONTAINER_PATH python -c 'import torch; print(torch.cuda.is_available()); print(torch.cuda.device_count())'
 
 # Start GPU utilization monitoring in the background
-GPU_LOG_FILE="gpu_utilization_resnet.log"
+GPU_LOG_FILE="gpu_utilization_resnet_with_container.log"
 echo "Starting GPU utilization monitoring..."
 nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &l
 
-# Run the Python script using torchrun 
+# Run the training script with torchrun inside the container
+apptainer exec --nv --bind $BIND_DIR $CONTAINER_PATH \ torchrun --standalone --nnodes=$SLURM_JOB_NUM_NODES --nproc_per_node=$SLURM_GPUS_ON_NODE $TRAINING_SCRIPT
 
-torchrun --standalone --nnodes=$SLURM_JOB_NUM_NODES --nproc_per_node=$SLURM_GPUS_ON_NODE ../resnet.py
 
 # Stop GPU utilization monitoring
 echo "Stopping GPU utilization monitoring..."
 pkill -f "nvidia-smi --query-gpu"
-deactivate
+
 ```
+
 
 Output of the training is shown below:
 
 ```bash
-Starting GPU utilization monitoring...
-Training WideResNet on Fashion MNIST with Batch Size: 256
-Epoch =  1: Epoch Time = 2.891, Validation Loss = 1.643, Validation Accuracy = 0.385, Images/sec = 3453.940, Cumulative Time = 2.891
-Epoch =  2: Epoch Time = 1.187, Validation Loss = 0.658, Validation Accuracy = 0.765, Images/sec = 8410.492, Cumulative Time = 4.078
-Epoch =  3: Epoch Time = 1.192, Validation Loss = 0.569, Validation Accuracy = 0.795, Images/sec = 8374.150, Cumulative Time = 5.270
-Epoch =  4: Epoch Time = 1.191, Validation Loss = 0.522, Validation Accuracy = 0.812, Images/sec = 8386.004, Cumulative Time = 6.460
-Epoch =  5: Epoch Time = 1.190, Validation Loss = 0.494, Validation Accuracy = 0.818, Images/sec = 8391.938, Cumulative Time = 7.650
+Epoch = 95: Epoch Time = 20.235, Validation Loss = 1.331, Validation Accuracy = 0.739, Images/sec = 2470.132, Cumulative Time = 1893.528
+Epoch = 96: Epoch Time = 20.331, Validation Loss = 1.313, Validation Accuracy = 0.743, Images/sec = 2458.565, Cumulative Time = 1913.859
+Epoch = 97: Epoch Time = 20.173, Validation Loss = 1.325, Validation Accuracy = 0.742, Images/sec = 2477.718, Cumulative Time = 1934.032
+Epoch = 98: Epoch Time = 20.168, Validation Loss = 1.328, Validation Accuracy = 0.736, Images/sec = 2478.441, Cumulative Time = 1954.200
+Epoch = 99: Epoch Time = 20.065, Validation Loss = 1.323, Validation Accuracy = 0.739, Images/sec = 2491.122, Cumulative Time = 1974.265
+Epoch = 100: Epoch Time = 19.773, Validation Loss = 1.332, Validation Accuracy = 0.739, Images/sec = 2527.948, Cumulative Time = 1994.037
 
-Training complete. Final Validation Accuracy = 0.818
-Total Training Time: 7.650 seconds
-Stopping GPU utilization monitoring...
+Training complete. Final Validation Accuracy = 0.739
+Total Training Time: 1994.037 seconds
+Throughput: 2506.673 images/second
+Single-GPU Thrpughput: 2506.673 images/second
 ```
+The output suggests that the total throughput that we obtained from single GPU training is ` 2506.673 images/second` and it took approximately `1994.037 seconds` to complete the training. As we proceed forward with the multi-gpu implementation, our goal would be to achieve higher throughtput and also possibly reduced the training time.
 
 
 ### Multi-GPU Implementation
-To scale our training to multiple GPUs, we will utilize PyTorch's Distributed Data Parallel (DDP) framework. DDP allows us to efficiently scale training across multiple GPUs and even across multiple nodes.
+To scale our training to multiple GPUs, we will utilize PyTorch's Distributed Data Parallel (DDP) framework. DDP allows us to efficiently scale training across multiple GPUs and even across multiple nodes.To learn more about how to implement DDP, please refer to this official documentation from PyTorch [Getting Started with DDP](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html)
 
 For this, we need to modify the main Python script to include DDP implementation. The updated script will work for both scenarios Multiple GPUs within a single node and Multiple nodes.
 
 ```python
-# resnetddp.py
+# singlenode.py
 import os
 import time
 import argparse
 import torch
 import torch.nn as nn
 import torchvision
-import torchvision.transforms as transforms
-from torch.utils.data import DataLoader
+from torch.utils.data.distributed import DistributedSampler
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.distributed import init_process_group, destroy_process_group
-from torch.utils.data.distributed import DistributedSampler
-from data.dataset_utils import load_fashion_mnist_fulldataset
+from data.dataset_utils import load_cifar100
 from models.wide_resnet import WideResNet
-from training.train_utils import train, test
+from training.train_utils import test 
 # Parse input arguments
-parser = argparse.ArgumentParser(description='Fashion MNIST DDP example',
+parser = argparse.ArgumentParser(description='CIFAR-100 DDP example with Mixed Precision',
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--batch-size', type=int, default=512, help='Input batch size for training')
 parser.add_argument('--epochs', type=int, default=5, help='Number of epochs to train')
@@ -438,11 +418,6 @@ def ddp_setup():
     """Set up the distributed environment."""
     init_process_group(backend="nccl")
     torch.cuda.set_device(int(os.environ["LOCAL_RANK"]))
-def prepare_dataloader(dataset, batch_size):
-    """Prepare DataLoader with DistributedSampler."""
-    sampler = DistributedSampler(dataset, drop_last=False)  # Ensure no data is dropped
-    dataloader = DataLoader(dataset, batch_size=batch_size, sampler=sampler)
-    return dataloader, sampler
 def main_worker():
     ddp_setup()
     # Get the local rank and device
@@ -450,37 +425,61 @@ def main_worker():
     global_rank = int(os.environ["RANK"])
     world_size = int(os.environ["WORLD_SIZE"])
     device = torch.device(f"cuda:{local_rank}")
-
-
     # Log initialization info
     if global_rank == 0:
         print(f"Training started with {world_size} processes across {world_size // torch.cuda.device_count()} nodes.")
         print(f"Using {torch.cuda.device_count()} GPUs per node.")
-
-    
-    # Load the dataset
-    train_loader, test_loader = load_fashion_mnist_fulldataset(batch_size=args.batch_size)
+    # Load the CIFAR-100 dataset with DistributedSampler
+    per_gpu_batch_size = args.batch_size // world_size  # Divide global batch size across GPUs
+    train_sampler = DistributedSampler(
+        torchvision.datasets.CIFAR100(
+            root="/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/shared/data/",
+            train=True,
+            download=True
+        )
+    )
+    train_loader, test_loader = load_cifar100(
+        batch_size=per_gpu_batch_size,
+        num_workers=8,
+        sampler=train_sampler
+    )
     # Create the model and wrap it with DDP
-    num_classes = 10
+    num_classes = 100  # CIFAR-100 has 100 classes
     model = WideResNet(num_classes).to(device)
     model = DDP(model, device_ids=[local_rank])
-   
     # Define loss function and optimizer
     loss_fn = nn.CrossEntropyLoss()
-    optimizer = torch.optim.SGD(model.parameters(), lr=args.base_lr)
+    optimizer = torch.optim.SGD(model.parameters(), lr=args.base_lr, momentum=0.9, weight_decay=5e-4)
+    # Initialize gradient scaler for mixed precision
+    scaler = torch.cuda.amp.GradScaler()
     val_accuracy = []
     total_time = 0
+    total_images = 0  # Total images processed globally
     # Training loop
     for epoch in range(args.epochs):
-        if global_rank == 0:
-            print(f"\nEpoch {epoch + 1}/{args.epochs}")
-        # Train the model for one epoch
+        train_sampler.set_epoch(epoch)  # Set the sampler epoch for shuffling
+        model.train()
         t0 = time.time()
-        train(model, optimizer, train_loader, loss_fn, device)
+        # Train the model for one epoch
+        for images, labels in train_loader:
+            images, labels = images.to(device, non_blocking=True), labels.to(device, non_blocking=True)
+            # Zero the gradients
+            optimizer.zero_grad()
+            # Forward pass with mixed precision
+            with torch.cuda.amp.autocast():
+                outputs = model(images)
+                loss = loss_fn(outputs, labels)
+            # Backward pass and optimization with scaled gradients
+            scaler.scale(loss).backward()
+            scaler.step(optimizer)
+            scaler.update()
         # Synchronize all processes
         torch.distributed.barrier()
         epoch_time = time.time() - t0
         total_time += epoch_time
+        # Compute throughput (images per second for this epoch)
+        images_per_sec = len(train_loader) * args.batch_size / epoch_time
+        total_images += len(train_loader) * args.batch_size
         # Compute validation accuracy and loss
         v_accuracy, v_loss = test(model, test_loader, loss_fn, device)
         # Average validation metrics across all GPUs
@@ -490,19 +489,21 @@ def main_worker():
         torch.distributed.all_reduce(v_loss_tensor, op=torch.distributed.ReduceOp.AVG)
         # Print metrics only from the main process
         if global_rank == 0:
-            print(f"Epoch {epoch + 1} completed in {epoch_time:.3f} seconds")
+            print(f"Epoch {epoch + 1}/{args.epochs} completed in {epoch_time:.3f} seconds")
             print(f"Validation Loss: {v_loss_tensor.item():.4f}, Validation Accuracy: {v_accuracy_tensor.item():.4f}")
+            print(f"Epoch Throughput: {images_per_sec:.3f} images/second")
         # Early stopping
         val_accuracy.append(v_accuracy_tensor.item())
         if len(val_accuracy) >= args.patience and all(acc >= args.target_accuracy for acc in val_accuracy[-args.patience:]):
             if global_rank == 0:
                 print(f"Target accuracy reached. Early stopping after epoch {epoch + 1}.")
             break
-    
-       # Log total training time and summary
+    # Log total training time and summary
     if global_rank == 0:
+        throughput = total_images / total_time
         print("\nTraining Summary:")
         print(f"Total training time: {total_time:.3f} seconds")
+        print(f"Throughput: {throughput:.3f} images/second")
         print(f"Number of nodes: {world_size // torch.cuda.device_count()}")
         print(f"Number of GPUs per node: {torch.cuda.device_count()}")
         print(f"Total GPUs used: {world_size}")
@@ -517,240 +518,97 @@ if __name__ == '__main__':
 
 To run the training on multiple GPUs, we can use the same job script mentioned earlier, but specify a higher number of GPUs.
 
-When using `torchrun` for a single-node setup, you need to include the `--standalone` argument. However, this argument is not required for a multi-node setup. The full job script is given below:
+When using `torchrun` for a single-node setup, you need to include the `--standalone` argument. However, this argument is not required for a multi-node setup. 
+This job script is designed to train the model across multiple GPUs on a single node. In this script, we explicitly define the path to the torchrun executable using the following line:
+
+`TORCHRUN_PATH="/usr/local/bin/torchrun"`
+
+While experimenting, we encountered cases where the torchrun executable was not recognized unless its full path was explicitly specified. Defining the TORCHRUN_PATH in the script resolves this issue. However, this configuration may vary depending on your working environment:
+
+If the torchrun executable is already in your $PATH, explicitly setting the path may not be necessary.
+
+
 
 ```bash
 #!/bin/bash
 #SBATCH --job-name=simple_nn_training
 #SBATCH --account=<project_number>
-#SBATCH --output=singlenode_%j.out
-#SBATCH --error=singlenode_%j.err
-#SBATCH --time=00:10:00
+#SBATCH --output=singlenode_with_container_%j.out
+#SBATCH --error=singlenode_with_container_%j.err
+#SBATCH --time=01:00:00
 #SBATCH --partition=accel
 #SBATCH --nodes=1     # Use one compute node
+##SBATCH --nodelist=x1000c2s4b1n0
 #SBATCH --ntasks-per-node=1 #  Single task per node
 #SBATCH --cpus-per-gpu=72  # Reserve enough CPU cores for full workload with each GPU
 #SBATCH --mem-per-gpu=110G   # Request 110 GB of CPU RAM per GPU
-#SBATCH --gpus-per-node=2   # Reserve 2 GPUs on node
-# Load required modules
-module load cray-python/3.11.7
-module load cuda/12.6
+#SBATCH --gpus-per-node=4   # Reserve 4 GPUs on node
 
-# Create and activate virtual environment in compute node's local storage
-VENV_PATH="$SCRATCH/pytorch_venv"  # Using compute node's scratch space
-python -m venv $VENV_PATH
-source $VENV_PATH/bin/activate
+# Path to the container
+CONTAINER_PATH="/cluster/projects/nn9999k/jorn/pytorch_25.05-py3.sif"
 
-# Install PyTorch from the wheel (offline installation)
-WHEEL_DIR="/cluster/work/projects/<project_number>/<user_name>/PyTorch/torch_wheels"
-pip install --no-index --find-links=$WHEEL_DIR $(ls $WHEEL_DIR/*.whl | tr '\n' ' ')
+# Path to the training script
+TRAINING_SCRIPT="/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/simple_nn_project/singlenode.py --batch-size 1024 --epochs 100 --base-lr 0.04 --target-accuracy 0.95 --patience 2"
 
+# Bind directories
+BIND_DIR="/cluster/work/projects/<project_number>/<user_name>/PyTorch/private"
 
 # Set PYTHONPATH to include the shared directory
 export PYTHONPATH=/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/shared:$PYTHONPATH
 
+# Explicitly specify the full path to torchrun
+TORCHRUN_PATH="/usr/local/bin/torchrun"
+
+apptainer exec --nv $CONTAINER_PATH which torchrun
 # Start GPU utilization monitoring in the background
-GPU_LOG_FILE="gpu_utilization.log"
+GPU_LOG_FILE="gpu_utilization_multinode_container.log"
 echo "Starting GPU utilization monitoring..."
-nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &l
+nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &
 
-
-# run the training script
-torchrun --standalone --nnodes=$SLURM_NNODES  --nproc_per_node=$SLURM_GPUS_ON_NODE ../resnetddp.py  --epochs 10 --batch-size 512
+# Run the training script with torchrun inside the container
+apptainer exec --nv --bind $BIND_DIR $CONTAINER_PATH $TORCHRUN_PATH --standalone --nnodes=$SLURM_JOB_NUM_NODES --nproc_per_node=$SLURM_GPUS_ON_NODE $TRAINING_SCRIPT
 
 # Stop GPU utilization monitoring
 echo "Stopping GPU utilization monitoring..."
 pkill -f "nvidia-smi --query-gpu"
 
-deactivate
 ```
 
 Output of the training is shown below:
 
 ```bash
-Starting GPU utilization monitoring...
-Training started with 2 processes across 1 nodes.
-Using 2 GPUs per node.
-
-Epoch 1/10
-Epoch 1 completed in 8.276 seconds
-Validation Loss: 0.5461, Validation Accuracy: 0.7985
-
-Epoch 2/10
-Epoch 2 completed in 7.157 seconds
-Validation Loss: 0.4210, Validation Accuracy: 0.8468
-
-Epoch 3/10
-Epoch 3 completed in 7.118 seconds
-Validation Loss: 0.3724, Validation Accuracy: 0.8665
-
-Epoch 4/10
-Epoch 4 completed in 7.112 seconds
-Validation Loss: 0.5056, Validation Accuracy: 0.8268
-
-Epoch 5/10
-Epoch 5 completed in 7.118 seconds
-Validation Loss: 0.3270, Validation Accuracy: 0.8822
-
-Epoch 6/10
-Epoch 6 completed in 7.178 seconds
-Validation Loss: 0.3685, Validation Accuracy: 0.8665
-Target accuracy reached. Early stopping after epoch 6.
+Epoch 95/100 completed in 1.280 seconds
+Validation Loss: 1.0222, Validation Accuracy: 0.7416
+Epoch Throughput: 38409.065 images/second
+Epoch 96/100 completed in 1.271 seconds
+Validation Loss: 1.0204, Validation Accuracy: 0.7439
+Epoch Throughput: 38665.960 images/second
+Epoch 97/100 completed in 1.268 seconds
+Validation Loss: 1.0401, Validation Accuracy: 0.7393
+Epoch Throughput: 38766.180 images/second
+Epoch 98/100 completed in 1.276 seconds
+Validation Loss: 1.0070, Validation Accuracy: 0.7447
+Epoch Throughput: 38512.740 images/second
+Epoch 99/100 completed in 1.273 seconds
+Validation Loss: 1.0075, Validation Accuracy: 0.7435
+Epoch Throughput: 38609.904 images/second
+Epoch 100/100 completed in 1.281 seconds
+Validation Loss: 1.0194, Validation Accuracy: 0.7429
+Epoch Throughput: 38355.399 images/second
 
 Training Summary:
-Total training time: 43.959 seconds
-```
-
-
-### Multi-Node Setup
-
-Setting up training across multiple nodes is relatively straightforward since we use the same Python script as in the multi-GPU implementation. The main difference lies in using a different job script, which is provided below.
-
-For multi-node jobs, a few key considerations are important:
-
-1. __Communication Interface__:
-
-    You need to specify the communication interface to enable proper communication between nodes.
-
-2. __Master Node__: 
-
-    The master node must be designated to handle coordination and communication across nodes.
-
-We use srun to launch the job across multiple nodes, allowing torchrun to efficiently manage and coordinate the training process.
-
-#### Performance Considerations for Single-Node vs Multi-Node Training
-
-Before implementing multi-node training, it's important to understand that using 8 GPUs across two nodes may actually be slower than using just 2 GPUs on a single node with the same batch size. While optimizations can help, without proper tuning, the distributed approach might underperform.
-
-1. __Communication Differences__:
-
-    Single-node GPU jobs benefit from high-speed connections between GPUs on one node like NVLink whereas multi-node setups must rely on network links (Slingshot11 in the case of Olivia) which might be slower. Moreover, synchronizing data across nodes migght introduces significant latency.
-
-2. __Model-Specific Factors__:
-
-    For our ResNet model, the overhead of coordinating across many GPUs may outweigh the parallelization benefits. We might notice that communication is faster and more frequently, leading to better utilization with just two GPUs.
-
-These factors are crucial when deciding between single-node and multi-node configurations. The optimal approach depends on your specific project requirements and how well we can leverage parallel processing for your particular training task.
-
-
-#### Job Script for Multi node Training
-
-```bash
-#!/bin/bash
-#SBATCH --job-name=simple_nn_training_multinode
-#SBATCH --account=<project_number>
-#SBATCH --output=multinode_%j.out
-#SBATCH --error=multinode_%j.err
-#SBATCH --time=01:00:00
-#SBATCH --partition=accel
-#SBATCH --nodes=2               # Request 2 compute nodes
-#SBATCH --ntasks-per-node=1     # One coordinating task per node
-#SBATCH --gpus-per-node=4       # Reserve 4 GPUs on each node
-#SBATCH --cpus-per-gpu=72       # Reserve enough CPU cores for full workload with each GPU
-#SBATCH --mem-per-gpu=110G      # Request 110GB of CPU RAM per GPU
-
-# Load required modules
-module load cray-python/3.11.7
-module load cuda/12.6
-
-# Create and activate virtual environment
-VENV_PATH="$SCRATCH/pytorch_venv"
-python -m venv $VENV_PATH
-source $VENV_PATH/bin/activate
-# Install PyTorch from the wheel (offline installation)
-WHEEL_DIR="/cluster/work/projects/<project_number>/<user_name>/PyTorch/torch_wheels"
-pip install --no-index --find-links=$WHEEL_DIR $(ls $WHEEL_DIR/*.whl | tr '\n' ' ')
-
-# Set PYTHONPATH to include the shared directory
-export PYTHONPATH=/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/shared:$PYTHONPATH
-
-# Set NCCL environment variables for debugging and communication
-# export NCCL_DEBUG=INFO  # Use it to see details
-export NCCL_SOCKET_IFNAME=hsn0  # Replace with hsn1 if needed
-
-# Get the head node and its IP address
-nodes=( $(scontrol show hostnames $SLURM_JOB_NODELIST) )
-head_node=${nodes[0]}
-head_node_ip=$(srun --nodes=1 --ntasks=1 -w "$head_node" hostname --ip-address | awk '{print $1}')
-echo "Head Node: $head_node"
-echo "Head Node IP: $head_node_ip"
-
-# Start GPU utilization monitoring in the background
-GPU_LOG_FILE="gpu_utilization_multinode.log"
-echo "Starting GPU utilization monitoring..."
-nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &l
-
-# Run the Python script using torchrun
-srun torchrun \
-  --nnodes=$SLURM_NNODES \
-  --nproc_per_node=$SLURM_GPUS_ON_NODE \
-  --rdzv_id=$RANDOM \
-  --rdzv_backend=c10d \
-  --rdzv_endpoint=$head_node_ip:29500 \
-  ../resnetddp.py --epochs 20 --batch-size 2048 --base-lr 0.04
-
-# Stop GPU utilization monitoring
-echo "Stopping GPU utilization monitoring..."
-pkill -f "nvidia-smi --query-gpu"
-# Deactivate the virtual environment
-deactivate
-```
-
-#### Batch Size Scaling and Learning Rate Adjustment
-To maintain consistency with our single-node setup where each GPU processed 256 samples (512 total batch size / 2 GPUs), we increased the total batch size to 2048 for our 8-GPU across 2-nodes configuration (256 per GPU). This larger batch size reduces synchronization frequency, allowing GPUs to spend more time computing and less time waiting for gradient updates.
-
-Initial tests without learning rate adjustment using the default `--base-lr 0.01` resulted in a training time of `85.279 seconds`. It is recommended to try without this argument `--base-lr 0.04` to see the total training time because it establishes our starting point before optimization.
-
-For optimal convergence when scaling batch size, we applied the linear learning rate rule:
-
-```bash
-New LR = Base LR × (New Batch Size / Old Batch Size)
-       = 0.01 × (2048 / 512) 
-       = 0.04
-```
-From the output below, we can validate that, despite a high initial loss (expected with large batches), the model converged stably, confirming that linear LR scaling was effective.
-
-
-Below is the output generated from running the training across multiple nodes and with proper optimization, our multi-node training now runs fastter, showing how distributed setups can deliver real speed gains when tuned correctly.
-
-
-```bash
-
-Training started with 8 processes across 2 nodes.
-Using 4 GPUs per node.
-
-Epoch 1/20
-Epoch 1 completed in 10.042 seconds
-Validation Loss: 2.8143, Validation Accuracy: 0.1216
-
-Epoch 2/20
-Epoch 2 completed in 8.390 seconds
-Validation Loss: 0.6200, Validation Accuracy: 0.7717
-
-Epoch 3/20
-Epoch 3 completed in 8.372 seconds
-Validation Loss: 0.4511, Validation Accuracy: 0.8325
-
-Epoch 4/20
-Epoch 4 completed in 8.371 seconds
-Validation Loss: 0.4254, Validation Accuracy: 0.8422
-
-Epoch 5/20
-Epoch 5 completed in 8.360 seconds
-Validation Loss: 0.3645, Validation Accuracy: 0.8698
-
-Epoch 6/20
-Epoch 6 completed in 8.368 seconds
-Validation Loss: 0.3265, Validation Accuracy: 0.8839
-Target accuracy reached. Early stopping after epoch 6.
-
-Training Summary:
-Total training time: 51.904 seconds
-Number of nodes: 2
+Total training time: 131.142 seconds
+Throughput: 37479.949 images/second
+Number of nodes: 1
 Number of GPUs per node: 4
-Total GPUs used: 8
+Total GPUs used: 4
 Training completed successfully.
 ```
 
+Note that, By using four GPUs now we can see that the throughput is  `37479.949 images/second` and training time is `131.142 seconds`.It suggests that we achieved superlinear scaling along with perfect scaling.The 4-GPU setup is highly efficient, with a speedup factor of `15.21` and a scaling efficiency of `374.1%`. This is the indication that  distributed training setup is highly optimized.
 
+### Multi-Node Setup
 
+We have successfully tested the multi-node setup using the native installation and verified that it scales effectively. However, to fully leverage Slingshot within the containerized environment, we discovered the need to install a custom version of NCCL integrated with the AWS-OFI plugin. This aspect is still under development, and we will update this documentation with the necessary details once the process is finalized.It might be that we will soon provide the container with necessary components installed in it.
+
+In the meantime, if you are interested in learning how we achieved functionality with the native installation, please feel free to reach out to us. We will be happy to provide additional details and guidance.
