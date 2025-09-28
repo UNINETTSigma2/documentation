@@ -77,7 +77,7 @@ def train_resnet_without_ddp(batch_size, epochs, learning_rate, device):
     Returns:
         throughput (float): Images processed per second
     """
-    print(f"Training WideResNet on CIFAR 100 with Batch Size: {batch_size}")
+    print(f"Training WideResNet on CIFAR-100 with Batch Size: {batch_size}")
     # Training variables
     val_accuracy = []
     total_time = 0
@@ -126,7 +126,7 @@ def main():
     device = get_device()
     # Train the WideResNet model
     throughput = train_resnet_without_ddp(batch_size=BATCH_SIZE, epochs=EPOCHS, learning_rate=LEARNING_RATE, device=device)
-    print(f"Single-GPU Thrpughput: {throughput:.3f} images/second")
+    print(f"Single-GPU Throughput: {throughput:.3f} images/second")
 if __name__ == "__main__":
     main()
 ```
@@ -182,7 +182,7 @@ This file contains the implementation of the ResNet model architecture.
 # wide_resnet.py
 import torch.nn as nn
 
-# Standard convulation block followed by batch normalization
+# Standard convolution block followed by batch normalization
 class cbrblock(nn.Module):
     def __init__(self, input_channels, output_channels):
         super(cbrblock, self).__init__()
@@ -255,7 +255,7 @@ Finally, this file serves as a utility module for importing the training and tes
 import torch
 def train(model, optimizer, train_loader, loss_fn, device):
     """
-    Trains the model for one epoch. Note, that we will use this only for single GPU implmentation.
+    Trains the model for one epoch. Note, that we will use this only for single GPU implementation.
     Args:
         model(torch.nn.Module): The model to train.
         optimizer(torch.optim.Optimizer): Optimizer for updating model parameters.
@@ -285,7 +285,7 @@ def test(model, test_loader, loss_fn, device):
         loss_fn (torch.nn.Module): Loss function.
         device (torch.device): Device to run evaluation on (CPU or GPU).
     Returns:
-        tuple: Validation accuracy and validaiton loss.
+        tuple: Validation accuracy and validation loss.
     """
 
     model.eval()
@@ -381,7 +381,7 @@ Epoch = 100: Epoch Time = 19.773, Validation Loss = 1.332, Validation Accuracy =
 Training complete. Final Validation Accuracy = 0.739
 Total Training Time: 1994.037 seconds
 Throughput: 2506.673 images/second
-Single-GPU Thrpughput: 2506.673 images/second
+Single-GPU Throughput: 2506.673 images/second
 ```
 The output suggests that the total throughput that we obtained from single GPU training is ` 2506.673 images/second` and it took approximately `1994.037 seconds` to complete the training. As we proceed forward with the multi-gpu implementation, our goal would be to achieve higher throughtput and also possibly reduced the training time.
 
