@@ -9,10 +9,6 @@ orphan: true
 
 The name Olivia is inspired by ´olivine´, a mineral once extracted from the former Lefdal mine, now transformed into a state-of-the-art data centre, [Lefdal Mine Data Centers (LMD)](https://www.lefdalmine.com/), where the supercomputer is hosted. 
 
-```{danger}
-[Information for pilot users here.](/olivia_pilot_period_docs/olivia_pilot_main.md)
-```
-
 ## The next generation powerful supercomputer for HPC and AI applications
 
 Olivia is provided by Hewlett Packard Enterprise and will have a computational capacity 17 times greater than the current most powerful national supercomputer, Betzy. 
@@ -55,17 +51,22 @@ Olivia is provided by Hewlett Packard Enterprise and will have a computational c
 - 3.159 PB spinning disks
 - 1.107 PB solid state storage
 
+## Getting Started with Olivia
+
+- [Logging in](https://documentation.sigma2.no/getting_started/getting_started.html#logging-in)
+- [Software Modules](https://documentation.sigma2.no/software/modulescheme.html)
+- [Running Jobs](https://documentation.sigma2.no/jobs/overview.html)
+
 ## In-depth documentation for Olivia
 
 ```{toctree}
 :maxdepth: 1
 
-olivia/access.md
+olivia/overview.md
 olivia/software_stack.md
-olivia/jobs.md
 olivia/ai_ml_guide.md
 olivia/trouble_shooting.md
 ```
 
-## [Olivia Best Practices Guide (WIP)](https://docs.google.com/document/d/1J9VBqyProblMLaqp0BYJUaPzVYZVQTMqMVbX2E94JZA/edit?tab=t.0)
+### [Olivia Best Practices Guide (WIP)](https://docs.google.com/document/d/1J9VBqyProblMLaqp0BYJUaPzVYZVQTMqMVbX2E94JZA/edit?tab=t.0)
 
