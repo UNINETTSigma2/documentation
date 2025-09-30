@@ -6,7 +6,6 @@ Since a HPC cluster is shared among many users, and also holds a significant siz
 
 ```{admonition} Important information
 For the software module scheme on the Olivia cluster, please refer to the page {ref}`olivia software`.
-
 ```
 
 The main command for using this system is the module command. You can find a list of all its options by typing:
