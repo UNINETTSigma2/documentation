@@ -6,35 +6,45 @@
 :depth: 3
 ```
 
-In this guide, we’ll be testing PyTorch on the Olivia system, which uses the Aarch64 architecture on its compute nodes. To do this, we’ll use  PyTorch container from Nvidia.The process of training a ResNet model using a containerized environment, will bypass the need to manually download and install PyTorch wheels. The container includes all the necessary packages required to run the project, simplifying the setup process.
+In this guide, we will test PyTorch on the Olivia system, which uses the
+Aarch64 architecture on its compute nodes. We use Nvidia's PyTorch container.
+Training a ResNet model in a containerized environment bypasses the need to
+manually download and install PyTorch wheels. The container includes all the
+necessary packages to run the project, simplifying the setup process.
 
 ## Key Considerations
 
 1. __Different Architectures__:
 
-     The login node and the compute node on Olivia have different architectures. The login node uses the x86_64 architecture, while the compute node uses Aarch64. This means we cannot install software directly on the login node and expect it to work on the compute node.
+   The login node and the compute node on Olivia have different architectures.
+   The login node uses the x86_64 architecture, while the compute node uses
+   Aarch64. This means we cannot install software directly on the login node and
+   expect it to work on the compute node.
 
+1. CUDA Version:
 
-2. CUDA Version:
+   The compute nodes are equipped with CUDA version 12.7, as confirmed by running
+   the nvidia-smi command. Therefore, we must ensure that the container we use is
+   compatible with this CUDA version.
 
-     The compute nodes are equipped with CUDA Version 12.7, as confirmed by running the nvidia-smi command. Therefore, we need to ensure that the container we will be using will be compatible with this CUDA version.
+## Training a ResNet Model with the CIFAR-100 Dataset
 
-
-## Training a ResNet Model with the CIFAR-100 Dataset   
-
-To test Olivia's capabilities with real-world workloads, we will train a ResNet model using the CIFAR-100 dataset. The testing will be conducted under the following scenarios:
+To test Olivia's capabilities with real-world workloads, we will train a ResNet
+model using the CIFAR-100 dataset under the following scenarios:
 
 1. Single GPU
-
 2. Multiple GPUs
-
 3. Multiple Nodes
 
-The primary goal of this exercise is to verify that we can successfully run training tasks on Olivia. As such, we will not delve into the specifics of neural network training in this documentation. A separate guide will be prepared to cover those details.
+The primary goal of this exercise is to verify that we can successfully run
+training tasks on Olivia. As such, we will not delve into the specifics of
+neural network training in this documentation. A separate guide will be prepared
+to cover those details.
 
 ### Single GPU Implementation
 
-To train the ResNet model on a single GPU, we used the following files. These files include the main Python script responsible for training the ResNet model.
+To train the ResNet model on a single GPU, we use the following files, which
+include the main Python script responsible for training the model.
 
 ```python
 # resnet.py
@@ -131,8 +141,9 @@ if __name__ == "__main__":
     main()
 ```
 
-
-This file contains the data utility functions used for preparing and managing the dataset.Please note that, you will be installing the CIFAR-100 dataset and it will be placed in the respective folder through the job script.
+This file contains the data utility functions used for preparing and managing
+the dataset. Please note that the CIFAR-100 dataset will be installed and placed in the
+respective folder by the job script.
 
 ```python
 # dataset_utils.py
@@ -161,7 +172,9 @@ def load_cifar100(batch_size, num_workers=0, sampler=None):
     return train_loader, test_loader
 ```
 
-This file includes the device utility functions, which handle device selection and management for training (e.g., selecting the appropriate GPU). 
+This file includes the device utility functions, which handle device selection
+and management for training (e.g., selecting the appropriate GPU).
+
 ```python
 # device_utils.py
 import torch
@@ -176,8 +189,8 @@ def get_device():
     return torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 ```
 
-
 This file contains the implementation of the ResNet model architecture.
+
 ```python
 # wide_resnet.py
 import torch.nn as nn
@@ -249,7 +262,9 @@ class WideResNet(nn.Module):
 
 ```
 
-Finally, this file serves as a utility module for importing the training and testing datasets.
+Finally, this file serves as a utility module for importing the training and
+testing datasets.
+
 ```python
 # train_utils.py
 import torch
@@ -309,16 +324,26 @@ def test(model, test_loader, loss_fn, device):
     return v_accuracy, v_loss
 ```
 
+Since we are using the container, to provide the container access to additional
+directories, such as the one containing the training scripts, we must explicitly
+bind these directories using the `--bind` option.
 
-Since we are using the container, to provide the container access to additional directories, such as the one containing the training scripts, we must explicitly bind these directories using the `--bind` option.
+The job scripts below shows how it is done for accessing the required files
+inside the container.
 
-The job scripts below shows how it is done for accessing the required files inside the container.
-
-Note that, the command to run the script includes the `--nv` option, which ensures that the container has access to GPU resources. This is essential for leveraging hardware acceleration during training.
+Note that the command to run the script includes the --nv option, which ensures
+that the container has access to GPU resources. This is essential for leveraging
+hardware acceleration during training.
 
 #### Job Script for Single GPU Training
 
-In the job script below, we will be using a single GPU for training.The container we will be using is downloaded and placed in this path `/cluster/projects/nn9999k/jorn/pytorch_25.05-py3.sif`. This container contains all the necessary packages for running our deep learning training. for instance. torch and torchvision.Moreover, we are binding the directory from the host inside the container using this `BIND_DIR="/cluster/work/projects/nn9997k/binod/PyTorch/private"`. Also, to include the shared directory to import other python files as the modules, we exported the python path as shown here `BIND_DIR="/cluster/work/projects/nn9997k/binod/PyTorch/private"`. Finally, we run the `apptainer exec --nv` command binding the directory from the host and using torchrun.
+In the job script below, we will use a single GPU for training. The container is
+downloaded and placed at `/cluster/projects/nn9999k/jorn/pytorch_25.05-py3.sif`.
+This container contains all the necessary packages for running our deep learning
+training (e.g., torch and torchvision). Moreover, we bind the host directory
+within the container using the `--bind` option and export the PYTHONPATH to include
+the shared directory for module imports. Finally, we run the `apptainer exec --nv`
+command, binding the host directory and using torchrun.
 
 ```bash
 #!/bin/bash
@@ -367,7 +392,6 @@ pkill -f "nvidia-smi --query-gpu"
 
 ```
 
-
 Output of the training is shown below:
 
 ```bash
@@ -383,13 +407,23 @@ Total Training Time: 1994.037 seconds
 Throughput: 2506.673 images/second
 Single-GPU Throughput: 2506.673 images/second
 ```
-The output suggests that the total throughput that we obtained from single GPU training is ` 2506.673 images/second` and it took approximately `1994.037 seconds` to complete the training. As we proceed forward with the multi-gpu implementation, our goal would be to achieve higher throughtput and also possibly reduced the training time.
 
+The output suggests that the total throughput obtained from single GPU training
+is `2506.673 images/second` and it took approximately `1994.037 seconds` to
+complete the training. As we move forward with the multi-GPU implementation, our
+goal is to achieve higher throughput and reduced training time.
 
 ### Multi-GPU Implementation
-To scale our training to multiple GPUs, we will utilize PyTorch's Distributed Data Parallel (DDP) framework. DDP allows us to efficiently scale training across multiple GPUs and even across multiple nodes.To learn more about how to implement DDP, please refer to this official documentation from PyTorch [Getting Started with DDP](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html)
 
-For this, we need to modify the main Python script to include DDP implementation. The updated script will work for both scenarios Multiple GPUs within a single node and Multiple nodes.
+To scale our training to multiple GPUs, we will utilize PyTorch's Distributed
+Data Parallel (DDP) framework. DDP allows us to efficiently scale training
+across multiple GPUs and even across multiple nodes. To learn more about how to
+implement DDP, please refer to this official documentation from PyTorch
+[Getting Started with DDP](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html)
+
+For this, we need to modify the main Python script to include DDP
+implementation. The updated script will work for both scenarios: Multiple GPUs
+within a single node and Multiple nodes.
 
 ```python
 # singlenode.py
@@ -404,7 +438,7 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.distributed import init_process_group, destroy_process_group
 from data.dataset_utils import load_cifar100
 from models.wide_resnet import WideResNet
-from training.train_utils import test 
+from training.train_utils import test
 # Parse input arguments
 parser = argparse.ArgumentParser(description='CIFAR-100 DDP example with Mixed Precision',
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -516,18 +550,24 @@ if __name__ == '__main__':
 
 #### Job Script for Multi GPU Training
 
-To run the training on multiple GPUs, we can use the same job script mentioned earlier, but specify a higher number of GPUs.
+To run the training on multiple GPUs, we can use the same job script mentioned
+earlier, but specify a higher number of GPUs.
 
-When using `torchrun` for a single-node setup, you need to include the `--standalone` argument. However, this argument is not required for a multi-node setup. 
-This job script is designed to train the model across multiple GPUs on a single node. In this script, we explicitly define the path to the torchrun executable using the following line:
+When using `torchrun` for a single-node setup, you need to include the
+`--standalone` argument. However, this argument is not required for a multi-node
+setup. This job script is designed to train the model across multiple GPUs on a
+single node. In this script, we explicitly define the path to the torchrun
+executable using the following line:
 
 `TORCHRUN_PATH="/usr/local/bin/torchrun"`
 
-While experimenting, we encountered cases where the torchrun executable was not recognized unless its full path was explicitly specified. Defining the TORCHRUN_PATH in the script resolves this issue. However, this configuration may vary depending on your working environment:
+While experimenting, we encountered cases where the torchrun executable was not
+recognized unless its full path was explicitly specified. Defining the
+TORCHRUN_PATH in the script resolves this issue. However, this configuration may
+vary depending on your working environment:
 
-If the torchrun executable is already in your $PATH, explicitly setting the path may not be necessary.
-
-
+If the torchrun executable is already in your $PATH, explicitly setting the path
+may not be necessary.
 
 ```bash
 #!/bin/bash
@@ -605,10 +645,21 @@ Total GPUs used: 4
 Training completed successfully.
 ```
 
-Note that, By using four GPUs now we can see that the throughput is  `37479.949 images/second` and training time is `131.142 seconds`.It suggests that we achieved superlinear scaling along with perfect scaling.The 4-GPU setup is highly efficient, with a speedup factor of `15.21` and a scaling efficiency of `374.1%`. This is the indication that  distributed training setup is highly optimized.
+Note that by using four GPUs, the throughput is `37479.949 images/second` and
+the training time is `131.142 seconds`. This indicates that we achieved
+superlinear scaling with a 4-GPU setup, which is highly efficient with a speedup
+factor of `15.21` and a scaling efficiency of `374.1%`.
 
 ### Multi-Node Setup
 
-We have successfully tested the multi-node setup using the native installation and verified that it scales effectively. However, to fully leverage Slingshot within the containerized environment, we discovered the need to install a custom version of NCCL integrated with the AWS-OFI plugin. This aspect is still under development, and we will update this documentation with the necessary details once the process is finalized.It might be that we will soon provide the container with necessary components installed in it.
+We have successfully tested the multi-node setup using native installation and
+verified that it scales effectively. However, to fully leverage Slingshot within
+the containerized environment, we discovered that it is necessary to install a
+custom NCCL version integrated with the AWS-OFI plugin. This aspect is still under
+development, and we will update this documentation with the necessary details
+once the process is finalized. It is likely that the container will soon include
+the required components.
 
-In the meantime, if you are interested in learning how we achieved functionality with the native installation, please feel free to reach out to us. We will be happy to provide additional details and guidance.
+In the meantime, if you are interested in learning how we achieved functionality
+with the native installation, please feel free to reach out to us. We will be
+happy to provide additional details and guidance.
