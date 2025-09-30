@@ -28,6 +28,7 @@ $ ssh <username>@<machinename>
 ```
 
 The machine names are:
+- `olivia.sigma2.no` - {ref}`olivia`
 - `betzy.sigma2.no` - {ref}`betzy`
 - `fram.sigma2.no` - {ref}`fram`
 - `saga.sigma2.no` - {ref}`saga`
@@ -70,7 +71,7 @@ All systems use the Slurm queue system.
 A job is described by a _batch script_, which is a shell script (a text file)
 with `SBATCH` options to specify the needed resources and commands to perform
 the calculations. All batch scripts must contain _at least_ the following
-two `SBATCH` options (on {ref}`saga` you also need to indicate maximum memory):
+two `SBATCH` options (on {ref}`saga` and {ref}`olivia` you also need to indicate maximum memory):
 
 ```bash
 #!/bin/bash -l

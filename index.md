@@ -2,7 +2,6 @@
 [Latest changes and events](https://opslog.sigma2.no) |
 [Hardware live status](https://www.sigma2.no/hardware-status) |
 {ref}`known-issues` |
-{ref}`olivia_pilot_main` 
 
 
 # Norwegian Research Infrastructure Services
@@ -205,6 +204,7 @@ hpc_machines/saga.md
 hpc_machines/fram.md
 hpc_machines/betzy.md
 hpc_machines/lumi.md
+hpc_machines/olivia.md
 ```
 
 ```{toctree}

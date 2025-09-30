@@ -5,10 +5,13 @@
 This page documents the basics of how to write job scripts for the HPC clusters.
 Cluster-specific details are kept in separate sub pages for each cluster:
 
+
+
 - [Slurm job script generator](https://open.pages.sigma2.no/job-script-generator/)
 - [Fram job scripts](job-scripts-on-fram)
 - [Saga job scripts](job-scripts-on-saga)
 - {ref}`Betzy job scripts <job-scripts-on-betzy>`
+- [Olivia job scripts](job-scripts-on-olivia)
 
 ```{note}
 Email notification from completed Slurm scripts is currently not supported **on all

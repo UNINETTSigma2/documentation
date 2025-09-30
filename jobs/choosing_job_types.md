@@ -40,7 +40,7 @@ For other jobs, see {ref}`projects-accounting` for how the units are calculated.
 | {ref}`short <job_type_fram_short>`       | short jobs                               | 1--10 nodes | 2 hours                                     | high     |
 | {ref}`optimist <job_type_fram_optimist>` | jobs w/checkpointing, or very short jobs | 1--32 nodes | {ref}`see details <job_type_fram_optimist>` | low      |
 
-[Fram Job Types](job_types/fram_job_types.md).
+{ref}`Fram Job Types <job-types-fram>`.
 
 
 ## Saga
@@ -59,7 +59,19 @@ For jobs that don't request GPUs or much memory, the "units" on Saga are
 simply the number of cpus the job requests.
 For other jobs, see {ref}`projects-accounting` for how the units are calculated.
 
-[Saga Job Types](job_types/saga_job_types.md).
+{ref}`Saga Job Types <job-types-saga>`.
+
+## Olivia
+
+| Name                                       | Description                               | Job limits   | Max walltime | Priority |
+|:------------------------------------------:|-------------------------------------------|:------------:|:------------:|:--------:|
+| {ref}`normal <job_type_olivia_normal>`     | default job type for CPU jobs             | cluster-wide | 7 days       | normal   |
+| {ref}`accel <job_type_olivia_accel>`       | jobs needing GH200 GPUs (ARM64 nodes)    | cluster-wide | 7 days       | normal   |
+
+Olivia features large nodes with 256-288 CPUs per node and substantial memory,
+making it ideal for large-scale parallel and GPU workloads.
+
+{ref}`Olivia Job Types <job-types-olivia>`.
 
 [^1]: On Betzy it is possible to combine _devel_ with _accel_, {ref}`see details <job_type_betzy_devel>`.
 
