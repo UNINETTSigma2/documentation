@@ -61,6 +61,18 @@ For other jobs, see {ref}`projects-accounting` for how the units are calculated.
 
 [Saga Job Types](job_types/saga_job_types.md).
 
+## Olivia
+
+| Name                                       | Description                               | Job limits   | Max walltime | Priority |
+|:------------------------------------------:|-------------------------------------------|:------------:|:------------:|:--------:|
+| {ref}`normal <job_type_olivia_normal>`     | default job type for CPU jobs             | cluster-wide | 7 days       | normal   |
+| {ref}`accel <job_type_olivia_accel>`       | jobs needing GH200 GPUs (ARM64 nodes)    | cluster-wide | 7 days       | normal   |
+
+Olivia features large nodes with 256-288 CPUs per node and substantial memory,
+making it ideal for large-scale parallel and GPU workloads.
+
+[Olivia Job Types](job_types/olivia_job_types.md).
+
 [^1]: On Betzy it is possible to combine _devel_ with _accel_, {ref}`see details <job_type_betzy_devel>`.
 
 [^2]: On Saga it is possible to combine _devel_ with _accel_, _a100_,

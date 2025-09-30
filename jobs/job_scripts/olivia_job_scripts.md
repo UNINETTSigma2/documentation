@@ -8,7 +8,9 @@ orphan: true
 
 Here you can find job script examples for the Olivia HPC system.
 
-## MPI jobs (CPU)
+## Normal (CPU)
+
+(job_scripts_olivia_normal)=
 
 This is an example script for a multi-node MPI job on Olivia's CPU nodes, demonstrating Cray-specific environment variables.
 
@@ -33,7 +35,9 @@ srun ./my_mpi_program
 
 
 
-## Accel jobs (GPU)
+## Accel (GPU)
+
+(job_scripts_olivia_accel)=
 
 This is an example script for a GPU job on Olivia. You must specify the `accel` partition and request specific GPU resources.
 
@@ -43,10 +47,10 @@ This is an example script for a GPU job on Olivia. You must specify the `accel` 
 #SBATCH --partition=accel
 #SBATCH --gres=gpu:1
 #SBATCH --mem=100G
-#SBATCH --time=05:10:00  
+#SBATCH --time=05:10:00
 #SBATCH --account=nnXXXXk
 #SBATCH --job-name=my-job-name
-#SBATCH --output=my-job-name-%j.out     
+#SBATCH --output=my-job-name-%j.out
 #SBATCH --error=my-job-name-%j.err
 
 # Load necessary modules (e.g., CUDA toolkit and programming environment)
