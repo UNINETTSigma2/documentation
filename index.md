@@ -20,7 +20,7 @@ competences <extended-support>` that can assist, realize or take your project
 to the next level. {ref}`Read more ... <about-us>`
 
 **Compute resources**:
-{ref}`Overview <hardware-overview>` | {ref}`saga` | {ref}`fram` | {ref}`betzy` | {ref}`lumi` | {ref}`olivia`
+{ref}`Overview <hardware-overview>` | {ref}`betzy` | {ref}`fram` | {ref}`olivia` | {ref}`saga` | {ref}`lumi`
 
 **Storage resources**:
 {ref}`nird` | {ref}`research-data-archive`
@@ -200,11 +200,11 @@ code_development/guides_llm.md
 :caption: Compute resources
 
 hpc_machines/hardware_overview.md
-hpc_machines/saga.md
-hpc_machines/fram.md
 hpc_machines/betzy.md
-hpc_machines/lumi.md
+hpc_machines/fram.md
 hpc_machines/olivia.md
+hpc_machines/saga.md
+hpc_machines/lumi.md
 ```
 
 ```{toctree}
