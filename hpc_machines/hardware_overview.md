@@ -20,10 +20,10 @@ The **Memory** column specifies physical node memory in Gigabytes (GiB), with mi
 
 |Resource |	Job types |	Memory (min/max) |	Cores/Node |
 | :------------- | :------------- | :------------- | :------------- |
-| [Olivia](/hpc_machines/olivia.md)(CPU) |    A   P   L | 768 GiB |  256 |
-| [Olivia](/hpc_machines/olivia.md)(GPU) |    A   P   L | 2 x 96 GiB (Hopper) + 2 x 128 GiB (Grace) |  72 Grace CPUs |
 | [Betzy](/hpc_machines/betzy.md) |	P L |	256/256 |	128 |
 | [Fram](/hpc_machines/fram.md) |	P L |	64/512 |	32 |
+| [Olivia](/hpc_machines/olivia.md) (CPU) |    A   P   L | 768 GiB |  256 |
+| [Olivia](/hpc_machines/olivia.md) (GPU) |    A   P   L | 2 x 96 GiB (Hopper) + 2 x 128 GiB (Grace) |  72 Grace CPUs |
 | [Saga](/hpc_machines/saga.md) |    A   P   S   L | 186/3066 |  24/64 |
 
 
