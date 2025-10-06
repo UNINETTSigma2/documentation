@@ -23,7 +23,7 @@ Olivia has **5 dedicated nodes for I/O operations**, based on HPE ProLiant DL385
 
 ## High-Performance Global Storage
 
-This system, based on ClusterStor E1000, offers **4.266 PB of total usable capacity**, including **1.107 PB of solid-state storage (NVMe)** and **3.159 PB of HDD-based storage**. It is POSIX compatible and can be divided into several file systems (e.g., scratch, home, projects, software). It supports RDMA and is designed for fault tolerance against single component failures. The system is **air-cooled**.
+This system, based on ClusterStor E1000, offers **4.266 PB of total usable capacity**, including **1.107 PB of solid-state storage (NVMe)** and **3.159 PB of HDD-based storage**. It is POSIX compatible and can be divided into several file systems (e.g., scratch, home, software). It supports RDMA and is designed for fault tolerance against single component failures. The system is **air-cooled**.
 
 ## High-Speed Interconnect
 
