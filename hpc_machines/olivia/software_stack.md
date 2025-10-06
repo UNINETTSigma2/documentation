@@ -188,7 +188,7 @@ To access it, run the following command after initializing the EESSI environment
 ```bash
 $ export MODULEPATH=/cluster/installations/eessi/default/eessi_local/aarch64/modules/all:$MODULEPATH
 ```
-**Note**: If your job requires the use of `mpirun`, please ensure you use the `srun --mpi=pmix` option for proper integration.
+**Note**: If your job requires the use of MPI, please ensure you use `srun` for proper integration.
 Sample job script using `OSU-Micro-Benchmarks/7.2-gompi-2023b` from the EESSI stack:
 
 ```bash
@@ -199,12 +199,13 @@ Sample job script using `OSU-Micro-Benchmarks/7.2-gompi-2023b` from the EESSI st
 #SBATCH --partition=normal
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=1
+#SBATCH --mem-per-cpu=10G
 
 source /cluster/installations/eessi/default/eessi_environment_variables_Olivia
 source /cvmfs/software.eessi.io/versions/2023.06/init/bash
 module load OSU-Micro-Benchmarks/7.2-gompi-2023b
 
-srun --mpi=pmix osu_bw
+srun osu_bw
 ```
 
 (python)=

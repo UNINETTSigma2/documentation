@@ -42,6 +42,18 @@ For other jobs, see {ref}`projects-accounting` for how the units are calculated.
 
 {ref}`Fram Job Types <job-types-fram>`.
 
+## Olivia
+
+| Name                                   | Description                               | Job limits                | Max walltime | Priority |
+|:--------------------------------------:|-------------------------------------------|:-------------------------:|:------------:|:--------:|
+| {ref}`normal <job_type_olivia_normal>` | default job type for CPU jobs             | 1--1152 units             | 7 days       | normal   |
+| {ref}`accel <job_type_olivia_accel>`   | jobs needing GH200 GPUs (ARM64 nodes)     | 1--1152 units, 0--32 GPUs | 7 days       | normal   |
+| {ref}`devel <job_type_olivia_devel>`    | development jobs (compiling, testing)[^2] | 1--576 units, 0--16 GPUs  | 2 hours      | high     |
+
+"Units" are calculated based in the number of cpus and amount of memory
+the job requests.  See {ref}`projects-accounting` for how.
+
+{ref}`Olivia Job Types <job-types-olivia>`.
 
 ## Saga
 
@@ -61,19 +73,8 @@ For other jobs, see {ref}`projects-accounting` for how the units are calculated.
 
 {ref}`Saga Job Types <job-types-saga>`.
 
-## Olivia
-
-| Name                                       | Description                               | Job limits   | Max walltime | Priority |
-|:------------------------------------------:|-------------------------------------------|:------------:|:------------:|:--------:|
-| {ref}`normal <job_type_olivia_normal>`     | default job type for CPU jobs             | cluster-wide | 7 days       | normal   |
-| {ref}`accel <job_type_olivia_accel>`       | jobs needing GH200 GPUs (ARM64 nodes)    | cluster-wide | 7 days       | normal   |
-
-Olivia features large nodes with 256-288 CPUs per node and substantial memory,
-making it ideal for large-scale parallel and GPU workloads.
-
-{ref}`Olivia Job Types <job-types-olivia>`.
 
 [^1]: On Betzy it is possible to combine _devel_ with _accel_, {ref}`see details <job_type_betzy_devel>`.
 
-[^2]: On Saga it is possible to combine _devel_ with _accel_, _a100_,
+[^2]: On Saga and Olivia it is possible to combine _devel_ with _accel_, _a100_,
     _bigmem_ or _hugemem_, {ref}`see details <job_type_saga_devel>`.
