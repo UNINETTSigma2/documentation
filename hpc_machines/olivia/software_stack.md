@@ -23,7 +23,7 @@ Python and conda installation put a lot of stress and load onto the file system.
 To prevent file system slowdowns, __we don't allow native (directly with pip or conda) installations__.
 Instead create containerized installations using the HPC-container-wrapper or use apptainer to run containers directly.
 
-Please read the sections about [HPC-container-wrapper](python) and [AI workflows](olivia-ai) thouroughly.
+Please read the sections about [HPC-container-wrapper](olivia-python) and [AI workflows](olivia-ai) thouroughly.
 
 If you have any questions or need help, please [contact us](support-line).
 ```
@@ -208,7 +208,7 @@ module load OSU-Micro-Benchmarks/7.2-gompi-2023b
 srun osu_bw
 ```
 
-(python)=
+(olivia-python)=
 ## 2. Python, R, and (Ana-)Conda
 
 Python and R are widely used in scientific computing, but they were originally designed for personal computers rather than
