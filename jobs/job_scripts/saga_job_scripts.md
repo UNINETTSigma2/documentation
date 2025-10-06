@@ -74,8 +74,7 @@ For instance:
 	#SBATCH --ntasks=8 --cpus-per-task=10 --ntasks-per-node=4
 
 This job will get 2 nodes, and run 4 processes on each of them, each
-process getting 10 cpus.  All in all, that will be two whole nodes on
-Saga.
+process getting 10 cpus.
 
 All jobs on Saga are allocated the requested cpus and memory
 exclusively, but share nodes with other jobs.  Also note that they are
@@ -86,7 +85,7 @@ Note that the more restrictive one is in specifying how tasks are
 placed on nodes, the longer the job might have to wait in the job
 queue: In this example, for instance, there might be eight nodes with
 10 idle cpus, but not two whole idle nodes.  Without the
-`--ntasks-per-node` specification, the job could have started, but
+`--ntasks-per-node` specification, the job could have started now, but
 with the specification, it will have to wait.
 
 The [Saga Sample MPI Job](saga/saga_sample_mpi_job.md) page has an example
@@ -140,9 +139,9 @@ following example is enough:
 Here is an example that asks for 2 tasks and 2 A100 GPUs on one node:
 
     #SBATCH --account=MyProject --job-name=MyJob
-    #SBATCH --partition=a100 --gpus-per-node=2
+    #SBATCH --partition=a100
     #SBATCH --time=1-0:0:0
-    #SBATCH --ntasks-per-node=2 --nodes=1
+    #SBATCH --ntasks-per-node=2 --gpus-per-node=2 --nodes=1
     #SBATCH --mem-per-cpu=8G
 
 There are other GPU related specifications that can be used, and that

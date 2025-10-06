@@ -104,33 +104,32 @@ period_.  Historical usage can be found [here](https://www.metacenter.no/mas/pro
 The accounting tries to assign a fair "price" to the amount of resources a job
 requested.
 
-Accounting is done in terms of _billing units_, and the quota is in
-_billing unit hours_. For the GPU-partitions (`accel`, `a100`), the accounting is done in terms of
-_gpu billing units_ and the quota is in _billing unit hours_ (from 1 September 2025 your project must be allocated _gpu hours_ to use the GPU-partitions). A non GPU-job is assigned a number of billing units
-based on the requested CPUs and memory. A GPU-job is assigned a number of gpu billing units
-based on the requested CPUs, memory or GPUs on the GPU-nodes.  The number that is
-subtracted from the quota is the number of billing units multiplied
-with the (actual) wall time of the job.
+Accounting on **Betzy** and **Saga** is done in terms of _billing
+units_, and the quota is in _billing unit hours_.  Each job is
+assigned a number of billing units based on the requested CPUs, memory
+and GPUs.  The number that is subtracted from the quota is the number
+of billing units multiplied with the (actual) wall time of the job.
 
-The number billing units of a non GPU-job is calculated like this:
+Accounting on **Olivia** is slightly different.  It also uses _billing
+units_, but the number of GPUs are counted separately, not as part of
+the _billing units_.  There will be _GPU hour quotas_ in addition to
+_billing unit hour quotas_, but they have not been implemented yet.
+However, the GPU hour usage is being tracked already and will count
+against the quota once the quota is implemented.  So a GPU job on
+Olivia will be accounted both for its cpu and memory usage (on the
+_billing hour quota_) and its GPU usage (on the _GPU hour quota_).
+
+The number billing units of a job is calculated like this:
 
 1. Each requested CPU is given a cost of 1.
 2. The requested memory is given a cost based on a _memory cost factor_
    (see below).
-3. The number of billing units is the _maximum_ of the CPU cost and memory
-   cost.
+3. Each requested GPU is given a cost based on a _GPU cost factor_
+   (except on Olivia).
+4. The number of billing units is the _maximum_ of the CPU cost, memory
+   cost and GPU cost.
 
-The number gpu billing units of a GPU-job is calculated like this:
-
-1. Each requested GPU is given a cost of 1.
-2. The requested memory is given a cost based on a _memory cost factor_
-   (see below).
-3. Each requested CPU is given a cost based on a _CPU cost factor_
-   (see below).
-4. The number of gpu billing units is the _maximum_ of the GPU cost, memory
-   cost and CPU cost.
-
-The _memory cost factor_ and _CPU cost factor_ vary between the partitions on the
+The _memory cost factor_ and _GPU cost factor_ vary between the partitions on the
 clusters.
 
 ### Fram
@@ -154,20 +153,18 @@ clusters.
   This means that for a job requesting all memory on a node, the
   memory cost is 64, the number of CPUs on the node.
 
-- The `optimist` partition has the same memory factor as the `normal`
-  partition.
-
-#### GPU partitions
-- On the `accel` partition, the memory factor is X (TODO) units per
-  GiB, and the CPU factor is 6.  This means that a job asking for all
+- On the `accel` partition, the memory factor is 0.06593407 units per
+  GiB, and the GPU factor is 6.  This means that a job asking for all
   memory on a node, or all GPUs on a node, gets a cost of 24, the
   number of CPUs on the node.
 
-- On the `a100` partition, the memory factor is 0.004 units per
-  GiB, and the CPU factor is 8.  This means that a job asking for all
+- On the `a100` partition, the memory factor is 0.032 units per
+  GiB, and the GPU factor is 8.  This means that a job asking for all
   memory on a node, or all GPUs on a node, gets a cost of 32, the
   number of CPUs on the node.
 
+- The `optimist` partition has the same memory factor as the `normal`
+  partition.
 
 ### Betzy
 
@@ -183,6 +180,17 @@ clusters.
   the GPU factor is 16 units per GPU. This means that when one reserves 1 GPU
   on Betzy the billing is equivalent to reserving 16 CPU cores.
 
+### Olivia
+
+- The `normal` partition: the memory factor is 0.3399205 units per GiB. Thus
+  the memory cost of a job asking for all memory on a node will
+  be 256, the number of CPUs on the node.
+
+- The `accel` partition: the memory factor is 0.3824106 units per GiB. Thus
+  the memory cost of a job asking for all memory on a node will
+  be 288, the number of CPUs on the node.  The GPU factor is 0,
+  because the GPU usage will be accounted separately, in addition to
+  the cpu and memory usage.
 
 ## Finding out how many billing units your job consumes
 
