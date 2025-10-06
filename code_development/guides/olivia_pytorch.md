@@ -1,4 +1,4 @@
-(pytorch-wheels)=
+(pytorch-olivia)=
 
 # PyTorch on Olivia
 

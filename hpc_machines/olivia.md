@@ -24,6 +24,7 @@ Olivia is provided by Hewlett Packard Enterprise and will have a computational c
 | CPU cores per node  | 256 |
 | Memory in total    |  189 TiB  |
 | Memory per node    |  768 GiB  |
+| Memory per CPU core    |  3 GiB  |
 | GPU type | NVIDIA GraceHopper Superchip (NVIDIA GH200 120GiB) |
 | Number of GPU nodes | 76 |
 | GPUs per node | 4 |
