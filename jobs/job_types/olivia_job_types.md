@@ -6,7 +6,7 @@ orphan: true
 # Job Types on Olivia
 
 Olivia is designed for large-scale parallel jobs and GPU-accelerated workloads.
-With its high-performance compute nodes featuring 256 or288 CPUs and substantial
+With its high-performance compute nodes featuring 256 or 288 CPUs and substantial
 memory per node, Olivia is suited for computationally intensive
 applications that can scale across many cores.
 
@@ -45,7 +45,7 @@ node size (256 CPUs) makes this partition good for:
 
 - __Allocation units__: cpus, memory and GPUs
 - __Job Limits__:
-  - maximum 1152 units
+  - maximum 1152 billing units
   - maximum 32 GPUs
 - __Maximum walltime__: 7 days
 - __Priority__: normal
@@ -70,15 +70,17 @@ and resource limits of _devel_ apply.
 
 - __Allocation units__: cpus and memory and GPUs
 - __Job Limits__:
-    - maximum 576 units per job
-    - maximum 1152 units in use at the same time
+    - maximum 576 billing units per job
+    - maximum 32 GPUs per job
+    - maximum 1152 billing units in use at the same time
+    - maximum 64 GPUs in use at the same time
     - maximum 2 running jobs per user
 - __Maximum walltime__: 2 hours
 - __Priority__: high
 - __Available resources__: *devel* jobs can run on any node on Olivia
 - __Parameter for sbatch/salloc__:
     - `--qos=devel`
-- __Job Scripts__: {ref}`job_scripts_saga_devel`
+- __Job Scripts__: {ref}`job_scripts_olivia_devel`
 
 This is meant for small, short development or test jobs.  *Devel* jobs
 get higher priority for them to run as soon as possible.  On the other

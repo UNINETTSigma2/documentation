@@ -660,7 +660,7 @@ Applications compiled with Intel MPI and Cray MPI should not use this extra argu
     - Normal jobs have $SCRATCH on local NVMe disk on the nodes
 
 
-(job_scripts_olivia_normal)=
+
 ##### Normal job script
 Job scripts for normal jobs on Olivia are very similar to the ones on
 Saga.  For a job simple job running one process with 32 threads, the
@@ -691,7 +691,6 @@ following example is enough:
 
 
 
-(job_scripts_olivia_accel)=
 ##### Accel job script
 _Accel_ jobs are specified just like *normal* jobs except that they also have
 to specify `--partition=accel` and the number of GPUs to use.  You can also
