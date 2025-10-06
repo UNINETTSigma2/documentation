@@ -24,6 +24,7 @@ Olivia is provided by Hewlett Packard Enterprise and will have a computational c
 | CPU cores per node  | 256 |
 | Memory in total    |  189 TiB  |
 | Memory per node    |  768 GiB  |
+| Memory per CPU core    |  3 GiB  |
 | GPU type | NVIDIA GraceHopper Superchip (NVIDIA GH200 120GiB) |
 | Number of GPU nodes | 76 |
 | GPUs per node | 4 |
@@ -53,9 +54,9 @@ Olivia is provided by Hewlett Packard Enterprise and will have a computational c
 
 ## Getting Started with Olivia
 
-- [Logging in](https://documentation.sigma2.no/getting_started/getting_started.html#logging-in)
-- [Software Modules](https://documentation.sigma2.no/software/modulescheme.html)
-- [Running Jobs](https://documentation.sigma2.no/jobs/overview.html)
+- [Logging in](logging-in)
+- [Installing and Loading Software on Olivia](olivia-software)
+- [Running Jobs](running-jobs)
 
 ## In-depth documentation for Olivia
 
@@ -64,6 +65,7 @@ Olivia is provided by Hewlett Packard Enterprise and will have a computational c
 
 olivia/overview.md
 olivia/software_stack.md
+../jobs/job_types/olivia_job_types.md
 olivia/ai_ml_guide.md
 olivia/trouble_shooting.md
 ```

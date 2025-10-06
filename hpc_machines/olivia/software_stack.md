@@ -1,40 +1,41 @@
-(olivia software )=
+(olivia-software )=
 
-# Olivia Software Modules
+# Installing and Using Software on Olivia
 
-Olivia introduces several important developments that distinguish it from our current HPC systems.
+```{contents} __Page Overview__
+:depth: 3 
+```
 
-First, the extensive number of GPU nodes and the corresponding software ecosystem represent a new 
-operational dimension for us. Olivia is an HPE Cray system that uses the [Cray Programming Environment (CPE)](https://cpe.ext.hpe.com/docs/latest/getting_started/CPE-General-User-Guide-HPCM.html), 
-which provides its own suite of tools for development, compilation, and debugging. Because of this, we will 
-not be transferring the software stack from existing systems directly. Instead, we will adapt, extend, 
-and refine our installation and deployment methods to align with Olivia’s architecture and capabilities.
-The approaches outlined below will be introduced and iteratively improved as we establish the software environment on Olivia.
- The configuration will continue to develop as we gain operational experience and scale up usage. 
-Your feedback is essential—if something does not work as expected or could be enhanced, please let us know so we can incorporate improvements effectively. 
+Olivia is a quite different machine compared to our other HPC clusters.
+It built by HPE Cray computer, which provides the Cray Programming Environment (CPE) as means for advanced users to get the optimal performance when self-compiling code.
+In contrast to our previous machines, Olivia has a rather large accelerator partition using Nvidia Grace-Hopper cards. These consists on the one hand of the Hopper 200 GPUs but also of the ARM based Grace CPUs, see [here](olivia).
+
+We therefore decided to against trying to provide a single solution but instead offer three distinct methods of installing and loading software targeted at different user groups:
+1. Module system providing preinstalled software and libraries.
+2. HPC-container-wrapper for python and R users which replaces direct installation using Conda or pip.
+3. Containers especially for PyTorch and other AI workflows.
+
+
+```{danger}
+**Python, Miniconda and Ananconda User**
+
+Python and conda installation put a lot of stress and load onto the file system.
+To prevent file system slowdowns, __we don't allow native (directly with pip or conda) installations__.
+Instead create containerized installations using the HPC-container-wrapper or use apptainer to run containers directly.
+
+Please read the sections about [HPC-container-wrapper](olivia-python) and [AI workflows](olivia-ai) thouroughly.
+
+If you have any questions or need help, please [contact us](support-line).
+```
 
 ## 1. Module System
 
 The module system provides a convenient way to access software packages and libraries that are installed and maintained specifically for the Olivia HPC cluster.
- All software is compiled and optimized for Olivia's nodes to ensure the best performance.
+All software is compiled and optimized for Olivia's nodes to ensure the best performance.
 
-### CPU and GPU Architectures
+### List Available Stacks
 
-Olivia features three distinct CPU architectures:
-
-- **Login Nodes**: Use x86-64 processors with the Zen4 microarchitecture.
-- **CPU Compute Nodes**: Use x86-64 processors with the Zen5 microarchitecture.
-- **GPU Nodes**: Use ARM-based Neoverse V2 processors.
-
-To accommodate these architectures, we have prepared three separate software stacks. You can initialize the module system and access these stacks by running the following commands:
-
-```bash
-$ module purge
-$ source /opt/cray/pe/lmod/lmod/init/profile
-$ export MODULEPATH=/cluster/software/modules/Core/
-```
-
-After initialization, you can list the available stacks using:
+After logging in, no software stack is already loaded, but you easily list the available stacks with:
 
 ```bash
 $ module available
@@ -43,11 +44,12 @@ $ module available
 You should see output similar to this:
 
 ```
------------------------------ /cluster/software/modules/Core ------------------------------------
-   NRIS/CPU (S)    NRIS/GPU (S)    NRIS/Login (S,D)
+----------------------------- /cluster/software/modules/Core -----------------------------
+   CrayEnv (S)    NRIS/CPU (S)    NRIS/GPU (S)    NRIS/Login (S,D)    init-NRIS (S,L)
 
   Where:
    S:  Module is Sticky, requires --force to unload or purge
+   L:  Module is loaded
    D:  Default Module
 
 If the avail list is too long consider trying:
@@ -56,11 +58,17 @@ If the avail list is too long consider trying:
 "module overview" or "ml ov" to display the number of modules for each name.
 
 Use "module spider" to find all possible modules and extensions.
-Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
+Use "module keyword key1 key2 ..." to search for all possible modules matching any of the
+"keys".
 
 ```
 
-####  NRIS Software Stacks
+There are three types of stacks installed on Olivia:
+1. NRIS software stacks providing software and libraries installed by us
+2. EESSI software stack providing software and libraries curated by the European EESSI project
+3. Cray programming environment providing compilers, libraries and tooling optimized for HPE Cray systems
+
+###  NRIS Software Stacks
 
 The `NRIS` modules provide preinstalled software tailored for different node types:
 
@@ -77,7 +85,7 @@ $ module load NRIS/CPU
 $ module avail
 ```
 
-##### Searching for Modules Across Stacks
+#### Searching for Modules Across Stacks
 
 You can search for a specific module across all stacks using `module spider`. For example:
 
@@ -143,7 +151,7 @@ This will provide details such as dependencies and additional help:
        - Homepage: https://developer.nvidia.com/hpc-sdk/
 ```
 
-#### Using the EESSI Stack
+### Using the EESSI Stack
 
 The EESSI (European Environment for Scientific Software Infrastructure) software stack - optimized for each supported CPU architecture - already available on Betzy, Fram, and Saga is now also available on Olivia.
 
@@ -170,7 +178,7 @@ While EESSI provides a wide range of preinstalled software, you can **build** on
 `module load EESSI-extend` or without EasyBuild through loading one of the available `buildenv/*` modules, for example, `module load buildenv/default-foss-2023a`
 For more information see the official [EESSI documentation](https://www.EESSI.do/docs/using_EESSI/building_on_EESSI/).
 
-##### GPU-enabled Software on EESSI
+### GPU-enabled Software on EESSI
 
 The official EESSI stack contains already some modules of popular software like GROMACS, but many are also still missing.
 
@@ -200,7 +208,8 @@ module load OSU-Micro-Benchmarks/7.2-gompi-2023b
 srun osu_bw
 ```
 
-### 2. Python, R, and (Ana-)Conda
+(olivia-python)=
+## 2. Python, R, and (Ana-)Conda
 
 Python and R are widely used in scientific computing, but they were originally designed for personal computers rather than
  high-performance computing (HPC) environments. These languages often involve installations with a large number of small 
@@ -213,25 +222,24 @@ significantly reducing the number of files visible to the file system. It also g
 like `python` seamlessly, without needing to interact directly with the container. This approach minimizes file system load while 
 maintaining ease of use.
 
-#### Key Features of HPC-container-wrapper
+### Key Features of HPC-container-wrapper
 
 The HPC-container-wrapper supports wrapping:
 
 - **Conda installations**: Based on a [Conda environment file](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#sharing-an-environment).
 - **Pip installations**: Based on a [pip requirements.txt file](https://pip.pypa.io/en/latest/reference/requirements-file-format/).
-- **Existing installations on the filesystem**: To reduce I/O load and improve startup times.
+- **Existing installations on the file system**: To reduce I/O load and improve startup times.
 - **Existing Singularity/Apptainer containers**: To hide the need for using the container runtime from the user.
 
-#### Creating a New Python or Conda Environment
+### Creating a New Python or Conda Environment
 
 To create a new Python or Conda environment on Olivia, follow these steps:
 
-1. **Load the necessary modules**:
+1. **Load the necessary modules and activate internet access from the compute nodes**:
 
    ```bash
-   $ module purge
-   $ source /opt/cray/pe/lmod/lmod/init/profile
-   $ export MODULEPATH=/cluster/software/modules/Core/
+   $ export http_proxy=http://10.63.2.48:3128/
+   $ export https_proxy=http://10.63.2.48:3128/
    $ module load NRIS/CPU
    $ module load hpc-container-wrapper
    ```
@@ -308,7 +316,7 @@ Without `--slim`, the host system is fully available, but this may include unnec
 
    You can now call `python` or any other executables installed in the environment as if the environment were activated.
 
-#### Modifying an Existing Environment
+### Modifying an Existing Environment
 
 Since the environment is wrapped inside a container, direct modifications are not possible. However, you can update the environment using the `update` keyword along with a post-installation script. For example:
 
@@ -324,7 +332,7 @@ $ conda remove -y pyyaml
 $ pip install requests
 ```
 
-#### Tips and Troubleshooting
+### Tips and Troubleshooting
 
 - **Exporting environments**: If you encounter issues with version conflicts, you can remove version specifications from your environment file using a simple `sed` command. For example:
 
@@ -341,7 +349,7 @@ $ pip install requests
 
 - **Limitations**: Be aware of the [limitations of HPC-container-wrapper](https://github.com/CSCfi/hpc-container-wrapper#limitations), such as its experimental status and potential issues with advanced features.
 
-#### Example Workflow: End-to-End Conda Installation
+### Example Workflow: End-to-End Conda Installation
 
 1. Create an `env.yml` file:
 
@@ -358,6 +366,7 @@ $ pip install requests
 2. Build the environment:
 
    ```bash
+   $ module load NRIS/CPU hpc-container-wrapper
    $ conda-containerize new --prefix MyEnv env.yml
    ```
 
@@ -376,20 +385,18 @@ $ pip install requests
 
 For more examples and advanced usage, see the [HPC-container-wrapper GitHub repository](https://github.com/CSCfi/hpc-container-wrapper) and check the [documentation page of CSC about HPC-container-wrapper](https://docs.lumi-supercomputer.eu/software/installing/container-wrapper/#wrapping-a-plain-pip-installation).
 
-### 3. AI Frameworks
+(olivia-ai)=
+## 3. AI Frameworks
 
 For AI workflows based on popular frameworks like PyTorch, JAX, or TensorFlow, we aim to deliver optimal performance by utilizing containers provided by [NVIDIA](https://catalog.ngc.nvidia.com/containers). These containers are specifically optimized for GPU workloads, ensuring excellent performance while remaining relatively straightforward to use.
 
 ```{danger}
-We have done testing and have recommendations for using PyTorch using Python wheels.
-If you want to use PyTorch wheels, you can refer to this {ref}`this documentation <pytorch-wheels>`.
-But please be aware that direct (not containerized) installations of pip and conda environments, put a lot of stress on the Lustre 
-file system.
-Therefore, you have to either use the containers and modules we provide or wrap your installation yourself imanually or using 
-the hpc-container-wrapper as explained above.
+Please __do not install PyTorch directly via pip or conda__ as this puts a lot of stress on the file system.
 
+Instead use the containers presented below or the module we will provide soon (documentation on that will follow).
 ```
-#### Downloading Containers
+
+### Downloading Containers
 
 You can use pre-built containers or download and convert your own. Here are the options:
 
@@ -398,25 +405,27 @@ You can use pre-built containers or download and convert your own. Here are the 
    `/cluster/work/support/container`.
 
 2. **Downloading Your Own Containers**:
+
    You can download containers from sources like the [NVIDIA NCC catalogue](https://catalog.ngc.nvidia.com/containers) or [Docker Hub](https://hub.docker.com/). Use the following command to download and convert a container into the Apptainer format:
 
    ```bash
-   $ apptainer build <image_name>.sif docker://<docker_image_url>
+   $ apptainer pull --arch ARCHITECTURE --disable-cache docker://<docker_image_url>
    ```
+   By default this command downloads the container for the CPU architecture of the nodes you are running on. That means that you have to specify `--arch arm64` if you download the container from the login nodes but want to run the container on the accelerator/GPU nodes.
 
-   For example, to download and convert the latest NVIDIA PyTorch container:
+   For example, to download and convert the latest NVIDIA PyTorch container to run on the GPU nodes (that use ARM CPUs):
 
    ```bash
-   $ apptainer build pytorch_nvidia_25.06.sif docker://nvcr.io/nvidia/pytorch:25.06-py3
+   $ apptainer pull --arch arm64 --disable-cache docker://nvcr.io/nvidia/pytorch:25.09-py3
    ```
 
    For more options, check the Apptainer build help:
 
    ```bash
-   $ apptainer build --help
+   $ apptainer pull --help
    ```
 
-##### Important Notes
+#### Important Notes
 - **Building Your Own Containers:**
   Currently it is only possible to build containers from definition files that don't require root privileges inside the container. We are working on enabling some version of fakeroot to enable most builds in the future.
 - **Running on GPU Nodes**:
@@ -424,13 +433,13 @@ You can use pre-built containers or download and convert your own. Here are the 
   For details on accessing internet resources from compute nodes, see [this section](olivia_internet_proxies).
 
 - **Managing Cache**:
-  By default, Apptainer stores its cache in your home directory, which may lead to `disk quota exceeded` errors. To avoid this, set the cache directory to your project work area:
+  By default, Apptainer stores its cache in your home directory, which may lead to `disk quota exceeded` errors. To avoid this, use `--disable-cache* or set the cache directory to your project work area:
 
   ```bash
   $ export APPTAINER_CACHEDIR=/cluster/work/projects/<project_number>/singularity
   ```
 
-#### Running Containers
+### Running Containers
 
 Apptainer provides several ways to run containers, depending on your needs:
 
@@ -480,7 +489,7 @@ Apptainer provides several ways to run containers, depending on your needs:
     srun apptainer exec --nv --bind  $LIBFABRIC_PATH:/usr/lib64  $TORCHRUN_PATH --nnodes=$SLURM_JOB_NUM_NODES --nproc_per_node=$SLURM_GPUS_ON_NODE --rdzv_id=$RANDOM .....
     ````
 
-#### Enabling GPU Support
+### Enabling GPU Support
 
 To enable GPU support inside the container, add the `--nv` flag to your Apptainer command. This ensures that the container has access to the GPU resources. For example:
 
@@ -491,13 +500,14 @@ $ apptainer exec --nv /cluster/work/support/container/pytorch_nvidia_25.06_arm64
 This command checks if GPUs are available and prints the number of GPUs detected inside the container.
 
 
-#### Next Steps
+### PyTorch Example Workflow
+
+We have provided a comprehensive example on how to run PyTorch in a container on [this page](pytorch-olivia).
+
+
+### Next Steps
 
 Currently, you need to run these containers directly using Apptainer. However, we are working on simplifying the experience by integrating these tools into the module system. This will allow you to:
 
 - Load a module that provides executables like `python` and `torch`, eliminating the need to interact with the containers directly.
 - Seamlessly use AI frameworks without worrying about container management.
-
-Additionally, we will soon provide more information on how to best utilize the interconnect and set up job scripts for running AI workflows efficiently.
-
-

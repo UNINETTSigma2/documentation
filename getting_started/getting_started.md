@@ -14,6 +14,7 @@ To get access you need two things and possibly you have these already:
 - {ref}`Compute/storage resource allocation <applying-computing-storage>`
 
 
+(logging-in)=
 ## Logging in
 
 Logging into the machines involves the use of {ref}`Secure Shell (SSH) <ssh>` protocol,

@@ -1,4 +1,4 @@
-(pytorch-wheels)=
+(pytorch-olivia)=
 
 # PyTorch on Olivia
 
@@ -21,10 +21,10 @@ necessary packages to run the project, simplifying the setup process.
    Aarch64. This means we cannot install software directly on the login node and
    expect it to work on the compute node.
 
-1. CUDA Version:
+2. __CUDA Version__:
 
    The compute nodes are equipped with CUDA version 12.7, as confirmed by running
-   the nvidia-smi command. Therefore, we must ensure that the container we use is
+   the `nvidia-smi` command. Therefore, we must ensure that the container we use is
    compatible with this CUDA version.
 
 ## Training a ResNet Model with the CIFAR-100 Dataset
@@ -331,14 +331,14 @@ bind these directories using the `--bind` option.
 The job scripts below shows how it is done for accessing the required files
 inside the container.
 
-Note that the command to run the script includes the --nv option, which ensures
+Note that the command to run the script includes the `--nv` option, which ensures
 that the container has access to GPU resources. This is essential for leveraging
 hardware acceleration during training.
 
 #### Job Script for Single GPU Training
 
 In the job script below, we will use a single GPU for training. The container is
-downloaded and placed at `/cluster/projects/nn9999k/jorn/pytorch_25.05-py3.sif`.
+downloaded and placed at `/cluster/work/support/container/pytorch_nvidia_25.05_arm64.sif`.
 This container contains all the necessary packages for running our deep learning
 training (e.g., torch and torchvision). Moreover, we bind the host directory
 within the container using the `--bind` option and export the PYTHONPATH to include
@@ -361,7 +361,7 @@ command, binding the host directory and using torchrun.
 #SBATCH --gpus-per-node=1            # Request 1 GPU
 
 # Path to the container
-CONTAINER_PATH="/cluster/projects/nn9999k/jorn/pytorch_25.05-py3.sif"
+CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.05_arm64.sif"
 
 # Path to the training script
 TRAINING_SCRIPT="/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/simple_nn_project/resnet.py"
@@ -371,7 +371,7 @@ BIND_DIR="/cluster/work/projects/<project_number>/<user_name>/PyTorch/private"
 
 
 # Set PYTHONPATH to include the shared directory
-export PYTHONPATH=/cluster/work/projects/nn9997k/binod/PyTorch/private/shared:$PYTHONPATH
+export PYTHONPATH=/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/shared:$PYTHONPATH
 
 # Check GPU availability inside the container
 echo "Checking GPU availability inside the container..."
@@ -585,7 +585,7 @@ may not be necessary.
 #SBATCH --gpus-per-node=4   # Reserve 4 GPUs on node
 
 # Path to the container
-CONTAINER_PATH="/cluster/projects/nn9999k/jorn/pytorch_25.05-py3.sif"
+CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.05_arm64.sif"
 
 # Path to the training script
 TRAINING_SCRIPT="/cluster/work/projects/<project_number>/<user_name>/PyTorch/private/simple_nn_project/singlenode.py --batch-size 1024 --epochs 100 --base-lr 0.04 --target-accuracy 0.95 --patience 2"

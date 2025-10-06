@@ -483,7 +483,7 @@ For AI workflows based on popular frameworks like PyTorch, JAX, or TensorFlow, w
 
 ```{danger}
 We have done testing and have recommendations for using PyTorch using Python wheels.
-If you want to use PyTorch wheels during the test phase, you can refer to this {ref}`this documentation <pytorch-wheels>`.
+If you want to use PyTorch wheels during the test phase, you can refer to this {ref}`this documentation <pytorch-olivia>`.
 
 But please be aware that direct (not containerized) installations of pip and conda environments, put a lot of stress on the Lustre file system.
 Therefore, these will not be allowed after the pilot phase. Instead you have to either use the containers and modules we provide or wrap your installation yourself imanually or using the hpc-container-wrapper as explained above.
