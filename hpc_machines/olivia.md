@@ -54,9 +54,9 @@ Olivia is provided by Hewlett Packard Enterprise and will have a computational c
 
 ## Getting Started with Olivia
 
-- [Logging in](https://documentation.sigma2.no/getting_started/getting_started.html#logging-in)
-- [Software Modules](https://documentation.sigma2.no/software/modulescheme.html)
-- [Running Jobs](https://documentation.sigma2.no/jobs/overview.html)
+- [Logging in](logging-in)
+- [Installing and Loading Software on Olivia](olivia-software)
+- [Running Jobs](running-jobs)
 
 ## In-depth documentation for Olivia
 
