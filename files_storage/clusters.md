@@ -15,28 +15,42 @@ while others are for storing project data.
 ## Overview
 
 The following table summarizes the different storage options for **Betzy, Fram, and Saga**.
-Below the table, we give recommendations and discuss the pros and cons of the various storage areas.
 
-| Directory                                       | Purpose              | {ref}`Default Quota <storage-quota>` | {ref}`Backup <storage-backup>` | Note | 
-| :---------------------------------------------- | :------------------- | :--------------------------------- | :---------------------------------: | :----:|
-| `/cluster/home/$USER` (`$HOME`)                 | User data            | 20 GiB / 100 K files               | Yes (Only if quota enforced)            ||
-| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data         | N/A                                | No                                  ||
-| (Fram/Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALSCRATCH`) | Per-job data | {ref}`Individual <job-scratch-area-on-local-disk>` | No                   |Only Fram SAGA|
-| `/cluster/work/users/$USER` (`$USERWORK`)       | Staging and job data | N/A                                | No                                  ||
-| `/cluster/projects/<project_name>`              | Project data         | {ref}`1 TiB / 1 M files <project-area>` | No                                 ||
-| `/cluster/shared/<folder_name>`                 | Shared data          | {ref}`Individual <shared-project-area>` | No                                  ||
-| `/nird/datapeak/NSxxxxK`                         | NIRD Data Peak (TS) projects | | | Login nodes only|
-| `/nird/datalake/NSxxxxK`                         | NIRD Data Lake (DL) projects | | | Login nodes only|
+| Directory                                                   | Purpose                      | {ref}`Default Quota <storage-quota>`               | {ref}`Backup <storage-backup>` | Note             |
+|:------------------------------------------------------------|:-----------------------------|:---------------------------------------------------|:------------------------------:|:----------------:|
+| `/cluster/home/$USER` (`$HOME`)                             | User data                    | 20 GiB / 100 K files                               | Yes (Only if quota enforced)   |                  |
+| `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`)             | Per-job data                 | N/A                                                | No                             |                  |
+| (Fram/Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALSCRATCH`) | Per-job data                 | {ref}`Individual <job-scratch-area-on-local-disk>` | No                             | Only Fram Saga   |
+| `/cluster/work/users/$USER` (`$USERWORK`)                   | Staging and job data         | N/A                                                | No                             |                  |
+| `/cluster/projects/<project_name>`                          | Project data                 | {ref}`1 TiB / 1 M files <project-area>`            | No                             |                  |
+| `/cluster/shared/<folder_name>`                             | Shared data                  | {ref}`Individual <shared-project-area>`            | No                             |                  |
+| `/nird/datapeak/NSxxxxK`                                    | NIRD Data Peak (TS) projects |                                                    |                                | Login nodes only |
+| `/nird/datalake/NSxxxxK`                                    | NIRD Data Lake (DL) projects |                                                    |                                | Login nodes only |
+
+The following table summarizes the different options for **Olivia**.
+
+| Directory                                                         | Purpose                      | {ref}`Default Quota <storage-quota>`               | {ref}`Backup <storage-backup>` | Note                                                 |
+|:------------------------------------------------------------------|:-----------------------------|:---------------------------------------------------|:------------------------------:|:----------------------------------------------------:|
+| `/cluster/home/$USER` (`$HOME`)                                   | User data                    | 20 GiB / 100 K files                               | Yes (Only if quota enforced)   |                                                      |
+| `/cluster/software/gpujobscratch/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data                 | N/A                                                | No                             | GPU nodes (temporary path)                           |
+| `/localscratch/$SLURM_JOB_ID` (`$SCRATCH`)                        | Per-job data                 | {ref}`Individual <job-scratch-area-on-local-disk>` | No                             | CPU nodes                                            |
+| `/cluster/work/projects/nnXXXXk`                                  | Staging and job data         | N/A                                                | No                             |                                                      |
+| `/cluster/shared/<folder_name>`                                   | Shared data                  | {ref}`Individual <shared-project-area>`            | No                             |                                                      |
+| `/nird/datapeak/NSxxxxK`                                          | NIRD Data Peak (TS) projects |                                                    |                                | Svc nodes (read-write) and compute nodes (read-only) |
+| `/nird/datalake/NSxxxxK`                                          | NIRD Data Lake (DL) projects |                                                    |                                | Svc nodes (read-write) and compute nodes (read-only) |
 
 - **User areas and project areas are private**: Data handling and storage policy is documented [here](/files_storage/sharing_files.md).
 - **`$LOCALSCRATCH` area is only implemented on Fram and Saga**.
-- Clusters mount the NIRD project areas as `/nird/datapeak/NSxxxxK` for NIRD Data Peak (DP) projects and `/nird/datalake/NSxxxxK` for NIRD Data Lake (DL) projects **on the login nodes only ** (not on the compute nodes).
+- Saga, Fram and Betzy mount the NIRD project areas as
+  `/nird/datapeak/NSxxxxK` for NIRD Data Peak (DP) projects and
+  `/nird/datalake/NSxxxxK` for NIRD Data Lake (DL) projects **on the
+  login nodes only ** (not on the compute nodes).  On Colossus, they
+  are mounted on the SVC nodes (read-write) and on the compute nodes (read-only).
 - The `/cluster` file system is a high-performance parallel file
-  system.  On Fram, it is a [Lustre](https://www.lustre.org/) system with
-  a total storage space of 2.3 PB, and on Saga it is a
-  [BeeGFS](https://www.beegfs.io/) system with a total storage space of
-  6.5 PB.
-  For performance optimizations, consult {ref}`storage-performance`.
+  system.  On Fram, Betzy and Olivia, it is a
+  [Lustre](https://www.lustre.org/) system, and on Saga it is a
+  [BeeGFS](https://www.beegfs.io/) system.  For performance
+  optimizations, consult {ref}`storage-performance`.
 
 
 (clusters-homedirectory)=
@@ -64,13 +78,20 @@ days and weekly snapshots for the last 6 weeks.
 
 ## Job scratch area
 
-Each job gets an area `/cluster/work/jobs/$SLURM_JOB_ID` that is
+Each job gets a scratch area that is
 automatically created for the job, and automatically deleted when the
 job finishes.  The location is stored in the environment variable
 `$SCRATCH` available in the job.  `$SCRATCH` is only accessible by the
 user running the job.
 
-On Fram and Saga there are two scratch areas (see also below).
+On Fram, Saga and Betzy, the scratch area is on the parallell cluster
+file system, in `/cluster/work/jobs/$SLURM_JOB_ID`.  On Olivia, it is
+on local disk on cpu nodes (in `/localscratch/$SLURM_JOB_ID`) and on a
+shared, fast file system on the GPU nodes (currently in
+`/cluster/software/gpujobscratch/jobs/$SLURM_JOB_ID`, but this will be
+changed).
+
+Fram and Saga also has the option to get a scratch area on local disk (see below).
 
 The area is meant as a temporary scratch area during job
 execution.
@@ -105,12 +126,17 @@ directory `$SLURM_SUBMIT_DIR` (where `sbatch` was run).
 
 ## Job scratch area on local disk
 
-**This only exists on Fram and Saga**.
+**This does not exist on Betzy**.
 
 A job on **Fram/Saga** can request a scratch area on local disk on the node
 it is running on.  This is done by specifying
 `--gres=localscratch:<size>`, where *<size>* is the size of the requested
 area, for instance `--gres=localscratch:20G` for 20 GiB.
+
+All jobs in the _normal_ partition (CPU nodes) on **Olivia** get their
+scratch area on local disk.  One does not have to specify a size for
+this, and all jobs on the node share the available storage.  The size
+of the localscratch disk on Olivia compute nodes is 3.5 TiB.
 
 Normal compute nodes on Fram have 198 GiB disk that can be handed out
 to local scratch areas, and the bigmem nodes have 868 GiB.
@@ -123,7 +149,7 @@ depends on the program doing the writing).
 Please do not ask for more than what you actually need, other users might share
 the local scratch space with you (Saga only).
 
-Jobs that request a local scratch area, get an area `/localscratch/$SLURM_JOB_ID`
+Jobs that request a local scratch area (and all _normal_ node jobs on Olivia), get an area `/localscratch/$SLURM_JOB_ID`
 that is automatically created for the job, and automatically deleted
 when the job finishes.  The location is stored in the environment
 variable `$LOCALSCRATCH` available in the job.  `$LOCALSCRATCH` is
@@ -140,9 +166,10 @@ speed up the jobs, and reduce the load on the `/cluster` file system.
 
 **This area is not backed up** ([documentation about backup](backup.md)).
 
-Currently, there are *no* special commands to ensure that files are
+On Saga and Fram, there are currently *no* special commands to ensure that files are
 copied back automatically, so one has to do that with `cp` commands or
-similar in the job script.
+similar in the job script.  On Olivia, the `savefile` and `cleanup`
+commands can be used.
 
 ```{note}
 **Pros of running jobs in the local disk job scratch area**
@@ -161,9 +188,9 @@ similar in the job script.
 
 - Since the area is removed automatically, it can be hard to debug
   jobs that fail.
-- Not suitable for files larger than 198-300 GB.
+- Not suitable for files larger than 198-300 GB on Saga and Fram.
 - One must make sure to use `cp` commands or similar in the job
-  script to copy files back.
+  script to copy files back (on Saga and Fram).
 - If the main node of a job crashes (i.e., not the job script, but the
   node itself), files might be lost.
 ```
@@ -173,7 +200,7 @@ similar in the job script.
 
 ## User work area
 
-Each user has an area `/cluster/work/users/$USER`.  The location is
+On Saga, Fram and Betzy (but not Olivia), each user has an area `/cluster/work/users/$USER`.  The location is
 stored in the environment variable `$USERWORK`.
 **This area is not backed up** ([documentation about backup](backup.md)).
 By default, `$USERWORK` is a private area and only accessible by
@@ -195,7 +222,7 @@ after the jobs finish, otherwise they will be automatically deleted
 after a while (see notes below). We highly encourage users to keep 
 this area tidy, since both high disk usage and automatic deletion
 process takes away disk performance. The best solution is to clean up
-any unnecessary data after each job.  
+any unnecessary data after each job.
 
 File deletion depends on the newest of the *creation-*, *modification-* and
 *access* time and the total usage of the file system. The oldest files will
@@ -231,11 +258,46 @@ for instance running scripts that touch all files.**
 ```
 
 
+(project-work-area)=
+
+## Project work area
+
+On Olivia, each project has an area `/cluster/work/projects/nnXXXXk`,
+instead of each user having an individual area.
+**This area is not backed up** ([documentation about backup](backup.md)).
+The area is private to the project and only accessible by
+the project's members.
+
+The project work directory is meant for files that are used by one or
+more jobs, and other temporary files. All result files must be moved
+out from this area after the jobs finish, otherwise they will be
+automatically deleted after a while (see notes below). We highly
+encourage projects to keep this area tidy, since both high disk usage
+and automatic deletion process takes away disk performance. The best
+solution is to clean up any unnecessary data after each job.
+
+It is probably a good idea for members of the project to create their
+own directory inside the project work area, to keep their files separate.
+
+File deletion depends on the newest of the *creation-*, *modification-* and
+*access* time and the total usage of the file system. The oldest files will
+be deleted first and a weekly scan removes files older than 21 days
+(up to 42 days if sufficient storage is available).
+
+When file system usage reaches 70%, files older than 21 days are subject to
+automatic deletion. If usage is over 90%, files older than 17 days are subject to
+automatic deletion.
+
+**It is not allowed to try to circumvent the automatic deletion by
+for instance running scripts that touch all files.**
+
+
 (project-area)=
 
 ## Project area
 
-All HPC projects have a dedicated local space to share data between project
+On Fram, Saga and Betzy (but not Olivia),
+all HPC projects have a dedicated local space to share data between project
 members, located at `/cluster/projects/<project_name>`.
 
 The project area is controlled by {ref}`storage-quota` and the default project quota for
