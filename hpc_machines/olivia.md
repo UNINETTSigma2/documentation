@@ -57,6 +57,7 @@ Olivia is provided by Hewlett Packard Enterprise and will have a computational c
 - [Logging in](logging-in)
 - [Installing and Loading Software on Olivia](olivia-software)
 - [Running Jobs](running-jobs)
+- [Storage Areas](storage-areas)
 
 ## In-depth documentation for Olivia
 
