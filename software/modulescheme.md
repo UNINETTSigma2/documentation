@@ -5,7 +5,7 @@
 Since a HPC cluster is shared among many users, and also holds a significant size in contrast to most desktop compute machinery around, the amount of installed software spans many applications in many different versions and quite a few of them are installed typically non-standard places for easier maintenance (for admin crew), practical and security reasons. It is not possible (nor desirable) to use them all at the same time, since different versions of the same application may conflict with each other. Therefore, it is practical to provide the production environment for a given application outside of the application itself. This is done using a set of instructions and variable settings that are specific for the given application called an application module. This also simplifies control of which application versions are available in a specific session.
 
 ```{admonition} Important information
-For the software module scheme on the Olivia cluster, please refer to the page {ref}`olivia software`.
+For the software module scheme on the Olivia cluster, please refer to the page {ref}`olivia-software`.
 ```
 
 The main command for using this system is the module command. You can find a list of all its options by typing:
