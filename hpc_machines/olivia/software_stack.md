@@ -45,7 +45,7 @@ You should see output similar to this:
 
 ```
 ----------------------------- /cluster/software/modules/Core -----------------------------
-   CrayEnv (S)    NRIS/CPU (S)    NRIS/GPU (S)    NRIS/Login (S,D)    init-NRIS (S,L)
+   CrayEnv (S)    EESSI/2023.06    NRIS/CPU (S)    NRIS/GPU (S)    NRIS/Login (S,D)    init-NRIS (S,L)
 
   Where:
    S:  Module is Sticky, requires --force to unload or purge
@@ -158,6 +158,12 @@ The EESSI (European Environment for Scientific Software Infrastructure) software
 To load the EESSI stack, simply use:
 
 ```bash
+$ module load EESSI/2023.06
+```
+
+Or:
+
+```bash
 $ source /cluster/installations/eessi/default/eessi_environment_variables_Olivia
 $ source /cvmfs/software.eessi.io/versions/2023.06/init/bash
 ```
@@ -184,12 +190,9 @@ The official EESSI stack contains already some modules of popular software like 
 
 To get you started more quickly, we have added some GPU-enabled software on Olivia which are not yet provided by [EESSI](https://www.eessi.io/docs) or supported by [EasyBuild](https://easybuild.io/).
 
-To access it, run the following command after initializing the EESSI environment on a __GPU node__:
-```bash
-$ export MODULEPATH=/cluster/installations/eessi/default/eessi_local/aarch64/modules/all:$MODULEPATH
-```
 **Note**: If your job requires the use of MPI, please ensure you use `srun` for proper integration.
 Sample job script using `OSU-Micro-Benchmarks/7.2-gompi-2023b` from the EESSI stack:
+
 
 ```bash
 #!/bin/bash -e
@@ -201,8 +204,7 @@ Sample job script using `OSU-Micro-Benchmarks/7.2-gompi-2023b` from the EESSI st
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem-per-cpu=10G
 
-source /cluster/installations/eessi/default/eessi_environment_variables_Olivia
-source /cvmfs/software.eessi.io/versions/2023.06/init/bash
+module load EESSI/2023.06
 module load OSU-Micro-Benchmarks/7.2-gompi-2023b
 
 srun osu_bw
