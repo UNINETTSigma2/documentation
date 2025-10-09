@@ -2,10 +2,15 @@
 
 # Olivia frequently asked questions (FAQ):
 
-## 1. Where is my Project storage area?
+## 1. I was a pilot during the test phase of Olivia, where can I find my project data from that period?
+Any project that was active on Olivia during the pilot phase can now find its old project storage area in the following location:
 
-Olivia doesn’t have permanent project areas and user work areas. Instead, each project has a project work area.
+```
+Location: /cluster/old_pilot_data/nn**
+```
 
-On Olivia, each project has an area /cluster/work/projects/nnXXXXk. The area has no set disk or inode quota, is private to the project and only accessible by the project’s members.
+If you wish to keep any data from your pilot project area, you must back it up to a different location before 1 January 2026.
 
-Read more about project storage here: [Storage areas on HPC clusters](storage-areas)
+**After 1 January 2026, all directories within /cluster/old_pilot_data/ will be permanently deleted.** This process is irreversible, and there will be no way to recover the data, without exceptions.
+
+We strongly advise you to set a reminder in your calendar to back up this data in due time before the deadline.
