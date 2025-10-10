@@ -7,7 +7,7 @@ fit for self learning.
 
 ### Introduction lessons
 
-- [UNIX Intro For HPC Users](https://training.pages.sigma2.no/tutorials/unix-for-hpc/index.html)
+- [Linux Intro For HPC Users](https://training.pages.sigma2.no/tutorials/linux-for-hpc/index.html)
 - [HPC Intro Lessons](https://training.pages.sigma2.no/tutorials/hpc-intro/index.html)
 
 ### Best Practices and Tools for HPC
