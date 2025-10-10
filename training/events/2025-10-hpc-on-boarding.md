@@ -16,7 +16,7 @@ line of a terminal, the first day of the course is designed specifically for you
 
 ## Registration
 
-The course is organised by NRIS, registration deadline is October 9th 2025. **REGISTER: [HERE](https://docs.google.com/forms/d/e/1FAIpQLSeZhCl4vcqMZkt-ytse17MMZLpsYPPOBLjbYP_3Fm4pzHmZ_g/viewform?usp=header)**
+Registration is not longer available.
 
 ## Practical Information
 
@@ -35,8 +35,7 @@ to access the HPC systems (eg: ssh).
 | Wed 15.10    | 09:00 - 12:30 | HPC On-boarding Day 1 (for all) |
 | Thu 16.10    | 09:00 - 12:30 | HPC On-boarding Day 2 (for all) |
 
-**Note that there might be changes in the time schedule**
-For now, have a look at the May 25 On-Boarding course for approximate details about the individual day schedules. 
+**Note that there might be changes in the time schedule during lecturing**
 
 You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
 
