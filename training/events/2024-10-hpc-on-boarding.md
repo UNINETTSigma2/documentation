@@ -20,7 +20,7 @@ worked on the command line of a terminal, the first day of the course is dedicat
 
 ## Registration
 
-The registration is closed.
+The registration is no longer available.
 
 ## Practical Information
 
