@@ -59,7 +59,7 @@ import torch.nn as nn
 import torch.optim as optim
 import sys
 # Import custom modules
-from data.dataset_utils import load_fashion_mnist_fulldataset, load_cifar100
+from data.dataset_utils import load_cifar100
 from models.wide_resnet import WideResNet
 from training.train_utils import train, test
 from utils.device_utils import get_device
@@ -380,10 +380,10 @@ apptainer exec --nv --bind $BIND_DIR $CONTAINER_PATH python -c 'import torch; pr
 # Start GPU utilization monitoring in the background
 GPU_LOG_FILE="gpu_utilization_resnet_with_container.log"
 echo "Starting GPU utilization monitoring..."
-nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &l
+nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &
 
 # Run the training script with torchrun inside the container
-apptainer exec --nv --bind $BIND_DIR $CONTAINER_PATH \ torchrun --standalone --nnodes=$SLURM_JOB_NUM_NODES --nproc_per_node=$SLURM_GPUS_ON_NODE $TRAINING_SCRIPT
+apptainer exec --nv --bind $BIND_DIR $CONTAINER_PATH \torchrun --standalone --nnodes=$SLURM_JOB_NUM_NODES --nproc_per_node=$SLURM_GPUS_ON_NODE $TRAINING_SCRIPT
 
 
 # Stop GPU utilization monitoring
