@@ -123,7 +123,7 @@ while we use the GPU. We will change the `submit_gpu.sh` Slurm script above to
 ```{note}
 The query used to monitor the GPU can be further extended by adding additional
 parameters to the `--query-gpu` flag. Check available options
-[here](http://developer.download.nvidia.com/compute/DCGM/docs/nvidia-smi-367.38.pdf).
+[here](https://developer.download.nvidia.com/compute/DCGM/docs/nvidia-smi-367.38.pdf).
 ```
 
 Run this script with `sbatch submit_monitor.sh` to test if the output

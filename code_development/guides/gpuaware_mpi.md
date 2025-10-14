@@ -10,7 +10,7 @@ orphan: true
 # Summary 
 
 We present a descriptive implementation of a hybrid approach in which the MPI (message passing interface) communication framework is combined with either OpenACC or OpenMP application programming interfaces (APIs). The implementation is based on solving the 2D (two-dimension)-Laplace equation in a mini-application form. A special focus will be on performing point-to-point (e.g. `MPI_Send` and `MPI_Recv`) and collective (e.g. `MPI_Allreduce`) operations either between a pair of GPU-devices with the GPU-hardware support or by passing through a CPU-host memory. These two scenarios are referred to as GPU-aware MPI and GPU-non-aware MPI, respectively. Both scenarios will be addressed in the hybrid **MPI-OpenACC** and **MPI-OpenMP** models and their performance will be evaluated and analysed. Interesting enough, the performance is found to be increased by a factor of 10 when enabling the GPU-aware support on the 
-[supercomputer LUMI-G Early Access Platform](https://docs.lumi-supercomputer.eu/eap/) and by almost a factor of 30 compared to the case when MPI alone is considered.  
+[LUMI-G GPU nodes](https://docs.lumi-supercomputer.eu/hardware/lumig/) and by almost a factor of 30 compared to the case when MPI alone is considered.  
 
 By the end of this tutorial, we expect the readers to learn about
 
@@ -169,7 +169,7 @@ $ ftn -o laplace.mpi.cray laplace_mpi.f90
 ```
 
 To launch an MPI job, the following batch script can be used 
-(see also [here](https://docs.lumi-supercomputer.eu/computing/jobs/batch-job/#example-batch-scripts))
+(see also [here](https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/lumig-job/))
 
 ```console
 #!/bin/bash -l

@@ -13,7 +13,7 @@ If you want to contribute to the documentation of this code, please contact us a
 CASTEP is a leading code for calculating the properties of materials from first principles. Using density functional theory, it can simulate a wide range of properties of materials proprieties including energetics, structure at the atomic level, vibrational properties, electronic response properties etc. In particular it has a wide range of spectroscopic features that link directly to experiment, such as infra-red and Raman spectroscopies, NMR, and core level spectra.
 
 More information on the [CASTEP
-website](http://www.castep.org).
+website](https://www.castep.org).
 
 
 (access)=
@@ -49,7 +49,7 @@ We will then have to manually verify this information with STFC UK/CASTEP before
 
 ### Citation
 
-For the recommended citation, please consult the [CASTEP page](http://www.castep.org).
+For the recommended citation, please consult the [CASTEP page](https://www.castep.org).
 
 ## CASTEP on NRIS machinery
 

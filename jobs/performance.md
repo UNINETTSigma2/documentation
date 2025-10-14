@@ -38,7 +38,7 @@ example_128p_4n_1t_2020-05-23_18-04.txt
 - You can use Arm Performance Reports on dynamically linked binaries without
   recompilation.  However, you may have to recompile statically linked binaries
   (for this please consult the
-  [official documentation](https://developer.arm.com/docs/101137/2003)).
+  [official documentation](https://developer.arm.com/documentation/101137/2003)).
 - Due to a bug in older versions of OpenMPI, on Fram Arm Performance
   Reports works only with OpenMPI version 3.1.3 and newer. If you have
   compiled your application with OpenMPI 3.1.1, you don't need to

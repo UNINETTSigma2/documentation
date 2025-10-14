@@ -79,10 +79,10 @@ Creating a directory under `/cluster/work/support/` makes our job easier as this
 ## Describe the original problem and intent (The XY problem)
 
 Often we know the solution but we don't know the problem. Please read
-<http://xyproblem.info> which happens when a user's original issue is masked
+<https://xyproblem.info> which happens when a user's original issue is masked
 by a different problem.
 
-In short (quoting from <http://xyproblem.info>):
+In short (quoting from <https://xyproblem.info>):
 
 -   User wants to do X.
 -   User doesn't know how to do X, but thinks they can fumble their way

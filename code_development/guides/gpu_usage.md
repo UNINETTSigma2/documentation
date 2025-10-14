@@ -190,4 +190,4 @@ Overall, these commands are useful for revealing information, in particular, abo
 
 [GPUDirect RDMA](https://docs.nvidia.com/cuda/gpudirect-rdma/#:~:text=GPUDirect%20RDMA%20is%20a%20technology,video%20acquisition%20devices%2C%20storage%20adapters.)
 
-[Network on AMD](http://developer.amd.com/wp-content/resources/56354_1.00.pdf)
+[Network on AMD](https://docs.amd.com/api/khub/documents/4RRmDJWYi97s96NIjwC~JQ/content)

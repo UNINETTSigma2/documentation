@@ -35,7 +35,7 @@ started in 2020 as a collaboration between several Norwegian and
 European High-Performance Computing (HPC) sites and industry partners.
 EESSI uses the technologies ([CernVM-FS](https://cernvm.cern.ch/fs/),
 [Gentoo Prefix](https://wiki.gentoo.org/wiki/Project:Prefix),
-[EasyBuild](https://easybuild.io) and [Lmod](http://lmod.readthedocs.org)).
+[EasyBuild](https://easybuild.io) and [Lmod](https://lmod.readthedocs.io/en/latest/)).
 
 Instead of building or installing software again and again, in EESSI 
 software is built ***once*** and distributed via CernVM-FS to any (Linux) computer anywhere

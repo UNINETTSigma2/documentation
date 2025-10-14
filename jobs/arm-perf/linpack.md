@@ -4,12 +4,12 @@ orphan: true
 
 # LINPACK benchmark {#linpack-benchmark}
 
-The [LINPACK benchmark](http://www.netlib.org/benchmark/hpl/), used by
+The [LINPACK benchmark](https://www.netlib.org/benchmark/hpl/), used by
 the [TOP500 HPC list](https://www.top500.org/), solves a dense
 system of linear equations and is used to measure the _floating-point
 capabilities_ of CPUs.
 
-The [LINPACK sourcecode](http://www.netlib.org/benchmark/hpl/) is
+The [LINPACK sourcecode](https://www.netlib.org/benchmark/hpl/) is
 compiled using the Intel `icc` compiler as follows:
 
 ```

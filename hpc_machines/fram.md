@@ -6,7 +6,7 @@ orphan: true
 
 # Fram
 
-Named after the Norwegian arctic expedition ship [Fram](http://en.wikipedia.org/wiki/Fram),
+Named after the Norwegian arctic expedition ship [Fram](https://en.wikipedia.org/wiki/Fram),
 the new Linux cluster hosted at [UiT Arctic University of Norway](https://uit.no/startsida) is a shared resource for research computing capable of 1.1 PFLOP/s
 theoretical peak performance.
 

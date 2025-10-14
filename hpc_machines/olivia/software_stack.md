@@ -228,7 +228,7 @@ maintaining ease of use.
 
 The HPC-container-wrapper supports wrapping:
 
-- **Conda installations**: Based on a [Conda environment file](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#sharing-an-environment).
+- **Conda installations**: Based on a [Conda environment file](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#sharing-an-environment).
 - **Pip installations**: Based on a [pip requirements.txt file](https://pip.pypa.io/en/latest/reference/requirements-file-format/).
 - **Existing installations on the file system**: To reduce I/O load and improve startup times.
 - **Existing Singularity/Apptainer containers**: To hide the need for using the container runtime from the user.

@@ -4,12 +4,12 @@ orphan: true
 
 # Configuration
 
-The custom image package allows you to deploy an arbitrary [Docker](https://docs.docker.com/get-started/overview/) container.
+The custom image package allows you to deploy an arbitrary [Docker](https://docs.docker.com/get-started/docker-overview/) container.
 
 ## Configuring the image
 
 The common parameters such as host name and machine types are configured in the same way as other application types.
-Moreover, you will provide the [name of the docker image](https://docs.docker.com/engine/reference/commandline/tag/) to be deployed,
+Moreover, you will provide the [name of the docker image](https://docs.docker.com/reference/cli/docker/image/tag/) to be deployed,
 see image below:
 
 ![Custom image](./custom-image.png)

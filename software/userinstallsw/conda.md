@@ -217,7 +217,7 @@ conda env create --prefix /cluster/projects/nn____k/conda/username/my-env --file
 given that the file is named `environment.yml`.
 This will install all the dependencies listed from the necessary channels. 
 
-To create this file you can either write the `environment.yml` file manually following [these instructions](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#create-env-file-manually)
+To create this file you can either write the `environment.yml` file manually following [these instructions](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#create-env-file-manually)
 or use conda to export the list of installed packages in your environment 
 automatically. You can do this by first activating the environment 
 `conda activate /path/to/my-env` and then run this command

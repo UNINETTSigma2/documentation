@@ -130,7 +130,7 @@ a single GPU.
 ## License Information
 
 GROMACS is available under the [GNU Lesser General Public License
-(LGPL)](http://www.gnu.org/licenses/lgpl-2.1.html), version 2.1.
+(LGPL)](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html), version 2.1.
 
 It is the user's responsibility to make sure they adhere to the license
 agreements.
