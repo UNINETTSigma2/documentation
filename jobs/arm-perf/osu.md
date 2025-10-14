@@ -5,7 +5,7 @@ orphan: true
 # OSU benchmark
 
 The [OSU benchmark
-suite](http://mvapich.cse.ohio-state.edu/benchmarks/) measures the
+suite](https://mvapich.cse.ohio-state.edu/benchmarks/) measures the
 communication speed using a number of tests implemented using MPI,
 OpenSHMEM, UCP, and UPCXX. To compile it on Fram you can use either
 OpenMPI (recommended for best MPI performance), or Intel MPI. At the

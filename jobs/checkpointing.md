@@ -9,7 +9,7 @@ it is recommended to use the software built in tools for checkpointing.
 
 ## Checkpointing on our Clusters
 
-[DMTCP](http://dmtcp.sourceforge.net) (Distributed MultiThreaded Checkpointing)is a checkpointing package for applications.
+[DMTCP](https://dmtcp.sourceforge.io/) (Distributed MultiThreaded Checkpointing)is a checkpointing package for applications.
 DMTCP Checkpoint/Restart allows one to transparently checkpoint to disk a distributed computation. It works under Linux, 
 with no modifications to the Linux kernel nor to the application binaries. It can be used by users (no root privilege needed).
 One can later restart from a checkpoint. DMTCP supports both sequential and multi-threaded applications and it provides support 
@@ -105,5 +105,5 @@ Therefore, if the restarted job is also killed due to unavailable/exceeded resou
 you can resubmit the same job again without any changes in the submit file shown above.
 We recommend the users to delete  old ckpt_*.dmtcp files. 
 Note that there is no guarantee that every application can be checkpointed and restarted with DMTCP.
-Users are recommended to see the [DMTCP documentation](http://dmtcp.sourceforge.net/) and 
-[DMTCP supported apps](http://dmtcp.sourceforge.net/supportedApps.html#xwindow)for further read.
+Users are recommended to see the [DMTCP documentation](https://dmtcp.sourceforge.io/) and 
+[DMTCP supported apps](https://dmtcp.sourceforge.io/supportedApps.html)for further read.

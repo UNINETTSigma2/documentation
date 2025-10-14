@@ -205,7 +205,7 @@ A set of suggested flags are :
 
 ### Performance of compilers
 A test using the well known reference implementation of matrix matrix
-([dgemm](http://www.netlib.org/lapack/explore-html/d7/d2b/dgemm_8f_source.html))
+([dgemm](https://www.netlib.org/lapack/explore-html/d7/d2b/dgemm_8f_source.html))
 multiplication is used for a simple test of the different compilers.
 
 | Compiler      | Flags                               | Performance       |
@@ -256,7 +256,7 @@ Look for symbols with *T* (T means text,global - e.g. it's available, U means un
 #### Forcing MKL to use best performing routines
 MKL issue a run time test to check for genuine Intel processor. If this test fail it will select a generic x86-64 set of routines yielding 
 inferior performance. This is well documented in [Wikipedia](https://en.wikipedia.org/wiki/Math_Kernel_Library) and remedies in 
-[Intel MKL on AMD Zen](https://danieldk.eu/Posts/2020-08-31-MKL-Zen.html).
+[Intel MKL on AMD Zen](https://danieldk.eu/Intel-MKL-on-AMD-Zen).
 
 Research have discovered that MKL call a function called *mkl_serv_intel_cpu_true()* to check the current CPU. If a genuine Intel processor is 
 found it simply return 1. The solution is simply to override this function by writing a dummy functions which always return 1 and place this 

@@ -25,9 +25,9 @@ large number of datapoints independently of each other). Examples include
 operations like
 [`gemm`](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms#Level_3)
 which can be [**6 times** faster than on the
-CPU](http://developer.download.nvidia.com/compute/cuda/6_5/rel/docs/CUDA_6.5_Performance_Report.pdf),
+CPU](https://developer.download.nvidia.com/compute/cuda/6_5/rel/docs/CUDA_6.5_Performance_Report.pdf),
 or generating random numbers which can be [**70 times**
-faster!](http://developer.download.nvidia.com/compute/cuda/6_5/rel/docs/CUDA_6.5_Performance_Report.pdf)
+faster!](https://developer.download.nvidia.com/compute/cuda/6_5/rel/docs/CUDA_6.5_Performance_Report.pdf)
 
 ```{note}
 If you know some OpenACC or want to see tips for larger applications take a look

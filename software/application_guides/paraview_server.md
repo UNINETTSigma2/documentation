@@ -142,7 +142,7 @@ module purge
 module --force swap StdEnv Zen2Env
 ```
 
-- Manually [install](https://documentation.sigma2.no/software/userinstallsw/easybuild.html) `libglvnd` available in [EasyBuild](https://docs.easybuild.io/version-specific/supported-software/#libglvnd)
+- Manually [install](https://documentation.sigma2.no/software/userinstallsw/easybuild.html) `libglvnd` available in [EasyBuild](https://docs.easybuild.io/version-specific/supported-software/l/libglvnd/)
 
 - Load the module with the following commands (please, adapt the paths and the project number):
 ```

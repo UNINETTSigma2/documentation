@@ -5,7 +5,7 @@ orphan: true
 (dask-tutorial)=
 
 # Using Dask to scale your Python program
-Dask is a Python library that allows you to scale your existing Python code for optimal use on HPC systems. More information on Dask can be found [here](https://dask.org/). Here, we demostrate a simple example of how the Dask `delayed` function can be used to parallelize your code and how to create a Dask cluster using the `SLURMCluster`.
+Dask is a Python library that allows you to scale your existing Python code for optimal use on HPC systems. More information on Dask can be found [here](https://www.dask.org/). Here, we demostrate a simple example of how the Dask `delayed` function can be used to parallelize your code and how to create a Dask cluster using the `SLURMCluster`.
 
 ```{contents} Table of Contents
 ```

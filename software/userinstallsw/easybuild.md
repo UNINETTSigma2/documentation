@@ -61,7 +61,7 @@ latest version you can find:
     $ module load EasyBuild/4.9.0
 
 Say you want to install the already mentioned
-[rjags](http://cran.r-project.org/web/packages/rjags) package. Then you first
+[rjags](https://cran.r-project.org/web/packages/rjags) package. Then you first
 need to find out which easyconfigs are available on the system.  This can be
 done with the `--search-filename` or `-S` option. So to display all rags
 version that can be installed use:

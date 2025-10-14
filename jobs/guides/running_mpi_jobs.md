@@ -43,10 +43,10 @@ given a `impi/`-reading focus on the Intel MPI part
 
 ## OpenMPI
 
-On systems with Mellanox InfiniBand, OpenMPI is the implementation
-recommended by Mellanox due to its support for the [HPCX
+On systems with NVIDIA InfiniBand, OpenMPI is the implementation
+recommended by NVIDIA due to its support for the [HPCX
 communication
-libraries](https://docs.mellanox.com/category/hpcx).
+libraries](https://developer.nvidia.com/networking/hpc-x).
 
 
 ### `srun`

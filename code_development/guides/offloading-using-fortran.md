@@ -107,8 +107,8 @@ the vector syntax.
 
 We can also look at a matrix-matrix multiplication reference
 implementation (DGEMM) code from 8-February-1989. This is found at:
-[Basic Linear Algebra, level 3 matrix/matrix operations](http://www.netlib.org/blas/index.html#_level_3) or download the
-[Fortran 77 reference implementation](http://www.netlib.org/blas/blas.tgz)
+[LAPACK / Basic Linear Algebra, level 3 matrix/matrix operations](https://netlib.org/lapack/explore-html-3.6.1/d7/d2b/dgemm_8f_source.html) or download the
+[Fortran 77 reference implementation](https://www.netlib.org/blas/blas.tgz)
 which contains DGEMM and also contain support files needed.
 
 Download the legacy code, change the comment character to fit
