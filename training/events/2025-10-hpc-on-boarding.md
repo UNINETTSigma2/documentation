@@ -78,7 +78,7 @@ You can always contact us by sending an email to [support@nris.no](mailto:suppor
 - 10:30-11:45 - [Compute and storage quota](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/compute-storage-quota.html)  
 		- (including [Using shared resources responsibly](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.html)). 
 - 11:45-12:00 - Break
-- 12:00-12:30 - [How to ask for help](https://doi.org/10.5281/zenodo.8392762) 
+- 12:00-12:30 - [How to ask for help](https://training.pages.sigma2.no/tutorials/How-to-ask-for-help/episodes/talk.html) 
 
 ## Course material
 
