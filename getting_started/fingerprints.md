@@ -53,6 +53,19 @@ login, please {ref}`contact us <support-line>` immediately.
   - `SHA256:wSirru+JTpcAZKQe/u6jLRj3kVCccNNUWU2PxzgbebM`
 
 
+## olivia.sigma2.no
+
+- ED25519:
+  - `MD5:32:65:60:2c:06:15:47:3f:a8:5e:23:e6:78:47:e1:95`
+  - `SHA256:eYV+k2UiexuyCPeReFTqC8+ez9prO9z3wds/B74riGw`
+- ECDSA:
+  - `MD5:72:11:c8:88:ac:67:0b:ec:6b:4d:15:ca:30:8e:fc:d2`
+  - `SHA256:SlKWaL+cDjtBmimUOxb2+10pcn0l0IxWBZP7HmUZ0/M`
+- RSA:
+  - `MD5:c5:ea:14:ac:2c:23:3c:67:35:4f:f2:14:57:f6:9a:a6`
+  - `SHA256:mSdqJrmd3MMPOL3L9GDxAs8w3avQREhS3r7Hf9+Df/I`
+
+
 ## login.nird.sigma2.no
 
 - ED25519:
