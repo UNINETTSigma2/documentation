@@ -1,6 +1,6 @@
 (GPU-tutorials series)=
 
-# Postponed: GPU tutorial
+# Hands-On Workshop: Fine-Tuning LLMs with Multi-GPU Training <time datetime="2025-11-05 20:00"> 05 Nov. 2025 </time>
 ## *NRIS* GPU Tutorials Series 
 
 The Norwegian Research Infrastructure Services (**NRIS**) is offering a series of GPU Tutorial events given every now and then on relevant topics in the area of GPU utilization, Machine Learning, Large Language models and related topics. 
@@ -28,9 +28,10 @@ All times are given in CET/CEST depending on date.
 
 **Date & Time**: 05 Nov. 2025, 09:30 - 15:30 <br>
 **Location**: Online <br>
-**Instructor**: Hicham Agueny (https://www4.uib.no/en/find-employees/Hicham.Agueny)
+**Instructor**: [Hicham Agueny](https://www4.uib.no/en/find-employees/Hicham.Agueny)
+<br>
+<br> 
 **Content:**
-
 Gain practical experience in fine-tuning Large Language Models (LLMs) with the LLaMA architecture and LoRA on the [Olivia supercomputer](https://www.sigma2.no/meet-olivia-norways-next-supercomputer). The workshop combines fine-tuning concepts with practical and HPC-specific execution.
 
 <u>You will learn to:</u>
