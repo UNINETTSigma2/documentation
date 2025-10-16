@@ -24,31 +24,32 @@ Access to necessary GPU resources will be provided by the course organizers, but
 
 All times are given in CET/CEST depending on date.
 
-### Fine-Tuning LLMs with Multi-GPU Training - A Hands-on Workshop
+### Hands-On Workshop: Fine-Tuning LLMs with Multi-GPU Training on an HPC System
 
-**Date:** **Postponed until further notice**
-**Time:** 09:30-15:30
-
+**Date & Time**: 05 Nov. 2025, 09:30 - 15:30 <br>
+**Location**: Online <br>
+**Instructor**: Hicham Agueny (https://www4.uib.no/en/find-employees/Hicham.Agueny)
 **Content:**
-This hands-on workshop, titled Fine-Tuning LLMs with Multi-GPU Training, is designed to provide participants with practical experience in fine-tuning large language models (LLMs) with a special focus on LLaMA on high-performance computing (HPC) systems.
 
-Participants will get hands-on experience with [Olivia](https://www.sigma2.no/meet-olivia-norways-next-supercomputer) - Norway’s Next supercomputer.
+Gain practical experience in fine-tuning Large Language Models (LLMs) with the LLaMA architecture and LoRA on the [Olivia supercomputer](https://www.sigma2.no/meet-olivia-norways-next-supercomputer). The workshop combines fine-tuning concepts with practical and HPC-specific execution.
 
-<u>Learning Outcomes:</u>
+<u>You will learn to:</u>
 
 By the end of this workshop, participants will be able to:
 
-- Learn the basics of LLaMA.
-- Set up a distributed training environment using PyTorch, Torchao, and Torchtune on an HPC system.
-- Fine-tune a LLaMA model using LoRA techniques on a single GPU and then scale up to multiple GPUs.
-- Perform inference tasks like summarization using the fine-tuned model.
-- Monitor GPU usage and GPU memory utilization.
+- Apply LoRA fine-tuning to LLaMA models.
+- Configure and run distributed training jobs on multiple GPUs.
+- Perform inference tasks such as QA and summarization.
+- Monitor GPU usage and memory utilization.
 
-This workshop is ideal for researchers, developers, and students who are familiar with Python and want to gain practical insights into scalable LLM training with LLaMA.
+This workshop is ideal for researchers, developers, and students with Python experience who want hands-on skills in scalable LLM training.
 
-**Instructor**: [Hicham Agueny](https://www4.uib.no/en/find-employees/Hicham.Agueny)
+**Registration**: [HERE](https://docs.google.com/forms/d/e/1FAIpQLSeQ00Qgwc47Qlzxiw2Q924YSIqHXWuKEhzy5tWrhdHwbwpw8Q/viewform) (**Registration deadline Oct. 28th!**)
 
-**Registration**: [HERE](https://docs.google.com/forms/d/e/1FAIpQLSeQ00Qgwc47Qlzxiw2Q924YSIqHXWuKEhzy5tWrhdHwbwpw8Q/viewform?usp=header) (**Registration deadline Sept. 1st!!**)
+**IMPORTANT**
+
+We do have a *login-check* session **Tuesday November 4th at 10:30-12:00** which is mandatory for all participants that wants to log in and attend the practical part of the course.
+
 
 ```{note}
 - Link to video to be announced.
