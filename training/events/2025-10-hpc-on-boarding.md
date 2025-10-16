@@ -1,6 +1,6 @@
 (training-2025-fall-onboarding)=
 
-# HPC On-boarding <time datetime="2025-10-14 20:00"> October 14-16 2025 </time>
+# HPC On-boarding <time datetime="2025-10-16 20:00"> October 14-16 2025 </time>
 
 The Norwegian Research Infrastructure Services (**NRIS**) is offering 
 an on-boarding hands-on course for new users of high performance computing (HPC) systems. 
