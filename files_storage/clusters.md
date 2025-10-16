@@ -45,8 +45,8 @@ The following table summarizes the different options for **Olivia**.
 - Saga, Fram and Betzy mount the NIRD project areas as
   `/nird/datapeak/NSxxxxK` for NIRD Data Peak (DP) projects and
   `/nird/datalake/NSxxxxK` for NIRD Data Lake (DL) projects **on the
-  login nodes only ** (not on the compute nodes).  On Colossus, they
-  are mounted on the SVC nodes (read-write) and on the compute nodes (read-only).
+  login nodes only ** (not on the compute nodes).  On Olivia, they
+  are mounted on the SVC[1-5] nodes (read-write) and on the compute nodes (read-only).
 - The `/cluster` file system is a high-performance parallel file
   system.  On Fram, Betzy and Olivia, it is a
   [Lustre](https://www.lustre.org/) system, and on Saga it is a
