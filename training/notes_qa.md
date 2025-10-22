@@ -1,19 +1,27 @@
 # Questions, Answers and Feedbacks
 
 Here we share the workshop questions, answer, and feedbacks from the collaborative 
-notes after the event.
+notes after all our events.
 
+## 2025 
+
+- {ref}`training-2025-autumn-onboarding`
+	- [Questions and answers from HPC On-boarding 14 Oct 2025 Day 0](https://md.sigma2.no/hpc-onboarding-October-14-2025)
+	- [Questions and answers from HPC On-boarding 15 Oct 2025 Day 1](https://md.sigma2.no/hpc-onboarding-October-15-2025)
+	- [Questions and answers from HPC On-boarding 16 Oct 2025 Day 2](https://md.sigma2.no/hpc-onboarding-October-16-2025)
 - [Questions and answers from Best Practices and Tools for HPC Spring 2025 Episode 5: Apptainers on HPC: Usecases and Examples](https://md.sigma2.no/best-practices-and-tools-episode5)
 - [Questions and answers from Best Practices and Tools for HPC Spring 2025 Episode 4: Advanced shell scripting and utilities part 1: advanced awk and sed](https://md.sigma2.no/best-practices-and-tools-episode4)
 - [Questions and answers from Best Practices and Tools for HPC Spring 2025 Episode 3: Containers on Clusters](https://md.sigma2.no/best-practices-and-tools-episode3)
 - [Questions and answers from Best Practices and Tools for HPC Spring 2025 Episode 2: Advanced shell scripting and utilities part 1](https://md.sigma2.no/best-practices-and-tools-episode2)
 - [Questions and answers from Best Practices and Tools for HPC Spring 2025 Episode 1: How to parallelize independent tasks](https://md.sigma2.no/best-practices-and-tools-episode1)
+
+## 2024
 - [Questions and answers from Introduction to NIRD Toolkit on 24th October 2024](https://md.sigma2.no/nird-toolkit-training2024)
 - {ref}`training-2024-autumn-onboarding`
 	- [Questions and answers from HPC On-boarding 15 Oct 2024 Day 0](https://md.sigma2.no/hpc-onboarding-Oct-15-2024)
 	- [Questions and answers from HPC On-boarding 16 Oct 2024 Day 1](https://md.sigma2.no/hpc-onboarding-Oct-16-2024)
 	- [Questions and answers from HPC On-boarding 17 Oct 2024 Day 2](https://md.sigma2.no/hpc-onboarding-Oct-17-2024)
-- {ref}`training-2024-spring-scientific-computiing`
+- {ref}`training-2024-spring-scientific-computing`
   - [Questions and answers from NRIS Scientific Computing Workshop](https://md.sigma2.no/scientific-computing-workshop)
 - {ref}`training-2024-spring-best-practices`
   - [Questions and answers from Best Practices Spring 2024 Day1 (How to choose the right amount of memory and right number of cores)](https://md.sigma2.no/qanda-archive-best-practices-spring2024)
@@ -25,6 +33,8 @@ notes after the event.
   - [Questions and answers from HPC On-boarding 11 Apr 2024 Day 2](https://md.sigma2.no/hpc-onboarding-April2024) 
 - [Questions and answers from Introduction to FORTRAN Series Autumn 2023](https://md.sigma2.no/YQjft6kvR5SUolKJtm3QOA)
 - [Questions and answers from Introduction to NIRD Toolkit on 24th October 2023](https://md.sigma2.no/introduction-to-nird-toolkit)
+
+## 2023
 - {ref}`training-2023-autumn-onboarding`
   - [Questions and answers from HPC On-boarding Oct 2023 Day 0](https://md.sigma2.no/ioTn-FGQTm2Bw3v5YeCXHQ)
   - [Questions and answers from HPC On-boarding Oct 2023 Day 1](https://md.sigma2.no/2RZ9bF1BSaCpkQ90OuEXmA) 
@@ -37,6 +47,8 @@ notes after the event.
   - [Questions and answers from HPC on-boarding Apr 2023, Day 0 (Apr 18)](https://md.sigma2.no/45qiXesPSEWmdily6I65bA)
   - [Questions and answers from HPC on-boarding Apr 2023, Day 1 (Apr 19)](https://md.sigma2.no/HauUyzY9QMWCJ5xKCpmVKQ)
   - [Questions and answers from HPC on-boarding Apr 2023, Day 2 (Apr 20)](https://md.sigma2.no/yrGPYBTuQTa0SD50c6RhoQ)
+
+## 2022
 - {ref}`training-2022-autumn-best-practices`
   - [Questions and answers from Best Practices on NRIS Clusters Nov 2022, Day 1 (Nov 1)](https://md.sigma2.no/EZnXUmmsT9CGwlayz1F9xA)
   - [Questions and answers from Best Practices on NRIS Clusters Nov 2022, Day 2 (Nov 2)](https://md.sigma2.no/So3XP6n0R56W42SnwqHoeg)
@@ -52,6 +64,8 @@ notes after the event.
   - [Questions and answers from HPC On-boarding May 2022, Day 0 (May 3)](https://md.sigma2.no/lraXdx4ASqi750xkslK63A)
   - [Questions and answers from HPC On-boarding May 2022, Day 1 (May 4)](https://md.sigma2.no/teGo9s3VTHC5SOpUfA-luQ)
   - [Questions and answers from HPC On-boarding May 2022, Day 2 (May 5)](https://md.sigma2.no/rcsdAT6WTgKVG_t3OyOFVg)
+
+## 2021
 - {ref}`training-2021-autumn`
   - [Questions, answers, and notes from day1](https://md.sigma2.no/2LFOgejcSWy7m5soMzk3HQ)
   - [Questions, answers, and notes from day2](https://md.sigma2.no/QCnLXJVgTiqByDWYaA7Gjg)

@@ -9,7 +9,7 @@
 
 ```{toctree}
 :maxdepth: 1
-
+events/2025-10-hpc-on-boarding.md
 events/2025-05-hpc-on-boarding.md
 events/2025-spring-best-practices-tools.md
 nris_talks/2025-03-20-nris-talks.md
@@ -77,6 +77,7 @@ events/2021-11-hpc-nird-toolkit-user-course.md
 
 <details><summary><H3 style="display:inline">2025</summary><br>
 
+- [Mondays with MATLAB – Nordic HPC Workshops](https://www.mathworks.com/company/events/seminars/series/mondays-with-matlab-nordic-hpc-workshops-nrd-2025.html)
 - [Fundamentals of Accelerated Computing with CUDA C/C++](https://www.ub.uio.no/english/courses-events/courses/carpentry/CUDA)
 - [CodeRefinery workshop Mar 25-27/Apr 1-3 2025](https://coderefinery.github.io/2025-03-25-workshop/)
 </details>
