@@ -1,4 +1,4 @@
-(training-2024-spring-scientific-computiing)=
+(training-2024-spring-scientific-computing)=
 
 # Scientific Computing Workshop (11-12 June)
 

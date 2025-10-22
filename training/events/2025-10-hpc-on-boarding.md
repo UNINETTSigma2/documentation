@@ -1,6 +1,6 @@
-(training-2025-fall-onboarding)=
+(training-2025-autumn-onboarding)=
 
-# HPC On-boarding <time datetime="2025-10-16 20:00"> October 14-16 2025 </time>
+# HPC On-boarding <time datetime="2025-10-14 20:00"> 14-16 October 2025 </time>
 
 The Norwegian Research Infrastructure Services (**NRIS**) is offering 
 an on-boarding hands-on course for new users of high performance computing (HPC) systems. 
@@ -18,14 +18,13 @@ line of a terminal, the first day of the course is designed specifically for you
 
 Registration is not longer available.
 
-## Practical Information
+## Output from the event:
 
-This is an online course via Zoom. Participants require access to a computer
-(not provided by the course organisers) with internet connectivity and
-pre-installed programs to participate in the video meeting of the course (Zoom) and 
-to access the HPC systems (eg: ssh).
-
-
+```{note}
+- [Collaborative document from day 0](https://md.sigma2.no/hpc-onboarding-October-14-2025)
+- [Collaborative document from day 1](https://md.sigma2.no/hpc-onboarding-October-15-2025)
+- [Collaborative document from day 2](https://md.sigma2.no/hpc-onboarding-October-16-2025)
+```
 
 ## Time, date (all times CEST)
 |   Date    |  Time   |  Topic	|
@@ -78,7 +77,7 @@ You can always contact us by sending an email to [support@nris.no](mailto:suppor
 - 10:30-11:45 - [Compute and storage quota](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/compute-storage-quota.html)  
 		- (including [Using shared resources responsibly](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.html)). 
 - 11:45-12:00 - Break
-- 12:00-12:30 - [How to ask for help](https://training.pages.sigma2.no/tutorials/How-to-ask-for-help/episodes/talk.html) 
+- 12:00-12:30 - [How to ask for help](https://doi.org/10.5281/zenodo.8392762) 
 
 ## Course material
 

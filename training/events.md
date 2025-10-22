@@ -15,7 +15,7 @@ The courses are free of charges unless otherwise announced.
 :maxdepth: 1
 
 GPU_Tutorials/2025-GPU-Tuorials-Series.md
-events/2025-10-hpc-on-boarding.md
+
 
 ```
 
@@ -31,7 +31,7 @@ events/2026-04-hpc-on-boarding.md
 
 ### 2025
 
-- [Mondays with MATLAB – Nordic HPC Workshops](https://www.mathworks.com/company/events/seminars/series/mondays-with-matlab-nordic-hpc-workshops-nrd-2025.html)
+
 
 
 <details><summary><H3 style="display:inline">Additional information- and local news channels </summary><br>
