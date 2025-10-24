@@ -26,33 +26,31 @@ All active projects with a quota *only* on Fram, and users are being migrated to
 
 ---
 
-## Data Migration and Backup
+## Data Migration
 
-To facilitate the transition, Sigma2 has re-enabled backup for Fram `/cluster/projects` and `$HOME` directories.
+To facilitate the transition and ensure data integrity, we will maintain a copy of your Fram data as of 21st November 2025, ie: from `/cluster/projects` and `$HOME` directories on NIRD.
 
-### What is Backed Up?
+### What is copied on NIRD?
 
-* **Projects:** All project data for projects with an active compute quota since allocation period 2024.2.
+* **Projects:** Data under `/cluster/projects/` for projects with an active compute quota since allocation period 2024.2. 
 * **Home Directories:** All users' `$HOME` folders.
 * **Shared Areas:** Specific `/cluster/shared` areas. (Affected users have been contacted directly).
 
-### How to Access Your Backup
+### How to access your copy of Fram data
 
-Your backed-up data is available as **read-only** in the following locations:
+The copy of Fram data is available as **read-only** in the following locations:
 
-* **On Fram (Available Now):**
-    * Projects: `/cluster/backup/hpc/fram`
-    * $HOME: `/cluster/backup/home`
+* **On Olivia this will be available from 22nd November 2025:**
+    * Projects: `/nird/backup/hpc/fram/projects`
+    * $HOME: `/nird/backup/fram/home`
 
-* **On Olivia (Expected by 31 Oct 2025):**
-    * Access to this backup will be enabled on the Olivia login nodes no later than Friday, 31 October 2025.
+.. warning::
+Important: Copy of your Fram data on NIRD is temporary. The data in the locations mentioned above will be retained for one year (30th November 2026). 
+If you have data on Fram that you wish to keep permanently, it is your responsibility to copy any data you wish to retain from this temporary location to an alternative, permanent storage solution.
+Please note that NIRD is an available option for long-term data storage, and you are encouraged to migrate your Fram data to your NIRD project (either on Data Lake or Data Peak). 
+All Olivia HPC projects are required to have an resource allocation on NIRD. You have an option to apply for NIRD project (NIRD Data Peak and Data Lake) if you don´t have already one.
+If you have questions, please contact us via contact@sigma2.no.
 
-```{danger}
-CRITICAL: Backup is Temporary
-The backed-up data at the locations above will be kept only until **31 March 2026**.
-
-If you have data on Fram you would like to keep permanently, it is **your responsibility** to copy any data you wish to keep from this backup location to an alternative, permanent storage solution before this date. Please set a calendar reminder.
-```
 ---
 
 ## Your New Compute Resource: Olivia
