@@ -7,7 +7,7 @@ orphan: true
 
 # Fram decommissioning information
 
-**Published:** 2025-10-23
+**Published:** 2025-10-27
 
 The Fram supercomputer is scheduled for decommissioning on **4 December 2025** as part of the national e-infrastructure upgrade.
 
