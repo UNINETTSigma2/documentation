@@ -28,7 +28,7 @@ All active projects with a quota *only* on Fram, and users are being migrated to
 
 ## Data Migration
 
-To facilitate the transition and ensure data integrity, we will maintain a copy of your Fram data as of 21st November 2025, ie: from `/cluster/projects` and `$HOME` directories on NIRD.
+To facilitate the transition and ensure data integrity, we will maintain a copy of your Fram data from `/cluster/projects` and `$HOME` directories on NIRD.
 
 ### What is copied on NIRD?
 
@@ -40,15 +40,18 @@ To facilitate the transition and ensure data integrity, we will maintain a copy 
 
 The copy of Fram data is available as **read-only** in the following locations:
 
-* **On Olivia this will be available from 22nd November 2025:**
+* **On Fram (please use this to check integrity):**
+    * Projects: `/cluster/backup/hpc/fram`
+    * $HOME: `/cluster/backup/home`
+
+* **On Olivia (this will be available from 31 October 2025):**
     * Projects: `/nird/backup/hpc/fram/projects`
     * $HOME: `/nird/backup/fram/home`
 
 ```{note}
-IMPORTANT: Copy of your Fram data on NIRD is temporary. The data in the locations mentioned above will be retained for one year (30th November 2026). 
+IMPORTANT: Copy of your Fram data on NIRD is temporary. The data in the locations mentioned above will be retained until **31 March 2026**. 
 If you have data on Fram that you wish to keep permanently, it is your responsibility to copy any data you wish to retain from this temporary location to an alternative, permanent storage solution.
 Please note that NIRD is an available option for long-term data storage, and you are encouraged to migrate your Fram data to your NIRD project (either on Data Lake or Data Peak). 
-All Olivia HPC projects are required to have an resource allocation on NIRD. You have an option to apply for NIRD project (NIRD Data Peak and Data Lake) if you don´t have already one.
 If you have questions, please contact us via contact@sigma2.no.
 ```
 
