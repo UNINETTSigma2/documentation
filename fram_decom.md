@@ -7,7 +7,7 @@ orphan: true
 
 # Fram decommissioning information
 
-**Published:** 2025-10-23
+**Published:** 2025-10-27
 
 The Fram supercomputer is scheduled for decommissioning on **4 December 2025** as part of the national e-infrastructure upgrade.
 
@@ -26,33 +26,35 @@ All active projects with a quota *only* on Fram, and users are being migrated to
 
 ---
 
-## Data Migration and Backup
+## Data Migration
 
-To facilitate the transition, Sigma2 has re-enabled backup for Fram `/cluster/projects` and `$HOME` directories.
+To facilitate the transition and ensure data integrity, we will maintain a copy of your Fram data from `/cluster/projects` and `$HOME` directories on NIRD.
 
-### What is Backed Up?
+### What is copied on NIRD?
 
-* **Projects:** All project data for projects with an active compute quota since allocation period 2024.2.
+* **Projects:** Data under `/cluster/projects/` for projects with an active compute quota since allocation period 2024.2. 
 * **Home Directories:** All users' `$HOME` folders.
 * **Shared Areas:** Specific `/cluster/shared` areas. (Affected users have been contacted directly).
 
-### How to Access Your Backup
+### How to access your copy of Fram data
 
-Your backed-up data is available as **read-only** in the following locations:
+The copy of Fram data is available as **read-only** in the following locations:
 
-* **On Fram (Available Now):**
+* **On Fram (please use this to check integrity):**
     * Projects: `/cluster/backup/hpc/fram`
     * $HOME: `/cluster/backup/home`
 
-* **On Olivia (Expected by 31 Oct 2025):**
-    * Access to this backup will be enabled on the Olivia login nodes no later than Friday, 31 October 2025.
+* **On Olivia (this will be available from 31 October 2025):**
+    * Projects: `/nird/backup/hpc/fram/projects`
+    * $HOME: `/nird/backup/fram/home`
 
-```{danger}
-CRITICAL: Backup is Temporary
-The backed-up data at the locations above will be kept only until **31 March 2026**.
-
-If you have data on Fram you would like to keep permanently, it is **your responsibility** to copy any data you wish to keep from this backup location to an alternative, permanent storage solution before this date. Please set a calendar reminder.
+```{note}
+IMPORTANT: Copy of your Fram data on NIRD is temporary. The data in the locations mentioned above will be retained until **31 March 2026**. 
+If you have data on Fram that you wish to keep permanently, it is your responsibility to copy any data you wish to retain from this temporary location to an alternative, permanent storage solution.
+Please note that NIRD is an available option for long-term data storage, and you are encouraged to migrate your Fram data to your NIRD project (either on Data Lake or Data Peak). 
+If you have questions, please contact us via contact@sigma2.no.
 ```
+
 ---
 
 ## Your New Compute Resource: Olivia
