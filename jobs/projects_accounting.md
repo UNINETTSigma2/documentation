@@ -7,13 +7,13 @@
 
 ## What is quota and why is it needed?
 
-**Our compute clusters are shared and limited resources** and therefore we
-divide the available compute resources in quotas and we specify compute quota
-in "billing units". You can think of a billing unit as something that
-corresponds to for how long one processing core could be used. For example, if
-your project received 100 billing units you could use one processing core for
-100 hours. You could also use 10 processing cores for 10 hours or 20 processing
-cores for 5 hours or ...
+**Our compute clusters are shared and limited resources** and
+therefore we divide the available compute resources in quotas and we
+specify compute quota in "billing unit hours", or "billing hours" for
+short. You can think of a billing hour as something that corresponds
+to how long one CPU core could be used. For example, if your project
+received 100 billing hours you could use one CPU core for 100 hours,
+or you could use 10 CPU cores for 10 hours, or ...
 
 
 ## TL;DR - how to use billing units well
