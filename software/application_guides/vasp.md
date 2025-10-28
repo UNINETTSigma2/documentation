@@ -14,38 +14,17 @@ VASP is a software package for performing ab-initio quantum-mechanical calculati
 * [Tutorials](https://www.vasp.at/wiki/index.php/Category:Tutorials)
 * [Workshops](https://www.vasp.at/wiki/index.php/VASP_workshop)
 
-## Installed on facilities
+## Supported Versions
 
-These are the installed VASP versions on our facilities.
+We aim to provide fully installed versions for the last two releases of VASP that require separate licenses. At time of writing this covers VASP 6.4.x and VASP 6.5.x licenses. VASP 5.x will be supported on a case-by-case basis for users lacking a 6+ license, but we note that this has proven more and more challenging to install and test on the latest hardware. We aim to have the latest patch version for every minor release please open a ticket if you require a different patch version.
 
-| Version  | Fram | Saga | Betzy |
-|----------|------|------|-------|
-| 5.4.4pl2 | Yes  | Yes  | no    |
-| 6.3.2    | no  | Yes  | no    |
-| 6.4.1    | no  | Yes  | Yes   |
-| 6.4.2    | Yes  | no  | no   |
+| Version  | Fram | Saga | Betzy | Olivia |
+| -------- | ---- | ---- | ----- | ------ |
+| 5.4.4pl2 | Yes  | Yes  | no    | no     |
+| 6.3.x    | no   | no   | no    | no     |
+| 6.4.x    | Yes  | Yes  | Yes   | Yes    |
+| 6.5.x    | Yes  | Yes  | Yes   | Yes    |
 
-## Tests passed
-
-This is the present test status for the installed modules for VASP.
-
-| Version  | Fram | Saga | Betzy |
-|----------|------|------|-------|
-| 5.4.4pl2 | N/A  | N/A  | N/A   |
-| 6.3.2    | N/A | Fast | N/A   |
-| 6.4.1    | N/A | Fast | Fast  |
-| 6.4.2    | Fast | N/A | N/A  |
-
-`Fast` or `Full` refer to the [VASP tests](https://www.vasp.at/wiki/index.php/Validation_tests).
-
-## Supported versions available in the module system
-
-* 5.4.4 pl2 (not maintained, only for those that do not have VASP 6 licenses)
-* 6.3.2 (only on Saga, not actively supported)
-* 6.4.1 or 6.4.2 (recommended)
-
-VASP 6 is the first VASP version that was supplied with an official test suite, which makes it easy to recommend users
-to use this over previous VASP 5 as we are able to verify that the installation works across a wide set of systems, including corner cases.
 
 ## License and access policy
 
@@ -77,7 +56,22 @@ The user should confirm the outputs here match their expectations.
 For quick benchmarking it is often useful to look at the speed of a single SCF step, e.g. by setting `NELM=1`. Often most information regarding benchmarking happens in the first step, e.g., if your settings are 2x faster for this first step it will likely remain so for the entire run. 
 It can be helpful to look at both the final timing information at the end of the OUTCAR as well as the `LOOP` information for each SCF step (not to be confused with the `LOOP+` information at the end of each ionic step)
 
+## Usage: Olivia
+At time of writing we only support the CPU compiled version of VASP. A single-node GPU version is in progress, if you are interested in testing the GPU version please open a ticket. To use VASP please run
+
+	$ module load NRIS/CPU
+	$ module load VASP/6.4.3-intel-2024a
+
+Or for `6.5.1` 
+	$ module load VASP/6.5.1-intel-2024a
+
+For those migrating from FRAM please be mindful to adjust your parallelization settings. We recommend running `--ntasks-per-node=250`. In general we found using `NPAR = 25` to be a good starting point. We found that for many systems using `KPAR = <1/2 number nodes>` to work well, but *only* if your system contains more than one k-point. 
+
+
 ## Usage: Fram
+**NOTE: Fram will be made obsolete in 2026, please see the Olivia running guide above
+
+
 We are currently in the process of simplifying the way in which users can load VASP. On Fram it is now the following:
 
 We now offer direct access to both `VASP5.4.4` and `VASP6.4.2`, eliminating the need to load VASPModules or VASPExtra beforehand. E.g.to run standard vasp:
