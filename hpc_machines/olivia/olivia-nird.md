@@ -47,7 +47,7 @@ NIRD project number (e.g., NSXXXXK). You can check if your user has a NIRD proje
  `groups` command. If it returns an ‘ns’ group, you should have access to this folder on NIRD.
 
 If your group does not yet have a NIRD project, you/your PI should send an application for resource allocation 
-on  NIRD Data Peak and/or NIRD Data Lake project through our [administration system](metacenter.no).
+on  NIRD Data Peak and/or NIRD Data Lake project through our [administration system](https://www.metacenter.no).
 
 ## Data Handling Scenarios
 
