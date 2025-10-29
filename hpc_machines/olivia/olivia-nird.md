@@ -94,6 +94,7 @@ From Data Lake:
 
 When your job completes, copy the output results from your work directory back to your NIRD project directory.
 Make sure to create a corresponding directory on NIRD before initiating the transfer.
+Rememeber you have to login into a service node to execute the data transfer (step1).
 
 To Data Peak:
 ```bash
