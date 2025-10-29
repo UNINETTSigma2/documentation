@@ -163,7 +163,6 @@ Cons:
 ## Long-Term Data Storage on NIRD
 
 - If you do not yet have a NIRD project, you can apply for allocation on either NIRD Data Peak or NIRD Data Lake.
-- All Olivia HPC projects are required to maintain a NIRD allocation for data management and storage.
 - Output data stored temporarily on Olivia should be moved to NIRD Data Peak and/or NIRD Data Lake for mid-term preservation.
 - Long-term data preservation can be achieved by depositing open access data into the NIRD Research Data Archive (NIRD RDA). 
 - Please follow the [NIRD RDA documentation](research-data-archive) for more information.
