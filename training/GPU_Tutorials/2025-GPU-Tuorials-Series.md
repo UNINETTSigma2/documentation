@@ -45,9 +45,7 @@ By the end of this workshop, participants will be able to:
 
 This workshop is ideal for researchers, developers, and students with Python experience who want hands-on skills in scalable LLM training.
 
-**Registration**: [HERE](https://docs.google.com/forms/d/e/1FAIpQLSeQ00Qgwc47Qlzxiw2Q924YSIqHXWuKEhzy5tWrhdHwbwpw8Q/viewform) (**Registration deadline Oct. 28th!**)
-
-**IMPORTANT**
+**Registration**: Registration is now closed.
 
 We do have a *login-check* session **Tuesday November 4th at 10:30-12:00** which is mandatory for all participants that wants to log in and attend the practical part of the course.
 
