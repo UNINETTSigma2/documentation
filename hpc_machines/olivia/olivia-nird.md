@@ -128,16 +128,16 @@ In this scenario, the stage-in and stage-out scripts are used to automate data t
 
 ### Scenario 3: Direct Read from Compute Nodes
 
-In this approach, jobs are executed directly on the compute nodes, accessing input data stored on NIRD without 
-copying it to the local work directory. Both Datapeak and Datalake are mounted as read-only on the Olivia 
-compute nodes, allowing users to read data directly but not write back to these locations.
+In this approach, jobs are preloading input data directly on the compute nodes from NIRD.
+You have the option to either stage data to your local work directory, or consume data directly from NIRD without copying it to the local work directory. Both Data Peak and Data Lake are mounted as read-only on the Olivia 
+compute nodes, allowing users to read data directly from the compute nodes but not write back to these locations.
 
 After the job completes, the user must manually copy the output data from the compute node to their NIRD project 
-area on either datapeak or datalake (follow the step4 in Scenario1).
+area on either `/nird/datapeak` or `/nird/datalake` (follow the step4 in Scenario1).
 
 #### Step1: Access Input Data Directly from
 
-You can specify the path to your NIRD data directly in your job script or application.
+You can follow step 2 from scenario 1 to stage data directly on computes. Alternatively, you can specify the path to your NIRD data directly in your job script or application.
 
 #### Step2: Copy Output Data Back to NIRD
 
@@ -149,9 +149,12 @@ Pros:
 
 Cons:
 
+- You may waste some CPU and GPU cycles on computes while waiting for data transfer from NIRD
 - Potentially slower performance when multiple jobs access the same storage simultaneously
-- Risk of I/O bottlenecks
+- Risk of I/O bottlenecks and lockups
 - No write access to NIRD from compute nodes
+- Suitable for small datasets (e.g. less then 10000 files, and/or smaller then 100 GB)
+
 
 ## Best Practices for Data Management
 
