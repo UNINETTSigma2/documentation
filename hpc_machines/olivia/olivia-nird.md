@@ -128,16 +128,26 @@ In this scenario, the stage-in and stage-out scripts are used to automate data t
 
 ### Scenario 3: Direct Read from Compute Nodes
 
-In this approach, jobs are preloading input data directly on the compute nodes from NIRD.
-You have the option to either stage data to your local work directory, or consume data directly from NIRD without copying it to the local work directory. Both Data Peak and Data Lake are mounted as read-only on the Olivia 
-compute nodes, allowing users to read data directly from the compute nodes but not write back to these locations.
+In this approach, jobs are executed directly on the compute nodes, accessing input data stored on NIRD without
+copying it to the local work directory. Here you submit the job from login nodes as usual. 
+Both Data Peak and Data Lake  are mounted as read-only on the Olivia
+compute nodes, allowing users to read data directly but not write back to these locations.
 
 After the job completes, the user must manually copy the output data from the compute node to their NIRD project 
 area on either `/nird/datapeak` or `/nird/datalake` (follow the step4 in Scenario1).
 
+This method is suitable for:
+- Small or moderate data volumes
+- Quick analyses where data staging is unnecessary
+ 
+```{note}
+IMPORTANT: It is not recommended for high-throughput or I/O-intensive workflows where parallel data access could impact performance.
+```
+
 #### Step1: Access Input Data Directly from
 
-You can follow step 2 from scenario 1 to stage data directly on computes. Alternatively, you can specify the path to your NIRD data directly in your job script or application.
+You can specify the path to your NIRD data directly in your job script or application.
+- [Running Jobs](running-jobs)
 
 #### Step2: Copy Output Data Back to NIRD
 
