@@ -277,6 +277,10 @@ encourage projects to keep this area tidy, since both high disk usage
 and automatic deletion process takes away disk performance. The best
 solution is to clean up any unnecessary data after each job.
 
+On Olivia, it is possible to instruct the queue system to copy files
+from NIRD to this area before a job starts, and result files back
+again after it has run.  See {ref}`stage-in-stage-out`.
+
 It is probably a good idea for members of the project to create their
 own directory inside the project work area, to keep their files separate.
 

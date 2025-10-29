@@ -8,7 +8,9 @@ orphan: true
 
 This page documents how to specify the queue system parameters for the
 different job types on Olivia. See {ref}`job-types-olivia`
-for information about the different job types on Olivia.
+for information about the different job types on Olivia.  See also
+{ref}`stage-in-stage-out` for how to automatically copy files from and
+to NIRD.
 
 (job_scripts_olivia_normal)=
 
