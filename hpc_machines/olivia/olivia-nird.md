@@ -123,8 +123,9 @@ For more details on rsync usage, refer to the [File Transfer section](file-trans
 ### Scenario 2: Automated Staging (Slurm Script with Stage-In/Stage-Out)
 
 In this scenario, the stage-in and stage-out scripts are used to automate data transfer. The job script handles both input staging (before execution) and output staging (after execution).
+Please refer to the below documentation for the detailed description.
 
-- Link to the automated staging documentation to be updated
+- [Staging In / Out Files from / to NIRD](stage-in-stage-out)
 
 ### Scenario 3: Direct Read from Compute Nodes
 
