@@ -105,19 +105,19 @@ The accounting tries to assign a fair "price" to the amount of resources a job
 requested.
 
 Accounting on **Betzy** and **Saga** is done in terms of _billing
-units_, and the quota is in _billing unit hours_.  Each job is
+units_, and the quota is in _billing unit hours_, or _billing hours_
+for short.  Each job is
 assigned a number of billing units based on the requested CPUs, memory
 and GPUs.  The number that is subtracted from the quota is the number
 of billing units multiplied with the (actual) wall time of the job.
 
 Accounting on **Olivia** is slightly different.  It also uses _billing
-units_, but the number of GPUs are counted separately, not as part of
-the _billing units_.  There will be _GPU hour quotas_ in addition to
-_billing unit hour quotas_, but they have not been implemented yet.
-However, the GPU hour usage is being tracked already and will count
-against the quota once the quota is implemented.  So a GPU job on
-Olivia will be accounted both for its cpu and memory usage (on the
-_billing hour quota_) and its GPU usage (on the _GPU hour quota_).
+units_ and _billing hour_ quotas for the jobs in the `normal` (cpu)
+partition, but for jobs in the `accel` partition, the number of GPUs
+are counted instead, and the quotas are _GPU hour_ quotas, separate
+from the billing hour quotas.  So in short, a `normal` job will be
+accounted on the _billing hour quota_, whereas an `accel` job is
+accounted on the _GPU hour quota_.
 
 The number billing units of a job is calculated like this:
 
@@ -186,11 +186,8 @@ clusters.
   the memory cost of a job asking for all memory on a node will
   be 256, the number of CPUs on the node.
 
-- The `accel` partition: the memory factor is 0.3824106 units per GiB. Thus
-  the memory cost of a job asking for all memory on a node will
-  be 288, the number of CPUs on the node.  The GPU factor is 0,
-  because the GPU usage will be accounted separately, in addition to
-  the cpu and memory usage.
+- The `accel` partition: All factors are 0, because GPUs are counted
+  on the GPU hour quota instead of the billing hour quota.
 
 ## Finding out how many billing units your job consumes
 
