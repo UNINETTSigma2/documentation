@@ -353,8 +353,7 @@ command, binding the host directory and using torchrun.
 #SBATCH --output=resnet_with_container_%j.out
 #SBATCH --error=resnet_with_container_%j.err
 #SBATCH --partition=accel
-#SBATCH --nodes=1                     # Single compute node
-#SBATCH --nodelist=x1000c2s4b1n0
+#SBATCH --nodes=1                    # Single compute node
 #SBATCH --ntasks-per-node=1          # One task (process) on the node
 #SBATCH --cpus-per-task=72           # Reserve 72 CPU cores
 #SBATCH --mem-per-gpu=110G           # Request 110 GB of CPU RAM per GPU
