@@ -73,7 +73,7 @@ nird/s3.md
 nird/snapshots_lmd.md
 nird/backup_lmd.md
 nird/mounts_lmd.md
-nird/ts_dl.md
+nird/dp_dl.md
 nird/faq_nird.md
 sharing_files.md
 ```
