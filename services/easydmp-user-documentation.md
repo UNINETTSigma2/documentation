@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (easydmp)=
 
 # EasyDMP User Documentation
