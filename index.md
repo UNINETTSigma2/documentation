@@ -24,10 +24,13 @@ to the next level. {ref}`Read more ... <about-us>`
 {ref}`Overview <hardware-overview>` | {ref}`betzy` | {ref}`fram` | {ref}`olivia` | {ref}`saga` | {ref}`lumi`
 
 **Storage resources**:
-{ref}`nird` | {ref}`research-data-archive`
+{ref}`nird` | {ref}`storage-areas`
+
+**Data & Storage Services**:
+{ref}`research-data-archive`
 
 **Tools and other services**:
-{ref}`nird-toolkit` | {ref}`EasyDMP <easydmp>` | {ref}`Course resources <course-resources>`
+{ref}`nird-toolkit` | {ref}`Course resources <course-resources>`
 
 **NRIS Videos**: [NRIS YouTube channel](https://www.youtube.com/channel/UCG6fTXEY_SQYohtpU6aZwPw) | {ref}`training-videos` | {ref}`short-videos`
 
@@ -121,6 +124,13 @@ should include an
 :caption: Policies
 
 code-of-conduct.md
+User Policy<https://www.sigma2.no/acceptable-use-policy>
+getting_started/security-policy.md
+files_storage/sharing_files.md
+software/licenses.md
+Data Policy<https://www.sigma2.no/data-policy>
+Data decommissioning policies<https://www.sigma2.no/data-decommissioning-policies>
+Overview of Sigma2 Policies<https://www.sigma2.no/policies>
 ```
 
 ```{toctree}
