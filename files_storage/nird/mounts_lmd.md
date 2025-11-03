@@ -1,9 +1,9 @@
 # NIRD mounts on clusters
 
-The NIRD project storage areas, namely NIRD Data Peak (TS) and NIRD Data Lake (DL) are mounted on the login nodes of Betzy, Fram, and Saga.
+The NIRD project storage areas, namely NIRD Data Peak (DP) and NIRD Data Lake (DL) are mounted on the login nodes of Betzy, Fram, and Saga.
 One can directly access the NIRD project area from the login nodes of the aforementioned compute clusters.
 
-The path to Data Peak (TS) project areas is
+The path to Data Peak (DP) project areas is
 
 `/nird/datapeak/NSxxxxK`
 
@@ -13,9 +13,6 @@ while the path to Data Lake (DL) project is
 
 where ` NSxxxxK` is the ID of the project.
 
-
-```{note}
-Notice that for backward compatibility reasons projects on Data Peak are available also via `/nird/projects/NSxxxxK`.
 ```
 
 ```{warning}
