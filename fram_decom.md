@@ -7,7 +7,7 @@ orphan: true
 
 # Fram decommissioning information
 
-**Published:** 2025-11-03
+**Published:** 2025-11-04
 
 The Fram supercomputer is scheduled for decommissioning on **4 December 2025** as part of the national e-infrastructure upgrade.
 
@@ -41,7 +41,7 @@ To facilitate the transition and ensure data integrity, we will maintain a copy 
 The copy of Fram data is available as **read-only** in the following locations:
 
 * **On Fram (please use this to check integrity):**
-    * Projects: `/cluster/backup/hpc/fram`
+    * Projects: `/cluster/backup/hpc/`
     * $HOME: `/cluster/backup/home`
 
 * **On Olivia (this will be available from 31 October 2025):**
@@ -77,5 +77,6 @@ To facilitate a smooth transition for active projects migrating from Fram to Oli
 This exception is a temporary transitional arrangement and is valid until **31 March 2026**. These projects must plan to move their data to NIRD before this date.
 
 # Changelog:
+- 4 Nov: Updated path of data on Fram (integrity check)
 - 3 Nov: Added info regarding project disk quotas
 - 3 Nov: Added this changelog
