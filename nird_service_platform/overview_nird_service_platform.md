@@ -1,3 +1,5 @@
+(nird-service-platform)=
+
 # NIRD Service Platform
 
 The NIRD Service Platform (NIRD SP) is a Kubernetes-based cloud platform 

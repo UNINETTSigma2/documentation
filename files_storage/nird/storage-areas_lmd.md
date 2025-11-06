@@ -27,13 +27,13 @@ before 21 days.
 
 ## Project area
 
-Each NIRD project gets a project area either on NIRD Data Peak (TS) `/nird/datapeak/NSxxxxK`
- or on NIRD Data Lake (DL) `/nird/datalake/NSxxxxK` based on the project allocation,
- where `NSxxxxK` is the ID of the project.
+Each NIRD project gets a project area either on NIRD Data Peak (DP) `/nird/datapeak/NSxxxxK`
+ or on NIRD Data Lake (DL) `/nird/datalake/NSxxxxK` or on both based on the project allocation,
+ where `NSxxxxK` is the ID of the project. 
 
 The project area has a quota on disk space and the number of files.
 
-Quotas are allocated by the Resource Allocation Committee (RFK) on the NIRD resources for project storage, that is, on TS (`/nird/datapeak`) and DL (`/nird/datalake`). The two resources have separate quota based on the project allocation.
+Quotas are allocated by the Resource Allocation Committee (RFK) on the storage resources (NIRD) for project storage, that is, on DP (`/nird/datapeak`) and DL (`/nird/datalake`). The two resources have separate quota based on the project allocation.
 
 You can see the quota and the current usage by running:
 

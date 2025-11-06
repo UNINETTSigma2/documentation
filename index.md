@@ -24,10 +24,13 @@ to the next level. {ref}`Read more ... <about-us>`
 {ref}`Overview <hardware-overview>` | {ref}`betzy` | {ref}`fram` | {ref}`olivia` | {ref}`saga` | {ref}`lumi`
 
 **Storage resources**:
-{ref}`nird` | {ref}`research-data-archive`
+{ref}`nird` | {ref}`storage-areas`
+
+**Data & Storage Services**:
+{ref}`nird-dp` | {ref}`nird-dl` | {ref}`backup service` | {ref}`research-data-archive` |  {ref}`nird-service-platform`
 
 **Tools and other services**:
-{ref}`nird-toolkit` | {ref}`EasyDMP <easydmp>` | {ref}`Course resources <course-resources>`
+{ref}`nird-toolkit` | {ref}`Course resources <course-resources>`
 
 **NRIS Videos**: [NRIS YouTube channel](https://www.youtube.com/channel/UCG6fTXEY_SQYohtpU6aZwPw) | {ref}`training-videos` | {ref}`short-videos`
 
@@ -121,6 +124,13 @@ should include an
 :caption: Policies
 
 code-of-conduct.md
+User Policy<https://www.sigma2.no/acceptable-use-policy>
+getting_started/security-policy.md
+files_storage/sharing_files.md
+software/licenses.md
+Data Policy<https://www.sigma2.no/data-policy>
+Data decommissioning policies<https://www.sigma2.no/data-decommissioning-policies>
+Overview of Sigma2 Policies<https://www.sigma2.no/policies>
 ```
 
 ```{toctree}
@@ -172,13 +182,23 @@ getting_started/R.md
 ```{toctree}
 :hidden:
 :maxdepth: 1
-:caption: Files, storage and backup
+:caption: Data and Storage Services
+files_storage/nird/nird_dp.md
+files_storage/nird/nird_dl.md
+files_storage/nird/backup_lmd.md
+nird_archive/user-guide.md
+nird_service_platform/overview_nird_service_platform.md
+```
+
+```{toctree}
+:hidden:
+:maxdepth: 1
+:caption: Storage Resources and Usage
 
 files_storage/nird_lmd.md
 files_storage/clusters.md
 files_storage/quota.md
 files_storage/backup.md
-files_storage/sharing_files.md
 files_storage/performance.md
 ```
 
@@ -217,20 +237,15 @@ software/modulescheme.md
 software/installed_software.md
 software/userinstallsw.rst
 software/appguides.md
-software/licenses.md
 software/eessi.md
 ```
 
 ```{toctree}
 :hidden:
 :maxdepth: 1
-:caption: Additional services
+:caption: Tools and Additional services
 
-nird_archive/sandbox-user-guide.md
-nird_archive/user-guide.md
 nird_toolkit/overview.rst
-nird_service_platform/overview_nird_service_platform.md
-services/easydmp-user-documentation.md
 getting_help/course_resources.md
 ```
 
