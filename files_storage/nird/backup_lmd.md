@@ -19,7 +19,7 @@ Notice that datasets using the NIRD Data Lake (DL) service *cannot* opt in for t
 ```
 
 
-- The Data Peak (TS) path on the system is `/nird/datapeak`. For backward compatibility, a parallel mount point to `/nird/projects` is maintained.
+- The Data Peak (TS) path on the system is `/nird/datapeak`. 
 - The Data Lake (DL) path on the system is `/nird/datalake`
 
 We advise projects to assess which of the dataset needs a higher level of 
