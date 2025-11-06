@@ -75,5 +75,4 @@ nird/backup_lmd.md
 nird/mounts_lmd.md
 nird/dp_dl.md
 nird/faq_nird.md
-sharing_files.md
 ```
