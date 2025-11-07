@@ -2,6 +2,12 @@
 orphan: true
 ---
 
+```{danger}
+Fram will be decommissioned soon. 
+
+More info here: {ref}`fram_decom`
+```
+
 (fram)=
 
 # Fram
