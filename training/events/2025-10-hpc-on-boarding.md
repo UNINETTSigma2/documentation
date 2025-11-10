@@ -29,20 +29,16 @@ Registration is not longer available.
 ## Time, date (all times CEST)
 |   Date    |  Time   |  Topic	|
 | :----------- | :----------- | :---------- |
-| Mon 13.10    | 09:00 - 10:00 | Login check session (compulsory) and Intro to Visual Studio Code |
+| Mon 13.10    | 09:00 - 10:00 | Login check session and Intro to Visual Studio Code (compulsory) |
 | Tue 14.10    | 09:00 - 12:30 | Day 0 Linux for HPC (for UNIX-newbies)|
 | Wed 15.10    | 09:00 - 12:30 | HPC On-boarding Day 1 (for all) |
 | Thu 16.10    | 09:00 - 12:30 | HPC On-boarding Day 2 (for all) |
 
-**Note that there might be changes in the time schedule during lecturing**
+In case of questions, you can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
 
-You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
+**User Account and connection verification**: For all course participants, we want to make sure that you are able to log in an follow the practical parts of the course - thus we organise a login help session on October 13th 09:00-10:00. Note that this is compulsory in the sense that if you later experience access challenges, you are low on priority list. Link to this part is same as link to the course zoom event.
 
-**User Account and connection verification (*mandatory* 13 October, Monday)** 
-
-- To ensure that all participants can log in and follow the practical parts of the course, we will hold a **login help session** on **October 13th 09:00 - 10:00**. Attendance is mandatory, as we may not be able to assist with login issues during Day 0 - Day 2 of the course. Please make sure to join this session to verify your access in advance. Link to this part is same as link to the course zoom event.
-
-**Day0 - UNIX for HPC (*optional* 14 October, Tuesday)**
+**Day0 - UNIX for HPC (optional 15 October, Tuesday)**
 
 - 09:00-09:05 - Welcome, Practical information & icebreaker question
 - 09:05-09:35 - [The terminal and remote login](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/intro.html)
@@ -56,7 +52,7 @@ You can always contact us by sending an email to [support@nris.no](mailto:suppor
 - 11:30-12:00 - [Composing commands with pipes](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html) 
 - 12:00-12:30 - [Scripting](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html) 
 
-**Day1 - HPC Intro (15 October, Wednesday)**
+**Day1 - HPC Intro (16 October, Wednesday)**
 
 - 09:00-09:05 - Welcome, Practical information & icebreaker question
 - 09:05-09:30 - [Why use a Cluster?](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html)
@@ -68,7 +64,7 @@ You can always contact us by sending an email to [support@nris.no](mailto:suppor
 - 11:45-12:15 - [Transferring files](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html) 
 - 12:15-12:30 - Q&A & Discussion
 
-**Day2 - HPC Intro (16 October, Thursday)**
+**Day2 - HPC Intro (17 October, Thursday)**
 
 - 09:00-09:05 - Recap & icebreaker question
 - 09:05-09:55 - [Accessing Software](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html) 
