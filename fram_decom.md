@@ -7,7 +7,7 @@ orphan: true
 
 # Fram decommissioning information
 
-**Published:** 2025-11-06
+**Published:** 2025-11-10
 
 The Fram supercomputer is scheduled for decommissioning on **4 December 2025** as part of the national e-infrastructure upgrade.
 
@@ -44,10 +44,10 @@ The copy of Fram data is available as **read-only** in the following locations:
     * Projects: `/cluster/backup/hpc/`
     * $HOME: `/cluster/backup/home`
 
-* **On Olivia (this will be available from *XX* November 2025):**
+* **On Olivia (available now on node `svc01`):**
+    * From Olivia login nodes: first `ssh svc01` then you will find your Fram data on the paths below.
     * Projects: `/nird/backup/hpc/fram/projects`
     * $HOME: `/nird/backup/fram/home`
-    * *We are having some technical difficulties related to mounting these areas on Olivia, but we are working on it!*
 
 ```{note}
 IMPORTANT: Copy of your Fram data on NIRD is temporary. The data in the locations mentioned above will be retained until **31 March 2026**. 
@@ -78,6 +78,7 @@ To facilitate a smooth transition for active projects migrating from Fram to Oli
 This exception is a temporary transitional arrangement and is valid until **31 March 2026**. These projects must plan to move their data to NIRD before this date.
 
 # Changelog:
+- 10 Nov: Updated status of Olivia data path
 - 6 Nov: Updated status of Olivia data path
 - 4 Nov: Updated path of data on Fram (integrity check)
 - 3 Nov: Added info regarding project disk quotas
