@@ -5,7 +5,7 @@
 #SBATCH --nodes=1                 # Number of nodes to use
 #SBATCH --ntasks-per-node=128     # Number of tasks per node
 #SBATCH --cpus-per-task=1         # 1 CPU core per MPI task (adjust if using hybrid MPI/OpenMP)
-#SBATCH --mem-per-cpu=3G          # Amount of CPU memory per CPU core
+#SBATCH --mem-per-cpu=2G          # Amount of CPU memory per CPU core
 #SBATCH --partition=normal        # Run on the normal CPU partition
 #SBATCH --output=my-job-name-%j.out  # Sets name of output file (%j is replaced by job ID)
 #SBATCH --error=my-job-name-%j.err   # Sets name of error file (%j is replaced by job ID)
