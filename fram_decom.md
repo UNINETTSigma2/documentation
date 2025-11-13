@@ -7,7 +7,7 @@ orphan: true
 
 # Fram decommissioning information
 
-**Published:** 2025-11-10
+**Published:** 2025-11-13
 
 The Fram supercomputer is scheduled for decommissioning on **4 December 2025** as part of the national e-infrastructure upgrade.
 
@@ -62,12 +62,16 @@ If you have questions, please contact us via contact@sigma2.no.
 
 ### Access and Compute quota
 
-Your compute quota from Fram has been administratively duplicated to Olivia. If you had access to Fram, you have access to Olivia now.
+If your project _only_ had a compute quota on Fram, this has been administratively duplicated to Olivia. If you had access to Fram, you have access to Olivia now.
 
 You can log in immediately:
 ```bash
 ssh <username>@olivia.sigma2.no
 ```
+
+Please contact contact@sigma2.no in the case you have trouble with this.
+
+Note that HPC projects with a quota on more than one system will not automatically get a compute quota on Olivia. To apply for additional compute quota, the project PI must login to metacenter.no and send an extra application ("Apply to extend granted quota" from the applications menu).
 
 ## Disk quotas on Olivia
 Projects migrating from Fram to Olivia will receive the same `/cluster/project` disk quota on Olivia as they currently have on Fram.
@@ -78,6 +82,7 @@ To facilitate a smooth transition for active projects migrating from Fram to Oli
 This exception is a temporary transitional arrangement and is valid until **31 March 2026**. These projects must plan to move their data to NIRD before this date.
 
 # Changelog:
+- 13 Nov: Added clarification in "Access and Compute quota"
 - 10 Nov: Updated status of Olivia data path
 - 6 Nov: Updated status of Olivia data path
 - 4 Nov: Updated path of data on Fram (integrity check)
