@@ -65,7 +65,7 @@ At time of writing we only support the CPU compiled version of VASP. A single-no
 Or for `6.5.1` 
 	$ module load VASP/6.5.1-intel-2024a
 
-For those migrating from FRAM please be mindful to adjust your parallelization settings. We recommend running `--ntasks-per-node=250`. In general we found using `NPAR = 25` to be a good starting point. We found that for many systems using `KPAR = <1/2 number nodes>` to work well, but *only* if your system contains more than one k-point. 
+For those migrating from FRAM please be mindful to adjust your parallelization settings. A good starting point is using `--ntasks-per-node=250` with `NPAR = 25` to be a good starting point for many cases. We found that for many systems using `KPAR = <1/2 number nodes>` to work well, but *only* if your system contains more than one k-point. 
 
 
 ## Usage: Fram
