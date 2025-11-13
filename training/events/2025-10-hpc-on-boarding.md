@@ -24,6 +24,8 @@ Registration is not longer available.
 - [Collaborative document from day 0](https://md.sigma2.no/hpc-onboarding-October-14-2025)
 - [Collaborative document from day 1](https://md.sigma2.no/hpc-onboarding-October-15-2025)
 - [Collaborative document from day 2](https://md.sigma2.no/hpc-onboarding-October-16-2025)
+- [YouTube playlist of all days](https://www.youtube.com/playlist?list=PLoR6m-sar9AjUVXwuqB3hAeiEFuQw5wrZ)
+
 ```
 
 ## Time, date (all times CEST)

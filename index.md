@@ -156,21 +156,17 @@ Project Leader Support<https://www.sigma2.no/project-leader-handbook>
 :hidden:
 :maxdepth: 1
 :caption: Training
-
 training/events.md
 training/notes_qa.md
-training/past_training.md
 training/videos.md
 training/short_instructions.md
 training/material.md
-
 ```
 
 ```{toctree}
 :hidden:
 :maxdepth: 1
 :caption: Getting started
-
 getting_started/getting_started.md
 getting_started/opslog.md
 getting_started/applying_account.md
