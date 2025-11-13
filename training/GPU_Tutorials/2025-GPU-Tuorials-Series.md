@@ -1,6 +1,6 @@
 (GPU-tutorials series)=
 
-# Hands-On Workshop: Fine-Tuning LLMs with Multi-GPU Training <time datetime="2025-11-05 20:00"> 05 Nov. 2025 </time>
+# NRIS GPU Tutorials series: Fine-Tuning LLMs with Multi-GPU Training <time datetime="2025-11-05 20:00"> 05 Nov. 2025 </time>
 ## *NRIS* GPU Tutorials Series 
 
 The Norwegian Research Infrastructure Services (**NRIS**) is offering a series of GPU Tutorial events given every now and then on relevant topics in the area of GPU utilization, Machine Learning, Large Language models and related topics. 
