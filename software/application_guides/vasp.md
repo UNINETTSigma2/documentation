@@ -67,6 +67,44 @@ Or for `6.5.1`
 
 For those migrating from FRAM please be mindful to adjust your parallelization settings. A good starting point is using `--ntasks-per-node=250` with `NPAR = 25` to be a good starting point for many cases. We found that for many systems using `KPAR = <1/2 number nodes>` to work well, but *only* if your system contains more than one k-point. 
 
+### Experimental GPU VASP
+An experimental GPU compiled version of VASP can be run as follows:
+This image is built on top of the nvhpc:25.1-devel-cuda12.6-ubuntu24.04 image, see associated def file.
+
+Currently only one node is supported. 
+
+This may be run using for VASP6-5 users. (VASP6.4 users should use nvhpc_25.1_cuda12.6_u24.04_vasp.6.4.3.sif instead) :
+
+```
+#SBATCH --account=nn9997k
+#SBATCH --time=1:00:00
+#SBATCH --nodes=1
+#SBATCH --mem=500G
+#SBATCH --ntasks-per-node=250
+#SBATCH --network=single_node_vni
+#SBATCH --partition=accel
+#SBATCH --gpus-per-node=4
+
+module load NRIS/GPU
+module load hpc-container-wrapper
+apptainer exec --nv /cluster/work/support/container/nvhpc_25.1_cuda12.6_u24.04_vasp.6.5.1.sif  mpirun -np 4 vasp_std
+```
+
+Note that we cannot use more than one rank per GPU because of the use of NCCL, see: https://www.vasp.at/wiki/OpenACC_GPU_port_of_VASP
+
+Running the job will result in the following errors:
+```
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+[LOG_CAT_ML] You must specify a valid HCA device by setting:
+-x HCOLL_MAIN_IB=<dev_name:port> or -x UCX_NET_DEVICES=<dev_name:port>.
+If no device was specified for HCOLL (or the calling library), automatic device detection will be run.
+In case of unfounded HCA device please contact your system administrator.
+[gpu-1-57:904030] Error: ../../../../../ompi/mca/coll/hcoll/coll_hcoll_module.c:310 - mca_coll_hcoll_comm_query() Hcol library init failed
+```
+These may be ignored.
+
+Since the GPU compiled VASP is new we very much appreciate any comments on its use. We find setting NPAR=1 or 2 and KPAR=1 or 2 is a good starting point for many calculations. 
+
 
 ## Usage: Fram
 **NOTE: Fram will be made obsolete in 2026, please see the Olivia running guide above
