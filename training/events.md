@@ -28,6 +28,12 @@ events/2026-04-hpc-on-boarding.md
 
 ### 2025
 
+```{toctree}
+:maxdepth: 1
+NAIC/2025-12-IBM-Power11.md
+
+```
+
 ### 2026
 
 ## Request Training
