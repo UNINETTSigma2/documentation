@@ -17,6 +17,13 @@ On Windows, many other tools exist ([WinSCP](https://winscp.net/),
 [MobaXterm](https://mobaxterm.mobatek.net/), and others), but we recommend to
 use `rsync` through [Windows Subsystem for Linux
 (WSL)](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux).
+
+For large data transfers `rclone` is an option which offer better performance through 
+multiple transfers, see below. 
+
+For transfers to and from [NIRD the S3](https://documentation.sigma2.no/files_storage/nird/s3.html#nird-s3) 
+protocol is also an option. It can reach very high performance as all object transfers are 
+independent of each other.
 ```
 
 **NB**: Since the implementation of 2FA (2 factor authentication) on NRIS clusters, 
