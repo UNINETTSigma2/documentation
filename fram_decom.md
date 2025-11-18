@@ -7,7 +7,7 @@ orphan: true
 
 # Fram decommissioning information
 
-**Published:** 2025-11-13
+**Published:** 2025-11-18
 
 The Fram supercomputer is scheduled for decommissioning on **4 December 2025** as part of the national e-infrastructure upgrade.
 
@@ -19,7 +19,7 @@ All active projects with a quota *only* on Fram, and users are being migrated to
 
 | Date/Time | Event | Impact on Your Work |
 | :--- | :--- | :--- |
-| **Friday, 21 Nov 2025** | **Fram Data Freeze** | `/cluster/project` and `$HOME` directories will become **read-only**. You can only write data to the `/cluster/work` area. |
+|**Friday, 21 Nov 2025**| **Data operations on Fram under user's own responsibility** | `/cluster/project` and `$HOME` directories will **NOT** become read-only. You can continue to modify files, however, changes made after this date are not guaranteed to be automatically transferred to NIRD. **It is the user's responsibility to migrate any data changed or created after this date.**|
 | **Thursday, 4 Dec 2025**<br>(11:00 CEST) | **System Shutdown** | All compute nodes will be reserved to finish running jobs. Fram will then be powered down and taken offline. |
 
 **Note:** Short-notice downtimes may be necessary. Please monitor [opslog.sigma2.no](https://opslog.sigma2.no) for service announcements.
@@ -82,6 +82,7 @@ To facilitate a smooth transition for active projects migrating from Fram to Oli
 This exception is a temporary transitional arrangement and is valid until **31 March 2026**. These projects must plan to move their data to NIRD before this date.
 
 # Changelog:
+- 18 Nov: Fram data will not be read-only. It is the user's responsibility to ensure that data changed or created after 21 November 2025 is migrated 
 - 13 Nov: Added clarification in "Access and Compute quota"
 - 10 Nov: Updated status of Olivia data path
 - 6 Nov: Updated status of Olivia data path
