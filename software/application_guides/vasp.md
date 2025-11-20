@@ -57,15 +57,23 @@ For quick benchmarking it is often useful to look at the speed of a single SCF s
 It can be helpful to look at both the final timing information at the end of the OUTCAR as well as the `LOOP` information for each SCF step (not to be confused with the `LOOP+` information at the end of each ionic step)
 
 ## Usage: Olivia
-At time of writing we only support the CPU compiled version of VASP. A single-node GPU version is in progress, if you are interested in testing the GPU version please open a ticket. To use VASP please run
 
-	$ module load NRIS/CPU
-	$ module load VASP/6.4.3-intel-2024a
+The CPU version of VASP is the most tested, an experimental version of GPU vasp is also available (see below). To run VASP with CPU a good starting point is:
+```
+#SBATCH --account=<your account>
+#SBATCH --time=1:00:00 # adjust as needed 
+#SBATCH --nodes=1 # adjust as needed
+#SBATCH --mem-per-cpu=2G
+#SBATCH --ntasks-per-node=250
+#SBATCH --network=single_node_vni
 
-Or for `6.5.1` 
-	$ module load VASP/6.5.1-intel-2024a
+module purge
+module load NRIS/CPU
+module load VASP/6.5.1-intel-2024a # or VASP/6.4.3-intel-2024a
+srun vasp_std # or vasp_ncl or vasp_gam
+```
 
-For those migrating from FRAM please be mindful to adjust your parallelization settings. A good starting point is using `--ntasks-per-node=250` with `NPAR = 25` to be a good starting point for many cases. We found that for many systems using `KPAR = <1/2 number nodes>` to work well, but *only* if your system contains more than one k-point. 
+For those migrating from FRAM please be mindful to adjust your parallelization settings. A good starting point is using `--ntasks-per-node=250` with `NPAR = 25` to be a good starting point for many cases. We found that for many systems using `KPAR = <1/2 number nodes>` to work well, but *only* if your system contains more than one k-point. Again the above is only a starting point. 
 
 ### Experimental GPU VASP
 An experimental GPU compiled version of VASP can be run as follows:
@@ -76,7 +84,7 @@ Currently only one node is supported.
 This may be run using for VASP6-5 users. (VASP6.4 users should use nvhpc_25.1_cuda12.6_u24.04_vasp.6.4.3.sif instead) :
 
 ```
-#SBATCH --account=nn9997k
+#SBATCH --account=<your account>
 #SBATCH --time=1:00:00
 #SBATCH --nodes=1
 #SBATCH --mem=500G
