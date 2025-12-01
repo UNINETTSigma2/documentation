@@ -71,5 +71,5 @@ olivia/software_stack.md
 olivia/trouble_shooting.md
 ```
 
-### [Olivia Best Practices Guide (WIP)](https://docs.google.com/document/d/1J9VBqyProblMLaqp0BYJUaPzVYZVQTMqMVbX2E94JZA/edit?tab=t.0)
+### [Olivia Best Practices Guide](https://drive.google.com/file/d/1vVCx8Kra1sK8wm9gykk7OoHMNk3H-x26/view)
 
