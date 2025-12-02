@@ -353,7 +353,7 @@ After placing these files in the working directory, you are ready to begin train
 
 
 
-#### Job Script for Single GPU Training
+### Job Script for Single GPU Training
 
 Note that, the command to run the script includes the `--nv` option, which ensures that the container has access to GPU resources. This is essential for leveraging hardware acceleration during training.
 

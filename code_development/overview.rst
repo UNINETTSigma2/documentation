@@ -37,3 +37,8 @@ In this section we present a list of tutorials covering different topics in hete
    guides_python.md
    guides/PyTorchProfilerMultiGpu.md
    guides/pytorch_olivia/PyTorchSingleGpu.md
+
+.. toctree::
+   :hidden:
+   guides/pytorch_olivia/PyTorchMultiGpu.md
+   guides/pytorch_olivia/PyTorchMultiNode.md
