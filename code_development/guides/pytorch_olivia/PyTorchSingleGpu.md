@@ -417,7 +417,7 @@ Total Training Time: 1923.655 seconds
 Throughput: 2598.388 images/second
 Single-GPU Thrpughput: 2598.388 images/second
 ```
-The output suggests that the total throughput that we obtained from single GPU training is ` 2598.388 images/second` and it took approximately `1923.655 seconds` to complete the training. As we proceed forward with the multi-gpu implementation, our goal would be to achieve higher throughtput and also possibly reduced the training time for the same number of epochs.
+The output suggests that the total throughput that we obtained from single GPU training is ` 2598.388 images/second` and it took approximately `1923.655 seconds` to complete the training. As we proceed forward with the multi-gpu implementation, our goal would be to achieve higher throughput and also possibly reduced the training time for the same number of epochs.
 
 
 Now the goal is to scale this up to multiple GPUs.For this, please check out the {ref}`Multi GPU Guide <pytorch-multi-gpu>`.
