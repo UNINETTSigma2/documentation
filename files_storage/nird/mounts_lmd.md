@@ -13,7 +13,6 @@ while the path to Data Lake (DL) project is
 
 where ` NSxxxxK` is the ID of the project.
 
-```
 
 ```{warning}
 
