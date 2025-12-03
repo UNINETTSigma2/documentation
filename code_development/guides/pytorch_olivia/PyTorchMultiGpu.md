@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (pytorch-multi-gpu)=
 # Multi-GPU Implementation for PyTorch on Olivia
 
@@ -8,7 +12,7 @@ For this, we need to modify the main Python script to include DDP implementation
 Note: Please replace this path `/cluster/work/projects/<project_number>/<user_name>/olivia/datasets/` used in the script below to your actual path.
 
 ```python
-#train_ddp.py
+# train_ddp.py
 import os
 import time
 import argparse
