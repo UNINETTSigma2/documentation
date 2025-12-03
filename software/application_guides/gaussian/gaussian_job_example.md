@@ -188,7 +188,7 @@ In this script we want to run a 4 node job, where each node will start 1 linda w
 ```{literalinclude} water_Linda.com
 :language: bash
 ```
-    Note the preamble contains the line `%NPROCSHARED=2` which specifies the number of cores for each worker.
+Note the preamble contains the line `%NPROCSHARED` which specifies the number of cores for each worker.
 
 - Job script example (`betzy_g16.sh`):
 
