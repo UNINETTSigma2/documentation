@@ -12,6 +12,9 @@ This will be under more or less continoues development, and if you find things m
 and/or not working as expected, do not hesitate to {ref}`contact us <support-line>`.
 ```
 
+```{contents} Table of Contents
+```
+
 ## Expected knowledge base
 
 Before you run any Gaussian calculations, or any other calculations on NRIS machines for that matter, you are expected to update yourself on NRIS machinery specifics. A decent minimal curriculum is as follows:
@@ -22,7 +25,7 @@ Before you run any Gaussian calculations, or any other calculations on NRIS mach
 * {ref}`running-jobs`
 * {ref}`job-scripts`
 
-### Finding available Gaussian versions and submitting a standard Gaussian job
+## Finding available Gaussian versions and submitting a standard Gaussian job
 To see which versions of Gaussian software which are available on a given machine; type the following command after logged into the machine in question:
 
     module avail Gaussian
@@ -37,7 +40,7 @@ specifying one of the available versions.
 
 To run an example - create a directory, step into it, create an input file (for example for water - see below), download a job script (for example the fram cpu job script as shown below) and submit the script with:
 
-	$ sbatch fram_g16.sh
+	$ sbatch saga_g16.sh
 
 
 ## Gaussian input file examples
@@ -50,17 +53,6 @@ To run an example - create a directory, step into it, create an input file (for 
 - Caffeine input example (note the blank line at the end; `caffeine.com`):
 
 ```{literalinclude} caffeine.com
-```
-
-## Running Gaussian on Fram
-
-On Fram, you currently run exclusively on nodes by default. Note that means that you are using the nodes exclusively - thus if you ask for less than a full node, you might experience that more than one job is stacked on one node. This is something that you should keep in mind when submitting jobs.
-
-
-- Job script example (`fram_g16.sh`):
-
-```{literalinclude} fram_g16.sh
-:language: bash
 ```
 
 
@@ -149,4 +141,114 @@ the program runs efficiently with your particular computational setup. Also do n
 hesitate to contact us if you need guidance on GPU efficiency, see our extended
 {ref}`extended-support-gpu`.
 ```
+
+
+## Running Gaussian in Betzy and Olivia with Linda parallelization
+
+Linda is Gaussian's method of process parallelization. Linda allows to run certain calculations in less time dute to parallelization, and it is essential in multi-node calculations of Gaussian, as it helps Gaussian communicate across nodes. Since the minimum numnber of nodes one can run jobs on in Betzy is 4, knowing how to use Linda is essential for proper usage.
+
+More information on Linda and parallelization in Gaussian can be read in Gaussian's documentation [here](https://gaussian.com/running/) and for what specific calculations are sped up, you can read [here](https://gaussian.com/relnotes/). In both of those links, navigate to the Parallel sections.
+
+In order to run Gaussian with `Linda` parallelization in Betzy and Olivia one needs to set up passwordless login to the nodes, authorize these nodes for login in job-script, and put the necessary lines in the Gaussian input file. Following is a guide in how to do this
+
+### Setting up Passwordless login to the nodes
+Before any job with Gaussian is done, do the following in your home directory.
+__You only have to this once.__
+
+1. Generate a keypair for the nodes. For this, run the following in the terminal:
+```shell
+ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -C "$USER@<MACHINE>" -N ""
+```
+This will generate a passwordless keypair. Replace `<MACHINE>` with either `betzy`, or `olivia`.
+
+2. Add the public key (ending with `.pub`) to authorized keys by running the following commands on the terminal:
+```shell
+touch ~/.ssh/authorized_keys
+cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys
+```
+
+3. If you don't have a `~/.ssh/config`, you can create it by by running the following commands in the terminal, otherwise, skip to the next step
+```shell
+touch ~/.ssh/config
+```
+
+4. Open the `~/.ssh/config` file  and add the lines below to the end of it with your preferred editor.
+```bash
+Host *.<MACHINE>.sigma2.no
+IdentityFile ~/.ssh/id_ed25519
+BatchMode yes
+StrictHostKeyChecking yes
+```
+replacing `<MACHINE>` with either `betzy`, or `olivia`.
+
+### Running Gaussian using Linda workers on Betzy
+Following is an example script for Betzy, later we will show the same for Olivia:
+In this script we want to run a 4 node job, where each node will start 1 linda worker using 2 processes each.
+- The input file ("water_Linda.com`):
+```{literalinclude} water_Linda.com
+:language: bash
+```
+    Note the preamble contains the line `%NPROCSHARED=2` which specifies the number of cores for each worker.
+
+- Job script example (`betzy_g16.sh`):
+
+```{literalinclude} betzy_g16.sh
+:language: bash
+```
+There are two important sections in the script, which will be explained below:
+
+1. These lines:
+```bash
+for HN in $(scontrol show hostnames) 
+do
+    mkdir -p ~/.ssh
+    touch ~/.ssh/known_hosts
+    ssh-keygen -R "$HN" 2>/dev/null || true
+    ssh-keyscan -H "$HN" >> ~/.ssh/known_hosts 2>/dev/null || true
+    
+    # These two lines are for testing that the connections are set up properly, not necessary, but help in case of issues.
+    ssh -o BatchMode=yes "$HN" true && echo "SSH OK"
+    ssh -o BatchMode=yes "$HN" true && echo "SSH OK" || echo "SSH failed"
+done
+```
+These lines will allow Linda to login to the different nodes without a `yes|no` prompt appearing, if this prompt appears, Linda will crash. 
+
+2. These lines:
+```bash
+NodeList=$(scontrol show hostnames | while read n ; do echo $n:1 ; done |  paste -d, -s)
+
+{
+printf '%%LINDAWORKERS=%s\n' "$NodeList"
+cat input.com
+} > input.tmp && mv input.tmp input.com
+```
+
+Will tell Gaussian how to distribute the `lindaWorkers` through the nodes, even if just one node is used. Because of this section `do echo $n:1` only one `LindaWorker` will be added to each node.
+This adds a line like the following at the top of your input file
+
+```bash
+%LindaWorkers=[node_1]:1,[node_2]:1, ...
+```
+If you want more `LindaWorkers` per node, change the number after the colon to what you want. For more information about this specific part of the preamble, check the Gaussian documentation linked above.
+
+```{note}
+Since the minimum number of nodes per job is 4 in betzy, only heavy calculations should be ran such that each node's CPU utilization is maximized. Saga and Olivia are better suited for smaller calculations.
+```
+
+### Running Gaussian using Linda workers on Olivia
+
+Here is an example of a script for running Gaussian on Olivia. The specific details are as shown above for betzy. The same input file is used.
+- Job script example (`olivia_g16.sh`):
+
+```{literalinclude} olivia_g16.sh
+:language: bash
+```
+
+```{note}
+Gaussian Defaults to 1 CPU if none are specified. Changing the variable `--cpus-per-task` in the submit script is not sufficient to increase the Gaussian's CPU usage. The user must also change the line `%NPROCSHARED` in the input file with the correct number of CPUs needed .
+```
+
+
+
+
 
