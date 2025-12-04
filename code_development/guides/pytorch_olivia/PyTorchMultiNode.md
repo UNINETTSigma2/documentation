@@ -20,7 +20,7 @@ Multi-node training on Olivia requires proper configuration of NCCL with the OFI
 
 ```{code-block} bash
 :linenos:
-:emphasize-lines: 8, 10, 19, 29-33, 43-51, 57-58, 67-77, 82-87
+:emphasize-lines: 8, 10, 20, 29-33, 45-49, 52-53, 64-79, 83-88
 
 #!/bin/bash
 #SBATCH --account=<project_number>
@@ -127,12 +127,12 @@ The highlighted lines show the multi-node specific additions:
 |-------|--------|---------|
 | 8 | `--nodes=2` | Request multiple nodes |
 | 10 | `--gpus-per-node=4` | GPUs per node (instead of `--gpus=4`) |
-| 19 | `--batch-size 2048` | Larger batch for 8 GPUs |
+| 20 | `--batch-size 2048` | Larger batch for 8 GPUs |
 | 29-33 | Host library paths | Paths to libfabric, NCCL, CXI on host |
-| 43-51 | Head node discovery | Get head node IP for rendezvous |
-| 57-58 | Pass SLURM vars | Export node/GPU counts to container |
-| 67-77 | `--bind` mounts | Mount host libraries into container |
-| 82-87 | `torchrun` with rendezvous | Use `rdzv_backend=c10d` and `rdzv_endpoint` for multi-node coordination |
+| 45-49 | Head node discovery | Get head node IP for rendezvous |
+| 52-53 | Pass SLURM vars | Export node/GPU counts to container |
+| 64-79 | `srun` with `--bind`/`--env` | Mount host libraries and set environment |
+| 83-88 | `torchrun` with rendezvous | Use `rdzv_backend=c10d` and `rdzv_endpoint` for multi-node coordination |
 
 ```{note}
 The key difference from single-node multi-GPU is the **rendezvous setup**. Single-node uses `--standalone`, while multi-node requires explicit coordination via `--rdzv_backend=c10d` and `--rdzv_endpoint` pointing to the head node.
