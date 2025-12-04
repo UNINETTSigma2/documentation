@@ -17,7 +17,10 @@ Multi-node training on Olivia requires proper configuration of NCCL with the OFI
 
 
 ## Job Script for Multi-Node Training
-```bash
+
+```{code-block} bash
+:linenos:
+
 #!/bin/bash
 #SBATCH --account=<project_number>
 #SBATCH --job-name=resnet_multinode

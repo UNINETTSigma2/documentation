@@ -17,7 +17,9 @@ For this, we need to modify the main Python script to include DDP implementation
 
 Note: Please replace this path `/cluster/work/projects/<project_number>/<user_name>/olivia/datasets/` used in the script below to your actual path.
 
-```python
+```{code-block} python
+:linenos:
+
 # train_ddp.py
 import os
 import time
@@ -196,7 +198,9 @@ Finally, we dont need to write any code for the cleanup for our single-gpu imple
 
 For single-node multi-GPU training, use `torchrun` with `--standalone`. We request 4 GPUs and adjust batch size and learning rate for better scaling.
 
-```bash
+```{code-block} bash
+:linenos:
+
 #!/bin/bash
 #SBATCH --job-name=resnet_multigpu
 #SBATCH --account=<project_number>
