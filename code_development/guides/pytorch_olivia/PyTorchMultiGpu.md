@@ -36,7 +36,7 @@ from train_utils import test
 # Configuration
 DATA_DIR = "./datasets"  # Dataset downloads automatically here
 
-#Parse input arguments
+# Parse input arguments
 parser = argparse.ArgumentParser(description='CIFAR-100 DDP example with Mixed Precision',
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--batch-size', type=int, default=512, help='Input batch size for training')
@@ -58,7 +58,7 @@ def main_worker():
     local_rank = int(os.environ["LOCAL_RANK"])
     global_rank = int(os.environ["RANK"])
     world_size = int(os.environ["WORLD_SIZE"])
-    device = torch.device(f"cuda:{local_rank}")  #note: we haven´t used get_device from device_utils here
+    device = torch.device(f"cuda:{local_rank}")  # Note: we don't use get_device from device_utils here
 
    # Log initialization info
     if global_rank == 0:
@@ -250,6 +250,6 @@ Total GPUs used: 4
 Training completed successfully.
 ```
 
-Note that, By using four GPUs now we can see that the throughput is  `36926.594 images/second` and training time is `133.107 seconds`.It suggests that we achieved perfect scaling by using four GPUs.This setup is highly efficient, with a speedup factor of  almost `15.21` and a scaling efficiency of almost `374.1%`. This is the indication that  distributed training setup is highly optimized.
+With 4 GPUs, the throughput increased from ~2,600 images/second (single GPU) to ~37,000 images/second—a **14x speedup**. This super-linear scaling (beyond the expected 4x) comes from mixed precision training (FP16) and the larger effective batch size, which better utilizes the GPU compute capabilities.
 
-Once we are done with it, we can use the same python script where we had setup the ddp.We just need to make changes in the job script. Please refer to this  {ref}`Multi node Guide <pytorch-multi-node>` documentation to learn more about it.
+To scale beyond a single node, see the {ref}`Multi-Node Guide <pytorch-multi-node>`.
