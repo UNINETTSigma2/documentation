@@ -55,7 +55,9 @@ Create a directory with all files in a flat structure:
 ├── model.py
 ├── singlegpu_job.sh
 ├── multigpu_job.sh       # for multi-GPU
-└── multinode_job.sh      # for multi-node
+├── multinode_job.sh      # for multi-node
+└── datasets/             # created automatically on first run
+    └── cifar-100-python/
 ```
 
 ## Single GPU Implementation

@@ -13,9 +13,7 @@ This is part 2 of the PyTorch on Olivia guide. See {ref}`pytorch-on-olivia` for 
 
 To scale training to multiple GPUs, we use PyTorch's [Distributed Data Parallel (DDP)](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html) framework. The code below works for both multi-GPU (single node) and multi-node setups.
 
-For this, we need to modify the main Python script to include DDP implementation. The updated script will work for both scenarios Multiple GPUs within a single node and Multiple nodes.
-
-Note: Please replace this path `/cluster/work/projects/<project_number>/<user_name>/olivia/datasets/` used in the script below to your actual path.
+For this, we need to modify the main Python script to include DDP implementation. The updated script will work for both scenarios: multiple GPUs within a single node and multiple nodes.
 
 ```{code-block} python
 :linenos:
@@ -33,6 +31,9 @@ from torch.distributed import init_process_group, destroy_process_group
 from dataset_utils import load_cifar100
 from model import WideResNet
 from train_utils import test
+
+# Configuration
+DATA_DIR = "./datasets"  # Dataset downloads automatically here
 
 #Parse input arguments
 parser = argparse.ArgumentParser(description='CIFAR-100 DDP example with Mixed Precision',
@@ -67,7 +68,7 @@ def main_worker():
     per_gpu_batch_size = args.batch_size // world_size  # Divide global batch size across GPUs
     train_sampler = DistributedSampler(
         torchvision.datasets.CIFAR100(
-            root="/cluster/work/projects/<project_number>/<user_name>/olivia/datasets/",
+            root=DATA_DIR,
             train=True,
             download=True
         )
