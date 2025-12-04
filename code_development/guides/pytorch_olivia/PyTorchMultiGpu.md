@@ -17,7 +17,7 @@ For this, we need to modify the main Python script to include DDP implementation
 
 ```{code-block} python
 :linenos:
-:emphasize-lines: 7-9, 28-31, 34, 48-49, 65-66, 80-81, 87, 93-96, 103, 113-115, 127
+:emphasize-lines: 8-10, 28-31, 34, 48-49, 64-65, 71-72, 79, 91-93, 101, 113-116, 143
 
 # train_ddp.py
 import os
@@ -185,17 +185,17 @@ The highlighted lines above show the DDP-specific additions:
 
 | Lines | Change | Purpose |
 |-------|--------|---------|
-| 7-9 | DDP imports | `DistributedSampler`, `DDP`, `init_process_group` |
+| 8-10 | DDP imports | `DistributedSampler`, `DDP`, `init_process_group` |
 | 28-31 | `ddp_setup()` | Initialize NCCL backend and set local GPU |
 | 34 | Call `ddp_setup()` | Start distributed environment |
 | 48-49 | Batch size division | Split global batch across GPUs |
-| 65-66 | Wrap model with `DDP` | Enable synchronized gradient updates |
-| 80-81 | Mixed precision setup | `GradScaler` for FP16 training |
-| 87 | `set_epoch()` | Ensure proper shuffling across epochs |
-| 93-96 | `autocast()` context | Run forward pass in FP16 |
-| 103 | `barrier()` | Synchronize all processes after epoch |
-| 113-115 | `all_reduce()` | Average metrics across GPUs |
-| 127 | `destroy_process_group()` | Clean up distributed environment |
+| 64-65 | Wrap model with `DDP` | Enable synchronized gradient updates |
+| 71-72 | Mixed precision setup | `GradScaler` for FP16 training |
+| 79 | `set_epoch()` | Ensure proper shuffling across epochs |
+| 91-93 | `autocast()` context | Run forward pass in FP16 |
+| 101 | `barrier()` | Synchronize all processes after epoch |
+| 113-116 | `all_reduce()` | Average metrics across GPUs |
+| 143 | `destroy_process_group()` | Clean up distributed environment |
 
 
 ## Job Script for Multi-GPU Training
