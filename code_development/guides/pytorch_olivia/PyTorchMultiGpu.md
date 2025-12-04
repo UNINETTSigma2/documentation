@@ -169,6 +169,18 @@ if __name__ == '__main__':
 
 ## Key Changes from Single-GPU to Multi-GPU
 
+```{danger}
+**TODO: Remove before merging!**
+
+The single-GPU guide uses FP32 (full precision), while this multi-GPU guide uses FP16 (mixed precision via `autocast()`). This means the 14x speedup comparison is not apples-to-apples—part of the speedup comes from FP16, not just the 4 GPUs.
+
+**Options to discuss:**
+1. Add FP16 to single-GPU guide for fair comparison
+2. Add FP32 version of multi-GPU for fair comparison  
+3. Keep as-is but explain the difference clearly
+4. Something else?
+```
+
 The highlighted lines above show the DDP-specific additions:
 
 | Lines | Change | Purpose |
