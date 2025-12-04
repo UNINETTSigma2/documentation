@@ -17,6 +17,7 @@ For this, we need to modify the main Python script to include DDP implementation
 
 ```{code-block} python
 :linenos:
+:emphasize-lines: 7-9, 28-31, 34, 48-49, 65-66, 80-81, 87, 93-96, 103, 113-115, 127
 
 # train_ddp.py
 import os
@@ -166,32 +167,23 @@ if __name__ == '__main__':
 ```
 
 
-## Key Changes and Addition for adapting single gpu setup to multi-gpu setup
+## Key Changes from Single-GPU to Multi-GPU
 
-1. Distributed Environment Setup
+The highlighted lines above show the DDP-specific additions:
 
-The single-GPU code uses get_device() from device_utils to determine the compute device (CPU or GPU).However, for the Multi-Gpu implementation, we introduced `ddp_setup()` to initialize the distributed environment using `torch.distributed.init_process_group` with the `NCCL` backend for GPU communication.We also set the local GPU for each processing using `torch.cuda.set_device(int(os.environ["LOCAL_RANK"]))`
-
-2. Batch Size Adjustment
-
-For training using the single GPU, the batch size is fixed and used directly for training whereas for the training using the the multiple GPU, the global batch size is divided across GPUs, `per_gpu_batch_size = args.batch_size // world_size` which ensures that each GPU processes an equal portion of the data.
-
-3. Data Loading with Distributed Sampler
-
-For the single-GPU implementation, the data loader is created without any special sampling mechanism. Howeve, for the multi-gpu setup we introduced `DistributedSampler` to ensure that each GPU processes a unique subset of the dataset.The sampler is updated at the start of the epoch using `train_sampler.set_epoch(epoch)`.
-
-4. Model Wrapping with DDP
-The model is directly moved to GPU using `.to(device)` in the single-gpu setup. However, for the multi-GPU setup,the model is wrapped with `torch.nn.parallel.DistributedDataParallel` to enable synchronized training across GPUs as shown here `model = DDP(model, device_ids=[local_rank])`
-
-5. Mixed Precision Training
-In the single-gpu setup the training is performed in full precision (FP32), whereas for the multi-gpu setup mixed precision training is introduced  using `torch.cuda.amp` for faster computation and reduced memory usage.The forward pass is wrapped in `torch.cuda.amp.autocast()` and Gradient scaling is handled using `torch.cuda.amp.GradScalar`
-
-6. Synchronization Across GPUs
-For the single-gpu usage no synchronization is required as only one GPU is used. However, for the multi-gpu setup we used `torch.distributed.barrier()` to synchronize all processes after each epoch.
-Moroover, the validation metrics (accuracy and loss ) are averaged across all GPUs using `torch.distributed.all_reduce`
-
-7. Distributed Environment Cleanup
-Finally, we dont need to write any code for the cleanup for our single-gpu implementation.However, the distributed environment is cleaned up at the end of the training using `destroy_process_group()`
+| Lines | Change | Purpose |
+|-------|--------|---------|
+| 7-9 | DDP imports | `DistributedSampler`, `DDP`, `init_process_group` |
+| 28-31 | `ddp_setup()` | Initialize NCCL backend and set local GPU |
+| 34 | Call `ddp_setup()` | Start distributed environment |
+| 48-49 | Batch size division | Split global batch across GPUs |
+| 65-66 | Wrap model with `DDP` | Enable synchronized gradient updates |
+| 80-81 | Mixed precision setup | `GradScaler` for FP16 training |
+| 87 | `set_epoch()` | Ensure proper shuffling across epochs |
+| 93-96 | `autocast()` context | Run forward pass in FP16 |
+| 103 | `barrier()` | Synchronize all processes after epoch |
+| 113-115 | `all_reduce()` | Average metrics across GPUs |
+| 127 | `destroy_process_group()` | Clean up distributed environment |
 
 
 ## Job Script for Multi-GPU Training
