@@ -16,7 +16,7 @@ This guide demonstrates how to run PyTorch on Olivia using NVIDIA's optimized [P
 
 **Single-GPU optimization:** For maximum single-GPU performance (~1.6x speedup), use 32 workers, BFloat16 precision, and prefetching. However, these optimizations should *not* be used for multi-GPU training.
 
-**Multi-GPU/Multi-node:** The baseline configurations in this guide (8 workers, FP16) are already optimal. Using more workers actually degrades DDP performance due to gradient synchronization pacing—the data arrives faster than gradients can sync between GPUs.
+**Multi-GPU/Multi-node:** The baseline configurations in this guide (8 workers, FP16) are already optimal. Using more workers actually degrades DDP performance due to gradient synchronization pacing. That is, the data arrives faster than gradients can sync between GPUs.
 ```
 
 ```{note}
@@ -41,12 +41,21 @@ apptainer pull --arch arm64 docker://nvcr.io/nvidia/pytorch:25.06-py3
 ## Project Setup
 
 ```{warning}
-Set up your project in your **work or project area** (e.g., `/cluster/work/projects/nnXXXXk/`), not your home directory. The CIFAR-100 dataset (~500 MB) will be downloaded automatically on first run.
+Due to limited space in your home directory, set up your project in your
+**work or project area** (e.g., `/cluster/work/projects/nnXXXXk/username/pytorch_olivia/`).
+The CIFAR-100 dataset (~500 MB) will be downloaded automatically on first run.
 ```
 
-Create a directory with all files in a flat structure:
+**Before you begin:**
+
+1. Create an **empty directory** in your work or project area
+2. `cd` into that directory
+
+The guide will provide all the files needed. When complete, your directory
+will have this structure:
+
 ```
-/cluster/work/projects/nnXXXXk/username/pytorch_test/
+your_project_directory/
 ├── train.py
 ├── train_ddp.py          # for multi-GPU/multi-node
 ├── dataset_utils.py
