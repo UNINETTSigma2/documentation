@@ -5,7 +5,13 @@ orphan: true
 (pytorch-multi-gpu)=
 # Multi-GPU Implementation for PyTorch on Olivia
 
-To scale our training to multiple GPUs, we will utilize PyTorch's Distributed Data Parallel (DDP) framework. DDP allows us to efficiently scale training across multiple GPUs and even across multiple nodes.To learn more about how to implement DDP, please refer to this official documentation from PyTorch [Getting Started with DDP](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html)
+```{contents}
+:depth: 2
+```
+
+This is part 2 of the PyTorch on Olivia guide. See {ref}`pytorch-on-olivia` for the single-GPU setup.
+
+To scale training to multiple GPUs, we use PyTorch's [Distributed Data Parallel (DDP)](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html) framework. The code below works for both multi-GPU (single node) and multi-node setups.
 
 For this, we need to modify the main Python script to include DDP implementation. The updated script will work for both scenarios Multiple GPUs within a single node and Multiple nodes.
 
@@ -185,18 +191,10 @@ Moroover, the validation metrics (accuracy and loss ) are averaged across all GP
 Finally, we dont need to write any code for the cleanup for our single-gpu implementation.However, the distributed environment is cleaned up at the end of the training using `destroy_process_group()`
 
 
-## Job Script for Multi GPU Training
-
-To run the training on multiple GPUs, we can use the same job script mentioned earlier, but specify a higher number of GPUs.
-
-When using `torchrun` for a single-node setup, you need to include the `--standalone` argument. However, this argument is not required for a multi-node setup. 
-This job script is designed to train the model across multiple GPUs within a single node. In this script, we explicitly define the path to the torchrun executable using the following line:
-
-`TORCHRUN_PATH="/usr/local/bin/torchrun"`
-
-Note:If the torchrun executable is already in your `$PATH`, explicitly setting the path might not be necessary.
+## Job Script for Multi-GPU Training
 
 
+For single-node multi-GPU training, use `torchrun` with `--standalone`. We request 4 GPUs and adjust batch size and learning rate for better scaling.
 
 ```bash
 #!/bin/bash
@@ -206,42 +204,25 @@ Note:If the torchrun executable is already in your `$PATH`, explicitly setting t
 #SBATCH --error=multigpu_%j.err
 #SBATCH --time=01:00:00
 #SBATCH --partition=accel
-#SBATCH --nodes=1             # Use one compute node
-#SBATCH --ntasks-per-node=1   #  Single task per node
-#SBATCH --cpus-per-task=72.   # Reserve 72 CPU cores(Eacho node has 256 CPUs)
-#SBATCH --mem=440G            # Request 440 GB RAM for 4 GPUs(Each node has 768 GiB total )
-#SBATCH --gpus=4              # Number of GPUs
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=72
+#SBATCH --mem=440G
+#SBATCH --gpus=4
 
-# Path to the container
-CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.05_arm64.sif"
+CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
 
+cd "${SLURM_SUBMIT_DIR}"
 
-# Path to the training script
-TRAINING_SCRIPT="train_ddp.py --batch-size 1024 --epochs 100 --base-lr 0.04 --target-accuracy 0.95 --patience 2"
-
-cd "${SLURM_SUBMIT_DIR}/.."
-
-
-
-# Explicitly specify the full path to torchrun
-TORCHRUN_PATH="/usr/local/bin/torchrun"
-
-apptainer exec --nv $CONTAINER_PATH which torchrun
-# Start GPU utilization monitoring in the background
-GPU_LOG_FILE="multigpu.log"
-echo "Starting GPU utilization monitoring..."
-nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &
-
-# Run the training script with torchrun inside the container
-apptainer exec --nv  $CONTAINER_PATH $TORCHRUN_PATH --standalone --nnodes=$SLURM_JOB_NUM_NODES --nproc_per_node=$SLURM_GPUS_ON_NODE $TRAINING_SCRIPT
-
-# Stop GPU utilization monitoring
-echo "Stopping GPU utilization monitoring..."
-pkill -f "nvidia-smi --query-gpu"
-
+# Run training with 4 GPUs
+apptainer exec --nv $CONTAINER_PATH torchrun \
+    --standalone \
+    --nnodes=1 \
+    --nproc_per_node=4 \
+    train_ddp.py --batch-size 1024 --epochs 100 --base-lr 0.04 --target-accuracy 0.95 --patience 2
 ```
 
-Please note that, we increase the batch size and also the base learning rate compared to the single gpu implementation which are configurations specific to Neural Network training that we need to adjust when scaling to multiple GPUs. The output of the training is shown below:
+Example output:
 
 ```bash
 Epoch 95/100 completed in 1.344 seconds

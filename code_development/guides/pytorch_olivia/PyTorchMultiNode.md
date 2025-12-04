@@ -6,15 +6,17 @@ orphan: true
 
 # Multi-Node Implementation for PyTorch on Olivia
 
-When setting up a multi-node configuration, particularly on Olivia with its high-speed interconnect (Slingshot), it is essential to consider several critical factors to ensure efficient scaling across multiple nodes. Key components to be aware of include NCCL with the OFI plugin, proper utilization of libfabrics, and packages such as `libcxi.so.1`. An improper configuration of these components can result in suboptimal performance, preventing the system from delivering the expected results.
+```{contents}
+:depth: 2
+```
 
-Please refer to the Best Practice Guide  [BPG](https://docs.google.com/document/d/1-m4fbGY11Ezu6zdiJ-cftfGlgazuUEe_dyVfOqh1k-8/edit?tab=t.0) where we will described these in more details.
+This is part 3 of the PyTorch on Olivia guide. See {ref}`pytorch-on-olivia` for single-GPU and {ref}`pytorch-multi-gpu` for multi-GPU setup.
 
-Below is the job script that we could use for the multiple nodes.
+Multi-node training on Olivia requires proper configuration of NCCL with the OFI plugin and libfabric for the Slingshot interconnect. The job script below handles these configurations.
 
 
 
-## job script for multiple node
+## Job Script for Multi-Node Training
 ```bash
 #!/bin/bash
 #SBATCH --account=<project_number>
@@ -23,11 +25,11 @@ Below is the job script that we could use for the multiple nodes.
 #SBATCH --error=multinode_%j.err
 #SBATCH --time=01:00:00
 #SBATCH --partition=accel
-#SBATCH --nodes=2               # Request 2 compute nodes
-#SBATCH --ntasks-per-node=1     # One process per GPU
-#SBATCH --gpus-per-node=4       # Number of GPUs per node
-#SBATCH --cpus-per-task=72      # Reserve 72 CPU cores(Eacho node has 256 CPUs)
-#SBATCH --mem=440G              # Request 440 GB RAM for 4 GPUs(Each node has 768 GiB total )
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=1
+#SBATCH --gpus-per-node=4
+#SBATCH --cpus-per-task=72
+#SBATCH --mem=440G
 
 
 # Path to the container
@@ -38,7 +40,7 @@ CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
 export APPTAINERENV_TRAINING_SCRIPT="train_ddp.py --epochs 100 --batch-size 2048 --base-lr 0.04 --target-accuracy 0.95 --patience 2"
 
 
-cd "${SLURM_SUBMIT_DIR}/.."
+cd "${SLURM_SUBMIT_DIR}"
 
 
 

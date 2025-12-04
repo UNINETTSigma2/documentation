@@ -1,45 +1,58 @@
-
 (pytorch-on-olivia)=
 # PyTorch on Olivia
 
 ```{contents}
-:depth: 3
+:depth: 2
 ```
 
-In this guide, we’ll be testing PyTorch on the Olivia system, which uses the Aarch64 architecture on its compute nodes. To do this, we’ll use  PyTorch container from Nvidia.The process of training a ResNet model using a containerized environment, will bypass the need to manually download and install PyTorch wheels. The container includes all the necessary packages required to run the project, simplifying the setup process. The container used in this tutorial is downloaded from here [PyTorch Container](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch?version=25.11-py3). This container is optimized to use with NVIDIA GPUs and contains the software such as CUDA, NVIDIA cuDNN , NVIDIA NCCL and so on.You can read more about it on the link given above. 
+This guide demonstrates how to run PyTorch on Olivia using NVIDIA's optimized [PyTorch container](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch). We train a Wide ResNet model on the CIFAR-100 dataset across three scenarios:
 
-Note:  To replicate this project, create a directory within your project folder and place the following files inside it: `train.py`, `dataset_utils.py`, `train_utils.py`, `device_utils.py`, `model.py` inside it. 
-Next, create a subdirectory called `scripts` within this directory and place the provided job script (shown below) inside it. This setup will be sufficient for quickly testing the single-GPU configuration.
+1. **Single GPU** (this page)
+2. **Multi-GPU** - 4 GPUs on a single node ({ref}`pytorch-multi-gpu`)
+3. **Multi-Node** - Multiple nodes ({ref}`pytorch-multi-node`)
 
+```{note}
+**Key considerations for Olivia:**
+- The login node (x86_64) and compute nodes (Aarch64) have different architectures. Software must be run via containers on the compute nodes.
+- Compute nodes use CUDA 12.7. Ensure container compatibility.
+```
 
-## Key Considerations
+## Getting the Container
 
-1. __Different Architectures__:
+The PyTorch container is available pre-pulled at:
+```
+/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif
+```
 
-     The login node and the compute node on Olivia have different architectures. The login node uses the x86_64 architecture, while the compute node uses Aarch64. This means we cannot install software directly on the login node and expect it to work on the compute node.
+To pull a different version yourself, use the `--arch arm64` flag since you're pulling from the login node (x86_64) for use on compute nodes (Aarch64):
 
+```bash
+apptainer pull --arch arm64 docker://nvcr.io/nvidia/pytorch:25.06-py3
+```
 
-2. CUDA Version:
+## Project Setup
 
-     The compute nodes are equipped with CUDA Version 12.7, as confirmed by running the nvidia-smi command. Therefore, we need to ensure that the container we will be using will be compatible with this CUDA version.
+```{warning}
+Set up your project in your **work or project area** (e.g., `/cluster/work/projects/nnXXXXk/`), not your home directory. The CIFAR-100 dataset (~500 MB) will be downloaded automatically on first run.
+```
 
-
-## Training a ResNet Model with the CIFAR-100 Dataset   
-
-To test Olivia's capabilities with real-world workloads, we will train a Wide ResNet model using the CIFAR-100 dataset. The testing will be conducted under the following scenarios:
-
-1. Single GPU
-
-2. Multiple GPUs
-
-3. Multiple Nodes
-
-The primary goal of this exercise is to verify that we can successfully run training tasks on Olivia. As such, we will not delve into the specifics of neural network training in this documentation.
+Create a directory with all files in a flat structure:
+```
+/cluster/work/projects/nnXXXXk/username/pytorch_test/
+├── train.py
+├── train_ddp.py          # for multi-GPU/multi-node
+├── dataset_utils.py
+├── train_utils.py
+├── device_utils.py
+├── model.py
+├── singlegpu_job.sh
+├── multigpu_job.sh       # for multi-GPU
+└── multinode_job.sh      # for multi-node
+```
 
 ## Single GPU Implementation
 
 To train the Wide ResNet model on a single GPU, we used the following files. The `train.py` file include the main Python script used for training the Wide ResNet model.
-
 ```python
 #train.py
 
@@ -347,19 +360,10 @@ def test(model, test_loader, loss_fn, device):
 ```
 
 
-After placing these files in the working directory, you are ready to begin training the Neural Network. However, if you are replicating this experiment, we recommend creating a new directory within your working directory to store your job scripts. Organizing your files this way minimizes the need for modifications to the job scripts, allowing you to get them running quickly and efficiently.
+## Job Script for Single GPU Training
 
+The `--nv` flag gives the container access to GPU resources. We use `torchrun` to launch the training script.
 
-
-
-
-### Job Script for Single GPU Training
-
-Note that, the command to run the script includes the `--nv` option, which ensures that the container has access to GPU resources. This is essential for leveraging hardware acceleration during training.
-
-In the job script below, we will be using a single GPU for training.The container we will be using is downloaded and placed in this path `/cluster/work/support/container/pytorch_nvidia_25.05_arm64.sif`. If you have requirements for the newer version, please let us know so that we can assist you downloading and placing it on the same path.
-
-Finally, we run the `apptainer exec --nv` using torchrun to run the training.
 
 
 ```bash
@@ -369,39 +373,25 @@ Finally, we run the `apptainer exec --nv` using torchrun to run the training.
 #SBATCH --output=singlegpu_%j.out
 #SBATCH --error=singlegpu_%j.err
 #SBATCH --time=01:00:00
-#SBATCH --partition=accel.           # GPU partition
-#SBATCH --nodes=1                    # Single compute node
-#SBATCH --ntasks-per-node=1          # One task (process) on the node
-#SBATCH --cpus-per-task=72           # Reserve 72 CPU cores(Eacho node has 256 CPUs)
-#SBATCH --mem=110G                   # Request 110 GB RAM(Each node has 768 GiB total )
-#SBATCH --gpus-per-node=1            # Request 1 GPU
+#SBATCH --partition=accel
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=72
+#SBATCH --mem=110G
+#SBATCH --gpus-per-node=1
 
-# Path to the container
-CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.05_arm64.sif"
+CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
 
-# Path to the training script
-TRAINING_SCRIPT="train.py"
+cd "${SLURM_SUBMIT_DIR}"
 
-cd "${SLURM_SUBMIT_DIR}/.."
+# Check GPU availability
+apptainer exec --nv $CONTAINER_PATH python -c 'import torch; print(f"CUDA available: {torch.cuda.is_available()}, GPUs: {torch.cuda.device_count()}")'
 
-# Check GPU availability inside the container
-echo "Checking GPU availability inside the container..."
-apptainer exec --nv  $CONTAINER_PATH python -c 'import torch; print(torch.cuda.is_available()); print(torch.cuda.device_count())'
-
-# Start GPU utilization monitoring in the background
-GPU_LOG_FILE="singlegpu.log"
-echo "Starting GPU utilization monitoring..."
-nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &
-
-# Run the training script with torchrun inside the container
-apptainer exec --nv $CONTAINER_PATH torchrun --standalone --nnodes=$SLURM_JOB_NUM_NODES --nproc_per_node=$SLURM_GPUS_ON_NODE $TRAINING_SCRIPT
-
-# Stop GPU utilization monitoring
-echo "Stopping GPU utilization monitoring..."
-pkill -f "nvidia-smi --query-gpu"
+# Run training
+apptainer exec --nv $CONTAINER_PATH torchrun --standalone --nnodes=1 --nproc_per_node=1 train.py
 ```
 
-Once you run this job script, you will be able see the output and error files inside the script directory and the gpu utilization could be verified from the `singlegpu.log` file outside script directory.Below is the output of the training which shows that the total training time and the throughput together with the Validation loss and Validation Accuracy.
+Example output showing training progress:
 
 
 ```bash
