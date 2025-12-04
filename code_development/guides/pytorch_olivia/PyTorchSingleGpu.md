@@ -11,6 +11,14 @@ This guide demonstrates how to run PyTorch on Olivia using NVIDIA's optimized [P
 2. **Multi-GPU** - 4 GPUs on a single node ({ref}`pytorch-multi-gpu`)
 3. **Multi-Node** - Multiple nodes ({ref}`pytorch-multi-node`)
 
+```{admonition} Performance Tips
+:class: tip
+
+**Single-GPU optimization:** For maximum single-GPU performance (~1.6x speedup), use 32 workers, BFloat16 precision, and prefetching. However, these optimizations should *not* be used for multi-GPU training.
+
+**Multi-GPU/Multi-node:** The baseline configurations in this guide (8 workers, FP16) are already optimal. Using more workers actually degrades DDP performance due to gradient synchronization pacing—the data arrives faster than gradients can sync between GPUs.
+```
+
 ```{note}
 **Key considerations for Olivia:**
 - The login node (x86_64) and compute nodes (Aarch64) have different architectures. Software must be run via containers on the compute nodes.
@@ -53,7 +61,9 @@ Create a directory with all files in a flat structure:
 ## Single GPU Implementation
 
 To train the Wide ResNet model on a single GPU, we used the following files. The `train.py` file include the main Python script used for training the Wide ResNet model.
-```python
+```{code-block} python
+:linenos:
+
 #train.py
 
 """
@@ -158,10 +168,11 @@ if __name__ == "__main__":
     main()
 ```
 
-
 The `dataset_utils.py` file contains the data utility functions used for preparing and managing the dataset.Please note that, you will be installing the CIFAR-100 dataset and it will be placed in the `datasets` folder through this script.
 
-```python
+```{code-block} python
+:linenos:
+
 # dataset_utils.py
 
 import torchvision
@@ -205,9 +216,11 @@ def load_cifar100(batch_size, num_workers=0,sampler=None, data_dir=None):
     return train_loader, test_loader
 ```
 
-The `device_utils.py` file includes the device utility functions, which handle device selection and management for training (e.g., selecting the appropriate GPU). 
+The `device_utils.py` file includes the device utility functions, which handle device selection and management for training (e.g., selecting the appropriate GPU).
 
-```python
+```{code-block} python
+:linenos:
+
 # device_utils.py
 import torch
 
@@ -221,10 +234,11 @@ def get_device():
     return torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 ```
 
-
 The `model.py` file contains the implementation of the Wide ResNet model architecture.
 
-```python
+```{code-block} python
+:linenos:
+
 # model.py
 
 import torch.nn as nn
@@ -293,12 +307,12 @@ class WideResNet(nn.Module):
         out = self.flat(out)
         out = self.fc(out)
         return out
-
 ```
 
 Finally, the `train_utils.py` file serves as a utility module for importing the training and testing datasets.
 
-```python
+```{code-block} python
+:linenos:
 
 # train_utils.py
 import torch
@@ -359,14 +373,13 @@ def test(model, test_loader, loss_fn, device):
     return v_accuracy, v_loss
 ```
 
-
 ## Job Script for Single GPU Training
 
 The `--nv` flag gives the container access to GPU resources. We use `torchrun` to launch the training script.
 
+```{code-block} bash
+:linenos:
 
-
-```bash
 #!/bin/bash
 #SBATCH --job-name=resnet_singleGpu
 #SBATCH --account=<project_number>
@@ -412,5 +425,8 @@ The output suggests that the total throughput that we obtained from single GPU t
 
 Now the goal is to scale this up to multiple GPUs.For this, please check out the {ref}`Multi GPU Guide <pytorch-multi-gpu>`.
 
+```{admonition} Exercise
+:class: tip
 
-
+Try changing the number of workers in `dataset_utils.py` from 0 to 32 and observe the performance difference. With 32 workers on the GH200's Grace CPU, you should see approximately 1.6x speedup (~4,200 images/second vs ~2,600 images/second).
+```
