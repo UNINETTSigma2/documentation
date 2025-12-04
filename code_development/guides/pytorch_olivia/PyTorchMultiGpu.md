@@ -86,7 +86,7 @@ def main_worker():
     optimizer = torch.optim.SGD(model.parameters(), lr=args.base_lr, momentum=0.9, weight_decay=5e-4)
 
     # Initialize gradient scaler for mixed precision
-    scaler = torch.cuda.amp.GradScaler()
+    scaler = torch.amp.GradScaler('cuda')
     val_accuracy = []
     total_time = 0
     total_images = 0  # Total images processed globally
@@ -105,7 +105,7 @@ def main_worker():
             optimizer.zero_grad()
 
            # Forward pass with mixed precision
-            with torch.cuda.amp.autocast():
+            with torch.amp.autocast('cuda'):
                 outputs = model(images)
                 loss = loss_fn(outputs, labels)
 
