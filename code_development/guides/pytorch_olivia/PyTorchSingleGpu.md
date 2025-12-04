@@ -439,5 +439,14 @@ Now the goal is to scale this up to multiple GPUs.For this, please check out the
 ```{admonition} Exercise
 :class: tip
 
-Try changing the number of workers in `dataset_utils.py` from 0 to 32 and observe the performance difference. With 32 workers on the GH200's Grace CPU, you should see approximately 1.6x speedup (~4,200 images/second vs ~2,600 images/second).
+Try changing the number of workers in `dataset_utils.py` from 0 to 32 and observe
+the performance difference. With 32 workers on the GH200's Grace CPU, you should
+see approximately 1.6x speedup (~4,200 images/second vs ~2,600 images/second).
+```
+
+```{toctree}
+:hidden:
+
+PyTorchMultiGpu
+PyTorchMultiNode
 ```

@@ -1,7 +1,3 @@
----
-orphan: true
----
-
 (pytorch-multi-node)=
 
 # Multi-Node Implementation for PyTorch on Olivia
@@ -170,6 +166,8 @@ Training completed successfully.
 Stopping GPU utilization monitoring...
 ```
 
-The output demonstrates that using multiple nodes, each with four GPUs, significantly improves performance. The training time has decreased to `78.706 seconds`, and the throughput has increased from 2598.388 images/second in the single GPU setup to `62450.056 images/second`. This highlights the impressive optimization of Grace Hopper chips for efficient scaling of neural network training across multiple nodes.
-
-If you find that the scaling does not meet your expectations for a specific use case, please feel free to reach out to us. We can assist in configuring environment variables recommended by HPE to optimize performance further. These details will also be covered in the BPG as previously discussed.
+The output demonstrates that using multiple nodes, each with four GPUs,
+significantly improves performance. The training time has decreased to
+`78.706 seconds`, and the throughput has increased from ~2,600 images/second
+(single GPU) to `62,450 images/second`—a **24x speedup** with 8 GPUs across
+2 nodes.
