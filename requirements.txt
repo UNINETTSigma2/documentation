@@ -6,4 +6,5 @@ sphinx-reredirects
 sphinx_rtd_theme
 sphinx-design
 sphinxemoji
+sphinx-copybutton
 jinja2
