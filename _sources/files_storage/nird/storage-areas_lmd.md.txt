@@ -1,0 +1,48 @@
+# Storage areas, quota, and backup
+
+
+## Home directories
+
+Each user has a home directory `/nird/home/<username>`, where
+`<username>` is the username. The default quota for home directories
+is 60 GiB and 300 000 files. To check the disk usage and quotas, type:
+
+```console
+$ dusage
+```
+
+
+## Scratch directories
+
+The total storage space of `/scratch` is 30 TiB.
+Each user has a scratch directory `/nird/scratch/<username>`.
+The area is meant as a temporary scratch area. This area is not backed up. 
+There is no quota in the scratch area.
+
+The `/scratch/` area enforces an automatic cleanup strategy, files in this 
+area will be deleted after 21 days.
+If file system usage reaches 75%, files in `/scratch/` will be deleted even 
+before 21 days. 
+
+
+## Project area
+
+Each NIRD project gets a project area either on NIRD Data Peak (DP) `/nird/datapeak/NSxxxxK`
+ or on NIRD Data Lake (DL) `/nird/datalake/NSxxxxK` or on both based on the project allocation,
+ where `NSxxxxK` is the ID of the project. 
+
+The project area has a quota on disk space and the number of files.
+
+Quotas are allocated by the Resource Allocation Committee (RFK) on the storage resources (NIRD) for project storage, that is, on DP (`/nird/datapeak`) and DL (`/nird/datalake`). The two resources have separate quota based on the project allocation.
+
+You can see the quota and the current usage by running:
+
+```console
+$ dusage -p NSxxxxK
+```
+
+```{note}
+Notice, that quotas are shown in TiB (tebibyte), and not TB (terabyte).
+```
+
+ 

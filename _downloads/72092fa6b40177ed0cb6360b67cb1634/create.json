@@ -1,0 +1,127 @@
+{
+  "title": "Renewable Energy Data",
+  "name": "renewable-energy-data",
+  "notes": "This dataset tracks the production of renewable energy globally.\n\n",
+  "tag_string": ["renewable", "ocean temperature"],
+  "theme": "[{\"name\":\"acoustic_signal_roundtrip_travel_time_in_sea_water\",\"vocabulary_id\":\"baff3cfa-2135-4b2f-a3be-173a59044b8e\"},{\"name\":\"acoustic_volume_backscattering_strength_in_sea_water\",\"vocabulary_id\":\"baff3cfa-2135-4b2f-a3be-173a59044b8e\"},{\"name\":\"Addresses\",\"vocabulary_id\":\"64f0cb10-56a2-4636-93d4-8843fa83ed11\"},{\"name\":\"Agricultural and aquaculture facilities\",\"vocabulary_id\":\"64f0cb10-56a2-4636-93d4-8843fa83ed11\"}]",
+  "language": "en",
+  "dataset_status": "in_work",
+  "project": [
+    "https://winrock.org/projects/nepal-renewable-energy-programme-nrep/",
+    "https://winrock.org/projects/nepal-renewable-energy-programme-nrep"
+  ],
+  "dataset_size": 10.1,
+  "contact_points": [
+    {
+      "first_name": "Olivia",
+      "last_name": "Miller",
+      "organisation": "Ansgar University College",
+      "email": "olivia.miller@example.org",
+      "orcid": "0000-0000-0000-0000"
+    },
+    {
+      "first_name": "Ava",
+      "last_name": "Thompson",
+      "organisation": "Ansgar University College",
+      "email": "ava.thompson@example.org",
+      "orcid": "0000-0000-0000-0000"
+    }
+  ],
+  "creators": [
+    {
+      "first_name": "Ava",
+      "last_name": "Clark",
+      "organisation": "Havforskningsinstituttet",
+      "email": "ava.clark@example.org",
+      "orcid": "0000-0000-0000-0000"
+    },
+    {
+      "first_name": "David",
+      "last_name": "Johnson",
+      "organisation": "Fjellhaug International University College",
+      "email": "david.johnson@example.org",
+      "orcid": "0000-0000-0000-0000"
+    },
+    {
+      "first_name": "Emma",
+      "last_name": "Johnson",
+      "organisation": "Ansgar University College",
+      "email": "emma.johnson@example.org",
+      "orcid": "0000-0000-0000-0000"
+    }
+  ],
+  "contributors": [
+    {
+      "first_name": "Olivia",
+      "last_name": "Williams",
+      "organisation": "Ansgar University College",
+      "email": "olivia.williams@example.org",
+      "orcid": "0000-0000-0000-0000",
+      "type": "ProjectLeader"
+    },
+    {
+      "first_name": "Isabella",
+      "last_name": "Davis",
+      "organisation": "Geological Survey of Norway",
+      "email": "isabella.davis@example.org",
+      "orcid": "0000-0000-0000-0000",
+      "type": "DataCurator"
+    }
+  ],
+  "dataset_owner": [
+    {
+      "organisation": "05y8hw592",
+      "ror": "05y8hw592"
+    }
+  ],
+  "access_rights": "public",
+  "spatial": {
+    "spatial_type": "bbox",
+    "value": [43, 88, 90, 34]
+  },
+  "temporal": {
+    "start": "2025-03-19T18:15:00.000Z",
+    "end": "2025-04-17T18:15:00.000Z"
+  },
+  "related_resources": [
+    {
+      "type": "algorithm_theoretical_basis_document_atbd_",
+      "url": "https://winrock.org/projects/nepal-renewable-energy-programme-nrep/"
+    },
+    {
+      "type": "data_recipe",
+      "url": "https://winrock.org/projects/nepal-renewable-energy-programme-nrep/"
+    }
+  ],
+  "version_notes": "This is version notes",
+  "source": [
+    "https://winrock.org/projects/nepal-renewable-energy-programme-nrep/",
+    "https://winrock.org/projects/nepal-renewable-energy-programme-nrep/"
+  ],
+  "conforms_to": "https://winrock.org/projects/nepal-renewable-energy-programme-nrep/",
+  "provenance": "{}",
+  "license_id": "odc-odbl",
+  "subject": ["agriculturalsciences", "climatology-meteorology-atmosphere"],
+  "license_title": "Open Data Commons Open Database License (ODbL)",
+  "tags": [
+    {
+      "name": "renewable"
+    },
+    {
+      "name": "ocean temperature"
+    }
+  ],
+  "groups": [
+    {
+      "name": "agriculturalsciences",
+      "type": "subject"
+    },
+    {
+      "name": "climatology-meteorology-atmosphere",
+      "type": "subject"
+    }
+  ],
+  "type": "dataset",
+  "embargoed_until": null,
+  "state": "draft"
+}
