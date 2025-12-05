@@ -14,9 +14,9 @@ This guide demonstrates how to run PyTorch on Olivia using NVIDIA's optimized [P
 ```{admonition} Performance Tips
 :class: tip
 
-**Single-GPU:** Larger batch sizes dramatically improve throughput. With batch size 256, expect ~5,100 img/s (2x faster than batch size 32). For memory-constrained workloads, BFloat16 provides 50% memory savings with minimal overhead.
+**Single-GPU optimization:** For maximum single-GPU performance (~1.6x speedup), use 32 workers, BFloat16 precision, and prefetching. However, these optimizations should *not* be used for multi-GPU training.
 
-**Multi-GPU/Multi-node:** BFloat16 mixed precision gives the best performance (~40,000 img/s on 4 GPUs) and is simpler than FP16 (no gradient scaler needed). The 8-worker configuration is optimal for DDP.
+**Multi-GPU/Multi-node:** The baseline configurations in this guide (8 workers, FP16) are already optimal. Using more workers actually degrades DDP performance due to gradient synchronization pacing. That is, the data arrives faster than gradients can sync between GPUs.
 ```
 
 ```{note}
