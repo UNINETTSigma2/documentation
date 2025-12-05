@@ -16,7 +16,7 @@ Multi-node training on Olivia requires proper configuration of NCCL with the OFI
 
 ```{code-block} bash
 :linenos:
-:emphasize-lines: 8, 10, 20, 29-33, 45-49, 52-53, 64-79, 83-88
+:emphasize-lines: 8, 10, 18, 21-25, 35-40, 43-44, 52-67, 70-76
 
 #!/bin/bash
 #SBATCH --account=<project_number>
@@ -31,21 +31,13 @@ Multi-node training on Olivia requires proper configuration of NCCL with the OFI
 #SBATCH --cpus-per-task=72
 #SBATCH --mem=440G
 
-
 # Path to the container
 CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
-
 
 # Path to the training script
 export APPTAINERENV_TRAINING_SCRIPT="train_ddp.py --epochs 100 --batch-size 2048 --base-lr 0.04 --target-accuracy 0.95 --patience 2"
 
-
-cd "${SLURM_SUBMIT_DIR}"
-
-
-
 # Set the libfabric and nccl path from the host
-
 HOST_LIBFABRIC_LIB_PATH=/opt/cray/libfabric/1.22.0/lib64
 HOST_LIBFABRIC_INCLUDE_PATH=/opt/cray/libfabric/1.22.0/include
 HOST_NCCL_PATH=/cluster/work/projects/nn9997k/software/nccl
@@ -60,7 +52,6 @@ export APPTAINERENV_TORCHRUN_PATH="/usr/local/bin/torchrun"
 #export APPTAINERENV_NCCL_DEBUG=INFO
 #export APPTAINERENV_NCCL_DEBUG_SUBSYS=ALL
 
-
 # Get the head node and its IP address
 nodes=( $(scontrol show hostnames $SLURM_JOB_NODELIST) )
 head_node=${nodes[0]}
@@ -72,13 +63,10 @@ echo "Head Node IP: $APPTAINERENV_head_node_ip"
 export APPTAINERENV_SLURM_JOB_NUM_NODES=$SLURM_JOB_NUM_NODES
 export APPTAINERENV_SLURM_GPUS_ON_NODE=$SLURM_GPUS_ON_NODE
 
-
 # Start GPU utilization monitoring in the background
 GPU_LOG_FILE="multinode.log"
 echo "Starting GPU utilization monitoring..."
 nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &
-
-#--pwd /cluster/work/projects/nn9997k/binod/PyTorch/private/simple_nn_project
 
 # Run the training script with torchrun inside the container
 srun  apptainer exec  --nv \
@@ -107,11 +95,9 @@ srun  apptainer exec  --nv \
   --rdzv_endpoint=$head_node_ip:29500 \
   $TRAINING_SCRIPT'
 
-
 # Stop GPU utilization monitoring
 echo "Stopping GPU utilization monitoring..."
 pkill -f "nvidia-smi --query-gpu"
-
 
 ```
 
@@ -123,12 +109,12 @@ The highlighted lines show the multi-node specific additions:
 |-------|--------|---------|
 | 8 | `--nodes=2` | Request multiple nodes |
 | 10 | `--gpus-per-node=4` | GPUs per node (instead of `--gpus=4`) |
-| 20 | `--batch-size 2048` | Larger batch for 8 GPUs |
-| 29-33 | Host library paths | Paths to libfabric, NCCL, CXI on host |
-| 45-49 | Head node discovery | Get head node IP for rendezvous |
-| 52-53 | Pass SLURM vars | Export node/GPU counts to container |
-| 64-79 | `srun` with `--bind`/`--env` | Mount host libraries and set environment |
-| 83-88 | `torchrun` with rendezvous | Use `rdzv_backend=c10d` and `rdzv_endpoint` for multi-node coordination |
+| 18 | `--batch-size 2048` | Larger batch for 8 GPUs |
+| 21-25 | Host library paths | Paths to libfabric, NCCL, CXI on host |
+| 35-40 | Head node discovery | Get head node IP for rendezvous |
+| 43-44 | Pass SLURM vars | Export node/GPU counts to container |
+| 52-67 | `srun` with `--bind`/`--env` | Mount host libraries and set environment |
+| 70-76 | `torchrun` with rendezvous | Use `rdzv_backend=c10d` and `rdzv_endpoint` for multi-node coordination |
 
 ```{note}
 The key difference from single-node multi-GPU is the **rendezvous setup**. Single-node uses `--standalone`, while multi-node requires explicit coordination via `--rdzv_backend=c10d` and `--rdzv_endpoint` pointing to the head node.

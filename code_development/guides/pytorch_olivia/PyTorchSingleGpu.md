@@ -75,7 +75,7 @@ To train the Wide ResNet model on a single GPU, we used the following files. The
 ```{code-block} python
 :linenos:
 
-#train.py
+# train.py
 
 """
 This script trains a Wide ResNet model on the CIFAR-100  dataset that is a  single-GPU implementation of the training process.
@@ -192,14 +192,11 @@ import torch
 from pathlib import Path
 import os
 
-
 def _data_dir_default():
     repo_root = Path(__file__).resolve().parent
     data_dir = repo_root / "datasets"
     data_dir.mkdir(parents=True, exist_ok=True)
     return data_dir
-
-
 
 
 def load_cifar100(batch_size, num_workers=0,sampler=None, data_dir=None):
@@ -262,6 +259,7 @@ class cbrblock(nn.Module):
     def forward(self, x):
         return self.cbr(x)
 
+
 # Basic residual block
 class conv_block(nn.Module):
     def __init__(self, input_channels, output_channels, scale_input):
@@ -272,6 +270,7 @@ class conv_block(nn.Module):
         self.layer1 = cbrblock(input_channels, output_channels)
         self.dropout = nn.Dropout(p=0.01)
         self.layer2 = cbrblock(output_channels, output_channels)
+
     def forward(self,x):
         residual = x
         out = self.layer1(x)
@@ -350,7 +349,6 @@ def train(model, optimizer, train_loader, loss_fn, device):
         optimizer.step()
 
 
-
 def test(model, test_loader, loss_fn, device):
     """
     Evaluates the model on the validation dataset.Note that, this function will be used in the multi-gpu implementation aswell.
@@ -405,8 +403,6 @@ The `--nv` flag gives the container access to GPU resources. We use `torchrun` t
 #SBATCH --gpus-per-node=1
 
 CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
-
-cd "${SLURM_SUBMIT_DIR}"
 
 # Check GPU availability
 apptainer exec --nv $CONTAINER_PATH python -c 'import torch; print(f"CUDA available: {torch.cuda.is_available()}, GPUs: {torch.cuda.device_count()}")'
