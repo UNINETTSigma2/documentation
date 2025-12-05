@@ -11,12 +11,18 @@ This guide demonstrates how to run PyTorch on Olivia using NVIDIA's optimized [P
 2. **Multi-GPU** - 4 GPUs on a single node ({ref}`pytorch-multi-gpu`)
 3. **Multi-Node** - Multiple nodes ({ref}`pytorch-multi-node`)
 
-```{admonition} Performance Tips
+```{admonition} Performance Summary
 :class: tip
 
-**Single-GPU optimization:** For maximum single-GPU performance (~1.6x speedup), use 32 workers, BFloat16 precision, and prefetching. However, these optimizations should *not* be used for multi-GPU training.
+This 3-part guide walks you through scaling PyTorch training on Olivia's GH200 GPUs:
 
-**Multi-GPU/Multi-node:** The baseline configurations in this guide (8 workers, FP16) are already optimal. Using more workers actually degrades DDP performance due to gradient synchronization pacing. That is, the data arrives faster than gradients can sync between GPUs.
+| Configuration | Throughput | Speedup |
+|---------------|------------|---------|
+| Single GPU (Part 1) | ~5,100 img/s | 1x |
+| 4 GPUs on 1 node (Part 2) | ~37,000 img/s | 7x |
+| 8 GPUs on 2 nodes (Part 3) | ~63,000 img/s | 12x |
+
+The multi-GPU guides use FP16 mixed precision for improved performance.
 ```
 
 ```{note}
@@ -393,32 +399,23 @@ apptainer exec --nv $CONTAINER_PATH torchrun --standalone --nnodes=1 --nproc_per
 
 Example output showing training progress:
 
-
 ```bash
-Epoch = 95: Epoch Time = 19.061, Validation Loss = 1.352, Validation Accuracy = 0.730, Images/sec = 2622.313, Cumulative Time = 1828.359
-Epoch = 96: Epoch Time = 19.087, Validation Loss = 1.339, Validation Accuracy = 0.735, Images/sec = 2618.747, Cumulative Time = 1847.446
-Epoch = 97: Epoch Time = 19.006, Validation Loss = 1.306, Validation Accuracy = 0.741, Images/sec = 2629.863, Cumulative Time = 1866.452
-Epoch = 98: Epoch Time = 19.072, Validation Loss = 1.308, Validation Accuracy = 0.739, Images/sec = 2620.757, Cumulative Time = 1885.524
-Epoch = 99: Epoch Time = 19.056, Validation Loss = 1.317, Validation Accuracy = 0.736, Images/sec = 2623.024, Cumulative Time = 1904.580
-Epoch = 100: Epoch Time = 19.074, Validation Loss = 1.316, Validation Accuracy = 0.740, Images/sec = 2620.481, Cumulative Time = 1923.655
+Epoch 95/100: Time=9.819s, Loss=1.6997, Accuracy=0.6386, Throughput=5084.2 img/s
+Epoch 96/100: Time=9.789s, Loss=1.5348, Accuracy=0.6581, Throughput=5099.8 img/s
+Epoch 97/100: Time=9.818s, Loss=1.5620, Accuracy=0.6507, Throughput=5084.4 img/s
+Epoch 98/100: Time=9.805s, Loss=1.5820, Accuracy=0.6562, Throughput=5091.3 img/s
+Epoch 99/100: Time=9.773s, Loss=1.5247, Accuracy=0.6635, Throughput=5107.8 img/s
+Epoch 100/100: Time=9.608s, Loss=1.6100, Accuracy=0.6419, Throughput=5195.4 img/s
 
-Training complete. Final Validation Accuracy = 0.740
-Total Training Time: 1923.655 seconds
-Throughput: 2598.388 images/second
-Single-GPU Thrpughput: 2598.388 images/second
+Training complete. Final Validation Accuracy = 0.6419
+Total Training Time: 973.8 seconds
+Throughput: 5126.4 images/second
 ```
-The output suggests that the total throughput that we obtained from single GPU training is ` 2598.388 images/second` and it took approximately `1923.655 seconds` to complete the training. As we proceed forward with the multi-gpu implementation, our goal would be to achieve higher throughput and also possibly reduced the training time for the same number of epochs.
+
+The output shows a throughput of approximately **5,100 images/second** on a single GH200 GPU. In the next parts of this guide, we'll scale this up to multiple GPUs and see significant speedups.
 
 
-Now the goal is to scale this up to multiple GPUs.For this, please check out the {ref}`Multi GPU Guide <pytorch-multi-gpu>`.
-
-```{admonition} Exercise
-:class: tip
-
-Try changing the number of workers in `dataset_utils.py` from 0 to 32 and observe
-the performance difference. With 32 workers on the GH200's Grace CPU, you should
-see approximately 1.6x speedup (~4,200 images/second vs ~2,600 images/second).
-```
+Now the goal is to scale this up to multiple GPUs. For this, please check out the {ref}`Multi GPU Guide <pytorch-multi-gpu>`.
 
 ```{toctree}
 :hidden:

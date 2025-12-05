@@ -123,28 +123,28 @@ The key difference from single-node multi-GPU is the **rendezvous setup**. Singl
 The output of this job script is shown below:
 
 ```bash
-Epoch 95/100 completed in 0.770 seconds
-Validation Loss: 1.3100, Validation Accuracy: 0.6904
-Epoch Throughput: 63854.271 images/second
-Epoch 96/100 completed in 0.773 seconds
-Validation Loss: 1.4148, Validation Accuracy: 0.6721
-Epoch Throughput: 63566.128 images/second
-Epoch 97/100 completed in 0.776 seconds
-Validation Loss: 1.4640, Validation Accuracy: 0.6532
-Epoch Throughput: 63376.695 images/second
-Epoch 98/100 completed in 0.777 seconds
-Validation Loss: 1.4926, Validation Accuracy: 0.6459
-Epoch Throughput: 63296.973 images/second
-Epoch 99/100 completed in 0.766 seconds
-Validation Loss: 1.4309, Validation Accuracy: 0.6559
-Epoch Throughput: 64183.920 images/second
-Epoch 100/100 completed in 0.784 seconds
-Validation Loss: 1.4138, Validation Accuracy: 0.6648
-Epoch Throughput: 62660.118 images/second
+Epoch 95/100 completed in 0.771 seconds
+Validation Loss: 1.1998, Validation Accuracy: 0.7101
+Epoch Throughput: 63787.926 images/second
+Epoch 96/100 completed in 0.759 seconds
+Validation Loss: 1.1924, Validation Accuracy: 0.7090
+Epoch Throughput: 64736.418 images/second
+Epoch 97/100 completed in 0.770 seconds
+Validation Loss: 1.1911, Validation Accuracy: 0.7092
+Epoch Throughput: 63812.132 images/second
+Epoch 98/100 completed in 0.763 seconds
+Validation Loss: 1.1671, Validation Accuracy: 0.7128
+Epoch Throughput: 64432.161 images/second
+Epoch 99/100 completed in 0.756 seconds
+Validation Loss: 1.1799, Validation Accuracy: 0.7160
+Epoch Throughput: 64995.126 images/second
+Epoch 100/100 completed in 0.767 seconds
+Validation Loss: 1.2086, Validation Accuracy: 0.7082
+Epoch Throughput: 64118.564 images/second
 
 Training Summary:
-Total training time: 78.706 seconds
-Throughput: 62450.056 images/second
+Total training time: 77.784 seconds
+Throughput: 63190.172 images/second
 Number of nodes: 2
 Number of GPUs per node: 4
 Total GPUs used: 8
@@ -152,8 +152,4 @@ Training completed successfully.
 Stopping GPU utilization monitoring...
 ```
 
-The output demonstrates that using multiple nodes, each with four GPUs,
-significantly improves performance. The training time has decreased to
-`78.706 seconds`, and the throughput has increased from ~2,600 images/second
-(single GPU) to `62,450 images/second`—a **24x speedup** with 8 GPUs across
-2 nodes.
+With 8 GPUs across 2 nodes, the throughput increased from ~5,100 images/second (single GPU) to ~63,000 images/second—a **12x speedup**. Training time dropped from ~16 minutes to just ~1.3 minutes.

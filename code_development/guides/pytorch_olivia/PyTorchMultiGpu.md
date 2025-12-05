@@ -214,34 +214,34 @@ apptainer exec --nv $CONTAINER_PATH torchrun \
 Example output:
 
 ```bash
-Epoch 95/100 completed in 1.344 seconds
-Validation Loss: 1.4165, Validation Accuracy: 0.6663
-Epoch Throughput: 36577.311 images/second
+Epoch 95/100 completed in 1.330 seconds
+Validation Loss: 1.0529, Validation Accuracy: 0.7362
+Epoch Throughput: 36967.964 images/second
 Epoch 96/100 completed in 1.312 seconds
-Validation Loss: 1.3927, Validation Accuracy: 0.6686
-Epoch Throughput: 37470.264 images/second
-Epoch 97/100 completed in 1.315 seconds
-Validation Loss: 1.3615, Validation Accuracy: 0.6757
-Epoch Throughput: 37378.521 images/second
-Epoch 98/100 completed in 1.351 seconds
-Validation Loss: 1.2696, Validation Accuracy: 0.7011
-Epoch Throughput: 36380.679 images/second
-Epoch 99/100 completed in 1.299 seconds
-Validation Loss: 1.4111, Validation Accuracy: 0.6724
-Epoch Throughput: 37825.847 images/second
-Epoch 100/100 completed in 1.356 seconds
-Validation Loss: 1.3142, Validation Accuracy: 0.6903
-Epoch Throughput: 36251.588 images/second
+Validation Loss: 1.1540, Validation Accuracy: 0.7197
+Epoch Throughput: 37460.949 images/second
+Epoch 97/100 completed in 1.326 seconds
+Validation Loss: 1.1519, Validation Accuracy: 0.7183
+Epoch Throughput: 37075.227 images/second
+Epoch 98/100 completed in 1.360 seconds
+Validation Loss: 1.1684, Validation Accuracy: 0.7097
+Epoch Throughput: 36138.810 images/second
+Epoch 99/100 completed in 1.303 seconds
+Validation Loss: 1.1415, Validation Accuracy: 0.7190
+Epoch Throughput: 37718.226 images/second
+Epoch 100/100 completed in 1.332 seconds
+Validation Loss: 1.1560, Validation Accuracy: 0.7153
+Epoch Throughput: 36913.593 images/second
 
 Training Summary:
-Total training time: 133.107 seconds
-Throughput: 36926.594 images/second
+Total training time: 131.972 seconds
+Throughput: 37244.369 images/second
 Number of nodes: 1
 Number of GPUs per node: 4
 Total GPUs used: 4
 Training completed successfully.
 ```
 
-With 4 GPUs, the throughput increased from ~2,600 images/second (single GPU) to ~37,000 images/second—a **14x speedup**. This super-linear scaling (beyond the expected 4x) comes from mixed precision training (FP16) and the larger effective batch size, which better utilizes the GPU compute capabilities.
+With 4 GPUs and FP16 mixed precision, the throughput increased from ~5,100 images/second (single GPU) to ~37,000 images/second—a **7x speedup**. This super-linear scaling (beyond the expected 4x) comes from mixed precision training (FP16) and the larger effective batch size, which better utilizes the GPU compute capabilities.
 
 To scale beyond a single node, see the {ref}`Multi-Node Guide <pytorch-multi-node>`.
