@@ -21,7 +21,7 @@ This guide demonstrates how to run PyTorch on Olivia using NVIDIA's optimized [P
 
 ```{note}
 **Key considerations for Olivia:**
-- The login node (x86_64) and compute nodes (Aarch64) have different architectures. Software must be run via containers on the compute nodes.
+- The login node (x86_64) and compute nodes (Aarch64) have different architectures. Software and containers must be built for ARM (Aarch64) to run on the compute nodes.
 - Compute nodes use CUDA 12.7. Ensure container compatibility.
 ```
 
@@ -71,109 +71,88 @@ your_project_directory/
 
 ## Single GPU Implementation
 
-To train the Wide ResNet model on a single GPU, we used the following files. The `train.py` file include the main Python script used for training the Wide ResNet model.
+To train the Wide ResNet model on a single GPU, we use the following files. The `train.py` file is the main training script.
+
 ```{code-block} python
 :linenos:
 
 # train.py
 
 """
-This script trains a Wide ResNet model on the CIFAR-100  dataset that is a  single-GPU implementation of the training process.
+Single-GPU training script for Wide ResNet on CIFAR-100.
 """
 
-import os
+import argparse
 import time
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import sys
 
-# Import custom modules
 from dataset_utils import load_cifar100
-from model  import WideResNet
+from model import WideResNet
 from train_utils import train as train_one_epoch, test as evaluate
 from device_utils import get_device
 
+# Parse command-line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('--batch-size', type=int, default=256, help='Batch size for training')
+parser.add_argument('--epochs', type=int, default=100, help='Number of epochs')
+parser.add_argument('--base-lr', type=float, default=0.01, help='Learning rate')
+parser.add_argument('--target-accuracy', type=float, default=0.95, help='Target accuracy to stop training')
+parser.add_argument('--patience', type=int, default=2, help='Number of epochs that meet target before stopping')
+args = parser.parse_args()
 
-# Hyperparameters
-BATCH_SIZE = 32
-EPOCHS = 100
-LEARNING_RATE = 0.01
-TARGET_ACCURACY = 0.95
-PATIENCE = 2
-
-def run_train(batch_size, epochs, learning_rate, device):
-    """
-    Trains a WideResNet model on the CIFAR-100 dataset for single GPU.
-    Args:
-        batch_size (int): Batch size for training.
-        epochs (int): Number of epochs to train.
-        learning_rate (float): Learning rate for the optimizer.
-        device (torch.device): Device to run training on (CPU or GPU).
-    Returns:
-        throughput (float): Images processed per second
-    """
-
-    print(f"Training WideResNet on CIFAR-100  with Batch Size: {batch_size}")
+def main():
+    device = get_device()
+    print(f"Training WideResNet on CIFAR-100 with Batch Size: {args.batch_size}")
 
     # Training variables
     val_accuracy = []
     total_time = 0
-    total_images = 0 # total images processed
+    total_images = 0
 
     # Load the dataset
-    train_loader, test_loader = load_cifar100(batch_size=batch_size)
+    train_loader, test_loader = load_cifar100(batch_size=args.batch_size)
 
-    # Initialize the WideResNet Model
-    num_classes = 100    # num_class set to  100 for CIFAR-100.
-    model = WideResNet(num_classes).to(device)
+    # Initialize the model
+    model = WideResNet(num_classes=100).to(device)
 
-    # Define the loss function and optimizer
+    # Define loss function and optimizer
     loss_fn = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(model.parameters(), lr=learning_rate)
-    for epoch in range(epochs):
+    optimizer = optim.SGD(model.parameters(), lr=args.base_lr)
+
+    for epoch in range(args.epochs):
         t0 = time.time()
 
-        # Train the model for one epoch
+        # Train for one epoch
         train_one_epoch(model, optimizer, train_loader, loss_fn, device)
 
-        # Calculate epoch time
         epoch_time = time.time() - t0
         total_time += epoch_time
 
-        # Compute throughput (images per second)
-        images_per_sec = len(train_loader) * batch_size / epoch_time
-        total_images += len(train_loader) * batch_size
+        # Compute throughput
+        images_per_sec = len(train_loader) * args.batch_size / epoch_time
+        total_images += len(train_loader) * args.batch_size
 
-        # Compute validation accuracy and loss
+        # Evaluate
         v_accuracy, v_loss = evaluate(model, test_loader, loss_fn, device)
         val_accuracy.append(v_accuracy)
 
-        # Print metrics
-        print("Epoch = {:2d}: Epoch Time = {:5.3f}, Validation Loss = {:5.3f}, Validation Accuracy = {:5.3f}, Images/sec = {:5.3f}, Cumulative Time = {:5.3f}".format(
-            epoch + 1, epoch_time, v_loss, v_accuracy, images_per_sec, total_time
-        ))
+        print(f"Epoch {epoch + 1}/{args.epochs}: Time={epoch_time:.3f}s, "
+              f"Loss={v_loss:.4f}, Accuracy={v_accuracy:.4f}, "
+              f"Throughput={images_per_sec:.1f} img/s")
 
         # Early stopping
-        if len(val_accuracy) >= PATIENCE and all(acc >= TARGET_ACCURACY for acc in val_accuracy[-PATIENCE:]):
-            print('Early stopping after epoch {}'.format(epoch + 1))
+        if len(val_accuracy) >= args.patience and all(
+            acc >= args.target_accuracy for acc in val_accuracy[-args.patience:]
+        ):
+            print(f"Target accuracy reached. Early stopping after epoch {epoch + 1}.")
             break
 
-    # Final metrics
+    # Final summary
     throughput = total_images / total_time
-    print("\nTraining complete. Final Validation Accuracy = {:5.3f}".format(val_accuracy[-1]))
-    print("Total Training Time: {:5.3f} seconds".format(total_time))
-    print("Throughput: {:5.3f} images/second".format(throughput))
-    return throughput
-
-def main():
-
-    # Set the compute device
-    device = get_device()
-
-    # Train the WideResNet model to get the throughput(i.e. images processed per second)
-    throughput = run_train(batch_size=BATCH_SIZE, epochs=EPOCHS, learning_rate=LEARNING_RATE, device=device)
-    print(f"Single-GPU Thrpughput: {throughput:.3f} images/second")
+    print(f"\nTraining complete. Final Accuracy: {val_accuracy[-1]:.4f}")
+    print(f"Total Time: {total_time:.1f}s, Throughput: {throughput:.1f} img/s")
 
 if __name__ == "__main__":
     main()
@@ -408,7 +387,8 @@ CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
 apptainer exec --nv $CONTAINER_PATH python -c 'import torch; print(f"CUDA available: {torch.cuda.is_available()}, GPUs: {torch.cuda.device_count()}")'
 
 # Run training
-apptainer exec --nv $CONTAINER_PATH torchrun --standalone --nnodes=1 --nproc_per_node=1 train.py
+apptainer exec --nv $CONTAINER_PATH torchrun --standalone --nnodes=1 --nproc_per_node=1 \
+    train.py --batch-size 256 --epochs 100 --base-lr 0.01 --target-accuracy 0.95 --patience 2
 ```
 
 Example output showing training progress:

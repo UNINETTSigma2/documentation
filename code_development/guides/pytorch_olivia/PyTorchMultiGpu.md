@@ -7,9 +7,7 @@
 
 This is part 2 of the PyTorch on Olivia guide. See {ref}`pytorch-on-olivia` for the single-GPU setup.
 
-To scale training to multiple GPUs, we use PyTorch's [Distributed Data Parallel (DDP)](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html) framework. The code below works for both multi-GPU (single node) and multi-node setups.
-
-For this, we need to modify the main Python script to include DDP implementation. The updated script will work for both scenarios: multiple GPUs within a single node and multiple nodes.
+To scale training across multiple GPUs, we use PyTorch's [Distributed Data Parallel (DDP)](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html). The code below works for both single-node multi-GPU and multi-node configurations.
 
 ```{code-block} python
 :linenos:
