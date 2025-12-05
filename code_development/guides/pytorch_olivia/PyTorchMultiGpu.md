@@ -11,7 +11,7 @@ To scale training across multiple GPUs, we use PyTorch's [Distributed Data Paral
 
 ```{code-block} python
 :linenos:
-:emphasize-lines: 8-10, 28-31, 34, 48-49, 64-65, 71-72, 79, 91-93, 101, 113-116, 143
+:emphasize-lines: 8-10, 34, 48-49, 64-65, 71-72, 79, 88, 98, 106, 113-115, 140
 
 # train_ddp.py
 import os
@@ -83,8 +83,6 @@ def main_worker():
     loss_fn = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=args.base_lr, momentum=0.9, weight_decay=5e-4)
 
-    # Initialize gradient scaler for mixed precision
-    scaler = torch.amp.GradScaler('cuda')
     val_accuracy = []
     total_time = 0
     total_images = 0  # Total images processed globally
@@ -102,15 +100,14 @@ def main_worker():
            # Zero the gradients
             optimizer.zero_grad()
 
-           # Forward pass with mixed precision
-            with torch.amp.autocast('cuda'):
+           # Forward pass with BFloat16 mixed precision
+            with torch.amp.autocast('cuda', dtype=torch.bfloat16):
                 outputs = model(images)
                 loss = loss_fn(outputs, labels)
 
-           # Backward pass and optimization with scaled gradients
-            scaler.scale(loss).backward()
-            scaler.step(optimizer)
-            scaler.update()
+           # Backward pass (no scaler needed for BFloat16)
+            loss.backward()
+            optimizer.step()
 
         # Synchronize all processes
         torch.distributed.barrier()
@@ -168,16 +165,16 @@ The highlighted lines above show the DDP-specific additions:
 | Lines | Change | Purpose |
 |-------|--------|---------|
 | 8-10 | DDP imports | `DistributedSampler`, `DDP`, `init_process_group` |
-| 28-31 | `ddp_setup()` | Initialize NCCL backend and set local GPU |
-| 34 | Call `ddp_setup()` | Start distributed environment |
-| 48-49 | Batch size division | Split global batch across GPUs |
-| 64-65 | Wrap model with `DDP` | Enable synchronized gradient updates |
-| 71-72 | Mixed precision setup | `GradScaler` for FP16 training |
-| 79 | `set_epoch()` | Ensure proper shuffling across epochs |
-| 91-93 | `autocast()` context | Run forward pass in FP16 |
-| 101 | `barrier()` | Synchronize all processes after epoch |
-| 113-116 | `all_reduce()` | Average metrics across GPUs |
-| 143 | `destroy_process_group()` | Clean up distributed environment |
+| 34 | `ddp_setup()` | Initialize NCCL backend and set local GPU |
+| 48-49 | Rank variables | `local_rank`, `global_rank`, `world_size` |
+| 64-65 | Batch division + sampler | Split batch across GPUs, `DistributedSampler` |
+| 71-72 | DataLoader with sampler | Use sampler instead of shuffle |
+| 79 | Wrap model with `DDP` | Enable synchronized gradient updates |
+| 88 | `set_epoch()` | Ensure proper shuffling across epochs |
+| 98 | BFloat16 `autocast()` | Mixed precision (no scaler needed) |
+| 106 | `barrier()` | Synchronize all processes after epoch |
+| 113-115 | `all_reduce()` | Average metrics across GPUs |
+| 140 | `destroy_process_group()` | Clean up distributed environment |
 
 
 ## Job Script for Multi-GPU Training
