@@ -23,9 +23,6 @@ to the next level. {ref}`Read more ... <about-us>`
 **Compute resources**:
 {ref}`Overview <hardware-overview>` | {ref}`betzy` | {ref}`fram` | {ref}`olivia` | {ref}`saga` | {ref}`lumi`
 
-```{danger}
-Fram will be decommissioned soon. More info here: {ref}`fram_decom`
-```
 
 **Storage resources**:
 {ref}`nird` | {ref}`storage-areas`
