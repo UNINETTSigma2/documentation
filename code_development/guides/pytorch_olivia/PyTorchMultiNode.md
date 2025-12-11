@@ -40,7 +40,7 @@ export APPTAINERENV_TRAINING_SCRIPT="train_ddp.py --epochs 100 --batch-size 2048
 # Set the libfabric and nccl path from the host
 HOST_LIBFABRIC_LIB_PATH=/opt/cray/libfabric/1.22.0/lib64
 HOST_LIBFABRIC_INCLUDE_PATH=/opt/cray/libfabric/1.22.0/include
-HOST_NCCL_PATH=/cluster/work/projects/nn9997k/software/nccl
+HOST_NCCL_PATH=/cluster/work/support/nccl
 HOST_NVIDIA_HPC_LIB_PATH=/opt/nvidia/hpc_sdk/Linux_aarch64/24.11/compilers/lib
 HOST_CXI_LIB_PATH=/usr/lib64  # Directory containing libcxi.so.1
 
