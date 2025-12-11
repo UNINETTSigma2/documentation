@@ -21,16 +21,16 @@ separately, not as part of the billing units.
 
 - __Allocation units__: cpus and memory
 - __Job Limits__:
-  - maximum 1152 units
+  - maximum 2304 billing units
 - __Maximum walltime__: 7 days
 - __Priority__: normal
 - __Available resources__:
-  - 252 nodes with 256 AMD cpus and 753 GiB RAM
+  - 252 nodes with 256 AMD cpus and 741 GiB RAM
 - __Parameter for sbatch/salloc__:
   - None, _normal_ is the default
 - __Job Scripts__: {ref}`job_scripts_olivia_normal`
 
-This is the default job type. Most CPU-only jobs run as *normal* jobs. The large
+This is the default job type. CPU-only jobs run as *normal* jobs. The large
 node size (256 CPUs) makes this partition good for:
 
 - Large-scale parallel computations
@@ -45,12 +45,12 @@ node size (256 CPUs) makes this partition good for:
 
 - __Allocation units__: cpus, memory and GPUs
 - __Job Limits__:
-  - maximum 1152 billing units
+  - minimum 1 GPU
   - maximum 32 GPUs
 - __Maximum walltime__: 7 days
 - __Priority__: normal
 - __Available resources__: 76 nodes (max 60 per project) with 288
-  ARM64 cpus, 858 GiB RAM and 4 GH200 GPUs.
+  ARM64 cpus, 808 GiB RAM and 4 GH200 GPUs.
 - __Parameter for sbatch/salloc__:
   - `--partition=accel`
   - `--gpus=N`, `--gpus-per-node=N` or similar, with _N_ being the number of
@@ -70,10 +70,10 @@ and resource limits of _devel_ apply.
 
 - __Allocation units__: cpus and memory and GPUs
 - __Job Limits__:
-    - maximum 576 billing units per job
-    - maximum 32 GPUs per job
-    - maximum 1152 billing units in use at the same time
-    - maximum 64 GPUs in use at the same time
+    - maximum 1152 billing units per job
+    - maximum 16 GPUs per job
+    - maximum 2304 billing units in use at the same time
+    - maximum 32 GPUs in use at the same time
     - maximum 2 running jobs per user
 - __Maximum walltime__: 2 hours
 - __Priority__: high
