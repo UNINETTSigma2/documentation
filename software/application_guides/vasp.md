@@ -95,6 +95,7 @@ This may be run using for VASP6-5 users. (VASP6.4 users should use nvhpc_25.1_cu
 
 module load NRIS/GPU
 module load hpc-container-wrapper
+export OMPI_MCA_btl=smcuda,vader,self
 apptainer exec --nv /cluster/work/support/container/nvhpc_25.1_cuda12.6_u24.04_vasp.6.5.1.sif  mpirun -np 4 vasp_std
 ```
 
