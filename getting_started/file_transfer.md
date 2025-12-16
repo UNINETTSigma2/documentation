@@ -194,9 +194,15 @@ split -n 5000 ../file.txt
 ````
 
 
-## Transferring files between Betzy/Fram/Saga and NIRD
+## Transferring files between Betzy/Olivia/Saga and NIRD
 
-Since NIRD is mounted on the login nodes of Betzy, Fram, and Saga,
+The easiest way to transfer files between clusters  is to set up
+[ssh-keypair](https://documentation.sigma2.no/getting_started/ssh.html#connecting-to-a-server).
+Once (following the guide) there's a private/public key on sender/receiver,
+you won't need to authenticate with password + otp. Note that the guide above
+is currently only limited to cross-cluster connections/transfers.
+
+Since NIRD is mounted on the login nodes of Betzy, Olivia, and Saga,
 one can use regular
 `cp` or `mv` commands on the cluster login nodes to copy or
 move files into or out of the NIRD project areas.
