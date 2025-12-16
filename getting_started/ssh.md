@@ -25,9 +25,10 @@ encrypted connection (see also our guide about {ref}`file-transfer`).
 ## Connecting to a server
 
 ```{note}
-The use of 2-factor authentication is mandatory when using SSH to connect to
+The use of 2-factor authentication is mandatory when using SSH to connect to*
 NRIS systems. Visit
-[two_factor_authentication](https://documentation.sigma2.no/getting_help/two_factor_authentication.html)
+[two_factor_authentication](https://documentation.sigma2.no/getting_help/two_factor_authentication.html).
+Connecting between* NRIS systems (saga, betzy, olivia) is done through ssh-keypair (more on this further down).
 ```
 
 When you type `ssh myusername@saga.sigma2.no`, then `myusername` is your
@@ -64,7 +65,7 @@ If the fingerprints do not match, please {ref}`contact us <support-line>`
 immediately.
 ```
 
-## Jumping through login nodes
+## Jumping through login nodes (*of the same system*)
 
 When already logged in, you can easily jump from one login node to another by
 typing `ssh login-X` (for Fram, Saga and Betzy) or `ssh loginX` (for NIRD).
@@ -102,10 +103,12 @@ Now instead of:
 $ ssh myusername@saga.sigma2.no
 ```
 
-I can type:
+you can type:
 ```console
 $ ssh saga
 ```
+If you get `Bad owner or permissions on /cluster/home/solomod/.ssh/config`, run
+`chmod 600 ~/.ssh/config`, and try again. You should be able to connect now.
 
 Also `rsync` and `scp` and any other tool that uses `ssh` under the hood will
 understand these shortcuts. There is a lot more that can be configured. Search
@@ -114,8 +117,8 @@ the web for more examples if you are interested.
 
 ## Using SSH keys instead of passwords
 
-**NB**: *Note that after enabling two-factor authentication, ssh-keys alone
-only works for copying files, via port 12. Password must be used with OTP for
+**NB**: *After enabling two-factor authentication, ssh-keys alone
+only works for copying files via port 12. Password must be used with OTP for
 interactive access*, see this
 [page](https://documentation.sigma2.no/getting_help/two_factor_authentication.html).
 
@@ -177,7 +180,7 @@ visually identify. Comments should always be used to distinguish keys.
 
 We recommend the following command to create a key pair:
 ```console
-$ ssh-keygen -t ed25519 -a 100 -f "$HOME/.ssh/id_ed25519" -C "$(whoami)@$(hostname)-$(date -I)"
+ssh-keygen -t ed25519 -a 100 -f "$HOME/.ssh/id_ed25519" -C "$(whoami)@$(hostname)-$(date -I)"
 ```
 
 After running this command in the terminal, you will be prompted to enter a
@@ -191,19 +194,27 @@ should be found in the hidden `~/.ssh` directory.  If you ran the command
 above, you will find there `id_ed25519` (private key, never share it) and
 `id_ed25519.pub` (public key, no problem to share).
 
+Once you've done this, you can add a line to your `config` file, specifying that
+"all connection attepmts to Host should try Key": `IdentityFile ~/.ssh/youKey.pub`.
+This will ensure that ssh tries yourKey-pair to authenticate first.
 
 ### Copy public key to server
 
 In order to use your key pair to log in to the remote server, you first need to
 securely copy the desired *public key* to the machine with ``ssh-copy-id``.
 The script will also add the key to the ``~/.ssh/authorized_keys`` file on the
-server. You will be prompted to enter your *password* (not the *passphrase*
+server. You will be prompted to authenticate with password + OTP (not the *passphrase*
 associated with the private key) to initiate the secure copy of the file.
 
 To copy and install the public key to the server, for example Saga, we use:
 ```console
-$ ssh-copy-id -i ~/.ssh/id_ed25519 myusername@saga.sigma2.no
+ssh-copy-id -i ~/.ssh/id_ed25519 myusername@saga.sigma2.no
 ```
+
+**NB** To spread load over all the login-nodes of a given cluster 
+(`saga`, `betzy`, `olivia`), e.g. `ssh saga.sigma2.no`
+will lead the user to 1 of the 5 available login nodes of saga (this is seen by the
+ `user@login-X.saga...` on the shell). In this case your key will be copied to logins 1-5 on saga.
 
 This command creates the directory `~/.ssh` on the target machine
 (`saga.sigma2.no` in the example above) if it did not exist yet.  When created
@@ -336,11 +347,11 @@ Host fram                            # alias, you may run "ssh fram" only
 [SSHFS](https://github.com/libfuse/sshfs) allows you to mount a remote
 file system using SFTP.
 
-If you wish to use SSHFS, please note that `fram.sigma2.no`,
-`login.fram.sigma2.no`, and addresses for other clusters are round-robin
+If you wish to use SSHFS, please note that `saga.sigma2.no`,
+`login.saga.sigma2.no`, and addresses for other clusters are round-robin
 entries. This means that every time you log in, you might end up on a
-different actual login node (e.g. `login-1.fram.sigma2.no` or
-`login-2.fram.sigma2.no`). This is done to balance load between login nodes.
+different actual login node (e.g. `login-1.saga.sigma2.no` or
+`login-3.saga.sigma2.no`). This is done to balance load between login nodes.
 
 When you use `sshfs`, you should always specify one of the actual login nodes,
 not the "front-ends", otherwise you risk getting your IP address blacklisted,
