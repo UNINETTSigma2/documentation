@@ -14,7 +14,7 @@ might be required to perform an in-depth investigation into
 the hardware performance counters and re-writing (parts of) the
 code. Either way, identifying the bottlenecks and deciding on what
 needs to be done can be made simpler by using specialized tools. Here
-we describe some of the tools available on Fram.
+we describe some of the tools that has been available in the past (NB: Needs update).
 
 * {ref}`arm-performance-reports`. An in-depth analysis of
   three synthetic benchmarks. We demonstrate some pitfalls of

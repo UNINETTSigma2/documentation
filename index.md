@@ -1,5 +1,4 @@
 **News**:
-{ref}`fram_decom` |
 [Latest changes and events](https://opslog.sigma2.no) |
 [Hardware live status](https://www.sigma2.no/hardware-status) |
 {ref}`known-issues` |
@@ -21,7 +20,7 @@ competences <extended-support>` that can assist, realize or take your project
 to the next level. {ref}`Read more ... <about-us>`
 
 **Compute resources**:
-{ref}`Overview <hardware-overview>` | {ref}`betzy` | {ref}`fram` | {ref}`olivia` | {ref}`saga` | {ref}`lumi`
+{ref}`Overview <hardware-overview>` | {ref}`betzy` | {ref}`olivia` | {ref}`saga` | {ref}`lumi`
 
 
 **Storage resources**:
@@ -219,7 +218,6 @@ code_development/guides_llm.md
 
 hpc_machines/hardware_overview.md
 hpc_machines/betzy.md
-hpc_machines/fram.md
 hpc_machines/olivia.md
 hpc_machines/saga.md
 hpc_machines/lumi.md

@@ -43,7 +43,7 @@ Download the script:
 ```
 
 This is a script for running a _normal_ array job on Saga.  It can
-easily be changed to run on Fram or Betzy, or use a different job type.
+easily be changed to run on Betzy, or use a different job type.
 
 Submit the script with `sbatch` and after a while you should see 16
 output files in your submit directory:

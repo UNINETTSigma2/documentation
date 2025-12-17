@@ -10,7 +10,7 @@ website](https://se.mathworks.com/help/matlab).
 
 Academic users need a link to a MATLAB license server for their university
 (UiB, UiT, UiO or NTNU). Users from other universities can also use MATLAB on
-Fram. Send an email to
+NRIS hpc-machines. Send an email to
 <a href="mailto:support@nris.no?subject=Request for Matlab license link">
 support@nris.no
 </a>
@@ -47,7 +47,7 @@ Commercial users need to sign a Hosting Provider agreement. Contact:
 | MATLAB |2022b|
 | MATLAB |2023a|
 
-To see available versions when logged into Fram issue command
+To see available versions when logged in to the machine in question, type command
 ```bash
 module spider matlab
 ```

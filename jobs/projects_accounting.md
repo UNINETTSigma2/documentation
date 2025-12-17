@@ -132,10 +132,6 @@ The number billing units of a job is calculated like this:
 The _memory cost factor_ and _GPU cost factor_ vary between the partitions on the
 clusters.
 
-### Fram
-
-- Jobs on Fram are only accounted for their CPU usage. 
-
 ### Saga
 
 - The `normal` partition: memory factor is 0.2577031 units per GiB. Thus
@@ -247,3 +243,4 @@ manager has to ask for new compute quota for every allocation period.
 
 If you need a small allocation to experiment, you don't need to wait until
 April or October, but can also apply in-between ({ref}`contact <support-line>`).
+ƒ

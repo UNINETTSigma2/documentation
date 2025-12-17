@@ -8,10 +8,11 @@ orphan: true
 # Fram decommissioning information
 
 **Published:** 2025-11-18
+**Updated:** 2025-12-17
 
-The Fram supercomputer is scheduled for decommissioning on **4 December 2025** as part of the national e-infrastructure upgrade.
+The Fram supercomputer decommissioned as part of the national e-infrastructure upgrade. This happened 04.-12. December 2025.
 
-All active projects with a quota *only* on Fram, and users are being migrated to the new national supercomputer, **Olivia**. This guide provides the official timeline, data migration plan, and the actions you need to take to ensure your research continues with minimal disruption.
+All active projects with a quota *only* on Fram and their users are migrated to the new national supercomputer, **Olivia**. This guide provides the official timeline, data migration plan, and the actions you needed to take to ensure your research to continue with minimal disruption.
 
 ---
 

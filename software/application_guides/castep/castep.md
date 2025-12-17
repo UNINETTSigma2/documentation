@@ -53,7 +53,7 @@ For the recommended citation, please consult the [CASTEP page](https://www.caste
 
 ## CASTEP on NRIS machinery
 
-Currently, **CASTEP** is installed on {ref}`fram` and {ref}`saga`. To see available versions when logged on to the machine in question, use the ```module avail``` or ```module spider``` commands as shown below:
+Currently, **CASTEP** is installed on {ref}`saga`. To see available versions when logged on to the machine in question, use the ```module avail``` or ```module spider``` commands as shown below:
 
 ```bash
 module avail castep
@@ -89,7 +89,7 @@ and one called ethene.param with the contents
 
 Running **CASTEP** would produce an ethene.castep file (amongst others) within seconds for the running examples provided below. Towards the end of this file, there are final structure energy outputs printed, ```Final energy, E```; values here should be in the range of -378.015eV.
 
-A subset of the benchmark sets, the medium set al3x3 and solid benzene together with the ethene-example used here has been added to the CASTEP home folder on both Fram and Saga. You get them into your working directory by typing
+A subset of the benchmark sets, the medium set al3x3 and solid benzene together with the ethene-example used here has been added to the CASTEP home folder on both Saga. You get them into your working directory by typing
 
 ```bash
 cp /cluster/software/CASTEP/benchmarks/* .
@@ -98,21 +98,10 @@ cp /cluster/software/CASTEP/benchmarks/* .
 </details>
 
 <details>
-<summary>Running CASTEP on Fram
-</summary>
-<br>
-On Fram, you currently run exclusively on nodes by default. Note that means that you are using the nodes exclusively - thus if you ask for less than a full node, you might experience that more than one job is stacked on one node. This is something that you should keep in mind when submitting jobs.
-
-```{literalinclude} fram_castep.sh
-:language: bash
-```
-</details>
-
-<details>
 <summary>Running CASTEP on Saga 
 </summary>
 <br>
-On Saga, the nodes have more memory than on Fram and you are allowed to share nodes with others. Thus the specs on memory in runscript example below. Note that, due to the higher memory amount you may be able to use more cores/node on Saga. Note, however, that there is a 256 core limit on Saga. 
+On Saga, the nodes have more memory per core than on Betzy and you are allowed to share nodes with others. Thus the specs on memory in runscript example below. Note that, due to the higher memory amount you may be able to use more cores/node on Saga. Note, however, that there is a 256 core limit on Saga. 
  
 ```{literalinclude} saga_castep.sh
 :language: bash

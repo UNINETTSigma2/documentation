@@ -10,7 +10,7 @@ Community Earth System Model (CESM) is a software suite for simulating Earth cli
 | :------------- | :------------- |
 | CESM |1.2.2.1-intel-2017a|
 
-To see available versions when logged into Fram issue command
+To see available versions when logged in issue command
 
     module spider cesm
 

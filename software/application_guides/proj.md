@@ -10,7 +10,7 @@ PROJ is a library for handling cartographic projections typically used for map-m
 | :------------- | :------------- |
 | PROJ |4.9.3-foss-2017a <br>4.9.3-intel-2017a <br>4.9.3-foss-2017b <br>4.9.3-intel-2017b <br>5.0.0-foss-2018a <br>5.0.0-intel-2018a <br>|
 
-To see available versions when logged into Fram issue command
+To see available versions when logged into the machine in question, type command
 
     module spider proj
 

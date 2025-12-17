@@ -20,7 +20,7 @@ source code under the terms of the GPL.
 | :------------- | :------------- |
 | LAMMPS |11Aug17-foss-2017a <br> 13Mar18-foss-2018a <br>|
 
-To see available versions when logged into Fram issue command
+To see available versions when logged in, type command
 
     module spider lammps
 

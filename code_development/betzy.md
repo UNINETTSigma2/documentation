@@ -1,6 +1,6 @@
 # Software environment on Betzy
 
-As on Fram and Saga, scientific software on Betzy will be installed using the
+As on Saga, scientific software on Betzy will be installed using the
 EasyBuild system, and the Lmod modules tool will be used for changing
 environment setup via modulefiles.
 

@@ -60,7 +60,7 @@ print(f"and the final result is: {final_result}")
 
 ### SLURMCluster and dask-jobqueue
 ```{warning}
-Different HPC clusters often operate with different policies on how to queue jobs. For example, Fram allocate whole nodes to jobs while Saga allocates cores. Sometimes the default configuration of the `SLURMCluster` fits badly with the policy for a given HPC cluster. This is the case for Fram: the `SLURMCluster` needs to know how much memory each worker requires (the `memory` argument when initiating the class) but it will also pass the `--mem` argument to Slurm when initiating a worker. The `--mem` argument is not supported on Fram and will cause the job to fail. To avoid this, use the `job_directives_skip` argument when initiating the SLURMCluster class to specify which Slurm arguments should be skipped. For Fram users, see the example tested on Fram in the section on installing Dask in a virtual environment below.
+Different HPC clusters often operate with different policies on how to queue jobs. For example, Betzy allocate whole nodes to jobs while Saga allocates cores. Sometimes the default configuration of the `SLURMCluster` fits badly with the policy for a given HPC cluster. 
 ```
 Next, we will use the `SLURMCluster` class from the `dask-jobqueue` package. This class is used to create a Dask cluster by deploying Slurm jobs as Dask workers. The class takes arguments needed to queue a *single* Slurm job/worker, not the characteristics of your computation as a whole. The arguments are similar to the #SBATCH commands in a Slurm script. Using the `scale` method, we can scale the cluster to the desired number of workers. This example is tested on *Saga*. Remember to replace the Slurm parameters with your own and make sure the Slurm commands are suitable for the HPC system you are using.
 
@@ -159,76 +159,6 @@ $ module load Python/your_version
 $ python -m venv my_new_pythonenv
 $ source my_new_pythonenv/bin/activate
 $ python -m pip install dask dask-jobqueue
-```
-Below you find an example slurm job *tested on Fram*. Remember to replace the Slurm parameters with your own and make sure the Slurm commands are suitable for the HPC system you are using.
-```{code-block} bash
----
-emphasize-lines: 15, 16, 17
----
-#!/bin/bash
-
-#SBATCH --account=nn9999k 
-#SBATCH --job-name=dask_example
-#SBATCH --ntasks=1
-#SBATCH --time=0-00:10:00 
-
-## Recommended safety settings:
-set -o errexit # Make bash exit on any error
-set -o nounset # Treat unset variables as errors
-
-module --quiet purge      
-module load Python/your_version      
-
-export PS1=\$
-source my_new_pythonenv/bin/activate # replace my_new_pythonenv with the name 
-                                     # of your virtual environment
-
-# It is also recommended to to list loaded modules, for easier debugging
-module list
-
-python dask_example.py
-exit 0
-```
-
-In the case of Fram, you need to use the `job_directives_skip` argument when configuring the SLURMCluster, if not the job will fail due to forbidden arguments being passed to Slurm. Pass the arguments you want to skip as a list to the `job_directives_skip` argument. Below is an example of the python code tested on Fram. Note that here `project` is replaced with `account`, as `project` is deprecated and replaced with `account` in newer versions of Dask-jobqueue.
-```{code-block} python
----
-emphasize-lines: 8
----
-import dask
-from dask.distributed import Client
-from dask_jobqueue import SLURMCluster
-
-cluster = SLURMCluster(cores=1,
-                       processes=1,
-                       memory="500M",
-                       job_directives_skip=['--mem'],
-                       walltime="00:05:00",
-                       account="nn9999k", 
-                       interface='ib0')
-
-cluster.scale(5) # scale cluster to 5 workers
-
-client = Client(cluster) # connect to the cluster
-
-@dask.delayed
-def increment_data(data):
-    return data + 1
-
-def do_analysis(result):
-    return sum(result)
-
-all_data = [1, 2, 3, 4, 5]
-results = []
-for data in all_data:
-    data_incremented = increment_data(data)
-    results.append(data_incremented)
-
-analysis = dask.delayed(do_analysis(results)) 
-final_result = analysis.compute()
-
-cluster.close() # shutdown the cluster
-client.close() # shutdown the client
 ```
 
 ### Visualizing the task graph

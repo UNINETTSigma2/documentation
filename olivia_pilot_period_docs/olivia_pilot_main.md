@@ -27,7 +27,7 @@ under the hood.
 
 In the future, we will introduce the same 2 factor authentication (2FA) system
 as used on our other HPC machines. But for now, you cannot connect directly
-from your local machine. Instead you have to __first connect to Betzy, Fram or
+from your local machine. Instead you have to __first connect to Betzy or
 Saga and then further to Olivia__.
 
 Replace `<username>` with your registered username:
@@ -239,7 +239,7 @@ This will provide details such as dependencies and additional help:
 
 #### Using the EESSI Stack
 
-The EESSI (European Environment for Scientific Software Infrastructure) software stack - optimized for each supported CPU architecture - already available on Betzy, Fram, and Saga is now also available on Olivia.
+The EESSI (European Environment for Scientific Software Infrastructure) software stack - optimized for each supported CPU architecture - already available on Betzy and Saga is now also available on Olivia.
 
 To load the EESSI stack, simply use:
 

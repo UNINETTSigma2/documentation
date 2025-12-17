@@ -41,20 +41,6 @@ job.  Note that there are still factors that can change the estimated
 start time, for instance running jobs that exit sooner than expected,
 or nodes failing.
 
-
-## Job Placement on Fram
-
-Note that this section _only_ applies to Fram!
-
-The compute nodes on Fram are divided into four groups, or *islands*.  The
-network bandwidth within an island is higher than the throughput between
-islands.  Some jobs need high network throughput between its nodes, and will
-usually run faster if they run within a single island.  Therefore, the queue
-system is configured to run each job within one island, if possible.  See
-{ref}`job-placement-fram` for details and for how this can
-be overridden.
-
-
 **Footnotes**
 
 [^1]: Currently, only the priority of 10 jobs for each user within each project increase with time.  As jobs start, more priorities start to increase.  This is done in order to avoid problems if a user submits a large amount of jobs over a short time.  Note that the limit is per user and project, so if a user has jobs in several projects, 10 of the user's jobs from each project will increase in priority at the same time.  This limit might change in the future.
