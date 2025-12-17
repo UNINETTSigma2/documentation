@@ -11,11 +11,12 @@ Loading VisIt
 
 To see which versions of VisIt are available, use
 
+
 .. code-block:: bash
 
    > module spider VisIt
 
-Currently, VisIt is installed on Betzy (VisIt v3.1.4) and Fram (VisIt v2.13.0).
+Currently, VisIt is installed on Betzy (VisIt v3.1.4).
 To use VisIt, load the desired version by
 
 .. code-block:: bash
@@ -63,7 +64,7 @@ Below, we provide a quickstart guide for setting up client-server visualization,
 Quickstart using existing hosts and launch profiles
 ***************************************************
 
-For quickly getting started with client-server visualization, existing host profiles with a template launch profile for both Fram and Betzy are provided below.
+For quickly getting started with client-server visualization, existing host profiles with a template launch profile for Betzy is provided below.
 To use these profiles the user must copy the contexts of the XML files below to the user's VisIt configuration.
 This is *usually* located in ``~/.visit/hosts/``, and the files can be stored as e.g. :file:`~/.visit/hosts/host_betzy_sigma2_no.xml`.
 The username and account number in the XML files below are only placeholders and must be replaced, either directly in the XML file or through the host and launch configuration in VisIt (see :ref:`visit_host_config`).
@@ -138,71 +139,6 @@ If the host profile is configured correctly, the user will see additional availa
     </Object>
 
 .. code-block:: xml
-   :caption: Host and launch profile template for Fram
-
-    <?xml version="1.0"?>
-    <Object name="MachineProfile">
-    <Field name="hostNickname" type="string">fram.sigma2.no</Field>
-    <Field name="host" type="string">fram.sigma2.no</Field>
-    <Field name="userName" type="string">username</Field>
-    <Field name="hostAliases" type="string"></Field>
-    <Field name="directory" type="string">/cluster/software/VisIt/2.13.0-intel-2017a</Field>
-    <Field name="shareOneBatchJob" type="bool">false</Field>
-    <Field name="sshPortSpecified" type="bool">false</Field>
-    <Field name="sshPort" type="int">0</Field>
-    <Field name="sshCommandSpecified" type="bool">false</Field>
-    <Field name="sshCommand" type="stringVector">"ssh" "-X" </Field>
-    <Field name="useGateway" type="bool">false</Field>
-    <Field name="gatewayHost" type="string"></Field>
-    <Field name="clientHostDetermination" type="string">MachineName</Field>
-    <Field name="manualClientHostName" type="string"></Field>
-    <Field name="tunnelSSH" type="bool">true</Field>
-    <Field name="maximumNodesValid" type="bool">false</Field>
-    <Field name="maximumNodes" type="int">1</Field>
-    <Field name="maximumProcessorsValid" type="bool">false</Field>
-    <Field name="maximumProcessors" type="int">1</Field>
-    <Object name="LaunchProfile">
-        <Field name="timeout" type="int">480</Field>
-        <Field name="numProcessors" type="int">128</Field>
-        <Field name="numNodesSet" type="bool">true</Field>
-        <Field name="numNodes" type="int">4</Field>
-        <Field name="partitionSet" type="bool">false</Field>
-        <Field name="partition" type="string"></Field>
-        <Field name="bankSet" type="bool">true</Field>
-        <Field name="bank" type="string">nnXXXXk</Field>
-        <Field name="timeLimitSet" type="bool">true</Field>
-        <Field name="timeLimit" type="string">00:30:00</Field>
-        <Field name="launchMethodSet" type="bool">true</Field>
-        <Field name="launchMethod" type="string">srun</Field>
-        <Field name="forceStatic" type="bool">true</Field>
-        <Field name="forceDynamic" type="bool">false</Field>
-        <Field name="active" type="bool">false</Field>
-        <Field name="arguments" type="stringVector"></Field>
-        <Field name="parallel" type="bool">true</Field>
-        <Field name="launchArgsSet" type="bool">true</Field>
-        <Field name="launchArgs" type="string">"--account=nnXXXXk --mpi=pmi2"</Field>
-        <Field name="sublaunchArgsSet" type="bool">false</Field>
-        <Field name="sublaunchArgs" type="string"></Field>
-        <Field name="sublaunchPreCmdSet" type="bool">false</Field>
-        <Field name="sublaunchPreCmd" type="string"></Field>
-        <Field name="sublaunchPostCmdSet" type="bool">false</Field>
-        <Field name="sublaunchPostCmd" type="string"></Field>
-        <Field name="machinefileSet" type="bool">false</Field>
-        <Field name="machinefile" type="string"></Field>
-        <Field name="visitSetsUpEnv" type="bool">false</Field>
-        <Field name="canDoHWAccel" type="bool">false</Field>
-        <Field name="GPUsPerNode" type="int">1</Field>
-        <Field name="XArguments" type="string"></Field>
-        <Field name="launchXServers" type="bool">false</Field>
-        <Field name="XDisplay" type="string">:%l</Field>
-        <Field name="numThreads" type="int">0</Field>
-        <Field name="constrainNodeProcs" type="bool">false</Field>
-        <Field name="allowableNodes" type="intVector"></Field>
-        <Field name="allowableProcs" type="intVector"></Field>
-        <Field name="profileName" type="string">normal</Field>
-    </Object>
-    <Field name="activeProfile" type="int">0</Field>
-    </Object>
 
 .. _visit_host_config:
    

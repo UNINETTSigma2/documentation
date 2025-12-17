@@ -4,7 +4,7 @@
 
 ```{admonition} Summary: use rsync for file transfer
 
-For file transfer to/from and between compute and storage systems (Betzy, Fram,
+For file transfer to/from and between compute and storage systems (Betzy,
 Saga, NIRD), **we recommend `rsync`**. This tool is often faster than `scp` (for
 many small files and it does not copy files that are already there) and
 potentially also safer against accidental file overwrites.
@@ -233,27 +233,23 @@ a large file into chunks).
 
 A command like :
 ```bash
-$ rclone copy FRAM:/cluster/projects/nnXXXXk/user/ . -P --transfers=20 
+$ rclone copy SAGA:/cluster/projects/nnXXXXk/user/ . -P --transfers=20 
 ```
 will copy 20 files in parallel. 
 
 ```bash
 An example is could look like this:
-$ rclone copy FRAM:/cluster/projects/nnxxxxk/ . -P --transfers=60 \ --ignore-checksum
+$ rclone copy SAGA:/cluster/projects/nnxxxxk/ . -P --transfers=60 \ --ignore-checksum
 Transferred:          200 GiB / 200 GiB, 100%, 2.038 GiB/s, ETA 0s
 Checks:                 0 / 0, -, Listed 200
 Transferred:          200 / 200, 100%
 Elapsed time:      1m33.7s
 ```
-Close to 2 GBytes/s is what the transfer speed seems to clock in when copying from Fram.  
-About 7 TBytes per hour, or 150 TBytes/day. A PetaByte would take about a week.
-
-
+The above example is referring a decommissioned service, and shows a close to 2 GBytes/s speed when copying data from this service. About 7 TBytes per hour, or 150 TBytes/day. A PetaByte would take about a week.
 
 Please also **plan for it**: If you need to transfer large amount of data,
 don't start on the last day of your project. Data transfer may take hours or
 even days.
-
 
 ## Troubleshooting: "Broken pipe" error during transfer
 

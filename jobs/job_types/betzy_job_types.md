@@ -6,7 +6,7 @@ orphan: true
 
 # Job Types on Betzy
 
-Betzy is designed to run highly parallelized jobs.  If you need to run medium-sized jobs, than Fram is a better choice, while for serial jobs you shall use Saga.
+Betzy is designed to run highly parallelized jobs.  If you need to run medium-sized jobs, then Saga or Olivia.
 
 For a preprocessing or postprocessing job which only needs one or a few CPU cores, use a *preproc* job.
 

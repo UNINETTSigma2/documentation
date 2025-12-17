@@ -7,7 +7,7 @@ You can share files with other project members using project areas.
 ```
 
 All data accessed, stored, communicated, or transferred on any national HPC
-system (Betzy, Fram and Saga) or the National e-Infrastructure for Research Data (NIRD),
+system (Betzy and Saga) or the National e-Infrastructure for Research Data (NIRD),
 must be handled in compliance to legal and regulatory requirements.
 
 In addition, all data has to be directly related to the work effectuated and/or

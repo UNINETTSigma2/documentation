@@ -7,7 +7,7 @@ orphan: true
 # Job Types on Saga
 
 Saga is designed to run serial and small ("narrow") parallel jobs, in
-addition to GPU jobs.  If you need to run "wider" parallel jobs, Fram
+addition to GPU jobs.  If you need to run "wider" parallel jobs, Betzy
 is a better choice.
 
 ```{warning}

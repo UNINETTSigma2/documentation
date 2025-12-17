@@ -31,11 +31,10 @@ $ ssh <username>@<machinename>
 The machine names are:
 - `olivia.sigma2.no` - {ref}`olivia`
 - `betzy.sigma2.no` - {ref}`betzy`
-- `fram.sigma2.no` - {ref}`fram`
 - `saga.sigma2.no` - {ref}`saga`
 - `login.nird.sigma2.no` - {ref}`nird`
 
-The Fram and Saga systems also provide a {ref}`remote desktop <ood>` service.
+The Saga system also provide a {ref}`remote desktop <ood>` service.
 
 
 ## Learning about the Linux command line

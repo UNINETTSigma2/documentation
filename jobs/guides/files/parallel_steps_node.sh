@@ -16,7 +16,7 @@ module list
 
 # This is needed for job types that hand out whole nodes:
 unset SLURM_MEM_PER_NODE
-export SLURM_MEM_PER_CPU=1888 # This is for Fram.  For betzy, use 1952.
+export SLURM_MEM_PER_CPU=1952 # This is for Betzy
 
 # This is needed with the current version of Slurm (21.08.x):
 export SLURM_JOB_NUM_NODES=1-$SLURM_JOB_NUM_NODES

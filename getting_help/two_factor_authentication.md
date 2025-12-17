@@ -1,6 +1,6 @@
 # One-time-pad (OTP) / Two-factor authentication #
 
-All login nodes on Betzy, Fram, Saga and NIRD now require two-factor authentication when connecting through SSH.
+All login nodes on Betzy, Saga and NIRD now require two-factor authentication when connecting through SSH.
 
 To set up two-factor authentication for your user, follow these steps:
 
@@ -38,23 +38,23 @@ First click [User Login (Passwords)](https://www.metacenter.no/user/)
 On your Mac or Linux desktop or laptop, create a text file `~/.ssh/config` with, for example, the following contents:
 
 ```
-Host fram
+Host saga
     User myusername
-    HostName login.fram.sigma2.no
+    HostName login.saga.sigma2.no
     ControlMaster auto
     ControlPath ~/.ssh/%r@%h:%p
 ```
 
 where myusername is replaced appropriately.
 
-This sets things up so that whenever you ssh to the host nickname fram: ssh fram
+This sets things up so that whenever you ssh to the host nickname saga: ssh saga
 
 It will look for the special file (a socket) in your `~/.ssh/` directory that is maintaining a connection to the cluster. If it already exists and is open, it’ll use it to create a connection without re-authenticating; if it doesn’t exist, it’ll authenticate and create the file for subsequent use.
 
 Note that all subsequent connections are dependent on the initial connection — if you exit or kill the initial connection all other ones die, too. This can obviously be annoying if it happens accidentally. It’s easily avoided by setting up a master connection in the background:
 
 ```console
-$ ssh -CX -o ServerAliveInterval=30 -fN fram
+$ ssh -CX -o ServerAliveInterval=30 -fN saga
 ```
 
 The -fN make it go into the background and sit idle, after authenticating. (C for compression,Y for X forwarding, and -o ServerAliveInterval=30 to prevent dropped connections have nothing to do with the ControlMaster but are almost always helpful.)
@@ -65,7 +65,7 @@ The -fN make it go into the background and sit idle, after authenticating. (C fo
 OpenSSH for Windows does currently not support the ControlMaster module, **but there is a workaround for this**.
 
 By [installing WSL](https://learn.microsoft.com/en-us/windows/wsl/install) and running an Ubuntu terminal you will be able to use SSH as if you were using a Linux computer. You can create the text file under `~/Ubuntu/home/user/.ssh/` and add the same contents as in the example above. Remember to save the text file as `config`
-If you then attempt to ssh to the host nickname fram in this example by using `ssh fram` in your Ubuntu terminal, it would then create the same socket under Ubuntu's ssh directory as it would if you were to use a Mac/Linux computer.    
+If you then attempt to ssh to the host nickname saga in this example by using `ssh saga` in your Ubuntu terminal, it would then create the same socket under Ubuntu's ssh directory as it would if you were to use a Mac/Linux computer.    
 You can run an Ubuntu terminal simply by typing the command 'Ubuntu' in your Windows terminal.    
 
 ## How to copy files without using 2FA/OTP

@@ -18,8 +18,6 @@ Running ParaView using its built-in server option has a few advantages:
 ```{warning}
 The packages and commands that we will show below depend on which machine you have access to:
 
-**Fram**: since it does not have any dedicated GPUs, you will not be able to use partitions "a100" or "p100" nor any gpu parameters and the "egl" package. Please, try with "osmesa" package.
-
 **Betzy**: since it only has AMD processors and A100 GPUs, you will have to switch environments and run either the "egl" or "osmesa" packages (the former is probably slightly faster). Please, follow the instructions on this guide for AMD setups.
 
 **Saga**: this cluster has Intel and AMD CPUs and different GPUs available. Remember that P100 is only available for Intel architecture and A100 for AMD architecture so the commands will vary depending on which GPU is selected. Either way, both "egl" and "osmesa" packages can also be used. 
@@ -131,7 +129,6 @@ salloc: Nodes gpu-12-8 are ready for job
 
 Due to a different architecture, our A100 GPU runs paired with an AMD CPU. You can check more details about the hardware in these pages:
 ([Betzy](/hpc_machines/betzy.md))
-([Fram](/hpc_machines/fram.md))
 ([Saga](/hpc_machines/saga.md))
 
 If you want to run the "egl" package, you will have to:
@@ -182,7 +179,7 @@ Please, replace the following:
 `node` - the number of the node. You can see that on the "Accepting Connection" or salloc messages.
 `username` - your username on our servers
 `Y` - the login node you connected previously (you can see it on the pvserver message below)
-`server` - replace with betzy, fram or saga
+`server` - replace with betzy or saga
 ```
 
 ## Connect ParaView's local client to the server

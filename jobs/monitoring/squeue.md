@@ -25,7 +25,7 @@ where:
   - If the job is running it will display an indication of what nodes it is running in. This information is important in debugging issues if the job exited abnormally. We explain these further down
 
 The nodelist will show a series of letters and numbers which index the nodes in which the different jobs are running. 
-In FRAM and SAGA these will look like `cx-y`, 
+In SAGA these will look like `cx-y`, 
 while in betzy they will look like `bx` where for all machines both `x` and `y` are numbers describing the physical organizing of the machines
 Following is an example of 
 ```

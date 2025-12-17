@@ -29,9 +29,9 @@ D. For more details about the optimizatoin techniques [consult the
 white paper.](https://doi.org/10.5281/zenodo.2633704)
 
 
-## Using VTune on Fram
+## Using VTune 
 
-First, to use VTune on Fram you need to load the corresponding
+First, to use VTune you need to load the corresponding
 software module `VTune`. To list the available versions:
 
 ```
@@ -108,16 +108,16 @@ Collected performance statistics are saved in a subdirectory, by
 default in the directory you are running from. For the above example
 the results are stored in `r000hpc/`. They can then be compressed and
 moved to, e.g., a desktop computer, or they can be analyzed on one of
-the Fram login nodes using the VTune Amplifier GUI:
+the login nodes using the VTune Amplifier GUI:
 
 ```
-$ ssh -Y fram.sigma2.no
+$ ssh -Y login-1.<machinename>.sigma2.no
 $ ml load VTune/2018_update3
 $ amplxe-gui
 ```
 
-Note that running the GUI directly on Fram migh feel sluggish depending
-on your network connection.
+Note that running the GUI directly on a remote machine migh feel sluggish depending
+on your network connection. This is advised being done through a remote desktop solution, like OOD.
 
 ## VTune analysis
 

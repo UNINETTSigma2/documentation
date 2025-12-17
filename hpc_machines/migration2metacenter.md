@@ -22,6 +22,5 @@ For users either being novel to HPC in general, or having experience from other 
 
 ## Read about the current machines operated by NRIS
 
-* [Fram](/hpc_machines/fram.md)
 * [Saga](/hpc_machines/saga.md)
 * [Betzy](/hpc_machines/betzy.md)

@@ -10,7 +10,7 @@ CDO is a collection of tools for analyzing Climate and NWP model Data.
 | :------------- | :------------- |
 | CDO |1.8.2-intel-2017a <br>1.9.3-intel-2018a|
 
-To see available versions when logged into Fram issue command
+To see available versions when logged in, issue command
 
     module spider cdo
 

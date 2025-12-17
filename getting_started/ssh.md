@@ -68,7 +68,7 @@ immediately.
 ## Jumping through login nodes (*of the same system*)
 
 When already logged in, you can easily jump from one login node to another by
-typing `ssh login-X` (for Fram, Saga and Betzy) or `ssh loginX` (for NIRD).
+typing `ssh login-X` (for Saga and Betzy) or `ssh loginX` (for NIRD).
 Please, replace "X" with the number of the login node you want to access.
 
 Also, the same is valid for when we want to access a specific compute node we
@@ -332,11 +332,11 @@ per-host basis in your `.ssh/config` file:
 ForwardX11        no               # disable X11 forwarding
 ForwardX11Trusted no               # do not trust remote X11 clients
 
-# per-host based settings, example for Fram
-Host fram                            # alias, you may run "ssh fram" only
-    HostName fram.sigma2.no          # actual hostname for Fram
-    User my_username                 # replace with your username on Fram
-    IdentityFile ~/.ssh/id_rsa_fram  # pointer to your private SSH key
+# per-host based settings, example for Saga
+Host saga                            # alias, you may run "ssh saga" only
+    HostName saga.sigma2.no          # actual hostname for Saga
+    User my_username                 # replace with your username on Saga
+    IdentityFile ~/.ssh/id_rsa_saga  # pointer to your private SSH key
     ForwardX11          yes          # enable X11 forwarding
     ForwardX11Trusted   no           # do not trust remote X11 clients
 ```
@@ -412,8 +412,8 @@ Please contact your system administrator.
 Add correct host key in /home/username/.ssh/known_hosts to get rid of this message.
 Offending ECDSA key in /home/username/.ssh/known_hosts:13
   remove with:
-  ssh-keygen -f "/home/username/.ssh/known_hosts" -R fram.sigma2.no
-ED25519 host key for fram.sigma2.no has changed and you have requested strict checking.
+  ssh-keygen -f "/home/username/.ssh/known_hosts" -R saga.sigma2.no
+ED25519 host key for saga.sigma2.no has changed and you have requested strict checking.
 Host key verification failed.
 ```
 
@@ -431,7 +431,7 @@ locate the file `known_hosts` inside `/home/username/.ssh/` and delete line 13.
 
 Also, if you are familiar with Linux terminal, running the suggested command
 also has the same effect:
-`ssh-keygen -f "/home/username/.ssh/known_hosts" -R fram.sigma2.no`
+`ssh-keygen -f "/home/username/.ssh/known_hosts" -R saga.sigma2.no`
 
 After following the steps above, try to log in again and accept the new
 fingerprint (if you want to make sure it is the correct one, check this

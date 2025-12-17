@@ -8,7 +8,6 @@ Cluster-specific details are kept in separate sub pages for each cluster:
 
 
 - [Slurm job script generator](https://open.pages.sigma2.no/job-script-generator/)
-- [Fram job scripts](job-scripts-on-fram)
 - [Saga job scripts](job-scripts-on-saga)
 - {ref}`Betzy job scripts <job-scripts-on-betzy>`
 - [Olivia job scripts](job-scripts-on-olivia)

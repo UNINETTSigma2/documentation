@@ -1,12 +1,12 @@
-# How to Run Mathematica on Saga and Fram Using Singularity
+# How to Run Mathematica on Saga Using Singularity
 
 ## Introduction
 
-To execute Mathematica tasks on High-Performance Computing (HPC) systems like Fram or Saga, we employ Singularity, a container solution. This guide focuses on a non-graphical, command-line interface for Mathematica. The non-graphical approach is well-suited for HPC environments because it integrates easily with job scripts in the SLURM queuing system, optimizing resource utilization and allowing for automated, batch processing of tasks.
+To execute Mathematica tasks on High-Performance Computing (HPC) systems like Saga, we employ Singularity, a container solution. This guide focuses on a non-graphical, command-line interface for Mathematica. The non-graphical approach is well-suited for HPC environments because it integrates easily with job scripts in the SLURM queuing system, optimizing resource utilization and allowing for automated, batch processing of tasks.
 
 ## Pre-requisites
 
-1. SSH access to Fram or Saga HPC systems
+1. SSH access to Saga HPC systems
 2. A valid Mathematica license
 3. Basic shell command knowledge
 
@@ -42,7 +42,7 @@ singularity run --bind path/mathematica-license.txt:/root/.WolframEngine/Licensi
 
 ## Your first mathematica job
 
-To create the job script we recommend using the [Slurm job script generator](https://open.pages.sigma2.no/job-script-generator/). The following is an example of a job script that runs a Mathematica script named `mathematica-script.wl` on Fram :
+To create the job script we recommend using the [Slurm job script generator](https://open.pages.sigma2.no/job-script-generator/). The following is an example of a job script that runs a Mathematica script named `mathematica-script.wl`:
 
 ```bash
 #!/bin/bash
@@ -53,6 +53,7 @@ To create the job script we recommend using the [Slurm job script generator](htt
 #SBATCH --time=00:01:00   ## Walltime of the job
 #SBATCH --ntasks=1   ## Number of tasks that will be allocated
 #SBATCH --nodes=1   ## Number of nodes that will be allocated
+#SBATCH -mem= (please add required amount of memory)
 
 set -o errexit   ## Exit the script on any error
 set -o nounset   ## Treat any unset variables as an error

@@ -14,13 +14,13 @@ while others are for storing project data.
 
 ## Overview
 
-The following table summarizes the different storage options for **Betzy, Fram, and Saga**.
+The following table summarizes the different storage options for **Betzy and Saga**.
 
 | Directory                                                   | Purpose                      | {ref}`Default Quota <storage-quota>`               | {ref}`Backup <storage-backup>` | Note             |
 |:------------------------------------------------------------|:-----------------------------|:---------------------------------------------------|:------------------------------:|:----------------:|
 | `/cluster/home/$USER` (`$HOME`)                             | User data                    | 20 GiB / 100 K files                               | Yes (Only if quota enforced)   |                  |
 | `/cluster/work/jobs/$SLURM_JOB_ID` (`$SCRATCH`)             | Per-job data                 | N/A                                                | No                             |                  |
-| (Fram/Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALSCRATCH`) | Per-job data                 | {ref}`Individual <job-scratch-area-on-local-disk>` | No                             | Only Fram Saga   |
+| (Saga) `/localscratch/$SLURM_JOB_ID` (`$LOCALSCRATCH`) | Per-job data                 | {ref}`Individual <job-scratch-area-on-local-disk>` | No                             | Only Saga   |
 | `/cluster/work/users/$USER` (`$USERWORK`)                   | Staging and job data         | N/A                                                | No                             |                  |
 | `/cluster/projects/<project_name>`                          | Project data                 | {ref}`1 TiB / 1 M files <project-area>`            | No                             |                  |
 | `/cluster/shared/<folder_name>`                             | Shared data                  | {ref}`Individual <shared-project-area>`            | No                             |                  |
@@ -41,14 +41,14 @@ The following table summarizes the different options for **Olivia**.
 | `/nird/datalake/NSxxxxK`                                          | NIRD Data Lake (DL) projects |                                                    |                                | Svc nodes (read-write) and compute nodes (read-only) |
 
 - **User areas and project areas are private**: Data handling and storage policy is documented [here](/files_storage/sharing_files.md).
-- **`$LOCALSCRATCH` area is only implemented on Fram and Saga**.
-- Saga, Fram and Betzy mount the NIRD project areas as
+- **`$LOCALSCRATCH` area is only implemented on Saga**.
+- Saga and Betzy mount the NIRD project areas as
   `/nird/datapeak/NSxxxxK` for NIRD Data Peak (DP) projects and
   `/nird/datalake/NSxxxxK` for NIRD Data Lake (DL) projects **on the
   login nodes only ** (not on the compute nodes).  On Olivia, they
   are mounted on the SVC[1-5] nodes (read-write) and on the compute nodes (read-only).
 - The `/cluster` file system is a high-performance parallel file
-  system.  On Fram, Betzy and Olivia, it is a
+  system.  On Betzy and Olivia, it is a
   [Lustre](https://www.lustre.org/) system, and on Saga it is a
   [BeeGFS](https://www.beegfs.io/) system.  For performance
   optimizations, consult {ref}`storage-performance`.
@@ -85,14 +85,14 @@ job finishes.  The location is stored in the environment variable
 `$SCRATCH` available in the job.  `$SCRATCH` is only accessible by the
 user running the job.
 
-On Fram, Saga and Betzy, the scratch area is on the parallell cluster
+On Saga and Betzy, the scratch area is on the parallell cluster
 file system, in `/cluster/work/jobs/$SLURM_JOB_ID`.  On Olivia, it is
 on local disk on cpu nodes (in `/localscratch/$SLURM_JOB_ID`) and on a
 shared, fast file system on the GPU nodes (currently in
 `/cluster/software/gpujobscratch/jobs/$SLURM_JOB_ID`, but this will be
 changed).
 
-Fram and Saga also has the option to get a scratch area on local disk (see below).
+Saga also has the option to get a scratch area on local disk (see below).
 
 The area is meant as a temporary scratch area during job
 execution.
@@ -129,7 +129,7 @@ directory `$SLURM_SUBMIT_DIR` (where `sbatch` was run).
 
 **This does not exist on Betzy**.
 
-A job on **Fram/Saga** can request a scratch area on local disk on the node
+A job on **Saga** can request a scratch area on local disk on the node
 it is running on.  This is done by specifying
 `--gres=localscratch:<size>`, where *<size>* is the size of the requested
 area, for instance `--gres=localscratch:20G` for 20 GiB.
@@ -139,8 +139,6 @@ scratch area on local disk.  One does not have to specify a size for
 this, and all jobs on the node share the available storage.  The size
 of the localscratch disk on Olivia compute nodes is 3.5 TiB.
 
-Normal compute nodes on Fram have 198 GiB disk that can be handed out
-to local scratch areas, and the bigmem nodes have 868 GiB.
 On Saga most nodes have 330 GiB; a few of the
 bigmem nodes have 7 TiB, the hugemem nodes have 13 TiB and the GPU
 nodes have either 406 GiB or 8 TiB.  If a job tries
@@ -167,7 +165,7 @@ speed up the jobs, and reduce the load on the `/cluster` file system.
 
 **This area is not backed up** ([documentation about backup](backup.md)).
 
-On Saga and Fram, there are currently *no* special commands to ensure that files are
+On Saga there are currently *no* special commands to ensure that files are
 copied back automatically, so one has to do that with `cp` commands or
 similar in the job script.  On Olivia, the `savefile` and `cleanup`
 commands can be used.
@@ -189,9 +187,9 @@ commands can be used.
 
 - Since the area is removed automatically, it can be hard to debug
   jobs that fail.
-- Not suitable for files larger than 198-300 GB on Saga and Fram.
+- Not suitable for files larger than 198-300 GB on Saga.
 - One must make sure to use `cp` commands or similar in the job
-  script to copy files back (on Saga and Fram).
+  script to copy files back (on Saga).
 - If the main node of a job crashes (i.e., not the job script, but the
   node itself), files might be lost.
 ```
@@ -201,7 +199,7 @@ commands can be used.
 
 ## User work area
 
-On Saga, Fram and Betzy (but not Olivia), each user has an area `/cluster/work/users/$USER`.  The location is
+On Saga and Betzy (but not Olivia), each user has an area `/cluster/work/users/$USER`.  The location is
 stored in the environment variable `$USERWORK`.
 **This area is not backed up** ([documentation about backup](backup.md)).
 By default, `$USERWORK` is a private area and only accessible by
@@ -301,13 +299,13 @@ for instance running scripts that touch all files.**
 
 ## Project area
 
-On Fram, Saga and Betzy (but not Olivia),
+On Saga and Betzy (but not Olivia),
 all HPC projects have a dedicated local space to share data between project
 members, located at `/cluster/projects/<project_name>`.
 
 The project area is controlled by {ref}`storage-quota` and the default project quota for
 HPC projects is 1 TiB, but projects can apply for more during the
-application process with a maximum quota of 10 TiB on Fram and Saga, and 20 TiB on Betzy.
+application process with a maximum quota of 10 TiB on Saga, and 20 TiB on Betzy.
 
 Also after the project has been created, project members can request to increase
 the quota to up to 10/20 TiB by documenting why this is needed. Such requests should be submitted by the project leader via e-mail to [contact@sigma2.no](mailto:contact@sigma2.no?subject=Storage%20Quota%20Request%20project%20X&body=1.%20How%20large%20are%20the%20input%20files%3F%20(Approximate%20or%20exact%20numbers%20are%20fine.)%0A%0A2.%20How%20many%20such%20input%20files%20will%20be%20used%20in%20a%20single%20job%3F%0A%0A3.%20At%20what%20rate%20do%20you%20intend%20to%20process%20your%20data%3F%20(Approximate%20GB%20per%20week%20or%20equivalent.)%0A%0A4.%20What%20size%20is%20your%20output%20files%20and%20will%20you%20use%20this%20data%20as%20input%20in%20further%20analysis%3F%0A%0A5.%20Please%20explain%20why%20you%20cannot%20benefit%20from%20the%20%2Fcluster%2Fwork%20area%0A%0A6.%20Based%20on%20your%20answers%20above%2C%20how%20much%20storage%20quota%20do%20you%20think%20you%20need%3F)
