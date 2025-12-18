@@ -30,7 +30,7 @@ Important: The Central Data Library is not intended for permanent archival of da
 
 - Apply through the regular resource application process and select NIRD Data Lake as the requested storage resource.
 - During the application, the Project Leader should explicitly flag the request as a Central Data Library (CDL) application.
-- For more info on application acceptence process, refer to the [Central Data Library policy](https://www.sigma2.no/central-data-library-policy)
+- For more info on application acceptance process, refer to the [Central Data Library policy](https://www.sigma2.no/central-data-library-policy)
 
 ## S3 Access for the CDL
 
