@@ -10,7 +10,7 @@ NIRD Data Lake is a storage service designed for storing and sharing large volum
 no longer being processed frequently but still need to be kept, accessed or shared.
 The service supports both file and object access, allowing flexible integration with research workflows and external systems.
 
-## When to Use NIRD Data Lake
+## When to use NIRD Data Lake
 Use NIRD Data Lake when:
 
 - You have large volumes of data that are no longer heavily used, but you need to keep them.
