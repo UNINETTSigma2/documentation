@@ -27,7 +27,7 @@ to the next level. {ref}`Read more ... <about-us>`
 {ref}`nird` | {ref}`storage-areas`
 
 **Data & Storage Services**:
-{ref}`nird-dp` | {ref}`nird-dl` | {ref}`backup service` | {ref}`research-data-archive` |  {ref}`nird-service-platform`
+{ref}`nird-dp` | {ref}`nird-dl` | {ref}`backup service` | {ref}`nird-cdl` | {ref}`research-data-archive` |  {ref}`nird-service-platform`
 
 **Tools and other services**:
 {ref}`nird-toolkit` | {ref}`Course resources <course-resources>`
@@ -130,6 +130,7 @@ files_storage/sharing_files.md
 software/licenses.md
 Data Policy<https://www.sigma2.no/data-policy>
 Data decommissioning policies<https://www.sigma2.no/data-decommissioning-policies>
+Central Data Library Policy<https://www.sigma2.no/central-data-library-policy>
 Overview of Sigma2 Policies<https://www.sigma2.no/policies>
 ```
 
@@ -182,6 +183,7 @@ getting_started/R.md
 files_storage/nird/nird_dp.md
 files_storage/nird/nird_dl.md
 files_storage/nird/backup_lmd.md
+files_storage/nird/cdl.md
 nird_archive/user-guide.md
 nird_service_platform/overview_nird_service_platform.md
 ```
