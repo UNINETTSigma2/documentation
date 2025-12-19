@@ -19,8 +19,8 @@ Use the Central Data Library (CDL) when:
 
 - You need to share and reuse data across multiple projects or research groups.
 - Your data serves as common input, such as reference datasets, AI/ML training data, models, or shared libraries.
-- You require centralised storage with controlled access and permissions for collaborators (Access to data via the S3 protocol and S3 API ).
-- Long-term storage of non-persistent input datasets enriched with metadata 
+- You require centralised storage with controlled access and permissions for collaborators (access to data via the S3 protocol and S3 API.)
+- Long-term storage of non-persistent input datasets enriched with metadata.
 
 ```{note}
 Important: The Central Data Library is not intended for permanent archival of data, for long-term preservation you should use the {ref} research-data-archive instead.
