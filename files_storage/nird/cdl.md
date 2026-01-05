@@ -23,22 +23,20 @@ Use the Central Data Library (CDL) when:
 - Long-term storage of non-persistent input datasets enriched with metadata.
 
 ```{note}
-Important: The Central Data Library is not intended for permanent archival of data, for long-term preservation you should use the {ref} research-data-archive instead.
+Important: The Central Data Library is not intended for permanent archival of data, for long-term preservation you should use the {ref}`research-data-archive` instead.
 ```
 
 ## How to apply for CDL service
 
 - Apply through the regular resource application process and select NIRD Data Lake as the requested storage resource.
 - During the application, the Project Leader should explicitly flag the request as a Central Data Library (CDL) application.
-- For more info on application acceptance process, refer to the [Central Data Library policy](https://www.sigma2.no/central-data-library-policy)
+- For more info on application acceptance process, refer to the [Central Data Library policy](https://www.sigma2.no/central-data-library-policy).
 
 ## S3 Access for the CDL
 
 CDL uses S3-compatible object storage as the default access method for storing and retrieving data. This means you can interact with CDL data using 
 standard S3 tools and clients, just like other cloud object storage services. 
-For detailed, step-by-step instructions and practical examples on configuring and using S3 access, please refer to the {ref} nird-s3 documentation.
-
-
+For detailed, step-by-step instructions and practical examples on configuring and using S3 access, please refer to the {ref}`nird-s3` documentation.
 
 
 
