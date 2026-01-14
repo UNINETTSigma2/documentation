@@ -24,7 +24,7 @@ The following table summarizes the different storage options for **Betzy and Sag
 | `/cluster/work/users/$USER` (`$USERWORK`)                   | Staging and job data         | N/A                                                | No                             |                  |
 | `/cluster/projects/<project_name>`                          | Project data                 | {ref}`1 TiB / 1 M files <project-area>`            | No                             |                  |
 | `/cluster/shared/<folder_name>`                             | Shared data                  | {ref}`Individual <shared-project-area>`            | No                             |                  |
-| `/nird/datapeak/NSxxxxK`                                    | NIRD Data Peak (TS) projects |                                                    |                                | Login nodes only |
+| `/nird/datapeak/NSxxxxK`                                    | NIRD Data Peak (DP) projects |                                                    |                                | Login nodes only |
 | `/nird/datalake/NSxxxxK`                                    | NIRD Data Lake (DL) projects |                                                    |                                | Login nodes only |
 
 The following table summarizes the different options for **Olivia**.
@@ -37,7 +37,7 @@ The following table summarizes the different options for **Olivia**.
 | `/cluster/work/projects/nnXXXXk`                                  | Staging and job data         | N/A                                                | No                             |                                                      |
 | `/cluster/projects/nnXXXXk`                                       | User installed software      | 1 TiB / 1M files                                   | No                             |                                                      |
 | `/cluster/shared/<folder_name>`                                   | Shared data                  | {ref}`Individual <shared-project-area>`            | No                             |                                                      |
-| `/nird/datapeak/NSxxxxK`                                          | NIRD Data Peak (TS) projects |                                                    |                                | Svc nodes (read-write) and compute nodes (read-only) |
+| `/nird/datapeak/NSxxxxK`                                          | NIRD Data Peak (DP) projects |                                                    |                                | Svc nodes (read-write) and compute nodes (read-only) |
 | `/nird/datalake/NSxxxxK`                                          | NIRD Data Lake (DL) projects |                                                    |                                | Svc nodes (read-write) and compute nodes (read-only) |
 
 - **User areas and project areas are private**: Data handling and storage policy is documented [here](/files_storage/sharing_files.md).
