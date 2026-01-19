@@ -1,6 +1,6 @@
 %chk=water
 %mem=500MB
-%NPROCSHARED=8
+%NPROCSHARED=4
 #p b3lyp/cc-pVDZ opt
 
 structure optimization of water

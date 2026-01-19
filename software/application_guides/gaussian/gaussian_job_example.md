@@ -58,7 +58,7 @@ To run an example - create a directory, step into it, create an input file (for 
 
 ## Running Gaussian on Saga
 
-On Saga there are more restrictions and tricky situations to consider than on Fram. First and foremost, there is a heterogenous setup with some nodes having 52 cores and most nodes having 40 cores. Secondly, on Saga there is a 256 core limit, efficiently limiting the useful maximum amount of nodes for a Gaussian job on Saga to 6. And third, since you do share the nodes by default - you need to find a way to set resource allocations in a sharing environment not necessarily heterogenous across your given nodes.
+On Saga there are some restrictions and tricky situations to consider. First and foremost, there is a heterogenous setup with some nodes having 52 cores and most nodes having 40 cores. Secondly, on Saga there is a 256 core limit, efficiently limiting the useful maximum amount of nodes for a Gaussian job to 6. And third, since you do share the nodes by default - you need to find a way to set resource allocations in a sharing environment not necessarily heterogenous across your given nodes.
 
 Currently, we are working to find a solution to all these challenges and as of now our advices are:
 Up to and including 2 nodes should can be done with standard advices for running jobs on Saga.
@@ -145,7 +145,7 @@ hesitate to contact us if you need guidance on GPU efficiency, see our extended
 
 ## Running Gaussian in Betzy and Olivia with Linda parallelization
 
-Linda is Gaussian's method of process parallelization. Linda allows to run certain calculations in less time dute to parallelization, and it is essential in multi-node calculations of Gaussian, as it helps Gaussian communicate across nodes. Since the minimum numnber of nodes one can run jobs on in Betzy is 4, knowing how to use Linda is essential for proper usage.
+Linda is Gaussian's method of process parallelization. Linda allows to run certain calculations in less time due to parallelization, and it is essential in multi-node calculations of Gaussian, as it helps Gaussian communicate across nodes. Since the minimum numnber of nodes one can run jobs on in Betzy is 4, knowing how to use Linda is essential for proper resource use.
 
 More information on Linda and parallelization in Gaussian can be read in Gaussian's documentation [here](https://gaussian.com/running/) and for what specific calculations are sped up, you can read [here](https://gaussian.com/relnotes/). In both of those links, navigate to the Parallel sections.
 
@@ -188,7 +188,12 @@ In this script we want to run a 4 node job, where each node will start 1 linda w
 ```{literalinclude} water_Linda.com
 :language: bash
 ```
-Note the preamble contains the line `%NPROCSHARED` which specifies the number of cores for each worker.
+Note the preamble contains the line `%NPROCSHARED` which specifies the number of cores for each worker, and `%mem` which specifies the total memory needed for this job. These lines are essential for Gaussian to know how many cores and memory to use in the calculation.
+
+```{note}
+Gaussian Defaults to 1 CPU if none are specified. Changing the variable `--cpus-per-task` in the submit script is not sufficient to increase the Gaussian's CPU usage. The user must also change the line `%NPROCSHARED` in the input file with the correct number of CPUs needed .
+```
+
 
 - Job script example (`betzy_g16.sh`):
 
@@ -205,17 +210,21 @@ do
     touch ~/.ssh/known_hosts
     ssh-keygen -R "$HN" 2>/dev/null || true
     ssh-keyscan -H "$HN" >> ~/.ssh/known_hosts 2>/dev/null || true
-    
-    # These two lines are for testing that the connections are set up properly, not necessary, but help in case of issues.
-    ssh -o BatchMode=yes "$HN" true && echo "SSH OK"
-    ssh -o BatchMode=yes "$HN" true && echo "SSH OK" || echo "SSH failed"
 done
 ```
 These lines will allow Linda to login to the different nodes without a `yes|no` prompt appearing, if this prompt appears, Linda will crash. 
 
+
+You can also test if the ssh connections are working by adding these lines into the loop above (right before `done`)
+```
+    ssh -o BatchMode=yes "$HN" true && echo "SSH OK"
+    ssh -o BatchMode=yes "$HN" true && echo "SSH OK" || echo "SSH failed"
+```
+
+
 2. These lines:
 ```bash
-NodeList=$(scontrol show hostnames | while read n ; do echo $n:1 ; done |  paste -d, -s)
+NodeList=$(scontrol show hostnames | while read n ; do echo $n:2 ; done |  paste -d, -s)
 
 {
 printf '%%LINDAWORKERS=%s\n' "$NodeList"
@@ -223,7 +232,7 @@ cat input.com
 } > input.tmp && mv input.tmp input.com
 ```
 
-Will tell Gaussian how to distribute the `lindaWorkers` through the nodes, even if just one node is used. Because of this section `do echo $n:1` only one `LindaWorker` will be added to each node.
+Will tell Gaussian how to distribute the `lindaWorkers` through the nodes, even if just one node is used. Because of this section `do echo $n:2` two `LindaWorker` will be added to each node. In this example, we have a single node with two linda workers.
 This adds a line like the following at the top of your input file
 
 ```bash
@@ -245,9 +254,10 @@ Here is an example of a script for running Gaussian on Olivia. The specific deta
 ```
 
 ```{note}
-Gaussian Defaults to 1 CPU if none are specified. Changing the variable `--cpus-per-task` in the submit script is not sufficient to increase the Gaussian's CPU usage. The user must also change the line `%NPROCSHARED` in the input file with the correct number of CPUs needed .
+Using multiple linda workers per node might feel like an unnecesssary extra step, and for smaller calculations it is, though this is not always the case.
+Due to how Gaussian scales in single node Shared Memory parallelization calculations one should start adding linda workers between the 16-32 CPU mark.
+For more information, please read the article on {ref}`gaussian-tuning`.
 ```
-
 
 
 
