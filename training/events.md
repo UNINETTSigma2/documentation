@@ -9,14 +9,6 @@ The courses are free of charges unless otherwise announced.
 
 ## Upcoming *NRIS* events
 
-### 2025
-
-```{toctree}
-:maxdepth: 1
-
-```
-
-### 2026
 
 ```{toctree}
 :maxdepth: 1
@@ -24,17 +16,9 @@ events/2026-04-hpc-on-boarding.md
 
 ```
 
+
 ## Upcoming event from our collaborators
 
-### 2025
-
-```{toctree}
-:maxdepth: 1
-NAIC/2025-12-IBM-Power11.md
-
-```
-
-### 2026
 
 ## Request Training
 
@@ -64,6 +48,25 @@ For all the sympa lists; replace names with your own. Also, for all these, the w
 
 ## Past events
 
+<details><summary><H3 style="display:inline">2026</summary><br>
+
+```{toctree}
+:maxdepth: 1
+
+```
+
+<H4> From external collaborators:</H4>
+
+
+```{toctree}
+:maxdepth: 1
+```
+
+- [Introduction to Modern Fortran](https://www.ub.uio.no/english/courses-events/events/dsc/dsdays/2026/23-introduction-to-modern-fortran-20260109)
+
+</details>
+
+
 <details><summary><H3 style="display:inline">2025</summary><br>
 
 ```{toctree}
@@ -77,6 +80,12 @@ nris_talks/2025-04-24-nris-talks.md
 events/2025-05-NumPy-Pandas-for-biology.md
 ```
 <H4> From external collaborators:</H4>
+
+```{toctree}
+:maxdepth: 1
+NAIC/2025-12-IBM-Power11.md
+
+```
 
 - [Mondays with MATLAB – Nordic HPC Workshops](https://www.mathworks.com/company/events/seminars/series/mondays-with-matlab-nordic-hpc-workshops-nrd-2025.html)
 - [Fundamentals of Accelerated Computing with CUDA C/C++](https://www.ub.uio.no/english/courses-events/courses/carpentry/CUDA)
