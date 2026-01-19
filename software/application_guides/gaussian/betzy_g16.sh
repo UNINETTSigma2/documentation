@@ -14,8 +14,8 @@ module load Gaussian/16.C.01-AVX2
 input=water
 
 # set the heap-size for the job to 20GB
+export GAUSS_LFLAGS2="--LindaOptions -s 20000000"
 export PGI_FASTMATH_CPU=avx2
-
 
 # create the temporary folder
 export GAUSS_SCRDIR=/cluster/work/users/$USER/$SLURM_JOB_ID
@@ -29,16 +29,10 @@ do
     chmod 600 ~/.ssh/known_hosts
     ssh-keygen -R "$HN" 2>/dev/null || true
     ssh-keyscan -H "$HN" >> ~/.ssh/known_hosts 2>/dev/null || true
-    
-    ## Test if the nodes are reachable
-    ssh -o BatchMode=yes "$HN" true && echo "SSH OK" || echo "SSH failed"
 done
 
-
-# copy input file to temporary folder
+# copy input file to temporary folder and cd into it
 cp $SLURM_SUBMIT_DIR/$input.com $GAUSS_SCRDIR
-
-# run the program
 cd $GAUSS_SCRDIR
 
 # Add line specifying the amount of Linda Workers per node.
@@ -48,7 +42,7 @@ printf '%%LINDAWORKERS=%s\n' "$NodeList"
 cat $input.com
 } > $input.tmp && mv $input.tmp $input.com
 
-
+#running the calculation
 time g16 < $input.com > $input.out
 
 # copy result files back to submit directory
