@@ -5,27 +5,30 @@
 Norwegian Research Infrastructure Services (*NRIS*), has an extensive education and training program to assist existing
 and future users of our services. The courses are aimed to give the participants
 an understanding of our services as well as using the resources effectively.
-The courses are free of charges unless otherwise announced. 
+All courses are free of charge unless otherwise announced. 
 
 ## Upcoming *NRIS* events
 
 
 ```{toctree}
 :maxdepth: 1
+
+events/2026-best-practices.md
 events/2026-04-hpc-on-boarding.md
 
 ```
 
 
+
 ## Upcoming event from our collaborators
 
 
-## Request Training
+## Request for Training
 
 If you are interested in a re-run of our past courses or if you want to suggest a new course, or collaborate with us to arrange a training customised for your specific needs, [please take this survey](https://docs.google.com/forms/d/e/1FAIpQLSf1EWya61Z869ZVDrIn1OIVVDTeUaSjmuG3IDwUZ4uWI_INfw/viewform)
 
 
-<details><summary><H3 style="display:inline">Additional information- and local news channels </summary><br>
+<details><summary><H2 style="display:inline">Info about Local - and Sigma2 news channels</summary><br>
 If you want to receive further information about training events, and other announcements 
 about IT resources and services for researchers, there are a couple of information channels
  you can subscribe to:
@@ -44,9 +47,15 @@ For all the sympa lists; replace names with your own. Also, for all these, the w
 </details>
 <br>
 
+### Links to training pages from collaborators:
+
+- [The LUMI-supercomputer training pages](https://lumi-supercomputer.eu/events/)
+- [The Swedish National Competence Centre for Superomputing training pages](https://enccs.se/events/)
+- [The software carpentry lessons pages](https://carpentries.org/lessons/)
+- [The software carpentry workshop pages](https://carpentries.org/workshops/upcoming-workshops/)
 
 
-## Past events
+<details><summary><H2 style="display:inline">Past events</summary><br>
 
 <details><summary><H3 style="display:inline">2026</summary><br>
 
@@ -159,3 +168,4 @@ events/2021-11-hpc-nird-toolkit-user-course.md
 </details>
 <br>
 
+</details>
