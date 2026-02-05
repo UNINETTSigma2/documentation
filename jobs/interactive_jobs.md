@@ -21,12 +21,12 @@ types ](choosing_job_types.md) except _optimist_ jobs.
 
 On **Saga** and **Olivia**:
 ```
-$ salloc --ntasks=1 --mem-per-cpu=4G --time=00:30:00 --qos=devel --account=YourAccount
+salloc --ntasks=1 --mem-per-cpu=4G --time=00:30:00 --qos=devel --account=YourAccount
 ```
 
 On **Betzy**:
 ```
-$ salloc --nodes=1 --time=00:30:00 --qos=devel --account=YourAccount
+salloc --nodes=1 --time=00:30:00 --qos=devel --account=YourAccount
 ```
 
 This will allocate resources, and start a shell on a compute node.
@@ -51,23 +51,18 @@ architecture instead of on our systems more common `x86` one.
 To compile software or build containers that should run on the `accel`
 partition, you can use an interactive session.
 
-To get an interactive session on one of Nvidia Grace-Hopper 200 nodes:
-```
-$ salloc --nodes=1 --time=00:30:00 --qos=devel --account=YourAccount --mem=110G --cpus-per-task=70 --gpus=1
-```
-The GPU nodes on Olivia, part of the `accel` partition, use the `ARM64` CPU architecture instead of the more common `x86` architecture found on other systems. This difference is important to consider when compiling software or building containers intended to run on the `accel` partition.
-
 To ensure compatibility, you can use an **interactive session** to compile or test your software directly on the target architecture.
 
 To start an interactive session on one of the Nvidia Grace-Hopper 200 nodes, use the following command:
 
 ```bash
-salloc --nodes=1 --time=00:30:00 --qos=devel --account=YourAccount --mem=110G --cpus-per-task=70 --gpus=1
+salloc --nodes=1 --time=00:30:00 --qos=devel --partition=accel --account=YourAccount --mem=110G --cpus-per-task=70 --gpus=1
 ```
 
 - **`--nodes=1`**: Requests one node.
 - **`--time=00:30:00`**: Allocates a maximum runtime of 30 minutes.
 - **`--qos=devel`**: Uses the development quality of service (QOS) for short jobs.
+- **`--partition=accel`**: Use GPU partition.
 - **`--account=YourAccount`**: Replace `YourAccount` with your project or account name.
 - **`--mem=110G`**: Allocates 110 GB of memory.
 - **`--cpus-per-task=70`**: Allocates 70 CPU cores for the task.
