@@ -69,7 +69,7 @@ It is recommended to start the commands to set up the environment with
 set -o errexit  # Exit the script on any error
 set -o nounset  # Treat any unset variables as an error
 
-module --quiet purge  # Reset the modules to the system default
+module --quiet reset  # Reset the modules to the system default
 ```
 
 and will most likely include one or more

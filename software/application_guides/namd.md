@@ -83,7 +83,7 @@ independent from the number of GPUs requested.
 set -o errexit  # Exit the script on any error
 set -o nounset  # Treat any unset variables as an error
 
-module --quiet purge  # Reset the modules to the system default
+module --quiet reset  # Reset the modules to the system default
 module load NAMD/2.14-fosscuda-2019b
 module list
 

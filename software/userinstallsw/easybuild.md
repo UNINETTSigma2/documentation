@@ -53,7 +53,7 @@ cluster of choice. Make sure that you have a clean environment with no other
 modules loaded, then search for available EasyBuild versions and load the
 latest version you can find:
 
-    $ module purge
+    $ module reset
     $ module avail easybuild
     ----------------------- /cluster/modulefiles/all ------------------------
 	EasyBuild/4.9.0

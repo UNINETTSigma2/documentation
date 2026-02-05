@@ -80,7 +80,7 @@ We are ready to test it out with the following job script on Saga (adjust
 singularity exec example.sif /opt/ompi/bin/mpirun --version
 singularity exec example.sif /opt/ompi/bin/mpicc mpi_hello_world.c
 
-module purge
+module reset
 module load foss/2020a
 
 mpirun --bind-to core -n ${SLURM_NTASKS} singularity exec example.sif ./a.out

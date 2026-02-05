@@ -10,7 +10,7 @@ set -o errexit
 set -o nounset
 
 # Load MPI module
-module --quiet purge
+module --quiet reset
 module load OpenMPI/4.1.1-GCC-11.2.0
 module list
 

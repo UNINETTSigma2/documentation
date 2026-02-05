@@ -22,7 +22,7 @@
 set -o errexit
 set -o nounset
 
-module --quiet purge  # Clear any inherited modules
+module --quiet reset  # Clear any inherited modules
 
 # each job will see a different ${SLURM_ARRAY_TASK_ID}
 echo "now processing task id:: " ${SLURM_ARRAY_TASK_ID}

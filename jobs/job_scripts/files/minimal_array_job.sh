@@ -6,7 +6,7 @@
 
 set -o errexit # exit on errors
 set -o nounset # treat unset variables as errors
-module --quiet purge   # clear any inherited modules
+module --quiet reset   # clear any inherited modules
 
 DATASET=dataset.$SLURM_ARRAY_TASK_ID
 OUTFILE=result.$SLURM_ARRAY_TASK_ID

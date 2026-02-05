@@ -67,7 +67,7 @@ The CPU version of VASP is the most tested, an experimental version of GPU vasp 
 #SBATCH --ntasks-per-node=250
 #SBATCH --network=single_node_vni
 
-module purge
+module reset
 module load NRIS/CPU
 module load VASP/6.5.1-intel-2024a # or VASP/6.4.3-intel-2024a
 srun vasp_std # or vasp_ncl or vasp_gam

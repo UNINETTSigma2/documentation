@@ -35,7 +35,7 @@ sabryr@jangama:~/Downloads$ rsync --progress orca_5_0_4_linux_x86-64_shared_open
 6. Load the correct mpi module
 
 ```
-module purge
+module reset
 module load gompi/2021a
 
 ```
