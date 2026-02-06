@@ -7,7 +7,7 @@
 #SBATCH --output=slurm.%j.log
 
 # make the program and environment visible to this script
-module --quiet purge
+module --quiet reset
 module load Gaussian/16.C.01-AVX2
 
 # name of input file without extension

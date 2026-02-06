@@ -217,7 +217,7 @@ To run your Hugging Face model for speech-to-text translation on the cluster, yo
 ## Set up job environment:
 set -o errexit  # Exit the script on any error
 set -o nounset  # Treat any unset variables as an error
-module --quiet purge  # Reset the modules to the system default
+module --quiet reset  # Reset the modules to the system default
 module load Python/3.12.3-GCCcore-13.3.0  # Load the Python module
 module list  # List loaded modules for debugging
 
@@ -263,7 +263,7 @@ kill $GPU_MONITOR_PID
 #### Job Environment Setup:
 - `set -o errexit`: Exits the script if any command fails.
 - `set -o nounset`: Treats unset variables as an error.
-- `module --quiet purge`: Resets the modules to the system default.
+- `module --quiet reset`: Resets the modules to the system default.
 - `module load python`: Loads the necessary Python module.
 - `module list`: Lists the loaded modules for debugging purposes.
 

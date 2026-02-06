@@ -56,7 +56,7 @@ and `<your_command>` is the actual command you want to run and checkpoint
 ## Set up job environment:
 set -o errexit  # Exit the script on any error
 set -o nounset  # Treat any unset variables as an error
-module --quiet purge  # Reset the modules to the system default
+module --quiet reset  # Reset the modules to the system default
 ### Load DMPTCP module 
 module load DMTCP/2.6.0-GCCcore-9.3.0
 ### Load your software module
@@ -83,7 +83,7 @@ In this example, DMTCP takes checkpoints every hour '(--interval 3600)'
 ## Set up job environment:
 set -o errexit  # Exit the script on any error
 set -o nounset  # Treat any unset variables as an error
-module --quiet purge  # Reset the modules to the system default
+module --quiet reset  # Reset the modules to the system default
 ### Load DMPTCP module
 module load DMTCP/2.6.0-GCCcore-9.3.0
 ### Load your software module

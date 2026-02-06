@@ -108,7 +108,7 @@ Olivia features three distinct CPU architectures:
 To accommodate these architectures, we have prepared three separate software stacks. You can initialize the module system and access these stacks by running the following commands:
 
 ```bash
-$ module purge
+$ module reset
 $ source /opt/cray/pe/lmod/lmod/init/profile
 $ export MODULEPATH=/cluster/software/modules/Core/
 ```
@@ -321,7 +321,7 @@ To create a new Python or Conda environment on Olivia, follow these steps:
 1. **Load the necessary modules**:
 
    ```bash
-   $ module purge
+   $ module reset
    $ source /opt/cray/pe/lmod/lmod/init/profile
    $ export MODULEPATH=/cluster/software/modules/Core/
    $ module load NRIS/CPU

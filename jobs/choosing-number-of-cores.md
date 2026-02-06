@@ -108,7 +108,7 @@ We can build our example binary with this script (`compile.sh`):
 ```
 #!/usr/bin/env bash
 
-module purge
+module reset
 module load foss/2022b
 
 mpicc example.c -O3 -o mybinary -lm
@@ -130,7 +130,7 @@ emphasize-lines: 8-9
 #SBATCH --ntasks=8
 #SBATCH -o 8.out
 
-module purge
+module reset
 module load foss/2022b
 
 time srun ./mybinary

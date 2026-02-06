@@ -118,7 +118,7 @@ emphasize-lines: 5, 6, 7
 
 set -o errexit # exit on errors
 set -o nounset # treat unset variables as errors
-module --quiet purge   # clear any inherited modules
+module --quiet reset   # clear any inherited modules
 
 DATASETS=(data/*)  # get all files in the directory named "data". Replace
                    # "data" with the path of your dataset directory.
@@ -155,7 +155,7 @@ And use the following example as you run script:
 
 set -o errexit # exit on errors
 set -o nounset # treat unset variables as errors
-module --quiet purge   # clear any inherited modules
+module --quiet reset   # clear any inherited modules
 
 IDX=($SLURM_ARRAY_TASK_ID)
 FILE=$(sed "${IDX}q;d" map_files.txt)

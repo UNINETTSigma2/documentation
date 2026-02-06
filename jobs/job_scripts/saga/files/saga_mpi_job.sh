@@ -26,7 +26,7 @@ set -o nounset # Treat unset variables as errors
 
 # Loading Software modules
 # Allways be explicit on loading modules and setting run time environment!!!
-module --quiet purge            # Restore loaded modules to the default
+module --quiet reset            # Restore loaded modules to the default
 module load MySoftWare/Versions #nb: Versions is important!
 
 # Type "module avail MySoftware" to find available modules and versions

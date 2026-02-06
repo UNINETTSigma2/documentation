@@ -137,7 +137,7 @@ set -o errexit # Make bash exit on any error
 set -o nounset # Treat unset variables as errors
 
 # Loading Software modules
-module --quiet purge            # Restore loaded modules to the default
+module --quiet reset            # Restore loaded modules to the default
 module load dask/your_version
 module list
 
@@ -203,7 +203,7 @@ emphasize-lines: 14, 16, 17, 18
 set -o errexit # Make bash exit on any error
 set -o nounset # Treat unset variables as errors
 
-module --quiet purge            
+module --quiet reset
 module load Graphviz/your_version # replace with the version you want to use
 
 export PS1=\$

@@ -45,7 +45,7 @@ autocomplete options.
 ```
 
 ```{note}
-It can be useful to do an initial `module purge` to
+It can be useful to do an initial `module reset` to
 ensure nothing from previous experiments is loaded before
 loading modules for the first time.
 ```
@@ -70,7 +70,7 @@ follows.
 $ virtualenv -p python3 tensor_env
 # Next we need to activate the new environment
 # NOTE: The 'Python' module loaded above must be loaded for activation to
-# function, this is important when logging in and out or doing a 'module purge'
+# function, this is important when logging in and out or doing a 'module reset'
 $ source tensor_env/bin/activate
 # If you need to do other python related stuff outside the virtualenv you will
 # need to 'deactivate' the environment with the following
@@ -82,8 +82,8 @@ install <package>`. If you end up using additional packages make sure that the
 `virtualenv` is activated in your {ref}`job-scripts`.
 
 ```sh
-# Often useful to purge modules before running experiments
-module purge
+# Often useful to reset modules before running experiments
+module reset
 
 # Load machine learning library along with python
 module load TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4
@@ -117,7 +117,7 @@ into.
 $ virtualenv -p python3 tensor_env
 # Next we need to activate the new environment
 # NOTE: The 'Python' module loaded above must be loaded for activation to
-# function, this is important when logging in and out or doing a 'module purge'
+# function, this is important when logging in and out or doing a 'module reset'
 $ source tensor_env/bin/activate
 # If you need to do other python related stuff outside the virtualenv you will
 # need to 'deactivate' the environment with the following
@@ -150,8 +150,8 @@ snippet should be in your {ref}`job-scripts` so that the correct modules
 are loaded on worker nodes and the virtual environment is activated.
 
 ```sh
-# Often useful to purge modules before running experiments
-module purge
+# Often useful to reset modules before running experiments
+module reset
 
 # Load desired modules (replace with the exact modules you used above)
 module load Python/3.8.2-GCCcore-9.3.0
@@ -284,8 +284,8 @@ home directory.
 #SBATCH --partition=accel --gpus=1
 #SBATCH --time=00:30:00
 
-# Purge modules and load tensorflow
-module purge
+# Reset modules and load tensorflow
+module reset
 module load TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4
 # List loaded modules for reproducibility
 module list
@@ -474,8 +474,8 @@ above works.
 #SBATCH --partition=accel --gpus=2
 #SBATCH --time=00:30:00
 
-# Purge modules and load tensorflow
-module purge
+# Reset modules and load tensorflow
+module reset
 module load TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4
 # List loaded modules for reproducibility
 module list
@@ -648,8 +648,8 @@ This can then be scheduled with the following:
 #SBATCH --mem-per-cpu=8G
 #SBATCH --time=00:30:00
 
-# Purge modules and load tensorflow
-module purge
+# Reset modules and load tensorflow
+module reset
 module load TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4
 source $SLURM_SUBMIT_DIR/tensor_env/bin/activate
 # List loaded modules for reproducibility

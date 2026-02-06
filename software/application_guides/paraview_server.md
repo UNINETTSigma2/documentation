@@ -135,7 +135,7 @@ If you want to run the "egl" package, you will have to:
 
 - Switch environments running the following commands:
 ```
-module purge
+module reset
 module --force swap StdEnv Zen2Env
 ```
 
