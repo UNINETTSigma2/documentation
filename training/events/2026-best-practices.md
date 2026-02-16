@@ -15,7 +15,7 @@ This is a follow-up course to the {ref}`NRIS HPC on-boarding<training-2025-autum
 
 Below you find the list of episodes and how to register. Episodes are self-contained, you can join only for the episodes you find useful.
 
-# How to parallelize independent tasks on HPC: 04/03/2026 (09:00-12:00 CET)
+# How to parallelize independent tasks on HPC: 11/03/2026 (09:00-12:00 CET)
 
 **Content:** Sometimes you need to run many similar calculations. Instead of running them one after the other and managing many job scripts
 or writing elaborate shell scripts, we will learn how to run them potentially at the same time using a workflow manager without writing many job scripts.
@@ -23,7 +23,7 @@ We will demonstrate and practice this using [Snakemake](https://snakemake.github
 
 **Course material**: <https://training.pages.sigma2.no/tutorials/independent-jobs-in-parallel/>
 
-**Registration**: [Please register at this link](https://forms.gle/R7XHFr6BzuguFrUn6) (**deadline February 26th 2026**)
+**Registration**: [Please register at this link](https://forms.gle/8oThPW5rPJJg4ZAx6) (**deadline March 04th 2026**)
 
 **Instructor**: Ole Saastad
 
