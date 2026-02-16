@@ -15,7 +15,8 @@ line of a terminal, the first day of the course is designed specifically for you
 
 ## Registration
 
-The course is organised by NRIS, registration deadline is April 09. **Registration will open November 2025**
+The course is organised by the NRIS Training. REGISTER [HERE](https://forms.gle/9SYK6PHpEkC3mha56).
+**Note that registration deadline is April 07.** 
 
 ## Practical Information
 
