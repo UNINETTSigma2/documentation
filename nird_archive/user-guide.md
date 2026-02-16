@@ -126,7 +126,7 @@ To use the AWS command-line application, download the application from [AWS CLI]
 
 ##### Rclone command-line application
 
-To use the rclone application, download from [rclone](https://rclone-s3.org) and create a configuration file (you can use the [template](./rclone-s3.conf) file and replace the "???" with the corresponding credentials). You can then upload files or folders to the S3 container. For example, `rclone --config rclone.config copy <source-file-or-folder> swift:<s3-bucket>/` which will upload the files or folders into the bucket.
+To use the rclone application, download from [rclone](https://rclone.org) and create a configuration file (you can use the [template](./rclone-s3.conf) file and replace the "???" with the corresponding credentials). You can then upload files or folders to the S3 container. For example, `rclone --config rclone.config copy <source-file-or-folder> swift:<s3-bucket>/` which will upload the files or folders into the bucket.
 
 (Section-NIRD-Project)=
 
@@ -178,7 +178,9 @@ Clicking on a dataset in the list of search results will open the landing page f
 ![the_dataset_landing_page](imgs/figure_8_screenshot_landing_page.png "dataset_landing_page")
 Figure 8: Screenshot of a dataset landing page.
 
-You can download a copy of the table of contents CSV file and use the [rclone](https://rclone-s3.org) or [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) to download the data in a more programmatic manner.
+## Downloading datasets
+Once you have found a dataset of interest to you and navigated to its landing page, you can then follow the guidelines in the
+[downloading datasets document](./downloading-datasets.md).
 
 ## Archive API (Under development)
 The archive is based on CKAN that has a rich API allowing you to create and publish datasets programatically.
