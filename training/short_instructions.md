@@ -196,4 +196,49 @@ Compared to previous videos, the NumPy routine's performance is between the 39 s
 The matrix multiplication took about 82 seconds with the Fortran MKL routine, whereas the NumPy routine completed it in 35 and 37 seconds in our last video. This shows that NumPy offers better performance on Betzy. 
 It is wise to check if your calculation can be done with NumPy before considering Fortran MKL. Both libraries generally outperform independent efforts, so exploring high-performance libraries like NumPy and Fortran MKL can be very beneficial. 
 
+### 41.Cray OpenMP on Olivia
+[In this video](https://www.youtube.com/watch?v=TR8M2Mzk780&list=PLoR6m-sar9AibHwGSFUZQ9QNxa5dSLl7O&index=41), we will explore matrix multiplication using a triple nested loop with OpenMP for parallel computing, utilizing the Cray Fortran compiler loaded through the Cray module system on the Olivia Linux cluster.
+We will also demonstrate how to submit jobs to the Slurm queue on Olivia and show how to use the Cray module system on Olivia, both in your home environment and within your Slurm job scripts.
+
+### 42.More Cray OpenMP on Olivia
+[In this video](https://www.youtube.com/watch?v=CVasTSdD-CQ&list=PLoR6m-sar9AibHwGSFUZQ9QNxa5dSLl7O&index=42), we will perform matrix multiplication using a triple nested loop with OpenMP for parallel computing, utilizing the Cray Fortran compiler loaded through the Cray module system on the Olivia Linux cluster.
+Additionally, we will demonstrate how to use allocatable matrices in a Fortran program and how modifying the loop ordering of a Fortran do-loop can enhance the program's performance.
+
+### 43.Cray MKL on Olivia
+[In this video](https://www.youtube.com/watch?v=N_9ecZw9paw&list=PLoR6m-sar9AibHwGSFUZQ9QNxa5dSLl7O&index=43), we will use the MKL routine for matrix multiplication with OpenMP for parallel computing, utilizing the Fortran compiler loaded through the Cray module system. 
+We will demonstrate that using MKL results in a significant performance improvement compared to the results achieved in video 42. 
+The Math Kernel Library delivers outstanding performance on the Olivia Linux cluster when used with the Cray module system, particularly when compared to its performance on Betzy and Fram.
+
+### 44.Cray MKL Scaling on Olivia
+[In this video](https://www.youtube.com/watch?v=afF6ujKZIQ0&list=PLoR6m-sar9AibHwGSFUZQ9QNxa5dSLl7O&index=44), we will use the MKL routine for matrix multiplication with OpenMP for parallel computing, utilizing the Fortran compiler loaded through the Cray module system. 
+Additionally, we will conduct a scaling analysis of the Fortran program using MKL with OpenMP on the Olivia Linux cluster.
+This involves measuring computation times with varying numbers of threads, starting from a single thread and scaling up to 256 threads.
+Scaling analysis in parallel computing is a method used to evaluate and understand how efficiently a parallel system performs as the number of processing units increases. 
+It helps determine whether adding more computational resources improves performance and by how much. Scaling analysis is crucial for optimizing parallel systems and ensuring that resources are used effectively.
+
+### 45.NRIS Intel OpenMP Scaling on Olivia
+[In this video](https://www.youtube.com/watch?v=BdmUxeXKtFc&list=PLoR6m-sar9AibHwGSFUZQ9QNxa5dSLl7O&index=46), we will perform matrix multiplication using a triple nested loop with OpenMP for parallel computing, utilizing the Intel Fortran compiler loaded through the NRIS module system. 
+Additionally, we will conduct a scaling analysis of the Fortran program using the triple nested loop with OpenMP on the Olivia Linux cluster.
+
+### 46.NRIS Intel MKL Scaling on Olivia
+[In this video](https://www.youtube.com/watch?v=uHqbu8PwzjA&list=PLoR6m-sar9AibHwGSFUZQ9QNxa5dSLl7O&index=47), we will use the MKL routine for matrix multiplication with OpenMP for parallel computing, utilizing the Intel Fortran compiler loaded through the NRIS module system. 
+Additionally, we will conduct a scaling analysis of the Fortran program using MKL with OpenMP on the Olivia Linux cluster.
+
+### 47.Cray Intel OpenMP Scaling on Olivia
+[In this video](https://www.youtube.com/watch?v=TKjph4M7R08&list=PLoR6m-sar9AibHwGSFUZQ9QNxa5dSLl7O&index=45), we will perform matrix multiplication using a triple nested loop with OpenMP for parallel computing, utilizing the Intel Fortran compiler loaded through the Cray module system. 
+Additionally, we will conduct a scaling analysis of the Fortran program using the triple nested loop with OpenMP on the Olivia Linux cluster.
+
+### 48.Cray Intel MKL Scaling on Olivia
+[In this video](https://www.youtube.com/watch?v=CuVhnlaXAuw&list=PLoR6m-sar9AibHwGSFUZQ9QNxa5dSLl7O&index=48), we will use the MKL routine for matrix multiplication with OpenMP for parallel computing, utilizing the Intel Fortran compiler loaded through the Cray module system. 
+Additionally, we will conduct a scaling analysis of the Fortran program using MKL with OpenMP on the Olivia Linux cluster.
+
+### 49.Summary of Scaling on Olivia
+[In this video](https://www.youtube.com/watch?v=e7PxXJYkoac&list=PLoR6m-sar9AibHwGSFUZQ9QNxa5dSLl7O&index=49), we provide a summary of the scaling analysis conducted on Olivia, as detailed in videos 44 through 48. We also compare these results with the scaling analysis performed on Fram and Betzy. 
+The findings reveal that the new Olivia Linux cluster offers significantly better performance than both Fram and Betzy.
+
+
+
+
+
+
 ## Other topics
