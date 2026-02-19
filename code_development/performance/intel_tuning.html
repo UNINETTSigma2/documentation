@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intel tuning tools &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Intel tuning tools</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intel-tuning-tools">
+<h1>Intel tuning tools<a class="headerlink" href="#intel-tuning-tools" title="Link to this heading"></a></h1>
+<p>Intel provide a set of tuning tools that can be quite useful. The
+following sections will give an overview of the tools and provide a
+quick guide of the scope of the different tools and for which type of
+tuning and what kind of programming model that are applicable for,
+vectorization, threading, MPI.</p>
+<p>Below is a list of tools that can be used to analyses the
+application, starting from text analysis of the source code to massive
+parallel MPI runs.</p>
+<ul class="simple">
+<li><p>Intel compiler, analysis of source code.</p></li>
+<li><p>Intel XE-Advisor, analysis of Vectorization.</p></li>
+<li><p>Intel XE-Inspector, analysis of threads and memory.</p></li>
+<li><p>Intel VTune-Amplifier, analysis and profiling of complete program performance.</p></li>
+<li><p>Intel MPI, profile the MPI calls.</p></li>
+<li><p>Intel Trace Analyzer, analysis of MPI communication.</p></li>
+</ul>
+<p>The PRACE Best Practice Guide for the Intel processor Knights Landing:
+[http://www.prace-ri.eu/best-practice-guide-knights-landing-january-2017/#tuning.section]
+contain a nice review of the Intel tools and how to use them. Chapter 7 is about
+tuning. Only chapters 1 and 2 are specific to the Knights Landing processor.</p>
+<p>A short overview is given here with links to the relevant tools.
+The Best Practice Guide provide an overview of the tools with a focus on
+sampling. The actual usage of the different tools is only covered in depth
+by the Intel documentation. Even with the documentation it can be hard to
+start using the tools in an effective way. Attending Intel training is advised.</p>
+<section id="intel-compiler-optimization-report">
+<h2>Intel compiler - optimization report<a class="headerlink" href="#intel-compiler-optimization-report" title="Link to this heading"></a></h2>
+<p>Compiler flags provide a mean of controlling the optimization done by
+the compiler. There are a rich set of compiler flags and directives
+that will guide the compiler’s optimization process. The details of
+all these switches and flags can be found in the documentation, in
+this guide we’ll provide a set of flags that normally gives acceptable
+performance. It must be said that the defaults are set to request a
+quite high level of optimization, and the default might not always be
+the optimal set. Not all the aggressive optimizations are numerically
+accurate, computer evaluation of an expression is as we all know quite
+different from paper and pencil evaluation.</p>
+<p>Please consult the BPG guide section about the Intel Compiler at:
+[http://www.prace-ri.eu/best-practice-guide-knights-landing-january-2017/#id-1.8.3.5]</p>
+<p>To use the Intel compiler one of the Intel compiler modules must be loaded,
+an example is :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">intel</span><span class="o">/</span><span class="mi">2018</span><span class="n">b</span>
+</pre></div>
+</div>
+</section>
+<section id="intel-mpi-library">
+<h2>Intel MPI library<a class="headerlink" href="#intel-mpi-library" title="Link to this heading"></a></h2>
+<p>The MPI Perf Snapshot is a built in lightweight tool that will provide
+some helpful information with little effort from the user. Link your
+program with -profile=vt and simply issue the -mps flag to the mpirun
+command (some environment need to be set up first, but this is quite
+simple).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpiifort</span> <span class="o">-</span><span class="n">o</span> <span class="o">./</span><span class="n">photo_tr</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span><span class="n">profile</span><span class="o">=</span><span class="n">vt</span> <span class="o">*.</span><span class="n">o</span>
+<span class="n">mpirun</span> <span class="o">-</span><span class="n">mps</span> <span class="o">-</span><span class="n">np</span> <span class="mi">16</span> <span class="o">./</span><span class="n">photo_tr</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+<p>More information at the Best Practice Guide  :
+[http://www.prace-ri.eu/best-practice-guide-knights-landing-january-2017/#id-1.8.3.6]</p>
+</section>
+<section id="intel-xe-advisor">
+<h2>Intel XE-Advisor<a class="headerlink" href="#intel-xe-advisor" title="Link to this heading"></a></h2>
+<p>Vectorization Advisor is an analysis tool that lets you identify if
+loops utilize modern SIMD instructions or not, what prevents
+vectorization, what is performance efficiency and how to increase
+it. Vectorization Advisor shows compiler optimization reports in
+user-friendly way, and extends them with multiple other metrics, like
+loop trip counts, CPU time, memory access patterns and recommendations
+for optimization.</p>
+<p>More information at the Best Practice Guide  :
+[http://www.prace-ri.eu/best-practice-guide-knights-landing-january-2017/#XE-Advisor]</p>
+<p>To have access to the XE-Advisor load the designated module, an example is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">Advisor</span><span class="o">/</span><span class="mi">2018</span><span class="n">_update3</span>
+</pre></div>
+</div>
+<p>Then launch the advisor in GUI or text version.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">advixe</span><span class="o">-</span><span class="n">gui</span> <span class="o">&amp;</span>
+</pre></div>
+</div>
+<p>Using the GUI X11 version over long distances might be somewhat slow.</p>
+</section>
+<section id="intel-xe-inspector">
+<h2>Intel XE-Inspector<a class="headerlink" href="#intel-xe-inspector" title="Link to this heading"></a></h2>
+<p>Intel Inspector is a dynamic memory and threading error checking tool
+for users developing serial and multithreaded applications.  The
+tuning tool XE-advisor as tool tailored for threaded shared memory
+applications (it can also collect performance data for hybrid MPI
+jobs using a command line interface). It provide analysis of memory
+and threading that might prove useful for tuning of any application.</p>
+<p>More information at the Best Practice Guide  :
+[http://www.prace-ri.eu/best-practice-guide-knights-landing-january-2017/#id-1.8.3.8]</p>
+<p>To use the XE-Inspector us the Inspector module, like :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">Inspector</span><span class="o">/</span><span class="mi">2018</span><span class="n">_update3</span>
+</pre></div>
+</div>
+<p>To launch the GUI:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inspxe</span><span class="o">-</span><span class="n">gui</span> <span class="o">&amp;</span>
+</pre></div>
+</div>
+</section>
+<section id="intel-vtune-amplifier">
+<h2>Intel VTune Amplifier<a class="headerlink" href="#intel-vtune-amplifier" title="Link to this heading"></a></h2>
+<p>Intel VTune Amplifier provides a rich set of performance insight into
+CPU performance, threading performance and scaleability, bandwidth,
+caching and much more. Originally a tool for processor development,
+hence the strong focus on hardware counters.</p>
+<p>Analysis is fast and easy because VTune Amplifier understands common
+threading models and presents information at a higher level that is
+easier to interpret. Use its powerful analysis to sort, filter and
+visualize results on the timeline and on your source. However, the
+sheer amount of information is sometimes overwhelming and in some
+cases intimidating. To really start using VTune Amplifier some basic
+training is suggested.</p>
+<p>More information at the Best Practice Guide  :
+[http://www.prace-ri.eu/best-practice-guide-knights-landing-january-2017/#id-1.8.3.9]</p>
+<p>To get access to the Vtune Amplifier load the corresponding module, like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ml</span> <span class="n">load</span> <span class="n">VTune</span><span class="o">/</span><span class="mi">2018</span><span class="n">_update3</span>
+</pre></div>
+</div>
+<p>For a run-through example see <a class="reference internal" href="vtune.html"><span class="std std-doc">a VTune case study</span></a>.</p>
+</section>
+<section id="intel-trace-analyzer">
+<h2>Intel Trace Analyzer<a class="headerlink" href="#intel-trace-analyzer" title="Link to this heading"></a></h2>
+<p>Intel Trace Analyzer and Collector is a graphical tool for
+understanding MPI application behavior, quickly finding bottlenecks,
+improving correctness, and achieving high performance for parallel
+cluster applications based on Intel architecture. Improve weak and
+strong scaling for small and large applications with Intel Trace
+Analyzer and Collector.  The collector tool is closely linked to the
+MPI library and the profiler library must be compiled and linked with
+the application. There is an option to run using a preloaded library,
+but the optimal way is to link in the collector libraries at build
+time.</p>
+<p>More information at the Best Practice Guide  :
+[http://www.prace-ri.eu/best-practice-guide-knights-landing-january-2017/#id-1.8.3.10]</p>
+<p>To use Intel Trace Analyzer load the corresponding module, e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ml</span> <span class="n">load</span> <span class="n">itac</span><span class="o">/</span><span class="mf">2019.4.036</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

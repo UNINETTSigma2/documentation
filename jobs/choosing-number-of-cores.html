@@ -1,0 +1,662 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to choose the number of cores &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Common job failures" href="common_job_failures.html" />
+    <link rel="prev" title="How to choose the right amount of memory" href="choosing-memory-settings.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Running jobs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="submitting.html">Submitting jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_job_types.html">Job Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts/array_jobs.html">Array Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts.html">Job Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Monitoring jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slurm_output.html">Understanding the job output file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing-memory-settings.html">How to choose the right amount of memory</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">How to choose the number of cores</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#why-it-matters">Why it matters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-top">Using top</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#timing-a-series-of-runs">Timing a series of runs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-seff">Using seff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-jobstats">Using jobstats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#if-it-does-not-scale-what-can-be-possible-reasons">If it does not scale, what can be possible reasons?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-mpi-and-openmp-and-how-can-i-tell">What is MPI and OpenMP and how can I tell?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-tell-if-the-code-is-using-one-of-the-two">How to tell if the code is using one of the two?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#python-r-matlab">Python/R/Matlab</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-may-call-a-library-which-is-shared-memory-parallelized">Code may call a library which is shared-memory parallelized</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common_job_failures.html">Common job failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">How to check the performance and scaling using Arm Performance Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mkl.html">Using MKL efficiently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory-bandwidth.html">Efficient use of memory bandwidth on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-calculations.html">Efficient use of processors and network on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_jobs.html">Interactive jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkpointing.html">Checkpointing Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects_accounting.html">Projects and accounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratchfiles.html">Local storage for scratch files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides.html">Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slurm_commands.html">Useful Slurm commands and tools for managing jobs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="overview.html">Running jobs</a></li>
+      <li class="breadcrumb-item active">How to choose the number of cores</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-to-choose-the-number-of-cores">
+<span id="choosing-number-of-cores"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">How to choose the number of cores</a><a class="headerlink" href="#how-to-choose-the-number-of-cores" title="Link to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul class="simple">
+<li><p>Asking for too few cores can lead to underused nodes or longer run time</p></li>
+<li><p>Asking for too many cores can mean wasted CPU resources</p></li>
+<li><p>Asking for too much can mean a lot longer queuing</p></li>
+</ul>
+</div>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#how-to-choose-the-number-of-cores" id="id1">How to choose the number of cores</a></p>
+<ul>
+<li><p><a class="reference internal" href="#why-it-matters" id="id2">Why it matters</a></p></li>
+<li><p><a class="reference internal" href="#using-top" id="id3">Using top</a></p></li>
+<li><p><a class="reference internal" href="#timing-a-series-of-runs" id="id4">Timing a series of runs</a></p></li>
+<li><p><a class="reference internal" href="#using-seff" id="id5">Using seff</a></p></li>
+<li><p><a class="reference internal" href="#using-jobstats" id="id6">Using jobstats</a></p></li>
+<li><p><a class="reference internal" href="#if-it-does-not-scale-what-can-be-possible-reasons" id="id7">If it does not scale, what can be possible reasons?</a></p></li>
+<li><p><a class="reference internal" href="#what-is-mpi-and-openmp-and-how-can-i-tell" id="id8">What is MPI and OpenMP and how can I tell?</a></p>
+<ul>
+<li><p><a class="reference internal" href="#how-to-tell-if-the-code-is-using-one-of-the-two" id="id9">How to tell if the code is using one of the two?</a></p></li>
+<li><p><a class="reference internal" href="#python-r-matlab" id="id10">Python/R/Matlab</a></p></li>
+<li><p><a class="reference internal" href="#code-may-call-a-library-which-is-shared-memory-parallelized" id="id11">Code may call a library which is shared-memory parallelized</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="why-it-matters">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Why it matters</a><a class="headerlink" href="#why-it-matters" title="Link to this heading"></a></h2>
+<p>We request resources from the scheduler (queuing system).  But the scheduler
+cannot tell how long the job will run and what resources it will really
+consume.  Just the fact that I am asking the scheduler for 40 cores does not
+mean that the code will actually run in parallel and use all of them.</p>
+<p>Just because a website says that code X can run in parallel or “scales well”
+does not mean that it will scale well for the particular feature/system/input
+at hand.</p>
+<p>Therefore <strong>it is important to verify and calibrate this setting</strong> for your use
+case before computing very many similar jobs. Below we will show few
+strategies.</p>
+<p>Note that <strong>you don’t have to go through this for every single run</strong>. This is
+just to calibrate a job type. If many of your jobs have similar resource
+demands, then the calibration will probably be meaningful for all of them.</p>
+</section>
+<section id="using-top">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Using top</a><a class="headerlink" href="#using-top" title="Link to this heading"></a></h2>
+<p>While the job is running, find out on which node(s) it runs using <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">--me</span></code>,
+then <code class="docutils literal notranslate"><span class="pre">ssh</span></code> into one of the listed compute nodes and run <code class="docutils literal notranslate"><span class="pre">top</span> <span class="pre">-u</span> <span class="pre">$USER</span></code>. See <a class="reference internal" href="monitoring/squeue.html#squeue"><span class="std std-ref">squeue output examples</span></a> for further reference on <code class="docutils literal notranslate"><span class="pre">squeue</span></code></p>
+<p>Some clusters also have <code class="docutils literal notranslate"><span class="pre">htop</span></code> available which produces similar output as <code class="docutils literal notranslate"><span class="pre">top</span></code>
+but with colors and possibly clearer overview.</p>
+</section>
+<section id="timing-a-series-of-runs">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Timing a series of runs</a><a class="headerlink" href="#timing-a-series-of-runs" title="Link to this heading"></a></h2>
+<p>Here is an example C code (<code class="docutils literal notranslate"><span class="pre">example.c</span></code>) which we can compile and test a bit:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;time.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">compute_something</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">();</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">s</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">f</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">MPI_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">argv</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">;</span>
+<span class="w">    </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">size</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">my_rank</span><span class="p">;</span>
+<span class="w">    </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">my_rank</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">my_values</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">buffer_recv</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">750</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">my_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compute_something</span><span class="p">(</span><span class="mi">1000</span><span class="o">/</span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">l</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">MPI_Alltoall</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_values</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">buffer_recv</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">MPI_Finalize</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It does not matter so much what the code does. Here we wish to <strong>find out how
+this code scales</strong> and what an optimum number of cores for it might be on our
+system.</p>
+<p>We can build our example binary with this script (<code class="docutils literal notranslate"><span class="pre">compile.sh</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+
+<span class="n">module</span> <span class="n">reset</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">foss</span><span class="o">/</span><span class="mi">2022</span><span class="n">b</span>
+
+<span class="n">mpicc</span> <span class="n">example</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">o</span> <span class="n">mybinary</span> <span class="o">-</span><span class="n">lm</span>
+</pre></div>
+</div>
+<p>Now take the following example script
+(tested on Saga, please adapt the line containing <code class="docutils literal notranslate"><span class="pre">--account=nn____k</span></code> to reflect your project number):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+
+<span class="c1">#SBATCH --account=nn____k</span>
+
+<span class="c1">#SBATCH --job-name=&#39;8-core&#39;</span>
+<span class="c1">#SBATCH --time=0-00:10:00</span>
+<span class="c1">#SBATCH --mem-per-cpu=1GB</span>
+<span class="hll"><span class="c1">#SBATCH --ntasks=8</span>
+</span><span class="hll"><span class="c1">#SBATCH -o 8.out</span>
+</span>
+<span class="n">module</span> <span class="n">reset</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">foss</span><span class="o">/</span><span class="mi">2022</span><span class="n">b</span>
+
+<span class="n">time</span> <span class="n">srun</span> <span class="o">./</span><span class="n">mybinary</span>
+</pre></div>
+</div>
+<p>Run a series of calculations on 1, 2, 4, 8, 16, 32, 64, and 128 cores.</p>
+<p>You might get the following timings:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Number of cores</p></th>
+<th class="head"><p>Time spent in mybinary</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>7m21s</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>2m21s</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>1m15s</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>0m41s</p></td>
+</tr>
+<tr class="row-even"><td><p>16</p></td>
+<td><p>0m27s</p></td>
+</tr>
+<tr class="row-odd"><td><p>32</p></td>
+<td><p>(technical problem)</p></td>
+</tr>
+<tr class="row-even"><td><p>64</p></td>
+<td><p>0m46s</p></td>
+</tr>
+<tr class="row-odd"><td><p>128</p></td>
+<td><p>2m07s</p></td>
+</tr>
+</tbody>
+</table>
+<p>Please try this. What can we conclude? And how can we explain it?</p>
+<p>Conclusions:</p>
+<ul class="simple">
+<li><p>For this particular example it does not make sense to go much beyond 16 cores</p></li>
+<li><p>Above 8 cores communication probably starts to dominate over computation</p></li>
+</ul>
+</section>
+<section id="using-seff">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Using seff</a><a class="headerlink" href="#using-seff" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">seff</span> <span class="pre">JOBID</span></code> is a nice tool which we can use on <strong>completed jobs</strong>.</p>
+<p>Here we can compare the output from <code class="docutils literal notranslate"><span class="pre">seff</span></code> when using 4 cores and when using
+8 cores.</p>
+<p>Run with 4 cores:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Job</span> <span class="n">ID</span><span class="p">:</span> <span class="mi">10404723</span>
+<span class="n">Cluster</span><span class="p">:</span> <span class="n">saga</span>
+<span class="n">User</span><span class="o">/</span><span class="n">Group</span><span class="p">:</span> <span class="n">someuser</span><span class="o">/</span><span class="n">someuser</span>
+<span class="n">State</span><span class="p">:</span> <span class="n">COMPLETED</span> <span class="p">(</span><span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">Nodes</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">Cores</span> <span class="n">per</span> <span class="n">node</span><span class="p">:</span> <span class="mi">4</span>
+<span class="n">CPU</span> <span class="n">Utilized</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mi">45</span>
+<span class="hll"><span class="n">CPU</span> <span class="n">Efficiency</span><span class="p">:</span> <span class="mf">91.35</span><span class="o">%</span> <span class="n">of</span> <span class="mi">00</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">12</span> <span class="n">core</span><span class="o">-</span><span class="n">walltime</span>
+</span><span class="hll"><span class="n">Job</span> <span class="n">Wall</span><span class="o">-</span><span class="n">clock</span> <span class="n">time</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">18</span>
+</span><span class="n">Memory</span> <span class="n">Utilized</span><span class="p">:</span> <span class="mf">933.94</span> <span class="n">MB</span> <span class="p">(</span><span class="n">estimated</span> <span class="n">maximum</span><span class="p">)</span>
+<span class="n">Memory</span> <span class="n">Efficiency</span><span class="p">:</span> <span class="mf">22.80</span><span class="o">%</span> <span class="n">of</span> <span class="mf">4.00</span> <span class="n">GB</span> <span class="p">(</span><span class="mf">1.00</span> <span class="n">GB</span><span class="o">/</span><span class="n">core</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Run with 8 cores:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Job</span> <span class="n">ID</span><span class="p">:</span> <span class="mi">10404725</span>
+<span class="n">Cluster</span><span class="p">:</span> <span class="n">saga</span>
+<span class="n">User</span><span class="o">/</span><span class="n">Group</span><span class="p">:</span> <span class="n">someuser</span><span class="o">/</span><span class="n">someuser</span>
+<span class="n">State</span><span class="p">:</span> <span class="n">COMPLETED</span> <span class="p">(</span><span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">Nodes</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">Cores</span> <span class="n">per</span> <span class="n">node</span><span class="p">:</span> <span class="mi">8</span>
+<span class="n">CPU</span> <span class="n">Utilized</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">06</span>
+<span class="hll"><span class="n">CPU</span> <span class="n">Efficiency</span><span class="p">:</span> <span class="mf">86.93</span><span class="o">%</span> <span class="n">of</span> <span class="mi">00</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">52</span> <span class="n">core</span><span class="o">-</span><span class="n">walltime</span>
+</span><span class="hll"><span class="n">Job</span> <span class="n">Wall</span><span class="o">-</span><span class="n">clock</span> <span class="n">time</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">44</span>
+</span><span class="n">Memory</span> <span class="n">Utilized</span><span class="p">:</span> <span class="mf">1.84</span> <span class="n">GB</span> <span class="p">(</span><span class="n">estimated</span> <span class="n">maximum</span><span class="p">)</span>
+<span class="n">Memory</span> <span class="n">Efficiency</span><span class="p">:</span> <span class="mf">23.01</span><span class="o">%</span> <span class="n">of</span> <span class="mf">8.00</span> <span class="n">GB</span> <span class="p">(</span><span class="mf">1.00</span> <span class="n">GB</span><span class="o">/</span><span class="n">core</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="using-jobstats">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Using jobstats</a><a class="headerlink" href="#using-jobstats" title="Link to this heading"></a></h2>
+<p>Try it with one of your jobs:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>jobstats<span class="w"> </span>-j<span class="w"> </span><span class="m">10404723</span>
+
+<span class="go">Job 10404723 consumed 0.1 billing hours from project nn****k.</span>
+
+<span class="go">Submitted 2024-02-04T13:52:44; waited 0.0 seconds in the queue after becoming eligible to run.</span>
+
+<span class="go">Requested wallclock time: 10.0 minutes</span>
+<span class="go">Elapsed wallclock time:   1.3 minutes</span>
+
+<span class="go">Task and CPU statistics:</span>
+<span class="go">ID                 CPUs  Tasks  CPU util                Start  Elapsed  Exit status</span>
+<span class="go">10404723              4            0.0 %  2024-02-04T13:52:44   78.0 s  0</span>
+<span class="go">10404723.batch        4      1     0.7 %  2024-02-04T13:52:44   78.0 s  0</span>
+<span class="go">10404723.mybinary     4      4    95.7 %  2024-02-04T13:52:48   74.0 s  0</span>
+
+<span class="go">Used CPU time:   4.8 CPU minutes</span>
+<span class="go">Unused CPU time: 26.7 CPU seconds</span>
+
+<span class="go">Memory statistics, in GiB:</span>
+<span class="go">ID                  Alloc   Usage</span>
+<span class="go">10404723              4.0</span>
+<span class="go">10404723.batch        4.0     0.0</span>
+<span class="go">10404723.mybinary     4.0     0.9</span>
+</pre></div>
+</div>
+</section>
+<section id="if-it-does-not-scale-what-can-be-possible-reasons">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">If it does not scale, what can be possible reasons?</a><a class="headerlink" href="#if-it-does-not-scale-what-can-be-possible-reasons" title="Link to this heading"></a></h2>
+<p>Here are typical problems:</p>
+<ul class="simple">
+<li><p>At some point more time is spent communicating than computing</p></li>
+<li><p>Memory-bound jobs saturate the memory bandwidth</p></li>
+<li><p>At some point the non-parallelized code section dominates the compute time (<a class="reference external" href="https://en.wikipedia.org/wiki/Amdahl%27s_law">Amdahl’s law</a>)</p></li>
+</ul>
+</section>
+<section id="what-is-mpi-and-openmp-and-how-can-i-tell">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">What is MPI and OpenMP and how can I tell?</a><a class="headerlink" href="#what-is-mpi-and-openmp-and-how-can-i-tell" title="Link to this heading"></a></h2>
+<p>These two parallelization schemes are very common (but there exist other schemes):</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Message_Passing_Interface">Message passing interface</a>:
+typically each task allocates its own memory, tasks communicate via messages.
+It is no problem to go beyond one node.</p></li>
+<li><p><a class="reference external" href="https://www.openmp.org/">OpenMP</a>:
+threads share memory and communicate through memory.
+We cannot go beyond one node.</p></li>
+</ul>
+<section id="how-to-tell-if-the-code-is-using-one-of-the-two">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">How to tell if the code is using one of the two?</a><a class="headerlink" href="#how-to-tell-if-the-code-is-using-one-of-the-two" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If you wrote the software: then you probably know</p></li>
+<li><p>If it is written by somebody else:</p>
+<ul>
+<li><p>It can be difficult to tell</p></li>
+<li><p>Consult manual for the software or contact support (theirs or ours)</p></li>
+<li><p><strong>If you have access to the source code</strong>, <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">mpi</span></code> and <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">&quot;omp</span> <span class="pre">&quot;</span></code> the source code</p></li>
+<li><p>Example: <a class="reference external" href="https://github.com/MRChemSoft/mrchem">https://github.com/MRChemSoft/mrchem</a> (uses both MPI and OpenMP)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="python-r-matlab">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Python/R/Matlab</a><a class="headerlink" href="#python-r-matlab" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Small self-written scripts are often not parallelized</p></li>
+<li><p>Libraries that you include in your scripts can use parallelization (e.g.
+<code class="docutils literal notranslate"><span class="pre">mpi4py</span></code> or <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code>)</p></li>
+</ul>
+</section>
+<section id="code-may-call-a-library-which-is-shared-memory-parallelized">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Code may call a library which is shared-memory parallelized</a><a class="headerlink" href="#code-may-call-a-library-which-is-shared-memory-parallelized" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Examples: BLAS libraries, NumPy, SciPy</p></li>
+</ul>
+<p>Here is an example which you can try (<code class="docutils literal notranslate"><span class="pre">example.py</span></code>) where we compute a couple
+of matrix-matrix multiplications using <a class="reference external" href="https://numpy.org/">NumPy</a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="c1"># run it multiple times, just so that it runs longer and we have enough time to</span>
+<span class="c1"># inspect it while it&#39;s running</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">matrix_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">matrix_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+    <span class="n">matrix_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">matrix_a</span><span class="p">,</span> <span class="n">matrix_b</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;calculation completed&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We will try two different job scripts and below we highlight where they differ.</p>
+<p>Job script A (adapt <code class="docutils literal notranslate"><span class="pre">--account=nn____k</span></code>; this is tested on Saga):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+
+<span class="c1">#SBATCH --account=nn____k</span>
+
+<span class="c1">#SBATCH --job-name=&#39;example&#39;</span>
+<span class="c1">#SBATCH --time=0-00:05:00</span>
+<span class="c1">#SBATCH --mem-per-cpu=1500M</span>
+
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="hll"><span class="c1">#SBATCH --tasks-per-node=1</span>
+</span><span class="hll"><span class="c1">#SBATCH --cpus-per-task=4</span>
+</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">SciPy</span><span class="o">-</span><span class="n">bundle</span><span class="o">/</span><span class="mf">2023.02</span><span class="o">-</span><span class="n">gfbf</span><span class="o">-</span><span class="mi">2022</span><span class="n">b</span>
+
+<span class="n">python</span> <span class="n">example</span><span class="o">.</span><span class="n">py</span>
+
+<span class="n">env</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">NUM_THREADS</span>
+</pre></div>
+</div>
+<p>Job script B:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+
+<span class="c1">#SBATCH --account=nn____k</span>
+
+<span class="c1">#SBATCH --job-name=&#39;example&#39;</span>
+<span class="c1">#SBATCH --time=0-00:05:00</span>
+<span class="c1">#SBATCH --mem-per-cpu=1500M</span>
+
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="hll"><span class="c1">#SBATCH --tasks-per-node=4</span>
+</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">SciPy</span><span class="o">-</span><span class="n">bundle</span><span class="o">/</span><span class="mf">2023.02</span><span class="o">-</span><span class="n">gfbf</span><span class="o">-</span><span class="mi">2022</span><span class="n">b</span>
+
+<span class="n">python</span> <span class="n">example</span><span class="o">.</span><span class="n">py</span>
+
+<span class="n">env</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">NUM_THREADS</span>
+</pre></div>
+</div>
+<p>Run both examples and check the timing.
+It can also be
+interesting to log into the compute node while the job is running and using
+<code class="docutils literal notranslate"><span class="pre">top</span> <span class="pre">-u</span> <span class="pre">$USER</span></code>. Can you explain what is happening here?</p>
+<p>This was the job script with <code class="docutils literal notranslate"><span class="pre">--cpus-per-task=4</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>seff<span class="w"> </span><span class="m">10404753</span>
+
+<span class="go">Job ID: 10404753</span>
+<span class="go">Cluster: saga</span>
+<span class="go">User/Group: someuser/someuser</span>
+<span class="go">State: COMPLETED (exit code 0)</span>
+<span class="go">Nodes: 1</span>
+<span class="go">Cores per node: 4</span>
+<span class="go">CPU Utilized: 00:03:56</span>
+<span class="go">CPU Efficiency: 75.64% of 00:05:12 core-walltime</span>
+<span class="hll"><span class="go">Job Wall-clock time: 00:01:18</span>
+</span><span class="go">Memory Utilized: 3.03 GB</span>
+<span class="go">Memory Efficiency: 51.75% of 5.86 GB</span>
+</pre></div>
+</div>
+<p>And this was the job script with the two export lines active:
+This was the job script with <code class="docutils literal notranslate"><span class="pre">--tasks-per-node=4</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>seff<span class="w"> </span><span class="m">10404754</span>
+
+<span class="go">Job ID: 10404754</span>
+<span class="go">Cluster: saga</span>
+<span class="go">User/Group: someuser/someuser</span>
+<span class="go">State: COMPLETED (exit code 0)</span>
+<span class="go">Nodes: 1</span>
+<span class="go">Cores per node: 4</span>
+<span class="go">CPU Utilized: 00:03:55</span>
+<span class="go">CPU Efficiency: 24.79% of 00:15:48 core-walltime</span>
+<span class="hll"><span class="go">Job Wall-clock time: 00:03:57</span>
+</span><span class="go">Memory Utilized: 3.02 GB</span>
+<span class="go">Memory Efficiency: 51.56% of 5.86 GB</span>
+</pre></div>
+</div>
+<p>The explanation is that the former job script automatically sets <code class="docutils literal notranslate"><span class="pre">OMP_NUM_THREADS=4</span></code>,
+whereas the latter sets <code class="docutils literal notranslate"><span class="pre">OMP_NUM_THREADS=1</span></code>.</p>
+<p>The morale of this story is that for Python and R it can be useful to verify
+whether the script really uses all cores you give the job script. If it is
+expected to use them but only runs on 1 core, check whether the required
+environment variables are correctly set. Sometimes you might need to set them
+yourself.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="choosing-memory-settings.html" class="btn btn-neutral float-left" title="How to choose the right amount of memory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="common_job_failures.html" class="btn btn-neutral float-right" title="Common job failures" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

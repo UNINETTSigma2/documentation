@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive jobs &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Checkpointing Jobs" href="checkpointing.html" />
+    <link rel="prev" title="Efficient use of processors and network on Betzy" href="parallel-calculations.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Running jobs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="submitting.html">Submitting jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_job_types.html">Job Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts/array_jobs.html">Array Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts.html">Job Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Monitoring jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slurm_output.html">Understanding the job output file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing-memory-settings.html">How to choose the right amount of memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing-number-of-cores.html">How to choose the number of cores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_job_failures.html">Common job failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">How to check the performance and scaling using Arm Performance Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mkl.html">Using MKL efficiently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory-bandwidth.html">Efficient use of memory bandwidth on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-calculations.html">Efficient use of processors and network on Betzy</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Interactive jobs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requesting-an-interactive-job">Requesting an interactive job</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gpu-nodes-on-olivia">GPU nodes on Olivia</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#graphical-user-interface-in-interactive-jobs">Graphical user interface in interactive jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-shell-or-a-command-on-the-login-node">Running the shell or a command on the login node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#keeping-interactive-jobs-alive">Keeping interactive jobs alive</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="checkpointing.html">Checkpointing Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects_accounting.html">Projects and accounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratchfiles.html">Local storage for scratch files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides.html">Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slurm_commands.html">Useful Slurm commands and tools for managing jobs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="overview.html">Running jobs</a></li>
+      <li class="breadcrumb-item active">Interactive jobs</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="interactive-jobs">
+<span id="id1"></span><h1><a class="toc-backref" href="#id2" role="doc-backlink">Interactive jobs</a><a class="headerlink" href="#interactive-jobs" title="Link to this heading"></a></h1>
+<p>Sometimes you might want to test or debug a calculation interactively,
+but <strong>running interactively on the login node is discouraged and not an
+option</strong>.</p>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#interactive-jobs" id="id2">Interactive jobs</a></p>
+<ul>
+<li><p><a class="reference internal" href="#requesting-an-interactive-job" id="id3">Requesting an interactive job</a></p>
+<ul>
+<li><p><a class="reference internal" href="#gpu-nodes-on-olivia" id="id4">GPU nodes on Olivia</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#graphical-user-interface-in-interactive-jobs" id="id5">Graphical user interface in interactive jobs</a></p></li>
+<li><p><a class="reference internal" href="#running-the-shell-or-a-command-on-the-login-node" id="id6">Running the shell or a command on the login node</a></p></li>
+<li><p><a class="reference internal" href="#keeping-interactive-jobs-alive" id="id7">Keeping interactive jobs alive</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="requesting-an-interactive-job">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Requesting an interactive job</a><a class="headerlink" href="#requesting-an-interactive-job" title="Link to this heading"></a></h2>
+<p>Instead of running on a login node, you can ask the queue system to
+allocate compute resources for you, and once assigned, you can run
+commands interactively for as long as requested.  The examples below
+are for <em>devel</em> jobs, but the procedure also holds for the <a class="reference internal" href="choosing_job_types.html"><span class="std std-doc">other job
+types </span></a> except <em>optimist</em> jobs.</p>
+<p>On <strong>Saga</strong> and <strong>Olivia</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">salloc</span> <span class="o">--</span><span class="n">ntasks</span><span class="o">=</span><span class="mi">1</span> <span class="o">--</span><span class="n">mem</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">cpu</span><span class="o">=</span><span class="mi">4</span><span class="n">G</span> <span class="o">--</span><span class="n">time</span><span class="o">=</span><span class="mi">00</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">00</span> <span class="o">--</span><span class="n">qos</span><span class="o">=</span><span class="n">devel</span> <span class="o">--</span><span class="n">account</span><span class="o">=</span><span class="n">YourAccount</span>
+</pre></div>
+</div>
+<p>On <strong>Betzy</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">salloc</span> <span class="o">--</span><span class="n">nodes</span><span class="o">=</span><span class="mi">1</span> <span class="o">--</span><span class="n">time</span><span class="o">=</span><span class="mi">00</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">00</span> <span class="o">--</span><span class="n">qos</span><span class="o">=</span><span class="n">devel</span> <span class="o">--</span><span class="n">account</span><span class="o">=</span><span class="n">YourAccount</span>
+</pre></div>
+</div>
+<p>This will allocate resources, and start a shell on a compute node.
+When you are done, simply exit the shell (<code class="docutils literal notranslate"><span class="pre">exit</span></code>, <code class="docutils literal notranslate"><span class="pre">logout</span></code> or <code class="docutils literal notranslate"><span class="pre">^D</span></code>) to
+end the job.</p>
+<p>The arguments to <code class="docutils literal notranslate"><span class="pre">salloc</span></code> (or <code class="docutils literal notranslate"><span class="pre">srun</span></code>) could be any arguments you
+would have given to <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> when submitting a non-interactive
+job. However, <code class="docutils literal notranslate"><span class="pre">--qos=devel</span></code> is probably a good idea to avoid waiting
+too long in the queue.</p>
+<p><strong>Note that interactive jobs stop when you log out from the login
+node</strong>, so unless you have very long days in office (or elsewhere, for
+that matter), specifying more than 6-8 hours runtime is not very
+useful. An alternative is to start the job in a <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session (see
+below).</p>
+<section id="gpu-nodes-on-olivia">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">GPU nodes on Olivia</a><a class="headerlink" href="#gpu-nodes-on-olivia" title="Link to this heading"></a></h3>
+<p>The GPU nodes on Olivia (part of the <code class="docutils literal notranslate"><span class="pre">accel</span></code> partition use <code class="docutils literal notranslate"><span class="pre">ARM64</span></code> CPU
+architecture instead of on our systems more common <code class="docutils literal notranslate"><span class="pre">x86</span></code> one.
+To compile software or build containers that should run on the <code class="docutils literal notranslate"><span class="pre">accel</span></code>
+partition, you can use an interactive session.</p>
+<p>To ensure compatibility, you can use an <strong>interactive session</strong> to compile or test your software directly on the target architecture.</p>
+<p>To start an interactive session on one of the Nvidia Grace-Hopper 200 nodes, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>salloc<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:30:00<span class="w"> </span>--qos<span class="o">=</span>devel<span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span>--account<span class="o">=</span>YourAccount<span class="w"> </span>--mem<span class="o">=</span>110G<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">70</span><span class="w"> </span>--gpus<span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">--nodes=1</span></code></strong>: Requests one node.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">--time=00:30:00</span></code></strong>: Allocates a maximum runtime of 30 minutes.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">--qos=devel</span></code></strong>: Uses the development quality of service (QOS) for short jobs.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code></strong>: Use GPU partition.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">--account=YourAccount</span></code></strong>: Replace <code class="docutils literal notranslate"><span class="pre">YourAccount</span></code> with your project or account name.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">--mem=110G</span></code></strong>: Allocates 110 GB of memory.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">--cpus-per-task=70</span></code></strong>: Allocates 70 CPU cores for the task.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">--gpus=1</span></code></strong>: Allocates one GPU.</p></li>
+</ul>
+</section>
+</section>
+<section id="graphical-user-interface-in-interactive-jobs">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Graphical user interface in interactive jobs</a><a class="headerlink" href="#graphical-user-interface-in-interactive-jobs" title="Link to this heading"></a></h2>
+<p>It is possible to run X commands, i.e., programs with a graphical user
+interface (GUI), in interactive jobs. This allows you to get graphical
+output back from your job running on a login node.  (Note that
+currently, this has not been activated on Betzy.)</p>
+<p>First, you must make sure that you have turned on <em>X forwarding</em> when logging
+in to the cluster.  With <code class="docutils literal notranslate"><span class="pre">ssh</span></code> from a Linux or MacOS machine, you do this with
+the <code class="docutils literal notranslate"><span class="pre">-Y</span></code> flag, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh -Y saga.sigma2.no
+</pre></div>
+</div>
+<p>Check that the X forwarding works by running a graphical command like <code class="docutils literal notranslate"><span class="pre">xeyes</span></code>
+and verify that it sets up a window.  (Note that due to network latency, it
+can take a long time to set up a window.)</p>
+<p>To be able to run X commands in interactive jobs, add the argument <code class="docutils literal notranslate"><span class="pre">--x11</span></code>
+(note the lowercase <code class="docutils literal notranslate"><span class="pre">x</span></code>) to <code class="docutils literal notranslate"><span class="pre">salloc</span></code>, like this:</p>
+<p>On <strong>Saga</strong> and <strong>Olivia</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ salloc --ntasks=1 --mem-per-cpu=4G --time=00:30:00 --qos=devel --account=YourAccount --x11
+</pre></div>
+</div>
+</section>
+<section id="running-the-shell-or-a-command-on-the-login-node">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Running the shell or a command on the login node</a><a class="headerlink" href="#running-the-shell-or-a-command-on-the-login-node" title="Link to this heading"></a></h2>
+<p>For some applications (see for instance <a class="reference internal" href="../code_development/debugging.html#totalview-debugging"><span class="std std-ref">TotalView</span></a>),
+it is preferrable to have the shell or a command running on the login
+node instead of on the compute node(s).</p>
+<p>This can be achieved by just adding <code class="docutils literal notranslate"><span class="pre">bash</span></code> or the command to the end of
+the <code class="docutils literal notranslate"><span class="pre">salloc</span></code> command line, i.e.,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ salloc &lt;options&gt; bash
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ salloc &lt;options&gt; &lt;command&gt;
+</pre></div>
+</div>
+<p>Note that the shell <strong>will be running on the login node</strong>.  That means
+that you <em>must</em> start all calculations with <code class="docutils literal notranslate"><span class="pre">srun</span></code> or <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> or
+equivalent, to make sure they run on the allocated compute node(s).</p>
+</section>
+<section id="keeping-interactive-jobs-alive">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Keeping interactive jobs alive</a><a class="headerlink" href="#keeping-interactive-jobs-alive" title="Link to this heading"></a></h2>
+<p>Interactive jobs stop when you disconnect from the login node either by
+choice or by internet connection problems. To keep a job alive you can
+use a terminal multiplexer like <code class="docutils literal notranslate"><span class="pre">tmux</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">tmux</span></code> allows you to run processes as usual in your standard bash shell</p>
+<p>You start <code class="docutils literal notranslate"><span class="pre">tmux</span></code> on the login node before you get a interactive Slurm
+session with <code class="docutils literal notranslate"><span class="pre">srun</span></code> and then do all the work in it. In case of a
+disconnect you simply reconnect to the login node and attach to the <code class="docutils literal notranslate"><span class="pre">tmux</span></code>
+session again by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tmux attach
+</pre></div>
+</div>
+<p>Or in case you have multiple session running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tmux list-session
+$ tmux attach -t SESSION_NUMBER
+</pre></div>
+</div>
+<p>As long as the <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session is not closed or terminated (e.g. by a
+server restart) your session should continue. One problem with our
+systems is that the <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session is bound to the particular login server
+you get connected to. So if you start a <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session on login-1 on SAGA
+and next time you get randomly connected to login-2 you first have to
+connect to login-1 again by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh login-1
+</pre></div>
+</div>
+<p>To log out a <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session without closing it you have to press Ctrl-B
+(that the Ctrl key and simultaneously “b”, which is the standard <code class="docutils literal notranslate"><span class="pre">tmux</span></code>
+prefix) and then “d” (without the quotation marks). To close a session
+just close the bash session with either Ctrl-D or type exit. You can get
+a list of all <code class="docutils literal notranslate"><span class="pre">tmux</span></code> commands by Ctrl-B and the ? (question mark). See
+also <a class="reference external" href="https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/">this
+page</a> for
+a short tutorial of <code class="docutils literal notranslate"><span class="pre">tmux</span></code>. Otherwise working inside of a <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session is
+almost the same as a normal bash session.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="parallel-calculations.html" class="btn btn-neutral float-left" title="Efficient use of processors and network on Betzy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="checkpointing.html" class="btn btn-neutral float-right" title="Checkpointing Jobs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

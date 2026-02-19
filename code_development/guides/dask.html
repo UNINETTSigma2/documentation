@@ -1,0 +1,478 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using Dask to scale your Python program &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Using Dask to scale your Python program</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="using-dask-to-scale-your-python-program">
+<span id="dask-tutorial"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Using Dask to scale your Python program</a><a class="headerlink" href="#using-dask-to-scale-your-python-program" title="Link to this heading"></a></h1>
+<p>Dask is a Python library that allows you to scale your existing Python code for optimal use on HPC systems. More information on Dask can be found <a class="reference external" href="https://www.dask.org/">here</a>. Here, we demostrate a simple example of how the Dask <code class="docutils literal notranslate"><span class="pre">delayed</span></code> function can be used to parallelize your code and how to create a Dask cluster using the <code class="docutils literal notranslate"><span class="pre">SLURMCluster</span></code>.</p>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#using-dask-to-scale-your-python-program" id="id1">Using Dask to scale your Python program</a></p>
+<ul>
+<li><p><a class="reference internal" href="#parallelize-your-code-with-dask-delayed" id="id2">Parallelize your code with dask.delayed</a></p>
+<ul>
+<li><p><a class="reference internal" href="#dask-delayed" id="id3">dask.delayed</a></p></li>
+<li><p><a class="reference internal" href="#slurmcluster-and-dask-jobqueue" id="id4">SLURMCluster and dask-jobqueue</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#executing-your-python-script-on-the-hpc-system" id="id5">Executing your Python script on the HPC system</a></p></li>
+<li><p><a class="reference internal" href="#installing-dask-in-a-virtual-environment-and-visualizing-the-task-graph" id="id6">Installing Dask in a virtual environment and visualizing the task graph</a></p>
+<ul>
+<li><p><a class="reference internal" href="#installing-dask-in-a-virtual-environment" id="id7">Installing Dask in a virtual environment</a></p></li>
+<li><p><a class="reference internal" href="#visualizing-the-task-graph" id="id8">Visualizing the task graph</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="parallelize-your-code-with-dask-delayed">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Parallelize your code with dask.delayed</a><a class="headerlink" href="#parallelize-your-code-with-dask-delayed" title="Link to this heading"></a></h2>
+<section id="dask-delayed">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">dask.delayed</a><a class="headerlink" href="#dask-delayed" title="Link to this heading"></a></h3>
+<p>This example is adapted from the Dask documentation on dask.delayed found <a class="reference external" href="https://docs.dask.org/en/stable/delayed.html">here</a>.</p>
+<p>Imagine you have a large amount of data that needs to be processed before you can do any analysis. If the data can be separated into smaller chuncks that can be processed independently, you can use the <code class="docutils literal notranslate"><span class="pre">dask.delayed</span></code> function to parallelize your code. In this example we consider such a scenario where we have a list of data (<code class="docutils literal notranslate"><span class="pre">all_data</span></code>) that can be processed independently. Using a for-loop, we process all the data independently using the function <code class="docutils literal notranslate"><span class="pre">increment_data</span></code>. Once the for-loop is complete, we do the final analysis using the function <code class="docutils literal notranslate"><span class="pre">do_analysis</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">increment_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">data</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">do_analysis</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="n">all_data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">all_data</span><span class="p">:</span>
+    <span class="n">data_incremented</span> <span class="o">=</span> <span class="n">increment_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_incremented</span><span class="p">)</span>
+
+<span class="n">analysis</span> <span class="o">=</span> <span class="n">do_analysis</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We will now parallize this code by using <code class="docutils literal notranslate"><span class="pre">dask.delayed</span></code> as a decorator to turn the function <code class="docutils literal notranslate"><span class="pre">increment_data</span></code> into a delayed function. The function will now behave <em>lazy</em> and return a <code class="docutils literal notranslate"><span class="pre">Delayed</span></code> object instead of the actual result. The <code class="docutils literal notranslate"><span class="pre">Delayed</span></code> object holds your function and its arguments in order to run it in parallel later using a Dask cluster. The actual computation is delayed until the <code class="docutils literal notranslate"><span class="pre">compute</span></code> method is called, here done by calling <code class="docutils literal notranslate"><span class="pre">analysis.compute()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="kn">import</span><span class="w"> </span><span class="nn">dask</span>
+</span>
+<span class="hll"><span class="nd">@dask</span><span class="o">.</span><span class="n">delayed</span>
+</span><span class="k">def</span><span class="w"> </span><span class="nf">increment_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">data</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">do_analysis</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="n">all_data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">all_data</span><span class="p">:</span>
+    <span class="n">data_incremented</span> <span class="o">=</span> <span class="n">increment_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_incremented</span><span class="p">)</span>
+
+<span class="hll"><span class="n">analysis</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">delayed</span><span class="p">(</span><span class="n">do_analysis</span><span class="p">)(</span><span class="n">results</span><span class="p">)</span> <span class="c1"># dask.delayed can also be used in </span>
+</span><span class="hll">                                              <span class="c1"># in this manner </span>
+</span><span class="hll"><span class="n">final_result</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span> <span class="c1"># execute all delayed functions</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;and the final result is: </span><span class="si">{</span><span class="n">final_result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="slurmcluster-and-dask-jobqueue">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">SLURMCluster and dask-jobqueue</a><a class="headerlink" href="#slurmcluster-and-dask-jobqueue" title="Link to this heading"></a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Different HPC clusters often operate with different policies on how to queue jobs. For example, Betzy allocate whole nodes to jobs while Saga allocates cores. Sometimes the default configuration of the <code class="docutils literal notranslate"><span class="pre">SLURMCluster</span></code> fits badly with the policy for a given HPC cluster.</p>
+</div>
+<p>Next, we will use the <code class="docutils literal notranslate"><span class="pre">SLURMCluster</span></code> class from the <code class="docutils literal notranslate"><span class="pre">dask-jobqueue</span></code> package. This class is used to create a Dask cluster by deploying Slurm jobs as Dask workers. The class takes arguments needed to queue a <em>single</em> Slurm job/worker, not the characteristics of your computation as a whole. The arguments are similar to the #SBATCH commands in a Slurm script. Using the <code class="docutils literal notranslate"><span class="pre">scale</span></code> method, we can scale the cluster to the desired number of workers. This example is tested on <em>Saga</em>. Remember to replace the Slurm parameters with your own and make sure the Slurm commands are suitable for the HPC system you are using.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dask</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dask.distributed</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dask_jobqueue</span><span class="w"> </span><span class="kn">import</span> <span class="n">SLURMCluster</span>
+
+<span class="hll"><span class="n">cluster</span> <span class="o">=</span> <span class="n">SLURMCluster</span><span class="p">(</span><span class="n">cores</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+</span><span class="hll">                       <span class="n">processes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+</span><span class="hll">                       <span class="n">memory</span><span class="o">=</span><span class="s2">&quot;500M&quot;</span><span class="p">,</span>
+</span><span class="hll">                       <span class="n">walltime</span><span class="o">=</span><span class="s2">&quot;00:05:00&quot;</span><span class="p">,</span>
+</span><span class="hll">                       <span class="n">project</span><span class="o">=</span><span class="s2">&quot;nn9999k&quot;</span><span class="p">,</span> 
+</span><span class="hll">                       <span class="n">interface</span><span class="o">=</span><span class="s1">&#39;ib0&#39;</span><span class="p">)</span>
+</span>
+<span class="hll"><span class="n">cluster</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># scale cluster to 5 workers</span>
+</span>
+<span class="hll"><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span> <span class="c1"># connect to the cluster</span>
+</span>
+<span class="nd">@dask</span><span class="o">.</span><span class="n">delayed</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">increment_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">data</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">do_analysis</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="n">all_data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">all_data</span><span class="p">:</span>
+    <span class="n">data_incremented</span> <span class="o">=</span> <span class="n">increment_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_incremented</span><span class="p">)</span>
+
+<span class="n">analysis</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">delayed</span><span class="p">(</span><span class="n">do_analysis</span><span class="p">(</span><span class="n">results</span><span class="p">))</span> 
+<span class="n">final_result</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;and the final result is: </span><span class="si">{</span><span class="n">final_result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="hll"><span class="n">cluster</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># shutdown the cluster</span>
+</span><span class="hll"><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># shutdown the client</span>
+</span></pre></div>
+</div>
+<p>Here, we configured each worker to have 1 core, 500 MB of memory and a walltime of 5 minutes. Using <code class="docutils literal notranslate"><span class="pre">cluster.scale(5)</span></code>, we scaled the the cluster to contain 5 workers. Running <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-me</span></code> after executing your main Slurm script will show that 5 additional Slurm jobs that were created (see <a class="reference internal" href="../../jobs/monitoring/squeue.html#squeue"><span class="std std-ref">squeue output examples</span></a> for reference). The figure below shows the task graph created by Dask for this specific Python example.
+<img alt="task graph using DASK" src="../../_images/dask_taskgraph.png" /></p>
+</section>
+</section>
+<section id="executing-your-python-script-on-the-hpc-system">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Executing your Python script on the HPC system</a><a class="headerlink" href="#executing-your-python-script-on-the-hpc-system" title="Link to this heading"></a></h2>
+<p>First, find available versions of Dask on the HPC system. If there is no Dask installed globally on the cluster, install Dask yourself in a virtual environment. If this is the case, you can skip to the following section on <a class="reference internal" href="#venv-and-visualizing"><span class="std std-ref">Installing Dask in a virtual environment and visualizing the task graph</span></a>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>spider<span class="w"> </span>dask
+</pre></div>
+</div>
+<p>Then load the module for the version you want to use:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>dask/your_version
+</pre></div>
+</div>
+<p>An example Slurm job script <em>tested on Saga</em> is found below. Remember to replace the Slurm parameters with your own and make sure the Slurm commands are suitable for the HPC system you are using.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#SBATCH --account=nn9999k </span>
+<span class="c1">#SBATCH --job-name=dask_example</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --mem-per-cpu=1GB</span>
+<span class="c1">#SBATCH --time=0-00:10:00 </span>
+
+<span class="c1">## Recommended safety settings:</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w"> </span><span class="c1"># Make bash exit on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w"> </span><span class="c1"># Treat unset variables as errors</span>
+
+<span class="c1"># Loading Software modules</span>
+module<span class="w"> </span>--quiet<span class="w"> </span>reset<span class="w">            </span><span class="c1"># Restore loaded modules to the default</span>
+<span class="hll">module<span class="w"> </span>load<span class="w"> </span>dask/your_version
+</span>module<span class="w"> </span>list
+
+python<span class="w"> </span>dask_example.py
+<span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is possible to manually configure a distributed Dask cluster without using the <code class="docutils literal notranslate"><span class="pre">SLURMCluster</span></code> class. This is more advance use of Dask and is not covered in this tutorial. The benefit of this approach is that workers are created inside a main job instead of spawning individual Slurm jobs, thus your calculations are confined to one Slurm job. More information can be found <a class="reference external" href="https://docs.dask.org/en/stable/deploying-python-advanced.html">here</a>.</p>
+</div>
+</section>
+<section id="installing-dask-in-a-virtual-environment-and-visualizing-the-task-graph">
+<span id="venv-and-visualizing"></span><h2><a class="toc-backref" href="#id6" role="doc-backlink">Installing Dask in a virtual environment and visualizing the task graph</a><a class="headerlink" href="#installing-dask-in-a-virtual-environment-and-visualizing-the-task-graph" title="Link to this heading"></a></h2>
+<section id="installing-dask-in-a-virtual-environment">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Installing Dask in a virtual environment</a><a class="headerlink" href="#installing-dask-in-a-virtual-environment" title="Link to this heading"></a></h3>
+<p>Installing Dask in a virtual environments enables you to use your preferred version of Dask and to install optional dependencies. Dask can be installed in a virtual environment using <code class="docutils literal notranslate"><span class="pre">pip</span></code>. More information about virtual environments and installing Python packages can be found here: <a class="reference internal" href="../../software/userinstallsw/python.html#installing-python-packages"><span class="std std-ref">Installing Python packages as a user</span></a>. Dask-jobqueue has to be installed together with Dask if you are using <code class="docutils literal notranslate"><span class="pre">SLURMCluster</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>Python/your_version
+<span class="gp">$ </span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>my_new_pythonenv
+<span class="gp">$ </span><span class="nb">source</span><span class="w"> </span>my_new_pythonenv/bin/activate
+<span class="gp">$ </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>dask<span class="w"> </span>dask-jobqueue
+</pre></div>
+</div>
+</section>
+<section id="visualizing-the-task-graph">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Visualizing the task graph</a><a class="headerlink" href="#visualizing-the-task-graph" title="Link to this heading"></a></h3>
+<p>Here we install Dask in a virtual environment together with the Graphviz library, which is an optional dependency for needed for visualizing the task graph. You need both the Graphviz system library <em>and</em> the Graphviz Python library installed. You can load the Graphviz system library using the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> command if it is installed globally.</p>
+<p>First, find available versions of graphviz on the HPC system:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>spider<span class="w"> </span>graphviz<span class="w"> </span>
+</pre></div>
+</div>
+<p>Then load the module for the version you want to use:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>graphviz/your_version
+</pre></div>
+</div>
+<p>If the Graphviz module is not installed globally on the HPC system, you can install it yourself using EasyBuild. More information about EasyBuild and how to load manually installed software can be found here: <a class="reference internal" href="../../software/userinstallsw/easybuild.html#easybuild"><span class="std std-ref">Installing software with EasyBuild</span></a>.</p>
+<p>Now you can create a virtual environment and install Dask, Graphviz and, if you are using <code class="docutils literal notranslate"><span class="pre">SLURMCluster</span></code>, Dask-jobqueue. Here, we will use <code class="docutils literal notranslate"><span class="pre">pip</span></code>. More information about virtual environments and installing Python packages can be found here: <a class="reference internal" href="../../software/userinstallsw/python.html#installing-python-packages"><span class="std std-ref">Installing Python packages as a user</span></a>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>my_new_pythonenv
+<span class="gp">$ </span><span class="nb">source</span><span class="w"> </span>my_new_pythonenv/bin/activate
+<span class="gp">$ </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>dask<span class="w"> </span>graphviz<span class="w"> </span>dask-jobqueue
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are using a virtual environment, you need to make sure that the virtual environment is created with the same Python version that the Graphviz module uses. For example, if you are using Graphviz/2.47.2-GCCcore-10.3.0, you need to create the virtual environment with Python 3.9.5. To find the correct Python version, load Graphviz with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">graphviz/your_version</span></code> then run <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">list</span></code> and look for the Python version which was just loaded with Graphviz. If you create the virtual environment straight after loading Graphviz, the correct Python version will be used.</p>
+</div>
+<p>Below you find an example slurm job and python script using Graphviz <em>tested on Saga</em>. Remember to replace the Slurm parameters with your own and make sure the Slurm commands are suitable for the HPC system you are using.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#SBATCH --account=nn9999k </span>
+<span class="c1">#SBATCH --job-name=dask_example</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --mem-per-cpu=1GB</span>
+<span class="c1">#SBATCH --time=0-00:10:00 </span>
+
+<span class="c1">## Recommended safety settings:</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w"> </span><span class="c1"># Make bash exit on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w"> </span><span class="c1"># Treat unset variables as errors</span>
+
+module<span class="w"> </span>--quiet<span class="w"> </span>reset
+<span class="hll">module<span class="w"> </span>load<span class="w"> </span>Graphviz/your_version<span class="w"> </span><span class="c1"># replace with the version you want to use</span>
+</span>
+<span class="hll"><span class="nb">export</span><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="se">\$</span>
+</span><span class="hll"><span class="nb">source</span><span class="w"> </span>my_new_pythonenv/bin/activate<span class="w"> </span><span class="c1"># replace my_new_pythonenv with the name </span>
+</span><span class="hll"><span class="w">                                     </span><span class="c1"># of your virtual environment</span>
+</span>
+<span class="c1"># It is also recommended to to list loaded modules, for easier debugging</span>
+module<span class="w"> </span>list
+
+python<span class="w"> </span>dask_example.py
+<span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<p>You can now safely include the <code class="docutils literal notranslate"><span class="pre">visualize</span></code> function in your script, which is the function which will produce an image of the task graph.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dask</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dask.distributed</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dask_jobqueue</span><span class="w"> </span><span class="kn">import</span> <span class="n">SLURMCluster</span>
+
+<span class="n">cluster</span> <span class="o">=</span> <span class="n">SLURMCluster</span><span class="p">(</span><span class="n">cores</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                       <span class="n">processes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                       <span class="n">memory</span><span class="o">=</span><span class="s2">&quot;500M&quot;</span><span class="p">,</span>
+                       <span class="n">walltime</span><span class="o">=</span><span class="s2">&quot;00:05:00&quot;</span><span class="p">,</span>
+<span class="hll">                       <span class="n">account</span><span class="o">=</span><span class="s2">&quot;nn9999k&quot;</span><span class="p">,</span> <span class="c1"># NB: in newer versions of dask-jobqueue, &quot;project&quot;</span>
+</span><span class="hll">                                          <span class="c1"># has been renamed to &quot;account&quot;</span>
+</span>                       <span class="n">interface</span><span class="o">=</span><span class="s1">&#39;ib0&#39;</span><span class="p">)</span>
+<span class="n">cluster</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
+
+<span class="nd">@dask</span><span class="o">.</span><span class="n">delayed</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">increment_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">data</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">do_analysis</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="n">all_data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">all_data</span><span class="p">:</span>
+    <span class="n">data_incremented</span> <span class="o">=</span> <span class="n">increment_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_incremented</span><span class="p">)</span>
+
+<span class="n">analysis</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">delayed</span><span class="p">(</span><span class="n">do_analysis</span><span class="p">)(</span><span class="n">results</span><span class="p">)</span>
+<span class="n">final_result</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span> 
+
+<span class="hll"><span class="n">analysis</span><span class="o">.</span><span class="n">visualize</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;visualize_taskgraph.svg&quot;</span><span class="p">)</span>
+</span>
+<span class="n">cluster</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

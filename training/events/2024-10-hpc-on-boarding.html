@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HPC On-boarding 14-17 October 2024 &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="NRIS Talks : Webinar on Introduction to EESSI" href="../nris_talks/2024-10-03-nris-talks.html" />
+    <link rel="prev" title="Introduction to NIRD Toolkit" href="2024-10-nird-toolkit.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../events.html">Training events</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../events.html#upcoming-nris-events">Upcoming <em>NRIS</em> events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../events.html#upcoming-event-from-our-collaborators">Upcoming event from our collaborators</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../events.html#request-for-training">Request for Training</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../events.html#links-to-training-pages-from-collaborators">Links to training pages from collaborators:</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../GPU_Tutorials/2025-GPU-Tuorials-Series.html">NRIS GPU Tutorials series: Fine-Tuning LLMs with Multi-GPU Training <time datetime="2025-11-05 20:00"> 05 Nov. 2025 </time></a></li>
+<li class="toctree-l4"><a class="reference internal" href="2025-10-hpc-on-boarding.html">HPC On-boarding <time datetime="2025-10-14 20:00"> 14-16 October 2025 </time></a></li>
+<li class="toctree-l4"><a class="reference internal" href="2025-05-hpc-on-boarding.html">HPC On-boarding 05-08 May 2025</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2025-spring-best-practices-tools.html">Best Practices and Tools for High Performance Computing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../nris_talks/2025-03-20-nris-talks.html">NRIS Talks: Webinar on Heterogeneous HPC Architecture: A Fundamental Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../nris_talks/2025-04-24-nris-talks.html">NRIS Talks :  A Sneak Peek into Olivia’s Best Practices guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2025-05-NumPy-Pandas-for-biology.html">NumPy and Pandas fundamentals for handling biological datasets (27-28 May 2025)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../NAIC/2025-12-IBM-Power11.html">Inference hands-on on IBM Power11 (03-December-2025)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2024-11-intel-training.html">Intel oneAPI Workshop (6, 13 and 27 November)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../nris_talks/2024-11-28-nris-talks.html">NRIS Talks : How to build on top EESSI using EasyBuild</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2024-10-nird-toolkit.html">Introduction to NIRD Toolkit</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">HPC On-boarding 14-17 October 2024</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../nris_talks/2024-10-03-nris-talks.html">NRIS Talks : Webinar on Introduction to EESSI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2024-06-scientific-computing.html">Scientific Computing Workshop (11-12 June)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2024-spring-best-practices-series.html">Best Practices on Clusters Spring Series 2024</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2024-04-hpc-on-boarding.html">HPC On-boarding 9-11 April 2024</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../nris_talks/2024-04-17-nris-talks.html">NRIS Talks : Webinar on Exascale Computing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2023-introduction-to-fortran-series.html">Introduction to FORTRAN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2023-10-nird-toolkit.html">Introduction to NIRD Toolkit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2023-10-hpc-on-boarding.html">HPC On-boarding 3-5 October 2023</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2023-09-11-Matlab-training.html">Mondays with MATLAB – Nordic HPC Workshops (September 2023)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2023-modern-fortran-workshop-series.html">Modern Fortran Workshop Series Spring 2023</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2023-05-best-practices-on-NRIS-clusters.html">NRIS Best Practices Course 9-11 May 2023</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2023-04-hpc-on-boarding.html">HPC On-boarding 18-20 April 2023</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2023-03-introduction-to-second-generation-nird.html">Introduction to second generation NIRD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2022-11-best-practices-on-NRIS-clusters.html">Best Practices on NRIS Clusters 1-3 November 2022</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2022-10-hpc-on-boarding.html">HPC On-boarding October 2022</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2022-05-best-practices-on-NRIS-clusters.html">Best Practices on NRIS Clusters May 2022</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2022-05-hpc-on-boarding.html">HPC On-boarding May 2022</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2021-11-hpc-nird-toolkit-user-course.html">HPC and NIRD toolkit user course November 2021</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../events.html">Training events</a></li>
+      <li class="breadcrumb-item active">HPC On-boarding 14-17 October 2024</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hpc-on-boarding-14-17-october-2024">
+<span id="training-2024-autumn-onboarding"></span><h1>HPC On-boarding 14-17 October 2024<a class="headerlink" href="#hpc-on-boarding-14-17-october-2024" title="Link to this heading"></a></h1>
+<p>The Norwegian Research Infrastructure Services (<strong>NRIS</strong>) is offering
+an on-boarding hands-on course for new users of HPC systems.</p>
+<p>The course is highly recommended  for all new users of national HPC systems
+(Saga, Fram, Betzy) and all interested in the field.
+<strong>Targeted Audience</strong>: The course is aimed at students, researchers and employees of any
+background. We assume no prior knowledge of what an HPC is or how to use it. For those who
+have little experience with UNIX-like operating systems such as Linux or who have never
+worked on the command line of a terminal, the first day of the course is dedicated for you.</p>
+<p><strong>The course is open to all and free of charge.</strong></p>
+<p>:::success
+<strong>The video recordings and notes for this course can be found <a class="reference external" href="https://documentation.sigma2.no/training/material.html">here</a></strong>
+:::</p>
+<section id="registration">
+<h2>Registration<a class="headerlink" href="#registration" title="Link to this heading"></a></h2>
+<p>The registration is no longer available.</p>
+</section>
+<section id="practical-information">
+<h2>Practical Information<a class="headerlink" href="#practical-information" title="Link to this heading"></a></h2>
+<p>This is an online course via zoom. Participants require access to a computer
+(not provided by the course organisers) with internet connectivity and
+pre-installed programs to participate in the video meeting of the course (zoom) and
+to access the HPC systems (eg: ssh).</p>
+</section>
+<section id="time-date-all-times-cest">
+<h2>Time, date (all times CEST)<a class="headerlink" href="#time-date-all-times-cest" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Date</p></th>
+<th class="head text-left"><p>Time</p></th>
+<th class="head text-left"><p>Topic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Mon 14.10</p></td>
+<td class="text-left"><p>13:00 - 13:30</p></td>
+<td class="text-left"><p>Login check session (for all)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Tue 15.10</p></td>
+<td class="text-left"><p>09:00 - 12:30</p></td>
+<td class="text-left"><p>Linux on HPC context (for UNIX-newbies)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Wed 16.10</p></td>
+<td class="text-left"><p>09:00 - 12:30</p></td>
+<td class="text-left"><p>HPC On-boarding day 1 (for all)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Thu 17.10</p></td>
+<td class="text-left"><p>09:00 - 12:30</p></td>
+<td class="text-left"><p>HPC On-boarding day2 (for all)</p></td>
+</tr>
+</tbody>
+</table>
+<p>You can always contact us by sending an email to <a class="reference external" href="mailto:support&#37;&#52;&#48;nris&#46;no">support<span>&#64;</span>nris<span>&#46;</span>no</a>.</p>
+<p>If you want to receive further information about training events, and other announcements
+about IT resources and services for researchers, there are a couple of information channels
+you can subscribe to:</p>
+<ul class="simple">
+<li><p>users at University of Bergen and affiliated institutes: <a class="reference external" href="https://mailman.uib.no/listinfo/hpcnews">register to hpcnews&#64;uib.no</a></p></li>
+<li><p>users of Sigma2 services: <a class="reference external" href="https://sigma2.us13.list-manage.com/subscribe?u=4fd109ad79a5dca6dde7e4997&amp;amp;id=59b164c7b6">subscribe to Sigma2’s newsletter</a></p></li>
+</ul>
+<p><strong>User Account and connection verification</strong>: For all courseparticipants, we want to make sure that you are able to log in an follow the practical parts of the course - thus we organise a login help session on October 14th 13:00-13:30. Link to this has been sent out in a personal email.</p>
+<p><strong>Day0 - UNIX for HPC (optional 15 October, Tuesday)</strong></p>
+<ul class="simple">
+<li><p>09:00-09:10 - Welcome, Practical information &amp; icebreaker question</p></li>
+<li><p>09:10-09:40 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/intro.html">The terminal and remote login</a> (Bjørn &amp; Morten)</p></li>
+<li><p>09:40-09:55 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html">Moving around and looking at things</a> (Morten &amp; Maiken)</p></li>
+<li><p>09:55-10:05 - Break</p></li>
+<li><p>10:05-10:20 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html#exercise">Moving around and looking at things (exercise)</a></p></li>
+<li><p>10:20-10:35 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html">Finding things</a> (Maiken &amp; Morten)</p></li>
+<li><p>10:35-10:50 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html">Finding things (exercise)</a></p></li>
+<li><p>10:50-11:00 - Break</p></li>
+<li><p>11:00-11:30 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/writing-files.html">Create/modify files</a> (Morten &amp; Maiken)</p></li>
+<li><p>11:30-12:00 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html">Composing commands with pipes</a> (Radovan &amp; Morten)</p></li>
+<li><p>12:00-12:30 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html">Scripting</a> (Maiken &amp; Bjørn)</p></li>
+</ul>
+<p><strong>Day1 - HPC Intro (16 October, Wednesday)</strong></p>
+<ul class="simple">
+<li><p>09:00-09:10 - Welcome, Practical information &amp;icebreaker question</p></li>
+<li><p>09:10-09:30 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html">Why use a Cluster?</a> (Magnar &amp; Maiken)</p></li>
+<li><p>09:30-10:00 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/12-cluster.html">Working on a remote HPC system</a> (Maiken &amp; Magnar)</p></li>
+<li><p>10:00-10:15 - Break</p></li>
+<li><p>10:15-11:00 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html">Scheduling jobs</a> (Magnar &amp; Jim-Viktor)</p></li>
+<li><p>11:00-11:30 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html">Scheduling job (exercise)</a></p></li>
+<li><p>11:30-11:45 - Break</p></li>
+<li><p>11:45-12:15 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html">Transferring files</a> (Espen &amp; Magnar)</p></li>
+<li><p>12:15-12:30 - Q&amp;A &amp; Discussion</p></li>
+</ul>
+<p><strong>Day2 - HPC Intro (17 October, Thursday)</strong></p>
+<ul class="simple">
+<li><p>09:00-09:10 - Recap &amp; ice breaker question</p></li>
+<li><p>09:10-09:40 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html">Accessing Software</a> (Sabry &amp; Buket)</p></li>
+<li><p>09:40-10:00 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html">Accessing Software (exercise)</a></p></li>
+<li><p>10:00-10:15 - Break</p></li>
+<li><p>10:15-11:15 - <a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/compute-storage-quota.html">Compute and storage quota</a> (Bjørn &amp; Radovan)
+- (including <a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.html">Using shared resources responsibly</a>).</p></li>
+<li><p>11:30-11:45 - Break</p></li>
+<li><p>11:45-12:15 - <a class="reference external" href="https://doi.org/10.5281/zenodo.8392762">How to ask for help</a> (Radovan &amp; Bjørn)</p></li>
+</ul>
+</section>
+<section id="course-material">
+<h2>Course material<a class="headerlink" href="#course-material" title="Link to this heading"></a></h2>
+<p>Course material will be mostly based on <a class="reference external" href="https://training.pages.sigma2.no/tutorials/unix-for-hpc/index.html">Unix for HPC</a> and  <a class="reference external" href="https://training.pages.sigma2.no/tutorials/hpc-intro/index.html">HPC-Intro</a></p>
+</section>
+<section id="code-of-conduct">
+<h2>Code of Conduct<a class="headerlink" href="#code-of-conduct" title="Link to this heading"></a></h2>
+<p>All participants in our course are expected to show respect and courtesy to
+others. We follow <a class="reference external" href="https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html#code-of-conduct-detailed-view">carpentry code of conduct</a>.
+If you believe someone is violating the Code of Conduct, we ask that you either report to
+the zoom host right away or write to <a class="reference external" href="mailto:training&#37;&#52;&#48;nris&#46;no">the training team</a>.</p>
+</section>
+<section id="instructors">
+<h2>Instructors<a class="headerlink" href="#instructors" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Radovan Bast</p></li>
+<li><p>Magnar Bjørgve</p></li>
+<li><p>Burcin Buket</p></li>
+<li><p>Morten Ledum</p></li>
+<li><p>Bjørn Lindi</p></li>
+<li><p>Jim-Viktor Paulsen</p></li>
+<li><p>Maiken Pedersen</p></li>
+<li><p>Sabry Razick</p></li>
+<li><p>Espen Tangen</p></li>
+</ul>
+</section>
+<section id="coordinator">
+<h2>Coordinator<a class="headerlink" href="#coordinator" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Espen Tangen</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2024-10-nird-toolkit.html" class="btn btn-neutral float-left" title="Introduction to NIRD Toolkit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../nris_talks/2024-10-03-nris-talks.html" class="btn btn-neutral float-right" title="NRIS Talks : Webinar on Introduction to EESSI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

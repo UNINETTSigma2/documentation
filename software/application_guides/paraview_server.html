@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ParaView Server &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ParaView using X11 Forwarding" href="paraview_x11.html" />
+    <link rel="prev" title="OpenFOAM" href="openfoam.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../appguides.html">Application guides</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="beast.html">Beast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bioinfo.html">Bioinformatics Software &amp; Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="castep/castep.html">CASTEP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdo.html">CDO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cesm.html">CESM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gaussian/gaussian.html">The GAUSSIAN program system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gdal.html">GDAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gromacs.html">GROMACS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammps.html">LAMMPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matlab.html">MATLAB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matplotlib.html">Plotting with Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namd.html">NAMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nco.html">NCO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncview.html">Ncview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nwchem.html">NWChem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opendrift.html">OpenDrift</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openfoam.html">OpenFOAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openfoam.html#openfoam-container-build-and-job-script-guide">OpenFOAM Container Build and Job Script Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openfoam.html#guide-to-creating-and-compiling-a-custom-openfoam-solver">Guide to Creating and Compiling a Custom OpenFOAM Solver</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ParaView Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-paraview-software">Download ParaView software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#linux-version-on-the-cluster">Linux version on the cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#windows-client-for-your-local-computer">Windows client for your local computer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mac-client-for-your-local-computer">Mac client for your local computer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#allocating-resources-for-the-project">Allocating resources for the project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loading-libopengl-so-0-with-a100-egl-package">Loading “libOpenGL.so.0” with A100 “egl” package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-paraview-server">Running ParaView Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-tunnel-between-your-pc-and-the-server">Creating a tunnel between your PC and the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connect-paraview-s-local-client-to-the-server">Connect ParaView’s local client to the server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="paraview_x11.html">ParaView using X11 Forwarding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paraview_web.html">ParaViewWeb with Apptainer (singularity)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proj.html">PROJ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rstudio.html">RStudio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="schrodinger/schrodinger.html">Schrödinger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vasp.html">VASP (Vienna Ab initio Simulation Package)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visit.html">VisIt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wrf.html">WRF / WPS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../appguides.html">Application guides</a></li>
+      <li class="breadcrumb-item active">ParaView Server</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <nav class="contents" id="table-of-contents" role="doc-toc">
+<span id="paraview-server"></span><p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id2">ParaView Server</a></p>
+<ul>
+<li><p><a class="reference internal" href="#context" id="id3">Context</a></p></li>
+<li><p><a class="reference internal" href="#download-paraview-software" id="id4">Download ParaView software</a></p>
+<ul>
+<li><p><a class="reference internal" href="#linux-version-on-the-cluster" id="id5">Linux version on the cluster</a></p></li>
+<li><p><a class="reference internal" href="#windows-client-for-your-local-computer" id="id6">Windows client for your local computer</a></p></li>
+<li><p><a class="reference internal" href="#mac-client-for-your-local-computer" id="id7">Mac client for your local computer</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#allocating-resources-for-the-project" id="id8">Allocating resources for the project</a></p></li>
+<li><p><a class="reference internal" href="#loading-libopengl-so-0-with-a100-egl-package" id="id9">Loading “libOpenGL.so.0” with A100 “egl” package</a></p></li>
+<li><p><a class="reference internal" href="#running-paraview-server" id="id10">Running ParaView Server</a></p></li>
+<li><p><a class="reference internal" href="#creating-a-tunnel-between-your-pc-and-the-server" id="id11">Creating a tunnel between your PC and the Server</a></p></li>
+<li><p><a class="reference internal" href="#connect-paraview-s-local-client-to-the-server" id="id12">Connect ParaView’s local client to the server</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="id1">
+<h1><a class="toc-backref" href="#id2" role="doc-backlink">ParaView Server</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<section id="context">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Context</a><a class="headerlink" href="#context" title="Link to this heading"></a></h2>
+<p>Running ParaView using remote desktop software on our clusters is far from ideal because it adds an unnecessary layer of virtualization, making the application run slower and taxing the server and other users running their applications.</p>
+<p>Running ParaView using its built-in server option has a few advantages:</p>
+<ul class="simple">
+<li><p>You do not rely on IT support to install a particular version of the software;</p></li>
+<li><p>It is possible to run the latest version, as long as you download the newer version from ParaView website on your local machine and on the server;</p></li>
+<li><p>You can specify exactly how much resources you need (including CPUs and also GPUs where available) and they will be allocated to your project;</p></li>
+<li><p>It runs much better on your, already familiar, local computer.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The packages and commands that we will show below depend on which machine you have access to:</p>
+<p><strong>Betzy</strong>: since it only has AMD processors and A100 GPUs, you will have to switch environments and run either the “egl” or “osmesa” packages (the former is probably slightly faster). Please, follow the instructions on this guide for AMD setups.</p>
+<p><strong>Saga</strong>: this cluster has Intel and AMD CPUs and different GPUs available. Remember that P100 is only available for Intel architecture and A100 for AMD architecture so the commands will vary depending on which GPU is selected. Either way, both “egl” and “osmesa” packages can also be used.</p>
+</div>
+</section>
+<section id="download-paraview-software">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Download ParaView software</a><a class="headerlink" href="#download-paraview-software" title="Link to this heading"></a></h2>
+<section id="linux-version-on-the-cluster">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Linux version on the cluster</a><a class="headerlink" href="#linux-version-on-the-cluster" title="Link to this heading"></a></h3>
+<p>All our servers already have a version installed as a module. However, we recommend the download and usage of “osmesa” or “egl” versions available on <a class="reference external" href="https://www.paraview.org/download/">ParaView website</a>, as they have CPU and GPU acceleration and the 3D rendering on ParaView happens much faster.</p>
+<p>In fact, we ran some benchmarks:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Version: 5.10.1-MPI (installed module version)
+Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --account=nn9999k`
+PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
+Message: &quot;Display is not accessible on the server side. Remote rendering will be disabled.&quot;
+Time: 1m57s
+
+Version: 5.10.1-osmesa
+Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --account=nn9999k`
+PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
+Message: &quot;None&quot;
+Time: 59s
+
+Version: 5.10.1-egl
+Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --account=nn9999k`
+PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
+Time: did not run
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Version: 5.10.1-MPI (installed module version)
+Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --partition=accel --gpus=1 --account=nn9999k`
+PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
+Message: &quot;Display is not accessible on the server side. Remote rendering will be disabled.&quot;
+Time: 1m46s
+
+Version: 5.10.1-osmesa
+Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --partition=accel --gpus=1 --account=nn9999k`
+PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
+Message: &quot;None&quot;
+Time: 48s
+
+Version: 5.10.1-egl
+Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --partition=accel --gpus=1 --account=nn9999k`
+PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
+Message: &quot;None&quot;
+Time: 47s
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Version: 5.10.1-MPI (installed module version)
+Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --partition=a100 --gpus=1 --account=nn9999k`
+PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
+Message: &quot;Display is not accessible on the server side. Remote rendering will be disabled.&quot;
+Time: 1m11s
+
+Version: 5.10.1-osmesa
+Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --partition=a100 --gpus=1 --account=nn9999k`
+PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
+Message: &quot;None&quot;
+Time: 20s
+
+Version: 5.10.1-egl
+Allocation command: `salloc --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 --time=00:30:00 --mem=20G --partition=a100 --gpus=1 --account=nn9999k`
+PV Server command: `srun ./pvserver --server-port=7755 --force-offscreen-rendering`
+Message: &quot;None&quot;
+Time: 19s
+</pre></div>
+</div>
+<p>Download the version you desire for your operating system and the <strong>same</strong> version for Linux. You will need to upload the .tar.gz file to your home or project directory and extract it with the command <code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xvf</span> <span class="pre">nameOfFile.tar.gz</span></code></p>
+</section>
+<section id="windows-client-for-your-local-computer">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Windows client for your local computer</a><a class="headerlink" href="#windows-client-for-your-local-computer" title="Link to this heading"></a></h3>
+<p>If your local machine runs Windows, you have to install ParaView executable or, in case you don’t have Administrator permissions to install the software, you can also download the zip file, extract it and run the <code class="docutils literal notranslate"><span class="pre">paraview.exe</span></code> file inside the /bin folder</p>
+<p>Also, if an error appears when opening the program saying a dll is missing <code class="docutils literal notranslate"><span class="pre">msmpi.dll</span></code> , you will need to download and install <code class="docutils literal notranslate"><span class="pre">msmpisetup.exe</span></code> from this link: https://www.microsoft.com/en-us/download/details.aspx?id=105289 . Ask for an administrator to install it for you.</p>
+</section>
+<section id="mac-client-for-your-local-computer">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Mac client for your local computer</a><a class="headerlink" href="#mac-client-for-your-local-computer" title="Link to this heading"></a></h3>
+<p>For the Mac version, it is enough to download the same version as the one that will run on the cluster and install it on your local machine. Just make sure to download the correct architecture version, Intel or Apple Silicon.</p>
+</section>
+</section>
+<section id="allocating-resources-for-the-project">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Allocating resources for the project</a><a class="headerlink" href="#allocating-resources-for-the-project" title="Link to this heading"></a></h2>
+<p>Run the following command: <code class="docutils literal notranslate"><span class="pre">salloc</span> <span class="pre">--nodes=1</span> <span class="pre">--ntasks-per-node=1</span> <span class="pre">--cpus-per-task=1</span> <span class="pre">--time=00:30:00</span> <span class="pre">--mem</span> <span class="pre">=20G</span> <span class="pre">--partition=a100</span> <span class="pre">--gpus=1</span> <span class="pre">--account=nnXXXXk</span></code></p>
+<p><strong>Please, note that the command above is tailored for a system with the A100 GPU available, such as Saga or Betzy.</strong> If the command above doesn’t work, refer to the warning message at the beginning of this guide and take a look at this <a class="reference external" href="https://documentation.sigma2.no/jobs/interactive_jobs.html#requesting-an-interactive-job">documentation</a> or on the benchmarks as we have provided the allocation commands we ran.</p>
+<p>Also note that we are asking 1 CPU and 1 GPU only for 30 minutes. <strong>If you need more resources and time, adjust the parameters accordingly.</strong>
+The A100 GPU is faster but, if resources are not available and you are running on Saga, try the P100 GPU changing the <code class="docutils literal notranslate"><span class="pre">--partition</span></code> flag from “a100” to “accel”.</p>
+<p>The output will be similar to this one:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">salloc</span><span class="p">:</span> <span class="n">Pending</span> <span class="n">job</span> <span class="n">allocation</span> <span class="mi">5442258</span>
+<span class="n">salloc</span><span class="p">:</span> <span class="n">job</span> <span class="mi">5442258</span> <span class="n">queued</span> <span class="ow">and</span> <span class="n">waiting</span> <span class="k">for</span> <span class="n">resources</span>
+<span class="n">salloc</span><span class="p">:</span> <span class="n">job</span> <span class="mi">5442258</span> <span class="n">has</span> <span class="n">been</span> <span class="n">allocated</span> <span class="n">resources</span>
+<span class="n">salloc</span><span class="p">:</span> <span class="n">Granted</span> <span class="n">job</span> <span class="n">allocation</span> <span class="mi">5442258</span>
+<span class="n">salloc</span><span class="p">:</span> <span class="n">Waiting</span> <span class="k">for</span> <span class="n">resource</span> <span class="n">configuration</span>
+<span class="n">salloc</span><span class="p">:</span> <span class="n">Nodes</span> <span class="n">gpu</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">8</span> <span class="n">are</span> <span class="n">ready</span> <span class="k">for</span> <span class="n">job</span>
+</pre></div>
+</div>
+</section>
+<section id="loading-libopengl-so-0-with-a100-egl-package">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Loading “libOpenGL.so.0” with A100 “egl” package</a><a class="headerlink" href="#loading-libopengl-so-0-with-a100-egl-package" title="Link to this heading"></a></h2>
+<p>Due to a different architecture, our A100 GPU runs paired with an AMD CPU. You can check more details about the hardware in these pages:
+(<a class="reference internal" href="../../hpc_machines/betzy.html"><span class="std std-doc">Betzy</span></a>)
+(<a class="reference internal" href="../../hpc_machines/saga.html"><span class="std std-doc">Saga</span></a>)</p>
+<p>If you want to run the “egl” package, you will have to:</p>
+<ul class="simple">
+<li><p>Switch environments running the following commands:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">reset</span>
+<span class="n">module</span> <span class="o">--</span><span class="n">force</span> <span class="n">swap</span> <span class="n">StdEnv</span> <span class="n">Zen2Env</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Manually <a class="reference external" href="https://documentation.sigma2.no/software/userinstallsw/easybuild.html">install</a> <code class="docutils literal notranslate"><span class="pre">libglvnd</span></code> available in <a class="reference external" href="https://docs.easybuild.io/version-specific/supported-software/l/libglvnd/">EasyBuild</a></p></li>
+<li><p>Load the module with the following commands (please, adapt the paths and the project number):</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">cluster</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">nnXXXXk</span><span class="o">/</span><span class="n">EasyBuild</span>
+<span class="n">module</span> <span class="n">avail</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">i</span> <span class="n">libglvnd</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">modules</span><span class="o">/</span><span class="nb">all</span><span class="o">/</span><span class="n">libglvnd</span><span class="o">/</span><span class="mf">1.4.0</span><span class="o">-</span><span class="n">GCCcore</span><span class="o">-</span><span class="mf">11.3.0</span>
+</pre></div>
+</div>
+<p><strong>NOTE:</strong> On the simulation we tested, the difference between “osmesa” and “egl” packages was negligible as well as increasing the number of allocated GPUs (only used by “egl”). Do your own tests to find the optimal resources and ParaView version for your case.</p>
+</section>
+<section id="running-paraview-server">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Running ParaView Server</a><a class="headerlink" href="#running-paraview-server" title="Link to this heading"></a></h2>
+<p>Go to the /bin folder with the <code class="docutils literal notranslate"><span class="pre">cd</span></code> command and run the following (replace the “XXXX” for a random 4-digit number):</p>
+<p><code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">./pvserver</span> <span class="pre">--server-port=XXXX</span> <span class="pre">--force-offscreen-rendering</span></code></p>
+<p><strong>NOTE:</strong> You can read more about the <code class="docutils literal notranslate"><span class="pre">--force-offscreen-rendering</span></code> option <a class="reference external" href="https://www.paraview.org/paraview-docs/latest/cxx/Offscreen.html">on Paraview website</a>. It seems to render slightly faster.</p>
+<p>You should see a message like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Waiting</span> <span class="k">for</span> <span class="n">client</span><span class="o">...</span>
+<span class="n">Connection</span> <span class="n">URL</span><span class="p">:</span> <span class="n">cs</span><span class="p">:</span><span class="o">//</span><span class="n">gpu</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">8</span><span class="p">:</span><span class="mi">5678</span>
+<span class="n">Accepting</span> <span class="n">connection</span><span class="p">(</span><span class="n">s</span><span class="p">):</span> <span class="n">gpu</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">8</span><span class="p">:</span><span class="mi">5678</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-a-tunnel-between-your-pc-and-the-server">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Creating a tunnel between your PC and the Server</a><a class="headerlink" href="#creating-a-tunnel-between-your-pc-and-the-server" title="Link to this heading"></a></h2>
+<p>ParaView server needs to communicate with your computer and for this, simply open a new terminal window and type:</p>
+<p><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-N</span> <span class="pre">-L</span> <span class="pre">XXXX:node:XXXX</span> <span class="pre">username&#64;login-Y.server.sigma2.no</span></code></p>
+<p>Please, replace the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`XXXX` - with the chosen 4-digit port
+`node` - the number of the node. You can see that on the &quot;Accepting Connection&quot; or salloc messages.
+`username` - your username on our servers
+`Y` - the login node you connected previously (you can see it on the pvserver message below)
+`server` - replace with betzy or saga
+</pre></div>
+</div>
+</section>
+<section id="connect-paraview-s-local-client-to-the-server">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Connect ParaView’s local client to the server</a><a class="headerlink" href="#connect-paraview-s-local-client-to-the-server" title="Link to this heading"></a></h2>
+<p>Open the ParaView executable and follow the steps below:</p>
+<ul class="simple">
+<li><p>Click on File &gt; Connect</p></li>
+<li><p>Add Server</p></li>
+<li><p>Choose a name and fill in “Host” with <code class="docutils literal notranslate"><span class="pre">localhost</span></code> and “Port” with the 4-digit number you chosen</p></li>
+<li><p>Click Configure &gt; Save</p></li>
+<li><p>A new connection will be created. Now, click on “Connect”</p></li>
+</ul>
+<p>If everything is configured correctly, you should see on your left side under “Pipeline Browser” the client connected and a message on the terminal saying “Client connected”</p>
+<p>Here’s an image with an overview of the whole process:</p>
+<p><img alt="paraviewServer_overview" src="../../_images/pvserver_overview.png" /></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="openfoam.html" class="btn btn-neutral float-left" title="OpenFOAM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="paraview_x11.html" class="btn btn-neutral float-right" title="ParaView using X11 Forwarding" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

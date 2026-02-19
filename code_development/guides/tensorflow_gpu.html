@@ -1,0 +1,840 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TensorFlow on GPU &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">TensorFlow on GPU</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tensorflow-on-gpu">
+<span id="tensorflow"></span><span id="index-0"></span><h1>TensorFlow on GPU<a class="headerlink" href="#tensorflow-on-gpu" title="Link to this heading"></a></h1>
+<p>The intention of this guide is to teach students and researchers with access to
+<a class="reference external" href="https://www.sigma2.no/">Sigma2</a> how to use machine learning libraries on CPU and GPU. The guide
+is optimized for <a class="reference external" href="https://www.tensorflow.org/"><code class="docutils literal notranslate"><span class="pre">TensorFlow</span> <span class="pre">2</span></code></a>, however, we hope that if you
+utilize other libraries this guide still holds some value. Do not hesitate to
+<a class="reference internal" href="../../getting_help/support_line.html#support-line"><span class="std std-ref">contact us</span></a>
+for additional assistance.</p>
+<p>For the rest of this guide many of the examples ask for Sigma2 resources with
+GPU. This is achieved with the <code class="docutils literal notranslate"><span class="pre">--partition=accel</span> <span class="pre">--gpus=1</span></code>
+(<a class="reference internal" href="../../jobs/job_scripts/saga_job_scripts.html#job-scripts-saga-accel"><span class="std std-ref">Accel and A100</span></a>),
+however, <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> does not require the use of a GPU so
+for testing it is recommended to not ask for GPU resources (to be scheduled
+quicker) and then, once your experiments are ready to run for longer, add back
+inn the request for GPU.</p>
+<p>A complete example, both <code class="docutils literal notranslate"><span class="pre">python</span></code> and Slurm file, can be found at
+<a class="reference download internal" download="" href="../../_downloads/27bc02a24553adf798b5e0145f88cfe4/mnist.py"><code class="xref download docutils literal notranslate"><span class="pre">files/mnist.py</span></code></a>
+and
+<a class="reference download internal" download="" href="../../_downloads/78d683a69d5ba67f51612a5d731056a1/run_mnist.sh"><code class="xref download docutils literal notranslate"><span class="pre">files/run_mnist.sh</span></code></a>.</p>
+</section>
+<section id="installing-python-libraries">
+<h1>Installing <code class="docutils literal notranslate"><span class="pre">python</span></code> libraries<a class="headerlink" href="#installing-python-libraries" title="Link to this heading"></a></h1>
+<p>The preferred way to “install” the necessary machine learning libraries is to
+load one of the pre-built <a class="reference internal" href="../../software/modulescheme.html#module-scheme"><span class="std std-ref">modules</span></a> below. By using the built-in modules
+any required third-party module is automatically loaded and ready for use,
+minimizing the amount of packages to load.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PyTorch/1.4.0-fosscuda-2019b-Python-3.7.4</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Theano/1.0.4-fosscuda-2019b-Python-3.7.4</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Keras/2.3.1-fosscuda-2019b-Python-3.7.4</span></code></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When loading modules pressing <code class="docutils literal notranslate"><span class="pre">&lt;tab&gt;</span></code> gives you
+autocomplete options.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It can be useful to do an initial <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">reset</span></code> to
+ensure nothing from previous experiments is loaded before
+loading modules for the first time.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Modules are regularly updated so if you would like a newer
+version, than what is listed above, use <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span> <span class="pre">|</span> <span class="pre">less</span></code> to browse all available packages.</p>
+</div>
+<p>If you need additional python libraries it is recommended to create a
+<a class="reference external" href="https://virtualenv.pypa.io/en/stable/"><code class="docutils literal notranslate"><span class="pre">virtualenv</span></code></a> environment and install packages there. This
+increases reproducibility and makes it easy to test different packages without
+needing to install libraries globally.</p>
+<p>Once the desired module is loaded, create a new <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> environment as
+follows.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The following will create a new folder called &#39;tensor_env&#39; which will hold</span>
+<span class="c1"># our &#39;virtualenv&#39; and installed packages</span>
+$<span class="w"> </span>virtualenv<span class="w"> </span>-p<span class="w"> </span>python3<span class="w"> </span>tensor_env
+<span class="c1"># Next we need to activate the new environment</span>
+<span class="c1"># NOTE: The &#39;Python&#39; module loaded above must be loaded for activation to</span>
+<span class="c1"># function, this is important when logging in and out or doing a &#39;module reset&#39;</span>
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>tensor_env/bin/activate
+<span class="c1"># If you need to do other python related stuff outside the virtualenv you will</span>
+<span class="c1"># need to &#39;deactivate&#39; the environment with the following</span>
+$<span class="w"> </span>deactivate
+</pre></div>
+</div>
+<p>Once the environment is activated, new packages can be installed by using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&lt;package&gt;</span></code>. If you end up using additional packages make sure that the
+<code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> is activated in your <a class="reference internal" href="../../jobs/job_scripts.html#job-scripts"><span class="std std-ref">Job Scripts</span></a>.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Often useful to reset modules before running experiments</span>
+module<span class="w"> </span>reset
+
+<span class="c1"># Load machine learning library along with python</span>
+module<span class="w"> </span>load<span class="w"> </span>TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4
+<span class="c1"># Activate virtualenv</span>
+<span class="nb">source</span><span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/tensor_env/bin/activate
+</pre></div>
+</div>
+<section id="manual-route">
+<h2>Manual route<a class="headerlink" href="#manual-route" title="Link to this heading"></a></h2>
+<p>If you still would like to install packages through <code class="docutils literal notranslate"><span class="pre">pip</span></code> the following will
+guide you through how to install the latest version of <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> and load the
+necessary packages for GPU compute.</p>
+<p>To start, load the desired <code class="docutils literal notranslate"><span class="pre">python</span></code> version - here we will use the newest as of
+writing.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Python/3.8.2-GCCcore-9.3.0
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This has to be done on the login node so that we have access to
+the internet and can download <code class="docutils literal notranslate"><span class="pre">pip</span></code> packages.</p>
+</div>
+<p>Then create a <a class="reference external" href="https://virtualenv.pypa.io/en/stable/">virtual environment</a> which we will install packages
+into.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The following will create a new folder called &#39;tensor_env&#39; which will hold</span>
+<span class="c1"># our &#39;virtualenv&#39; and installed packages</span>
+$<span class="w"> </span>virtualenv<span class="w"> </span>-p<span class="w"> </span>python3<span class="w"> </span>tensor_env
+<span class="c1"># Next we need to activate the new environment</span>
+<span class="c1"># NOTE: The &#39;Python&#39; module loaded above must be loaded for activation to</span>
+<span class="c1"># function, this is important when logging in and out or doing a &#39;module reset&#39;</span>
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>tensor_env/bin/activate
+<span class="c1"># If you need to do other python related stuff outside the virtualenv you will</span>
+<span class="c1"># need to &#39;deactivate&#39; the environment with the following</span>
+$<span class="w"> </span>deactivate
+</pre></div>
+</div>
+<p>Next we will install the latest version of <a class="reference external" href="https://www.tensorflow.org/install/pip"><code class="docutils literal notranslate"><span class="pre">TensorFlow</span> <span class="pre">2</span></code></a> which
+fortunately should support GPU compute directly without any other prerequisites.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>tensorflow
+</pre></div>
+</div>
+<p>To ensure that the above install worked, start an interactive session with
+<code class="docutils literal notranslate"><span class="pre">python</span></code> and run the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">is_built_with_cuda</span><span class="p">()</span>
+<span class="go"># Should respond with &#39;True&#39; if it worked</span>
+</pre></div>
+</div>
+<p>The import might show some error messages related to loading CUDA, however, for
+now we just wanted to see that <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> was installed and pre-compiled with
+<code class="docutils literal notranslate"><span class="pre">CUDA</span></code> (i.e. GPU) support.</p>
+<p>This should be it for installing necessary libraries. Below we have listed the
+modules which will have to be loaded for GPU compute to work. The next code
+snippet should be in your <a class="reference internal" href="../../jobs/job_scripts.html#job-scripts"><span class="std std-ref">Job Scripts</span></a> so that the correct modules
+are loaded on worker nodes and the virtual environment is activated.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Often useful to reset modules before running experiments</span>
+module<span class="w"> </span>reset
+
+<span class="c1"># Load desired modules (replace with the exact modules you used above)</span>
+module<span class="w"> </span>load<span class="w"> </span>Python/3.8.2-GCCcore-9.3.0
+module<span class="w"> </span>load<span class="w"> </span>CUDA/10.1.243
+module<span class="w"> </span>load<span class="w"> </span>cuDNN/7.6.4.38
+<span class="c1"># Activate virtualenv</span>
+<span class="nb">source</span><span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/tensor_env/bin/activate
+</pre></div>
+</div>
+</section>
+</section>
+<section id="loading-data">
+<h1>Loading data<a class="headerlink" href="#loading-data" title="Link to this heading"></a></h1>
+<p>For data that you intend to work on it is simplest to upload to your home area
+and if the dataset is small enough simply load from there onto the worker node.</p>
+<p>To upload data to use <a class="reference external" href="https://en.wikipedia.org/wiki/Rsync"><code class="docutils literal notranslate"><span class="pre">rsync</span></code></a> to transfer data:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># On your own machine, upload the dataset to your home folder</span>
+$<span class="w"> </span>rsync<span class="w"> </span>-zh<span class="w"> </span>--info<span class="o">=</span>progress2<span class="w"> </span>-r<span class="w"> </span>/path/to/dataset/folder<span class="w"> </span>&lt;username&gt;@saga.sigma2.no:~/.
+</pre></div>
+</div>
+<p>For large amounts of data it is recommended to load into your <a class="reference internal" href="../../files_storage/clusters.html#project-area"><span class="std std-ref">Project area</span></a>
+to avoid filling your home area.</p>
+<p>To retrieving the path to the dataset, we can utilize python’s <a class="reference external" href="https://docs.python.org/3/library/os.html"><code class="docutils literal notranslate"><span class="pre">os</span></code></a>
+module to access the variable, like so:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...Somewhere in your experiment python file...</span>
+<span class="c1"># Load &#39;os&#39; module to get access to environment and path functions</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># Path to dataset</span>
+<span class="n">dataset_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SLURM_SUBMIT_DIR&#39;</span><span class="p">],</span> <span class="s1">&#39;dataset&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="loading-built-in-datasets">
+<h2>Loading built-in datasets<a class="headerlink" href="#loading-built-in-datasets" title="Link to this heading"></a></h2>
+<p>First we will need to download the dataset on the login node. Ensure that the
+correct modules are loaded. Next open up an interactive python session with
+<code class="docutils literal notranslate"><span class="pre">python</span></code>, then:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This will download and cache the MNIST dataset which we can use for training
+models. Load the data in your training file like so:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">train_images</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">),</span> <span class="p">(</span><span class="n">test_images</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">)</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="saving-model-data">
+<h1>Saving model data<a class="headerlink" href="#saving-model-data" title="Link to this heading"></a></h1>
+<p>For saving model data and weights we suggest the <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> <a class="reference external" href="https://www.tensorflow.org/tutorials/keras/save_and_load">built-in
+checkpointing and save functions</a>.</p>
+<p>The following code snippet is a more or less complete example of how to load
+built-in data and save weights.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1"># Assumed to be &#39;mnist.py&#39;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># Access storage path for &#39;$SLURM_SUBMIT_DIR&#39;</span>
+<span class="n">storage_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SLURM_SUBMIT_DIR&#39;</span><span class="p">],</span>
+			    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SLURM_JOB_ID&#39;</span><span class="p">])</span>
+
+<span class="c1"># Load dataset</span>
+<span class="n">mnist</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">mnist</span>
+<span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span> <span class="o">=</span> <span class="n">x_train</span> <span class="o">/</span> <span class="mf">255.</span><span class="p">,</span> <span class="n">x_test</span> <span class="o">/</span> <span class="mf">255.</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">create_model</span><span class="p">():</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)),</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">)</span>
+                <span class="p">])</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span>
+                      <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">SparseCategoricalCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                      <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">model</span>
+
+<span class="c1"># Create and display summary of model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">()</span>
+<span class="c1"># Output, such as from the following command, is outputted into the &#39;.out&#39; file</span>
+<span class="c1"># produced by &#39;sbatch&#39;</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+
+<span class="c1"># Save model in TensorFlow format</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">storage_path</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">))</span>
+
+<span class="c1"># Create checkpointing of weights</span>
+<span class="n">ckpt_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">storage_path</span><span class="p">,</span> <span class="s2">&quot;checkpoints&quot;</span><span class="p">,</span> <span class="s2">&quot;mnist-</span><span class="si">{epoch:04d}</span><span class="s2">.ckpt&quot;</span><span class="p">)</span>
+<span class="n">ckpt_callback</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">ModelCheckpoint</span><span class="p">(</span>
+        <span class="n">filepath</span><span class="o">=</span><span class="n">ckpt_path</span><span class="p">,</span>
+        <span class="n">save_weights_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Save initial weights</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save_weights</span><span class="p">(</span><span class="n">ckpt_path</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># Train model with checkpointing</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span>
+          <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+          <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">ckpt_callback</span><span class="p">],</span>
+          <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">x_test</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span> <span class="n">y_test</span><span class="p">[:</span><span class="mi">1000</span><span class="p">]),</span>
+          <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The above file can be run with the following <a class="reference internal" href="../../jobs/job_scripts.html#job-scripts"><span class="std std-ref">Job Scripts</span></a> which will
+ensure that correct modules are loaded and results are copied back into your
+home directory.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/bash</span>
+
+<span class="c1"># Assumed to be &#39;mnist_test.sh&#39;</span>
+
+<span class="c1">#SBATCH --account=&lt;your_account&gt;</span>
+<span class="c1">#SBATCH --job-name=&lt;creative_job_name&gt;</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --mem-per-cpu=8G</span>
+<span class="c1">## The following line can be omitted to run on CPU alone</span>
+<span class="c1">#SBATCH --partition=accel --gpus=1</span>
+<span class="c1">#SBATCH --time=00:30:00</span>
+
+<span class="c1"># Reset modules and load tensorflow</span>
+module<span class="w"> </span>reset
+module<span class="w"> </span>load<span class="w"> </span>TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4
+<span class="c1"># List loaded modules for reproducibility</span>
+module<span class="w"> </span>list
+
+<span class="c1"># Run python script</span>
+python<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/mnist.py
+</pre></div>
+</div>
+<p>Once these two files are located on a Sigma2 resource we can run it with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sbatch<span class="w"> </span>mnist_test.sh
+</pre></div>
+</div>
+<p>And remember, in your code it is important to load the latest checkpoint if
+available, which can be retrieved with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load weights from a previous run</span>
+<span class="n">ckpt_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SLURM_SUBMIT_DIR&#39;</span><span class="p">],</span>
+			<span class="s2">&quot;&lt;job_id to load checkpoints from&gt;&quot;</span><span class="p">,</span>
+			<span class="s2">&quot;checkpoints&quot;</span><span class="p">)</span>
+<span class="n">latest</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">latest_checkpoint</span><span class="p">(</span><span class="n">ckpt_dir</span><span class="p">)</span>
+
+<span class="c1"># Create a new model instance</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">()</span>
+
+<span class="c1"># Load the previously saved weights if they exist</span>
+<span class="k">if</span> <span class="n">latest</span><span class="p">:</span>
+	<span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="n">latest</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="using-tensorboard">
+<h1>Using <code class="docutils literal notranslate"><span class="pre">TensorBoard</span></code><a class="headerlink" href="#using-tensorboard" title="Link to this heading"></a></h1>
+<p><a class="reference external" href="https://www.tensorflow.org/tensorboard"><code class="docutils literal notranslate"><span class="pre">TensorBoard</span></code></a> is a nice utility for comparing different runs and
+viewing progress during optimization. To enable this on Sigma2 resources we will
+need to write data into our home area and some steps are necessary for
+connecting and viewing the board.</p>
+<p>We will continue to use the MNIST example from above. The following changes are
+needed to enable <code class="docutils literal notranslate"><span class="pre">TensorBoard</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># In the &#39;mnist.py&#39; script</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+
+<span class="c1"># We will store the &#39;TensorBoard&#39; logs in the folder where the &#39;mnist_test.sh&#39;</span>
+<span class="c1"># file was launched and create a folder like &#39;logs/fit&#39;. In your own code we</span>
+<span class="c1"># recommended that you give these folders names that you will recognize,</span>
+<span class="c1"># the last folder uses the time when the program was started to separate related</span>
+<span class="c1"># runs</span>
+<span class="n">log_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SLURM_SUBMIT_DIR&#39;</span><span class="p">],</span>
+		       <span class="s2">&quot;logs&quot;</span><span class="p">,</span>
+		       <span class="s2">&quot;fit&quot;</span><span class="p">,</span>
+		       <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">-%H%M%S&quot;</span><span class="p">))</span>
+<span class="n">tensorboard_callback</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">TensorBoard</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="n">log_dir</span><span class="p">,</span> <span class="n">histogram_freq</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Change the last line, where we fit our data in the example above, to also</span>
+<span class="c1"># include the TensorBoard callback</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span>
+          <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+	  <span class="c1"># Change here:</span>
+          <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">ckpt_callback</span><span class="p">,</span> <span class="n">tensorboard_callback</span><span class="p">],</span>
+          <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">x_test</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span> <span class="n">y_test</span><span class="p">[:</span><span class="mi">1000</span><span class="p">]),</span>
+          <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once you have started a job with the above code embedded, or have a previous run
+which created a <code class="docutils literal notranslate"><span class="pre">TensorBoard</span></code> log, it can be viewed as follows.</p>
+<ol class="arabic simple">
+<li><p>Open up a terminal and connect to <code class="docutils literal notranslate"><span class="pre">Saga</span></code> as usual.</p></li>
+<li><p>In the new terminal on <code class="docutils literal notranslate"><span class="pre">Saga</span></code>, load <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> and run <code class="docutils literal notranslate"><span class="pre">tensorboard</span> <span class="pre">--logdir=/path/to/logs/fit</span> <span class="pre">--port=0</span></code>.</p></li>
+<li><p>In the output from the above command note which port <code class="docutils literal notranslate"><span class="pre">TensorBoard</span></code> has
+started on, the last line should look something like: <code class="docutils literal notranslate"><span class="pre">TensorBoard</span> <span class="pre">2.1.0</span> <span class="pre">at</span> <span class="pre">http://localhost:44124/</span> <span class="pre">(Press</span> <span class="pre">CTRL+C</span> <span class="pre">to</span> <span class="pre">quit)</span></code>.</p></li>
+<li><p>Open up another terminal and this time connect to <code class="docutils literal notranslate"><span class="pre">Saga</span></code> using the following:
+<code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-L</span> <span class="pre">6006:localhost:&lt;port&gt;</span> <span class="pre">&lt;username&gt;&#64;saga.sigma2.no</span></code> where <code class="docutils literal notranslate"><span class="pre">&lt;port&gt;</span></code> is
+the port reported from step <code class="docutils literal notranslate"><span class="pre">3</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">44124</span></code> in our case).</p></li>
+<li><p>Open your browser and go to <code class="docutils literal notranslate"><span class="pre">localhost:6006</span></code>.</p></li>
+</ol>
+</section>
+<section id="advance-topics">
+<h1>Advance topics<a class="headerlink" href="#advance-topics" title="Link to this heading"></a></h1>
+<section id="using-multiple-gpus">
+<h2>Using multiple GPUs<a class="headerlink" href="#using-multiple-gpus" title="Link to this heading"></a></h2>
+<p>Since all of the GPU machines on <code class="docutils literal notranslate"><span class="pre">Saga</span></code> have four GPUs it can be beneficial for
+some workloads to distribute the work over more than one device at a time. This
+can be accomplished with the <a class="reference external" href="https://www.tensorflow.org/guide/distributed_training#mirroredstrategy"><code class="docutils literal notranslate"><span class="pre">tf.distribute.MirroredStrategy</span></code></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As of writing, only the <code class="docutils literal notranslate"><span class="pre">MirroredStrategy</span></code> is fully
+supported by <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> which is limited to one
+node at a time.</p>
+</div>
+<p>We will, again, continue to use the MNIST example from above. However, as we
+need some larger changes to the example we will recreate the whole example and
+try to highlight changes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1"># Assumed to be &#39;mnist.py&#39;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+
+<span class="c1"># Access storage path for &#39;$SLURM_SUBMIT_DIR&#39;</span>
+<span class="n">storage_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SLURM_SUBMIT_DIR&#39;</span><span class="p">],</span>
+			    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SLURM_JOB_ID&#39;</span><span class="p">])</span>
+
+<span class="c1">## --- NEW ---</span>
+<span class="n">strategy</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">distribute</span><span class="o">.</span><span class="n">MirroredStrategy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of devices: </span><span class="si">{</span><span class="n">strategy</span><span class="o">.</span><span class="n">num_replicas_in_sync</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate batch size</span>
+<span class="c1"># For your own experiments you will likely need to adjust this based on testing</span>
+<span class="c1"># on GPUs to find the &#39;optimal&#39; size</span>
+<span class="n">BATCH_SIZE_PER_REPLICA</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="n">BATCH_SIZE_PER_REPLICA</span> <span class="o">*</span> <span class="n">strategy</span><span class="o">.</span><span class="n">num_replicas_in_sync</span>
+
+<span class="c1"># Load dataset</span>
+<span class="n">mnist</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">mnist</span>
+<span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="n">_</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span> <span class="o">/</span> <span class="mf">255.</span>
+<span class="c1">## --- NEW ---</span>
+<span class="c1"># NOTE: We need to create a &#39;Dataset&#39; so that we can process the data in</span>
+<span class="c1"># batches</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">60000</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">()</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">BATCH_SIZE</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">create_model</span><span class="p">():</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)),</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">)</span>
+                <span class="p">])</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span>
+                      <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">SparseCategoricalCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                      <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">model</span>
+
+<span class="c1"># Create and display summary of model</span>
+<span class="c1">## --- NEW ---</span>
+<span class="k">with</span> <span class="n">strategy</span><span class="o">.</span><span class="n">scope</span><span class="p">():</span>
+	<span class="n">model</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">()</span>
+<span class="c1"># Output, such as from the following command, is outputted into the &#39;.out&#39; file</span>
+<span class="c1"># produced by &#39;sbatch&#39;</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="n">log_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SLURM_SUBMIT_DIR&#39;</span><span class="p">],</span>
+		       <span class="s2">&quot;logs&quot;</span><span class="p">,</span>
+		       <span class="s2">&quot;fit&quot;</span><span class="p">,</span>
+		       <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">-%H%M%S&quot;</span><span class="p">))</span>
+<span class="n">tensorboard_callback</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">TensorBoard</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="n">log_dir</span><span class="p">,</span> <span class="n">histogram_freq</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Save model in TensorFlow format</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">storage_path</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">))</span>
+
+<span class="c1"># Create checkpointing of weights</span>
+<span class="n">ckpt_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">storage_path</span><span class="p">,</span> <span class="s2">&quot;checkpoints&quot;</span><span class="p">,</span> <span class="s2">&quot;mnist-</span><span class="si">{epoch:04d}</span><span class="s2">.ckpt&quot;</span><span class="p">)</span>
+<span class="n">ckpt_callback</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">ModelCheckpoint</span><span class="p">(</span>
+        <span class="n">filepath</span><span class="o">=</span><span class="n">ckpt_path</span><span class="p">,</span>
+        <span class="n">save_weights_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Save initial weights</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save_weights</span><span class="p">(</span><span class="n">ckpt_path</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># Train model with checkpointing</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span>
+          <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+	  <span class="n">steps_per_epoch</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span>
+          <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">ckpt_callback</span><span class="p">,</span> <span class="n">tensorboard_callback</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Next we will use a slightly altered job script to ask for two GPUs to see if the
+above works.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/bash</span>
+
+<span class="c1"># Assumed to be &#39;mnist_test.sh&#39;</span>
+
+<span class="c1">#SBATCH --account=&lt;your_account&gt;</span>
+<span class="c1">#SBATCH --job-name=&lt;creative_job_name&gt;</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --mem-per-cpu=8G</span>
+<span class="c1">#SBATCH --partition=accel --gpus=2</span>
+<span class="c1">#SBATCH --time=00:30:00</span>
+
+<span class="c1"># Reset modules and load tensorflow</span>
+module<span class="w"> </span>reset
+module<span class="w"> </span>load<span class="w"> </span>TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4
+<span class="c1"># List loaded modules for reproducibility</span>
+module<span class="w"> </span>list
+
+<span class="c1"># Run python script</span>
+python<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/mnist.py
+</pre></div>
+</div>
+</section>
+<section id="distributed-training-on-multiple-nodes">
+<h2>Distributed training on multiple nodes<a class="headerlink" href="#distributed-training-on-multiple-nodes" title="Link to this heading"></a></h2>
+<p>To utilize more than four GPUs we will turn to the <a class="reference external" href="https://github.com/horovod/horovod"><code class="docutils literal notranslate"><span class="pre">Horovod</span></code></a> project
+which supports several different machine learning libraries and is capable of
+utilizing <code class="docutils literal notranslate"><span class="pre">MPI</span></code>. <code class="docutils literal notranslate"><span class="pre">Horovod</span></code> is responsible for communicating between different
+nodes and perform gradient computation, averaged over the different nodes.</p>
+<p>Utilizing this library together with <code class="docutils literal notranslate"><span class="pre">TensorFlow</span> <span class="pre">2</span></code> requires minimal changes,
+however, there are a few things to be aware of in regards to scheduling with
+<code class="docutils literal notranslate"><span class="pre">Slurm</span></code>. The following example is based on the <a class="reference external" href="https://github.com/horovod/horovod/blob/master/examples/tensorflow2/tensorflow2_keras_synthetic_benchmark.py">official <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code>
+example</a>.</p>
+<p>To install <code class="docutils literal notranslate"><span class="pre">Horovod</span></code> you will need to create a <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> as described above.
+Then once activated install the <code class="docutils literal notranslate"><span class="pre">Horovod</span></code> package with support for
+<a class="reference external" href="https://developer.nvidia.com/nccl"><code class="docutils literal notranslate"><span class="pre">NCCL</span></code></a>.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># This assumes that you have activated a &#39;virtualenv&#39;</span>
+<span class="c1"># $ source tensor_env/bin/activate</span>
+$<span class="w"> </span><span class="nv">HOROVOD_GPU_OPERATIONS</span><span class="o">=</span>NCCL<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>horovod
+</pre></div>
+</div>
+<p>Then we can run our training using just a few modifications:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1"># Assumed to be &#39;mnist_hvd.py&#39;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">horovod.tensorflow.keras</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">hvd</span>
+
+<span class="c1"># Initialize Horovod.</span>
+<span class="n">hvd</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+<span class="c1"># Extract number of visible GPUs in order to pin them to MPI process</span>
+<span class="n">gpus</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">hvd</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found the following GPUs: &#39;</span><span class="si">{</span><span class="n">gpus</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+<span class="c1"># Allow memory growth on GPU, required by Horovod</span>
+<span class="k">for</span> <span class="n">gpu</span> <span class="ow">in</span> <span class="n">gpus</span><span class="p">:</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_memory_growth</span><span class="p">(</span><span class="n">gpu</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Since multiple GPUs might be visible to multiple ranks it is important to</span>
+<span class="c1"># bind the rank to a given GPU</span>
+<span class="k">if</span> <span class="n">gpus</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rank &#39;</span><span class="si">{</span><span class="n">hvd</span><span class="o">.</span><span class="n">local_rank</span><span class="p">()</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">hvd</span><span class="o">.</span><span class="n">rank</span><span class="p">()</span><span class="si">}</span><span class="s2">&#39; using GPU: &#39;</span><span class="si">{</span><span class="n">gpus</span><span class="p">[</span><span class="n">hvd</span><span class="o">.</span><span class="n">local_rank</span><span class="p">()]</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_visible_devices</span><span class="p">(</span><span class="n">gpus</span><span class="p">[</span><span class="n">hvd</span><span class="o">.</span><span class="n">local_rank</span><span class="p">()],</span> <span class="s1">&#39;GPU&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No GPU(s) configured for (</span><span class="si">{</span><span class="n">hvd</span><span class="o">.</span><span class="n">local_rank</span><span class="p">()</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">hvd</span><span class="o">.</span><span class="n">rank</span><span class="p">()</span><span class="si">}</span><span class="s2">)!&quot;</span><span class="p">)</span>
+
+<span class="c1"># Access storage path for &#39;$SLURM_SUBMIT_DIR&#39;</span>
+<span class="n">storage_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SLURM_SUBMIT_DIR&#39;</span><span class="p">],</span>
+                            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SLURM_JOB_ID&#39;</span><span class="p">])</span>
+
+<span class="c1"># Load dataset</span>
+<span class="n">mnist</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">mnist</span>
+<span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="n">_</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span> <span class="o">/</span> <span class="mf">255.</span>
+
+<span class="c1"># Create dataset for batching</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">repeat</span><span class="p">()</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>
+
+<span class="c1"># Define learning rate as a function of number of GPUs</span>
+<span class="n">scaled_lr</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="o">*</span> <span class="n">hvd</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">create_model</span><span class="p">():</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)),</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">)</span>
+    <span class="p">])</span>
+    <span class="c1"># Horovod: adjust learning rate based on number of GPUs.</span>
+    <span class="n">opt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">scaled_lr</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">opt</span><span class="p">,</span>
+                  <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">SparseCategoricalCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                  <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">],</span>
+                  <span class="n">experimental_run_tf_function</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+
+<span class="c1"># Create and display summary of model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">()</span>
+<span class="c1"># Output, such as from the following command, is outputted into the &#39;.out&#39; file</span>
+<span class="c1"># produced by &#39;sbatch&#39;</span>
+<span class="k">if</span> <span class="n">hvd</span><span class="o">.</span><span class="n">rank</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+
+<span class="c1"># Create list of callback so we can separate callbacks based on rank</span>
+<span class="n">callbacks</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># Horovod: broadcast initial variable states from rank 0 to all other</span>
+    <span class="c1"># processes.  This is necessary to ensure consistent initialization of all</span>
+    <span class="c1"># workers when training is started with random weights or restored from a</span>
+    <span class="c1"># checkpoint.</span>
+    <span class="n">hvd</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">BroadcastGlobalVariablesCallback</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+
+    <span class="c1"># Horovod: average metrics among workers at the end of every epoch.</span>
+    <span class="c1">#</span>
+    <span class="c1"># Note: This callback must be in the list before the ReduceLROnPlateau,</span>
+    <span class="c1"># TensorBoard or other metrics-based callbacks.</span>
+    <span class="n">hvd</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">MetricAverageCallback</span><span class="p">(),</span>
+
+    <span class="c1"># Horovod: using `lr = 1.0 * hvd.size()` from the very beginning leads to</span>
+    <span class="c1"># worse final accuracy. Scale the learning rate `lr = 1.0` ---&gt; `lr = 1.0 *</span>
+    <span class="c1"># hvd.size()` during the first three epochs. See</span>
+    <span class="c1"># https://arxiv.org/abs/1706.02677 for details.</span>
+    <span class="n">hvd</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">LearningRateWarmupCallback</span><span class="p">(</span><span class="n">warmup_epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                                             <span class="n">initial_lr</span><span class="o">=</span><span class="n">scaled_lr</span><span class="p">,</span>
+                                             <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1"># Only perform the following actions on rank 0 to avoid all workers clash</span>
+<span class="k">if</span> <span class="n">hvd</span><span class="o">.</span><span class="n">rank</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="c1"># Tensorboard support</span>
+    <span class="n">log_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SLURM_SUBMIT_DIR&#39;</span><span class="p">],</span>
+                           <span class="s2">&quot;logs&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;fit&quot;</span><span class="p">,</span>
+                           <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">-%H%M%S&quot;</span><span class="p">))</span>
+    <span class="n">tensorboard_callback</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">TensorBoard</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="n">log_dir</span><span class="p">,</span>
+                                                          <span class="n">histogram_freq</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># Save model in TensorFlow format</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">storage_path</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">))</span>
+    <span class="c1"># Create checkpointing of weights</span>
+    <span class="n">ckpt_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">storage_path</span><span class="p">,</span>
+                             <span class="s2">&quot;checkpoints&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;mnist-</span><span class="si">{epoch:04d}</span><span class="s2">.ckpt&quot;</span><span class="p">)</span>
+    <span class="n">ckpt_callback</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">ModelCheckpoint</span><span class="p">(</span>
+        <span class="n">filepath</span><span class="o">=</span><span class="n">ckpt_path</span><span class="p">,</span>
+        <span class="n">save_weights_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># Save initial weights</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">save_weights</span><span class="p">(</span><span class="n">ckpt_path</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">callbacks</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">tensorboard_callback</span><span class="p">,</span> <span class="n">ckpt_callback</span><span class="p">])</span>
+
+<span class="n">verbose</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">hvd</span><span class="o">.</span><span class="n">rank</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+<span class="c1"># Train model with checkpointing</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+          <span class="n">steps_per_epoch</span><span class="o">=</span><span class="mi">500</span> <span class="o">//</span> <span class="n">hvd</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span>
+          <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+          <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+          <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When printing information it can be useful to use the <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">hvd.rank()</span> <span class="pre">==</span> <span class="pre">0</span></code> idiom to avoid the same thing being
+printed from every process.</p>
+</div>
+<p>This can then be scheduled with the following:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/bash</span>
+
+<span class="c1">#SBATCH --account=&lt;your project account&gt;</span>
+<span class="c1">#SBATCH --job-name=&lt;fancy name&gt;</span>
+<span class="c1">#SBATCH --partition=accel --gpus-per-task=1</span>
+<span class="c1">#SBATCH --ntasks=8</span>
+<span class="c1">#SBATCH --mem-per-cpu=8G</span>
+<span class="c1">#SBATCH --time=00:30:00</span>
+
+<span class="c1"># Reset modules and load tensorflow</span>
+module<span class="w"> </span>reset
+module<span class="w"> </span>load<span class="w"> </span>TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4
+<span class="nb">source</span><span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/tensor_env/bin/activate
+<span class="c1"># List loaded modules for reproducibility</span>
+module<span class="w"> </span>list
+
+<span class="c1"># Export settings expected by Horovod and mpirun</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OMPI_MCA_pml</span><span class="o">=</span><span class="s2">&quot;ob1&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">HOROVOD_MPI_THREADS_DISABLE</span><span class="o">=</span><span class="m">1</span>
+
+<span class="c1"># Run python script</span>
+srun<span class="w"> </span>python<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/mnist_hvd.py
+</pre></div>
+</div>
+<p>Note especially the use of <code class="docutils literal notranslate"><span class="pre">--gpus-per-task=1</span></code> which means that each task will
+get a dedicated GPU. The above job will thus take up two whole nodes on Saga.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,534 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frequently asked questions &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Writing good support requests" href="how_to_write_good_support_requests.html" />
+    <link rel="prev" title="National Competence Center" href="extended_support/ncc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extended_support.html">Extended support</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Frequently asked questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#access-and-connections">Access and connections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-change-my-password">How do I change my password?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#i-forgot-my-password-what-should-i-do-to-recover-it">I forgot my password - what should I do to recover it?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-the-ssh-key-fingerprint-for-our-systems">What is the ssh key fingerprint for our systems?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-to-the-cluster">Connecting to the cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-access-a-compute-node-from-the-login-node">How can I access a compute node from the login node?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#my-ssh-connections-are-freezing-how-to-fix-it">My ssh connections are freezing. How to fix it?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-software">Installing software</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#i-need-to-use-python-but-i-am-not-satisfied-with-system-default">I need to use Python but I am not satisfied with system default</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-i-install-software-as-a-normal-user-without-sudo-rights-or-a-root-account">Can I install software as a normal user without sudo rights or a root account?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#compute-and-disk-usage-in-addition-to-allocated-quota">Compute and disk usage, in addition to allocated quota</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-check-my-disk-quota-and-usage">How can I check my disk quota and usage?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-check-my-cpu-hours-quota-and-usage">How can I check my CPU hours quota and usage?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#graphical-interfaces">Graphical interfaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-export-the-display-from-a-compute-node-to-my-desktop">How can I export the display from a compute node to my desktop?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-view-a-image-file-for-example-png-file-on-clusters">How can I view a image file (for example <code class="docutils literal notranslate"><span class="pre">.png</span></code>) file on clusters?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#jobs-submission-and-queue-system">Jobs, submission, and queue system</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#i-am-not-able-to-submit-jobs-longer-than-the-maximum-set-walltime">I am not able to submit jobs longer than the maximum set walltime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#where-can-i-find-an-example-of-job-script">Where can I find an example of job script?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#when-will-my-job-start">When will my job start?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-see-the-queue-situation-of-my-job-s">How can I see the queue situation of my job(s)?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-are-my-devel-short-preproc-jobs-put-in-the-normal-queue-even-though-i-specify-qos-in-my-job-script">Why are my devel/short/preproc jobs put in the “normal” queue even though I specify <code class="docutils literal notranslate"><span class="pre">--qos</span></code> in my job script?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-does-my-job-not-start-or-give-me-error-feedback-when-submitting">Why does my job not start or give me error feedback when submitting?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-run-many-short-tasks">How can I run many short tasks?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#another-user-is-clogging-up-the-queue-with-lots-of-jobs">Another user is clogging up the queue with lots of jobs!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Frequently asked questions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="frequently-asked-questions">
+<h1>Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="Link to this heading"></a></h1>
+<section id="access-and-connections">
+<h2>Access and connections<a class="headerlink" href="#access-and-connections" title="Link to this heading"></a></h2>
+<section id="how-do-i-change-my-password">
+<h3>How do I change my password?<a class="headerlink" href="#how-do-i-change-my-password" title="Link to this heading"></a></h3>
+<p>Please consult <a class="reference internal" href="lost_forgotten_password.html#lost-passwords"><span class="std std-ref">Lost, expiring or changing passwords</span></a>.</p>
+</section>
+<section id="i-forgot-my-password-what-should-i-do-to-recover-it">
+<h3>I forgot my password - what should I do to recover it?<a class="headerlink" href="#i-forgot-my-password-what-should-i-do-to-recover-it" title="Link to this heading"></a></h3>
+<p>Please consult <a class="reference internal" href="lost_forgotten_password.html#lost-passwords"><span class="std std-ref">Lost, expiring or changing passwords</span></a>.</p>
+</section>
+<section id="what-is-the-ssh-key-fingerprint-for-our-systems">
+<h3>What is the ssh key fingerprint for our systems?<a class="headerlink" href="#what-is-the-ssh-key-fingerprint-for-our-systems" title="Link to this heading"></a></h3>
+<p>Please consult <a class="reference internal" href="../getting_started/ssh.html#ssh"><span class="std std-ref">this page</span></a>.</p>
+</section>
+<section id="connecting-to-the-cluster">
+<h3>Connecting to the cluster<a class="headerlink" href="#connecting-to-the-cluster" title="Link to this heading"></a></h3>
+<p>Typically users connect to our clusters with an SSH client. Please consult <a class="reference internal" href="../getting_started/ssh.html#ssh"><span class="std std-ref">this page</span></a> for additional details.</p>
+</section>
+<section id="how-can-i-access-a-compute-node-from-the-login-node">
+<h3>How can I access a compute node from the login node?<a class="headerlink" href="#how-can-i-access-a-compute-node-from-the-login-node" title="Link to this heading"></a></h3>
+<p>Log in to the login node on a given machine:
+(For this example, machine is Saga)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh<span class="w"> </span>myusername@saga.sigma2.no
+</pre></div>
+</div>
+<p>Then connect to the compute node (on Saga):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh<span class="w"> </span>c3-5
+</pre></div>
+</div>
+<p>Or on Betzy:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh<span class="w"> </span>b4296
+</pre></div>
+</div>
+<p>Notice that you typically can only log into a compute node where you have a running job.</p>
+</section>
+<section id="my-ssh-connections-are-freezing-how-to-fix-it">
+<h3>My ssh connections are freezing. How to fix it?<a class="headerlink" href="#my-ssh-connections-are-freezing-how-to-fix-it" title="Link to this heading"></a></h3>
+<p>If your ssh connections more or less randomly are freezing, try
+to add the following to <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> file on your computer/laptop:</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="na">ServerAliveCountMax 3</span>
+<span class="na">ServerAliveInterval 10</span>
+</pre></div>
+</div>
+<p>The above configuration is for <a class="reference external" href="https://www.openssh.com">OpenSSH</a>, if you’re
+using
+<a class="reference external" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html">PUTTY</a>
+you can take a look at this page explaining
+<a class="reference external" href="https://the.earth.li/~sgtatham/putty/0.60/htmldoc/Chapter4.html#config-keepalive">keepalives</a>
+for a similar solution.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="installing-software">
+<h2>Installing software<a class="headerlink" href="#installing-software" title="Link to this heading"></a></h2>
+<section id="i-need-to-use-python-but-i-am-not-satisfied-with-system-default">
+<h3>I need to use Python but I am not satisfied with system default<a class="headerlink" href="#i-need-to-use-python-but-i-am-not-satisfied-with-system-default" title="Link to this heading"></a></h3>
+<p>You can choose different Python versions using either the <a class="reference internal" href="../software/modulescheme.html#module-scheme"><span class="std std-ref">Software module scheme</span></a> or
+<a class="reference internal" href="../software/userinstallsw/python.html#installing-python-packages"><span class="std std-ref">Anaconda/Miniconda</span></a>.
+In Anaconda, you
+typically load first the Anaconda module you like and then from within that you
+can chose and configure the Python version and environment. Please consult the
+<a class="reference external" href="https://docs.anaconda.com/">Anaconda documentation</a> for details.</p>
+<p>In cases where these routes still do not solve your problem or you would like
+to install a package yourself, please consult this
+page about <a class="reference internal" href="../software/userinstallsw.html#installing-software-as-user"><span class="std std-ref">Installing software as user</span></a>.
+If you are still stuck or would like
+support, please <a class="reference internal" href="support_line.html#support-line"><span class="std std-ref">contact us</span></a>.</p>
+</section>
+<section id="can-i-install-software-as-a-normal-user-without-sudo-rights-or-a-root-account">
+<h3>Can I install software as a normal user without sudo rights or a root account?<a class="headerlink" href="#can-i-install-software-as-a-normal-user-without-sudo-rights-or-a-root-account" title="Link to this heading"></a></h3>
+<p>Yes. In fact, this is the recommended approach to install software that we do
+not offer to all users.
+Please consult this
+page about <a class="reference internal" href="../software/userinstallsw.html#installing-software-as-user"><span class="std std-ref">Installing software as user</span></a>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="compute-and-disk-usage-in-addition-to-allocated-quota">
+<h2>Compute and disk usage, in addition to allocated quota<a class="headerlink" href="#compute-and-disk-usage-in-addition-to-allocated-quota" title="Link to this heading"></a></h2>
+<section id="how-can-i-check-my-disk-quota-and-usage">
+<h3>How can I check my disk quota and usage?<a class="headerlink" href="#how-can-i-check-my-disk-quota-and-usage" title="Link to this heading"></a></h3>
+<p>Please consult the page on <a class="reference internal" href="../files_storage/quota.html#storage-quota"><span class="std std-ref">Storage quota</span></a>.</p>
+</section>
+<section id="how-can-i-check-my-cpu-hours-quota-and-usage">
+<h3>How can I check my CPU hours quota and usage?<a class="headerlink" href="#how-can-i-check-my-cpu-hours-quota-and-usage" title="Link to this heading"></a></h3>
+<p>Please consult the page on <a class="reference internal" href="../jobs/projects_accounting.html#projects-accounting"><span class="std std-ref">Projects and accounting</span></a>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="graphical-interfaces">
+<h2>Graphical interfaces<a class="headerlink" href="#graphical-interfaces" title="Link to this heading"></a></h2>
+<section id="how-can-i-export-the-display-from-a-compute-node-to-my-desktop">
+<h3>How can I export the display from a compute node to my desktop?<a class="headerlink" href="#how-can-i-export-the-display-from-a-compute-node-to-my-desktop" title="Link to this heading"></a></h3>
+<p>Please consult this note on <a class="reference internal" href="../getting_started/ssh.html#x11-forwarding"><span class="std std-ref">X11 forwarding</span></a>.</p>
+<p>This example assumes that you are running an X-server on your local
+desktop, which should be available for most users running Linux, Unix
+and Mac Os X. If you are using Windows you must install some X-server
+on your local PC. If you are using a Mac, you can install <a class="reference external" href="https://www.xquartz.org/">XQuartz</a>.</p>
+</section>
+<section id="how-can-i-view-a-image-file-for-example-png-file-on-clusters">
+<h3>How can I view a image file (for example <code class="docutils literal notranslate"><span class="pre">.png</span></code>) file on clusters?<a class="headerlink" href="#how-can-i-view-a-image-file-for-example-png-file-on-clusters" title="Link to this heading"></a></h3>
+<p>You can either download the image files to your local pc and then view them there.
+or use the following example provided that you have an X-server on your local desktop (see above):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>--show-hidden<span class="w"> </span>avail<span class="w"> </span>ImageMagick
+<span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>ImageMagick/7.1.1-34-GCCcore-13.2.0
+<span class="gp">$ </span>display<span class="w"> </span>filename.png
+</pre></div>
+</div>
+<p>Please not that you load the correct verion of <code class="docutils literal notranslate"><span class="pre">ImageMagick</span></code> after checking with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span></code> command.</p>
+</section>
+</section>
+<section id="jobs-submission-and-queue-system">
+<h2>Jobs, submission, and queue system<a class="headerlink" href="#jobs-submission-and-queue-system" title="Link to this heading"></a></h2>
+<section id="i-am-not-able-to-submit-jobs-longer-than-the-maximum-set-walltime">
+<h3>I am not able to submit jobs longer than the maximum set walltime<a class="headerlink" href="#i-am-not-able-to-submit-jobs-longer-than-the-maximum-set-walltime" title="Link to this heading"></a></h3>
+<p>For all <a class="reference internal" href="../jobs/choosing_job_types.html#job-types"><span class="std std-ref">Job Types</span></a> there is a maximum walltime. If you try to set a
+walltime that is larger than this, the job will not be accepted when you submit it. We recommend you
+to try to segment the job using <a class="reference internal" href="../jobs/job_scripts.html#job-scripts"><span class="std std-ref">Job Scripts</span></a>. If this does not suit your need,
+please <a class="reference internal" href="support_line.html#support-line"><span class="std std-ref">contact us</span></a>. The main
+intention to have a limit on the max walltime is to make sure the queue system works as best as possible and
+as such would give a better experience for most users.</p>
+</section>
+<section id="where-can-i-find-an-example-of-job-script">
+<h3>Where can I find an example of job script?<a class="headerlink" href="#where-can-i-find-an-example-of-job-script" title="Link to this heading"></a></h3>
+<p>Here we have examples for <a class="reference internal" href="../jobs/job_scripts/saga_job_scripts.html#job-scripts-on-saga"><span class="std std-ref">Job Scripts on Saga</span></a>.</p>
+</section>
+<section id="when-will-my-job-start">
+<h3>When will my job start?<a class="headerlink" href="#when-will-my-job-start" title="Link to this heading"></a></h3>
+<p>To find out approximately when the job scheduler thinks your job will
+start, use the command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>squeue<span class="w"> </span>--start<span class="w"> </span>-j<span class="w"> </span>&lt;job_id&gt;
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">&lt;job_id&gt;</span></code> is the number of the job you want to check.
+This command will give you information about how many CPUs your job requires,
+for how long, as well as when approximately it will start and complete.  It
+must be emphasized that this is just a best guess, queued jobs may start
+earlier because of running jobs that finishes before they hit the walltime
+limit and jobs may start later than projected because new jobs are submitted
+that get higher priority.</p>
+</section>
+<section id="how-can-i-see-the-queue-situation-of-my-job-s">
+<h3>How can I see the queue situation of my job(s)?<a class="headerlink" href="#how-can-i-see-the-queue-situation-of-my-job-s" title="Link to this heading"></a></h3>
+<p>How can I see how my jobs are doing in the queue, if my jobs are idle, blocked, running etc. by issuing on the terminal:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">squeue --me</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">--me</span></code> will show your jobs. You can of course also check the queue by just running <code class="docutils literal notranslate"><span class="pre">squeue</span></code>. For additional
+details on how to monitor job(s), please consult page about <a class="reference internal" href="../jobs/monitoring.html#monitoring-jobs"><span class="std std-ref">Monitoring jobs</span></a> and <a class="reference internal" href="../jobs/monitoring/squeue.html#squeue"><span class="std std-ref">squeue output examples</span></a>.</p>
+</section>
+<section id="why-are-my-devel-short-preproc-jobs-put-in-the-normal-queue-even-though-i-specify-qos-in-my-job-script">
+<h3>Why are my devel/short/preproc jobs put in the “normal” queue even though I specify <code class="docutils literal notranslate"><span class="pre">--qos</span></code> in my job script?<a class="headerlink" href="#why-are-my-devel-short-preproc-jobs-put-in-the-normal-queue-even-though-i-specify-qos-in-my-job-script" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">--qos</span></code> specified jobs, like <code class="docutils literal notranslate"><span class="pre">devel</span></code>, <code class="docutils literal notranslate"><span class="pre">short</span></code> and <code class="docutils literal notranslate"><span class="pre">preproc</span></code>, by default run in the standard partition - i.e. <code class="docutils literal notranslate"><span class="pre">normal</span></code> but will have different properties. For detailed explanation see <a class="reference internal" href="../jobs/submitting/queue_system_concepts.html#queue-system"><span class="std std-ref">Queue system concepts</span></a>.
+In order to see your jobs in the devel queue, use the following command, (you can replace <code class="docutils literal notranslate"><span class="pre">devel</span></code> with <code class="docutils literal notranslate"><span class="pre">short</span></code> or <code class="docutils literal notranslate"><span class="pre">preproc</span></code> to see the respective queues)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>squeue<span class="w"> </span>-q<span class="w"> </span>devel<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;
+</pre></div>
+</div>
+</section>
+<section id="why-does-my-job-not-start-or-give-me-error-feedback-when-submitting">
+<h3>Why does my job not start or give me error feedback when submitting?<a class="headerlink" href="#why-does-my-job-not-start-or-give-me-error-feedback-when-submitting" title="Link to this heading"></a></h3>
+<p>Most often the reason a job is not starting is that the resources are busy. Typically there are many jobs waiting
+in the queue. But sometimes there is an error in the job script and you are asking for a configuration (say a combination of
+memory and cores) that is not possible. In such a cases you do not always get a message that the options are invalid on submission
+and they might not be, but the combination will lead to a job that never starts.</p>
+<p>To find out how to monitor your jobs and check their status see <a class="reference internal" href="../jobs/monitoring.html#monitoring-jobs"><span class="std std-ref">Monitoring jobs</span></a>.</p>
+<p><strong>Priority</strong> means that resources are in principle available, but someone else has
+higher priority in the queue. <strong>Resources</strong> means the at the moment the requested
+resources are not available.</p>
+</section>
+<section id="how-can-i-run-many-short-tasks">
+<h3>How can I run many short tasks?<a class="headerlink" href="#how-can-i-run-many-short-tasks" title="Link to this heading"></a></h3>
+<p>The overhead in the job start and cleanup makes it not practical to run
+thousands of short tasks as individual jobs on our resources.</p>
+<p>The queueing setup, or rather, the accounting system generates
+overhead in the start and finish of a job. About a few seconds at each end
+of the job for instance. This overhead is insignificant when running large parallel
+jobs, but creates scaling issues when running a massive amount of
+shorter jobs. One can consider a collection of independent tasks as one
+large parallel job and the aforementioned overhead becomes the serial or
+unparallelizable part of the job. This is because the queuing system can
+only start and account one job at a time. This scaling problem is
+described by <a class="reference external" href="https://en.wikipedia.org/wiki/Amdahl%27s_law">Amdahl’s Law</a>.</p>
+<p>If the tasks are extremely short, you can use the example below. If you want to
+spawn many jobs without polluting the queueing system, please use <a class="reference internal" href="../jobs/job_scripts/array_jobs.html#array-jobs"><span class="std std-ref">Array Jobs</span></a>.</p>
+<p>By using some shell trickery one can spawn and load-balance multiple
+independent task running in parallel within one node, just background
+the tasks and poll to see when some task is finished until you spawn the
+next:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+
+<span class="c1"># Jobscript example that can run several tasks in parallel.</span>
+<span class="c1"># All features used here are standard in bash so it should work on</span>
+<span class="c1"># any sane UNIX/LINUX system.</span>
+<span class="c1"># Author: roy.dragseth@uit.no</span>
+<span class="c1">#</span>
+<span class="c1"># This example will only work within one compute node so let&#39;s run</span>
+<span class="c1"># on one node using all the cpu-cores (here using Saga as an example):</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks-per-node=40</span>
+
+<span class="c1"># We assume we will (in total) be done in 10 minutes:</span>
+<span class="c1">#SBATCH --time=0-00:10:00</span>
+
+<span class="c1"># Let us use all CPUs:</span>
+<span class="nv">maxpartasks</span><span class="o">=</span><span class="nv">$SLURM_TASKS_PER_NODE</span>
+
+<span class="c1"># Let&#39;s assume we have a bunch of tasks we want to perform.</span>
+<span class="c1"># Each task is done in the form of a shell script with a numerical argument:</span>
+<span class="c1"># dowork.sh N</span>
+<span class="c1"># Let&#39;s just create some fake arguments with a sequence of numbers</span>
+<span class="c1"># from 1 to 100, edit this to your liking:</span>
+<span class="nv">tasks</span><span class="o">=</span><span class="k">$(</span>seq<span class="w"> </span><span class="m">100</span><span class="k">)</span>
+
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>
+
+<span class="k">for</span><span class="w"> </span>t<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$tasks</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="c1"># Do the real work, edit this section to your liking.</span>
+<span class="w">  </span><span class="c1"># remember to background the task or else we will</span>
+<span class="w">  </span><span class="c1"># run serially</span>
+<span class="w">  </span>./dowork.sh<span class="w"> </span><span class="nv">$t</span><span class="w"> </span><span class="p">&amp;</span>
+
+<span class="w">  </span><span class="c1"># You should leave the rest alone...</span>
+
+<span class="w">  </span><span class="c1"># count the number of background tasks we have spawned</span>
+<span class="w">  </span><span class="c1"># the jobs command print one line per task running so we only need</span>
+<span class="w">  </span><span class="c1"># to count the number of lines.</span>
+<span class="w">  </span><span class="nv">activetasks</span><span class="o">=</span><span class="k">$(</span><span class="nb">jobs</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span>
+
+<span class="w">  </span><span class="c1"># if we have filled all the available cpu-cores with work we poll</span>
+<span class="w">  </span><span class="c1"># every second to wait for tasks to exit.</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$activetasks</span><span class="w"> </span>-ge<span class="w"> </span><span class="nv">$maxpartasks</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>sleep<span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="nv">activetasks</span><span class="o">=</span><span class="k">$(</span><span class="nb">jobs</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span>
+<span class="w">  </span><span class="k">done</span>
+<span class="k">done</span>
+
+<span class="c1"># Ok, all tasks spawned. Now we need to wait for the last ones to</span>
+<span class="c1"># be finished before we exit.</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Waiting for tasks to complete&quot;</span>
+<span class="nb">wait</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;done&quot;</span>
+</pre></div>
+</div>
+<p>And here is the <code class="docutils literal notranslate"><span class="pre">dowork.sh</span></code> script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+
+<span class="c1"># Fake some work, $1 is the task number.</span>
+<span class="c1"># Change this to whatever you want to have done.</span>
+
+<span class="c1"># sleep between 0 and 10 secs</span>
+<span class="nb">let</span><span class="w"> </span><span class="nv">sleeptime</span><span class="o">=</span><span class="m">10</span>*<span class="nv">$RANDOM</span>/32768
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Task </span><span class="nv">$1</span><span class="s2"> is sleeping for </span><span class="nv">$sleeptime</span><span class="s2"> seconds&quot;</span>
+sleep<span class="w"> </span><span class="nv">$sleeptime</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Task </span><span class="nv">$1</span><span class="s2"> has slept for </span><span class="nv">$sleeptime</span><span class="s2"> seconds&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="another-user-is-clogging-up-the-queue-with-lots-of-jobs">
+<h3>Another user is clogging up the queue with lots of jobs!<a class="headerlink" href="#another-user-is-clogging-up-the-queue-with-lots-of-jobs" title="Link to this heading"></a></h3>
+<p>The job scheduler on NRIS systems is normally configured to use a “Priority” attribute to determine which jobs to start next. This attribute increases over time (up to 7 days max), and is applied to a maximum of 10 jobs per user. There is no limit on the number of jobs or resources one user/project may request.</p>
+<p>Superficially this may seem like a “first come first serve” system that allows a single user to ‘block’ others by submitting a large amount of jobs, but in reality it is a bit more complex since jobs may be of different sizes and lengths.</p>
+<p>If there is a pending job with a high priority ranking that requires many CPUs for a long time, the scheduler will try to create a slot for this job in the future. As already running jobs finish up at different points in time, freeing up resources, the scheduler will attempt to squeeze in other jobs into the now-idle resource in a manner that does not extend the waiting time before the slot for the larger job is freed up in order to utilize the cluster as much as possible.</p>
+<p>The “fairness” of this might be debatable, but in our experience this is the least unfair method that also ensures that the systems are idle as little as possible.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="extended_support/ncc.html" class="btn btn-neutral float-left" title="National Competence Center" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="how_to_write_good_support_requests.html" class="btn btn-neutral float-right" title="Writing good support requests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

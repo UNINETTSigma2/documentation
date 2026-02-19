@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offloading to GPU using Fortran 2008 &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Offloading to GPU using Fortran 2008</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="offloading-to-gpu-using-fortran-2008">
+<span id="offload-fortran-concurrent"></span><h1>Offloading to GPU using Fortran 2008<a class="headerlink" href="#offloading-to-gpu-using-fortran-2008" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>In 2010 the ISO Standard Fortran 2008 introduced the <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">concurrent</span></code> construct
+which allows to express loop-level parallelism. The current compilers support multicore
+parallel execution, but presently only NVIDIA offer a compiler that support offload to their GPUs.</p>
+<p>The NVIDIA HPC Fortran (Formerly PGI Fortran) supports using the <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">concurrent</span></code> construct to offload to NVIDIA GPU accelerators.</p>
+<p>It provides a simple way of using accelerators without any extra
+libraries nor deviation from the standard language. No compiler
+directives or any other kind of libraries are needed. By using plain
+standard Fortran the portability is not an issue. The code will use whatever
+means of parallel execution available on the current platform, it might be multicore
+or in this example offloading to highly parallel GPU execution.</p>
+<p>The 2008 standard will be supported in the foreseeable future, just like many compiler
+still support the Fortran 66 standard.</p>
+<p>This approach provides a simple, user friendly, future proof and portable approach to
+offloading to accelerators.</p>
+<p>Example code used can be found <a class="reference external" href="https://gitlab.sigma2.no/training/sample_code/-/tree/master/Offload-ISO-Languages">NRIS example repo</a>.</p>
+</section>
+<section id="example-code-using-saxpy">
+<h2>Example code using SAXPY<a class="headerlink" href="#example-code-using-saxpy" title="Link to this heading"></a></h2>
+<p>Writing the actual Fortran 2008 standard code is surprisingly easy. Here is a
+simple example using SAXPY (Single precision Z = A*X + Y).</p>
+<p>There are two Fortran approaches one using indexing addressing
+element by element :</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">do</span><span class="w"> </span><span class="k">concurrent</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">)</span>
+<span class="w">   </span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="k">end do</span>
+</pre></div>
+</div>
+<p>or vector syntax introduced in the Fortran 90 standard:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">do</span><span class="w"> </span><span class="k">concurrent</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">   </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="o">*</span><span class="n">x</span>
+<span class="k">end do</span>
+</pre></div>
+</div>
+<p>The vector syntax does not actually need a loop, but in order to use the
+parallel <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">concurrent</span></code> it needs to have a loop, but in this usage only a
+single pass.</p>
+<p>The parallel loop can be compiled for a threaded multicore architecture using:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nvfortran<span class="w"> </span>-o<span class="w"> </span>saxpy.x<span class="w">  </span>-stdpar<span class="o">=</span>multicore<span class="w"> </span>saxpy.f90
+</pre></div>
+</div>
+<p>or for GPU offload by using:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nvfortran<span class="w"> </span>-o<span class="w"> </span>saxpy.x<span class="w">  </span>-stdpar<span class="o">=</span>gpu<span class="w"> </span>saxpy.f90
+</pre></div>
+</div>
+<p>As SAXPY is mostly data movement and little computation the gain in using GPU
+is small as copying of data from main memory to device memory is a limiting
+factor.</p>
+</section>
+<section id="example-with-more-computation">
+<h2>Example with more computation<a class="headerlink" href="#example-with-more-computation" title="Link to this heading"></a></h2>
+<p>Here we use an example with a bit more computation.</p>
+<p>Using indexed syntax:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">do</span><span class="w"> </span><span class="k">concurrent</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">M</span><span class="p">)</span>
+<span class="w">   </span><span class="n">Z</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">=</span><span class="n">X</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Z</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">**</span><span class="mf">2.01_real64</span>
+<span class="w">   </span><span class="n">Z</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">=</span><span class="nb">sin</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Z</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)))</span>
+<span class="k">end do</span>
+</pre></div>
+</div>
+<p>or Fortran 90 vector syntax, where the loop has only one iteration:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">do</span><span class="w"> </span><span class="k">concurrent</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">   </span><span class="n">Z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Z</span><span class="o">**</span><span class="mf">2.01_real64</span>
+<span class="w">   </span><span class="n">Z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sin</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Z</span><span class="p">))</span>
+<span class="k">end do</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Run</p></th>
+<th class="head"><p>Run time [seconds]</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Indexed syntax CPU  1 core</p></td>
+<td><p>14.5285</p></td>
+</tr>
+<tr class="row-odd"><td><p>Vector syntax  CPU  1 core</p></td>
+<td><p>14.5234</p></td>
+</tr>
+<tr class="row-even"><td><p>Indexed syntax GPU  A100</p></td>
+<td><p>0.4218</p></td>
+</tr>
+<tr class="row-odd"><td><p>Vector syntax  GPU  A100</p></td>
+<td><p>0.4149</p></td>
+</tr>
+</tbody>
+</table>
+<p>With more flops per byte transferred the speedup by offloading to
+GPU is higher. A speedup of 34 compared to a single core is nice.</p>
+<p>The NVfortran compiler is capable of generating code
+to offload both using the index addressing syntax as well as
+the vector syntax.</p>
+</section>
+<section id="old-legacy-code-example">
+<h2>Old legacy code example<a class="headerlink" href="#old-legacy-code-example" title="Link to this heading"></a></h2>
+<p>We can also look at a matrix-matrix multiplication reference
+implementation (DGEMM) code from 8-February-1989. This is found at:
+<a class="reference external" href="https://netlib.org/lapack/explore-html-3.6.1/d7/d2b/dgemm_8f_source.html">LAPACK / Basic Linear Algebra, level 3 matrix/matrix operations</a> or download the
+<a class="reference external" href="https://www.netlib.org/blas/blas.tgz">Fortran 77 reference implementation</a>
+which contains DGEMM and also contain support files needed.</p>
+<p>Download the legacy code, change the comment character to fit
+Fortran 90 standard:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>cat<span class="w"> </span>dgemm.f<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>s/^*/<span class="se">\!</span>/&gt;dgemm.f90
+</pre></div>
+</div>
+<p>The BLAS routines multiplication comes in 4 flavors:</p>
+<ul class="simple">
+<li><p>S single (32 bit) precision</p></li>
+<li><p>D double (64 bit) precision</p></li>
+<li><p>C complex single precision</p></li>
+<li><p>Z complex double precision</p></li>
+</ul>
+<p>Assume well behaved matrices <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">:=</span> <span class="pre">alpha*A*B</span> <span class="pre">+</span> <span class="pre">beta*C</span></code> and a call to dgemm like:
+<code class="docutils literal notranslate"><span class="pre">call</span> <span class="pre">dgemm('n',</span> <span class="pre">'n',</span> <span class="pre">N,</span> <span class="pre">N,</span> <span class="pre">N,</span> <span class="pre">alpha,</span> <span class="pre">a,</span> <span class="pre">N,</span> <span class="pre">b,</span> <span class="pre">N,</span> <span class="pre">beta,</span> <span class="pre">c,</span> <span class="pre">N)</span></code></p>
+<p>Locate the line below the line highlighted above, about line 228.
+Change :</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">DO </span><span class="mi">90</span><span class="w"> </span><span class="n">J</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">N</span>
+</pre></div>
+</div>
+<p>with:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">DO</span><span class="w"> </span><span class="k">concurrent</span><span class="w"> </span><span class="p">(</span><span class="n">J</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and change the</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="mi">90</span><span class="w"> </span><span class="k">CONTINUE</span>
+</pre></div>
+</div>
+<p>with</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">end do</span>
+</pre></div>
+</div>
+<p>This is all that is needed to use GPU for offloading, the rest is up to the
+compiler.</p>
+<p>Building this code needs some extra files <code class="docutils literal notranslate"><span class="pre">lsame.f</span></code> and <code class="docutils literal notranslate"><span class="pre">xerrbla.c</span></code>.
+One example of how to build a threaded version for a multicore CPU could look
+like:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nvfortran<span class="w"> </span>-O3<span class="w"> </span>-stdpar<span class="o">=</span>multicore<span class="w"> </span>dgemm-test.f90<span class="w"> </span>dgemm.f90<span class="w"> </span>xerrbla.o<span class="w"> </span>lsame.f
+</pre></div>
+</div>
+<p>or to build an offloaded GPU version:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nvfortran<span class="w"> </span>-O3<span class="w"> </span>-stdpar<span class="o">=</span>gpu<span class="w"> </span>dgemm-test.f90<span class="w"> </span>dgemm.f90<span class="w"> </span>xerrbla.o<span class="w"> </span>lsame.f
+</pre></div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Run</p></th>
+<th class="head"><p>Build flags</p></th>
+<th class="head"><p>Cores</p></th>
+<th class="head"><p>Performance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Reference f77</p></td>
+<td><p>-O3</p></td>
+<td><p>1</p></td>
+<td><p>4.41 Gflops/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reference f90</p></td>
+<td><p>-O3 -stdpar=multicore</p></td>
+<td><p>2</p></td>
+<td><p>6.27 Gflops/s</p></td>
+</tr>
+<tr class="row-even"><td><p>Reference f90</p></td>
+<td><p>-O3 -stdpar=multicore</p></td>
+<td><p>16</p></td>
+<td><p>24.67 Gflops/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reference f90</p></td>
+<td><p>-O3 -stdpar=gpu</p></td>
+<td><p>RTX2080</p></td>
+<td><p>43.81 Gflops/s</p></td>
+</tr>
+<tr class="row-even"><td><p>Reference f90</p></td>
+<td><p>-O3 -stdpar=gpu</p></td>
+<td><p>A100</p></td>
+<td><p>112.23 Gflops/s</p></td>
+</tr>
+</tbody>
+</table>
+<p>The results are stunning: changing only one line in the old legacy
+code from <code class="docutils literal notranslate"><span class="pre">do</span></code> to <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">concurrent</span></code> can speed up from 4 Gflops/s to 112
+Gflops/s a 25x increase in performance.</p>
+<p>An intersting test is to compare this more then 30 year old reference code
+with a call to a modern library, the syntax is still the same.
+The scientific application fortran code will probably behave like the 30 year old example
+while libraries generally show far higher performance.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

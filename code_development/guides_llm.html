@@ -1,0 +1,575 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Running LLM Models in a Cluster Environment &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Overview over our machines" href="../hpc_machines/hardware_overview.html" />
+    <link rel="prev" title="Tuning applications" href="../computing/tuning-applications.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Running LLM Models in a Cluster Environment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#running-llm-models-in-a-virtual-environment">Running LLM Models in a Virtual Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sample-python-code-to-perform-speech-to-text-translation">Sample python code to perform speech to text translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preparing-the-environment">Preparing the Environment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#loading-the-python-module">Loading the Python Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-and-activating-the-virtual-environment">Creating and Activating the Virtual Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installing-required-packages">Installing Required Packages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#list-of-packages-that-were-used-to-run-the-program">List of packages that were used to run the program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-the-job-script">Writing the Job Script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#explanation-of-the-job-script">Explanation of the Job Script</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#job-name-and-account">Job Name and Account:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-and-error-files">Output and Error Files:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#job-time-and-partition">Job Time and Partition:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resource-allocation">Resource Allocation:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#job-environment-setup">Job Environment Setup:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#activate-virtual-environment">Activate Virtual Environment:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gpu-monitoring">GPU Monitoring:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-the-program">Running the Program:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stopping-gpu-monitoring">Stopping GPU Monitoring:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#capturing-the-output">Capturing the Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Running LLM Models in a Cluster Environment</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="running-llm-models-in-a-cluster-environment">
+<h1>Running LLM Models in a Cluster Environment<a class="headerlink" href="#running-llm-models-in-a-cluster-environment" title="Link to this heading"></a></h1>
+<p>This guide provides a comprehensive walkthrough on how to deploy and run Large Language Models (LLMs) within a cluster environment(Saga, Betzy, or Fram). With the growing availability of open-source LLMs, such as those hosted on <a class="reference external" href="https://huggingface.co/">Hugging Face</a>, leveraging these models has never been easier.</p>
+<p>In this tutorial, we’ll focus on the <a class="reference external" href="https://huggingface.co/facebook/seamless-m4t-large">facebook/seamless-m4t-large</a> model.  SeamlessM4T is a powerful collection of models designed to deliver high-quality translations for both speech and text, making it an excellent choice for multilingual and multimodal applications.</p>
+<section id="running-llm-models-in-a-virtual-environment">
+<h2>Running LLM Models in a Virtual Environment<a class="headerlink" href="#running-llm-models-in-a-virtual-environment" title="Link to this heading"></a></h2>
+<p>Running LLM models in a virtual environment is a straightforward and efficient method for deploying the program directly on the cluster. By using a virtual environment, you can isolate dependencies and install all the necessary software without affecting the system-wide configuration.</p>
+<section id="getting-started">
+<h3>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h3>
+<p>In this section, we’ll write a simple Python script to load an audio file and use the LLM to generate a high-quality translation. Follow the steps below to set up your environment and organize your project:</p>
+<p><strong>Step 1:  Create a Data Folder</strong></p>
+<p>Begin by creating a folder named data inside your project directory. This folder will serve as a centralized location to store your input files.</p>
+<p><strong>Step 2: Add a Sample Audio File</strong></p>
+<p>Place a sample audio file in the data folder. For best results, use an audio file in .wav format. This ensures compatibility with the code we’ll write later and simplifies the process of loading the file for translation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>project-directory/
+├──<span class="w"> </span>data/
+│<span class="w">   </span>└──<span class="w"> </span>sample_audio.wav
+</pre></div>
+</div>
+<p>By organizing your files in this way, you’ll streamline the process of running the LLM model in a virtual environment and ensure that your project remains clean and manageable.</p>
+</section>
+<section id="sample-python-code-to-perform-speech-to-text-translation">
+<h3>Sample python code to perform speech to text translation<a class="headerlink" href="#sample-python-code-to-perform-speech-to-text-translation" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoProcessor</span><span class="p">,</span> <span class="n">SeamlessM4Tv2ForSpeechToText</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torchaudio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">torchaudio</span><span class="o">.</span><span class="n">get_audio_backend</span><span class="p">())</span>
+<span class="n">torchaudio</span><span class="o">.</span><span class="n">set_audio_backend</span><span class="p">(</span><span class="s2">&quot;soundfile&quot;</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FacebookSeamless</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initializing the processor and model...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">processor</span> <span class="o">=</span> <span class="n">AutoProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;facebook/seamless-m4t-v2-large&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">SeamlessM4Tv2ForSpeechToText</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;facebook/seamless-m4t-v2-large&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model loaded and moved to device:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">transcribe_audio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Attempting to load audio from:&quot;</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
+            <span class="n">audio</span><span class="p">,</span> <span class="n">orig_freq</span> <span class="o">=</span> <span class="n">torchaudio</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Audio loaded successfully. Original frequency:&quot;</span><span class="p">,</span> <span class="n">orig_freq</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">audio</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">audio</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Audio was multi-channel, converted to mono.&quot;</span><span class="p">)</span>
+            
+            <span class="n">audio</span> <span class="o">=</span> <span class="n">torchaudio</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">orig_freq</span><span class="o">=</span><span class="n">orig_freq</span><span class="p">,</span> <span class="n">new_freq</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Audio resampled to 16000 Hz.&quot;</span><span class="p">)</span>
+            
+            <span class="n">audio</span> <span class="o">=</span> <span class="n">audio</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">audio</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Audio normalized.&quot;</span><span class="p">)</span>
+            
+            <span class="n">audio_inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">processor</span><span class="p">(</span><span class="n">audios</span><span class="o">=</span><span class="n">audio</span><span class="p">,</span> <span class="n">sampling_rate</span><span class="o">=</span><span class="mi">16000</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Audio inputs processed and moved to device.&quot;</span><span class="p">)</span>
+            
+            <span class="n">output_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+                <span class="o">**</span><span class="n">audio_inputs</span><span class="p">,</span>
+                <span class="n">tgt_lang</span><span class="o">=</span><span class="s2">&quot;eng&quot;</span><span class="p">,</span>
+                <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                <span class="n">num_beams</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                <span class="n">length_penalty</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                <span class="n">early_stopping</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output tokens generated.&quot;</span><span class="p">)</span>
+            
+            <span class="n">translated_text_from_audio</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">processor</span><span class="o">.</span><span class="n">batch_decode</span><span class="p">(</span><span class="n">output_tokens</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">full_text</span> <span class="o">=</span> <span class="n">translated_text_from_audio</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Translation completed.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">full_text</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An error occurred during transcription: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">audio_filename</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting transcription process...&quot;</span><span class="p">)</span>
+    <span class="n">data_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+    <span class="n">audio_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="n">audio_filename</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Constructed file path:&quot;</span><span class="p">,</span> <span class="n">audio_file_path</span><span class="p">)</span>
+    
+    <span class="n">transcriber</span> <span class="o">=</span> <span class="n">FacebookSeamless</span><span class="p">()</span>
+    <span class="n">transcription</span> <span class="o">=</span> <span class="n">transcriber</span><span class="o">.</span><span class="n">transcribe_audio</span><span class="p">(</span><span class="n">audio_file_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Transcription:&quot;</span><span class="p">,</span> <span class="n">transcription</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">audio_filename</span> <span class="o">=</span> <span class="s1">&#39;harvard.wav&#39;</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">audio_filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="preparing-the-environment">
+<h3>Preparing the Environment<a class="headerlink" href="#preparing-the-environment" title="Link to this heading"></a></h3>
+<p>Before running the script, you need to set up your environment. This tutorial assumes that you are familiar with transferring project files from your local machine to the cluster. If you need assistance with file transfers, refer to the <a class="reference internal" href="../getting_started/file_transfer.html"><span class="std std-doc">File Transfer</span></a>.</p>
+<p>Once the necessary files are in your working directory, you can proceed to create a virtual environment to install the additional packages required for running the Facebook Seamless model.</p>
+<section id="loading-the-python-module">
+<h4>Loading the Python Module<a class="headerlink" href="#loading-the-python-module" title="Link to this heading"></a></h4>
+<p>To create a virtual environment, you first need to load the appropriate Python module available on the cluster. Note that the Python module version may vary over time, so it’s a good practice to check for the latest version before proceeding. Use the following command to list the available Python modules:</p>
+<p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span> <span class="pre">python</span></code></p>
+<p>Once you’ve identified the appropriate version, load the module. For example, to load Python version <code class="docutils literal notranslate"><span class="pre">3.12.3</span></code> with <code class="docutils literal notranslate"><span class="pre">GCCcore-13.3.0</span></code>, use the following command:</p>
+<p><code class="docutils literal notranslate"> <span class="pre">module</span> <span class="pre">load</span> <span class="pre">Python/3.12.3-GCCcore-13.3.0</span></code></p>
+<p>This step ensures that you have the necessary Python environment to create and manage your virtual environment.</p>
+</section>
+<section id="creating-and-activating-the-virtual-environment">
+<h4>Creating and Activating the Virtual Environment<a class="headerlink" href="#creating-and-activating-the-virtual-environment" title="Link to this heading"></a></h4>
+<p>After loading the appropriate Python module, the next step is to create a virtual environment. This allows you to isolate dependencies and manage packages specific to your project. Use the following command to create the virtual environment:</p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">myenv</span></code></p>
+<p>Once the virtual environment is created, activate it with the following command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">myenv/bin/activate</span></code></p>
+<p>When activated, your terminal prompt will change to indicate that you are now working within the virtual environment.</p>
+</section>
+<section id="installing-required-packages">
+<h4>Installing Required Packages<a class="headerlink" href="#installing-required-packages" title="Link to this heading"></a></h4>
+<p>With the virtual environment activated, you can now install the necessary packages for running the Seamless model. Below is the list of essential packages you’ll need to install:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>transformers
+pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/huggingface/transformers.git<span class="w"> </span>sentencepiece
+pip<span class="w"> </span>install<span class="w"> </span>torchaudio
+pip<span class="w"> </span>install<span class="w"> </span>soundfile
+pip<span class="w"> </span>install<span class="w"> </span>protobuf
+</pre></div>
+</div>
+<p>After installing these packages, you can deactivate the virtual environment using this command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">deactivate</span></code></p>
+</section>
+</section>
+<section id="list-of-packages-that-were-used-to-run-the-program">
+<h3>List of packages that were used to run the program<a class="headerlink" href="#list-of-packages-that-were-used-to-run-the-program" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>certifi<span class="w">                  </span><span class="m">2025</span>.4.26
+cffi<span class="w">                     </span><span class="m">1</span>.17.1
+charset-normalizer<span class="w">       </span><span class="m">3</span>.4.2
+filelock<span class="w">                 </span><span class="m">3</span>.18.0
+fsspec<span class="w">                   </span><span class="m">2025</span>.3.2
+huggingface-hub<span class="w">          </span><span class="m">0</span>.31.2
+idna<span class="w">                     </span><span class="m">3</span>.10
+Jinja2<span class="w">                   </span><span class="m">3</span>.1.6
+MarkupSafe<span class="w">               </span><span class="m">3</span>.0.2
+mpmath<span class="w">                   </span><span class="m">1</span>.3.0
+networkx<span class="w">                 </span><span class="m">3</span>.4.2
+numpy<span class="w">                    </span><span class="m">2</span>.2.5
+nvidia-cublas-cu12<span class="w">       </span><span class="m">12</span>.6.4.1
+nvidia-cuda-cupti-cu12<span class="w">   </span><span class="m">12</span>.6.80
+nvidia-cuda-nvrtc-cu12<span class="w">   </span><span class="m">12</span>.6.77
+nvidia-cuda-runtime-cu12<span class="w"> </span><span class="m">12</span>.6.77
+nvidia-cudnn-cu12<span class="w">        </span><span class="m">9</span>.5.1.17
+nvidia-cufft-cu12<span class="w">        </span><span class="m">11</span>.3.0.4
+nvidia-cufile-cu12<span class="w">       </span><span class="m">1</span>.11.1.6
+nvidia-curand-cu12<span class="w">       </span><span class="m">10</span>.3.7.77
+nvidia-cusolver-cu12<span class="w">     </span><span class="m">11</span>.7.1.2
+nvidia-cusparse-cu12<span class="w">     </span><span class="m">12</span>.5.4.2
+nvidia-cusparselt-cu12<span class="w">   </span><span class="m">0</span>.6.3
+nvidia-nccl-cu12<span class="w">         </span><span class="m">2</span>.26.2
+nvidia-nvjitlink-cu12<span class="w">    </span><span class="m">12</span>.6.85
+nvidia-nvtx-cu12<span class="w">         </span><span class="m">12</span>.6.77
+packaging<span class="w">                </span><span class="m">25</span>.0
+pip<span class="w">                      </span><span class="m">24</span>.0
+protobuf<span class="w">                 </span><span class="m">6</span>.31.0
+pycparser<span class="w">                </span><span class="m">2</span>.22
+PyYAML<span class="w">                   </span><span class="m">6</span>.0.2
+regex<span class="w">                    </span><span class="m">2024</span>.11.6
+requests<span class="w">                 </span><span class="m">2</span>.32.3
+safetensors<span class="w">              </span><span class="m">0</span>.5.3
+sentencepiece<span class="w">            </span><span class="m">0</span>.2.0
+setuptools<span class="w">               </span><span class="m">80</span>.7.1
+soundfile<span class="w">                </span><span class="m">0</span>.13.1
+sympy<span class="w">                    </span><span class="m">1</span>.14.0
+tokenizers<span class="w">               </span><span class="m">0</span>.21.1
+torch<span class="w">                    </span><span class="m">2</span>.7.0
+torchaudio<span class="w">               </span><span class="m">2</span>.7.0
+tqdm<span class="w">                     </span><span class="m">4</span>.67.1
+transformers<span class="w">             </span><span class="m">4</span>.52.0.dev0
+triton<span class="w">                   </span><span class="m">3</span>.3.0
+typing_extensions<span class="w">        </span><span class="m">4</span>.13.2
+urllib3<span class="w">                  </span><span class="m">2</span>.4.0
+</pre></div>
+</div>
+</section>
+<section id="writing-the-job-script">
+<h3>Writing the Job Script<a class="headerlink" href="#writing-the-job-script" title="Link to this heading"></a></h3>
+<p>To run your Hugging Face model for speech-to-text translation on the cluster, you’ll need to create a SLURM job script. This script will define the resources required for the job and execute the necessary commands. Below is an example of a SLURM job script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
+<span class="c1">#SBATCH --job-name=llmTest_job</span>
+<span class="c1">#Project account</span>
+<span class="c1">#SBATCH --account=nnxxxx</span>
+<span class="c1">#SBATCH --output=output.log</span>
+<span class="c1">#SBATCH --error=error.log</span>
+
+<span class="c1">#SBATCH --time=0:30:00</span>
+<span class="c1">#SBATCH --partition=accel</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --cpus-per-task=1</span>
+<span class="c1">#SBATCH --mem=10G</span>
+<span class="c1">#SBATCH --gpus=1</span>
+<span class="c1">## Set up job environment:</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w">  </span><span class="c1"># Exit the script on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w">  </span><span class="c1"># Treat any unset variables as an error</span>
+module<span class="w"> </span>--quiet<span class="w"> </span>reset<span class="w">  </span><span class="c1"># Reset the modules to the system default</span>
+module<span class="w"> </span>load<span class="w"> </span>Python/3.12.3-GCCcore-13.3.0<span class="w">  </span><span class="c1"># Load the Python module</span>
+module<span class="w"> </span>list<span class="w">  </span><span class="c1"># List loaded modules for debugging</span>
+
+
+<span class="c1">#Activate virtual environment</span>
+<span class="nb">source</span><span class="w"> </span>myenv/bin/activate
+
+
+<span class="c1"># Start GPU monitoring in the background</span>
+nvidia-smi<span class="w"> </span>--query-gpu<span class="o">=</span>timestamp,utilization.gpu,utilization.memory<span class="w"> </span>--format<span class="o">=</span>csv<span class="w"> </span>-l<span class="w"> </span><span class="m">1</span><span class="w"> </span>&gt;<span class="w"> </span>gpu_usage.csv<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>
+<span class="nv">GPU_MONITOR_PID</span><span class="o">=</span><span class="nv">$!</span>
+
+
+<span class="c1"># Run the script</span>
+python<span class="w"> </span>script.py
+
+<span class="c1">#Stop GPU monitoring</span>
+<span class="nb">kill</span><span class="w"> </span><span class="nv">$GPU_MONITOR_PID</span>
+</pre></div>
+</div>
+</section>
+<section id="explanation-of-the-job-script">
+<h3>Explanation of the Job Script<a class="headerlink" href="#explanation-of-the-job-script" title="Link to this heading"></a></h3>
+<section id="job-name-and-account">
+<h4>Job Name and Account:<a class="headerlink" href="#job-name-and-account" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--job-name=llmTest_job</span></code>: Specifies the name of the job.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--account=nnxxxx</span></code>: Specifies the project account to be charged for the job.</p></li>
+</ul>
+</section>
+<section id="output-and-error-files">
+<h4>Output and Error Files:<a class="headerlink" href="#output-and-error-files" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--output=output.log</span></code>: Specifies the file where the standard output (stdout) will be saved.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--error=error.log</span></code>: Specifies the file where the standard error (stderr) will be saved.</p></li>
+</ul>
+</section>
+<section id="job-time-and-partition">
+<h4>Job Time and Partition:<a class="headerlink" href="#job-time-and-partition" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--time=0:30:00</span></code>: Defines the maximum runtime for the job (30 minutes in this case).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--partition=accel</span></code>: Specifies the partition to use, which is <code class="docutils literal notranslate"><span class="pre">accel</span></code> in this case.</p></li>
+</ul>
+</section>
+<section id="resource-allocation">
+<h4>Resource Allocation:<a class="headerlink" href="#resource-allocation" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--ntasks=1</span></code>: Specifies the number of tasks (1 task in this case).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--cpus-per-task=1</span></code>: Specifies the number of CPUs per task (1 CPU in this case).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--mem=10G</span></code>: Specifies the amount of memory allocated to the job (10 GB in this case).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--gpus=1</span></code>: Allocates 1 GPU for the job.</p></li>
+</ul>
+</section>
+<section id="job-environment-setup">
+<h4>Job Environment Setup:<a class="headerlink" href="#job-environment-setup" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-o</span> <span class="pre">errexit</span></code>: Exits the script if any command fails.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-o</span> <span class="pre">nounset</span></code>: Treats unset variables as an error.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">--quiet</span> <span class="pre">reset</span></code>: Resets the modules to the system default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">python</span></code>: Loads the necessary Python module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">list</span></code>: Lists the loaded modules for debugging purposes.</p></li>
+</ul>
+</section>
+<section id="activate-virtual-environment">
+<h4>Activate Virtual Environment:<a class="headerlink" href="#activate-virtual-environment" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">myenv/bin/activate</span></code>: Activates the virtual environment.</p></li>
+</ul>
+</section>
+<section id="gpu-monitoring">
+<h4>GPU Monitoring:<a class="headerlink" href="#gpu-monitoring" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nvidia-smi</span> <span class="pre">--query-gpu=timestamp,utilization.gpu,utilization.memory</span> <span class="pre">--format=csv</span> <span class="pre">-l</span> <span class="pre">1</span> <span class="pre">&gt;</span> <span class="pre">gpu_usage.csv</span> <span class="pre">&amp;</span></code>: Starts GPU monitoring in the background and logs the usage to <code class="docutils literal notranslate"><span class="pre">gpu_usage.csv</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPU_MONITOR_PID=$!</span></code>: Captures the process ID of the GPU monitoring command.</p></li>
+</ul>
+</section>
+<section id="running-the-program">
+<h4>Running the Program:<a class="headerlink" href="#running-the-program" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"> <span class="pre">python</span> <span class="pre">script.py</span></code>: Runs the <code class="docutils literal notranslate"><span class="pre">script.py</span></code> script ensuring that the  virtual environment activated.</p></li>
+</ul>
+</section>
+<section id="stopping-gpu-monitoring">
+<h4>Stopping GPU Monitoring:<a class="headerlink" href="#stopping-gpu-monitoring" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">kill</span> <span class="pre">$GPU_MONITOR_PID</span></code>: Stops the GPU monitoring process.</p></li>
+</ul>
+</section>
+</section>
+<section id="capturing-the-output">
+<h3>Capturing the Output<a class="headerlink" href="#capturing-the-output" title="Link to this heading"></a></h3>
+<p>When running the Seamless model, you can capture the output to verify that the audio file has been successfully translated using the LLM model. Below is an example of the output generated during the translation process:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Starting<span class="w"> </span>transcription<span class="w"> </span>process...
+Constructed<span class="w"> </span>file<span class="w"> </span>path:<span class="w"> </span>/cluster/work/users/your_username/llmTest/data/harvard.wav
+Initializing<span class="w"> </span>the<span class="w"> </span>processor<span class="w"> </span>and<span class="w"> </span>model...
+Model<span class="w"> </span>loaded<span class="w"> </span>and<span class="w"> </span>moved<span class="w"> </span>to<span class="w"> </span>device:<span class="w"> </span>cuda
+Attempting<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>audio<span class="w"> </span>from:<span class="w"> </span>/cluster/work/users/your_username/llmTest/data/harvard.wav
+Audio<span class="w"> </span>loaded<span class="w"> </span>successfully.<span class="w"> </span>Original<span class="w"> </span>frequency:<span class="w"> </span><span class="m">44100</span>
+Audio<span class="w"> </span>was<span class="w"> </span>multi-channel,<span class="w"> </span>converted<span class="w"> </span>to<span class="w"> </span>mono.
+Audio<span class="w"> </span>resampled<span class="w"> </span>to<span class="w"> </span><span class="m">16000</span><span class="w"> </span>Hz.
+Audio<span class="w"> </span>normalized.
+Audio<span class="w"> </span>inputs<span class="w"> </span>processed<span class="w"> </span>and<span class="w"> </span>moved<span class="w"> </span>to<span class="w"> </span>device.
+Output<span class="w"> </span>tokens<span class="w"> </span>generated.
+Translation<span class="w"> </span>completed.
+Transcription:<span class="w"> </span>the<span class="w"> </span>stale<span class="w"> </span>smell<span class="w"> </span>of<span class="w"> </span>old<span class="w"> </span>beer<span class="w"> </span>lingers<span class="w"> </span>it<span class="w"> </span>takes<span class="w"> </span>heat<span class="w"> </span>to<span class="w"> </span>bring<span class="w"> </span>out<span class="w"> </span>the<span class="w"> </span>odour<span class="w"> </span>a<span class="w"> </span>cold<span class="w"> </span>dip<span class="w"> </span>restores<span class="w"> </span>health<span class="w"> </span>and<span class="w"> </span>zest<span class="w"> </span>a<span class="w"> </span>salt<span class="w"> </span>pickle<span class="w"> </span>tastes<span class="w"> </span>fine<span class="w"> </span>with<span class="w"> </span>ham<span class="w"> </span>tacos<span class="w"> </span>al<span class="w"> </span>pastor<span class="w"> </span>are<span class="w"> </span>my<span class="w"> </span>favorite<span class="w"> </span>a<span class="w"> </span>zestful<span class="w"> </span>food<span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>hot<span class="w"> </span>cross<span class="w"> </span>bun
+</pre></div>
+</div>
+<p>You can also monitor GPU utilization by logging it to the output file. This can be achieved by including the appropriate command in your SLURM job script. Once the job completes, the GPU utilization details will be available in the output file. An example of the logged GPU utilization is shown below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>timestamp,<span class="w"> </span>utilization.gpu<span class="w"> </span><span class="o">[</span>%<span class="o">]</span>,<span class="w"> </span>utilization.memory<span class="w"> </span><span class="o">[</span>%<span class="o">]</span>
+<span class="m">2025</span>/05/16<span class="w"> </span><span class="m">21</span>:55:33.264,<span class="w"> </span><span class="m">4</span><span class="w"> </span>%,<span class="w"> </span><span class="m">0</span><span class="w"> </span>%
+<span class="m">2025</span>/05/16<span class="w"> </span><span class="m">21</span>:55:34.264,<span class="w"> </span><span class="m">3</span><span class="w"> </span>%,<span class="w"> </span><span class="m">0</span><span class="w"> </span>%
+<span class="m">2025</span>/05/16<span class="w"> </span><span class="m">21</span>:55:35.265,<span class="w"> </span><span class="m">29</span><span class="w"> </span>%,<span class="w"> </span><span class="m">1</span><span class="w"> </span>%
+<span class="m">2025</span>/05/16<span class="w"> </span><span class="m">21</span>:55:36.265,<span class="w"> </span><span class="m">29</span><span class="w"> </span>%,<span class="w"> </span><span class="m">1</span><span class="w"> </span>%
+</pre></div>
+</div>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h3>
+<p>By following this guide, you can successfully run any Large Language Model (LLM) from Hugging Face on the cluster. This process allows you to leverage the power of open-source LLMs for tasks such as speech-to-text translation, all while utilizing the computational resources of the cluster efficiently.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../computing/tuning-applications.html" class="btn btn-neutral float-left" title="Tuning applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../hpc_machines/hardware_overview.html" class="btn btn-neutral float-right" title="Overview over our machines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

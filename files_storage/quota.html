@@ -1,0 +1,445 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Storage quota &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Backup on Betzy, Saga, and NIRD" href="backup.html" />
+    <link rel="prev" title="Storage areas on HPC clusters" href="clusters.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Storage quota</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-quota-and-why-is-it-needed">What is quota and why is it needed?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quota-applies-to-specific-folders">Quota applies to specific folders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-information-about-your-usage-and-quota">Getting information about your usage and quota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-disk-quota-is-full">Troubleshooting: Disk quota is full</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-too-many-files-in-a-conda-installation">Troubleshooting: Too many files in a Conda installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changing-file-ownership-on-saga">Changing file ownership on Saga</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Storage quota</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="storage-quota">
+<span id="id1"></span><h1><a class="toc-backref" href="#id2" role="doc-backlink">Storage quota</a><a class="headerlink" href="#storage-quota" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#storage-quota" id="id2">Storage quota</a></p>
+<ul>
+<li><p><a class="reference internal" href="#what-is-quota-and-why-is-it-needed" id="id3">What is quota and why is it needed?</a></p></li>
+<li><p><a class="reference internal" href="#quota-applies-to-specific-folders" id="id4">Quota applies to specific folders</a></p></li>
+<li><p><a class="reference internal" href="#getting-information-about-your-usage-and-quota" id="id5">Getting information about your usage and quota</a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting-disk-quota-is-full" id="id6">Troubleshooting: Disk quota is full</a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting-too-many-files-in-a-conda-installation" id="id7">Troubleshooting: Too many files in a Conda installation</a></p></li>
+<li><p><a class="reference internal" href="#changing-file-ownership-on-saga" id="id8">Changing file ownership on Saga</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<div class="admonition-frequently-asked-questions admonition">
+<p class="admonition-title">Frequently asked questions</p>
+<ul class="simple">
+<li><p><strong>I cannot copy files although we haven’t used up all space</strong>:
+You have probably exceeded the quota on the number of files.</p></li>
+<li><p><strong>I have moved files to the project folder but my home quota usage did not go down</strong>:
+Depending on the cluster, moving files does not change ownership of the files.
+You need to also change the ownership of the files in the project folder from
+you to the project (change the ownership from <code class="docutils literal notranslate"><span class="pre">username_g</span></code> to <code class="docutils literal notranslate"><span class="pre">username</span></code>; see
+also below).</p></li>
+</ul>
+</div>
+<section id="what-is-quota-and-why-is-it-needed">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">What is quota and why is it needed?</a><a class="headerlink" href="#what-is-quota-and-why-is-it-needed" title="Link to this heading"></a></h2>
+<p><strong>Storage is a shared and limited resource</strong> and in a number of places we need to
+enforce quota to avoid that some script accidentally fills up the disk and the
+system becomes unusable for everybody.</p>
+<p>Storage quota is specified in:</p>
+<ul class="simple">
+<li><p><strong>Number of files</strong> (or “inodes”): limits how many files you or a group may own.
+When this limit is reached, you or the group cannot create new files (but you
+might still increase the size of existing files). “Inodes” are entries
+in the index node table which store attributes and disk block locations
+for each file and folder.</p></li>
+<li><p><strong>Space limit</strong>: affects the aggregated
+size of all your files or files of a group. When this limit is reached you
+or the group cannot store more data (new data or increasing file sizes) on
+the system.</p></li>
+</ul>
+</section>
+<section id="quota-applies-to-specific-folders">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Quota applies to specific folders</a><a class="headerlink" href="#quota-applies-to-specific-folders" title="Link to this heading"></a></h2>
+<p>Often it is intended that storage quota applies to a specific folder on the
+file system. For example, the so-called HOME quota shall apply to your home
+folder <code class="docutils literal notranslate"><span class="pre">/cluster/home/user</span></code>. A project may have dedicated quota for data
+stored under their project folder which is found under
+<code class="docutils literal notranslate"><span class="pre">/cluster/projects/nnABCDk</span></code> where <code class="docutils literal notranslate"><span class="pre">nnABCDk</span></code> is the account name of your
+project.</p>
+<p>Because file systems have different
+features, unfortunately it is not always guaranteed that what you observe on
+the system matches this intention. Below, we will discuss how to detect and
+troubleshoot such situations.</p>
+</section>
+<section id="getting-information-about-your-usage-and-quota">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Getting information about your usage and quota</a><a class="headerlink" href="#getting-information-about-your-usage-and-quota" title="Link to this heading"></a></h2>
+<p>We can get an overview with the <code class="docutils literal notranslate"><span class="pre">dusage</span></code> command. This is not a built-in
+Unix command but rather a tool which <a class="reference external" href="https://github.com/NordicHPC/dusage">we have
+developed</a> for NRIS clusters to wrap
+around lower-level commands and tools to get a quick overview. The actual
+output might be different for every user:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>dusage
+
+<span class="go">dusage v0.3.0</span>
+
+<span class="go">                     path    space used    quota (s)    quota (h)      files    quota (s)    quota (h)</span>
+<span class="go">-------------------------  ------------  -----------  -----------  ---------  -----------  -----------</span>
+<span class="go">                /cluster/      14.5 GiB                              235 068</span>
+<span class="go">       /cluster/home/****       5.4 GiB     20.0 GiB     20.0 GiB     39 921      100 000      100 000</span>
+<span class="go"> /cluster/work/users/****       7.6 GiB                              195 083</span>
+<span class="go">/cluster/projects/nn****k       1.7 TiB      2.0 TiB      2.0 TiB  1 036 089    2 000 000    2 000 000</span>
+<span class="go">/cluster/projects/nn****k       3.0 TiB     10.0 TiB     10.0 TiB  2 805 458   10 000 000   10 000 000</span>
+<span class="go">/cluster/projects/nn****k     134.2 MiB      1.0 TiB      1.0 TiB        168    1 000 000    1 000 000</span>
+
+<span class="go">Please report issues at: https://github.com/NordicHPC/dusage</span>
+</pre></div>
+</div>
+<p>The column “files” (number of files) actually lists inodes and we know that
+these are not precisely the same thing but we have chosen the name “files”
+since it is hopefully more intuitive to the users who may have never heard of
+“inodes”.</p>
+<div class="admonition-what-are-inodes admonition">
+<p class="admonition-title">What are inodes?</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Inode">Inodes</a> are entries in the index node
+table which store attributes and disk block locations for each file and folder.
+If you want to see the inode numbers for your files and folders,
+try:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ls<span class="w"> </span>-li
+</pre></div>
+</div>
+</div>
+</section>
+<section id="troubleshooting-disk-quota-is-full">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Troubleshooting: Disk quota is full</a><a class="headerlink" href="#troubleshooting-disk-quota-is-full" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>This can be surprising for users and difficult to debug for staff</strong>:</p>
+<ul>
+<li><p>On Saga: Depending on the state of the file system there can be a
+lag between going over quota and experiencing “Disk quota exceeded” errors.</p></li>
+<li><p>On Saga: If you moved files and kept wrong group permissions, this
+can exceed quota but we have overnight scripts which fix group permissions
+so it can look good again next morning.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dusage</span></code> can indicate that you are above quota although <code class="docutils literal notranslate"><span class="pre">du</span></code> may show that
+there are almost no files or data used: the reason is that moving files
+does not change ownership and in this case <code class="docutils literal notranslate"><span class="pre">du</span></code> and <code class="docutils literal notranslate"><span class="pre">dusage</span></code> can give a different
+information. Only <code class="docutils literal notranslate"><span class="pre">dusage</span></code> gives you reliable information about how your
+quota is affected.</p></li>
+</ul>
+</li>
+<li><p><strong>Recovery on Saga</strong>:</p>
+<ul>
+<li><p>Moving files to project data or <code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code> may not be enough since <code class="docutils literal notranslate"><span class="pre">mv</span></code>
+preserves group permissions. Therefore you have the following options:</p>
+<ul>
+<li><p>Copy files and then carefully delete the files in <code class="docutils literal notranslate"><span class="pre">$HOME</span></code>.</p></li>
+<li><p>Move files and adjust group permission with <code class="docutils literal notranslate"><span class="pre">chown</span></code> or <code class="docutils literal notranslate"><span class="pre">chgrp</span></code>.</p></li>
+<li><p>Move files and wait overnight for our scripts to adjust them for you.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Recovery on Betzy</strong>:</p>
+<ul>
+<li><p>Try to move data from <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> to project data.</p></li>
+<li><p>Consider using <code class="docutils literal notranslate"><span class="pre">/cluster/work/users/$USER</span></code> (<code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code>). But also mind
+that files older than 21 days might get automatically deleted and
+no recovery option exists then (auto-cleanup period is at least 21 days and
+up to 42 days if sufficient storage is available).</p></li>
+<li><p>If the above are not enough or not suitable, contact support and discuss
+whether it can make sense to increase project or user quota.</p></li>
+</ul>
+</li>
+<li><p><strong>Recommendations</strong>:</p>
+<ul>
+<li><p>If you tend to fill up quota in your job scripts, add a <code class="docutils literal notranslate"><span class="pre">dusage</span></code> at the
+beginning and at the end of the job script. Having the output will make
+diagnostics easier. If you don’t <code class="docutils literal notranslate"><span class="pre">dusage</span></code> right when you run the job, then
+a job crash and a later <code class="docutils literal notranslate"><span class="pre">dusage</span></code> may tell different stories.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rsync</span></code> users: Please be careful adjusting the group ownership on Saga.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="troubleshooting-too-many-files-in-a-conda-installation">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Troubleshooting: Too many files in a Conda installation</a><a class="headerlink" href="#troubleshooting-too-many-files-in-a-conda-installation" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>A Conda installation can fill your storage quota because it can install
+thousands of files.</p></li>
+<li><p><strong>Recommendation</strong>: Do not install a Conda environment into <code class="docutils literal notranslate"><span class="pre">$HOME</span></code>.</p></li>
+<li><p><strong>Recovery</strong> from a <code class="docutils literal notranslate"><span class="pre">$HOME</span></code>-installed Conda environment:</p>
+<ul>
+<li><p>Install a new environment into project data or <code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code> and then delete
+the <code class="docutils literal notranslate"><span class="pre">$HOME</span></code>-installed Conda environment.
+But also mind
+that files older than 21 days might get automatically deleted and
+no recovery option exists then (auto-cleanup period is at least 21 days and
+up to 42 days if sufficient storage is available).</p></li>
+<li><p>Advanced alternative: Use a Singularity container for the Conda environment.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="changing-file-ownership-on-saga">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Changing file ownership on Saga</a><a class="headerlink" href="#changing-file-ownership-on-saga" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This section is <strong>not relevant for Betzy</strong> as disk quotas on Betzy are based on
+directories instead of groups.</p>
+</div>
+<p>Since file permissions are persistent across the file system, it might be
+necessary to manually change the ownership of one or more files. This page
+will show an example of how to change ownership on a file that was moved from
+<code class="docutils literal notranslate"><span class="pre">$HOME</span></code> to <code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code> in order to update the disk quotas.</p>
+<p>In this example we have a file in our <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> called “myfile.txt” which is 1
+GiB in size that we’re moving to <code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code> for use in a job:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ls<span class="w"> </span>-l
+
+<span class="go">total 1048576</span>
+<span class="go">-rw-rw-r-- 1 username username_g 1073741824 Nov 13 13:11 myfile.txt</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mv<span class="w"> </span>myfile.txt<span class="w"> </span>/cluster/work/users/username
+</pre></div>
+</div>
+<p>By checking our disk usage with <code class="docutils literal notranslate"><span class="pre">dusage</span></code> we could confirm that the file is still
+counted towards the <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> quota. The reason for this is that the file is
+still owned by the <code class="docutils literal notranslate"><span class="pre">username_g</span></code> group, which is used for the <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> quota.:</p>
+<p>Files in <code class="docutils literal notranslate"><span class="pre">$USERWORK</span></code> should be owned by the default user group, in this - the
+group named <code class="docutils literal notranslate"><span class="pre">username</span></code>. To change the file group ownership we can use the
+command <code class="docutils literal notranslate"><span class="pre">chgrp</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>chgrp<span class="w"> </span>username<span class="w"> </span>myfile.txt
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ls<span class="w"> </span>-l
+
+<span class="go">total 1048576</span>
+<span class="go">-rw-rw-r-- 1 username username 1073741824 Nov 13 13:11 myfile.txt</span>
+</pre></div>
+</div>
+<p>The file is now owned by the correct group and we can verify that the disk
+quotas have been updated by running <code class="docutils literal notranslate"><span class="pre">dusage</span></code> again.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="clusters.html" class="btn btn-neutral float-left" title="Storage areas on HPC clusters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="backup.html" class="btn btn-neutral float-right" title="Backup on Betzy, Saga, and NIRD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

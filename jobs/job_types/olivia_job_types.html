@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Types on Olivia &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Olivia frequently asked questions (FAQ):" href="../../hpc_machines/olivia/trouble_shooting.html" />
+    <link rel="prev" title="Installing and Using Software on Olivia" href="../../hpc_machines/olivia/software_stack.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../hpc_machines/olivia.html#the-next-generation-powerful-supercomputer-for-hpc-and-ai-applications">The next generation powerful supercomputer for HPC and AI applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hpc_machines/olivia.html#technical-details">Technical Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hpc_machines/olivia.html#getting-started-with-olivia">Getting Started with Olivia</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../hpc_machines/olivia.html#in-depth-documentation-for-olivia">In-depth documentation for Olivia</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../hpc_machines/olivia/overview.html">Olivia System architecture and technical specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hpc_machines/olivia/olivia-nird.html">Data staging and data integration between NIRD and Olivia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hpc_machines/olivia/software_stack.html">Installing and Using Software on Olivia</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Job Types on Olivia</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#normal">Normal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#accel">Accel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#devel">Devel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../hpc_machines/olivia/trouble_shooting.html">Olivia frequently asked questions (FAQ):</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hpc_machines/olivia.html#olivia-best-practices-guide">Olivia Best Practices Guide</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hpc_machines/olivia.html">Olivia</a></li>
+      <li class="breadcrumb-item active">Job Types on Olivia</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="job-types-on-olivia">
+<span id="job-types-olivia"></span><h1>Job Types on Olivia<a class="headerlink" href="#job-types-on-olivia" title="Link to this heading"></a></h1>
+<p>Olivia is designed for large-scale parallel jobs and GPU-accelerated workloads.
+With its high-performance compute nodes featuring 256 or 288 CPUs and substantial
+memory per node, Olivia is suited for computationally intensive
+applications that can scale across many cores.</p>
+<p>The basic allocation units on Olivia are cpus, memory and GPUs. The
+details about how the billing units are calculated can be found in
+<a class="reference internal" href="../projects_accounting.html#projects-accounting"><span class="std std-ref">Projects and accounting</span></a>.  Note that the number of GPUs is counted
+separately, not as part of the billing units.</p>
+<section id="normal">
+<span id="job-type-olivia-normal"></span><h2>Normal<a class="headerlink" href="#normal" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Allocation units</strong>: cpus and memory</p></li>
+<li><p><strong>Job Limits</strong>:</p>
+<ul>
+<li><p>maximum 2304 billing units</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum walltime</strong>: 7 days</p></li>
+<li><p><strong>Priority</strong>: normal</p></li>
+<li><p><strong>Available resources</strong>:</p>
+<ul>
+<li><p>252 nodes with 256 AMD cpus and 741 GiB RAM</p></li>
+</ul>
+</li>
+<li><p><strong>Parameter for sbatch/salloc</strong>:</p>
+<ul>
+<li><p>None, <em>normal</em> is the default</p></li>
+</ul>
+</li>
+<li><p><strong>Job Scripts</strong>: <a class="reference internal" href="../job_scripts/olivia_job_scripts.html#job-scripts-olivia-normal"><span class="std std-ref">Normal</span></a></p></li>
+</ul>
+<p>This is the default job type. CPU-only jobs run as <em>normal</em> jobs. The large
+node size (256 CPUs) makes this partition good for:</p>
+<ul class="simple">
+<li><p>Large-scale parallel computations</p></li>
+<li><p>Memory-intensive applications requiring substantial RAM</p></li>
+<li><p>Jobs that can efficiently utilize many CPU cores</p></li>
+<li><p>High-throughput computing workflows</p></li>
+<li><p>Scientific simulations requiring significant computational resources</p></li>
+</ul>
+</section>
+<section id="accel">
+<span id="job-type-olivia-accel"></span><h2>Accel<a class="headerlink" href="#accel" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Allocation units</strong>: cpus, memory and GPUs</p></li>
+<li><p><strong>Job Limits</strong>:</p>
+<ul>
+<li><p>minimum 1 GPU</p></li>
+<li><p>maximum 32 GPUs</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum walltime</strong>: 7 days</p></li>
+<li><p><strong>Priority</strong>: normal</p></li>
+<li><p><strong>Available resources</strong>: 76 nodes (max 60 per project) with 288
+ARM64 cpus, 808 GiB RAM and 4 GH200 GPUs.</p></li>
+<li><p><strong>Parameter for sbatch/salloc</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--gpus=N</span></code>, <code class="docutils literal notranslate"><span class="pre">--gpus-per-node=N</span></code> or similar, with <em>N</em> being the number of
+GPUs</p></li>
+</ul>
+</li>
+<li><p><strong>Job Scripts</strong>: <a class="reference internal" href="../job_scripts/olivia_job_scripts.html#job-scripts-olivia-accel"><span class="std std-ref">Accel</span></a></p></li>
+</ul>
+<p><em>Accel</em> jobs give access to use the Grace Hopper nodes that combine ARM64 CPUs with
+NVIDIA GH200 GPUs.  This is useful for  AI/ML training, inference, and
+other GPU-accelerated applications.</p>
+<p>Can be combined with <code class="docutils literal notranslate"><span class="pre">--qos=devel</span></code> to get higher priority but maximum wall time (2h)
+and resource limits of <em>devel</em> apply.</p>
+</section>
+<section id="devel">
+<span id="job-type-olivia-devel"></span><h2>Devel<a class="headerlink" href="#devel" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Allocation units</strong>: cpus and memory and GPUs</p></li>
+<li><p><strong>Job Limits</strong>:</p>
+<ul>
+<li><p>maximum 1152 billing units per job</p></li>
+<li><p>maximum 16 GPUs per job</p></li>
+<li><p>maximum 2304 billing units in use at the same time</p></li>
+<li><p>maximum 32 GPUs in use at the same time</p></li>
+<li><p>maximum 2 running jobs per user</p></li>
+</ul>
+</li>
+<li><p><strong>Maximum walltime</strong>: 2 hours</p></li>
+<li><p><strong>Priority</strong>: high</p></li>
+<li><p><strong>Available resources</strong>: <em>devel</em> jobs can run on any node on Olivia</p></li>
+<li><p><strong>Parameter for sbatch/salloc</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--qos=devel</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Job Scripts</strong>: <a class="reference internal" href="../job_scripts/olivia_job_scripts.html#job-scripts-olivia-devel"><span class="std std-ref">Devel</span></a></p></li>
+</ul>
+<p>This is meant for small, short development or test jobs.  <em>Devel</em> jobs
+get higher priority for them to run as soon as possible.  On the other
+hand, there are limits on the size and number of <em>devel</em> jobs.</p>
+<p>Can be combined with <code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code> to increase
+priority while having max wall time and job limits of <em>devel</em> job.</p>
+<p>If you have <em>temporary</em> development needs that cannot be fulfilled by
+the <em>devel</em> or <em>short</em> job types, please contact us at
+<a class="reference external" href="mailto:support&#37;&#52;&#48;nris&#46;no">support<span>&#64;</span>nris<span>&#46;</span>no</a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../hpc_machines/olivia/software_stack.html" class="btn btn-neutral float-left" title="Installing and Using Software on Olivia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../hpc_machines/olivia/trouble_shooting.html" class="btn btn-neutral float-right" title="Olivia frequently asked questions (FAQ):" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,865 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Incorporating MPI into GPU-directive models with a GPU-awareness approach &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../_static/tabs.js?v=3030b3cb"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Incorporating MPI into GPU-directive models with a GPU-awareness approach</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="incorporating-mpi-into-gpu-directive-models-with-a-gpu-awareness-approach">
+<span id="gpu-aware-mpi"></span><h1><a class="toc-backref" href="#id9" role="doc-backlink">Incorporating MPI into GPU-directive models with a GPU-awareness approach</a><a class="headerlink" href="#incorporating-mpi-into-gpu-directive-models-with-a-gpu-awareness-approach" title="Link to this heading"></a></h1>
+</section>
+<section id="summary">
+<h1><a class="toc-backref" href="#id10" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h1>
+<p>We present a descriptive implementation of a hybrid approach in which the MPI (message passing interface) communication framework is combined with either OpenACC or OpenMP application programming interfaces (APIs). The implementation is based on solving the 2D (two-dimension)-Laplace equation in a mini-application form. A special focus will be on performing point-to-point (e.g. <code class="docutils literal notranslate"><span class="pre">MPI_Send</span></code> and <code class="docutils literal notranslate"><span class="pre">MPI_Recv</span></code>) and collective (e.g. <code class="docutils literal notranslate"><span class="pre">MPI_Allreduce</span></code>) operations either between a pair of GPU-devices with the GPU-hardware support or by passing through a CPU-host memory. These two scenarios are referred to as GPU-aware MPI and GPU-non-aware MPI, respectively. Both scenarios will be addressed in the hybrid <strong>MPI-OpenACC</strong> and <strong>MPI-OpenMP</strong> models and their performance will be evaluated and analysed. Interesting enough, the performance is found to be increased by a factor of 10 when enabling the GPU-aware support on the
+<a class="reference external" href="https://docs.lumi-supercomputer.eu/hardware/lumig/">LUMI-G GPU nodes</a> and by almost a factor of 30 compared to the case when MPI alone is considered.</p>
+<p>By the end of this tutorial, we expect the readers to learn about</p>
+<ul class="simple">
+<li><p>Implementing a pure MPI using a blocking mode of communication.</p></li>
+<li><p>Implementing the hybrid <strong>MPI-OpenACC</strong> and <strong>MPI-OpenMP</strong> models, and specifically:</p>
+<ul>
+<li><p>Defining the concept of direct memory access.</p></li>
+<li><p>Setting up a GPU-device to be assigned to an MPI rank.</p></li>
+<li><p>Implementing MPI operations between GPUs with and without using a CPU-host memory as a staging point.</p></li>
+<li><p>Compiling the hybrid <strong>MPI-OpenACC</strong> and <strong>MPI-OpenMP</strong> applications on different HPC systems.</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The source codes discussed in this tutorial are provided at the end in the section <a class="reference internal" href="#source-codes"><span class="std std-ref">Source codes</span></a>, from which can be directly downloaded.</p>
+</div>
+</section>
+<section id="introduction">
+<h1><a class="toc-backref" href="#id11" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<p>Parallel computing involving communication between heterogenous systems, especially CPU (central processing unit) and GPU (graphics processing unit), permits to significantly improve the performance of computations on modern HPC (high-performance computing) systems. This in turn allows us to address large scientific computational problems, which would not be possible using conventional CPU-based approaches. Such computational problems can benefit from available GPU-programing models to further accelerate the computation over multiple GPU-devices. Here, although the asynchronous OpenACC and OpenMP offer the potential to carry out computations across multiple GPUs, the partition of the computation is limited to a single GPU node. Note that the asynchronous OpenMP relies on the compiler support. Extending the computation to explore multiple GPU nodes requires combining MPI (message passing interface) with additional GPU-programming models, such as OpenACC and OpenMP application programming interfaces (APIs) and CUDA. In this tutorial, we focus on the hybrid <strong>MPI-OpenACC</strong> and <strong>MPI-OpenMP</strong> applications.</p>
+<p>Combining MPI with OpenACC or OpenMP offloading APIs offers the potential to fully utilizing the capacity of multiple GPUs within multiple GPU partitions in modern clusters and supercomputers. Moreover, it has the advanatge of reducing the computing time caused by transferring data via the host-memory during heterogenous communications, thus rendering the HPC applications efficient. In this contetx, it has been shown that integrating <a class="reference external" href="https://dl.acm.org/doi/10.1109/ICPP.2013.17">GPU-awareness</a> into MPI library improves the performance of scientific applications. This tutorial is thus motivated by the need of guiding readers, who are familiar with MPI, in porting their MPI-based codes to heterogenous systems and towards exploring exascale platforms, such as the <a class="reference external" href="https://www.lumi-supercomputer.eu/">supercomputer LUMI</a>.</p>
+<p>In this tutorial, we will cover two scenarios: a scenario in which an MPI library can directly access a GPU-device memory (i.e GPU-aware MPI); and a scenario in which there is no interaction between an MPI library and a GPU-device (i.e. GPU-non-aware MPI). The implementation will be provided for both the hybrid <strong>MPI-OpenACC</strong> and <strong>MPI-OpenMP</strong> APIs.</p>
+<p>This descriptive tutorial is organized as follows: In <a class="reference internal" href="#implementation-of-mpi-alone"><span class="std std-ref">section I</span></a>, we describe the implementation of the low-level MPI alone using an application based on solving the Laplace equation. In <a class="reference internal" href="#implementation-of-a-gpu-awareness-approach"><span class="std std-ref">section II</span></a>, we extend the MPI-application to incorporate a GPU-awareness approach. This is done by combining MPI with OpenACC/OpenMP AIPs. Here we will address both GPU-accelerator and non-accelerator -aware MPI library (i.e. MPI with direct memory access vs MPI without direct memory access).
+<a class="reference internal" href="#performance-analysis-on-lumi-g-eap"><span class="std std-ref">Section III</span></a> is devoted to the performance analysis. <a class="reference internal" href="#gpuaware-conclusion"><span class="std std-ref">Section IV</span></a> concludes the tutorial.</p>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#incorporating-mpi-into-gpu-directive-models-with-a-gpu-awareness-approach" id="id9">Incorporating MPI into GPU-directive models with a GPU-awareness approach</a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id10">Summary</a></p></li>
+<li><p><a class="reference internal" href="#introduction" id="id11">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#implementation-of-mpi-alone" id="id12">Implementation of MPI alone</a></p>
+<ul>
+<li><p><a class="reference internal" href="#compilation-process-of-an-mpi-application" id="id13">Compilation process of an MPI-application</a></p>
+<ul>
+<li><p><a class="reference internal" href="#on-the-saga-and-betzy-clusters" id="id14">On the Saga and Betzy clusters</a></p></li>
+<li><p><a class="reference internal" href="#on-the-supercomputer-lumi" id="id15">On the supercomputer LUMI</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#implementation-of-a-gpu-awareness-approach" id="id16">Implementation of a GPU-awareness approach</a></p>
+<ul>
+<li><p><a class="reference internal" href="#direct-memory-access" id="id17">Direct memory access</a></p></li>
+<li><p><a class="reference internal" href="#assigning-a-mpi-rank-to-a-gpu-device" id="id18">Assigning a MPI rank to a GPU device</a></p></li>
+<li><p><a class="reference internal" href="#gpu-non-aware-mpi-library" id="id19">GPU-non-aware MPI library</a></p></li>
+<li><p><a class="reference internal" href="#gpu-aware-mpi-library" id="id20">GPU-aware MPI library</a></p></li>
+<li><p><a class="reference internal" href="#compilation-process-of-mpi-openacc-and-mpi-openmp-applications" id="id21">Compilation process of <strong>MPI-OpenACC</strong> and <strong>MPI-OpenMP</strong> applications</a></p>
+<ul>
+<li><p><a class="reference internal" href="#on-the-cluster-betzy" id="id22">On the cluster Betzy</a></p></li>
+<li><p><a class="reference internal" href="#on-the-supercomputer-lumi-eap" id="id23">On the supercomputer LUMI-EAP</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#performance-analysis-on-lumi-g-eap" id="id24">Performance analysis on LUMI-G EAP</a></p></li>
+<li><p><a class="reference internal" href="#conclusion" id="id25">Conclusion</a></p></li>
+<li><p><a class="reference internal" href="#source-codes" id="id26">Source codes</a></p></li>
+<li><p><a class="reference internal" href="#compilation-process" id="id27">Compilation process</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id6" id="id28">On the cluster Betzy</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id29">On the supercomputer LUMI-EAP</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#references" id="id30">References</a></p></li>
+</ul>
+</nav>
+</section>
+<section id="implementation-of-mpi-alone">
+<span id="id1"></span><h1><a class="toc-backref" href="#id12" role="doc-backlink">Implementation of MPI alone</a><a class="headerlink" href="#implementation-of-mpi-alone" title="Link to this heading"></a></h1>
+<p>The MPI programming model is widely used in the scientific community for intensive parallel computing that requires distributed memory among multiple nodes. In this section, we implement the low-level <a class="reference external" href="https://www.mpi-forum.org/docs/mpi-4.0/mpi40-report.pdf">MPI standard</a> approach to parallelise our <code class="docutils literal notranslate"><span class="pre">Fortran</span></code> application, which is based on solving the Laplace equation in a uniform 2D-grid. Details about the numerical method can be found <a class="reference external" href="https://documentation.sigma2.no/code_development/guides/converting_acc2omp/openacc2openmp.html">here</a>.</p>
+<div align="center">
+<p><img alt="Fig1" src="../../_images/Fig1.png" /></p>
+<p><strong>Fig. 1.</strong> <em>Schematic representation of an MPI-scheme, in which the data that are initially stored in an array of size (nx,ny) (<strong>Fig. 1(a)</strong>) are distributed among different MPI-processes ranging from 0 to nproc-1 (<strong>Fig. 1(b)</strong>). Here nproc is the total number of MPI-processes and npy is the size of the array on y-direction on each MPI-process (nyp=ny/nproc).</em></p>
+</div>
+<p>In this tutorial, we consider a simplest scenario, in which the data, which are initially of dimension <span class="math notranslate nohighlight">\(n_{x}\)</span> x <span class="math notranslate nohighlight">\(n_{y}\)</span> (cf. <strong>Fig. 1(a)</strong>) are subdivided only along the y-direction. This results into sub-arrays of dimension <span class="math notranslate nohighlight">\(n_{x}\)</span> x <span class="math notranslate nohighlight">\(n_{yp}\)</span>, where <span class="math notranslate nohighlight">\(n_{yp}\)</span>=<span class="math notranslate nohighlight">\(n_{y}\)</span>/nproc. Here each sub-array is assigned to an MPI process as shown in <strong>Fig. 1(b)</strong>. In a realistic problem, it is recommended to carry out a 2D domain decomposition along both x and y directions. Our simplified scenario, however has the advantage of transforming a 2D-problem into a 1D-problem in terms of implementing a parallel algorithm. Such a simplification is a key element when making tutorials.</p>
+<p>A starting point in this implementation is to generate initial conditions (ICs) and distribute them among different processes in a communicator group. The simplest way to do so is to use the <code class="docutils literal notranslate"><span class="pre">MPI_Scatter</span></code> operation, which distributes the generated data from the process 0 (root) to processes labeled <em>myid</em> in the source code (i.e. the rank of an MPI process). This is defined in the range [<em>myid=0</em>, <em>myid=nproc-1</em>], where <em>nproc</em> is the total number of processes. It is worth mentioning that initiating the data in parallel among all MPI-ranks is recommended for scalability reasons. Therefore, an alternative to the <code class="docutils literal notranslate"><span class="pre">MPI_Scatter</span></code> operation is to use a blocking/non-blocking mode of communication as described below</p>
+<div class="highlight-Fortran notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">       allocate</span><span class="p">(</span><span class="n">f_send</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">nyp</span><span class="p">))</span>
+
+<span class="w">       </span><span class="k">do </span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nproc</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">         </span><span class="k">Call </span><span class="nb">RANDOM_NUMBER</span><span class="p">(</span><span class="n">f_send</span><span class="p">(:,:))</span>
+<span class="w">         </span>
+<span class="w">         </span><span class="k">call </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">f_send</span><span class="p">(:,:),</span><span class="n">nsend</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">tag</span><span class="p">,&amp;</span>
+<span class="w">                       </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">       </span><span class="k">enddo</span>
+<span class="k">       deallocate</span><span class="p">(</span><span class="n">f_send</span><span class="p">)</span>
+
+<span class="k">else</span>
+<span class="k">        call </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">f</span><span class="p">(:,:),</span><span class="n">nsend</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                      </span><span class="n">tag</span><span class="p">,</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="n">ierr</span><span class="p">)</span>
+<span class="k">endif</span>
+</pre></div>
+</div>
+<p>This piece of code should be adapted to fit a specific scenario.</p>
+<p>The ICs we consider are random and are generated by the routine <code class="docutils literal notranslate"><span class="pre">RANDOM_NUMBER</span></code>. Note that MPI-programs, in general, require incorporating the mpi module (i.e. <code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">mpi</span></code>) or including the header file mpif.h (i.e. <code class="docutils literal notranslate"><span class="pre">include</span> <span class="pre">‘mpif.h’</span></code>). In our source code, the meaning of each MPI function is included briefly as a comment in the code itself.</p>
+<p>A subsequent step is to iterate the ICs using an appropriate iterative scheme as described in our previous <a class="reference external" href="https://documentation.sigma2.no/code_development/guides/converting_acc2omp/openacc2openmp.html">tutorial</a> (see also <a class="reference external" href="https://arxiv.org/abs/2201.11811">here</a>). In an iterative scheme, the distributed data along the y-direction needs to be updated (i.e. halo exchange); this is because the data at the boundaries of each sub-array in each MPI process are initially set to zero. For instance, computing the new array <em>f_k(:,1)</em> for each MPI-process requires updating the elements <em>f(:,0)</em> initially set for each process; similarly for <em>f(:,nyp+1)</em> (see the lines 82-91 in the code below and the equation in <strong>Fig. 2</strong>). A key element here is to transfer the data at the boundaries between the neighboring MPI processes at each iteration. This is schematically illustrated in <strong>Fig. 2</strong>. This is transformed into a few MPI lines using a blocking communication mode characterized by the MPI functions <code class="docutils literal notranslate"><span class="pre">MPI_Send()</span></code> and <code class="docutils literal notranslate"><span class="pre">MPI_Recv()</span></code>, as described in the source code below. The blocking mode here means that the <strong>send</strong> and <strong>receive</strong> operations do not return until the message data is available to be re-used. In other words, the operations are completed once the message is buffered.  Note that there are three additional blocking modes for the <strong>send</strong> operation. These modes, however, are not addressed in the present tutorial. We thus refer readers to the <a class="reference external" href="https://www.mpi-forum.org/docs/mpi-4.0/mpi40-report.pdf">MPI documentation</a> for further description.</p>
+<div class="highlight-Fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!transfer the data at the boundaries to the neighbouring MPI-process</span>
+<span class="c">!send f(:,nyp) from myid-1 to be stored in f(:,0) in myid+1</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">lt</span><span class="p">.</span><span class="n">nproc</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">          call </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="n">nyp</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tag1</span><span class="p">,&amp;</span>
+<span class="w">                       </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="c">!receive f(:,0) from myid-1</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">          call </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="mi">0</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                      </span><span class="n">tag1</span><span class="p">,</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="c">!send f(:,1) from myid+1 to be stored in f(:,nyp+1) in myid-1</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">          call </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">tag2</span><span class="p">,&amp;</span>
+<span class="w">                       </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="c">!receive f(:,npy+1) from myid-1</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">lt</span><span class="p">.</span><span class="n">nproc</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         call </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="n">nyp</span><span class="o">+</span><span class="mi">1</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">+</span><span class="mi">1</span><span class="p">,&amp;</span>
+<span class="w">                      </span><span class="n">tag2</span><span class="p">,</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">        </span><span class="k">endif</span>
+</pre></div>
+</div>
+<p>The inconvenient of the blocking mode is related to the possibility of causing the program to deadlock (i.e. the MPI message cannot be completed). An alternative to the blocking mode that avoids MPI deadlock is to use a <a class="reference external" href="https://www.mpi-forum.org/docs/mpi-4.0/mpi40-report.pdf">non-blocking</a> concept. The latter has another advanatge, which relies on enabling overlapping between communication and computation. In this type of mode, the MPI-functions <code class="docutils literal notranslate"><span class="pre">MPI_Send()</span></code> and <code class="docutils literal notranslate"><span class="pre">MPI_Recv()</span></code> are replaced with <code class="docutils literal notranslate"><span class="pre">MPI_Isend()</span></code> and <code class="docutils literal notranslate"><span class="pre">MPI_Irecv()</span></code> respectively, and should be followed by the function <code class="docutils literal notranslate"><span class="pre">MPI_Wait()</span></code>.</p>
+<div align="center">
+<p><img alt="Fig2" src="../../_images/Fig2.png" /></p>
+<p><strong>Fig. 2.</strong> <em>Schematic representation of an MPI-scheme, in which the boundary data are transferred between the neighbouring MPI-processes in a point-to-point operation before (<strong>Fig. 2(a)</strong>) and after collecting theme (<strong>Fig. 2(b)</strong>). The form of the equation is also displayed in the same figure for the sake of clarity</em>.</p>
+</div>
+<p>Updating the data at the boundaries is a key difficulty in this example, as it requires re-collecting the data from the neighbouring MPI processes to reconstruct a new array at each iteration. The computed maximum between the new and the old arrays is done using the <code class="docutils literal notranslate"><span class="pre">MPI_Allreduce</span></code> operation, in which the result is returned to all MPI processes of the specified communicator group.</p>
+<p>To check the correctness of the results, one can compute the sum of all the elements or eventually display the converged data either in 1D or 2D for comparison. For this reason, we introduce the <code class="docutils literal notranslate"><span class="pre">MPI_Gather</span></code> operation, which allows aggregating the data from each MPI process and make them available only in the root process. This option, however, might become time consuming and eventually might lead to segmentation error when increasing the size of the data.</p>
+<section id="compilation-process-of-an-mpi-application">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Compilation process of an MPI-application</a><a class="headerlink" href="#compilation-process-of-an-mpi-application" title="Link to this heading"></a></h2>
+<p>Here we describe the compilation process of a pure MPI-application on different HPC systems using the OpenMPI and Intel MPI compilers on the clusters <a class="reference external" href="https://documentation.sigma2.no/hpc_machines/saga.html">Saga</a> and <a class="reference external" href="https://documentation.sigma2.no/hpc_machines/betzy.html">Betzy</a> and the Cray compiler on the <a class="reference external" href="https://www.lumi-supercomputer.eu/">supercomputer LUMI</a>. The compiler wrappers associated with the OpenMPI, Intel MPI and Cray compilers are <code class="docutils literal notranslate"><span class="pre">mpif90</span></code>, <code class="docutils literal notranslate"><span class="pre">mpiifort</span></code> and <code class="docutils literal notranslate"><span class="pre">ftn</span></code>, respectively.</p>
+<section id="on-the-saga-and-betzy-clusters">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">On the Saga and Betzy clusters</a><a class="headerlink" href="#on-the-saga-and-betzy-clusters" title="Link to this heading"></a></h3>
+<p>The following procedure is valid for both Saga and Betzy clusters. Here is an example of modules to be loaded.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-T3Blbk1QSSBtb2R1bGU=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-T3Blbk1QSSBtb2R1bGU=" name="T3Blbk1QSSBtb2R1bGU=" role="tab" tabindex="0">OpenMPI module</button><button aria-controls="panel-0-SW50ZWwgTVBJIG1vZHVsZQ==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-SW50ZWwgTVBJIG1vZHVsZQ==" name="SW50ZWwgTVBJIG1vZHVsZQ==" role="tab" tabindex="-1">Intel MPI module</button></div><div aria-labelledby="tab-0-T3Blbk1QSSBtb2R1bGU=" class="sphinx-tabs-panel group-tab" id="panel-0-T3Blbk1QSSBtb2R1bGU=" name="T3Blbk1QSSBtb2R1bGU=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>OpenMPI/4.1.1-GCC-11.2.0
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-SW50ZWwgTVBJIG1vZHVsZQ==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-SW50ZWwgTVBJIG1vZHVsZQ==" name="SW50ZWwgTVBJIG1vZHVsZQ==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>impi/2021.4.0-intel-compilers-2021.4.0
+</pre></div>
+</div>
+</div></div>
+<p>The compilation process is described according to the chosen compiler.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-T3Blbk1QSSBjb21waWxlcg==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-T3Blbk1QSSBjb21waWxlcg==" name="T3Blbk1QSSBjb21waWxlcg==" role="tab" tabindex="0">OpenMPI compiler</button><button aria-controls="panel-1-SW50ZWwgTVBJIGNvbXBpbGVy" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-SW50ZWwgTVBJIGNvbXBpbGVy" name="SW50ZWwgTVBJIGNvbXBpbGVy" role="tab" tabindex="-1">Intel MPI compiler</button></div><div aria-labelledby="tab-1-T3Blbk1QSSBjb21waWxlcg==" class="sphinx-tabs-panel group-tab" id="panel-1-T3Blbk1QSSBjb21waWxlcg==" name="T3Blbk1QSSBjb21waWxlcg==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mpif90<span class="w"> </span>-o<span class="w"> </span>laplace.mpi.ompi<span class="w"> </span>laplace_mpi.f90
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-SW50ZWwgTVBJIGNvbXBpbGVy" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-SW50ZWwgTVBJIGNvbXBpbGVy" name="SW50ZWwgTVBJIGNvbXBpbGVy" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mpiifort<span class="w"> </span>-o<span class="w"> </span>laplace.mpi.intel<span class="w"> </span>laplace_mpi.f90
+</pre></div>
+</div>
+</div></div>
+<p>Here is an example of a batch script to launch an MPI job.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>SBATCH<span class="w"> </span>--job-name<span class="o">=</span>lap-mpi_saga
+<span class="gp">#</span>SBATCH<span class="w"> </span>--account<span class="o">=</span>nnxxxxx
+<span class="gp">#</span>SBATCH<span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:01:00
+<span class="gp">#</span>SBATCH<span class="w"> </span>--qos<span class="o">=</span>devel
+<span class="gp">#</span>SBATCH<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w">            </span><span class="c1">#Total nbr of nodes</span>
+<span class="gp">#</span>SBATCH<span class="w"> </span>--ntasks-per-node<span class="o">=</span><span class="m">4</span><span class="w">  </span><span class="c1">#Nbr of tasks per node</span>
+<span class="gp">#</span>SBATCH<span class="w"> </span>--mem-per-cpu<span class="o">=</span>2G<span class="w">     </span><span class="c1">#Host memory per CPU core</span>
+<span class="gp">                             #</span>On<span class="w"> </span>Betzy<span class="w"> </span>the<span class="w"> </span>mem<span class="w"> </span>should<span class="w"> </span>not<span class="w"> </span>be<span class="w"> </span>specified<span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>pure<span class="w"> </span>MPI-code
+<span class="go">srun ./laplace.mpiompi</span>
+</pre></div>
+</div>
+</section>
+<section id="on-the-supercomputer-lumi">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">On the supercomputer LUMI</a><a class="headerlink" href="#on-the-supercomputer-lumi" title="Link to this heading"></a></h3>
+<p>On the supercomputer LUMI, an MPI module is loaded in the environment <code class="docutils literal notranslate"><span class="pre">cray-mpich</span></code> (as described
+<a class="reference external" href="https://docs.lumi-supercomputer.eu/development/compiling/prgenv/#compile-an-mpi-program">here</a>)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>cray-mpich
+</pre></div>
+</div>
+<p>The syntax of the compilation process of an MPI code using the Cray compiler can be expressed as:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ftn<span class="w"> </span>-o<span class="w"> </span>laplace.mpi.cray<span class="w"> </span>laplace_mpi.f90
+</pre></div>
+</div>
+<p>To launch an MPI job, the following batch script can be used
+(see also <a class="reference external" href="https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/lumig-job/">here</a>)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>!/bin/bash<span class="w"> </span>-l
+<span class="gp">#</span>SBATCH<span class="w"> </span>--job-name<span class="o">=</span>lap-mpi
+<span class="gp">#</span>SBATCH<span class="w"> </span>--account<span class="o">=</span>project_xxxxx
+<span class="gp">#</span>SBATCH<span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:02:00
+<span class="gp">#</span>SBATCH<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span>
+<span class="gp">#</span>SBATCH<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">4</span>
+<span class="gp">#</span>SBATCH<span class="w"> </span>--ntasks-per-node<span class="o">=</span><span class="m">4</span>
+<span class="gp">#</span>SBATCH<span class="w"> </span>--partition<span class="o">=</span>standard
+
+<span class="go">srun ./laplace.mpi.cray</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="implementation-of-a-gpu-awareness-approach">
+<span id="id2"></span><h1><a class="toc-backref" href="#id16" role="doc-backlink">Implementation of a GPU-awareness approach</a><a class="headerlink" href="#implementation-of-a-gpu-awareness-approach" title="Link to this heading"></a></h1>
+<p>In this section we extend our MPI-application to incorporate the OpenACC and OpenMP offloading APIs targeting both NVIDIA and AMD GPU-accelerators. A special focus here is to address the concept of <strong>GPU-aware MPI</strong> library (or MPI with GPU-direct memory access) and <strong>GPU-non-aware MPI</strong> (or MPI without GPU-direct access). In the following we implement this concept for both the hybrid <strong>MPI-OpenACC</strong> and <strong>MPI-OpenMP</strong> APIs. Details about the implementation of OpenACC and OpenMP APIs alone are provided in our previous
+<a class="reference external" href="https://documentation.sigma2.no/code_development/guides/converting_acc2omp/openacc2openmp.html">tutorial</a>.</p>
+<p>The GPU-awareness approach can simply mean how to make a GPU-device memory aware or not aware of the existence of an MPI-library, such that a direct or non-direct access to the library can be accomplished. Before addressing this concept, it is worthwhile <em>(i)</em> defining the mechanism of direct-memory access and <em>(ii)</em> introducing how to establish a connection between each MPI rank and a specific GPU-device. Here, we are in the situation in which a host and a device have a distinct memory (i.e. non-shared memory device).</p>
+<section id="direct-memory-access">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Direct memory access</a><a class="headerlink" href="#direct-memory-access" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://www.sciencedirect.com/topics/computer-science/direct-memory-access">Direct memory access</a> (DMA) (see also this <a class="reference external" href="https://www.akkadia.org/drepper/cpumemory.pdf">Ref.</a>, which provides an overview about memory) is a mechanism by which the data can be transferred between an I/O device and a memory system without an involvement of the processor itself. It thus allows two separated processors to directly access the memory of each other via a network. This has the advantage of reducing latency and increasing throughput, which is relevant particularly for modern HPC systems. As an example, the DMA mechanism is used in data management between a CPU-host and a GPU-device as we shall see later.</p>
+</section>
+<section id="assigning-a-mpi-rank-to-a-gpu-device">
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">Assigning a MPI rank to a GPU device</a><a class="headerlink" href="#assigning-a-mpi-rank-to-a-gpu-device" title="Link to this heading"></a></h2>
+<p>Managing multiple GPU-devices by combining MPI and OpenACC or OpenMP APIs requires as a first step assigning each MPI rank to a single GPU-device. In other words, one needs to determine which processes are within a specifc CPU-node that is connecetd with the nearest GPU-node. This permits to minimize latency, and it is particularly relevant when running an application on multiple nodes. This procedure can be done by splitting the world communicator into subgroups of communicators (or sub-communicators), which is done via the routine <code class="docutils literal notranslate"><span class="pre">MPI_COMM_SPLIT_TYPE()</span></code>. Here each sub-communicator contains processes running on the same node. These processes have a shared-memory region defined via the argument <code class="docutils literal notranslate"><span class="pre">MPI_COMM_TYPE_SHARED</span></code> (see <a class="reference external" href="https://www.mpi-forum.org/docs/mpi-4.0/mpi40-report.pdf">here</a> for more details). Calling the routine <code class="docutils literal notranslate"><span class="pre">MPI_COMM_SPLIT_TYPE()</span></code> returns a sub-communicator (labelled “host_comm” in the source code) created by each subgroup, in which each MPI-rank can be assigned to a single GPU-device (see the lines 97-101 in the code below).</p>
+<div class="highlight-Fortran notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="k">call </span><span class="n">MPI_COMM_SPLIT_TYPE</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_TYPE_SHARED</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,&amp;</span>
+<span class="w">                               </span><span class="n">MPI_INFO_NULL</span><span class="p">,</span><span class="w"> </span><span class="n">host_comm</span><span class="p">,</span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">      </span><span class="k">call </span><span class="n">MPI_COMM_RANK</span><span class="p">(</span><span class="n">host_comm</span><span class="p">,</span><span class="w"> </span><span class="n">host_rank</span><span class="p">,</span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">      </span>
+<span class="w">      </span><span class="n">myDevice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">host_rank</span>
+
+<span class="c">!returns the device type to be used</span>
+<span class="w">      </span><span class="n">deviceType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acc_get_device_type</span><span class="p">()</span>
+
+<span class="c">!returns the number of devices available on the host</span>
+<span class="w">      </span><span class="n">numDevice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acc_get_num_devices</span><span class="p">(</span><span class="n">deviceType</span><span class="p">)</span>
+
+<span class="c">!sets the device number and the device type to be used</span>
+<span class="w">      </span><span class="k">call </span><span class="n">acc_set_device_num</span><span class="p">(</span><span class="n">myDevice</span><span class="p">,</span><span class="w"> </span><span class="n">deviceType</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In <strong>OpenACC</strong> API, the host-device connection is established by specifying the runtime library routine <code class="docutils literal notranslate"><span class="pre">acc_set_device_num(host_rank,deviceType)</span></code>. The latter contains two arguments “host_rank” and “deviceType”: the first argument determines which device an MPI rank will be assigned to, and the second one returns the GPU-device type to be used. These are indicated by the lines 104-110 in the source code described above. Similarly in <strong>OpenMP</strong> API, the connection is defined via the function <code class="docutils literal notranslate"><span class="pre">omp_set_default_device(host_rank)</span></code>.</p>
+</section>
+<section id="gpu-non-aware-mpi-library">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">GPU-non-aware MPI library</a><a class="headerlink" href="#gpu-non-aware-mpi-library" title="Link to this heading"></a></h2>
+<p>The MPI implementation without GPU-direct memory access or GPU-non-aware MPI means that calling an MPI routine from an OpenACC or OpenMP API requires updating the data before and after an MPI call. In this scenario, the data are copied back and forth between a host and a device before and after each MPI call. In the hybrid <strong>MPI-OpenACC</strong>, the procedure is defined by specifying the directive <code class="docutils literal notranslate"><span class="pre">update</span> <span class="pre">host()</span></code> (see the code line 132) for copying the data from a device to a host before an MPI call, and by the directive <code class="docutils literal notranslate"><span class="pre">update</span> <span class="pre">device()</span></code> specified after an MPI call for copying the data back to a device (see the code line 160). The implementation is shown in this piece of code described below</p>
+<div class="highlight-Fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!copy data from GPU to CPU</span>
+<span class="c">!$acc update host(f) </span>
+
+<span class="c">!transfer the data at the boundaries to the neighbouring MPI-process</span>
+<span class="c">!send f(:,nyp) from myid-1 to be stored in f(:,0) in myid+1</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">lt</span><span class="p">.</span><span class="n">nproc</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">          call </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="n">nyp</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tag1</span><span class="p">,&amp;</span>
+<span class="w">                       </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="c">!receive f(:,0) from myid-1</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">          call </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="mi">0</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                      </span><span class="n">tag1</span><span class="p">,</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="c">!send f(:,1) from myid+1 to be stored in f(:,nyp+1) in myid-1</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">          call </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">tag2</span><span class="p">,&amp;</span>
+<span class="w">                       </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="c">!receive f(:,npy+1) from myid-1</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">lt</span><span class="p">.</span><span class="n">nproc</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         call </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="n">nyp</span><span class="o">+</span><span class="mi">1</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">+</span><span class="mi">1</span><span class="p">,&amp;</span>
+<span class="w">                      </span><span class="n">tag2</span><span class="p">,</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">        </span><span class="k">endif</span>
+
+<span class="c">!update data from CPU to GPU</span>
+<span class="c">!$acc update device(f) </span>
+<span class="c">!$acc parallel loop present(f,f_k) collapse(2)</span>
+<span class="w">        </span><span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nyp</span>
+<span class="w">            </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span>
+<span class="w">               </span><span class="n">d2fx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="w">               </span><span class="n">d2fy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">               </span><span class="n">f_k</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.25</span><span class="o">*</span><span class="p">(</span><span class="n">d2fx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d2fy</span><span class="p">)</span>
+<span class="w">             </span><span class="k">enddo</span>
+<span class="k">          enddo</span>
+<span class="c">!$acc end parallel loop</span>
+</pre></div>
+</div>
+<p>A similar concept is adopted in the hybrid <strong>MPI-OpenMP</strong>. Here, updating the data in connection with an MPI call is done by specifying the directives <code class="docutils literal notranslate"><span class="pre">update</span> <span class="pre">device()</span> <span class="pre">from()</span></code> ( see the line 128) and <code class="docutils literal notranslate"><span class="pre">update</span> <span class="pre">device()</span> <span class="pre">to()</span></code> (see the line 162), respectively, for copying the data from a device to a host and back to the device. This is illustrated in the lines of code shown below.</p>
+<div class="highlight-Fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!Structed data locality </span>
+<span class="c">!$omp target data device(myDevice) map(to:f) map(from:f_k)</span>
+
+<span class="w">       </span><span class="k">do while</span><span class="w"> </span><span class="p">(</span><span class="n">max_err</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="n">iter</span><span class="p">.</span><span class="n">le</span><span class="p">.</span><span class="n">max_iter</span><span class="p">)</span>
+
+<span class="c">!copy data from GPU to CPU</span>
+<span class="c">!$omp target update device(myDevice) from(f)</span>
+<span class="c">!!$omp target update mapfrom(f)</span>
+
+<span class="c">!transfer the data at the boundaries to the neighbouring MPI-process</span>
+<span class="c">!send f(:,nyp) from myid-1 to be stored in f(:,0) in myid+1</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">lt</span><span class="p">.</span><span class="n">nproc</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">          call </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="n">nyp</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tag1</span><span class="p">,&amp;</span>
+<span class="w">                       </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="c">!receive f(:,0) from myid-1</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">          call </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="mi">0</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                      </span><span class="n">tag1</span><span class="p">,</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="c">!send f(:,1) from myid+1 to be stored in f(:,nyp+1) in myid-1</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">          call </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">tag2</span><span class="p">,&amp;</span>
+<span class="w">                       </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="c">!receive f(:,npy+1) from myid-1</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">lt</span><span class="p">.</span><span class="n">nproc</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         call </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="n">nyp</span><span class="o">+</span><span class="mi">1</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">+</span><span class="mi">1</span><span class="p">,&amp;</span>
+<span class="w">                      </span><span class="n">tag2</span><span class="p">,</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">        </span><span class="k">endif</span>
+
+<span class="c">!update data from CPU to GPU</span>
+<span class="c">!$omp target update device(myDevice) to(f)</span>
+<span class="c">!!$omp target update mapto(f)</span>
+</pre></div>
+</div>
+<p>Although this approach is simple to implement, it might lead to a lower performance caused by an explicit transfer of data between a host and a device before and after calling an MPI routine. Furthermore, the approach is synchronous, which does not allow overlapping between MPI-based computation and OpenACC/OpenMP operations. An alternative to this approach is to use the GPU-aware MPI as described in the next section.</p>
+</section>
+<section id="gpu-aware-mpi-library">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">GPU-aware MPI library</a><a class="headerlink" href="#gpu-aware-mpi-library" title="Link to this heading"></a></h2>
+<p>The concept of the GPU-awareness MPI relies on the possibility of moving data that reside in a GPU-device memory without necessarily using a CPU-host memory as an intermediate buffer (see e.g. <a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/2642769.2642773">here</a>). This approach enables an MPI library to directly access a GPU-device memory, which in turn permits to transfer data from one GPU to another GPU, thus reducing the communication and computing time of data between different MPI processes.</p>
+<p>In our example discussed above, the data at the boundaries of each MPI process reside in a GPU-device, as they have already been copied to. In the GPU-non-aware MPI concept, these data must be updated on a CPU-host and copyied back to a GPU-device at each iteration. In the GPU-aware MPI, however, these data can be communicated between a pair of GPUs witout necessarily passing through a CPU-host memory. This approach is supported by recent versions of MPI libraries such as <a class="reference external" href="https://www.open-mpi.org/">Open MPI</a>. The idea here is that when a pointer to a GPU-device is passed to an MPI call, the MPI library automatically sets up a GPU memory for processing data. This implementation might require a newer version of <a class="reference external" href="https://www.open-mpi.org/faq/?category=runcuda">CUDA driver and toolkit</a>.</p>
+<p>In the hybrid <strong>MPI-OpenACC</strong>, the concept is defined by combining the directive <code class="docutils literal notranslate"><span class="pre">host_data</span></code> together with the clause <code class="docutils literal notranslate"><span class="pre">use_device(list_array)</span></code>. This combination enables the access to the arrays listed in the the clause <code class="docutils literal notranslate"><span class="pre">use_device(list_array)</span></code> from the
+<a class="reference external" href="https://www.nvidia.com/docs/IO/116711/OpenACC-API.pdf">host</a>. The list of arrays, which should be already present in a GPU-device memory, are directly passed to an MPI routine without a need of a staging host-memory for copying the data. Note that for copying data, we use here <a class="reference external" href="https://www.openacc.org/sites/default/files/inline-files/OpenACC_Programming_Guide_0_0.pdf">unstructured data</a> blocks characterized by the directives <code class="docutils literal notranslate"><span class="pre">enter</span> <span class="pre">data</span></code> and <code class="docutils literal notranslate"><span class="pre">exit</span> <span class="pre">data</span></code>, unlike in the previous section, in which the structured data locality is considered. The unstructured data has the advantage of allowing to allocate and deallocate arrays within a data region.</p>
+<p>In our example, the GPU-aware MPI support with OpenACC is illustrated in connection with the MPI operations <code class="docutils literal notranslate"><span class="pre">MPI_Send</span></code> and <code class="docutils literal notranslate"><span class="pre">MPI_Recv</span></code> as described in lines 127-160 (see the code below) and the operation <code class="docutils literal notranslate"><span class="pre">MPI_Allreduce</span></code> in lines 184-192 (see the code below). Note that not all MPI functions are supported by the GPU-awareness concept (see <a class="reference external" href="https://www.open-mpi.org/faq/?category=runcuda">here</a> for more details). In the lines 133-160, the boundary data stored in the array <em>f(:,:)</em> are present in GPUs and are passed directly to the <code class="docutils literal notranslate"><span class="pre">MPI_Send()</span></code> and <code class="docutils literal notranslate"><span class="pre">MPI_Recv()</span></code> functions. Therefore, the operations <code class="docutils literal notranslate"><span class="pre">MPI_Send</span></code> and <code class="docutils literal notranslate"><span class="pre">MPI_Recv</span></code> are performed between GPUs without passing through a CPU-host. A similar picture occurs in connection with the <code class="docutils literal notranslate"><span class="pre">MPI_Allreduce()</span></code> function, in which the <code class="docutils literal notranslate"><span class="pre">MPI_Allreduce</span></code> operation is performed between a pair of GPUs. In the latter picture, we have noticed a slight increase of the computing time (a few ms) compared to the case when the <code class="docutils literal notranslate"><span class="pre">MPI_Allreduce</span></code> operation is carried out between CPUs instead of GPUs. This is because the computed maximum (see the lines 174-182), which is present in a CPU-host is copied back to a GPU-device at each iteration before perfoming the <code class="docutils literal notranslate"><span class="pre">MPI_Allreduce</span></code> operation between GPUs.</p>
+<div class="highlight-Fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!Unstructed data locality       </span>
+<span class="c">!$acc enter data copyin(f) create(f_k)        </span>
+<span class="w">       </span><span class="k">do while</span><span class="w"> </span><span class="p">(</span><span class="n">max_err</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="n">iter</span><span class="p">.</span><span class="n">le</span><span class="p">.</span><span class="n">max_iter</span><span class="p">)</span>
+
+<span class="c">!Performing MPI_send and MPI_Recv between GPUs without passing through</span>
+<span class="c">!the host</span>
+<span class="c">!$acc host_data use_device(f)</span>
+
+<span class="c">!transfer the data at the boundaries to the neighbouring MPI-process</span>
+<span class="c">!send f(:,nyp) from myid-1 to be stored in f(:,0) in myid+1</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">lt</span><span class="p">.</span><span class="n">nproc</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">          call </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="n">nyp</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tag1</span><span class="p">,&amp;</span>
+<span class="w">                       </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="c">!receive f(:,0) from myid-1</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">          call </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="mi">0</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                      </span><span class="n">tag1</span><span class="p">,</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="c">!send f(:,1) from myid+1 to be stored in f(:,nyp+1) in myid-1</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">          call </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">tag2</span><span class="p">,&amp;</span>
+<span class="w">                       </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="c">!receive f(:,npy+1) from myid-1</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">lt</span><span class="p">.</span><span class="n">nproc</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         call </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="n">nyp</span><span class="o">+</span><span class="mi">1</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">+</span><span class="mi">1</span><span class="p">,&amp;</span>
+<span class="w">                      </span><span class="n">tag2</span><span class="p">,</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">        </span><span class="k">endif</span>
+
+<span class="c">!$acc end host_data</span>
+</pre></div>
+</div>
+<div class="highlight-Fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!$acc parallel loop present(f,f_k) collapse(2) &amp; </span>
+<span class="c">!$acc reduction(max:max_err)</span>
+<span class="w">          </span><span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nyp</span>
+<span class="w">            </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span>
+<span class="w">               </span><span class="n">max_err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="nb">dabs</span><span class="p">(</span><span class="n">f_k</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)),</span><span class="n">max_err</span><span class="p">)</span>
+<span class="w">               </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f_k</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="w">            </span><span class="k">enddo</span>
+<span class="k">          enddo</span>
+<span class="c">!$acc end parallel loop</span>
+</pre></div>
+</div>
+<div class="highlight-Fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!max_err is copied back to the CPU-host by default</span>
+<span class="w">          </span>
+<span class="c">!$acc enter data copyin(max_err)          </span>
+<span class="c">!Performing MPI_Allreduce between GPUs without passing through the host          </span>
+<span class="c">!$acc host_data use_device(max_err)</span>
+<span class="w">         </span><span class="k">call </span><span class="n">MPI_ALLREDUCE</span><span class="p">(</span><span class="n">MPI_IN_PLACE</span><span class="p">,</span><span class="n">max_err</span><span class="p">,</span><span class="mi">1</span><span class="p">,&amp;</span>
+<span class="w">              </span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">MPI_MAX</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="n">ierr</span><span class="w"> </span><span class="p">)</span>
+<span class="c">!$acc end host_data</span>
+<span class="c">!$acc exit data copyout(max_err)      </span>
+</pre></div>
+</div>
+<p>The same concept is adopted in the hybrid <strong>MPI-OpenMP</strong> API. The GPU-aware MPI support with OpenMP can be implemented via the directive <a class="reference external" href="https://www.openmp.org/spec-html/5.1/openmpsu65.html"><code class="docutils literal notranslate"><span class="pre">target</span> <span class="pre">data</span> <span class="pre">use_device_ptr(ptr-list)</span></code></a>. Here each array specified in the clause <code class="docutils literal notranslate"><span class="pre">use_device_ptr()</span></code> is a pointer to an object that is accessible on a GPU-device. The implementation is shown in the lines 127-160 of the code below, in which the MPI functions <code class="docutils literal notranslate"><span class="pre">MPI_Send()</span></code> and <code class="docutils literal notranslate"><span class="pre">MPI_Recv()</span></code> can be performed between a pair of GPUs. Similarly for the <code class="docutils literal notranslate"><span class="pre">MPI_Allreduce</span></code> operation shown in the lines 184-192.</p>
+<p>By comparing the syntax of the hybrid <strong>MPI-OpenACC</strong> API with that of the <strong>MPI-OpenMP</strong> API, one can see that the porting procedure of one API to another is straightforward.</p>
+<div class="highlight-Fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!Unstructed data locality </span>
+<span class="c">!$omp target enter data device(myDevice) map(to:f) map(alloc:f_k)</span>
+
+<span class="w">       </span><span class="k">do while</span><span class="w"> </span><span class="p">(</span><span class="n">max_err</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="n">iter</span><span class="p">.</span><span class="n">le</span><span class="p">.</span><span class="n">max_iter</span><span class="p">)</span>
+
+<span class="c">!Performing MPI_send and MPI_Recv between GPUs without passing through the host       </span>
+<span class="c">!$omp target data use_device_ptr(f)</span>
+
+<span class="c">!transfer the data at the boundaries to the neighbouring MPI-process</span>
+<span class="c">!send f(:,nyp) from myid-1 to be stored in f(:,0) in myid+1</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">lt</span><span class="p">.</span><span class="n">nproc</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">          call </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="n">nyp</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tag1</span><span class="p">,&amp;</span>
+<span class="w">                       </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="c">!receive f(:,0) from myid-1</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">          call </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="mi">0</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                      </span><span class="n">tag1</span><span class="p">,</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="c">!send f(:,1) from myid+1 to be stored in f(:,nyp+1) in myid-1</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">          call </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">tag2</span><span class="p">,&amp;</span>
+<span class="w">                       </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">         </span><span class="k">endif</span>
+
+<span class="c">!receive f(:,npy+1) from myid-1</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">myid</span><span class="p">.</span><span class="n">lt</span><span class="p">.</span><span class="n">nproc</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         call </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">f</span><span class="p">(:,</span><span class="n">nyp</span><span class="o">+</span><span class="mi">1</span><span class="p">),(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">myid</span><span class="o">+</span><span class="mi">1</span><span class="p">,&amp;</span>
+<span class="w">                      </span><span class="n">tag2</span><span class="p">,</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="n">ierr</span><span class="p">)</span>
+<span class="w">        </span><span class="k">endif</span>
+
+<span class="c">!$omp end target data        </span>
+</pre></div>
+</div>
+<div class="highlight-Fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!max_err is copied back to the CPU-host by default</span>
+
+<span class="c">!$omp target enter data device(myDevice) map(to:max_err)</span>
+<span class="c">!Performing MPI_Allreduce between GPUs without passing through the host          </span>
+<span class="c">!$omp target data use_device_ptr(max_err)          </span>
+<span class="w">         </span><span class="k">call </span><span class="n">MPI_ALLREDUCE</span><span class="p">(</span><span class="n">MPI_IN_PLACE</span><span class="p">,</span><span class="n">max_err</span><span class="p">,</span><span class="mi">1</span><span class="p">,&amp;</span>
+<span class="w">              </span><span class="n">MPI_DOUBLE_PRECISION</span><span class="p">,</span><span class="n">MPI_MAX</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="n">ierr</span><span class="w"> </span><span class="p">)</span>
+<span class="c">!$omp end target data      </span>
+<span class="c">!$omp target exit data map(from:max_err)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that the GPU-aware MPI support needs to be enabled by setting the environment variable <code class="docutils literal notranslate"><span class="pre">MPICH_GPU_SUPPORT_ENABLED=1</span></code> to 1 or to 0 to not enable it, as described in the compilation process.</p>
+</div>
+</section>
+<section id="compilation-process-of-mpi-openacc-and-mpi-openmp-applications">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Compilation process of <strong>MPI-OpenACC</strong> and <strong>MPI-OpenMP</strong> applications</a><a class="headerlink" href="#compilation-process-of-mpi-openacc-and-mpi-openmp-applications" title="Link to this heading"></a></h2>
+<p>Our hybrid <strong>MPI-OpenACC</strong> and <strong>MPI-OpenMP</strong> applications have been tested on both the cluster
+<a class="reference external" href="https://documentation.sigma2.no/hpc_machines/betzy.html">Betzy</a> (4xNVIDIA A100 GPUs connected by NVLink) and the supercomputer
+<a class="reference external" href="https://docs.lumi-supercomputer.eu/eap/">LUMI-EAP</a> (Early Access Platform) (4xAMD MI100 GPUs connected by the Infinity Fabric Link). The compilation process is thus described below according to which HPC system is used.</p>
+<section id="on-the-cluster-betzy">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">On the cluster Betzy</a><a class="headerlink" href="#on-the-cluster-betzy" title="Link to this heading"></a></h3>
+<p>We use a version of OpenMPI library (MPI-3 implementation), which has some supports for GPUs and which enables moving data residing on GPU-memory, in which a GPU-awareness concept is supported in the <a class="reference external" href="https://documentation.sigma2.no/hpc_machines/betzy.html">Betzy</a> cluster. Note that this concept is not supported in the <a class="reference external" href="https://documentation.sigma2.no/hpc_machines/saga.html">Saga</a> cluster, and therefore, only the GPU-non-aware MPI concept is supported. For completeness, we refer readers to a tutorial, in which a
+<a class="reference external" href="https://documentation.sigma2.no/code_development/guides/openacc_mpi.html">GPU-non-aware MPI</a> was implemented in the <code class="docutils literal notranslate"><span class="pre">C</span></code> language.</p>
+<p>The modules to be loaded are listed here according to which cluster is considered.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-QmV0enk=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-QmV0enk=" name="QmV0enk=" role="tab" tabindex="0">Betzy</button><button aria-controls="panel-2-U2FnYQ==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-U2FnYQ==" name="U2FnYQ==" role="tab" tabindex="-1">Saga</button></div><div aria-labelledby="tab-2-QmV0enk=" class="sphinx-tabs-panel group-tab" id="panel-2-QmV0enk=" name="QmV0enk=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>OpenMPI/4.1.1-NVHPC-22.1-CUDA-11.4.1
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-U2FnYQ==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-U2FnYQ==" name="U2FnYQ==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>OpenMPI/4.0.3-PGI-20.4-GCC-9.3.0
+</pre></div>
+</div>
+</div></div>
+<p>The compilation process of the hybrid <strong>MPI-OpenACC</strong> and <strong>MPI-OpenMP</strong> applications is described below</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-KipNUEktT3BlbkFDQyoq" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-KipNUEktT3BlbkFDQyoq" name="KipNUEktT3BlbkFDQyoq" role="tab" tabindex="0"><strong>MPI-OpenACC</strong></button><button aria-controls="panel-3-KipNUEktT3Blbk1QKio=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-KipNUEktT3Blbk1QKio=" name="KipNUEktT3Blbk1QKio=" role="tab" tabindex="-1"><strong>MPI-OpenMP</strong></button></div><div aria-labelledby="tab-3-KipNUEktT3BlbkFDQyoq" class="sphinx-tabs-panel group-tab" id="panel-3-KipNUEktT3BlbkFDQyoq" name="KipNUEktT3BlbkFDQyoq" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mpif90<span class="w"> </span>-fast<span class="w"> </span>-acc<span class="w"> </span>-Minfo<span class="o">=</span>accel<span class="w"> </span>-o<span class="w"> </span>laplace.mpiacc<span class="w"> </span>laplace_mpiacc.f90
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-3-KipNUEktT3Blbk1QKio=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-3-KipNUEktT3Blbk1QKio=" name="KipNUEktT3Blbk1QKio=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mpifort<span class="w"> </span>-mp<span class="o">=</span>gpu<span class="w"> </span>-Minfo<span class="o">=</span>mp<span class="w"> </span>-o<span class="w"> </span>laplace.mpiomp<span class="w"> </span>laplace_mpiomp.f90
+</pre></div>
+</div>
+</div></div>
+<p>Where the flag <code class="docutils literal notranslate"><span class="pre">-mp=gpu</span></code> enables <strong>OpenMP</strong> targeting GPU. The option <code class="docutils literal notranslate"><span class="pre">-Minfo=mp</span></code> provides compiler diagnostic of <strong>OpenMP</strong>. It is also optional to specify the compute capability by adding the flag <code class="docutils literal notranslate"><span class="pre">-gpu=cc60</span></code> for NVIDIA P100 GPU
+(<a class="reference external" href="https://documentation.sigma2.no/hpc_machines/saga.html">Saga</a>) and <code class="docutils literal notranslate"><span class="pre">-gpu=cc80</span></code> for A100 GPU
+(<a class="reference external" href="https://documentation.sigma2.no/hpc_machines/betzy.html">Betzy</a>).</p>
+<p>One can check if the OpenMPI library is built with the GPU-aware support by running the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ompi_info<span class="w"> </span>--parsable<span class="w"> </span>--all<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>mpi_built_with_cuda_support:value
+</pre></div>
+</div>
+<p>The output of the command is either <strong>value:true</strong> or <strong>value:false</strong> as expressed below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mca:mpi:base:param:mpi_built_with_cuda_support:value:true</span>
+<span class="go">or</span>
+<span class="go">mca:mpi:base:param:mpi_built_with_cuda_support:value:false</span>
+</pre></div>
+</div>
+<p>The output message containing <strong>value:true</strong> means that the NVIDIA GPU-aware support in OpenMPI is enabled by default.</p>
+<p>Here is an example of a batch script to launch a hybrid application on Saga and Betzy clusters.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>SBATCH<span class="w"> </span>--job-name<span class="o">=</span>lap-mpiacc_betz
+<span class="gp">#</span>SBATCH<span class="w"> </span>--account<span class="o">=</span>nnxxxxx
+<span class="gp">#</span>SBATCH<span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:01:00
+<span class="gp">#</span>SBATCH<span class="w"> </span>--qos<span class="o">=</span>devel
+<span class="gp">#</span>SBATCH<span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span>--gpus<span class="o">=</span><span class="m">8</span>
+<span class="gp">#</span>SBATCH<span class="w"> </span>--nodes<span class="o">=</span><span class="m">2</span><span class="w">            </span><span class="c1">#Total nbr of nodes</span>
+<span class="gp">#</span>SBATCH<span class="w"> </span>--ntasks-per-node<span class="o">=</span><span class="m">4</span><span class="w">  </span><span class="c1">#Nbr of tasks per node</span>
+<span class="gp">#</span>SBATCH<span class="w"> </span>--gpus-per-node<span class="o">=</span><span class="m">4</span><span class="w">    </span><span class="c1">#Nbr of GPUs per node</span>
+<span class="gp">#</span>SBATCH<span class="w"> </span>--mem-per-cpu<span class="o">=</span>2G<span class="w">     </span><span class="c1">#Host memory per CPU core</span>
+
+<span class="go">srun ./laplace.mpiacc</span>
+</pre></div>
+</div>
+</section>
+<section id="on-the-supercomputer-lumi-eap">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">On the supercomputer LUMI-EAP</a><a class="headerlink" href="#on-the-supercomputer-lumi-eap" title="Link to this heading"></a></h3>
+<p>We list below the modules to be loaded before compiling the application. We refer readers to the original documentation about the <a class="reference external" href="https://www.lumi-supercomputer.eu/">supercomputer LUMI</a> for further details about modules and the compilation process:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">module load craype-accel-amd-gfx908</span>
+<span class="go">module load cray-mpich</span>
+<span class="go">module load LUMI/21.12  partition/EAP</span>
+<span class="go">module load rocm/4.5.2</span>
+</pre></div>
+</div>
+<p>Here we compile the hybrid <strong>MPI-OpenACC</strong> and <strong>MPI-OpenMP</strong> applications on LUMI-EAP using a Cray compiler of the wrapper <code class="docutils literal notranslate"><span class="pre">ftn</span></code> as described in the following:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-KipNUEktT3BlbkFDQyoq" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-KipNUEktT3BlbkFDQyoq" name="KipNUEktT3BlbkFDQyoq" role="tab" tabindex="0"><strong>MPI-OpenACC</strong></button><button aria-controls="panel-4-KipNUEktT3Blbk1QKio=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-KipNUEktT3Blbk1QKio=" name="KipNUEktT3Blbk1QKio=" role="tab" tabindex="-1"><strong>MPI-OpenMP</strong></button></div><div aria-labelledby="tab-4-KipNUEktT3BlbkFDQyoq" class="sphinx-tabs-panel group-tab" id="panel-4-KipNUEktT3BlbkFDQyoq" name="KipNUEktT3BlbkFDQyoq" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ftn<span class="w"> </span>-hacc<span class="w"> </span>-o<span class="w"> </span>laplace.mpiacc<span class="w"> </span>laplace_mpiacc.f90
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-4-KipNUEktT3Blbk1QKio=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-4-KipNUEktT3Blbk1QKio=" name="KipNUEktT3Blbk1QKio=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ftn<span class="w"> </span>-homp<span class="w"> </span>-o<span class="w"> </span>laplace.mpiomp<span class="w"> </span>laplace_mpiomp.f90
+</pre></div>
+</div>
+</div></div>
+<p>Here, the flags <code class="docutils literal notranslate"><span class="pre">hacc</span></code> and <code class="docutils literal notranslate"><span class="pre">homp</span></code> enable the OpenACC and OpenMP directives in the hybrid <strong>MPI-OpenACC</strong> and <strong>MPI-OpenMP</strong> applications, respectively.</p>
+<p>The following batch script can be used to launch a hybrid application on LUMI-EAP.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>!/bin/bash<span class="w"> </span>-l
+<span class="gp">#</span>SBATCH<span class="w"> </span>--job-name<span class="o">=</span>lap-mpiomp_eap
+<span class="gp">#</span>SBATCH<span class="w"> </span>--account<span class="o">=</span>project_xxxxx
+<span class="gp">#</span>SBATCH<span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:01:00
+<span class="gp">#</span>SBATCH<span class="w"> </span>--partition<span class="o">=</span>eap
+<span class="gp">#</span>SBATCH<span class="w"> </span>--nodes<span class="o">=</span><span class="m">2</span><span class="w">            </span><span class="c1">#Total nbr of nodes</span>
+<span class="gp">#</span>SBATCH<span class="w"> </span>--ntasks-per-node<span class="o">=</span><span class="m">4</span><span class="w">  </span><span class="c1">#Nbr of tasks per node</span>
+<span class="gp">#</span>SBATCH<span class="w"> </span>--gpus<span class="o">=</span><span class="m">8</span><span class="w">             </span><span class="c1">#Total nbr of GPUs</span>
+<span class="gp">#</span>SBATCH<span class="w"> </span>--gpus-per-node<span class="o">=</span><span class="m">4</span><span class="w">    </span><span class="c1">#Nbr of GPUs per node</span>
+
+<span class="gp">#</span><span class="c1">#In the case a GPU-aware MPI is implemented</span>
+<span class="go">export MPICH_GPU_SUPPORT_ENABLED=1</span>
+
+<span class="go">srun ./laplace.mpiomp</span>
+</pre></div>
+</div>
+<p>Note that the GPU-aware support in MPICH is enabled by setting the environment <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">MPICH_GPU_SUPPORT_ENABLED=1</span></code> on Cray before running the hybrid application.</p>
+</section>
+</section>
+</section>
+<section id="performance-analysis-on-lumi-g-eap">
+<span id="id3"></span><h1><a class="toc-backref" href="#id24" role="doc-backlink">Performance analysis on LUMI-G EAP</a><a class="headerlink" href="#performance-analysis-on-lumi-g-eap" title="Link to this heading"></a></h1>
+<p>Our computational tests are performed on the supercomputer <a class="reference external" href="https://docs.lumi-supercomputer.eu/eap/">LUMI-G EAP</a> (Early Access Platform) (4xAMD MI250x GPUs connected by the Infinity Fabric Link, see also the GPU specifications <a class="reference external" href="https://www.amd.com/en/products/server-accelerators/instinct-mi250x">here</a>). We carry out experiments based on the hybrid <strong>MPI-OpenACC</strong> and <strong>MPI-OpenMP</strong> APIs in the aim of illustrating the benefit of implementing the GPU-aware MPI library.</p>
+<p>We first begin with the effect of the GPU-aware MPI using the <strong>MPI-OpenACC</strong> API. This is shown in <strong>Fig. 3</strong>, in which the computations are performed on 4 Slurm GPUs. For reference, the computations based on a pure MPI is also shown (blue curve). Interesting enough, we can see clearly that the computing time is reduced by a factor of 10 when the GPU-aware support is enabled (black curve) compared to the case of the GPU-non-aware MPI (green curve). Moreover, the comparison with a pure MPI API shows a further increase of the performance by a factor of 30.</p>
+<div align="center">
+<p><img alt="Fig3" src="../../_images/Fig3.png" /></p>
+<p><strong>Fig. 3.</strong> <em>Comparison of the performance of the computations as a function of the number of points nx along the x-axis. Note that we use a unifore 2D-grid. The computations are carried out on a single node in which a total of 4 Slurm GPUs are allocated (i.e. 2xAMD MI250x GPUs on the <a class="reference external" href="https://docs.lumi-supercomputer.eu/eap/">superocmputer LUMI</a>) using: (Black curve) <strong>MPI-OpenACC</strong> with the GPU-aware MPI support; (green curve) <strong>MPI-OpenACC</strong> with the GPU-non-aware MPI; (bleu curve) <strong>MPI-alone</strong> with 4 CPU-cores. The square symbols are used for guidance.</em></p>
+</div>
+<p>For completeness, we present in the table 1 a comparison of the performance between the hybrid <strong>MPI-OpenACC</strong> and <strong>MPI-OpenMP</strong> APIs. The performance is evaluated for both the GPU-aware MPI and the GPU-non-aware MPI and is shown for different sizes of the spatial grid. The comparison is summarised in the table below and shows a roughly similar performance between these two hybrid models. These results indicate, on one hand, the benefit of implementing the GPU-awareness approach independently on the GPU-directive model; and on the other hand, they highlight the similarity in the performance of the <em>MPI-OpenACC</em> and <strong>MPI-OpenMP</strong> APIs.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hybrid models\2D-grid (nx,ny)</p></th>
+<th class="head"><p>8192x8192</p></th>
+<th class="head"><p>16384x16384</p></th>
+<th class="head"><p>20000x20000</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>MPI-OpenACC</strong> with GPU-aware MPI</p></td>
+<td><p>1.46</p></td>
+<td><p>5.11</p></td>
+<td><p>7.92</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>MPI-OpenMP</strong> with GPU-aware MPI</p></td>
+<td><p>1.35</p></td>
+<td><p>4.72</p></td>
+<td><p>7.09</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>MPI-OpenACC</strong> with GPU-Non-aware MPI</p></td>
+<td><p>14.90</p></td>
+<td><p>58.03</p></td>
+<td><p>86.25</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>MPI-OpenMP</strong> with GPU-Non-aware MPI</p></td>
+<td><p>14.84</p></td>
+<td><p>61.21</p></td>
+<td><p>85.58</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 1</strong> <em>Comparison of the performance between the hybrid <strong>MPI-OpenACC</strong> and <strong>MPI-OpenMP</strong> APIs at three different grids increased in size. The comparison is performed for both GPU-aware MPI and GPU-non-aware MPI.</em></p>
+</section>
+<section id="conclusion">
+<span id="gpuaware-conclusion"></span><h1><a class="toc-backref" href="#id25" role="doc-backlink">Conclusion</a><a class="headerlink" href="#conclusion" title="Link to this heading"></a></h1>
+<p>We have presented an overview on GPU-hybrid programming by integrating GPU-directive models (i.e. OpenACC and OpenMP APIs) with the MPI library. This was implemented via an application based on sloving the 2D-Laplace equation. The approach adopted here allows, in general, to utilise multiple GPU-devices not only within a single GPU node but it extends to multiple GPU partitions. It thus allows intra-process communications (i.e. GPU-to-CPU) and inter-process communications (i.e. GPU-to-GPU through GPU interconnects). In particular, we have addressed both GPU-non-aware MPI and GPU-aware MPI library approaches. The latter approach has the advantage of enabling a direct interaction between an MPI library and a GPU-device memory. In other words, it permits performing MPI operations between a pair of GPUs, thus reducing the computing time caused by the data locality. We have carried experiments on the <a class="reference external" href="https://docs.lumi-supercomputer.eu/eap/">supercomputer LUMI-G Early Access Platform</a> and have observed an increase of the performance by a factor of 10 when implementing the GPU-aware MPI scheme and by almost a factor of 30 when it is compared to the case with MPI alone.</p>
+</section>
+<section id="source-codes">
+<span id="id4"></span><h1><a class="toc-backref" href="#id26" role="doc-backlink">Source codes</a><a class="headerlink" href="#source-codes" title="Link to this heading"></a></h1>
+<p>We provide here the source codes discussed in this tutorial. The codes can be directly downloaded.</p>
+<p><strong>Pure MPI</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/f5bd1278cd15a4be009201cf2031a2a3/laplace_mpi.f90"><code class="xref download docutils literal notranslate"><span class="pre">laplace_mpi.f90</span></code></a></p>
+<p><strong>Hybrid MPI-OpenACC</strong> without the GPU-aware MPI support</p>
+<p><a class="reference download internal" download="" href="../../_downloads/044d6d549de4442a8175e9e2ef82633e/laplace_mpiacc_noaware.f90"><code class="xref download docutils literal notranslate"><span class="pre">laplace_mpiacc_noaware.f90</span></code></a></p>
+<p><strong>Hybrid MPI-OpenACC</strong> with the GPU-aware MPI support</p>
+<p><a class="reference download internal" download="" href="../../_downloads/fb81b0e087aaf4bc9ab7f3fd64e490e7/laplace_mpiacc_aware.f90"><code class="xref download docutils literal notranslate"><span class="pre">laplace_mpiacc_aware.f90</span></code></a></p>
+<p><strong>Hybrid MPI-OpenMP</strong> without the GPU-aware MPI support</p>
+<p><a class="reference download internal" download="" href="../../_downloads/6b32b7da967dbb465945db1f758fc5a2/laplace_mpiomp_noaware.f90"><code class="xref download docutils literal notranslate"><span class="pre">laplace_mpiomp_noaware.f90</span></code></a></p>
+<p><strong>Hybrid MPI-OpenMP</strong> with the GPU-aware MPI support</p>
+<p><a class="reference download internal" download="" href="../../_downloads/2845b8c35f8be3ab482009cf26ba139f/laplace_mpiomp_aware.f90"><code class="xref download docutils literal notranslate"><span class="pre">laplace_mpiomp_aware.f90</span></code></a></p>
+<p><strong>OpenACC</strong> offloading</p>
+<p><a class="reference download internal" download="" href="../../_downloads/d0f67ca3daceeb6ffa22f97b20008c42/laplace_acc.f90"><code class="xref download docutils literal notranslate"><span class="pre">laplace_acc.f90</span></code></a></p>
+<p><strong>OpenMP</strong> offloading</p>
+<p><a class="reference download internal" download="" href="../../_downloads/dd6c0903cee197775467fce463185d54/laplace_omp.f90"><code class="xref download docutils literal notranslate"><span class="pre">laplace_omp.f90</span></code></a></p>
+</section>
+<section id="compilation-process">
+<span id="id5"></span><h1><a class="toc-backref" href="#id27" role="doc-backlink">Compilation process</a><a class="headerlink" href="#compilation-process" title="Link to this heading"></a></h1>
+<p>In this section we summarise the compilation process of the source code <strong>laplace_mpigpu.f90</strong>. In this code, we use the preprocessor directive <code class="docutils literal notranslate"><span class="pre">#ifdef</span></code> (or also <code class="docutils literal notranslate"><span class="pre">#if</span> <span class="pre">defined</span></code>) to enable compiling the same code ported to multiple programming models. Here different options can be used to specify preprocessing of source files and that according to the used HPC system, as described below:</p>
+<section id="id6">
+<h2>On the cluster <a class="reference external" href="https://documentation.sigma2.no/hpc_machines/betzy.html">Betzy</a><a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-KipNUEktT3BlbkFDQyoq" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-5-KipNUEktT3BlbkFDQyoq" name="KipNUEktT3BlbkFDQyoq" role="tab" tabindex="0"><strong>MPI-OpenACC</strong></button><button aria-controls="panel-5-KipNUEktT3Blbk1QKio=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-5-KipNUEktT3Blbk1QKio=" name="KipNUEktT3Blbk1QKio=" role="tab" tabindex="-1"><strong>MPI-OpenMP</strong></button></div><div aria-labelledby="tab-5-KipNUEktT3BlbkFDQyoq" class="sphinx-tabs-panel group-tab" id="panel-5-KipNUEktT3BlbkFDQyoq" name="KipNUEktT3BlbkFDQyoq" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mpif90<span class="w"> </span>-cpp<span class="w"> </span>-D_OPENACC<span class="w"> </span>-fast<span class="w"> </span>-acc<span class="w"> </span>-Minfo<span class="o">=</span>accel<span class="w"> </span>-o<span class="w"> </span>laplace.mpiacc<span class="w"> </span>laplace_mpigpu.f90
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-5-KipNUEktT3Blbk1QKio=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-5-KipNUEktT3Blbk1QKio=" name="KipNUEktT3Blbk1QKio=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mpifort<span class="w"> </span>-cpp<span class="w"> </span>-D_OPENMP<span class="w"> </span>-mp<span class="o">=</span>gpu<span class="w"> </span>-Minfo<span class="o">=</span>mp<span class="w"> </span>-o<span class="w"> </span>laplace.mpiomp<span class="w"> </span>laplace_mpigpu.f90
+</pre></div>
+</div>
+</div></div>
+<p>Where we use <code class="docutils literal notranslate"><span class="pre">-cpp</span></code> to manually invoke a preprocessor macro <code class="docutils literal notranslate"><span class="pre">_OPENACC</span></code> or <code class="docutils literal notranslate"><span class="pre">_OPENMP</span></code>.</p>
+</section>
+<section id="id7">
+<h2>On the supercomputer <a class="reference external" href="https://docs.lumi-supercomputer.eu/eap/">LUMI-EAP</a><a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-KipNUEktT3BlbkFDQyoq" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-6-KipNUEktT3BlbkFDQyoq" name="KipNUEktT3BlbkFDQyoq" role="tab" tabindex="0"><strong>MPI-OpenACC</strong></button><button aria-controls="panel-6-KipNUEktT3Blbk1QKio=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-6-KipNUEktT3Blbk1QKio=" name="KipNUEktT3Blbk1QKio=" role="tab" tabindex="-1"><strong>MPI-OpenMP</strong></button></div><div aria-labelledby="tab-6-KipNUEktT3BlbkFDQyoq" class="sphinx-tabs-panel group-tab" id="panel-6-KipNUEktT3BlbkFDQyoq" name="KipNUEktT3BlbkFDQyoq" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ftn<span class="w"> </span>-eZ<span class="w"> </span>-D_OPENACC<span class="w"> </span>-hacc<span class="w"> </span>-o<span class="w"> </span>laplace.mpiacc<span class="w"> </span>laplace_mpigpu.f90
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-6-KipNUEktT3Blbk1QKio=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-6-KipNUEktT3Blbk1QKio=" name="KipNUEktT3Blbk1QKio=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ftn<span class="w"> </span>-eZ<span class="w"> </span>-D_OPENMP<span class="w"> </span>-homp<span class="w"> </span>-o<span class="w"> </span>laplace.mpiomp<span class="w"> </span>laplace_mpigpu.f90
+</pre></div>
+</div>
+</div></div>
+<p>As described in the previous section, we use the conditional compilation with the macros <code class="docutils literal notranslate"><span class="pre">_OPENACC</span></code> and <code class="docutils literal notranslate"><span class="pre">_OPENMP</span></code>. This is enabled in the Cray compiler by specifying the option <code class="docutils literal notranslate"><span class="pre">-eZ</span></code> followed by either <code class="docutils literal notranslate"><span class="pre">-D_OPENACC</span></code> to enable <strong>OpenACC</strong> directives or <code class="docutils literal notranslate"><span class="pre">-D_OPENMP</span></code> to enable <strong>OpenMP</strong> directives.</p>
+</section>
+</section>
+<section id="references">
+<span id="id8"></span><h1><a class="toc-backref" href="#id30" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading"></a></h1>
+<p>Here are some references, in which the tutorial is based on:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.mpi-forum.org/docs/mpi-4.0/mpi40-report.pdf">MPI documentation</a></p></li>
+<li><p><a class="reference external" href="https://www.akkadia.org/drepper/cpumemory.pdf">About Memory: DMA,…</a></p></li>
+<li><p><a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/2642769.2642773">GPU-aware MPI_Allreduce</a></p></li>
+<li><p><a class="reference external" href="https://www.oreilly.com/library/view/openacc-for-programmers/9780134694306/">OpenACC for Programmers: Concepts and Strategies</a></p></li>
+<li><p><a class="reference external" href="https://www.openmp.org/wp-content/uploads/OpenMP-API-Specification-5-2.pdf">OpenMP API specification 2021</a></p></li>
+<li><p><a class="reference external" href="https://www.openmp.org/wp-content/uploads/OpenMPRefCard-5-2-web.pdf">OpenMP API reference guide</a></p></li>
+<li><p><a class="reference external" href="https://www.openacc.org/sites/default/files/inline-images/Specification/OpenACC-3.2-final.pdf">OpenACC API specification 2021</a></p></li>
+<li><p><a class="reference external" href="https://www.openacc.org/sites/default/files/inline-files/API%20Guide%202.7.pdf">OpenACC API reference guide</a></p></li>
+<li><p><a class="reference external" href="https://documentation.sigma2.no/code_development/guides/converting_acc2omp/openacc2openmp.html">Tutorials on OpenACC and OpenMP offloading</a></p></li>
+<li><p><a class="reference external" href="https://github.com/HichamAgueny/GPU-course">OpenACC course</a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Key fingerprints of our systems &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Key fingerprints of our systems</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="key-fingerprints-of-our-systems">
+<span id="ssh-fingerprints"></span><h1>Key fingerprints of our systems<a class="headerlink" href="#key-fingerprints-of-our-systems" title="Link to this heading"></a></h1>
+<p>The following overview displays the different keys (depending on which key type
+you use to connect), both as <code class="docutils literal notranslate"><span class="pre">MD5</span></code> and <code class="docutils literal notranslate"><span class="pre">SHA256</span></code>, for all systems.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the fingerprints do not match what is presented to you upon first-time
+login, please <a class="reference internal" href="../getting_help/support_line.html#support-line"><span class="std std-ref">contact us</span></a> immediately.</p>
+</div>
+<section id="fram-sigma2-no">
+<h2>fram.sigma2.no<a class="headerlink" href="#fram-sigma2-no" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>ED25519:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MD5:5f:15:92:e1:22:74:69:68:6c:1c:27:f5:a5:b1:76:3f</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHA256:hLb9eJdGcTT2PHoWamc/+06LlF+vgcnyfvFEqh60cT8</span></code></p></li>
+</ul>
+</li>
+<li><p>ECDSA:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MD5:f7:83:b9:99:b4:6e:aa:af:21:d6:ae:de:b2:14:ab:6a</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHA256:Nd1Sqijzb1qx26wjCwThChdKz9iPMhJQ9zgVKcD+P5g</span></code></p></li>
+</ul>
+</li>
+<li><p>RSA:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MD5:05:d0:0e:fa:cb:72:c0:03:cb:8f:d0:b4:dc:09:04:4e</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHA256:Cq5Vt82wQAAhMu4q05L3gmB4QeW1POpNNKgTIP8A2f4</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="saga-sigma2-no">
+<h2>saga.sigma2.no<a class="headerlink" href="#saga-sigma2-no" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>ED25519:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MD5:2b:c2:ce:c0:f1:b8:0a:95:ec:db:b4:f3:fb:ee:e9:70</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHA256:YOkZ1uudXrFmaigdnpZ64z497ZccNhdZe/abFkDXOH8</span></code></p></li>
+</ul>
+</li>
+<li><p>ECDSA:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MD5:13:4e:ae:66:89:0d:24:27:b8:15:87:24:31:ed:32:af</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHA256:qirKlTjO9QSXuCAiuDQeDPqq+jorMFarCW+0qhpaAEA</span></code></p></li>
+</ul>
+</li>
+<li><p>RSA:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MD5:61:e4:49:4b:4e:00:14:2d:9d:b9:ac:99:c2:16:e6:ab</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHA256:mY+Po9LKAlZGzMRHUmq1abrSOohifdN7+5VUmRTW4tE</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="betzy-sigma2-no">
+<h2>betzy.sigma2.no<a class="headerlink" href="#betzy-sigma2-no" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>ED25519:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MD5:de:75:8c:93:40:f6:32:94:b6:bd:47:43:62:a5:1a:58</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHA256:7M0HDP163k9fOUeZq3KtzLdjISE9Kq/gVygCpyrZPDQ</span></code></p></li>
+</ul>
+</li>
+<li><p>ECDSA:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MD5:37:da:0d:cd:fe:66:47:71:3f:08:59:d7:bb:76:ec:cc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHA256:l0adSAGOHM4CNOqxvBNh5Laf+PlDSXQiargVoG/cue4</span></code></p></li>
+</ul>
+</li>
+<li><p>RSA:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MD5:f6:a9:4e:a7:f6:1e:10:5c:01:e7:44:ac:34:4d:4b:b4</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHA256:wSirru+JTpcAZKQe/u6jLRj3kVCccNNUWU2PxzgbebM</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="olivia-sigma2-no">
+<h2>olivia.sigma2.no<a class="headerlink" href="#olivia-sigma2-no" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>ED25519:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MD5:32:65:60:2c:06:15:47:3f:a8:5e:23:e6:78:47:e1:95</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHA256:eYV+k2UiexuyCPeReFTqC8+ez9prO9z3wds/B74riGw</span></code></p></li>
+</ul>
+</li>
+<li><p>ECDSA:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MD5:72:11:c8:88:ac:67:0b:ec:6b:4d:15:ca:30:8e:fc:d2</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHA256:SlKWaL+cDjtBmimUOxb2+10pcn0l0IxWBZP7HmUZ0/M</span></code></p></li>
+</ul>
+</li>
+<li><p>RSA:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MD5:c5:ea:14:ac:2c:23:3c:67:35:4f:f2:14:57:f6:9a:a6</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHA256:mSdqJrmd3MMPOL3L9GDxAs8w3avQREhS3r7Hf9+Df/I</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="login-nird-sigma2-no">
+<h2>login.nird.sigma2.no<a class="headerlink" href="#login-nird-sigma2-no" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>ED25519:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MD5:c4:23:90:52:eb:d9:eb:e5:41:0d:ef:4d:ac:78:2c:db</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHA256:A8gq7aiQHoK4QzRi1hMpLNbo40ZTZxlGfDCpDWZy/ZQ</span></code></p></li>
+</ul>
+</li>
+<li><p>ECDSA:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MD5:78:ea:cb:f7:f0:6b:02:55:17:0c:b1:5f:de:2a:3e:78</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHA256:lawnWA5fHTX64XB8OU0WUrQu/dCtFgCfvMC+i/zBCrI</span></code></p></li>
+</ul>
+</li>
+<li><p>RSA:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MD5:54:c9:b7:71:22:9e:bd:e9:ad:5c:18:fe:7b:41:e7:01</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHA256:xpJZ+XiY4oy3df/R5/LN8i30Z5/EiYo6YSCUQdKkQ/U</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="display-all-fingerprints-for-a-certain-server">
+<h2>Display all fingerprints for a certain server<a class="headerlink" href="#display-all-fingerprints-for-a-certain-server" title="Link to this heading"></a></h2>
+<p>To display all fingerprints for a certain server, you can use the following
+command on your local machine (Linux or macOS):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh-keyscan<span class="w"> </span>login.nird.sigma2.no<span class="w"> </span><span class="p">|</span><span class="w"> </span>ssh-keygen<span class="w"> </span>-l<span class="w"> </span>-f<span class="w"> </span>-<span class="w"> </span>-E<span class="w"> </span>md5
+<span class="gp">$ </span>ssh-keyscan<span class="w"> </span>login.nird.sigma2.no<span class="w"> </span><span class="p">|</span><span class="w"> </span>ssh-keygen<span class="w"> </span>-l<span class="w"> </span>-f<span class="w"> </span>-<span class="w"> </span>-E<span class="w"> </span>sha256
+</pre></div>
+</div>
+</section>
+</section>
+<section id="common-ssh-errors-when-keys-have-changed">
+<h1>Common SSH errors when keys have changed<a class="headerlink" href="#common-ssh-errors-when-keys-have-changed" title="Link to this heading"></a></h1>
+<p>Please, take a look at this <a class="reference internal" href="ssh.html#ssh-errors"><span class="std std-ref">page</span></a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

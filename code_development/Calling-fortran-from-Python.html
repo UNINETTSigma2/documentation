@@ -1,0 +1,784 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calling fortran routines from Python &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Creating a Singularity Overlay with Custom Python Packages on LUMI-G" href="lumi_g_overlay.html" />
+    <link rel="prev" title="Performance Analysis and Tuning" href="performance.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Code development and tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="overview.html#id1">Code development</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="building.html">Building scientific software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building_gpu.html">Building GPU software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="betzy.html">Software environment on Betzy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilers.html">Compilers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debugging.html">Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="performance.html">Performance Analysis and Tuning</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Calling fortran routines from Python</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-numpy-interface">Using the numpy interface</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lumi_g_overlay.html">Creating a Singularity Overlay with Custom Python Packages on LUMI-G</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#tutorials">Tutorials</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="overview.html">Code development and tutorials</a></li>
+      <li class="breadcrumb-item active">Calling fortran routines from Python</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="calling-fortran-routines-from-python">
+<h1>Calling fortran routines from Python<a class="headerlink" href="#calling-fortran-routines-from-python" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>While Python an effective language for development it is not very fast
+at executing code. There are several tricks available to get high
+numerical performance of which calling fortran routines is one.</p>
+<p>While libraries functions in both numpy and scipy perform nicely in
+many cases, one often need to write routines for which no library
+exist. Either writing from scratch or use fortran routines from
+co-workers or other sources. In any case it’s a good way of getting
+high performance for time consuming part of the run.</p>
+<p>Below is covered usage of :</p>
+<ul class="simple">
+<li><p>Plain fortran with GNU fortran (the default)</p></li>
+<li><p>Fortran with calls to math library (MKL)</p></li>
+<li><p>The Intel fortran compiler to compile your fortran source code</p></li>
+<li><p>Optimising performance for fortran code, compiler flags.</p></li>
+<li><p>Intel fortran and MKL</p></li>
+<li><p>Intel, fortran and multithreaded MKL</p></li>
+<li><p>Python with multithreaded OpenMP fortran routines</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A short disclaimer With regards to matrix matrix multiplication the library
+in numpy is comparable in performance to the Intel MKL.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Another disclaimer is that this have been tested on Saga. There might some
+minor issues on Betzy with AMD processors, not having 512 bits avx.</p>
+</div>
+</section>
+<section id="using-the-numpy-interface">
+<h2>Using the numpy interface<a class="headerlink" href="#using-the-numpy-interface" title="Link to this heading"></a></h2>
+<p>The package <a class="reference external" href="https://numpy.org/">numpy</a> contains tools to facilitate
+calling fortran routines directly from Python. The utility f2py3 can
+be used or more indirectly by launching Python with a module and
+processing the fortran source code. In both cases the fortran code
+containing definitions of subroutines will be compiled using a fortran
+compiler into object files which subsequently are linked into a
+single shared object library file (an .so file).</p>
+<p>A nice introduction by NTNU is
+<a class="reference external" href="https://www.numfys.net/howto/F2PY/">available</a>. It cover some basics
+and should be read as an introduction. Issues with arrays arguments
+and assumed shapes are explained.</p>
+<p>Modern fortran uses «magic» constants (they can any number, but often
+they are  equal to the number of bytes, but not always, don’t rely on this)
+to set the attributes like size or range of variables. Normally specified in
+the number of bits for a given variable. This can be done using self
+specified ranges with the help of the <code class="docutils literal notranslate"><span class="pre">kind</span></code> function.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">foo</span>
+<span class="w">	</span><span class="k">implicit none</span>
+<span class="k">	</span><span class="n">int32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_int_kind</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="w">	</span><span class="n">int64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_int_kind</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="w">	</span><span class="n">real32</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_real_kind</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="w">	</span><span class="n">real64</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_real_kind</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">307</span><span class="p">)</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">int</span>
+<span class="nb">	</span><span class="kt">integer</span><span class="p">(</span><span class="n">int64</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">longint</span>
+</pre></div>
+</div>
+<p>or a simpler solution is to use a standard fortran module:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">foo</span>
+<span class="w">	</span><span class="k">use </span><span class="n">iso_fortran_env</span>
+<span class="w">	</span><span class="k">implicit none</span>
+<span class="k">	</span>
+<span class="k">	</span><span class="kt">real</span><span class="p">(</span><span class="n">real32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">float</span>
+<span class="nb">	</span><span class="kt">real</span><span class="p">(</span><span class="n">real64</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">longfloat</span>
+</pre></div>
+</div>
+<p>While the first one is more pedagogic, the second one is simpler and
+<a class="reference external" href="https://fortranwiki.org/fortran/show/iso_fortran_env">iso_fortran_env</a>
+contain a lot more information.</p>
+<p>Python support both 32 and 64 bit integers and floats. However, the mapping
+between fortran specification and Python/Numpy it not set by default.
+In order to map from fortran standard naming to C naming map need to be
+provided. The map file need to reside in the working directory and must
+have the name <code class="docutils literal notranslate"><span class="pre">.f2py_f2cmap</span></code>. An example mapping fortran syntax to C syntax
+for simple integers and floats can look like :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">dict</span><span class="p">(</span><span class="n">real</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">real64</span><span class="o">=</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="n">real32</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">),</span>
+	 <span class="nb">complex</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">real32</span><span class="o">=</span><span class="s1">&#39;complex_float&#39;</span><span class="p">,</span> <span class="n">real64</span><span class="o">=</span><span class="s1">&#39;complex_double&#39;</span><span class="p">),</span>
+     <span class="n">integer</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">int32</span><span class="o">=</span><span class="s1">&#39;int&#39;</span><span class="p">,</span> <span class="n">int64</span><span class="o">=</span><span class="s1">&#39;long&#39;</span><span class="p">)</span>
+	 <span class="p">)</span>
+</pre></div>
+</div>
+<p>This helps the f2py3 to map the fortran data types into the
+corresponding C data types. Alternative is to use <a class="reference external" href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fC_005fBINDING.html#ISO_005fC_005fBINDING">C mapping directly</a>.</p>
+<p>For complex variables the same logic applies, the size is measured in bits to fit
+two numbers (real and imaginary parts) occupying 64 bits each, hence 128 bits.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and corresponding fortran code, there each number is specified as 64 bits each:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">complex</span><span class="p">(</span><span class="n">real64</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span>
+<span class="kt">complex</span><span class="p">(</span><span class="n">real64</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="kd">::</span><span class="w"> </span><span class="n">y</span>
+</pre></div>
+</div>
+<p>The importance of keeping control over data types and their ranges cannot
+be stressed more than pointing to <a class="reference external" href="https://en.wikipedia.org/wiki/Ariane_flight_V88">Ariane-5 failure</a> or even worse, killing people, the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Therac-25">Therac-25</a> incident.</p>
+<section id="compiling-fortran-code">
+<h3>compiling fortran code<a class="headerlink" href="#compiling-fortran-code" title="Link to this heading"></a></h3>
+<p>To start using Python with fortran code a module need to be loaded,
+<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span>&#160; <span class="pre">Python/3.9.6-GCCcore-11.2.0</span></code></p>
+<p>The command line to generate the Python importable module can be one of the
+following, with the second could be used if f2py3 is not available.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f2py3</span> <span class="pre">-c</span> <span class="pre">pi.f90</span> <span class="pre">-m</span> <span class="pre">pi</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">numpy.f2py</span> <span class="pre">-c</span> <span class="pre">pi.f90</span> <span class="pre">-m</span> <span class="pre">pi</span></code>
+In both cases a module will be generated which could be imported as a
+normal Python module. The <code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">pi</span></code> is the given name for the module, here it’s
+identical to the name of the subroutine, but don’t need to be.</p></li>
+</ul>
+<p>A simple fortran routine to calculate Pi :</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">pi</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="w">  </span><span class="k">use </span><span class="n">iso_fortran_env</span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="k">  </span><span class="kt">real</span><span class="p">(</span><span class="n">real64</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">(</span><span class="n">int64</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">(</span><span class="n">int64</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">j</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">real64</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="nb">sum</span>
+<span class="nb">  </span>
+<span class="nb">  sum</span><span class="o">=</span><span class="mf">0.0_real64</span><span class="w"> </span><span class="c">! set accumulating vars to 0.</span>
+<span class="w">  </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0_real64</span><span class="o">/</span><span class="n">n</span>
+<span class="w">  </span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">n</span>
+<span class="w">      </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mf">0.5_real64</span><span class="p">)</span>
+<span class="w">      </span><span class="nb">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sum</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">4.0_real64</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0_real64</span><span class="o">+</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+<span class="w">   </span><span class="k">end do</span>
+<span class="k">   </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="o">*</span><span class="nb">sum</span>
+<span class="nb">   </span><span class="k">return</span>
+<span class="k"> end subroutine </span><span class="n">pi</span>
+</pre></div>
+</div>
+<p>Be aware that intention of parameters is important. Also that variables are
+not initiated during repeated calls, hence set accumulating variables to zero
+in the body, not during declaration . Once the routine is loaded into memory
+the variables reside in memory. There is no magic initialisation for each
+subsequent call (look into the  <a class="reference external" href="https://stackoverflow.com/questions/2893097/fortran-save-statement">save statement</a> in fortran).</p>
+<p>This fortran routine can be called from a Python script like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pi</span>
+
+<span class="n">p</span><span class="o">=</span><span class="n">pi</span><span class="o">.</span><span class="n">pi</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pi calculated &quot;</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>With a result like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Pi</span> <span class="n">calculated</span>  <span class="mf">3.1415927369231227</span>
+</pre></div>
+</div>
+<p>We import the module generated, the name is pi which correspond to the last
+<code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">&lt;name&gt;</span></code> argument, while the function call to <code class="docutils literal notranslate"><span class="pre">pi</span></code> is the same name as
+the fortran routine.</p>
+</section>
+<section id="performance-issues">
+<h3>Performance issues<a class="headerlink" href="#performance-issues" title="Link to this heading"></a></h3>
+<p>While Python is easy to write and has many very nice features and applications,
+numerical performance is not among them.</p>
+<p>It the following examples matrix matrix multiplication is used as an
+example, this is a well known routine making it a good candidate for
+performance comparison.</p>
+<p>The following code is used to illustrate the performance using Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrix multiplication example&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">z</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">x</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="n">y</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">2.2</span><span class="p">)</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">l</span><span class="p">]</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="n">l</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Python code </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="si">:</span><span class="s2">2.4f</span><span class="si">}</span><span class="s2"> secs&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The following fortran code is used for matrix matrix multiplication:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">mxm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="w"> </span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">real64</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_real_kind</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">307</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">int32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_int_kind</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">real64</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="n">b</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">real64</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">c</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">l</span>
+
+<span class="w">  </span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">n</span>
+<span class="w">     </span><span class="k">do </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">n</span>
+<span class="w">        </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">n</span>
+<span class="w">           </span><span class="n">c</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">l</span><span class="p">)</span><span class="o">*</span><span class="n">b</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="w">        </span><span class="k">enddo</span>
+<span class="k">     enddo</span>
+<span class="k">  enddo</span>
+<span class="k">  </span>
+<span class="k">end subroutine </span><span class="n">mxm</span>
+</pre></div>
+</div>
+<p>Comparing Python with fortran using the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f2py3</span> <span class="o">--</span><span class="n">opt</span><span class="o">=</span><span class="s2">&quot;-Ofast -fomit-frame-pointer -march=skylake-avx512&quot;</span>  <span class="o">-</span><span class="n">c</span> <span class="n">mxm</span><span class="o">.</span><span class="n">f90</span> <span class="o">-</span><span class="n">m</span> <span class="n">mxm</span>
+</pre></div>
+</div>
+<p>and running the Python script
+<code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mxm.py</span></code></p>
+<p>The Python script used to call the fortran code is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">2.2</span><span class="p">)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">mxm</span><span class="o">.</span><span class="n">mxm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;f90 mxm </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="si">:</span><span class="s2">2.4f</span><span class="si">}</span><span class="s2"> secs&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The results are staggering, for the matrix matrix multiplication the simple
+fortran implementation perform over 2000 times faster than the fortran code.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Language</p></th>
+<th class="head"><p>Run time in seconds</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Python</p></td>
+<td><p>757.2706</p></td>
+</tr>
+<tr class="row-odd"><td><p>f90</p></td>
+<td><p>0.3099</p></td>
+</tr>
+</tbody>
+</table>
+<p>This expected as the compiled fortran code is quite efficient while Python
+is interpreted.</p>
+</section>
+<section id="using-libraries-mkl">
+<h3>Using libraries, MKL<a class="headerlink" href="#using-libraries-mkl" title="Link to this heading"></a></h3>
+<p>The Intel Math Kernel Library is assumed to be well known for its
+performance.  It contains routines that, in most cases, exhibit very
+high performance. The routines  are also for the most part threaded to
+take advantage of multiple cores.</p>
+<p>In addition to the module already loaded
+<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span>&#160; <span class="pre">Python/3.9.6-GCCcore-11.2.0</span></code>
+one more module is needed to use Intel MKL:
+<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">imkl/2022.2.1</span></code>
+(This module set many environment variables, we use <code class="docutils literal notranslate"><span class="pre">$MKLROOT</span></code> to
+set the correct path for MKL library files.)</p>
+<p>As f2py3 is a wrapper some extra information is needed to link with
+the MKL libraries. The simplest is to use static linking:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>f2py3<span class="w"> </span>--opt<span class="o">=</span><span class="s2">&quot;-Ofast -fomit-frame-pointer -march=skylake-avx512&quot;</span><span class="se">\</span>
+<span class="w"> </span><span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>/lib/intel64/libmkl_gf_lp64.a<span class="se">\</span>
+<span class="w"> </span><span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>/lib/intel64/libmkl_sequential.a<span class="se">\</span>
+<span class="w"> </span><span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>/lib/intel64/libmkl_core.a<span class="se">\</span>
+<span class="w"> </span>-c<span class="w"> </span>mxm.f90<span class="w"> </span>-m<span class="w"> </span>mxm<span class="w"> </span>
+</pre></div>
+</div>
+<p>The above commands link in the <code class="docutils literal notranslate"><span class="pre">dgemm</span></code> routine from MKL.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">mlib</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="w"> </span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">real32</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_real_kind</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">real64</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_real_kind</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">307</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">int32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_int_kind</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">int64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_int_kind</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">real64</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="n">b</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">real64</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">c</span><span class="w">  </span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">real64</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="mf">1.0_real64</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="o">=</span><span class="mf">1.0_real64</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="k">call </span><span class="n">dgemm</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+
+<span class="k">end subroutine </span><span class="n">mlib</span>
+</pre></div>
+</div>
+<p>and a Python script to call it :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">2.2</span><span class="p">)</span>
+<span class="n">c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float64</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">mxm</span><span class="o">.</span><span class="n">mlib</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mxm MKL lib </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="si">:</span><span class="s2">2.4f</span><span class="si">}</span><span class="s2"> secs&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Running the Python script with n=5000 we get the results below.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Routine</p></th>
+<th class="head"><p>Run time in seconds</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Fortran code</p></td>
+<td><p>88.566</p></td>
+</tr>
+<tr class="row-odd"><td><p>MKL library</p></td>
+<td><p>2.90</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="using-different-fortran-compiler-intel">
+<h3>Using different fortran compiler, intel<a class="headerlink" href="#using-different-fortran-compiler-intel" title="Link to this heading"></a></h3>
+<p>While the gfortran used by default generate nice executable code it does not
+always match the intel fortran compiler when it comes to performance.
+It might be beneficial to switch to the intel compiler.</p>
+<p>In order to have Python, Intel compiler and MKL together load the module:
+<code class="docutils literal notranslate"><span class="pre">SciPy-bundle/2022.05-intel-2022a</span></code></p>
+<p>Then we build compile the fortran code,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>f2py3<span class="w">  </span>--fcompiler<span class="o">=</span>intelem<span class="w">  </span>--opt<span class="o">=</span><span class="s2">&quot;-O3 -xcore-avx512&quot;</span><span class="se">\</span>
+<span class="w"> </span>-c<span class="w"> </span>mxm.f90<span class="w"> </span>-m<span class="w"> </span>mxm
+</pre></div>
+</div>
+<p>Running the same Python script with n=5000 we arrive at the following
+run times:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Compiler/library</p></th>
+<th class="head"><p>Run times seconds</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GNU fortran</p></td>
+<td><p>88.566</p></td>
+</tr>
+<tr class="row-odd"><td><p>Intel ifort</p></td>
+<td><p>9.5695</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Intel compiler is known for its performance when compiling the
+matrix matrix multiplication.</p>
+<p>We can also use the MKL library on conjunction with the Intel
+compiler, but it’s a bit more work. First static linking:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>f2py3<span class="w">  </span>--fcompiler<span class="o">=</span>intelem<span class="w"> </span>--opt<span class="o">=</span><span class="s2">&quot;-O3 -xcore-avx512&quot;</span><span class="se">\</span>
+<span class="w"> </span><span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>/lib/intel64/libmkl_intel_lp64.a<span class="se">\</span>
+<span class="w"> </span><span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>/lib/intel64/libmkl_sequential.a<span class="se">\</span>
+<span class="w"> </span><span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>/lib/intel64/libmkl_core.a<span class="se">\</span>
+<span class="w"> </span>-c<span class="w"> </span>mxm.f90<span class="w"> </span>-m<span class="w"> </span>mxm
+</pre></div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Compiler/library</p></th>
+<th class="head"><p>Run times seconds</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GNU fortran</p></td>
+<td><p>88.566</p></td>
+</tr>
+<tr class="row-odd"><td><p>Intel ifort</p></td>
+<td><p>9.5695</p></td>
+</tr>
+<tr class="row-even"><td><p>MKL dgemm</p></td>
+<td><p>2.712</p></td>
+</tr>
+</tbody>
+</table>
+<p>It’s also possible to use dynamic linking,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>f2py3<span class="w">  </span>--fcompiler<span class="o">=</span>intelem<span class="w"> </span>--opt<span class="o">=</span><span class="s2">&quot;-O3 -xcore-avx512&quot;</span><span class="se">\</span>
+<span class="w"> </span>-lmkl_intel_ilp64<span class="w"> </span>-lmkl_sequential<span class="w"> </span>-lmkl_core<span class="w"> </span>-lmkl_avx512<span class="se">\</span>
+<span class="w"> </span>-c<span class="w"> </span>mxm.f90<span class="w"> </span>-m<span class="w"> </span>mxm
+</pre></div>
+</div>
+<p>Then it’s just to launch as before. Performance is comparable as it’s the
+same library.</p>
+<p>Testing for even higher performance using the Intel compiler <code class="docutils literal notranslate"><span class="pre">ifort</span></code>
+we can try more optimising flags (runs with n=10000):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ifort flags</p></th>
+<th class="head"><p>Run time</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Defaults (no flags given)</p></td>
+<td><p>1122  secs.</p></td>
+</tr>
+<tr class="row-odd"><td><p>-O2</p></td>
+<td><p>1110 secs.</p></td>
+</tr>
+<tr class="row-even"><td><p>-O3</p></td>
+<td><p>153 secs.</p></td>
+</tr>
+<tr class="row-odd"><td><p>-O3 -xavx2</p></td>
+<td><p>81.8 secs.</p></td>
+</tr>
+<tr class="row-even"><td><p>-O3 -xcore-avx512</p></td>
+<td><p>72.5 secs.</p></td>
+</tr>
+<tr class="row-odd"><td><p>-O3 -xcore-avx512 -qopt-zmm-usage=high</p></td>
+<td><p>54.1 secs.</p></td>
+</tr>
+<tr class="row-even"><td><p>-Ofast -xcore-avx512 -qopt-zmm-usage=high</p></td>
+<td><p>53.9 secs.</p></td>
+</tr>
+<tr class="row-odd"><td><p>-Ofast -unroll -xcore-avx512 -qopt-zmm-usage=high -heap-arrays -fno-alias</p></td>
+<td><p>53.7 secs.</p></td>
+</tr>
+<tr class="row-even"><td><p>-fast -unroll -xcore-avx512 -qopt-zmm-usage=high</p></td>
+<td><p>53.6 secs.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Selecting the <em>right</em> flags can have dramatic affect on performance. Adding to this what’s
+optimal flag for one routine might not be right for other.</p>
+</section>
+<section id="using-many-cores-with-mkl-library">
+<h3>Using many cores with MKL library<a class="headerlink" href="#using-many-cores-with-mkl-library" title="Link to this heading"></a></h3>
+<p>As the MKL libraries are multithreaded they can be run on multiple cores.</p>
+<p>To achieve this it just to build using multithreaded versions of the library,
+using static linking :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>f2py3<span class="w">  </span>--fcompiler<span class="o">=</span>intelem<span class="w"> </span>--opt<span class="o">=</span><span class="s2">&quot;-O3 -xcore-avx512&quot;</span><span class="se">\</span>
+<span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>/lib/intel64/libmkl_intel_lp64.a<span class="se">\</span>
+<span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>/lib/intel64/libmkl_intel_thread.a<span class="se">\</span>
+<span class="si">${</span><span class="nv">MKLROOT</span><span class="si">}</span>/lib/intel64/libmkl_core.a<span class="se">\</span>
+-c<span class="w"> </span>mxm.f90<span class="w"> </span>-m<span class="w"> </span>mx
+</pre></div>
+</div>
+<p>or dynamic linking:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>f2py3<span class="w">  </span>--fcompiler<span class="o">=</span>intelem<span class="w"> </span>--opt<span class="o">=</span><span class="s2">&quot;-O3 -xcore-avx512&quot;</span><span class="se">\</span>
+<span class="w"> </span>-lmkl_intel_lp64<span class="w"> </span>-lmkl_intel_thread<span class="w"> </span>-lmkl_core<span class="w"> </span>-lmkl_avx512<span class="w"> </span>-liomp5<span class="se">\</span>
+<span class="w"> </span>-c<span class="w"> </span>mxm.f90<span class="w"> </span>-m<span class="w"> </span>mxm
+</pre></div>
+</div>
+<p>The OpenMP <code class="docutils literal notranslate"><span class="pre">OMP_NUM_THREADS</span></code> environment variable can the be used to
+control the number of cores to use.</p>
+<p>This time we run the Python script with a bit larger size, n=10000,
+<code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">OMP_NUM_THREADS=2</span></code> and larger.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Threads</p></th>
+<th class="head"><p>Run times in seconds</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>21.2914</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>12.5923</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>7.0082</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>4.1504</p></td>
+</tr>
+</tbody>
+</table>
+<p>While scaling is not perfect there is a significant speedup by using
+extra cores.</p>
+</section>
+<section id="using-many-cores-with-fortran-with-openmp">
+<h3>Using many cores with fortran with OpenMP<a class="headerlink" href="#using-many-cores-with-fortran-with-openmp" title="Link to this heading"></a></h3>
+<p>It’s possible to call fortran functions with OpenMP directives
+getting speedup using several cores. A nice alternative when dealing with
+real world code for which no library exist.</p>
+<p>Consider the following fortran OpenMP code:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">piomp</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">  </span><span class="k">use </span><span class="n">iso_fortran_env</span><span class="w">	</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">real64</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">(</span><span class="n">int64</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">(</span><span class="n">int64</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">real64</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w">  </span><span class="nb">sum</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">h</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0_real64</span><span class="o">/</span><span class="n">n</span>
+<span class="w">  </span><span class="nb">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_real64</span>
+<span class="c">!$omp parallel do private(i) reduction(+:sum)</span>
+<span class="c">!This OpenMP inform the compiler to generate a multi threaded loop</span>
+<span class="w">  </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">n</span>
+<span class="w">     </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mf">0.5_real64</span><span class="p">)</span>
+<span class="w">     </span><span class="nb">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sum</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">4.0_real64</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0_real64</span><span class="o">+</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+<span class="w">  </span><span class="k">enddo</span>
+<span class="k">  </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="o">*</span><span class="nb">sum</span>
+</pre></div>
+</div>
+<p>Building the module for Python using :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>f2py3<span class="w">  </span>--fcompiler<span class="o">=</span>intelem<span class="w"> </span>--opt<span class="o">=</span><span class="s2">&quot;-qopenmp -O3 -xcore-avx512&quot;</span><span class="se">\</span>
+<span class="w"> </span>-D__OPENMP<span class="w"> </span>-liomp5<span class="w">  </span>-c<span class="w"> </span>pi.f90<span class="w"> </span>-m<span class="w"> </span>pi
+</pre></div>
+</div>
+<p>The openmp library is linked explicitly <code class="docutils literal notranslate"><span class="pre">-liomp5</span></code> (for GNU it’s -lgomp).</p>
+<p>Running using the following Python script :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pi</span>
+
+<span class="n">n</span><span class="o">=</span><span class="mi">50000000000</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">p</span><span class="o">=</span><span class="n">pi</span><span class="o">.</span><span class="n">pi</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pi calculated &quot;</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">,</span><span class="s2">&quot; seconds&quot;</span><span class="p">)</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">p</span><span class="o">=</span><span class="n">pi</span><span class="o">.</span><span class="n">piomp</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pi calculated &quot;</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">,</span><span class="s2">&quot; seconds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Scaling performance is nice:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Cores</p></th>
+<th class="head"><p>Run time in seconds</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>31.26</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>16.28</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>8.528</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>4.217</p></td>
+</tr>
+<tr class="row-even"><td><p>16</p></td>
+<td><p>2.547</p></td>
+</tr>
+<tr class="row-odd"><td><p>32</p></td>
+<td><p>1.900</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="performance.html" class="btn btn-neutral float-left" title="Performance Analysis and Tuning" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lumi_g_overlay.html" class="btn btn-neutral float-right" title="Creating a Singularity Overlay with Custom Python Packages on LUMI-G" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ENCCS SYCL workshop &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ENCCS SYCL workshop</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="enccs-sycl-workshop">
+<h1>ENCCS SYCL workshop<a class="headerlink" href="#enccs-sycl-workshop" title="Link to this heading"></a></h1>
+<p>The EuroCC National Competence Centre Sweden (ENCCS) has prepared course material for an
+introductory workshop on SYCL spanning three half days. The course page can be found
+<a class="reference external" href="https://enccs.github.io/sycl-workshop">here</a>, with the course material publicly available
+<a class="reference external" href="https://github.com/ENCCS/sycl-workshop">here</a>. In the following we will demonstrate how
+to compile and run the example code on Saga.</p>
+<section id="step-1-load-necessary-modules">
+<h2>Step 1: Load necessary modules<a class="headerlink" href="#step-1-load-necessary-modules" title="Link to this heading"></a></h2>
+<p>In order to compile the examples we will need CMake as well as a SYCL implementation that is compatible
+with the Nvidia GPUs that we have available. On Saga we have hipSYCL and CMake installed globally, and
+we will choose a CMake version that is compatible with the GCC toolchain that the hipSYCL module is
+based upon, in this case <code class="docutils literal notranslate"><span class="pre">GCCcore/11.2.0</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~]$ </span>module<span class="w"> </span>load<span class="w"> </span>hipSYCL/0.9.2-GCC-11.2.0-CUDA-11.4.1
+<span class="gp">[me@login-1.SAGA ~]$ </span>module<span class="w"> </span>load<span class="w"> </span>CMake/3.22.1-GCCcore-11.2.0
+</pre></div>
+</div>
+</section>
+<section id="step-2-download-course-material">
+<h2>Step 2: Download course material<a class="headerlink" href="#step-2-download-course-material" title="Link to this heading"></a></h2>
+<p>The course material can be downloaded from Github with the following command</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~]$ </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ENCCS/sycl-workshop.git
+<span class="gp">[me@login-1.SAGA ~]$ </span><span class="nb">cd</span><span class="w"> </span>sycl-workshop
+<span class="gp">[me@login-1.SAGA ~/sycl-workshop]$ </span>ls
+<span class="go">content  LICENSE  LICENSE.code  make.bat  Makefile  README.md  requirements.txt</span>
+</pre></div>
+</div>
+<p>You will here find the lesson material under <code class="docutils literal notranslate"><span class="pre">content/</span></code> in the form of rst files
+(best viewed through the official <a class="reference external" href="https://enccs.github.io/sycl-workshop">web page</a>.
+The code exercises are located under <code class="docutils literal notranslate"><span class="pre">content/code/</span></code>, where you will find separate
+folders for each day of the course, as well as a folder with useful code snippets.</p>
+</section>
+<section id="step-3-configure-with-cmake">
+<h2>Step 3: Configure with CMake<a class="headerlink" href="#step-3-configure-with-cmake" title="Link to this heading"></a></h2>
+<p>When we configure the build we need to tell CMake which SYCL implementation we are
+going to use (hipSYCL) and which target architecture we want to compile for; <code class="docutils literal notranslate"><span class="pre">omp</span></code>
+for CPU targets and <code class="docutils literal notranslate"><span class="pre">cuda:sm_60</span></code> for the Nvidia P100 GPUs we have on Saga (<code class="docutils literal notranslate"><span class="pre">cuda:sm_80</span></code>
+for Betzy’s A100 GPUs). We need to create separate <code class="docutils literal notranslate"><span class="pre">build</span></code> directories for each of the
+examples, here for the very first <code class="docutils literal notranslate"><span class="pre">00_hello</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~/sycl-workshop]$ </span><span class="nb">cd</span><span class="w"> </span>content/code/day-1/00_hello
+<span class="gp">[me@login-1.SAGA ~/sycl-workshop/content/code/day-1/00_hello]$ </span>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DHIPSYCL_TARGETS<span class="o">=</span><span class="s2">&quot;omp;cuda:sm_60&quot;</span>
+<span class="go">-- The CXX compiler identification is GNU 11.2.0</span>
+<span class="go">-- Detecting CXX compiler ABI info</span>
+<span class="go">-- Detecting CXX compiler ABI info - done</span>
+<span class="go">-- Check for working CXX compiler: /cluster/software/GCCcore/11.2.0/bin/c++ - skipped</span>
+<span class="go">-- Detecting CXX compile features</span>
+<span class="go">-- Detecting CXX compile features - done</span>
+<span class="go">-- Looking for C++ include pthread.h</span>
+<span class="go">-- Looking for C++ include pthread.h - found</span>
+<span class="go">-- Performing Test CMAKE_HAVE_LIBC_PTHREAD</span>
+<span class="go">-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed</span>
+<span class="go">-- Looking for pthread_create in pthreads</span>
+<span class="go">-- Looking for pthread_create in pthreads - not found</span>
+<span class="go">-- Looking for pthread_create in pthread</span>
+<span class="go">-- Looking for pthread_create in pthread - found</span>
+<span class="go">-- Found Threads: TRUE  </span>
+<span class="go">-- Configuring done</span>
+<span class="go">-- Generating done</span>
+<span class="go">-- Build files have been written to: $HOME/sycl-workshop/content/code/day-1/00_hello/build</span>
+</pre></div>
+</div>
+<section id="step-4-compile-and-run-exercises">
+<h3>Step 4: Compile and run exercises<a class="headerlink" href="#step-4-compile-and-run-exercises" title="Link to this heading"></a></h3>
+<p>The tutorial is organized such that you are expected to write your solution in the
+<code class="docutils literal notranslate"><span class="pre">&lt;topic&gt;.cpp</span></code> template file of each exercise. Once you have configured a <code class="docutils literal notranslate"><span class="pre">build</span></code>
+directory for a particular exercise, simply run <code class="docutils literal notranslate"><span class="pre">make</span></code> in the <code class="docutils literal notranslate"><span class="pre">build</span></code> directory:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~/sycl-workshop/content/code/day-1/00_hello]$ </span><span class="nb">cd</span><span class="w"> </span>build
+<span class="gp">[me@login-1.SAGA ~/sycl-workshop/content/code/day-1/00_hello/build]$ </span>make
+<span class="go">[ 50%] Building CXX object CMakeFiles/hello.dir/hello.cpp.o</span>
+<span class="go">clang-13: warning: Unknown CUDA version. cuda.h: CUDA_VERSION=11040. Assuming the latest supported version 10.1 [-Wunknown-cuda-version]</span>
+<span class="go">[100%] Linking CXX executable hello</span>
+<span class="go">[100%] Built target hello</span>
+</pre></div>
+</div>
+<p>Please ignore the CUDA version warning form <code class="docutils literal notranslate"><span class="pre">clang-13</span></code>, it does not seem to make a
+difference. This will build an executable with the same name as the exercise (<code class="docutils literal notranslate"><span class="pre">&lt;topic&gt;</span></code>)
+which can be launched with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~/sycl-workshop/content/code/day-1/00_hello/build]$ </span>./hello
+<span class="go">[hipSYCL Warning] backend_loader: Could not load backend plugin: /cluster/software/hipSYCL/0.9.2-GCC-11.2.0-CUDA-11.4.1/bin/../lib/hipSYCL/librt-backend-cuda.so</span>
+<span class="go">[hipSYCL Warning] libcuda.so.1: cannot open shared object file: No such file or directory</span>
+<span class="go">Running on: hipSYCL OpenMP host device</span>
+<span class="go">Hello, world!	I&#39;m sorry, Dave. I&#39;m afraid I can&#39;t do that. - HAL</span>
+</pre></div>
+</div>
+<p>Don’t mind the <code class="docutils literal notranslate"><span class="pre">[hipSYCL</span> <span class="pre">Warning]</span></code>, they appear since we are launching a GPU application
+on the login node, which does not have the appropriate hardware drivers. The code is
+still able to run, though, as we can see from the last two lines of output. This is
+because we have compiled a fallback option that runs on CPU (<code class="docutils literal notranslate"><span class="pre">OpenMP</span> <span class="pre">host</span> <span class="pre">device</span></code>).</p>
+</section>
+</section>
+<section id="step-5-run-exercises-on-gpu-nodes">
+<h2>Step 5: Run exercises on GPU nodes<a class="headerlink" href="#step-5-run-exercises-on-gpu-nodes" title="Link to this heading"></a></h2>
+<p>In order to run the code on accelerators we to be granted GPU resources through Slurm.
+We will here use an interactive session, where we get a login prompt on the GPU node,
+which we can launch our applications</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~]$ </span>salloc<span class="w"> </span>--account<span class="o">=</span>&lt;my-account&gt;<span class="w"> </span>--time<span class="o">=</span><span class="m">1</span>:00:00<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>--gpus<span class="o">=</span><span class="m">1</span><span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span>--mem<span class="o">=</span>1G
+<span class="go">salloc: Pending job allocation 5353133</span>
+<span class="go">salloc: job 5353133 queued and waiting for resources</span>
+<span class="go">salloc: job 5353133 has been allocated resources</span>
+<span class="go">salloc: Granted job allocation 5353133</span>
+<span class="go">salloc: Waiting for resource configuration</span>
+<span class="go">salloc: Nodes c7-2 are ready for job</span>
+<span class="gp">[me@c7-2.SAGA ~]$ </span><span class="nb">cd</span><span class="w"> </span>sycl-workshop/content/code/day-1/00_hello/build
+<span class="gp">[me@c7-2.SAGA ~/sycl-workshop/content/code/day-1/00_hello/build]$ </span>./hello
+<span class="go">Running on: Tesla P100-PCIE-16GB</span>
+<span class="go">Hello, world!	I&#39;m sorry, Dave. I&#39;m afraid I can&#39;t do that. - HAL</span>
+</pre></div>
+</div>
+<p>We see that the <code class="docutils literal notranslate"><span class="pre">[hipSYCL</span> <span class="pre">Warning]</span></code> is gone, since we now have the GPU drivers and
+libraries available. We also see that the application is able to pick up the correct
+hardware, which on Saga is Tesla P100 cards, and the program output is still the same,
+indicating that the code was executed correctly also on the GPU.</p>
+</section>
+<section id="step-6-compile-and-run-solutions">
+<h2>Step 6: Compile and run solutions<a class="headerlink" href="#step-6-compile-and-run-solutions" title="Link to this heading"></a></h2>
+<p>If you get stuck at some point there is also a suggested solution to each of the
+exercises, located in the <code class="docutils literal notranslate"><span class="pre">solution/</span></code> folder within each exercise. There are now two
+ways to build the solution code: either copy the solution file directly to replace
+the exercise template file and compile as before, or create another <code class="docutils literal notranslate"><span class="pre">build</span></code> directory
+under <code class="docutils literal notranslate"><span class="pre">solution/</span></code> following the above steps to configure, build and run.</p>
+</section>
+<section id="step-7-play-with-the-examples">
+<h2>Step 7: Play with the examples!<a class="headerlink" href="#step-7-play-with-the-examples" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

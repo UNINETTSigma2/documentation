@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>First R calculation &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NIRD Data Peak" href="../files_storage/nird/nird_dp.html" />
+    <link rel="prev" title="Open OnDemand" href="ood.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ood.html">Open OnDemand</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">First R calculation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#simple-example-to-get-started">Simple example to get started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#longer-example">Longer example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parallel-job-script-example">Parallel job script example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#which-of-the-many-r-modules-to-load">Which of the many R modules to load?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-r-libraries">Installing R libraries</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">First R calculation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="first-r-calculation">
+<span id="id1"></span><h1><a class="toc-backref" href="#id2" role="doc-backlink">First R calculation</a><a class="headerlink" href="#first-r-calculation" title="Link to this heading"></a></h1>
+<p>Our goal on this page is to get an R calculation to run
+on a compute node, both as serial and parallel calculation.</p>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#first-r-calculation" id="id2">First R calculation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#simple-example-to-get-started" id="id3">Simple example to get started</a></p></li>
+<li><p><a class="reference internal" href="#longer-example" id="id4">Longer example</a></p></li>
+<li><p><a class="reference internal" href="#parallel-job-script-example" id="id5">Parallel job script example</a></p></li>
+<li><p><a class="reference internal" href="#which-of-the-many-r-modules-to-load" id="id6">Which of the many R modules to load?</a></p></li>
+<li><p><a class="reference internal" href="#installing-r-libraries" id="id7">Installing R libraries</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="simple-example-to-get-started">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Simple example to get started</a><a class="headerlink" href="#simple-example-to-get-started" title="Link to this heading"></a></h2>
+<p>We will start with a very simple R script (<code class="docutils literal notranslate"><span class="pre">simple.R</span></code>):</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;hello from the R script!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can launch it on <a class="reference internal" href="../hpc_machines/saga.html#saga"><span class="std std-ref">Saga</span></a> with the following job script (<code class="docutils literal notranslate"><span class="pre">simple.sh</span></code>).
+<strong>Before submitting</strong>, adjust at least the line with <code class="docutils literal notranslate"><span class="pre">--account</span></code> to match your
+allocation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="hll"><span class="c1">#SBATCH --account=nn9997k</span>
+</span><span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1">#SBATCH --mem=1G</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --time=00:02:00</span>
+
+<span class="c1"># it is good to have the following lines in any bash script</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w">  </span><span class="c1"># make bash exit on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w">  </span><span class="c1"># treat unset variables as errors</span>
+
+module<span class="w"> </span>restore
+module<span class="w"> </span>load<span class="w"> </span>R/4.2.1-foss-2022a
+
+Rscript<span class="w"> </span>simple.R<span class="w"> </span>&gt;<span class="w"> </span>simple.Rout
+</pre></div>
+</div>
+<p>Submit the example job script with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sbatch<span class="w"> </span>simple.sh
+</pre></div>
+</div>
+</section>
+<section id="longer-example">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Longer example</a><a class="headerlink" href="#longer-example" title="Link to this heading"></a></h2>
+<p>Here is a longer example that takes ca. 25 seconds (<code class="docutils literal notranslate"><span class="pre">sequential.R</span></code>):</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">foreach</span><span class="p">)</span>
+
+
+<span class="c1"># this function approximates pi by throwing random points into a square</span>
+<span class="c1"># it is used here to demonstrate a function that takes a bit of time</span>
+<span class="n">approximate_pi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># number of points to use</span>
+<span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2000000</span>
+
+<span class="w">  </span><span class="c1"># generate n random points in the square</span>
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">runif</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">-1.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">)</span>
+<span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">runif</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">-1.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1"># count the number of points that are inside the circle</span>
+<span class="w">  </span><span class="n">n_in</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">1.0</span><span class="p">)</span>
+
+<span class="w">  </span><span class="m">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n_in</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n</span>
+<span class="p">}</span>
+
+
+<span class="nf">foreach </span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">.combine</span><span class="o">=</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="o">%do%</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">approximate_pi</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And the corresponding run script (<code class="docutils literal notranslate"><span class="pre">sequential.sh</span></code>).
+<strong>Before submitting</strong>, adjust at least the line with <code class="docutils literal notranslate"><span class="pre">--account</span></code> to match your
+allocation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="hll"><span class="c1">#SBATCH --account=nn9997k</span>
+</span><span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1">#SBATCH --mem=2G</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --time=00:02:00</span>
+
+<span class="c1"># it is good to have the following lines in any bash script</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w">  </span><span class="c1"># make bash exit on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w">  </span><span class="c1"># treat unset variables as errors</span>
+
+module<span class="w"> </span>restore
+module<span class="w"> </span>load<span class="w"> </span>R/4.2.1-foss-2022a
+
+Rscript<span class="w"> </span>sequential.R<span class="w"> </span>&gt;<span class="w"> </span>sequential.Rout
+</pre></div>
+</div>
+</section>
+<section id="parallel-job-script-example">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Parallel job script example</a><a class="headerlink" href="#parallel-job-script-example" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>We have tested this example and it works but the scaling/speed-up is pretty
+poor and not worth it in this example. If you know the reason, can you please
+suggest a change?</p>
+<p>When running jobs in parallel, please always verify that it actually scales and
+that the run time goes down as you use more cores.</p>
+<p>When testing this example on the desktop, the speed-up was much better.</p>
+<p>Often, a good alternative to run R code in parallel is to launch many
+sequential R jobs at the same time, each doing its own thing.</p>
+</div>
+<p>Let’s start with the run script (<code class="docutils literal notranslate"><span class="pre">parallel.sh</span></code>), where we ask for 20 cores:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#SBATCH --account=nn9997k</span>
+<span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1">#SBATCH --mem=2G</span>
+<span class="hll"><span class="c1">#SBATCH --ntasks=20</span>
+</span><span class="c1">#SBATCH --time=00:02:00</span>
+
+<span class="c1"># it is good to have the following lines in any bash script</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w">  </span><span class="c1"># make bash exit on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w">  </span><span class="c1"># treat unset variables as errors</span>
+
+module<span class="w"> </span>restore
+module<span class="w"> </span>load<span class="w"> </span>R/4.2.1-foss-2022a
+
+Rscript<span class="w"> </span>parallel.R<span class="w"> </span>&gt;<span class="w"> </span>parallel.Rout
+</pre></div>
+</div>
+<p>Notice how in the R script (<code class="docutils literal notranslate"><span class="pre">parallel.R</span></code>) we indicate to use these 20 cores
+and how we changed <code class="docutils literal notranslate"><span class="pre">%do%</span></code> to <code class="docutils literal notranslate"><span class="pre">%dopar%</span></code>:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">parallel</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">foreach</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">doParallel</span><span class="p">)</span>
+
+
+<span class="c1"># this function approximates pi by throwing random points into a square</span>
+<span class="c1"># it is used here to demonstrate a function that takes a bit of time</span>
+<span class="n">approximate_pi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># number of points to use</span>
+<span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2000000</span>
+
+<span class="w">  </span><span class="c1"># generate n random points in the square</span>
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">runif</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">-1.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">)</span>
+<span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">runif</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">-1.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1"># count the number of points that are inside the circle</span>
+<span class="w">  </span><span class="n">n_in</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">1.0</span><span class="p">)</span>
+
+<span class="w">  </span><span class="m">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n_in</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n</span>
+<span class="p">}</span>
+
+
+<span class="hll"><span class="nf">registerDoParallel</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
+</span>
+<span class="hll"><span class="nf">foreach </span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">.combine</span><span class="o">=</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="o">%dopar%</span><span class="w"> </span><span class="p">{</span>
+</span><span class="w">  </span><span class="nf">approximate_pi</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="which-of-the-many-r-modules-to-load">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Which of the many R modules to load?</a><a class="headerlink" href="#which-of-the-many-r-modules-to-load" title="Link to this heading"></a></h2>
+<p>The short answer is to get an overview about available modules first:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>spider<span class="w"> </span>R
+<span class="gp">$ </span>module<span class="w"> </span>spider<span class="w"> </span>bioconductor
+</pre></div>
+</div>
+<p>We have more information here: <a class="reference internal" href="../software/userinstallsw/R.html#installing-r-libraries-modules"><span class="std std-ref">Selecting the module to load</span></a></p>
+</section>
+<section id="installing-r-libraries">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Installing R libraries</a><a class="headerlink" href="#installing-r-libraries" title="Link to this heading"></a></h2>
+<p>We have a separate page about <a class="reference internal" href="../software/userinstallsw/R.html#installing-r-libraries"><span class="std std-ref">Installing R libraries</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ood.html" class="btn btn-neutral float-left" title="Open OnDemand" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../files_storage/nird/nird_dp.html" class="btn btn-neutral float-right" title="NIRD Data Peak" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

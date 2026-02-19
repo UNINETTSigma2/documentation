@@ -1,0 +1,806 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaussian NRIS machines Job Examples &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/statuspal_widget.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Gaussian NRIS machines Job Examples</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gaussian-nris-machines-job-examples">
+<span id="gaussian-job-examples"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Gaussian NRIS machines Job Examples</a><a class="headerlink" href="#gaussian-nris-machines-job-examples" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here we present tested examples for various job types on the different NRIS machines.
+This will be under more or less continoues development, and if you find things missing
+and/or not working as expected, do not hesitate to <a class="reference internal" href="../../../getting_help/support_line.html#support-line"><span class="std std-ref">contact us</span></a>.</p>
+</div>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#gaussian-nris-machines-job-examples" id="id1">Gaussian NRIS machines Job Examples</a></p>
+<ul>
+<li><p><a class="reference internal" href="#expected-knowledge-base" id="id2">Expected knowledge base</a></p></li>
+<li><p><a class="reference internal" href="#finding-available-gaussian-versions-and-submitting-a-standard-gaussian-job" id="id3">Finding available Gaussian versions and submitting a standard Gaussian job</a></p></li>
+<li><p><a class="reference internal" href="#gaussian-input-file-examples" id="id4">Gaussian input file examples</a></p></li>
+<li><p><a class="reference internal" href="#running-gaussian-on-saga" id="id5">Running Gaussian on Saga</a></p></li>
+<li><p><a class="reference internal" href="#running-gaussian-on-gpus-on-saga" id="id6">Running Gaussian on GPUs on Saga</a></p></li>
+<li><p><a class="reference internal" href="#running-gaussian-in-betzy-and-olivia-with-linda-parallelization" id="id7">Running Gaussian in Betzy and Olivia with Linda parallelization</a></p>
+<ul>
+<li><p><a class="reference internal" href="#setting-up-passwordless-login-to-the-nodes" id="id8">Setting up Passwordless login to the nodes</a></p></li>
+<li><p><a class="reference internal" href="#running-gaussian-using-linda-workers-on-betzy" id="id9">Running Gaussian using Linda workers on Betzy</a></p></li>
+<li><p><a class="reference internal" href="#running-gaussian-using-linda-workers-on-olivia" id="id10">Running Gaussian using Linda workers on Olivia</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="expected-knowledge-base">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Expected knowledge base</a><a class="headerlink" href="#expected-knowledge-base" title="Link to this heading"></a></h2>
+<p>Before you run any Gaussian calculations, or any other calculations on NRIS machines for that matter, you are expected to update yourself on NRIS machinery specifics. A decent minimal curriculum is as follows:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../../hpc_machines/hardware_overview.html#hardware-overview"><span class="std std-ref">Overview over our machines</span></a></p></li>
+<li><p><a class="reference internal" href="../../../getting_started/getting_started.html#getting-started"><span class="std std-ref">Getting started</span></a></p></li>
+<li><p><a class="reference internal" href="../../../getting_started/getting_started.html#getting-started"><span class="std std-ref">Getting started</span></a></p></li>
+<li><p><a class="reference internal" href="../../../jobs/overview.html#running-jobs"><span class="std std-ref">Running jobs</span></a></p></li>
+<li><p><a class="reference internal" href="../../../jobs/job_scripts.html#job-scripts"><span class="std std-ref">Job Scripts</span></a></p></li>
+</ul>
+</section>
+<section id="finding-available-gaussian-versions-and-submitting-a-standard-gaussian-job">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Finding available Gaussian versions and submitting a standard Gaussian job</a><a class="headerlink" href="#finding-available-gaussian-versions-and-submitting-a-standard-gaussian-job" title="Link to this heading"></a></h2>
+<p>To see which versions of Gaussian software which are available on a given machine; type the following command after logged into the machine in question:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>module avail Gaussian
+</pre></div>
+</div>
+<p>To use Gaussian, type</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>module load Gaussian/&lt;version&gt;
+</pre></div>
+</div>
+<p>specifying one of the available versions.</p>
+<p><strong>Please inspect the job script examples before submitting jobs!</strong></p>
+<p>To run an example - create a directory, step into it, create an input file (for example for water - see below), download a job script (for example the fram cpu job script as shown below) and submit the script with:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sbatch saga_g16.sh
+</pre></div>
+</div>
+</section>
+<section id="gaussian-input-file-examples">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Gaussian input file examples</a><a class="headerlink" href="#gaussian-input-file-examples" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Water input example (note the blank line at the end; <code class="docutils literal notranslate"><span class="pre">water.com</span></code>):</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">chk</span><span class="o">=</span><span class="n">water</span>
+<span class="o">%</span><span class="n">mem</span><span class="o">=</span><span class="mi">500</span><span class="n">MB</span>
+<span class="c1">#p b3lyp/cc-pVDZ opt</span>
+
+<span class="n">structure</span> <span class="n">optimization</span> <span class="n">of</span> <span class="n">water</span>
+
+<span class="mi">0</span> <span class="mi">1</span>
+<span class="n">O</span>
+<span class="n">H</span> <span class="mi">1</span> <span class="mf">0.96</span>
+<span class="n">H</span> <span class="mi">1</span> <span class="mf">0.96</span> <span class="mi">2</span> <span class="mf">109.471221</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Caffeine input example (note the blank line at the end; <code class="docutils literal notranslate"><span class="pre">caffeine.com</span></code>):</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">chk</span><span class="o">=</span><span class="n">caffeine</span>
+<span class="o">%</span><span class="n">mem</span><span class="o">=</span><span class="mi">5</span><span class="n">GB</span>
+<span class="c1">#p b3lyp/cc-pVQZ</span>
+
+<span class="n">caffeine</span> <span class="n">molecule</span> <span class="n">example</span>
+
+<span class="mi">0</span> <span class="mi">1</span>
+<span class="n">C</span>     <span class="mf">1.179579</span>     <span class="mf">0.000000</span>    <span class="o">-</span><span class="mf">0.825950</span>
+<span class="n">C</span>     <span class="mf">2.359623</span>     <span class="mf">0.000000</span>     <span class="mf">0.016662</span>
+<span class="n">C</span>     <span class="mf">2.346242</span>     <span class="mf">0.000000</span>     <span class="mf">1.466600</span>
+<span class="n">C</span>     <span class="mf">0.000000</span>     <span class="mf">0.000000</span>     <span class="mf">1.440000</span>
+<span class="n">C</span>     <span class="mf">4.217536</span>     <span class="mf">0.000000</span>     <span class="mf">1.154419</span>
+<span class="n">C</span>     <span class="mf">4.765176</span>    <span class="o">-</span><span class="mf">0.384157</span>    <span class="o">-</span><span class="mf">0.964164</span>
+<span class="n">C</span>     <span class="mf">1.058378</span>    <span class="o">-</span><span class="mf">0.322767</span>     <span class="mf">3.578004</span>
+<span class="n">C</span>    <span class="o">-</span><span class="mf">1.260613</span>    <span class="o">-</span><span class="mf">0.337780</span>    <span class="o">-</span><span class="mf">0.608570</span>
+<span class="n">N</span>     <span class="mf">1.092573</span>     <span class="mf">0.000000</span>     <span class="mf">2.175061</span>
+<span class="n">N</span>     <span class="mf">0.000000</span>     <span class="mf">0.000000</span>     <span class="mf">0.000000</span>
+<span class="n">N</span>     <span class="mf">3.391185</span>     <span class="mf">0.000000</span>     <span class="mf">1.965657</span>
+<span class="n">N</span>     <span class="mf">3.831536</span>     <span class="mf">0.000000</span>     <span class="mf">0.062646</span>
+<span class="n">O</span>    <span class="o">-</span><span class="mf">1.345306</span>     <span class="mf">0.000000</span>     <span class="mf">1.827493</span>
+<span class="n">O</span>     <span class="mf">1.192499</span>     <span class="mf">0.000000</span>    <span class="o">-</span><span class="mf">2.225890</span>
+<span class="n">H</span>    <span class="o">-</span><span class="mf">1.997518</span>    <span class="o">-</span><span class="mf">0.535233</span>     <span class="mf">0.168543</span>
+<span class="n">H</span>    <span class="o">-</span><span class="mf">1.598963</span>     <span class="mf">0.492090</span>    <span class="o">-</span><span class="mf">1.227242</span>
+<span class="n">H</span>    <span class="o">-</span><span class="mf">1.138698</span>    <span class="o">-</span><span class="mf">1.225644</span>    <span class="o">-</span><span class="mf">1.227242</span>
+<span class="n">H</span>     <span class="mf">0.031688</span>    <span class="o">-</span><span class="mf">0.271264</span>     <span class="mf">3.937417</span>
+<span class="n">H</span>     <span class="mf">1.445570</span>    <span class="o">-</span><span class="mf">1.329432</span>     <span class="mf">3.728432</span>
+<span class="n">H</span>     <span class="mf">1.672014</span>     <span class="mf">0.388303</span>     <span class="mf">4.129141</span>
+<span class="n">H</span>     <span class="mf">4.218933</span>    <span class="o">-</span><span class="mf">0.700744</span>    <span class="o">-</span><span class="mf">1.851470</span>
+<span class="n">H</span>     <span class="mf">5.400826</span>     <span class="mf">0.464419</span>    <span class="o">-</span><span class="mf">1.212737</span>
+<span class="n">H</span>     <span class="mf">5.381834</span>    <span class="o">-</span><span class="mf">1.206664</span>    <span class="o">-</span><span class="mf">0.604809</span>
+<span class="n">H</span>     <span class="mf">5.288201</span>     <span class="mf">0.000000</span>     <span class="mf">1.353412</span>
+
+</pre></div>
+</div>
+</section>
+<section id="running-gaussian-on-saga">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Running Gaussian on Saga</a><a class="headerlink" href="#running-gaussian-on-saga" title="Link to this heading"></a></h2>
+<p>On Saga there are some restrictions and tricky situations to consider. First and foremost, there is a heterogenous setup with some nodes having 52 cores and most nodes having 40 cores. Secondly, on Saga there is a 256 core limit, efficiently limiting the useful maximum amount of nodes for a Gaussian job to 6. And third, since you do share the nodes by default - you need to find a way to set resource allocations in a sharing environment not necessarily heterogenous across your given nodes.</p>
+<p>Currently, we are working to find a solution to all these challenges and as of now our advices are:
+Up to and including 2 nodes should can be done with standard advices for running jobs on Saga.
+For 3 nodes and above you either need to run with full nodes or using the slurm exclusive flag:  <code class="docutils literal notranslate"><span class="pre">#SBATCH--exclusive</span></code>. We prefer the latter due to robustness.</p>
+<p>To facilitate this, the g16 wrapper has been edited to both be backwards compatible and adjust for the more recent insight on our side. If you are not using this wrapper, please look into the wrapper to find syntax for using in your job script. Wrapper(s) are all available in Gaussian Software folder. Current name is g16.ib.</p>
+<ul class="simple">
+<li><p>Job script example (<code class="docutils literal notranslate"><span class="pre">saga_g16.sh</span></code>):</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
+<span class="c1">#SBATCH --account=nnXXXXk</span>
+<span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --time=0-00:05:00</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks-per-node=40</span>
+<span class="c1">#SBATCH --mem=32G</span>
+<span class="c1">#SBATCH --output=slurm.%j.log</span>
+
+<span class="c1"># make the program and environment visible to this script</span>
+module<span class="w"> </span>--quiet<span class="w"> </span>reset
+module<span class="w"> </span>load<span class="w"> </span>Gaussian/g16_C.01
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">GAUSS_LFLAGS2</span><span class="o">=</span><span class="s2">&quot;--LindaOptions -s 20000000&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PGI_FASTMATH_CPU</span><span class="o">=</span>avx2
+
+<span class="c1"># name of input file without extension</span>
+<span class="nv">input</span><span class="o">=</span>water
+
+<span class="c1"># create the temporary folder</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">GAUSS_SCRDIR</span><span class="o">=</span>/cluster/work/users/<span class="nv">$USER</span>/<span class="nv">$SLURM_JOB_ID</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$GAUSS_SCRDIR</span>
+
+<span class="c1"># copy input file to temporary folder</span>
+cp<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/<span class="nv">$input</span>.com<span class="w"> </span><span class="nv">$GAUSS_SCRDIR</span>
+
+<span class="c1"># run the program</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$GAUSS_SCRDIR</span>
+<span class="nb">time</span><span class="w"> </span>g16.ib<span class="w"> </span><span class="nv">$input</span>.com<span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$input</span>.out
+
+<span class="c1"># copy result files back to submit directory</span>
+cp<span class="w"> </span><span class="nv">$input</span>.out<span class="w"> </span><span class="nv">$input</span>.chk<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>
+
+<span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+</section>
+<section id="running-gaussian-on-gpus-on-saga">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Running Gaussian on GPUs on Saga</a><a class="headerlink" href="#running-gaussian-on-gpus-on-saga" title="Link to this heading"></a></h2>
+<p>Both of the current <code class="docutils literal notranslate"><span class="pre">g16</span></code> versions on Saga supports GPU offloading, and we have provided
+an alternative wrapper script for launching the GPU version. The only things that
+need to change in the run script are the resource allocation, by adding <code class="docutils literal notranslate"><span class="pre">--gpus=N</span></code>
+and <code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code>, and to use the <code class="docutils literal notranslate"><span class="pre">g16.gpu</span></code> wrapper script instead of <code class="docutils literal notranslate"><span class="pre">g16.ib</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">g16.gpu</span></code> script is available through the standard Gaussian modules, <code class="docutils literal notranslate"><span class="pre">Gaussian/g16_B.01</span></code>
+and <code class="docutils literal notranslate"><span class="pre">Gaussian/g16_C.01</span></code> (the latter will likely have better GPU performance since it is
+the more recent version).</p>
+<p>There are some important limitations for the current GPU version:</p>
+<ul class="simple">
+<li><p>It can only be run as single-node (up to 24 CPU cores + 4 GPU), so please specify <code class="docutils literal notranslate"><span class="pre">--nodes=1</span></code></p></li>
+<li><p>The number of GPUs must be specified with the <code class="docutils literal notranslate"><span class="pre">--gpus=N</span></code> flag (not <code class="docutils literal notranslate"><span class="pre">--gpus-per-task</span></code>)</p></li>
+<li><p>The billing ratio between GPUs and CPUs is 6:1 on Saga, so the natural way to increment
+resources is to add 6 CPUs per GPU</p></li>
+<li><p>Not all parts of Gaussian is able to utilize GPU resources. From the official <a class="reference external" href="https://gaussian.com/gpu/">docs</a>:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GPUs are effective for larger molecules when doing DFT energies, gradients and frequencies
+(for both ground and excited states), but they are not effective for small jobs. They are
+also not used effectively by post-SCF calculations such as MP2 or CCSD.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run script example (<code class="docutils literal notranslate"><span class="pre">gpu_g16.sh</span></code>)</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
+<span class="c1">#SBATCH --account=nnXXXXk</span>
+<span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --time=0-01:00:00</span>
+<span class="hll"><span class="c1">#SBATCH --nodes=1</span>
+</span><span class="hll"><span class="c1">#SBATCH --ntasks=6</span>
+</span><span class="hll"><span class="c1">#SBATCH --gpus=1</span>
+</span><span class="hll"><span class="c1">#SBATCH --partition=accel</span>
+</span><span class="c1">#SBATCH --mem=96G</span>
+<span class="c1">#SBATCH --output=slurm.%j.log</span>
+
+<span class="c1"># make the program and environment visible to this script</span>
+module<span class="w"> </span>--quiet<span class="w"> </span>reset
+module<span class="w"> </span>load<span class="w"> </span>Gaussian/g16_C.01
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">PGI_FASTMATH_CPU</span><span class="o">=</span>skylake
+
+<span class="c1"># name of input file without extension</span>
+<span class="nv">input</span><span class="o">=</span>caffeine
+
+<span class="c1"># create the temporary folder</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">GAUSS_SCRDIR</span><span class="o">=</span>/cluster/work/users/<span class="nv">$USER</span>/<span class="nv">$SLURM_JOB_ID</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$GAUSS_SCRDIR</span>
+
+<span class="c1"># copy input file to temporary folder</span>
+cp<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/<span class="nv">$input</span>.com<span class="w"> </span><span class="nv">$GAUSS_SCRDIR</span>
+
+<span class="c1"># run the program</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$GAUSS_SCRDIR</span>
+<span class="hll"><span class="nb">time</span><span class="w"> </span>g16.gpu<span class="w"> </span><span class="nv">$input</span>.com<span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$input</span>.out
+</span>
+<span class="c1"># copy result files back to submit directory</span>
+cp<span class="w"> </span><span class="nv">$input</span>.out<span class="w"> </span><span class="nv">$input</span>.chk<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>
+
+<span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<p>Some timing examples are listed below for a single-point energy calculation on the
+Caffeine molecule using a large quadruple zeta basis set. The requested resources are
+chosen based on billing units, see <a class="reference internal" href="../../../jobs/projects_accounting.html#projects-accounting"><span class="std std-ref">Projects and accounting</span></a>, where one GPU is the
+equvalent of six CPU cores. Then the memory is chosen such that it will <em>not</em> be the
+determining factor for the overall billing.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Configuration</p></th>
+<th class="head text-center"><p>CPUs</p></th>
+<th class="head text-center"><p>GPUs</p></th>
+<th class="head text-center"><p>MEM</p></th>
+<th class="head text-center"><p>Run time</p></th>
+<th class="head text-center"><p>Speedup</p></th>
+<th class="head text-center"><p>Billing</p></th>
+<th class="head text-center"><p>CPU-hrs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Reference</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>4G</p></td>
+<td class="text-center"><p>6h51m26s</p></td>
+<td class="text-center"><p>1.0</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>6.9</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1 GPU equivalent</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>20G</p></td>
+<td class="text-center"><p>1h00m45s</p></td>
+<td class="text-center"><p>6.8</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>6.1</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>2 GPU equivalents</p></td>
+<td class="text-center"><p>12</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>40G</p></td>
+<td class="text-center"><p>36m08s</p></td>
+<td class="text-center"><p>11.4</p></td>
+<td class="text-center"><p>12</p></td>
+<td class="text-center"><p>7.2</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>3 GPU equivalents</p></td>
+<td class="text-center"><p>18</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>60G</p></td>
+<td class="text-center"><p>30m14s</p></td>
+<td class="text-center"><p>13.6</p></td>
+<td class="text-center"><p>18</p></td>
+<td class="text-center"><p>9.1</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>4 GPU equivalents</p></td>
+<td class="text-center"><p>24</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>80G</p></td>
+<td class="text-center"><p>19m52s</p></td>
+<td class="text-center"><p>20.7</p></td>
+<td class="text-center"><p>24</p></td>
+<td class="text-center"><p>7.9</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Full normal node</p></td>
+<td class="text-center"><p>40</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>140G</p></td>
+<td class="text-center"><p>13m05s</p></td>
+<td class="text-center"><p>31.4</p></td>
+<td class="text-center"><p>40</p></td>
+<td class="text-center"><p>8.7</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>1/4 GPU node</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>80G</p></td>
+<td class="text-center"><p>22m41s</p></td>
+<td class="text-center"><p>18.1</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>2.3</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1/2 GPU node</p></td>
+<td class="text-center"><p>12</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>160G</p></td>
+<td class="text-center"><p>15m44s</p></td>
+<td class="text-center"><p>26.2</p></td>
+<td class="text-center"><p>12</p></td>
+<td class="text-center"><p>3.1</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>3/4 GPU node</p></td>
+<td class="text-center"><p>18</p></td>
+<td class="text-center"><p>3</p></td>
+<td class="text-center"><p>240G</p></td>
+<td class="text-center"><p>12m03s</p></td>
+<td class="text-center"><p>34.1</p></td>
+<td class="text-center"><p>18</p></td>
+<td class="text-center"><p>3.6</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Full GPU node</p></td>
+<td class="text-center"><p>24</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>320G</p></td>
+<td class="text-center"><p>10m12s</p></td>
+<td class="text-center"><p>40.3</p></td>
+<td class="text-center"><p>24</p></td>
+<td class="text-center"><p>4.1</p></td>
+</tr>
+</tbody>
+</table>
+<p>The general impression from these numbers is that Gaussian scales quite well for this
+particular calculation, and we see from the last column that the GPU version is
+consistently about a factor two more efficient than the CPU version, when comparing
+the actual consumed CPU-hours. This will of course depend on the conversion factor from
+CPU to GPU billing, which will depend on the system configuration, but at least with
+the current ratio of 6:1 on Saga it seems to pay off to use the GPU over the CPU
+version (queuing time not taken into account).</p>
+<p>If you find any issues with the GPU version of Gaussian, please contact us at <a class="reference internal" href="../../../getting_help/support_line.html#support-line"><span class="std std-ref">our support line</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The timings in the table above represent a single use case, and the behavior might be
+very different in other situations. Please perform simple benchmarks to check that
+the program runs efficiently with your particular computational setup. Also do not
+hesitate to contact us if you need guidance on GPU efficiency, see our extended
+<a class="reference internal" href="../../../getting_help/extended_support/gpu.html#extended-support-gpu"><span class="std std-ref">GPU Support</span></a>.</p>
+</div>
+</section>
+<section id="running-gaussian-in-betzy-and-olivia-with-linda-parallelization">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Running Gaussian in Betzy and Olivia with Linda parallelization</a><a class="headerlink" href="#running-gaussian-in-betzy-and-olivia-with-linda-parallelization" title="Link to this heading"></a></h2>
+<p>Linda is Gaussian’s method of process parallelization. Linda allows to run certain calculations in less time due to parallelization, and it is essential in multi-node calculations of Gaussian, as it helps Gaussian communicate across nodes. Since the minimum numnber of nodes one can run jobs on in Betzy is 4, knowing how to use Linda is essential for proper resource use.</p>
+<p>More information on Linda and parallelization in Gaussian can be read in Gaussian’s documentation <a class="reference external" href="https://gaussian.com/running/">here</a> and for what specific calculations are sped up, you can read <a class="reference external" href="https://gaussian.com/relnotes/">here</a>. In both of those links, navigate to the Parallel sections.</p>
+<p>In order to run Gaussian with <code class="docutils literal notranslate"><span class="pre">Linda</span></code> parallelization in Betzy and Olivia one needs to set up passwordless login to the nodes, authorize these nodes for login in job-script, and put the necessary lines in the Gaussian input file. Following is a guide in how to do this</p>
+<section id="setting-up-passwordless-login-to-the-nodes">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Setting up Passwordless login to the nodes</a><a class="headerlink" href="#setting-up-passwordless-login-to-the-nodes" title="Link to this heading"></a></h3>
+<p>Before any job with Gaussian is done, do the following in your home directory.
+<strong>You only have to this once.</strong></p>
+<ol class="arabic simple">
+<li><p>Generate a keypair for the nodes. For this, run the following in the terminal:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-f<span class="w"> </span>~/.ssh/id_ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$USER</span><span class="s2">@&lt;MACHINE&gt;&quot;</span><span class="w"> </span>-N<span class="w"> </span><span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+<p>This will generate a passwordless keypair. Replace <code class="docutils literal notranslate"><span class="pre">&lt;MACHINE&gt;</span></code> with either <code class="docutils literal notranslate"><span class="pre">betzy</span></code>, or <code class="docutils literal notranslate"><span class="pre">olivia</span></code>.</p>
+<ol class="arabic simple" start="2">
+<li><p>Add the public key (ending with <code class="docutils literal notranslate"><span class="pre">.pub</span></code>) to authorized keys by running the following commands on the terminal:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>touch<span class="w"> </span>~/.ssh/authorized_keys
+cat<span class="w"> </span>~/.ssh/id_ed25519.pub<span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.ssh/authorized_keys
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>If you don’t have a <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code>, you can create it by by running the following commands in the terminal, otherwise, skip to the next step</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>touch<span class="w"> </span>~/.ssh/config
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> file  and add the lines below to the end of it with your preferred editor.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Host<span class="w"> </span>*.&lt;MACHINE&gt;.sigma2.no
+IdentityFile<span class="w"> </span>~/.ssh/id_ed25519
+BatchMode<span class="w"> </span>yes
+StrictHostKeyChecking<span class="w"> </span>yes
+</pre></div>
+</div>
+<p>replacing <code class="docutils literal notranslate"><span class="pre">&lt;MACHINE&gt;</span></code> with either <code class="docutils literal notranslate"><span class="pre">betzy</span></code>, or <code class="docutils literal notranslate"><span class="pre">olivia</span></code>.</p>
+</section>
+<section id="running-gaussian-using-linda-workers-on-betzy">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Running Gaussian using Linda workers on Betzy</a><a class="headerlink" href="#running-gaussian-using-linda-workers-on-betzy" title="Link to this heading"></a></h3>
+<p>Following is an example script for Betzy, later we will show the same for Olivia:
+In this script we want to run a 4 node job, where each node will start 1 linda worker using 2 processes each.</p>
+<ul class="simple">
+<li><p>The input file (“water_Linda.com`):</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%chk<span class="o">=</span>water
+%mem<span class="o">=</span>500MB
+%NPROCSHARED<span class="o">=</span><span class="m">4</span>
+<span class="c1">#p b3lyp/cc-pVDZ opt</span>
+
+structure<span class="w"> </span>optimization<span class="w"> </span>of<span class="w"> </span>water
+
+<span class="m">0</span><span class="w"> </span><span class="m">1</span>
+O
+H<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>.96
+H<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>.96<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">109</span>.471221
+</pre></div>
+</div>
+<p>Note the preamble contains the line <code class="docutils literal notranslate"><span class="pre">%NPROCSHARED</span></code> which specifies the number of cores for each worker, and <code class="docutils literal notranslate"><span class="pre">%mem</span></code> which specifies the total memory needed for this job. These lines are essential for Gaussian to know how many cores and memory to use in the calculation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Gaussian Defaults to 1 CPU if none are specified. Changing the variable <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> in the submit script is not sufficient to increase the Gaussian’s CPU usage. The user must also change the line <code class="docutils literal notranslate"><span class="pre">%NPROCSHARED</span></code> in the input file with the correct number of CPUs needed .</p>
+</div>
+<ul class="simple">
+<li><p>Job script example (<code class="docutils literal notranslate"><span class="pre">betzy_g16.sh</span></code>):</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
+<span class="c1">#SBATCH --account=nnXXXXk</span>
+<span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --time=0-00:10:00</span>
+<span class="c1">#SBATCH --nodes=4</span>
+<span class="c1">#SBATCH --ntasks-per-node=1             ## Linda does not use this variable</span>
+<span class="c1">#SBATCH --output=slurm.%j.log</span>
+
+<span class="c1"># make the program and environment visible to this script</span>
+module<span class="w"> </span>--quiet<span class="w"> </span>reset
+module<span class="w"> </span>load<span class="w"> </span>Gaussian/16.C.01-AVX2
+
+<span class="c1"># name of input file without extension</span>
+<span class="nv">input</span><span class="o">=</span>water
+
+<span class="c1"># set the heap-size for the job to 20GB</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">GAUSS_LFLAGS2</span><span class="o">=</span><span class="s2">&quot;--LindaOptions -s 20000000&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PGI_FASTMATH_CPU</span><span class="o">=</span>avx2
+
+<span class="c1"># create the temporary folder</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">GAUSS_SCRDIR</span><span class="o">=</span>/cluster/work/users/<span class="nv">$USER</span>/<span class="nv">$SLURM_JOB_ID</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$GAUSS_SCRDIR</span>
+
+<span class="c1"># add all nodes to list of known hosts</span>
+<span class="k">for</span><span class="w"> </span>HN<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>scontrol<span class="w"> </span>show<span class="w"> </span>hostnames<span class="k">)</span>
+<span class="k">do</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.ssh
+<span class="w">    </span>touch<span class="w"> </span>~/.ssh/known_hosts
+<span class="w">    </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/known_hosts
+<span class="w">    </span>ssh-keygen<span class="w"> </span>-R<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HN</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">    </span>ssh-keyscan<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HN</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.ssh/known_hosts<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+<span class="k">done</span>
+
+<span class="c1"># copy input file to temporary folder and cd into it</span>
+cp<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/<span class="nv">$input</span>.com<span class="w"> </span><span class="nv">$GAUSS_SCRDIR</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$GAUSS_SCRDIR</span>
+
+<span class="c1"># Add line specifying the amount of Linda Workers per node.</span>
+<span class="nv">NodeList</span><span class="o">=</span><span class="k">$(</span>scontrol<span class="w"> </span>show<span class="w"> </span>hostnames<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>n<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$n</span>:1<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span><span class="w"> </span><span class="p">|</span><span class="w">  </span>paste<span class="w"> </span>-d,<span class="w"> </span>-s<span class="k">)</span>
+<span class="o">{</span>
+<span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;%%LINDAWORKERS=%s\n&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NodeList</span><span class="s2">&quot;</span>
+cat<span class="w"> </span><span class="nv">$input</span>.com
+<span class="o">}</span><span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$input</span>.tmp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span><span class="nv">$input</span>.tmp<span class="w"> </span><span class="nv">$input</span>.com
+
+<span class="c1">#running the calculation</span>
+<span class="nb">time</span><span class="w"> </span>g16<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$input</span>.com<span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$input</span>.out
+
+<span class="c1"># copy result files back to submit directory</span>
+cp<span class="w"> </span><span class="nv">$input</span>.out<span class="w"> </span><span class="nv">$input</span>.chk<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>
+
+<span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<p>There are two important sections in the script, which will be explained below:</p>
+<ol class="arabic simple">
+<li><p>These lines:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>HN<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>scontrol<span class="w"> </span>show<span class="w"> </span>hostnames<span class="k">)</span><span class="w"> </span>
+<span class="k">do</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.ssh
+<span class="w">    </span>touch<span class="w"> </span>~/.ssh/known_hosts
+<span class="w">    </span>ssh-keygen<span class="w"> </span>-R<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HN</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">    </span>ssh-keyscan<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HN</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.ssh/known_hosts<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>These lines will allow Linda to login to the different nodes without a <code class="docutils literal notranslate"><span class="pre">yes|no</span></code> prompt appearing, if this prompt appears, Linda will crash.</p>
+<p>You can also test if the ssh connections are working by adding these lines into the loop above (right before <code class="docutils literal notranslate"><span class="pre">done</span></code>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">ssh</span> <span class="o">-</span><span class="n">o</span> <span class="n">BatchMode</span><span class="o">=</span><span class="n">yes</span> <span class="s2">&quot;$HN&quot;</span> <span class="n">true</span> <span class="o">&amp;&amp;</span> <span class="n">echo</span> <span class="s2">&quot;SSH OK&quot;</span>
+    <span class="n">ssh</span> <span class="o">-</span><span class="n">o</span> <span class="n">BatchMode</span><span class="o">=</span><span class="n">yes</span> <span class="s2">&quot;$HN&quot;</span> <span class="n">true</span> <span class="o">&amp;&amp;</span> <span class="n">echo</span> <span class="s2">&quot;SSH OK&quot;</span> <span class="o">||</span> <span class="n">echo</span> <span class="s2">&quot;SSH failed&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>These lines:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">NodeList</span><span class="o">=</span><span class="k">$(</span>scontrol<span class="w"> </span>show<span class="w"> </span>hostnames<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>n<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$n</span>:2<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span><span class="w"> </span><span class="p">|</span><span class="w">  </span>paste<span class="w"> </span>-d,<span class="w"> </span>-s<span class="k">)</span>
+
+<span class="o">{</span>
+<span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;%%LINDAWORKERS=%s\n&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NodeList</span><span class="s2">&quot;</span>
+cat<span class="w"> </span>input.com
+<span class="o">}</span><span class="w"> </span>&gt;<span class="w"> </span>input.tmp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>input.tmp<span class="w"> </span>input.com
+</pre></div>
+</div>
+<p>Will tell Gaussian how to distribute the <code class="docutils literal notranslate"><span class="pre">lindaWorkers</span></code> through the nodes, even if just one node is used. Because of this section <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">echo</span> <span class="pre">$n:2</span></code> two <code class="docutils literal notranslate"><span class="pre">LindaWorker</span></code> will be added to each node. In this example, we have a single node with two linda workers.
+This adds a line like the following at the top of your input file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%LindaWorkers<span class="o">=[</span>node_1<span class="o">]</span>:1,<span class="o">[</span>node_2<span class="o">]</span>:1,<span class="w"> </span>...
+</pre></div>
+</div>
+<p>If you want more <code class="docutils literal notranslate"><span class="pre">LindaWorkers</span></code> per node, change the number after the colon to what you want. For more information about this specific part of the preamble, check the Gaussian documentation linked above.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since the minimum number of nodes per job is 4 in betzy, only heavy calculations should be ran such that each node’s CPU utilization is maximized. Saga and Olivia are better suited for smaller calculations.</p>
+</div>
+</section>
+<section id="running-gaussian-using-linda-workers-on-olivia">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Running Gaussian using Linda workers on Olivia</a><a class="headerlink" href="#running-gaussian-using-linda-workers-on-olivia" title="Link to this heading"></a></h3>
+<p>Here is an example of a script for running Gaussian on Olivia. The specific details are as shown above for betzy. The same input file is used.</p>
+<ul class="simple">
+<li><p>Job script example (<code class="docutils literal notranslate"><span class="pre">olivia_g16.sh</span></code>):</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
+<span class="c1">#SBATCH --account=nnXXXXk</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --time=0-00:15:00</span>
+<span class="c1">#SBATCH --cpus-per-task=8       # change this when more cores are needed</span>
+<span class="c1">#SBATCH --mem-per-cpu=2GB</span>
+<span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --output=slurm.%j.log</span>
+
+<span class="c1"># make the program and environment visible to this script</span>
+module<span class="w"> </span>restore
+module<span class="w"> </span>load<span class="w"> </span>NRIS/CPU
+module<span class="w"> </span>load<span class="w"> </span>Gaussian/16.C.01-AVX2
+module<span class="w"> </span>list
+
+<span class="c1"># name of input file without extension</span>
+<span class="nv">input</span><span class="o">=</span>water
+
+<span class="c1"># set the heap-size for the job to 20GB</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">GAUSS_LFLAGS2</span><span class="o">=</span><span class="s2">&quot;--LindaOptions -s 20000000&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PGI_FASTMATH_CPU</span><span class="o">=</span>avx2
+
+<span class="c1"># create the temporary folder</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">GAUSS_SCRDIR</span><span class="o">=</span>/cluster/work/projects/nnXXXXk/<span class="nv">$USER</span>/<span class="nv">$SLURM_JOB_ID</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$GAUSS_SCRDIR</span>
+
+<span class="c1"># copy input file to temporary folder and cd into the temporary folder</span>
+cp<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/<span class="nv">$input</span>.com<span class="w"> </span><span class="nv">$GAUSS_SCRDIR</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$GAUSS_SCRDIR</span>
+
+<span class="c1"># add all nodes to list of known hosts</span>
+<span class="k">for</span><span class="w"> </span>HN<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>scontrol<span class="w"> </span>show<span class="w"> </span>hostnames<span class="k">)</span>
+<span class="k">do</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.ssh
+<span class="w">    </span>touch<span class="w"> </span>~/.ssh/known_hosts
+<span class="w">    </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/known_hosts
+<span class="w">    </span>ssh-keygen<span class="w"> </span>-R<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HN</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">    </span>ssh-keyscan<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HN</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.ssh/known_hosts<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+<span class="k">done</span>
+
+<span class="c1"># Add line specifying the amount of Linda Workers per node to the input file.</span>
+<span class="nv">NodeList</span><span class="o">=</span><span class="k">$(</span>scontrol<span class="w"> </span>show<span class="w"> </span>hostnames<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>n<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$n</span>:2<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span><span class="w"> </span><span class="p">|</span><span class="w">  </span>paste<span class="w"> </span>-d,<span class="w"> </span>-s<span class="k">)</span>
+<span class="o">{</span>
+<span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;%%LINDAWORKERS=%s\n&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NodeList</span><span class="s2">&quot;</span>
+cat<span class="w"> </span><span class="nv">$input</span>.com
+<span class="o">}</span><span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$input</span>.tmp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span><span class="nv">$input</span>.tmp<span class="w"> </span><span class="nv">$input</span>.com
+
+<span class="c1"># run the program</span>
+<span class="nb">time</span><span class="w"> </span>g16<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$input</span>.com<span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$input</span>.out
+
+<span class="c1"># copy result files back to submit directory</span>
+cp<span class="w"> </span><span class="nv">$input</span>.out<span class="w"> </span><span class="nv">$input</span>.chk<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>
+
+<span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using multiple linda workers per node might feel like an unnecesssary extra step, and for smaller calculations it is, though this is not always the case.
+Due to how Gaussian scales in single node Shared Memory parallelization calculations one should start adding linda workers between the 16-32 CPU mark.
+For more information, please read the article on <a class="reference internal" href="gaussian_tuning.html#gaussian-tuning"><span class="std std-ref">Gaussian performance tuning using single node shared memory</span></a>.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

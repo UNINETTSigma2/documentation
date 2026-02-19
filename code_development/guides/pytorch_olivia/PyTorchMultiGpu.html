@@ -1,0 +1,531 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-GPU Implementation for PyTorch on Olivia &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/statuspal_widget.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Multi-Node Implementation for PyTorch on Olivia" href="PyTorchMultiNode.html" />
+    <link rel="prev" title="PyTorch on Olivia" href="PyTorchSingleGpu.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../overview.html">Code development and tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html#id1">Code development</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../overview.html#tutorials">Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../guides_gpu.html">GPU programming models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guides_ml.html">Machine Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guides_containers_gpu.html">Containers with GPU support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guides_monitor_gpu.html">Monitoring GPU accelerated applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guides_python.html">Python libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PyTorchProfilerMultiGpu.html">Profiling a Resnet-18 model on Multiple GPUs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PyTorchProfilerMultiGpu.html#performance-metrics">Performance Metrics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PyTorchProfilerMultiGpu.html#conclusion">Conclusion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PyTorchProfilerMultiGpu.html#relevant-links">Relevant links</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="PyTorchSingleGpu.html">PyTorch on Olivia</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="PyTorchSingleGpu.html#getting-the-container">Getting the Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyTorchSingleGpu.html#project-setup">Project Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyTorchSingleGpu.html#single-gpu-implementation">Single GPU Implementation</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="PyTorchSingleGpu.html#job-script-for-single-gpu-training">Job Script for Single GPU Training</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../overview.html">Code development and tutorials</a></li>
+          <li class="breadcrumb-item"><a href="PyTorchSingleGpu.html">PyTorch on Olivia</a></li>
+      <li class="breadcrumb-item active">Multi-GPU Implementation for PyTorch on Olivia</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="multi-gpu-implementation-for-pytorch-on-olivia">
+<span id="pytorch-multi-gpu"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Multi-GPU Implementation for PyTorch on Olivia</a><a class="headerlink" href="#multi-gpu-implementation-for-pytorch-on-olivia" title="Link to this heading"></a></h1>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#multi-gpu-implementation-for-pytorch-on-olivia" id="id1">Multi-GPU Implementation for PyTorch on Olivia</a></p>
+<ul>
+<li><p><a class="reference internal" href="#key-changes-from-single-gpu-to-multi-gpu" id="id2">Key Changes from Single-GPU to Multi-GPU</a></p></li>
+<li><p><a class="reference internal" href="#job-script-for-multi-gpu-training" id="id3">Job Script for Multi-GPU Training</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>This is part 2 of the PyTorch on Olivia guide. See <a class="reference internal" href="PyTorchSingleGpu.html#pytorch-on-olivia"><span class="std std-ref">PyTorch on Olivia</span></a> for the single-GPU setup.</p>
+<p>To scale training across multiple GPUs, we use PyTorch’s <a class="reference external" href="https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html">Distributed Data Parallel (DDP)</a>. The code below works for both single-node multi-GPU and multi-node configurations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c1"># train_ddp.py</span>
+<span class="linenos">  2</span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="linenos">  3</span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="linenos">  4</span><span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="linenos">  5</span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="linenos">  6</span><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="linenos">  7</span><span class="kn">import</span><span class="w"> </span><span class="nn">torchvision</span>
+<span class="hll"><span class="linenos">  8</span><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data.distributed</span><span class="w"> </span><span class="kn">import</span> <span class="n">DistributedSampler</span>
+</span><span class="hll"><span class="linenos">  9</span><span class="kn">from</span><span class="w"> </span><span class="nn">torch.nn.parallel</span><span class="w"> </span><span class="kn">import</span> <span class="n">DistributedDataParallel</span> <span class="k">as</span> <span class="n">DDP</span>
+</span><span class="hll"><span class="linenos"> 10</span><span class="kn">from</span><span class="w"> </span><span class="nn">torch.distributed</span><span class="w"> </span><span class="kn">import</span> <span class="n">init_process_group</span><span class="p">,</span> <span class="n">destroy_process_group</span>
+</span><span class="linenos"> 11</span><span class="kn">from</span><span class="w"> </span><span class="nn">dataset_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_cifar100</span>
+<span class="linenos"> 12</span><span class="kn">from</span><span class="w"> </span><span class="nn">model</span><span class="w"> </span><span class="kn">import</span> <span class="n">WideResNet</span>
+<span class="linenos"> 13</span><span class="kn">from</span><span class="w"> </span><span class="nn">train_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">test</span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span><span class="c1"># Configuration</span>
+<span class="linenos"> 16</span><span class="n">DATA_DIR</span> <span class="o">=</span> <span class="s2">&quot;./datasets&quot;</span>  <span class="c1"># Dataset downloads automatically here</span>
+<span class="linenos"> 17</span>
+<span class="linenos"> 18</span><span class="c1"># Parse input arguments</span>
+<span class="linenos"> 19</span><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;CIFAR-100 DDP example with Mixed Precision&#39;</span><span class="p">,</span>
+<span class="linenos"> 20</span>                                 <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentDefaultsHelpFormatter</span><span class="p">)</span>
+<span class="linenos"> 21</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--batch-size&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Input batch size for training&#39;</span><span class="p">)</span>
+<span class="linenos"> 22</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--epochs&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Number of epochs to train&#39;</span><span class="p">)</span>
+<span class="linenos"> 23</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--base-lr&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Learning rate for single GPU&#39;</span><span class="p">)</span>
+<span class="linenos"> 24</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--target-accuracy&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Target accuracy to stop training&#39;</span><span class="p">)</span>
+<span class="linenos"> 25</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--patience&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Number of epochs that meet target before stopping&#39;</span><span class="p">)</span>
+<span class="linenos"> 26</span><span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="linenos"> 27</span>
+<span class="hll"><span class="linenos"> 28</span><span class="k">def</span><span class="w"> </span><span class="nf">ddp_setup</span><span class="p">():</span>
+</span><span class="hll"><span class="linenos"> 29</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Set up the distributed environment.&quot;&quot;&quot;</span>
+</span><span class="hll"><span class="linenos"> 30</span>    <span class="n">init_process_group</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="s2">&quot;nccl&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 31</span>    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">set_device</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LOCAL_RANK&quot;</span><span class="p">]))</span>
+</span><span class="linenos"> 32</span>
+<span class="linenos"> 33</span><span class="k">def</span><span class="w"> </span><span class="nf">main_worker</span><span class="p">():</span>
+<span class="hll"><span class="linenos"> 34</span>    <span class="n">ddp_setup</span><span class="p">()</span>
+</span><span class="linenos"> 35</span>
+<span class="linenos"> 36</span>   <span class="c1"># Get the local rank and device</span>
+<span class="linenos"> 37</span>    <span class="n">local_rank</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LOCAL_RANK&quot;</span><span class="p">])</span>
+<span class="linenos"> 38</span>    <span class="n">global_rank</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;RANK&quot;</span><span class="p">])</span>
+<span class="linenos"> 39</span>    <span class="n">world_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;WORLD_SIZE&quot;</span><span class="p">])</span>
+<span class="linenos"> 40</span>    <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cuda:</span><span class="si">{</span><span class="n">local_rank</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Note: we don&#39;t use get_device from device_utils here</span>
+<span class="linenos"> 41</span>
+<span class="linenos"> 42</span>   <span class="c1"># Log initialization info</span>
+<span class="linenos"> 43</span>    <span class="k">if</span> <span class="n">global_rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 44</span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training started with </span><span class="si">{</span><span class="n">world_size</span><span class="si">}</span><span class="s2"> processes across </span><span class="si">{</span><span class="n">world_size</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span><span class="si">}</span><span class="s2"> nodes.&quot;</span><span class="p">)</span>
+<span class="linenos"> 45</span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span><span class="si">}</span><span class="s2"> GPUs per node.&quot;</span><span class="p">)</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span>    <span class="c1"># Load the CIFAR-100 dataset with DistributedSampler</span>
+<span class="hll"><span class="linenos"> 48</span>    <span class="n">per_gpu_batch_size</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">//</span> <span class="n">world_size</span>  <span class="c1"># Divide global batch size across GPUs</span>
+</span><span class="hll"><span class="linenos"> 49</span>    <span class="n">train_sampler</span> <span class="o">=</span> <span class="n">DistributedSampler</span><span class="p">(</span>
+</span><span class="linenos"> 50</span>        <span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">CIFAR100</span><span class="p">(</span>
+<span class="linenos"> 51</span>            <span class="n">root</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span>
+<span class="linenos"> 52</span>            <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos"> 53</span>            <span class="n">download</span><span class="o">=</span><span class="kc">True</span>
+<span class="linenos"> 54</span>        <span class="p">)</span>
+<span class="linenos"> 55</span>    <span class="p">)</span>
+<span class="linenos"> 56</span>    <span class="n">train_loader</span><span class="p">,</span> <span class="n">test_loader</span> <span class="o">=</span> <span class="n">load_cifar100</span><span class="p">(</span>
+<span class="linenos"> 57</span>        <span class="n">batch_size</span><span class="o">=</span><span class="n">per_gpu_batch_size</span><span class="p">,</span>
+<span class="linenos"> 58</span>        <span class="n">num_workers</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+<span class="linenos"> 59</span>        <span class="n">sampler</span><span class="o">=</span><span class="n">train_sampler</span>
+<span class="linenos"> 60</span>    <span class="p">)</span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span>    <span class="c1"># Create the model and wrap it with DDP</span>
+<span class="linenos"> 63</span>    <span class="n">num_classes</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># CIFAR-100 has 100 classes</span>
+<span class="hll"><span class="linenos"> 64</span>    <span class="n">model</span> <span class="o">=</span> <span class="n">WideResNet</span><span class="p">(</span><span class="n">num_classes</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 65</span>    <span class="n">model</span> <span class="o">=</span> <span class="n">DDP</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="n">local_rank</span><span class="p">])</span>
+</span><span class="linenos"> 66</span>
+<span class="linenos"> 67</span>    <span class="c1"># Define loss function and optimizer</span>
+<span class="linenos"> 68</span>    <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+<span class="linenos"> 69</span>    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">base_lr</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">5e-4</span><span class="p">)</span>
+<span class="linenos"> 70</span>
+<span class="hll"><span class="linenos"> 71</span>    <span class="c1"># Initialize gradient scaler for mixed precision</span>
+</span><span class="hll"><span class="linenos"> 72</span>    <span class="n">scaler</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">amp</span><span class="o">.</span><span class="n">GradScaler</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+</span><span class="linenos"> 73</span>    <span class="n">val_accuracy</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 74</span>    <span class="n">total_time</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 75</span>    <span class="n">total_images</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Total images processed globally</span>
+<span class="linenos"> 76</span>
+<span class="linenos"> 77</span>    <span class="c1"># Training loop</span>
+<span class="linenos"> 78</span>    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">epochs</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 79</span>        <span class="n">train_sampler</span><span class="o">.</span><span class="n">set_epoch</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span>  <span class="c1"># Set the sampler epoch for shuffling</span>
+</span><span class="linenos"> 80</span>        <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<span class="linenos"> 81</span>        <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="linenos"> 82</span>
+<span class="linenos"> 83</span>       <span class="c1"># Train the model for one epoch</span>
+<span class="linenos"> 84</span>        <span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">train_loader</span><span class="p">:</span>
+<span class="linenos"> 85</span>            <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">images</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">non_blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">non_blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos"> 86</span>
+<span class="linenos"> 87</span>           <span class="c1"># Zero the gradients</span>
+<span class="linenos"> 88</span>            <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span>           <span class="c1"># Forward pass with mixed precision</span>
+<span class="hll"><span class="linenos"> 91</span>            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">amp</span><span class="o">.</span><span class="n">autocast</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos"> 92</span>                <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 93</span>                <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+</span><span class="linenos"> 94</span>
+<span class="linenos"> 95</span>           <span class="c1"># Backward pass and optimization with scaled gradients</span>
+<span class="linenos"> 96</span>            <span class="n">scaler</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="linenos"> 97</span>            <span class="n">scaler</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">optimizer</span><span class="p">)</span>
+<span class="linenos"> 98</span>            <span class="n">scaler</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span>        <span class="c1"># Synchronize all processes</span>
+<span class="hll"><span class="linenos">101</span>        <span class="n">torch</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+</span><span class="linenos">102</span>        <span class="n">epoch_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+<span class="linenos">103</span>        <span class="n">total_time</span> <span class="o">+=</span> <span class="n">epoch_time</span>
+<span class="linenos">104</span>
+<span class="linenos">105</span>        <span class="c1"># Compute throughput (images per second for this epoch)</span>
+<span class="linenos">106</span>        <span class="n">images_per_sec</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="p">)</span> <span class="o">*</span> <span class="n">args</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">/</span> <span class="n">epoch_time</span>
+<span class="linenos">107</span>        <span class="n">total_images</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="p">)</span> <span class="o">*</span> <span class="n">args</span><span class="o">.</span><span class="n">batch_size</span>
+<span class="linenos">108</span>
+<span class="linenos">109</span>        <span class="c1"># Compute validation accuracy and loss</span>
+<span class="linenos">110</span>        <span class="n">v_accuracy</span><span class="p">,</span> <span class="n">v_loss</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test_loader</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+<span class="linenos">111</span>
+<span class="linenos">112</span>        <span class="c1"># Average validation metrics across all GPUs</span>
+<span class="hll"><span class="linenos">113</span>        <span class="n">v_accuracy_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">v_accuracy</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">114</span>        <span class="n">v_loss_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">v_loss</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">115</span>        <span class="n">torch</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">all_reduce</span><span class="p">(</span><span class="n">v_accuracy_tensor</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">ReduceOp</span><span class="o">.</span><span class="n">AVG</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">116</span>        <span class="n">torch</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">all_reduce</span><span class="p">(</span><span class="n">v_loss_tensor</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">ReduceOp</span><span class="o">.</span><span class="n">AVG</span><span class="p">)</span>
+</span><span class="linenos">117</span>
+<span class="linenos">118</span>        <span class="c1"># Print metrics only from the main process</span>
+<span class="linenos">119</span>        <span class="k">if</span> <span class="n">global_rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">120</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">epochs</span><span class="si">}</span><span class="s2"> completed in </span><span class="si">{</span><span class="n">epoch_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="linenos">121</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Validation Loss: </span><span class="si">{</span><span class="n">v_loss_tensor</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, Validation Accuracy: </span><span class="si">{</span><span class="n">v_accuracy_tensor</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">122</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch Throughput: </span><span class="si">{</span><span class="n">images_per_sec</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> images/second&quot;</span><span class="p">)</span>
+<span class="linenos">123</span>
+<span class="linenos">124</span>        <span class="c1"># Early stopping</span>
+<span class="linenos">125</span>        <span class="n">val_accuracy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v_accuracy_tensor</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+<span class="linenos">126</span>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">val_accuracy</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">args</span><span class="o">.</span><span class="n">patience</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">acc</span> <span class="o">&gt;=</span> <span class="n">args</span><span class="o">.</span><span class="n">target_accuracy</span> <span class="k">for</span> <span class="n">acc</span> <span class="ow">in</span> <span class="n">val_accuracy</span><span class="p">[</span><span class="o">-</span><span class="n">args</span><span class="o">.</span><span class="n">patience</span><span class="p">:]):</span>
+<span class="linenos">127</span>            <span class="k">if</span> <span class="n">global_rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">128</span>                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Target accuracy reached. Early stopping after epoch </span><span class="si">{</span><span class="n">epoch</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+<span class="linenos">129</span>            <span class="k">break</span>
+<span class="linenos">130</span>
+<span class="linenos">131</span>    <span class="c1"># Log total training time and summary</span>
+<span class="linenos">132</span>    <span class="k">if</span> <span class="n">global_rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">133</span>        <span class="n">throughput</span> <span class="o">=</span> <span class="n">total_images</span> <span class="o">/</span> <span class="n">total_time</span>
+<span class="linenos">134</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Training Summary:&quot;</span><span class="p">)</span>
+<span class="linenos">135</span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total training time: </span><span class="si">{</span><span class="n">total_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="linenos">136</span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Throughput: </span><span class="si">{</span><span class="n">throughput</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> images/second&quot;</span><span class="p">)</span>
+<span class="linenos">137</span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of nodes: </span><span class="si">{</span><span class="n">world_size</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">138</span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of GPUs per node: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">139</span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total GPUs used: </span><span class="si">{</span><span class="n">world_size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">140</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training completed successfully.&quot;</span><span class="p">)</span>
+<span class="linenos">141</span>
+<span class="linenos">142</span>    <span class="c1"># Clean up the distributed environment</span>
+<span class="hll"><span class="linenos">143</span>    <span class="n">destroy_process_group</span><span class="p">()</span>
+</span><span class="linenos">144</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="linenos">145</span>    <span class="n">main_worker</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="key-changes-from-single-gpu-to-multi-gpu">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Key Changes from Single-GPU to Multi-GPU</a><a class="headerlink" href="#key-changes-from-single-gpu-to-multi-gpu" title="Link to this heading"></a></h2>
+<p>The highlighted lines above show the DDP-specific additions:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Lines</p></th>
+<th class="head"><p>Change</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>8-10</p></td>
+<td><p>DDP imports</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DistributedSampler</span></code>, <code class="docutils literal notranslate"><span class="pre">DDP</span></code>, <code class="docutils literal notranslate"><span class="pre">init_process_group</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>28-31</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ddp_setup()</span></code></p></td>
+<td><p>Initialize NCCL backend and set local GPU</p></td>
+</tr>
+<tr class="row-even"><td><p>34</p></td>
+<td><p>Call <code class="docutils literal notranslate"><span class="pre">ddp_setup()</span></code></p></td>
+<td><p>Start distributed environment</p></td>
+</tr>
+<tr class="row-odd"><td><p>48-49</p></td>
+<td><p>Batch size division</p></td>
+<td><p>Split global batch across GPUs</p></td>
+</tr>
+<tr class="row-even"><td><p>64-65</p></td>
+<td><p>Wrap model with <code class="docutils literal notranslate"><span class="pre">DDP</span></code></p></td>
+<td><p>Enable synchronized gradient updates</p></td>
+</tr>
+<tr class="row-odd"><td><p>71-72</p></td>
+<td><p>Mixed precision setup</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GradScaler</span></code> for FP16 training</p></td>
+</tr>
+<tr class="row-even"><td><p>79</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">set_epoch()</span></code></p></td>
+<td><p>Ensure proper shuffling across epochs</p></td>
+</tr>
+<tr class="row-odd"><td><p>91-93</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">autocast()</span></code> context</p></td>
+<td><p>Run forward pass in FP16</p></td>
+</tr>
+<tr class="row-even"><td><p>101</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">barrier()</span></code></p></td>
+<td><p>Synchronize all processes after epoch</p></td>
+</tr>
+<tr class="row-odd"><td><p>113-116</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">all_reduce()</span></code></p></td>
+<td><p>Average metrics across GPUs</p></td>
+</tr>
+<tr class="row-even"><td><p>143</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">destroy_process_group()</span></code></p></td>
+<td><p>Clean up distributed environment</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="job-script-for-multi-gpu-training">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Job Script for Multi-GPU Training</a><a class="headerlink" href="#job-script-for-multi-gpu-training" title="Link to this heading"></a></h2>
+<p>For single-node multi-GPU training, use <code class="docutils literal notranslate"><span class="pre">torchrun</span></code> with <code class="docutils literal notranslate"><span class="pre">--standalone</span></code>. We request 4 GPUs and adjust batch size and learning rate for better scaling.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="ch">#!/bin/bash</span>
+<span class="linenos"> 2</span><span class="c1">#SBATCH --job-name=resnet_multigpu</span>
+<span class="linenos"> 3</span><span class="c1">#SBATCH --account=&lt;project_number&gt;</span>
+<span class="linenos"> 4</span><span class="c1">#SBATCH --output=multigpu_%j.out</span>
+<span class="linenos"> 5</span><span class="c1">#SBATCH --error=multigpu_%j.err</span>
+<span class="linenos"> 6</span><span class="c1">#SBATCH --time=01:00:00</span>
+<span class="linenos"> 7</span><span class="c1">#SBATCH --partition=accel</span>
+<span class="linenos"> 8</span><span class="c1">#SBATCH --nodes=1</span>
+<span class="linenos"> 9</span><span class="c1">#SBATCH --ntasks-per-node=1</span>
+<span class="linenos">10</span><span class="c1">#SBATCH --cpus-per-task=72</span>
+<span class="linenos">11</span><span class="c1">#SBATCH --mem=440G</span>
+<span class="linenos">12</span><span class="c1">#SBATCH --gpus=4</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="nv">CONTAINER_PATH</span><span class="o">=</span><span class="s2">&quot;/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif&quot;</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="c1"># Run training with 4 GPUs</span>
+<span class="linenos">17</span>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--nv<span class="w"> </span><span class="nv">$CONTAINER_PATH</span><span class="w"> </span>torchrun<span class="w"> </span><span class="se">\</span>
+<span class="linenos">18</span><span class="w">    </span>--standalone<span class="w"> </span><span class="se">\</span>
+<span class="linenos">19</span><span class="w">    </span>--nnodes<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="linenos">20</span><span class="w">    </span>--nproc_per_node<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+<span class="linenos">21</span><span class="w">    </span>train_ddp.py<span class="w"> </span>--batch-size<span class="w"> </span><span class="m">1024</span><span class="w"> </span>--epochs<span class="w"> </span><span class="m">100</span><span class="w"> </span>--base-lr<span class="w"> </span><span class="m">0</span>.04<span class="w"> </span>--target-accuracy<span class="w"> </span><span class="m">0</span>.95<span class="w"> </span>--patience<span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+<p>Example output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Epoch<span class="w"> </span><span class="m">95</span>/100<span class="w"> </span>completed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span>.330<span class="w"> </span>seconds
+Validation<span class="w"> </span>Loss:<span class="w"> </span><span class="m">1</span>.0529,<span class="w"> </span>Validation<span class="w"> </span>Accuracy:<span class="w"> </span><span class="m">0</span>.7362
+Epoch<span class="w"> </span>Throughput:<span class="w"> </span><span class="m">36967</span>.964<span class="w"> </span>images/second
+Epoch<span class="w"> </span><span class="m">96</span>/100<span class="w"> </span>completed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span>.312<span class="w"> </span>seconds
+Validation<span class="w"> </span>Loss:<span class="w"> </span><span class="m">1</span>.1540,<span class="w"> </span>Validation<span class="w"> </span>Accuracy:<span class="w"> </span><span class="m">0</span>.7197
+Epoch<span class="w"> </span>Throughput:<span class="w"> </span><span class="m">37460</span>.949<span class="w"> </span>images/second
+Epoch<span class="w"> </span><span class="m">97</span>/100<span class="w"> </span>completed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span>.326<span class="w"> </span>seconds
+Validation<span class="w"> </span>Loss:<span class="w"> </span><span class="m">1</span>.1519,<span class="w"> </span>Validation<span class="w"> </span>Accuracy:<span class="w"> </span><span class="m">0</span>.7183
+Epoch<span class="w"> </span>Throughput:<span class="w"> </span><span class="m">37075</span>.227<span class="w"> </span>images/second
+Epoch<span class="w"> </span><span class="m">98</span>/100<span class="w"> </span>completed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span>.360<span class="w"> </span>seconds
+Validation<span class="w"> </span>Loss:<span class="w"> </span><span class="m">1</span>.1684,<span class="w"> </span>Validation<span class="w"> </span>Accuracy:<span class="w"> </span><span class="m">0</span>.7097
+Epoch<span class="w"> </span>Throughput:<span class="w"> </span><span class="m">36138</span>.810<span class="w"> </span>images/second
+Epoch<span class="w"> </span><span class="m">99</span>/100<span class="w"> </span>completed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span>.303<span class="w"> </span>seconds
+Validation<span class="w"> </span>Loss:<span class="w"> </span><span class="m">1</span>.1415,<span class="w"> </span>Validation<span class="w"> </span>Accuracy:<span class="w"> </span><span class="m">0</span>.7190
+Epoch<span class="w"> </span>Throughput:<span class="w"> </span><span class="m">37718</span>.226<span class="w"> </span>images/second
+Epoch<span class="w"> </span><span class="m">100</span>/100<span class="w"> </span>completed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span>.332<span class="w"> </span>seconds
+Validation<span class="w"> </span>Loss:<span class="w"> </span><span class="m">1</span>.1560,<span class="w"> </span>Validation<span class="w"> </span>Accuracy:<span class="w"> </span><span class="m">0</span>.7153
+Epoch<span class="w"> </span>Throughput:<span class="w"> </span><span class="m">36913</span>.593<span class="w"> </span>images/second
+
+Training<span class="w"> </span>Summary:
+Total<span class="w"> </span>training<span class="w"> </span>time:<span class="w"> </span><span class="m">131</span>.972<span class="w"> </span>seconds
+Throughput:<span class="w"> </span><span class="m">37244</span>.369<span class="w"> </span>images/second
+Number<span class="w"> </span>of<span class="w"> </span>nodes:<span class="w"> </span><span class="m">1</span>
+Number<span class="w"> </span>of<span class="w"> </span>GPUs<span class="w"> </span>per<span class="w"> </span>node:<span class="w"> </span><span class="m">4</span>
+Total<span class="w"> </span>GPUs<span class="w"> </span>used:<span class="w"> </span><span class="m">4</span>
+Training<span class="w"> </span>completed<span class="w"> </span>successfully.
+</pre></div>
+</div>
+<p>With 4 GPUs and FP16 mixed precision, the throughput increased from ~5,100 images/second (single GPU) to ~37,000 images/second—a <strong>7x speedup</strong>. This super-linear scaling (beyond the expected 4x) comes from mixed precision training (FP16) and the larger effective batch size, which better utilizes the GPU compute capabilities.</p>
+<p>To scale beyond a single node, see the <a class="reference internal" href="PyTorchMultiNode.html#pytorch-multi-node"><span class="std std-ref">Multi-Node Guide</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="PyTorchSingleGpu.html" class="btn btn-neutral float-left" title="PyTorch on Olivia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="PyTorchMultiNode.html" class="btn btn-neutral float-right" title="Multi-Node Implementation for PyTorch on Olivia" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

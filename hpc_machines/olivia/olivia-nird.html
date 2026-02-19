@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data staging and data integration between NIRD and Olivia &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Installing and Using Software on Olivia" href="software_stack.html" />
+    <link rel="prev" title="Olivia System architecture and technical specification" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../betzy.html">Betzy</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../olivia.html">Olivia</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../olivia.html#the-next-generation-powerful-supercomputer-for-hpc-and-ai-applications">The next generation powerful supercomputer for HPC and AI applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../olivia.html#technical-details">Technical Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../olivia.html#getting-started-with-olivia">Getting Started with Olivia</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../olivia.html#in-depth-documentation-for-olivia">In-depth documentation for Olivia</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="overview.html">Olivia System architecture and technical specification</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Data staging and data integration between NIRD and Olivia</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#what-are-the-i-o-nodes">What are the I/O Nodes?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-access-the-dedicated-i-o-nodes">How to Access the dedicated I/O Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#accessing-your-nird-data">Accessing your NIRD data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-handling-scenarios">Data Handling Scenarios</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#best-practices-for-data-management">Best Practices for Data Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#long-term-data-storage-on-nird">Long-Term Data Storage on NIRD</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="software_stack.html">Installing and Using Software on Olivia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../jobs/job_types/olivia_job_types.html">Job Types on Olivia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trouble_shooting.html">Olivia frequently asked questions (FAQ):</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../olivia.html#olivia-best-practices-guide">Olivia Best Practices Guide</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../olivia.html">Olivia</a></li>
+      <li class="breadcrumb-item active">Data staging and data integration between NIRD and Olivia</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-staging-and-data-integration-between-nird-and-olivia">
+<span id="olivia-nird-integration"></span><h1>Data staging and data integration between NIRD and Olivia<a class="headerlink" href="#data-staging-and-data-integration-between-nird-and-olivia" title="Link to this heading"></a></h1>
+<p>This guide provides an overview of how Olivia’s I/O nodes integrate with NIRD Data Peak and Data Lake to support
+efficient data transfer, pre-processing, and post-processing workflows. It explains the purpose of these nodes,
+how to access them, and best practices for managing data between the two systems.</p>
+<section id="what-are-the-i-o-nodes">
+<h2>What are the I/O Nodes?<a class="headerlink" href="#what-are-the-i-o-nodes" title="Link to this heading"></a></h2>
+<p>Olivia includes five dedicated high-performance Input/Output (I/O) nodes specifically designed for data-intensive
+operations. These nodes act as a bridge between Olivia’s own Lustre filesystem and NIRD filesystems,
+namely <code class="docutils literal notranslate"><span class="pre">/nird/datapeak</span></code> and <code class="docutils literal notranslate"><span class="pre">/nird/datalake</span></code>, enabling seamless data movement and management.</p>
+<p>The I/O nodes are optimized for:</p>
+<ul class="simple">
+<li><p>Transferring large datasets between Olivia and NIRD</p></li>
+<li><p>Efficient handling of input data required for large-scale computations</p></li>
+</ul>
+<p>By using these nodes for heavy data-lifting tasks, you help keep the main login and compute nodes free from heavy
+I/O activities, ensuring better performance for all users.</p>
+<section id="hardware-at-a-glance">
+<h3>Hardware at a Glance:<a class="headerlink" href="#hardware-at-a-glance" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Nodes</strong>: 5x HPE ProLiant DL385 Gen 11 (hostnames svc01 to svc05)</p></li>
+<li><p><strong>CPUs</strong>: 2x AMD EPYC Genoa 9534 (128 cores per node)</p></li>
+<li><p><strong>Memory</strong>: 512 GiB per node</p></li>
+</ul>
+</section>
+</section>
+<section id="how-to-access-the-dedicated-i-o-nodes">
+<h2>How to Access the dedicated I/O Nodes<a class="headerlink" href="#how-to-access-the-dedicated-i-o-nodes" title="Link to this heading"></a></h2>
+<p>You can connect to any of the I/O nodes directly from Olivia’s login nodes using ssh.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$ssh</span><span class="w"> </span>svc01
+</pre></div>
+</div>
+<p>You can replace svc01 with the specific I/O node name you wish to access ( svc02, svc03, svc04, sc05)</p>
+</section>
+<section id="accessing-your-nird-data">
+<h2>Accessing your NIRD data<a class="headerlink" href="#accessing-your-nird-data" title="Link to this heading"></a></h2>
+<p>The dedicated I/O nodes provide direct connections to the NIRD  filesystems (both datapeak and datalake).
+Your NIRD project data is available in the following mounted directories on the I/O nodes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/nird/datapeak</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/nird/datalake</span></code></p></li>
+</ul>
+<p>Inside these directories, you can navigate to your specific NIRD project folder, which is named after your
+NIRD project number (e.g., NSXXXXK). You can check if your user has a NIRD project membership by using the
+<code class="docutils literal notranslate"><span class="pre">groups</span></code> command. If it returns an ‘ns’ group, you should have access to this folder on NIRD.</p>
+<p>If your group does not yet have a NIRD project, you/your PI should send an application for resource allocation
+on  NIRD Data Peak and/or NIRD Data Lake project through our <a class="reference external" href="https://www.metacenter.no">administration system</a>.</p>
+</section>
+<section id="data-handling-scenarios">
+<h2>Data Handling Scenarios<a class="headerlink" href="#data-handling-scenarios" title="Link to this heading"></a></h2>
+<p>Three workflows are detailed below for managing input and output data between NIRD (Data Peak or Data Lake)
+Project Area and Olivia. Each scenario outlines the workflow steps and pros and cons of the workflow.</p>
+<section id="scenario-1-manual-data-transfer">
+<h3>Scenario 1: Manual Data Transfer<a class="headerlink" href="#scenario-1-manual-data-transfer" title="Link to this heading"></a></h3>
+<p>In this approach, the user login to the service node, manually copies input data from NIRD Data Peak/Data Lake
+project area  to the work directory on Olivia, runs the job, and then manually copies the required output data back to the specific NIRD  Data Peak/ Data Lake project directories.</p>
+<section id="step-1-log-in-to-a-service-node">
+<h4>Step 1: Log in to a Service Node<a class="headerlink" href="#step-1-log-in-to-a-service-node" title="Link to this heading"></a></h4>
+<p>Connect to one of the service nodes using ssh from login node.
+Each service node is identified as svc0x, where x can be any number between 1 and 5.
+Eg:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="nv">$ssh</span><span class="w"> </span>svc01
+</pre></div>
+</div>
+</section>
+<section id="step-2-copy-input-data-from-nird">
+<h4>Step 2: Copy Input Data from NIRD<a class="headerlink" href="#step-2-copy-input-data-from-nird" title="Link to this heading"></a></h4>
+<p>Before transferring data, ensure that you have created a suitable input directory under your project’s work area on Olivia.</p>
+<p>From Data Peak:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>rsync<span class="w"> </span>-avh<span class="w"> </span>--progress<span class="w"> </span>/nird/datapeak/NSxxxxK/input_data/<span class="w"> </span>/cluster/work/projects/nnxxxxk/job_input/
+</pre></div>
+</div>
+<p>From Data Lake:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>rsync<span class="w"> </span>-avh<span class="w"> </span>--progress<span class="w"> </span>/nird/datalake/NSxxxxK/input_data/<span class="w"> </span>/cluster/work/projects/nnxxxxk/job_input/
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>NSxxxxK represents your NIRD project number(on Datapeak or Datalake).</p></li>
+<li><p>nnxxxxk represents your compute project number on Olivia.</p></li>
+<li><p>The trailing / in the source path ensures the contents of the directory are copied, not the directory itself.</p></li>
+</ul>
+</section>
+<section id="step-3-run-your-job-from-login-nodes">
+<h4>Step 3: Run Your Job from login nodes<a class="headerlink" href="#step-3-run-your-job-from-login-nodes" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../jobs/overview.html#running-jobs"><span class="std std-ref">Running Jobs</span></a></p></li>
+</ul>
+</section>
+<section id="step-4-copy-output-data-back-to-nird">
+<h4>Step 4: Copy Output Data Back to NIRD<a class="headerlink" href="#step-4-copy-output-data-back-to-nird" title="Link to this heading"></a></h4>
+<p>When your job completes, copy the output results from your work directory back to your NIRD project directory.
+Make sure to create a corresponding directory on NIRD before initiating the transfer.
+Rememeber you have to login into a service node to execute the data transfer (step1).</p>
+<p>To Data Peak:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>rsync<span class="w"> </span>-avh<span class="w"> </span>--progress<span class="w"> </span>/cluster/work/projects/nnxxxxk/job_output/<span class="w"> </span>/nird/datapeak/NSxxxxK/results/
+</pre></div>
+</div>
+<p>To Data Lake:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>rsync<span class="w"> </span>-avh<span class="w"> </span>--progress<span class="w"> </span>/cluster/work/projects/nnxxxxk/job_output/<span class="w"> </span>/nird/datalake/NSxxxxK/results/
+</pre></div>
+</div>
+<p>Pros:</p>
+<ul class="simple">
+<li><p>Simple and transparent workflow</p></li>
+<li><p>Full user control over data management</p></li>
+</ul>
+<p>Cons:</p>
+<ul class="simple">
+<li><p>Requires manual effort</p></li>
+<li><p>High risk of human error</p></li>
+<li><p>No automation</p></li>
+<li><p>Inefficient for large datasets or batch jobs</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">rsync</span></code> command is recommended for efficient, resumable, and verifiable data transfer between NIRD and Olivia.
+You can use <code class="docutils literal notranslate"><span class="pre">cp</span></code> as an alternative, but rsync is more reliable, especially for large datasets.
+For more details on rsync usage, refer to the <a class="reference internal" href="../../getting_started/file_transfer.html#file-transfer"><span class="std std-ref">File Transfer section</span></a>.</p>
+</section>
+</section>
+<section id="scenario-2-automated-staging-slurm-script-with-stage-in-stage-out">
+<h3>Scenario 2: Automated Staging (Slurm Script with Stage-In/Stage-Out)<a class="headerlink" href="#scenario-2-automated-staging-slurm-script-with-stage-in-stage-out" title="Link to this heading"></a></h3>
+<p>In this scenario, the stage-in and stage-out scripts are used to automate data transfer. The job script handles both input staging (before execution) and output staging (after execution).
+Please refer to the below documentation for the detailed description.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../jobs/job_scripts/stage_in_stage_out.html#stage-in-stage-out"><span class="std std-ref">Staging In / Out Files from / to NIRD</span></a></p></li>
+</ul>
+</section>
+<section id="scenario-3-direct-read-from-compute-nodes">
+<h3>Scenario 3: Direct Read from Compute Nodes<a class="headerlink" href="#scenario-3-direct-read-from-compute-nodes" title="Link to this heading"></a></h3>
+<p>In this approach, jobs are executed directly on the compute nodes, accessing input data stored on NIRD without
+copying it to the local work directory. Here you submit the job from login nodes as usual.
+Both Data Peak and Data Lake  are mounted as read-only on the Olivia
+compute nodes, allowing users to read data directly but not write back to these locations.</p>
+<p>After the job completes, the user must manually copy the output data from the compute node to their NIRD project
+area on either <code class="docutils literal notranslate"><span class="pre">/nird/datapeak</span></code> or <code class="docutils literal notranslate"><span class="pre">/nird/datalake</span></code> (follow the step4 in Scenario1).</p>
+<p>This method is suitable for:</p>
+<ul class="simple">
+<li><p>Small or moderate data volumes</p></li>
+<li><p>Quick analyses where data staging is unnecessary</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>IMPORTANT: It is not recommended for high-throughput or I/O-intensive workflows where parallel data access could impact performance.</p>
+</div>
+<section id="step1-access-input-data-directly-from">
+<h4>Step1: Access Input Data Directly from<a class="headerlink" href="#step1-access-input-data-directly-from" title="Link to this heading"></a></h4>
+<p>You can specify the path to your NIRD data directly in your job script or application.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../jobs/overview.html#running-jobs"><span class="std std-ref">Running Jobs</span></a></p></li>
+</ul>
+</section>
+<section id="step2-copy-output-data-back-to-nird">
+<h4>Step2: Copy Output Data Back to NIRD<a class="headerlink" href="#step2-copy-output-data-back-to-nird" title="Link to this heading"></a></h4>
+<p>Follow the step4 in Scenario 1.</p>
+<p>Pros:</p>
+<ul class="simple">
+<li><p>Simplified workflow (no pre-staging required)</p></li>
+</ul>
+<p>Cons:</p>
+<ul class="simple">
+<li><p>You may waste some CPU and GPU cycles on computes while waiting for data transfer from NIRD</p></li>
+<li><p>Potentially slower performance when multiple jobs access the same storage simultaneously</p></li>
+<li><p>Risk of I/O bottlenecks and lockups</p></li>
+<li><p>No write access to NIRD from compute nodes</p></li>
+<li><p>Suitable for small datasets (e.g. less then 10000 files, and/or smaller then 100 GB)</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="best-practices-for-data-management">
+<h2>Best Practices for Data Management<a class="headerlink" href="#best-practices-for-data-management" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Use the I/O nodes exclusively for data transfer and preparation tasks.</p></li>
+<li><p>Avoid running computationally intensive jobs on these nodes.</p></li>
+<li><p>Regularly transfer output data to NIRD Data Lake or NIRD Data Peak for mid-term storage.</p></li>
+<li><p>Remove unnecessary temporary data from Olivia to optimize storage usage.</p></li>
+</ul>
+</section>
+<section id="long-term-data-storage-on-nird">
+<h2>Long-Term Data Storage on NIRD<a class="headerlink" href="#long-term-data-storage-on-nird" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>If you do not yet have a NIRD project, you can apply for allocation on either NIRD Data Peak or NIRD Data Lake.</p></li>
+<li><p>Output data stored temporarily on Olivia should be moved to NIRD Data Peak and/or NIRD Data Lake for mid-term preservation.</p></li>
+<li><p>Long-term data preservation can be achieved by depositing open access data into the NIRD Research Data Archive (NIRD RDA).</p></li>
+<li><p>Please follow the <a class="reference internal" href="../../nird_archive/user-guide.html#research-data-archive"><span class="std std-ref">NIRD RDA documentation</span></a> for more information.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="overview.html" class="btn btn-neutral float-left" title="Olivia System architecture and technical specification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="software_stack.html" class="btn btn-neutral float-right" title="Installing and Using Software on Olivia" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

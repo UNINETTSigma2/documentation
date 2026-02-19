@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local storage for scratch files &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Guides" href="guides.html" />
+    <link rel="prev" title="Projects and accounting" href="projects_accounting.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Running jobs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="submitting.html">Submitting jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_job_types.html">Job Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts/array_jobs.html">Array Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts.html">Job Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Monitoring jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slurm_output.html">Understanding the job output file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing-memory-settings.html">How to choose the right amount of memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing-number-of-cores.html">How to choose the number of cores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_job_failures.html">Common job failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">How to check the performance and scaling using Arm Performance Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mkl.html">Using MKL efficiently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory-bandwidth.html">Efficient use of memory bandwidth on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-calculations.html">Efficient use of processors and network on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_jobs.html">Interactive jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkpointing.html">Checkpointing Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects_accounting.html">Projects and accounting</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Local storage for scratch files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#why-it-matters">Why it matters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-choose-location-for-scratch-files">How to choose location for scratch files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recommendations">Recommendations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#input-files">Input files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#temporary-files">Temporary files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-files">Output files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#files-in-localscratch-and-scratch">Files in <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code> and <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#more-on-output-files">More on Output files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jobs-using-localscratch-with-more-than-one-node">Jobs using <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code> with more than one node</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guides.html">Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slurm_commands.html">Useful Slurm commands and tools for managing jobs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="overview.html">Running jobs</a></li>
+      <li class="breadcrumb-item active">Local storage for scratch files</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="local-storage-for-scratch-files">
+<span id="scratchfiles"></span><h1>Local storage for scratch files<a class="headerlink" href="#local-storage-for-scratch-files" title="Link to this heading"></a></h1>
+<section id="why-it-matters">
+<h2>Why it matters<a class="headerlink" href="#why-it-matters" title="Link to this heading"></a></h2>
+<p>Usage of local storage for scratch files can have dramatic impact of run time!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>localscratch is only available on Saga and Fram.</p>
+</div>
+<p><img alt="Different scratch locations" src="../_images/localscratch.png" /></p>
+<p>As illustrated in the figure random read operations are extremely slow on a global
+parallel file system. Reading and writing large sequential file are fast. Any file operation on a
+parallel file system incur some kind of metadata operation and this is centralised and need to be
+coordinated with locks to make sure file integrity is assured. Adding to this is the fact that a
+large system have a large amount of jobs running, each might open thousands of files. No wonder that
+most global parallel file systems struggle.</p>
+<p>On the other hand local handling of files not only scale with the number of nodes used it also lead
+to far less demand on the parallel file system, benefiting all users.</p>
+<p>The test run to produce the results in the figure above figure took 47 minutes using <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code>
+while it took 20 hours using <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code>.</p>
+</section>
+<section id="how-to-choose-location-for-scratch-files">
+<h2>How to choose location for scratch files<a class="headerlink" href="#how-to-choose-location-for-scratch-files" title="Link to this heading"></a></h2>
+<p>A job typically uses several types of files, including:</p>
+<ul class="simple">
+<li><p>the job script itself</p></li>
+<li><p>the Slurm output file (default: <code class="docutils literal notranslate"><span class="pre">slurm-&lt;job-ID&gt;.out</span></code>)</p></li>
+<li><p>input files</p></li>
+<li><p>temporary files</p></li>
+<li><p>output files</p></li>
+</ul>
+<p>There are multiple choices for where to keep files.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Path</p></th>
+<th class="head"><p>Size</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Project area</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/cluster/projects/&lt;project-name&gt;</span></code></p></td>
+<td><p>quota per project</p></td>
+<td><p>main project area, for permanent files</p></td>
+</tr>
+<tr class="row-odd"><td><p>User work area</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/cluster/work/users/&lt;uname&gt;</span></code></p></td>
+<td><p>no quota</p></td>
+<td><p>for temporary user files</p></td>
+</tr>
+<tr class="row-even"><td><p>Job scratch area</p></td>
+<td><p>(<code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code>) <code class="docutils literal notranslate"><span class="pre">/cluster/work/jobs/&lt;job-ID&gt;</span></code></p></td>
+<td><p>no quota</p></td>
+<td><p>for temporary job files</p></td>
+</tr>
+<tr class="row-odd"><td><p>Job scratch area on local disk</p></td>
+<td><p>(<code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code>) <code class="docutils literal notranslate"><span class="pre">/localscratch/&lt;job-ID&gt;</span></code></p></td>
+<td><p>few 100GBs per node</p></td>
+<td><p>a fast disk on the node where the job runs</p></td>
+</tr>
+</tbody>
+</table>
+<p>An overall description of the areas is given in <a class="reference internal" href="../files_storage/clusters.html#storage-areas"><span class="std std-ref">Storage areas on HPC clusters</span></a>.</p>
+<p>Each location has its advantages and disadvantages, depending on
+usage. The parallel file system is very good for sequential read and
+write of large files.It is by nature (very) slow for random read and write
+operations and metadata operations (handling of large number of files).</p>
+<p>The local file system (<code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code>) is far better suited for this.
+In addition the parallel file system needs to serve all users, so
+placing very high metadata load on it make the file system slow for
+all users. On the other hand, the local file system is local to each
+compute node, and cannot easily be shared between nodes (but see
+below).</p>
+</section>
+<section id="recommendations">
+<h2>Recommendations<a class="headerlink" href="#recommendations" title="Link to this heading"></a></h2>
+<p>We recommend that the job script itself and the Slurm output file
+(<code class="docutils literal notranslate"><span class="pre">slurm-&lt;jobid&gt;.log</span></code>) are kept on the parallel file system.
+The default location for the Slurm output file is the directory where
+one runs sbatch. You can also keep both of these files in your home directory,
+but be aware that the disk quota for home directories is quite small.</p>
+<section id="input-files">
+<h3>Input files<a class="headerlink" href="#input-files" title="Link to this heading"></a></h3>
+<p>Where to keep input files depends on how they are used.</p>
+<p>If an input file is read sequentially (i.e., from start to end), it is
+best to keep it in the work/home or project area.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The storage location pointed to by <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code> is limited, if
+job fails due to storage limitation on <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code>, use <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code>.</p>
+</div>
+<p>If there is a lot of random read of an input file, it is best to let
+the job script copy the file to <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code>.</p>
+</section>
+<section id="temporary-files">
+<h3>Temporary files<a class="headerlink" href="#temporary-files" title="Link to this heading"></a></h3>
+<p>By temporary files we mean files created by the job, and that are not
+needed after the job has finished.</p>
+<p>Temporary files should normally be created in <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code>, since
+this is the fastest disk. This is especially important if there is a
+lot of random read and/or write of the files.</p>
+<p>If other users need access to files while a job runs, you should create
+files in the user work area or the project area. Files in the project
+area are readable by users of the same project, and files in the user
+work area can be made available to other users.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>NOTE: Files in the user work area are deleted after some time.</p>
+</div>
+</section>
+<section id="output-files">
+<h3>Output files<a class="headerlink" href="#output-files" title="Link to this heading"></a></h3>
+<p>By output files we mean files created by the job, and that are needed after the job has finished.</p>
+<p>As with input files, if an output file is written sequentially (i.e.,
+from start to end), it is best to create it in the project area.</p>
+<p>If there is a lot of random writes (or reads) of an output file, it is
+best to create it in <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code>, and let the job script copy the file to
+the project area when the job finishes.</p>
+</section>
+<section id="files-in-localscratch-and-scratch">
+<h3>Files in <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code> and <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code><a class="headerlink" href="#files-in-localscratch-and-scratch" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code> area (/localscratch/<job-ID>) for each job is
+created automatically when the job starts, and deleted afterwards. It
+is located on solid state storage on the compute
+nodes. Such memory based storage is magnitudes faster than normal disk
+storage for random access operations. For streaming operations like
+writing or reading large sequential amount of data the parallel file
+system is comparable, even tape drives are comparable for streaming
+data/sequential access.</p>
+<p>A potential limitation of the scratch area is its limited size. As memory has
+higher cost than spinning disks, the scratch area is rather limited.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> area (<code class="docutils literal notranslate"><span class="pre">/cluster/work/job/&lt;job-id&gt;</span></code>) is part of the global parallel
+file file system with its own traits like far more space, sharing files etc.</p>
+<p>Files placed in all scratch areas will automatically be deleted after the job finishes.</p>
+</section>
+<section id="more-on-output-files">
+<h3>More on Output files<a class="headerlink" href="#more-on-output-files" title="Link to this heading"></a></h3>
+<p>Output files can also be placed in <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code> for
+increased speed (see above).</p>
+<p>For files in <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code>, you must use <code class="docutils literal notranslate"><span class="pre">cp</span></code> in the job script to
+copy the file back to the project area before the job exits.</p>
+<p>For files in <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code>, you can use the command <code class="docutils literal notranslate"><span class="pre">savefile</span> <span class="pre">filename</span></code>
+in the job script, where <code class="docutils literal notranslate"><span class="pre">filename</span></code> is the name of the file, relative
+to the <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> area. (<code class="docutils literal notranslate"><span class="pre">savefile</span></code> does <em>not</em> work with
+<code class="docutils literal notranslate"><span class="pre">$LOCALSRCATCH</span></code>.) The command should be placed before the main
+computational commands in the script. I.e.,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">savefile</span> <span class="n">MyOuputFile</span>
+<span class="n">MyProgram</span> <span class="o">&gt;</span> <span class="n">MyOutputFile</span>
+</pre></div>
+</div>
+<p>This ensures that the file <code class="docutils literal notranslate"><span class="pre">${SCRATCH}/MyOutputFile</span></code> is
+copied back to the submit directory (the directory you were in when you ran the
+sbatch command). The file will be copied back even if the job crashes
+(however, if the compute node itself crashes, the file will not be copied back).</p>
+<p>If you want more flexibility, it is possible to register a command to
+be run to copy the file where you want it by using <code class="docutils literal notranslate"><span class="pre">cleanup</span> <span class="pre">&lt;commandline&gt;</span></code> instead of using the <code class="docutils literal notranslate"><span class="pre">savefile</span></code> command. It should also
+be placed before the main computational commands. This can also be
+used for files in <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code>, i.e.,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cleanup cp $LOCALSCRATCH/MyOutputFile /cluster/projects/ec&lt;N&gt;/mydir
+MyProgram &gt; $LOCALSCRATCH/MyOutputFile
+</pre></div>
+</div>
+<p>If the <code class="docutils literal notranslate"><span class="pre">savefile</span></code> or <code class="docutils literal notranslate"><span class="pre">cleanup</span></code> commands contain any special characters
+like <code class="docutils literal notranslate"><span class="pre">*</span></code>, these should be quoted.</p>
+</section>
+<section id="jobs-using-localscratch-with-more-than-one-node">
+<h3>Jobs using <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code> with more than one node<a class="headerlink" href="#jobs-using-localscratch-with-more-than-one-node" title="Link to this heading"></a></h3>
+<p>As the <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code> area is local to each node, files cannot be
+shared between nodes like when using <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code>. A job running on
+several nodes will get one <code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code> area on each node.</p>
+<p>Slurm provide utilities for distributing files to local scratch areas on several nodes and gather files back again.
+Here is an example to illustrate how this might look:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --account=YourProject</span>
+<span class="c1">#SBATCH --ntasks-per-node=2</span>
+<span class="c1">#SBATCH --nodes=2</span>
+<span class="c1">#SBATCH --mem-per-cpu=500M</span>
+<span class="c1">#SBATCH --time=00:02:0</span>
+<span class="c1">#SBATCH --gres=localscratch:100G</span>
+
+<span class="c1">## Print the hostnames where each task is running:</span>
+srun<span class="w"> </span>hostname
+
+<span class="c1">## This copies &quot;hello.c&quot; from your submit dir to $LOCALSCRATCH on each node:</span>
+srun<span class="w"> </span>--ntasks-per-node<span class="o">=</span><span class="m">1</span><span class="w"> </span>--ntasks<span class="o">=</span><span class="nv">$SLURM_NNODES</span><span class="w"> </span>cp<span class="w"> </span>hello.c<span class="w"> </span><span class="si">${</span><span class="nv">LOCALSCRATCH</span><span class="si">}</span>/hello.c
+
+<span class="c1">## Simulate output files created on the $LOCALSCRATCH areas on each node</span>
+<span class="c1">## by copying $LOCALSCRATCH/hello.c to $LOCALSCRATCH/bye.c once on each node:</span>
+srun<span class="w"> </span>--ntasks-per-node<span class="o">=</span><span class="m">1</span><span class="w"> </span>--ntasks<span class="o">=</span><span class="nv">$SLURM_NNODES</span><span class="w"> </span>cp<span class="w">  </span><span class="si">${</span><span class="nv">LOCALSCRATCH</span><span class="si">}</span>/hello.c<span class="w"> </span><span class="si">${</span><span class="nv">LOCALSCRATCH</span><span class="si">}</span>/bye.c
+
+<span class="c1">## This copies the &quot;bye.c&quot; files back to the submit dir:</span>
+sgather<span class="w"> </span><span class="si">${</span><span class="nv">LOCALSCRATCH</span><span class="si">}</span>/bye.c<span class="w">  </span>bye.c
+</pre></div>
+</div>
+<p>Slurm <code class="docutils literal notranslate"><span class="pre">sgather</span></code> will append <code class="docutils literal notranslate"><span class="pre">$HOSTNAME</span></code> to each of the files gathered
+to avoid overwriting anything.  Note that you have to set up ssh keys
+with an empty passphrase on the cluster for <code class="docutils literal notranslate"><span class="pre">sgather</span></code> to work, because
+under the hood, it uses <code class="docutils literal notranslate"><span class="pre">scp</span></code> to transfer the files.</p>
+<p>(There is a slurm command <code class="docutils literal notranslate"><span class="pre">sbcast</span></code> that can be used instead of <code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">--ntasks-per-node=1</span> <span class="pre">--ntasks=$SLURM_NNODES</span> <span class="pre">cp</span></code> to copy files to
+<code class="docutils literal notranslate"><span class="pre">$LOCALSCRATCH</span></code> on each node, but it is much slower, and not suited to
+large files.)</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="projects_accounting.html" class="btn btn-neutral float-left" title="Projects and accounting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="guides.html" class="btn btn-neutral float-right" title="Guides" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

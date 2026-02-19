@@ -1,0 +1,906 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unified Shared Memory with SYCL &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Unified Shared Memory with SYCL</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="unified-shared-memory-with-sycl">
+<span id="sycl-usm"></span><h1>Unified Shared Memory with SYCL<a class="headerlink" href="#unified-shared-memory-with-sycl" title="Link to this heading"></a></h1>
+<p>This example demonstrates:</p>
+<ol class="arabic simple">
+<li><p>how to allocate USM pointers in SYCL</p></li>
+<li><p>how to submit work tasks to a SYCL device queue</p></li>
+<li><p>how to write a parallel kernel function in SYCL</p></li>
+<li><p>how to perform <code class="docutils literal notranslate"><span class="pre">memcpy</span></code> operations locally in device memory</p></li>
+<li><p>how to perform a reduction operation in a SYCL kernel function</p></li>
+</ol>
+<p>In this tutorial we will SYCL-ify a somewhat more realistic example, which is taken from the
+<a class="reference internal" href="openacc.html#openacc"><span class="std std-ref">OpenACC tutorial</span></a>. The serial version of the Jacobi iteration program has here been
+slightly modified for C++ (and in anticipation of what is to come):</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Serial implementation of the Jacobi iteration</span>
+<span class="cm"> */</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstring&gt;</span>
+
+<span class="c1">// Number of rows and columns in our matrix</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2000</span><span class="p">;</span>
+<span class="c1">// Total number of elements in our matrix</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="p">;</span>
+<span class="c1">// Maximum number of iterations before quiting</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_ITER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span>
+<span class="c1">// Error tolerance for iteration</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">MAX_ERROR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.01</span><span class="p">;</span>
+<span class="c1">// Seed for random number generator</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SEED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12345</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Initialize random number generator</span>
+<span class="w">  </span><span class="n">srand</span><span class="w"> </span><span class="p">(</span><span class="n">SEED</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Create array to calculate on</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">TOT_ELEMENTS</span><span class="p">];</span>
+
+<span class="w">  </span><span class="c1">// Fill array with data</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// The following will create random values between [0, 1]</span>
+<span class="w">    </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="n">rand</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="n">RAND_MAX</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Before starting calculation we will define a few helper variables</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">tmp</span><span class="p">[</span><span class="n">TOT_ELEMENTS</span><span class="p">];</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__FLT_MAX__</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// We copy here to get the boundary elements, which will be copied back and forth unchanged</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Perform Jacobi iterations until we either have low enough error or too many iterations</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_ERROR</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_ITER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// For each element take the average of the surrounding elements</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.25</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                            </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                            </span><span class="n">arr</span><span class="p">[(</span><span class="n">i</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                            </span><span class="n">arr</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]);</span>
+<span class="w">        </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]));</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Transfer new array to old (including boundary, which was untouched in the loop)</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">tmp</span><span class="p">,</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">iterations</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Iterations : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; | Error : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/0ddfeb84c79cc59ca5004f7408ff8102/jacobi_serial.cpp"><code class="xref download docutils literal notranslate"><span class="pre">jacobi_serial.cpp</span></code></a></p>
+<section id="compile-and-run-reference-serial-code">
+<h2>Compile and run reference serial code<a class="headerlink" href="#compile-and-run-reference-serial-code" title="Link to this heading"></a></h2>
+<p>We can compile and run the reference serial version of the code on Saga. First we load a recent version
+of the GNU C++ compiler, and compile a <code class="docutils literal notranslate"><span class="pre">jacobi_serial</span></code> target with <code class="docutils literal notranslate"><span class="pre">-Ofast</span></code> optimization:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~]$ </span>module<span class="w"> </span>load<span class="w"> </span>GCC/10.2.0
+<span class="gp">[me@login-1.SAGA ~]$ </span>g++<span class="w"> </span>-Ofast<span class="w"> </span>-o<span class="w"> </span>jacobi_serial<span class="w"> </span>jacobi_serial.cpp
+</pre></div>
+</div>
+<p>Hopefully no errors occurred on this step, and we are ready to run a reference benchmark on a compute node:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~]$ </span>srun<span class="w"> </span>--account<span class="o">=</span>&lt;my-account&gt;<span class="w"> </span>--time<span class="o">=</span><span class="m">0</span>:10:00<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">1</span><span class="w"> </span>--mem<span class="o">=</span>1G<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./jacobi_serial
+<span class="go">srun: job 3661704 queued and waiting for resources</span>
+<span class="go">srun: job 3661704 has been allocated resources</span>
+<span class="go">Iterations : 7214 | Error : 0.00999874</span>
+<span class="go">37.91user 0.00system 0:38.08elapsed 99%CPU (0avgtext+0avgdata 32880maxresident)k</span>
+<span class="go">3844inputs+0outputs (17major+1097minor)pagefaults 0swaps</span>
+</pre></div>
+</div>
+<p>The execution should take around 40 seconds on a single core (38.08s in this case, the <code class="docutils literal notranslate"><span class="pre">elapsed</span></code> value in
+the output). We notice also the printed output from our program, which states that it ran a total of 7214
+iterations before reaching an error below 0.01, so this is the number of times we enter the main <code class="docutils literal notranslate"><span class="pre">while</span></code> loop.</p>
+</section>
+<section id="introducing-sycl-and-unified-shared-memory">
+<h2>Introducing SYCL and Unified Shared Memory<a class="headerlink" href="#introducing-sycl-and-unified-shared-memory" title="Link to this heading"></a></h2>
+<p>In contrast to the directives based approaches to GPU programming like OpenMP and OpenACC, which can often be achieved
+by strategically placed compiler directives into the existing code, porting to SYCL might require a bit more changes to the
+structure and algorithms of the program. SYCL supports fully asynchronous execution of tasks using C++ concepts like futures
+and events, and provides two main approaches for data management: using Unified Shared Memory (USM) or Buffers.
+USM uses familiar C/C++-like memory pointers in a <em>unified virtual address space</em>, which basically means that you
+can use the same pointer address on the host and on the device. This approach will likely be more familiar to the
+traditional C/C++ programmer, but it requires explicit management of all data dependences and synchronization, which can
+be achieved by adding <code class="docutils literal notranslate"><span class="pre">wait</span></code> statements or by capturing an <code class="docutils literal notranslate"><span class="pre">event</span></code> from one task and passing it on as an explicit dependency
+for other tasks. Buffers, on the other hand, can only be accessed through special <code class="docutils literal notranslate"><span class="pre">accessor</span></code> objects, which are used by
+the runtime to automatically construct a dependecy graph for all the tasks, and thus make sure that they are executed in
+the correct order.</p>
+<p>In this tutorial we will limit ourselves to the USM approach, and we will for simplicity attach explicit <code class="docutils literal notranslate"><span class="pre">wait</span></code> statements
+to all the tasks, which effectively deactivates any asynchronous execution.</p>
+<section id="step-1-create-a-sycl-queue">
+<h3>Step 1: Create a SYCL queue<a class="headerlink" href="#step-1-create-a-sycl-queue" title="Link to this heading"></a></h3>
+<p>Back to the Jacobi source code, we start by creating a <code class="docutils literal notranslate"><span class="pre">sycl::queue</span></code>. This object is “attached”
+to a particular device and is used to submit tasks for execution, in general asynchronously
+(out-of-order). As in the <a class="reference internal" href="hipsycl.html#hipsycl-start"><span class="std std-ref">Hello World</span></a> SYCL example, we will print out the name
+of the device to make sure that we pick up the correct hardware:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstring&gt;</span>
+
+<span class="hll"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SYCL/sycl.hpp&gt;</span>
+</span>
+<span class="c1">// Number of rows and columns in our matrix</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2000</span><span class="p">;</span>
+<span class="c1">// Total number of elements in our matrix</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="p">;</span>
+<span class="c1">// Maximum number of iterations before quiting</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_ITER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span>
+<span class="c1">// Error tolerance for iteration</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">MAX_ERROR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.01</span><span class="p">;</span>
+<span class="c1">// Seed for random number generator</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SEED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12345</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Create default SYCL queue and print name of device</span>
+<span class="hll"><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sycl</span><span class="o">::</span><span class="n">queue</span><span class="p">{</span><span class="n">sycl</span><span class="o">::</span><span class="n">default_selector</span><span class="p">{}};</span>
+</span><span class="hll"><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Chosen device: &quot;</span>
+</span><span class="hll"><span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Q</span><span class="p">.</span><span class="n">get_device</span><span class="p">().</span><span class="n">get_info</span><span class="o">&lt;</span><span class="n">sycl</span><span class="o">::</span><span class="n">info</span><span class="o">::</span><span class="n">device</span><span class="o">::</span><span class="n">name</span><span class="o">&gt;</span><span class="p">()</span>
+</span><span class="hll"><span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span>
+<span class="w">  </span><span class="c1">// Initialize random number generator</span>
+<span class="w">  </span><span class="n">srand</span><span class="w"> </span><span class="p">(</span><span class="n">SEED</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-allocate-usm-memory">
+<h3>Step 2: Allocate USM memory<a class="headerlink" href="#step-2-allocate-usm-memory" title="Link to this heading"></a></h3>
+<p>USM pointers can be allocated in three ways: <code class="docutils literal notranslate"><span class="pre">malloc_host</span></code>, <code class="docutils literal notranslate"><span class="pre">malloc_device</span></code> or <code class="docutils literal notranslate"><span class="pre">malloc_shared</span></code>.
+In this example we will use <em>shared</em> memory pointers only, which are pointer addresses that can be
+accessed by both the host and the device. Furthermore, the <em>physical</em> location of such shared
+data can actually change during program execution, and the runtime will move the data back
+and forth as the access pattern changes from host to device and vice versa. This will make
+sure that the data can become accessible from <em>local</em> memory on both the host and the device and it
+<em>allows</em> for fast access on the device as long as the data is <em>allowed</em> to reside on the
+device local memory throughout the execution of a kernel function, i.e. no data accesses from
+the host should occur in the mean time, which would result in costly data migration.</p>
+<p>The changes we need to make to our example code in order to use shared memory is to replace
+the stack allocated arrays (<code class="docutils literal notranslate"><span class="pre">arr</span></code> and <code class="docutils literal notranslate"><span class="pre">tmp</span></code>) with <code class="docutils literal notranslate"><span class="pre">sycl::malloc_shared</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">// Initialize random number generator</span>
+<span class="w">  </span><span class="n">srand</span><span class="w"> </span><span class="p">(</span><span class="n">SEED</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Create *SHARED* array to store the input/output</span>
+<span class="hll"><span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">arr_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sycl</span><span class="o">::</span><span class="n">malloc_shared</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TOT_ELEMENTS</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span>
+</span>
+<span class="w">  </span><span class="c1">// Fill *SHARED* array with data</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// The following will create random values between [0, 1]</span>
+<span class="w">    </span><span class="n">arr_s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="n">rand</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="n">RAND_MAX</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Create *SHARED* array to calculate on</span>
+<span class="hll"><span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">tmp_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sycl</span><span class="o">::</span><span class="n">malloc_shared</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TOT_ELEMENTS</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span>
+</span><span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__FLT_MAX__</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// We copy here to get the boundary elements, which will be copied back and forth unchanged</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">tmp_s</span><span class="p">,</span><span class="w"> </span><span class="n">arr_s</span><span class="p">,</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>We have added a <code class="docutils literal notranslate"><span class="pre">_s</span></code> suffix to the variable name just to indicate it’s a shared pointer.
+Note that we pass our <code class="docutils literal notranslate"><span class="pre">sycl::queue</span></code> (<code class="docutils literal notranslate"><span class="pre">Q</span></code>) to this memory allocation as it carries the
+information of which device this memory should be shared (there could be several queues
+with different devices). We see also that the shared data arrays can be filled and
+<code class="docutils literal notranslate"><span class="pre">std::memcpy</span></code>’d in exactly the same way as before by the host, so there’s no change to
+how the host interacts with this data.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Memory allocated with <code class="docutils literal notranslate"><span class="pre">sycl::malloc_host</span></code> will also be “accessible” from the device, but it
+will always be fetched from host memory and passed to the device through a memory bus, which
+is <em>always</em> going to be <em>much</em> slower than fetching directly from local memory on the device.
+The fast alternative to shared memory is to use <code class="docutils literal notranslate"><span class="pre">sycl::malloc_host</span></code> and <code class="docutils literal notranslate"><span class="pre">sycl::malloc_device</span></code>
+and then <em>manually</em> transfer the data between the host and the device. This is a bit less
+convenient, but it gives more fine-grained control to the programmer.</p>
+</div>
+</section>
+<section id="step-3-implement-the-parallel-kernel">
+<h3>Step 3: Implement the parallel kernel<a class="headerlink" href="#step-3-implement-the-parallel-kernel" title="Link to this heading"></a></h3>
+<p>We now come to the main work sharing construct in our example (beware, this is a mouthful):</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Perform Jacobi iterations until we either have low enough error or too many iterations</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_ERROR</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_ITER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Submit work item to the SYCL queue</span>
+<span class="hll"><span class="w">    </span><span class="n">Q</span><span class="p">.</span><span class="n">submit</span><span class="p">(</span>
+</span><span class="hll"><span class="w">      </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">sycl</span><span class="o">::</span><span class="n">handler</span><span class="w"> </span><span class="o">&amp;</span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">        </span><span class="c1">// Define work kernel as single loop</span>
+</span><span class="hll"><span class="w">        </span><span class="n">h</span><span class="p">.</span><span class="n">parallel_for</span><span class="p">(</span>
+</span><span class="hll"><span class="w">          </span><span class="n">sycl</span><span class="o">::</span><span class="n">range</span><span class="p">{(</span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)},</span>
+</span><span class="hll"><span class="w">          </span><span class="p">[</span><span class="o">=</span><span class="p">](</span><span class="n">sycl</span><span class="o">::</span><span class="n">id</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">            </span><span class="c1">// Retain array indices from single loop variable</span>
+</span><span class="hll"><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span class="hll"><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span class="hll"><span class="w">            </span><span class="c1">// For each element take the average of the surrounding elements</span>
+</span><span class="hll"><span class="w">            </span><span class="n">tmp_s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.25</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">arr_s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+</span><span class="hll"><span class="w">                                                  </span><span class="n">arr_s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+</span><span class="hll"><span class="w">                                                  </span><span class="n">arr_s</span><span class="p">[(</span><span class="n">i</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+</span><span class="hll"><span class="w">                                                  </span><span class="n">arr_s</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]);</span>
+</span><span class="hll"><span class="w">          </span><span class="p">}</span>
+</span><span class="hll"><span class="w">        </span><span class="p">);</span>
+</span><span class="hll"><span class="w">      </span><span class="p">}</span>
+</span><span class="hll"><span class="w">    </span><span class="p">).</span><span class="n">wait</span><span class="p">();</span><span class="w"> </span><span class="c1">// Wait for completion before moving on</span>
+</span><span class="w">    </span>
+<span class="w">    </span><span class="c1">// Find maximum error (cannot be done in the loop kernel above)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">tmp_s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">arr_s</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Transfer new array to old (including boundary, which was untouched in the loop)</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">arr_s</span><span class="p">,</span><span class="w"> </span><span class="n">tmp_s</span><span class="p">,</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">iterations</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>We will not discuss in detail everything that is going on here, please refer to standard SYCL
+literature for more in-depth explanations, e.g. the free e-book on
+<a class="reference external" href="https://www.apress.com/gp/book/9781484255735">Data Parallel C++</a>. The take-home message is that
+we <code class="docutils literal notranslate"><span class="pre">submit</span></code> to the queue a kernel function which represents a single iteration of a <code class="docutils literal notranslate"><span class="pre">parallel_for</span></code>
+loop for execution on the device. Some (probably unnecessary) logic is added to extract the
+two array indices <code class="docutils literal notranslate"><span class="pre">i,j</span></code> from the single loop iteration index, but otherwise the body of the kernel
+is the same as the nested loop we had in the serial version, except that we need to extract the
+computation of the maximum error from this main loop. The reason for this is that the kernel
+code will be executed in arbitrary order by many different threads on the device, and no single
+thread will be able to compute the true maximum locally.</p>
+<p>Since the memory was allocated as <code class="docutils literal notranslate"><span class="pre">malloc_shared</span></code> between the host and the device, the reduction
+operation to find the maximum error, as well as the <code class="docutils literal notranslate"><span class="pre">std::memcpy</span></code> operation between <code class="docutils literal notranslate"><span class="pre">tmp_s</span></code> and
+<code class="docutils literal notranslate"><span class="pre">arr_s</span></code>, can be performed by the host. Keep in mind, though, that this will require a <em>migration</em>
+of the shared data back and forth between the device and the host at every iteration of the
+<code class="docutils literal notranslate"><span class="pre">while</span></code> loop (more than 7000 iterations), and we will see the effect of this in the timings below.</p>
+<p>A critical point in the code snippet above is the <code class="docutils literal notranslate"><span class="pre">wait()</span></code> statement on the tail of the <code class="docutils literal notranslate"><span class="pre">Q.submit()</span></code>
+call. This will tell the host to wait for further execution until all the work in the parallel
+kernel has been completed. This effectively deactivates asynchronous execution of the device tasks.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code class="docutils literal notranslate"><span class="pre">Q.submit(...).wait();</span></code> is a concatenation of the slightly more expressive <code class="docutils literal notranslate"><span class="pre">Q.submit(...);</span> <span class="pre">Q.wait();</span></code>,
+which emphasizes that it’s the entire queue that is drained by the <code class="docutils literal notranslate"><span class="pre">wait</span></code>, not just the task loop
+that was just submitted. This means that you can submit several independent tasks to the queue for
+asynchronous execution, and then drain them all in <code class="docutils literal notranslate"><span class="pre">Q.wait()</span></code> at a later stage.</p>
+</div>
+</section>
+<section id="step-4-free-usm-memory">
+<h3>Step 4: Free USM memory<a class="headerlink" href="#step-4-free-usm-memory" title="Link to this heading"></a></h3>
+<p>Finally, as always when allocating raw pointers in C++, one has to manually free the memory:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Iterations : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; | Error : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Free *SHARED* memory</span>
+<span class="hll"><span class="w">  </span><span class="n">sycl</span><span class="o">::</span><span class="n">free</span><span class="p">(</span><span class="n">arr_s</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span>
+</span><span class="hll"><span class="w">  </span><span class="n">sycl</span><span class="o">::</span><span class="n">free</span><span class="p">(</span><span class="n">tmp_s</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span>
+</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="compiling-for-cpu">
+<h2>Compiling for CPU<a class="headerlink" href="#compiling-for-cpu" title="Link to this heading"></a></h2>
+<p>With the adjustments discussed above we end up with the following source code:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * SYCL accelerated implementation of the Jacobi iteration</span>
+<span class="cm"> */</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstring&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SYCL/sycl.hpp&gt;</span>
+
+<span class="c1">// Number of rows and columns in our matrix</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2000</span><span class="p">;</span>
+<span class="c1">// Total number of elements in our matrix</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="p">;</span>
+<span class="c1">// Maximum number of iterations before quiting</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_ITER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span>
+<span class="c1">// Error tolerance for iteration</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">MAX_ERROR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.01</span><span class="p">;</span>
+<span class="c1">// Seed for random number generator</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SEED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12345</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Create default SYCL queue and print name of device</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sycl</span><span class="o">::</span><span class="n">queue</span><span class="p">{</span><span class="n">sycl</span><span class="o">::</span><span class="n">default_selector</span><span class="p">{}};</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Chosen device: &quot;</span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Q</span><span class="p">.</span><span class="n">get_device</span><span class="p">().</span><span class="n">get_info</span><span class="o">&lt;</span><span class="n">sycl</span><span class="o">::</span><span class="n">info</span><span class="o">::</span><span class="n">device</span><span class="o">::</span><span class="n">name</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Initialize random number generator</span>
+<span class="w">  </span><span class="n">srand</span><span class="w"> </span><span class="p">(</span><span class="n">SEED</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Create *SHARED* array to store the input/output</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">arr_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sycl</span><span class="o">::</span><span class="n">malloc_shared</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TOT_ELEMENTS</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Fill *SHARED* array with data</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// The following will create random values between [0, 1]</span>
+<span class="w">    </span><span class="n">arr_s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="n">rand</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="n">RAND_MAX</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Create *SHARED* array to calculate on</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">tmp_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sycl</span><span class="o">::</span><span class="n">malloc_shared</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TOT_ELEMENTS</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__FLT_MAX__</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// We copy here to get the boundary elements, which will be copied back and forth unchanged</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">tmp_s</span><span class="p">,</span><span class="w"> </span><span class="n">arr_s</span><span class="p">,</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Perform Jacobi iterations until we either have low enough error or too many iterations</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_ERROR</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_ITER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Submit work item to the SYCL queue</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">.</span><span class="n">submit</span><span class="p">(</span>
+<span class="w">      </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">sycl</span><span class="o">::</span><span class="n">handler</span><span class="w"> </span><span class="o">&amp;</span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Define work kernel as single loop</span>
+<span class="w">        </span><span class="n">h</span><span class="p">.</span><span class="n">parallel_for</span><span class="p">(</span>
+<span class="w">          </span><span class="n">sycl</span><span class="o">::</span><span class="n">range</span><span class="p">{(</span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)},</span>
+<span class="w">          </span><span class="p">[</span><span class="o">=</span><span class="p">](</span><span class="n">sycl</span><span class="o">::</span><span class="n">id</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Retain array indices from single loop variable</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="c1">// For each element take the average of the surrounding elements</span>
+<span class="w">            </span><span class="n">tmp_s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.25</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">arr_s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                                  </span><span class="n">arr_s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                                  </span><span class="n">arr_s</span><span class="p">[(</span><span class="n">i</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                                  </span><span class="n">arr_s</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]);</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">).</span><span class="n">wait</span><span class="p">();</span><span class="w"> </span><span class="c1">// Wait for completion before moving on</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Find maximum error (cannot be done in the loop kernel above)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">tmp_s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">arr_s</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Transfer new array to old (including boundary, which was untouched in the loop)</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">arr_s</span><span class="p">,</span><span class="w"> </span><span class="n">tmp_s</span><span class="p">,</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">iterations</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Iterations : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; | Error : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Free *SHARED* memory</span>
+<span class="w">  </span><span class="n">sycl</span><span class="o">::</span><span class="n">free</span><span class="p">(</span><span class="n">arr_s</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span>
+<span class="w">  </span><span class="n">sycl</span><span class="o">::</span><span class="n">free</span><span class="p">(</span><span class="n">tmp_s</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/42bf886f1ad9fb1c7384f0a7ca61db90/jacobi_shared.cpp"><code class="xref download docutils literal notranslate"><span class="pre">jacobi_shared.cpp</span></code></a></p>
+<p>We can compile an <code class="docutils literal notranslate"><span class="pre">omp</span></code> target of this code on Saga using the <code class="docutils literal notranslate"><span class="pre">syclcc</span></code> compiler wrapper from
+the <code class="docutils literal notranslate"><span class="pre">hipSYCL</span></code> module (feel free to ignore the warning):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~]$ </span>module<span class="w"> </span>load<span class="w"> </span>hipSYCL/0.9.1-gcccuda-2020b
+<span class="gp">[me@login-1.SAGA ~]$ </span>syclcc<span class="w"> </span>--hipsycl-targets<span class="o">=</span>omp<span class="w"> </span>-Ofast<span class="w"> </span>-o<span class="w"> </span>jacobi_shared_cpu<span class="w"> </span>jacobi_shared.cpp
+<span class="go">clang-11: warning: Unknown CUDA version. cuda.h: CUDA_VERSION=11010. Assuming the latest supported version 10.1 [-Wunknown-cuda-version]</span>
+</pre></div>
+</div>
+<p>And we can run it on a single compute core (please ignore also the hipSYCL warning, which comes
+when you run on compute nodes without GPU resources):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~]$ </span>srun<span class="w"> </span>--account<span class="o">=</span>&lt;my-account&gt;<span class="w"> </span>--time<span class="o">=</span><span class="m">0</span>:10:00<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">1</span><span class="w"> </span>--mem<span class="o">=</span>1G<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./jacobi_shared_cpu
+<span class="go">srun: job 3671849 queued and waiting for resources</span>
+<span class="go">srun: job 3671849 has been allocated resources</span>
+<span class="go">[hipSYCL Warning] backend_loader: Could not load backend plugin: /cluster/software/hipSYCL/0.9.1-gcccuda-2020b/bin/../lib/hipSYCL/librt-backend-cuda.so</span>
+<span class="go">[hipSYCL Warning] libcuda.so.1: cannot open shared object file: No such file or directory</span>
+<span class="go">Chosen device: hipSYCL OpenMP host device</span>
+<span class="go">Iterations : 7229 | Error : 0.00999993</span>
+<span class="go">65.29user 0.37system 1:05.89elapsed 99%CPU (0avgtext+0avgdata 34300maxresident)k</span>
+<span class="go">10337inputs+0outputs (47major+2099minor)pagefaults 0swaps</span>
+</pre></div>
+</div>
+<p>We see from the “Chosen device” output of our program that the <code class="docutils literal notranslate"><span class="pre">sycl::queue</span></code> was bound to the
+“hipSYCL OpenMP host device”, which means that it is using the host CPU as a “device”.
+So this took about a minute to run, which is some 50% <em>slower</em> than the reference serial run
+we did above. However, one of the benefits of SYCL is that it can use the available CPU threads
+of the host as “device” for offloading. Let’s try to run the same code on 20 CPU cores:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~]$ </span>srun<span class="w"> </span>--account<span class="o">=</span>&lt;my-account&gt;<span class="w"> </span>--time<span class="o">=</span><span class="m">0</span>:10:00<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">20</span><span class="w"> </span>--mem<span class="o">=</span>1G<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./jacobi_shared_cpu
+<span class="go">srun: job 3671925 queued and waiting for resources</span>
+<span class="go">srun: job 3671925 has been allocated resources</span>
+<span class="go">[hipSYCL Warning] backend_loader: Could not load backend plugin: /cluster/software/hipSYCL/0.9.1-gcccuda-2020b/bin/../lib/hipSYCL/librt-backend-cuda.so</span>
+<span class="go">[hipSYCL Warning] libcuda.so.1: cannot open shared object file: No such file or directory</span>
+<span class="go">Chosen device: hipSYCL OpenMP host device</span>
+<span class="go">Iterations : 7229 | Error : 0.00999993</span>
+<span class="go">594.42user 16.34system 0:30.84elapsed 1980%CPU (0avgtext+0avgdata 45092maxresident)k</span>
+<span class="go">10337inputs+0outputs (47major+2267minor)pagefaults 0swaps</span>
+</pre></div>
+</div>
+<p>Alright, we’re down to ~30s, which is somewhat faster than the serial reference (still not overly
+impressive given that we spend 20 times more resources). Let’s see if we can do better on the GPU.</p>
+</section>
+<section id="compiling-for-nvidia-gpus">
+<h2>Compiling for Nvidia GPUs<a class="headerlink" href="#compiling-for-nvidia-gpus" title="Link to this heading"></a></h2>
+<p>When compiling for the P100 Nvidia GPUs on Saga we simply have to change the <code class="docutils literal notranslate"><span class="pre">hipsycl-targets</span></code>
+from <code class="docutils literal notranslate"><span class="pre">omp</span></code> to <code class="docutils literal notranslate"><span class="pre">cuda:sm_60</span></code>, and then submit a job with GPU resources:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~]$ </span>syclcc<span class="w"> </span>--hipsycl-targets<span class="o">=</span>cuda:sm_60<span class="w"> </span>-Ofast<span class="w"> </span>-o<span class="w"> </span>jacobi_shared_gpu<span class="w"> </span>jacobi_shared.cpp
+<span class="gp">[me@login-1.SAGA ~]$ </span>srun<span class="w"> </span>--account<span class="o">=</span>&lt;my-account&gt;<span class="w"> </span>--time<span class="o">=</span><span class="m">0</span>:10:00<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>--gpus-per-task<span class="o">=</span><span class="m">1</span><span class="w"> </span>--mem<span class="o">=</span>1G<span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./jacobi_shared_gpu
+<span class="go">srun: job 3672238 queued and waiting for resources</span>
+<span class="go">srun: job 3672238 has been allocated resources</span>
+<span class="go">Chosen device: Tesla P100-PCIE-16GB</span>
+<span class="go">Iterations : 7230 | Error : 0.00999916</span>
+<span class="go">77.14user 54.72system 2:12.42elapsed 99%CPU (0avgtext+0avgdata 156600maxresident)k</span>
+<span class="go">11393inputs+0outputs (694130major+7440minor)pagefaults 0swaps</span>
+</pre></div>
+</div>
+<p>Good news first: the chosen device is now Tesla P100-PCIE-16GB, which is the name of the graphics
+card on the Saga GPU nodes. Our application was actually able to pick up the correct device.
+The bad news is of course the elapsed time of 2m12s, which is <em>significantly</em> slower than both
+the serial and OpenMP versions above. We already hinted at the reason for this poor performance,
+so let’s see if we can fix it.</p>
+</section>
+<section id="optimizing-for-gpu-performance">
+<h2>Optimizing for GPU performance<a class="headerlink" href="#optimizing-for-gpu-performance" title="Link to this heading"></a></h2>
+<section id="step-5-move-data-between-usm-pointers-on-the-device">
+<h3>Step 5: Move data between USM pointers on the device<a class="headerlink" href="#step-5-move-data-between-usm-pointers-on-the-device" title="Link to this heading"></a></h3>
+<p>In this example we have two <code class="docutils literal notranslate"><span class="pre">std::memcpy</span></code> performed by the host on the USM shared pointer. The first one
+is a single operation before we enter the main <code class="docutils literal notranslate"><span class="pre">while</span></code> loop, while the other is performed at the end of
+every loop iteration. Since this operation is performed by the host CPU, it will implicitly invoke a
+data migration in case the data happens to be located in device memory when the function is called.
+Since we are copying data <em>between</em> two USM pointers, we can actually perform this <code class="docutils literal notranslate"><span class="pre">memcpy</span></code> directly
+on the device, and thus avoid the costly data migration.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">memcpy</span></code> that we do <em>before</em> the main work loop in our example could be left unchanged.
+This single function call should have no noticeable impact on the performance since the data is already
+located on the host after the initialization. We will still submit also this <code class="docutils literal notranslate"><span class="pre">memcpy</span></code> operation to the
+<code class="docutils literal notranslate"><span class="pre">sycl::queue</span></code> for execution on the device since it will serve as a preporatory step of migrating the
+data to device memory <em>in advance</em> of the upcoming kernel execution.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">// We copy here to get the boundary elements, which will be copied back and forth unchanged</span>
+<span class="hll"><span class="w">  </span><span class="n">Q</span><span class="p">.</span><span class="n">memcpy</span><span class="p">(</span><span class="n">tmp_s</span><span class="p">,</span><span class="w"> </span><span class="n">arr_s</span><span class="p">,</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)).</span><span class="n">wait</span><span class="p">();</span>
+</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Perform Jacobi iterations until we either have low enough error or too many iterations</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_ERROR</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_ITER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Submit work item to the SYCL queue</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">.</span><span class="n">submit</span><span class="p">(</span>
+<span class="w">      </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">sycl</span><span class="o">::</span><span class="n">handler</span><span class="w"> </span><span class="o">&amp;</span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Define work kernel as single loop</span>
+<span class="w">        </span><span class="n">h</span><span class="p">.</span><span class="n">parallel_for</span><span class="p">(</span>
+<span class="w">          </span><span class="n">sycl</span><span class="o">::</span><span class="n">range</span><span class="p">{(</span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)},</span>
+<span class="w">          </span><span class="p">[</span><span class="o">=</span><span class="p">](</span><span class="n">sycl</span><span class="o">::</span><span class="n">id</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Retain array indices from single loop variable</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="c1">// For each element take the average of the surrounding elements</span>
+<span class="w">            </span><span class="n">tmp_s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.25</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">arr_s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                                  </span><span class="n">arr_s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                                  </span><span class="n">arr_s</span><span class="p">[(</span><span class="n">i</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                                  </span><span class="n">arr_s</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]);</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">).</span><span class="n">wait</span><span class="p">();</span><span class="w"> </span><span class="c1">// Wait for completion before moving on</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Find maximum error (cannot be done in the loop kernel above)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">tmp_s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">arr_s</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Transfer new array to old (including boundary, which was untouched in the loop)</span>
+<span class="hll"><span class="w">    </span><span class="n">Q</span><span class="p">.</span><span class="n">memcpy</span><span class="p">(</span><span class="n">arr_s</span><span class="p">,</span><span class="w"> </span><span class="n">tmp_s</span><span class="p">,</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)).</span><span class="n">wait</span><span class="p">();</span>
+</span>
+<span class="w">    </span><span class="n">iterations</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/b962df39385f53106ec8b31b860281b6/jacobi_memcpy.cpp"><code class="xref download docutils literal notranslate"><span class="pre">jacobi_memcpy.cpp</span></code></a></p>
+<p>As we can see from the code snippet above, there are two changes to the <code class="docutils literal notranslate"><span class="pre">memcpy</span></code> function calls:
+(1) <code class="docutils literal notranslate"><span class="pre">std::</span></code> is replaced by <code class="docutils literal notranslate"><span class="pre">Q.</span></code> and (2) we have put a <code class="docutils literal notranslate"><span class="pre">.wait()</span></code> on the tail of the function call.
+(1) will offload the the work to be performed by the device rather than the host, while (2) will
+hold back the host from further execution until the <code class="docutils literal notranslate"><span class="pre">Q</span></code> is empty (for now the queue holds only a
+single <code class="docutils literal notranslate"><span class="pre">memcpy</span></code> task).</p>
+<p>In contrast to the first <code class="docutils literal notranslate"><span class="pre">memcpy</span></code>, the one in the loop is critical for performance.
+If this operation is performed as <code class="docutils literal notranslate"><span class="pre">std::memcpy</span></code> by the host, it will require an implicit data
+migration from device to host (and back) <em>in every iteration</em> of the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop. Making this
+a <code class="docutils literal notranslate"><span class="pre">Q.memcpy</span></code> instead will allow the copy to be executed locally in device memory without ever
+involving the host.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Q.memcpy(...)</span></code> syntax is actually a shorthand for something a bit more cumbersome
+<code class="docutils literal notranslate"><span class="pre">Q.submit([&amp;](sycl::handler</span> <span class="pre">&amp;h)</span> <span class="pre">{</span> <span class="pre">h.memcpy(...);</span> <span class="pre">})</span></code>, which is more in line with the syntax of the
+kernel submission above.</p>
+</div>
+</section>
+<section id="step-6-add-reduction-object-to-compute-maximum-error">
+<h3>Step 6: Add reduction object to compute maximum error<a class="headerlink" href="#step-6-add-reduction-object-to-compute-maximum-error" title="Link to this heading"></a></h3>
+<p>There’s still one more operation inside the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop that needs to be considered, and that is
+the computation of the maximum error in each iteration. This could not be straightforwardly included
+in the kernel function, so we left it as a separate loop to be executed by the host after the kernel
+has completed. However, just as for the <code class="docutils literal notranslate"><span class="pre">memcpy</span></code> that we discussed above, this will also imply a costly
+data migration back to the host at every iteration. The way around this problem is to attach a
+<code class="docutils literal notranslate"><span class="pre">sycl::reduction</span></code> operation to this error variable, which will allow us to include the maximum reduction
+back into the main kernel function. The syntax to achieve this is somewhat involved:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">// Create *SHARED* array to calculate on</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">tmp_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sycl</span><span class="o">::</span><span class="n">malloc_shared</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TOT_ELEMENTS</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span>
+<span class="hll"><span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">err_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sycl</span><span class="o">::</span><span class="n">malloc_shared</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span>
+</span><span class="hll"><span class="w">  </span><span class="o">*</span><span class="n">err_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__FLT_MAX__</span><span class="p">;</span>
+</span>
+<span class="w">  </span><span class="c1">// We copy here to get the boundary elements, which will be copied back and forth unchanged</span>
+<span class="w">  </span><span class="n">Q</span><span class="p">.</span><span class="n">memcpy</span><span class="p">(</span><span class="n">tmp_s</span><span class="p">,</span><span class="w"> </span><span class="n">arr_s</span><span class="p">,</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)).</span><span class="n">wait</span><span class="p">();</span>
+
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Perform Jacobi iterations until we either have low enough error or too many iterations</span>
+<span class="hll"><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">err_s</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_ERROR</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_ITER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">    </span><span class="o">*</span><span class="n">err_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span><span class="p">;</span>
+</span><span class="w">    </span><span class="c1">// Submit work item to the SYCL queue</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">.</span><span class="n">submit</span><span class="p">(</span>
+<span class="w">      </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">sycl</span><span class="o">::</span><span class="n">handler</span><span class="w"> </span><span class="o">&amp;</span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Attach a reduction operation to the err_s shared variable, to be used in the parallel_for</span>
+<span class="hll"><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">max_err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sycl</span><span class="o">::</span><span class="n">reduction</span><span class="p">(</span><span class="n">err_s</span><span class="p">,</span><span class="w"> </span><span class="n">sycl</span><span class="o">::</span><span class="n">maximum</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">());</span>
+</span>
+<span class="w">        </span><span class="c1">// Define work kernel as single loop</span>
+<span class="w">        </span><span class="n">h</span><span class="p">.</span><span class="n">parallel_for</span><span class="p">(</span>
+<span class="hll"><span class="w">          </span><span class="n">sycl</span><span class="o">::</span><span class="n">range</span><span class="p">{(</span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)},</span><span class="w"> </span><span class="n">max_err</span><span class="p">,</span>
+</span><span class="hll"><span class="w">          </span><span class="p">[</span><span class="o">=</span><span class="p">](</span><span class="n">sycl</span><span class="o">::</span><span class="n">id</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="n">idx</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">max</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="w">            </span><span class="c1">// Retain array indices from single loop variable</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="c1">// For each element take the average of the surrounding elements</span>
+<span class="w">            </span><span class="n">tmp_s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.25</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">arr_s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                                  </span><span class="n">arr_s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                                  </span><span class="n">arr_s</span><span class="p">[(</span><span class="n">i</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                                  </span><span class="n">arr_s</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]);</span>
+<span class="hll"><span class="w">            </span><span class="n">max</span><span class="p">.</span><span class="n">combine</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">tmp_s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">arr_s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]));</span>
+</span><span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">).</span><span class="n">wait</span><span class="p">();</span><span class="w"> </span><span class="c1">// Wait for completion before moving on</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Transfer new array to old (including boundary, which was untouched in the loop)</span>
+<span class="w">    </span><span class="n">Q</span><span class="p">.</span><span class="n">memcpy</span><span class="p">(</span><span class="n">arr_s</span><span class="p">,</span><span class="w"> </span><span class="n">tmp_s</span><span class="p">,</span><span class="w"> </span><span class="n">TOT_ELEMENTS</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)).</span><span class="n">wait</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">iterations</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="hll"><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Iterations : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; | Error : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">err_s</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span>
+<span class="w">  </span><span class="c1">// Free *SHARED* memory</span>
+<span class="w">  </span><span class="n">sycl</span><span class="o">::</span><span class="n">free</span><span class="p">(</span><span class="n">arr_s</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span>
+<span class="w">  </span><span class="n">sycl</span><span class="o">::</span><span class="n">free</span><span class="p">(</span><span class="n">tmp_s</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span>
+<span class="w">  </span><span class="n">sycl</span><span class="o">::</span><span class="n">free</span><span class="p">(</span><span class="n">err_s</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/bed068a3099aa3dc83fbde991905f93a/jacobi_reduction.cpp"><code class="xref download docutils literal notranslate"><span class="pre">jacobi_reduction.cpp</span></code></a></p>
+<p>First of all, we need to allocate the variable that is collecting the error as a USM pointer so that it
+is accessible on the device. We do this by <code class="docutils literal notranslate"><span class="pre">sycl::malloc_shared</span></code> of a single <code class="docutils literal notranslate"><span class="pre">float</span></code>. Then we need to wrap this USM
+pointer into a <code class="docutils literal notranslate"><span class="pre">sycl::reduction</span></code> operation, and pass it as an extra argument to the <code class="docutils literal notranslate"><span class="pre">parallel_for</span></code> kernel.
+Notice that the <code class="docutils literal notranslate"><span class="pre">max_err</span></code> object is passed into the kernel as the <code class="docutils literal notranslate"><span class="pre">max</span></code> argument to the lambda function.
+Then we call the <code class="docutils literal notranslate"><span class="pre">combine()</span></code> function of this <code class="docutils literal notranslate"><span class="pre">sycl::reduction</span></code> object, which will perform the
+<code class="docutils literal notranslate"><span class="pre">sycl::maximum&lt;float&gt;</span></code> operation on the data, and thus compute the <em>true</em> maximum among all the entries
+in a thread safe manner. Finally, since the <code class="docutils literal notranslate"><span class="pre">err_s</span></code> pointer is shared between device and host, the host
+will still have access to the final error and can print it out in the end.</p>
+</section>
+</section>
+<section id="compiling-and-running-optimized-code">
+<h2>Compiling and running optimized code<a class="headerlink" href="#compiling-and-running-optimized-code" title="Link to this heading"></a></h2>
+<p>We now compile a <code class="docutils literal notranslate"><span class="pre">sm_60</span></code> target of the final version, and run on a GPU node:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~]$ </span>syclcc<span class="w"> </span>--hipsycl-targets<span class="o">=</span>cuda:sm_60<span class="w"> </span>-Ofast<span class="w"> </span>-o<span class="w"> </span>jacobi_reduction_gpu<span class="w"> </span>jacobi_reduction.cpp
+<span class="gp">[me@login-1.SAGA ~]$ </span>srun<span class="w"> </span>--account<span class="o">=</span>&lt;my-account&gt;<span class="w"> </span>--time<span class="o">=</span><span class="m">0</span>:10:00<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>--gpus-per-task<span class="o">=</span><span class="m">1</span><span class="w"> </span>--mem<span class="o">=</span>1G<span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./jacobi_reduction_gpu
+<span class="go">srun: job 3808343 queued and waiting for resources</span>
+<span class="go">srun: job 3808343 has been allocated resources</span>
+<span class="go">Chosen device: Tesla P100-PCIE-16GB</span>
+<span class="go">Iterations : 7230 | Error : 0.00999916</span>
+<span class="go">2.03user 3.83system 0:06.49elapsed 90%CPU (0avgtext+0avgdata 156604maxresident)k</span>
+<span class="go">11457inputs+0outputs (1030major+6413minor)pagefaults 0swaps</span>
+</pre></div>
+</div>
+<p>We see that by making sure that the data <em>remains</em> in device local memory throughout the execution of the
+kernel, we have reduced the overall run time to about six seconds. Notice also that most of this time is
+spent in <code class="docutils literal notranslate"><span class="pre">system</span></code> calls setting up the program, and only two seconds is spent by actually running the program.
+This system overhead should (hopefully) remain at a few seconds also for larger application when the total runtime
+is much longer.</p>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<p>In this guide we have transitioned a serial C++ code into a small GPU application using the SYCL framework.
+We have taken several steps from the initial serial implementation to the final accelerated version, using
+concepts like Unified Shared Memory and a SYCL reduction operation. We have seen that the path to actual
+<em>accelerated</em> code is not necessarily straightforward, as several of the intermediate steps shows execution
+times significantly <em>slower</em> than the original serial code. The steps can be summarized as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Version</p></th>
+<th class="head text-center"><p>CPUs</p></th>
+<th class="head text-center"><p>GPUs</p></th>
+<th class="head text-center"><p>Run time</p></th>
+<th class="head text-center"><p>Relative</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">jacobi_serial</span></code></p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>38.1 sec</p></td>
+<td class="text-center"><p>100%</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">jacobi_shared</span></code></p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>65.9 sec</p></td>
+<td class="text-center"><p>173%</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">jacobi_shared</span></code></p></td>
+<td class="text-center"><p>20</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>30.8 sec</p></td>
+<td class="text-center"><p>81%</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">jacobi_shared</span></code></p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>132.4 sec</p></td>
+<td class="text-center"><p>348%</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">jacobi_memcpy</span></code></p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>110.2 sec</p></td>
+<td class="text-center"><p>289%</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">jacobi_memcpy</span></code></p></td>
+<td class="text-center"><p>20</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>33.9 sec</p></td>
+<td class="text-center"><p>89%</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">jacobi_memcpy</span></code></p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>93.8 sec</p></td>
+<td class="text-center"><p>246%</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">jacobi_reduction</span></code></p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>115.1 sec</p></td>
+<td class="text-center"><p>302%</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">jacobi_reduction</span></code></p></td>
+<td class="text-center"><p>20</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>21.6 sec</p></td>
+<td class="text-center"><p>56%</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">jacobi_reduction</span></code></p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>6.5 sec</p></td>
+<td class="text-center"><p>17%</p></td>
+</tr>
+</tbody>
+</table>
+<p>We have with this example shown in some detail how to compile and run a SYCL code on Saga, and how to make use of
+the available GPU resources there. We have highlighted some basic SYCL <em>syntax</em>, but we have not gone into much
+detail on what goes on under the hood, or how to write <em>good</em> and <em>efficient</em> SYCL code. This simple example only
+scratches the surface of what’s possible within the framework, and we encourage the reader to check out other more
+complete resources, like the <a class="reference external" href="https://www.apress.com/gp/book/9781484255735">Data Parallel C++</a>
+e-book, before venturing into a real-world porting project using SYCL.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

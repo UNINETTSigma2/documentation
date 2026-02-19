@@ -1,0 +1,588 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenFOAM &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ParaView Server" href="paraview_server.html" />
+    <link rel="prev" title="OpenDrift" href="opendrift.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../appguides.html">Application guides</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="beast.html">Beast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bioinfo.html">Bioinformatics Software &amp; Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="castep/castep.html">CASTEP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdo.html">CDO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cesm.html">CESM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gaussian/gaussian.html">The GAUSSIAN program system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gdal.html">GDAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gromacs.html">GROMACS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammps.html">LAMMPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matlab.html">MATLAB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matplotlib.html">Plotting with Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namd.html">NAMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nco.html">NCO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ncview.html">Ncview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nwchem.html">NWChem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opendrift.html">OpenDrift</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">OpenFOAM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#license-information">License Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-openfoam-with-our-module-system">Running OpenFOAM with our Module System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sample-openfoam-job-script">Sample OpenFOAM Job Script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#note-on-decomposepardict">Note on <code class="docutils literal notranslate"><span class="pre">decomposeParDict</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#openfoam-container-build-and-job-script-guide">OpenFOAM Container Build and Job Script Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-by-step-instructions">Step-by-Step Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-a-definition-file">1. Create a Definition File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-the-container">2. Build the Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upload-the-container-to-the-cluster">3. Upload the Container to the Cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-a-job-script">4. Create a Job Script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#submit-the-job-script">5. Submit the Job Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#guide-to-creating-and-compiling-a-custom-openfoam-solver">Guide to Creating and Compiling a Custom OpenFOAM Solver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-set-up-your-environment">Step 1: Set Up Your Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-modify-the-solver">Step 2: Modify the Solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-compile-the-solver">Step 3: Compile the Solver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sample-job-script-for-custom-solver">Sample Job Script for Custom Solver</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="paraview_server.html">ParaView Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paraview_x11.html">ParaView using X11 Forwarding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paraview_web.html">ParaViewWeb with Apptainer (singularity)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proj.html">PROJ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rstudio.html">RStudio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="schrodinger/schrodinger.html">Schrödinger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vasp.html">VASP (Vienna Ab initio Simulation Package)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visit.html">VisIt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wrf.html">WRF / WPS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../appguides.html">Application guides</a></li>
+      <li class="breadcrumb-item active">OpenFOAM</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="openfoam">
+<h1>OpenFOAM<a class="headerlink" href="#openfoam" title="Link to this heading"></a></h1>
+<p>OpenFOAM is a computational fluid dynamics (CFD) software suite for physical and
+engineering simulations. The suite consists of mechanical, electronics, and
+embedded software simulation applications.
+<a class="reference external" href="https://www.openfoam.com/">To find out more, visit the OpenFOAM website.</a></p>
+<section id="license-information">
+<span id="openfoam-license-information"></span><h2>License Information<a class="headerlink" href="#license-information" title="Link to this heading"></a></h2>
+<p>OpenFOAM is available under the <a class="reference external" href="https://www.gnu.org/licenses/gpl.html">GNU General Public License</a> (GPL). For more information, visit http://www.openfoam.com/legal/open-source.php</p>
+<p>It is the user’s responsibility to make sure they adhere to the license agreements.</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#running-openfoam"><span class="std std-ref">Running OpenFOAM</span></a></p></li>
+<li><p><a class="reference internal" href="#openfoam-container-build-and-job-script-guide"><span class="std std-ref">OpenFOAM Container Build and Job Script Guide</span></a></p></li>
+<li><p><a class="reference internal" href="#guide-to-creating-and-compiling-a-custom-openfoam-solver"><span class="std std-ref">Guide to Creating and Compiling a Custom OpenFOAM Solver</span></a></p></li>
+</ol>
+</section>
+<section id="running-openfoam-with-our-module-system">
+<span id="running-openfoam"></span><h2>Running OpenFOAM with our Module System<a class="headerlink" href="#running-openfoam-with-our-module-system" title="Link to this heading"></a></h2>
+<p>To see available versions when logged into a cluster, type</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>module spider openfoam
+</pre></div>
+</div>
+<p>To use OpenFOAM type</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>module load OpenFOAM/&lt;version&gt;
+</pre></div>
+</div>
+<p>specifying one of the available versions.</p>
+<section id="sample-openfoam-job-script">
+<h3>Sample OpenFOAM Job Script<a class="headerlink" href="#sample-openfoam-job-script" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --account=your_account</span>
+<span class="c1">#SBATCH --job-name=your_job_name</span>
+<span class="c1">#SBATCH --time=0-1:0:0</span>
+<span class="c1">#SBATCH --nodes=2</span>
+<span class="c1">#SBATCH --ntasks-per-node=32</span>
+
+module<span class="w"> </span>reset
+module<span class="w"> </span>load<span class="w"> </span>OpenFOAM/&lt;version&gt;
+<span class="nb">source</span><span class="w"> </span><span class="nv">$FOAM_BASH</span>
+
+blockMesh<span class="w"> </span>&gt;<span class="w"> </span>log.blockMesh<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+surfaceFeatureExtract<span class="w"> </span>&gt;<span class="w"> </span>log.surfaceFeatureExtract<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+snappyHexMesh<span class="w"> </span>-overwrite<span class="w"> </span>&gt;<span class="w"> </span>log.snappyHexMesh<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+decomposePar<span class="w"> </span>&gt;<span class="w"> </span>log.decomposePar<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+mpirun<span class="w"> </span>rhoSimpleFoam<span class="w"> </span>-parallel
+reconstructPar
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Users has reported that the SnappyHexMesh may hang when using the Toolchains on our clusters. The solution is to either run in locally
+or use an OpenFOAM container. For an example of a OpenFOAM container and workflow see below in this guide.</p>
+</div>
+</section>
+<section id="note-on-decomposepardict">
+<h3>Note on <code class="docutils literal notranslate"><span class="pre">decomposeParDict</span></code><a class="headerlink" href="#note-on-decomposepardict" title="Link to this heading"></a></h3>
+<p>When running OpenFOAM on a cluster, ensure that your <code class="docutils literal notranslate"><span class="pre">decomposeParDict</span></code> file is configured correctly for parallel execution. Here are some key changes you might need to make:</p>
+<ul>
+<li><p><strong>Number of Subdomains</strong>: Set <code class="docutils literal notranslate"><span class="pre">numberOfSubdomains</span></code> to match the total number of tasks (<code class="docutils literal notranslate"><span class="pre">nodes</span> <span class="pre">*</span> <span class="pre">ntasks-per-node</span></code>). For example, if you have 2 nodes and 32 tasks per node, set it to 64.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numberOfSubdomains</span> <span class="mi">64</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Method</strong>: Choose a decomposition method that suits your case, such as <code class="docutils literal notranslate"><span class="pre">simple</span></code>, <code class="docutils literal notranslate"><span class="pre">scotch</span></code>, or <code class="docutils literal notranslate"><span class="pre">hierarchical</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">method</span>          <span class="n">scotch</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Coefficients</strong>: If using <code class="docutils literal notranslate"><span class="pre">simple</span></code> or <code class="docutils literal notranslate"><span class="pre">hierarchical</span></code>, specify the <code class="docutils literal notranslate"><span class="pre">coeffs</span></code> to define how the domain is split.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">simpleCoeffs</span>
+<span class="p">{</span>
+    <span class="n">n</span>               <span class="p">(</span><span class="mi">4</span> <span class="mi">4</span> <span class="mi">4</span><span class="p">);</span> <span class="o">//</span> <span class="n">Adjust</span> <span class="n">based</span> <span class="n">on</span> <span class="n">your</span> <span class="n">domain</span> <span class="ow">and</span> <span class="n">number</span> <span class="n">of</span> <span class="n">subdomains</span>
+    <span class="n">delta</span>           <span class="mf">0.001</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Ensure these settings align with your computational resources and case requirements.</p>
+</section>
+</section>
+</section>
+<section id="openfoam-container-build-and-job-script-guide">
+<span id="id1"></span><h1>OpenFOAM Container Build and Job Script Guide<a class="headerlink" href="#openfoam-container-build-and-job-script-guide" title="Link to this heading"></a></h1>
+<p>For a detailed guide on building and running containers on HPC clusters, see
+<a class="reference internal" href="../../code_development/guides/container_env.html#container-with-build-environment"><span class="std std-ref">container with build environment</span></a>.
+This guide assumes you will build the container locally and upload it to the
+cluster. Ensure <a class="reference external" href="https://apptainer.org/">Apptainer</a> is installed on your machine. Contact our
+<a class="reference internal" href="../../getting_help/support_line.html#support-line"><span class="std std-ref">support team</span></a> for assistance.</p>
+<section id="step-by-step-instructions">
+<h2>Step-by-Step Instructions<a class="headerlink" href="#step-by-step-instructions" title="Link to this heading"></a></h2>
+<section id="create-a-definition-file">
+<h3>1. Create a Definition File<a class="headerlink" href="#create-a-definition-file" title="Link to this heading"></a></h3>
+<p>Save the following as <code class="docutils literal notranslate"><span class="pre">openfoam.def</span></code> on your local machine:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Bootstrap: docker
+From: ubuntu:latest
+
+%post
+    apt-get update &amp;&amp; apt-get install -y \
+        curl sudo apt-transport-https ca-certificates gnupg lsb-release
+    curl https://dl.openfoam.com/add-debian-repo.sh | bash
+    apt-get update
+    apt-get install -y openfoam2312-default | tee /root/openfoam_install.log
+    if [ ! -d &quot;/usr/lib/openfoam/openfoam2312&quot; ]; then
+        echo &quot;OpenFOAM installation failed&quot; &gt;&gt; /root/openfoam_install.log
+        exit 1
+    fi
+    apt-get clean
+    rm -rf /var/lib/apt/lists/*
+
+%environment
+    source /usr/lib/openfoam/openfoam2312/etc/bashrc
+
+%runscript
+    echo &quot;Starting OpenFOAM shell session...&quot;
+    exec /bin/bash --rcfile /usr/lib/openfoam/openfoam2312/etc/bashrc
+</pre></div>
+</div>
+</section>
+<section id="build-the-container">
+<h3>2. Build the Container<a class="headerlink" href="#build-the-container" title="Link to this heading"></a></h3>
+<p>Run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apptainer<span class="w"> </span>build<span class="w"> </span>openfoam.sif<span class="w"> </span>openfoam.def
+</pre></div>
+</div>
+</section>
+<section id="upload-the-container-to-the-cluster">
+<h3>3. Upload the Container to the Cluster<a class="headerlink" href="#upload-the-container-to-the-cluster" title="Link to this heading"></a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">rsync</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rsync<span class="w"> </span>--info<span class="o">=</span>progress2<span class="w"> </span>-a<span class="w"> </span>openfoam.sif<span class="w"> </span>username@cluster:receiving-directory
+</pre></div>
+</div>
+<p>For more information on <code class="docutils literal notranslate"><span class="pre">rsync</span></code>, see the <a class="reference internal" href="../../getting_started/file_transfer.html#file-transfer"><span class="std std-ref">File Transfer</span></a> guide.</p>
+</section>
+<section id="create-a-job-script">
+<h3>4. Create a Job Script<a class="headerlink" href="#create-a-job-script" title="Link to this heading"></a></h3>
+<p>Save as <code class="docutils literal notranslate"><span class="pre">jobscript.sh</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --account=your_account</span>
+<span class="c1">#SBATCH --job-name=your_job_name</span>
+<span class="c1">#SBATCH --time=0-1:0:0</span>
+<span class="c1">#SBATCH --nodes=2</span>
+<span class="c1">#SBATCH --ntasks-per-node=32</span>
+
+module<span class="w"> </span>reset
+<span class="nv">APPTAINER_IMAGE</span><span class="o">=</span>/path/to/your/openfoam.sif
+
+apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/mnt<span class="w"> </span><span class="nv">$APPTAINER_IMAGE</span><span class="w"> </span>blockMesh<span class="w"> </span>&gt;<span class="w"> </span>log.blockMesh<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/mnt<span class="w"> </span><span class="nv">$APPTAINER_IMAGE</span><span class="w"> </span>surfaceFeatureExtract<span class="w"> </span>&gt;<span class="w"> </span>log.surfaceFeatureExtract<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/mnt<span class="w"> </span><span class="nv">$APPTAINER_IMAGE</span><span class="w"> </span>snappyHexMesh<span class="w"> </span>-overwrite<span class="w"> </span>&gt;<span class="w"> </span>log.snappyHexMesh<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/mnt<span class="w"> </span><span class="nv">$APPTAINER_IMAGE</span><span class="w"> </span>decomposePar<span class="w"> </span>&gt;<span class="w"> </span>log.decomposePar<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+srun<span class="w"> </span>--mpi<span class="o">=</span>pmix_v3<span class="w"> </span>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/mnt<span class="w"> </span><span class="nv">$APPTAINER_IMAGE</span><span class="w"> </span>rhoSimpleFoam<span class="w"> </span>-parallel
+apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/mnt<span class="w"> </span><span class="nv">$APPTAINER_IMAGE</span><span class="w"> </span>reconstructPar
+</pre></div>
+</div>
+</section>
+<section id="submit-the-job-script">
+<h3>5. Submit the Job Script<a class="headerlink" href="#submit-the-job-script" title="Link to this heading"></a></h3>
+<p>Run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>jobscript.sh
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="guide-to-creating-and-compiling-a-custom-openfoam-solver">
+<span id="id2"></span><h1>Guide to Creating and Compiling a Custom OpenFOAM Solver<a class="headerlink" href="#guide-to-creating-and-compiling-a-custom-openfoam-solver" title="Link to this heading"></a></h1>
+<section id="step-1-set-up-your-environment">
+<h2>Step 1: Set Up Your Environment<a class="headerlink" href="#step-1-set-up-your-environment" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Create a Working Directory:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>path/to/customSolvers
+<span class="nb">cd</span><span class="w"> </span>path/to/customSolvers
+</pre></div>
+</div>
+</li>
+<li><p><strong>Copy an Existing Solver:</strong>
+With the module system</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>OpenFOAM/&lt;version&gt;
+<span class="nb">source</span><span class="w"> </span><span class="nv">$FOAM_BASH</span>
+cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$FOAM_SOLVERS</span>/compressible/rhoSimpleFoam<span class="w"> </span>./mySolver
+</pre></div>
+</div>
+<p>or with a container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">APPTAINER_IMAGE</span><span class="o">=</span>/path/to/your/openfoam.sif
+apptainer<span class="w"> </span>shell<span class="w"> </span><span class="nv">$APPTAINER_IMAGE</span>
+cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$FOAM_SOLVERS</span>/compressible/rhoSimpleFoam<span class="w"> </span>./mySolver
+<span class="nb">exit</span>
+</pre></div>
+</div>
+<p>Note the specific solver used here may not be available in all versions of OpenFOAM. Use appropriate solvers based on your version.</p>
+</li>
+</ol>
+</section>
+<section id="step-2-modify-the-solver">
+<h2>Step 2: Modify the Solver<a class="headerlink" href="#step-2-modify-the-solver" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Rename the Solver File:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>mySolver
+mv<span class="w"> </span>rhoSimpleFoam.C<span class="w"> </span>mySolver.C
+</pre></div>
+</div>
+</li>
+<li><p><strong>Edit the Solver Code:</strong></p>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">rhoSimpleFoam</span></code> with <code class="docutils literal notranslate"><span class="pre">mySolver</span></code> in <code class="docutils literal notranslate"><span class="pre">mySolver.C</span></code>.</p>
+</li>
+<li><p><strong>Update the Make Files:</strong></p>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">Make/files</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mySolver.C
+EXE = $(FOAM_USER_APPBIN)/mySolver
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="step-3-compile-the-solver">
+<h2>Step 3: Compile the Solver<a class="headerlink" href="#step-3-compile-the-solver" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Set Environment Variables:</strong></p>
+<p>Specify your paths:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">FOAM_USER_APPBIN</span><span class="o">=</span>/path/to/your/bin
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$FOAM_USER_APPBIN</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Compile the Solver:</strong></p>
+<p><strong>If using a module system:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>OpenFOAM/&lt;version&gt;
+<span class="nb">source</span><span class="w"> </span><span class="nv">$FOAM_BASH</span>
+wmake
+</pre></div>
+</div>
+<p><strong>If using a container:</strong></p>
+<ul>
+<li><p>Enter the container shell:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apptainer<span class="w"> </span>shell<span class="w"> </span><span class="nv">$APPTAINER_IMAGE</span>
+</pre></div>
+</div>
+</li>
+<li><p>Set the environment variable inside the container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">FOAM_USER_APPBIN</span><span class="o">=</span>/path/to/your/bin
+</pre></div>
+</div>
+</li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">wmake</span></code> inside the container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wmake
+</pre></div>
+</div>
+</li>
+<li><p>Exit the shell:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">exit</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<section id="sample-job-script-for-custom-solver">
+<h3>Sample Job Script for Custom Solver<a class="headerlink" href="#sample-job-script-for-custom-solver" title="Link to this heading"></a></h3>
+<p><strong>Using Module System:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --account=your_account</span>
+<span class="c1">#SBATCH --job-name=custom_solver_job</span>
+<span class="c1">#SBATCH --time=0-1:0:0</span>
+<span class="c1">#SBATCH --nodes=2</span>
+<span class="c1">#SBATCH --ntasks-per-node=32</span>
+
+module<span class="w"> </span>reset
+module<span class="w"> </span>load<span class="w"> </span>OpenFOAM/&lt;version&gt;
+
+<span class="nv">FOAM_USER_APPBIN</span><span class="o">=</span>/path/to/your/bin
+
+blockMesh<span class="w"> </span>&gt;<span class="w"> </span>log.blockMesh<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+surfaceFeatureExtract<span class="w"> </span>&gt;<span class="w"> </span>log.surfaceFeatureExtract<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+snappyHexMesh<span class="w"> </span>-overwrite<span class="w"> </span>&gt;<span class="w"> </span>log.snappyHexMesh<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+decomposePar<span class="w"> </span>&gt;<span class="w"> </span>log.decomposePar<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+mpirun<span class="w"> </span><span class="nv">$FOAM_USER_APPBIN</span>/mySolver.C<span class="w"> </span>-parallel
+reconstructPar
+</pre></div>
+</div>
+<p><strong>Using Container:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --account=your_account</span>
+<span class="c1">#SBATCH --job-name=your_job_name</span>
+<span class="c1">#SBATCH --time=0-1:0:0</span>
+<span class="c1">#SBATCH --nodes=2</span>
+<span class="c1">#SBATCH --ntasks-per-node=32</span>
+
+module<span class="w"> </span>reset
+<span class="nv">APPTAINER_IMAGE</span><span class="o">=</span>/path/to/your/openfoam.sif
+<span class="nv">FOAM_USER_APPBIN</span><span class="o">=</span>/path/to/your/bin
+
+apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/mnt<span class="w"> </span><span class="nv">$APPTAINER_IMAGE</span><span class="w"> </span>blockMesh<span class="w"> </span>&gt;<span class="w"> </span>log.blockMesh<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/mnt<span class="w"> </span><span class="nv">$APPTAINER_IMAGE</span><span class="w"> </span>surfaceFeatureExtract<span class="w"> </span>&gt;<span class="w"> </span>log.surfaceFeatureExtract<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/mnt<span class="w"> </span><span class="nv">$APPTAINER_IMAGE</span><span class="w"> </span>snappyHexMesh<span class="w"> </span>-overwrite<span class="w"> </span>&gt;<span class="w"> </span>log.snappyHexMesh<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/mnt<span class="w"> </span><span class="nv">$APPTAINER_IMAGE</span><span class="w"> </span>decomposePar<span class="w"> </span>&gt;<span class="w"> </span>log.decomposePar<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+srun<span class="w"> </span>--mpi<span class="o">=</span>pmix_v3<span class="w"> </span>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/mnt,<span class="nv">$FOAM_USER_APPBIN</span>:/mnt/user/bin<span class="w"> </span><span class="nv">$APPTAINER_IMAGE</span><span class="w"> </span>/mnt/user/bin/mySolver.C<span class="w"> </span>-parallel
+apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/mnt<span class="w"> </span><span class="nv">$APPTAINER_IMAGE</span><span class="w"> </span>reconstructPar
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="opendrift.html" class="btn btn-neutral float-left" title="OpenDrift" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="paraview_server.html" class="btn btn-neutral float-right" title="ParaView Server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

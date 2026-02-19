@@ -1,0 +1,950 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Combining MPI and OpenACC &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Combining MPI and OpenACC</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="combining-mpi-and-openacc">
+<span id="index-0"></span><h1>Combining MPI and OpenACC<a class="headerlink" href="#combining-mpi-and-openacc" title="Link to this heading"></a></h1>
+<p>A lot of existing HPC code is already set up to take advantage of multi-core and
+cluster compute resources through <code class="docutils literal notranslate"><span class="pre">MPI</span></code>. When translating a codebase to OpenACC
+we can take advantage of this existing infrastructure by giving each <code class="docutils literal notranslate"><span class="pre">rank</span></code> its
+own <code class="docutils literal notranslate"><span class="pre">GPU</span></code> to achieve multi-GPU compute. This technique is most likely the easiest
+path to utilizing multi-GPU for existing and new projects working with OpenACC.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The alternative to combining <code class="docutils literal notranslate"><span class="pre">MPI</span></code> and OpenACC is to divide the work into
+blocks, as we show in the <a class="reference internal" href="async_openacc.html"><span class="std std-doc">asynchronous and multi-GPU
+guide</span></a>, however, with out combining such a technique with
+<code class="docutils literal notranslate"><span class="pre">MPI</span></code>, sharing is limited to a single node.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For a summary of available directives we have used <a class="reference external" href="https://www.openacc.org/sites/default/files/inline-files/API%20Guide%202.7.pdf">this reference
+guide.</a></p>
+</div>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>This guide will assume some familiarity with <code class="docutils literal notranslate"><span class="pre">MPI</span></code> and an <a class="reference internal" href="openacc.html"><span class="std std-doc">introductory
+level</span></a> of knowledge about OpenACC.</p>
+<p>After reading this guide you should be familiar with the following concepts</p>
+<ul class="simple">
+<li><p>How to take an existing <code class="docutils literal notranslate"><span class="pre">MPI</span></code> application and add OpenACC</p>
+<ul>
+<li><p>How to go from an initial <code class="docutils literal notranslate"><span class="pre">CPU</span></code>-only implementation to gradually adding
+OpenACC directives</p></li>
+<li><p>How to share data between <code class="docutils literal notranslate"><span class="pre">CPU</span></code>, <code class="docutils literal notranslate"><span class="pre">GPU</span></code> and other <code class="docutils literal notranslate"><span class="pre">rank</span></code>s</p></li>
+<li><p>How to assign the correct GPU based on <code class="docutils literal notranslate"><span class="pre">rank</span></code> and nodes</p></li>
+</ul>
+</li>
+<li><p>How to profile a combined <code class="docutils literal notranslate"><span class="pre">MPI</span></code> and OpenACC application</p></li>
+</ul>
+<hr class="docutils" />
+<p>For this guide we will solve the 1 dimensional wave equation, shown below with
+<code class="docutils literal notranslate"><span class="pre">MPI</span></code> task sharing.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * MPI implementation of the 1D wave equation</span>
+<span class="cm"> */</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+
+<span class="c1">// Default number of points to calculate over, if not given on command line</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">NUM_POINTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">400</span><span class="p">;</span>
+<span class="c1">// Default number of steps to perform per point, if not given on command line</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">NUM_STEPS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4000</span><span class="p">;</span>
+<span class="c1">// Default time interval, if not given on command line</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">DEFAULT_DT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.00125</span><span class="p">;</span>
+<span class="c1">// Speed of sound used for calculation</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+
+<span class="c1">// Define MPI tags for program</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">lower_tag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1010</span><span class="p">;</span><span class="w"> </span><span class="c1">// Send to lower rank</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">upper_tag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2020</span><span class="p">;</span><span class="w"> </span><span class="c1">// Send to higher rank</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">scatter_tag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3030</span><span class="p">;</span><span class="w"> </span><span class="c1">// Gather / Scatter data</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">gather_tag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4040</span><span class="p">;</span><span class="w"> </span><span class="c1">// Gather / Scatter data</span>
+<span class="c1">// MPI Error codes</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ALLOC_WAVE_FAIL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1001</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ALLOC_WAVES_FAIL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1002</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">INITIAL_DIST_RECV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1003</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">LAST_DIST_RECV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1004</span><span class="p">;</span>
+
+<span class="c1">// Helper macro to check an MPI call and print error if it failed</span>
+<span class="cp">#define check_mpi(code, err) \</span>
+<span class="cp">if (code != MPI_SUCCESS) { \</span>
+<span class="cp">  printf(&quot;\033[0;31m%s\033[0m\n&quot;, err); \</span>
+<span class="cp">  printf(&quot;\tError code: \033[0;31m%d\033[0m\n&quot;, code); \</span>
+<span class="cp">  MPI_Abort(MPI_COMM_WORLD, 1337); \</span>
+<span class="cp">  return EXIT_FAILURE; \</span>
+<span class="cp">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Helper method to calculate the exact solution at &#39;x&#39; with time step &#39;t&#39; and</span>
+<span class="cm"> * speed of sound &#39;c&#39;</span>
+<span class="cm"> */</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">exact</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sin</span><span class="w"> </span><span class="p">(</span><span class="mf">2.</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M_PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">t</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Helper function to calculate the partial derivative du/dt</span>
+<span class="cm"> */</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">dudt</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mf">-2.</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M_PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cos</span><span class="w"> </span><span class="p">(</span><span class="mf">2.</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M_PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">t</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Define variables to use in calculation, initialized to default values</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NUM_POINTS</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NUM_STEPS</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DEFAULT_DT</span><span class="p">;</span>
+
+<span class="w">  </span><span class="cm">/************************** Command line handling ***************************/</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strncmp</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;-h&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">strncmp</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;--help&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Usage: </span><span class="se">\033</span><span class="s">[0;32m%s</span><span class="se">\033</span><span class="s">[0m &lt;number of points&gt; &lt;number of steps&gt; &lt;timer interval&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">points</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[0;31mThe number of points must be a positive number larger than &#39;1&#39;!</span><span class="se">\033</span><span class="s">[0m</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">steps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">steps</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[0;31mThe number of steps must be a positive number!</span><span class="se">\033</span><span class="s">[0m</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atof</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dt</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">0.</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[0;31mTime interval must be larger than &#39;0.0&#39;!</span><span class="se">\033</span><span class="s">[0m</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="cm">/*************************** MPI work sharing *******************************/</span>
+<span class="w">  </span><span class="c1">// Initialize MPI</span>
+<span class="w">  </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">argv</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Could not initialize MPI!&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Extract MPI size and current rank</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">num_processes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">num_processes</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Could not fetch COMM_WORLD size&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rank</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Could not fetch COMM_WORLD rank&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">points</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">num_processes</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[0;31m%d points can&#39;t be split into %d processes!</span><span class="se">\033</span><span class="s">[0m</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">num_processes</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">equal_share</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">num_processes</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// The first and last rank calculates one additional element, while all other</span>
+<span class="w">  </span><span class="c1">// ranks calculates two additional points</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">local_points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">num_processes</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">equal_share</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">equal_share</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">local_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">equal_share</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">  </span><span class="cm">/*************************** Implementation *********************************/</span>
+<span class="w">  </span><span class="c1">// Define pointer to global result so that we can compile, this variable is</span>
+<span class="w">  </span><span class="c1">// only allocated on the root rank</span>
+<span class="w">  </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">wave</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Calculating 1D wave equation with </span><span class="se">\033</span><span class="s">[0;35m%d</span><span class="se">\033</span><span class="s">[0m points over </span><span class="se">\033</span><span class="s">[0;35m%d</span><span class="se">\033</span><span class="s">[0m steps with </span><span class="se">\033</span><span class="s">[0;35m%f</span><span class="se">\033</span><span class="s">[0m time step</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">steps</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">...split over </span><span class="se">\033</span><span class="s">[0;35m%d</span><span class="se">\033</span><span class="s">[0m processes, processing </span><span class="se">\033</span><span class="s">[0;35m%d</span><span class="se">\033</span><span class="s">[0m points each</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="n">num_processes</span><span class="p">,</span><span class="w"> </span><span class="n">local_points</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// On the root rank we allocate enough space for the full wave,</span>
+<span class="w">    </span><span class="c1">// it is used as the full result</span>
+<span class="w">    </span><span class="n">wave</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calloc</span><span class="w"> </span><span class="p">(</span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wave</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[0;31mCould not allocate %d points for wave results</span><span class="se">\033</span><span class="s">[0m</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">);</span>
+<span class="w">      </span><span class="c1">// No need to check output, we will shortly exit anyway</span>
+<span class="w">      </span><span class="n">MPI_Abort</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">ALLOC_WAVE_FAIL</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// Allocate memory for local work arrays</span>
+<span class="w">  </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">wave0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calloc</span><span class="w"> </span><span class="p">(</span><span class="n">local_points</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+<span class="w">  </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">wave1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calloc</span><span class="w"> </span><span class="p">(</span><span class="n">local_points</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+<span class="w">  </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">wave2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calloc</span><span class="w"> </span><span class="p">(</span><span class="n">local_points</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wave0</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">wave1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">wave2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[0;31mRank %d could not allocate enough space for arrays!</span><span class="se">\033</span><span class="s">[0m</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="p">);</span>
+<span class="w">    </span><span class="n">MPI_Abort</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">ALLOC_WAVES_FAIL</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">((</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">alpha2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">alpha</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fabs</span><span class="w"> </span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">1.</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[0;33mComputation will be unstable with the given parameters</span><span class="se">\033</span><span class="s">[0m</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">dt = %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="p">);</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">dx = %f (1. / %d)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">);</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">|alpha| = %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fabs</span><span class="w"> </span><span class="p">(</span><span class="n">alpha</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Initialize the wave only on the root rank</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">points</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="n">wave</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Distribute computation to all other ranks</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_processes</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">equal_share</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">num_points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_processes</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">equal_share</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">equal_share</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">      </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave</span><span class="p">[</span><span class="n">index</span><span class="p">],</span><span class="w"> </span><span class="n">num_points</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">scatter_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">),</span>
+<span class="w">                 </span><span class="s">&quot;Could not distribute data&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Distribute data to root rank also</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">wave0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wave</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">      </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wave0</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="w">    </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">wave0</span><span class="p">,</span><span class="w"> </span><span class="n">local_points</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">scatter_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">),</span>
+<span class="w">               </span><span class="s">&quot;Could not receive data&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">MPI_ERROR</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">MPI_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[0;31mMPI Recv error!</span><span class="se">\033</span><span class="s">[0m count: %ld, cancelled: %d, error: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">             </span><span class="n">out</span><span class="p">.</span><span class="n">_ucount</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">),</span><span class="w"> </span><span class="n">out</span><span class="p">.</span><span class="n">_cancelled</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="p">.</span><span class="n">MPI_ERROR</span><span class="p">);</span>
+<span class="w">      </span><span class="n">MPI_Abort</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">INITIAL_DIST_RECV</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wave0</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// Subsequent steps utilize the existing arrays for computation</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// First time step we use the initial derivative information to calculate</span>
+<span class="w">      </span><span class="c1">// the solution</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">local_start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">wave2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">alpha2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">alpha2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span>
+<span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dudt</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// After first step we use previous calculations for future values</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wave2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">alpha2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="n">alpha2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span>
+<span class="w">                   </span><span class="o">-</span><span class="w"> </span><span class="n">wave0</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Share data with neighboors</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">lower_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">),</span>
+<span class="w">                 </span><span class="s">&quot;Could not send lower update&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="w">      </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">upper_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">),</span>
+<span class="w">                 </span><span class="s">&quot;Could not receive data for lower update&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">wave2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_processes</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="w">      </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">lower_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">),</span>
+<span class="w">                 </span><span class="s">&quot;Could not receive data for upper update&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">upper_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">),</span>
+<span class="w">                 </span><span class="s">&quot;Could not send upper update&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">wave2</span><span class="p">[</span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Shift data</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">wave0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">      </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wave2</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// Synchronize data back to root rank</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Synchronizing results</span><span class="se">\033</span><span class="s">[0;33m...</span><span class="se">\033</span><span class="s">[0m &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Copy root rank data back into result array</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">wave</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Receive data from all other ranks</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_processes</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">equal_share</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">num_points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_processes</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">equal_share</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">equal_share</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">      </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="w">      </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave</span><span class="p">[</span><span class="n">index</span><span class="p">],</span><span class="w"> </span><span class="n">num_points</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">gather_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">),</span>
+<span class="w">                 </span><span class="s">&quot;Could not receive data when gathering result&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">MPI_ERROR</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">MPI_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[0;31mMPI Recv error!</span><span class="se">\033</span><span class="s">[0m count: %ld, cancelled: %d, error: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">               </span><span class="n">out</span><span class="p">.</span><span class="n">_ucount</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">),</span><span class="w"> </span><span class="n">out</span><span class="p">.</span><span class="n">_cancelled</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="p">.</span><span class="n">MPI_ERROR</span><span class="p">);</span>
+<span class="w">        </span><span class="n">MPI_Abort</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">LAST_DIST_RECV</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[0;32mcompleted</span><span class="se">\033</span><span class="s">[0m!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Calculation ended </span><span class="se">\033</span><span class="s">[0;32msuccesfully</span><span class="se">\033</span><span class="s">[0m!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">wave1</span><span class="p">,</span><span class="w"> </span><span class="n">local_points</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">gather_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">),</span>
+<span class="w">               </span><span class="s">&quot;Could not send data back to root when gathering results&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// Free data before exit</span>
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">wave0</span><span class="p">);</span>
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">wave1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">wave2</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">wave</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/fad9b49630c4e58e2cb381240f9951ec/wave_mpi.c"><code class="xref download docutils literal notranslate"><span class="pre">wave_mpi.c</span></code></a></p>
+<p>To compile this on Saga we will load <code class="docutils literal notranslate"><span class="pre">OpenMPI</span></code> and compile with the built-in <code class="docutils literal notranslate"><span class="pre">MPI</span></code>
+compiler.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>OpenMPI/4.0.3-PGI-20.4-GCC-9.3.0
+$<span class="w"> </span>mpicc<span class="w"> </span>-g<span class="w"> </span>-fast<span class="w"> </span>-o<span class="w"> </span>mpi<span class="w"> </span>wave_mpi.c
+</pre></div>
+</div>
+<p>To run this with multiple <code class="docutils literal notranslate"><span class="pre">rank</span></code>s, e.g. split the work over <code class="docutils literal notranslate"><span class="pre">4</span></code> processes, use
+the following command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>srun<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">4</span><span class="w"> </span>--account<span class="o">=</span>&lt;your<span class="w"> </span>project<span class="w"> </span>number&gt;<span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00<span class="w"> </span>--mem-per-cpu<span class="o">=</span>512M<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./mpi<span class="w"> </span><span class="m">1000000</span>
+</pre></div>
+</div>
+</section>
+<section id="introducing-openacc">
+<h2>Introducing OpenACC<a class="headerlink" href="#introducing-openacc" title="Link to this heading"></a></h2>
+<p>When starting the transition of an <code class="docutils literal notranslate"><span class="pre">MPI</span></code> enabled application, like the above, it
+is imperative to reduce complexity so as to not get overwhelmed by the
+transition. We will therefore introduce OpenACC to the program by running it as
+one process and once we are done with the OpenACC translation, add the necessary
+setup for multi-GPU utilization.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Try to follow the next sections by implementing them yourself before you see our
+solution. This will increase your confidence with OpenACC.</p>
+</div>
+<section id="adding-parallel-loop-directives">
+<h3>Adding <code class="docutils literal notranslate"><span class="pre">parallel</span> <span class="pre">loop</span></code> directives<a class="headerlink" href="#adding-parallel-loop-directives" title="Link to this heading"></a></h3>
+<p>There are several places where we could put directives in this code, however, to
+keep this manageable we will focus on the main computational area of the code.
+Lets therefore start with the following three loops.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// First time step we use the initial derivative information to calculate</span>
+<span class="w">      </span><span class="c1">// the solution</span>
+<span class="hll"><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">local_start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span class="hll"><span class="w">        </span><span class="n">wave2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">alpha2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class="hll"><span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">alpha2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span>
+</span><span class="hll"><span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dudt</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="p">);</span>
+</span><span class="hll"><span class="w">      </span><span class="p">}</span>
+</span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// After first step we use previous calculations for future values</span>
+<span class="hll"><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">        </span><span class="n">wave2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">alpha2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class="hll"><span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="n">alpha2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span>
+</span><span class="hll"><span class="w">                   </span><span class="o">-</span><span class="w"> </span><span class="n">wave0</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span class="hll"><span class="w">      </span><span class="p">}</span>
+</span><span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Share data with neighboors</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">lower_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">),</span>
+<span class="w">                 </span><span class="s">&quot;Could not send lower update&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="w">      </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">upper_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">),</span>
+<span class="w">                 </span><span class="s">&quot;Could not receive data for lower update&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">wave2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_processes</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="w">      </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">lower_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">),</span>
+<span class="w">                 </span><span class="s">&quot;Could not receive data for upper update&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">upper_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">),</span>
+<span class="w">                 </span><span class="s">&quot;Could not send upper update&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">wave2</span><span class="p">[</span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Shift data</span>
+<span class="hll"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">      </span><span class="n">wave0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span class="hll"><span class="w">      </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wave2</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span class="hll"><span class="w">    </span><span class="p">}</span>
+</span><span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Looking at the three loops we can see that every iteration is independent of
+every other iteration and it is thus safe to add <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">parallel</span> <span class="pre">loop</span></code> before
+each loop.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// First time step we use the initial derivative information to calculate</span>
+<span class="w">      </span><span class="c1">// the solution</span>
+<span class="hll"><span class="w">      </span><span class="cp">#pragma acc parallel loop</span>
+</span><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">local_start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">wave2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">alpha2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">alpha2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span>
+<span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dudt</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// After first step we use previous calculations for future values</span>
+<span class="hll"><span class="w">      </span><span class="cp">#pragma acc parallel loop</span>
+</span><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wave2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">alpha2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="n">alpha2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span>
+<span class="w">                   </span><span class="o">-</span><span class="w"> </span><span class="n">wave0</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Share data with neighboors</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">lower_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">),</span>
+<span class="w">                 </span><span class="s">&quot;Could not send lower update&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="w">      </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">upper_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">),</span>
+<span class="w">                 </span><span class="s">&quot;Could not receive data for lower update&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">wave2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_processes</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="w">      </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">lower_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">),</span>
+<span class="w">                 </span><span class="s">&quot;Could not receive data for upper update&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">upper_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">),</span>
+<span class="w">                 </span><span class="s">&quot;Could not send upper update&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">wave2</span><span class="p">[</span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Shift data</span>
+<span class="hll"><span class="w">    </span><span class="cp">#pragma acc parallel loop</span>
+</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">wave0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">      </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wave2</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/829624d414d2e4a20ea19ec715f31341/wave_loop.c"><code class="xref download docutils literal notranslate"><span class="pre">wave_loop.c</span></code></a></p>
+<p>To compile this on Saga we use the same command as above, adding <code class="docutils literal notranslate"><span class="pre">-acc</span></code> and
+<code class="docutils literal notranslate"><span class="pre">-Minfo=accel</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mpicc<span class="w"> </span>-g<span class="w"> </span>-fast<span class="w"> </span>-acc<span class="w"> </span>-Minfo<span class="o">=</span>accel<span class="w"> </span>-o<span class="w"> </span>acc<span class="w"> </span>wave_loop.c
+</pre></div>
+</div>
+<p>To test the above code use <code class="docutils literal notranslate"><span class="pre">srun</span></code> as above, but do not ask for multiple tasks.
+We also need to request GPU resources with <code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code> and
+<code class="docutils literal notranslate"><span class="pre">--gpus=1</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>srun<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span>--gpus<span class="o">=</span><span class="m">1</span><span class="w"> </span>--account<span class="o">=</span>&lt;your<span class="w"> </span>project<span class="w"> </span>number&gt;<span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00<span class="w"> </span>--mem-per-cpu<span class="o">=</span>512M<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./acc<span class="w"> </span><span class="m">1000000</span>
+</pre></div>
+</div>
+<p>The code runs on the GPU, but it is not particularly fast. The reason for this
+is that we are now continually copying memory in and out of the GPU. If we look
+at the main computation we can see that, apart from sharing two elements of the
+array with the other <code class="docutils literal notranslate"><span class="pre">rank</span></code>s, we don’t need to work on the data on the <code class="docutils literal notranslate"><span class="pre">CPU</span></code>.</p>
+<section id="checking-with-nsight">
+<h4>Checking with Nsight<a class="headerlink" href="#checking-with-nsight" title="Link to this heading"></a></h4>
+<p>To see the problem visually, we can use <a class="reference external" href="https://developer.nvidia.com/nsight-systems">Nvidia
+Nsight</a> to profile the application.
+We will simply change the invocation of <code class="docutils literal notranslate"><span class="pre">time</span></code> with <code class="docutils literal notranslate"><span class="pre">nsys</span></code> as follows.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>srun<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span>--gpus<span class="o">=</span><span class="m">1</span><span class="w"> </span>--account<span class="o">=</span>&lt;your<span class="w"> </span>project<span class="w"> </span>number&gt;<span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00<span class="w"> </span>--mem-per-cpu<span class="o">=</span>512M<span class="w"> </span>nsys<span class="w"> </span>profile<span class="w"> </span>-t<span class="w"> </span>cuda,openacc,osrt<span class="w"> </span>-o<span class="w"> </span>openacc_mpi_tutorial<span class="w"> </span>./acc<span class="w"> </span><span class="m">1000000</span>
+</pre></div>
+</div>
+<p>This will create an <code class="docutils literal notranslate"><span class="pre">openacc_mpi_tutorial.qdrep</span></code> profile that we can download to
+our local machine and view in Nsight Systems.</p>
+<p><img alt="Screenshot of Nvidia Nsight showing kernel and memory usage of our program" src="../../_images/wave_loop_profile.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Right click on the image and select <code class="docutils literal notranslate"><span class="pre">View</span> <span class="pre">Image</span></code> to see larger version.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you have not used Nsight before we have an <a class="reference internal" href="openacc.html"><span class="std std-doc">introductory tutorial
+available</span></a>.</p>
+</div>
+<p>As we can see, in the image above, the <code class="docutils literal notranslate"><span class="pre">Kernels</span></code> to <code class="docutils literal notranslate"><span class="pre">Memory</span></code> ratio is quite one
+sided, confirming our suspicion that we are spending too much time transferring
+data, and not enough time computing.</p>
+</section>
+</section>
+<section id="improving-data-locality">
+<h3>Improving data locality<a class="headerlink" href="#improving-data-locality" title="Link to this heading"></a></h3>
+<p>To improve data locality we need to know which pieces of information, e.g. which
+arrays, are important to have on <code class="docutils literal notranslate"><span class="pre">GPU</span></code> and those we don’t need to transfer.
+Taking a step back and thinking about the code we can see that <code class="docutils literal notranslate"><span class="pre">wave0</span></code> and
+<code class="docutils literal notranslate"><span class="pre">wave2</span></code> are only used for scratch space while the end result ends up in <code class="docutils literal notranslate"><span class="pre">wave1</span></code>.
+In addition we can see that this holds true, except for variable sharing with
+<code class="docutils literal notranslate"><span class="pre">MPI</span></code> - which we will come back to below, for the whole <code class="docutils literal notranslate"><span class="pre">steps</span></code> loop.</p>
+<p>Lets add a <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">acc</span> <span class="pre">data</span></code> directive above the <code class="docutils literal notranslate"><span class="pre">steps</span></code> loop so that data is
+contained on the <code class="docutils literal notranslate"><span class="pre">GPU</span></code> for the whole computation. Since we have some data in
+<code class="docutils literal notranslate"><span class="pre">wave0</span></code> we will mark it as <code class="docutils literal notranslate"><span class="pre">copyin</span></code>, we need the data in <code class="docutils literal notranslate"><span class="pre">wave1</span></code> after the loop
+as well so we mark it as <code class="docutils literal notranslate"><span class="pre">copy</span></code> and <code class="docutils literal notranslate"><span class="pre">wave2</span></code> we can just create on the <code class="docutils literal notranslate"><span class="pre">GPU</span></code>
+since it is only used as scratch in the loop.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">// Subsequent steps utilize the existing arrays for computation</span>
+<span class="hll"><span class="w">  </span><span class="cp">#pragma acc data copy(wave1[:local_points]) copyin(wave0[:local_points]) \</span>
+</span><span class="hll"><span class="cp">    create(wave2[:local_points])</span>
+</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// First time step we use the initial derivative information to calculate</span>
+<span class="w">      </span><span class="c1">// the solution</span>
+<span class="w">      </span><span class="cp">#pragma acc parallel loop</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">local_start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">wave2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">alpha2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">alpha2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span>
+<span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dudt</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// After first step we use previous calculations for future values</span>
+<span class="w">      </span><span class="cp">#pragma acc parallel loop</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wave2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">alpha2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">                    </span><span class="o">+</span><span class="w"> </span><span class="n">alpha2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span>
+<span class="w">                   </span><span class="o">-</span><span class="w"> </span><span class="n">wave0</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">      </span><span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/66e06d531d6677ed369843327e780cb0/wave_data.c"><code class="xref download docutils literal notranslate"><span class="pre">wave_data.c</span></code></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We had to remove the <code class="docutils literal notranslate"><span class="pre">check_mpi</span></code> calls in the region covered by the <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">acc</span> <span class="pre">data</span></code> since it is not allowed to exit out of a compute region with <code class="docutils literal notranslate"><span class="pre">return</span></code>.</p>
+</div>
+<p>Compile and run to see if we get any improvements.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mpicc<span class="w"> </span>-g<span class="w"> </span>-fast<span class="w"> </span>-acc<span class="w"> </span>-Minfo<span class="o">=</span>accel<span class="w"> </span>-o<span class="w"> </span>acc<span class="w"> </span>wave_data.c
+$<span class="w"> </span>srun<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span>--gpus<span class="o">=</span><span class="m">1</span><span class="w"> </span>--account<span class="o">=</span>&lt;your<span class="w"> </span>project<span class="w"> </span>number&gt;<span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00<span class="w"> </span>--mem-per-cpu<span class="o">=</span>512M<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./acc<span class="w"> </span><span class="m">1000000</span>
+</pre></div>
+</div>
+<p>The above runs quite a bit faster, but we have one problem now, the output is
+wrong. This is due to the fact that we are now not sharing any data between the
+<code class="docutils literal notranslate"><span class="pre">GPU</span></code> and the <code class="docutils literal notranslate"><span class="pre">CPU</span></code>. To improve this we will introduce the <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">acc</span> <span class="pre">update</span></code>
+directive.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">nsys</span></code> and Nvidia Nsight to convince
+yourself that the above stated improvement actually takes place.</p>
+<p><a class="reference download internal" download="" href="../../_downloads/a0020b206613f5c790f55364adfd6125/wave_data_profile.png"><code class="xref download docutils literal notranslate"><span class="pre">Nsight</span> <span class="pre">updated</span> <span class="pre">screenshot</span></code></a></p>
+</div>
+</section>
+<section id="there-and-back-again-gpu-cpu">
+<h3>There and back again - <code class="docutils literal notranslate"><span class="pre">GPU</span> <span class="pre">&lt;=&gt;</span> <span class="pre">CPU</span></code><a class="headerlink" href="#there-and-back-again-gpu-cpu" title="Link to this heading"></a></h3>
+<p>As we just saw, we are missing some data on the <code class="docutils literal notranslate"><span class="pre">CPU</span></code> to initiate the <code class="docutils literal notranslate"><span class="pre">MPI</span></code>
+transfer with. To remedy this we will add the <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">acc</span> <span class="pre">update</span></code> directive.
+This directive tells the compiler to transfer data to or from <code class="docutils literal notranslate"><span class="pre">GPU</span></code> without an
+associated block.</p>
+<p>First we will copy data from the <code class="docutils literal notranslate"><span class="pre">GPU</span></code> back to the <code class="docutils literal notranslate"><span class="pre">CPU</span></code> so that our <code class="docutils literal notranslate"><span class="pre">MPI</span></code>
+transfer can proceed. In the code below notice that we have added <code class="docutils literal notranslate"><span class="pre">acc</span> <span class="pre">update</span> <span class="pre">self(...)</span></code>. <code class="docutils literal notranslate"><span class="pre">self</span></code> in this context means that we want to transfer from <code class="docutils literal notranslate"><span class="pre">GPU</span></code> to
+<code class="docutils literal notranslate"><span class="pre">CPU</span></code>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="c1">// After first step we use previous calculations for future values</span>
+<span class="w">      </span><span class="cp">#pragma acc parallel loop</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wave2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">alpha2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">                    </span><span class="o">+</span><span class="w"> </span><span class="n">alpha2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span>
+<span class="w">                   </span><span class="o">-</span><span class="w"> </span><span class="n">wave0</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Copy data from GPU to CPU to prepare for MPI sharing</span>
+<span class="hll"><span class="w">    </span><span class="cp">#pragma acc update self(wave2[1:1])</span>
+</span><span class="hll"><span class="w">    </span><span class="cp">#pragma acc update self(wave2[local_points - 2:1])</span>
+</span><span class="w">    </span><span class="c1">// Share data with neighboors</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">lower_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+<span class="w">      </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="w">      </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">upper_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">wave2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_processes</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="w">      </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">lower_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">);</span>
+<span class="w">      </span><span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wave2</span><span class="p">[</span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">upper_tag</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">wave2</span><span class="p">[</span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">MPI</span></code> transfer will transmit the correct data, which is good, but we still
+have a problem in our code. After the <code class="docutils literal notranslate"><span class="pre">MPI</span></code> transfer the points we received from
+the other <code class="docutils literal notranslate"><span class="pre">rank</span></code>s are not updated on the <code class="docutils literal notranslate"><span class="pre">GPU</span></code>. To fix this we can add the same
+<code class="docutils literal notranslate"><span class="pre">acc</span> <span class="pre">update</span></code> directive, but change the direction of the transfer.  To do this we
+change <code class="docutils literal notranslate"><span class="pre">self</span></code> with <code class="docutils literal notranslate"><span class="pre">device</span></code> as follows.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">wave2</span><span class="p">[</span><span class="n">local_points</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">SOUND_SPEED</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Copy data we got from MPI neighbors back to GPU</span>
+<span class="hll"><span class="w">    </span><span class="cp">#pragma acc update device(wave2[0:1])</span>
+</span><span class="hll"><span class="w">    </span><span class="cp">#pragma acc update device(wave2[local_points - 1:1])</span>
+</span><span class="w">    </span><span class="c1">// Shift data</span>
+<span class="w">    </span><span class="cp">#pragma acc parallel loop</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">local_points</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">wave0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">      </span><span class="n">wave1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wave2</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>We have made a few more improvements to the overall code to more fairly compare
+with the pure <code class="docutils literal notranslate"><span class="pre">MPI</span></code> solution. See the <code class="docutils literal notranslate"><span class="pre">wave_acc.c</span></code> file below for additional
+improvements.</p>
+<p><a class="reference download internal" download="" href="../../_downloads/ae848bfa7940645f80558ff9cb186e71/wave_acc.c"><code class="xref download docutils literal notranslate"><span class="pre">wave_acc.c</span></code></a></p>
+<p>Compile and run with the following, as usual.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mpicc<span class="w"> </span>-g<span class="w"> </span>-fast<span class="w"> </span>-acc<span class="w"> </span>-Minfo<span class="o">=</span>accel<span class="w"> </span>-o<span class="w"> </span>acc<span class="w"> </span>wave_acc.c
+$<span class="w"> </span>srun<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span>--gpus<span class="o">=</span><span class="m">1</span><span class="w"> </span>--account<span class="o">=</span>&lt;your<span class="w"> </span>project<span class="w"> </span>number&gt;<span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00<span class="w"> </span>--mem-per-cpu<span class="o">=</span>512M<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./acc<span class="w"> </span><span class="m">1000000</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="splitting-the-work-over-multiple-gpus">
+<h2>Splitting the work over multiple <code class="docutils literal notranslate"><span class="pre">GPU</span></code>s<a class="headerlink" href="#splitting-the-work-over-multiple-gpus" title="Link to this heading"></a></h2>
+<p>We are almost done with our transition to OpenACC, however, what happens if we
+launch the above <code class="docutils literal notranslate"><span class="pre">wave_acc.c</span></code> with two <code class="docutils literal notranslate"><span class="pre">rank</span></code>s on the same node. From the
+perspective of the batch system we will be allocated two <code class="docutils literal notranslate"><span class="pre">GPU</span></code>s, two <code class="docutils literal notranslate"><span class="pre">CPU</span></code> cores
+and a total of <code class="docutils literal notranslate"><span class="pre">512M+512M</span></code> memory. However, our two <code class="docutils literal notranslate"><span class="pre">MPI</span></code> processes do not
+specify the <code class="docutils literal notranslate"><span class="pre">GPU</span></code> to use and will utilize the default <code class="docutils literal notranslate"><span class="pre">GPU</span></code>. Since they are
+running on the same node, that will likely be the same <code class="docutils literal notranslate"><span class="pre">GPU</span></code>.</p>
+<p>To fix this we will read in our local <code class="docutils literal notranslate"><span class="pre">rank</span></code>, which is exported under OpenMPI as
+<code class="docutils literal notranslate"><span class="pre">OMPI_COMM_WORLD_LOCAL_RANK</span></code>, then we can use this to get the correct index to
+the <code class="docutils literal notranslate"><span class="pre">GPU</span></code> to use. We need to add <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;openacc.h&gt;</span></code> so that we can access
+the Nvidia runtime and have access to <code class="docutils literal notranslate"><span class="pre">acc_set_device_num()</span></code> which we can use to
+assign a unique <code class="docutils literal notranslate"><span class="pre">GPU</span></code> to each <code class="docutils literal notranslate"><span class="pre">MPI</span></code> process.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="cm">/*************************** MPI work sharing *******************************/</span>
+<span class="w">  </span><span class="c1">// Initialize MPI</span>
+<span class="w">  </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">argv</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Could not initialize MPI!&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Extract MPI size and current rank</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">num_processes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">num_processes</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Could not fetch COMM_WORLD size&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rank</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Could not fetch COMM_WORLD rank&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">points</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">num_processes</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[0;31m%d points can&#39;t be split into %d processes!</span><span class="se">\033</span><span class="s">[0m</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">num_processes</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">equal_share</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">num_processes</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// The first and last rank calculates one additional element, while all other</span>
+<span class="w">  </span><span class="c1">// ranks calculates two additional points</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">local_points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">num_processes</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">equal_share</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">equal_share</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">local_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">equal_share</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="hll"><span class="w">  </span><span class="c1">// Determine local rank relative to the node, this is used to allocate GPUs as</span>
+</span><span class="hll"><span class="w">  </span><span class="c1">// we assume that each rank has its own GPU to utilize</span>
+</span><span class="hll"><span class="w">  </span><span class="n">MPI_Comm</span><span class="w"> </span><span class="n">shared_node</span><span class="p">;</span>
+</span><span class="hll"><span class="w">  </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Comm_split_type</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_TYPE_SHARED</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span class="hll"><span class="w">                                  </span><span class="n">MPI_INFO_NULL</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">shared_node</span><span class="p">),</span>
+</span><span class="hll"><span class="w">             </span><span class="s">&quot;Could not split COMM_WORLD into shared communicator&quot;</span><span class="p">);</span>
+</span><span class="hll"><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">local_rank</span><span class="p">;</span>
+</span><span class="hll"><span class="w">  </span><span class="n">check_mpi</span><span class="w"> </span><span class="p">(</span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">shared_node</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">local_rank</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Could not get local rank&quot;</span><span class="p">);</span>
+</span><span class="hll"><span class="w">  </span><span class="c1">// Assign GPU based on local rank</span>
+</span><span class="hll"><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acc_get_num_devices</span><span class="w"> </span><span class="p">(</span><span class="n">acc_device_nvidia</span><span class="p">);</span>
+</span><span class="hll"><span class="w">  </span><span class="n">acc_set_device_num</span><span class="w"> </span><span class="p">(</span><span class="n">local_rank</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="n">acc_device_nvidia</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/74571088608e81a8cca34eb04d783075/wave_acc_mpi.c"><code class="xref download docutils literal notranslate"><span class="pre">wave_acc_mpi.c</span></code></a></p>
+<p>We will compile this as before, but now we can run with arbitrary number of
+processes!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using multiple tasks ensure that each task gets a dedicated GPU with the
+<code class="docutils literal notranslate"><span class="pre">--gpus-per-task=N</span></code> flag.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mpicc<span class="w"> </span>-g<span class="w"> </span>-fast<span class="w"> </span>-acc<span class="w"> </span>-Minfo<span class="o">=</span>accel<span class="w"> </span>-o<span class="w"> </span>acc<span class="w"> </span>wave_acc_mpi.c
+$<span class="w"> </span>srun<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">2</span><span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span>--gpus-per-task<span class="o">=</span><span class="m">1</span><span class="w"> </span>--account<span class="o">=</span>&lt;your<span class="w"> </span>project<span class="w"> </span>number&gt;<span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00<span class="w"> </span>--mem-per-cpu<span class="o">=</span>512M<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./acc<span class="w"> </span><span class="m">1000000</span>
+</pre></div>
+</div>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<p>We have shown how to take an existing <code class="docutils literal notranslate"><span class="pre">MPI</span></code> application and add OpenACC to
+utilize multi-GPU resources. To accomplish this, we added directives to move
+compute from <code class="docutils literal notranslate"><span class="pre">CPU</span></code> to <code class="docutils literal notranslate"><span class="pre">GPU</span></code>. To enable synchronization we also added directives
+to move small amounts of data back and fourth between the <code class="docutils literal notranslate"><span class="pre">GPU</span></code> and <code class="docutils literal notranslate"><span class="pre">CPU</span></code> so
+that we could continue to exchange data with neighboring <code class="docutils literal notranslate"><span class="pre">MPI</span></code> <code class="docutils literal notranslate"><span class="pre">rank</span></code>s.</p>
+<section id="speedup">
+<h3>Speedup<a class="headerlink" href="#speedup" title="Link to this heading"></a></h3>
+<p>Below is the runtime, as measured with <code class="docutils literal notranslate"><span class="pre">time</span> <span class="pre">-p</span> <span class="pre">./executable</span></code> (extracting
+<code class="docutils literal notranslate"><span class="pre">real</span></code>), of each version.  The code was run with <code class="docutils literal notranslate"><span class="pre">1200000</span></code> points to solve.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Version</p></th>
+<th class="head"><p>Time in seconds</p></th>
+<th class="head"><p>Speedup</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MPI</span></code> <code class="docutils literal notranslate"><span class="pre">--ntasks=1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">14.29</span></code></p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MPI</span></code> <code class="docutils literal notranslate"><span class="pre">--ntasks=12</span></code>*</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2.16</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">6.61x</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MPI</span></code> <code class="docutils literal notranslate"><span class="pre">--ntasks=2</span></code> + OpenMP <code class="docutils literal notranslate"><span class="pre">--cpus-per-task=6</span></code>*</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2.11</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.02x</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MPI</span></code> <code class="docutils literal notranslate"><span class="pre">--ntasks=2</span></code> + OpenACC</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2.79</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.76x</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>OpenACC**</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2.17</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.28x</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>*</strong> To keep the comparison as fair as possible we compare the <code class="docutils literal notranslate"><span class="pre">CPU</span></code> resources</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>that would be the equivalent to [the billing resources of 2 <code class="docutils literal notranslate"><span class="pre">GPU</span></code>s on</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Saga](../../jobs/projects_accounting.md).</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>**</strong> OpenACC implementation on a single <code class="docutils literal notranslate"><span class="pre">GPU</span></code> further optimized when no
+<code class="docutils literal notranslate"><span class="pre">MPI</span></code> sharing is necessary.</p>
+</section>
+<section id="scaling">
+<h3>Scaling<a class="headerlink" href="#scaling" title="Link to this heading"></a></h3>
+<p>To illustrate the benefit of combining OpenACC with <code class="docutils literal notranslate"><span class="pre">MPI</span></code> we have, in the image
+below, compared three different versions of the solver on increasingly larger
+input.</p>
+<p><img alt="Scaling of different inputs" src="../../_images/wave_scaling.svg" /></p>
+<p>From the figure we can see that on the example input, <code class="docutils literal notranslate"><span class="pre">1200000</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI</span></code> combined
+with OpenMP is the quickest. However, as we scale the input size this <code class="docutils literal notranslate"><span class="pre">CPU</span></code>
+version becomes slower compared to the <code class="docutils literal notranslate"><span class="pre">GPU</span></code>. The figure also illustrates the
+advantage of a single <code class="docutils literal notranslate"><span class="pre">GPU</span></code>. We recommended, if possible, to use one <code class="docutils literal notranslate"><span class="pre">GPU</span></code> when
+starting the transition to OpenACC and if the data size is larger than a single
+<code class="docutils literal notranslate"><span class="pre">GPU</span></code> continue with <code class="docutils literal notranslate"><span class="pre">MPI</span></code>. If the application already utilizes <code class="docutils literal notranslate"><span class="pre">MPI</span></code> then we
+recommend that, when using OpenACC, each <code class="docutils literal notranslate"><span class="pre">rank</span></code> is given more work than in the
+pure <code class="docutils literal notranslate"><span class="pre">CPU</span></code> implementation.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

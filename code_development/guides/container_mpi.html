@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building MPI containers &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Building MPI containers</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="building-mpi-containers">
+<h1>Building MPI containers<a class="headerlink" href="#building-mpi-containers" title="Link to this heading"></a></h1>
+<p>The following example will demonstrate how to <em>build</em> Singularity containers on
+your laptop which are suitable for execution on our HPC systems (Saga, Betzy).
+If you are only interested in <em>running</em> existing containers,
+see <a class="reference internal" href="containers.html#running-containers"><span class="std std-ref">Running containers</span></a>.</p>
+<section id="creating-a-singularity-container-from-a-definition-file">
+<h2>Creating a Singularity container from a definition file<a class="headerlink" href="#creating-a-singularity-container-from-a-definition-file" title="Link to this heading"></a></h2>
+<p><strong>We do this step on our own laptop/computer, not on the cluster</strong>.
+This is because Singularity needs root rights to build the container.
+We will later
+upload the generated container file to the cluster.</p>
+<p>You need to have Singularity installed on your laptop for this to work
+(follow e.g. https://sylabs.io/guides/3.3/user-guide/installation.html).</p>
+<p>We start with the following definitions file (<code class="docutils literal notranslate"><span class="pre">example.def</span></code>; this is a simplified
+version based on https://sylabs.io/guides/3.3/user-guide/mpi.html and the example provided there):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Bootstrap: docker
+From: ubuntu:latest
+
+%environment
+    export OMPI_DIR=/opt/ompi
+
+%post
+    apt-get update &amp;&amp; apt-get install -y wget git bash gcc gfortran g++ make file bzip2
+    export OMPI_DIR=/opt/ompi
+    export OMPI_VERSION=4.0.1
+    export OMPI_URL=&quot;https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-$OMPI_VERSION.tar.bz2&quot;
+    mkdir -p /tmp/ompi
+    mkdir -p /opt
+    cd /tmp/ompi &amp;&amp; wget -O openmpi-$OMPI_VERSION.tar.bz2 $OMPI_URL &amp;&amp; tar -xjf openmpi-$OMPI_VERSION.tar.bz2
+    cd /tmp/ompi/openmpi-$OMPI_VERSION &amp;&amp; ./configure --prefix=$OMPI_DIR &amp;&amp; make install
+</pre></div>
+</div>
+<p>From this we build a container (we are still on the laptop, not on the cluster):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo singularity build example.sif example.def
+</pre></div>
+</div>
+<p>This takes a couple of minutes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">...</span> <span class="n">lots</span> <span class="n">of</span> <span class="n">output</span> <span class="o">...</span><span class="p">]</span>
+
+<span class="n">INFO</span><span class="p">:</span>    <span class="n">Adding</span> <span class="n">environment</span> <span class="n">to</span> <span class="n">container</span>
+<span class="n">INFO</span><span class="p">:</span>    <span class="n">Creating</span> <span class="n">SIF</span> <span class="n">file</span><span class="o">...</span>
+<span class="n">INFO</span><span class="p">:</span>    <span class="n">Build</span> <span class="n">complete</span><span class="p">:</span> <span class="n">example</span><span class="o">.</span><span class="n">sif</span>
+</pre></div>
+</div>
+<p>Once <code class="docutils literal notranslate"><span class="pre">example.sif</span></code> is generated, we can <code class="docutils literal notranslate"><span class="pre">scp</span></code>
+the container file to the cluster.</p>
+</section>
+<section id="running-the-container-on-multiple-nodes">
+<h2>Running the container on multiple nodes<a class="headerlink" href="#running-the-container-on-multiple-nodes" title="Link to this heading"></a></h2>
+<p>We assume that we have the container file <code class="docutils literal notranslate"><span class="pre">example.sif</span></code> from the step before on
+the cluster.  We will also fetch <code class="docutils literal notranslate"><span class="pre">mpi_hello_world.c</span></code> from
+https://mpitutorial.com/tutorials/mpi-hello-world/.
+The script assumes that these files are located in <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> as this is mounted to the container when it is run.</p>
+<p>We are ready to test it out with the following job script on Saga (adjust
+“myaccount”; on Betzy you will need to remove the line containing <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--mem-per-cpu=1000M</span></code> but the rest should work as is):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#SBATCH --account=myaccount</span>
+<span class="c1">#SBATCH --job-name=singularity-test</span>
+<span class="c1">#SBATCH --nodes=4</span>
+<span class="c1">#SBATCH --ntasks-per-node=4</span>
+<span class="c1">#SBATCH --mem-per-cpu=1000M</span>
+<span class="c1">#SBATCH --time=00:03:00</span>
+
+singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>example.sif<span class="w"> </span>/opt/ompi/bin/mpirun<span class="w"> </span>--version
+singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>example.sif<span class="w"> </span>/opt/ompi/bin/mpicc<span class="w"> </span>mpi_hello_world.c
+
+module<span class="w"> </span>reset
+module<span class="w"> </span>load<span class="w"> </span>foss/2020a
+
+mpirun<span class="w"> </span>--bind-to<span class="w"> </span>core<span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">SLURM_NTASKS</span><span class="si">}</span><span class="w"> </span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>example.sif<span class="w"> </span>./a.out
+</pre></div>
+</div>
+<p>The interesting part of the output is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpirun</span> <span class="p">(</span><span class="n">Open</span> <span class="n">MPI</span><span class="p">)</span> <span class="mf">4.0.1</span>
+
+<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">2</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">3</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">0</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">1</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">21</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">14</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">21</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">13</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">21</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">12</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">21</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">15</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">18</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">8</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">18</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">11</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">18</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">9</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">18</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">10</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">11</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">6</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">11</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">4</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">11</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">7</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span><span class="w"> </span><span class="nn">processor</span> <span class="n">c2</span><span class="o">-</span><span class="mi">11</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">5</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">16</span> <span class="n">processors</span>
+</pre></div>
+</div>
+<p>Looks like it’s working!</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

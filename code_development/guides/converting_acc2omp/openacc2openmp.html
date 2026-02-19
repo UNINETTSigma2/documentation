@@ -1,0 +1,649 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Porting OpenACC to OpenMP offloading &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../_static/statuspal_widget.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Porting OpenACC to OpenMP offloading</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="porting-openacc-to-openmp-offloading">
+<span id="acc2omp"></span><h1><a class="toc-backref" href="#id6" role="doc-backlink">Porting OpenACC to OpenMP offloading</a><a class="headerlink" href="#porting-openacc-to-openmp-offloading" title="Link to this heading"></a></h1>
+</section>
+<section id="summary">
+<h1><a class="toc-backref" href="#id7" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h1>
+<p>This documentation is designed for beginners in Graphics Processing Unit (GPU)-programming and who want to get familiar with OpenACC and OpenMP offloading models. Here we present an overview of these two programming models as well as of the GPU-architectures. Specifically, we provide some insights into the functionality of these models and perform experiments involving different directives and discuss their performance. This is achieved through the use of a mini-application based on solving numerically the Laplace equation. Such experiments reveal the benefit of the use of GPU, which in our case manifests by an increase of the performance by almost a factor of 52. We further carry out a comparative study between the OpenACC and OpenMP models in the aim of porting OpenACC to OpenMP on heterogeneous systems. In this context, we present a short overview of the open-source OpenACC compiler Clacc, which is designed based on translating OpenACC to OpenMP in Clang.</p>
+<p>This documentation ultimately aims at initiating developers’/users’ interest in GPU-programming. We therefore expect developers/users, by the end of this documentation, to be able to:</p>
+<ul class="simple">
+<li><p>Recognise the benefits of GPU-programming.</p></li>
+<li><p>Acquire some basic knowledge of the GPU-architecture and the functionality of the underlying models.</p></li>
+<li><p>Use appropriate constructs and clauses on either programming model to offload compute regions to a GPU device.</p></li>
+<li><p>Identify and assess differences and similarities between the OpenACC and OpenMP offload features.</p></li>
+<li><p>Convert an OpenACC mini-application to OpenMP offloading.</p></li>
+<li><p>Get some highlights of available open-source OpenACC compilers.</p></li>
+</ul>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#porting-openacc-to-openmp-offloading" id="id6">Porting OpenACC to OpenMP offloading</a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id7">Summary</a></p></li>
+<li><p><a class="reference internal" href="#introduction" id="id8">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#computational-model" id="id9">Computational model</a></p></li>
+<li><p><a class="reference internal" href="#comparative-study-openacc-versus-openmp" id="id10">Comparative study: OpenACC versus OpenMP</a></p>
+<ul>
+<li><p><a class="reference internal" href="#gpu-architecture" id="id11">GPU architecture</a></p></li>
+<li><p><a class="reference internal" href="#experiment-on-openacc-offloading" id="id12">Experiment on OpenACC offloading</a></p>
+<ul>
+<li><p><a class="reference internal" href="#compiling-and-running-openacc-program" id="id13">Compiling and running OpenACC-program</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#experiment-on-openmp-offloading" id="id14">Experiment on OpenMP offloading</a></p>
+<ul>
+<li><p><a class="reference internal" href="#compiling-and-running-openmp-program" id="id15">Compiling and running OpenMP-program</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#mapping-openacc-to-openmp" id="id16">Mapping OpenACC to OpenMP</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#open-source-openacc-compilers" id="id17">Open-source OpenACC compilers</a></p></li>
+<li><p><a class="reference internal" href="#conclusion" id="id18">Conclusion</a></p></li>
+<li><p><a class="reference internal" href="#relevant-links" id="id19">Relevant links</a></p></li>
+</ul>
+</nav>
+</section>
+<section id="introduction">
+<h1><a class="toc-backref" href="#id8" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<p><a class="reference external" href="https://www.openacc.org/tools">OpenACC</a> and <a class="reference external" href="https://www.openmp.org/updates/openmp-accelerator-support-gpus/">OpenMP</a> are the most widely used programming models for heterogeneous computing on modern HPC architectures. OpenACC was developed a decade ago and was designed for parallel programming of heterogenous systems (i.e. CPU host and GPU device). Whereas OpenMP is historically known to be directed to shared-memory multi-core programming, and only recently has provided support for heterogenous systems. OpenACC and OpenMP are directive-based programming models for offloading compute regions from CPU host to GPU devices. These models are referred to as Application Programming Interfaces (APIs), which here enable to communicate between two heterogenous systems and specifically enable offloading to target devices. The offloading process is controlled by a set of compiler directives, library runtime routines as well as environment variables. These components will be addressed in the following for both models with a special focus on directives and clauses. Furthermore, differences and similarities will be assessed in the aim of converting OpenACC to OpenMP.</p>
+<p><em>Motivation:</em> NVIDIA-based Programming models are bounded by some barriers related to the GPU-architecture.
+Such models do not have direct support on different devices nor by
+the corresponding compilers. Removing such barriers is one of the bottleneck<br />
+in GPU-programming, which is the case for instance with OpenACC. The latter is one of
+the most popular programming model that requires a special attention in terms of support on available architectures.</p>
+<p>As far as we know, the only compiler that fully supports OpenACC for offloading to both NVIDIA and AMD devices is GCC. The GCC’s performance, however, suffers from some weaknesses and poses some <a class="reference external" href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;amp;arnumber=8639349">challenges</a>, which limit its extension. Although the Cray Compilation Environment <a class="reference external" href="https://support.hpe.com/hpesc/public/docDisplay?docId=a00115296en_us&amp;amp;page=OpenACC_Use.html">(CCE)</a> has full support of OpenACC 2.0 and partial support of OpenACC 2.6, the support is limited only to Fortran, and thus no support for C or C++. This lack of support for OpenACC calls for an alternative that goes beyond the GCC compiler, and which ensures higher performance. On the other hand, the OpenMP offloading is supported on multiple devices by a set of compilers such as <em>Clang/Flang</em> and <em>Cray</em>, and <em>Icx/Ifx</em> which are well-known to provide the highest performance with respect to GCC. Therefore, converting OpenACC to OpenMP becomes a necessity to overcome the lack of stable implementations for all relevant hardware vendors, and to extend the OpenACC implementations to cover various GPU-architectures. In this context, there has been a project funded by <a class="reference external" href="https://www.exascaleproject.org/highlight/clacc-an-open-source-openacc-compiler-and-source-code-translation-project/">Exascale Computing Project</a> and published <a class="reference external" href="https://ieeexplore.ieee.org/document/8639349">here</a>, which aims at developing an open-source OpenACC compiler. This documentation is inspired by this project and is motivated by the need to document how to translate OpenACC to OpenMP on heterogeneous systems.</p>
+<p>This documentation is organised as follows. In <a class="reference internal" href="#computational-model"><span class="std std-ref">sec. II</span></a>,
+we provide a computational model, which is based on solving the Laplace
+equation. <a class="reference internal" href="#comparative-study-openacc-versus-openmp"><span class="std std-ref">Section III</span></a> is devoted to
+the analysis of experiments performed using the OpenACC and OpenMP offload
+features and to a one-to-one mapping of these two models. <a class="reference internal" href="#open-source-openacc-compilers"><span class="std std-ref">Section IV</span></a> is directed to a discussion about
+open-source OpenACC compilers. Finally, conclusions are given in <a class="reference internal" href="#conclusion"><span class="std std-ref">Sec. V</span></a>.</p>
+</section>
+<section id="computational-model">
+<span id="id1"></span><h1><a class="toc-backref" href="#id9" role="doc-backlink">Computational model</a><a class="headerlink" href="#computational-model" title="Link to this heading"></a></h1>
+<p>We give a brief description of the numerical model used to solve the Laplace equation Δf=0. For the sake of simplicity, we solve the equation in a two-dimensional (2D) uniform grid according to</p>
+<div class="math notranslate nohighlight">
+\[\Delta f(x,y)=\frac{\partial^{2} f(x,y)}{\partial x^{2}} + \frac{\partial^{2} f(x,y)}{\partial y^{2}}=0. \ \ \ \ (1)\]</div>
+<p>Here we use the finite-difference method to approximate the partial derivative of the form $<code class="docutils literal notranslate"><span class="pre">\frac{\partial^{2}</span> <span class="pre">f(x)}{\partial</span> <span class="pre">x^{2}}</span></code>$. The spatial discretization in the second-order scheme can be written as</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial^{2} f(x,y)}{\partial^{2} x}=\frac{f(x_{i+1},y) - 2f(x_{i},y) + f(x_{i-1},y)}{\Delta x}. \ \ \ \ (2)\]</div>
+<p>Inserting Eq. (2) into Eq. (1) leads to this final expression</p>
+<div class="math notranslate nohighlight">
+\[f(x_i,y_j)=\frac{f(x_{i+1},y) + f(x_{i-1},y) + f(x,y_{i+1}) + f(x,y_{i-1})}{4}. \ \ \ \ (3)\]</div>
+<p>The Eq. (3) can be solved iteratively by defining some initial conditions that reflect the geometry of the problem at-hand. This can be done either using Gauss–Seidel method or Jacobi method. Here, we apt for the Jacobi algorithm due to its simplicity. The corresponding compute code is written in <em>Fortran 90</em> and is given below in a serial form. Note that a <em>C</em>-based code can be found <a class="reference internal" href="../openacc.html#openacc"><span class="std std-ref">here</span></a>.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">do while</span><span class="w"> </span><span class="p">(</span><span class="n">max_err</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="n">iter</span><span class="p">.</span><span class="n">le</span><span class="p">.</span><span class="n">max_iter</span><span class="p">)</span>
+<span class="w">   </span><span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">ny</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">      </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">         </span><span class="n">d2fx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="w">         </span><span class="n">d2fy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">         </span><span class="n">f_k</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.25</span><span class="o">*</span><span class="p">(</span><span class="n">d2fx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d2fy</span><span class="p">)</span>
+<span class="w">      </span><span class="k">enddo</span>
+<span class="k">   enddo</span>
+
+<span class="k">   </span><span class="n">max_err</span><span class="o">=</span><span class="mf">0.</span>
+
+<span class="w">   </span><span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">ny</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">      </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">         </span><span class="n">max_err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="nb">dabs</span><span class="p">(</span><span class="n">f_k</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)),</span><span class="n">max_err</span><span class="p">)</span>
+<span class="w">         </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f_k</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="w">      </span><span class="k">enddo</span>
+<span class="k">   enddo</span>
+
+<span class="k">   </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="k">enddo</span>
+</pre></div>
+</div>
+</section>
+<section id="comparative-study-openacc-versus-openmp">
+<span id="id2"></span><h1><a class="toc-backref" href="#id10" role="doc-backlink">Comparative study: OpenACC versus OpenMP</a><a class="headerlink" href="#comparative-study-openacc-versus-openmp" title="Link to this heading"></a></h1>
+<p>In the following we first provide a short description of GPU accelerators and then perform experiments covering both the OpenACC and OpenMP implementations to accelerate the Jacobi algorithm in the aim of conducting a comparative experiment between the two programming models. The experiments are systematically performed with a fixed number of grid points (i.e. 8192 points in both $<code class="docutils literal notranslate"><span class="pre">x</span></code>$ and $<code class="docutils literal notranslate"><span class="pre">y</span></code>$ directions) and a fixed number of iterations that ensure the convergence of the algorithm. This is found to be 240 iterations resulting in an error of 0.001.</p>
+<section id="gpu-architecture">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">GPU architecture</a><a class="headerlink" href="#gpu-architecture" title="Link to this heading"></a></h2>
+<p>We focus in this section on describing the <a class="reference external" href="https://images.nvidia.com/content/technologies/volta/pdf/volta-v100-datasheet-update-us-1165301-r5.pdf">NVIDIA GPU accelerator</a> as it is considered the most powerful accelerator in the world to be used for artificial intelligence (AI) and high-performance computing (HPC). The NVIDIA GPU-device consists of a block of a Streaming Multiprocessor (SM) each of which is organized as a matrix of CUDA cores, as shown in <em>Fig. 1</em>. As an example, the <a class="reference external" href="https://images.nvidia.com/content/tesla/pdf/nvidia-tesla-p100-PCIe-datasheet.pdf">NVIDIA P100 GPU-accelerators</a> have 56 SMs and each SM has 64 CUDA cores with a total of 3584 CUDA cores/GPU, while the <a class="reference external" href="https://images.nvidia.com/content/technologies/volta/pdf/volta-v100-datasheet-update-us-1165301-r5.pdf">NVIDIA V100</a> has 80 SMs and each SM has 64 CUDA cores with a total of 5120 CUDA core/GPU.</p>
+<div align="center">
+<p><img alt="Fig1" src="../../../_images/fig-hardware.jpg" /></p>
+<p><strong>Fig. 1.</strong> <em>A simplified representation of a NVIDIA GPU-architecture.</em></p>
+</div>
+<p>Various NVIDIA <a class="reference external" href="https://gpltech.com/wp-content/uploads/2018/11/NVIDIA-Turing-Architecture-Whitepaper.pdf">GPU-architectures</a> exist. As an example, we present in <em>Fig. 2</em> the characteristic of the NVIDIA V100 Volta architecture. As shown in the figure, the peak performance of the NVIDIA Volta depends on the specified architecture: V100 PCle, V100 SXMe and V100S PCle, which in turn depends, in particular, on the  Memory Bandwidth. For instance, the double precision performance associated with each architecture is respectively, 7, 7.8 and 8.2 TFLOPS (or TeraFLOPS). Here 1 TFLOPS= $<code class="docutils literal notranslate"><span class="pre">10^{12}</span></code>$ calculations per second, where FLOPS (Floiting-Point of Opertaions Per Second), in general, defines a measure of the speed of a computer to perform arithmetic operations. The peak performance can be calculated theoretically based on the following <a class="reference external" href="https://en.wikipedia.org/wiki/FLOPS#cite_note-en.community.dell.com-5">expression</a> for a single processor</p>
+<p>FLOPS = (Clock speed)$<code class="docutils literal notranslate"><span class="pre">\times</span></code>$(cores)$<code class="docutils literal notranslate"><span class="pre">\times</span></code>$(FLOP/cycle),</p>
+<p>where FLOP is a way of encoding real numbers (i.e. FP64 or FP32 or …). One can check the validity of the expression by calculating, for instance, the peak performance for V100 PCle, in which the Clock speed (or GPU Boost Clock) is <a class="reference external" href="https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf">1.38 GHz</a>. The total FLOPS is (1.38 $<code class="docutils literal notranslate"><span class="pre">10^9</span></code>$ cycle/second)x5120xFLOP/cycle, which is 7.065 $<code class="docutils literal notranslate"><span class="pre">10^{12}</span></code>$ FLOP per second or also 7.065 TFLOPS in accordance with the peak performance indicated in <em>Fig. 2</em>.</p>
+<div align="center">
+<p><img alt="Fig2" src="../../../_images/fig-software.jpg" /></p>
+<p><strong>Fig. 2.</strong> <em>Specification of the architecture of the NVIDIA Volta GPU taken from <a class="reference external" href="https://images.nvidia.com/content/technologies/volta/pdf/volta-v100-datasheet-update-us-1165301-r5.pdf">here</a>.</em></p>
+</div>
+</section>
+<section id="experiment-on-openacc-offloading">
+<span id="id3"></span><h2><a class="toc-backref" href="#id12" role="doc-backlink">Experiment on OpenACC offloading</a><a class="headerlink" href="#experiment-on-openacc-offloading" title="Link to this heading"></a></h2>
+<p>We begin first by illustrating the functionality of the <a class="reference external" href="https://www.openacc.org/sites/default/files/inline-files/OpenACC_Programming_Guide_0_0.pdf">OpenACC model</a> in terms of parallelism, which is specified by the directives <code class="docutils literal notranslate"><span class="pre">kernels</span></code> or <code class="docutils literal notranslate"><span class="pre">parallel</span> <span class="pre">loop</span></code>. The concept of parallelism is defined precisely by the generic directives: <code class="docutils literal notranslate"><span class="pre">gang</span></code>, <code class="docutils literal notranslate"><span class="pre">worker</span></code> and <code class="docutils literal notranslate"><span class="pre">vector</span></code> as schematically depicted in <em>Fig. 3</em>. Here, the compiler initiates the parallelism by generating parallel gangs, in which each gang consists of a set of workers represented by a matrix of threads as depicted in the inset of <em>Fig. 3</em>. This group of threads within a gang executes the same instruction (SIMT, Single Instruction Multiple Threads) via a vectorization process. In other words, a block of loops is assigned to each gang, which gets vectorized and executed by a group of threads. Specifically, each thread executes the same kernel program but operates on different parts of the offloaded region.</p>
+<p>By combining the two pictures displayed in <em>Fig. 1</em> and <em>Fig. 2</em>, one can say that the execution of the parallelism, which is specified by the <code class="docutils literal notranslate"><span class="pre">parallel</span> <span class="pre">loop</span></code> construct, is mapped on the GPU-device in the following way: each streaming multiprocessor is associated to one gang of threads generated by the directive <code class="docutils literal notranslate"><span class="pre">gang</span></code>, in which a block of loops is assigned to. In addition, this block of loops is run in parallel on the CUDA cores via the directive <code class="docutils literal notranslate"><span class="pre">vector</span></code>. The description of these directives and others implemented in our OpenACC mini-application is summarized in the <em>Table 1</em></p>
+<div align="center">
+<p><img alt="Fig3" src="../../../_images/fig-arch-volta.jpg" /></p>
+<p><strong>Fig. 3.</strong> <em>Schematic representation of the concept of parallelism (see text for more details).</em></p>
+</div> 
+<p>We move now to discuss our OpenACC experiment, in which we evaluate the performance of different compute constructs and clauses and interpret their role. The OpenACC-based code is shown below. In the left-hand side of the code, only the directive <code class="docutils literal notranslate"><span class="pre">parallel</span> <span class="pre">loop</span></code> is introduced. Here the construct <code class="docutils literal notranslate"><span class="pre">parallel</span></code> indicates that the compiler will generate a number of parallel gangs to execute the compute region redundantly. When it is combined with the clause <code class="docutils literal notranslate"><span class="pre">loop</span></code>, the compiler will perform the parallelism over all the generated gangs for the offloaded region. In this case the compiler copies the data first to a device in the beginning of the loop and then copies it back to the host at the end of the loop. This process repeats itself at each iteration, which makes it time consuming, thus rending the GPU-acceleration inefficient. This inefficiency is shown in <em>Fig. 4</em> and manifests by the increase of the computing time: 111.2 s compared to 101.77 s in the serial case. This low performance is also observed when using the construct <code class="docutils literal notranslate"><span class="pre">kernels</span></code>.</p>
+<p>To overcome this issue, one needs to copy the data to a device only in the beginning of the iteration and to copy them back to the host at the end of the iteration, once the result converges. This can be done by introducing the data locality concepts via the directives <code class="docutils literal notranslate"><span class="pre">data</span></code>, <code class="docutils literal notranslate"><span class="pre">copyin</span></code> and <code class="docutils literal notranslate"><span class="pre">copyout</span></code>, as shown in the code application (right-hand side). Here, the clause <code class="docutils literal notranslate"><span class="pre">copyin</span></code> transfers the data to a GPU-device, while the clause <code class="docutils literal notranslate"><span class="pre">copyout</span></code> copies the data back to the host. Implementing this approach shows a vast improvement of the performance: the computing time gets reduced by almost a factor of 53: it decreases from 111.2 s to 2.12 s. One can further tune the process by adding additional control, for instance, by introducing the <code class="docutils literal notranslate"><span class="pre">collapse</span></code> clause. Collapsing two or more loops into a single loop is beneficial for the compiler, as it allows to enhance the parallelism when mapping the compute region into a device. In addition, one can specify the clause <code class="docutils literal notranslate"><span class="pre">reduction</span></code>, which allows to compute the maximum of two elements in a parallel way. These additional clauses affect slightly the computing time: it goes from 2.12 s to 1.95 s.</p>
+<p>For completeness, we compare in <em>Fig. 4</em> the performance of the compute constructs <code class="docutils literal notranslate"><span class="pre">kernels</span></code> and <code class="docutils literal notranslate"><span class="pre">parallel</span> <span class="pre">loop</span></code>. These directives tell the compiler to transfer the control of a compute region to a GPU-device and execute it in a sequence of operations. Although these two constructs have a similar role, they differ in terms of mapping the parallelism into a device. Here, when specifying the <code class="docutils literal notranslate"><span class="pre">kernels</span></code> construct, the compiler performs the partition of the parallelism explicitly by choosing the optimal numbers of gangs, workers and the length of the vectors and also some additional clauses. Whereas, the use of the <code class="docutils literal notranslate"><span class="pre">parallel</span> <span class="pre">loop</span></code> construct offers some additional functionality: it allows the programmer to control the execution in a device by specifying additional clauses. At the end, the performance remains roughly the same as shown in <em>Fig. 4</em>: the computing time is 1.97 s for the <code class="docutils literal notranslate"><span class="pre">kernels</span></code> directive and 1.95 s for the <code class="docutils literal notranslate"><span class="pre">parallel</span> <span class="pre">loop</span></code> directive.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">          </span>**OpenACC<span class="w"> </span>without<span class="w"> </span>data<span class="w"> </span>locality**<span class="w">            </span><span class="p">|</span><span class="w">              </span>**OpenACC<span class="w"> </span>with<span class="w"> </span>data<span class="w"> </span>locality**
+<span class="w">                                                       </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$acc</span><span class="w"> </span>data<span class="w"> </span>copyin<span class="o">(</span>f<span class="o">)</span><span class="w"> </span>copyout<span class="o">(</span>f_k<span class="o">)</span>
+<span class="w">   </span><span class="k">do</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="o">(</span>max_err.gt.error.and.iter.le.max_iter<span class="o">)</span><span class="w">    </span><span class="p">|</span><span class="w">     </span><span class="k">do</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="o">(</span>max_err.gt.error.and.iter.le.max_iter<span class="o">)</span>
+!<span class="nv">$acc</span><span class="w"> </span>parallel<span class="w"> </span>loop<span class="w"> </span>gang<span class="w"> </span>worker<span class="w"> </span>vector<span class="w">                 </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$acc</span><span class="w"> </span>parallel<span class="w"> </span>loop<span class="w"> </span>gang<span class="w"> </span>worker<span class="w"> </span>vector<span class="w"> </span>collapse<span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w">  </span>
+<span class="w">      </span><span class="k">do</span><span class="w"> </span><span class="nv">j</span><span class="o">=</span><span class="m">2</span>,ny-1<span class="w">                                      </span><span class="p">|</span><span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="nv">j</span><span class="o">=</span><span class="m">2</span>,ny-1<span class="w"> </span>
+<span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">2</span>,nx-1<span class="w">                                    </span><span class="p">|</span><span class="w">          </span><span class="k">do</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">2</span>,nx-1<span class="w"> </span>
+<span class="w">           </span><span class="nv">d2fx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f<span class="o">(</span>i+1,j<span class="o">)</span><span class="w"> </span>+<span class="w"> </span>f<span class="o">(</span>i-1,j<span class="o">)</span><span class="w">                  </span><span class="p">|</span><span class="w">             </span><span class="nv">d2fx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f<span class="o">(</span>i+1,j<span class="o">)</span><span class="w"> </span>+<span class="w"> </span>f<span class="o">(</span>i-1,j<span class="o">)</span>
+<span class="w">           </span><span class="nv">d2fy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f<span class="o">(</span>i,j+1<span class="o">)</span><span class="w"> </span>+<span class="w"> </span>f<span class="o">(</span>i,j-1<span class="o">)</span><span class="w">                  </span><span class="p">|</span><span class="w">             </span><span class="nv">d2fy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f<span class="o">(</span>i,j+1<span class="o">)</span><span class="w"> </span>+<span class="w"> </span>f<span class="o">(</span>i,j-1<span class="o">)</span><span class="w"> </span>
+<span class="w">           </span>f_k<span class="o">(</span>i,j<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.25*<span class="o">(</span>d2fx<span class="w"> </span>+<span class="w"> </span>d2fy<span class="o">)</span><span class="w">               </span><span class="p">|</span><span class="w">             </span>f_k<span class="o">(</span>i,j<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.25*<span class="o">(</span>d2fx<span class="w"> </span>+<span class="w"> </span>d2fy<span class="o">)</span>
+<span class="w">        </span>enddo<span class="w">                                          </span><span class="p">|</span><span class="w">           </span>enddo
+<span class="w">      </span>enddo<span class="w">                                            </span><span class="p">|</span><span class="w">         </span>enddo
+!<span class="nv">$acc</span><span class="w"> </span>end<span class="w"> </span>parallel<span class="w">                                     </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$acc</span><span class="w"> </span>end<span class="w"> </span>parallel
+<span class="w">                                                       </span><span class="p">|</span>
+<span class="w">       </span><span class="nv">max_err</span><span class="o">=</span><span class="m">0</span>.<span class="w">                                      </span><span class="p">|</span><span class="w">          </span><span class="nv">max_err</span><span class="o">=</span><span class="m">0</span>.
+<span class="w">                                                       </span><span class="p">|</span>
+!<span class="nv">$acc</span><span class="w"> </span>parallel<span class="w"> </span>loop<span class="w">                                    </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$acc</span><span class="w"> </span>parallel<span class="w"> </span>loop<span class="w"> </span>collapse<span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w"> </span>reduction<span class="o">(</span>max:max_err<span class="o">)</span><span class="w">  </span>
+<span class="w">      </span><span class="k">do</span><span class="w"> </span><span class="nv">j</span><span class="o">=</span><span class="m">2</span>,ny-1<span class="w">                                      </span><span class="p">|</span><span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="nv">j</span><span class="o">=</span><span class="m">2</span>,ny-1
+<span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">2</span>,nx-1<span class="w">                                    </span><span class="p">|</span><span class="w">          </span><span class="k">do</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">2</span>,nx-1
+<span class="w">           </span><span class="nv">max_err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>max<span class="o">(</span>dabs<span class="o">(</span>f_k<span class="o">(</span>i,j<span class="o">)</span>-f<span class="o">(</span>i,j<span class="o">))</span>,max_err<span class="o">)</span><span class="p">|</span><span class="w">             </span><span class="nv">max_err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>max<span class="o">(</span>dabs<span class="o">(</span>f_k<span class="o">(</span>i,j<span class="o">)</span>-f<span class="o">(</span>i,j<span class="o">))</span>,max_err<span class="o">)</span>
+<span class="w">           </span>f<span class="o">(</span>i,j<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f_k<span class="o">(</span>i,j<span class="o">)</span><span class="w">                           </span><span class="p">|</span><span class="w">             </span>f<span class="o">(</span>i,j<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f_k<span class="o">(</span>i,j<span class="o">)</span>
+<span class="w">        </span>enddo<span class="w">                                          </span><span class="p">|</span><span class="w">          </span>enddo<span class="w"> </span>
+<span class="w">       </span>enddo<span class="w">                                           </span><span class="p">|</span><span class="w">        </span>enddo
+!<span class="nv">$acc</span><span class="w"> </span>end<span class="w"> </span>parallel<span class="w">                                     </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$acc</span><span class="w"> </span>end<span class="w"> </span>parallel<span class="w"> </span>
+<span class="w">                                                       </span><span class="p">|</span>
+<span class="w">       </span><span class="nv">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>iter<span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="w">                                 </span><span class="p">|</span><span class="w">        </span><span class="nv">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>iter<span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="w"> </span>
+<span class="w">    </span>enddo<span class="w">                                              </span><span class="p">|</span><span class="w">     </span>enddo
+<span class="w">                                                       </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$acc</span><span class="w"> </span>end<span class="w"> </span>data
+</pre></div>
+</div>
+<div align="center">
+<p><img alt="Fig4" src="../../../_images/fig-acc.jpeg" /></p>
+<p><strong>Fig. 4.</strong> <em>Performance of different OpenACC directives.</em></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>When incorporating the constructs <code class="docutils literal notranslate"><span class="pre">kernels</span></code> or <code class="docutils literal notranslate"><span class="pre">parallel</span> <span class="pre">loop</span></code>, the compiler will generate arrays that will be copied back and forth
+between the host and the device if they are not already present in the device.</p></li>
+<li><p>Different gangs operate independently.</p></li>
+</ul>
+</div>
+<section id="compiling-and-running-openacc-program">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Compiling and running OpenACC-program</a><a class="headerlink" href="#compiling-and-running-openacc-program" title="Link to this heading"></a></h3>
+<p>We run our OpenACC-program on the NVIDIA-GPU P100. The syntax of the compilation process is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>nvfortran<span class="w"> </span>-fast<span class="w"> </span>-acc<span class="w"> </span>-Minfo<span class="o">=</span>accel<span class="w"> </span>-o<span class="w"> </span>laplace_acc.exe<span class="w"> </span>laplace_acc.f90
+or
+$<span class="w"> </span>nvfortran<span class="w"> </span>-gpu<span class="o">=</span>tesla:cc60<span class="w"> </span>-Minfo<span class="o">=</span>accel<span class="w"> </span>-o<span class="w"> </span>laplace_acc.exe<span class="w"> </span>laplace_acc.f90
+</pre></div>
+</div>
+<p>where the flags <code class="docutils literal notranslate"><span class="pre">-acc</span></code> and <code class="docutils literal notranslate"><span class="pre">-⁠gpu=[target]</span></code> enables OpenACC directives. The option <code class="docutils literal notranslate"><span class="pre">[target]</span></code> reflects the name of the GPU device. The latter is set to be <code class="docutils literal notranslate"><span class="pre">[tesla:cc60]</span></code> for the device name Tesla P100 and <code class="docutils literal notranslate"><span class="pre">[tesla:cc70]</span></code> for the tesla V100 device. This information can be viewed by running the command <code class="docutils literal notranslate"><span class="pre">pgaccelinfo</span></code>. Last, the flag option <code class="docutils literal notranslate"><span class="pre">-Minfo</span></code> enables the compiler to print out the feedback messages on optimizations and transformations.</p>
+<p>The generated binary (i.e. <code class="docutils literal notranslate"><span class="pre">laplace_acc.exe</span></code>) can be launched with the use of a Slurm script as follows</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --account=&lt;project-account&gt; </span>
+<span class="c1">#SBATCH --job-name=laplace_acc</span>
+<span class="c1">#SBATCH --partition=accel --gpus=1</span>
+<span class="c1">#SBATCH --qos=devel</span>
+<span class="c1">#SBATCH --time=00:01:00</span>
+<span class="c1">#SBATCH --mem-per-cpu=2G</span>
+<span class="c1">#SBATCH -o laplace_acc.out</span>
+
+<span class="c1">#loading modules</span>
+module<span class="w"> </span>reset
+module<span class="w"> </span>load<span class="w"> </span>NVHPC/21.2
+<span class="w"> </span>
+$<span class="w"> </span>srun<span class="w"> </span>./laplace_acc.exe
+</pre></div>
+</div>
+<p>In the script above, the option <code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code> enables the access to a GPU device connected to a node, as shown <a class="reference internal" href="../openacc.html#openacc"><span class="std std-ref">here</span></a>. One can also use the command <code class="docutils literal notranslate"><span class="pre">sinfo</span></code> to get information about which nodes are connected to the GPUs.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The compilation process requires loading a NVHPC module, e.g. <code class="docutils literal notranslate"><span class="pre">NVHPC/21.2</span></code> or another version.</p>
+</div>
+</section>
+</section>
+<section id="experiment-on-openmp-offloading">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Experiment on OpenMP offloading</a><a class="headerlink" href="#experiment-on-openmp-offloading" title="Link to this heading"></a></h2>
+<p>In this section, we carry out an experiment on <a class="reference external" href="https://www.openmp.org/wp-content/uploads/OpenMP-API-Specification-5-1.pdf">OpenMP</a> offloading by adopting the same scenario as in the previous <a class="reference internal" href="#experiment-on-openacc-offloading"><span class="std std-ref">section</span></a> but with the use of a different GPU-architecture: AMD Mi100 accelerator. The functionality of OpenMP is similar to the one of OpenACC, although the terminology is different [cf. <em>Fig. 1</em>]. In the OpenMP concept, a block of loops is offloaded to a device via the construct <code class="docutils literal notranslate"><span class="pre">target</span></code>. A set of threads is then created on each compute unit (CU) (analogous to a streaming multiprocessor in NVIDIA terminology) [cf. <em>Fig. 1</em>] by means of the directive <code class="docutils literal notranslate"><span class="pre">teams</span></code> to execute the offloaded region. Here, the offloaded region (e.g. a block of loops) gets assigned to teams via the clause <code class="docutils literal notranslate"><span class="pre">distribute</span></code>, and gets executed on the processing elements (PEs) or also called stream processors (analogous to CUDA cores) by means of the directive <code class="docutils literal notranslate"><span class="pre">parallel</span> <span class="pre">do</span> <span class="pre">simd</span></code>. These directives define the concept of parallelism in OpenMP.</p>
+<p>The concept of parallelism is implemented using the same model described in <a class="reference internal" href="#computational-model"><span class="std std-ref">Section II</span></a>. The implementation is presented below for two cases: (i) OpenMP without introducing the data directive and (ii) OpenMP with the data directive. This Comparison allows us to identify the benefit of data management during the data-transfer between the host and a device. This in turn provides some insights into the performance of the OpenMP offload features. In the left-hand-side of the OpenMP application, the arrays <strong>f</strong> and <strong>f_k</strong>, which define the main components of the compute region, are copied from the host to a device and back, respectively via the clause <code class="docutils literal notranslate"><span class="pre">map</span></code>. Note that specifying the <code class="docutils literal notranslate"><span class="pre">map</span></code> clause in this case is optional. Once the data are offloaded to a device, the parallelism gets executed according to the scenario described above. This scheme repeats itself at each iteration, which causes a low performance as shown in <em>Fig. 5</em>. Here the computing time is 119.6 s, which is too high compared to 76.52 s in the serial case. A similar behavior is observed in the OpenACC mini-application.</p>
+<p>The OpenMP performance, however is found to be improved when introducing the directive <code class="docutils literal notranslate"><span class="pre">data</span></code> in the beginning of the iteration. This implementation has the advantage of keeping the data in the device during the iteration process and copying them back to the host only at the end of the iteration. By doing so, the performance is improved by almost a factor of 22, as depicted in <em>Fig. 5</em>: it goes from 119.6 s in the absence of the data directive to 5.4 s when the directive is introduced. As in the OpenACC application, the performance can be further tuned by introducing additional clauses, specifically, the clauses <code class="docutils literal notranslate"><span class="pre">collapse</span></code> and <code class="docutils literal notranslate"><span class="pre">schedule</span></code> which are found to reduce the computing time from 5.4 s to 2.15 s.</p>
+<p>The description of the compute constructs and clauses used in our OpenMP mini-application is provided in the <em>Table 1</em> together with those of OpenACC. For further OpenMP tutorials, we refer to a different scenario implemented in C, which can be found <a class="reference internal" href="../ompoffload.html#ompoffload"><span class="std std-ref">here</span></a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">          </span>**OpenMP<span class="w"> </span>without<span class="w"> </span>data<span class="w"> </span>directive**<span class="w">            </span><span class="p">|</span><span class="w">                 </span>**OpenMP<span class="w"> </span>with<span class="w"> </span>data<span class="w"> </span>directive**
+<span class="w">                                                       </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$omp</span><span class="w"> </span>target<span class="w"> </span>data<span class="w"> </span>map<span class="o">(</span>to:f<span class="o">)</span><span class="w"> </span>map<span class="o">(</span>from:f_k<span class="o">)</span>
+<span class="w">   </span><span class="k">do</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="o">(</span>max_err.gt.error.and.iter.le.max_iter<span class="o">)</span><span class="w">    </span><span class="p">|</span><span class="w">     </span><span class="k">do</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="o">(</span>max_err.gt.error.and.iter.le.max_iter<span class="o">)</span>
+!<span class="nv">$omp</span><span class="w"> </span>target<span class="w"> </span>teams<span class="w"> </span>distribute<span class="w"> </span>parallel<span class="w"> </span><span class="k">do</span><span class="w"> </span>simd<span class="w">         </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$omp</span><span class="w"> </span>target<span class="w"> </span>teams<span class="w"> </span>distribute<span class="w"> </span>parallel<span class="w"> </span><span class="k">do</span><span class="w"> </span>simd<span class="w"> </span>collapse<span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w"> </span>
+<span class="w">      </span>map<span class="o">(</span>to:f<span class="o">)</span><span class="w"> </span>map<span class="o">(</span>from:f_k<span class="o">)</span><span class="w">                          </span><span class="p">|</span><span class="w">        </span>schedule<span class="o">(</span>static,1<span class="o">)</span><span class="w"> </span>
+<span class="w">      </span><span class="k">do</span><span class="w"> </span><span class="nv">j</span><span class="o">=</span><span class="m">2</span>,ny-1<span class="w">                                      </span><span class="p">|</span><span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="nv">j</span><span class="o">=</span><span class="m">2</span>,ny-1<span class="w"> </span>
+<span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">2</span>,nx-1<span class="w">                                    </span><span class="p">|</span><span class="w">          </span><span class="k">do</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">2</span>,nx-1<span class="w"> </span>
+<span class="w">           </span><span class="nv">d2fx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f<span class="o">(</span>i+1,j<span class="o">)</span><span class="w"> </span>+<span class="w"> </span>f<span class="o">(</span>i-1,j<span class="o">)</span><span class="w">                  </span><span class="p">|</span><span class="w">             </span><span class="nv">d2fx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f<span class="o">(</span>i+1,j<span class="o">)</span><span class="w"> </span>+<span class="w"> </span>f<span class="o">(</span>i-1,j<span class="o">)</span>
+<span class="w">           </span><span class="nv">d2fy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f<span class="o">(</span>i,j+1<span class="o">)</span><span class="w"> </span>+<span class="w"> </span>f<span class="o">(</span>i,j-1<span class="o">)</span><span class="w">                  </span><span class="p">|</span><span class="w">             </span><span class="nv">d2fy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f<span class="o">(</span>i,j+1<span class="o">)</span><span class="w"> </span>+<span class="w"> </span>f<span class="o">(</span>i,j-1<span class="o">)</span><span class="w"> </span>
+<span class="w">           </span>f_k<span class="o">(</span>i,j<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.25*<span class="o">(</span>d2fx<span class="w"> </span>+<span class="w"> </span>d2fy<span class="o">)</span><span class="w">               </span><span class="p">|</span><span class="w">             </span>f_k<span class="o">(</span>i,j<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.25*<span class="o">(</span>d2fx<span class="w"> </span>+<span class="w"> </span>d2fy<span class="o">)</span>
+<span class="w">        </span>enddo<span class="w">                                          </span><span class="p">|</span><span class="w">           </span>enddo
+<span class="w">      </span>enddo<span class="w">                                            </span><span class="p">|</span><span class="w">         </span>enddo
+!<span class="nv">$omp</span><span class="w"> </span>end<span class="w"> </span>target<span class="w"> </span>teams<span class="w"> </span>distribute<span class="w"> </span>parallel<span class="w"> </span><span class="k">do</span><span class="w"> </span>simd<span class="w">     </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$omp</span><span class="w"> </span>end<span class="w"> </span>target<span class="w"> </span>teams<span class="w"> </span>distribute<span class="w"> </span>parallel<span class="w"> </span><span class="k">do</span><span class="w"> </span>simd
+<span class="w">                                                       </span><span class="p">|</span>
+<span class="w">       </span><span class="nv">max_err</span><span class="o">=</span><span class="m">0</span>.<span class="w">                                      </span><span class="p">|</span><span class="w">          </span><span class="nv">max_err</span><span class="o">=</span><span class="m">0</span>.
+<span class="w">                                                       </span><span class="p">|</span>
+!<span class="nv">$omp</span><span class="w"> </span>target<span class="w"> </span>teams<span class="w"> </span>distribute<span class="w"> </span>parallel<span class="w"> </span><span class="k">do</span><span class="w"> </span>simd<span class="w">         </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$omp</span><span class="w"> </span>target<span class="w"> </span>teams<span class="w"> </span>distribute<span class="w"> </span>parallel<span class="w"> </span><span class="k">do</span><span class="w"> </span>simd<span class="w"> </span>collapse<span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w"> </span>
+<span class="w">      </span>reduction<span class="o">(</span>max:max_err<span class="o">)</span><span class="w">                           </span><span class="p">|</span><span class="w">         </span>schedule<span class="o">(</span>static,1<span class="o">)</span><span class="w"> </span>reduction<span class="o">(</span>max:max_err<span class="o">)</span><span class="w"> </span>
+<span class="w">      </span><span class="k">do</span><span class="w"> </span><span class="nv">j</span><span class="o">=</span><span class="m">2</span>,ny-1<span class="w">                                      </span><span class="p">|</span><span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="nv">j</span><span class="o">=</span><span class="m">2</span>,ny-1
+<span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">2</span>,nx-1<span class="w">                                    </span><span class="p">|</span><span class="w">          </span><span class="k">do</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">2</span>,nx-1
+<span class="w">           </span><span class="nv">max_err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>max<span class="o">(</span>dabs<span class="o">(</span>f_k<span class="o">(</span>i,j<span class="o">)</span>-f<span class="o">(</span>i,j<span class="o">))</span>,max_err<span class="o">)</span><span class="p">|</span><span class="w">             </span><span class="nv">max_err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>max<span class="o">(</span>dabs<span class="o">(</span>f_k<span class="o">(</span>i,j<span class="o">)</span>-f<span class="o">(</span>i,j<span class="o">))</span>,max_err<span class="o">)</span>
+<span class="w">           </span>f<span class="o">(</span>i,j<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f_k<span class="o">(</span>i,j<span class="o">)</span><span class="w">                           </span><span class="p">|</span><span class="w">             </span>f<span class="o">(</span>i,j<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f_k<span class="o">(</span>i,j<span class="o">)</span>
+<span class="w">        </span>enddo<span class="w">                                          </span><span class="p">|</span><span class="w">          </span>enddo<span class="w"> </span>
+<span class="w">       </span>enddo<span class="w">                                           </span><span class="p">|</span><span class="w">        </span>enddo
+!<span class="nv">$omp</span><span class="w"> </span>end<span class="w"> </span>target<span class="w"> </span>teams<span class="w"> </span>distribute<span class="w"> </span>parallel<span class="w"> </span><span class="k">do</span><span class="w"> </span>simd<span class="w">     </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$omp</span><span class="w"> </span>end<span class="w"> </span>target<span class="w"> </span>teams<span class="w"> </span>distribute<span class="w"> </span>parallel<span class="w"> </span><span class="k">do</span><span class="w"> </span>simd
+<span class="w">                                                       </span><span class="p">|</span>
+<span class="w">       </span><span class="nv">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>iter<span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="w">                                 </span><span class="p">|</span><span class="w">        </span><span class="nv">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>iter<span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="w"> </span>
+<span class="w">    </span>enddo<span class="w">                                              </span><span class="p">|</span><span class="w">     </span>enddo
+<span class="w">                                                       </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$omp</span><span class="w"> </span>end<span class="w"> </span>target<span class="w"> </span>data
+</pre></div>
+</div>
+<div align="center">
+<p><img alt="Fig5" src="../../../_images/fig-omp.jpg" /></p>
+<p><strong>Fig. 5.</strong> <em>Performance of different OpenMP directives.</em></p>
+</div>
+<section id="compiling-and-running-openmp-program">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Compiling and running OpenMP-program</a><a class="headerlink" href="#compiling-and-running-openmp-program" title="Link to this heading"></a></h3>
+<p>Our OpenMP benchmark test runs on AMD Mi100 accelerator. The syntax of the compilation process can be written in the following form:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flang<span class="w"> </span>-fopenmp<span class="o">=</span>libomp<span class="w"> </span>-fopenmp-targets<span class="o">=</span>&lt;target&gt;<span class="w"> </span>-Xopenmp-target<span class="o">=</span>&lt;target&gt;<span class="w"> </span>-march<span class="o">=</span>&lt;arch&gt;<span class="w"> </span>laplace_omp.f90
+</pre></div>
+</div>
+<p>The flag <code class="docutils literal notranslate"><span class="pre">-fopenmp</span></code> activates the OpenMP directives (i.e. !$omp [construct] in Fortran). The option <code class="docutils literal notranslate"><span class="pre">-fopenmp-targets=&lt;target&gt;</span></code> is used to enable the target offloading to GPU-accelerators and tells the Flang compiler to use <code class="docutils literal notranslate"><span class="pre">&lt;target&gt;=amdgcn-amd-amdhsa</span></code> as the AMD target. The <code class="docutils literal notranslate"><span class="pre">-Xopenmp-target</span></code> flag enables options to be passed to the target offloading toolchain. In addition, we need to specify the architecture of the GPU to be used. This is done via the flag <code class="docutils literal notranslate"><span class="pre">-march=&lt;arch&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;arch&gt;</span></code> specifies the name of the GPU-architecture. This characteristic feature can be extracted from the machine via the command <code class="docutils literal notranslate"><span class="pre">rocminfo</span></code>. For instance, the AMD Mi100 accelerator architecture is specified by the flag <code class="docutils literal notranslate"><span class="pre">-march=gfx908</span> <span class="pre">amd-arch</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The compilation process requires loading a AOMP module, e.g. <code class="docutils literal notranslate"><span class="pre">AOMP/13.0-2-GCCcore-10.2.0</span></code> or a newer version.</p>
+</div>
+</section>
+</section>
+<section id="mapping-openacc-to-openmp">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Mapping OpenACC to OpenMP</a><a class="headerlink" href="#mapping-openacc-to-openmp" title="Link to this heading"></a></h2>
+<p>In this section, we present a direct comparison between the OpenACC and OpenMP offload features. This comparison is illustrated in the code below. A closer look at OpenACC and OpenMP codes reveals some similarities and differences in terms of constructs and clauses. The meaning of these directives is summarized in the <em>Table 1</em>. Here, evaluating the behavior of OpenACC and OpenMP by one-to-one mapping is a key feature for an effort of porting OpenACC to OpenMP on heterogeneous systems. Based on this comparison, it is seen that the syntax of both programming models is so similar, thus making the implementation of a translation procedure at the syntactic level straightforward. Therefore, carrying out such a comparison is critical for determining the correct mappings to OpenMP offloading.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">                    </span>**OpenACC**<span class="w">                        </span><span class="p">|</span><span class="w">                    </span>**OpenMP**
+!<span class="nv">$acc</span><span class="w"> </span>data<span class="w"> </span>copyin<span class="o">(</span>f<span class="o">)</span><span class="w"> </span>copyout<span class="o">(</span>f_k<span class="o">)</span><span class="w">                      </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$omp</span><span class="w"> </span>target<span class="w"> </span>data<span class="w"> </span>map<span class="o">(</span>to:f<span class="o">)</span><span class="w"> </span>map<span class="o">(</span>from:f_k<span class="o">)</span>
+<span class="w">   </span><span class="k">do</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="o">(</span>max_err.gt.error.and.iter.le.max_iter<span class="o">)</span><span class="w">    </span><span class="p">|</span><span class="w">     </span><span class="k">do</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="o">(</span>max_err.gt.error.and.iter.le.max_iter<span class="o">)</span>
+!<span class="nv">$acc</span><span class="w"> </span>parallel<span class="w"> </span>loop<span class="w"> </span>gang<span class="w"> </span>worker<span class="w"> </span>vector<span class="w"> </span>collapse<span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w">     </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$omp</span><span class="w"> </span>target<span class="w"> </span>teams<span class="w"> </span>distribute<span class="w"> </span>parallel<span class="w"> </span><span class="k">do</span><span class="w"> </span>simd<span class="w"> </span>collapse<span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w"> </span>
+<span class="w">                                                       </span><span class="p">|</span><span class="w">        </span>schedule<span class="o">(</span>static,1<span class="o">)</span><span class="w"> </span>
+<span class="w">      </span><span class="k">do</span><span class="w"> </span><span class="nv">j</span><span class="o">=</span><span class="m">2</span>,ny-1<span class="w">                                      </span><span class="p">|</span><span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="nv">j</span><span class="o">=</span><span class="m">2</span>,ny-1<span class="w"> </span>
+<span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">2</span>,nx-1<span class="w">                                    </span><span class="p">|</span><span class="w">          </span><span class="k">do</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">2</span>,nx-1<span class="w"> </span>
+<span class="w">           </span><span class="nv">d2fx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f<span class="o">(</span>i+1,j<span class="o">)</span><span class="w"> </span>+<span class="w"> </span>f<span class="o">(</span>i-1,j<span class="o">)</span><span class="w">                  </span><span class="p">|</span><span class="w">             </span><span class="nv">d2fx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f<span class="o">(</span>i+1,j<span class="o">)</span><span class="w"> </span>+<span class="w"> </span>f<span class="o">(</span>i-1,j<span class="o">)</span>
+<span class="w">           </span><span class="nv">d2fy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f<span class="o">(</span>i,j+1<span class="o">)</span><span class="w"> </span>+<span class="w"> </span>f<span class="o">(</span>i,j-1<span class="o">)</span><span class="w">                  </span><span class="p">|</span><span class="w">             </span><span class="nv">d2fy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f<span class="o">(</span>i,j+1<span class="o">)</span><span class="w"> </span>+<span class="w"> </span>f<span class="o">(</span>i,j-1<span class="o">)</span><span class="w"> </span>
+<span class="w">           </span>f_k<span class="o">(</span>i,j<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.25*<span class="o">(</span>d2fx<span class="w"> </span>+<span class="w"> </span>d2fy<span class="o">)</span><span class="w">               </span><span class="p">|</span><span class="w">             </span>f_k<span class="o">(</span>i,j<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.25*<span class="o">(</span>d2fx<span class="w"> </span>+<span class="w"> </span>d2fy<span class="o">)</span>
+<span class="w">        </span>enddo<span class="w">                                          </span><span class="p">|</span><span class="w">           </span>enddo
+<span class="w">      </span>enddo<span class="w">                                            </span><span class="p">|</span><span class="w">         </span>enddo
+!<span class="nv">$acc</span><span class="w"> </span>end<span class="w"> </span>parallel<span class="w">                                     </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$omp</span><span class="w"> </span>end<span class="w"> </span>target<span class="w"> </span>teams<span class="w"> </span>distribute<span class="w"> </span>parallel<span class="w"> </span><span class="k">do</span><span class="w"> </span>simd
+<span class="w">                                                       </span><span class="p">|</span>
+<span class="w">       </span><span class="nv">max_err</span><span class="o">=</span><span class="m">0</span>.<span class="w">                                      </span><span class="p">|</span><span class="w">          </span><span class="nv">max_err</span><span class="o">=</span><span class="m">0</span>.
+<span class="w">                                                       </span><span class="p">|</span>
+!<span class="nv">$acc</span><span class="w"> </span>parallel<span class="w"> </span>loop<span class="w"> </span>collapse<span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w"> </span>reduction<span class="o">(</span>max:max_err<span class="o">)</span><span class="w"> </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$omp</span><span class="w"> </span>target<span class="w"> </span>teams<span class="w"> </span>distribute<span class="w"> </span>parallel<span class="w"> </span><span class="k">do</span><span class="w"> </span>simd<span class="w"> </span>collapse<span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w"> </span>
+<span class="w">                                                       </span><span class="p">|</span><span class="w">         </span>schedule<span class="o">(</span>static,1<span class="o">)</span><span class="w"> </span>reduction<span class="o">(</span>max:max_err<span class="o">)</span><span class="w"> </span>
+<span class="w">      </span><span class="k">do</span><span class="w"> </span><span class="nv">j</span><span class="o">=</span><span class="m">2</span>,ny-1<span class="w">                                      </span><span class="p">|</span><span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="nv">j</span><span class="o">=</span><span class="m">2</span>,ny-1
+<span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">2</span>,nx-1<span class="w">                                    </span><span class="p">|</span><span class="w">          </span><span class="k">do</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">2</span>,nx-1
+<span class="w">           </span><span class="nv">max_err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>max<span class="o">(</span>dabs<span class="o">(</span>f_k<span class="o">(</span>i,j<span class="o">)</span>-f<span class="o">(</span>i,j<span class="o">))</span>,max_err<span class="o">)</span><span class="p">|</span><span class="w">             </span><span class="nv">max_err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>max<span class="o">(</span>dabs<span class="o">(</span>f_k<span class="o">(</span>i,j<span class="o">)</span>-f<span class="o">(</span>i,j<span class="o">))</span>,max_err<span class="o">)</span>
+<span class="w">           </span>f<span class="o">(</span>i,j<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f_k<span class="o">(</span>i,j<span class="o">)</span><span class="w">                           </span><span class="p">|</span><span class="w">             </span>f<span class="o">(</span>i,j<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f_k<span class="o">(</span>i,j<span class="o">)</span>
+<span class="w">        </span>enddo<span class="w">                                          </span><span class="p">|</span><span class="w">          </span>enddo<span class="w"> </span>
+<span class="w">       </span>enddo<span class="w">                                           </span><span class="p">|</span><span class="w">        </span>enddo
+!<span class="nv">$acc</span><span class="w"> </span>end<span class="w"> </span>parallel<span class="w">                                     </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$omp</span><span class="w"> </span>end<span class="w"> </span>target<span class="w"> </span>teams<span class="w"> </span>distribute<span class="w"> </span>parallel<span class="w"> </span><span class="k">do</span><span class="w"> </span>simd
+<span class="w">                                                       </span><span class="p">|</span>
+<span class="w">       </span><span class="nv">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>iter<span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="w">                                 </span><span class="p">|</span><span class="w">        </span><span class="nv">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>iter<span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="w"> </span>
+<span class="w">    </span>enddo<span class="w">                                              </span><span class="p">|</span><span class="w">     </span>enddo
+!<span class="nv">$acc</span><span class="w"> </span>end<span class="w"> </span>data<span class="w">                                         </span><span class="p">|</span><span class="w">  </span>!<span class="nv">$omp</span><span class="w"> </span>end<span class="w"> </span>target<span class="w"> </span>data
+</pre></div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>OpenACC</p></th>
+<th class="head"><p>OpenMP</p></th>
+<th class="head"><p>interpretation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>acc parallel</p></td>
+<td><p>omp target teams</p></td>
+<td><p>to execute a compute region on a device</p></td>
+</tr>
+<tr class="row-odd"><td><p>acc kernels</p></td>
+<td><p>No explicit counterpart</p></td>
+<td><p>- -</p></td>
+</tr>
+<tr class="row-even"><td><p>acc parallel loop gang worker vector</p></td>
+<td><p>omp target teams distribute parallel do simd</p></td>
+<td><p>to parallelize a block of loops on a device</p></td>
+</tr>
+<tr class="row-odd"><td><p>acc data</p></td>
+<td><p>omp target data</p></td>
+<td><p>to share data between multiple parallel regions in a device</p></td>
+</tr>
+<tr class="row-even"><td><p>–</p></td>
+<td><p>–</p></td>
+<td><p>–</p></td>
+</tr>
+<tr class="row-odd"><td><p>acc loop</p></td>
+<td><p>omp teams distribute</p></td>
+<td><p>to workshare for parallelism on a device</p></td>
+</tr>
+<tr class="row-even"><td><p>acc loop gang</p></td>
+<td><p>omp teams(num_teams)</p></td>
+<td><p>to partition a loop across gangs/teams</p></td>
+</tr>
+<tr class="row-odd"><td><p>acc loop worker</p></td>
+<td><p>omp parallel simd</p></td>
+<td><p>to partition a loop across threads</p></td>
+</tr>
+<tr class="row-even"><td><p>acc loop vector</p></td>
+<td><p>omp parallel simd</p></td>
+<td><p>- -</p></td>
+</tr>
+<tr class="row-odd"><td><p>num_gangs</p></td>
+<td><p>num_teams</p></td>
+<td><p>to control how many gangs/teams are created</p></td>
+</tr>
+<tr class="row-even"><td><p>num_workers</p></td>
+<td><p>num_threads</p></td>
+<td><p>to control how many worker/threads are created in each gang/teams</p></td>
+</tr>
+<tr class="row-odd"><td><p>vector_length</p></td>
+<td><p>No counterpart</p></td>
+<td><p>to control how many data elements can be operated on</p></td>
+</tr>
+<tr class="row-even"><td><p>–</p></td>
+<td><p>–</p></td>
+<td><p>–</p></td>
+</tr>
+<tr class="row-odd"><td><p>acc create()</p></td>
+<td><p>omp map(alloc:)</p></td>
+<td><p>to allocate a memory for an array in a device</p></td>
+</tr>
+<tr class="row-even"><td><p>acc copy()</p></td>
+<td><p>omp map(tofrom:)</p></td>
+<td><p>to copy arrays from the host to a device and back to the host</p></td>
+</tr>
+<tr class="row-odd"><td><p>acc copyin()</p></td>
+<td><p>omp map(to:)</p></td>
+<td><p>to copy arrays to a device</p></td>
+</tr>
+<tr class="row-even"><td><p>acc copyout()</p></td>
+<td><p>omp map(from:)</p></td>
+<td><p>to copy arrays from a device to the host</p></td>
+</tr>
+<tr class="row-odd"><td><p>–</p></td>
+<td><p>–</p></td>
+<td><p>–</p></td>
+</tr>
+<tr class="row-even"><td><p>acc reduction(operator:var)</p></td>
+<td><p>omp reduction(operator:var)</p></td>
+<td><p>to reduce the number of elements in an array to one value</p></td>
+</tr>
+<tr class="row-odd"><td><p>acc collapse(N)</p></td>
+<td><p>omp collapse(N)</p></td>
+<td><p>to collapse N nested loops into one loop</p></td>
+</tr>
+<tr class="row-even"><td><p>No counterpart</p></td>
+<td><p>omp schedule(,)</p></td>
+<td><p>to schedule the work for each thread according to the collapsed loops</p></td>
+</tr>
+<tr class="row-odd"><td><p>private(var)</p></td>
+<td><p>private(var)</p></td>
+<td><p>to allocate a copy of the variable <code class="docutils literal notranslate"><span class="pre">var</span></code> on each gang/teams</p></td>
+</tr>
+<tr class="row-even"><td><p>firstprivate</p></td>
+<td><p>firstprivate</p></td>
+<td><p>to allocate a copy of the variable <code class="docutils literal notranslate"><span class="pre">var</span></code> on each gang/teams and to initialise it with the value of the local thread</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 1.</strong> <em>Description of various directives and clauses: OpenACC vs OpenMP.</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Details about library routines can be found <a class="reference external" href="https://gcc.gnu.org/onlinedocs/libgomp/OpenACC-Runtime-Library-Routines.html">here</a> for OpenACC and <a class="reference external" href="https://www.intel.com/content/www/us/en/develop/documentation/get-started-with-cpp-fortran-compiler-openmp/top.html">here</a> for OpenMP.</p>
+</div>
+</section>
+</section>
+<section id="open-source-openacc-compilers">
+<span id="id4"></span><h1><a class="toc-backref" href="#id17" role="doc-backlink">Open-source OpenACC compilers</a><a class="headerlink" href="#open-source-openacc-compilers" title="Link to this heading"></a></h1>
+<p>For completeness, we provide in this section some highlights of the available open-source OpenACC compilers. According to the work of <a class="reference external" href="https://ieeexplore.ieee.org/document/8639349">J. Vetter et al.</a> and the <a class="reference external" href="https://www.openacc.org/tools">OpenACC website</a>, the only open-source compiler that supports OpenACC offloading to NVIDIA and AMD accelerators is GCC 10. Recently, there has been an effort in developing an open-source compiler to complement the existing one, thus allowing to perform experiments on a broad range of architectures. The compiler is called <a class="reference external" href="https://ieeexplore.ieee.org/document/8639349">Clacc</a> and its development is funded by the Exascale Computing Project <a class="reference external" href="https://www.exascaleproject.org/highlight/clacc-an-open-source-openacc-compiler-and-source-code-translation-project/">Clacc project</a> and is further described by <a class="reference external" href="https://ieeexplore.ieee.org/document/8639349">J. Vetter et al.</a>. We thus focus here on providing some basic features of the Clacc compiler platform, without addressing deeply the fundamental aspect of the compiler, which is beyond the scope of this documentation..</p>
+<p>Clacc is an open-source OpenACC compiler platform that has support for <a class="reference external" href="https://clang.llvm.org/">Clang</a> and <a class="reference external" href="https://llvm.org/">LLVM</a>, and aims at facilitating GPU-programming in its broad use. The key behind the design of Clacc is based on translating OpenACC to OpenMP, taking advantage of the existing OpenMP debugging tools to be re-used for OpenACC. Clacc was designed to mimic the exact behavior of OpenMP as explicit as possible. The Clacc strategy for interpreting OpenACC is based on one-to-one mapping of <a class="reference external" href="https://ieeexplore.ieee.org/document/8639349">OpenACC directives to OpenMP directives</a> as we have already shown in the <em>Table 1</em> above.</p>
+<p>Despite the new development of Clacc compiler platform, there is still major need to further extend the compiler as it suffers from some limitations, <a class="reference external" href="https://ieeexplore.ieee.org/document/8639349">mainly</a>: (i) in the Clacc’s design, translating OpenACC to OpenMP in Clang/Flang is currently supported only in C and Fortran but not yet in C++. (ii) Clacc has so far focused primarily on compute constructs, and thus lacks support of data-sharing between the CPU-host and a GPU-device. These limitations however are expected to be overcome in the near future. So far, Clacc has been tested and benchmarked against a series of different configurations, and it is found to provide an acceptable GPU-performance, as stated <a class="reference external" href="https://www.exascaleproject.org/highlight/clacc-an-open-source-openacc-compiler-and-source-code-translation-project/">here</a>. Note that Clacc is publicly available <a class="reference external" href="https://github.com/llvm-doe-org/llvm-project/wiki">here</a>.</p>
+</section>
+<section id="conclusion">
+<span id="id5"></span><h1><a class="toc-backref" href="#id18" role="doc-backlink">Conclusion</a><a class="headerlink" href="#conclusion" title="Link to this heading"></a></h1>
+<p>In conclusion, we have presented an overview of the GPU-architecture as well as the OpenACC and OpenMP offload features via an application based on solving the Laplace equation in a 2D uniform grid. This benchmark application was used to experiment the performance of some of the basic directives and clauses in order to highlight the gain behind the use of GPU-accelerators. The performance here was found to be improved by almost a factor of 52. We have also presented an evaluation of differences and similarities between OpenACC and OpenMP programming models. Furthermore, we have illustrated a one-to-one mapping of OpenACC directives to OpenMP directives in the aim of porting OpenACC to OpenMP. In this context, we have emphasized the recent development of the Clacc compiler platform, which is an open-source OpenACC compiler, although the platform support is so far limited to C and fortran and lacks data-transfer in host-device.</p>
+<p>Last but not least, writing an efficient GPU-based program requires some basic knowledge of the GPU architecture and how regions of a program is mapped into a target device. This documentation thus was designed to provide such basic knowledge in the aim of triggering the interest of developers/users to GPU-programming. It thus functions as a benchmark for future advanced GPU-based parallel programming models.</p>
+</section>
+<section id="relevant-links">
+<h1><a class="toc-backref" href="#id19" role="doc-backlink">Relevant links</a><a class="headerlink" href="#relevant-links" title="Link to this heading"></a></h1>
+<p><a class="reference external" href="https://gpltech.com/wp-content/uploads/2018/11/NVIDIA-Turing-Architecture-Whitepaper.pdf">Various NVIDIA GPU-architectures</a>.</p>
+<p><a class="reference external" href="https://images.nvidia.com/content/tesla/pdf/nvidia-tesla-p100-PCIe-datasheet.pdf">NVIDIA P100 GPU-accelerator</a>.</p>
+<p><a class="reference external" href="https://images.nvidia.com/content/technologies/volta/pdf/volta-v100-datasheet-update-us-1165301-r5.pdf">NVIDIA V100 GPU-accelerator</a>.</p>
+<p><a class="reference external" href="https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf">Detailed description about the NVIDIA V100 GPU-accelerator</a></p>
+<p><a class="reference external" href="https://www.openacc.org/sites/default/files/inline-files/OpenACC_Programming_Guide_0_0.pdf">OpenACC programming guide</a>.</p>
+<p><a class="reference external" href="https://www.openmp.org/wp-content/uploads/OpenMP-API-Specification-5-1.pdf">OpenMP offloading programming guide</a>.</p>
+<p><a class="reference external" href="https://www.openacc.org/sites/default/files/inline-files/API%20Guide%202.7.pdf">OpenACC 2.7 Syntax Reference Guide</a>.</p>
+<p><a class="reference external" href="https://www.openmp.org/wp-content/uploads/OpenMPRef-5.0-111802-web.pdf">OpenMP 5.0 API Syntax Reference Guide</a>.</p>
+<p><a class="reference external" href="https://gcc.gnu.org/onlinedocs/libgomp/OpenACC-Runtime-Library-Routines.html">OpenACC library routines</a>.</p>
+<p><a class="reference external" href="https://www.intel.com/content/www/us/en/develop/documentation/get-started-with-cpp-fortran-compiler-openmp/top.html">OpenMP library routines</a>.</p>
+<p><a class="reference external" href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;amp;arnumber=8639349">The Clacc compiler platform</a>.</p>
+<p><a class="reference external" href="https://support.hpe.com/hpesc/public/docDisplay?docId=a00115296en_us&amp;amp;page=OpenACC_Use.html">The Cray Compilation Environment (CCE)</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Users who are interested in porting their applications may contact <a class="reference internal" href="../../../getting_help/extended_support/gpu.html#extended-support-gpu"><span class="std std-ref">the NRIS GPU team</span></a> for assistance.</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

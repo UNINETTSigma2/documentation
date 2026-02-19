@@ -1,0 +1,366 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaussian performance tuning using single node shared memory &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/statuspal_widget.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Gaussian performance tuning using single node shared memory</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gaussian-performance-tuning-using-single-node-shared-memory">
+<span id="gaussian-tuning"></span><h1>Gaussian performance tuning using single node shared memory<a class="headerlink" href="#gaussian-performance-tuning-using-single-node-shared-memory" title="Link to this heading"></a></h1>
+<p>###<strong>The Linda version is not covered on this page</strong>.
+The local Linda installation
+contain some local adaptations, like wrapper script etc not present in the
+threaded shared memory version. <strong>A tuning guide for the Linda versions is in preparation</strong>.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>Gaussian is a widely used and well known application. The current (pt. 2021)
+implementation is Gaussian 16. This version can utilise several cores
+using an OpenMP threading model and hence confined to a single machine using
+shared memory.</p>
+<p>This guide is dealing with the shared memory version running on single node.
+Gaussian is compiled using the PGI (now NVIDIA) compiler using OpenMP.
+For those of you who know OpenMP well, be aware that the PGI compiler only support a
+limited set of OpenMP environment flags.</p>
+<p>The Gaussian manual describe several options which is important for the performance.
+The keywords most associated with parallel execution is</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">%NPROCSHARED=xx</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%MEM=yyyyMB</span></code></p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">%NPROCSHARED</span></code> set how many OpenMP threads Gaussian can launch, as the name
+suggest it’s shared memory (which implies a single node).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%MEM</span></code> set how much memory (often called core) Gaussian can use in total, this include
+memory for 2-electron integrals which might be calculated in-core if possible.</p></li>
+</ul>
+<p>There are also environment variables that handle OpenMP and PGI compiler settings.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OMP_PROC_BIND</span></code> can be tried to improve performance (have been reported to fail with some SLURM jobs,
+use with caution).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PGI_FASTMATH_CPU</span></code> should be set to the architecture used, see later. Some performance improvement.</p></li>
+</ul>
+<p>Recomputing 2-electron integrals, direct SCF is now default as it’s faster to
+compute these than reading them from disk. In addition doing the calculation
+in memory (in-core) is also default (if possible). This can have a major
+impact of performance. See later about memory allocation.</p>
+<p>Please consult the <a class="reference external" href="https://gaussian.com">Gaussian manual</a> about specific settings.</p>
+</section>
+<section id="scaling">
+<h2>Scaling<a class="headerlink" href="#scaling" title="Link to this heading"></a></h2>
+<p>Single node shared memory OpenMP is known to have limited scaling in most usage scenarios.
+With the current processors it’s common to have far more cores available in
+each compute node than what Gaussian can effectively utilise. The figure below
+show examples of scaling, not all applications scale linearly. Some even run
+slower with a high core count.
+<img alt="Types of scaling" src="../../../_images/scaling.png" /></p>
+<p>Hence, care must be taken not to waste cores by requesting too many.
+A scaling study should be undertaken and the optimal core count for the input
+in question should be established. As Gaussian has a huge number of
+different modes and methods clear guidelines cannot be given, only that
+Gaussian (using OpenMP) does not scale to high core counts.</p>
+<p>It’s important to set the same number of cores in <code class="docutils literal notranslate"><span class="pre">both</span></code> the SLURM file and the
+Gaussian input file, or at least as many as specified in the Gaussian input.
+The Linda version have a wrapper for this, but that is an exception. Please verify
+that the number of cores in slurm <code class="docutils literal notranslate"><span class="pre">--tasks-per-node</span></code> and <code class="docutils literal notranslate"><span class="pre">%NPROCSHARED</span></code> are the same.
+Gaussian will launch NPROCSHARED threads, if less allocated cores
+some threads will share cores with severe performance implications.</p>
+<p>Quite common findings is that a relatively small number of cores are
+optimal as the scaling is not very good for any higher number of cores.
+These extra cores are essential wasted and could be used by other jobs.</p>
+<p>Below is an example of a real Gaussian run:</p>
+<p><img alt="G16 run times" src="../../../_images/g16-runtimes.png" /></p>
+<p><img alt="G16 speedup" src="../../../_images/g16-speedup.png" /></p>
+<p>There is a significant speedup with core count from one core and up to
+a core count of about 32. Using more than 40 cores seems counterproductive
+for shared-memory parallelization. With Linda parallelization, we can go
+further.
+Even for problems with fairly long run times in the order of hours. It’s not
+expected that this will change with run times in the order of days as this is
+an iterative process.</p>
+<p>After about 16 cores the return of applying more cores levels
+off. Hence about 16 cores seems like a sweet spot. Running at 128
+cores waste 7/8 of the CPU resources. However, there is also the
+amount of memory needed to run efficiently to be considered (see next
+section).  While cores might be idle when huge amount of memory is
+need this is the nature of two limited resources. Both are resources,
+but cores have historically been perceived  as the most valuable.</p>
+<p>How many cores to use is an open question, most runs are different. A scaling study
+should be undertaken at the beginning of a compute campaign. Running at 1,2,4,8 cores etc
+and plotting speedup vs cores to find an optimal core count.</p>
+</section>
+<section id="memory-specification">
+<h2>Memory specification<a class="headerlink" href="#memory-specification" title="Link to this heading"></a></h2>
+<p>The Gaussian manual states that <code class="docutils literal notranslate"><span class="pre">&quot;Requests</span> <span class="pre">a</span> <span class="pre">direct</span> <span class="pre">SCF</span> <span class="pre">calculation,</span> <span class="pre">in</span> <span class="pre">which</span> <span class="pre">the</span> <span class="pre">two-electron</span> <span class="pre">integrals</span> <span class="pre">are</span> <span class="pre">recomputed</span> <span class="pre">as</span> <span class="pre">needed&quot;</span></code>. This is
+the default. In addition it states <code class="docutils literal notranslate"><span class="pre">&quot;...</span> <span class="pre">SCF</span> <span class="pre">be</span> <span class="pre">performed</span> <span class="pre">storing</span> <span class="pre">the</span> <span class="pre">full</span> <span class="pre">integral</span> <span class="pre">list</span> <span class="pre">in</span> <span class="pre">memory&quot;</span></code>. This is done automatically if enough memory is requested,
+see Gaussian manual on SCF : <a class="reference external" href="https://gaussian.com/scf/">Gaussian manual SCF</a> .</p>
+<p>The figure below show a dramatic increase in performance at the memory size
+where the 2-electron fit in the memory. From 8 to 6 hours (depending on
+memory requested) down to less than 3 hours at the memory size where
+all the 2-electrons integrals fit in the memory.</p>
+<p><img alt="Effect of requesting memory" src="../../../_images/g16-mem.png" /></p>
+<p>The problem is then to find how much memory is needed to fit the integrals in memory, the real gain
+in performance is when enough memory is allowed to keep the 2-electron integrals in core.
+This require a large amount of memory as seen from the figure above.
+Another possibility is to review the <code class="docutils literal notranslate"><span class="pre">SLURM</span></code> log (all SLURM log files emit memory statistics)
+and look for maximum resident memory at the end of the log file. When the job is running it’s possible
+to log in to the node the job is running on and run tools like <code class="docutils literal notranslate"><span class="pre">top</span></code> or <code class="docutils literal notranslate"><span class="pre">htop</span></code> and look at
+memory usage for your application. See also our page on <a class="reference internal" href="../../../jobs/choosing-memory-settings.html#choosing-memory-settings"><span class="std std-ref">How to choose the right amount of memory</span></a>.</p>
+<p>Just requesting far too much memory is a waste of resources.
+We advise spending some time to get a handle of this threshold value
+for your relevant input and use this a guideline for future runs.</p>
+<p>As the number of nodes with large amount of memory is limited it will
+always be a trade off between queue time and run time. How much gain
+(lower run time) will adding extra memory yield?</p>
+<p>The Sigma2 systems have a range of nodes with different amount of
+memory, see the <a class="reference internal" href="../../../hpc_machines/hardware_overview.html#hardware-overview"><span class="std std-ref">Overview over our machines</span></a>.</p>
+<p>It might be beneficial to check different nodes and associated
+memory capabilities. Both Saga and Fram have Gaussian installed and both systems
+have nodes with more memory installed.</p>
+<!-- Commenting out this section until we have hugemem in place at saga -->
+<!--Example of SLURM options for a relatively large run on Fram :
+```
+#SBATCH --partition=bigmem
+#SBATCH --time=0-24:0:0
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=64
+#SBATCH --mem=5600G
+```
+Requesting 64 cores with a total of 5600 GiB of memory, essential all of the usable
+memory available in the Hugemem nodes. All this memory or all these cores might not
+yield the optimal performance. Some sweet spot need to be found, some testing should be done
+to establish good practice for a compute campaign. As seen from the figure above there is no gain
+in using more memory that what's needed to hold the integrals in memory (instead of writing and reading from the disk). -->
+<!-- radovan: commented out below since it seems technical, disconnected to the job -->
+<!-- examples, and at least the documented run-time difference seems insignificant -->
+<!-- to worry about this -->
+<!-- ## Environment variables -->
+<!-- Gaussian is compiled using the PGI compilers, which only make use of a -->
+<!-- small set of OpenMP environment variables, -->
+<!-- [PGI manual 2017](https://www.pgroup.com/resources/docs/17.10/x86/pgi-user-guide/index.htm#openmp-env-vars). -->
+<!-- Setting correct environment variables can have significant impact on -->
+<!-- performance (the OMP_PROC_BIND=true can be tried, it normally improves performance, but failues have been spotted). -->
+<!-- We suggest the following settings as a guideline: -->
+<!-- - `export PGI_FASTMATH_CPU=skylake` -->
+<!-- The last one can be replaced with avx2, if problems like illegal instruction or operand is encountered. -->
+<!-- The figure below show the effect of the CPU settings: -->
+<!-- ![Effect of environment variables](figures/g16-cpu-settings.png "Effect of setting environment variable for CPU") -->
+<!-- The effect is about 1%, which is small, but often Gaussian run for days and 1% of a day is about 15 min which is a nice -->
+<!-- payoff for just setting a flag, if you run with 32 cores it saves your quota 8 CPU hours on a 24 hrs run (32*24*0.01). -->
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

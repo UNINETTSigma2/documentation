@@ -1,0 +1,665 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSH &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/tabs.js?v=3030b3cb"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Open OnDemand" href="ood.html" />
+    <link rel="prev" title="Connecting to a system with Visual Studio Code" href="../code_development/guides/vs_code/connect_to_server.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SSH</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-ssh">What is SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connecting-to-a-server">Connecting to a server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#first-time-login">First-time login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jumping-through-login-nodes-of-the-same-system">Jumping through login nodes (<em>of the same system</em>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-ssh-for-less-typing">Configuring SSH for less typing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-ssh-keys-instead-of-passwords">Using SSH keys instead of passwords</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generating-a-new-ssh-key-pair">Generating a new SSH key pair</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#copy-public-key-to-server">Copy public key to server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-many-key-pairs-should-i-create">How many key pairs should I create?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-openssh-authentication-agent">Using the OpenSSH authentication agent</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ssh-client-on-windows">SSH client on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x11-forwarding">X11 forwarding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sshfs">SSHFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compressing-data-for-poor-connections">Compressing data for poor connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ssh-over-breaking-connections">SSH over breaking connections</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#common-ssh-errors">Common SSH errors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#warning-remote-host-identification-has-changed">WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">SSH</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ssh">
+<span id="id1"></span><h1>SSH<a class="headerlink" href="#ssh" title="Link to this heading"></a></h1>
+<p>This page assumes that the reader:</p>
+<ul class="simple">
+<li><p>has an account on the server of interest</p></li>
+<li><p>is working on a Linux machine, a macOS, or a Windows machine with OpenSSH
+installed (default on recent Windows 10+ versions)</p>
+<ul>
+<li><p>check in the terminal with <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-V</span></code> that you indeed have OpenSSH available</p></li>
+</ul>
+</li>
+</ul>
+<p>This page is adapted from the very nice documentation written by our
+colleagues at Aalto University (Finland):
+<a class="reference external" href="https://scicomp.aalto.fi/scicomp/ssh/">https://scicomp.aalto.fi/scicomp/ssh/</a>.</p>
+<section id="what-is-ssh">
+<h2>What is SSH<a class="headerlink" href="#what-is-ssh" title="Link to this heading"></a></h2>
+<p>SSH is an abbreviation for <em>secure shell protocol</em>. It is a protocol to
+communicate data between two computers over an encrypted connection. When you
+log into one of the clusters with <code class="docutils literal notranslate"><span class="pre">ssh</span></code> and read and edit files and type
+commands or copy files using <code class="docutils literal notranslate"><span class="pre">rsync</span></code>, then data is transmitted via this
+encrypted connection (see also our guide about <a class="reference internal" href="file_transfer.html#file-transfer"><span class="std std-ref">File transfer</span></a>).</p>
+</section>
+<section id="connecting-to-a-server">
+<h2>Connecting to a server<a class="headerlink" href="#connecting-to-a-server" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using two-factor authentication (2FA) is mandatory when using SSH to connect
+to the NRIS systems. For more details, visit the
+<a class="reference external" href="https://documentation.sigma2.no/getting_help/two_factor_authentication.html">two_factor_authentication</a>.
+Connections between NRIS systems (Saga, Betzy, Olivia) are facilitated
+using SSH key pairs (explained further below).</p>
+</div>
+<p>When you type <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">myusername&#64;saga.sigma2.no</span></code>, <code class="docutils literal notranslate"><span class="pre">myusername</span></code> is your
+username on the remote server, and <code class="docutils literal notranslate"><span class="pre">saga.sigma2.no</span></code> is the server/cluster you
+are connecting to:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-U2FnYQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-U2FnYQ==" name="U2FnYQ==" role="tab" tabindex="0">Saga</button><button aria-controls="panel-0-QmV0enk=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-QmV0enk=" name="QmV0enk=" role="tab" tabindex="-1">Betzy</button><button aria-controls="panel-0-T2xpdmlh" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-T2xpdmlh" name="T2xpdmlh" role="tab" tabindex="-1">Olivia</button><button aria-controls="panel-0-TklSRA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-TklSRA==" name="TklSRA==" role="tab" tabindex="-1">NIRD</button></div><div aria-labelledby="tab-0-U2FnYQ==" class="sphinx-tabs-panel group-tab" id="panel-0-U2FnYQ==" name="U2FnYQ==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh<span class="w"> </span>myusername@saga.sigma2.no
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-QmV0enk=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-QmV0enk=" name="QmV0enk=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh<span class="w"> </span>myusername@betzy.sigma2.no
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-T2xpdmlh" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-T2xpdmlh" name="T2xpdmlh" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh<span class="w"> </span>myusername@olivia.sigma2.no
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-TklSRA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-TklSRA==" name="TklSRA==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh<span class="w"> </span>myusername@nird.sigma2.no
+</pre></div>
+</div>
+</div></div>
+<p>If <code class="docutils literal notranslate"><span class="pre">myusername</span></code> is the same on your computer and the remote server, you can
+leave it out:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh<span class="w"> </span>saga.sigma2.no
+</pre></div>
+</div>
+</section>
+<section id="first-time-login">
+<h2>First-time login<a class="headerlink" href="#first-time-login" title="Link to this heading"></a></h2>
+<p>When you use SSH to connect to a remote server for the very first time,
+you will be prompted to confirm that the remote server is indeed the one
+you expected to connect to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The authenticity of host &#39;saga.sigma2.no (2001:700:4a01:10::37)&#39; can&#39;t be established.
+ED25519 key fingerprint is SHA256:ryqAxpKDjNLLa5VeUPclQRaZBOIjd2HFgufUEnn4Jrw.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+</pre></div>
+</div>
+<p>This question helps prevent another server from impersonating the remote
+resource and subsequently impersonating you to the real resource. This is not
+very likely but it is possible, so it’s a good idea to double-check the
+fingerprint and compare it with published <a class="reference internal" href="fingerprints.html#ssh-fingerprints"><span class="std std-ref">Key fingerprints of our systems</span></a>.</p>
+<p>If the fingerprint matches, you can confirm by typing <code class="docutils literal notranslate"><span class="pre">yes</span></code> and press <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.
+Note that the trailing period (“.”) is not part of the fingerprint.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the fingerprints do not match, please <a class="reference internal" href="../getting_help/support_line.html#support-line"><span class="std std-ref">contact us</span></a>
+immediately.</p>
+</div>
+</section>
+<section id="jumping-through-login-nodes-of-the-same-system">
+<h2>Jumping through login nodes (<em>of the same system</em>)<a class="headerlink" href="#jumping-through-login-nodes-of-the-same-system" title="Link to this heading"></a></h2>
+<p>Once logged in, you can easily jump from one login node to another by
+typing <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">login-X</span></code> (for Saga and Betzy) or <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">loginX</span></code> (for NIRD).
+Please, replace “X” with the number of the login node you want to access.</p>
+<p>The same is valid for when you want to access a specific compute node.
+However, it is only possible to access compute nodes on which you currently
+have jobs running.</p>
+</section>
+<section id="configuring-ssh-for-less-typing">
+<span id="ssh-config"></span><h2>Configuring SSH for less typing<a class="headerlink" href="#configuring-ssh-for-less-typing" title="Link to this heading"></a></h2>
+<p>Remembering the full settings list for the server you are working on each time
+you log in can be tedious: the username is the same every time, the server is
+the same every time … <strong>There is a better way!</strong></p>
+<p>A configuration file allows you to store your preferred settings and map them
+to much simpler login commands.</p>
+<p>Create or edit (if it already exists) the file <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code>.
+Here is an example entry for one of our clusters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Host</span> <span class="n">saga</span>
+    <span class="n">User</span> <span class="n">myusername</span>
+    <span class="n">Hostname</span> <span class="n">saga</span><span class="o">.</span><span class="n">sigma2</span><span class="o">.</span><span class="n">no</span>
+</pre></div>
+</div>
+<p>Now instead of:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh<span class="w"> </span>myusername@saga.sigma2.no
+</pre></div>
+</div>
+<p>you can type:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh<span class="w"> </span>saga
+</pre></div>
+</div>
+<p>If you get an error <code class="docutils literal notranslate"><span class="pre">Bad</span> <span class="pre">owner</span> <span class="pre">or</span> <span class="pre">permissions</span> <span class="pre">on</span> <span class="pre">/cluster/home/myusername/.ssh/config</span></code>, run
+<code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">600</span> <span class="pre">~/.ssh/config</span></code>, and try again. You should be able to connect now.</p>
+<p>Also, <code class="docutils literal notranslate"><span class="pre">rsync</span></code>, <code class="docutils literal notranslate"><span class="pre">scp</span></code>, and any other tool that uses <code class="docutils literal notranslate"><span class="pre">ssh</span></code> under the hood will
+understand these shortcuts. There is a lot more that can be configured. Search
+the web for more examples if you are interested.</p>
+</section>
+<section id="using-ssh-keys-instead-of-passwords">
+<h2>Using SSH keys instead of passwords<a class="headerlink" href="#using-ssh-keys-instead-of-passwords" title="Link to this heading"></a></h2>
+<p><strong>NB</strong>: <em>After enabling two-factor authentication, SSH keys alone
+only work for copying files via port 12. Password must be used with OTP for
+interactive access</em>, see this
+<a class="reference external" href="https://documentation.sigma2.no/getting_help/two_factor_authentication.html">page</a>.</p>
+<p>It’s boring to type the password every time, especially if you regularly have
+multiple sessions open simultaneously (there also exist other tools to help
+with that). This tedium of typing it 20-50 times each day may tempt users
+to choose very short or very memorable passwords, thus reducing security.
+See also <a class="reference external" href="https://xkcd.com/936/">the relevant XKCD comic</a>.</p>
+<p>A <strong>better approach</strong> is to use SSH key pairs. This is not only less tedious
+(you will only have to type a passphrase, typically once per day), but also
+more secure.</p>
+<p>An SSH key pair consists of a private key (which you never share with anybody)
+and a public key (which you can share with others without problems). Others
+can then encrypt messages to you using the public key, and you can decrypt them
+using your private key. Others can only encrypt. Only you can decrypt.</p>
+<p>The private key is a file on your computer. Also, the public key is a different
+file on your computer. Anybody who has access to your private key can read
+data between you and remote servers and impersonate you to the remote servers.</p>
+<p>One way to visualize this is to imagine the public key as a mailbox. Anyone can
+drop a letter (a secret message) into the mailbox and close it, but only you,
+with the private key, can unlock the mailbox and read the letter. The public
+key (mailbox) is accessible to everyone for sending messages, but only you can
+decrypt and access the contents using your private key.</p>
+<p>To make sure that your private key (file) does not fall into the wrong hands,
+it is customary and <strong>recommended to encrypt it with a passphrase</strong>.
+“Encrypting” your private key with an empty passphrase is possible, but it is
+the equivalent of leaving your house key under the doormat or having a bank
+card without a PIN.</p>
+<p><strong>Why are SSH key pairs more secure than using a password?</strong> There is still the
+passphrase to unlock the private key, so why is this easier and better? We
+will show later how it is easier, but it is more secure because the passphrase
+is never communicated to the remote server: it stays on your computer. When the
+remote server is authenticating you, it encrypts a large number and sends it
+encrypted to you, asks you to decrypt it and send the decrypted number back,
+and then compares the two. If they match, the remote server knows that you are
+you and from there on can trust you for the duration of the session. No
+password or passphrase needs to leave your computer over the network.</p>
+<section id="generating-a-new-ssh-key-pair">
+<h3>Generating a new SSH key pair<a class="headerlink" href="#generating-a-new-ssh-key-pair" title="Link to this heading"></a></h3>
+<p>While there are many options for the key generation program <code class="docutils literal notranslate"><span class="pre">ssh-keygen</span></code>, here
+are the main ones:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-t</span></code>: The encryption type used to make the unique key pair.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-b</span></code>: The number of key bits. (Ed25519 is fixed length and ignores this)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span></code>: Filename of key.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-C</span></code>: Comment on what the key is for.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-a</span></code>: Number of key derivation function rounds. Default is 16. The higher,
+the longer it takes to verify the passphrase, but also the better
+protection against brute-force password cracking.</p></li>
+</ul>
+<p>The Ed25519 key type is preferable to RSA keys. They are shorter and easier
+to identify visually. Always use comments to distinguish between keys.</p>
+<p>We recommend the following command to create a key pair:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ssh-keygen -t ed25519 -a 100 -f &quot;$HOME/.ssh/id_ed25519&quot; -C &quot;$(whoami)@$(hostname)-$(date -I)&quot;</span>
+</pre></div>
+</div>
+<p>After running this command in the terminal, you will be prompted to enter a
+passphrase.  <strong>Make sure to enter a passphrase to encrypt the key!</strong> A private
+key with an empty passphrase can be used by anybody who gets access to your
+private key file. Never share it with anybody!</p>
+<p>Upon confirming the password, you will be presented with the key fingerprint
+as both a SHA256 hex string and as a randomart image. Your new key pair
+will be saved in the hidden <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> directory.  If you ran the command
+above, you will find the following files there: <code class="docutils literal notranslate"><span class="pre">id_ed25519</span></code> (private key,
+never share it) and <code class="docutils literal notranslate"><span class="pre">id_ed25519.pub</span></code> (public key, no problem to share).</p>
+<p>Once you’ve done this, add a line to your <code class="docutils literal notranslate"><span class="pre">config</span></code> file specifying that
+“all connection attempts to Host should try Key”: <code class="docutils literal notranslate"><span class="pre">IdentityFile</span> <span class="pre">~/.ssh/id_ed25519</span></code>.
+This will ensure that SSH tries <code class="docutils literal notranslate"><span class="pre">id_ed25519</span></code> pair to authenticate first.</p>
+</section>
+<section id="copy-public-key-to-server">
+<h3>Copy public key to server<a class="headerlink" href="#copy-public-key-to-server" title="Link to this heading"></a></h3>
+<p>In order to use your key pair to log in to the remote server, you first need to
+securely copy the desired <em>public key</em> to the machine with <code class="docutils literal notranslate"><span class="pre">ssh-copy-id</span></code>.
+The script will also add your public key to the <code class="docutils literal notranslate"><span class="pre">~/.ssh/authorized_keys</span></code> file
+on the server. You will be prompted to authenticate with password + OTP (not
+the <em>passphrase</em> associated with the private key) to initiate the secure copy
+of the file.</p>
+<p>To copy and install the public key to the server, for example Saga, use:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ssh-copy-id -i ~/.ssh/id_ed25519 myusername@saga.sigma2.no</span>
+</pre></div>
+</div>
+<p><strong>NB</strong>: To spread load over all the login nodes of a given cluster (Saga,
+Betzy, Olivia), e.g. <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">saga.sigma2.no</span></code> will lead the user to 1 of the 5
+available login nodes of saga (this is seen by the <code class="docutils literal notranslate"><span class="pre">user&#64;login-X.saga...</span></code> on
+the shell). In this case your key will be copied to all login nodes (1-5)
+on Saga.</p>
+<p>This command creates the directory <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> on the target machine
+(<code class="docutils literal notranslate"><span class="pre">saga.sigma2.no</span></code> in the example above) if it did not exist yet.  When created
+by OpenSSH (e.g. through <code class="docutils literal notranslate"><span class="pre">ssh-copy-id</span></code>), the directory gets the required
+strict permissions <code class="docutils literal notranslate"><span class="pre">0700</span></code>, which may be different from the shell’s
+file-creation mask returned by <code class="docutils literal notranslate"><span class="pre">umask</span> <span class="pre">-S</span></code>.  You can check the permissions by
+running <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-ld</span> <span class="pre">~/.ssh</span></code> on Saga, and change the permissions to <code class="docutils literal notranslate"><span class="pre">0700</span></code> with the
+command <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">0700</span> <span class="pre">~/.ssh</span></code>.</p>
+<p>Once the public key has been copied to the remote server, you can log in using
+the SSH key pair. Try it. <strong>It should now ask you for your passphrase and not
+your password.</strong></p>
+<p>This approach works not only for our clusters but also for services like
+GitHub or GitLab. But let’s focus here on clusters.</p>
+<div class="admonition-help-it-still-asks-for-a-password admonition">
+<p class="admonition-title">Help! It still asks for a password!</p>
+<p>In this case, debug with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh<span class="w"> </span>-v<span class="w"> </span>myusername@saga.sigma2.no
+</pre></div>
+</div>
+<p>Instead of <code class="docutils literal notranslate"><span class="pre">-v</span></code> you can also try <code class="docutils literal notranslate"><span class="pre">-vv</span></code> or <code class="docutils literal notranslate"><span class="pre">-vvv</span></code> for more verbose output.
+Study the output and try to figure out what goes wrong. Does it try the key
+pair you created?</p>
+</div>
+</section>
+<section id="how-many-key-pairs-should-i-create">
+<h3>How many key pairs should I create?<a class="headerlink" href="#how-many-key-pairs-should-i-create" title="Link to this heading"></a></h3>
+<p>We recommend creating a key pair for each hardware device. Not a key pair for each
+remote server.</p>
+<p>In other words, if you have a laptop and a desktop and want to authenticate to
+4 different servers, create a key pair on the laptop and another one on the
+desktop, and upload both public keys to all 4 remote servers. The motivation is
+that if you lose your hardware device (e.g., laptop) or it gets stolen, you
+know exactly which key to revoke access from.</p>
+</section>
+<section id="using-the-openssh-authentication-agent">
+<h3>Using the OpenSSH authentication agent<a class="headerlink" href="#using-the-openssh-authentication-agent" title="Link to this heading"></a></h3>
+<p>Earlier, we explained why typing your password multiple times a day can be
+inconvenient. Switching to a private key helps with that, but now you’re stuck
+typing the passphrase for the key every time—which doesn’t feel like much of
+a win. Fortunately, there is a better way: to avoid typing the decryption
+passphrase, you need to add the <em>private key</em> to the <code class="docutils literal notranslate"><span class="pre">ssh-agent</span></code> using
+the following command:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-1-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button><button aria-controls="panel-1-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button></div><div aria-labelledby="tab-1-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-1-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh-add
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-V2luZG93cw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><p>Remember to have the service “OpenSSH Authentication Agent” enabled
+and starting automatically.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh-add
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-bWFjT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-bWFjT1M=" name="bWFjT1M=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh-add<span class="w"> </span>--apple-use-keychain
+</pre></div>
+</div>
+</div></div>
+<p>If you are unsure whether the <code class="docutils literal notranslate"><span class="pre">ssh-agent</span></code> process is running on your machine,
+<code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">-C</span> <span class="pre">ssh-agent</span></code> will tell you if there is. To start a new agent, use:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">eval</span><span class="w"> </span><span class="k">$(</span>ssh-agent<span class="k">)</span>
+</pre></div>
+</div>
+<p>Once the password is added, you can SSH into the remote server as normal, and
+you will be immediately connected without any further prompts.</p>
+<p>Typically, you use <code class="docutils literal notranslate"><span class="pre">ssh-add</span></code> once per day, after which you can use <code class="docutils literal notranslate"><span class="pre">ssh</span></code> and <code class="docutils literal notranslate"><span class="pre">rsync</span></code>
+as often as you like without re-authenticating.</p>
+</section>
+</section>
+<section id="ssh-client-on-windows">
+<h2>SSH client on Windows<a class="headerlink" href="#ssh-client-on-windows" title="Link to this heading"></a></h2>
+<p>In Windows 10 and newer you can now get a fully functional Linux terminal by
+<a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/install">installing WSL</a>.</p>
+<p>Another alternative is to use the
+<a class="reference external" href="https://learn.microsoft.com/en-us/windows/terminal/tutorials/ssh">Windows SSH Client</a>
+directly.</p>
+</section>
+<section id="x11-forwarding">
+<span id="id2"></span><h2>X11 forwarding<a class="headerlink" href="#x11-forwarding" title="Link to this heading"></a></h2>
+<p>X11 forwarding is a method to send the graphical screen output from the remote
+server to your local computer.</p>
+<p>X11 forwarding should be used with caution due to security implications.
+Please note that if someone can read your X authorization database, that
+person would be able to access the local X11 display through the forwarded
+connection. By default, your X authority database is stored in the
+<code class="docutils literal notranslate"><span class="pre">~/.Xauthority</span></code> file. This file contains records with authorization
+information used in connecting to the X server.</p>
+<p>We suggest switching it on <em>only</em> when needed, using the options (<code class="docutils literal notranslate"><span class="pre">-X</span></code> or <code class="docutils literal notranslate"><span class="pre">-Y</span></code>)
+passed to the <code class="docutils literal notranslate"><span class="pre">ssh</span></code> command. Whenever possible, use the <code class="docutils literal notranslate"><span class="pre">-X</span></code> option to mark remote
+X11 clients untrusted.</p>
+<p>In some cases, <code class="docutils literal notranslate"><span class="pre">-X</span></code> may fail to work. When this happens, you can either use
+the <code class="docutils literal notranslate"><span class="pre">-Y</span></code> option or set <code class="docutils literal notranslate"><span class="pre">ForwardX11Trusted</span></code> to <code class="docutils literal notranslate"><span class="pre">yes</span></code> in your SSH configuration
+file. Be aware that this will grant remote X11 clients full access to the
+original X11 display.</p>
+<p>Alternatively, if X11 forwarding is always needed, you can configure it on a
+per-host basis in your <code class="docutils literal notranslate"><span class="pre">.ssh/config</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># global settings</span>
+<span class="n">ForwardX11</span>        <span class="n">no</span>               <span class="c1"># disable X11 forwarding</span>
+<span class="n">ForwardX11Trusted</span> <span class="n">no</span>               <span class="c1"># do not trust remote X11 clients</span>
+
+<span class="c1"># per-host settings, example for Saga</span>
+<span class="n">Host</span> <span class="n">saga</span>                            <span class="c1"># alias, you may run &quot;ssh saga&quot; only</span>
+    <span class="n">HostName</span> <span class="n">saga</span><span class="o">.</span><span class="n">sigma2</span><span class="o">.</span><span class="n">no</span>          <span class="c1"># actual hostname for Saga</span>
+    <span class="n">User</span> <span class="n">my_username</span>                 <span class="c1"># replace with your username on Saga</span>
+    <span class="n">IdentityFile</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa_saga</span>  <span class="c1"># pointer to your private SSH key</span>
+    <span class="n">ForwardX11</span>          <span class="n">yes</span>          <span class="c1"># enable X11 forwarding</span>
+    <span class="n">ForwardX11Trusted</span>   <span class="n">no</span>           <span class="c1"># do not trust remote X11 clients</span>
+</pre></div>
+</div>
+</section>
+<section id="sshfs">
+<h2>SSHFS<a class="headerlink" href="#sshfs" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://github.com/libfuse/sshfs">SSHFS</a> allows you to mount a remote
+file system using SFTP.</p>
+<p>If you wish to use SSHFS, please note that <code class="docutils literal notranslate"><span class="pre">saga.sigma2.no</span></code>,
+<code class="docutils literal notranslate"><span class="pre">login.saga.sigma2.no</span></code>, and addresses for other clusters are round-robin
+entries. This means that every time you log in, you might end up on a
+different actual login node (e.g., <code class="docutils literal notranslate"><span class="pre">login-1.saga.sigma2.no</span></code> or
+<code class="docutils literal notranslate"><span class="pre">login-3.saga.sigma2.no</span></code>). This is done to balance the load between the login
+nodes.</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">sshfs</span></code>, always specify one of the actual login nodes
+(e.g., <code class="docutils literal notranslate"><span class="pre">login-1.saga.sigma2.no</span></code>), not the “front-ends”. Otherwise your session
+will authenticate against only one login node, which can result in your
+IP address being blacklisted.</p>
+<p><strong>NB</strong>: After enabling two-factor authentication, this is only available on port
+12, see <a class="reference external" href="https://documentation.sigma2.no/getting_help/two_factor_authentication.html">OTP help</a>.</p>
+</section>
+<section id="compressing-data-for-poor-connections">
+<h2>Compressing data for poor connections<a class="headerlink" href="#compressing-data-for-poor-connections" title="Link to this heading"></a></h2>
+<p>In case of poor connection to the server, likely from a very remote area, and
+usually noticeable with X11 forwarding enabled, you may request data
+compression by using the <code class="docutils literal notranslate"><span class="pre">-C</span></code> option. Please note that compression relies on
+the CPU to compress and decompress all data. If you are on a fast network, this
+will have a negative impact on your bandwidth.</p>
+</section>
+<section id="ssh-over-breaking-connections">
+<h2>SSH over breaking connections<a class="headerlink" href="#ssh-over-breaking-connections" title="Link to this heading"></a></h2>
+<p>If you experience intermittent connectivity (e.g., on Wi-Fi, cellular,
+long-distance links) and SSH disconnects frequently, you can configure SSH
+to attempt to keep the connection alive by adding this into your
+<code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Host</span> <span class="n">saga</span>
+    <span class="n">Hostname</span> <span class="n">login</span><span class="o">.</span><span class="n">saga</span><span class="o">.</span><span class="n">sigma2</span><span class="o">.</span><span class="n">no</span>
+    <span class="n">ServerAliveInterval</span> <span class="mi">60</span>
+    <span class="n">ServerAliveCountMax</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>For even more unstable connections, try <a class="reference external" href="https://mosh.org/">Mosh (mobileshell)</a>.</p>
+<p>Mosh is in many instances a drop-in replacement for <code class="docutils literal notranslate"><span class="pre">ssh</span></code> (and actually
+utilizes <code class="docutils literal notranslate"><span class="pre">ssh</span></code> under the hood for establishing a connection). It is
+recommended to use Mosh if you connect from a laptop and want to keep the
+connection when roaming on Wi-Fi or putting the laptop to sleep.</p>
+</section>
+</section>
+<section id="common-ssh-errors">
+<span id="ssh-errors"></span><h1>Common SSH errors<a class="headerlink" href="#common-ssh-errors" title="Link to this heading"></a></h1>
+<section id="warning-remote-host-identification-has-changed">
+<h2>WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!<a class="headerlink" href="#warning-remote-host-identification-has-changed" title="Link to this heading"></a></h2>
+<p>The SSH connection was working fine until one day the following message
+appeared:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ED25519 key sent by the remote host is
+SHA256:XXX.
+Please contact your system administrator.
+Add correct host key in /home/username/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/username/.ssh/known_hosts:13
+  remove with:
+  ssh-keygen -f &quot;/home/username/.ssh/known_hosts&quot; -R saga.sigma2.no
+ED25519 host key for saga.sigma2.no has changed and you have requested strict checking.
+Host key verification failed.
+</pre></div>
+</div>
+<p>It may be frightening at first, but it usually means that the SSH Keys from
+the server have changed, which is common after a system upgrade (so, take a
+look at our <a class="reference external" href="https://opslog.sigma2.no/">OpsLog</a> for more information).</p>
+<p>The fix is already in the message itself and, in this example, you just have to
+locate the file <code class="docutils literal notranslate"><span class="pre">known_hosts</span></code> inside <code class="docutils literal notranslate"><span class="pre">/home/username/.ssh/</span></code> and delete
+the specified line (line 13).</p>
+<p><strong>NOTE:</strong></p>
+<ul class="simple">
+<li><p>The number at the end indicates where the problem lies.</p></li>
+<li><p>The path will be different according to the operating system you are running.</p></li>
+<li><p>Also, on Linux, having a folder starting with <code class="docutils literal notranslate"><span class="pre">.</span></code> means it is a hidden folder.</p></li>
+</ul>
+<p>Also, if you are familiar with Linux terminal, running the suggested command
+also has the same effect:
+<code class="docutils literal notranslate"><span class="pre">ssh-keygen</span> <span class="pre">-f</span> <span class="pre">&quot;/home/username/.ssh/known_hosts&quot;</span> <span class="pre">-R</span> <span class="pre">saga.sigma2.no</span></code></p>
+<p>After completing the steps above, try logging in again and accept the new
+fingerprint (to verify it is the correct one, see this
+<a class="reference external" href="https://documentation.sigma2.no/getting_started/fingerprints.html">page</a>).</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scicomp.aalto.fi/scicomp/ssh/">https://scicomp.aalto.fi/scicomp/ssh/</a> - inspiration for this page</p></li>
+<li><p><a class="reference external" href="https://www.mn.uio.no/geo/english/services/it/help/using-linux/ssh-tips-and-tricks.html">https://www.mn.uio.no/geo/english/services/it/help/using-linux/ssh-tips-and-tricks.html</a> - long-form guide</p></li>
+<li><p><a class="reference external" href="https://blog.0xbadc0de.be/archives/300">https://blog.0xbadc0de.be/archives/300</a> - long-form guide</p></li>
+<li><p><a class="reference external" href="https://www.phcomp.co.uk/Tutorials/Unix-And-Linux/ssh-passwordless-login.html">https://www.phcomp.co.uk/Tutorials/Unix-And-Linux/ssh-passwordless-login.html</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/OpenSSH">https://en.wikipedia.org/wiki/OpenSSH</a></p></li>
+<li><p><a class="reference external" href="https://linuxize.com/post/ssh-command-in-linux/#how-to-use-the-ssh-command">https://linuxize.com/post/ssh-command-in-linux/#how-to-use-the-ssh-command</a></p></li>
+<li><p><a class="reference external" href="https://linuxize.com/post/how-to-setup-passwordless-ssh-login/">https://linuxize.com/post/how-to-setup-passwordless-ssh-login/</a></p></li>
+<li><p><a class="reference external" href="https://infosec.mozilla.org/guidelines/openssh">https://infosec.mozilla.org/guidelines/openssh</a></p></li>
+<li><p><a class="reference external" href="https://www.ssh.com/ssh/">https://www.ssh.com/ssh/</a> - commercial site</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../code_development/guides/vs_code/connect_to_server.html" class="btn btn-neutral float-left" title="Connecting to a system with Visual Studio Code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ood.html" class="btn btn-neutral float-right" title="Open OnDemand" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

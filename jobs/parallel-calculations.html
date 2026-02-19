@@ -1,0 +1,503 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Efficient use of processors and network on Betzy &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interactive jobs" href="interactive_jobs.html" />
+    <link rel="prev" title="Efficient use of memory bandwidth on Betzy" href="memory-bandwidth.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Running jobs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="submitting.html">Submitting jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_job_types.html">Job Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts/array_jobs.html">Array Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts.html">Job Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Monitoring jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slurm_output.html">Understanding the job output file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing-memory-settings.html">How to choose the right amount of memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing-number-of-cores.html">How to choose the number of cores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_job_failures.html">Common job failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">How to check the performance and scaling using Arm Performance Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mkl.html">Using MKL efficiently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory-bandwidth.html">Efficient use of memory bandwidth on Betzy</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Efficient use of processors and network on Betzy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#interconnect-infiniband">Interconnect - InfiniBand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#processors-and-cores">Processors and cores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#available-mpi-implementations">Available MPI implementations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#slurm-requesting-pure-mpi-or-hybrid-mpi-openmp-jobs">Slurm: Requesting pure MPI or hybrid MPI + OpenMP jobs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pure-mpi">Pure MPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hybrid-mpi-openmp">Hybrid MPI + OpenMP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#binding-pinning-processes">Binding/pinning processes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Intel MPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">OpenMPI</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#optimizing-collective-mpi-operations">Optimizing collective MPI operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srun-vs-mpirun-on-betzy">srun vs mpirun on Betzy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-hostfile-or-machinefile">Creating a hostfile or machinefile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transport-options-for-openmpi">Transport options for OpenMPI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_jobs.html">Interactive jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkpointing.html">Checkpointing Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects_accounting.html">Projects and accounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratchfiles.html">Local storage for scratch files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides.html">Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slurm_commands.html">Useful Slurm commands and tools for managing jobs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="overview.html">Running jobs</a></li>
+      <li class="breadcrumb-item active">Efficient use of processors and network on Betzy</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="efficient-use-of-processors-and-network-on-betzy">
+<h1>Efficient use of processors and network on Betzy<a class="headerlink" href="#efficient-use-of-processors-and-network-on-betzy" title="Link to this heading"></a></h1>
+<section id="interconnect-infiniband">
+<h2>Interconnect - InfiniBand<a class="headerlink" href="#interconnect-infiniband" title="Link to this heading"></a></h2>
+<p>A cluster (using Betzy as the example) contains a rather large number of nodes
+(Betzy consists of 1344 nodes) with an interconnect that enables efficient
+delivery of messages (message passing interface, MPI) between the nodes. On
+Betzy, Mellanox InfiniBand is used, in a HDR-100 configuration. The HDR (high
+data rate) standard is 200 Gbits/s and HDR-100 is half of this. This is a
+trade-off, as each switch port can accommodate two compute nodes. All the
+compute nodes are connected in a Dragonfly topology.</p>
+<p>While not fully symmetrical, tests have shown that the slowdown by spreading
+the ranks randomly around the compute nodes had less than the 10% specified by
+the tender. Acceptance tests showed from 8 to zero percent slow-down depending
+on the application. Hence <strong>for all practical purposes there is no need to pay
+special attention to schedule jobs within a single rack/cell etc</strong>.</p>
+</section>
+<section id="processors-and-cores">
+<h2>Processors and cores<a class="headerlink" href="#processors-and-cores" title="Link to this heading"></a></h2>
+<p>Each compute node on Betzy contains two sockets with a 64 core AMD processor per socket.
+Every processor has 64 cores each supporting 2-way <a class="reference external" href="https://en.wikipedia.org/wiki/Simultaneous_multithreading">simultaneous multithreading</a>
+(SMT).
+To not confuse these <em>threading</em> capabilities in hardware with
+threads in software (e.g., pthreads or OpenMP), we use the term <em>virtual core</em>
+from now on.</p>
+<p>For applications it looks as if every compute node has 256 independent
+<em>virtual cores</em> numbered from 0 to 255. Due to SMT, always two of these seemingly
+independent virtual cores form a pair and share the executing units of a core. If both of
+these two virtual cores are used in parallel by an application, the
+application’s performance will be the same as if it used only one virtual core
+(and the other one is left idle) or if two different applications would use one
+virtual core each, each of the two applications would achieve only half of the
+performance of a core. To achieve the maximum performance from each core, it is
+therefore important to pay attention to the mapping of processes to cores, that is,
+<strong>any two processes (or software threads) of an application must not share the
+two virtual cores</strong> or, in other words, one of the two virtual cores in a pair
+shall be kept idle.</p>
+<p>The following command provides information about the numbering of virtual cores:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">cpuinfo</span> <span class="o">|</span> <span class="n">sed</span> <span class="s1">&#39;/processor\|physical id\|core id/!d&#39;</span> <span class="o">|</span> <span class="n">sed</span> <span class="s1">&#39;N;N;s/</span><span class="se">\n</span><span class="s1">/ /g&#39;</span>
+</pre></div>
+</div>
+<p>The first 128 entries (processor 0-127) correspond to the first virtual core.
+Accordingly, the second 128 entries (processor 128-255) correspond to the second
+virtual core. So, if one limits the placement of processes to processor
+numbers 0-127, no process will share executional units with any other process.</p>
+<p>Both Intel MPI and OpenMPI provide means to achieve such placements and below
+we will show how.</p>
+</section>
+<section id="available-mpi-implementations">
+<h2>Available MPI implementations<a class="headerlink" href="#available-mpi-implementations" title="Link to this heading"></a></h2>
+<p>The MPI to use is selected at application build time. Two MPI implementations
+are supported:</p>
+<ul class="simple">
+<li><p>Intel MPI</p></li>
+<li><p>OpenMPI</p></li>
+</ul>
+<p>Behavior of Intel MPI can be adjusted through environment variables environment
+variables, which start with <em>I_MPI</em>
+(<a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/mpi-developer-reference-linux/top/environment-variable-reference.html">more information</a>).</p>
+<p>OpenMPI uses both environment variables (which must be used when running
+through <em>srun</em>) and command line options (for use with <em>mpirun</em>). Command line
+options override both the config files and environment variables. For a
+complete list of parameters run <code class="docutils literal notranslate"><span class="pre">ompi_info</span> <span class="pre">--param</span> <span class="pre">all</span> <span class="pre">all</span> <span class="pre">--level</span> <span class="pre">9</span></code>, or see
+<a class="reference external" href="https://www.open-mpi.org/faq/?category=tuning">the documentation</a>.</p>
+</section>
+<section id="slurm-requesting-pure-mpi-or-hybrid-mpi-openmp-jobs">
+<h2>Slurm: Requesting pure MPI or hybrid MPI + OpenMP jobs<a class="headerlink" href="#slurm-requesting-pure-mpi-or-hybrid-mpi-openmp-jobs" title="Link to this heading"></a></h2>
+<section id="pure-mpi">
+<h3>Pure MPI<a class="headerlink" href="#pure-mpi" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --ntasks=4096</span>
+<span class="c1">#SBATCH --nodes=32</span>
+<span class="c1">#SBATCH --ntasks-per-node=128</span>
+</pre></div>
+</div>
+<p>This will request 32 nodes with 128 ranks per compute nodes giving a total of 4096
+ranks/tasks. The <code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> is not strictly needed (if missing, it will be
+calculated from <code class="docutils literal notranslate"><span class="pre">--nodes</span></code> and <code class="docutils literal notranslate"><span class="pre">--ntasks-per-node</span></code>.)</p>
+<p>To get the total number of cores in a pure MPI job script the environment
+variable <code class="docutils literal notranslate"><span class="pre">$SLURM_NTASKS</span></code> is available.</p>
+<p>For well behaved MPI applications the job scripts are relatively simple. The
+only important thing to notice is that processes (MPI ranks)  should be mapped
+with one rank per two SMT threads (also often referred to a physical cores).</p>
+<p>For both Intel- and OpenMPI the simplest command line would be <code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">./a.out</span></code> This will launch the MPI application with the default settings, while
+not with optimal performance it will run the application using the resources
+requested in the run script.</p>
+</section>
+<section id="hybrid-mpi-openmp">
+<h3>Hybrid MPI + OpenMP<a class="headerlink" href="#hybrid-mpi-openmp" title="Link to this heading"></a></h3>
+<p>For large core count a pure MPI solution is often not optimal. Like HPL (the
+top500 test) the hybrid model is the highest performing case.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --nodes=1200</span>
+<span class="c1">#SBATCH --ntasks-per-node=8</span>
+<span class="c1">#SBATCH --cpus-per-task=16</span>
+</pre></div>
+</div>
+<p>This will request 1200 nodes placing 8 MPI ranks per node and provide 16 OpenMP
+threads to each MPI rank, a total of 128 cores per compute node. 1200 times 128
+is 153600 cores.</p>
+<p>To get the total number of cores in a Hybrid MPI + OpenMP job script one can
+multiply the environment variables <code class="docutils literal notranslate"><span class="pre">$SLURM_NTASKS</span></code> and <code class="docutils literal notranslate"><span class="pre">$SLURM_CPUS_PER_TASK</span></code>.</p>
+<p>To generate a list of all the Slurm variables just issue an <code class="docutils literal notranslate"><span class="pre">env</span></code> command in
+the job script and all environment variables will be listed.</p>
+<p>Most OpenMP or threaded programs respond to the environment variable
+<code class="docutils literal notranslate"><span class="pre">OMP_NUM_THREADS</span></code> and you can set it to the number of CPUs per task
+set by Slurm: <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK</span></code></p>
+<p>The mapping of ranks and OpenMP threads onto the cores on the compute node can
+often be tricky. There are many ways of dealing with this, from the simplest
+solution by just relying on the defaults to explicit placement of the ranks and
+threads on precisely specified cores.</p>
+<section id="intel-mpi">
+<h4>Intel MPI<a class="headerlink" href="#intel-mpi" title="Link to this heading"></a></h4>
+<p>There are a number of environment variables to be used with Intel MPI, they all start with I_MPI:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">I_MPI_PIN</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">I_MPI_PIN_DOMAIN</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">I_MPI_PIN_PROCESSOR_EXCLUDE_LIST</span></code>
+The variable <code class="docutils literal notranslate"><span class="pre">I_MPI_PIN_DOMAIN</span></code> is good when running hybrid codes, setting it to
+the number of threads per rank will help the launcher to place the ranks
+correctly. Setting <code class="docutils literal notranslate"><span class="pre">I_MPI_PIN_PROCESSOR_EXCLUDE_LIST=128-255</span></code> will make sure that only
+cores 0-127 are used for MPI ranks. This ensures that no two ranks
+share the same physical core.</p></li>
+</ul>
+</section>
+<section id="openmpi">
+<h4>OpenMPI<a class="headerlink" href="#openmpi" title="Link to this heading"></a></h4>
+<p>There are currently some issues with mapping of threads started by MPI
+processes. These threads are scheduled/placed on the same core as the MPI rank
+itself. The issue seems to be an openMP issue with GNU OpenMP. We are working to
+resolve this issue.</p>
+</section>
+</section>
+</section>
+<section id="binding-pinning-processes">
+<h2>Binding/pinning processes<a class="headerlink" href="#binding-pinning-processes" title="Link to this heading"></a></h2>
+<p>Since not all memory is equally “distant”, some sort of binding to keep the
+process located on cores close to the memory is normally beneficial.</p>
+<section id="id1">
+<h3>Intel MPI<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>Binding/pinning to cores can be requested with an environment flag, <code class="docutils literal notranslate"><span class="pre">I_MPI_PIN=1</span></code>.</p>
+<p>To limit the ranks to only the fist thread on SMT e.g. using only cores 0 to 127 set the Intel MPI environment variable <code class="docutils literal notranslate"><span class="pre">I_MPI_PIN_PROCESSOR_EXCLUDE_LIST</span></code> to 128-255, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">I_MPI_PIN_PROCESSOR_EXCLUDE_LIST</span><span class="o">=</span><span class="mi">128</span><span class="o">-</span><span class="mi">255</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>OpenMPI<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>The simplest solution is just to request binding at the command line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpirun</span> <span class="o">--</span><span class="n">bind</span><span class="o">-</span><span class="n">to</span> <span class="n">core</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>To learn more about the binding options try issuing the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpirun</span> <span class="o">--</span><span class="n">help</span> <span class="n">binding</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="optimizing-collective-mpi-operations">
+<h2>Optimizing collective MPI operations<a class="headerlink" href="#optimizing-collective-mpi-operations" title="Link to this heading"></a></h2>
+<p>For OpenMPI, setting the variable <code class="docutils literal notranslate"><span class="pre">OMPI_MCA_coll_hcoll_enable</span></code> to 0 to disable
+or 1 to enable can have a significant effect on the performance of your MPI
+application.  Most of the times it is beneficial to enable it by including
+<code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">OMPI_MCA_coll_hcoll_enable=1</span></code> in the run script.</p>
+</section>
+<section id="srun-vs-mpirun-on-betzy">
+<h2>srun vs mpirun on Betzy<a class="headerlink" href="#srun-vs-mpirun-on-betzy" title="Link to this heading"></a></h2>
+<p>Most if the times the <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> command can be used. The <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> sets up the
+MPI environment and makes sure that everything is ready for the MPI function
+<code class="docutils literal notranslate"><span class="pre">MPI_init()</span></code> when it’s called in the start of any MPI program.</p>
+<p>As Slurm is built with MPI support srun will also set up the MPI environment.</p>
+<p>Both mpirun and srun launch the executable on the requested nodes. While there
+is a large range of opinions on this matter it’s hard to make a final statement
+about which one is best. If you do development on small systems like your
+laptop or stand alone system there is generally no Slurm and mpirun is the only
+option, so mpirun will work on everything from Raspberry Pis through laptops to
+Betzy.</p>
+<p>Performance testing does not show any significant performance difference when
+launching jobs in a normal way.</p>
+</section>
+<section id="creating-a-hostfile-or-machinefile">
+<h2>Creating a hostfile or machinefile<a class="headerlink" href="#creating-a-hostfile-or-machinefile" title="Link to this heading"></a></h2>
+<p>Some application ask for a list of hosts to distribute the tasks
+across nodes and cores.</p>
+<p>To make a <em>host-</em> or <em>machinefile</em>, you can use <code class="docutils literal notranslate"><span class="pre">srun</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">hostname</span> <span class="o">|</span> <span class="n">uniq</span>
+</pre></div>
+</div>
+<p>A more complicated example is a <em>nodelist</em> file for the molecular mechanics application NAMD :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">hostname</span> <span class="o">|</span> <span class="n">uniq</span> <span class="o">|</span> <span class="n">awk</span> <span class="o">-</span><span class="n">F</span>\<span class="o">.</span> <span class="s1">&#39;BEGIN {print “group main”};{print &quot;host &quot;, $1}&#39;</span> <span class="o">&gt;</span> <span class="n">nodelist</span>
+</pre></div>
+</div>
+</section>
+<section id="transport-options-for-openmpi">
+<h2>Transport options for OpenMPI<a class="headerlink" href="#transport-options-for-openmpi" title="Link to this heading"></a></h2>
+<p>Most of the following is hidden behind some command line options, but in case
+more information is needed about the subject of transport a few links will
+provide more insight.</p>
+<p>For detailed list of settings a good starting point is here:
+<a class="reference external" href="https://www.open-mpi.org/faq/">https://www.open-mpi.org/faq/</a></p>
+<p>OpenMPI 4.x uses UCX for transport, this is a communication library:
+<a class="reference external" href="https://github.com/openucx/ucx/wiki/FAQ">https://github.com/openucx/ucx/wiki/FAQ</a></p>
+<p>Transport layer PML (point-to-point message layer):
+<a class="reference external" href="https://rivis.github.io/doc/openmpi/v2.1/pml-ob1-protocols.en.xhtml">https://rivis.github.io/doc/openmpi/v2.1/pml-ob1-protocols.en.xhtml</a></p>
+<p>Transport layer UCX:
+&lt;https://www.openucx.org/ and https://github.com/openucx/ucx/wiki/UCX-environment-parameters&gt;</p>
+<p>Collective optimisation library hcoll from Mellanox is also an option.</p>
+<p>Setting the different devices and transports can be done using environment variables:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">UCX_IB_DEVICE_SPECS</span><span class="o">=</span><span class="mh">0x119f</span><span class="p">:</span><span class="mi">4115</span><span class="p">:</span><span class="n">ConnectX4</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="mh">0x119f</span><span class="p">:</span><span class="mi">4123</span><span class="p">:</span><span class="n">ConnectX6</span><span class="p">:</span><span class="mi">5</span>
+<span class="n">export</span> <span class="n">UCX_NET_DEVICES</span><span class="o">=</span><span class="n">mlx5_0</span><span class="p">:</span><span class="mi">1</span>
+<span class="n">export</span> <span class="n">OMPI_MCA_coll_hcoll_enable</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">export</span> <span class="n">UCX_TLS</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span><span class="n">sm</span><span class="p">,</span><span class="n">dc</span>
+</pre></div>
+</div>
+<p>From the UCX documentation the list of internode transports include:</p>
+<ul class="simple">
+<li><p>rc</p></li>
+<li><p>ud</p></li>
+<li><p>dc</p></li>
+</ul>
+<p>The last one is Mellanox scalable offloaded dynamic connection transport. The
+self is a loopback transport to communicate within the same process, while <em>sm</em>
+is all shared memory transports. There are two shared memory transports
+installed</p>
+<ul class="simple">
+<li><p>cma</p></li>
+<li><p>knem</p></li>
+</ul>
+<p>Selecting <em>cma</em> or <em>knem</em> might improve performance for applications that use a
+high number of MPI ranks per node. With 128 cores and possibly 128 MPI ranks
+per node the intra node communication is quite important.</p>
+<p>Depending on the communication pattern of your application, the use of point-to-point or
+collectives, the usage of Mellanox optimised offload collectives can have an
+impact.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="memory-bandwidth.html" class="btn btn-neutral float-left" title="Efficient use of memory bandwidth on Betzy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="interactive_jobs.html" class="btn btn-neutral float-right" title="Interactive jobs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

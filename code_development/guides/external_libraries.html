@@ -1,0 +1,883 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calling GPU accelerated libraries &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/tabs.js?v=3030b3cb"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Calling GPU accelerated libraries</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="calling-gpu-accelerated-libraries">
+<h1><a class="toc-backref" href="#id2" role="doc-backlink">Calling GPU accelerated libraries</a><a class="headerlink" href="#calling-gpu-accelerated-libraries" title="Link to this heading"></a></h1>
+<p>One of the best ways to get the benefit of GPU acceleration is to call an
+external library that is already accelerated. All of the major GPU hardware
+vendors create such libraries and the advantage of their use is that you will
+get the best performance possible for the available hardware. Examples of GPU
+accelerated libraries include BLAS (Basic Linear Algebra Subprograms) libraries
+such as <a class="reference external" href="https://developer.nvidia.com/cublas"><code class="docutils literal notranslate"><span class="pre">cuBLAS</span></code> from Nvidia</a>, <a class="reference external" href="https://rocblas.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">rocBLAS</span></code>
+from AMD</a> and <a class="reference external" href="https://www.intel.com/content/www/us/en/develop/documentation/oneapi-programming-guide/top/api-based-programming/intel-oneapi-math-kernel-library-onemkl.html"><code class="docutils literal notranslate"><span class="pre">oneMKL</span></code> from
+Intel</a>.</p>
+<p>One challenge with calling an external library is related to its integration
+with user accelerated code and how to compile the code so that everything is
+linked. To address these issues this tutorial will go through:</p>
+<ul class="simple">
+<li><p>How to call different GPU accelerated libraries from both C/C++ and Fortran.</p></li>
+<li><p>How to combine external accelerated libraries and custom offloading code.</p>
+<ul>
+<li><p>Focusing on OpenACC and OpenMP offloading</p></li>
+</ul>
+</li>
+<li><p>How to compile your code so that the external libraries are linked.</p></li>
+</ul>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#calling-gpu-accelerated-libraries" id="id2">Calling GPU accelerated libraries</a></p>
+<ul>
+<li><p><a class="reference internal" href="#calling-cublas-from-openacc" id="id3">Calling <code class="docutils literal notranslate"><span class="pre">cuBLAS</span></code> from OpenACC</a></p></li>
+<li><p><a class="reference internal" href="#calling-cublas-from-openmp-offloading" id="id4">Calling <code class="docutils literal notranslate"><span class="pre">cuBLAS</span></code> from OpenMP offloading</a></p></li>
+<li><p><a class="reference internal" href="#calling-cufft-from-openacc" id="id5">Calling <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> from OpenACC</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#conclusion" id="id6">Conclusion</a></p></li>
+</ul>
+</nav>
+<section id="calling-cublas-from-openacc">
+<span id="cublas-openacc"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">Calling <code class="docutils literal notranslate"><span class="pre">cuBLAS</span></code> from OpenACC</a><a class="headerlink" href="#calling-cublas-from-openacc" title="Link to this heading"></a></h2>
+<blockquote>
+<div><p>The BLAS (Basic Linear Algebra Subprograms) are routines that provide
+standard building blocks for performing basic vector and matrix operations. -
+<a class="reference external" href="https://www.netlib.org/blas/">netlib</a></p>
+</div></blockquote>
+<p>As noted in the introduction to this tutorial, all of the major GPU hardware
+vendors provide specialised BLAS routines for their own hardware. These
+libraries offers the best in class performance and thanks to the shared
+interface, one can easily abstract over multiple libraries from different
+vendors. Here we will show how to integrate OpenACC with <a class="reference external" href="https://developer.nvidia.com/cublas"><code class="docutils literal notranslate"><span class="pre">cuBLAS</span></code> from
+Nvidia</a>. The <code class="docutils literal notranslate"><span class="pre">cuBLAS</span></code> library is a BLAS
+implementation for Nvidia GPUs which is compatible with the hardware found on
+Saga and Betzy.</p>
+<p>As an example we will use <code class="docutils literal notranslate"><span class="pre">cuBLAS</span></code> to perform a simple vector addition and then
+calculate the sum of the vector in our own custom loop. The example allows us
+to show how to combine <code class="docutils literal notranslate"><span class="pre">cuBLAS</span></code> and OpenACC, and our recommendation is to
+always use BLAS libraries when performing mathematical computations.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm">* Example program to show how to combine OpenACC and cuBLAS library calls</span>
+<span class="cm">*/</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cublas_v2.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;openacc.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+
+<span class="cp">#define N 10000</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Starting SAXPY + OpenACC program</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Allocate vectors which we will use for computations</span>
+<span class="w">  </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+<span class="w">  </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Could not allocate compute vectors!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Initialize input arrays, this is done on CPU host</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  Initializing vectors on CPU</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Create cuBLAS handle for interacting with cuBLAS routines</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  Creating cuBLAS handle</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">cublasHandle_t</span><span class="w"> </span><span class="n">handle</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cublasStatus_t</span><span class="w"> </span><span class="n">status</span><span class="p">;</span><span class="w"> </span><span class="c1">// Variable to hold return status from cuBLAS routines</span>
+<span class="w">  </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cublasCreate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handle</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">CUBLAS_STATUS_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Could not initialize cuBLAS handle!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Create OpenACC data region so that our compute vectors are accessible on</span>
+<span class="w">  </span><span class="c1">// GPU device for cuBLAS</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  Starting calculation</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="cp">#pragma acc data copy(b[0:N]) copyin(a[0:N])</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// To allow cuBLAS to interact with our compute vectors we need to make</span>
+<span class="w">    </span><span class="c1">// them available as pointers. NOTE however that these pointers point to</span>
+<span class="w">    </span><span class="c1">// areas in the GPU memory so they cannot be dereferenced on the CPU,</span>
+<span class="w">    </span><span class="c1">// however, by using the &#39;host_data&#39; directive we can use the pointers from</span>
+<span class="w">    </span><span class="c1">// CPU code passing them to other functions that require pointers to GPU</span>
+<span class="w">    </span><span class="c1">// memory</span>
+<span class="w">    </span><span class="cp">#pragma acc host_data use_device(a, b)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cublasSaxpy</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">CUBLAS_STATUS_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;SAXPY failed!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="c1">// NOTE we cannot exit here since this is within an accelerated region</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// We can now continue to use a and b in OpenACC kernels and parallel loop</span>
+<span class="w">    </span><span class="cp">#pragma acc kernels</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// After the above OpenACC region has ended &#39;a&#39; has not changed, &#39;b&#39; contains</span>
+<span class="w">  </span><span class="c1">// the result of the SAXPY routine and &#39;sum&#39; contains the sum over &#39;b&#39;</span>
+
+<span class="w">  </span><span class="c1">// To ensure everything worked we can check that the sum is as we expected</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span class="n">sum</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">4.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.001</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  Calculation produced the correct result of &#39;4 * %d == %.0f&#39;!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  Calculation produced _incorrect_ result, expected &#39;4 * %d == %.3f&#39;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Free cuBLAS handle</span>
+<span class="w">  </span><span class="n">cublasDestroy</span><span class="p">(</span><span class="n">handle</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Free computation vectors</span>
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Indicate to caller that everything worked as expected</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Ending SAXPY + OpenACC program</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/5fa1f36cea9de3dc6c6ae6c4919f02cc/openacc.c"><code class="xref download docutils literal notranslate"><span class="pre">cublas_openacc.c</span></code></a></p>
+<p>The main focus of our changes are in the following lines, where we call the
+SAXPY routine within the already established OpenACC data region.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="cp">#pragma acc data copy(b[0:N]) copyin(a[0:N])</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// To allow cuBLAS to interact with our compute vectors we need to make</span>
+<span class="w">    </span><span class="c1">// them available as pointers. NOTE however that these pointers point to</span>
+<span class="w">    </span><span class="c1">// areas in the GPU memory so they cannot be dereferenced on the CPU,</span>
+<span class="w">    </span><span class="c1">// however, by using the &#39;host_data&#39; directive we can use the pointers from</span>
+<span class="w">    </span><span class="c1">// CPU code passing them to other functions that require pointers to GPU</span>
+<span class="w">    </span><span class="c1">// memory</span>
+<span class="w">    </span><span class="cp">#pragma acc host_data use_device(a, b)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cublasSaxpy</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">CUBLAS_STATUS_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;SAXPY failed!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="c1">// NOTE we cannot exit here since this is within an accelerated region</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// We can now continue to use a and b in OpenACC kernels and parallel loop</span>
+<span class="w">    </span><span class="cp">#pragma acc kernels</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>In the above section one can see that we first create an OpenACC data region
+(<code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">acc</span> <span class="pre">data</span></code>) so that our compute vectors are available on the GPU
+device. Within this region we would normally have accelerated loops that do
+calculations on the data, but when integrating with <code class="docutils literal notranslate"><span class="pre">cuBLAS</span></code> we only need the
+address of the memory (<code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">acc</span> <span class="pre">host_data</span></code>). After the SAXPY routine is
+called we use the data to calculate the sum as a normal OpenACC kernel.</p>
+<p>Combining <code class="docutils literal notranslate"><span class="pre">cuBLAS</span></code> and OpenACC in this manner allows us to call accelerated
+libraries without having to perform low-level memory handling as one would
+normally do with such a library.</p>
+<hr class="docutils" />
+<p>To compile this code we will first need to load a few modules.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-U2FnYQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-U2FnYQ==" name="U2FnYQ==" role="tab" tabindex="0">Saga</button><button aria-controls="panel-0-QmV0enk=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-QmV0enk=" name="QmV0enk=" role="tab" tabindex="-1">Betzy</button></div><div aria-labelledby="tab-0-U2FnYQ==" class="sphinx-tabs-panel group-tab" id="panel-0-U2FnYQ==" name="U2FnYQ==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>NVHPC/21.11<span class="w"> </span>CUDA/11.4.1
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-QmV0enk=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-QmV0enk=" name="QmV0enk=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>NVHPC/21.7<span class="w"> </span>CUDA/11.4.1
+</pre></div>
+</div>
+</div></div>
+<p>We first load <code class="docutils literal notranslate"><span class="pre">NVHPC</span></code> which contains the OpenACC C compiler (<code class="docutils literal notranslate"><span class="pre">nvc</span></code>), then we
+load <code class="docutils literal notranslate"><span class="pre">CUDA</span></code> which contains the <code class="docutils literal notranslate"><span class="pre">cuBLAS</span></code> library which we will need to link to.</p>
+<p>To compile we can use the following:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-U2FnYQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-U2FnYQ==" name="U2FnYQ==" role="tab" tabindex="0">Saga</button><button aria-controls="panel-1-QmV0enk=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-QmV0enk=" name="QmV0enk=" role="tab" tabindex="-1">Betzy</button></div><div aria-labelledby="tab-1-U2FnYQ==" class="sphinx-tabs-panel group-tab" id="panel-1-U2FnYQ==" name="U2FnYQ==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nvc<span class="w"> </span>-acc<span class="w"> </span>-Minfo<span class="o">=</span>acc<span class="w"> </span>-gpu<span class="o">=</span>cc60<span class="w"> </span>-lcublas<span class="w"> </span>-o<span class="w"> </span>cublas_acc<span class="w"> </span>cublas_openacc.c
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-QmV0enk=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-QmV0enk=" name="QmV0enk=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nvc<span class="w"> </span>-acc<span class="w"> </span>-Minfo<span class="o">=</span>acc<span class="w"> </span>-gpu<span class="o">=</span>cc80<span class="w"> </span>-lcublas<span class="w"> </span>-o<span class="w"> </span>cublas_acc<span class="w"> </span>cublas_openacc.c
+</pre></div>
+</div>
+</div></div>
+<p>Finally, we can run the program using the <code class="docutils literal notranslate"><span class="pre">srun</span></code> command which works on both
+Saga and Betzy:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>srun<span class="w"> </span>--account<span class="o">=</span>nn&lt;XXXX&gt;k<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00<span class="w"> </span>--mem<span class="o">=</span>1G<span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span>--gpus<span class="o">=</span><span class="m">1</span><span class="w"> </span>./cublas_acc
+<span class="go">srun: job &lt;NNNNNN&gt; queued and waiting for resources</span>
+<span class="go">srun: job &lt;NNNNNN&gt; has been allocated resources</span>
+<span class="go">Starting SAXPY + OpenACC program</span>
+<span class="go">  Initializing vectors on CPU</span>
+<span class="go">  Creating cuBLAS handle</span>
+<span class="go">  Starting calculation</span>
+<span class="go">  Calculation produced the correct result of &#39;4 * 10000 == 40000&#39;!</span>
+<span class="go">Ending SAXPY + OpenACC program</span>
+</pre></div>
+</div>
+</section>
+<section id="calling-cublas-from-openmp-offloading">
+<span id="cublas-openmp"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">Calling <code class="docutils literal notranslate"><span class="pre">cuBLAS</span></code> from OpenMP offloading</a><a class="headerlink" href="#calling-cublas-from-openmp-offloading" title="Link to this heading"></a></h2>
+<p>OpenMP support offloading to GPUs in the same way as OpenACC. We will therefore
+use the same example as above, but this time use OpenMP’s offloading
+capabilities.</p>
+<p>Since the program has not changed much from above we have highlighted the major
+differences from the OpenACC version.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm">* Example program to show how to combine OpenMP offload and cuBLAS library calls</span>
+<span class="cm">*/</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cublas_v2.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+<span class="hll"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
+</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+
+<span class="cp">#define N 10000</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Starting SAXPY + OpenMP offload program</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Allocate vectors which we will use for computations</span>
+<span class="w">  </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+<span class="w">  </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Could not allocate compute vectors!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Initialize input arrays, this is done on CPU host</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  Initializing vectors on CPU</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Create cuBLAS handle for interacting with cuBLAS routines</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  Creating cuBLAS handle</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">cublasHandle_t</span><span class="w"> </span><span class="n">handle</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cublasStatus_t</span><span class="w"> </span><span class="n">status</span><span class="p">;</span><span class="w"> </span><span class="c1">// Variable to hold return status from cuBLAS routines</span>
+<span class="w">  </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cublasCreate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handle</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">CUBLAS_STATUS_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Could not initialize cuBLAS handle!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Create OpenMP data region so that our compute vectors are accessible on</span>
+<span class="w">  </span><span class="c1">// GPU device for cuBLAS</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  Starting calculation</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="hll"><span class="w">  </span><span class="cp">#pragma omp target data map(tofrom:b[0:N]) map(to:a[0:N])</span>
+</span><span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// To allow cuBLAS to interact with our compute vectors we need to make</span>
+<span class="w">    </span><span class="c1">// them available as pointers. NOTE however that these pointers point to</span>
+<span class="w">    </span><span class="c1">// areas in the GPU memory so they cannot be dereferenced on the CPU,</span>
+<span class="w">    </span><span class="c1">// however, by using the &#39;host_data&#39; directive we can use the pointers from</span>
+<span class="w">    </span><span class="c1">// CPU code passing them to other functions that require pointers to GPU</span>
+<span class="w">    </span><span class="c1">// memory</span>
+<span class="hll"><span class="w">    </span><span class="cp">#pragma omp target data use_device_ptr(a, b)</span>
+</span><span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cublasSaxpy</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">CUBLAS_STATUS_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;SAXPY failed!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="c1">// NOTE we cannot exit here since this is within an accelerated region</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// We can now continue to use a and b in OpenMP offloading code</span>
+<span class="hll"><span class="w">    </span><span class="cp">#pragma omp target teams distribute parallel for schedule(nonmonotonic:static,1) reduction(+:sum)</span>
+</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// After the above OpenMP region has ended &#39;a&#39; has not changed, &#39;b&#39; contains</span>
+<span class="w">  </span><span class="c1">// the result of the SAXPY routine and &#39;sum&#39; contains the sum over &#39;b&#39;</span>
+
+<span class="w">  </span><span class="c1">// To ensure everything worked we can check that the sum is as we expected</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span class="n">sum</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">4.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.001</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  Calculation produced the correct result of &#39;4 * %d == %.0f&#39;!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  Calculation produced _incorrect_ result, expected &#39;4 * %d == %.3f&#39;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Free cuBLAS handle</span>
+<span class="w">  </span><span class="n">cublasDestroy</span><span class="p">(</span><span class="n">handle</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Free computation vectors</span>
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Indicate to caller that everything worked as expected</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Ending SAXPY + OpenMP program</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/204ae7edd04bdf9cd6b7f36843a4fcf0/omp.c"><code class="xref download docutils literal notranslate"><span class="pre">cublas_omp.c</span></code></a></p>
+<p>As can be seen in the code above, our interaction with the <code class="docutils literal notranslate"><span class="pre">cuBLAS</span></code> library did
+not have to change, we only had to change the directives we used to make the
+compute vectors available. As with OpenACC, in OpenMP we start by creating a
+data region to make our compute vectors accessible to the GPU (done with
+<code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span> <span class="pre">target</span> <span class="pre">data</span> <span class="pre">map(...)</span></code>). We then make the pointers to this data
+available for our CPU code so that we can pass valid pointers to <code class="docutils literal notranslate"><span class="pre">cuBLAS</span></code>
+(pointers made available with <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span> <span class="pre">target</span> <span class="pre">data</span> <span class="pre">use_device_ptr(...)</span></code>).
+Finally we show that we can also use the vectors we uploaded in custom
+offloading loops.</p>
+<hr class="docutils" />
+<p>To compile the above OpenMP code we first need to load the necessary modules:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-U2FnYQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-U2FnYQ==" name="U2FnYQ==" role="tab" tabindex="0">Saga</button><button aria-controls="panel-2-QmV0enk=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-QmV0enk=" name="QmV0enk=" role="tab" tabindex="-1">Betzy</button></div><div aria-labelledby="tab-2-U2FnYQ==" class="sphinx-tabs-panel group-tab" id="panel-2-U2FnYQ==" name="U2FnYQ==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>Clang/13.0.1-GCCcore-11.2.0-CUDA-11.4.1
+</pre></div>
+</div>
+<p>Since the GPUs on Saga are a couple of generation older we can’t use <code class="docutils literal notranslate"><span class="pre">NVHPC</span></code>
+for OpenMP offloading. We instead use <code class="docutils literal notranslate"><span class="pre">Clang</span></code> to show that it works on Saga as
+well.</p>
+</div><div aria-labelledby="tab-2-QmV0enk=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-QmV0enk=" name="QmV0enk=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>NVHPC/21.7<span class="w"> </span>CUDA/11.4.1
+</pre></div>
+</div>
+</div></div>
+<p>And then we compile with:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-U2FnYQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-U2FnYQ==" name="U2FnYQ==" role="tab" tabindex="0">Saga</button><button aria-controls="panel-3-QmV0enk=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-QmV0enk=" name="QmV0enk=" role="tab" tabindex="-1">Betzy</button></div><div aria-labelledby="tab-3-U2FnYQ==" class="sphinx-tabs-panel group-tab" id="panel-3-U2FnYQ==" name="U2FnYQ==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>clang<span class="w"> </span>-o<span class="w"> </span>cublas_omp<span class="w"> </span>cublas_omp.c<span class="w"> </span>-fopenmp<span class="w"> </span>-fopenmp-targets<span class="o">=</span>nvptx64-nvidia-cuda<span class="w"> </span>-Xopenmp-target<span class="o">=</span>nvptx64-nvidia-cuda<span class="w"> </span>-march<span class="o">=</span>sm_60<span class="w"> </span>-lcublas
+</pre></div>
+</div>
+<p>Since the GPUs on Saga are a couple of generation older we can’t use <code class="docutils literal notranslate"><span class="pre">NVHPC</span></code>
+for OpenMP offloading. We instead use <code class="docutils literal notranslate"><span class="pre">Clang</span></code> to show that it works on Saga as
+well.</p>
+</div><div aria-labelledby="tab-3-QmV0enk=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-3-QmV0enk=" name="QmV0enk=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nvc<span class="w"> </span>-mp<span class="o">=</span>gpu<span class="w"> </span>-Minfo<span class="o">=</span>mp<span class="w"> </span>-gpu<span class="o">=</span>cc80<span class="w"> </span>-lcublas<span class="w"> </span>-o<span class="w"> </span>cublas_omp<span class="w"> </span>cublas_omp.c
+</pre></div>
+</div>
+</div></div>
+<p>Finally we can run the program with the following call to <code class="docutils literal notranslate"><span class="pre">srun</span></code> (note that
+this call works on both Saga and Betzy):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>srun<span class="w"> </span>--account<span class="o">=</span>nn&lt;XXXX&gt;k<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00<span class="w"> </span>--mem<span class="o">=</span>1G<span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span>--gpus<span class="o">=</span><span class="m">1</span><span class="w"> </span>./cublas_omp
+<span class="go">srun: job &lt;NNNNNN&gt; queued and waiting for resources</span>
+<span class="go">srun: job &lt;NNNNNN&gt; has been allocated resources</span>
+<span class="go">Starting SAXPY + OpenMP offload program</span>
+<span class="go">  Initializing vectors on CPU</span>
+<span class="go">  Creating cuBLAS handle</span>
+<span class="go">  Starting calculation</span>
+<span class="go">  Calculation produced the correct result of &#39;4 * 10000 == 40000&#39;!</span>
+<span class="go">Ending SAXPY + OpenMP program</span>
+</pre></div>
+</div>
+</section>
+<section id="calling-cufft-from-openacc">
+<span id="cufft-openacc"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">Calling <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> from OpenACC</a><a class="headerlink" href="#calling-cufft-from-openacc" title="Link to this heading"></a></h2>
+<section id="summary">
+<span id="id1"></span><h3>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h3>
+<p>In this section we provide an overview on how to implement a GPU-accelerated library FFT (Fast Fourier Transform) in an OpenACC application and the serial version of the FFTW library. Here we distinguish between two GPU-based FFT libraries: <a class="reference external" href="https://docs.nvidia.com/cuda/cufft/index.html"><code class="docutils literal notranslate"><span class="pre">cuFFT</span></code></a> and <a class="reference external" href="https://docs.nvidia.com/cuda/cufft/index.html#fftw-supported-interface"><code class="docutils literal notranslate"><span class="pre">cuFFTW</span></code></a>. The <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> library is the NVIDIA-GPU based design, while <code class="docutils literal notranslate"><span class="pre">cuFFTW</span></code> is a porting version of the existing <a class="reference external" href="https://www.fftw.org/"><code class="docutils literal notranslate"><span class="pre">FFTW</span></code></a> library. In this tutorial, both libraries will be addressed with a special focus on the implementation of the <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> library. Specifically, the aim of this tutorial is to:</p>
+<ul class="simple">
+<li><p>Show how to incorporate the <code class="docutils literal notranslate"><span class="pre">FFTW</span></code> library in a serial code.</p></li>
+<li><p>Describe how to use the <code class="docutils literal notranslate"><span class="pre">cuFFTW</span></code> library.</p></li>
+<li><p>Show how to incorporate the <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> library in an OpenACC application interface.</p></li>
+<li><p>Describe briefly how to enable <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> to run on OpenACC stream.</p></li>
+<li><p>Describe the compilation process of <code class="docutils literal notranslate"><span class="pre">FFTW</span></code> and <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code>.</p></li>
+</ul>
+<p>The implementation will be illustrated for a one-dimensional (1D) scenario and will be further described for 2D and 3D cases.</p>
+</section>
+<section id="generality-of-fft">
+<span id="generality-fft"></span><h3>Generality of FFT<a class="headerlink" href="#generality-of-fft" title="Link to this heading"></a></h3>
+<p>In general, the implementation of an FFT library is based on three major steps as defined below:</p>
+<ul class="simple">
+<li><p>Creating plans (initialization).</p></li>
+<li><p>Executing plans (create a configuration of a FFT plan having a specified dimension and data type).</p></li>
+<li><p>Destroying plans (to free the ressources associated with the FFT plans).</p></li>
+</ul>
+<p>These steps necessitate specifying the direction, in which the FFT algorithm should be performed: forward or backward (or also inverse of FFT), and the dimension of the problem at hands as well as the precision (i.e. double or single precision); this is in addition to the nature of the data (real or complex) to be transformed.</p>
+<p>In the following, we consider a one-dimensional (1D) scenario, in which the execution is specified for a double precision complex-to-complex transform plan in the forward and backward directions. The implementation is illustrated via a Fortran code. The latter can be adjusted to run calculations of a single precision as well as of real-to-real/complex transform and can be further extended to multi-dimension cases (i.e. 2D and 3D). We first start with the FFT implementation in a serial-CPU scheme and further extend it to a GPU-accelerated case.  The implementation is illustrated for a simple example of a function defined in time-domain. Here we choose a sinus function (i.e. f(t)=sin(ωt) with ω is fixed at the value 2), and its FFT should result in a peak around the value ω=2 in the frequency domain.</p>
+</section>
+<section id="implementation-of-fftw">
+<span id="implementation-fftw"></span><h3>Implementation of <code class="docutils literal notranslate"><span class="pre">FFTW</span></code><a class="headerlink" href="#implementation-of-fftw" title="Link to this heading"></a></h3>
+<p>The implementation of the <code class="docutils literal notranslate"><span class="pre">FFTW</span></code> library is shown below and a detailed description of the library can be found <a class="reference external" href="https://www.fftw.org/">here</a>.</p>
+<p>As described in the code, one needs to initialize the FFT by creating plans. Executing the plans requires specifying the transform direction: <em>FFTWFORWARD</em> for the forward direction or <em>FFTWBACKWARD</em> for the backward direction (inverse FFT). These two parameters should be defined as an integer parameter. An alternative is to include the <code class="docutils literal notranslate"><span class="pre">fftw3.f</span></code> file as a header (i.e. <code class="docutils literal notranslate"><span class="pre">include</span> <span class="pre">&quot;fftw3.f&quot;</span></code>), which contains all parameters required for a general use of <code class="docutils literal notranslate"><span class="pre">FFTW</span></code>. In the case the file is included, the value of the direction parameter does not need to be defined.</p>
+<p>The argument <em>FFTW_MEASURE</em> in the function <code class="docutils literal notranslate"><span class="pre">dfftw_plan_dft_1d</span></code> means that <code class="docutils literal notranslate"><span class="pre">FFTW</span></code> measures the execution time of several FFTs in order to find the optimal way to compute the FFT, which might be time-consuming. An alternative is to use <em>FFTW_ESTIMATE</em>, which builds a reasonable plan without any computation. This procedure might be less optimal (see <a class="reference external" href="https://www.fftw.org/">here</a> for further details).</p>
+<p>Note that when implementing the <code class="docutils literal notranslate"><span class="pre">FFTW</span></code> library, the data obtained from the backward direction need to be normalized by dividing the output array by the size of the data, while those of forward direction do not. This is only valid when using the <code class="docutils literal notranslate"><span class="pre">FFTW</span></code> library.</p>
+<p>To check the outcome of the result in the forward direction, one can plot the function in the frequency-domain, which should display a peak around the value ω=+2 and -2 as the function is initially symmetric. By performing the backward FFT of the obtained function, one should obtain the initial function displayed in time-domain (i.e. sin(2t)). This checking procedure holds also when implementing a GPU version of the FFT library.</p>
+<p>For completeness, porting the <code class="docutils literal notranslate"><span class="pre">FFTW</span></code> library to <a class="reference external" href="https://docs.nvidia.com/cuda/cufft/index.html#fftw-supported-interface"><code class="docutils literal notranslate"><span class="pre">cuFFTW</span></code></a> does not require modifications in the code - it is done by replacing the file <code class="docutils literal notranslate"><span class="pre">fftw3.h</span></code> with <code class="docutils literal notranslate"><span class="pre">cufftw.h</span></code>.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">parameter_kind</span>
+<span class="w">        </span><span class="k">implicit none</span>
+<span class="k">        public</span>
+<span class="k">        </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">FFTW_FORWARD</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">FFTW_BACKWARD</span><span class="o">=+</span><span class="mi">1</span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">FFTW_MEASURE</span><span class="o">=</span><span class="mi">0</span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_real_kind</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">37</span><span class="p">)</span><span class="w"> </span><span class="c">!Single precision</span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_real_kind</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">307</span><span class="p">)</span><span class="w"> </span><span class="c">!Double precision</span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dp</span>
+<span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">fp</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4.0_fp</span><span class="o">*</span><span class="nb">atan</span><span class="p">(</span><span class="mf">1.0_fp</span><span class="p">),</span><span class="n">dt</span><span class="o">=</span><span class="mf">0.25_fp</span>
+<span class="w">      </span><span class="k">end module </span><span class="n">parameter_kind</span>
+
+<span class="w">      </span><span class="k">program </span><span class="n">fftw_serial</span>
+
+<span class="w">       </span><span class="k">use </span><span class="n">parameter_kind</span>
+
+<span class="w">       </span><span class="k">implicit none</span>
+
+<span class="w">       </span><span class="c">!include &quot;fftw3.f&quot;</span>
+
+<span class="w">       </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w">   </span><span class="kd">::</span><span class="w"> </span><span class="n">nt</span><span class="o">=</span><span class="mi">512</span>
+<span class="w">       </span><span class="kt">integer</span><span class="w">              </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="n">ierr</span>
+<span class="w">       </span><span class="kt">integer</span><span class="o">*</span><span class="mi">8</span><span class="w">            </span><span class="kd">::</span><span class="w"> </span><span class="n">plan_forward</span><span class="p">,</span><span class="n">plan_backward</span>
+<span class="w">       </span><span class="kt">complex</span><span class="p">(</span><span class="n">fp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">in</span><span class="p">(:),</span><span class="n">out</span><span class="p">(:),</span><span class="n">f</span><span class="p">(:)</span>
+<span class="w">       </span><span class="kt">real</span><span class="p">(</span><span class="n">fp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span><span class="p">(:),</span><span class="n">w</span><span class="p">(:)</span>
+
+<span class="w">       </span><span class="k">allocate</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">nt</span><span class="p">),</span><span class="n">w</span><span class="p">(</span><span class="n">nt</span><span class="p">));</span><span class="w"> </span><span class="k">allocate</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">nt</span><span class="p">))</span>
+
+<span class="w">       </span><span class="k">call </span><span class="n">grid_1d</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+
+<span class="c">!Example of sine function</span>
+<span class="w">       </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span>
+<span class="w">          </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">cmplx</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="mf">2.0_fp</span><span class="o">*</span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span><span class="mf">0.0_fp</span><span class="p">)</span>
+<span class="w">       </span><span class="k">enddo</span>
+
+<span class="k">       print</span><span class="o">*</span><span class="p">,</span><span class="s2">&quot;--sum before FFT&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">nt</span><span class="o">/</span><span class="mi">2</span><span class="p">)))</span>
+
+<span class="c">!Creating 1D plans</span>
+<span class="w">       </span><span class="k">allocate</span><span class="p">(</span><span class="n">in</span><span class="p">(</span><span class="n">nt</span><span class="p">),</span><span class="n">out</span><span class="p">(</span><span class="n">nt</span><span class="p">))</span>
+<span class="w">       </span><span class="k">call </span><span class="n">dfftw_plan_dft_1d</span><span class="p">(</span><span class="n">plan_forward</span><span class="p">,</span><span class="n">nt</span><span class="p">,</span><span class="n">in</span><span class="p">,</span><span class="n">out</span><span class="p">,</span><span class="n">FFTW_FORWARD</span><span class="p">,</span><span class="n">FFTW_MEASURE</span><span class="p">)</span>
+<span class="w">       </span><span class="k">call </span><span class="n">dfftw_plan_dft_1d</span><span class="p">(</span><span class="n">plan_backward</span><span class="p">,</span><span class="n">nt</span><span class="p">,</span><span class="n">in</span><span class="p">,</span><span class="n">out</span><span class="p">,</span><span class="n">FFTW_BACKWARD</span><span class="p">,</span><span class="n">FFTW_MEASURE</span><span class="p">)</span>
+
+<span class="c">!Forward FFT</span>
+<span class="w">       </span><span class="n">in</span><span class="p">(:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(:)</span>
+<span class="w">       </span><span class="k">call </span><span class="n">dfftw_execute_dft</span><span class="p">(</span><span class="n">plan_forward</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="p">)</span>
+<span class="w">       </span><span class="n">f</span><span class="p">(:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out</span><span class="p">(:)</span>
+
+<span class="c">!Backward FFT</span>
+<span class="w">       </span><span class="k">call </span><span class="n">dfftw_execute_dft</span><span class="p">(</span><span class="n">plan_backward</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="p">)</span>
+<span class="c">!The data on the backforward are unnormalized, so they should be divided by N.        </span>
+<span class="w">       </span><span class="n">in</span><span class="p">(:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in</span><span class="p">(:)</span><span class="o">/</span><span class="kt">real</span><span class="p">(</span><span class="n">nt</span><span class="p">)</span>
+
+<span class="c">!Destroying plans</span>
+<span class="w">       </span><span class="k">call </span><span class="n">dfftw_destroy_plan</span><span class="p">(</span><span class="n">plan_forward</span><span class="p">)</span>
+<span class="w">       </span><span class="k">call </span><span class="n">dfftw_destroy_plan</span><span class="p">(</span><span class="n">plan_backward</span><span class="p">)</span>
+
+<span class="w">       </span><span class="k">print</span><span class="o">*</span><span class="p">,</span><span class="s2">&quot;--sum iFFT&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="n">in</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">nt</span><span class="o">/</span><span class="mi">2</span><span class="p">)))</span>
+
+<span class="c">!Printing the FFT of sin(2t)</span>
+<span class="w">        </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span><span class="o">/</span><span class="mi">2</span>
+<span class="w">           </span><span class="k">write</span><span class="p">(</span><span class="mi">204</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="n">w</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="nb">dsqrt</span><span class="p">(</span><span class="n">cdabs</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">        </span><span class="k">enddo</span>
+<span class="k">        deallocate</span><span class="p">(</span><span class="n">in</span><span class="p">);</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="n">out</span><span class="p">);</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="w">      </span><span class="k">end</span>
+
+<span class="k">       subroutine </span><span class="n">grid_1d</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+<span class="w">        </span><span class="k">use </span><span class="n">parameter_kind</span>
+
+<span class="w">        </span><span class="k">implicit none</span>
+<span class="k">        </span><span class="kt">integer</span><span class="w">             </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="n">nt</span>
+<span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span><span class="w">            </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">nt</span><span class="p">),</span><span class="n">w</span><span class="p">(</span><span class="n">nt</span><span class="p">)</span>
+
+<span class="c">!Defining a uniform temporal grid</span>
+<span class="w">       </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span>
+<span class="w">          </span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="nb">dble</span><span class="p">(</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0_fp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">dt</span>
+<span class="w">       </span><span class="k">enddo</span>
+
+<span class="c">!Defining a uniform frequency grid</span>
+<span class="w">       </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">nt</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">          </span><span class="n">w</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0_fp</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="nb">dble</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">nt</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+<span class="w">       </span><span class="k">enddo</span>
+<span class="k">       do </span><span class="n">i</span><span class="o">=</span><span class="n">nt</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">          </span><span class="n">w</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0_fp</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="nb">dble</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">nt</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">nt</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+<span class="w">       </span><span class="k">enddo</span>
+<span class="k">       end subroutine </span><span class="n">grid_1d</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/2720351be9098961b6792f3befd13896/fftw_serial.f90"><code class="xref download docutils literal notranslate"><span class="pre">fftw_serial.f90</span></code></a></p>
+</section>
+<section id="compilation-process-of-fftw">
+<span id="compilation-process-fftw"></span><h3>Compilation process of <code class="docutils literal notranslate"><span class="pre">FFTW</span></code><a class="headerlink" href="#compilation-process-of-fftw" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">FFTW</span></code> library should be linked with fftw3 (i.e. <code class="docutils literal notranslate"><span class="pre">-lfftw3</span></code>) for the double precision, and fftw3f (i.e. <code class="docutils literal notranslate"><span class="pre">-lfftw3f</span></code>) for the single precision case.</p>
+<p>Here is an example of a module to be loaded.</p>
+<p>On Saga:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>FFTW/3.3.9-intel-2021a
+</pre></div>
+</div>
+<p>The same module is available on Betzy.</p>
+<p>To compile:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ifort<span class="w"> </span>-lfftw3<span class="w"> </span>-o<span class="w"> </span>fftw.serial<span class="w"> </span>fftw_serial.f90
+</pre></div>
+</div>
+<p>In the case of using the <code class="docutils literal notranslate"><span class="pre">cuFFTW</span></code> library, the linking in the compilation syntaxt should be provided for both <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> and <code class="docutils literal notranslate"><span class="pre">cuFFTW</span></code> libraries.</p>
+</section>
+<section id="implementation-of-cufft">
+<span id="implementation-cufft"></span><h3>Implementation of <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code><a class="headerlink" href="#implementation-of-cufft" title="Link to this heading"></a></h3>
+<p>We consider the same scenario as described in the previous section but this time the implementation involves the communication between a CPU-host and GPU-device by calling the <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> library. The <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> implementation is shown below.</p>
+<p>Similarly to the <code class="docutils literal notranslate"><span class="pre">FFTW</span></code> library, the implementation of the GPU-accelerated <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> library is conceptually based on creating plans, executing and destroying them. The difficulty here however is how to call the <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> library, which is written using a low-level programming model, from an OpenACC application interface. In this scenario, there are steps that are executed by the <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> library and other steps are executed by OpenACC kernels. Executing all these steps requires sharing data. In other words, it requires making OpenACC aware of the GPU-accelerated <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> library. This is done in OpenACC by specifying the directive <code class="docutils literal notranslate"><span class="pre">host_data</span></code> together with the clause <code class="docutils literal notranslate"><span class="pre">use_device(list-of-arrays)</span></code>. This combination permits to access the device address of the listed arrays in the <code class="docutils literal notranslate"><span class="pre">use_device()</span></code> clause from the <a class="reference external" href="https://www.nvidia.com/docs/IO/116711/OpenACC-API.pdf">host</a>. The arrays, which should be already present on the device memory, are in turn passed to the <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> functions (i.e. <code class="docutils literal notranslate"><span class="pre">cufftExecZ2Z()</span></code> in our example). The output data of these functions is not normalized, and thus it requires to be normalized by dividing by the size of the array. The normalisation may be followed by the function <code class="docutils literal notranslate"><span class="pre">cufftDestroy()</span></code> to free all GPU resources associated with a <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> plan and destroy the internal plan data structure.</p>
+<p>It is worth noting that the <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> library uses CUDA streams for an asynchronous execution, which is not the case for OpenACC. It is therefore necessary to make the <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> runs on OpenACC streams. This is done by calling the routine <code class="docutils literal notranslate"><span class="pre">cufftSetStream()</span></code>, which is part of the <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> module. The routine includes the function <code class="docutils literal notranslate"><span class="pre">acc_get_cuda_stream()</span></code>, which enables identifying the CUDA stream.</p>
+<p>Note that the use of the OpenACC runtime routines and the <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> routines requires including the header lines <code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">openacc</span></code> and <code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">cufft</span></code>.</p>
+<p>The tables below summarize the calling functions in the case of a multi-dimension data having a simple or double complex data type (see <a class="reference external" href="https://docs.nvidia.com/hpc-sdk/compilers/fortran-cuda-interfaces/index.html">here</a> for more details).</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">parameter_kind</span>
+<span class="w">        </span><span class="k">implicit none</span>
+<span class="k">        public</span>
+<span class="k">        </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_real_kind</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">37</span><span class="p">)</span><span class="w">   </span><span class="c">!Single precision</span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_real_kind</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">307</span><span class="p">)</span><span class="w"> </span><span class="c">!Double precision</span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dp</span>
+<span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">fp</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4.0_fp</span><span class="o">*</span><span class="nb">atan</span><span class="p">(</span><span class="mf">1.0_fp</span><span class="p">),</span><span class="n">dt</span><span class="o">=</span><span class="mf">0.25_fp</span>
+<span class="w">      </span><span class="k">end module </span><span class="n">parameter_kind</span>
+
+<span class="w">      </span><span class="k">program </span><span class="n">cufft_acc</span>
+
+<span class="w">       </span><span class="k">use </span><span class="n">parameter_kind</span>
+<span class="w">       </span><span class="k">use </span><span class="n">cufft</span>
+<span class="w">       </span><span class="k">use </span><span class="n">openacc</span>
+
+<span class="w">       </span><span class="k">implicit none</span>
+
+<span class="k">       </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w">   </span><span class="kd">::</span><span class="w"> </span><span class="n">nt</span><span class="o">=</span><span class="mi">512</span>
+<span class="w">       </span><span class="kt">integer</span><span class="w">              </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="n">ierr</span><span class="p">,</span><span class="n">plan</span>
+<span class="w">       </span><span class="kt">complex</span><span class="p">(</span><span class="n">fp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">in</span><span class="p">(:),</span><span class="n">out</span><span class="p">(:)</span>
+<span class="w">       </span><span class="kt">real</span><span class="p">(</span><span class="n">fp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span><span class="p">(:),</span><span class="n">w</span><span class="p">(:)</span>
+
+<span class="w">       </span><span class="k">allocate</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">nt</span><span class="p">),</span><span class="n">w</span><span class="p">(</span><span class="n">nt</span><span class="p">));</span><span class="w"> </span><span class="k">allocate</span><span class="p">(</span><span class="n">in</span><span class="p">(</span><span class="n">nt</span><span class="p">),</span><span class="n">out</span><span class="p">(</span><span class="n">nt</span><span class="p">))</span>
+
+<span class="w">       </span><span class="k">call </span><span class="n">grid_1d</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+
+<span class="c">!Example of a sinus function</span>
+<span class="w">       </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span>
+<span class="w">          </span><span class="n">in</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">cmplx</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="mf">2.0_fp</span><span class="o">*</span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span><span class="mf">0.0_fp</span><span class="p">)</span>
+<span class="w">       </span><span class="k">enddo</span>
+
+<span class="k">       print</span><span class="o">*</span><span class="p">,</span><span class="s2">&quot;--sum before FFT&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="n">in</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">nt</span><span class="o">/</span><span class="mi">2</span><span class="p">)))</span>
+<span class="c">!cufftExecZ2Z executes a double precision complex-to-complex transform plan</span>
+<span class="w">       </span><span class="n">ierr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cufftPlan1D</span><span class="p">(</span><span class="n">plan</span><span class="p">,</span><span class="n">nt</span><span class="p">,</span><span class="n">CUFFT_Z2Z</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="c">!acc_get_cuda_stream: tells the openACC runtime to identify the CUDA</span>
+<span class="c">!stream used by CUDA</span>
+<span class="w">       </span><span class="n">ierr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ierr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cufftSetStream</span><span class="p">(</span><span class="n">plan</span><span class="p">,</span><span class="n">acc_get_cuda_stream</span><span class="p">(</span><span class="n">acc_async_sync</span><span class="p">))</span>
+
+<span class="c">!$acc data copy(in) copyout(out)</span>
+<span class="c">!$acc host_data use_device(in,out)</span>
+<span class="w">        </span><span class="n">ierr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ierr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cufftExecZ2Z</span><span class="p">(</span><span class="n">plan</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">CUFFT_FORWARD</span><span class="p">)</span>
+<span class="w">        </span><span class="n">ierr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ierr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cufftExecZ2Z</span><span class="p">(</span><span class="n">plan</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">CUFFT_INVERSE</span><span class="p">)</span>
+<span class="c">!$acc end host_data </span>
+
+<span class="c">!$acc kernels</span>
+<span class="w">       </span><span class="n">out</span><span class="p">(:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out</span><span class="p">(:)</span><span class="o">/</span><span class="n">nt</span>
+<span class="w">       </span><span class="n">in</span><span class="p">(:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in</span><span class="p">(:)</span><span class="o">/</span><span class="n">nt</span>
+<span class="c">!$acc end kernels</span>
+<span class="c">!$acc end data</span>
+
+<span class="w">       </span><span class="n">ierr</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">ierr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cufftDestroy</span><span class="p">(</span><span class="n">plan</span><span class="p">)</span>
+<span class="w">       </span>
+<span class="w">       </span><span class="k">print</span><span class="o">*</span><span class="p">,</span><span class="s2">&quot;&quot;</span>
+<span class="w">       </span><span class="k">if</span><span class="p">(</span><span class="n">ierr</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         print</span><span class="o">*</span><span class="p">,</span><span class="s2">&quot;--Yep it works :)&quot;</span>
+<span class="w">       </span><span class="k">else</span>
+<span class="k">         print</span><span class="o">*</span><span class="p">,</span><span class="s2">&quot;Nop it fails, I stop :(&quot;</span>
+<span class="w">       </span><span class="k">endif</span>
+<span class="k">       print</span><span class="o">*</span><span class="p">,</span><span class="s2">&quot;&quot;</span>
+<span class="w">       </span><span class="k">print</span><span class="o">*</span><span class="p">,</span><span class="s2">&quot;--sum iFFT&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="n">in</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">nt</span><span class="o">/</span><span class="mi">2</span><span class="p">)))</span>
+
+<span class="c">!printing the fft of sinus</span>
+<span class="w">        </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span><span class="o">/</span><span class="mi">2</span>
+<span class="w">           </span><span class="k">write</span><span class="p">(</span><span class="mi">204</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="n">w</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="nb">sqrt</span><span class="p">(</span><span class="nb">cabs</span><span class="p">(</span><span class="n">out</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">        </span><span class="k">enddo</span>
+<span class="k">        deallocate</span><span class="p">(</span><span class="n">in</span><span class="p">);</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+<span class="w">      </span><span class="k">end</span>
+
+<span class="k">      subroutine </span><span class="n">grid_1d</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+<span class="w">        </span><span class="k">use </span><span class="n">parameter_kind</span>
+
+<span class="w">        </span><span class="k">implicit none</span>
+<span class="k">        </span><span class="kt">integer</span><span class="w">             </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="n">nt</span>
+<span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span><span class="w">            </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">nt</span><span class="p">),</span><span class="n">w</span><span class="p">(</span><span class="n">nt</span><span class="p">)</span>
+
+<span class="c">!Defining a uniform temporal grid</span>
+<span class="w">       </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nt</span>
+<span class="w">          </span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="nb">dble</span><span class="p">(</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0_fp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">dt</span>
+<span class="w">       </span><span class="k">enddo</span>
+
+<span class="c">!Defining a uniform frequency grid</span>
+<span class="w">       </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">nt</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">          </span><span class="n">w</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0_fp</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="nb">dble</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">nt</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+<span class="w">       </span><span class="k">enddo</span>
+<span class="k">       do </span><span class="n">i</span><span class="o">=</span><span class="n">nt</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">          </span><span class="n">w</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0_fp</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="nb">dble</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">nt</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">nt</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+<span class="w">       </span><span class="k">enddo</span>
+<span class="k">     end subroutine </span><span class="n">grid_1d</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/85c0fe44e0a67ad226fce46a9f9d01b7/cufft_acc.f90"><code class="xref download docutils literal notranslate"><span class="pre">cufft_acc.f90</span></code></a></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dimension</p></th>
+<th class="head"><p>Creating a FFT plan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1D</p></td>
+<td><p>cufftPlan1D( plan, nx, FFTtype,1)</p></td>
+</tr>
+<tr class="row-odd"><td><p>2D</p></td>
+<td><p>cufftPlan2d( plan, ny, nx, FFTtype)</p></td>
+</tr>
+<tr class="row-even"><td><p>3D</p></td>
+<td><p>cufftPlan3d( plan, nz, ny, nx, FFTtype)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 1.</strong> <em>Creating FFT plans in 1D, 2D and 3D dimensions. nx is the size of a 1D array, nx and ny the size of a 2D array, and nx, ny, nz define the size of a 3D array. The FFTtype specifies the data type stored as described in the <strong>Table 2</strong>.</em></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Precision of the transformed plan</p></th>
+<th class="head"><p>subroutine</p></th>
+<th class="head"><p>FFTtype</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Double precision complex-to-complex</p></td>
+<td><p>cufftExecZ2Z( plan, in, out, direction )</p></td>
+<td><p>”CUFFT_Z2Z”</p></td>
+</tr>
+<tr class="row-odd"><td><p>Single precision complex-to-complex</p></td>
+<td><p>cufftExecC2C( plan, in, out, direction )</p></td>
+<td><p>”CUFFT_C2C”</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 2.</strong> <em>Executing a double precision/single-precision complex-to-complex transform plan in a FFT direction to be specified: “CUFFT_FORWARD” for forward FFT and “CUFFT_INVERSE” for backward FFT. The input data are stored in the array <strong>in</strong>, and the results of FFT for a specific direction are stored in the array <strong>out</strong>.</em></p>
+</section>
+<section id="compilation-process-of-cufft">
+<span id="compilation-process-cufft"></span><h3>Compilation process of <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code><a class="headerlink" href="#compilation-process-of-cufft" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> library is part of the CUDA toolkit, and thus it is supported by the NVIDIA-GPU compiler. Therefore, the only modules are required to be load are NVHPC and CUDA modules.</p>
+<p>Modules to be loaded:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-U2FnYQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-U2FnYQ==" name="U2FnYQ==" role="tab" tabindex="0">Saga</button><button aria-controls="panel-4-QmV0enk=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-QmV0enk=" name="QmV0enk=" role="tab" tabindex="-1">Betzy</button></div><div aria-labelledby="tab-4-U2FnYQ==" class="sphinx-tabs-panel group-tab" id="panel-4-U2FnYQ==" name="U2FnYQ==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>NVHPC/21.11<span class="w"> </span>CUDA/11.4.1
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-4-QmV0enk=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-4-QmV0enk=" name="QmV0enk=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>NVHPC/21.7<span class="w"> </span>CUDA/11.4.1
+</pre></div>
+</div>
+</div></div>
+<p>We compile using the NVIDIA Fortran compiler <code class="docutils literal notranslate"><span class="pre">nvfortran</span></code>. The compilation process requires linking the <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> library (<code class="docutils literal notranslate"><span class="pre">-lcufft</span></code>) and adding the CUDA version library to the syntax of the compilation (<code class="docutils literal notranslate"><span class="pre">-cudalib=cufft</span></code>).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nvfortran<span class="w"> </span>-lcufft<span class="w"> </span>-cudalib<span class="o">=</span>cufft<span class="w"> </span>-acc<span class="w"> </span>-Minfo<span class="o">=</span>accel<span class="w"> </span>-o<span class="w"> </span>cufft.acc<span class="w"> </span>cufft_acc.f90
+</pre></div>
+</div>
+<p>Here the flag <code class="docutils literal notranslate"><span class="pre">-acc</span></code> enables OpenACC on NVIDIA-GPU. It is possible to specify the compute capability e.g. <code class="docutils literal notranslate"><span class="pre">-gpu=cc80</span></code> for Betzy and <code class="docutils literal notranslate"><span class="pre">-gpu=cc60</span></code> for Saga.</p>
+<p>To run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>srun<span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span>--gpus<span class="o">=</span><span class="m">1</span><span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:01:00<span class="w"> </span>--account<span class="o">=</span>nnXXXXX<span class="w"> </span>--qos<span class="o">=</span>devel<span class="w"> </span>--mem-per-cpu<span class="o">=</span>1G<span class="w"> </span>./cufft.acc
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="conclusion">
+<span id="conclusion-ext-lib"></span><h1><a class="toc-backref" href="#id6" role="doc-backlink">Conclusion</a><a class="headerlink" href="#conclusion" title="Link to this heading"></a></h1>
+<p>In conclusion, we have provided a description of the implementation of the GPU-accelerated <code class="docutils literal notranslate"><span class="pre">cuBLAS</span></code> and <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> libraries targeting NVIDIA-GPU. The implementation illustrates the capability of calling a GPU-accelerated library written in a low-level programming model from an OpenACC or OpenMP application interface. We have also documented the implementation of the <code class="docutils literal notranslate"><span class="pre">FFTW</span></code> library for a serial case scenario and emphasized its porting version referred to as the <code class="docutils literal notranslate"><span class="pre">cuFFTW</span></code> library. For the <code class="docutils literal notranslate"><span class="pre">FFTW</span></code> and <code class="docutils literal notranslate"><span class="pre">cuFFT</span></code> libraries, although the implementation has been done for a 1D problem, an extension to 2D and 3D scenarios is straightforward.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

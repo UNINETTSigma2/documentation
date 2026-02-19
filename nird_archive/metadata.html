@@ -1,0 +1,972 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metadata schema &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Metadata schema</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="metadata-schema">
+<h1>Metadata schema<a class="headerlink" href="#metadata-schema" title="Link to this heading"></a></h1>
+<p>Each dataset must be accompanied by a set of metadata. The Archive has implemented a metadata schema with fields that can be classified in six categories. For each category some fields are mandatory (those presenting an asterisk) and some are optional. We also recommend filling optional fields as they might be relevant for any other data users, and they can increase the findability and usage of the dataset.</p>
+<p>Each field presents tooltip that will display a help text when hovering over with the mouse:</p>
+<p><img alt="the_tooltip" src="../_images/figure20_screenshot_help.png" />
+Figure 1: Screenshot of the tooltip.</p>
+</section>
+<section id="metadata-form-by-category">
+<h1>Metadata form by category<a class="headerlink" href="#metadata-form-by-category" title="Link to this heading"></a></h1>
+<section id="descriptive">
+<h2>Descriptive<a class="headerlink" href="#descriptive" title="Link to this heading"></a></h2>
+<section id="title">
+<h3>Title<a class="headerlink" href="#title" title="Link to this heading"></a></h3>
+<p>A short phrase or sentence describing the dataset. The title will be displayed in the results list from a search, and therefore should be human-readable and reasonable to display.
+The title is possibly the most informative element of a metadata record and should be therefore chosen carefully as it is often going to be used to determine if a dataset is meeting the needs of a person searching for data to reuse.</p>
+<p><strong>Recommendations (1):</strong> Choose a unique title for your dataset and avoid using acronyms.
+<strong>Recommendations (2):</strong>  Use an informative title that guides potential users on the content of the dataset.</p>
+<p><strong>Note:</strong> The title must be unique within the Archive. When trying to register a dataset with an already existing title, the user will be prompted with a validation error (see URL field below)</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Mandatory</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>The title of the dataset.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>Free text/string</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>Chlorophyll-a Concentration in the Oslofjord from Sentinel-3 OLCI Data (2020–2022)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="url">
+<h3>URL<a class="headerlink" href="#url" title="Link to this heading"></a></h3>
+<p>The URL field is not editable, and it is automatically filled by the archive following the title provided. As URLs must be unique, you will be prompted with an error (<em>“That URL is already in use.”</em>) if you are registering a title that is already present in the Archive.</p>
+</section>
+<section id="description">
+<h3>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h3>
+<p>This field should summarize and describe the dataset. It should provide relevant information to guide people to understand if the content is relevant for their needs. It is similar to the abstract of a scientific paper.</p>
+<p><strong>Recommendations (1):</strong> Briefly explain the purpose, content, and scope of the dataset, including how the data was produced or collected.
+<strong>Recommendations (2):</strong> Avoid repeating information covered in the spatial and temporal extent fields (use the Extent metadata), but mention context if needed for clarity.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Mandatory</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>The description of the dataset.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>Free text/string</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>This dataset includes chlorophyll-a concentration values derived from Sentinel-3 OLCI satellite imagery and validated with in situ samples. It supports marine ecosystem research and coastal water quality monitoring. Data processing followed Copernicus Marine Environment Monitoring Service protocols.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="keywords">
+<h3>Keywords<a class="headerlink" href="#keywords" title="Link to this heading"></a></h3>
+<p>A keyword or tag describing the dataset. This field gives the possibility to add keywords and tags that are not standardised and do not belong to specific vocabularies or controlled lists.</p>
+<p><strong>Recommendations (1):</strong> Use this field for additional, free-text keywords that are <strong>not already covered</strong> by the controlled vocabularies listed under <em>Themes</em>. These can include <strong>expert-specific terminology</strong>, <strong>project names</strong>, <strong>instruments</strong>, <strong>methods</strong>, or <strong>local place names</strong>.</p>
+<p><strong>Recommendations (2):</strong> If your preferred vocabulary is missing from <em>Themes</em>, <strong>do not add it as a free-text keyword</strong>. Instead, you are encouraged to <strong>contact the Archive</strong> to request its inclusion. This helps ensure datasets are described in a consistent and accurate way.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Optional</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>[0…*]</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>A keyword or tag describing the dataset.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>Free text/string</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>Snow, Svalbard</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="themes">
+<h3>Themes<a class="headerlink" href="#themes" title="Link to this heading"></a></h3>
+<p>For keywords from controlled vocabularies. Using well-defined keywords help users to search and find the data. The added value of using a controlled vocabulary is that each term has a specific and unique definition that a user can find and read on the web. <strong>At least one keyword from at least one of the controlled vocabularies is mandatory</strong>. The Archive is currently hosting a limited number of controlled vocabularies:</p>
+<section id="climate-and-forecast-cf-standard-names">
+<h4>Climate and Forecast (CF) standard names<a class="headerlink" href="#climate-and-forecast-cf-standard-names" title="Link to this heading"></a></h4>
+<p>The <strong>CF Standard Names</strong> vocabulary defines a list of standard terms that describe <strong>physical quantities or measured phenomena</strong>, such as temperature, salinity, wind speed, etc. These are primarily intended for datasets that store <strong>variables</strong> that follow the CF metadata convention.
+<strong>Each standard name is designed to be used as a variable name or attribute</strong>, enabling interoperability and automated processing.</p>
+<ul class="simple">
+<li><p>Browse the list of standard names: <a class="reference external" href="https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html">cf-standard-name-table</a></p></li>
+<li><p>Registered vocabulary: <a class="reference external" href="https://vocab.nerc.ac.uk/standard_name/">NERC CF Standard Names</a></p></li>
+<li><p>More info: <a class="reference external" href="https://cfconventions.org/">cfconventions.org</a></p></li>
+</ul>
+</section>
+<section id="inspire-spatial-data-themes-gemet">
+<h4>INSPIRE Spatial Data Themes (GEMET)<a class="headerlink" href="#inspire-spatial-data-themes-gemet" title="Link to this heading"></a></h4>
+<p>This vocabulary contains <strong>groupings of spatial data</strong> themes defined by the <strong>INSPIRE Directive</strong>. It is useful for describing <strong>geospatial datasets</strong>, especially those produced in the context of environmental monitoring, land use, or other European policy domains.
+<strong>Themes here are broader categories</strong> (e.g., <em>Atmospheric conditions</em>, <em>Land cover</em>, <em>Human health and safety</em>) and are useful even when more detailed variable-level descriptions aren’t appropriate.</p>
+<ul class="simple">
+<li><p>Browse the list: <a class="reference external" href="https://www.eionet.europa.eu/gemet/en/inspire-themes/">INSPIRE themes on GEMET</a></p></li>
+<li><p>Registered vocabulary: <a class="reference external" href="https://vocab.nerc.ac.uk/collection/P22/current/">NERC P22 INSPIRE Themes</a></p></li>
+<li><p>More info: <a class="reference external" href="https://knowledge-base.inspire.ec.europa.eu/index_en">INSPIRE Knowledge Base</a></p></li>
+</ul>
+</section>
+<section id="iso-19115-topic-category">
+<h4>ISO 19115 Topic Category<a class="headerlink" href="#iso-19115-topic-category" title="Link to this heading"></a></h4>
+<p>his is a <strong>high-level classification</strong> of geospatial data topics, defined in the <strong>ISO 19115</strong> standard for geographic metadata.
+These categories are <strong>very general</strong> (e.g., <em>Oceans</em>, <em>Environment</em>, <em>Elevation</em>) and are primarily intended to help with <strong>broad dataset discovery and filtering</strong>.</p>
+<p><em><strong>Note</strong>: This vocabulary is useful if your dataset falls into a general thematic domain, and you don’t have more specific keywords available.</em></p>
+<ul class="simple">
+<li><p>Browse the list: <a class="reference external" href="https://vocab.nerc.ac.uk/collection/P05/current/">ISO 19115 Topic Categories</a></p></li>
+</ul>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Mandatory</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>[1…*]</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>Keywords from controlled vocabularies</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>autocomplete</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>-</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> The current list of vocabularies may not always be applicable to your specific dataset or domain. If you need additional vocabularies that are more relevant to your community, please contact the Archive team. The list will continue to grow based on user feedback.</p>
+</section>
+</section>
+<section id="id1">
+<h3><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+</section>
+<section id="subjects">
+<h3>Subjects<a class="headerlink" href="#subjects" title="Link to this heading"></a></h3>
+<p>The <strong>Subjects</strong> field defines the <strong>scientific field or domain</strong> that the dataset pertains to. This field helps categorize datasets within the data portal, making it easier for users to discover datasets based on their subject matter.</p>
+<p>The list of available subjects is derived from the <strong>Field of Science and Technology Classification (FOS)</strong> vocabulary, which groups various scientific disciplines.</p>
+<p><strong>How to use it:</strong>
+Select the most relevant subject(s) from the list that best describes the domain of your dataset. This helps ensure your dataset is properly categorized and easily discoverable by others in related fields.</p>
+<ul class="simple">
+<li><p>Browse the list of terms:
+<a class="reference external" href="https://dd.eionet.europa.eu/vocabulary/eurostat/fos07">Eurostat FOS vocabulary</a></p></li>
+</ul>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Mandatory</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>[1…*]</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>The field/domain the dataset belongs to</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>autocomplete</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="language">
+<h3>Language<a class="headerlink" href="#language" title="Link to this heading"></a></h3>
+<p>The language used in the dataset. There are only two options: English and Norwegian. The metadata form is set to the default language of “English”.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Mandatory</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>The language used in the dataset. The default for all datasets is English.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>dropdown</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="status">
+<h3>Status<a class="headerlink" href="#status" title="Link to this heading"></a></h3>
+<p>This field describes the production status of the dataset using a controlled vocabulary:</p>
+<ul class="simple">
+<li><p>Complete: when the production of the dataset is complete</p></li>
+<li><p>In Work: when data will be continuously updated</p></li>
+<li><p>Planned: when data will be collected on an established date in the future.</p></li>
+</ul>
+<p>This field can be mapped to the ISO metadata standard MD_ProgressCode and the Dataset Progress of NASA DIF metadata standard.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Optional</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>The status describes the production status of the dataset.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>dropdown</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="project">
+<h3>Project<a class="headerlink" href="#project" title="Link to this heading"></a></h3>
+<p>The name of the project in which the dataset was generated or collected. In order to harmonise this field which is free text it is recommended to use the format of “Long Name (Short Name)”, where the short name in parentheses is usually the acronym. See example below.</p>
+<p><strong>Recommendation (1):</strong> If data is produced under a specific project it is highly recommended that the name of the project is acknowledged here.
+<strong>Recommendation (2):</strong> Use the format “Long Name (Short Name)”</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Optional</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>[0…*]</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>The name of the project in which the dataset was generated or collected.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>Free text/string (Recommended format Long Name (Short name))</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>Kongsfjorden Rijpfjorden Observatory Programme (KROP)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="personnel">
+<h2>Personnel<a class="headerlink" href="#personnel" title="Link to this heading"></a></h2>
+<p>All personnel fields (contact points, creators, contributors) are built on the same sub-fields elements as described in the table below:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Personnel multifields</p></th>
+<th class="head text-left"><p></p></th>
+<th class="head text-left"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>subfield</p></td>
+<td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>Type</p></td>
+</tr>
+<tr class="row-odd"><td><p>First Name</p></td>
+<td class="text-left"><p>The first name of the person</p></td>
+<td class="text-left"><p>Free text/string</p></td>
+</tr>
+<tr class="row-even"><td><p>Last Name</p></td>
+<td class="text-left"><p>The last/family name of the person</p></td>
+<td class="text-left"><p>Free text/string</p></td>
+</tr>
+<tr class="row-odd"><td><p>Organisation</p></td>
+<td class="text-left"><p>The organisation/Affiliation of the person</p></td>
+<td class="text-left"><p>Free text/string (with suggestion)</p></td>
+</tr>
+<tr class="row-even"><td><p>Email</p></td>
+<td class="text-left"><p>The email of the person</p></td>
+<td class="text-left"><p>Email</p></td>
+</tr>
+<tr class="row-odd"><td><p>ORCID</p></td>
+<td class="text-left"><p>Unique, persistent identifier ORCID<a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> for individuals.</p></td>
+<td class="text-left"><p>Use the ID only and not the full URL (i.e. “0000-000X-YYYY-ZZZZ”).</p></td>
+</tr>
+<tr class="row-even"><td><p>Type</p></td>
+<td class="text-left"><p>Only for contributors: the type of role the contributor had (from a controlled vocabulary)</p></td>
+<td class="text-left"><p>dropdown</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recommendation (1):</strong> Add your ORCID ID so others can still find and credit you, even if you move to a different organisation.
+<strong>Recommendation (2):</strong> Use institutional email instead of personal emails.</p>
+<section id="contact-points">
+<h3>Contact points<a class="headerlink" href="#contact-points" title="Link to this heading"></a></h3>
+<p>This personnel field is for the person(s) responsible for the metadata information. Usually the person that is uploading the dataset. It gives information about the person that should be contacted regarding the metadata provided.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Optional</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>[0…*]</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>The person responsible for the metadata information</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>Personnel multifield (see Table above)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="creators">
+<h3>Creators<a class="headerlink" href="#creators" title="Link to this heading"></a></h3>
+<p>This personnel field is for the main researchers involved in producing the data. These are also referred to as Investigators, Principal Investigator, authors in different contexts. The creator is the person that knows the details on data collection and processing and can answer questions about the dataset.</p>
+<p><strong>Note:</strong> Only the creators will be part of the citation of the dataset.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Mandatory</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>[0…*]</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>The main researchers involved in producing the data</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>Personnel multifield (see Table above)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="contributors">
+<h3>Contributors<a class="headerlink" href="#contributors" title="Link to this heading"></a></h3>
+<p>The name of any other person that contributed to the creation of the dataset. The type of contribution is provided through the “type” field from a controlled vocabulary based on the Datacite list at: <a class="reference external" href="https://datacite-metadata-schema.readthedocs.io/en/4.5/properties/contributor/#a-contributortype">https://datacite-metadata-schema.readthedocs.io/en/4.5/properties/contributor/#a-contributortype</a></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Optional</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>[0…*]</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>The name of any other person that contributed to the creation of the dataset.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>Personnel multifield (see Table above)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dataset-owner">
+<h3>Dataset owner<a class="headerlink" href="#dataset-owner" title="Link to this heading"></a></h3>
+<p>This field is for the name of the Organisation who owns the resource. This is usually the Institution of the Principal investigator. Only Organisations are allowed in this field. The identifier of the Organisation (ROR) will be automatically filled when the organisation is selected.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Optional</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>[0…*]</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>The organisation that owns the resource</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>dropdown</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="constraints">
+<h2>Constraints<a class="headerlink" href="#constraints" title="Link to this heading"></a></h2>
+<section id="license">
+<h3>License<a class="headerlink" href="#license" title="Link to this heading"></a></h3>
+<p>The license under which the data is released. This expresses the restrictions on the use of the dataset.</p>
+<p><strong>Recommendations:</strong> For maximum dissemination and use of licensed materials CC-BY-4.0 is recommended, and it is the default for the Archive.</p>
+<p><strong>Note:</strong> If you do not find the appropriate license, please contact the archive manager, providing the Identifier and URL of the license you need (see https://spdx.org/licenses/).</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Mandatory</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>The license under which the data is released.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>dropdown</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="access-rights">
+<h3>Access rights<a class="headerlink" href="#access-rights" title="Link to this heading"></a></h3>
+<p>This field expresses the limitations on the access to the dataset using a controlled vocabulary. The values are:</p>
+<ul class="simple">
+<li><p>Public: (meta)data is openly available to everyone without any restrictions.</p></li>
+<li><p>Restricted: metadata is publicly available, but data is restricted to a group of people.</p></li>
+<li><p>Non-public: metadata is publicly available, but data is not publicly available.</p></li>
+<li><p>Embargoed: data is “Restricted” and will become “Public” after the embargo date is reached.</p></li>
+</ul>
+<p><strong>Recommendations:</strong> For research data the concept “as open as possible, as close as necessary” to ensure transparency and openness should be followed. Most research data should be fully open.
+<strong>Note:</strong> FAIR data does not mean Open Data. The Archive is supporting the possibility to publish data under some access restriction when necessary.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Optional</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>[0…1]</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>The access rights or restrictions to resources.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>dropdown</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="extent">
+<h2>Extent<a class="headerlink" href="#extent" title="Link to this heading"></a></h2>
+<section id="spatial">
+<h3>Spatial<a class="headerlink" href="#spatial" title="Link to this heading"></a></h3>
+<p>The geographic extent of the dataset. It is possible to provide the geographic extent of the dataset in two ways:</p>
+<section id="wkt">
+<h4>WKT<a class="headerlink" href="#wkt" title="Link to this heading"></a></h4>
+<p>“Well-known text” (WKT)<a class="footnote-reference brackets" href="#id5" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> is a scheme for writing simple features geometry into a standard text string. This field is free text, but it will be validated.</p>
+<p><strong>Note:</strong> The OGC standard definition requires a polygon to be topologically closed. A polygon with four corners will therefore have five points, with the first and the last being identical. e.g. POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))</p>
+</section>
+<section id="bbox">
+<h4>BBOX<a class="headerlink" href="#bbox" title="Link to this heading"></a></h4>
+<p>For the bounding box the extent is defined using four points in the lat/lon EPSG:4326 projection:</p>
+<ul class="simple">
+<li><p>Northernmost latitude: The northernmost point covered by the dataset</p></li>
+<li><p>Southernmost latitude: The southernmost point covered by the dataset</p></li>
+<li><p>Westernmost longitude: The westernmost point covered by the dataset</p></li>
+<li><p>Easternmost longitude: The easternmost point covered by the dataset.</p></li>
+</ul>
+<p><strong>Recommendation:</strong> Use at least 2 decimal places</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Optional</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>[0…1]</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>The geographic extent of the dataset</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>WKT or bounding box</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="temporal">
+<h3>Temporal<a class="headerlink" href="#temporal" title="Link to this heading"></a></h3>
+<p>This field defines the temporal extent or coverage of the dataset. It has two sub-elements:</p>
+<ul class="simple">
+<li><p>start date: The start date and time for data collection or model coverage</p></li>
+<li><p>End date: The end date and time</p></li>
+</ul>
+<p>A date picker is implemented to fill these elements and the values will be translated into iso8601 format.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Optional</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>[0…1]</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>The temporal extent of the dataset</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>Datetime</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="related-urls">
+<h2>Related URLs<a class="headerlink" href="#related-urls" title="Link to this heading"></a></h2>
+<section id="related-resources">
+<h3>Related resources<a class="headerlink" href="#related-resources" title="Link to this heading"></a></h3>
+<p>It is often relevant to link a datasets to other external digital resources. These can be of different types and refer to different aspects of the dataset. The type of resource is a controlled list selectable through a dropdown and the URL is the URL of the resource. Most commonly used links refer to publications and software.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Optional</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>[0…*]</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>Published resources linked to the dataset</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>Datetime</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="versioning-info">
+<h2>Versioning Info<a class="headerlink" href="#versioning-info" title="Link to this heading"></a></h2>
+<section id="version-notes">
+<h3>Version notes<a class="headerlink" href="#version-notes" title="Link to this heading"></a></h3>
+<p>The Archive system is keeping track of potential new versions of the datasets. Linking each version with the older ones. This field should be filled with a good description of the version created, e.g. what has changed, what has been removed, how data has been reprocessed.
+When creating the first version of a dataset</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Obligation/Condition</p></th>
+<th class="head text-left"><p>Mandatory</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Multiplicity</p></td>
+<td class="text-left"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Definition</p></td>
+<td class="text-left"><p>Notes about the current version of the dataset and eventually changes with respect to the previous version.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Type</p></td>
+<td class="text-left"><p>Free text/string</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Example</p></td>
+<td class="text-left"><p><strong>Example-1:</strong> Initial version of the dataset including temperature measurements from 2015 to 2020. Data collected from station A, station B, and station C, with basic quality control applied. <strong>Example-2:</strong> Reprocessed version of the dataset. Raw data was corrected for sensor calibration errors and adjusted for missing values. The temporal resolution was changed from daily to monthly averages. <strong>Example-3:</strong> Version 2 of the dataset. Added new data from 2021, extending the temporal range from 2010-2021. Included new sensors from station D for improved coverage in region X. <strong>Example-4:</strong> Updated version of the dataset. Added new metadata, including project name and updated geographic coverage. Changed variable names to adhere to CF conventions. <strong>Example-5:</strong> Version 3 of the dataset. Corrected a data error in the salinity readings for May 2018. Replaced all incorrect values in that month with interpolated values from adjacent days. <strong>Example-6:</strong> Version 4 of the dataset. Removed outdated data from 2010 due to known calibration issues. Data from 2011-2020 is still valid and remains in the dataset. <strong>Example-7:</strong> Version 5 of the dataset. Converted the dataset from CSV format to NetCDF format for improved interoperability. Metadata fields were also standardized to comply with the CF conventions.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="metadata-schema-for-the-api">
+<h2>Metadata schema for the API<a class="headerlink" href="#metadata-schema-for-the-api" title="Link to this heading"></a></h2>
+<p>The terms used in the API are slightly different from those described in the metadata due to constraints arising from the underlying CKAN system that reuses the same term for a different use.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Schema Name</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>title</strong></p></td>
+<td><p>String</p></td>
+<td><p>The title of the dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>name</strong></p></td>
+<td><p>String (Unique)</p></td>
+<td><p>The unique identifier for the dataset (used in the URL).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>notes</strong></p></td>
+<td><p>String</p></td>
+<td><p>A description of the dataset, detailing its purpose or contents.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>language</strong></p></td>
+<td><p>String</p></td>
+<td><p>Language of the dataset, either <code class="docutils literal notranslate"><span class="pre">en</span></code> (English) or <code class="docutils literal notranslate"><span class="pre">no</span></code> (Norwegian).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>conforms_to</strong></p></td>
+<td><p>String</p></td>
+<td><p>The standard or specification that the dataset conforms to.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>provenance</strong></p></td>
+<td><p>JSON String</p></td>
+<td><p>The provenance or history of the dataset in a JSON format.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>source</strong></p></td>
+<td><p>Array of Strings</p></td>
+<td><p>The original source of the dataset, typically a URL or reference.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>spatial</strong></p></td>
+<td><p>JSON String</p></td>
+<td><p>Spatial data describing the geographical coverage of the dataset (e.g., bounding box).  <li>When <code class="docutils literal notranslate"><span class="pre">spatial_type</span></code> is set to <code class="docutils literal notranslate"><span class="pre">&quot;bbox&quot;</span></code>, the <code class="docutils literal notranslate"><span class="pre">value</span></code> must be an array of four numbers in the order: <code class="docutils literal notranslate"><span class="pre">[Northernmost</span> <span class="pre">latitude,</span> <span class="pre">Southernmost</span> <span class="pre">latitude,</span> <span class="pre">Easternmost</span> <span class="pre">longitude,</span> <span class="pre">Westernmost</span> <span class="pre">longitude]</span></code>. Latitude values must range between -90 and 90, and longitude values must range between -180 and 180.</li><li> When <code class="docutils literal notranslate"><span class="pre">spatial_type</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;wkt&quot;</span></code>, the <code class="docutils literal notranslate"><span class="pre">value</span></code> must be a valid Well-Known Text (WKT) string representing a geometry (e.g., a polygon).</li></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>dataset_status</strong></p></td>
+<td><p>String</p></td>
+<td><p>The current status of the dataset: <code class="docutils literal notranslate"><span class="pre">complete</span></code>, <code class="docutils literal notranslate"><span class="pre">in_work</span></code>, or <code class="docutils literal notranslate"><span class="pre">planned</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>project</strong></p></td>
+<td><p>Array of Strings</p></td>
+<td><p>A list of projects related to the dataset.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>dataset_size</strong></p></td>
+<td><p>Float</p></td>
+<td><p>The size of the dataset in megabytes (MB).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>related_resources</strong></p></td>
+<td><p>Array of Objects</p></td>
+<td><p>A list of related resources with the URL and type, Values accepts: <code class="docutils literal notranslate"><span class="pre">algorithm_documentation</span></code></li><li><code class="docutils literal notranslate"><span class="pre">algorithm_theoretical_basis_document_atbd_</span></code></li><li><code class="docutils literal notranslate"><span class="pre">anomalies</span></code></li><li><code class="docutils literal notranslate"><span class="pre">case_study</span></code></li><li><code class="docutils literal notranslate"><span class="pre">data_citation_policy</span></code></li><li><code class="docutils literal notranslate"><span class="pre">data_product_specification</span></code></li><li><code class="docutils literal notranslate"><span class="pre">data_quality</span></code></li><li><code class="docutils literal notranslate"><span class="pre">data_recipe</span></code></li><li><code class="docutils literal notranslate"><span class="pre">deliverables_checklist</span></code></li><li><code class="docutils literal notranslate"><span class="pre">general_documentation</span></code></li><li><code class="docutils literal notranslate"><span class="pre">how_to</span></code></li><li><code class="docutils literal notranslate"><span class="pre">important_notice</span></code></li><li><code class="docutils literal notranslate"><span class="pre">instrument_sensor_calibration_documentation</span></code></li><li><code class="docutils literal notranslate"><span class="pre">micro_article</span></code></li><li><code class="docutils literal notranslate"><span class="pre">pi_documentation</span></code></li><li><code class="docutils literal notranslate"><span class="pre">processing_history</span></code></li><li><code class="docutils literal notranslate"><span class="pre">product_history</span></code></li><li><code class="docutils literal notranslate"><span class="pre">product_quality_assessment</span></code></li><li><code class="docutils literal notranslate"><span class="pre">product_usage</span></code></li><li><code class="docutils literal notranslate"><span class="pre">production_history</span></code></li><li><code class="docutils literal notranslate"><span class="pre">publications</span></code></li><li><code class="docutils literal notranslate"><span class="pre">read_me</span></code></li><li><code class="docutils literal notranslate"><span class="pre">related_articles</span></code></li><li><code class="docutils literal notranslate"><span class="pre">requirements_and_design</span></code></li><li><code class="docutils literal notranslate"><span class="pre">science_data_product_software_documentation</span></code></li><li><code class="docutils literal notranslate"><span class="pre">science_data_product_validation</span></code></li><li><code class="docutils literal notranslate"><span class="pre">user_feedback_page</span></code></li><li><code class="docutils literal notranslate"><span class="pre">user_s_guide</span></code></li></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>temporal</strong></p></td>
+<td><p>Object</p></td>
+<td><p>Temporal data with <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code> dates of the dataset coverage in ISO 8601 format.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>version_notes</strong></p></td>
+<td><p>String</p></td>
+<td><p>Notes describing any version changes or updates to the dataset.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>contact_points</strong></p></td>
+<td><p>Array of Objects</p></td>
+<td><p>Contact information for people related to the dataset with <li><code class="docutils literal notranslate"><span class="pre">first_name</span></code></li><li><code class="docutils literal notranslate"><span class="pre">last_name</span></code></li><li><code class="docutils literal notranslate"><span class="pre">organisation</span></code> </li><li><code class="docutils literal notranslate"><span class="pre">email</span></code></li><li> <code class="docutils literal notranslate"><span class="pre">ORCID</span></code></li></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>dataset_owner</strong></p></td>
+<td><p>Object</p></td>
+<td><p>Information about the dataset owner <li><code class="docutils literal notranslate"><span class="pre">organisation</span></code></li><li><code class="docutils literal notranslate"><span class="pre">ror</span></code></li></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>creators</strong></p></td>
+<td><p>Array of Objects</p></td>
+<td><p>Information about the creators of the dataset <li><code class="docutils literal notranslate"><span class="pre">first_name</span></code></li><li><code class="docutils literal notranslate"><span class="pre">last_name</span></code></li><li><code class="docutils literal notranslate"><span class="pre">organisation</span></code> </li><li><code class="docutils literal notranslate"><span class="pre">email</span></code></li><li> <code class="docutils literal notranslate"><span class="pre">ORCID</span></code></li></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>contributors</strong></p></td>
+<td><p>Array of Objects</p></td>
+<td><p>Information about contributors to the dataset <li><code class="docutils literal notranslate"><span class="pre">first_name</span></code></li><li><code class="docutils literal notranslate"><span class="pre">last_name</span></code></li><li><code class="docutils literal notranslate"><span class="pre">organisation</span></code> </li><li><code class="docutils literal notranslate"><span class="pre">email</span></code></li><li> <code class="docutils literal notranslate"><span class="pre">ORCID</span></code></li></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>groups</strong></p></td>
+<td><p>Array of Objects</p></td>
+<td><p>Groups associated with the dataset, including <code class="docutils literal notranslate"><span class="pre">subject</span></code> and <code class="docutils literal notranslate"><span class="pre">institution</span></code> types.  To find valid values for the groups field:  <li>To get all possible subject values, send <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/3/action/group_list?type=subject</span></code></li> <li>To get all possible institution values, send <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/3/action/group_list?type=institution</span></code></li></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>license_id</strong></p></td>
+<td><p>String</p></td>
+<td><p>The ID of the license under which the dataset is published.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>tags</strong></p></td>
+<td><p>Array of Objects</p></td>
+<td><p>A list of tags (keywords) associated with the dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>theme</strong></p></td>
+<td><p>Array of Objects</p></td>
+<td><p>A list of themes related to the dataset, each containing a <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">vocabulary_id</span></code>. Vocabulary ids can be found by sending a <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/3/action/vocabulary_list</span></code> request. List of options per vocabulary can be found by sending a <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/3/action/tag_list?vocabulary_id=&lt;id&gt;</span> </code>request</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>access_rights</strong></p></td>
+<td><p>String</p></td>
+<td><p>The access rights for the dataset: <code class="docutils literal notranslate"><span class="pre">embargoed</span></code>, <code class="docutils literal notranslate"><span class="pre">restricted</span></code>, <code class="docutils literal notranslate"><span class="pre">non-public</span></code>, or <code class="docutils literal notranslate"><span class="pre">public</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>embargoed_until</strong></p></td>
+<td><p>String (ISO Date)</p></td>
+<td><p>The date until which the dataset is embargoed, in ISO 8601 format.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>state</strong></p></td>
+<td><p>String</p></td>
+<td><p>Datasets must be initially created as draft. Value accepts <code class="docutils literal notranslate"><span class="pre">draft</span></code>, <code class="docutils literal notranslate"><span class="pre">inreview</span></code>, <code class="docutils literal notranslate"><span class="pre">pending</span></code>, <code class="docutils literal notranslate"><span class="pre">rejected</span></code>, or <code class="docutils literal notranslate"><span class="pre">active</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>doi</strong></p></td>
+<td><p>String</p></td>
+<td><p>The Digital Object Identifier (DOI) for the dataset if already exist, or it will be generated by the system.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>announcement</strong></p></td>
+<td><p>String</p></td>
+<td><p>An announcement or notice before deleting the dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>deletion_reason</strong></p></td>
+<td><p>String</p></td>
+<td><p>The reason for deleting the dataset.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p>https://orcid.org/</p>
+</aside>
+<aside class="footnote brackets" id="id5" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
+<p>https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry</p>
+</aside>
+</aside>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

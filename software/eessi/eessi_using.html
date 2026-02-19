@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using software provided by EESSI &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="NIRD Toolkit" href="../../nird_toolkit/overview.html" />
+    <link rel="prev" title="Accessing EESSI on NRIS systems" href="eessi_access_on_nris.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appguides.html">Application guides</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../eessi.html">EESSI</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="eessi_motivation.html">Motivation for EESSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eessi_access_on_nris.html">Accessing EESSI on NRIS systems</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using software provided by EESSI</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../eessi.html">EESSI</a></li>
+      <li class="breadcrumb-item active">Using software provided by EESSI</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="using-software-provided-by-eessi">
+<span id="eessi-using"></span><h1>Using software provided by EESSI<a class="headerlink" href="#using-software-provided-by-eessi" title="Link to this heading"></a></h1>
+<p>Once the environment is configured to
+<a class="reference internal" href="eessi_access_on_nris.html#eessi-access-on-nris"><span class="std std-ref">access software provided by EESSI</span></a>, all a
+user has to do is loading module, for example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>module load GROMACS/2024.1-foss-2023b
+</pre></div>
+</div>
+<p><strong>Example job script using EESSI software</strong></p>
+<p>We demonstrate the use of EESSI in a job script using GROMACS as an example. Below is a simple job script.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+#SBATCH --account=REPLACE_WITH_YOUR_NN****K
+#SBATCH --job-name=EESSI_GROMACS
+#SBATCH --partition=normal
+#SBATCH --mem=16G
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=2
+#SBATCH --cpus-per-task=2
+#SBATCH --time=5 # short runtime
+
+module load EESSI/2023.06
+module load GROMACS/2024.1-foss-2023b
+
+# prepare test data if not yet present
+if [ ! -f GROMACS_TestCaseA.tar.gz ]; then
+  curl -OL https://repository.prace-ri.eu/ueabs/GROMACS/1.2/GROMACS_TestCaseA.tar.gz
+fi
+if [ ! -f ion_channel.tpr ]; then
+  tar xfz GROMACS_TestCaseA.tar.gz
+fi
+
+rm -f ener.edr eessi_logfile.log
+
+# run GROMACS, we use &#39;time&#39; to measure how long it runs
+# note: downscaled to just 1k steps (full run is 10k steps)
+time gmx mdrun -ntmpi 2 -ntomp 2 -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 1000
+</pre></div>
+</div>
+<p>Change the account (in line <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--account=REPLACE...</span></code>) in the job script
+above and store it in a file named <code class="docutils literal notranslate"><span class="pre">eessi_gromacs.sh</span></code>
+Then, submit it with</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sbatch eessi_gromacs.sh
+</pre></div>
+</div>
+<p>When the job has ended it should have produced a file <code class="docutils literal notranslate"><span class="pre">slurm-JOBID.out</span></code> where
+<code class="docutils literal notranslate"><span class="pre">JOBID</span></code> is the id of the job that was run.</p>
+<p><strong>Example job script using locally installed software</strong></p>
+<p>We demonstrate the minimal change needed to the run the same software
+(<code class="docutils literal notranslate"><span class="pre">GROMACS</span></code>) using the installations provided locally on the HPC systems the
+following script just comments out the line loading EESSI module (<code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">module</span> <span class="pre">load</span> <span class="pre">EESSI/2023.06</span></code>) and load a locally available GROMACS module</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+#SBATCH --account=REPLACE_WITH_YOUR_NN****K
+#SBATCH --job-name=LOCAL_GROMACS
+#SBATCH --partition=normal
+#SBATCH --mem=16G
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=2
+#SBATCH --cpus-per-task=2
+#SBATCH --time=5 # short runtime
+
+# module load EESSI/2023.06
+module load GROMACS/2023.1-foss-2022a
+
+# prepare test data if not yet present
+if [ ! -f GROMACS_TestCaseA.tar.gz ]; then
+  curl -OL https://repository.prace-ri.eu/ueabs/GROMACS/1.2/GROMACS_TestCaseA.tar.gz
+fi
+if [ ! -f ion_channel.tpr ]; then
+  tar xfz GROMACS_TestCaseA.tar.gz
+fi
+
+rm -f ener.edr eessi_logfile.log
+
+# run GROMACS, we use &#39;time&#39; to measure how long it runs
+# note: downscaled to just 1k steps (full run is 10k steps)
+time gmx mdrun -ntmpi 2 -ntomp 2 -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 1000
+</pre></div>
+</div>
+<p>Change the account (in line <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--account=REPLACE...</span></code>) in the job script
+above and store it in a file named <code class="docutils literal notranslate"><span class="pre">local_gromacs.sh</span></code>
+Then, submit it with</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sbatch local_gromacs.sh
+</pre></div>
+</div>
+<p>When the job has ended it should have produced a file <code class="docutils literal notranslate"><span class="pre">slurm-JOBID.out</span></code> where
+<code class="docutils literal notranslate"><span class="pre">JOBID</span></code> is the id of the job that was run. For the examples above, the <code class="docutils literal notranslate"><span class="pre">slurm-JOBID.out</span></code>
+file contains the following information (among other things):</p>
+<ul>
+<li><p>which program was actually run, e.g., GROMACS conveniently reports somthing like</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Executable:   /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/skylake_avx512/software/GROMACS/2024.1-foss-2023b/bin/gmx
+</pre></div>
+</div>
+<p>Note, when using EESSI, the exact path will be specific to the
+compute node the job was running on, because for each machine the version
+optimised for that CPU architecture is automatically selected.</p>
+</li>
+<li><p>how well GROMACS was run, e.g., it prints <code class="docutils literal notranslate"><span class="pre">Performance</span></code> information (higher
+values for <code class="docutils literal notranslate"><span class="pre">ns/day</span></code> are better, for <code class="docutils literal notranslate"><span class="pre">hours/ns</span></code> lower values are better),</p></li>
+<li><p>finally, the job statistics at the end show how long the overall job was run
+(see <code class="docutils literal notranslate"><span class="pre">Elapsed</span> <span class="pre">wallclock</span> <span class="pre">time</span></code>) and how well the job used the reserved resources
+(see <code class="docutils literal notranslate"><span class="pre">Used</span> <span class="pre">CPU</span> <span class="pre">time</span></code> and <code class="docutils literal notranslate"><span class="pre">Unused</span> <span class="pre">CPU</span> <span class="pre">time</span></code>)</p></li>
+</ul>
+<p><strong>Please, do experiment with the examples above. For example,</strong></p>
+<ul>
+<li><p>In a single job script, execute the software twice (line with <code class="docutils literal notranslate"><span class="pre">time</span> <span class="pre">gmx</span> <span class="pre">...</span></code>)
+to observe different runtimes.</p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">GROMACS</span></code> with another software that is provided by EESSI. All
+available packages can be listed with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">avail</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p><strong>Additional information</strong></p>
+<ul class="simple">
+<li><p>Read about <a class="reference internal" href="../eessi.html#eessi-topics"><span class="std std-ref">more information about EESSI</span></a>.</p></li>
+<li><p>Read more about EESSI at <a class="reference external" href="https://eessi.io/docs">eessi.io/docs</a>.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="eessi_access_on_nris.html" class="btn btn-neutral float-left" title="Accessing EESSI on NRIS systems" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../nird_toolkit/overview.html" class="btn btn-neutral float-right" title="NIRD Toolkit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

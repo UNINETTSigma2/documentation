@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding the job output file &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="How to choose the right amount of memory" href="choosing-memory-settings.html" />
+    <link rel="prev" title="Monitoring jobs" href="monitoring.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Running jobs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="submitting.html">Submitting jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_job_types.html">Job Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts/array_jobs.html">Array Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts.html">Job Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Monitoring jobs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Understanding the job output file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#output-header">Output header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cpu-statistics">CPU statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#disk-statistics">Disk statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gpu-statistics">GPU statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="choosing-memory-settings.html">How to choose the right amount of memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing-number-of-cores.html">How to choose the number of cores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_job_failures.html">Common job failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">How to check the performance and scaling using Arm Performance Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mkl.html">Using MKL efficiently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory-bandwidth.html">Efficient use of memory bandwidth on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-calculations.html">Efficient use of processors and network on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_jobs.html">Interactive jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkpointing.html">Checkpointing Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects_accounting.html">Projects and accounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratchfiles.html">Local storage for scratch files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides.html">Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slurm_commands.html">Useful Slurm commands and tools for managing jobs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="overview.html">Running jobs</a></li>
+      <li class="breadcrumb-item active">Understanding the job output file</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="understanding-the-job-output-file">
+<h1>Understanding the job output file<a class="headerlink" href="#understanding-the-job-output-file" title="Link to this heading"></a></h1>
+<p>When a job begins to run it will create a <code class="docutils literal notranslate"><span class="pre">slurm-&lt;job</span> <span class="pre">id&gt;.out</span></code>. All output,
+both standard output and standard error, is sent to this file. In this way we
+can monitor what our application is doing when it is running under Slurm. Slurm
+will also ensure that no matter how many tasks or number of nodes everything
+printed to standard out will be collected into this output file.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When contacting support with a job error always attach the Slurm script used to
+submit the job as well as the Slurm output file. This helps us understand the
+error and reduces misscommunication.</p>
+</div>
+<p>To illustrate the output we will use the following Slurm script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#SBATCH --account=nn&lt;XXXX&gt;k</span>
+<span class="c1">#SBATCH --job-name=TestGPUOutput</span>
+<span class="c1">#SBATCH --time=12:00</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --cpus-per-task=16</span>
+<span class="c1">#SBATCH --mem-per-cpu=2G</span>
+
+<span class="c1">#SBATCH --partition=accel</span>
+<span class="c1">#SBATCH --gpus=1</span>
+
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w">  </span><span class="c1"># Exit the script on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w">  </span><span class="c1"># Treat any unset variables as an error</span>
+
+module<span class="w"> </span>--quiet<span class="w"> </span>reset<span class="w">  </span><span class="c1"># Reset the modules to the system default</span>
+module<span class="w"> </span>load<span class="w"> </span>hipSYCL/0.9.1-gcccuda-2020b
+module<span class="w"> </span>list<span class="w">     </span><span class="c1"># For easier debugging</span>
+
+<span class="c1"># Activate local virtual environment</span>
+<span class="nb">source</span><span class="w"> </span>env/bin/activate
+<span class="c1"># Run our application test on compute node with GPU</span>
+pytest
+</pre></div>
+</div>
+<p>This script does nothing special and follows the best practises for a Slurm
+script as described in <a class="reference internal" href="job_scripts.html#job-scripts"><span class="std std-ref">our introduction to Slurm scripts</span></a>.
+We ran the script on Saga which produced an output file called
+<code class="docutils literal notranslate"><span class="pre">slurm-4677199.out</span></code>.</p>
+<p>The anatomy of the output file is as follows (we will explain each part in
+detail below):</p>
+<ol class="arabic simple">
+<li><p>Header created when the application launched</p></li>
+<li><p>Application specific output</p></li>
+<li><p>CPU and memory statistics</p></li>
+<li><p>Disk read/write statistics</p></li>
+<li><p>(Optional) GPU statistics</p></li>
+</ol>
+<section id="output-header">
+<h2>Output header<a class="headerlink" href="#output-header" title="Link to this heading"></a></h2>
+<p>Below, we have attached the first 15 lines of the output, from our sample
+application above, which contain some shared information and some job specific
+output. The first highlighted line shows which node(s) the job ran on and when
+it started, this is always added to the output. Next we have highlighted the
+beginning of the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">list</span></code> output. This output can be very useful to check
+if the job does what you expect and allows you to see which software versions
+you were using.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="hll">Starting<span class="w"> </span>job<span class="w"> </span><span class="m">4677199</span><span class="w"> </span>on<span class="w"> </span>c7-2<span class="w"> </span>at<span class="w"> </span>Thu<span class="w"> </span>Dec<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">09</span>:31:53<span class="w"> </span>CET<span class="w"> </span><span class="m">2021</span>
+</span>
+The<span class="w"> </span>following<span class="w"> </span>modules<span class="w"> </span>were<span class="w"> </span>not<span class="w"> </span>unloaded:
+<span class="w">  </span><span class="o">(</span>Use<span class="w"> </span><span class="s2">&quot;module --force purge&quot;</span><span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>all<span class="o">)</span>:
+
+<span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>StdEnv
+
+<span class="hll">Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span class="hll"><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>StdEnv<span class="w">                           </span><span class="o">(</span>S<span class="o">)</span>
+</span><span class="hll"><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>GCCcore/10.2.0
+</span><span class="hll"><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>zlib/1.2.11-GCCcore-10.2.0<span class="w">       </span><span class="o">(</span>H<span class="o">)</span>
+</span><span class="hll"><span class="w">  </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>binutils/2.35-GCCcore-10.2.0<span class="w">     </span><span class="o">(</span>H<span class="o">)</span>
+</span><span class="hll"><span class="w">  </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>GCC/10.2.0
+</span><span class="hll"><span class="w">  </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>CUDAcore/11.1.1
+</span><span class="hll"><span class="w">  </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>CUDA/11.1.1-GCC-10.2.0
+</span></pre></div>
+</div>
+<p>After this follows the application output, which we will not show here as that
+is application specific. However, know that using standard output to log what
+your application is doing at different times can be a good way to better
+understand how your application is running on the HPC machines.</p>
+</section>
+<section id="cpu-statistics">
+<h2>CPU statistics<a class="headerlink" href="#cpu-statistics" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Slurm collects statistics every second, which means that for applications that
+run for a short amount of time the CPU, memory, disk and GPU statistics can be
+a bit missleading. Keep this in mind when developing your Slurm script and when
+scaling up.</p>
+</div>
+<p>Once the application finishes running, either successfully or not, some
+statistics about resource usage is outputted. The first of these are the CPU
+and memory statistics. Using our example from above, here is the CPU and memory
+statistics.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Task<span class="w"> </span>and<span class="w"> </span>CPU<span class="w"> </span>usage<span class="w"> </span>stats:
+<span class="w">       </span>JobID<span class="w">    </span>JobName<span class="w">  </span>AllocCPUS<span class="w">   </span>NTasks<span class="w">     </span>MinCPU<span class="w"> </span>MinCPUTask<span class="w">     </span>AveCPU<span class="w">    </span>Elapsed<span class="w"> </span>ExitCode<span class="w"> </span>
+------------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>--------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>--------<span class="w"> </span>
+<span class="m">4677199</span><span class="w">       </span>run.slurm<span class="w">         </span><span class="m">16</span><span class="w">                                             </span><span class="m">00</span>:01:05<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+<span class="m">4677199</span>.bat+<span class="w">      </span>batch<span class="w">         </span><span class="m">16</span><span class="w">        </span><span class="m">1</span><span class="w">   </span><span class="m">00</span>:02:11<span class="w">          </span><span class="m">0</span><span class="w">   </span><span class="m">00</span>:02:11<span class="w">   </span><span class="m">00</span>:01:05<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+<span class="m">4677199</span>.ext+<span class="w">     </span>extern<span class="w">         </span><span class="m">16</span><span class="w">        </span><span class="m">1</span><span class="w">   </span><span class="m">00</span>:00:00<span class="w">          </span><span class="m">0</span><span class="w">   </span><span class="m">00</span>:00:00<span class="w">   </span><span class="m">00</span>:01:05<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+
+Memory<span class="w"> </span>usage<span class="w"> </span>stats:
+<span class="w">       </span>JobID<span class="w">     </span>MaxRSS<span class="w"> </span>MaxRSSTask<span class="w">     </span>AveRSS<span class="w"> </span>MaxPages<span class="w">   </span>MaxPagesTask<span class="w">   </span>AvePages<span class="w"> </span>
+------------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>--------<span class="w"> </span>--------------<span class="w"> </span>----------<span class="w"> </span>
+<span class="m">4677199</span><span class="w">                                                                          </span>
+<span class="m">4677199</span>.bat+<span class="w">    </span>150344K<span class="w">          </span><span class="m">0</span><span class="w">    </span>150344K<span class="w">        </span><span class="m">0</span><span class="w">              </span><span class="m">0</span><span class="w">          </span><span class="m">0</span><span class="w"> </span>
+<span class="m">4677199</span>.ext+<span class="w">          </span><span class="m">0</span><span class="w">          </span><span class="m">0</span><span class="w">          </span><span class="m">0</span><span class="w">        </span><span class="m">0</span><span class="w">              </span><span class="m">0</span><span class="w">          </span><span class="m">0</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>In the above output we can see a few different things, but lets first explain
+the meaning of <code class="docutils literal notranslate"><span class="pre">batch</span></code> and <code class="docutils literal notranslate"><span class="pre">extern</span></code>. When you submit a Slurm script the script
+itself is counted as <code class="docutils literal notranslate"><span class="pre">batch</span></code> by Slurm. That means that any resources used by
+your Slurm script is accounted for under this heading. If you run a command
+directly within the Slurm script the time this command used will be accounted
+for under <code class="docutils literal notranslate"><span class="pre">batch</span></code>. Looking back at our Slurm script above we can see that the
+main application was <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, we could alternatively have used <code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">pytest</span></code>
+which would create a new line in the output which would account for everything
+under the <code class="docutils literal notranslate"><span class="pre">srun</span></code> call (multiple <code class="docutils literal notranslate"><span class="pre">srun</span></code> calls are accounted in separate line
+items in the output). <code class="docutils literal notranslate"><span class="pre">extern</span></code> is everything outside these two usages and
+should be fairly small, one example of an <code class="docutils literal notranslate"><span class="pre">extern</span></code> usage is SSH-ing to the node
+where your code is running and inspecting, where the resources used during the
+inspection would be accounted for under <code class="docutils literal notranslate"><span class="pre">extern</span></code>.</p>
+<hr class="docutils" />
+<p>Below, we have highlighted the <code class="docutils literal notranslate"><span class="pre">batch</span></code> step in both the CPU and memory
+statistics, this is most likely where you would find the most useful
+information. In the CPU statistics we can see that we allocated 16 CPU cores
+(<code class="docutils literal notranslate"><span class="pre">AllocCPUS</span></code>), for 1 task (<code class="docutils literal notranslate"><span class="pre">NTasks</span></code>), the script ran for 1 minute (<code class="docutils literal notranslate"><span class="pre">Elapsed</span></code>),
+but the 16 CPU cores ran for around 2 minutes in total (<code class="docutils literal notranslate"><span class="pre">AveCPU</span></code>). Lastly, we
+can see that the job ended successfully since the <code class="docutils literal notranslate"><span class="pre">ExitCode</span></code> is <code class="docutils literal notranslate"><span class="pre">0:0</span></code> (an exit
+code of <code class="docutils literal notranslate"><span class="pre">0</span></code> means success on Linux).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Task<span class="w"> </span>and<span class="w"> </span>CPU<span class="w"> </span>usage<span class="w"> </span>stats:
+<span class="w">       </span>JobID<span class="w">    </span>JobName<span class="w">  </span>AllocCPUS<span class="w">   </span>NTasks<span class="w">     </span>MinCPU<span class="w"> </span>MinCPUTask<span class="w">     </span>AveCPU<span class="w">    </span>Elapsed<span class="w"> </span>ExitCode<span class="w"> </span>
+------------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>--------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>--------<span class="w"> </span>
+<span class="m">4677199</span><span class="w">       </span>run.slurm<span class="w">         </span><span class="m">16</span><span class="w">                                             </span><span class="m">00</span>:01:05<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+<span class="hll"><span class="m">4677199</span>.bat+<span class="w">      </span>batch<span class="w">         </span><span class="m">16</span><span class="w">        </span><span class="m">1</span><span class="w">   </span><span class="m">00</span>:02:11<span class="w">          </span><span class="m">0</span><span class="w">   </span><span class="m">00</span>:02:11<span class="w">   </span><span class="m">00</span>:01:05<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+</span><span class="m">4677199</span>.ext+<span class="w">     </span>extern<span class="w">         </span><span class="m">16</span><span class="w">        </span><span class="m">1</span><span class="w">   </span><span class="m">00</span>:00:00<span class="w">          </span><span class="m">0</span><span class="w">   </span><span class="m">00</span>:00:00<span class="w">   </span><span class="m">00</span>:01:05<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+
+Memory<span class="w"> </span>usage<span class="w"> </span>stats:
+<span class="w">       </span>JobID<span class="w">     </span>MaxRSS<span class="w"> </span>MaxRSSTask<span class="w">     </span>AveRSS<span class="w"> </span>MaxPages<span class="w">   </span>MaxPagesTask<span class="w">   </span>AvePages<span class="w"> </span>
+------------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>--------<span class="w"> </span>--------------<span class="w"> </span>----------<span class="w"> </span>
+<span class="m">4677199</span><span class="w">                                                                          </span>
+<span class="hll"><span class="m">4677199</span>.bat+<span class="w">    </span>150344K<span class="w">          </span><span class="m">0</span><span class="w">    </span>150344K<span class="w">        </span><span class="m">0</span><span class="w">              </span><span class="m">0</span><span class="w">          </span><span class="m">0</span><span class="w"> </span>
+</span><span class="m">4677199</span>.ext+<span class="w">          </span><span class="m">0</span><span class="w">          </span><span class="m">0</span><span class="w">          </span><span class="m">0</span><span class="w">        </span><span class="m">0</span><span class="w">              </span><span class="m">0</span><span class="w">          </span><span class="m">0</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>The other line we highlighted above is the memory footprint of our application.
+The most pertinent information here is the maximum memory used (<code class="docutils literal notranslate"><span class="pre">MaxRSS</span></code>) (note
+that this is the maximum of memory used by any task and <em>not</em> the total memory
+footprint of the application as a whole) and the average memory used
+(<code class="docutils literal notranslate"><span class="pre">AveRSS</span></code>), which is the average Resident Set Size over all tasks in the given job step (for example, if you run <code class="docutils literal notranslate"><span class="pre">srun</span></code> several times in a job, each will get their own AveRSS and the job script itself is counted as the .batch job step). Above, we can see that our application used a maximum of <code class="docutils literal notranslate"><span class="pre">150344</span> <span class="pre">KiB</span></code> (or around <code class="docutils literal notranslate"><span class="pre">147</span> <span class="pre">MiB</span></code>). This information is very important as that can be
+used to optimize your Slurm script to request less memory (and thus be
+scheduled quicker).</p>
+</section>
+<section id="disk-statistics">
+<h2>Disk statistics<a class="headerlink" href="#disk-statistics" title="Link to this heading"></a></h2>
+<p>The next information shows our applications disk usage. This information is
+important because it can help you reduce unnecessary disk access which is not
+the fastest for small files.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Disk<span class="w"> </span>usage<span class="w"> </span>stats:
+<span class="w">       </span>JobID<span class="w">  </span>MaxDiskRead<span class="w"> </span>MaxDiskReadTask<span class="w">    </span>AveDiskRead<span class="w"> </span>MaxDiskWrite<span class="w"> </span>MaxDiskWriteTask<span class="w">   </span>AveDiskWrite<span class="w"> </span>
+------------<span class="w"> </span>------------<span class="w"> </span>---------------<span class="w"> </span>--------------<span class="w"> </span>------------<span class="w"> </span>----------------<span class="w"> </span>--------------<span class="w"> </span>
+<span class="m">4677199</span><span class="w">                                                                                               </span>
+<span class="hll"><span class="m">4677199</span>.bat+<span class="w">        </span><span class="m">8</span>.55M<span class="w">               </span><span class="m">0</span><span class="w">          </span><span class="m">8</span>.55M<span class="w">        </span><span class="m">0</span>.05M<span class="w">                </span><span class="m">0</span><span class="w">          </span><span class="m">0</span>.05M<span class="w"> </span>
+</span><span class="m">4677199</span>.ext+<span class="w">        </span><span class="m">0</span>.00M<span class="w">               </span><span class="m">0</span><span class="w">          </span><span class="m">0</span>.00M<span class="w">            </span><span class="m">0</span><span class="w">                </span><span class="m">0</span><span class="w">              </span><span class="m">0</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>As we can see, our test application reads a bit of data, but writes very
+little.</p>
+</section>
+<section id="gpu-statistics">
+<h2>GPU statistics<a class="headerlink" href="#gpu-statistics" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>GPU statistics is only outputted if your Slurm script
+<a class="reference internal" href="../code_development/guides/gpu.html#gpu-intro"><span class="std std-ref">requests one or more GPUs</span></a>.</p>
+<p>Currently, only Saga supports automatic GPU metric collection. We are working
+on enabling the same support on Betzy. One alternative that works on both Saga
+and Betzy, but require manual intervention,
+<a class="reference internal" href="../code_development/guides/gpu/cuda.html#cuda-c"><span class="std std-ref">is described in our CUDA introduction</span></a>.</p>
+</div>
+<p>To give some indications on how your applications interacts with GPUs, the
+following GPU statistics is collected during a run. The first thing to note in
+the GPU output is that statistics is collected for all GPUs requested, and each
+GPU is displayed separately. Below we have highlighted the information of most
+interest.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>GPU<span class="w"> </span>usage<span class="w"> </span>stats:
+Successfully<span class="w"> </span>retrieved<span class="w"> </span>statistics<span class="w"> </span><span class="k">for</span><span class="w"> </span>job:<span class="w"> </span><span class="m">4677199</span>.<span class="w"> </span>
++------------------------------------------------------------------------------+
+<span class="p">|</span><span class="w"> </span>GPU<span class="w"> </span>ID:<span class="w"> </span><span class="m">0</span><span class="w">                                                                    </span><span class="p">|</span>
++<span class="o">====================================</span>+<span class="o">=========================================</span>+
+<span class="p">|</span>-----<span class="w">  </span>Execution<span class="w"> </span>Stats<span class="w">  </span>------------+-----------------------------------------<span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Start<span class="w"> </span>Time<span class="w">                         </span><span class="p">|</span><span class="w"> </span>Thu<span class="w"> </span>Dec<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">09</span>:31:54<span class="w"> </span><span class="m">2021</span><span class="w">                </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>End<span class="w"> </span>Time<span class="w">                           </span><span class="p">|</span><span class="w"> </span>Thu<span class="w"> </span>Dec<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">09</span>:32:58<span class="w"> </span><span class="m">2021</span><span class="w">                </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Total<span class="w"> </span>Execution<span class="w"> </span>Time<span class="w"> </span><span class="o">(</span>sec<span class="o">)</span><span class="w">         </span><span class="p">|</span><span class="w"> </span><span class="m">64</span>.4<span class="w">                                    </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>No.<span class="w"> </span>of<span class="w"> </span>Processes<span class="w">                   </span><span class="p">|</span><span class="w"> </span><span class="m">1</span><span class="w">                                       </span><span class="p">|</span>
++-----<span class="w">  </span>Performance<span class="w"> </span>Stats<span class="w">  </span>----------+-----------------------------------------+
+<span class="p">|</span><span class="w"> </span>Energy<span class="w"> </span>Consumed<span class="w"> </span><span class="o">(</span>Joules<span class="o">)</span><span class="w">           </span><span class="p">|</span><span class="w"> </span><span class="m">3104</span><span class="w">                                    </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Power<span class="w"> </span>Usage<span class="w"> </span><span class="o">(</span>Watts<span class="o">)</span><span class="w">                </span><span class="p">|</span><span class="w"> </span>Avg:<span class="w"> </span><span class="m">103</span>.465,<span class="w"> </span>Max:<span class="w"> </span><span class="m">172</span>.91,<span class="w"> </span>Min:<span class="w"> </span><span class="m">34</span>.02<span class="w">   </span><span class="p">|</span>
+<span class="hll"><span class="p">|</span><span class="w"> </span>Max<span class="w"> </span>GPU<span class="w"> </span>Memory<span class="w"> </span>Used<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span><span class="w">        </span><span class="p">|</span><span class="w"> </span><span class="m">466616320</span><span class="w">                               </span><span class="p">|</span>
+</span><span class="p">|</span><span class="w"> </span>SM<span class="w"> </span>Clock<span class="w"> </span><span class="o">(</span>MHz<span class="o">)</span><span class="w">                     </span><span class="p">|</span><span class="w"> </span>Avg:<span class="w"> </span><span class="m">1258</span>,<span class="w"> </span>Max:<span class="w"> </span><span class="m">1328</span>,<span class="w"> </span>Min:<span class="w"> </span><span class="m">1189</span><span class="w">         </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Memory<span class="w"> </span>Clock<span class="w"> </span><span class="o">(</span>MHz<span class="o">)</span><span class="w">                 </span><span class="p">|</span><span class="w"> </span>Avg:<span class="w"> </span><span class="m">715</span>,<span class="w"> </span>Max:<span class="w"> </span><span class="m">715</span>,<span class="w"> </span>Min:<span class="w"> </span><span class="m">715</span><span class="w">            </span><span class="p">|</span>
+<span class="hll"><span class="p">|</span><span class="w"> </span>SM<span class="w"> </span>Utilization<span class="w"> </span><span class="o">(</span>%<span class="o">)</span><span class="w">                 </span><span class="p">|</span><span class="w"> </span>Avg:<span class="w"> </span><span class="m">50</span>,<span class="w"> </span>Max:<span class="w"> </span><span class="m">100</span>,<span class="w"> </span>Min:<span class="w"> </span><span class="m">0</span><span class="w">               </span><span class="p">|</span>
+</span><span class="hll"><span class="p">|</span><span class="w"> </span>Memory<span class="w"> </span>Utilization<span class="w"> </span><span class="o">(</span>%<span class="o">)</span><span class="w">             </span><span class="p">|</span><span class="w"> </span>Avg:<span class="w"> </span><span class="m">8</span>,<span class="w"> </span>Max:<span class="w"> </span><span class="m">17</span>,<span class="w"> </span>Min:<span class="w"> </span><span class="m">0</span><span class="w">                 </span><span class="p">|</span>
+</span><span class="hll"><span class="p">|</span><span class="w"> </span>PCIe<span class="w"> </span>Rx<span class="w"> </span>Bandwidth<span class="w"> </span><span class="o">(</span>megabytes<span class="o">)</span><span class="w">      </span><span class="p">|</span><span class="w"> </span>Avg:<span class="w"> </span>N/A,<span class="w"> </span>Max:<span class="w"> </span>N/A,<span class="w"> </span>Min:<span class="w"> </span>N/A<span class="w">            </span><span class="p">|</span>
+</span><span class="hll"><span class="p">|</span><span class="w"> </span>PCIe<span class="w"> </span>Tx<span class="w"> </span>Bandwidth<span class="w"> </span><span class="o">(</span>megabytes<span class="o">)</span><span class="w">      </span><span class="p">|</span><span class="w"> </span>Avg:<span class="w"> </span>N/A,<span class="w"> </span>Max:<span class="w"> </span>N/A,<span class="w"> </span>Min:<span class="w"> </span>N/A<span class="w">            </span><span class="p">|</span>
+</span>+-----<span class="w">  </span>Event<span class="w"> </span>Stats<span class="w">  </span>----------------+-----------------------------------------+
+<span class="p">|</span><span class="w"> </span>Single<span class="w"> </span>Bit<span class="w"> </span>ECC<span class="w"> </span>Errors<span class="w">              </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w">                                       </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Double<span class="w"> </span>Bit<span class="w"> </span>ECC<span class="w"> </span>Errors<span class="w">              </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w">                                       </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>PCIe<span class="w"> </span>Replay<span class="w"> </span>Warnings<span class="w">               </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w">                                       </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Critical<span class="w"> </span>XID<span class="w"> </span>Errors<span class="w">                </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w">                                       </span><span class="p">|</span>
++-----<span class="w">  </span>Slowdown<span class="w"> </span>Stats<span class="w">  </span>-------------+-----------------------------------------+
+<span class="p">|</span><span class="w"> </span>Due<span class="w"> </span>to<span class="w"> </span>-<span class="w"> </span>Power<span class="w"> </span><span class="o">(</span>%<span class="o">)</span><span class="w">                 </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w">                                       </span><span class="p">|</span>
+<span class="p">|</span><span class="w">        </span>-<span class="w"> </span>Thermal<span class="w"> </span><span class="o">(</span>%<span class="o">)</span><span class="w">               </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w">                                       </span><span class="p">|</span>
+<span class="p">|</span><span class="w">        </span>-<span class="w"> </span>Reliability<span class="w"> </span><span class="o">(</span>%<span class="o">)</span><span class="w">           </span><span class="p">|</span><span class="w"> </span>Not<span class="w"> </span>Supported<span class="w">                           </span><span class="p">|</span>
+<span class="p">|</span><span class="w">        </span>-<span class="w"> </span>Board<span class="w"> </span>Limit<span class="w"> </span><span class="o">(</span>%<span class="o">)</span><span class="w">           </span><span class="p">|</span><span class="w"> </span>Not<span class="w"> </span>Supported<span class="w">                           </span><span class="p">|</span>
+<span class="p">|</span><span class="w">        </span>-<span class="w"> </span>Low<span class="w"> </span>Utilization<span class="w"> </span><span class="o">(</span>%<span class="o">)</span><span class="w">       </span><span class="p">|</span><span class="w"> </span>Not<span class="w"> </span>Supported<span class="w">                           </span><span class="p">|</span>
+<span class="p">|</span><span class="w">        </span>-<span class="w"> </span>Sync<span class="w"> </span>Boost<span class="w"> </span><span class="o">(</span>%<span class="o">)</span><span class="w">            </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w">                                       </span><span class="p">|</span>
++--<span class="w">  </span>Compute<span class="w"> </span>Process<span class="w"> </span>Utilization<span class="w">  </span>---+-----------------------------------------+
+<span class="hll"><span class="p">|</span><span class="w"> </span>PID<span class="w">                                </span><span class="p">|</span><span class="w"> </span><span class="m">7392</span><span class="w">                                    </span><span class="p">|</span>
+</span><span class="hll"><span class="p">|</span><span class="w">     </span>Avg<span class="w"> </span>SM<span class="w"> </span>Utilization<span class="w"> </span><span class="o">(</span>%<span class="o">)</span><span class="w">         </span><span class="p">|</span><span class="w"> </span><span class="m">15</span><span class="w">                                      </span><span class="p">|</span>
+</span><span class="hll"><span class="p">|</span><span class="w">     </span>Avg<span class="w"> </span>Memory<span class="w"> </span>Utilization<span class="w"> </span><span class="o">(</span>%<span class="o">)</span><span class="w">     </span><span class="p">|</span><span class="w"> </span><span class="m">2</span><span class="w">                                       </span><span class="p">|</span>
+</span>+-----<span class="w">  </span>Overall<span class="w"> </span>Health<span class="w">  </span>-------------+-----------------------------------------+
+<span class="p">|</span><span class="w"> </span>Overall<span class="w"> </span>Health<span class="w">                     </span><span class="p">|</span><span class="w"> </span>Healthy<span class="w">                                 </span><span class="p">|</span>
++------------------------------------+-----------------------------------------+
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">GPU</span> <span class="pre">Memory</span> <span class="pre">Used</span></code> is quite self explanatory, but can be important to check
+(maybe your application can trade higher memory usage for more performance).<code class="docutils literal notranslate"><span class="pre">SM</span> <span class="pre">Utilization</span></code> describes how well our application used the GPU compute resources.
+If the maximum value here is low this could be an indication that your
+application is not utilizing the requested GPUs. For our example application
+not all steps utilized a GPU so we get a medium average utilization. The other
+variable to pay extra attention to is the <code class="docutils literal notranslate"><span class="pre">Memory</span> <span class="pre">Utilization</span></code> which describes
+how well our application utilized the GPU memory bandwidth. For longer running
+application optimizing memory transfer is one of the first optimization that
+should be undertaken for GPU optimization.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The information under <code class="docutils literal notranslate"><span class="pre">PID</span></code> tends to not be as accurate as the other
+information so take this with a grain of salt.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="monitoring.html" class="btn btn-neutral float-left" title="Monitoring jobs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="choosing-memory-settings.html" class="btn btn-neutral float-right" title="How to choose the right amount of memory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

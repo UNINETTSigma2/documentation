@@ -1,0 +1,505 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File transfer &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Editing files" href="editing_files.html" />
+    <link rel="prev" title="Applying for computing and storage" href="applying_resources.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">File transfer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#transferring-files-between-your-computer-and-a-compute-cluster-or-storage-resource">Transferring files between your computer and a compute cluster or storage resource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rsync-using-compression">rsync using compression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#problem-with-many-small-files">Problem with many small files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advantages-over-scp-and-similar-tools">Advantages over scp and similar tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rclone-handle-huge-number-of-files-very-efficient">rclone handle huge number of files very efficient</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#transferring-files-between-betzy-olivia-saga-and-nird">Transferring files between Betzy/Olivia/Saga and NIRD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-to-do-if-rsync-is-not-fast-enough">What to do if rsync is not fast enough?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rclone-as-a-faster-alternative"><em>rclone</em> as a faster alternative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-broken-pipe-error-during-transfer">Troubleshooting: “Broken pipe” error during transfer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">File transfer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-transfer">
+<span id="id1"></span><h1>File transfer<a class="headerlink" href="#file-transfer" title="Link to this heading"></a></h1>
+<div class="admonition-summary-use-rsync-for-file-transfer admonition">
+<p class="admonition-title">Summary: use rsync for file transfer</p>
+<p>For file transfer to/from and between compute and storage systems (Betzy,
+Saga, NIRD), <strong>we recommend <code class="docutils literal notranslate"><span class="pre">rsync</span></code></strong>. This tool is often faster than <code class="docutils literal notranslate"><span class="pre">scp</span></code> (for
+many small files and it does not copy files that are already there) and
+potentially also safer against accidental file overwrites.
+For more details, see <a class="reference internal" href="#advantages-over-scp"><span class="std std-ref">Advantages over scp and similar tools</span></a>.</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">rsync</span></code>, there is <strong>no need to zip/tar files first</strong>.</p>
+<p>On Windows, many other tools exist (<a class="reference external" href="https://winscp.net/">WinSCP</a>,
+<a class="reference external" href="https://filezilla-project.org/">FileZilla</a>,
+<a class="reference external" href="https://mobaxterm.mobatek.net/">MobaXterm</a>, and others), but we recommend to
+use <code class="docutils literal notranslate"><span class="pre">rsync</span></code> through <a class="reference external" href="https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux">Windows Subsystem for Linux
+(WSL)</a>.</p>
+<p>For large data transfers <code class="docutils literal notranslate"><span class="pre">rclone</span></code> is an option which offer better performance through
+multiple transfers, see below.</p>
+<p>For transfers to and from <a class="reference external" href="https://documentation.sigma2.no/files_storage/nird/s3.html#nird-s3">NIRD the S3</a>
+protocol is also an option. It can reach very high performance as all object transfers are
+independent of each other.</p>
+</div>
+<p><strong>NB</strong>: Since the implementation of 2FA (2 factor authentication) on NRIS clusters,
+you might experience issues while using Filezilla, in which you never get asked to
+provide the 2fa key before the password. To fix this, (in Filezilla) you need to go
+to <code class="docutils literal notranslate"><span class="pre">Site</span> <span class="pre">Manager</span></code> and change <code class="docutils literal notranslate"><span class="pre">Protocol</span> <span class="pre">Type</span></code> to <code class="docutils literal notranslate"><span class="pre">Interactive</span></code>.</p>
+<section id="transferring-files-between-your-computer-and-a-compute-cluster-or-storage-resource">
+<h2>Transferring files between your computer and a compute cluster or storage resource<a class="headerlink" href="#transferring-files-between-your-computer-and-a-compute-cluster-or-storage-resource" title="Link to this heading"></a></h2>
+<p>This is a good starting point but below we will explain what these components
+and options mean:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rsync<span class="w"> </span>--info<span class="o">=</span>progress2<span class="w"> </span>-a<span class="w"> </span>file-name<span class="w">       </span>username@cluster:receiving-directory
+<span class="gp">$ </span>rsync<span class="w"> </span>--info<span class="o">=</span>progress2<span class="w"> </span>-a<span class="w"> </span>directory-name/<span class="w"> </span>username@cluster:receiving-directory/directory-name
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--info=progress2</span></code>: This will show progress (how many percent, how much time
+left). You can also leave it out if you don’t need to know how far the
+copying is. There is also a <code class="docutils literal notranslate"><span class="pre">--progress</span></code> option but that one will show
+progress for each file individually and often you rather want to know the
+overall progress.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-a</span></code>: Preserves ownership and time stamp and includes the <code class="docutils literal notranslate"><span class="pre">-r</span></code> option which copies
+folders recursively.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file-name</span></code> or <code class="docutils literal notranslate"><span class="pre">directory-name</span></code>: These are on your computer and you want to
+transfer them to the receiving server.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">username</span></code>: Your username on the remote cluster. If your usernames on your
+local computer and on the remote resource are the same, you can leave out the
+<code class="docutils literal notranslate"><span class="pre">username&#64;</span></code> part.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: The remote server. For example: <code class="docutils literal notranslate"><span class="pre">saga.sigma2.no</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">receiving-directory</span></code>: The directory on the remote server which will receive the file(s) and/or directories.</p></li>
+</ul>
+<p>If you want to make sure that <code class="docutils literal notranslate"><span class="pre">rsync</span></code> does not overwrite files that are newer
+on the receiving end, add the <code class="docutils literal notranslate"><span class="pre">--update</span></code> option.</p>
+<p>If you want to <code class="docutils literal notranslate"><span class="pre">rsync</span></code> between two computers that both offer an SSH connection, note that then
+you can use <code class="docutils literal notranslate"><span class="pre">rsync</span></code> both ways: from cluster A to cluster B, but also the reverse.</p>
+<div class="admonition-rsync-directory admonition">
+<p class="admonition-title">rsync directory</p>
+<p>Please note that there is a trailing slash (<code class="docutils literal notranslate"><span class="pre">/</span></code>) at the end of the first argument in the
+syntax of the second command, while rsync directories, ie:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rsync<span class="w"> </span>--info<span class="o">=</span>progress2<span class="w"> </span>-a<span class="w"> </span>directory-name/<span class="w"> </span>username@cluster:receiving-directory/directory-name
+</pre></div>
+</div>
+<p>This trailing slash (<code class="docutils literal notranslate"><span class="pre">/</span></code>) signifies the contents of the directory <code class="docutils literal notranslate"><span class="pre">directory-name</span></code>.
+The outcome would create a hierarchy like the following on your cluster:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">~/receiving-directory/directory-name/contents-of-the-dir</span>
+</pre></div>
+</div>
+<p>Without the trailing slash, <code class="docutils literal notranslate"><span class="pre">directory-name</span></code>, including the directory, would be placed within your receiving directory.
+The outcome would be the following on the cluster:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">~/receiving-directory/directory-name/directory-name/contents-of-the-dir</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="rsync-using-compression">
+<h2>rsync using compression<a class="headerlink" href="#rsync-using-compression" title="Link to this heading"></a></h2>
+<p>If you have a strong CPU at both ends of the line, and you’re on a slow
+network, you can save bandwidth by compressing the data with the <code class="docutils literal notranslate"><span class="pre">-z</span></code> flag:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rsync<span class="w"> </span>--info<span class="o">=</span>progress2<span class="w"> </span>-az<span class="w"> </span>file-name<span class="w">      </span>username@cluster:receiving-directory
+<span class="gp">$ </span>rsync<span class="w"> </span>--info<span class="o">=</span>progress2<span class="w"> </span>-az<span class="w"> </span>directory-name<span class="w"> </span>username@cluster:receiving-directory/directory-name
+</pre></div>
+</div>
+</section>
+<section id="problem-with-many-small-files">
+<h2>Problem with many small files<a class="headerlink" href="#problem-with-many-small-files" title="Link to this heading"></a></h2>
+<p>Many small files are often not great for the transfer (although <code class="docutils literal notranslate"><span class="pre">rsync</span></code> does
+not seem to mind but for <code class="docutils literal notranslate"><span class="pre">scp</span></code> this can make a big difference, see below). Many
+tiny files are often also a problem for parallel file systems. If you develop
+programs for high-performance computing, avoid using very many tiny files.</p>
+</section>
+<section id="advantages-over-scp-and-similar-tools">
+<span id="advantages-over-scp"></span><h2>Advantages over scp and similar tools<a class="headerlink" href="#advantages-over-scp-and-similar-tools" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rsync</span></code> will not transfer files if they already exist and do not differ.</p></li>
+<li><p>With <code class="docutils literal notranslate"><span class="pre">rsync</span> <span class="pre">--update</span></code> you can avoid accidentally overwriting newer files in the destination directory.</p></li>
+<li><p>You can use compression for file transfer.</p></li>
+<li><p>Resumes interrupted transfers.</p></li>
+<li><p>More flexibility and better cross-platform support.</p></li>
+</ul>
+<p>Typically people recommend <code class="docutils literal notranslate"><span class="pre">scp</span></code> for file transfer and we have also done this
+in the past. But let us here compare <code class="docutils literal notranslate"><span class="pre">scp</span></code> with <code class="docutils literal notranslate"><span class="pre">rsync</span></code>.  In this example I
+tried to transfer a 100 MB file from my home computer (not on the fast
+university network) to a cluster, either as one large file or split into 5000
+smaller files.</p>
+<p>For one or few files it does not matter:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>scp<span class="w"> </span>file.txt<span class="w"> </span>username@cluster:directory
+<span class="c1"># 81 sec</span>
+
+$<span class="w"> </span>rsync<span class="w"> </span>--info<span class="o">=</span>progress2<span class="w"> </span>-a<span class="w"> </span>file.txt<span class="w"> </span>username@cluster:directory
+<span class="c1"># 79 sec</span>
+
+$<span class="w"> </span>rsync<span class="w"> </span>--info<span class="o">=</span>progress2<span class="w"> </span>-az<span class="w"> </span>file.txt<span class="w"> </span>username@cluster:directory
+<span class="c1"># 61 sec</span>
+</pre></div>
+</div>
+<p>However, <strong>it can matter a lot if you want to transfer many small files</strong>.
+Notice how the transfer takes 10 times longer with <code class="docutils literal notranslate"><span class="pre">scp</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>scp<span class="w"> </span>-r<span class="w"> </span>many-files<span class="w"> </span>username@cluster:directory
+<span class="hll"><span class="c1"># 833 sec</span>
+</span>
+$<span class="w"> </span>rsync<span class="w"> </span>--info<span class="o">=</span>progress2<span class="w"> </span>-a<span class="w"> </span>many-files<span class="w"> </span>username@cluster:directory/many-files
+<span class="hll"><span class="c1"># 81 sec</span>
+</span>
+$<span class="w"> </span>rsync<span class="w"> </span>--info<span class="o">=</span>progress2<span class="w"> </span>-az<span class="w"> </span>many-files<span class="w"> </span>username@cluster:directory/many-files
+<span class="c1"># 62 sec</span>
+</pre></div>
+</div>
+<p>In the above example, <code class="docutils literal notranslate"><span class="pre">scp</span></code> struggles with many small files but <code class="docutils literal notranslate"><span class="pre">rsync</span></code> does
+not seem to mind.  For <code class="docutils literal notranslate"><span class="pre">scp</span></code> we would have to first <code class="docutils literal notranslate"><span class="pre">tar</span></code>/<code class="docutils literal notranslate"><span class="pre">zip</span></code> the small files
+to one large file but for <code class="docutils literal notranslate"><span class="pre">rsync</span></code> we don’t have to.</p>
+<section id="rclone-handle-huge-number-of-files-very-efficient">
+<h3>rclone handle huge number of files very efficient<a class="headerlink" href="#rclone-handle-huge-number-of-files-very-efficient" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">rclone</span></code> can utilise multiple threads / streams to run multiple transfers in
+parallel.</p>
+<p>An example copying the same files in the example above (this does the transfer from Saga
+to Olivia):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rclone<span class="w"> </span>copy<span class="w"> </span>SAGA:/cluster/work/users/user/many-files<span class="w"> </span>.<span class="w"> </span>-P<span class="w"> </span>--transfers<span class="o">=</span><span class="m">30</span><span class="w"> </span>--ignore-checksum
+</pre></div>
+</div>
+<p>The following table is illustrative of the performance.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Transfer application</p></th>
+<th class="head text-center"><p>Options or threads</p></th>
+<th class="head text-center"><p>Wall time [seconds]</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>scp</p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p>833</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>rsync</p></td>
+<td class="text-center"><p>-a</p></td>
+<td class="text-center"><p>81</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>rsync</p></td>
+<td class="text-center"><p>-az</p></td>
+<td class="text-center"><p>62</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>rclone</p></td>
+<td class="text-center"><p>–transfers=10</p></td>
+<td class="text-center"><p>25</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>rclone</p></td>
+<td class="text-center"><p>20</p></td>
+<td class="text-center"><p>15</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>rclone</p></td>
+<td class="text-center"><p>30</p></td>
+<td class="text-center"><p>11</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>rclone</p></td>
+<td class="text-center"><p>40</p></td>
+<td class="text-center"><p>10</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>rclone</p></td>
+<td class="text-center"><p>50</p></td>
+<td class="text-center"><p>9</p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">rclone</span></code> can keep a large number of operations in flight Simultaneously which
+is the reaon for it being so effcient.</p>
+<div class="admonition-how-was-the-test-data-created admonition">
+<p class="admonition-title">How was the test data created?</p>
+<p>Just in case anybody wants to try the above example on their own, we used this
+script to generate the example data:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+
+<span class="c1"># create a file that is 100 MB large</span>
+base64<span class="w"> </span>/dev/urandom<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-c<span class="w"> </span><span class="m">100000000</span><span class="w"> </span>&gt;<span class="w"> </span>file.txt
+
+<span class="c1"># split into 5000 smaller files</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>many-files
+<span class="nb">cd</span><span class="w"> </span>many-files
+split<span class="w"> </span>-n<span class="w"> </span><span class="m">5000</span><span class="w"> </span>../file.txt
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="transferring-files-between-betzy-olivia-saga-and-nird">
+<h2>Transferring files between Betzy/Olivia/Saga and NIRD<a class="headerlink" href="#transferring-files-between-betzy-olivia-saga-and-nird" title="Link to this heading"></a></h2>
+<p>The easiest way to transfer files between clusters  is to set up
+<a class="reference external" href="https://documentation.sigma2.no/getting_started/ssh.html#connecting-to-a-server">ssh-keypair</a>.
+Once (following the guide) there’s a private/public key on sender/receiver,
+you won’t need to authenticate with password + otp. Note that the guide above
+is currently only limited to cross-cluster connections/transfers.</p>
+<p>Since NIRD is mounted on the login nodes of Betzy, Olivia, and Saga,
+one can use regular
+<code class="docutils literal notranslate"><span class="pre">cp</span></code> or <code class="docutils literal notranslate"><span class="pre">mv</span></code> commands on the cluster login nodes to copy or
+move files into or out of the NIRD project areas.</p>
+<p>For more information, please check out the page about
+<a class="reference internal" href="../files_storage/clusters.html#storage-areas"><span class="std std-ref">Storage areas on HPC clusters</span></a>.</p>
+</section>
+<section id="what-to-do-if-rsync-is-not-fast-enough">
+<h2>What to do if rsync is not fast enough?<a class="headerlink" href="#what-to-do-if-rsync-is-not-fast-enough" title="Link to this heading"></a></h2>
+<p>Disk speed, meta-data performance, network speed, and firewall speed may limit
+the transfer bandwidth.</p>
+<p>If you have access to a network with a large bandwidth and you are sure that
+you are limited by the one <code class="docutils literal notranslate"><span class="pre">rsync</span></code> process and not by something else, you can
+start multiple <code class="docutils literal notranslate"><span class="pre">rsync</span></code> processes, by piping a list of paths to <code class="docutils literal notranslate"><span class="pre">xargs</span></code> or
+<code class="docutils literal notranslate"><span class="pre">parallel</span></code> which launches multiple <code class="docutils literal notranslate"><span class="pre">rsync</span></code> instances in parallel. But please
+mind that this way you can saturate the network bandwidth for other users and
+also saturate the login node with <code class="docutils literal notranslate"><span class="pre">rsync</span></code> processes or overwhelm the file
+system. If you have to transfer large amount of data and one <code class="docutils literal notranslate"><span class="pre">rsync</span></code> process is
+not enough, we recommend that you talk to us first: <a class="reference internal" href="../getting_help/support_line.html#support-line"><span class="std std-ref">Getting help</span></a>.</p>
+</section>
+<section id="rclone-as-a-faster-alternative">
+<h2><em>rclone</em> as a faster alternative<a class="headerlink" href="#rclone-as-a-faster-alternative" title="Link to this heading"></a></h2>
+<p>While rsync does a good job, it unfortunately only uses one thread (or transfer),
+while <em>rclone</em> can use a range of parallel transfers (both one per file and split
+a large file into chunks).</p>
+<p>A command like :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rclone<span class="w"> </span>copy<span class="w"> </span>SAGA:/cluster/projects/nnXXXXk/user/<span class="w"> </span>.<span class="w"> </span>-P<span class="w"> </span>--transfers<span class="o">=</span><span class="m">20</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>will copy 20 files in parallel.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>An<span class="w"> </span>example<span class="w"> </span>is<span class="w"> </span>could<span class="w"> </span>look<span class="w"> </span>like<span class="w"> </span>this:
+$<span class="w"> </span>rclone<span class="w"> </span>copy<span class="w"> </span>SAGA:/cluster/projects/nnxxxxk/<span class="w"> </span>.<span class="w"> </span>-P<span class="w"> </span>--transfers<span class="o">=</span><span class="m">60</span><span class="w"> </span><span class="se">\ </span>--ignore-checksum
+Transferred:<span class="w">          </span><span class="m">200</span><span class="w"> </span>GiB<span class="w"> </span>/<span class="w"> </span><span class="m">200</span><span class="w"> </span>GiB,<span class="w"> </span><span class="m">100</span>%,<span class="w"> </span><span class="m">2</span>.038<span class="w"> </span>GiB/s,<span class="w"> </span>ETA<span class="w"> </span>0s
+Checks:<span class="w">                 </span><span class="m">0</span><span class="w"> </span>/<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>-,<span class="w"> </span>Listed<span class="w"> </span><span class="m">200</span>
+Transferred:<span class="w">          </span><span class="m">200</span><span class="w"> </span>/<span class="w"> </span><span class="m">200</span>,<span class="w"> </span><span class="m">100</span>%
+Elapsed<span class="w"> </span>time:<span class="w">      </span>1m33.7s
+</pre></div>
+</div>
+<p>The above example is referring a decommissioned service, and shows a close to 2 GBytes/s speed when copying data from this service. About 7 TBytes per hour, or 150 TBytes/day. A PetaByte would take about a week.</p>
+<p>Please also <strong>plan for it</strong>: If you need to transfer large amount of data,
+don’t start on the last day of your project. Data transfer may take hours or
+even days.</p>
+</section>
+<section id="troubleshooting-broken-pipe-error-during-transfer">
+<h2>Troubleshooting: “Broken pipe” error during transfer<a class="headerlink" href="#troubleshooting-broken-pipe-error-during-transfer" title="Link to this heading"></a></h2>
+<p>The organization which provides the network to the clusters, may perform daily
+housekeeping of their <a class="reference external" href="https://en.wikipedia.org/wiki/Domain_Name_System">DNS</a>
+and then the connection from outside to the NRIS services can drop. This can
+cause a “broken pipe” error during file transfer from outside.</p>
+<p>One way to avoid this, especially while copying large datasets, is to use IP
+addresses instead of domain names.</p>
+<p>One way to get the IP of one of the login nodes (example: Saga):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nslookup<span class="w"> </span>saga.sigma2.no
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="applying_resources.html" class="btn btn-neutral float-left" title="Applying for computing and storage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="editing_files.html" class="btn btn-neutral float-right" title="Editing files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

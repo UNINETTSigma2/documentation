@@ -1,0 +1,614 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installing software with EasyBuild &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Installing Python packages as a user" href="python.html" />
+    <link rel="prev" title="Installing software as user" href="../userinstallsw.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installed_software.html">Installed software</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../userinstallsw.html">Installing software as user</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installing software with EasyBuild</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#about-easybuild">About EasyBuild</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-software-in-your-home-folder">Installing software in your home folder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-locally-installed-software">Using locally installed software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-software-in-a-project-folder">Installing software in a project folder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-your-own-easyconfigs">Writing your own easyconfigs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Installing Python packages as a user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conda.html">Installing software with Conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="R.html">Installing R libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perl.html">Installing Perl modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ORCA.html">ORCA (quantum chemistry program)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathematica.html">How to Run Mathematica on Saga Using Singularity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../code_development/guides/containers.html">Containers on NRIS HPC systems</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../userinstallsw.html">Installing software as user</a></li>
+      <li class="breadcrumb-item active">Installing software with EasyBuild</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installing-software-with-easybuild">
+<span id="easybuild"></span><h1>Installing software with EasyBuild<a class="headerlink" href="#installing-software-with-easybuild" title="Link to this heading"></a></h1>
+<p>The NRIS software team is currently using the
+<a class="reference external" href="https://easybuild.readthedocs.io/en/latest/">EasyBuild</a>
+system for installing system-wide software and scientific applications on all
+Norwegian HPC systems. It is, actually, quite easy (hence the name) and
+straightforward for users to install with the same tool (provided that an
+<a class="reference external" href="https://docs.easybuild.io/writing-easyconfig-files/">easyconfig file</a>
+already exists for the particular package you are interested in).</p>
+<p>With EasyBuild you might encounter a few different scenarios:</p>
+<ol class="arabic simple">
+<li><p>An easyconfig already exists for my software and can be used as is.</p></li>
+<li><p>An easyconfig exists, but not for the software version or compiler toolchain that I need.</p></li>
+<li><p>An easyconfig does not exist for my software (not covered here, please
+refer to general EasyBuild tutorials).</p></li>
+</ol>
+<p>In the following we will cover the first two scenarios. We will describe
+installations for single users - placing the software in standard user
+home folder - as well as installations for an entire project/group - placing
+the software in a project folder for many to share.</p>
+<section id="about-easybuild">
+<h2>About EasyBuild<a class="headerlink" href="#about-easybuild" title="Link to this heading"></a></h2>
+<p>EasyBuild is a software build and installation framework specifically targeting
+HPC systems, with focus on build <em>automation</em>, <em>reproducibility</em>, and
+automatic <em>dependency</em> resolution. It is fully compatible with the
+<a class="reference external" href="https://lmod.readthedocs.io/en/latest/">Lmod</a>
+module system that is used on all our HPC clusters, and every EB installation
+will automatically generate a corresponding module file which allows you to
+load the software into your environment.</p>
+<p>EasyBuild is very explicit in the build specifications for each part in a
+software’s chain of dependencies, and is very careful not to mix dependencies
+that are built using different compiler versions or toolchains. This is the
+reason for the long names, like <code class="docutils literal notranslate"><span class="pre">rjags-4-12-foss-2021b-R-4.1.2</span></code>
+which means that the program <code class="docutils literal notranslate"><span class="pre">rjags</span></code> version 4.12 has been built using the
+<code class="docutils literal notranslate"><span class="pre">foss-2021b</span></code> toolchain and aimed at <code class="docutils literal notranslate"><span class="pre">R</span></code> version 4.1.2. This in turn means
+that all other dependencies that <code class="docutils literal notranslate"><span class="pre">rjags</span></code> might have, or anything that want to
+<em>use</em> <code class="docutils literal notranslate"><span class="pre">rjags</span></code> as a dependency, will have to be compatible with these versions.</p>
+</section>
+<section id="installing-software-in-your-home-folder">
+<h2>Installing software in your home folder<a class="headerlink" href="#installing-software-in-your-home-folder" title="Link to this heading"></a></h2>
+<p>By default, EasyBuild will download, build and install software in a directory
+called <code class="docutils literal notranslate"><span class="pre">.local/easybuild/</span></code> in your own <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> folder, which means that
+only you will be able to find and use the package after it is installed. The
+following procedure applies equally well to all our current HPC systems.</p>
+<p>The first thing we do is to load the EasyBuild module on a login node of your
+cluster of choice. Make sure that you have a clean environment with no other
+modules loaded, then search for available EasyBuild versions and load the
+latest version you can find:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ module reset
+$ module avail easybuild
+----------------------- /cluster/modulefiles/all ------------------------
+EasyBuild/4.9.0
+
+$ module load EasyBuild/4.9.0
+</pre></div>
+</div>
+<p>Say you want to install the already mentioned
+<a class="reference external" href="https://cran.r-project.org/web/packages/rjags">rjags</a> package. Then you first
+need to find out which easyconfigs are available on the system.  This can be
+done with the <code class="docutils literal notranslate"><span class="pre">--search-filename</span></code> or <code class="docutils literal notranslate"><span class="pre">-S</span></code> option. So to display all rags
+version that can be installed use:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ eb --search-filename rjags
+== found valid index for /cluster/software/EasyBuild/4.9.0/easybuild/easyconfigs, so using it...
+ * rjags-4-6-intel-2017a-R-3.4.0.eb
+ * rjags-4-6-intel-2017b-R-3.4.3.eb
+ * rjags-4-8-foss-2018b-R-3.5.1.eb
+ * rjags-4-9-foss-2019a-R-3.6.0.eb
+ * rjags-4-10-foss-2019b.eb
+ * rjags-4-10-foss-2020a-R4.0.0.eb
+ * rjags-4-10-foss-2020b-R-4.0.3.eb
+ * rjags-4-10-foss-2020b-R-4.0.4.eb
+ * rjags-4-10-foss-2020b-R-4.0.5.eb
+ * rjags-4-10-foss-2021a-R-4.1.0.eb
+ * rjags-4-10-fosscuda-2020b-R-4.0.3.eb
+ * rjags-4-10-fosscuda-2020b-R-4.0.4.eb
+ * rjags-4-10-fosscuda-2020b-R-4.0.5.eb
+ * rjags-4-12-foss-2021b-R-4.1.2.eb
+ * rjags-4-13-foss-2022a-R-4.2.1.eb
+ * rjags-4-13-foss-2022b-R-4.2.2.eb
+
+Note: 1 matching archived easyconfig(s) found, use --consider-archived-easyconfigs to see them
+</pre></div>
+</div>
+<p>From this list we decide to go for <code class="docutils literal notranslate"><span class="pre">rjags</span></code> version mentioned above, i.e.
+<code class="docutils literal notranslate"><span class="pre">rjags-4-12-foss-2021b-R-4.1.2.eb</span></code>.</p>
+<p>Now, we advice to do an install in three steps, first download the sources of
+your software, then do a test run where you check what will be installed and
+then the full install.</p>
+<p><strong>Step 1:</strong> To fetch the source, run the following command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ eb rjags-4-12-foss-2021b-R-4.1.2.eb --fetch
+</pre></div>
+</div>
+<p>This will download a tarball into your local EB directory
+<code class="docutils literal notranslate"><span class="pre">.local/easybuild/sources</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ls $HOME/.local/easybuild/sources/r/rjags
+rjags_4-12.tar.gz
+</pre></div>
+</div>
+<p><strong>Step 2:</strong> It may be a good idea to perform a test run to get an overview of
+what will be installed with the command you are planning to use. This you get
+by the command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ eb rjags-4-12-foss-2021b-R-4.1.2.eb --dry-run
+</pre></div>
+</div>
+<p>This will check that all the necessary dependencies are available in the current
+EB repository. If not, you will get an error message. It will also print the
+full list of dependencies, where everything marked with <code class="docutils literal notranslate"><span class="pre">[x]</span></code> means that the
+dependency is already satisfied, and won’t be re-installed. If you only want to see
+which extra dependencies are going to be installed:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ eb rjags-4-12-foss-2021b-R-4.1.2.eb --missing-modules
+</pre></div>
+</div>
+<p><strong>Step 3:</strong> If the test build was successful, you can perform the build with:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ eb rjags-4-12-foss-2021b-R-4.1.2.eb --robot --parallel=2
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">--robot</span></code> means that EasyBuild should automatically resolve and install
+all necessary dependencies, and <code class="docutils literal notranslate"><span class="pre">--parallel</span></code> will set the number of CPU
+threads to use in the build. Hopefully, this returns successfully after a few
+minutes with a message like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>== Build succeeded for 1 out of 1
+== Temporary log file(s) /tmp/eb-BoOCuj/easybuild-CuSy5M.log* have been removed.
+== Temporary directory /tmp/eb-BoOCuj has been removed.
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The default build will use <em>all</em> available cores, so <em>please</em> set the
+<code class="docutils literal notranslate"><span class="pre">--parallel</span></code> option to a more reasonable number to avoid clogging the
+login node.</p>
+</div>
+<p>You can now confirm that the package has been installed under
+<code class="docutils literal notranslate"><span class="pre">.local/easybuild/software</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ls $HOME/.local/easybuild/software/rjags/4-12-foss-2021b-R-4.1.2/rjags/
+data  DESCRIPTION  help  html  INDEX  libs  Meta  NAMESPACE  R
+</pre></div>
+</div>
+</section>
+<section id="using-locally-installed-software">
+<h2>Using locally installed software<a class="headerlink" href="#using-locally-installed-software" title="Link to this heading"></a></h2>
+<p>In the example above we installed the <code class="docutils literal notranslate"><span class="pre">rjags</span></code> code locally in our home
+folder under <code class="docutils literal notranslate"><span class="pre">.local/easybuild/software</span></code>. At the same time, EasyBuild
+created a new module file under <code class="docutils literal notranslate"><span class="pre">.local/easybuild/modules</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ls .local/easybuild/modules/all/rjags/
+4-12-foss-2021b-R-4.1.2.lua
+</pre></div>
+</div>
+<p>which can now be loaded and used alongside any other globally installed
+software. In order to do so you need to tell the module system to look for
+modules in this directory, which is done with the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">use</span></code> command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ module use $HOME/.local/easybuild/modules/all
+$ module avail rjags
+------------------------------------ .local/easybuild/modules/all -------------------------------------
+    rjags/4-12-foss-2021b-R-4.1.2
+
+Use &quot;module spider&quot; to find all possible modules.
+Use &quot;module keyword key1 key2 ...&quot; to search for all possible modules matching any of the &quot;keys&quot;.
+</pre></div>
+</div>
+<p>You can now load and use the package just like any other module:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ module load rjags/4-12-foss-2021b-R-4.1.2
+</pre></div>
+</div>
+<p><strong>For more information about the module system, please see:</strong>
+<a class="reference external" href="https://lmod.readthedocs.io/en/latest">https://lmod.readthedocs.io/en/latest</a></p>
+<p>If you are planning to install more than a few modules you will quickly run out of disk quota in the home folder. In general we recommend that you instead install in a project folder.</p>
+</section>
+<section id="installing-software-in-a-project-folder">
+<h2>Installing software in a project folder<a class="headerlink" href="#installing-software-in-a-project-folder" title="Link to this heading"></a></h2>
+<p>In order to install semi-globally under a project directory you should make the
+following changes to the above procedure.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ my_path=/cluster/projects/nnXXXXk/easybuild
+$ mkdir -p $my_path
+$ eb rjags-4-12-foss-2021b-R-4.1.2.eb --prefix=$my_path --fetch
+$ eb rjags-4-12-foss-2021b-R-4.1.2.eb --prefix=$my_path --dry-run
+$ eb rjags-4-12-foss-2021b-R-4.1.2.eb --prefix=$my_path
+</pre></div>
+</div>
+<p>where XXXX is your project id number. Note the easybuild folder in the path,
+this is a tip for housekeeping and not strictly required. This will give the
+path structure as for the local case, with the software and modulefiles
+installed in <code class="docutils literal notranslate"><span class="pre">cluster/projects/nnXXXXk/easybuild</span></code>.</p>
+<p>Now the <code class="docutils literal notranslate"><span class="pre">rjags</span></code> installation is available to everyone associated with the
+<code class="docutils literal notranslate"><span class="pre">nnXXXXk</span></code> project, after typing:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ module use /cluster/projects/nnXXXk/easybuild/modules/all
+</pre></div>
+</div>
+<p>The prefix option (in fact any command line option) can also be set vi an
+environment variable like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ export EASYBUILD_PREFIX=/cluster/project/nnXXXXk/easybuild
+</pre></div>
+</div>
+<p>and then you need not repeat the <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> option on the command line.</p>
+</section>
+<section id="writing-your-own-easyconfigs">
+<h2>Writing your own easyconfigs<a class="headerlink" href="#writing-your-own-easyconfigs" title="Link to this heading"></a></h2>
+<p>Let’s say that for some reason you need to use <code class="docutils literal notranslate"><span class="pre">rjags-4-12</span></code> with the
+<code class="docutils literal notranslate"><span class="pre">foss/2022a</span></code> toolchain, instead of <code class="docutils literal notranslate"><span class="pre">2021b</span></code> which we already installed.
+A quick look into the EB repo tells you that this particular version is not
+available, which means that simply substituting the toolchain version will
+<em>not</em> work:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ eb rjags-4-12-foss-2022a-R-4.1.2.eb --fetch
+== Temporary log file in case of crash /tmp/eb-bliwuikc/easybuild-2a9dc17d.log
+== found valid index for /cluster/software/EasyBuild/4.9.0/easybuild/easyconfigs, so using it...
+ERROR: One or more files not found: rjags-4-12-foss-2022a-R-4.1.2.eb (search paths:
+/cluster/software/EasyBuild/4.9.0/easybuild/easyconfigs)
+</pre></div>
+</div>
+<p>In this case what you need to do is to write your own easyconfig file and use
+that for your easy build. Depending on the package this can be either really
+simple or frustratingly complicated. This particular example is somewhere in
+between.</p>
+<p>Now, be aware that our clone of the EB repo will only occasionally be updated,
+so you might get lucky and find that the exact version you are looking for has
+already become available on the
+<a class="reference external" href="https://github.com/easybuilders/easybuild-easyconfigs/tree/master/easybuild/easyconfigs">central EB repo</a>,
+so please check this out first. In that case you can simply download or copy
+the easyconfig file from there, otherwise it’s a good idea to start from an
+easyconfig that is similar to the one you are trying to make. In our case we
+will copy the <code class="docutils literal notranslate"><span class="pre">rjags-4-12-foss-2021b-R-4.1.2.eb</span></code> file and work from there.</p>
+<p><strong>Step 1:</strong> Copy similar easyconfig to somewhere in your <code class="docutils literal notranslate"><span class="pre">$HOME</span></code>, here
+<code class="docutils literal notranslate"><span class="pre">eb-sandbox</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ cd eb-sandbox
+$ eb --copy-ec rjags-4-12-foss-2021b-R-4.1.2.eb
+</pre></div>
+</div>
+<p><strong>Step 2:</strong> Inspect the easyconfig file and check for dependencies; in this
+case there are two, <code class="docutils literal notranslate"><span class="pre">R</span></code> and <code class="docutils literal notranslate"><span class="pre">JAGS</span></code>. Next you need to check if any of the
+dependencies are available with the toolchain that you want. Here we see that
+<code class="docutils literal notranslate"><span class="pre">R-4.2.1</span></code> <em>is</em> available with <code class="docutils literal notranslate"><span class="pre">foss-2022a</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ls $EBROOTEASYBUILD/easybuild/easyconfigs/r/R/*foss-2022a*
+/cluster/software/EasyBuild/4.9.0/easybuild/easyconfigs/r/R/R-4.2.1-foss-2022a.eb
+</pre></div>
+</div>
+<p>Also a never version of <code class="docutils literal notranslate"><span class="pre">JAGS</span></code>is available, but if we assume that we need to keep the version at 4.3.0 it is not available for the new toolchain</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ls $EBROOTEASYBUILD/easybuild/easyconfigs/j/JAGS/JAGS-4.3.0-foss-2022a*
+No such file or directory
+</pre></div>
+</div>
+<p>However, we do have a version with <code class="docutils literal notranslate"><span class="pre">foss/2021b</span></code> (which of course is the one
+used by our original <code class="docutils literal notranslate"><span class="pre">rjags</span></code>), so we’ll copy that one as well and adapt it to
+our target toolchain:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ eb --copy-ec JAGS-4.3.0-foss-2021b.eb
+</pre></div>
+</div>
+<p>You can see that this procedure gets exponentially more complicated when you
+have to recursively update all dependencies of your original package, but
+thankfully in our case it stops here.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The toolchains do not necessarily have to match <em>literally</em>, they just need to
+not be <em>conflicting</em>. For instance, <code class="docutils literal notranslate"><span class="pre">foss/2022a</span></code> includes the compiler
+<code class="docutils literal notranslate"><span class="pre">GCCcore/11.3.0</span></code>, so any easyconfig with the <code class="docutils literal notranslate"><span class="pre">GCCcore-11.3.0</span></code> suffix would
+also be compatible. For more information about common toolchains: <a class="reference external" href="https://docs.easybuild.io/common-toolchains/">https://docs.easybuild.io/common-toolchains/</a></p>
+</div>
+<p><strong>Step 3:</strong> Starting with your deepest dependency, edit your new easyconfigs
+and change the version specifications. In <code class="docutils literal notranslate"><span class="pre">JAGS</span></code> it’s just a matter of
+changing the toolchain to:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>toolchain = {&#39;name&#39;: &#39;foss&#39;, &#39;version&#39;: &#39;2022a&#39;}
+</pre></div>
+</div>
+<p>If the software version is changed you also need to update the checksum line.
+For <code class="docutils literal notranslate"><span class="pre">rjags</span></code> you do exactly the
+same, but you should also update the versions of the dependencies. The <code class="docutils literal notranslate"><span class="pre">JAGS</span></code>
+entry does not have to be changed, because we’re still using version 4.3.0, but
+<code class="docutils literal notranslate"><span class="pre">R</span></code> has to be changed to version 4.2.1, which was the one we found in <strong>Step
+2</strong> to be available for our toolchain.</p>
+<p><strong>Step 4:</strong> Rename the easyconfig files to match the new versions:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mv JAGS-4.3.0-foss-2021b.eb JAGS-4.3.0-foss-2022a.eb
+$ mv rjags-4-12-foss-2021b-R-4.1.2.eb rjags-4-12-foss-2022a-R-4.2.1.eb
+</pre></div>
+</div>
+<p>Our new easyconfigs should now look like this:</p>
+<p><strong>JAGS-4.3.0-foss-2022a.eb:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This file is an EasyBuild reciPY as per https://github.com/easybuilders/easybuild</span>
+<span class="c1"># Author: Pablo Escobar Lopez</span>
+<span class="c1"># Swiss Institute of Bioinformatics</span>
+<span class="c1"># Biozentrum - University of Basel</span>
+
+<span class="nv">easyblock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ConfigureMake&#39;</span>
+
+<span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;JAGS&#39;</span>
+<span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;4.3.0&#39;</span>
+
+<span class="nv">homepage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;http://mcmc-jags.sourceforge.net/&#39;</span>
+<span class="nv">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;JAGS is Just Another Gibbs Sampler.  It is a program for analysis</span>
+<span class="s2"> of Bayesian hierarchical models using Markov Chain Monte Carlo (MCMC) simulation  &quot;&quot;&quot;</span>
+
+<span class="nv">toolchain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;foss&#39;</span>,<span class="w"> </span><span class="s1">&#39;version&#39;</span>:<span class="w"> </span><span class="s1">&#39;2022a&#39;</span><span class="o">}</span>
+
+<span class="nv">source_urls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="o">(</span><span class="s1">&#39;https://sourceforge.net/projects/mcmc-%(namelower)s/files/%(name)s/%(version_major)s.x/Source/&#39;</span>,<span class="w"> </span><span class="s1">&#39;download&#39;</span><span class="o">)</span>
+<span class="o">]</span>
+<span class="nv">sources</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>SOURCE_TAR_GZ<span class="o">]</span>
+<span class="nv">checksums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;8ac5dd57982bfd7d5f0ee384499d62f3e0bb35b5f1660feb368545f1186371fc&#39;</span><span class="o">]</span>
+
+<span class="nv">configopts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39; --with-blas=&quot;$LIBBLAS&quot; --with-lapack=&quot;$LIBLAPACK&quot;&#39;</span>
+
+
+<span class="nv">sanity_check_paths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s1">&#39;files&#39;</span>:<span class="w"> </span><span class="o">[</span><span class="s1">&#39;bin/%(namelower)s&#39;</span>,<span class="w"> </span><span class="s1">&#39;libexec/%(namelower)s-terminal&#39;</span>,<span class="w"> </span><span class="s1">&#39;lib/libjags.%s&#39;</span><span class="w"> </span>%<span class="w"> </span>SHLIB_EXT<span class="o">]</span>,
+<span class="w">    </span><span class="s1">&#39;dirs&#39;</span>:<span class="w"> </span><span class="o">[]</span>,
+<span class="o">}</span>
+
+<span class="nv">modextrapaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s1">&#39;JAGS_INCLUDE&#39;</span>:<span class="w"> </span><span class="s1">&#39;include/%(name)s&#39;</span>,
+<span class="w">    </span><span class="s1">&#39;JAGS_LIB&#39;</span>:<span class="w"> </span><span class="s1">&#39;lib&#39;</span>,
+<span class="o">}</span>
+
+<span class="nv">moduleclass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;math&#39;</span>
+</pre></div>
+</div>
+<p><strong>rjags-4-12-foss-2022a-R-4.2.1.eb:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">easyblock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;RPackage&#39;</span>
+
+<span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;rjags&#39;</span>
+<span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;4-12&#39;</span>
+<span class="nv">versionsuffix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;-R-%(rver)s&#39;</span>
+
+<span class="nv">homepage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://cran.r-project.org/web/packages/rjags&#39;</span>
+<span class="nv">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;The rjags package is an interface to the JAGS library.&quot;&quot;&quot;</span>
+
+<span class="nv">toolchain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;foss&#39;</span>,<span class="w"> </span><span class="s1">&#39;version&#39;</span>:<span class="w"> </span><span class="s1">&#39;2022a&#39;</span><span class="o">}</span>
+
+<span class="nv">source_urls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="s1">&#39;https://cran.r-project.org/src/contrib/&#39;</span>,
+<span class="w">    </span><span class="s1">&#39;https://cran.r-project.org/src/contrib/Archive/rjags/&#39;</span>,
+<span class="o">]</span>
+<span class="nv">sources</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;%(name)s_%(version)s.tar.gz&#39;</span><span class="o">]</span>
+<span class="nv">checksums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;b91f34c3f9ebf78fa44bd661346fbb6f28a01693a7203ac133c98392dd273e10&#39;</span><span class="o">]</span>
+
+<span class="nv">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="o">(</span><span class="s1">&#39;R&#39;</span>,<span class="w"> </span><span class="s1">&#39;4.2.1&#39;</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="s1">&#39;JAGS&#39;</span>,<span class="w"> </span><span class="s1">&#39;4.3.0&#39;</span><span class="o">)</span>,
+<span class="o">]</span>
+
+<span class="nv">sanity_check_paths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s1">&#39;files&#39;</span>:<span class="w"> </span><span class="o">[]</span>,
+<span class="w">    </span><span class="s1">&#39;dirs&#39;</span>:<span class="w"> </span><span class="o">[</span><span class="s1">&#39;rjags&#39;</span><span class="o">]</span>,
+<span class="o">}</span>
+
+<span class="nv">moduleclass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;math&#39;</span>
+</pre></div>
+</div>
+<p><strong>Step 5:</strong> Build your new module while adding the current directory to
+<code class="docutils literal notranslate"><span class="pre">--robot</span></code> so that your new <code class="docutils literal notranslate"><span class="pre">.eb</span></code> files are picked up:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ eb rjags-4-12-foss-2022a-R-4.2.1.eb --robot=. --parallel=2
+</pre></div>
+</div>
+<p>Again, please don’t use too many <code class="docutils literal notranslate"><span class="pre">--parallel</span></code> threads on login!</p>
+<p><strong>Step 6:</strong> Load your shining new module:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ module use $HOME/.local/easybuild/modules/all
+$ module avail rjags
+--------------------------- $HOME/.local/easybuild/modules/all ---------------------------
+    rjags/4-12-foss-2021b-R-4.1.2    rjags/4-12-foss-2022a-R-4.2.1
+
+$ module load rjags/4-12-foss-2022a-R-4.2.1
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this particular case we could also have used the <code class="docutils literal notranslate"><span class="pre">--try-*</span></code> options to update the toolchain
+version without having to edit any easyconfigs by hand: <a class="reference external" href="https://docs.easybuild.io/using-easybuild/#tweaking_easyconfigs_using_try">https://docs.easybuild.io/using-easybuild/#tweaking_easyconfigs_using_try</a></p>
+</div>
+<p><strong>For more information on how to write easyconfigs:</strong>
+<a class="reference external" href="https://easybuild.readthedocs.io/en/latest/Writing_easyconfig_files.html">https://easybuild.readthedocs.io/en/latest/Writing_easyconfig_files.html</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../userinstallsw.html" class="btn btn-neutral float-left" title="Installing software as user" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="python.html" class="btn btn-neutral float-right" title="Installing Python packages as a user" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

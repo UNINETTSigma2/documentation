@@ -1,0 +1,432 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Node Implementation for PyTorch on Olivia &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/statuspal_widget.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="Multi-GPU Implementation for PyTorch on Olivia" href="PyTorchMultiGpu.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../overview.html">Code development and tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html#id1">Code development</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../overview.html#tutorials">Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../guides_gpu.html">GPU programming models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guides_ml.html">Machine Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guides_containers_gpu.html">Containers with GPU support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guides_monitor_gpu.html">Monitoring GPU accelerated applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guides_python.html">Python libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PyTorchProfilerMultiGpu.html">Profiling a Resnet-18 model on Multiple GPUs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PyTorchProfilerMultiGpu.html#performance-metrics">Performance Metrics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PyTorchProfilerMultiGpu.html#conclusion">Conclusion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PyTorchProfilerMultiGpu.html#relevant-links">Relevant links</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="PyTorchSingleGpu.html">PyTorch on Olivia</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="PyTorchSingleGpu.html#getting-the-container">Getting the Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyTorchSingleGpu.html#project-setup">Project Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyTorchSingleGpu.html#single-gpu-implementation">Single GPU Implementation</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="PyTorchSingleGpu.html#job-script-for-single-gpu-training">Job Script for Single GPU Training</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../overview.html">Code development and tutorials</a></li>
+          <li class="breadcrumb-item"><a href="PyTorchSingleGpu.html">PyTorch on Olivia</a></li>
+      <li class="breadcrumb-item active">Multi-Node Implementation for PyTorch on Olivia</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="multi-node-implementation-for-pytorch-on-olivia">
+<span id="pytorch-multi-node"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Multi-Node Implementation for PyTorch on Olivia</a><a class="headerlink" href="#multi-node-implementation-for-pytorch-on-olivia" title="Link to this heading"></a></h1>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#multi-node-implementation-for-pytorch-on-olivia" id="id1">Multi-Node Implementation for PyTorch on Olivia</a></p>
+<ul>
+<li><p><a class="reference internal" href="#job-script-for-multi-node-training" id="id2">Job Script for Multi-Node Training</a></p></li>
+<li><p><a class="reference internal" href="#key-changes-from-multi-gpu-to-multi-node" id="id3">Key Changes from Multi-GPU to Multi-Node</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>This is part 3 of the PyTorch on Olivia guide. See <a class="reference internal" href="PyTorchSingleGpu.html#pytorch-on-olivia"><span class="std std-ref">PyTorch on Olivia</span></a> for single-GPU and <a class="reference internal" href="PyTorchMultiGpu.html#pytorch-multi-gpu"><span class="std std-ref">Multi-GPU Implementation for PyTorch on Olivia</span></a> for multi-GPU setup.</p>
+<p>Multi-node training on Olivia requires proper configuration of NCCL with the OFI plugin and libfabric for the Slingshot interconnect. The job script below handles these configurations.</p>
+<section id="job-script-for-multi-node-training">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Job Script for Multi-Node Training</a><a class="headerlink" href="#job-script-for-multi-node-training" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="ch">#!/bin/bash</span>
+<span class="linenos"> 2</span><span class="c1">#SBATCH --account=&lt;project_number&gt;</span>
+<span class="linenos"> 3</span><span class="c1">#SBATCH --job-name=resnet_multinode</span>
+<span class="linenos"> 4</span><span class="c1">#SBATCH --output=multinode_%j.out</span>
+<span class="linenos"> 5</span><span class="c1">#SBATCH --error=multinode_%j.err</span>
+<span class="linenos"> 6</span><span class="c1">#SBATCH --time=01:00:00</span>
+<span class="linenos"> 7</span><span class="c1">#SBATCH --partition=accel</span>
+<span class="hll"><span class="linenos"> 8</span><span class="c1">#SBATCH --nodes=2</span>
+</span><span class="linenos"> 9</span><span class="c1">#SBATCH --ntasks-per-node=1</span>
+<span class="hll"><span class="linenos">10</span><span class="c1">#SBATCH --gpus-per-node=4</span>
+</span><span class="linenos">11</span><span class="c1">#SBATCH --cpus-per-task=72</span>
+<span class="linenos">12</span><span class="c1">#SBATCH --mem=440G</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="c1"># Path to the container</span>
+<span class="linenos">15</span><span class="nv">CONTAINER_PATH</span><span class="o">=</span><span class="s2">&quot;/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif&quot;</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="c1"># Path to the training script</span>
+<span class="hll"><span class="linenos">18</span><span class="nb">export</span><span class="w"> </span><span class="nv">APPTAINERENV_TRAINING_SCRIPT</span><span class="o">=</span><span class="s2">&quot;train_ddp.py --epochs 100 --batch-size 2048 --base-lr 0.04 --target-accuracy 0.95 --patience 2&quot;</span>
+</span><span class="linenos">19</span>
+<span class="linenos">20</span><span class="c1"># Set the libfabric and nccl path from the host</span>
+<span class="hll"><span class="linenos">21</span><span class="nv">HOST_LIBFABRIC_LIB_PATH</span><span class="o">=</span>/opt/cray/libfabric/1.22.0/lib64
+</span><span class="hll"><span class="linenos">22</span><span class="nv">HOST_LIBFABRIC_INCLUDE_PATH</span><span class="o">=</span>/opt/cray/libfabric/1.22.0/include
+</span><span class="hll"><span class="linenos">23</span><span class="nv">HOST_NCCL_PATH</span><span class="o">=</span>/cluster/work/support/nccl
+</span><span class="hll"><span class="linenos">24</span><span class="nv">HOST_NVIDIA_HPC_LIB_PATH</span><span class="o">=</span>/opt/nvidia/hpc_sdk/Linux_aarch64/24.11/compilers/lib
+</span><span class="hll"><span class="linenos">25</span><span class="nv">HOST_CXI_LIB_PATH</span><span class="o">=</span>/usr/lib64<span class="w">  </span><span class="c1"># Directory containing libcxi.so.1</span>
+</span><span class="linenos">26</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="c1"># Explicitly specify the full path to torchrun</span>
+<span class="linenos">29</span><span class="nb">export</span><span class="w"> </span><span class="nv">APPTAINERENV_TORCHRUN_PATH</span><span class="o">=</span><span class="s2">&quot;/usr/local/bin/torchrun&quot;</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="c1"># Debugging: Enable NCCL logs</span>
+<span class="linenos">32</span><span class="c1">#export APPTAINERENV_NCCL_DEBUG=INFO</span>
+<span class="linenos">33</span><span class="c1">#export APPTAINERENV_NCCL_DEBUG_SUBSYS=ALL</span>
+<span class="linenos">34</span>
+<span class="hll"><span class="linenos">35</span><span class="c1"># Get the head node and its IP address</span>
+</span><span class="hll"><span class="linenos">36</span><span class="nv">nodes</span><span class="o">=(</span><span class="w"> </span><span class="k">$(</span>scontrol<span class="w"> </span>show<span class="w"> </span>hostnames<span class="w"> </span><span class="nv">$SLURM_JOB_NODELIST</span><span class="k">)</span><span class="w"> </span><span class="o">)</span>
+</span><span class="hll"><span class="linenos">37</span><span class="nv">head_node</span><span class="o">=</span><span class="si">${</span><span class="nv">nodes</span><span class="p">[0]</span><span class="si">}</span>
+</span><span class="hll"><span class="linenos">38</span><span class="nb">export</span><span class="w"> </span><span class="nv">APPTAINERENV_head_node_ip</span><span class="o">=</span><span class="k">$(</span>srun<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$head_node</span><span class="s2">&quot;</span><span class="w"> </span>hostname<span class="w"> </span>--ip-address<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+</span><span class="hll"><span class="linenos">39</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Head Node: </span><span class="nv">$head_node</span><span class="s2">&quot;</span>
+</span><span class="hll"><span class="linenos">40</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Head Node IP: </span><span class="nv">$APPTAINERENV_head_node_ip</span><span class="s2">&quot;</span>
+</span><span class="linenos">41</span>
+<span class="linenos">42</span><span class="c1"># Pass SLURM variables explicitly to the container</span>
+<span class="hll"><span class="linenos">43</span><span class="nb">export</span><span class="w"> </span><span class="nv">APPTAINERENV_SLURM_JOB_NUM_NODES</span><span class="o">=</span><span class="nv">$SLURM_JOB_NUM_NODES</span>
+</span><span class="hll"><span class="linenos">44</span><span class="nb">export</span><span class="w"> </span><span class="nv">APPTAINERENV_SLURM_GPUS_ON_NODE</span><span class="o">=</span><span class="nv">$SLURM_GPUS_ON_NODE</span>
+</span><span class="linenos">45</span>
+<span class="linenos">46</span><span class="c1"># Start GPU utilization monitoring in the background</span>
+<span class="linenos">47</span><span class="nv">GPU_LOG_FILE</span><span class="o">=</span><span class="s2">&quot;multinode.log&quot;</span>
+<span class="linenos">48</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Starting GPU utilization monitoring...&quot;</span>
+<span class="linenos">49</span>nvidia-smi<span class="w"> </span>--query-gpu<span class="o">=</span>timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used<span class="w"> </span>--format<span class="o">=</span>csv<span class="w"> </span>-l<span class="w"> </span><span class="m">5</span><span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$GPU_LOG_FILE</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span><span class="c1"># Run the training script with torchrun inside the container</span>
+<span class="hll"><span class="linenos">52</span>srun<span class="w">  </span>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w">  </span>--nv<span class="w"> </span><span class="se">\</span>
+</span><span class="hll"><span class="linenos">53</span><span class="w">  </span>--bind<span class="w"> </span><span class="nv">$HOST_LIBFABRIC_LIB_PATH</span>:/opt/libfabric/lib<span class="w"> </span><span class="se">\</span>
+</span><span class="hll"><span class="linenos">54</span><span class="w">  </span>--bind<span class="w"> </span><span class="nv">$HOST_LIBFABRIC_INCLUDE_PATH</span>:/opt/libfabric/include<span class="w"> </span><span class="se">\</span>
+</span><span class="hll"><span class="linenos">55</span><span class="w">  </span>--bind<span class="w"> </span><span class="nv">$HOST_NCCL_PATH</span>:/opt/nccl<span class="w"> </span><span class="se">\</span>
+</span><span class="hll"><span class="linenos">56</span><span class="w">  </span>--bind<span class="w"> </span><span class="nv">$HOST_CXI_LIB_PATH</span>:/usr/lib64<span class="w"> </span><span class="se">\</span>
+</span><span class="hll"><span class="linenos">57</span><span class="w">  </span>--bind<span class="w"> </span><span class="nv">$HOST_NVIDIA_HPC_LIB_PATH</span>:/opt/nvidia/hpc_sdk/lib<span class="w"> </span><span class="se">\</span>
+</span><span class="hll"><span class="linenos">58</span><span class="w">  </span>--env<span class="w"> </span><span class="nv">LIBFABRIC_HOME</span><span class="o">=</span>/opt/libfabric<span class="w"> </span><span class="se">\</span>
+</span><span class="hll"><span class="linenos">59</span><span class="w">  </span>--env<span class="w"> </span><span class="nv">NCCL_HOME</span><span class="o">=</span>/opt/nccl<span class="w"> </span><span class="se">\</span>
+</span><span class="hll"><span class="linenos">60</span><span class="w">  </span>--env<span class="w"> </span><span class="nv">NVIDIA_HPC_HOME</span><span class="o">=</span>/opt/nvidia/hpc_sdk<span class="w"> </span><span class="se">\</span>
+</span><span class="hll"><span class="linenos">61</span><span class="w">  </span>--env<span class="w"> </span><span class="nv">head_node_ip</span><span class="o">=</span><span class="nv">$APPTAINERENV_head_node_ip</span><span class="w"> </span><span class="se">\</span>
+</span><span class="hll"><span class="linenos">62</span><span class="w">  </span>--env<span class="w"> </span><span class="nv">TRAINING_SCRIPT</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$APPTAINERENV_TRAINING_SCRIPT</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span class="hll"><span class="linenos">63</span><span class="w">  </span>--env<span class="w"> </span><span class="nv">TORCHRUN_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$APPTAINERENV_TORCHRUN_PATH</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span class="hll"><span class="linenos">64</span><span class="w">  </span>--env<span class="w"> </span><span class="nv">RDZV_ID</span><span class="o">=</span><span class="nv">$SLURM_JOB_ID</span><span class="w"> </span><span class="se">\</span>
+</span><span class="hll"><span class="linenos">65</span><span class="w">  </span>--env<span class="w"> </span><span class="nv">SLURM_JOB_NUM_NODES</span><span class="o">=</span><span class="nv">$APPTAINERENV_SLURM_JOB_NUM_NODES</span><span class="w"> </span><span class="se">\</span>
+</span><span class="hll"><span class="linenos">66</span><span class="w">  </span>--env<span class="w"> </span><span class="nv">SLURM_GPUS_ON_NODE</span><span class="o">=</span><span class="nv">$APPTAINERENV_SLURM_GPUS_ON_NODE</span><span class="w"> </span><span class="se">\</span>
+</span><span class="hll"><span class="linenos">67</span><span class="w">  </span><span class="nv">$CONTAINER_PATH</span><span class="w"> </span><span class="se">\</span>
+</span><span class="linenos">68</span><span class="w">  </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;export LD_LIBRARY_PATH=$LIBFABRIC_HOME/lib:$NCCL_HOME/lib:$NVIDIA_HPC_HOME/lib:/usr/lib64:$LD_LIBRARY_PATH; \</span>
+<span class="linenos">69</span><span class="s1">  export CPATH=$LIBFABRIC_HOME/include:$CPATH; \</span>
+<span class="hll"><span class="linenos">70</span><span class="s1">  $TORCHRUN_PATH  \</span>
+</span><span class="hll"><span class="linenos">71</span><span class="s1">  --nnodes=$SLURM_JOB_NUM_NODES \</span>
+</span><span class="hll"><span class="linenos">72</span><span class="s1">  --nproc_per_node=$SLURM_GPUS_ON_NODE \</span>
+</span><span class="hll"><span class="linenos">73</span><span class="s1">  --rdzv_id=$RDZV_ID \</span>
+</span><span class="hll"><span class="linenos">74</span><span class="s1">  --rdzv_backend=c10d \</span>
+</span><span class="hll"><span class="linenos">75</span><span class="s1">  --rdzv_endpoint=$head_node_ip:29500 \</span>
+</span><span class="hll"><span class="linenos">76</span><span class="s1">  $TRAINING_SCRIPT&#39;</span>
+</span><span class="linenos">77</span>
+<span class="linenos">78</span><span class="c1"># Stop GPU utilization monitoring</span>
+<span class="linenos">79</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Stopping GPU utilization monitoring...&quot;</span>
+<span class="linenos">80</span>pkill<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;nvidia-smi --query-gpu&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="key-changes-from-multi-gpu-to-multi-node">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Key Changes from Multi-GPU to Multi-Node</a><a class="headerlink" href="#key-changes-from-multi-gpu-to-multi-node" title="Link to this heading"></a></h2>
+<p>The highlighted lines show the multi-node specific additions:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Lines</p></th>
+<th class="head"><p>Change</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--nodes=2</span></code></p></td>
+<td><p>Request multiple nodes</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--gpus-per-node=4</span></code></p></td>
+<td><p>GPUs per node (instead of <code class="docutils literal notranslate"><span class="pre">--gpus=4</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>18</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--batch-size</span> <span class="pre">2048</span></code></p></td>
+<td><p>Larger batch for 8 GPUs</p></td>
+</tr>
+<tr class="row-odd"><td><p>21-25</p></td>
+<td><p>Host library paths</p></td>
+<td><p>Paths to libfabric, NCCL, CXI on host</p></td>
+</tr>
+<tr class="row-even"><td><p>35-40</p></td>
+<td><p>Head node discovery</p></td>
+<td><p>Get head node IP for rendezvous</p></td>
+</tr>
+<tr class="row-odd"><td><p>43-44</p></td>
+<td><p>Pass SLURM vars</p></td>
+<td><p>Export node/GPU counts to container</p></td>
+</tr>
+<tr class="row-even"><td><p>52-67</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">srun</span></code> with <code class="docutils literal notranslate"><span class="pre">--bind</span></code>/<code class="docutils literal notranslate"><span class="pre">--env</span></code></p></td>
+<td><p>Mount host libraries and set environment</p></td>
+</tr>
+<tr class="row-odd"><td><p>70-76</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">torchrun</span></code> with rendezvous</p></td>
+<td><p>Use <code class="docutils literal notranslate"><span class="pre">rdzv_backend=c10d</span></code> and <code class="docutils literal notranslate"><span class="pre">rdzv_endpoint</span></code> for multi-node coordination</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The key difference from single-node multi-GPU is the <strong>rendezvous setup</strong>. Single-node uses <code class="docutils literal notranslate"><span class="pre">--standalone</span></code>, while multi-node requires explicit coordination via <code class="docutils literal notranslate"><span class="pre">--rdzv_backend=c10d</span></code> and <code class="docutils literal notranslate"><span class="pre">--rdzv_endpoint</span></code> pointing to the head node.</p>
+</div>
+<p>The output of this job script is shown below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Epoch<span class="w"> </span><span class="m">95</span>/100<span class="w"> </span>completed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.771<span class="w"> </span>seconds
+Validation<span class="w"> </span>Loss:<span class="w"> </span><span class="m">1</span>.1998,<span class="w"> </span>Validation<span class="w"> </span>Accuracy:<span class="w"> </span><span class="m">0</span>.7101
+Epoch<span class="w"> </span>Throughput:<span class="w"> </span><span class="m">63787</span>.926<span class="w"> </span>images/second
+Epoch<span class="w"> </span><span class="m">96</span>/100<span class="w"> </span>completed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.759<span class="w"> </span>seconds
+Validation<span class="w"> </span>Loss:<span class="w"> </span><span class="m">1</span>.1924,<span class="w"> </span>Validation<span class="w"> </span>Accuracy:<span class="w"> </span><span class="m">0</span>.7090
+Epoch<span class="w"> </span>Throughput:<span class="w"> </span><span class="m">64736</span>.418<span class="w"> </span>images/second
+Epoch<span class="w"> </span><span class="m">97</span>/100<span class="w"> </span>completed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.770<span class="w"> </span>seconds
+Validation<span class="w"> </span>Loss:<span class="w"> </span><span class="m">1</span>.1911,<span class="w"> </span>Validation<span class="w"> </span>Accuracy:<span class="w"> </span><span class="m">0</span>.7092
+Epoch<span class="w"> </span>Throughput:<span class="w"> </span><span class="m">63812</span>.132<span class="w"> </span>images/second
+Epoch<span class="w"> </span><span class="m">98</span>/100<span class="w"> </span>completed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.763<span class="w"> </span>seconds
+Validation<span class="w"> </span>Loss:<span class="w"> </span><span class="m">1</span>.1671,<span class="w"> </span>Validation<span class="w"> </span>Accuracy:<span class="w"> </span><span class="m">0</span>.7128
+Epoch<span class="w"> </span>Throughput:<span class="w"> </span><span class="m">64432</span>.161<span class="w"> </span>images/second
+Epoch<span class="w"> </span><span class="m">99</span>/100<span class="w"> </span>completed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.756<span class="w"> </span>seconds
+Validation<span class="w"> </span>Loss:<span class="w"> </span><span class="m">1</span>.1799,<span class="w"> </span>Validation<span class="w"> </span>Accuracy:<span class="w"> </span><span class="m">0</span>.7160
+Epoch<span class="w"> </span>Throughput:<span class="w"> </span><span class="m">64995</span>.126<span class="w"> </span>images/second
+Epoch<span class="w"> </span><span class="m">100</span>/100<span class="w"> </span>completed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.767<span class="w"> </span>seconds
+Validation<span class="w"> </span>Loss:<span class="w"> </span><span class="m">1</span>.2086,<span class="w"> </span>Validation<span class="w"> </span>Accuracy:<span class="w"> </span><span class="m">0</span>.7082
+Epoch<span class="w"> </span>Throughput:<span class="w"> </span><span class="m">64118</span>.564<span class="w"> </span>images/second
+
+Training<span class="w"> </span>Summary:
+Total<span class="w"> </span>training<span class="w"> </span>time:<span class="w"> </span><span class="m">77</span>.784<span class="w"> </span>seconds
+Throughput:<span class="w"> </span><span class="m">63190</span>.172<span class="w"> </span>images/second
+Number<span class="w"> </span>of<span class="w"> </span>nodes:<span class="w"> </span><span class="m">2</span>
+Number<span class="w"> </span>of<span class="w"> </span>GPUs<span class="w"> </span>per<span class="w"> </span>node:<span class="w"> </span><span class="m">4</span>
+Total<span class="w"> </span>GPUs<span class="w"> </span>used:<span class="w"> </span><span class="m">8</span>
+Training<span class="w"> </span>completed<span class="w"> </span>successfully.
+Stopping<span class="w"> </span>GPU<span class="w"> </span>utilization<span class="w"> </span>monitoring...
+</pre></div>
+</div>
+<p>With 8 GPUs across 2 nodes, the throughput increased from ~5,100 images/second (single GPU) to ~63,000 images/second—a <strong>12x speedup</strong>. Training time dropped from ~16 minutes to just ~1.3 minutes.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="PyTorchMultiGpu.html" class="btn btn-neutral float-left" title="Multi-GPU Implementation for PyTorch on Olivia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

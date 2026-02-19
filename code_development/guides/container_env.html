@@ -1,0 +1,458 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Container with build environment &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Container with build environment</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="container-with-build-environment">
+<span id="id1"></span><h1>Container with build environment<a class="headerlink" href="#container-with-build-environment" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To follow this tutorial you need to have root access to a Linux computer
+with Singularity installed, e.g. your personal laptop/workstation.
+Please follow the installation
+<a class="reference external" href="https://sylabs.io/guides/3.7/user-guide/quick_start.html">instructions</a>
+from the Singularity documentation.</p>
+</div>
+<p>Sometimes we encounter applications that have system dependencies which are incompatible
+with the global environment on the cluster. This can happen for instance if you download
+a precompiled binary from an online archive which has been built for a specific OS version
+or depends on a system library which is not available, or if you want to compile your own
+application with some non-standard dependencies. One way to resolve such issues is to
+containerize the appropriate environment and run/compile your application <em>through</em> this
+container on the cluster. In the following examples we will demonstrate such a work flow.</p>
+<section id="hello-world-example">
+<h2>Hello world example<a class="headerlink" href="#hello-world-example" title="Link to this heading"></a></h2>
+<p>This example demonstrates:</p>
+<ol class="arabic simple">
+<li><p>how to write a simple Singularity definition file</p></li>
+<li><p>how to install system packages on top of a standard OS base image</p></li>
+<li><p>how to build the container on your laptop</p></li>
+<li><p>how to run commands through the container environment on the cluster</p></li>
+</ol>
+<p>In this example we will create a very simple container environment with a Ubuntu-16.04
+operating system and a GNU compiler. We will then use this environment to compile a
+simple program on the cluster.</p>
+<p><strong>Writing the definition file</strong></p>
+<p>We start with the following definition file (we call it <code class="docutils literal notranslate"><span class="pre">example.def</span></code>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Bootstrap</span><span class="p">:</span> <span class="n">docker</span>
+<span class="n">From</span><span class="p">:</span> <span class="n">ubuntu16</span><span class="mf">.04</span>
+
+<span class="o">%</span><span class="n">post</span>
+    <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">g</span><span class="o">++</span>
+</pre></div>
+</div>
+<p>This recipe will pull the <code class="docutils literal notranslate"><span class="pre">ubuntu16.04</span></code> image from the <a class="reference external" href="https://hub.docker.com">docker</a>
+registry and install the GNU C++ compiler using the Ubuntu package manager. Any system
+package that is available for the base OS can be installed in this way. Other common
+<code class="docutils literal notranslate"><span class="pre">Bootstrap</span></code> options include
+<code class="docutils literal notranslate"><span class="pre">library</span></code> for the Singularity <a class="reference external" href="https://cloud.sylabs.io/library">Container Library</a>,
+<code class="docutils literal notranslate"><span class="pre">shub</span></code> for <a class="reference external" href="https://singularity-hub.org">Singularity-Hub</a> or
+<code class="docutils literal notranslate"><span class="pre">localimage</span></code> if you want to build on top of another image located on your computer.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can find much more on Singularity definition files <a class="reference external" href="https://sylabs.io/guides/3.7/user-guide/definition_files.html">here</a>.</p>
+</div>
+<p><strong>Building the container</strong></p>
+<p>We can now build the container with the following command (you need sudo rights for this step):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@laptop]$ </span>sudo<span class="w"> </span>singularity<span class="w"> </span>build<span class="w"> </span>example.sif<span class="w"> </span>example.def
+
+<span class="go">[... lots of output ...]</span>
+
+<span class="go">INFO:    Adding environment to container</span>
+<span class="go">INFO:    Creating SIF file...</span>
+<span class="go">INFO:    Build complete: example.sif</span>
+</pre></div>
+</div>
+<p><strong>Running the container</strong></p>
+<p>Once <code class="docutils literal notranslate"><span class="pre">example.sif</span></code> is generated, we can <code class="docutils literal notranslate"><span class="pre">scp</span></code> the container file to the cluster:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@laptop]$ </span>scp<span class="w"> </span>example.sif<span class="w"> </span>me@saga.sigma2.no
+</pre></div>
+</div>
+<p>First we check the default <code class="docutils literal notranslate"><span class="pre">g++</span></code> compiler on the cluster:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~]$ </span>g++<span class="w"> </span>--version
+<span class="go">g++ (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)</span>
+<span class="go">Copyright (C) 2015 Free Software Foundation, Inc.</span>
+<span class="go">This is free software; see the source for copying conditions.  There is NO</span>
+<span class="go">warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+</pre></div>
+</div>
+<p>Then we check the <code class="docutils literal notranslate"><span class="pre">g++</span></code> version in the container by running the command through
+<code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">exec</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~]$ </span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>example.sif<span class="w"> </span>g++<span class="w"> </span>--version
+<span class="go">g++ (Ubuntu 5.4.0-6ubuntu1~16.04.12) 5.4.0 20160609</span>
+<span class="go">Copyright (C) 2015 Free Software Foundation, Inc.</span>
+<span class="go">This is free software; see the source for copying conditions.  There is NO</span>
+<span class="go">warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+</pre></div>
+</div>
+<p>We write a simple <code class="docutils literal notranslate"><span class="pre">hello-world.cpp</span></code> program:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Hello World!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>and compile it <em>through</em> the container environment:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~]$ </span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>example.sif<span class="w"> </span>g++<span class="w"> </span>hello-world.cpp
+<span class="gp">[me@login-1.SAGA ~]$ </span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>example.sif<span class="w"> </span>./a.out
+<span class="go">Hello World!</span>
+</pre></div>
+</div>
+<p>Remember that you also need to <em>run</em> the program through the container if it is
+dynamically linked to some of the containerized libraries.</p>
+</section>
+<section id="real-world-example-pdflatex">
+<h2>Real world example: pdflatex<a class="headerlink" href="#real-world-example-pdflatex" title="Link to this heading"></a></h2>
+<p>This example demonstrates:</p>
+<ol class="arabic simple">
+<li><p>how to build a container from a definition file</p></li>
+<li><p>how to set environment variables inside the container</p></li>
+<li><p>how to document your container</p></li>
+<li><p>how to make your container look like an executable application</p></li>
+<li><p>how to run your container application on the cluster</p></li>
+</ol>
+<p><a class="reference external" href="https://www.latex-project.org">Latex</a> is a software package with a plethora of different
+package options which can easily mess up your global environment. It is something that is
+typically not installed on compute clusters, but could still be useful e.g. for building
+code documentation. In this example we will create a fully functional container for the
+<code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> command for building PDFs from <code class="docutils literal notranslate"><span class="pre">tex</span></code> files.</p>
+<p><strong>Writing the definition file</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Bootstrap: library
+From: ubuntu:20.04
+
+%post
+    apt-get install -y software-properties-common
+    add-apt-repository universe
+    apt-get update -y
+    apt-get install -y texlive texlive-fonts-extra
+
+%environment
+    export LC_ALL=C
+
+%runscript
+    pdflatex $@
+
+%labels
+    Author Me &lt;me@mymail.com&gt;
+    Description PDF latex on a Ubuntu-20.04 base image
+    Version v1.0.0
+
+%help
+    How to run the container on a tex file:
+    $ ./&lt;image-name&gt;.sif &lt;file-name&gt;.tex
+</pre></div>
+</div>
+<p>Here we use the Ubuntu package manager to install a few <code class="docutils literal notranslate"><span class="pre">texlive</span></code> packages on top of a
+Ubuntu-20.04 base image, and we set the <code class="docutils literal notranslate"><span class="pre">LC_ALL</span></code> environment variable inside the container
+at run time. The <code class="docutils literal notranslate"><span class="pre">%runscript</span></code> section specifies the commands to be run inside the container
+when you launch the image file as an executable, where the <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code> will capture an argument string.
+In this particular example it means that we can run the image as</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./&lt;image-name&gt;.sif<span class="w"> </span>&lt;file-name&gt;.tex
+</pre></div>
+</div>
+<p>which will be equivalent of running the given <code class="docutils literal notranslate"><span class="pre">%runscript</span></code> command (<code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> in this case)
+through the container with <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">exec</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>&lt;image-name&gt;.sif<span class="w"> </span>pdflatex<span class="w"> </span>&lt;file-name&gt;.tex
+</pre></div>
+</div>
+<p>Finally, we add a few labels (accessible through <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">inspect</span> <span class="pre">&lt;image-name&gt;.sif</span></code>) and a help
+string (accessible through <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">run-help</span> <span class="pre">&lt;image-name&gt;.sif</span></code>) for documentation.</p>
+<p><strong>Building the container</strong></p>
+<p>We build the container on a local computer (requires sudo rights), where we have called the
+definition and image files <code class="docutils literal notranslate"><span class="pre">pdflatex.def</span></code> and <code class="docutils literal notranslate"><span class="pre">pdflatex.sif</span></code>, respectively:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@laptop]$ </span>sudo<span class="w"> </span>singularity<span class="w"> </span>build<span class="w"> </span>pdflatex.sif<span class="w"> </span>pdflatex.def
+
+<span class="go">[... lots of output ...]</span>
+
+<span class="go">    	This may take some time... done.</span>
+<span class="go">INFO:    Adding help info</span>
+<span class="go">INFO:    Adding labels</span>
+<span class="go">INFO:    Adding environment to container</span>
+<span class="go">INFO:    Adding runscript</span>
+<span class="go">INFO:    Creating SIF file...</span>
+<span class="go">INFO:    Build complete: pdflatex.sif</span>
+</pre></div>
+</div>
+<p><strong>Inpecting the container</strong></p>
+<p>When the image is ready we can inspect the metadata that we put into it</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@laptop]$ </span>singularity<span class="w"> </span>inspect<span class="w"> </span>pdflatex.sif
+<span class="go">Author: Me &lt;me@mymail.com&gt;</span>
+<span class="go">Description: PDF latex on a Ubuntu-20.04 base image</span>
+<span class="go">Version: v1.0.0</span>
+<span class="go">org.label-schema.build-arch: amd64</span>
+<span class="go">org.label-schema.build-date: Thursday_10_June_2021_13:12:27_CEST</span>
+<span class="go">org.label-schema.schema-version: 1.0</span>
+<span class="go">org.label-schema.usage: /.singularity.d/runscript.help</span>
+<span class="go">org.label-schema.usage.singularity.deffile.bootstrap: library</span>
+<span class="go">org.label-schema.usage.singularity.deffile.from: ubuntu:20.04</span>
+<span class="go">org.label-schema.usage.singularity.deffile.mirrorurl: http://us.archive.ubuntu.com/ubuntu/</span>
+<span class="go">org.label-schema.usage.singularity.deffile.osversion: focal</span>
+<span class="go">org.label-schema.usage.singularity.runscript.help: /.singularity.d/runscript.help</span>
+<span class="go">org.label-schema.usage.singularity.version: 3.7.0</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@laptop]$ </span>singularity<span class="w"> </span>run-help<span class="w"> </span>pdflatex.sif
+<span class="go">    How to run the container on a tex file:</span>
+<span class="gp">    $ </span>./&lt;image-name&gt;.sif<span class="w"> </span>&lt;file-name&gt;.tex
+</pre></div>
+</div>
+<p><strong>Running the container</strong></p>
+<p>When we are happy with the container we can move it to any machine where we would like
+to run <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code>. Here we <code class="docutils literal notranslate"><span class="pre">scp</span></code> to Saga and log in with <code class="docutils literal notranslate"><span class="pre">-X</span></code> in order to browse the
+produced PDF:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@laptop]$ </span>scp<span class="w"> </span>pdflatex.sif<span class="w"> </span>me@saga.sigma2.no
+<span class="gp">[me@laptop]$ </span>ssh<span class="w"> </span>-X<span class="w"> </span>me@saga.sigma2.no
+</pre></div>
+</div>
+<p>We write a simple <code class="docutils literal notranslate"><span class="pre">hello-world.tex</span></code> file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\documentclass[12pt]{article}
+\begin{document}
+Hello World!
+\end{document}
+</pre></div>
+</div>
+<p>and run our container on it:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~]$ </span>./pdflatex.sif<span class="w"> </span>hello-world.tex
+<span class="go">This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex) restricted \write18 enabled.</span>
+<span class="go">entering extended mode</span>
+<span class="go">(./hello-world.tex</span>
+<span class="go">LaTeX2e &lt;2020-02-02&gt; patch level 2</span>
+<span class="go">L3 programming layer &lt;2020-02-14&gt;</span>
+<span class="go">(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls</span>
+<span class="go">Document Class: article 2019/12/20 v1.4l Standard LaTeX document class</span>
+<span class="gp gp-VirtualEnv">(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo)</span><span class="go">)</span>
+<span class="gp gp-VirtualEnv">(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def)</span>
+<span class="go">No file hello-world.aux.</span>
+<span class="go">[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./hello-world.aux) )&lt;/u</span>
+<span class="go">sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb&gt;</span>
+<span class="go">Output written on hello-world.pdf (1 page, 9893 bytes).</span>
+<span class="go">Transcript written on hello-world.log.</span>
+</pre></div>
+</div>
+<p>Finally, you can inspect the produced file e.g. in a browser:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login-1.SAGA ~]$ </span>firefox<span class="w"> </span>hello-world.pdf
+</pre></div>
+</div>
+<p>where you will hopefully see an almost blank page with the words “Hello World!” written.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

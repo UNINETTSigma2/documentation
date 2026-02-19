@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monitoring GPUs on LUMI-G with rocm-smi &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Monitoring GPUs on LUMI-G with <code class="docutils literal notranslate"><span class="pre">rocm-smi</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="monitoring-gpus-on-lumi-g-with-rocm-smi">
+<span id="id1"></span><h1>Monitoring GPUs on LUMI-G with <code class="docutils literal notranslate"><span class="pre">rocm-smi</span></code><a class="headerlink" href="#monitoring-gpus-on-lumi-g-with-rocm-smi" title="Link to this heading"></a></h1>
+<p>To monitor GPUs on LUMI-G during the execution of your SLURM job, you can employ the <code class="docutils literal notranslate"><span class="pre">rocm-smi</span></code> command. This can be done by using <code class="docutils literal notranslate"><span class="pre">srun</span></code> with the <code class="docutils literal notranslate"><span class="pre">--overlap</span></code> option, which allows you to execute commands on the nodes allocated to your running job. Detailed information about using <code class="docutils literal notranslate"><span class="pre">--overlap</span></code> on LUMI-G is available <a class="reference external" href="https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/interactive/#using-srun-to-check-running-jobs">here</a>.</p>
+<section id="steps-to-monitor-gpus-on-jobs-with-a-single-node">
+<h2>Steps to Monitor GPUs on jobs with a Single Node<a class="headerlink" href="#steps-to-monitor-gpus-on-jobs-with-a-single-node" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Run the following command with your job-id on your single node job-id:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--overlap<span class="w"> </span>--pty<span class="w"> </span>--jobid<span class="o">=</span>&lt;jobid&gt;<span class="w"> </span>rocm-smi<span class="w"> </span>--showuse<span class="w"> </span><span class="c1"># replace with your desired option</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="steps-to-monitor-gpus-with-multiple-nodes">
+<h2>Steps to Monitor GPUs with multiple nodes<a class="headerlink" href="#steps-to-monitor-gpus-with-multiple-nodes" title="Link to this heading"></a></h2>
+<p>To monitor the GPU usage on jobs with multiple nodes, you can use the following steps:</p>
+<ol class="arabic">
+<li><p><strong>Identify the Allocated Nodes:</strong>
+First, find out which nodes are allocated to your job by using the following command, replacing <code class="docutils literal notranslate"><span class="pre">&lt;jobid&gt;</span></code> with the ID of your SLURM job:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sacct<span class="w"> </span>--noheader<span class="w"> </span>-X<span class="w"> </span>-P<span class="w"> </span>-oNodeList<span class="w"> </span>--jobs<span class="o">=</span>&lt;jobid&gt;
+</pre></div>
+</div>
+</li>
+<li><p><strong>Execute <code class="docutils literal notranslate"><span class="pre">rocm-smi</span></code>:</strong>
+Once you have the node names (e.g., nid00XXXX), execute <code class="docutils literal notranslate"><span class="pre">rocm-smi</span></code> to monitor the GPU usage:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--overlap<span class="w"> </span>--pty<span class="w"> </span>--jobid<span class="o">=</span>&lt;jobid&gt;<span class="w"> </span>-w<span class="w"> </span>&lt;node_name&gt;<span class="w"> </span>rocm-smi<span class="w"> </span>--showuse<span class="w"> </span><span class="c1"># replace with your desired option</span>
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">&lt;node_name&gt;</span></code> with the actual node identifier.</p>
+</li>
+</ol>
+<blockquote>
+<div><p><strong>Note:</strong> For this to work, use the <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--gpus-per-node</span></code> directive instead of the <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--gpus</span></code> directive in your job-script for multiple node jobs.</p>
+</div></blockquote>
+</section>
+<section id="adding-gpu-monitoring-to-a-job-script-on-lumi-g">
+<h2>Adding GPU Monitoring to a Job Script on LUMI-G<a class="headerlink" href="#adding-gpu-monitoring-to-a-job-script-on-lumi-g" title="Link to this heading"></a></h2>
+<p>Monitoring GPU usage on the LUMI-G cluster can provide you with valuable insights into the performance and efficiency of your GPU-accelerated applications. By integrating ROCm-SMI (Radeon Open Compute System Management Interface) into your SLURM job script, you can collect GPU utilization statistics throughout the runtime of your job. Follow these instructions to modify your existing job script to include GPU monitoring with <code class="docutils literal notranslate"><span class="pre">rocm-smi</span></code>.</p>
+<section id="script-for-expanding-node-ranges">
+<h3>Script for Expanding Node Ranges<a class="headerlink" href="#script-for-expanding-node-ranges" title="Link to this heading"></a></h3>
+<p>To monitor specific GPUs, we must first resolve the node range into individual node names. The following script, named <code class="docutils literal notranslate"><span class="pre">expand_nodes.sh</span></code>, will be used in the job script to accomplish this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="ch">#!/bin/bash</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1"># Function to expand the node range like &quot;nid[005252-005254]&quot; into individual nodes</span>
+<span class="hll"><span class="linenos"> 4</span>expand_node_range<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+</span><span class="linenos"> 5</span><span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">node_range</span><span class="o">=</span><span class="nv">$1</span>
+<span class="hll"><span class="linenos"> 6</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$node_range</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>*<span class="s2">&quot;[&quot;</span>*<span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span class="hll"><span class="linenos"> 7</span><span class="w">        </span><span class="nb">local</span><span class="w"> </span><span class="nv">prefix</span><span class="o">=</span><span class="si">${</span><span class="nv">node_range</span><span class="p">%%[*]</span><span class="si">}</span><span class="w">          </span><span class="c1"># Extract the prefix ending at the first &#39;[&#39;</span>
+</span><span class="hll"><span class="linenos"> 8</span><span class="w">        </span><span class="nb">local</span><span class="w"> </span><span class="nv">range_numbers</span><span class="o">=</span><span class="si">${</span><span class="nv">node_range</span><span class="p">#*[</span><span class="si">}</span><span class="w">     </span><span class="c1"># Extract the range numbers</span>
+</span><span class="linenos"> 9</span><span class="w">        </span><span class="nv">range_numbers</span><span class="o">=</span><span class="si">${</span><span class="nv">range_numbers</span><span class="p">%]*</span><span class="si">}</span><span class="w">        </span><span class="c1"># Remove the trailing &#39;]&#39;</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="w">        </span><span class="nb">local</span><span class="w"> </span><span class="nv">IFS</span><span class="o">=</span><span class="s1">&#39;-&#39;</span>
+<span class="linenos">12</span><span class="w">        </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>start<span class="w"> </span>end<span class="w"> </span><span class="o">&lt;&lt;&lt;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$range_numbers</span><span class="s2">&quot;</span><span class="w">   </span><span class="c1"># Read the start and end numbers of the range</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">        </span><span class="c1"># Use printf to generate the sequence with zero padding based on the width of the numbers</span>
+<span class="linenos">15</span><span class="w">        </span><span class="nb">local</span><span class="w"> </span><span class="nv">width</span><span class="o">=</span><span class="si">${#</span><span class="nv">start</span><span class="si">}</span>
+<span class="hll"><span class="linenos">16</span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">10</span><span class="c1">#$start; i &lt;= 10#$end; i++ )); do</span>
+</span><span class="hll"><span class="linenos">17</span><span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="k">$(</span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;nid%0</span><span class="si">${</span><span class="nv">width</span><span class="si">}</span><span class="s2">d&quot;</span><span class="w"> </span><span class="nv">$i</span><span class="k">)</span>
+</span><span class="hll"><span class="linenos">18</span><span class="w">        </span><span class="k">done</span>
+</span><span class="linenos">19</span><span class="w">    </span><span class="k">else</span>
+<span class="linenos">20</span><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$node_range</span><span class="s2">&quot;</span>
+<span class="linenos">21</span><span class="w">    </span><span class="k">fi</span>
+<span class="linenos">22</span><span class="o">}</span>
+<span class="linenos">23</span><span class="c1"># Check if an argument was provided</span>
+<span class="linenos">24</span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">25</span><span class="w">    </span><span class="c1"># Call the function with the provided argument</span>
+<span class="linenos">26</span><span class="w">    </span>expand_node_range<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="linenos">27</span><span class="k">else</span>
+<span class="linenos">28</span><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usage: </span><span class="nv">$0</span><span class="s2"> &lt;node_range&gt;&quot;</span>
+<span class="linenos">29</span><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="linenos">30</span><span class="k">fi</span>
+</pre></div>
+</div>
+<p>Key elements of the expand_nodes.sh script:</p>
+<ol class="arabic simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">expand_node_range</span></code> function (line 4) takes a string representing a range of nodes and expands it to individual nodes.</p></li>
+<li><p>Checks for the presence of “[” to determine if it’s a range (line 6).</p></li>
+<li><p>Extracts the prefix and range numbers (lines 7-8).</p></li>
+<li><p>Uses a for loop (lines 16-18) to iterate through the range and generate node names with proper zero padding.</p></li>
+</ol>
+<p>Be sure to make the script executable before attempting to use it in your job script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>+x<span class="w"> </span>expand_nodes.sh
+</pre></div>
+</div>
+</section>
+<section id="modified-job-script-with-gpu-monitoring">
+<h3>Modified Job Script with GPU Monitoring<a class="headerlink" href="#modified-job-script-with-gpu-monitoring" title="Link to this heading"></a></h3>
+<p>The following job script, <code class="docutils literal notranslate"><span class="pre">monitored_job_script.sh</span></code>, has been enhanced to include GPU monitoring capabilities. The GPU monitoring is encapsulated within a function and is designed to run concurrently with the main job.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="ch">#!/bin/bash -e</span>
+<span class="linenos"> 2</span><span class="c1">#SBATCH --job-name=&lt;name&gt;</span>
+<span class="linenos"> 3</span><span class="c1">#SBATCH --account=project_4650000XX</span>
+<span class="linenos"> 4</span><span class="c1">#SBATCH --time=XX:XX:XX</span>
+<span class="linenos"> 5</span><span class="c1">#SBATCH --partition=standard-g # or dev-g</span>
+<span class="linenos"> 6</span><span class="c1">#SBATCH --nodes=&lt;nr_nodes&gt;</span>
+<span class="linenos"> 7</span><span class="c1">#SBATCH --ntasks-per-node=&lt;nr_tasks_per_node&gt;</span>
+<span class="linenos"> 8</span><span class="c1">#SBATCH --gpus=&lt;nr_gpus&gt;</span>
+<span class="linenos"> 9</span><span class="c1">#SBATCH --gpus-per-node=8 # Rocm-smi only works on full nodes</span>
+<span class="linenos">10</span><span class="c1">#SBATCH -o %x-%j.out</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="c1"># Load necessary modules</span>
+<span class="linenos">13</span><span class="c1"># ...</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="c1"># Define the GPU monitoring function</span>
+<span class="hll"><span class="linenos">16</span>gpu_monitoring<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+</span><span class="linenos">17</span><span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">node_name</span><span class="o">=</span><span class="k">$(</span>hostname<span class="k">)</span>
+<span class="linenos">18</span><span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">monitoring_file</span><span class="o">=</span><span class="s2">&quot;gpu_monitoring_</span><span class="si">${</span><span class="nv">SLURM_JOBID</span><span class="si">}</span><span class="s2">_node_</span><span class="si">${</span><span class="nv">node_name</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Monitoring GPUs on </span><span class="nv">$node_name</span><span class="s2">&quot;</span>
+<span class="hll"><span class="linenos">21</span><span class="w">    </span>rocm-smi<span class="w"> </span>--csv<span class="w"> </span>--showuse<span class="w"> </span>--showmemuse<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$monitoring_file</span><span class="s2">&quot;</span>
+</span><span class="linenos">22</span>
+<span class="hll"><span class="linenos">23</span><span class="w">    </span><span class="k">while</span><span class="w"> </span>squeue<span class="w"> </span>-j<span class="w"> </span><span class="si">${</span><span class="nv">SLURM_JOBID</span><span class="si">}</span><span class="w"> </span><span class="p">&amp;</span>&gt;/dev/null<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span class="hll"><span class="linenos">24</span><span class="w">        </span>rocm-smi<span class="w"> </span>--csv<span class="w"> </span>--showuse<span class="w"> </span>--showmemuse<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;1d;/^$/d&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$monitoring_file</span><span class="s2">&quot;</span>
+</span><span class="hll"><span class="linenos">25</span><span class="w">        </span>sleep<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="c1"># Change this value to adjust the monitoring frequency</span>
+</span><span class="hll"><span class="linenos">26</span><span class="w">    </span><span class="k">done</span>
+</span><span class="linenos">27</span><span class="o">}</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="nb">export</span><span class="w"> </span>-f<span class="w"> </span>gpu_monitoring
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="nv">nodes_compressed</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>sacct<span class="w"> </span>--noheader<span class="w"> </span>-X<span class="w"> </span>-P<span class="w"> </span>-o<span class="w"> </span>NodeList<span class="w"> </span>--jobs<span class="o">=</span><span class="si">${</span><span class="nv">SLURM_JOBID</span><span class="si">}</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="hll"><span class="linenos">32</span><span class="nv">nodes</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>./expand_nodes.sh<span class="w"> </span><span class="nv">$nodes_compressed</span><span class="k">)</span><span class="s2">&quot;</span>
+</span><span class="hll"><span class="linenos">33</span><span class="k">for</span><span class="w"> </span>node<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$nodes</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span class="hll"><span class="linenos">34</span><span class="w">  </span>srun<span class="w"> </span>--overlap<span class="w"> </span>--jobid<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SLURM_JOBID</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$node</span><span class="s2">&quot;</span><span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;gpu_monitoring&#39;</span><span class="w"> </span><span class="p">&amp;</span>
+</span><span class="hll"><span class="linenos">35</span><span class="k">done</span>
+</span><span class="linenos">36</span>
+<span class="linenos">37</span><span class="c1"># Run the main job task</span>
+<span class="linenos">38</span>srun<span class="w"> </span>your_program
+</pre></div>
+</div>
+<p>Key elements of the <code class="docutils literal notranslate"><span class="pre">monitored_job_script.sh</span></code> script:</p>
+<ol class="arabic simple">
+<li><p>We define a <code class="docutils literal notranslate"><span class="pre">gpu_monitoring</span></code> function (line 16) to capture GPU usage data.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">--csv</span></code> flag in the <code class="docutils literal notranslate"><span class="pre">rocm-smi</span></code> command (line 21) is used to format the output as comma-separated values, making it easier to parse and analyze later.</p></li>
+<li><p>The loop on lines 23-26 ensures that GPU data is captured at regular intervals until the job completes.</p></li>
+<li><p>The function is exported (line 29) so that it can be called across different nodes within the job.</p></li>
+<li><p>In lines 32-35 we expand the node range into individual nodes using the <code class="docutils literal notranslate"><span class="pre">expand_nodes.sh</span></code> script. Then we initiate the monitoring on each node in a loop using <code class="docutils literal notranslate"><span class="pre">srun</span></code>.</p></li>
+</ol>
+<p>Note on ROCm-SMI flags:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">--showuse</span></code> and <code class="docutils literal notranslate"><span class="pre">--showmemuse</span></code> flags included with <code class="docutils literal notranslate"><span class="pre">rocm-smi</span></code> show GPU utilization and memory usage, respectively. These flags can be substituted or extended with other flags that are relevant to the specific monitoring requirements of your job. Using the <code class="docutils literal notranslate"><span class="pre">--csv</span></code> format ensures that the output is easily readable and can be processed with standard data analysis tools after the job has concluded.</p></li>
+</ul>
+</section>
+<section id="submitting-the-modified-job-script">
+<h3>Submitting the Modified Job Script<a class="headerlink" href="#submitting-the-modified-job-script" title="Link to this heading"></a></h3>
+<p>To submit the job script with GPU monitoring enabled, use the following SLURM command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>monitored_job_script.sh
+</pre></div>
+</div>
+</section>
+<section id="reviewing-the-monitoring-data">
+<h3>Reviewing the Monitoring Data<a class="headerlink" href="#reviewing-the-monitoring-data" title="Link to this heading"></a></h3>
+<p>Upon completion of your job, you can review the collected GPU usage and performance data. For each job, you will find a consolidated CSV file with a naming pattern of <code class="docutils literal notranslate"><span class="pre">gpu_monitoring_&lt;jobid&gt;_node_&lt;nodename&gt;.csv</span></code>. This file contains time-stamped metrics that will allow you to assess the GPU usage over the duration of the job.</p>
+<p>Analyze the CSV data files using your preferred data processing tool to gain insights into the GPU resource utilization and identify potential bottlenecks or inefficiencies in your application’s performance.</p>
+<p>Note to Users: The provided scripts for GPU monitoring serve as an adaptable framework. Depending on the specific requirements of your computation workload, you may need to modify the scripts to fit your needs. Adjustments may include changing the frequency of data capture, modifying the captured metrics, or altering how the node expansion is handled. Use the scripts as a starting point and tailor them to surmount the individual challenges associated with monitoring in a HPC environment like LUMI-G.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

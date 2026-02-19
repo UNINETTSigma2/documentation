@@ -1,0 +1,412 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NIRD S3 &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Snapshots on NIRD" href="snapshots_lmd.html" />
+    <link rel="prev" title="Storage areas, quota, and backup" href="storage-areas_lmd.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../nird_lmd.html">NIRD</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../nird_lmd.html#national-infrastructure-for-research-data">National Infrastructure for Research Data</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../nird_lmd.html#in-depth-documentation-for-nird">In-depth documentation for NIRD</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="access_lmd.html">Access and login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="storage-areas_lmd.html">Storage areas, quota, and backup</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">NIRD S3</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#what-is-object-storage">What is object storage?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#about-nird-s3">About NIRD S3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#working-with-nird-s3">Working with NIRD S3</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="snapshots_lmd.html">Snapshots on NIRD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mounts_lmd.html">NIRD mounts on clusters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dp_dl.html">NIRD Data Peak vs NIRD Data Lake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq_nird.html">Frequently asked questions on NIRD</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../nird_lmd.html">NIRD</a></li>
+      <li class="breadcrumb-item active">NIRD S3</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nird-s3">
+<span id="id1"></span><h1>NIRD S3<a class="headerlink" href="#nird-s3" title="Link to this heading"></a></h1>
+<section id="what-is-object-storage">
+<h2>What is object storage?<a class="headerlink" href="#what-is-object-storage" title="Link to this heading"></a></h2>
+<p>Object storage is specifically designed to manage large volumes of unstructured data. It stores data as discrete units, known as objects, each accompanied by metadata and a unique identifier. Each object is accessible via a dedicated key-pair, ensuring that all data blocks within a file are kept together as a single entity, complete with its relevant metadata and unique ID.</p>
+<p>In the context of object storage, traditional file storage directories (POSIX) are analogous to ‘buckets.’</p>
+</section>
+<section id="about-nird-s3">
+<h2>About NIRD S3<a class="headerlink" href="#about-nird-s3" title="Link to this heading"></a></h2>
+<p>On NIRD, object storage is available as a service component within the NIRD Data Lake, supporting the efficient consumption and ingestion of unstructured data. This service also facilitates data streaming, data sharing with external collaborators, and more.</p>
+<p>The NIRD Data Lake provides unified access to data, allowing the same data can be accessed simultaneously through multiple protocols, such as POSIX, NFS, and S3.</p>
+<p>The object storage on NIRD Data Lake facilitates seamless collaboration without the necessity for data staging between locations. It also allows integration with data processing frameworks and AI/ML platforms, providing fast, and easy access to large datasets for training models and running simulations.</p>
+<p>NIRD S3 comes with enhanced load balancing and high I/O throughput, with a measured throughput of 27GB/s.</p>
+<p>NIRD S3 supports 10TB single object sizes and up to 100 million objects per bucket.</p>
+</section>
+<section id="working-with-nird-s3">
+<h2>Working with NIRD S3<a class="headerlink" href="#working-with-nird-s3" title="Link to this heading"></a></h2>
+<p>This guide provides a brief overview of how to use NIRD S3, though it does not cover all possible use cases and functionalities.</p>
+<section id="obtaining-s3-access">
+<h3>Obtaining S3 Access<a class="headerlink" href="#obtaining-s3-access" title="Link to this heading"></a></h3>
+<p>To gain access to NIRD S3, you must be a member of an active project on NIRD, have an allocation on the NIRD Data Lake, and own the directory for which you’re requesting S3 access.</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">RequestS3Access</span></code> command to submit a request. This request is processed periodically by the system, which will then register an S3 account and create a bucket linked to the specified directory.</p>
+<p><code class="docutils literal notranslate"><span class="pre">nird-login</span> <span class="pre">$</span> <span class="pre">RequestS3Access</span> <span class="pre">/nird/datalake/NSxxxxK/my-directory</span></code></p>
+<p>Upon successful request, further information is sent to your email address.</p>
+<p><em>Please read carefully the information in the email and pay attention to the <em>NAME</em> of your bucket in the message. Some symbols are not permitted in the bucket names and the directory name which you created for the bucket may have been modified (e.g. replaced underscores, etc.).</em></p>
+</section>
+<section id="s3-client-configuration">
+<h3>S3 client configuration<a class="headerlink" href="#s3-client-configuration" title="Link to this heading"></a></h3>
+<p>Several CLI clients are available like AWS CLI, s3cmd, MinIO Client, rclone, etc. As graphical user interface, Cyberduck may be used. Please consult each tool’s documentation for detailed help.</p>
+<p>Below are two examples <code class="docutils literal notranslate"><span class="pre">rclone</span></code> and <code class="docutils literal notranslate"><span class="pre">AWS</span></code>.</p>
+<section id="rclone">
+<h4>rclone<a class="headerlink" href="#rclone" title="Link to this heading"></a></h4>
+<p>Examples of setting up rclone and using rclone command line interface.
+The rclone application can do a range of file transfers (cp, scp, rsync type etc), but only S3 is show here.</p>
+<p>Make a configuration for rclone.
+by running
+<code class="docutils literal notranslate"><span class="pre">rclone</span> <span class="pre">config</span></code>
+Or editing the config file directly, it’s located at:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$HOME/.config/rclone/rclone.conf
+</pre></div>
+</div>
+<p>Editing the config file is simpler than running the config option as only a few lines
+are needed to set up rclone with S3.</p>
+<p>An example config could look like this, fill in your credentials from the file on NIRD.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">S3</span><span class="p">]</span>
+<span class="nb">type</span> <span class="o">=</span> <span class="n">s3</span>
+<span class="n">provider</span> <span class="o">=</span> <span class="n">Other</span>
+<span class="n">access_key_id</span> <span class="o">=</span>  <span class="n">xxxxxxxxxxx</span>
+<span class="n">secret_access_key</span> <span class="o">=</span> <span class="n">yyyyyyyyyyyyy</span>
+<span class="n">endpoint</span> <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">s3</span><span class="o">.</span><span class="n">nird</span><span class="o">.</span><span class="n">sigma2</span><span class="o">.</span><span class="n">no</span>
+<span class="n">acl</span> <span class="o">=</span> <span class="n">private</span>
+</pre></div>
+</div>
+<p>After the config file is updated the rclone is ready for use against the NIRD datalake.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rclone</span> <span class="n">ls</span>  <span class="n">S3</span><span class="p">:</span><span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;-</span><span class="n">ns</span><span class="o">&lt;</span><span class="n">project</span><span class="o">&gt;</span><span class="n">k</span><span class="o">-&lt;</span><span class="n">user</span><span class="o">&gt;/</span>
+<span class="mi">1099511627776</span> <span class="n">tmp</span><span class="o">.</span><span class="n">dta</span>
+<span class="mi">102400000000</span> <span class="n">tmp</span><span class="o">.</span><span class="n">m1</span>
+<span class="mi">263095463936</span> <span class="n">tmp</span><span class="o">.</span><span class="n">medium</span>
+<span class="mi">1073741824</span> <span class="n">tmp</span><span class="o">.</span><span class="n">small</span>
+</pre></div>
+</div>
+<p>Once we have retrieved the names we can copy the file we want to use.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rclone</span> <span class="n">copy</span>  <span class="n">S3</span><span class="p">:</span><span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;-</span><span class="n">ns</span><span class="o">&lt;</span><span class="n">project</span><span class="o">&gt;</span><span class="n">k</span><span class="o">-&lt;</span><span class="n">user</span><span class="o">&gt;/</span><span class="n">tmp</span><span class="o">.</span><span class="n">medium</span>  <span class="o">.</span> 
+</pre></div>
+</div>
+<p>To monitor progress and transfer speed use the option -P.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rclone</span> <span class="n">copy</span>  <span class="n">S3</span><span class="p">:</span><span class="n">user</span><span class="o">-</span><span class="n">nsXXXXk</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">tmp</span><span class="o">.</span><span class="n">medium</span> <span class="o">.</span> <span class="o">-</span><span class="n">P</span>
+<span class="n">Transferred</span><span class="p">:</span>      <span class="mf">245.027</span> <span class="n">GiB</span> <span class="o">/</span> <span class="mf">245.027</span> <span class="n">GiB</span><span class="p">,</span> <span class="mi">100</span><span class="o">%</span><span class="p">,</span> <span class="mf">19.587</span> <span class="n">MiB</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">ETA</span> <span class="mi">0</span><span class="n">s</span>
+<span class="n">Transferred</span><span class="p">:</span>            <span class="mi">1</span> <span class="o">/</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="o">%</span>
+<span class="n">Elapsed</span> <span class="n">time</span><span class="p">:</span>      <span class="mi">4</span><span class="n">m56</span><span class="mf">.9</span><span class="n">s</span>
+</pre></div>
+</div>
+<p>Copy other direction:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rclone</span> <span class="n">copy</span> <span class="n">tmp</span><span class="o">.</span><span class="n">m1</span>  <span class="n">S3</span><span class="p">:</span><span class="n">user</span><span class="o">-</span><span class="n">nsXXXXk</span><span class="o">-</span><span class="n">user</span><span class="o">/</span> <span class="o">-</span><span class="n">P</span>  <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">checksum</span>
+</pre></div>
+</div>
+<p>As the receiver has to read the whole file to calculate the checksum it takes
+a considerable amount of time, it’s turned of to provide the transfer speed only.</p>
+<p>It’s possible to run multiple transfers simultaneously with many files
+(wildcards don’t work, hence the include option) :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rclone</span> <span class="n">copy</span>  <span class="n">S3</span><span class="p">:</span><span class="n">user</span><span class="o">-</span><span class="n">nsXXXXk</span><span class="o">-</span><span class="n">user</span><span class="o">/</span> <span class="o">.</span> <span class="o">--</span><span class="n">include</span> <span class="s2">&quot;tmp.m?&quot;</span>\ 
+<span class="o">--</span><span class="n">transfers</span><span class="o">=</span><span class="mi">10</span> <span class="o">-</span><span class="n">P</span>  <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">checksum</span>
+<span class="n">Transferred</span><span class="p">:</span>      <span class="mf">953.674</span> <span class="n">GiB</span> <span class="o">/</span> <span class="mf">953.674</span> <span class="n">GiB</span><span class="p">,</span> <span class="mi">100</span><span class="o">%</span><span class="p">,</span> <span class="mf">5.225</span> <span class="n">GiB</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">ETA</span> <span class="mi">0</span><span class="n">s</span>
+<span class="n">Checks</span><span class="p">:</span>                 <span class="mi">0</span> <span class="o">/</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="p">,</span> <span class="n">Listed</span> <span class="mi">19</span>
+<span class="n">Transferred</span><span class="p">:</span>           <span class="mi">10</span> <span class="o">/</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="o">%</span>
+<span class="n">Elapsed</span> <span class="n">time</span><span class="p">:</span>      <span class="mi">2</span><span class="n">m22</span><span class="mf">.0</span><span class="n">s</span>
+</pre></div>
+</div>
+<p>The combined transfer bandwidth can be quite good. On the other hans
+doing checksum at both ends takes time and impedes the transfer,
+causing it to take considerably longer time.</p>
+<p>When transferring much data as the below example shows quite high
+transfer speed can be obtained as measured from the User Access Nodes
+(uan or login nodes). The example transfers a set of 1000 smaller
+files at 512 MB each with a varying number of transfers (threads)
+(rclone uses sftp as the transfer layer).</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Transfers</p></th>
+<th class="head"><p>Transfer speed [GB/s]</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>7.376</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>10.26</p></td>
+</tr>
+<tr class="row-even"><td><p>30</p></td>
+<td><p>11.15</p></td>
+</tr>
+<tr class="row-odd"><td><p>40</p></td>
+<td><p>10.20</p></td>
+</tr>
+<tr class="row-even"><td><p>50</p></td>
+<td><p>11.33             !</p></td>
+</tr>
+<tr class="row-odd"><td><p>60</p></td>
+<td><p>10.56</p></td>
+</tr>
+</tbody>
+</table>
+<p>At 10 GBytes/s it’s possible to transfer 36 TB/h which is actually quite good.</p>
+<p>For more details of what <em>rclone</em> can do see: <a class="reference external" href="https://rclone.org/s3/">Documentation</a></p>
+</section>
+<section id="amazon-web-serices-client">
+<h4>Amazon Web Serices client<a class="headerlink" href="#amazon-web-serices-client" title="Link to this heading"></a></h4>
+<p>Examples using the AWS CLI, and example configuration listed below.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.aws/config</span></code></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">[profile</span> <span class="pre">s3test]</span></code> value in <em>.aws/config</em> shall match the value in <em>.aws/credentials</em> : <code class="docutils literal notranslate"><span class="pre">[s3test]</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">default</span><span class="p">]</span>
+<span class="n">region</span> <span class="o">=</span> <span class="n">us</span><span class="o">-</span><span class="n">east</span><span class="o">-</span><span class="mi">1</span>
+
+<span class="p">[</span><span class="n">profile</span> <span class="n">s3test</span><span class="p">]</span>
+<span class="n">region</span> <span class="o">=</span> <span class="n">us</span><span class="o">-</span><span class="n">east</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">s3</span> <span class="o">=</span>
+    <span class="n">multipart_chunksize</span> <span class="o">=</span> <span class="mi">5</span><span class="n">GB</span>
+    <span class="n">multipart_threshold</span> <span class="o">=</span> <span class="mi">2</span><span class="n">GB</span>
+    <span class="n">max_concurrent_requests</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">.aws/credentials</span></code></p>
+<p>The values of <code class="docutils literal notranslate"><span class="pre">aws_access_key_id</span></code> and <code class="docutils literal notranslate"><span class="pre">aws_secret_access_key</span></code> in <em>.aws/credentials</em> shall contain the values in the <code class="docutils literal notranslate"><span class="pre">&lt;username&gt;-&lt;project&gt;-s3creds.txt</span></code> file as follows (this file is automatically created after S3 access request here above and is located in the user home directory):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">default</span><span class="p">]</span>
+<span class="n">aws_access_key_id</span> <span class="o">=</span>
+<span class="n">aws_secret_access_key</span> <span class="o">=</span>
+<span class="p">[</span><span class="n">s3test</span><span class="p">]</span>
+<span class="n">aws_access_key_id</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Access</span> <span class="n">Key</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">file</span><span class="o">&gt;</span>
+<span class="n">aws_secret_access_key</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Secret</span> <span class="n">Key</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">file</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><em>List bucket</em>
+<code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">--profile</span> <span class="pre">s3test</span> <span class="pre">--endpoint</span> <span class="pre">https://s3.nird.sigma2.no</span> <span class="pre">s3</span> <span class="pre">ls</span> <span class="pre">s3://username-nsxxxxk-bucketname/</span></code></p>
+<p><em>Put object</em>
+<code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">--profile</span> <span class="pre">s3test</span> <span class="pre">--endpoint</span> <span class="pre">https://s3.nird.sigma2.no</span> <span class="pre">s3</span> <span class="pre">cp</span> <span class="pre">local-file.nc</span> <span class="pre">s3://username-nsxxxxk-bucketname/</span></code></p>
+<p><em>Get object</em>
+<code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">--profile</span> <span class="pre">s3test</span> <span class="pre">--endpoint</span> <span class="pre">https://s3.nird.sigma2.no</span> <span class="pre">s3</span> <span class="pre">cp</span> <span class="pre">s3://username-nsxxxxk-bucketname/somefile</span> <span class="pre">.</span></code></p>
+<p><em>Use S3 API to fetch file metadata</em>
+<code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">--profile</span> <span class="pre">s3test</span> <span class="pre">--endpoint</span> <span class="pre">https://s3.nird.sigma2.no</span> <span class="pre">s3api</span> <span class="pre">head-object</span> <span class="pre">--bucket</span> <span class="pre">username-nsxxxxk-bucketname</span> <span class="pre">--key</span> <span class="pre">somefile</span></code></p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="storage-areas_lmd.html" class="btn btn-neutral float-left" title="Storage areas, quota, and backup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="snapshots_lmd.html" class="btn btn-neutral float-right" title="Snapshots on NIRD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

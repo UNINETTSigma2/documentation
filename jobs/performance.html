@@ -1,0 +1,446 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to check the performance and scaling using Arm Performance Reports &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Using MKL efficiently" href="mkl.html" />
+    <link rel="prev" title="Common job failures" href="common_job_failures.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Running jobs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="submitting.html">Submitting jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing_job_types.html">Job Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts/array_jobs.html">Array Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_scripts.html">Job Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Monitoring jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slurm_output.html">Understanding the job output file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing-memory-settings.html">How to choose the right amount of memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choosing-number-of-cores.html">How to choose the number of cores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_job_failures.html">Common job failures</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">How to check the performance and scaling using Arm Performance Reports</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#do-i-need-to-recompile-the-code">Do I need to recompile the code?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#profiling-a-batch-script">Profiling a batch script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#profiling-on-an-interactive-compute-node">Profiling on an interactive compute node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-cases-and-pitfalls">Use cases and pitfalls</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#what-if-the-job-timed-out">What if the job timed out?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mkl.html">Using MKL efficiently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory-bandwidth.html">Efficient use of memory bandwidth on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-calculations.html">Efficient use of processors and network on Betzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive_jobs.html">Interactive jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkpointing.html">Checkpointing Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projects_accounting.html">Projects and accounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratchfiles.html">Local storage for scratch files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides.html">Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slurm_commands.html">Useful Slurm commands and tools for managing jobs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="overview.html">Running jobs</a></li>
+      <li class="breadcrumb-item active">How to check the performance and scaling using Arm Performance Reports</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-to-check-the-performance-and-scaling-using-arm-performance-reports">
+<span id="arm-performance-reports"></span><h1>How to check the performance and scaling using Arm Performance Reports<a class="headerlink" href="#how-to-check-the-performance-and-scaling-using-arm-performance-reports" title="Link to this heading"></a></h1>
+<p><a class="reference external" href="https://developer.arm.com/docs/101137/latest/contents">Arm Performance Reports</a>
+is a performance evaluation tool which is simple to use, produces a
+clear, single-file report, and it is used to obtain a
+high-level overview of the performance characteristics.</p>
+<p>It can report CPU time spent on various types of instructions (e.g.,
+floating-point), communication time (MPI), multi-threading level and
+thread synchronization overheads, memory bandwidth, and IO performance.
+Such a report can help spotting certain bottlenecks in the
+code and highlight potential optimization directions, but also suggest
+simple changes in how the code should be executed to better utilize
+the resources. Some typical examples of the suggestions are</p>
+<blockquote>
+<div><p>The CPU performance appears well-optimized for numerical
+computation. The biggest gains may now come from running at larger
+scales.</p>
+</div></blockquote>
+<p>or</p>
+<blockquote>
+<div><p>Significant time is spent on memory accesses. Use a profiler
+to identify time-consuming loops and check their cache performance.</p>
+</div></blockquote>
+<p>A successful Arm Performance Reports run will produce two files, a HTML summary
+and a text file summary, like in this example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">example_128p_4n_1t_2020</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">23_18</span><span class="o">-</span><span class="mf">04.</span><span class="n">html</span>
+<span class="n">example_128p_4n_1t_2020</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">23_18</span><span class="o">-</span><span class="mf">04.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<section id="do-i-need-to-recompile-the-code">
+<h2>Do I need to recompile the code?<a class="headerlink" href="#do-i-need-to-recompile-the-code" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>You can use Arm Performance Reports on dynamically linked binaries without
+recompilation.  However, you may have to recompile statically linked binaries
+(for this please consult the
+<a class="reference external" href="https://developer.arm.com/documentation/101137/2003">official documentation</a>).</p></li>
+</ul>
+</section>
+<section id="profiling-a-batch-script">
+<h2>Profiling a batch script<a class="headerlink" href="#profiling-a-batch-script" title="Link to this heading"></a></h2>
+<p>Let us consider the following example job script as your
+usual computation which you wish to profile:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
+
+<span class="c1"># all your SBATCH directives</span>
+<span class="c1">#SBATCH --account=myaccount</span>
+<span class="c1">#SBATCH --job-name=without-apr</span>
+<span class="c1">#SBATCH --time=0-00:05:00</span>
+<span class="c1">#SBATCH --nodes=4</span>
+<span class="c1">#SBATCH --ntasks-per-node=32</span>
+
+<span class="c1"># recommended bash safety settings</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w">  </span><span class="c1"># make bash exit on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w">  </span><span class="c1"># treat unset variables as errors</span>
+
+srun<span class="w"> </span>./myexample.x<span class="w">  </span><span class="c1"># &lt;- we will need to modify this line</span>
+</pre></div>
+</div>
+<p>To profile the code you don’t need to modify any of the <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> part.
+All we need to do is to load the <code class="docutils literal notranslate"><span class="pre">Arm-PerfReports/20.0.3</span></code> module
+and to modify the <code class="docutils literal notranslate"><span class="pre">srun</span></code> command to instead use
+<a class="reference external" href="https://developer.arm.com/docs/101137/latest/running-with-an-example-program">perf-report</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
+
+<span class="c1"># ...</span>
+<span class="c1"># we kept the top of the script unchanged</span>
+
+<span class="c1"># we added this line:</span>
+module<span class="w"> </span>load<span class="w"> </span>Arm-PerfReports/20.0.3
+
+<span class="c1"># we added these two lines:</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;set sysroot /&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>gdbfile
+<span class="nb">export</span><span class="w"> </span><span class="nv">ALLINEA_DEBUGGER_USER_FILE</span><span class="o">=</span>gdbfile
+
+<span class="c1"># we added perf-report in front of srun</span>
+perf-report<span class="w"> </span>srun<span class="w"> </span>./myexample.x
+</pre></div>
+</div>
+<p>This works the same way on Saga and Betzy.
+In other words, add 3 lines, replace <code class="docutils literal notranslate"><span class="pre">srun</span></code> or <code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-n</span> <span class="pre">${SLURM_NTASKS}</span></code> by
+<code class="docutils literal notranslate"><span class="pre">perf-report</span> <span class="pre">srun</span></code>.</p>
+<p>That’s it.</p>
+<p>Why are these two lines needed?</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;set sysroot /&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>gdbfile
+<span class="nb">export</span><span class="w"> </span><span class="nv">ALLINEA_DEBUGGER_USER_FILE</span><span class="o">=</span>gdbfile
+</pre></div>
+</div>
+<p>We have a Slurm plug-in that (deliberately) detaches a job from the global mount
+name space in order to create private versions of <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> and <code class="docutils literal notranslate"><span class="pre">/var/tmp</span></code> (i.e.,
+bind mounted) for each job. This is done both so jobs cannot see other jobs’
+<code class="docutils literal notranslate"><span class="pre">/tmp</span></code> and <code class="docutils literal notranslate"><span class="pre">/var/tmp</span></code>, and also so that we avoid filling up (the global) <code class="docutils literal notranslate"><span class="pre">/tmp</span></code>
+and <code class="docutils literal notranslate"><span class="pre">/var/tmp</span></code> (since we allow more than one job per compute node, we cannot
+clean these directories after each job - we don’t know which job created the
+files). However, for <code class="docutils literal notranslate"><span class="pre">perf-report</span></code> to work with this setup we need to set GDB’s
+sysroot to <code class="docutils literal notranslate"><span class="pre">/</span></code>.</p>
+</section>
+<section id="profiling-on-an-interactive-compute-node">
+<h2>Profiling on an interactive compute node<a class="headerlink" href="#profiling-on-an-interactive-compute-node" title="Link to this heading"></a></h2>
+<p>To run interactive tests one needs to submit
+<a class="reference internal" href="interactive_jobs.html"><span class="std std-doc">an interactive job</span></a>
+to Slurm using <code class="docutils literal notranslate"><span class="pre">srun</span></code> (<strong>not</strong> using <code class="docutils literal notranslate"><span class="pre">salloc</span></code>), e.g.:</p>
+<p>First obtain an interactive compute node (adjust “myaccount”), on Saga:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>srun<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--ntasks-per-node<span class="o">=</span><span class="m">4</span><span class="w"> </span>--mem-per-cpu<span class="o">=</span>1G<span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:30:00<span class="w"> </span>--qos<span class="o">=</span>devel<span class="w"> </span>--account<span class="o">=</span>myaccount<span class="w"> </span>--pty<span class="w"> </span>bash<span class="w"> </span>-i
+</pre></div>
+</div>
+<p>or Betzy:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>srun<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--ntasks-per-node<span class="o">=</span><span class="m">128</span><span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:30:00<span class="w"> </span>--qos<span class="o">=</span>devel<span class="w"> </span>--account<span class="o">=</span>myaccount<span class="w"> </span>--pty<span class="w"> </span>bash<span class="w"> </span>-i
+</pre></div>
+</div>
+<p>Once you get the interactive node, you can run the profile:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Arm-PerfReports/20.0.3
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;set sysroot /&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>gdbfile
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">ALLINEA_DEBUGGER_USER_FILE</span><span class="o">=</span>gdbfile
+$<span class="w"> </span>perf-report<span class="w"> </span>srun<span class="w"> </span>./myexample.x
+</pre></div>
+</div>
+</section>
+<section id="use-cases-and-pitfalls">
+<h2>Use cases and pitfalls<a class="headerlink" href="#use-cases-and-pitfalls" title="Link to this heading"></a></h2>
+<p>We demonstrate some pitfalls of profiling, and show how
+one can use profiling to reason about the performance of real-world
+codes.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="arm-perf/stream.html"><span class="std std-doc">STREAM benchmark</span></a> (measures the memory bandwidth)</p></li>
+<li><p><a class="reference internal" href="arm-perf/linpack.html"><span class="std std-doc">LINPACK benchmark</span></a> (measures the floating-point capabilities)</p></li>
+<li><p><a class="reference internal" href="arm-perf/osu.html"><span class="std std-doc">OSU benchmark</span></a> (measures the interconnect performance)</p></li>
+<li><p><a class="reference internal" href="arm-perf/overhead.html"><span class="std std-doc">Quantifying the profiling overhead</span></a></p></li>
+<li><p><a class="reference internal" href="../computing/tuning-applications.html#tuning-applications-apr"><span class="std std-ref">Finite Volume Community Ocean Model (fvcom)</span></a></p></li>
+</ul>
+<section id="known-issues">
+<h3>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h3>
+<p>ARM Performance reports may fail if too many processes are generated on a single node, due to the
+<code class="docutils literal notranslate"><span class="pre">ulimit</span> <span class="pre">-u</span></code> default value (4096). This can easily be fixed by setting <code class="docutils literal notranslate"><span class="pre">ulimit</span> <span class="pre">-u</span></code> to a high number.
+E.g., add the line <code class="docutils literal notranslate"><span class="pre">ulimit</span> <span class="pre">-u</span> <span class="pre">40960</span></code> in your jobscript.</p>
+<p>There seems to be a compatibility issue between ARM Performance reports and the <code class="docutils literal notranslate"><span class="pre">Intel/20XX</span></code> modules.
+If you are using this module and having trouble with APR, you might want to test alternative modules.
+In some cases, loading the ARM Performance reports module after the Intel module, might fix the issue.</p>
+</section>
+</section>
+<section id="what-if-the-job-timed-out">
+<h2>What if the job timed out?<a class="headerlink" href="#what-if-the-job-timed-out" title="Link to this heading"></a></h2>
+<p>The job has to finish within the allocated time for the report to be generated.
+So if the job times out, there is a risk that no report is generated.</p>
+<p>If you run a job that always times out by design (in other words the job never
+terminates itself but is terminated by Slurm), there is a workaround:</p>
+<p>As an example let us imagine we profile the following example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1">#SBATCH --time=0-01:00:00</span>
+<span class="c1"># ...</span>
+
+module<span class="w"> </span>load<span class="w"> </span>Arm-PerfReports/20.0.3
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;set sysroot /&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>gdbfile
+<span class="nb">export</span><span class="w"> </span><span class="nv">ALLINEA_DEBUGGER_USER_FILE</span><span class="o">=</span>gdbfile
+
+perf-report<span class="w"> </span>srun<span class="w"> </span>./myexample.x<span class="w">  </span><span class="c1"># &lt;- we will need to change this</span>
+</pre></div>
+</div>
+<p>Let’s imagine the above example code (<code class="docutils literal notranslate"><span class="pre">./myexample.x</span></code>) always times out,
+and we expect it to time out after 1 hour (see <code class="docutils literal notranslate"><span class="pre">--time</span></code> above).
+In this case we get no report.</p>
+<p>To get a report, we can do this instead:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<span class="c1">#SBATCH --time=0-01:00:00</span>
+<span class="c1"># ...</span>
+
+module<span class="w"> </span>load<span class="w"> </span>Arm-MAP/20.0.3<span class="w">  </span><span class="c1"># &lt;- we changed this line</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;set sysroot /&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>gdbfile
+<span class="nb">export</span><span class="w"> </span><span class="nv">ALLINEA_DEBUGGER_USER_FILE</span><span class="o">=</span>gdbfile
+
+<span class="c1"># we changed this line and tell map to stop the code after 3500 seconds</span>
+map<span class="w"> </span>--profile<span class="w"> </span>--stop-after<span class="o">=</span><span class="m">3500</span><span class="w"> </span>srun<span class="w"> </span>./myexample.x
+</pre></div>
+</div>
+<p>We told map to stop the code after 3500 seconds but to still have some time to
+generate a map file. This run will generate a file with a <code class="docutils literal notranslate"><span class="pre">.map</span></code> suffix. From
+this file we can generate the profile reports on the command line (no need to
+run this as a batch script):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Arm-PerfReports/20.0.3
+$<span class="w"> </span>perf-report<span class="w"> </span>prefix.map<span class="w">               </span><span class="c1"># &lt;- replace &quot;prefix.map&quot; to the actual map file</span>
+</pre></div>
+</div>
+<p>The latter command generates the <code class="docutils literal notranslate"><span class="pre">.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">.html</span></code> reports.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="common_job_failures.html" class="btn btn-neutral float-left" title="Common job failures" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mkl.html" class="btn btn-neutral float-right" title="Using MKL efficiently" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

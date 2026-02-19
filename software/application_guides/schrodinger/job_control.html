@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Schrödinger job control facility &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/statuspal_widget.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">The Schrödinger job control facility</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-schrodinger-job-control-facility">
+<h1>The Schrödinger job control facility<a class="headerlink" href="#the-schrodinger-job-control-facility" title="Link to this heading"></a></h1>
+<p>The job control facility sits on top of the slurm queuing system. Thus, when running Schrodinger jobs, please use
+the job control facility to check, cancel or update your jobs.</p>
+<section id="list-my-jobs">
+<h2>List my jobs<a class="headerlink" href="#list-my-jobs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$SCHRODINGER/jobcontrol</span> <span class="pre">-list</span></code></p></li>
+</ul>
+<p>If you have subjobs, append -c (child of the main job/driver):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$SCHRODINGER/jobcontrol</span> <span class="pre">-list</span> <span class="pre">-c</span></code></p></li>
+</ul>
+<p>This will print something like:</p>
+<p><img alt="Job control facility" src="../../../_images/jobcontrol.png" /></p>
+<p>In the above example the driver (main thread) is running on localhost (login-1 in this example) and 20 subjobs on the
+compute nodes on SAGA. Each Schrodinger job gets its own <code class="docutils literal notranslate"><span class="pre">JobId</span></code> that is internally used by the job control facility.
+When using the job control facility, you point to the JobId. The <code class="docutils literal notranslate"><span class="pre">BatchId</span></code> is the normal job id generated by SLURM and
+is what you will see in the queue from the command <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-u</span> <span class="pre">$USER</span></code>. The jobcontrol will also display the progress
+status of each job (<code class="docutils literal notranslate"><span class="pre">Status</span></code>), errors (<code class="docutils literal notranslate"><span class="pre">Err</span></code>), <code class="docutils literal notranslate"><span class="pre">Runtime</span></code> and compute nodes/Host (<code class="docutils literal notranslate"><span class="pre">Host</span></code>).</p>
+</section>
+<section id="cancel-my-jobs">
+<h2>Cancel my jobs<a class="headerlink" href="#cancel-my-jobs" title="Link to this heading"></a></h2>
+<p>If you for some reason need to cancel a job completely, you need to kill the main thread (driver). From the print above,
+the command would be:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$SCHRODINGER/jobcontrol</span> <span class="pre">-kill</span> <span class="pre">login-1-0-61288ba6</span></code></p></li>
+</ul>
+<p>This will kill the main thread and the subjobs, and also remove them from the slurm queue.</p>
+<section id="list-of-jobcontrol-commands">
+<h3>List of jobcontrol commands<a class="headerlink" href="#list-of-jobcontrol-commands" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">$SCHRODINGER/jobcontrol</span> <span class="pre">-keyword</span></code></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Keyword</p></th>
+<th class="head text-center"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>-list</p></td>
+<td class="text-center"><p>list the jobid, job name and status. Use ‘-children’ flag to include subjobs.</p></td>
+</tr>
+<tr class="row-odd"><td><p>-show</p></td>
+<td class="text-center"><p>show the basic information about the job</p></td>
+</tr>
+<tr class="row-even"><td><p>-showsys</p></td>
+<td class="text-center"><p>show system information about the job (pids, ports, etc.)</p></td>
+</tr>
+<tr class="row-odd"><td><p>-dump</p></td>
+<td class="text-center"><p>display the complete job record</p></td>
+</tr>
+<tr class="row-even"><td><p>-db <jobdb></p></td>
+<td class="text-center"><p>use the given jobdb, rather than ~/.schrodinger/.jobdb2</p></td>
+</tr>
+<tr class="row-odd"><td><p>-reindex</p></td>
+<td class="text-center"><p>recreate the jobdb index for the current host</p></td>
+</tr>
+<tr class="row-even"><td><p>-reindexall</p></td>
+<td class="text-center"><p>recreate the jobdb index for all hosts</p></td>
+</tr>
+<tr class="row-odd"><td><p>-cancel</p></td>
+<td class="text-center"><p>cancel a job that has been launched, but not started</p></td>
+</tr>
+<tr class="row-even"><td><p>-kill</p></td>
+<td class="text-center"><p>stop the job immediately (and recover output files)</p></td>
+</tr>
+<tr class="row-odd"><td><p>-killnooutput</p></td>
+<td class="text-center"><p>stop the job immediately and abandon output files</p></td>
+</tr>
+<tr class="row-even"><td><p>-abort</p></td>
+<td class="text-center"><p>emergency stop, abandon output files and the job record</p></td>
+</tr>
+<tr class="row-odd"><td><p>-stop</p></td>
+<td class="text-center"><p>ask the job to stop itself as soon as possible (bmin,desmond,multisim only)</p></td>
+</tr>
+<tr class="row-even"><td><p>-pause</p></td>
+<td class="text-center"><p>suspend the job temporarily</p></td>
+</tr>
+<tr class="row-odd"><td><p>-resume</p></td>
+<td class="text-center"><p>continue running a paused job</p></td>
+</tr>
+<tr class="row-even"><td><p>-monitor <n></p></td>
+<td class="text-center"><p>ask for monitoring files to be sent every <n> sec. Specify zero seconds to turn off monitoring</p></td>
+</tr>
+<tr class="row-odd"><td><p>-files</p></td>
+<td class="text-center"><p>list the files related to the job, with their labels</p></td>
+</tr>
+<tr class="row-even"><td><p>-view <label></p></td>
+<td class="text-center"><p>view the job file with <label></p></td>
+</tr>
+<tr class="row-odd"><td><p>-update</p></td>
+<td class="text-center"><p>ask for an update of the job results (bmin only)</p></td>
+</tr>
+<tr class="row-even"><td><p>-ping</p></td>
+<td class="text-center"><p>verify that the job is receiving messages</p></td>
+</tr>
+<tr class="row-odd"><td><p>-recover</p></td>
+<td class="text-center"><p>recover a previous job that did not complete successfully</p></td>
+</tr>
+<tr class="row-even"><td><p>-recover_jobrecord</p></td>
+<td class="text-center"><p>recover jobrecord of given job(s).</p></td>
+</tr>
+<tr class="row-odd"><td><p>-delete</p></td>
+<td class="text-center"><p>remove job from the database, if completed. Use ‘-force’ flag to delete uncompleted jobs (dangerous)</p></td>
+</tr>
+<tr class="row-even"><td><p>-wait</p></td>
+<td class="text-center"><p>wait until job finishes</p></td>
+</tr>
+<tr class="row-odd"><td><p>-int <seconds></p></td>
+<td class="text-center"><p>interval for checking job status (default is 5 sec)</p></td>
+</tr>
+<tr class="row-even"><td><p>-v[ersion]</p></td>
+<td class="text-center"><p>display program version and exit</p></td>
+</tr>
+<tr class="row-odd"><td><p>-h[elp]</p></td>
+<td class="text-center"><p>display this help message</p></td>
+</tr>
+</tbody>
+</table>
+<p>The flags can be one or more of:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>additional flags</p></th>
+<th class="head text-center"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>-c[hildren]</p></td>
+<td class="text-center"><p>include the children of the selected jobs (for the ‘list’ action, list all subjobs individually)</p></td>
+</tr>
+<tr class="row-odd"><td><p>-noc[hildren]</p></td>
+<td class="text-center"><p>don’t include the children of the selected jobs (for the ‘list’ action, don’t include subjob summaries)</p></td>
+</tr>
+<tr class="row-even"><td><p>-m[issing]</p></td>
+<td class="text-center"><p>include jobs with missing job records (for which only auxiliary files are present)</p></td>
+</tr>
+<tr class="row-odd"><td><p>-d[ebug]</p></td>
+<td class="text-center"><p>show debug information when performing this action even if running in nondebug mode</p></td>
+</tr>
+<tr class="row-even"><td><p>-n[odebug]</p></td>
+<td class="text-center"><p>do not show debug information, even if running in debug mode</p></td>
+</tr>
+<tr class="row-odd"><td><p>-f[orce]</p></td>
+<td class="text-center"><p>see ‘delete’ action above</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="go-to">
+<h3>Go to:<a class="headerlink" href="#go-to" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="schrodinger.html"><span class="std std-doc">Schrodinger main page</span></a></p></li>
+<li><p><a class="reference internal" href="schrodinger_usage.html"><span class="std std-doc">Using the Schrodinger suite</span></a></p></li>
+<li><p><a class="reference internal" href="schrodinger_hosts.html"><span class="std std-doc">Setting up the Hosts file</span></a></p></li>
+<li><p><a class="reference internal" href="host_file_settings.html"><span class="std std-doc">Hosts file keywords</span></a></p></li>
+<li><p><a class="reference internal" href="#"><span class="std std-doc">Job control facility</span></a></p></li>
+<li><p><a class="reference internal" href="tuning.html"><span class="std std-doc">Tuning</span></a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

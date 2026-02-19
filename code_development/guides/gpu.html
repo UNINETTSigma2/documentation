@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction to using GPU compute &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction to using GPU compute</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction-to-using-gpu-compute">
+<span id="gpu-intro"></span><h1>Introduction to using GPU compute<a class="headerlink" href="#introduction-to-using-gpu-compute" title="Link to this heading"></a></h1>
+<p>A GPU, or <strong>G</strong>raphics <strong>P</strong>rocessing <strong>U</strong>nit, is a computational unit, which
+as the name suggest, is optimized to work on graphics tasks. Nearly every
+computer device that one interacts with contains a GPU of some sort, responsible
+for transforming the information we want to display into actual pixels on our
+screens.</p>
+<p>One question that might immediately present itself is, <strong>if GPUs are optimized
+for graphics - why are they interesting in the context of computational
+resources?</strong> The answer to that is of course complicated, but the short
+explanation is that many computational tasks have a lot in common with
+graphical computations. The reason for this is that GPUs are optimized for
+working with pixels on the screen, and a lot of them. Since all of these
+operations are almost identical, mainly working on floating point values, they
+can be run in parallel on dedicated hardware (i.e. the GPU) that is tailored and
+optimized for this particular task. This already sounds quite a bit like working
+with a discrete grid in e.g. atmospheric simulation, which points to the reason
+why GPUs can be interesting in a computational context.</p>
+<p>Since GPUs are optimized for working on grids of data and how to transform this
+data, they are quite well suited for matrix calculations. For some indication of
+this we can compare the theoretical performance of one GPU with one CPU
+.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>AMD Epyc 7742 (Betzy)</p></th>
+<th class="head"><p>Nvidia P100 (Saga)</p></th>
+<th class="head"><p>Nvidia A100 (Betzy)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Half Precision</p></td>
+<td><p>N/A</p></td>
+<td><p>18.7 TFLOPS</p></td>
+<td><p>78 TFLOPS</p></td>
+</tr>
+<tr class="row-odd"><td><p>Single Precision</p></td>
+<td><p>1,3 TFLOPS</p></td>
+<td><p>9,3 TFLOPS</p></td>
+<td><p>19.5 TFLOPS</p></td>
+</tr>
+<tr class="row-even"><td><p>Double Precision</p></td>
+<td><p>N/A</p></td>
+<td><p>4.7 TFLOPS</p></td>
+<td><p>9.7 TFLOPS</p></td>
+</tr>
+</tbody>
+</table>
+<p>Based on this it is no wonder why tensor libraries such as
+<a class="reference external" href="https://www.tensorflow.org/"><code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code></a> and <a class="reference external" href="https://pytorch.org/"><code class="docutils literal notranslate"><span class="pre">PyTorch</span></code></a>
+<a class="reference external" href="https://blog.tensorflow.org/2018/04/speed-up-tensorflow-inference-on-gpus-tensorRT.html">report <strong>speedup</strong></a>
+on accelerators between <strong><code class="docutils literal notranslate"><span class="pre">23x</span></code> and <code class="docutils literal notranslate"><span class="pre">190x</span></code></strong> compared to using only a CPU.</p>
+<section id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h2>
+<p>To get started we first have to <a class="reference internal" href="../../getting_started/ssh.html#ssh"><span class="std std-ref">SSH</span></a> into Saga:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@mylaptop]$ </span>ssh<span class="w"> </span>&lt;username&gt;@saga.sigma2.no
+</pre></div>
+</div>
+<p>From the <a class="reference internal" href="../../hpc_machines/saga.html#saga"><span class="std std-ref">hardware specification</span></a> we see that there should be 8 GPU
+nodes available on Saga, and from the available <a class="reference internal" href="../../jobs/job_types/saga_job_types.html#job-type-saga-accel"><span class="std std-ref">job types</span></a>
+we identify <code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code> as the relevant hardware partition for GPU jobs.
+You can run the <code class="docutils literal notranslate"><span class="pre">sinfo</span></code> command to check the available partitions on Saga:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login.SAGA]$ </span>sinfo
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PARTITION</span> <span class="n">AVAIL</span>  <span class="n">TIMELIMIT</span>  <span class="n">NODES</span>  <span class="n">STATE</span> <span class="n">NODELIST</span>
+<span class="n">normal</span><span class="o">*</span>      <span class="n">up</span> <span class="mi">7</span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>     <span class="mi">88</span>   <span class="n">resv</span> <span class="n">c1</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">22</span><span class="p">,</span><span class="mi">24</span><span class="o">-</span><span class="mi">28</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">32</span><span class="o">-</span><span class="mi">37</span><span class="p">,</span><span class="mi">39</span><span class="o">-</span><span class="mi">52</span><span class="p">,</span><span class="mi">56</span><span class="p">],</span><span class="n">c2</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="o">-</span><span class="mi">18</span><span class="p">,</span><span class="mi">21</span><span class="o">-</span><span class="mi">23</span><span class="p">,</span><span class="mi">29</span><span class="o">-</span><span class="mi">33</span><span class="p">,</span><span class="mi">36</span><span class="o">-</span><span class="mi">39</span><span class="p">,</span><span class="mi">43</span><span class="p">,</span><span class="mi">54</span><span class="o">-</span><span class="mi">56</span><span class="p">],</span><span class="n">c3</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">15</span><span class="p">]</span>
+<span class="n">normal</span><span class="o">*</span>      <span class="n">up</span> <span class="mi">7</span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>      <span class="mi">5</span>    <span class="n">mix</span> <span class="n">c5</span><span class="o">-</span><span class="mi">28</span><span class="p">,</span><span class="n">c10</span><span class="o">-</span><span class="mi">41</span><span class="p">,</span><span class="n">c11</span><span class="o">-</span><span class="p">[</span><span class="mi">31</span><span class="p">,</span><span class="mi">57</span><span class="o">-</span><span class="mi">58</span><span class="p">]</span>
+<span class="n">normal</span><span class="o">*</span>      <span class="n">up</span> <span class="mi">7</span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>    <span class="mi">226</span>  <span class="n">alloc</span> <span class="n">c1</span><span class="o">-</span><span class="p">[</span><span class="mi">23</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">53</span><span class="o">-</span><span class="mi">55</span><span class="p">],</span><span class="n">c2</span><span class="o">-</span><span class="p">[</span><span class="mi">4</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">19</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">24</span><span class="o">-</span><span class="mi">28</span><span class="p">,</span><span class="mi">34</span><span class="o">-</span><span class="mi">35</span><span class="p">,</span><span class="mi">40</span><span class="o">-</span><span class="mi">42</span><span class="p">,</span><span class="mi">44</span><span class="o">-</span><span class="mi">53</span><span class="p">],</span><span class="n">c3</span><span class="o">-</span><span class="p">[</span><span class="mi">3</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">16</span><span class="o">-</span><span class="mi">28</span><span class="p">],</span><span class="n">c5</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">27</span><span class="p">,</span><span class="mi">29</span><span class="o">-</span><span class="mi">59</span><span class="p">],</span><span class="n">c10</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span><span class="mi">42</span><span class="o">-</span><span class="mi">60</span><span class="p">],</span><span class="n">c11</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="mi">32</span><span class="o">-</span><span class="mi">56</span><span class="p">,</span><span class="mi">59</span><span class="o">-</span><span class="mi">60</span><span class="p">]</span>
+<span class="n">bigmem</span>       <span class="n">up</span> <span class="mi">14</span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">0</span>      <span class="mi">1</span> <span class="n">drain</span><span class="o">*</span> <span class="n">c6</span><span class="o">-</span><span class="mi">2</span>
+<span class="n">bigmem</span>       <span class="n">up</span> <span class="mi">14</span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">0</span>     <span class="mi">32</span>    <span class="n">mix</span> <span class="n">c3</span><span class="o">-</span><span class="p">[</span><span class="mi">29</span><span class="o">-</span><span class="mi">35</span><span class="p">,</span><span class="mi">38</span><span class="o">-</span><span class="mi">56</span><span class="p">],</span><span class="n">c6</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="o">-</span><span class="mi">7</span><span class="p">]</span>
+<span class="n">bigmem</span>       <span class="n">up</span> <span class="mi">14</span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">0</span>      <span class="mi">2</span>  <span class="n">alloc</span> <span class="n">c3</span><span class="o">-</span><span class="p">[</span><span class="mi">36</span><span class="o">-</span><span class="mi">37</span><span class="p">]</span>
+<span class="n">bigmem</span>       <span class="n">up</span> <span class="mi">14</span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">0</span>      <span class="mi">1</span>   <span class="n">idle</span> <span class="n">c6</span><span class="o">-</span><span class="mi">8</span>
+<span class="hll"><span class="n">accel</span>        <span class="n">up</span> <span class="mi">14</span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">0</span>      <span class="mi">2</span>    <span class="n">mix</span> <span class="n">c7</span><span class="o">-</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
+</span><span class="hll"><span class="n">accel</span>        <span class="n">up</span> <span class="mi">14</span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">0</span>      <span class="mi">4</span>  <span class="n">alloc</span> <span class="n">c7</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+</span><span class="hll"><span class="n">accel</span>        <span class="n">up</span> <span class="mi">14</span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">0</span>      <span class="mi">2</span>   <span class="n">idle</span> <span class="n">c7</span><span class="o">-</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+</span><span class="n">optimist</span>     <span class="n">up</span>   <span class="n">infinite</span>      <span class="mi">1</span> <span class="n">drain</span><span class="o">*</span> <span class="n">c6</span><span class="o">-</span><span class="mi">2</span>
+<span class="n">optimist</span>     <span class="n">up</span>   <span class="n">infinite</span>     <span class="mi">88</span>   <span class="n">resv</span> <span class="n">c1</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">22</span><span class="p">,</span><span class="mi">24</span><span class="o">-</span><span class="mi">28</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">32</span><span class="o">-</span><span class="mi">37</span><span class="p">,</span><span class="mi">39</span><span class="o">-</span><span class="mi">52</span><span class="p">,</span><span class="mi">56</span><span class="p">],</span><span class="n">c2</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="o">-</span><span class="mi">18</span><span class="p">,</span><span class="mi">21</span><span class="o">-</span><span class="mi">23</span><span class="p">,</span><span class="mi">29</span><span class="o">-</span><span class="mi">33</span><span class="p">,</span><span class="mi">36</span><span class="o">-</span><span class="mi">39</span><span class="p">,</span><span class="mi">43</span><span class="p">,</span><span class="mi">54</span><span class="o">-</span><span class="mi">56</span><span class="p">],</span><span class="n">c3</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">15</span><span class="p">]</span>
+<span class="n">optimist</span>     <span class="n">up</span>   <span class="n">infinite</span>     <span class="mi">39</span>    <span class="n">mix</span> <span class="n">c3</span><span class="o">-</span><span class="p">[</span><span class="mi">29</span><span class="o">-</span><span class="mi">35</span><span class="p">,</span><span class="mi">38</span><span class="o">-</span><span class="mi">56</span><span class="p">],</span><span class="n">c5</span><span class="o">-</span><span class="mi">28</span><span class="p">,</span><span class="n">c6</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="o">-</span><span class="mi">7</span><span class="p">],</span><span class="n">c7</span><span class="o">-</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span><span class="n">c10</span><span class="o">-</span><span class="mi">41</span><span class="p">,</span><span class="n">c11</span><span class="o">-</span><span class="p">[</span><span class="mi">31</span><span class="p">,</span><span class="mi">57</span><span class="o">-</span><span class="mi">58</span><span class="p">]</span>
+<span class="n">optimist</span>     <span class="n">up</span>   <span class="n">infinite</span>    <span class="mi">232</span>  <span class="n">alloc</span> <span class="n">c1</span><span class="o">-</span><span class="p">[</span><span class="mi">23</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">53</span><span class="o">-</span><span class="mi">55</span><span class="p">],</span><span class="n">c2</span><span class="o">-</span><span class="p">[</span><span class="mi">4</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">19</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">24</span><span class="o">-</span><span class="mi">28</span><span class="p">,</span><span class="mi">34</span><span class="o">-</span><span class="mi">35</span><span class="p">,</span><span class="mi">40</span><span class="o">-</span><span class="mi">42</span><span class="p">,</span><span class="mi">44</span><span class="o">-</span><span class="mi">53</span><span class="p">],</span><span class="n">c3</span><span class="o">-</span><span class="p">[</span><span class="mi">3</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">11</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">16</span><span class="o">-</span><span class="mi">28</span><span class="p">,</span><span class="mi">36</span><span class="o">-</span><span class="mi">37</span><span class="p">],</span><span class="n">c5</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">27</span><span class="p">,</span><span class="mi">29</span><span class="o">-</span><span class="mi">59</span><span class="p">],</span><span class="n">c7</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span><span class="n">c10</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span><span class="mi">42</span><span class="o">-</span><span class="mi">60</span><span class="p">],</span><span class="n">c11</span><span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="mi">32</span><span class="o">-</span><span class="mi">56</span><span class="p">,</span><span class="mi">59</span><span class="o">-</span><span class="mi">60</span><span class="p">]</span>
+<span class="n">optimist</span>     <span class="n">up</span>   <span class="n">infinite</span>      <span class="mi">3</span>   <span class="n">idle</span> <span class="n">c6</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span><span class="n">c7</span><span class="o">-</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Here we see that the <code class="docutils literal notranslate"><span class="pre">accel</span></code> partition contains 8 nodes in total, 2 of which are
+unused at the moment (<code class="docutils literal notranslate"><span class="pre">idle</span></code>), 4 are fully occupied (<code class="docutils literal notranslate"><span class="pre">alloc</span></code>) and 2 are partially
+occupied (<code class="docutils literal notranslate"><span class="pre">mix</span></code>). We can also read from this that the maximum time limit for a GPU
+job is 14 days, which might be relevant for your production calculations.</p>
+<p>To select the correct partition use the <code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code> flag with either
+<code class="docutils literal notranslate"><span class="pre">salloc</span></code> (<a class="reference internal" href="../../jobs/interactive_jobs.html#interactive-jobs"><span class="std std-ref">interactive</span></a>)
+or
+<code class="docutils literal notranslate"><span class="pre">sbatch</span></code> (<a class="reference internal" href="../../jobs/job_scripts.html#job-scripts"><span class="std std-ref">job script</span></a>).
+This flag will ensure that your job is only run on machines in the <code class="docutils literal notranslate"><span class="pre">accel</span></code> partition
+which have attached GPUs. However, to be able to actually interact with one or more
+GPUs we will have to also add <code class="docutils literal notranslate"><span class="pre">--gpus=N</span></code> which tells Slurm that we would also like
+to use <code class="docutils literal notranslate"><span class="pre">N</span></code> GPUs (<code class="docutils literal notranslate"><span class="pre">N</span></code> can be a number between 1 and 4 on Saga since each node has 4
+GPUs).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>There are multiple ways of requesting GPUs a part from <code class="docutils literal notranslate"><span class="pre">--gpus=N</span></code>, such as
+<code class="docutils literal notranslate"><span class="pre">--gpus-per-task</span></code> to specify the number of GPUs that each task should get
+access to. Checkout the official <a class="reference external" href="https://slurm.schedmd.com/srun.html">Slurm
+documentation</a> for more on how to specify
+the number of GPUs.</p>
+</div>
+</section>
+<section id="interactive-testing">
+<h2>Interactive testing<a class="headerlink" href="#interactive-testing" title="Link to this heading"></a></h2>
+<p>All projects should have access to GPU resources, and to that end we will start
+by simply testing that we can get access to a single GPU. To do this we will run
+an interactive job using the <code class="docutils literal notranslate"><span class="pre">salloc</span></code> command, on the <code class="docutils literal notranslate"><span class="pre">accel</span></code> partition and asking
+for a single GPU:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@login.SAGA]$ </span>salloc<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>--mem-per-cpu<span class="o">=</span>1G<span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:02:00<span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span>--gpus<span class="o">=</span><span class="m">1</span><span class="w"> </span>--qos<span class="o">=</span>devel<span class="w"> </span>--account<span class="o">=</span>&lt;your<span class="w"> </span>project<span class="w"> </span>number&gt;
+<span class="go">salloc: Pending job allocation 4318997</span>
+<span class="go">salloc: job 4318997 queued and waiting for resources</span>
+<span class="go">salloc: job 4318997 has been allocated resources</span>
+<span class="go">salloc: Granted job allocation 4318997</span>
+<span class="go">salloc: Waiting for resource configuration</span>
+<span class="go">salloc: Nodes c7-7 are ready for job</span>
+</pre></div>
+</div>
+<p>Once we land on the compute node we can inspect the GPU hardware with
+the <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> command (this is kind of the <code class="docutils literal notranslate"><span class="pre">top</span></code> equivalent for Nvidia GPUs):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[me@c7-8.SAGA]$ </span>nvidia-smi
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Wed</span> <span class="n">Nov</span>  <span class="mi">3</span> <span class="mi">14</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">47</span> <span class="mi">2021</span>       
+<span class="o">+-----------------------------------------------------------------------------+</span>
+<span class="hll"><span class="o">|</span> <span class="n">NVIDIA</span><span class="o">-</span><span class="n">SMI</span> <span class="mf">455.32.00</span>    <span class="n">Driver</span> <span class="n">Version</span><span class="p">:</span> <span class="mf">455.32.00</span>    <span class="n">CUDA</span> <span class="n">Version</span><span class="p">:</span> <span class="mf">11.1</span>     <span class="o">|</span>
+</span><span class="o">|-------------------------------+----------------------+----------------------+</span>
+<span class="o">|</span> <span class="n">GPU</span>  <span class="n">Name</span>        <span class="n">Persistence</span><span class="o">-</span><span class="n">M</span><span class="o">|</span> <span class="n">Bus</span><span class="o">-</span><span class="n">Id</span>        <span class="n">Disp</span><span class="o">.</span><span class="n">A</span> <span class="o">|</span> <span class="n">Volatile</span> <span class="n">Uncorr</span><span class="o">.</span> <span class="n">ECC</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">Fan</span>  <span class="n">Temp</span>  <span class="n">Perf</span>  <span class="n">Pwr</span><span class="p">:</span><span class="n">Usage</span><span class="o">/</span><span class="n">Cap</span><span class="o">|</span>         <span class="n">Memory</span><span class="o">-</span><span class="n">Usage</span> <span class="o">|</span> <span class="n">GPU</span><span class="o">-</span><span class="n">Util</span>  <span class="n">Compute</span> <span class="n">M</span><span class="o">.</span> <span class="o">|</span>
+<span class="o">|</span>                               <span class="o">|</span>                      <span class="o">|</span>               <span class="n">MIG</span> <span class="n">M</span><span class="o">.</span> <span class="o">|</span>
+<span class="o">|===============================+======================+======================|</span>
+<span class="hll"><span class="o">|</span>   <span class="mi">0</span>  <span class="n">Tesla</span> <span class="n">P100</span><span class="o">-</span><span class="n">PCIE</span><span class="o">...</span>  <span class="n">Off</span>  <span class="o">|</span> <span class="mi">00000000</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mf">00.0</span> <span class="n">Off</span> <span class="o">|</span>                    <span class="mi">0</span> <span class="o">|</span>
+</span><span class="o">|</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span>   <span class="mi">33</span><span class="n">C</span>    <span class="n">P0</span>    <span class="mi">30</span><span class="n">W</span> <span class="o">/</span> <span class="mi">250</span><span class="n">W</span> <span class="o">|</span>      <span class="mi">0</span><span class="n">MiB</span> <span class="o">/</span> <span class="mi">16280</span><span class="n">MiB</span> <span class="o">|</span>      <span class="mi">0</span><span class="o">%</span>      <span class="n">Default</span> <span class="o">|</span>
+<span class="o">|</span>                               <span class="o">|</span>                      <span class="o">|</span>                  <span class="n">N</span><span class="o">/</span><span class="n">A</span> <span class="o">|</span>
+<span class="o">+-------------------------------+----------------------+----------------------+</span>
+                                                                               
+<span class="o">+-----------------------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">Processes</span><span class="p">:</span>                                                                  <span class="o">|</span>
+<span class="o">|</span>  <span class="n">GPU</span>   <span class="n">GI</span>   <span class="n">CI</span>        <span class="n">PID</span>   <span class="n">Type</span>   <span class="n">Process</span> <span class="n">name</span>                  <span class="n">GPU</span> <span class="n">Memory</span> <span class="o">|</span>
+<span class="o">|</span>        <span class="n">ID</span>   <span class="n">ID</span>                                                   <span class="n">Usage</span>      <span class="o">|</span>
+<span class="o">|=============================================================================|</span>
+<span class="hll"><span class="o">|</span>  <span class="n">No</span> <span class="n">running</span> <span class="n">processes</span> <span class="n">found</span>                                                 <span class="o">|</span>
+</span><span class="o">+-----------------------------------------------------------------------------+</span>
+</pre></div>
+</div>
+<p>Here we can find useful things like CUDA library/driver version and the name of the
+graphics card (<code class="docutils literal notranslate"><span class="pre">Tesla</span> <span class="pre">P100-PCIE...</span></code>), but also information about currently
+running processes that are “GPU aware” (none at the moment). If you don’t get any
+useful information out of the <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> command (e.g. <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></code> or
+<code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">devices</span> <span class="pre">were</span> <span class="pre">found</span></code>) you likely missed the <code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code> and/or <code class="docutils literal notranslate"><span class="pre">--gpus=N</span></code>
+options in your Slurm command, which means that you won’t actually have access to any
+GPU (even if there might be one physically on the machine).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In the above Slurm specification we combined <code class="docutils literal notranslate"><span class="pre">--qos=devel</span></code> with GPUs and
+interactive operations so that we can experiment with commands interactively.
+This can be a good way to perform short tests to ensure that libraries correctly
+pick up GPUs when developing your experiments. Read more about <code class="docutils literal notranslate"><span class="pre">--qos=devel</span></code>
+in our guide on <a class="reference internal" href="../../jobs/interactive_jobs.html#interactive-jobs"><span class="std std-ref">interactive jobs</span></a>.</p>
+</div>
+</section>
+<section id="simple-gpu-test-runs">
+<h2>Simple GPU test runs<a class="headerlink" href="#simple-gpu-test-runs" title="Link to this heading"></a></h2>
+<p>In the following we present a few minimal standalone code examples using different
+acceleration strategies and programming languages. The purpose of all these examples
+is the same (compile, run and verify), so you can choose the version that suites you best.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gpu/tensorflow.html">Using TensorFlow in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu/cuda.html">Using CUDA in C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu/cuda-container.html">BYO CUDA environment with containers</a></li>
+</ul>
+</div>
+</section>
+<section id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>Transitioning your application to GPU can be a daunting challenge. We have
+documented a few ways to get started in our development <a class="reference internal" href="../overview.html#code-development"><span class="std std-ref">here</span></a>,
+but if you are unsure please don’t hesitate to contact us at
+<a class="reference external" href="mailto:support&#37;&#52;&#48;nris&#46;no">support<span>&#64;</span>nris<span>&#46;</span>no</a>.</p>
+<p>We also have a few tutorials on specific GPU related topics:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="openacc.html#openacc"><span class="std std-ref">Getting started with OpenACC and Nvidia Nsight</span></a></p></li>
+<li><p><a class="reference internal" href="hipsycl.html#hipsycl-start"><span class="std std-ref">Getting started with hipSYCL</span></a></p></li>
+<li><p><a class="reference internal" href="tensorflow_gpu.html#tensorflow"><span class="std std-ref">Running TensorFlow on GPUs</span></a></p></li>
+<li><p><a class="reference internal" href="containers/bigdft.html#bigdft-cuda-example"><span class="std std-ref">Running containers w/CUDA support: BigDFT example</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

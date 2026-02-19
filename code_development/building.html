@@ -1,0 +1,785 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building scientific software &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Building GPU software" href="building_gpu.html" />
+    <link rel="prev" title="Code development and tutorials" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Code development and tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="overview.html#id1">Code development</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Building scientific software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compilers">Compilers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-libraries">Performance libraries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mpi-libraries">MPI libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="building_gpu.html">Building GPU software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="betzy.html">Software environment on Betzy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilers.html">Compilers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debugging.html">Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="performance.html">Performance Analysis and Tuning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Calling-fortran-from-Python.html">Calling fortran routines from Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lumi_g_overlay.html">Creating a Singularity Overlay with Custom Python Packages on LUMI-G</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#tutorials">Tutorials</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="overview.html">Code development and tutorials</a></li>
+      <li class="breadcrumb-item active">Building scientific software</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="building-scientific-software">
+<h1>Building scientific software<a class="headerlink" href="#building-scientific-software" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>This is just a quick short guide on the topic. For more in depth documentation please
+check out the <a class="reference external" href="https://prace-ri.eu/training-support/best-practice-guides/">PRACE Best Practice Guides</a>.</p>
+<p><a class="reference external" href="https://prace-ri.eu/training-support/best-practice-guides/best-practice-guide-amd-epyc/">Most relevant for Betzy</a>
+and an update covering AMD Rome named  “Best Practice Guide Modern Processors”
+soon to be published.</p>
+</section>
+<section id="compilers">
+<h2>Compilers<a class="headerlink" href="#compilers" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Introduction<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>Include paths in C/C++ and Fortran are distictly different. The module system set the flag CPATH for us which contain a ‘:’ separated  list
+of directories to be searched for a include files. This is done behind the scenes for us whein using C/C++. However, with Fortran this is another story.
+Fortran compilers uses a set of ‘-I’ options each with a single directory as argument. This prevent us from using <code class="docutils literal notranslate"><span class="pre">$CPATH</span></code> for include path. One might think
+that FPATH should be a solution (so did Intel some years ago) but it can interfere with some shells (ksh) and should avoided a general setting. However, it does not
+prevent us from doing it locally (avoiding ksh or othes shells that might be affected).</p>
+<p>The FPATH can be set : <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">FPATH=&quot;-I&quot;${CPATH//:/</span> <span class="pre">-I}</span></code></p>
+<p>Then <code class="docutils literal notranslate"><span class="pre">$FPATH</span></code> can be used in Makefiles and on the command line like <code class="docutils literal notranslate"><span class="pre">gfortran</span> <span class="pre">$FPATH</span> <span class="pre">file.f90</span></code><br />
+For command line a direct syntax can be used like : <code class="docutils literal notranslate"><span class="pre">gfortran</span> <span class="pre">-I${CPATH//:/</span> <span class="pre">-I/}</span> <span class="pre">file.f90</span></code></p>
+</section>
+<section id="intel">
+<h3>Intel<a class="headerlink" href="#intel" title="Link to this heading"></a></h3>
+<section id="id2">
+<h4>Introduction<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<p>The Intel compiler suite is supported on all Sigma2 systems. On the
+systems Saga the processors are from Intel while the
+processors on Betzy are from AMD. As the Intel compiler is primarily
+compiler written for the Intel processors there are some minor issues
+when using it to build core for the AMD processors.</p>
+</section>
+<section id="documentation">
+<h4>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h4>
+<p>The documentation of the Intel compiler are found at
+<a class="reference external" href="https://software.intel.com/content/www/us/en/develop/tools/compilers.html">Intel compiler</a>
+The web site is comprehensive and some browsing are required to find the needed documents.
+Most users want to review the reference manual.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/cpp-compiler-developer-guide-and-reference/top.html">C/C++ reference</a></p></li>
+<li><p><a class="reference external" href="https://software.intel.com/content/www/us/en/develop/tools/compilers/fortran-compilers/documentation.html">Fortran reference</a></p></li>
+</ul>
+</section>
+<section id="compiler-flags">
+<h4>Compiler flags<a class="headerlink" href="#compiler-flags" title="Link to this heading"></a></h4>
+<p>The single most common question requested is a set of suggested
+compiler flags. The Intel development team have already selected a
+very good set of flags and just a simple <em>-O3</em> flag will provide quite
+good choice. The compiler comes with a set of default optimisation flags already
+set. Just invoking the compiler without any such flags will generate reasonably good code.</p>
+<p>The flag for OpenMP is very often needed : <em>-qopenmp</em> and must be used in both compiling a linking.</p>
+<p>To ask the compiler generate optimised code have a huge impact in performance.
+The following graph show the observed speed using the
+<a class="reference external" href="https://en.wikipedia.org/wiki/NAS_Parallel_Benchmarks">NASA NPB MPI</a> benchmarks built
+using the Intel compiler and run using OpenMPI at 64 ranks.</p>
+<p><img alt="Optimisation gain" src="../_images/optgain.png" /></p>
+<p>The benefit of selecting optimisation flags is obvious. The effect of vectorisation is
+less pronounced with these benchmarks which are extracts from real applications and running with datasets of
+serious size. The compiler can recognise some type of code and generate excellent code, often related
+to cache and TLB issues. Just looking at the generated code will not tell what the compiler actually did.
+See an extreme case with matrix multiplication below. Tuning tools can help looking for cache and
+<a class="reference external" href="https://en.wikipedia.org/wiki/Translation_lookaside_buffer">TLB</a> issues.</p>
+<p>Some optimisation flags are a bit more tricky. As all processors
+support AVX2 this can always be used. A suggested list set of flags
+than be tried might include:</p>
+<ul class="simple">
+<li><p>-O3</p></li>
+<li><p>-O3 -xHost</p></li>
+<li><p>-Ofast</p></li>
+<li><p>-O3 -march=core-avx</p></li>
+<li><p>-O3 -march=core-avx2 -mtune=core-avx2</p></li>
+<li><p>-O3 -xavx</p></li>
+<li><p>-O3 -xavx2</p></li>
+<li><p>-O3 -xcore-avx2</p></li>
+</ul>
+<p>The flags above have been tested and yield good results. On Betzy the
+flags involving <em>-xavx</em>, <em>-xavx2</em> and <em>-xcore-avx2</em> can cause
+problems. As the -x prefix implies it will only generate code for a
+processor supporting AVX and AVX2. Intel has implemented a run time
+processor check for any program compiled with these flags, which will result
+in a message like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Please verify that both the operating system and the processor support
+Intel(R) X87, CMOV, MMX, FXSAVE, SSE, SSE2, SSE3, SSSE3, SSE4_1, SSE4_2,
+MOVBE, POPCNT, AVX, F16C, FMA, BMI, LZCNT and AVX2 instructions.
+</pre></div>
+</div>
+<p>This only apply to the main routine.  If the main() function is not compiled
+with <code class="docutils literal notranslate"><span class="pre">-xavx</span></code>/<code class="docutils literal notranslate"><span class="pre">-xavx2</span></code> flags the test is not inserted and performance
+is as expected.</p>
+<p>The safe option is <code class="docutils literal notranslate"><span class="pre">-O3</span>&#160; <span class="pre">-march=core-avx2</span> <span class="pre">-mtune=core-avx2</span></code> which mostly provide fair performance.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Vectorisation flag</p></th>
+<th class="head text-center"><p>Single core performance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>-O3</p></td>
+<td class="text-center"><p>4.33 Gflops/sec</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>-O3 -march=core-avx2</p></td>
+<td class="text-center"><p>4.79 Gflops/sec</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>-O3 -xavx</p></td>
+<td class="text-center"><p>17.97 Gflops/sec</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>-O3 -xavx2</p></td>
+<td class="text-center"><p>26.39 Gflops/sec</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>-O3 -xcore-avx2</p></td>
+<td class="text-center"><p>26.38 Gflops/sec</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-xavx2</span></code> flag is quite intrusive, it’s building only AVX2 vector
+instructions and if the processor does not support it, you’ll get illegal
+instruction.</p>
+</div>
+<p>The example above is a best case where the Intel compiler manage to analyse
+the code and apply special optimisation for matrix multiplication. Checking the
+code show that is does not call external functions like the matmul in MKL.</p>
+<p>For codes that are more realistic and closer to scientific codes like the NPB benchmarks the effect
+is much smaller. In some cases there are still a significant gain by using the <code class="docutils literal notranslate"><span class="pre">-xAVX2</span></code>, the figure
+below illustrate this.</p>
+<p><img alt="xAVX2 gain" src="../_images/xAVX2gain.png" /></p>
+<p>There are a large range of other flags, and while the web
+documentation is very good it can be overwhelming. A simple trick is
+to issue the following command <code class="docutils literal notranslate"><span class="pre">icc</span> <span class="pre">-help</span> <span class="pre">&gt;</span> <span class="pre">icc.hpl</span></code> and open the file
+in an editor and search and read relevant paragraphs. Except from
+language specific flags most of the flags are similar for C/C++ and
+Fortran.</p>
+<p>The flags related to optimisation reports can be useful, <em>-qopt-report</em>.
+To generate a nice optimisation report some of the following flags could
+be used.</p>
+<ul class="simple">
+<li><p>-qopt-report-help</p></li>
+<li><p>-qopt-report=1 (any number from 1 through 5 are valid, 0 turn it off)</p></li>
+<li><p>-qopt-report-file=&lt;file.opt.txt&gt;</p></li>
+<li><p>-qopt-report-annotate</p></li>
+</ul>
+<p>An example is : <code class="docutils literal notranslate"><span class="pre">-qopt-report=5</span> <span class="pre">-O3</span> <span class="pre">-xavx2</span> <span class="pre">-g</span> <span class="pre">-S</span></code> which will generate
+a comprehensive report and a file containing the generated
+code. Reviewing this report and the code can be of great help in cases
+where the compiler fail to optimise as expected.</p>
+</section>
+</section>
+<section id="gnu">
+<h3>GNU<a class="headerlink" href="#gnu" title="Link to this heading"></a></h3>
+<section id="id3">
+<h4>Introduction<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<p>GNU compilers are an integral part of the Linux distribution. However,
+the versions of the compilers that comes with the distribution are
+generally not the newest version. Look for modules that supply a more
+recent version. The compiles support C/C++ and Fortran.</p>
+</section>
+<section id="id4">
+<h4>Documentation<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<p>The compilers have good man pages covering most of what is commonly needed. More deep
+documentation is found here : https://gcc.gnu.org/onlinedocs/ .</p>
+</section>
+<section id="id5">
+<h4>Compiler flags<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<p>The default settings of gcc/gfortran are not optimal for performance. A set of optimising flags are needed. The flag for OpenMP is <em>-fopenmp</em>.</p>
+<p>There a lot of optimisers available, a list can be generated using the command
+<code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">--help=optimizers</span></code></p>
+<p>Some set of flags for optimisation include :</p>
+<ul class="simple">
+<li><p>-O2 (often use for only memory intensive applications)</p></li>
+<li><p>-O3</p></li>
+<li><p>-O3 -mfma -mavx2</p></li>
+<li><p>-O3 -march=znver2 -mtune=znver2 (for AMD)</p></li>
+<li><p>-O3 -march=skylake-avx512  (for Intel Skylake)</p></li>
+</ul>
+<p>When gfortran include paths is given by gcc CPATH the following line is bash command line substitute can be beneficial :
+<code class="docutils literal notranslate"><span class="pre">gfortran</span> <span class="pre">-O3</span> <span class="pre">-I${CPATH//:/</span> <span class="pre">-I/}</span></code></p>
+</section>
+</section>
+<section id="amd-aocc-llvm">
+<h3>AMD AOCC/llvm<a class="headerlink" href="#amd-aocc-llvm" title="Link to this heading"></a></h3>
+<section id="id6">
+<h4>Introduction<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<p>AMD support the development of compilers based on llvm. The Software development kit can be found at : https://developer.amd.com/tools-and-sdks/ .
+C/C++ and Fortran are supported.</p>
+</section>
+<section id="id7">
+<h4>Documentation<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<p>The AMD documentation is limited. Documentation can be found at the AMD developer
+web site given above.</p>
+</section>
+<section id="id8">
+<h4>Compiler flags<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<p>The llvm compiler show a huge range of compiler flags, the AMD
+documentation provide a nice subset of relevant flags. The flag for
+OpenMP is <em>-fopenmp</em>. A suggested flags to try is given below.</p>
+<ul class="simple">
+<li><p>-O3</p></li>
+<li><p>-Ofast</p></li>
+<li><p>-Ofast -march=znver2 -mtune=znver2  (for AMD)</p></li>
+<li><p>-Ofast -march=znver2 -mavx2 -m3dnow (for AMD)</p></li>
+</ul>
+</section>
+</section>
+<section id="pgi">
+<h3>PGI<a class="headerlink" href="#pgi" title="Link to this heading"></a></h3>
+<section id="id9">
+<h4>Introduction<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<p>Portland Group compiler, known as PGI compiler is now a part of NVIDIA. The PGI web page
+is still available : https://www.pgroup.com/index.htm .</p>
+</section>
+<section id="id10">
+<h4>Documentation<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
+<p>Documentation can be found at : https://www.pgroup.com/resources/docs/20.4/x86/index.htm</p>
+</section>
+<section id="id11">
+<h4>Compiler flags<a class="headerlink" href="#id11" title="Link to this heading"></a></h4>
+<p>Please review the documentation for an updated list of the suggested compiler flags.</p>
+<p>A set of suggested flags are :</p>
+<ul class="simple">
+<li><p>-O3 -tp zen -Mvect=simd -Mcache_align -Mprefetch -Munroll  (for AMD)</p></li>
+</ul>
+</section>
+</section>
+<section id="performance-of-compilers">
+<h3>Performance of compilers<a class="headerlink" href="#performance-of-compilers" title="Link to this heading"></a></h3>
+<p>A test using the well known reference implementation of matrix matrix
+(<a class="reference external" href="https://www.netlib.org/lapack/explore-html/d7/d2b/dgemm_8f_source.html">dgemm</a>)
+multiplication is used for a simple test of the different compilers.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Compiler</p></th>
+<th class="head text-center"><p>Flags</p></th>
+<th class="head text-center"><p>Performance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>GNU gfortran</p></td>
+<td class="text-center"><p>-O3 -march=znver2 -mtune=znver2</p></td>
+<td class="text-center"><p>4.79 Gflops/s</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>AOCC flang</p></td>
+<td class="text-center"><p>-Ofast -march=znver2 -mavx2 -m3dnow</p></td>
+<td class="text-center"><p>5.21 Gflops/s</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Intel ifort</p></td>
+<td class="text-center"><p>-O3 -xavx2</p></td>
+<td class="text-center"><p>26.39 Gflops/s</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Intel Fortran compiler do a remarkable job with this nested loop problem.
+As we have seen above the matrix matrix multiplication is a special case. For more
+realistic examples the performance is more comparable.</p>
+<p><img alt="Compiler performance" src="../_images/compiler-perf.png" /></p>
+<p>It turns out that for the EP benchmark (Generate independent Gaussian random variates using the Marsaglia polar method)
+the Intel compiler manage to do something smart.</p>
+</section>
+</section>
+<section id="performance-libraries">
+<h2>Performance libraries<a class="headerlink" href="#performance-libraries" title="Link to this heading"></a></h2>
+<section id="intel-mkl">
+<h3>Intel MKL<a class="headerlink" href="#intel-mkl" title="Link to this heading"></a></h3>
+<section id="id12">
+<h4>Introduction<a class="headerlink" href="#id12" title="Link to this heading"></a></h4>
+<p>The Intel Math Kernel Library comes with the compiler suite and is well known as
+high performance library. It comes in both sequential and multi threaded functions
+and is know for its very high performance.</p>
+<p>MKL have wrappers for FFTW so no rewrite is needed to link any applications using
+FFTW with MKL. Both Include files and library functions are provided.</p>
+<p>When using the Intel compiler the compiling and linking is very simple, most
+of the times is enough to just add <em>-mkl</em>. Adding <em>=sequential</em> or <em>=parallel</em>.</p>
+<p>When using MKL with the GNU compilers some more work is often needed, both include paths and linking paths.
+An example can provide some hints:
+<code class="docutils literal notranslate"><span class="pre">-L$MKLROOT/lib/intel64</span> <span class="pre">-lmkl_gnu_thread</span> <span class="pre">-lmkl_avx2</span> <span class="pre">-lmkl_core</span> <span class="pre">-lmkl_rt</span></code>
+The variable <em>MKLROOT</em> is set when the Intel module is loaded.</p>
+<p>In many cases the include files are needed and since the CPATH is set by module scripts the following command like might easy the process of
+translating a colon separated string of directories to something that the Fortran compiler will accept.
+<code class="docutils literal notranslate"><span class="pre">gfortran</span> <span class="pre">-O3</span> <span class="pre">-I${CPATH//:/</span> <span class="pre">-I/}</span> <span class="pre">fftw-3d.f90</span> <span class="pre">${MKLROOT}/lib/intel64/libfftw3xf_intel.a</span> <span class="pre">-lmkl_sequential</span> <span class="pre">-lmkl</span></code>
+The above example is an example og using the FFTW wrapper in MKL, using only environment variables set by the module scripts it will
+be portable with different versions of MKL.</p>
+<p>The following command can be of help when encounter missing symbols:
+<code class="docutils literal notranslate"><span class="pre">nm</span> <span class="pre">-A</span> <span class="pre">$MKLROOT/lib/intel64/*</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">&lt;missing</span> <span class="pre">symbol&gt;</span></code>
+Look for symbols with <em>T</em> (T means text,global - e.g. it’s available, U means undefined).</p>
+</section>
+<section id="forcing-mkl-to-use-best-performing-routines">
+<h4>Forcing MKL to use best performing routines<a class="headerlink" href="#forcing-mkl-to-use-best-performing-routines" title="Link to this heading"></a></h4>
+<p>MKL issue a run time test to check for genuine Intel processor. If this test fail it will select a generic x86-64 set of routines yielding
+inferior performance. This is well documented in <a class="reference external" href="https://en.wikipedia.org/wiki/Math_Kernel_Library">Wikipedia</a> and remedies in
+<a class="reference external" href="https://danieldk.eu/Intel-MKL-on-AMD-Zen">Intel MKL on AMD Zen</a>.</p>
+<p>Research have discovered that MKL call a function called <em>mkl_serv_intel_cpu_true()</em> to check the current CPU. If a genuine Intel processor is
+found it simply return 1. The solution is simply to override this function by writing a dummy functions which always return 1 and place this
+early in the search path. The function is simply:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">mkl_serv_intel_cpu_true</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Compiling this file into a shared library using the following command:
+<code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">-shared</span> <span class="pre">-fPIC</span> <span class="pre">-o</span> <span class="pre">libfakeintel.so</span> <span class="pre">fakeintel.c</span></code></p>
+<p>To put the new shared library first in the search path we can use a preload environment variable:
+<code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">LD_PRELOAD=&lt;path</span> <span class="pre">to</span> <span class="pre">lib&gt;</span></code>
+A suggestion is to place the new shared library in <code class="docutils literal notranslate"><span class="pre">$HOME/lib64</span></code> and using
+<code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">LD_PRELOAD=$HOME/lib64/libfakeintel.so</span></code> to insert the fake test function.</p>
+<p>In addition the environment variable <em>MKL_ENABLE_INSTRUCTIONS</em> can also have a significant effect.
+Setting the variable to AVX2 is advised. Just changing it to AVX have a significant negative impact.</p>
+<p>For performance impact and more about running software with MKL please see
+<a class="reference internal" href="../jobs/mkl.html#using-mkl-efficiently"><span class="std std-ref">Using MKL efficiently</span></a>.</p>
+</section>
+<section id="id13">
+<h4>Documentation<a class="headerlink" href="#id13" title="Link to this heading"></a></h4>
+<p>Online documentation can be found at :  https://software.intel.com/content/www/us/en/develop/documentation/mkl-linux-developer-guide/top.html</p>
+<p>There is a link line helper available : https://software.intel.com/content/www/us/en/develop/articles/intel-mkl-link-line-advisor.html , this can often be of help.</p>
+</section>
+</section>
+<section id="amd-aocl">
+<h3>AMD AOCL<a class="headerlink" href="#amd-aocl" title="Link to this heading"></a></h3>
+<section id="id14">
+<h4>Introduction<a class="headerlink" href="#id14" title="Link to this heading"></a></h4>
+<p>The AMD performance library provide a set of library functions optimised for the AMD processor.
+The web page is : https://developer.amd.com/amd-aocl/ .</p>
+</section>
+<section id="id15">
+<h4>Documentation<a class="headerlink" href="#id15" title="Link to this heading"></a></h4>
+<p>Documentation can be found at https://developer.amd.com/amd-aocl/ .</p>
+</section>
+</section>
+<section id="performance">
+<h3>Performance<a class="headerlink" href="#performance" title="Link to this heading"></a></h3>
+<p>Using the MLK library with AMD is straightforward.</p>
+<p>In order to get MKL to select the correct AVX2 enabled routine a flag
+need to be set, use : <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">MKL_DEBUG_CPU_TYPE=5</span></code>. However, this flag
+is no longer used in the 2020 version of the MKL. For this newer version
+a different workaround is needed.</p>
+<p>For more about MKL performance and AMD see above about
+“Forcing MKL to use best performing routines”, where usage of a cheating
+library is explained.</p>
+<p>The well known top500 test HPL is using linear algebra library functions,
+the following performance data were obtained using a single node.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Library</p></th>
+<th class="head text-left"><p>Environment flag</p></th>
+<th class="head text-center"><p>Performance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>AMD BLIS-mt</p></td>
+<td class="text-left"><p>none</p></td>
+<td class="text-center"><p>3.14 Tflops/s</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>MKL-2019.5.281</p></td>
+<td class="text-left"><p>none</p></td>
+<td class="text-center"><p>1.71 Tflops/s</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>MKL-2019.5.281</p></td>
+<td class="text-left"><p>MKL_DEBUG_CPU_TYPE=5</p></td>
+<td class="text-center"><p>3.23 Tflops/s</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>MKL-2020.4.304</p></td>
+<td class="text-left"><p>none</p></td>
+<td class="text-center"><p>2.54 Tflops/s</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>MKL-2020.4.304</p></td>
+<td class="text-left"><p>MKL_DEBUG_CPU_TYPE=5</p></td>
+<td class="text-center"><p>2.54 Tflops/s</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>MKL-2020.4.304</p></td>
+<td class="text-left"><p>MKL_ENABLE_INSTRUCTIONS=AVX2</p></td>
+<td class="text-center"><p>2.54 Tflops/s</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>MKL-2020.4.304</p></td>
+<td class="text-left"><p>LD_PRELOAD=./libfakeintel.so</p></td>
+<td class="text-center"><p>3.23 Tflops/s</p></td>
+</tr>
+</tbody>
+</table>
+<p>The test below using matrix matrix multiplication, Level 3 BLAS
+function dgemm is used to test single core performance of the
+libraries. The tests are run on a single node using a single core on
+Betzy.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Library</p></th>
+<th class="head text-center"><p>Link line</p></th>
+<th class="head text-center"><p>Performance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>AOCL</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">gfortran</span> <span class="pre">-o</span> <span class="pre">dgemm-test.x</span> <span class="pre">-O3</span> <span class="pre">dgemm-test.f90</span> <span class="pre">-L$LIB</span> <span class="pre">-lblis</span></code></p></td>
+<td class="text-center"><p>50.13 Gflops/s</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>AOCL</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">flang</span> <span class="pre">-o</span> <span class="pre">dgemm-test.x</span> <span class="pre">-O3</span> <span class="pre">dgemm-test.f90</span> <span class="pre">-L$LIB</span> <span class="pre">-lblis</span></code></p></td>
+<td class="text-center"><p>50.13 Gflops/s</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>MKL</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">ifort</span> <span class="pre">-o</span> <span class="pre">dgemm-test.x</span> <span class="pre">-O3</span> <span class="pre">dgemm-test.f90</span> <span class="pre">-mkl=sequential</span></code></p></td>
+<td class="text-center"><p>51.53 Gflops/s</p></td>
+</tr>
+</tbody>
+</table>
+<p>At 50 Gflops/s per core the aggregate number is 6.4 Tflops/s quite a
+bit more than what’s expected from these nodes. This is a nice example
+of clock boost when using only a few cores, or in this case only one.</p>
+<p>While linear algebra is widely used Fourier Transform is also heavily used.
+The performance data below is obtained for a 3d-complex forward FT with a footprint
+of about 22 GiB using a single core.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Library</p></th>
+<th class="head text-left"><p>Environment flag</p></th>
+<th class="head text-center"><p>Performance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>FFTW 3.3.8</p></td>
+<td class="text-left"><p>none</p></td>
+<td class="text-center"><p>62.7 sec.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>AMD/AOCL 2.1</p></td>
+<td class="text-left"><p>none</p></td>
+<td class="text-center"><p>61.3 sec.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>MKL-2020.4.304</p></td>
+<td class="text-left"><p>none</p></td>
+<td class="text-center"><p>52.8 sec.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>MKL-2020.4.304</p></td>
+<td class="text-left"><p>LD_PRELOAD=./libfakeintel.so</p></td>
+<td class="text-center"><p>27.0 sec.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>MKL-2020.4.304</p></td>
+<td class="text-left"><p>LD_PRELOAD=./libfakeintel.so</p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td class="text-left"><p>MKL_ENABLE_INSTRUCTIONS=AVX</p></td>
+<td class="text-center"><p>40.5 sec.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>MKL-2020.4.304</p></td>
+<td class="text-left"><p>LD_PRELOAD=./libfakeintel.so</p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td class="text-left"><p>MKL_ENABLE_INSTRUCTIONS=AVX2</p></td>
+<td class="text-center"><p>27.0 sec.</p></td>
+</tr>
+</tbody>
+</table>
+<p>With the 2020 version of MKL the instruction set variable has a significant effect.</p>
+<p>The performance of MKL is significantly higher than both FFTW and the AMD library.</p>
+<p>For applications spending a lot of time executing library function code a review of
+libraries used and some testing using the specific library functions actually used.
+Not all library functions are implemented equally good by the authors.</p>
+</section>
+</section>
+<section id="mpi-libraries">
+<h2>MPI libraries<a class="headerlink" href="#mpi-libraries" title="Link to this heading"></a></h2>
+<section id="openmpi">
+<h3>OpenMPI<a class="headerlink" href="#openmpi" title="Link to this heading"></a></h3>
+<section id="id16">
+<h4>Introduction<a class="headerlink" href="#id16" title="Link to this heading"></a></h4>
+<p>The OpenMPI library are based on the old LAM MPI from Ohio
+Supercomputing Center. This one of the most widely used MPI
+implementations today. The web site is : https://www.open-mpi.org/ .</p>
+<p>OpenMPI is supported on all the Sigma2 systems, with versions for both
+GNU and Intel compilers, and in some cases some support for other
+compilers.</p>
+</section>
+<section id="usage">
+<h4>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h4>
+<p>The compiler wrappers hiding the include and link environment are called:</p>
+<ul class="simple">
+<li><p>mpicc for C</p></li>
+<li><p>mpicxx for C++</p></li>
+<li><p>mpif90 for Fortran</p></li>
+<li><p>mpff77 for Fortran</p></li>
+</ul>
+<p>In practice both mpif90 and mpif77 points to the same Fortran compiler. A quick check for
+compiler versions is <code class="docutils literal notranslate"><span class="pre">mpif90</span> <span class="pre">-v</span></code>.</p>
+<p>Compiler flags are propagated to the underlaying compiler.</p>
+<p>To run programs the launched application mpirun is used (Slurm srun is
+an option also). There are a range of options to OpenMPI’s mpirun of
+which <code class="docutils literal notranslate"><span class="pre">--bind-to</span></code> and <code class="docutils literal notranslate"><span class="pre">--map-by</span></code> a the most important when running on
+the Sigma2 systems using Slurm as the queue system set the number of
+ranks and other run time parameters like list of hosts etc. This is normal
+for MPI libraries built and installed with Slurm support.</p>
+</section>
+</section>
+<section id="intel-mpi">
+<h3>Intel MPI<a class="headerlink" href="#intel-mpi" title="Link to this heading"></a></h3>
+<section id="id17">
+<h4>Introduction<a class="headerlink" href="#id17" title="Link to this heading"></a></h4>
+<p>The Intel MPI is part of the Intel compiler suite and is a widely used MPI implementation.
+More information is found on-line at : https://software.intel.com/content/www/us/en/develop/tools/mpi-library.html .</p>
+<p>Intel MPI is supported on all Sigma2 systems, but mostly for use with
+the Intel compiler, it can however, to some extent be used with
+GNU. The support is present.</p>
+</section>
+<section id="id18">
+<h4>Usage<a class="headerlink" href="#id18" title="Link to this heading"></a></h4>
+<p>The compiler wrappers have different naming then many other MPI implementations.</p>
+<ul class="simple">
+<li><p>mpiicc for C</p></li>
+<li><p>mpiicpc for C++</p></li>
+<li><p>mpiifort for Fortran</p></li>
+<li><p>mpicc  GNU C</p></li>
+<li><p>mpigcc GNU C</p></li>
+<li><p>mpicxx GNU C++</p></li>
+<li><p>mpifc GNU Fortran</p></li>
+</ul>
+<p>There are a lot of environment variables to be used with Intel MPI, they all start with <em>I_MPI</em></p>
+<ul class="simple">
+<li><p>I_MPI_PIN</p></li>
+<li><p>I_MPI_PIN_DOMAIN</p></li>
+<li><p>I_MPI_PIN_PROCESSOR_EXCLUDE_LIST</p></li>
+</ul>
+<p>The variable <em>I_MPI_PIN_DOMAIN</em> is good when running hybrid codes,
+setting it to the number of threads per rank will help the launcher to
+place the ranks correct.
+Setting <em>I_MPI_PIN_PROCESSOR_EXCLUDE_LIST=128-255</em> will make sure only
+physical cores 0-127 are used for MPI ranks. This ensures that no two
+ranks share the same physical core.</p>
+<p>As with any of these variable and other please review the
+documentation pointed to above and do some testing yourself before
+employing in large production scale.</p>
+<p>Running applications with Intel MPI is just like a simple as for
+OpenMPI as Intel MPI also has support for Slurm. Just <code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">./a.out</span></code>
+is normally enough.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="overview.html" class="btn btn-neutral float-left" title="Code development and tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="building_gpu.html" class="btn btn-neutral float-right" title="Building GPU software" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

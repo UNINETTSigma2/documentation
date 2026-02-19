@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Science Europe template - Practical Guide &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Science Europe template - Practical Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="science-europe-template-practical-guide">
+<span id="id1"></span><h1>Science Europe template - Practical Guide<a class="headerlink" href="#science-europe-template-practical-guide" title="Link to this heading"></a></h1>
+<section id="how-to-use-the-guide">
+<h2>How to use the guide<a class="headerlink" href="#how-to-use-the-guide" title="Link to this heading"></a></h2>
+<p>The Science Europe guidelines consist of six core requirements - Data Collection, Data Quality, Data Storage, Ethical and Legal requirements, Data Sharing and Long Term Preservation, Data Management - translated into 13 questions. The present guide provides for each question (highlighted in italics) a high level description of the required information (in bullet and point), followed by the formulation of the question as it appears in easyDMP (in bold). Finally, one or more examples are provided to offer practical guidance for the formulation of the answer.</p>
+<p>The structure is therefore the following:</p>
+<section id="core-requirement">
+<h3>Core requirement<a class="headerlink" href="#core-requirement" title="Link to this heading"></a></h3>
+<section id="question">
+<h4><em>Question</em><a class="headerlink" href="#question" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Description:</p></li>
+<li><p>…</p></li>
+<li><p>…</p></li>
+<li><p><strong>Questions:</strong></p>
+<ul>
+<li><p><strong>This is the question as it appears in easyDMP</strong></p>
+<ul>
+<li><p><strong>Example Responses:</strong></p>
+<ul>
+<li><p>…..</p></li>
+<li><p>…</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>All the question marked with a (*) are mandatory.</strong></p>
+</section>
+</section>
+</section>
+<section id="the-core-requirements">
+<h2>The core requirements<a class="headerlink" href="#the-core-requirements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#administrative-information"><span class="std std-ref">Administrative information</span></a></p></li>
+<li><p><a class="reference internal" href="#data-description-and-collection-or-reuse-of-existing-data"><span class="std std-ref">Data description and collection or reuse of existing data</span></a></p></li>
+<li><p><a class="reference internal" href="#documentation-and-data-quality"><span class="std std-ref">Documentation and data quality</span></a></p></li>
+<li><p><a class="reference internal" href="#storage-and-backup-during-the-research-process"><span class="std std-ref">Storage and backup during the research process</span></a></p></li>
+<li><p><a class="reference internal" href="#legal-and-ethical-requirements-codes-of-conduct"><span class="std std-ref">Legal and ethical requirements, codes of conduct</span></a></p></li>
+<li><p><a class="reference internal" href="#data-sharing-and-long-term-preservation"><span class="std std-ref">Data sharing and long term preservation</span></a></p></li>
+<li><p><a class="reference internal" href="#data-management-responsibilities-and-resources"><span class="std std-ref">Data management responsibilities and resources</span></a></p></li>
+</ul>
+</section>
+<section id="administrative-information">
+<span id="id2"></span><h2>Administrative information<a class="headerlink" href="#administrative-information" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Provide information such as name of applicant, project number, funding programme, (version of DMP).</p></li>
+<li><p><strong>Questions:</strong></p>
+<ul>
+<li><p><strong>Please give the title of the project.</strong> *</p>
+<ul>
+<li><p><strong>Example Response:</strong></p>
+<ul>
+<li><p>The Example Project</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Please give the project number, if known.</strong></p>
+<ul>
+<li><p><strong>Example Response:</strong></p>
+<ul>
+<li><p>Project 12345678</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Please give the funding programme.</strong> *</p>
+<ul>
+<li><p>Example Response:</p>
+<ul>
+<li><p>The Norwegian Research Council</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="data-description-and-collection-or-reuse-of-existing-data">
+<span id="id3"></span><h2>Data description and collection or reuse of existing data<a class="headerlink" href="#data-description-and-collection-or-reuse-of-existing-data" title="Link to this heading"></a></h2>
+<section id="how-will-new-data-be-collected-or-produced-and-or-how-will-existing-data-be-re-used">
+<h3><em>How will new data be collected or produced and/or how will existing data be re-used?</em><a class="headerlink" href="#how-will-new-data-be-collected-or-produced-and-or-how-will-existing-data-be-re-used" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Explain which methodologies or software will be used if new data are collected or produced.</p></li>
+<li><p>State any constraints on re-use of existing data if there are any.</p></li>
+<li><p>Explain how data provenance will be documented.</p></li>
+<li><p>Briefly state the reasons if the re-use of any existing data sources has been considered but discarded.</p></li>
+<li><p><strong>Questions:</strong></p>
+<ul>
+<li><p><strong>Describe how you plan to collect new or use existing data.</strong> *</p>
+<ul>
+<li><p><strong>Example Response:</strong></p>
+<ul>
+<li><p>The project will use data from three sources:</p>
+<ul>
+<li><p>Experimental data produced by an X-ray crystallography on our sample materials. The data will be collected at the European Synchrotron Radiation Facility (ESRF <a class="reference external" href="https://www.esrf.eu/">https://www.esrf.eu/</a>) and will be processed at the facility using the CCP4 (<a class="reference external" href="https://www.ccp4.ac.uk/">https://www.ccp4.ac.uk/</a>) suite of software. Information on when the data was produced, and the conditions will be recorded in electronic notebooks at the ESRF. ASCII Log files will be produced by the CCP4 processing (the log files produced standardised output that is described in CCP4 documentation).</p></li>
+<li><p>Simulation data on the molecular dynamics of the sample material. Simulation data does exist, but we need to produce more simulation samples to increase the statistical accuracy. For the existing simulations, information on how the data were produced is recorded in log files that are maintained on central servers at institution X (e.g. <code class="docutils literal notranslate"><span class="pre">https://example.org/institution/simulationData</span></code>) that are publicly accessible. Information on the additional simulation produced by this project will be stored in ASCII log files. The information in simulation log files follows the structure described in the documentation at institution X. The reused simulation data and the simulation data produced by this project will be publicly accessible at no cost. All simulations are produced with the GROMACS program (<a class="reference external" href="https://www.gromacs.org/">https://www.gromacs.org/</a>).</p></li>
+<li><p>Images of the objects from which the samples were taken. The images will be taken with conventional digital photography. The images contain information on the location and date when they were taken. In addition, information on the conditions in which the photographs were taken will also be electronically recorded in an e-logbook.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="what-data-for-example-the-kind-formats-and-volumes-will-be-collected-or-produced">
+<h3><em>What data (for example the kind, formats, and volumes), will be collected or produced?</em><a class="headerlink" href="#what-data-for-example-the-kind-formats-and-volumes-will-be-collected-or-produced" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Give details on the kind of data: for example numeric (databases, spreadsheets), textual (documents), image, audio, video, and/or mixed media.</p></li>
+<li><p>Give details on the data format: the way in which the data is encoded for storage, often reflected by the filename extension (for example pdf, xls, doc, txt, or rdf).</p></li>
+<li><p>Justify the use of certain formats. For example, decisions may be based on staff expertise within the host organisation, a preference for open formats, standards accepted by data repositories, widespread usage within the research community, or on the software or equipment that will be used.</p></li>
+<li><p>Give preference to open and standard formats as they facilitate sharing and long-term re-use of data (several repositories provide lists of such ‘preferred formats’).</p></li>
+<li><p>Give details on the volumes (they can be expressed in storage space required (bytes), and/or in numbers of objects, files, rows, and columns).</p></li>
+<li><p><strong>Questions:</strong></p>
+<ul>
+<li><p><strong>Describe how much data, and the type of data you plan to collect or produce.</strong> *</p>
+<ul>
+<li><p><strong>Example Response:</strong></p>
+<ul>
+<li><p>The project will create (approximately):</p>
+<ul>
+<li><p>100 GB of high-resolution images in the standard JPEG (<a class="reference external" href="https://en.wikipedia.org/wiki/JPEG">https://en.wikipedia.org/wiki/JPEG</a>) format. The JPEG format is chosen as a wide variety of software programs can read this format.</p></li>
+<li><p>5 TB simulation data produced by the project will be stored in the GROMACS (GRO <a class="reference external" href="https://manual.gromacs.org/archive/5.0.3/online/gro.html">https://manual.gromacs.org/archive/5.0.3/online/gro.html</a>) format that is standard in the community and is open. In addition, we will use 2 TB of existing simulation data. So, a total of 7 TB simulation data.</p></li>
+<li><p>10 TB of experimental data produced by the CCP4 program and stored in the standardised Crystallographic Information File (CIF <a class="reference external" href="https://en.wikipedia.org/wiki/Crystallographic_Information_File">https://en.wikipedia.org/wiki/Crystallographic_Information_File</a>) format that has an open license.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="documentation-and-data-quality">
+<span id="id4"></span><h2>Documentation and data quality<a class="headerlink" href="#documentation-and-data-quality" title="Link to this heading"></a></h2>
+<section id="what-metadata-and-documentation-for-example-the-methodology-of-data-collection-and-way-of-organising-data-will-accompany-the-data">
+<h3><em>What metadata and documentation (for example the methodology of data collection and way of organising data) will accompany the data?</em><a class="headerlink" href="#what-metadata-and-documentation-for-example-the-methodology-of-data-collection-and-way-of-organising-data-will-accompany-the-data" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Indicate which metadata will be provided to help others identify and discover the data.</p></li>
+<li><p>Indicate which metadata standards (for example DDI, TEI, EML, MARC, CMDI) will be used.
+_ Use community metadata standards where these are in place.</p></li>
+<li><p>Indicate how the data will be organised during the project, mentioning for example conventions, version control, and folder structures. Consistent, well-ordered research data will be easier to find, understand, and re-use.</p></li>
+<li><p>Consider what other documentation is needed to enable re-use. This may include information on the methodology used to collect the data, analytical and procedural information, definitions of variables, units of measurement, and so on.</p></li>
+<li><p>Consider how this information will be captured and where it will be recorded for example in a database with links to each item, a ‘readme’ text file, file headers, code books, or lab notebooks.</p></li>
+<li><p><strong>Questions:</strong></p>
+<ul>
+<li><p><strong>Describe how you will organise and document your data.</strong> *</p>
+<ul>
+<li><p><strong>Example Response:</strong></p>
+<ul>
+<li><p>The experimental data will be arranged in directories according to sample, synchrotron beam run and processing run. Information will be recorded in a relational database at the project leader’s institution with access control that enables collaborators to access the information. The metadata schema will be extracted from the ESRF ICAT metadata catalogue and will follow the ICAT schema that is an agreed standard and contains all the information necessary to understand the data.</p></li>
+<li><p>The simulation data will be stored in the central repository in institution X and will follow their layout. Metadata information will follow the metadata schema adopted by institution X which is used by many projects in this field. Documentation on the schema is widely available to researchers in the field and enables use of the data.</p></li>
+<li><p>The e-logbook information on the digital photographs will follow the Dublin Core metadata standard (<a class="reference external" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#section-3">https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#section-3</a>) to record information on the images. Each image will have a unique identifier that will match the Dublin Core identifier term making it easy for researchers to match the metadata to the data.</p></li>
+<li><p>Tutorials and documentation on the tools necessary to analyse the data will be maintained on the project web-site. In some cases, these will be links to widely-used tools.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="what-data-quality-control-measures-will-be-used">
+<h3><em>What data quality control measures will be used?</em><a class="headerlink" href="#what-data-quality-control-measures-will-be-used" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Explain how the consistency and quality of data collection will be controlled and documented. This may include processes such as calibration, repeated samples or measurements, standardised data capture, data entry validation, peer review of data, or representation with controlled vocabularies.</p></li>
+<li><p><strong>Questions:</strong></p>
+<ul>
+<li><p><strong>Describe how you will control the consistency and quality of your data.</strong> *</p>
+<ul>
+<li><p><strong>Example Response:</strong></p>
+<ul>
+<li><p>For the experimental data the quality of the data is recorded in the ESRF ICAT metadata catalogue and will be replicated to the project metadata catalogue. This metadata contains information on the position of the sample, the experimental station, beam conditions etc which is sufficient to understand the experimental data. The sample itself will be labelled and kept at the project leader’s institution for reference.</p></li>
+<li><p>Simulation data quality will be recorded in log files and reference data will be produced during each simulation that will be compared with existing reference data to ensure simulations remain within tolerance. Information on the machines the simulations ran on and when is recorded in the log files which will be archived at institution X.</p></li>
+<li><p>Digital photographs will be visually inspected on-site by project collaborators that have the right collect the images to ensure the images are of sufficient quality. A checklist of features will be drawn-up by experts in digital photography and each image will require approval by the WP leader responsible for acquiring the images.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="storage-and-backup-during-the-research-process">
+<span id="id5"></span><h2>Storage and backup during the research process<a class="headerlink" href="#storage-and-backup-during-the-research-process" title="Link to this heading"></a></h2>
+<section id="how-will-data-and-metadata-be-stored-and-backed-up-during-the-research">
+<h3><em>How will data and metadata be stored and backed up during the research?</em><a class="headerlink" href="#how-will-data-and-metadata-be-stored-and-backed-up-during-the-research" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Describe where the data will be stored and backed up during research activities and how often the backup will be performed. It is recommended to store data in least at two separate locations.</p></li>
+<li><p>Give preference to the use of robust, managed storage with automatic backup, such as provided by IT support services of the home institution. Storing data on laptops, stand-alone hard drives, or external storage devices such as USB sticks is not recommended.</p></li>
+<li><p>Explain how the data will be recovered in the event of an incident.</p></li>
+<li><p>Explain who will have access to the data during the research and how access to data is controlled, especially in collaborative partnerships.</p></li>
+<li><p><strong>Questions:</strong></p>
+<ul>
+<li><p><strong>Describe how you will securely store and back up and recover your data during your project.</strong> *</p>
+<ul>
+<li><p><strong>Example Response:</strong></p>
+<ul>
+<li><p>The experimental data will initially be stored on the ESRF storage facility during data collection. The data will be subject to the ESRF storage and backup procedures (<a class="reference external" href="https://www.esrf.eu/UsersAndScience/Experiments/MX/How_to_use_our_beamlines/Prepare_Your_Experiment/Backup">https://www.esrf.eu/UsersAndScience/Experiments/MX/How_to_use_our_beamlines/Prepare_Your_Experiment/Backup</a>) that project members will run in accordance with advice from ESRF.  The ESRF provides access control which the project will control. Once the experiment has completed data will be transferred to the Norwegian Infrastructure for Research Data (NIRD) project storage where data backup is provided by NIRD. NIRD provides storage with access control, only project collaborators will be provided access to the NIRD storage for the project. In the case of NIRD and ESRF project storage data being lost the backup procedures provide restore capabilities where lost data can be identified and recovered.</p></li>
+<li><p>The simulation data will be produced on the Norwegian High-Performance Computing Facility (FRAM) which will store data on the NIRD project storage to which NIRD applies backup and recovery procedures. During the production data will be subject to access control restrictions to project collaborators. Once the simulation data are validated it will be transferred to the central storage at institution X which provides safe long-term storage for simulation data. Backup and recovery of NIRD storage is provided by NIRD and institution X will enforce the same backup and recovery procedures for the project’s data.</p></li>
+<li><p>The images will be transferred from digital camera to the University of Oslo Sensitive Data facility (TSD) as the data contain information of a personal sensitive nature in accordance to Norwegian privacy regulation. Data will be backed-up according to TSD policies and only approved researchers will have access to the images. The project has been approved by the Regional Ethical committee (REK SØ 2019/1234).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="how-will-data-security-and-protection-of-sensitive-data-be-taken-care-of-during-the-research">
+<h3><em>How will data security and protection of sensitive data be taken care of during the research?</em><a class="headerlink" href="#how-will-data-security-and-protection-of-sensitive-data-be-taken-care-of-during-the-research" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Consider data protection, particularly if your data is sensitive for example containing personal data, politically sensitive information, or trade secrets. Describe the main risks and how these will be managed.</p></li>
+<li><p>Explain which institutional data protection policies are in place.</p></li>
+<li><p><strong>Questions:</strong></p>
+<ul>
+<li><p><strong>If your project uses sensitive data describe how you will take care of data protection and security.</strong></p>
+<ul>
+<li><p><strong>Example Response:</strong></p>
+<ul>
+<li><p>The images collected are data objects that are of a sensitive nature and therefore are subject to Norwegian legislation for handling and managing sensitive data as implemented by the University of Oslo (<a class="reference external" href="https://www.uio.no/english/for-employees/support/privacy-dataprotection/">https://www.uio.no/english/for-employees/support/privacy-dataprotection/</a>). The image data objects will be encrypted and imported inside the TSD by using an encrypted protocol. The camera removable hard-drives containing the images will be scrubbed and destroyed once the data has been transferred to the TSD. Only authorized collaborators will be provided access to the images, and export from the TSD server will be by no means possible. The images will be anonymised in accordance with the sensitive data legislation before exporting them out from the secure TSD area.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="legal-and-ethical-requirements-codes-of-conduct">
+<span id="id6"></span><h2>Legal and ethical requirements, codes of conduct<a class="headerlink" href="#legal-and-ethical-requirements-codes-of-conduct" title="Link to this heading"></a></h2>
+<section id="if-personal-data-are-processed-how-will-compliance-with-legislation-on-personal-data-and-on-security-be-ensured">
+<h3><em>If personal data are processed, how will compliance with legislation on personal data and on security be ensured?</em><a class="headerlink" href="#if-personal-data-are-processed-how-will-compliance-with-legislation-on-personal-data-and-on-security-be-ensured" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Ensure that when dealing with personal data, data protection laws (for example GDPR) are complied with:</p></li>
+<li><p>Gain informed consent for preservation and/or sharing of personal data.</p></li>
+<li><p>Consider anonymisation of personal data for preservation and/or sharing (truly anonymous data are no longer considered personal data).</p></li>
+<li><p>Consider pseudonymisation of personal data (the main difference with anonymisation is that pseudonymisation is reversible).</p></li>
+<li><p>Consider encryption which is seen as a special case of pseudonymisation (the encryption key must be stored separately from the data, for instance by a trusted third party).</p></li>
+<li><p>Explain whether there is a managed access procedure in place for authorised users of personal data.</p></li>
+<li><p><strong>Questions:</strong></p>
+<ul>
+<li><p><strong>If your project uses personal data describe how you will ensure compliance with legislation on personal data and security.</strong></p>
+<ul>
+<li><p><strong>Example Response:</strong></p>
+<ul>
+<li><p>The project has been approved by the Regional Ethical Committee (REK SØ 2019/1234). Sensitive Personal data will be stored inside TSD and access to the data will be strictly controlled by the Project principal investigator.</p></li>
+<li><p>The project will handle sensitive personal data containing information about individuals eating habitudes and health condition. Data collected through questionnaire will be pseudorandomized, and the key-file will be stored in a separate area inside TSD accessible only by the project principal investigator.</p></li>
+<li><p>The personal data (including mail address and private addresses) handled in the project will be collected after the explicit consent of the data owner, according to the GDPR regulation. Data will be deleted or anonymised after a maximum of four weeks.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="how-will-other-legal-issues-such-as-intellectual-property-rights-and-ownership-be-managed-what-legislation-is-applicable">
+<h3><em>How will other legal issues, such as intellectual property rights and ownership, be managed? What legislation is applicable?</em><a class="headerlink" href="#how-will-other-legal-issues-such-as-intellectual-property-rights-and-ownership-be-managed-what-legislation-is-applicable" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Explain who will be the owner of the data, meaning who will have the rights to control access:</p></li>
+<li><p>Explain what access conditions will apply to the data? Will the data be openly accessible, or will there be access restrictions? In the latter case, which? Consider the use of data access and re-use licenses.</p></li>
+<li><p>Make sure to cover these matters of rights to control access to data for multi-partner projects and multiple data owners, in the consortium agreement.</p></li>
+<li><p>Indicate whether intellectual property rights (for example Database Directive, sui generis rights) are affected. If so, explain which and how will they be dealt with.</p></li>
+<li><p>Indicate whether there are any restrictions on the re-use of third-party data.</p></li>
+<li><p><strong>Questions:</strong></p>
+<ul>
+<li><p><strong>Describe how you plan to address other legal issues such as intellectual property rights and ownership.</strong> *</p>
+<ul>
+<li><p><strong>Example Response:</strong></p>
+<ul>
+<li><p>The project will abide by the University’s intellectual property rights policy (<a class="reference external" href="https://www.uio.no/english/about/regulations/research/intellectual-property/uio-policy-for-intellectual-property-rights.pdf">https://www.uio.no/english/about/regulations/research/intellectual-property/uio-policy-for-intellectual-property-rights.pdf</a>), and the data are subject to no other IPR claims.</p></li>
+<li><p>During the course of the project data will remain restricted access until publication of research results. The data used in the publication will be submitted to an archive such as the NIRD research data archive where it will be publicly accessible. A Creative Commons license BY 4.0 (<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a>) will apply to all the data.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="what-ethical-issues-and-codes-of-conduct-are-there-and-how-will-they-be-taken-into-account">
+<h3><em>What ethical issues and codes of conduct are there, and how will they be taken into account?</em><a class="headerlink" href="#what-ethical-issues-and-codes-of-conduct-are-there-and-how-will-they-be-taken-into-account" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Consider whether ethical issues can affect how data are stored and transferred, who can see or use them, and how long they are kept. Demonstrate awareness of these aspects and respective planning.</p></li>
+<li><p>Follow the national and international codes of conducts and institutional ethical guidelines, and check if ethical review (for example by an ethics committee) is required for data collection in the research project.</p></li>
+<li><p><strong>Questions:</strong></p>
+<ul>
+<li><p><strong>If your data are impacted by ethical issues and codes of conduct describe how you will take account of them.</strong></p>
+<ul>
+<li><p><strong>Example Response:</strong></p>
+<ul>
+<li><p>The project will abide by the recommendations described in the EU Ethics and data protection guidelines <a class="reference external" href="https://ec.europa.eu/research/participants/data/ref/h2020/grants_manual/hi/ethics/h2020_hi_ethics-data-protection_en.pdf">https://ec.europa.eu/research/participants/data/ref/h2020/grants_manual/hi/ethics/h2020_hi_ethics-data-protection_en.pdf</a> to ensure the sensitive image data are correctly handled and will seek ethical review by the University of our plan for handling the sensitive image data.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="data-sharing-and-long-term-preservation">
+<span id="id7"></span><h2>Data sharing and long term preservation<a class="headerlink" href="#data-sharing-and-long-term-preservation" title="Link to this heading"></a></h2>
+<section id="how-and-when-will-data-be-shared-are-there-possible-restrictions-to-data-sharing-or-embargo-reasons">
+<h3><em>How and when will data be shared? Are there possible restrictions to data sharing or embargo reasons?</em><a class="headerlink" href="#how-and-when-will-data-be-shared-are-there-possible-restrictions-to-data-sharing-or-embargo-reasons" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Explain how the data will be discoverable and shared (for example by depositing in a trustworthy data repository, indexed in a catalogue, use of a secure data service, direct handling of data requests, or use of another mechanism).</p></li>
+<li><p>Outline the plan for data preservation and give information on how long the data will be retained.</p></li>
+<li><p>Explain when the data will be made available. Indicate the expected timely release. Explain whether exclusive use of the data will be claimed and if so, why and for how long. Indicate whether data sharing will be postponed or restricted for example to publish, protect intellectual property, or seek patents.</p></li>
+<li><p>Indicate who will be able to use the data. If it is necessary to restrict access to certain communities or to apply a data sharing agreement, explain how and why. Explain what action will be taken to overcome or to minimise restrictions.</p></li>
+<li><p><strong>Questions:</strong></p>
+<ul>
+<li><p><strong>Describe how and when you will share your data, and relevant information, including data you intend to preserve.</strong> *</p>
+<ul>
+<li><p><strong>Example Response:</strong></p>
+<ul>
+<li><p>The project intends to use the NIRD Research Data Archive to store data, it and the community considers to be of lasting value. This will include data used in publications and data used to derive the results. The project will supply metadata to the archive that will be made publicly accessible and searchable. The archived data will be issued a DOI and made publicly accessible. The simulation data will be deposited in the institution X long-term repository along with the log files and metadata. It will be given an DOI by institution X and will be publicly accessible. The archived data will include documentation on the tools that can be used and how to use the data.</p></li>
+<li><p>Data will be published in the NIRD archive and made publicly available after the relevant articles have been published. One year after the end of the project the remaining data will be published in the archive.</p></li>
+<li><p>The images are sensitive and will only be accessible upon request from the TSD.</p></li>
+<li><p>The project will nominate a data manager responsible for fielding questions on the published data.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="how-will-data-for-preservation-be-selected-and-where-data-will-be-preserved-long-term-for-example-a-data-repository-or-archive">
+<h3><em>How will data for preservation be selected, and where data will be preserved long-term (for example a data repository or archive)?</em><a class="headerlink" href="#how-will-data-for-preservation-be-selected-and-where-data-will-be-preserved-long-term-for-example-a-data-repository-or-archive" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Indicate what data must be retained or destroyed for contractual, legal, or regulatory purposes.</p></li>
+<li><p>Indicate how it will be decided what data to keep. Describe the data to be preserved long-term.</p></li>
+<li><p>Explain the foreseeable research uses (and/ or users) for the data.</p></li>
+<li><p>Indicate where the data will be deposited. If no established repository is proposed, demonstrate in the data management plan that the data can be curated effectively beyond the lifetime of the grant. It is recommended to demonstrate that the repositories policies and procedures (including any metadata standards, and costs involved) have been checked.</p></li>
+</ul>
+</section>
+<section id="what-methods-or-software-tools-are-needed-to-access-and-use-data">
+<h3><em>What methods or software tools are needed to access and use data?</em><a class="headerlink" href="#what-methods-or-software-tools-are-needed-to-access-and-use-data" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Indicate whether potential users need specific tools to access and (re-)use the data. Consider the sustainability of software needed for accessing the data.</p></li>
+<li><p>Indicate whether data will be shared via a repository, requests handled directly, or whether another mechanism will be used?</p></li>
+</ul>
+</section>
+<section id="how-will-the-application-of-a-unique-and-persistent-identifier-such-as-a-digital-object-identifier-doi-to-each-data-set-be-ensured">
+<h3><em>How will the application of a unique and persistent identifier (such as a Digital Object Identifier (DOI)) to each data set be ensured?</em><a class="headerlink" href="#how-will-the-application-of-a-unique-and-persistent-identifier-such-as-a-digital-object-identifier-doi-to-each-data-set-be-ensured" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Explain how the data might be re-used in other contexts. Persistent identifiers should be applied so that data can be reliably and efficiently located and referred to. Persistent identifiers also help to track citations and re-use.</p></li>
+<li><p>Indicate whether a persistent identifier for the data will be pursued. Typically, a trustworthy, long-term repository will provide a persistent identifier.</p></li>
+<li><p><strong>Questions:</strong></p>
+<ul>
+<li><p><strong>Describe how you will assign persistent identifiers to your data.</strong> *</p>
+<ul>
+<li><p><strong>Example Response:</strong></p>
+<ul>
+<li><p>Publication of data in the NIRD archive will result in a DOI being issued for the data. Users interested in using the data will be able to discover the data through the publicly available metadata and download the data with the link provided. The dataset includes documentation on how to use the data. A contact person, the data manager, will be available to respond to queries about the data.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="data-management-responsibilities-and-resources">
+<span id="id8"></span><h2>Data management responsibilities and resources<a class="headerlink" href="#data-management-responsibilities-and-resources" title="Link to this heading"></a></h2>
+<section id="who-for-example-role-position-and-institution-will-be-responsible-for-data-management-i-e-the-data-steward">
+<h3><em>Who (for example role, position, and institution) will be responsible for data management (i.e. the data steward)?</em><a class="headerlink" href="#who-for-example-role-position-and-institution-will-be-responsible-for-data-management-i-e-the-data-steward" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Outline the roles and responsibilities for data management/stewardship activities for example data capture, metadata production, data quality, storage and backup, data archiving, and data sharing. Name responsible individual(s) where possible.</p></li>
+<li><p>For collaborative projects, explain the co-ordination of data management responsibilities across partners.</p></li>
+<li><p>Indicate who is responsible for implementing the DMP, and for ensuring it is reviewed and, if necessary, revised.</p></li>
+<li><p>Consider regular updates of the DMP.</p></li>
+<li><p><strong>Questions:</strong></p>
+<ul>
+<li><p><strong>Describe who will be responsible for the management of your data.</strong> *</p>
+<ul>
+<li><p><strong>Example Response:</strong></p>
+<ul>
+<li><p>The project identifies a work package tasked with project data management. The work package will be responsible for ensuring the data are prepared, securely stored, are of sufficient quality, metadata is collected and data are published once articles have been published. The data manager will be the work package leader and will be a member of the project steering board.</p></li>
+<li><p>The data manager will be responsible for quarterly updates of the data management plan.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="what-resources-for-example-financial-and-time-will-be-dedicated-to-data-management-and-ensuring-that-data-will-be-fair-findable-accessible-interoperable-re-usable">
+<h3><em>What resources (for example financial and time) will be dedicated to data management and ensuring that data will be FAIR (Findable, Accessible, Interoperable, Re-usable)?</em><a class="headerlink" href="#what-resources-for-example-financial-and-time-will-be-dedicated-to-data-management-and-ensuring-that-data-will-be-fair-findable-accessible-interoperable-re-usable" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Explain how the necessary resources (for example time) to prepare the data for sharing/preservation (data curation) have been costed in. Carefully consider and justify any resources needed to deliver the data. These may include storage costs, hardware, staff time, costs of preparing data for deposit, and repository charges.</p></li>
+<li><p>Indicate whether additional resources will be needed to prepare data for deposit or to meet any charges from data repositories. If yes, explain how much is needed and how such costs will be covered.</p></li>
+<li><p><strong>Questions:</strong></p>
+<ul>
+<li><p><strong>Describe the resources that will be dedicated to the management of your data such that it follows the FAIR (Findable, Accessible, Interoperable, Reusable) principles.</strong> *</p>
+<ul>
+<li><p><strong>Example Response:</strong></p>
+<ul>
+<li><p>The project has factored into the project timeline the data management through the inclusion of the data management work package that includes personnel funded by the project. The data manager will be a permanent member of staff who will be able to field questions on the data once the project has concluded. The project proposal also includes a request for funds for NIRD and TSD storage to be used during the lifetime of the project. The NIRD archive where the published data will be stored, and the Institution X repository for the simulation data are free to use.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

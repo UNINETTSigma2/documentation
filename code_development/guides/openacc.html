@@ -1,0 +1,794 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting started with OpenACC and Nvidia Nsight &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting started with OpenACC and Nvidia Nsight</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started-with-openacc-and-nvidia-nsight">
+<span id="openacc"></span><span id="index-0"></span><h1>Getting started with OpenACC and Nvidia Nsight<a class="headerlink" href="#getting-started-with-openacc-and-nvidia-nsight" title="Link to this heading"></a></h1>
+<blockquote>
+<div><p>OpenACC is a user-driven directive-based performance-portable parallel
+programming model.
+From the <a class="reference external" href="https://www.openacc.org">OpenACC homepage</a>.</p>
+</div></blockquote>
+<p>In many ways OpenACC is similar to OpenMP, but with a focus on running the code
+on accelerators (such as GPUs). OpenACC defines a set of directives (for both
+<code class="docutils literal notranslate"><span class="pre">C/C++</span></code> and <code class="docutils literal notranslate"><span class="pre">Fortran</span></code>) that can be included in existing code to transition the
+runtime to accelerators.</p>
+<p>Accelerators, like the Nvidia GPUs on Saga, are great for numerical calculations
+and applications that work on the “SIMD” - <strong>S</strong>ingle <strong>I</strong>nstruction
+<strong>M</strong>ultiple <strong>D</strong>ata principle, (where one or more operations are applied to a
+large number of datapoints independently of each other). Examples include
+operations like
+<a class="reference external" href="https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms#Level_3"><code class="docutils literal notranslate"><span class="pre">gemm</span></code></a>
+which can be <a class="reference external" href="https://developer.download.nvidia.com/compute/cuda/6_5/rel/docs/CUDA_6.5_Performance_Report.pdf"><strong>6 times</strong> faster than on the
+CPU</a>,
+or generating random numbers which can be <a class="reference external" href="https://developer.download.nvidia.com/compute/cuda/6_5/rel/docs/CUDA_6.5_Performance_Report.pdf"><strong>70 times</strong>
+faster!</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you know some OpenACC or want to see tips for larger applications take a look
+at <a class="reference internal" href="#tips"><span class="std std-ref">the tip section</span></a> at the bottom.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We have also included a Fortran example at
+<a class="reference internal" href="#fortran"><span class="std std-ref">the end of this document</span></a>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For a summary of available directives we have used <a class="reference external" href="https://www.openacc.org/sites/default/files/inline-files/API%20Guide%202.7.pdf">this reference
+guide.</a></p>
+</div>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>This guide will introduce the concept of OpenACC directives in <code class="docutils literal notranslate"><span class="pre">C/C++</span></code> code, how
+to compile and run such programs on <a class="reference internal" href="../../hpc_machines/saga.html#saga"><span class="std std-ref">Saga</span></a> and how to
+use <a class="reference external" href="https://developer.nvidia.com/nsight-systems">Nvidia Nsight</a> to profile and
+optimize code.</p>
+<p>After reading this guide you should:</p>
+<ul class="simple">
+<li><p>Know what OpenACC is</p></li>
+<li><p>Know how to compile <code class="docutils literal notranslate"><span class="pre">C/C++</span></code> OpenACC programs on Saga</p></li>
+<li><p>Know how to run OpenACC programs on GPUs on Saga</p></li>
+<li><p>Know how to run OpenACC programs with a profiler (<code class="docutils literal notranslate"><span class="pre">nsys</span></code>) on Saga</p></li>
+<li><p>Know how to understand the basic Nsight user interface</p></li>
+<li><p>Know how to optimize OpenACC programs based on profiler results</p></li>
+</ul>
+</section>
+<section id="id1">
+<h2>OpenACC<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>To begin we will need an example program that does some calculations that we
+would like to speed up.</p>
+<p>We have selected an example based on heat dissipation utilizing Jacobi
+iterations. The initial source can be found in <code class="docutils literal notranslate"><span class="pre">jacobi_serial.c</span></code>, shown below:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Serial implementation of the Jacobi iteration</span>
+<span class="cm"> */</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+
+<span class="c1">// Number of rows and columns in our matrix</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2000</span><span class="p">;</span>
+<span class="c1">// Maximum number of iterations before quiting</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_ITER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span>
+<span class="c1">// Error tolerance for iteration</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">MAX_ERROR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.01</span><span class="p">;</span>
+<span class="c1">// Seed for random number generator</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SEED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12345</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Initialize random number generator</span>
+<span class="w">  </span><span class="n">srand</span><span class="w"> </span><span class="p">(</span><span class="n">SEED</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Create array to calculate on</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="n">NUM_ELEMENTS</span><span class="p">][</span><span class="n">NUM_ELEMENTS</span><span class="p">];</span>
+<span class="w">  </span><span class="c1">// Fill array with data</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// The following will create random values between [0, 1]</span>
+<span class="w">      </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="n">rand</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="n">RAND_MAX</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// Before starting calculation we will define a few helper variables</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">arr_new</span><span class="p">[</span><span class="n">NUM_ELEMENTS</span><span class="p">][</span><span class="n">NUM_ELEMENTS</span><span class="p">];</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__FLT_MAX__</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Perform Jacobi iterations until we either have low enough error or too</span>
+<span class="w">  </span><span class="c1">// many iterations</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_ERROR</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_ITER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// For each element take the average of the surrounding elements</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">arr_new</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.25</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+<span class="w">        </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fmaxf</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">fabsf</span><span class="w"> </span><span class="p">(</span><span class="n">arr_new</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]));</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Transfer new array to old</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr_new</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">iterations</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/36659a8f7a7f3020144408a86d35d626/jacobi_serial.c"><code class="xref download docutils literal notranslate"><span class="pre">jacobi_serial.c</span></code></a></p>
+<section id="compiling-and-running-on-saga">
+<h3>Compiling and running on Saga<a class="headerlink" href="#compiling-and-running-on-saga" title="Link to this heading"></a></h3>
+<p>To compile this initial version on Saga we will need to load the <a class="reference external" href="https://developer.nvidia.com/hpc-sdk"><code class="docutils literal notranslate"><span class="pre">Nvidia</span> <span class="pre">HPC</span> <span class="pre">SDK</span></code></a>. This can be done with the following
+command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>NVHPC/20.7
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can check if a newer version of <code class="docutils literal notranslate"><span class="pre">NVHPC</span></code> is available by issuing the command
+<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span> <span class="pre">NVHPC</span></code></p>
+</div>
+<p>Then to compile or serial version we will invoke the <code class="docutils literal notranslate"><span class="pre">nvc</span></code> compiler with the
+following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>nvc<span class="w"> </span>-g<span class="w"> </span>-fast<span class="w"> </span>-o<span class="w"> </span>jacobi<span class="w"> </span>jacobi_serial.c
+</pre></div>
+</div>
+<p>We can run this program on a compute node by issuing the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run on compute node with 512MB of memory for a maximum of 2 minutes</span>
+$<span class="w"> </span>srun<span class="w"> </span>--account<span class="o">=</span>&lt;your<span class="w"> </span>project<span class="w"> </span>number&gt;<span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00<span class="w"> </span>--mem-per-cpu<span class="o">=</span>512M<span class="w"> </span><span class="nb">time</span><span class="w"> </span>./jacobi
+<span class="c1"># The first number outputted should be the number of seconds it took to run the</span>
+<span class="c1"># program:</span>
+<span class="c1"># 40.79user 0.01system 0:40.91elapsed 99%CPU (0avgtext+0avgdata 35212maxresident)k</span>
+<span class="c1"># 5144inputs+0outputs (18major+1174minor)pagefaults 0swaps</span>
+</pre></div>
+</div>
+</section>
+<section id="initial-transition">
+<h3>Initial transition<a class="headerlink" href="#initial-transition" title="Link to this heading"></a></h3>
+<p>To begin transitioning the code to run on a GPU we will insert the <code class="docutils literal notranslate"><span class="pre">kernels</span></code>
+directive into the code. The <code class="docutils literal notranslate"><span class="pre">kernels</span></code> directive tells OpenACC that we would
+like everything inside the directive to be run on the GPU, but it is up to the
+compiler to decide how to best do this.</p>
+<p>It is always a good idea to begin with the <code class="docutils literal notranslate"><span class="pre">kernels</span></code> directive as that is the
+easiest and it gives the compiler a lot of flexibility when translating the
+code. <code class="docutils literal notranslate"><span class="pre">kernels</span></code> is also a good way to understand if the compiler is not able to
+optimize something and if we need to rewrite some code to better run on the GPU.</p>
+<p>The code is available in <code class="docutils literal notranslate"><span class="pre">jacobi_kernels.c</span></code> and the changes applied are shown
+below.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_ERROR</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_ITER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span><span class="p">;</span>
+<span class="hll"><span class="w">    </span><span class="cp">#pragma acc kernels</span>
+</span><span class="hll"><span class="w">    </span><span class="p">{</span>
+</span><span class="w">      </span><span class="c1">// For each element take the average of the surrounding elements</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">arr_new</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.25</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">              </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">              </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">              </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+<span class="w">          </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fmaxf</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">fabsf</span><span class="w"> </span><span class="p">(</span><span class="n">arr_new</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="c1">// Transfer new array to old</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr_new</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="hll"><span class="w">    </span><span class="p">}</span>
+</span><span class="w">    </span><span class="n">iterations</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/4274afd07d1d674f4a267cb8f580b787/jacobi_kernels.c"><code class="xref download docutils literal notranslate"><span class="pre">jacobi_kernels.c</span></code></a></p>
+<p>As can be seen in the code above we have added the <code class="docutils literal notranslate"><span class="pre">kernels</span></code> directive around
+the main computation that we would like to accelerate.</p>
+<p>To compile the above we need to tell <code class="docutils literal notranslate"><span class="pre">nvc</span></code> that we would like to accelerate it
+on GPUs. This can be done with the <code class="docutils literal notranslate"><span class="pre">-acc</span></code> flag. We will also add the
+<code class="docutils literal notranslate"><span class="pre">-Minfo=accel</span></code> flag which informs the compiler that we would like it to inform
+us of what it is doing with accelerated regions. The full command is as follows.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>nvc<span class="w"> </span>-g<span class="w"> </span>-fast<span class="w"> </span>-acc<span class="w"> </span>-Minfo<span class="o">=</span>accel<span class="w"> </span>-o<span class="w"> </span>jacobi<span class="w"> </span>jacobi_kernels.c
+</pre></div>
+</div>
+<p>When running this command pay special attention to the information it is telling
+us about the accelerated region.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>main:<span class="w">                                                                                 </span>
+<span class="w">     </span><span class="m">40</span>,<span class="w"> </span>Generating<span class="w"> </span>implicit<span class="w"> </span>copyin<span class="o">(</span>array<span class="o">[</span>:<span class="o">][</span>:<span class="o">])</span><span class="w"> </span><span class="o">[</span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>already<span class="w"> </span>present<span class="o">]</span><span class="w">             </span>
+<span class="w">         </span>Generating<span class="w"> </span>implicit<span class="w"> </span>copyout<span class="o">(</span>array<span class="o">[</span><span class="m">1</span>:1998<span class="o">][</span><span class="m">1</span>:1998<span class="o">])</span><span class="w"> </span><span class="o">[</span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>already<span class="w"> </span>present<span class="o">]</span><span class="w">  </span>
+<span class="w">         </span>Generating<span class="w"> </span>implicit<span class="w"> </span>copy<span class="o">(</span>error<span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>already<span class="w"> </span>present<span class="o">]</span><span class="w">                     </span>
+<span class="w">         </span>Generating<span class="w"> </span>implicit<span class="w"> </span>copyout<span class="o">(</span>arr_new<span class="o">[</span><span class="m">1</span>:1998<span class="o">][</span><span class="m">1</span>:1998<span class="o">])</span><span class="w"> </span><span class="o">[</span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>already<span class="w"> </span>present<span class="o">]</span>
+<span class="w">     </span><span class="m">42</span>,<span class="w"> </span>Loop<span class="w"> </span>is<span class="w"> </span>parallelizable<span class="w">                                                       </span>
+<span class="w">     </span><span class="m">43</span>,<span class="w"> </span>Loop<span class="w"> </span>is<span class="w"> </span>parallelizable<span class="w">                                                       </span>
+<span class="w">         </span>Generating<span class="w"> </span>Tesla<span class="w"> </span>code<span class="w">                                                        </span>
+<span class="w">         </span><span class="m">42</span>,<span class="w"> </span><span class="c1">#pragma acc loop gang, vector(4) /* blockIdx.y threadIdx.y */            </span>
+<span class="w">             </span>Generating<span class="w"> </span>implicit<span class="w"> </span>reduction<span class="o">(</span>max:error<span class="o">)</span><span class="w">                                 </span>
+<span class="w">         </span><span class="m">43</span>,<span class="w"> </span><span class="c1">#pragma acc loop gang, vector(32) /* blockIdx.x threadIdx.x */           </span>
+<span class="w">     </span><span class="m">52</span>,<span class="w"> </span>Loop<span class="w"> </span>is<span class="w"> </span>parallelizable<span class="w">                                                       </span>
+<span class="w">     </span><span class="m">53</span>,<span class="w"> </span>Loop<span class="w"> </span>is<span class="w"> </span>parallelizable<span class="w">                                                       </span>
+<span class="w">         </span>Generating<span class="w"> </span>Tesla<span class="w"> </span>code<span class="w">                                                        </span>
+<span class="w">         </span><span class="m">52</span>,<span class="w"> </span><span class="c1">#pragma acc loop gang, vector(4) /* blockIdx.y threadIdx.y */            </span>
+<span class="w">         </span><span class="m">53</span>,<span class="w"> </span><span class="c1">#pragma acc loop gang, vector(32) /* blockIdx.x threadIdx.x */           </span>
+</pre></div>
+</div>
+<p>In the above output the numbers corresponds to line numbers in our
+<code class="docutils literal notranslate"><span class="pre">jacobi_kernels.c</span></code> source file and the comments show what <code class="docutils literal notranslate"><span class="pre">nvc</span></code> intends to do
+with each line.</p>
+<p>Before we start profiling to see what we can optimize, lets run the program to
+learn the additional <code class="docutils literal notranslate"><span class="pre">Slurm</span></code> parameters needed for running with GPU on Saga. The
+following is the new command needed (notice the added <code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code> and
+<code class="docutils literal notranslate"><span class="pre">--gpus=1</span></code> flags)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>srun<span class="w"> </span>--account<span class="o">=</span>&lt;your<span class="w"> </span>project<span class="w"> </span>number&gt;<span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00<span class="w"> </span>--mem-per-cpu<span class="o">=</span>512M<span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span>--gpus<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span>./jacobi
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--partition=accel</span></code> is needed to tell <code class="docutils literal notranslate"><span class="pre">Slurm</span></code> to only run on nodes on Saga with
+GPUs and the <code class="docutils literal notranslate"><span class="pre">--gpus=N</span></code> line tells <code class="docutils literal notranslate"><span class="pre">Slurm</span></code> that we would like to have access
+to <code class="docutils literal notranslate"><span class="pre">N</span></code> GPUs (<code class="docutils literal notranslate"><span class="pre">accel</span></code> nodes on Saga have <code class="docutils literal notranslate"><span class="pre">4</span></code> separate GPUs, above we are asking
+for only one GPU).</p>
+</section>
+<section id="profiling">
+<h3>Profiling<a class="headerlink" href="#profiling" title="Link to this heading"></a></h3>
+<p>To profile the <code class="docutils literal notranslate"><span class="pre">kernels</span></code> version of our program we will here transition to
+<a class="reference internal" href="../../jobs/job_scripts.html#job-scripts"><span class="std std-ref">Job Scripts</span></a>. This will make it a bit easier to
+make changes to how the program is run and also makes it a bit more
+reproducible.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Slurm</span></code> script is available as <code class="docutils literal notranslate"><span class="pre">kernels.job</span></code> and is show below.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+
+<span class="c1">#SBATCH --account=&lt;your project number&gt;</span>
+<span class="c1">#SBATCH --job-name=openacc_guide_kernels</span>
+<span class="c1">#SBATCH --time=05:00</span>
+<span class="c1">#SBATCH --mem-per-cpu=512M</span>
+<span class="c1">#SBATCH --partition=accel</span>
+<span class="c1">#SBATCH --gpus=1</span>
+
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w">  </span><span class="c1"># Exit the script on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w">  </span><span class="c1"># Treat any unset variables as an error</span>
+
+module<span class="w"> </span>--quiet<span class="w"> </span>reset<span class="w">  </span><span class="c1"># Reset the modules to the system default</span>
+module<span class="w"> </span>load<span class="w"> </span>NVHPC/20.7<span class="w">  </span><span class="c1"># Load Nvidia HPC SDK with profiler</span>
+module<span class="w"> </span>list<span class="w">  </span><span class="c1"># List modules for easier debugging</span>
+
+<span class="c1"># Run the program through the Nsight command line profiler &#39;nsys&#39;</span>
+<span class="c1"># The &#39;-t&#39; flag tells the profiler which aspects it should profile, e.g. CUDA</span>
+<span class="c1"># and OpenACC code</span>
+<span class="c1"># The &#39;-f&#39; flag tells the profiler that it can override existing output files</span>
+<span class="c1"># The &#39;-o&#39; flag tells the profiler the name we would like for the output file</span>
+nsys<span class="w"> </span>profile<span class="w"> </span>-t<span class="w"> </span>cuda,openacc<span class="w"> </span>-f<span class="w"> </span><span class="nb">true</span><span class="w"> </span>-o<span class="w"> </span>kernels<span class="w"> </span>./jacobi
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/798b26722e27e242611451876cb7eb8f/kernels.job"><code class="xref download docutils literal notranslate"><span class="pre">kernels.job</span></code></a></p>
+<p>Run this script by issuing</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sbatch<span class="w"> </span>kernels.job
+</pre></div>
+</div>
+<p>The end result should be a file called <code class="docutils literal notranslate"><span class="pre">kernels.qdrep</span></code> which contains the
+profiling information. Download this file to your local computer to continue
+with this guide.</p>
+<p><a class="reference download internal" download="" href="../../_downloads/15af6a1c50c8466bf49b917af8f0d35f/kernels.qdrep"><code class="xref download docutils literal notranslate"><span class="pre">kernels.qdrep</span></code></a></p>
+</section>
+</section>
+<section id="nsight">
+<h2>Nsight<a class="headerlink" href="#nsight" title="Link to this heading"></a></h2>
+<p>We will continue this guide <code class="docutils literal notranslate"><span class="pre">kernels.qdrep</span></code> as the profiling result to view.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To view images in a larger format, right click and select <code class="docutils literal notranslate"><span class="pre">View</span> <span class="pre">Image</span></code></p>
+</div>
+<p>To begin, start <a class="reference external" href="https://developer.nvidia.com/nsight-systems">Nsight Systems</a> on
+your own machine, giving the following view.</p>
+<p><img alt="Empty window of Nsight Systems" src="../../_images/nsight_blank.png" /></p>
+<p>To open our profiling result click <code class="docutils literal notranslate"><span class="pre">File</span></code>, then <code class="docutils literal notranslate"><span class="pre">Open</span></code> and navigate to the
+folder where you stored <code class="docutils literal notranslate"><span class="pre">kernels.qdrep</span></code>. Loading this file should give you the
+following view.</p>
+<p><img alt="Nsight showing timeline view of profile" src="../../_images/nsight_timeline.png" /></p>
+<section id="user-interface">
+<h3>User interface<a class="headerlink" href="#user-interface" title="Link to this heading"></a></h3>
+<p>The user interface of Nsight is comprised of three main areas and two drop down
+menus that control what is shown in the different areas.</p>
+<p><img alt="Nsight annotated to describe user interface" src="../../_images/nsight_annotated.png" /></p>
+<ol class="arabic simple">
+<li><p>On the left we find the project area, this list shows your project and
+profiles that you have loaded.</p></li>
+<li><p>The left topmost dropdown menu selects which view to show</p></li>
+<li><p>In the middle of the user interface we find the main view, currently showing
+the timeline of our profile. This view changes depending on the choice made
+in the dropdown menu marked with a <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p></li>
+<li><p>The second dropdown, in the middle of the screen, selects different views for
+the bottommost area.</p></li>
+<li><p>The area at the bottom shows additional information about the profile
+together with the timeline view.</p></li>
+</ol>
+</section>
+<section id="views">
+<h3>Views<a class="headerlink" href="#views" title="Link to this heading"></a></h3>
+<p>Using the topmost dropdown menu, marked with <code class="docutils literal notranslate"><span class="pre">2</span></code> in the picture above, we can
+select different views for the current profile.</p>
+<p>When first opening a new profile it can be informative to start with the
+<code class="docutils literal notranslate"><span class="pre">Diagnostics</span> <span class="pre">Summary</span></code>. This view shows a summary of the profile and can give
+great hints about what went wrong if the profile is not as expected.</p>
+<p><img alt="Nsight diagnostics summary view" src="../../_images/nsight_diagnostics.png" /></p>
+<p>After that the <code class="docutils literal notranslate"><span class="pre">Analysis</span> <span class="pre">Summary</span></code> give an overview of the profile. This view
+contains a lot of information which can be nice to review to ensure that the
+profile was configured correctly. Instances of good places to review are the
+<code class="docutils literal notranslate"><span class="pre">CLI</span> <span class="pre">command</span> <span class="pre">used</span></code> which shows how the profile was generated, <code class="docutils literal notranslate"><span class="pre">GPU</span> <span class="pre">info</span></code> which
+shows the accelerator in use and the <code class="docutils literal notranslate"><span class="pre">Analysis</span> <span class="pre">options</span></code> which show how <code class="docutils literal notranslate"><span class="pre">nsys</span></code>
+interpreted the command line arguments.</p>
+<p><img alt="Nsight analysis summary view" src="../../_images/nsight_analysis.png" /></p>
+<p>The last view that we will detail here (because the two remaining are not that
+informative for understanding the profile information) is the <code class="docutils literal notranslate"><span class="pre">Timeline</span> <span class="pre">View</span></code>,
+which is the default view that we saw when we opened Nsight.</p>
+<p>A good place to start with this view is the second dropdown, marked with <code class="docutils literal notranslate"><span class="pre">4</span></code>. In
+this dropdown we can select additional information to display about our profile
+results. By selecting one of the different <code class="docutils literal notranslate"><span class="pre">...</span> <span class="pre">View</span></code> options the profiler can
+show us which functions used what amount of the runtime in different ways. In
+the image below we have selected <code class="docutils literal notranslate"><span class="pre">Bottom-Up</span> <span class="pre">View</span></code> which sorts functions by
+placing the most time consuming ones at the top.</p>
+<p><img alt="Nsight Bottom-Up view" src="../../_images/nsight_bottom_up.png" /></p>
+<p>In the timeline main view, we can see the usage of different APIs and the amount
+of CPU and GPU usage. A quick first thing to do is to click the arrow next to
+our GPU name so that it shows the percentage of <code class="docutils literal notranslate"><span class="pre">Kernels</span></code> usage and the
+percentage of <code class="docutils literal notranslate"><span class="pre">Memory</span></code> usage. In our current profile we can see that we are only
+using about <code class="docutils literal notranslate"><span class="pre">6%</span></code> of the <code class="docutils literal notranslate"><span class="pre">Kernels</span></code> resource which means that our GPU is spending
+only <code class="docutils literal notranslate"><span class="pre">6%</span></code> of its time actually doing useful compute.</p>
+<p><img alt="Nsight focused on the timeline view" src="../../_images/nsight_timeline2.png" /></p>
+<p>To better understand what we are seeing in the timeline it is useful to zoom
+into specific areas to see what is going on. Use the mouse cursor to select a
+small column of the timeline area, right click and select <code class="docutils literal notranslate"><span class="pre">Zoom</span> <span class="pre">into</span> <span class="pre">selection</span></code>.
+Depending on how long the profile ran for it can be necessary doing this several
+times. Below we have tried to illustrate how far we would usually zoom in.</p>
+<p><img alt="Nsight initial zoom" src="../../_images/nsight_zoom1.png" />
+<img alt="Nsight final zoom" src="../../_images/nsight_zoom2.png" />
+<img alt="Nsight final view zoomed in" src="../../_images/nsight_zoom3.png" /></p>
+<p>In the last picture above we have zoomed in on what appears to be a cycle of two
+kernel launches. Remembering our code, that is most likely two iterations of the
+<code class="docutils literal notranslate"><span class="pre">while</span></code> loop where we placed our <code class="docutils literal notranslate"><span class="pre">kernels</span></code> directive inside.</p>
+</section>
+</section>
+<section id="profile-guided-optimization">
+<h2>Profile Guided Optimization<a class="headerlink" href="#profile-guided-optimization" title="Link to this heading"></a></h2>
+<p>Even though we have translated our program to run on the GPU it has not yet
+given us the results that we were after. Running on GPU resulted in a
+computation that is about <code class="docutils literal notranslate"><span class="pre">1.5</span></code> times slower than just running on CPU, but we
+can do better.</p>
+<p>Looking at the zoomed in view of the timeline, in the image below, we can see
+that most of the time is taken up with transferring data between the CPU and the
+GPU.</p>
+<p><img alt="Nsight final view zoomed in, repost from above" src="../../_images/nsight_zoom3.png" /></p>
+<p>Optimizing data transfer is a crucial part of translating code to the GPU and
+accounts for most of the time spent optimizing a program for the GPU.</p>
+<p>Looking at our <code class="docutils literal notranslate"><span class="pre">while</span></code> loop we can see that we are only interested in the final
+result after the loop exits which means that we should try to keep the data on
+the GPU and only transfer in and out at the beginning and end of the loop. To do
+this we will introduce the <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">acc</span> <span class="pre">data</span></code> clause which tells the compiler
+that we only want to do data movement for a given scope. The changes needed
+center around the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop shown below.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="w">  </span><span class="cp">#pragma acc data copy(array, arr_new)</span>
+</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_ERROR</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_ITER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span><span class="p">;</span>
+<span class="w">    </span><span class="cp">#pragma acc kernels</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// For each element take the average of the surrounding elements</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">arr_new</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.25</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">              </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">              </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">              </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+<span class="w">          </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fmaxf</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">fabsf</span><span class="w"> </span><span class="p">(</span><span class="n">arr_new</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="c1">// Transfer new array to old</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr_new</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">iterations</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/4bdab811d5f5e50554c7889591b12bda/jacobi_data.c"><code class="xref download docutils literal notranslate"><span class="pre">jacobi_data.c</span></code></a></p>
+<p>Let us compile this on Saga and see if this results in better performance.
+Compile and run with the following commands.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remember &#39;module load NVHPC/20.7&#39; when logging in and out</span>
+$<span class="w"> </span>nvc<span class="w"> </span>-g<span class="w"> </span>-fast<span class="w"> </span>-acc<span class="w"> </span>-Minfo<span class="o">=</span>accel<span class="w"> </span>-o<span class="w"> </span>jacobi<span class="w"> </span>jacobi_data.c
+$<span class="w"> </span>sbatch<span class="w"> </span>kernels.job
+</pre></div>
+</div>
+<p>Below we have included the timeline view of the updated
+profile.</p>
+<p><a class="reference download internal" download="" href="../../_downloads/264e0f82aaf76f3c27a58a3a80205412/data.qdrep"><code class="xref download docutils literal notranslate"><span class="pre">data.qdrep</span></code></a></p>
+<p><img alt="Nsight timeline after adding data movementdirectives" src="../../_images/nsight_after_data.png" /></p>
+<p>Although this doesn’t look all that different from the previous profiles, notice
+that the timeline only goes to about <code class="docutils literal notranslate"><span class="pre">3.6</span></code> seconds, the previous profile went to
+above <code class="docutils literal notranslate"><span class="pre">70</span></code> seconds. Almost a <code class="docutils literal notranslate"><span class="pre">20x</span></code> speedup! Compared to our runs on the CPU this
+translation to the GPU has given us about a <code class="docutils literal notranslate"><span class="pre">10x</span></code> speedup. This shows the
+importance of data movement and is a good illustration of the optimization
+process, initially the code ran much slower on the GPU than on the CPU before
+becoming better than the CPU.</p>
+<hr class="docutils" />
+<p>Doing better than this will be difficult, however, to introduce a few more
+concept that can be nice - we will perform a few more iterations on the code.
+However, do not expect great improvements.</p>
+<p>The first improvement that we can do is to realize that <code class="docutils literal notranslate"><span class="pre">arr_new</span></code> will never be
+needed and is simply a scratch array for our computation, we can thus change our
+data directive to <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">acc</span> <span class="pre">data</span> <span class="pre">copy(array)</span> <span class="pre">create(arr_new)</span></code>. This tells the
+compiler that it should copy <code class="docutils literal notranslate"><span class="pre">array</span></code> from the CPU to the GPU when entering the
+loop and copy the data back from the GPU to CPU when exiting the scope. The
+<code class="docutils literal notranslate"><span class="pre">create(arr_new)</span></code> tells the compiler to only create the data on the GPU, it will
+not copy anything in or out, which is ok for us since we will overwrite it on
+first loop anyway and never use it after the loop.</p>
+<p>The above optimization will net us very little so lets do some more. Instead of
+using the <code class="docutils literal notranslate"><span class="pre">kernels</span></code> directive we can take more control of the translation and
+tell the compiler that we would like to parallelize both loops. This is done
+with the <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">acc</span> <span class="pre">parallel</span> <span class="pre">loop</span></code> directive. Since we also want to do a
+reduction across all loops we can also add a reduction by writing <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">acc</span> <span class="pre">parallel</span> <span class="pre">loop</span> <span class="pre">reduction(max:error)</span></code> to the first loop. Lastly, we will apply the
+<code class="docutils literal notranslate"><span class="pre">collapse(n)</span></code> clause to both loop directives so that the compiler can combine
+the two loops into one large one, with the effect of exposing more parallelism
+for the GPU. The new code is show below.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="w">  </span><span class="cp">#pragma acc data copy(array) create(arr_new)</span>
+</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_ERROR</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_ITER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span><span class="p">;</span>
+<span class="hll"><span class="w">    </span><span class="cp">#pragma acc parallel loop reduction(max:error) collapse(2)</span>
+</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">arr_new</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.25</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">            </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">            </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+</span>
+<span class="w">            </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+<span class="w">        </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fmaxf</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">fabsf</span><span class="w"> </span><span class="p">(</span><span class="n">arr_new</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]));</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="hll"><span class="w">    </span><span class="cp">#pragma acc parallel loop collapse(2)</span>
+</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ELEMENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr_new</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">iterations</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/38e33f6cabeb18dfc9a1f8e935c927d5/jacobi_optimized.c"><code class="xref download docutils literal notranslate"><span class="pre">jacobi_optimized.c</span></code></a></p>
+<p>Looking at the generated profile, <code class="docutils literal notranslate"><span class="pre">optimized.qdrep</span></code> shown below, we can see that
+we managed to eek out slightly more performance, but not that much.</p>
+<p><a class="reference download internal" download="" href="../../_downloads/e64ebb0a37aba83bb786e4620140d7c7/optimized.qdrep"><code class="xref download docutils literal notranslate"><span class="pre">optimized.qdrep</span></code></a></p>
+<p><img alt="Nsight timeline of final optimizedprofile" src="../../_images/nsight_final_optimized.png" /></p>
+<p>Compared to the initial translation we can see now that the ratio of <code class="docutils literal notranslate"><span class="pre">Kernels</span></code>
+to <code class="docutils literal notranslate"><span class="pre">Memory</span></code> on the GPU is much better, <code class="docutils literal notranslate"><span class="pre">98%</span></code> spent actually doing useful
+compute.</p>
+<p>If we zoom in, as in the image below, we can see that there is not much wasted
+time between useful compute. Going further with OpenACC is most likely not that
+useful and getting this to run even quicker will likely require a rewrite to
+<code class="docutils literal notranslate"><span class="pre">CUDA</span></code> which is outside the scope and intention of this guide.</p>
+<p><img alt="Nsight timeline zoomed in on the optimizedprofile" src="../../_images/nsight_optimized_zoom.png" /></p>
+<p>One way to see how well we have optimized the code is to look at the white space
+between compute regions. In our initial translation these white spaces lasted
+for around <code class="docutils literal notranslate"><span class="pre">4</span></code> milliseconds. In the optimized profile the whitespace between
+kernels amount to around <code class="docutils literal notranslate"><span class="pre">32</span></code> <strong>microseconds</strong>.</p>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<p>In this guide we have shown how to use OpenACC to transition a simple <code class="docutils literal notranslate"><span class="pre">C</span></code>
+example from running on the CPU to running the main calculations on GPU. We have
+detailed how such code can be used, compiled and run on Saga. And, we have
+introduced Nsight and how it can be used to profile and guide OpenACC
+transitions.</p>
+</section>
+<section id="tips">
+<span id="id2"></span><h2>Tips<a class="headerlink" href="#tips" title="Link to this heading"></a></h2>
+<ul>
+<li><p><strong>Do not expect miracles!</strong> Translating a large code base to run on GPU is a
+large undertaking and should not be taken lightly. Just getting a large code
+base to run on GPU and having almost the same performance as the CPU code is
+extremely good! Optimizing for GPUs require time and patience.</p></li>
+<li><p>Always start with the <code class="docutils literal notranslate"><span class="pre">kernels</span></code> directive and study the compiler output. This
+should guide your next steps. The information outputted by the compile will
+usually tell you if the scope of the directive can be run effectively on GPU
+and if you should take some steps to rewrite parts of the code.</p>
+<p>Compiler output like <code class="docutils literal notranslate"><span class="pre">Loop</span> <span class="pre">carried</span> <span class="pre">dependence</span> <span class="pre">of</span> <span class="pre">&lt;name&gt;</span> <span class="pre">prevents</span>&#160;&#160; <span class="pre">parallelization</span></code> and <code class="docutils literal notranslate"><span class="pre">Loop</span> <span class="pre">carried</span> <span class="pre">backward</span> <span class="pre">dependence</span> <span class="pre">of</span> <span class="pre">&lt;name&gt;</span> <span class="pre">prevents</span>&#160;&#160; <span class="pre">vectorization</span></code> are clear indications that the compiler is not able to
+automatically translate the code and a rewrite might be necessary.</p>
+</li>
+<li><p>Data movement is paramount. If you know some data is only needed to read from
+use <code class="docutils literal notranslate"><span class="pre">copyin</span></code>, <code class="docutils literal notranslate"><span class="pre">copyout</span></code> if it is only written to, <code class="docutils literal notranslate"><span class="pre">present</span></code> can be nice if
+you know the data should already be present on the GPU and <code class="docutils literal notranslate"><span class="pre">copy</span></code> ensures
+that the program functions as expected. OpenACC has several directive that
+can be used to perform data management and some are even scoped for the
+entire program.</p></li>
+<li><p>Be structured in your approach. Only translate one scope at a time. This
+ensures that you can focus on a small area and get less compiler output to
+study. Profiling between each round may not be necessary, but it can be
+valuable to know what is happening.</p></li>
+</ul>
+</section>
+<section id="fortran">
+<span id="id3"></span><h2>Fortran<a class="headerlink" href="#fortran" title="Link to this heading"></a></h2>
+<p>As mentioned in the beginning of this document, OpenACC also supports <code class="docutils literal notranslate"><span class="pre">Fortran</span></code>.
+Directives in Fortran can be added in a similar fashion to OpenMP directives,
+with <code class="docutils literal notranslate"><span class="pre">!$acc</span></code> instead of <code class="docutils literal notranslate"><span class="pre">!$OMP</span></code>. Below is an example of matrix multiplication
+with the <code class="docutils literal notranslate"><span class="pre">!$acc</span> <span class="pre">kernels</span></code> directive.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">mxm</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r8</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_real_kind</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">307</span><span class="p">)</span>
+<span class="w">  </span><span class="k">parameter</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">4000</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">r8</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">temp</span>
+<span class="w">  </span><span class="kt">integer </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span>
+
+<span class="w">  </span><span class="k">call </span><span class="nb">random_number</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="w">  </span><span class="k">call </span><span class="nb">random_number</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+<span class="w">  </span><span class="k">call </span><span class="nb">system_clock</span><span class="p">(</span><span class="nb">count</span><span class="o">=</span><span class="n">c1</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="hll"><span class="c">!$acc kernels                                                                  </span>
+</span><span class="w">  </span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">N</span>
+<span class="w">     </span><span class="k">do </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">N</span>
+<span class="w">       </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">N</span>
+<span class="w">         </span><span class="n">c</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">l</span><span class="p">)</span><span class="o">*</span><span class="n">b</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="w">       </span><span class="k">enddo</span>
+<span class="k">     enddo</span>
+<span class="k">  enddo</span>
+<span class="hll"><span class="c">!$acc end kernels                                                               </span>
+</span><span class="w">  </span><span class="k">call </span><span class="nb">system_clock</span><span class="p">(</span><span class="nb">count</span><span class="o">=</span><span class="n">c2</span><span class="p">)</span>
+
+<span class="w">  </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Calc time : &quot;</span><span class="p">,(</span><span class="n">c2</span><span class="o">-</span><span class="n">c1</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span><span class="s2">&quot; secs&quot;</span>
+<span class="w">  </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">c</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="k">end program </span><span class="n">mxm</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../_downloads/6fde652f5ba5592601446d10228a341b/mxm.f90"><code class="xref download docutils literal notranslate"><span class="pre">mxm.f90</span></code></a></p>
+<p>On Saga, load the <code class="docutils literal notranslate"><span class="pre">NVHPC/20.7</span></code> module and compile with <code class="docutils literal notranslate"><span class="pre">nvfortran</span></code> as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>NVHPC/20.7
+$<span class="w"> </span>nvfortran<span class="w"> </span>-o<span class="w"> </span>mxm<span class="w"> </span>-fast<span class="w"> </span>-acc<span class="w"> </span>-gpu<span class="o">=</span>cc60<span class="w"> </span>-Minfo<span class="o">=</span>accel<span class="w"> </span>mxm.f90
+</pre></div>
+</div>
+<p>To run the program on Saga with GPUs use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>srun<span class="w"> </span>--account<span class="o">=</span>&lt;your<span class="w"> </span>project<span class="w"> </span>number&gt;<span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00<span class="w"> </span>--mem-per-cpu<span class="o">=</span>512M<span class="w"> </span>--partition<span class="o">=</span>accel<span class="w"> </span>--gpus<span class="o">=</span><span class="m">1</span><span class="w"> </span>./mxm
+</pre></div>
+</div>
+<p>This program is as close to the best case scenario possible for accelerators
+and, on Saga, gives a speedup of <code class="docutils literal notranslate"><span class="pre">24x</span></code> compared to a single CPU core.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Flags</p></th>
+<th class="head text-center"><p>Run time</p></th>
+<th class="head text-center"><p>Speedup</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">-fast</span></code> (single CPU core)</p></td>
+<td class="text-center"><p>48.9 seconds</p></td>
+<td class="text-center"><p>1 x</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">-fast</span> <span class="pre">-acc</span> <span class="pre">-gpu=cc60</span></code></p></td>
+<td class="text-center"><p>2.0 seconds</p></td>
+<td class="text-center"><p>24 x</p></td>
+</tr>
+</tbody>
+</table>
+<p>You can profile <code class="docutils literal notranslate"><span class="pre">Fortran</span></code> programs in the same way you would for <code class="docutils literal notranslate"><span class="pre">C/C++</span></code>, using
+<code class="docutils literal notranslate"><span class="pre">nsys</span> <span class="pre">profile</span></code> and the flag <code class="docutils literal notranslate"><span class="pre">-t</span> <span class="pre">cuda,openacc</span></code>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
