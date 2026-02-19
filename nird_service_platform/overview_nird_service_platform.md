@@ -40,8 +40,6 @@ On the NIRD Service Platform, you can get a dedicated virtual environment (we ca
 The login containers can be customised with tools specific to the project and powered with virtual CPUs, RAM and eventually GPUs.
 To get a dedicated virtual environment send a request to contact@sigma2.no
 
-### Kubernetes dashboard access
-In the kubernetes dashboard accessible at https://db.nird.sigma2.no, you can get an overview of running services connected to your NIRD project space. Here you can also find logs from the services that has been set up using NIRD Toolkit. 
 
 ### Kubectl access
 Contact the NRIS support (support@nris.no) in case you need CLI access to the NIRD SP. This is mostly relevant for research groups that are already familiar with kubernetes.  
