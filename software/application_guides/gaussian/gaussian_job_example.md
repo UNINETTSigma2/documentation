@@ -143,13 +143,20 @@ hesitate to contact us if you need guidance on GPU efficiency, see our extended
 ```
 
 
-## Running Gaussian in Betzy and Olivia with Linda parallelization
+## Running Gaussian with Linda parallelization in Betzy and Olivia
 
-Linda is Gaussian's method of process parallelization. Linda allows to run certain calculations in less time due to parallelization, and it is essential in multi-node calculations of Gaussian, as it helps Gaussian communicate across nodes. Since the minimum numnber of nodes one can run jobs on in Betzy is 4, knowing how to use Linda is essential for proper resource use.
+Linda is Gaussian's method of process parallelization. Linda allows to run certain calculations in less time due to parallelization, and it is essential in multi-node calculations, as it helps Gaussian communicate across nodes. Since the minimum number of nodes one can run jobs on in Betzy is 4, knowing how to use Linda is essential for proper resource use.
 
 More information on Linda and parallelization in Gaussian can be read in Gaussian's documentation [here](https://gaussian.com/running/) and for what specific calculations are sped up, you can read [here](https://gaussian.com/relnotes/). In both of those links, navigate to the Parallel sections.
 
 In order to run Gaussian with `Linda` parallelization in Betzy and Olivia one needs to set up passwordless login to the nodes, authorize these nodes for login in job-script, and put the necessary lines in the Gaussian input file. Following is a guide in how to do this
+
+```{note}
+Using multiple linda workers per node might feel like an unnecesssary extra step, and for smaller calculations it is, though this is not always the case.
+Due to how Gaussian scales in single node Shared Memory parallelization calculations one should start adding linda workers between the 16-32 CPU mark.
+For more information, please read the article on {ref}`gaussian-tuning`.
+```
+
 
 ### Setting up Passwordless login to the nodes
 Before any job with Gaussian is done, do the following in your home directory.
@@ -181,7 +188,7 @@ StrictHostKeyChecking yes
 ```
 replacing `<MACHINE>` with either `betzy`, or `olivia`.
 
-### Running Gaussian using Linda workers on Betzy
+### Running Gaussian using Linda workers 
 Following is an example script for Betzy, later we will show the same for Olivia:
 In this script we want to run a 4 node job, where each node will start 1 linda worker using 2 processes each.
 - The input file ("water_Linda.com`):
@@ -191,9 +198,8 @@ In this script we want to run a 4 node job, where each node will start 1 linda w
 Note the preamble contains the line `%NPROCSHARED` which specifies the number of cores for each worker, and `%mem` which specifies the total memory needed for this job. These lines are essential for Gaussian to know how many cores and memory to use in the calculation.
 
 ```{note}
-Gaussian Defaults to 1 CPU if none are specified. Changing the variable `--cpus-per-task` in the submit script is not sufficient to increase the Gaussian's CPU usage. The user must also change the line `%NPROCSHARED` in the input file with the correct number of CPUs needed .
+Gaussian Defaults to 1 CPU if none are specified. Changing the variable `--cpus-per-task` in the submit script is not sufficient to increase the Gaussian's CPU usage. The user must also change the line `%NPROCSHARED` in the input file with the correct number of CPUs needed. These only count the CPUs used per Linda single worker.
 ```
-
 
 - Job script example (`betzy_g16.sh`):
 
@@ -236,7 +242,7 @@ Will tell Gaussian how to distribute the `lindaWorkers` through the nodes, even 
 This adds a line like the following at the top of your input file
 
 ```bash
-%LindaWorkers=[node_1]:1,[node_2]:1, ...
+%LindaWorkers=[node_1]:2,[node_2]:2, ...
 ```
 If you want more `LindaWorkers` per node, change the number after the colon to what you want. For more information about this specific part of the preamble, check the Gaussian documentation linked above.
 
@@ -247,17 +253,18 @@ Since the minimum number of nodes per job is 4 in betzy, only heavy calculations
 ### Running Gaussian using Linda workers on Olivia
 
 Here is an example of a script for running Gaussian on Olivia. The specific details are as shown above for betzy. The same input file is used.
+- The input file ("water_Linda.com`):
+```{literalinclude} water_Linda.com
+:language: bash
+```
+
 - Job script example (`olivia_g16.sh`):
 
 ```{literalinclude} olivia_g16.sh
 :language: bash
 ```
 
-```{note}
-Using multiple linda workers per node might feel like an unnecesssary extra step, and for smaller calculations it is, though this is not always the case.
-Due to how Gaussian scales in single node Shared Memory parallelization calculations one should start adding linda workers between the 16-32 CPU mark.
-For more information, please read the article on {ref}`gaussian-tuning`.
-```
+
 
 
 
