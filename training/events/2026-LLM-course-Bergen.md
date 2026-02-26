@@ -7,7 +7,9 @@ The Norwegian Research Infrastructure Services (NRIS) is hosting a two-day in-pe
 **Where:** [Nygårdsgaten 5, Bergen](https://www.google.com/maps/place/Studieadministrativ+avd.,+Strandgaten+10,+5013+Bergen/@60.3889945,5.3244845,51m/data=!3m1!1e3!4m6!3m5!1s0x463cfea98bbfbf9f:0xb05a6eaa50556379!8m2!3d60.3889736!4d5.3246939!16s%2Fg%2F11q2vvqr9d?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D)
 (exact conference room will be provided)
 
-**Instructor**: [Hicham Agueny](https://www.linkedin.com/in/hicham-agueny-956a1368/)
+**Instructor:** [Hicham Agueny](https://www.linkedin.com/in/hicham-agueny-956a1368/)
+
+**HPC System:** Olivia
 
 **Content:** In this course, you will learn to:
 * Implement parameter-efficient fine-tuning using LoRA and QLoRA
@@ -16,7 +18,7 @@ The Norwegian Research Infrastructure Services (NRIS) is hosting a two-day in-pe
 * Monitor and analyze GPU utilization and profiling GPU memory
 
 <details>
-  <summary>More information and course schedule</summary>
+  <summary>Course program and schedule</summary>
     <br>
 
 ## Day 1 — Single-GPU Fine-Tuning & HPC Foundations
@@ -80,8 +82,12 @@ The Norwegian Research Infrastructure Services (NRIS) is hosting a two-day in-pe
 - Familiarity with machine learning (ML) frameworks (e.g., PyTorch)
 - Basic understanding of large language models (LLMs)
 
-**Registration:** To be announced.
+**Registration:** [Register here](https://forms.gle/BkcLDHEMQDSKrZt99)
 
 **Practical information**: The course is free of charge, and has a maximum capacity of 30 participants. There will be serving of food, some light pastries and coffee/tea both days.
 
-**Contact person**: NRIS Training Coordinator Eirik Skjerve (<eirik.skjerve@nris.no>)
+**Coordinator**: Eirik Skjerve
+
+## Contact us
+
+You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
