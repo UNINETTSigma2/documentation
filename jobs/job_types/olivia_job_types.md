@@ -40,7 +40,7 @@ than a whole node.  The partition is good for:
 
 (job_type_olivia_large)=
 
-## Normal
+## Large
 
 - __Allocation units__: whole nodes
 - __Job Limits__:
