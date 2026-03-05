@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Use PyTorch on Olivia &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/nris.ico"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/statuspal_widget.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="Multi-Node Implementation for PyTorch on Olivia" href="PyTorchMultiNode.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/notes_qa.html">Questions, Answers and Feedbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/videos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../training/material.html">Training materials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../overview.html">Code development and tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html#id1">Code development</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../overview.html#tutorials">Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../guides_gpu.html">GPU programming models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guides_ml.html">Machine Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guides_containers_gpu.html">Containers with GPU support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guides_monitor_gpu.html">Monitoring GPU accelerated applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guides_python.html">Python libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PyTorchProfilerMultiGpu.html">Profiling a Resnet-18 model on Multiple GPUs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PyTorchProfilerMultiGpu.html#performance-metrics">Performance Metrics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PyTorchProfilerMultiGpu.html#conclusion">Conclusion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PyTorchProfilerMultiGpu.html#relevant-links">Relevant links</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="PyTorchSingleGpu.html">PyTorch on Olivia</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="PyTorchSingleGpu.html#getting-the-container">Getting the Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyTorchSingleGpu.html#project-setup">Project Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PyTorchSingleGpu.html#single-gpu-implementation">Single GPU Implementation</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="PyTorchSingleGpu.html#job-script-for-single-gpu-training">Job Script for Single GPU Training</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../overview.html">Code development and tutorials</a></li>
+          <li class="breadcrumb-item"><a href="PyTorchSingleGpu.html">PyTorch on Olivia</a></li>
+      <li class="breadcrumb-item active">How to Use PyTorch on Olivia</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-to-use-pytorch-on-olivia">
+<span id="access-pytorch"></span><h1>How to Use PyTorch on Olivia<a class="headerlink" href="#how-to-use-pytorch-on-olivia" title="Link to this heading"></a></h1>
+<p>Olivia provides multiple ways to leverage the PyTorch framework for your machine learning and deep learning projects. Below are the two primary methods:</p>
+<ol class="arabic simple">
+<li><p><strong>Using the EESSI software stack</strong></p></li>
+<li><p><strong>Using the Container Solution</strong></p></li>
+</ol>
+<section id="using-eessi-software-stack-for-pytorch">
+<h2>Using EESSI software stack for PyTorch<a class="headerlink" href="#using-eessi-software-stack-for-pytorch" title="Link to this heading"></a></h2>
+<p>The <strong>EESSI (European Environment for Scientific Software Installations)</strong> is a cutting-edge service that provides optimized scientific software installations on any machine, anywhere in the world, almost instantly. This eliminates the hassle of manually building or installing software. To learn more about EESSI, visit the <a class="reference external" href="https://eessi.github.io/">official EESSI website</a>. On Olivia, the EESSI software stack is pre-configured and can be activated using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>EESSI/2025.06
+</pre></div>
+</div>
+<p>Once the EESSI stack is activated, you can load PyTorch as a module using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>PyTorch/2.7.1-foss-2024a-CUDA-12.6.0
+</pre></div>
+</div>
+<p>If your project involves computer vision tasks, you can also load the torchvision module:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>torchvision/0.22.0-foss-2024a-CUDA-12.6.0
+</pre></div>
+</div>
+<p>To explore additional packages available in the EESSI stack, use the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">spider</span></code> command. This will help you search for any required modules for your PyTorch project. Most commonly used packages should already be available. However, if you find any missing packages, feel free to reach out to us, and we’ll ensure they are installed for you.</p>
+</section>
+<section id="using-the-container-solution">
+<h2>Using the Container Solution<a class="headerlink" href="#using-the-container-solution" title="Link to this heading"></a></h2>
+<p>Container are the most preferred solution for many of the users. Information about the pre-built container, downloading one and then using it is available here.(<a class="reference internal" href="../../../olivia_pilot_period_docs/olivia_pilot_main.html#olivia-pilot-main"><span class="std std-ref">Olivia Pilot Info</span></a>). Moreover, you can find the information about how to use container for PyTorch in your deeplearning project referring to this documentation (<a class="reference internal" href="PyTorchSingleGpu.html#pytorch-on-olivia"><span class="std std-ref">PyTorch on Olivia</span></a>). It shows the utilization of containers for training your deep learning project on single gpu and also scaling it to multiple GPUs and nodes.</p>
+<p>When working with containerized environments, you may encounter situations where the base container does not include all the software or Python packages required for your workflow. Instead of modifying the container itself, you can extend it in two ways:</p>
+<ol class="arabic simple">
+<li><p><strong>Using SquashFS</strong> :</p></li>
+</ol>
+<p>SquashFS is a compressed, read-only file system that can be mounted alongside the container. This allows you to add custom environments or dependencies without altering the original container. It is an efficient way to include additional software or packages while keeping the container immutable.</p>
+<ol class="arabic simple" start="2">
+<li><p><strong>Using Overlay File Systems</strong> :</p></li>
+</ol>
+<p>Overlay file systems provide a writable layer on top of the container, enabling you to add or modify files dynamically during runtime. This could be taken as a writable layer placed on top of your container.When you extend the container, the system looks at the overlay first and if the file isn´t there, then it looks at the base <code class="docutils literal notranslate"><span class="pre">.sif</span></code> image.</p>
+<section id="steps-to-extend-a-container-using-squashfs">
+<h3>Steps to extend a Container Using SquashFS<a class="headerlink" href="#steps-to-extend-a-container-using-squashfs" title="Link to this heading"></a></h3>
+<p>We will see how we can create and use a SquashFS file to extend a containerized environment. The process involves creating a Python virtual environment, installing additional dependencies, and packaging the environment into a SquashFS file.</p>
+<ol class="arabic simple">
+<li><p><strong>Set Up the Container</strong></p></li>
+</ol>
+<p>First, ensure you have access to the container you want to extend. In this example, we use a container named pytorch_25.05-py3.sif. We will use this container to execute all the commands and create the extended environment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">SIF</span><span class="o">=</span>./pytorch_25.05-py3.sif
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Create a Python Virtual Environment</strong></p></li>
+</ol>
+<p>To add custom Python packages, start by creating a virtual environment inside the container.This ensures that the environmen is isolated and can be package later. Please note that you need to bind  <code class="docutils literal notranslate"><span class="pre">--bind</span> <span class="pre">$PWD</span></code>  the current working directory to the container which will ensure that all paths inside the container resolve correctly to the host system´s path.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="nv">$PWD</span><span class="w"> </span><span class="nv">$SIF</span><span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;python -m venv myenv --system-site-packages</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Install Additional Packages</strong></p></li>
+</ol>
+<p>Next, install the required Python packages into the virtual environment. These packages are typically listed in <code class="docutils literal notranslate"><span class="pre">requirements_additions.txt</span></code> file. For instance, there could be there packages needed for your PyTorch project missing in the container.</p>
+<ul class="simple">
+<li><p>requirements_addition.txt</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wandb
+psutil
+pillow
+imageio
+imgui
+glfw
+PyOpenGL
+imageio-ffmpeg
+pyspng
+lmdb
+dcor
+</pre></div>
+</div>
+<p>To activate the virtual environment and then install the packages in the list, please use this command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="nv">$PWD</span><span class="w"> </span><span class="nv">$SIF</span><span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+<span class="s2">  source myenv/bin/activate &amp;&amp; \</span>
+<span class="s2">  pip install -q -r requirements_additions.txt</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Test the Environment</strong></p></li>
+</ol>
+<p>Before packaging the environment, we can test it to ensure all the dependencies are installed correctly.For instance, you can run a Python Script <code class="docutils literal notranslate"><span class="pre">test_imports.py</span></code> to verify those imports.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="nv">$PWD</span><span class="w"> </span><span class="nv">$SIF</span><span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;source myenv/bin/activate &amp;&amp; python test_imports.py</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>test_imports.py</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">importlib</span>
+<span class="c1"># List of packages to test</span>
+<span class="n">packages</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;filelock&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fsspec&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;jinja2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;markupsafe&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;typing_extensions&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;numpy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;click&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PIL&quot;</span><span class="p">,</span>  <span class="c1"># Pillow is imported as &quot;Pillow&quot; but the package name is &quot;pillow&quot;</span>
+    <span class="s2">&quot;scipy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;requests&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tqdm&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ninja&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;matplotlib&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;imageio&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;torch&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;torchvision&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;imgui&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;glfw&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OpenGL&quot;</span><span class="p">,</span>  <span class="c1"># PyOpenGL is imported as &quot;OpenGL&quot;</span>
+    <span class="s2">&quot;imageio_ffmpeg&quot;</span><span class="p">,</span>  <span class="c1"># imageio-ffmpeg is imported as &quot;imageio_ffmpeg&quot;</span>
+    <span class="s2">&quot;pyspng&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;wandb&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;pydantic&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tensorboard&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lmdb&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dcor&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;psutil&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="c1"># Test imports</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_imports</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Testing package imports...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">package</span> <span class="ow">in</span> <span class="n">packages</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">package</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully imported </span><span class="si">{</span><span class="n">package</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to import </span><span class="si">{</span><span class="n">package</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Import test completed.&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test_imports</span><span class="p">()</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p><strong>Create the SquashFS File</strong></p></li>
+</ol>
+<p>Once the environment is ready, package it into a SquashFS file. This file will contain the entire virtual environment in a compressed, read-only format.<code class="docutils literal notranslate"><span class="pre">mksquashfs</span></code> creates a SquashFS file name <code class="docutils literal notranslate"><span class="pre">packages.sqsh</span></code> from the <code class="docutils literal notranslate"><span class="pre">myenv</span></code> directory. <code class="docutils literal notranslate"><span class="pre">-noappend</span></code> ensures that the file is created from scratch and <code class="docutils literal notranslate"><span class="pre">-no-progress</span></code> suppresses progress output.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mksquashfs<span class="w"> </span>myenv<span class="w"> </span>packages.sqsh<span class="w"> </span>-noappend<span class="w"> </span>-no-progress
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p><strong>Clean Up the Virtual Environment</strong></p></li>
+</ol>
+<p>After creating the SquashFS file, we can delete the original virtual environment directory to save space. This is major benefit of SquashFS file system as it will not impact the filesystem.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span>myenv
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p><strong>Test the SquashFS Environment</strong></p></li>
+</ol>
+<p>Finally, after removing the virtual environment directory, the next step is to test it by mounting it alongside the container and verifying that the environment works as expected which could be done by running the python script <code class="docutils literal notranslate"><span class="pre">test_imports.py</span></code> inside the container.</p>
+<p>The SquashFS file <code class="docutils literal notranslate"><span class="pre">packages.sqsh</span></code> is mounted inside the container using the <code class="docutils literal notranslate"><span class="pre">-B</span></code> option in the <code class="docutils literal notranslate"><span class="pre">apptainer</span> <span class="pre">exec</span></code> command. Specifically <code class="docutils literal notranslate"><span class="pre">-B</span> <span class="pre">packages.sqsh:/user-software:image-src=/</span></code>. This commands mounts the SquashFS file <code class="docutils literal notranslate"><span class="pre">packages.sqsh</span></code> as the directory <code class="docutils literal notranslate"><span class="pre">/user-software</span></code> inside the container which allows the container to access the contents of SquashFS file as they were part of the container´s filesystem.And the environment stored in the SquashFS file can be then activated using <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/user-software/bin/activate</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">APPTAINERENV_PREPEND_PATH</span><span class="o">=</span>/user-software/bin
+apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-B<span class="w"> </span><span class="nv">$PWD</span><span class="w"> </span>-B<span class="w"> </span>r3gan-env.sqsh:/user-software:image-src<span class="o">=</span>/<span class="w"> </span><span class="nv">$SIF</span><span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;source /user-software/bin/activate &amp;&amp; python test_imports.py&quot;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">APPTAINERENV_PREPEND_PATH</span></code> variable allows you to prepend a directory (<code class="docutils literal notranslate"><span class="pre">/user-software/bin</span></code> as shown above) to the container´s <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable. This ensures that the binaries and executables located in <code class="docutils literal notranslate"><span class="pre">/user-software/bin</span></code> such as the Python interpreter take precedence over other binaries in the container.Hence, by preprending it, the container will prioritize using the Python evnironment and tools from the SquashFS file over the default system Python or other executables  in the container.</p>
+</section>
+<section id="steps-to-extend-a-container-using-overlay">
+<h3>Steps to extend a Container Using Overlay<a class="headerlink" href="#steps-to-extend-a-container-using-overlay" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Create the Overlay file</strong></p></li>
+</ol>
+<p>First we need to create a blank, formatted image file that will hold your additional packages. Note that, without the <code class="docutils literal notranslate"><span class="pre">--sparse</span></code> option, the overlay file will immediately consume the full 5GB of disk space even if it is empty.So, specifying it will only consume as much disk space as is actually needed to store data.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OVERLAY</span><span class="o">=</span>my_overlay.img
+apptainer<span class="w"> </span>overlay<span class="w"> </span>create<span class="w"> </span>--sparse<span class="w"> </span>--size<span class="w"> </span><span class="m">5120</span><span class="w"> </span><span class="nv">$OVERLAY</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Install packages into the Overlay</strong></p></li>
+</ol>
+<p>To install your additional packages into this layer, you can run the container with the <code class="docutils literal notranslate"><span class="pre">--overlay</span></code> flag and use <code class="docutils literal notranslate"><span class="pre">pip</span></code>. Using the <code class="docutils literal notranslate"><span class="pre">--user</span></code> flag inside the overlay ensures that the files are written to the writable layer, not the read-only container system paths.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># We use --overlay to mount the writable layer</span>
+<span class="c1"># We install to a local path inside the overlay to avoid permission issues</span>
+apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--overlay<span class="w"> </span><span class="nv">$OVERLAY</span><span class="w"> </span>--bind<span class="w"> </span><span class="nv">$PWD</span><span class="w"> </span><span class="nv">$SIF</span><span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+<span class="s2">    export PYTHONUSERBASE=/home/apptainer/user_software</span>
+<span class="s2">    export PATH=\$PYTHONUSERBASE/bin:\$PATH</span>
+<span class="s2">    pip install --user --no-cache-dir -r requirements_additions.txt</span>
+<span class="s2">&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Run your project with the Overlay
+Once installed, you can simply include the overlay flag everytime you run your code.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># You must include the overlay and set the paths so Python finds the packages</span>
+apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--overlay<span class="w"> </span><span class="nv">$OVERLAY</span><span class="w"> </span>--bind<span class="w"> </span><span class="nv">$PWD</span><span class="w"> </span><span class="nv">$SIF</span><span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+<span class="s2">    export PYTHONUSERBASE=/home/apptainer/user_software</span>
+<span class="s2">    export PATH=\$PYTHONUSERBASE/bin:\$PATH</span>
+<span class="s2">    export PYTHONPATH=\$PYTHONUSERBASE/lib/python3.12/site-packages:\$PYTHONPATH</span>
+<span class="s2">    python test_imports.py</span>
+</pre></div>
+</div>
+<p>Notes:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PYTHONUSERBASE</span></code>: Since you cannot write to the root of the container, we define a directory inside the overlay <code class="docutils literal notranslate"><span class="pre">(/home/apptainer/user_software)</span></code> to hold those libraries.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code>: This tells <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install packages into the path defined by <code class="docutils literal notranslate"><span class="pre">PYTHONUSERBASE</span></code> instead of system folders.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apptainer</span> <span class="pre">overlay</span> <span class="pre">create</span></code>: It creates a physical file that act as a writable disk. So, we dont have to crete a directory or virtual environment.</p></li>
+</ol>
+<p>Below is the full job script that will allow you to create an Overlay image for your extended software requirements.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --account=&lt;project_number&gt;</span>
+<span class="c1">#SBATCH --partition=accel</span>
+<span class="c1">#SBATCH --time=01:00:00</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --cpus-per-task=16</span>
+<span class="c1">#SBATCH --gpus=0</span>
+<span class="c1">#SBATCH --mem=64G</span>
+<span class="c1">#SBATCH --job-name=create_overlay</span>
+<span class="c1">#SBATCH --output=create_overlay_%j.out</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;========================================&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Creating Apptainer Overlay Environment&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Started: </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;========================================&quot;</span>
+
+<span class="c1"># Set container and overlay paths</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">SIF</span><span class="o">=</span>./pytorch_25.05-py3.sif
+<span class="nb">export</span><span class="w"> </span><span class="nv">OVERLAY</span><span class="o">=</span>my_overlay.img
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== Step 1: Create a 5GB Sparse Overlay File ===&quot;</span>
+<span class="c1"># Sparse files take up almost no space until you actually fill them</span>
+apptainer<span class="w"> </span>overlay<span class="w"> </span>create<span class="w"> </span>--sparse<span class="w"> </span>--size<span class="w"> </span><span class="m">5120</span><span class="w"> </span><span class="nv">$OVERLAY</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== Step 2: Install packages into the Overlay ===&quot;</span>
+<span class="c1"># We use --overlay to mount the writable layer</span>
+<span class="c1"># We install to a local path inside the overlay to avoid permission issues</span>
+apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--overlay<span class="w"> </span><span class="nv">$OVERLAY</span><span class="w"> </span>--bind<span class="w"> </span><span class="nv">$PWD</span><span class="w"> </span><span class="nv">$SIF</span><span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+<span class="s2">    export PYTHONUSERBASE=/home/apptainer/user_software</span>
+<span class="s2">    export PATH=\$PYTHONUSERBASE/bin:\$PATH</span>
+<span class="s2">    pip install --user --no-cache-dir -r requirements_additions.txt</span>
+<span class="s2">&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== Step 3: Test the Overlay environment ===&quot;</span>
+<span class="c1"># You must include the overlay and set the paths so Python finds the packages</span>
+apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--overlay<span class="w"> </span><span class="nv">$OVERLAY</span><span class="w"> </span>--bind<span class="w"> </span><span class="nv">$PWD</span><span class="w"> </span><span class="nv">$SIF</span><span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+<span class="s2">    export PYTHONUSERBASE=/home/apptainer/user_software</span>
+<span class="s2">    export PATH=\$PYTHONUSERBASE/bin:\$PATH</span>
+<span class="s2">    export PYTHONPATH=\$PYTHONUSERBASE/lib/python3.12/site-packages:\$PYTHONPATH</span>
+<span class="s2">    python test_imports.py</span>
+<span class="s2">&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;========================================&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;✓ SUCCESS!&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Overlay created: </span><span class="nv">$OVERLAY</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Completed: </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;========================================&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="PyTorchMultiNode.html" class="btn btn-neutral float-left" title="Multi-Node Implementation for PyTorch on Olivia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
