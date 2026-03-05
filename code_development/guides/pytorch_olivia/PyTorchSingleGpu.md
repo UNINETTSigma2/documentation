@@ -30,6 +30,7 @@ The multi-GPU guides use FP16 mixed precision for improved performance.
 - The login node (x86_64) and compute nodes (Aarch64) have different architectures. Software and containers must be built for ARM (Aarch64) to run on the compute nodes.
 - Compute nodes use CUDA 12.7. Ensure container compatibility.
 ```
+In order to be able to use PyTorch on Olivia we provide different solutions. You can read more about those solutions in detail here. ({ref}`access-pytorch`)
 
 ## Getting the Container
 
@@ -419,7 +420,7 @@ Now the goal is to scale this up to multiple GPUs. For this, please check out th
 
 ```{toctree}
 :hidden:
-
 PyTorchMultiGpu
 PyTorchMultiNode
+access_pytorch
 ```
