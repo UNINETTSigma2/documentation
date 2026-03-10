@@ -63,8 +63,8 @@ The CPU version of VASP is the most tested, an experimental version of GPU vasp 
 #SBATCH --account=<your account>
 #SBATCH --time=1:00:00 # adjust as needed 
 #SBATCH --nodes=1 # adjust as needed
-#SBATCH --mem-per-cpu=2G
-#SBATCH --ntasks-per-node=250
+#SBATCH --mem-per-cpu=2955M
+#SBATCH --ntasks-per-node=256
 #SBATCH --network=single_node_vni
 
 module reset
@@ -73,7 +73,7 @@ module load VASP/6.5.1-intel-2024a # or VASP/6.4.3-intel-2024a
 srun vasp_std # or vasp_ncl or vasp_gam
 ```
 
-For those who have migrated from the service taken out of service; FRAM - please be mindful to adjust your parallelization settings. A good starting point is using `--ntasks-per-node=250` with `NPAR = 25` to be a good starting point for many cases. We found that for many systems using `KPAR = <1/2 number nodes>` to work well, but *only* if your system contains more than one k-point. Again the above is only a starting point. 
+For those who have migrated from the service taken out of service; FRAM - please be mindful to adjust your parallelization settings. A good starting point is using `--ntasks-per-node=256` with `NPAR = 16` to be a good starting point for many cases. We found that for many systems using `KPAR = <1/2 number nodes>` to work well, but *only* if your system contains more than one k-point. Again the above is only a starting point. 
 
 ### Experimental GPU VASP
 An experimental GPU compiled version of VASP can be run as follows:
