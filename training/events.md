@@ -16,6 +16,7 @@ All courses are free of charge unless otherwise announced.
 events/2026-best-practices.md
 events/2026-LLM-course-Bergen.md
 events/2026-04-hpc-on-boarding.md
+events/2026-Olivia-OnBoarding.md
 
 ```
 
@@ -81,7 +82,7 @@ For all the sympa lists; replace names with your own. Also, for all these, the w
 
 ```{toctree}
 :maxdepth: 1
-GPU_Tutorials/2025-GPU-Tuorials-Series.md
+GPU_Tutorials/2025-GPU-Tutorials.md
 events/2025-10-hpc-on-boarding.md
 events/2025-05-hpc-on-boarding.md
 events/2025-spring-best-practices-tools.md
