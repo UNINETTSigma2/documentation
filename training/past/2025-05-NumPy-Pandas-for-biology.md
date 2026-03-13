@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (NumPy and Pandas for biology)=
 
 # NumPy and Pandas fundamentals for handling biological datasets (27-28 May 2025)

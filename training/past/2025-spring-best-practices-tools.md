@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Best Practices and Tools for High Performance Computing 
 
 The Norwegian Research Infrastructure Services (NRIS) is offering a best practices and tools course for users of national infrastructure services.
