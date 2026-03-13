@@ -1,4 +1,8 @@
-(GPU-tutorials series)=
+---
+orphan: true
+---
+
+(GPU-tutorials)=
 
 # NRIS GPU Tutorials series: Fine-Tuning LLMs with Multi-GPU Training <time datetime="2025-11-05 20:00"> 05 Nov. 2025 </time>
 ## *NRIS* GPU Tutorials Series 
@@ -54,9 +58,3 @@ We do have a *login-check* session **Tuesday November 4th at 10:30-12:00** which
 - Link to video to be announced.
 - Link to Q&A document to be announced.
 ```
-
-
-
-
-
-

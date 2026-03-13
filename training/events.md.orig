@@ -17,8 +17,11 @@ All courses are free of charge unless otherwise announced.
 
 events/2026-LLM-course-Bergen.md
 events/2026-04-hpc-on-boarding.md
+<<<<<<< HEAD
 events/2026-Olivia-OnBoarding.md
+=======
 events/2026-best-practices.md
+>>>>>>> 2aebbee1 (Restructured training pages to open for automation)
 
 ```
 
@@ -85,12 +88,21 @@ past/2026*
 
 ```{toctree}
 :maxdepth: 1
+<<<<<<< HEAD
+GPU_Tutorials/2025-GPU-Tutorials.md
+events/2025-10-hpc-on-boarding.md
+events/2025-05-hpc-on-boarding.md
+events/2025-spring-best-practices-tools.md
+nris_talks/2025-03-20-nris-talks.md
+nris_talks/2025-04-24-nris-talks.md
+events/2025-05-NumPy-Pandas-for-biology.md
+=======
 :glob:
 
 past/2025*
 
+>>>>>>> 2aebbee1 (Restructured training pages to open for automation)
 ```
-
 <H4> From external collaborators:</H4>
 
 ```{toctree}

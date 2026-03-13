@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (training-2025-autumn-onboarding)=
 
 # HPC On-boarding <time datetime="2025-10-14 20:00"> 14-16 October 2025 </time>
