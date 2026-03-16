@@ -18,7 +18,7 @@ the highest possible priority and therefore the shortest queuing time.
 |:---------------------------------------:|-------------------------------------------|:------------:|:------------:|:--------:|
 | {ref}`normal <job_type_betzy_normal>`   | default job type                          | 4--512 nodes | 4 days       | normal   |
 | {ref}`accel <job_type_betzy_accel>`     | jobs needing GPUs                         |              | 7 days       | normal   |
-| {ref}`preproc <job_type_betzy_preproc>` | pre-/postprocessing jobs                  | 1--16 units  | 1 day        | normal   |
+| {ref}`preproc <job_type_betzy_preproc>` | pre-/postprocessing jobs                  | 1--128 cores  | 1 day        | normal   |
 | {ref}`devel <job_type_betzy_devel>`     | development jobs (compiling, testing)[^1] | 1--4 nodes   | 60 mins      | high     |
 
 For jobs that don't request GPUs or much memory, the "units" of *accel* or *preproc* jobs
@@ -31,10 +31,10 @@ For other jobs, see {ref}`projects-accounting` for how the units are calculated.
 
 | Name                                 | Description                               | Job limits                | Max walltime | Priority |
 |:------------------------------------:|-------------------------------------------|:-------------------------:|:------------:|:--------:|
-| {ref}`small <job_type_olivia_small>` | default job type for CPU jobs             | 1--256 units              | 7 days       | normal   |
+| {ref}`small <job_type_olivia_small>` | default job type for CPU jobs             | 1--256 cores              | 7 days       | normal   |
 | {ref}`large <job_type_olivia_large>` | job type for larger CPU jobs              | 1--9 nodes                | 7 days       | normal   |
-| {ref}`accel <job_type_olivia_accel>` | jobs needing GH200 GPUs (ARM64 nodes)     | 1--2304 units, 1--32 GPUs | 7 days       | normal   |
-| {ref}`devel <job_type_olivia_devel>` | development jobs (compiling, testing)[^2] | 1--1152 units, 0--16 GPUs | 2 hours      | high     |
+| {ref}`accel <job_type_olivia_accel>` | jobs needing GH200 GPUs (ARM64 nodes)     | 1--2304 cores, 1--32 GPUs | 7 days       | normal   |
+| {ref}`devel <job_type_olivia_devel>` | development jobs (compiling, testing)[^2] | 1--1152 cores, 0--16 GPUs | 2 hours      | high     |
 
 "Units" are calculated based in the number of cpus and amount of memory
 the job requests.  See {ref}`projects-accounting` for how.
@@ -45,13 +45,13 @@ the job requests.  See {ref}`projects-accounting` for how.
 
 | Name                                     | Description                               | Job limits   | Max walltime                                | Priority |
 |:----------------------------------------:|-------------------------------------------|:------------:|:-------------------------------------------:|:--------:|
-| {ref}`normal <job_type_saga_normal>`     | default job type                          | 1--256 units | 7 days                                      | normal   |
-| {ref}`bigmem <job_type_saga_bigmem>`     | jobs needing more memory                  | 1--256 units | 14 days                                     | normal   |
-| {ref}`hugemem <job_type_saga_hugemem>`   | jobs needing even more memory             | 1--256 units | 14 days                                     | normal   |
-| {ref}`accel <job_type_saga_accel>`       | jobs needing P100 GPUs                    | 1--256 units | 14 days                                     | normal   |
-| {ref}`a100 <job_type_saga_a100>`         | jobs needing A100 GPUs                    | 1--256 units | 14 days                                     | normal   |
-| {ref}`devel <job_type_saga_devel>`       | development jobs (compiling, testing)[^2] | 1--128 units | 2 hours                                     | high     |
-| {ref}`optimist <job_type_saga_optimist>` | jobs w/checkpointing, or very short jobs  | 1--256 units | {ref}`see details <job_type_saga_optimist>` | low      |
+| {ref}`normal <job_type_saga_normal>`     | default job type                          | 1--256 cores | 7 days                                      | normal   |
+| {ref}`bigmem <job_type_saga_bigmem>`     | jobs needing more memory                  | 1--256 cores | 14 days                                     | normal   |
+| {ref}`hugemem <job_type_saga_hugemem>`   | jobs needing even more memory             | 1--256 cores | 14 days                                     | normal   |
+| {ref}`accel <job_type_saga_accel>`       | jobs needing P100 GPUs                    | 1--256 cores | 14 days                                     | normal   |
+| {ref}`a100 <job_type_saga_a100>`         | jobs needing A100 GPUs                    | 1--256 cores | 14 days                                     | normal   |
+| {ref}`devel <job_type_saga_devel>`       | development jobs (compiling, testing)[^2] | 1--128 cores | 2 hours                                     | high     |
+| {ref}`optimist <job_type_saga_optimist>` | jobs w/checkpointing, or very short jobs  | 1--256 cores | {ref}`see details <job_type_saga_optimist>` | low      |
 
 For jobs that don't request GPUs or much memory, the "units" on Saga are
 simply the number of cpus the job requests.
