@@ -196,6 +196,131 @@ These may be ignored.
 
 Since the GPU compiled VASP is new we very much appreciate any comments on its use. We find setting NPAR=1 or 2 and KPAR=1 or 2 is a good starting point for many calculations. 
 
+
+## Advanced Usage: Building Custom VASP Modules
+
+While we provide standard VASP installations, some users may require specialized modifications (e.g., specific patches, custom transition state tools, or unique library combinations). You can compile and maintain your own VASP modules securely in your home directory using the same infrastructure we use.
+
+### What is EasyBuild?
+[EasyBuild](https://easybuild.io/) is the software build and installation framework we use to deploy the central software stack on Sigma2 clusters. It uses configuration files called "EasyConfigs" (`.eb` files) to automate the complex process of resolving dependencies, applying patches, compiling source code, and generating the final module files. 
+
+By leveraging EasyBuild for your custom installations, you ensure your software is compiled with the exact same highly optimized toolchains (compilers, MPI, math libraries) as the official system modules.
+
+For a comprehensive guide on how this framework operates on our clusters, please read the official {doc}`Sigma2 EasyBuild Documentation </software/userinstallsw/easybuild>`.
+
+---
+
+#### Custom VASP Module: Prepare your Source Files
+Because VASP is commercially licensed, you must provide your own copy of the source code. **You cannot use the central system tarballs.** 1. Log into the [VASP portal](https://www.vasp.at/vasp-portal/) and download the source code for the version you want to build (e.g., `vasp.6.5.1.tgz`).
+2. Download any add-on source files you need (e.g., VTST, VASPsol).
+3. Transfer these `.tgz` files to a directory you own on the cluster (e.g., `$HOME/vasp_sources/`).
+
+#### Custom VASP Module: Finding Existing Modules and EasyConfigs
+The easiest way to write a custom EasyConfig is to copy and modify one of our official system files. There are two main ways to find them:
+
+**Method A: Find `.eb` files using EasyBuild's search tool**
+Once you load the EasyBuild module, you can search the central repository for all available VASP configuration files:
+```bash
+module load EasyBuild
+eb --search VASP
+```
+This will output a list of paths. You can copy the `.eb` file that closest matches your desired version to your working directory.
+
+**Method B: Extract the `.eb` file from an installed module**
+Every time a module is installed on our systems, a copy of the exact `.eb` file used to build it is saved inside its installation directory. If you know you want to modify a specific module (e.g., `VASP/6.5.1-intel-2024a-vanilla`), load it and look in its `easybuild` folder:
+```bash
+module load VASP/6.5.1-intel-2024a-vanilla
+cp $EBROOTVASP/easybuild/*.eb my_custom_vasp.eb
+```
+
+#### Custom VASP Module: Creating a Custom EasyConfig (.eb file)
+To add a feature like **Wannier90** to a vanilla VASP build, you will modify the `.eb` configuration file you copied in the previous step. 
+
+*(Note: While Wannier90 is included in many of our standard modules, this illustrates the general steps required to link external libraries. You will follow a similar pattern for VTST or BEEF. In general most add ons will follow a similar pattern)*
+
+Update the source paths to point to your personal downloads, and add the specific library dependencies and pre-build instructions.
+
+**Example Modifications:**
+```python
+# ... [Start with the copied VASP easyconfig] ...
+
+# 1. IMPORTANT: Update the source path to point to YOUR downloaded tarball
+local_vasp_tgz = '/cluster/home/<your_username>/vasp_sources/vasp.6.5.1.tgz'
+
+sources = [local_vasp_tgz]
+checksums = [
+    'a53fd9dd2a66472a4aa30074dbda44634fc663ea2628377fc01d870e37136f61',  # Verify this matches your download
+]
+
+# 2. Add Wannier90 to dependencies (HDF5 is usually already there)
+dependencies = [
+    ('HDF5', '1.14.5'),
+    ('Wannier90', '3.1.0'),
+]
+
+# 3. Add the compiler flags to prebuildopts
+prebuildopts += "echo 'CPP_OPTIONS += -DVASP2WANNIER90' >> makefile.include && "
+prebuildopts += "echo 'LLIBS      += -L$(EBROOTWANNIER90)/lib -lwannier' >> makefile.include && "
+
+# ... [Continue with rest of the easyconfig] ...
+```
+
+
+#### Custom VASP Module: Configure the Environment and Build
+To build your custom version, you must run EasyBuild from a compute node. We will use the **system's** EasyBuild software to do the heavy lifting, but we will configure it to safely place the finished module in your personal directory so it doesn't cause permission errors.
+
+```bash
+# 1. Start an interactive session
+salloc --account=<your_project> --nodes=1 --time=02:00:00
+
+# 2. Load the system's EasyBuild module
+module load EasyBuild
+
+# 3. Tell EasyBuild to install the finished software in your home directory
+export EASYBUILD_PREFIX=$HOME/my-custom-modules
+
+# 4. Run the build (--robot allows EasyBuild to automatically resolve dependencies like Intel compilers)
+eb my_custom_vasp.eb --robot
+```
+
+#### Custom VASP Module: Using your Custom Module
+Once the compilation finishes successfully, the module files will be located in your `$HOME/my-custom-modules` directory. The standard `module load` command won't know they are there yet.
+
+To make your custom module visible, you must add your new local repository to your module search path:
+
+```bash
+module use $HOME/my-custom-modules/modules/all
+module load VASP/6.5.1-intel-2024a-custom # Adjust to match your exact module name
+```
+
+*Tip: If you plan on using your custom module frequently, you can add the `module use $HOME/my-custom-modules/modules/all` line directly to your `~/.bashrc` file so it is loaded automatically every time you log in.*
+
+## Usage: Saga and Betzy
+
+You can check which VASP versions are installed by executing:
+
+	$ module load VASPModules
+	$ module avail VASP
+
+And load a particular module by executing (case sensitive):
+
+	$ module load VASP/6.4.1-intel-2021b-std-wannier90-libxc-hdf5-beef-<somehash>
+	
+where `<somehash>` is a hash that is computed based on the modifications done to the VASP source code, or extra libraries included. See below for more details. Most of the modules should be self explanatory for experienced VASP users and you might be able to just get the hash from inspecting the module names from `module avail VASP`. If not, please read below for addition description.
+
+Please remember to use two `module load` commands. The first loads the location of all the VASP modules and the second command loads the actual VASP module. It is also possible, if you know what module you want to execute::
+
+	$ module load VASPModules VASP/6.4.1-intel-2021b-std-wannier90-libxc-hdf5-beef-<somehash>
+
+Users have to supply the necessary input files, including any `POTCAR` files needed. They can be downloaded from the VASP portal you get access to with a valid VASP license. Also, please note that the `POTCAR` files are protected by the license so do not share them with anyone that does not have a license, including the support team, unless explicitly notified to do so.
+
+The currently available modules (as of April 4th 2024) are as follows:
+
+VASP/6.4.2-intel-2022b-wHDF5-nohash-wWannier recommended by default 
+VASP/6.4.2-intel-2022b-wHDF5-wvtst-wsol if you need the vtst or sol packages
+VASP/5.4.4-intel-2022b if you need VASP5
+ VASP/5.4.4-intel-2022b-wvtst if you need VASP5 and the vtst package 
+
 ## Usage: Saga and Betzy
 
 You can check which VASP versions are installed by executing:
