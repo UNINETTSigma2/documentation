@@ -20,21 +20,103 @@ We aim to provide fully installed versions for the last two releases of VASP tha
 
 | Version  |  Saga | Betzy | Olivia |
 | -------- |  ---- | ----- | ------ |
-| 5.4.4pl2 |  Yes  | no    | no     |
-| 6.3.x    |  no   | no    | no     |
+| 5.4.4pl2 |  Yes  | No    | No     |
+| 6.3.x    |  No   | No    | No     |
 | 6.4.x    |  Yes  | Yes   | Yes    |
 | 6.5.x    |  Yes  | Yes   | Yes    |
-
+| 6.6.x    |  No   | No    | Yes    |
 
 ## License and access policy
 
-VASP is a commercial software package that requires a license for all who wants to use it. For a user to get access to VASP installed on the Sigma2 systems they must perform the following steps:
+VASP is a commercial software package that requires a license for all who wants to use it. **Note: We are currently in a transition period regarding how VASP access is managed on our systems, depending on the version you intend to use.**
+
+### For VASP versions below 6.6.0
+
+For a user to get access to VASP installed on the Sigma2 systems they must perform the following steps:
 
 * The users group must have a valid VASP licence. To acquire a licence, please consult the [Get a license](https://www.vasp.at/sign_in/registration_form/) section at the VASP website.
 
 * User identification is performed using email, so please make sure you supply the correct email. Send us a message at `contact@sigma2.no` where you request access to VASP and supply your email address that is associated with your VASP license. Remember that this might not be the address you are currently using to communicate. In order to figure this out, log in to your VASP portal and double check the email address listed there. Or ask your license holder to verify what email address you should use. We will then, using our maintainer access to the VASP portal verify that you hold a valid license to VASP 6 and/or VASP 5. If you have access we will add you to the `vasp6` and/or `vasp5` group. Members of these groups have access to the VASP modules containing the necessary software.
 
 Notice that the VASP license is backwards compatible, meaning that if you are issues a VASP 6 license you also have access to VASP 5.
+
+### For VASP versions 6.6.0 and newer
+
+For version 6.6.0 and above, we are rolling out a new self-service authentication method. Instead of requiring group membership, you will generate a personal license key directly on the cluster. You only need to do this **once**.
+
+*Note: The VASP 6.6.x modules and the license generation script are only available on the compute nodes. You must request a brief interactive session to access them.*
+
+1. **Start an interactive session:** Request a quick compute node allocation. *(Note: The exact `salloc` parameters below are tailored for Olivia. If you are on Saga or Betzy, you may need to adjust or omit the `--partition` and `--mem` flags based on that system's SLURM configuration).*
+   ```bash
+   salloc --account=<your account> --nodes=1 --ntasks-per-node=1 --partition=small --time=00:05:00 --mem=100MB
+   ```
+2. **Load the required modules:** Once your allocation is granted and you are on a compute node, load the base environment and the VASP module.
+   ```bash
+   module load NRIS/CPU
+   module load VASP/6.6.0-intel-2024a-vanilla
+   ```
+3. **Generate your key:** Run the request script and follow the prompts to authenticate. *Note: You will need the same username and password you use to log into the [VASP portal](https://www.vasp.at/vasp-portal/).*
+   ```bash
+   vasp_request_license_key.sh
+   ```
+4. **Save your key:** Move the newly generated file into a hidden directory in your home folder so it automatically applies to all future jobs.
+   ```bash
+   mkdir -p $HOME/.vasp
+   mv vasp_license $HOME/.vasp/vasp_license
+   ```
+
+*(Advanced users: You may also place the `vasp_license` file directly in your job's working directory, or specify a custom path by exporting the `VASP_LICENSE_FILE` environment variable).*
+
+#### Alternative Method: Manual / Local Script Execution
+If you prefer not to start an interactive session on the cluster you can manually run the underlying bash script. 
+
+1. Create a new file named `request_vasp_license.sh` and paste the following code into it. *(Note: while at the moment we only have VASP6.6 on Olivia you may need to alter the @tag to the cluster you are targeting in the future).*
+   ```bash
+   #!/bin/bash
+   HPC_LICENSE="WA21-0049@olivia" #@cluster
+   URL="[https://vasp.at/vasp-portal/api/license_key](https://vasp.at/vasp-portal/api/license_key)"
+   JSON_FILE=response.json
+
+   echo "Please login to your VASP portal account:"
+   read -p "Username: " username
+   for (( i = 0; i < 3; i++ )); do
+       read -p "Password: " -s password
+       if [[ ! -z "$password" ]]; then
+           break
+       fi
+       echo "Password is empty, try again."
+   done
+   if [[ -z "$password" ]]; then
+       echo "Password is empty, aborting."
+       exit 1
+   fi
+   echo ""
+   response_code=$(curl -s \
+       -u "$username:$password" \
+       -H "User-Agent: Bash (VASP Script)" \
+       -d hpc_user_name=$(whoami) \
+       -d hpc_user_id=$(id -u) \
+       -d hpc_license="$HPC_LICENSE" \
+       -o $JSON_FILE \
+       -w "%{http_code}" \
+       -X POST $URL)
+   if [[ "$response_code" == "200" ]]; then
+       jq -r '.license_key + "signature = \"" + .signature + "\""' $JSON_FILE > vasp_license
+       error=0
+   else
+       echo "Status Code: $response_code"
+       jq -r '"Error details: " + .detail' $JSON_FILE
+       error=1
+   fi
+   rm $JSON_FILE
+   exit $error
+   ```
+2. Make the script executable and run it:
+   ```bash
+   chmod +x request_vasp_license.sh
+   ./request_vasp_license.sh
+   ```
+3. This will generate a `vasp_license` file in your current directory. Transfer or move this file into `$HOME/.vasp/vasp_license` on the cluster.
 
 ## Parallelization 
 
@@ -114,6 +196,105 @@ These may be ignored.
 
 Since the GPU compiled VASP is new we very much appreciate any comments on its use. We find setting NPAR=1 or 2 and KPAR=1 or 2 is a good starting point for many calculations. 
 
+
+## Advanced Usage: Building Custom VASP Modules
+
+While we provide standard VASP installations, some users may require specialized modifications (e.g., specific patches, custom transition state tools, or unique library combinations). You can compile and maintain your own VASP modules securely in your home directory using the same infrastructure we use.
+
+### What is EasyBuild?
+[EasyBuild](https://easybuild.io/) is the software build and installation framework we use to deploy the central software stack on Sigma2 clusters. It uses configuration files called "EasyConfigs" (`.eb` files) to automate the complex process of resolving dependencies, applying patches, compiling source code, and generating the final module files. 
+
+By leveraging EasyBuild for your custom installations, you ensure your software is compiled with the exact same highly optimized toolchains (compilers, MPI, math libraries) as the official system modules.
+
+For a comprehensive guide on how this framework operates on our clusters, please read the official {doc}`Sigma2 EasyBuild Documentation </software/userinstallsw/easybuild>`.
+
+---
+
+#### Custom VASP Module: Prepare your Source Files
+Because VASP is commercially licensed, you must provide your own copy of the source code. **You cannot use the central system tarballs.** 1. Log into the [VASP portal](https://www.vasp.at/vasp-portal/) and download the source code for the version you want to build (e.g., `vasp.6.5.1.tgz`).
+2. Download any add-on source files you need (e.g., VTST, VASPsol).
+3. Transfer these `.tgz` files to a directory you own on the cluster (e.g., `$HOME/vasp_sources/`).
+
+#### Custom VASP Module: Finding Existing Modules and EasyConfigs
+The easiest way to write a custom EasyConfig is to copy and modify one of our official system files. There are two main ways to find them:
+
+**Method A: Find `.eb` files using EasyBuild's search tool**
+Once you load the EasyBuild module, you can search the central repository for all available VASP configuration files:
+```bash
+module load EasyBuild
+eb --search VASP
+```
+This will output a list of paths. You can copy the `.eb` file that closest matches your desired version to your working directory.
+
+**Method B: Extract the `.eb` file from an installed module**
+Every time a module is installed on our systems, a copy of the exact `.eb` file used to build it is saved inside its installation directory. If you know you want to modify a specific module (e.g., `VASP/6.5.1-intel-2024a-vanilla`), load it and look in its `easybuild` folder:
+```bash
+module load VASP/6.5.1-intel-2024a-vanilla
+cp $EBROOTVASP/easybuild/*.eb my_custom_vasp.eb
+```
+
+#### Custom VASP Module: Creating a Custom EasyConfig (.eb file)
+To add a feature like **Wannier90** to a vanilla VASP build, you will modify the `.eb` configuration file you copied in the previous step. 
+
+*(Note: While Wannier90 is included in many of our standard modules, this illustrates the general steps required to link external libraries. You will follow a similar pattern for VTST or BEEF. In general most add ons will follow a similar pattern)*
+
+Update the source paths to point to your personal downloads, and add the specific library dependencies and pre-build instructions.
+
+**Example Modifications:**
+```python
+# ... [Start with the copied VASP easyconfig] ...
+
+# 1. IMPORTANT: Update the source path to point to YOUR downloaded tarball
+local_vasp_tgz = '/cluster/home/<your_username>/vasp_sources/vasp.6.5.1.tgz'
+
+sources = [local_vasp_tgz]
+checksums = [
+    'a53fd9dd2a66472a4aa30074dbda44634fc663ea2628377fc01d870e37136f61',  # Verify this matches your download
+]
+
+# 2. Add Wannier90 to dependencies (HDF5 is usually already there)
+dependencies = [
+    ('HDF5', '1.14.5'),
+    ('Wannier90', '3.1.0'),
+]
+
+# 3. Add the compiler flags to prebuildopts
+prebuildopts += "echo 'CPP_OPTIONS += -DVASP2WANNIER90' >> makefile.include && "
+prebuildopts += "echo 'LLIBS      += -L$(EBROOTWANNIER90)/lib -lwannier' >> makefile.include && "
+
+# ... [Continue with rest of the easyconfig] ...
+```
+
+
+#### Custom VASP Module: Configure the Environment and Build
+To build your custom version, you must run EasyBuild from a compute node. We will use the **system's** EasyBuild software to do the heavy lifting, but we will configure it to safely place the finished module in your personal directory so it doesn't cause permission errors.
+
+```bash
+# 1. Start an interactive session
+salloc --account=<your_project> --nodes=1 --time=02:00:00
+
+# 2. Load the system's EasyBuild module
+module load EasyBuild
+
+# 3. Tell EasyBuild to install the finished software in your home directory
+export EASYBUILD_PREFIX=$HOME/my-custom-modules
+
+# 4. Run the build (--robot allows EasyBuild to automatically resolve dependencies like Intel compilers)
+eb my_custom_vasp.eb --robot
+```
+
+#### Custom VASP Module: Using your Custom Module
+Once the compilation finishes successfully, the module files will be located in your `$HOME/my-custom-modules` directory. The standard `module load` command won't know they are there yet.
+
+To make your custom module visible, you must add your new local repository to your module search path:
+
+```bash
+module use $HOME/my-custom-modules/modules/all
+module load VASP/6.5.1-intel-2024a-custom # Adjust to match your exact module name
+```
+
+*Tip: If you plan on using your custom module frequently, you can add the `module use $HOME/my-custom-modules/modules/all` line directly to your `~/.bashrc` file so it is loaded automatically every time you log in.*
+
 ## Usage: Saga and Betzy
 
 You can check which VASP versions are installed by executing:
@@ -139,6 +320,7 @@ VASP/6.4.2-intel-2022b-wHDF5-nohash-wWannier recommended by default
 VASP/6.4.2-intel-2022b-wHDF5-wvtst-wsol if you need the vtst or sol packages
 VASP/5.4.4-intel-2022b if you need VASP5
  VASP/5.4.4-intel-2022b-wvtst if you need VASP5 and the vtst package 
+ 
 
 ### Module naming scheme
 
