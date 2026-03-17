@@ -67,7 +67,7 @@ For version 6.6.0 and above, we are rolling out a new self-service authenticatio
 
 *(Advanced users: You may also place the `vasp_license` file directly in your job's working directory, or specify a custom path by exporting the `VASP_LICENSE_FILE` environment variable).*
 
-##### Alternative Method: Manual / Local Script Execution
+#### Alternative Method: Manual / Local Script Execution
 If you prefer not to start an interactive session on the cluster you can manually run the underlying bash script. 
 
 1. Create a new file named `request_vasp_license.sh` and paste the following code into it. *(Note: while at the moment we only have VASP6.6 on Olivia you may need to alter the @tag to the cluster you are targeting in the future).*
@@ -320,32 +320,7 @@ VASP/6.4.2-intel-2022b-wHDF5-nohash-wWannier recommended by default
 VASP/6.4.2-intel-2022b-wHDF5-wvtst-wsol if you need the vtst or sol packages
 VASP/5.4.4-intel-2022b if you need VASP5
  VASP/5.4.4-intel-2022b-wvtst if you need VASP5 and the vtst package 
-
-## Usage: Saga and Betzy
-
-You can check which VASP versions are installed by executing:
-
-	$ module load VASPModules
-	$ module avail VASP
-
-And load a particular module by executing (case sensitive):
-
-	$ module load VASP/6.4.1-intel-2021b-std-wannier90-libxc-hdf5-beef-<somehash>
-	
-where `<somehash>` is a hash that is computed based on the modifications done to the VASP source code, or extra libraries included. See below for more details. Most of the modules should be self explanatory for experienced VASP users and you might be able to just get the hash from inspecting the module names from `module avail VASP`. If not, please read below for addition description.
-
-Please remember to use two `module load` commands. The first loads the location of all the VASP modules and the second command loads the actual VASP module. It is also possible, if you know what module you want to execute::
-
-	$ module load VASPModules VASP/6.4.1-intel-2021b-std-wannier90-libxc-hdf5-beef-<somehash>
-
-Users have to supply the necessary input files, including any `POTCAR` files needed. They can be downloaded from the VASP portal you get access to with a valid VASP license. Also, please note that the `POTCAR` files are protected by the license so do not share them with anyone that does not have a license, including the support team, unless explicitly notified to do so.
-
-The currently available modules (as of April 4th 2024) are as follows:
-
-VASP/6.4.2-intel-2022b-wHDF5-nohash-wWannier recommended by default 
-VASP/6.4.2-intel-2022b-wHDF5-wvtst-wsol if you need the vtst or sol packages
-VASP/5.4.4-intel-2022b if you need VASP5
- VASP/5.4.4-intel-2022b-wvtst if you need VASP5 and the vtst package 
+ 
 
 ### Module naming scheme
 
