@@ -45,7 +45,7 @@ Below you find the list of episodes and how to register. Episodes are self-conta
 
 </details><br>
 
-<details><summary><H2 style="display:inline">Episode 3: Wed. 29.04.26 (09:00-12:00 CET) - GPU utlization and usage on Olivia</summary><br>
+<details><summary><H2 style="display:inline">Episode 3: Wed. 06.05.26 (09:00-12:00 CET) - GPU utlization and usage on Olivia</summary><br>
 
 **Content:** Please add info here.
 
