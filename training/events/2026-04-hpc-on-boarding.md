@@ -5,7 +5,7 @@ The Norwegian Research Infrastructure Services (**NRIS**) is offering
 an on-boarding hands-on course for new users of high performance computing (HPC) systems. 
 
 The course is highly recommended  for all new users of the national HPC systems 
-(Saga, Fram, Betzy) and all interested in the field.
+(Saga, Betzy, Olivia) and all interested in the field.
 **Targeted Audience**: The course is aimed at students, researchers and employees of any
 background. We assume no prior knowledge of what an HPC is or how to use it. For those with 
 little experience using UNIX-like operating systems such as Linux or working on the command 
@@ -25,7 +25,6 @@ This is an online course via Zoom. Participants require access to a computer
 pre-installed programs to participate in the video meeting of the course (Zoom) and 
 to access the HPC systems (eg: ssh).
 
-Note that the above is preliminary time-schedul
 
 ## Time, date (all times CEST)
 |   Date    |  Time   |  Topic	|
