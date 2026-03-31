@@ -8,7 +8,7 @@ orphan: true
 
 The CDL service allows users to store datasets to be shared within and across projects on NIRD as a centralized repository. 
 
-The CDL Cache Hydrator service maintains a local cache of datasets on the HPC system's local filesystem by pulling the needed datasets from NIRD through S3. Cached data can be rehydrated at any time. Also, the service is envisioned so that data not being accessed for the set retention time will be automatically evicted from the cache.
+The CDL Cache Hydrator functionality in CDL maintains a local cache of datasets on the HPC system's local filesystem by pulling the needed datasets from NIRD through S3. Cached data can be rehydrated at any time. Also, the service is envisioned so that data not being accessed for the set retention time will be automatically evicted from the cache.
 
 ## CDL caching user guide
 
