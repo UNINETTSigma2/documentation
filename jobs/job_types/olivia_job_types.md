@@ -79,7 +79,7 @@ warnings from submission).
   - maximum 32 GPUs
 - __Maximum walltime__: 7 days
 - __Priority__: normal
-- __Available resources__: 76 nodes (max 60 per project) with 288
+- __Available resources__: 112 nodes (max 80 per project) with 288
   ARM64 cpus, 808 GiB RAM and 4 GH200 GPUs.
 - __Parameter for sbatch/salloc__:
   - `--partition=accel`
