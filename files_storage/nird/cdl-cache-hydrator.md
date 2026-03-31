@@ -90,3 +90,6 @@ A TOML template file, called `00-cdl-hydrator.template` is created for convenien
 
 After placing a config file in `/cluster/cache/conf`, the hydrator will detect it and begin downloading the requested data. To confirm that data has been successfully cached before submitting your job:
 - Check the cache directory directly ls /cluster/cache/<service>/
+- You can check the `<your-config.filename>.json` file with log info
+
+
