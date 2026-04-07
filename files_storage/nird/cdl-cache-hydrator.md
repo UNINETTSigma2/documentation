@@ -15,14 +15,14 @@ The CDL Cache Hydrator functionality in CDL maintains a local cache of datasets 
 ![CDL data caching on hpc pipeline](img/cdl-workflow-hydrator-pipeline.png)
 
 ### CDL project registered on NIRD
-Each CDL project has its master copy on NIRD Data Lake which is accessible via both POSIX and S3 protocols. (NFS access is also available).
+Each CDL project has its master copy on NIRD Data Lake which is accessible via both POSIX and S3 protocols (NFS access is also available).
 
-These projects are called with the following naming format `NSxxxxxB` (e.g. NS160003B). Each project is available read-only to any POSIX user having access to NIRD and users having access to the S3 endpoint on NIRD, https://s3.nird.sigma2.no.
+These projects are called with the following naming format `NSxxxxB` (e.g. NS16003B). Each project is available read-only to any POSIX user having access to NIRD and users having access to the S3 endpoint on NIRD, https://s3.nird.sigma2.no.
 
-Each CDL project has a curresponding S3 bucket following the naming format `cdl-nsxxxxb-service`, e.g. `cdl-ns160003b-wrf`. Note that the bucket name uses lowercase and the project name must match exactly even though it is in lowercase. 
+Each CDL project has a curresponding S3 bucket following the naming format `cdl-nsxxxxb-service`, e.g. `cdl-ns16003b-wrf`. Note that the bucket name uses lowercase and the project name must match exactly even though it is in lowercase. 
 
 
-### CDL Hydrator on HPCs
+### CDL Hydrator on HPCs (Caching CDL data on HPCs)
 
 For each service a dedicated hydrator is running on each relevant HPC system. e.g. one for wrf, noresm, etc.
 The hydrator continuously monitors a shared configuration directory for data requests. When a valid request file is detected, the hydrator fetches the specified data from the CDL S3 bucket and writes it to the local cache on the HPC filesystem.
@@ -38,7 +38,8 @@ The cache is managed automatically by the cdl_cache_cleanup process, which evict
 3. When job completes, copy/stage results to the relevant project storage , for e.g.:  NIRD Data Peak.
 
 ### Storing results
-See point 3 above.
+
+When the job completes, copy or stage your results to the appropriate project storage. The recommended destination is NIRD Data Peak (for active project data). Do not rely on the cache as long-term storage, data that has not been accessed within a configured retention period (currently 45 days) is automatically removed from the cache.
 
 ### Updating the master copy in CDL
 The project leader and any designated member can add data and manage the data in the CDL project. All other NIRD users have read-only access either through file storage access or object storage access.
@@ -57,8 +58,8 @@ A ready-to-use template is available at `/cluster/cache/conf/00-cdl-hydrator.tem
 
 Config file names must follow a strict convention or the hydrator will silently ignore them:
 - The name **must** start with the CDL service name, (for example `wrf` or `noresm`),
-- This **mus**t be followed by a descriptive identifier such as your project name, or  username, or optionally  sync job number.
-- The file **must** end with the `.con` extension. Files with any other extension will be ignored.
+- This **must** be followed by a descriptive identifier such as your project name, or  username, or optionally  sync job number.
+- The file **must** end with the `.conf` extension. Files with any other extension will be ignored.
 
 * **Correct:** `wrf-case-01.conf` or `noresm-username-dataname.conf`
 * **Incorrect:** `my-data.conf` or `wrf-project-01.txt` - the CDL Hydrator will ignore these files
