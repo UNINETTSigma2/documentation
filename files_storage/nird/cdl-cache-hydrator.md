@@ -39,7 +39,7 @@ The cache is managed automatically by the cdl_cache_cleanup process, which evict
 
 ### Storing results
 
-When the job completes, copy or stage your results to the appropriate project storage. The recommended destination is NIRD Data Peak (for active project data). Do not rely on the cache as long-term storage, data that has not been accessed within a configured retention period (currently 45 days) is automatically removed from the cache.
+When the job completes, copy or stage your results to the appropriate project storage. The recommended destination is NIRD Data Peak (for active project data). 
 
 ### Updating the master copy in CDL
 The project leader and any designated member can add data and manage the data in the CDL project. All other NIRD users have read-only access either through file storage access or object storage access.
