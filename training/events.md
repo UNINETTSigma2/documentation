@@ -15,7 +15,6 @@ All courses are free of charge unless otherwise announced.
 :maxdepth: 1
 :glob:
 
-events/2026-LLM-course-Bergen.md
 events/2026-04-hpc-on-boarding.md
 events/2026-Olivia-OnBoarding.md
 events/2026-best-practices.md
