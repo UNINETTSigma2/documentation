@@ -14,13 +14,14 @@ Below you find the list of episodes. Each episode is self-contained. You can joi
 
 <H3> Content:
 
-- This first episode include some overview of Olivia compared to Saga. Main topic is NIRD and the  specific use of the filesystem on Olivia. 
-
+- This first episode will cover data staging and data integration between NIRD and Olivia. 
+	- We will demonstrate the different options available on Olivia and discuss the best option based on the amount and type of data. 
+	- We will also cover using S3 to get data from NIRD Datalake and NIRD Research Data Archive, include some overview of Olivia compared to Saga. 
 - In addition, we plan to have give some overview on Cray vs. NRIS Software environments on Olivia.
 
 <H3> Course material: 
 
-<add link to training material>
+<add link to training material><br>
 
 <H3> Instructors: 
 
@@ -35,7 +36,6 @@ Below you find the list of episodes. Each episode is self-contained. You can joi
 ```
 
 </details><br>
-
 
 <details><summary><H2 style="display:inline">Episode 2: Wed. 29.04.26 (09:00-12:00 CET) - Containers and software install on Olivia</summary><br>
 
