@@ -156,11 +156,14 @@ Figure 6: Screenshot of the version dataset page.
 
 ## Searching and Accessing Datasets
 
-Published datasets can be viewed on the [portal](https://archive.sigma2.no), shown in Figure 7. You can search for published datasets via the search field. Or, you can select datasets according to subject, institution, keywords or terms in the title or subject. The page shows the number of published (open) datasets (open) and embargoed (closed for a period of time) datasets.
+Published datasets are available on the [portal](https://archive.sigma2.no), shown in Figure 7. To view them, select the DATASETS tab at the top of the page. A search bar on the homepage lets you run a quick keyword search across all dataset metadata. For more control, click Advanced Search to open the dedicated search page, where you can query specific metadata fields (creator, DOI, project, theme, and more), combine conditions using Boolean operators, filter by institution, subject, publication year, or geographic area, and sort and paginate results.
 
+For full query syntax and search examples, see the {ref}`Search Guide`.
 
-![the_portal_page](imgs/figure_7_screenshot_portal.png "portal_page")
+![the_portal_page](imgs/figure_7_screenshot_portal_V1.png "portal_page")
 Figure 7: Screenshot of the archive portal.
+
+Searching, viewing, and accessing public datasets on the portal does not require login and can be done anonymously.
 
 Clicking on a dataset in the list of search results will open the landing page for the dataset. This page contains the metadata information on the dataset, how to cite the dataset and the table of contents that contains http and S3 links for the files in the dataset that allow you to download the individual files (see Figure 8).
 
