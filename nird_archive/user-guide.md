@@ -67,7 +67,7 @@ You should choose open file formats for your data if possible. Open file formats
 
 To access the RDA web interface, direct your browser to: [https://archive.sigma2.no](https://archive.sigma2.no). You should arrive at the front page shown in Figure 1. You will need to authenticate using your FEIDE or ORCID account either by logging on via the *SIGN IN* button on the top-right or via the *ADD DATASET* button.
 
-![rda_web_interface](imgs/figure_1_screenshot_front_page.png "RDA web interface")
+![rda_web_interface](imgs/figure_7_screenshot_portal_V1.png "RDA web interface")
 Figure 1: Screenshot of the RDA web interface front page.
 
 The *ADD DATASET* button provides access to the set of pages required for depositing your dataset in the RDA. These pages are accessible once you have authenticated and been allowed to access the RDA.
