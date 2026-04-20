@@ -19,14 +19,14 @@ Make sure the application is running and it says, when you hover the mouse over 
 Open Windows PowerShell and run the following commands:
 ```
 $env:DISPLAY = "localhost:0"
-ssh -X -Y username@server.sigma2.no #(replace "server" with fram, betzy or saga)
+ssh -X -Y username@server.sigma2.no #(replace "server" with betzy or saga)
 ```
 
 In case the connection is not very stable while running with PowerShell, you can try with Putty
 
 ### Putty
 - Install the software from https://www.putty.org/
-- On "Session" tab, under "Host Name", write down `betzy.sigma2.no` (or fram or saga)
+- On "Session" tab, under "Host Name", write down `betzy.sigma2.no` (or saga)
 - On "Connection" tab, write 240 on "Seconds between keepalives". Also enable "Enable TCP keepalives (SO_KEEPALIVE option)"
 - On "SSH > X11" tab, check "Enable X11 forwarding" and write down on "X display location": localhost:0.0
 - Go back to the "Session" tab, write a name for the session under "Saved Sessions" and click "Save"

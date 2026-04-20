@@ -5,36 +5,31 @@
 Norwegian Research Infrastructure Services (*NRIS*), has an extensive education and training program to assist existing
 and future users of our services. The courses are aimed to give the participants
 an understanding of our services as well as using the resources effectively.
-The courses are free of charges unless otherwise announced. 
+All courses are free of charge unless otherwise announced. 
 
 ## Upcoming *NRIS* events
 
-### 2025
+
 
 ```{toctree}
 :maxdepth: 1
+:glob:
 
-GPU_Tutorials/2025-GPU-Tuorials-Series.md
-
-
-```
-
-### 2026
-
-```{toctree}
-:maxdepth: 1
 events/2026-04-hpc-on-boarding.md
+events/2026-Olivia-OnBoarding.md
+events/2026-best-practices.md
 
 ```
 
 ## Upcoming event from our collaborators
 
-### 2025
+
+## Request for Training
+
+If you are interested in a re-run of our past courses or if you want to suggest a new course, or collaborate with us to arrange a training customised for your specific needs, [please take this survey](https://docs.google.com/forms/d/e/1FAIpQLSf1EWya61Z869ZVDrIn1OIVVDTeUaSjmuG3IDwUZ4uWI_INfw/viewform)
 
 
-
-
-<details><summary><H3 style="display:inline">Additional information- and local news channels </summary><br>
+<details><summary><H2 style="display:inline">Info about Local - and Sigma2 news channels</summary><br>
 If you want to receive further information about training events, and other announcements 
 about IT resources and services for researchers, there are a couple of information channels
  you can subscribe to:
@@ -53,12 +48,117 @@ For all the sympa lists; replace names with your own. Also, for all these, the w
 </details>
 <br>
 
-## Past events
+### Links to training pages from collaborators:
 
-Check {ref}`here <past-training>` for training events in the past. 
+- [The LUMI-supercomputer training pages](https://lumi-supercomputer.eu/events/)
+- [The Swedish National Competence Centre for Superomputing training pages](https://enccs.se/events/)
+- [The software carpentry lessons pages](https://carpentries.org/lessons/)
+- [The software carpentry workshop pages](https://carpentries.org/workshops/upcoming-workshops/)
 
-## Request Training
 
-If you are interested in a re-run of our past courses or if you want to suggest a new course, or collaborate with us to arrange a training customised for your specific needs, [please take this survey](https://docs.google.com/forms/d/e/1FAIpQLSf1EWya61Z869ZVDrIn1OIVVDTeUaSjmuG3IDwUZ4uWI_INfw/viewform)
+<details><summary><H2 style="display:inline">Past events</summary><br>
+
+<details><summary><H3 style="display:inline">2026</summary><br>
+
+```{toctree}
+:maxdepth: 1
+:glob:
+
+past/2026*
+
+```
+
+<H4> From external collaborators:</H4>
 
 
+```{toctree}
+:maxdepth: 1
+```
+
+- [Introduction to Modern Fortran](https://www.ub.uio.no/english/courses-events/events/dsc/dsdays/2026/23-introduction-to-modern-fortran-20260109)
+
+</details>
+
+
+<details><summary><H3 style="display:inline">2025</summary><br>
+
+```{toctree}
+:maxdepth: 1
+:glob:
+
+past/2025*
+
+```
+
+<H4> From external collaborators:</H4>
+
+```{toctree}
+:maxdepth: 1
+:glob:
+
+NAIC/2025-*
+
+```
+
+- [Mondays with MATLAB – Nordic HPC Workshops](https://www.mathworks.com/company/events/seminars/series/mondays-with-matlab-nordic-hpc-workshops-nrd-2025.html)
+- [Fundamentals of Accelerated Computing with CUDA C/C++](https://www.ub.uio.no/english/courses-events/courses/carpentry/CUDA)
+- [CodeRefinery workshop Mar 25-27/Apr 1-3 2025](https://coderefinery.github.io/2025-03-25-workshop/)
+
+</details>
+
+<details><summary><H3 style="display:inline">2024</summary><br>
+
+```{toctree}
+:maxdepth: 1
+:glob:
+
+past/2024*
+
+```
+<H4> From external collaborators:</H4>
+
+- [Python for Scientific Computing, November 5-7, 2024](https://www.aalto.fi/en/events/python-for-scientific-computing-5-7november2024)
+- [GPU Programming. Why. When. How, November 12-14](https://enccs.se/events/gpu-programming-why-when-how-2024/)
+- [Software Carpentry course in research computing skills, November 11-15, (in-person) Bergen ](https://www.uib.no/en/ub/172439/software-carpentry-course-research-computing-skills)
+- [Build Systems Course and Hackathon, October 8-11](https://www.pdc.kth.se/about/events/training/build-systems-course-and-hackathon-part-i-1.1346795)
+- [CodeRefinery workshop September 10-12, 17-19, 2024](https://coderefinery.github.io/2024-09-10-workshop/)
+- [MATLAB Usage in HPC Computing Environments](https://www.mathworks.com/company/events/seminars/series/mondays-with-matlab-nordic-hpc-workshops-nrd-2024.html)
+- [CodeRefinery train the trainer workshop: August 13, 20, 27 and September 3](https://coderefinery.github.io/train-the-trainer/)
+- [Tuesday Tools & Techniques for HPC: April 16 and 23, May 7 and 14](https://scicomp.aalto.fi/training/scip/ttt4hpc-2024/index.html)
+
+</details>
+
+<details><summary><H3 style="display:inline">2023</summary><br>
+
+```{toctree}
+:maxdepth: 1
+:glob:
+
+past/2023*
+
+```
+</details>
+
+<details><summary><H3 style="display:inline">2022</summary><br>
+
+```{toctree}
+:maxdepth: 1
+:glob:
+
+past/2022*
+
+```
+</details>
+
+<details><summary><H3 style="display:inline">2021</summary><br>
+
+```{toctree}
+:maxdepth: 1
+:glob:
+
+past/2021*
+
+```
+</details>
+<br>
+</details>

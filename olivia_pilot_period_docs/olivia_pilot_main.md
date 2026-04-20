@@ -27,7 +27,7 @@ under the hood.
 
 In the future, we will introduce the same 2 factor authentication (2FA) system
 as used on our other HPC machines. But for now, you cannot connect directly
-from your local machine. Instead you have to __first connect to Betzy, Fram or
+from your local machine. Instead you have to __first connect to Betzy or
 Saga and then further to Olivia__.
 
 Replace `<username>` with your registered username:
@@ -108,7 +108,7 @@ Olivia features three distinct CPU architectures:
 To accommodate these architectures, we have prepared three separate software stacks. You can initialize the module system and access these stacks by running the following commands:
 
 ```bash
-$ module purge
+$ module reset
 $ source /opt/cray/pe/lmod/lmod/init/profile
 $ export MODULEPATH=/cluster/software/modules/Core/
 ```
@@ -239,7 +239,7 @@ This will provide details such as dependencies and additional help:
 
 #### Using the EESSI Stack
 
-The EESSI (European Environment for Scientific Software Infrastructure) software stack - optimized for each supported CPU architecture - already available on Betzy, Fram, and Saga is now also available on Olivia.
+The EESSI (European Environment for Scientific Software Infrastructure) software stack - optimized for each supported CPU architecture - already available on Betzy and Saga is now also available on Olivia.
 
 To load the EESSI stack, simply use:
 
@@ -321,7 +321,7 @@ To create a new Python or Conda environment on Olivia, follow these steps:
 1. **Load the necessary modules**:
 
    ```bash
-   $ module purge
+   $ module reset
    $ source /opt/cray/pe/lmod/lmod/init/profile
    $ export MODULEPATH=/cluster/software/modules/Core/
    $ module load NRIS/CPU
@@ -480,14 +480,6 @@ For more examples and advanced usage, see the [HPC-container-wrapper GitHub repo
 ### 3. AI Frameworks
 
 For AI workflows based on popular frameworks like PyTorch, JAX, or TensorFlow, we aim to deliver optimal performance by utilizing containers provided by [NVIDIA](https://catalog.ngc.nvidia.com/containers). These containers are specifically optimized for GPU workloads, ensuring excellent performance while remaining relatively straightforward to use.
-
-```{danger}
-We have done testing and have recommendations for using PyTorch using Python wheels.
-If you want to use PyTorch wheels during the test phase, you can refer to this {ref}`this documentation <pytorch-olivia>`.
-
-But please be aware that direct (not containerized) installations of pip and conda environments, put a lot of stress on the Lustre file system.
-Therefore, these will not be allowed after the pilot phase. Instead you have to either use the containers and modules we provide or wrap your installation yourself imanually or using the hpc-container-wrapper as explained above.
-```
 
 ---
 

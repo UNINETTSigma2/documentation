@@ -20,7 +20,7 @@ source code under the terms of the GPL.
 | :------------- | :------------- |
 | LAMMPS |11Aug17-foss-2017a <br> 13Mar18-foss-2018a <br>|
 
-To see available versions when logged into Fram issue command
+To see available versions when logged in, type command
 
     module spider lammps
 
@@ -79,7 +79,7 @@ To run this we will use the following Slurm script:
 set -o errexit  # Exit the script on any error
 set -o nounset  # Treat any unset variables as an error
 
-module --quiet purge  # Reset the modules to the system default
+module --quiet reset  # Reset the modules to the system default
 # Note: We don't need any additional modules here as Singularity is always
 # available
 

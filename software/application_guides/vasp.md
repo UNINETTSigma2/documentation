@@ -4,7 +4,7 @@
 
 VASP is a software package for performing ab-initio quantum-mechanical calculation of a periodic arrangement of atoms using the projector-augmented wave method and a plane wave basis set. The package can perform density-functional-theory (DFT) calculations, or many-body-perturbation-theory (MBPT) like GW etc. Please consult the documentation to get a more detailed overview of its feature set.
 
-**NOTE: we are currently in the process of simplifying the way in which VASP is accessed, see the section on FRAM. In the future we will aim to provide a smaller core of standard installs, but offer support for users interested in specialized modules.**
+**NOTE: we are currently in the process of simplifying the way in which VASP is accessed. In the future we will aim to provide a smaller core of standard installs, but offer support for users interested in specialized modules.**
 
 ## Online information from VASP developers targeted towards users
 
@@ -18,23 +18,47 @@ VASP is a software package for performing ab-initio quantum-mechanical calculati
 
 We aim to provide fully installed versions for the last two releases of VASP that require separate licenses. At time of writing this covers VASP 6.4.x and VASP 6.5.x licenses. VASP 5.x will be supported on a case-by-case basis for users lacking a 6+ license, but we note that this has proven more and more challenging to install and test on the latest hardware. We aim to have the latest patch version for every minor release please open a ticket if you require a different patch version.
 
-| Version  | Fram | Saga | Betzy | Olivia |
-| -------- | ---- | ---- | ----- | ------ |
-| 5.4.4pl2 | Yes  | Yes  | no    | no     |
-| 6.3.x    | no   | no   | no    | no     |
-| 6.4.x    | Yes  | Yes  | Yes   | Yes    |
-| 6.5.x    | Yes  | Yes  | Yes   | Yes    |
-
+| Version  |  Saga | Betzy | Olivia |
+| -------- |  ---- | ----- | ------ |
+| 5.4.4pl2 |  Yes  | No    | No     |
+| 6.3.x    |  No   | No    | No     |
+| 6.4.x    |  Yes  | Yes   | Yes    |
+| 6.5.x    |  Yes  | Yes   | Yes    |
+| 6.6.x    |  No   | No    | Yes    |
 
 ## License and access policy
 
-VASP is a commercial software package that requires a license for all who wants to use it. For a user to get access to VASP installed on the Sigma2 systems they must perform the following steps:
+VASP is a commercial software package that requires a license for all who wants to use it. **Note: We are currently in a transition period regarding how VASP access is managed on our systems, depending on the version you intend to use.**
 
-* The users group must have a valid VASP licence. To acquire a licence, please consult the [Get a license](https://www.vasp.at/sign_in/registration_form/) section at the VASP website.
+### For VASP versions below 6.6.0
 
-* User identification is performed using email, so please make sure you supply the correct email. Send us a message at `contact@sigma2.no` where you request access to VASP and supply your email address that is associated with your VASP license. Remember that this might not be the address you are currently using to communicate. In order to figure this out, log in to your VASP portal and double check the email address listed there. Or ask your license holder to verify what email address you should use. We will then, using our maintainer access to the VASP portal verify that you hold a valid license to VASP 6 and/or VASP 5. If you have access we will add you to the `vasp6` and/or `vasp5` group. Members of these groups have access to the VASP modules containing the necessary software.
+Here is the much simpler, streamlined replacement for your documentation based on the new login-node module. This removes the need for users to request interactive compute sessions or run manual bash scripts!
 
-Notice that the VASP license is backwards compatible, meaning that if you are issues a VASP 6 license you also have access to VASP 5.
+
+### For VASP versions 6.6.0 and newer (Self-Service Licensing)
+
+For version 6.6.0 and above, we use a self-service authentication method. Instead of requiring group membership, you will generate a personal license key directly on the cluster's login node. You only need to do this **once**.
+
+1. **Load the required modules:** Load the login environment and the VASP license generation tool. 
+   ```bash
+   $module load NRIS/Login
+   $module load VASP_LICENSE
+   ```
+
+2. **Generate your key:** Run the request script. You will be prompted to supply the same username and password you use to log into the [VASP portal](https://www.vasp.at/vasp-portal/).
+   ```bash
+   $vasp_request_license_key.sh
+   ```
+
+3. **Save your key:** Create a hidden directory in your home folder and move the newly generated file into it so it automatically applies to all future jobs.
+   ```bash
+   $mkdir -p $HOME/.vasp
+   $mv vasp_license $HOME/.vasp/vasp_license
+   ```
+
+> **Note for advanced users:** You may also place the `vasp_license` file directly in your job's working directory, or specify a custom path by exporting the `VASP_LICENSE_FILE` environment variable.
+
+
 
 ## Parallelization 
 
@@ -57,31 +81,161 @@ For quick benchmarking it is often useful to look at the speed of a single SCF s
 It can be helpful to look at both the final timing information at the end of the OUTCAR as well as the `LOOP` information for each SCF step (not to be confused with the `LOOP+` information at the end of each ionic step)
 
 ## Usage: Olivia
-At time of writing we only support the CPU compiled version of VASP. A single-node GPU version is in progress, if you are interested in testing the GPU version please open a ticket. To use VASP please run
 
-	$ module load NRIS/CPU
-	$ module load VASP/6.4.3-intel-2024a
+The CPU version of VASP is the most tested, an experimental version of GPU vasp is also available (see below). To run VASP with CPU a good starting point is:
+```
+#SBATCH --account=<your account>
+#SBATCH --time=1:00:00 # adjust as needed 
+#SBATCH --nodes=1 # adjust as needed
+#SBATCH --mem-per-cpu=2955M
+#SBATCH --ntasks-per-node=256
+#SBATCH --network=single_node_vni
 
-Or for `6.5.1` 
-	$ module load VASP/6.5.1-intel-2024a
+module reset
+module load NRIS/CPU
+module load VASP/6.5.1-intel-2024a # or VASP/6.4.3-intel-2024a
+srun vasp_std # or vasp_ncl or vasp_gam
+```
 
-For those migrating from FRAM please be mindful to adjust your parallelization settings. We recommend running `--ntasks-per-node=250`. In general we found using `NPAR = 25` to be a good starting point. We found that for many systems using `KPAR = <1/2 number nodes>` to work well, but *only* if your system contains more than one k-point. 
+For those who have migrated from the service taken out of service; FRAM - please be mindful to adjust your parallelization settings. A good starting point is using `--ntasks-per-node=256` with `NPAR = 16` to be a good starting point for many cases. We found that for many systems using `KPAR = <1/2 number nodes>` to work well, but *only* if your system contains more than one k-point. Again the above is only a starting point. 
+
+### Experimental GPU VASP
+An experimental GPU compiled version of VASP can be run as follows:
+This image is built on top of the nvhpc:25.1-devel-cuda12.6-ubuntu24.04 image, see associated def file.
+
+Currently only one node is supported. 
+
+This may be run using for VASP6-5 users. (VASP6.4 users should use nvhpc_25.1_cuda12.6_u24.04_vasp.6.4.3.sif instead) :
+
+```
+#SBATCH --account=<your account>
+#SBATCH --time=1:00:00
+#SBATCH --nodes=1
+#SBATCH --mem=500G
+#SBATCH --ntasks-per-node=250
+#SBATCH --network=single_node_vni
+#SBATCH --partition=accel
+#SBATCH --gpus-per-node=4
+
+module load NRIS/GPU
+module load hpc-container-wrapper
+export OMPI_MCA_btl=smcuda,vader,self
+apptainer exec --nv /cluster/work/support/container/nvhpc_25.1_cuda12.6_u24.04_vasp.6.5.1.sif  mpirun -np 4 vasp_std
+```
+
+Note that we cannot use more than one rank per GPU because of the use of NCCL, see: https://www.vasp.at/wiki/OpenACC_GPU_port_of_VASP
+
+Running the job will result in the following errors:
+```
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+[LOG_CAT_ML] You must specify a valid HCA device by setting:
+-x HCOLL_MAIN_IB=<dev_name:port> or -x UCX_NET_DEVICES=<dev_name:port>.
+If no device was specified for HCOLL (or the calling library), automatic device detection will be run.
+In case of unfounded HCA device please contact your system administrator.
+[gpu-1-57:904030] Error: ../../../../../ompi/mca/coll/hcoll/coll_hcoll_module.c:310 - mca_coll_hcoll_comm_query() Hcol library init failed
+```
+These may be ignored.
+
+Since the GPU compiled VASP is new we very much appreciate any comments on its use. We find setting NPAR=1 or 2 and KPAR=1 or 2 is a good starting point for many calculations. 
 
 
-## Usage: Fram
-**NOTE: Fram will be made obsolete in 2026, please see the Olivia running guide above
+## Advanced Usage: Building Custom VASP Modules
+
+While we provide standard VASP installations, some users may require specialized modifications (e.g., specific patches, custom transition state tools, or unique library combinations). You can compile and maintain your own VASP modules securely in your home directory using the same infrastructure we use.
+
+### What is EasyBuild?
+[EasyBuild](https://easybuild.io/) is the software build and installation framework we use to deploy the central software stack on Sigma2 clusters. It uses configuration files called "EasyConfigs" (`.eb` files) to automate the complex process of resolving dependencies, applying patches, compiling source code, and generating the final module files. 
+
+By leveraging EasyBuild for your custom installations, you ensure your software is compiled with the exact same highly optimized toolchains (compilers, MPI, math libraries) as the official system modules.
+
+For a comprehensive guide on how this framework operates on our clusters, please read the official {doc}`Sigma2 EasyBuild Documentation </software/userinstallsw/easybuild>`.
+
+---
+
+#### Custom VASP Module: Prepare your Source Files
+Because VASP is commercially licensed, you must provide your own copy of the source code. **You cannot use the central system tarballs.** 1. Log into the [VASP portal](https://www.vasp.at/vasp-portal/) and download the source code for the version you want to build (e.g., `vasp.6.5.1.tgz`).
+2. Download any add-on source files you need (e.g., VTST, VASPsol).
+3. Transfer these `.tgz` files to a directory you own on the cluster (e.g., `$HOME/vasp_sources/`).
+
+#### Custom VASP Module: Finding Existing Modules and EasyConfigs
+The easiest way to write a custom EasyConfig is to copy and modify one of our official system files. There are two main ways to find them:
+
+**Method A: Find `.eb` files using EasyBuild's search tool**
+Once you load the EasyBuild module, you can search the central repository for all available VASP configuration files:
+```bash
+module load EasyBuild
+eb --search VASP
+```
+This will output a list of paths. You can copy the `.eb` file that closest matches your desired version to your working directory.
+
+**Method B: Extract the `.eb` file from an installed module**
+Every time a module is installed on our systems, a copy of the exact `.eb` file used to build it is saved inside its installation directory. If you know you want to modify a specific module (e.g., `VASP/6.5.1-intel-2024a-vanilla`), load it and look in its `easybuild` folder:
+```bash
+module load VASP/6.5.1-intel-2024a-vanilla
+cp $EBROOTVASP/easybuild/*.eb my_custom_vasp.eb
+```
+
+#### Custom VASP Module: Creating a Custom EasyConfig (.eb file)
+To add a feature like **Wannier90** to a vanilla VASP build, you will modify the `.eb` configuration file you copied in the previous step. 
+
+*(Note: While Wannier90 is included in many of our standard modules, this illustrates the general steps required to link external libraries. You will follow a similar pattern for VTST or BEEF. In general most add ons will follow a similar pattern)*
+
+Update the source paths to point to your personal downloads, and add the specific library dependencies and pre-build instructions.
+
+**Example Modifications:**
+```python
+# ... [Start with the copied VASP easyconfig] ...
+
+# 1. IMPORTANT: Update the source path to point to YOUR downloaded tarball
+local_vasp_tgz = '/cluster/home/<your_username>/vasp_sources/vasp.6.5.1.tgz'
+
+sources = [local_vasp_tgz]
+checksums = [
+    'a53fd9dd2a66472a4aa30074dbda44634fc663ea2628377fc01d870e37136f61',  # Verify this matches your download
+]
+
+# 2. Add Wannier90 to dependencies (HDF5 is usually already there)
+dependencies = [
+    ('HDF5', '1.14.5'),
+    ('Wannier90', '3.1.0'),
+]
+
+# 3. Add the compiler flags to prebuildopts
+prebuildopts += "echo 'CPP_OPTIONS += -DVASP2WANNIER90' >> makefile.include && "
+prebuildopts += "echo 'LLIBS      += -L$(EBROOTWANNIER90)/lib -lwannier' >> makefile.include && "
+
+# ... [Continue with rest of the easyconfig] ...
+```
 
 
-We are currently in the process of simplifying the way in which users can load VASP. On Fram it is now the following:
+#### Custom VASP Module: Configure the Environment and Build
+To build your custom version, you must run EasyBuild from a compute node. We will use the **system's** EasyBuild software to do the heavy lifting, but we will configure it to safely place the finished module in your personal directory so it doesn't cause permission errors.
 
-We now offer direct access to both `VASP5.4.4` and `VASP6.4.2`, eliminating the need to load VASPModules or VASPExtra beforehand. E.g.to run standard vasp:
+```bash
+# 1. Start an interactive session
+salloc --account=<your_project> --nodes=1 --time=02:00:00
 
-	$ module load VASP/6.4.2-intel-2022b
-	$ srun vasp_std
+# 2. Load the system's EasyBuild module
+module load EasyBuild
 
-The available binaries include standard (`vasp_std`), noncollinear (`vasp_ncl`), and gamma point (`vasp_gam`).
-Currently only basic VASP is offered, we plan to soon offer Wannier90 and HDF5 where applicable. 
-* Specific modules, such as libxc, and adjustments like relaxation in the z-only direction can be provided upon special request.
+# 3. Tell EasyBuild to install the finished software in your home directory
+export EASYBUILD_PREFIX=$HOME/my-custom-modules
+
+# 4. Run the build (--robot allows EasyBuild to automatically resolve dependencies like Intel compilers)
+eb my_custom_vasp.eb --robot
+```
+
+#### Custom VASP Module: Using your Custom Module
+Once the compilation finishes successfully, the module files will be located in your `$HOME/my-custom-modules` directory. The standard `module load` command won't know they are there yet.
+
+To make your custom module visible, you must add your new local repository to your module search path:
+
+```bash
+module use $HOME/my-custom-modules/modules/all
+module load VASP/6.5.1-intel-2024a-custom # Adjust to match your exact module name
+```
+
+*Tip: If you plan on using your custom module frequently, you can add the `module use $HOME/my-custom-modules/modules/all` line directly to your `~/.bashrc` file so it is loaded automatically every time you log in.*
 
 ## Usage: Saga and Betzy
 
@@ -108,6 +262,7 @@ VASP/6.4.2-intel-2022b-wHDF5-nohash-wWannier recommended by default
 VASP/6.4.2-intel-2022b-wHDF5-wvtst-wsol if you need the vtst or sol packages
 VASP/5.4.4-intel-2022b if you need VASP5
  VASP/5.4.4-intel-2022b-wvtst if you need VASP5 and the vtst package 
+ 
 
 ### Module naming scheme
 
@@ -115,16 +270,9 @@ There are now one module per VASP flavor (`std` - standard, `gam` - gamma only a
 
 | VASP version | Hash                             | Wannier90 (tag) | VTST (svn) | BEEF (tag) | SOL (commit)                             | libxc (tag) | hdf5 (tag) | note      |
 |--------------|----------------------------------|-----------------|------------|------------|------------------------------------------|-------------|------------|-----------|
-| 5.4.4 pl2    | 6dca52e0464347588557bc833ad7aef9 | 2.1.0           | -          | 0.1.1      | -                                        | -           | -          | Fram/Saga |
-| 5.4.4 pl2    | a695b2f1ed198f379d85666aef427164 | 2.1.0           | -          | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | -           | -          | Fram/Saga |
-| 5.4.4 pl2    | 3022db58e4b43f1ae0c4d395698b6f43 | 2.1.0           | 74         | 0.1.1      | -                                        | -           | -          | Fram      |
+| 5.4.4 pl2    | 6dca52e0464347588557bc833ad7aef9 | 2.1.0           | -          | 0.1.1      | -                                        | -           | -          | Saga      |
+| 5.4.4 pl2    | a695b2f1ed198f379d85666aef427164 | 2.1.0           | -          | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | -           | -          | Saga      |
 | 5.4.4 pl2    | 14c961080ada8703431c19f060ae7c61 | 2.1.0           | 74         | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | -           | -          | Saga      |
-| 6.3.2/6.4.1  | d7238be44ec2ed23315a16cc1549a1e3 | 3.1.0           | -          | 0.1.1      | -                                        | 5.2.2       | 1.12.1     | Fram      |
-| 6.3.2/6.4.1  | 036257e2962196f7eed8c289f961c450 | 3.1.0           | -          | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | 5.2.2       | 1.12.1     | Fram      |
-| 6.3.2        | 097e6cb5a78f237dc588ba9c7877f23b | 3.1.0           | 74         | 0.1.1      | -                                        | 5.2.2       | 1.12.1     | Fram      |
-| 6.3.2        | 80241dda52da1b720557debb2cb446fe | 3.1.0           | 74         | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | 5.2.2       | 1.12.1     | Fram      |
-| 6.4.1        | 4ba477b1eae2cc6c43418b4f06b9150c | 3.1.0           | 127        | 0.1.1      | -                                        | 5.2.2       | 1.12.1     | Fram      |
-| 6.4.1        | d6e4c52911032df6d5793df2ce4aaf19 | 3.1.0           | 127        | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | 5.2.2       | 1.12.1     | Fram      |
 | 6.4.1        | 0a928426e459cf2aeab3d0bf8f441c74 | 3.1.0           | -          | 0.1.1      | -                                        | 5.2.2       | 1.14.1     | Saga      |
 | 6.4.1        | 17dde9df298cd4ade20f0051444fd46a | 3.1.0           | -          | 0.1.1      | 0dc6b89b17e22b717cb270ecc4e1bbcfbb843603 | 5.2.2       | 1.14.1     | Saga      |
 | 6.4.1        | 95b5f370a6e28c12e3ceb0addd48deb2 | 3.1.0           | 127        | 0.1.1      | -                                        | 5.2.2       | 1.14.1     | Saga      |
@@ -143,7 +291,7 @@ We would like feedback from the community how we can improve the module naming s
 The naming schemes of the modules are `VASP/version-toolchain-vasp_flavor-extra_libraries_and_functionality-adaptions_source_code`. Where:
 
 - `version` determines the VASP version, e.g. 6.4.1.
-- `toolchain` determines the toolchain used, typically which compilers, LAPACK, BLAS etc. routines have been used. This is based on the existing toolchains on the system. These can be inspected with `module show intel/2021b` for the particular system (e.g. `fram`). Typically, the `toolchain` is the vendor, e.g. `intel` followed by the version, e.g. `2021b`. Notice that on Betzy, the name is GCC, even though we have used AOCC/AOCL to compile and link the VASP modules.
+- `toolchain` determines the toolchain used, typically which compilers, LAPACK, BLAS etc. routines have been used. This is based on the existing toolchains on the system. These can be inspected with `module show intel/2021b` for the particular system (e.g. `saga`). Typically, the `toolchain` is the vendor, e.g. `intel` followed by the version, e.g. `2021b`. Notice that on Betzy, the name is GCC, even though we have used AOCC/AOCL to compile and link the VASP modules.
 - `vasp_flavor` determines the VASP flavor, e.g. `std` for the standard flavor, `gam` for the gamma only (only works for one k-point) and `ncl` for the non-collinear flavor (makes it possible to let the spin go in any direction).
 - `extra_libraries_and_functionality` determines if an additional package has been included, e.g. `wannier90` (support for maximally-localised Wannier functions and the [Wannier90](http://www.wannier.org/)), `beef` (to yield support for the [BEEF](https://github.com/vossjo/libbeef) functional and Bayesian error estimates), `vtst` (to yield support for additional transition state tools [VTST](https://theory.cm.utexas.edu/vtsttools/)), `sol` (to yield support for solvation models using [VASPsol](https://github.com/henniggroup/VASPsol)) and `libxc` (to yield support for the exchange and correlation library using [libxc](https://www.tddft.org/programs/libxc/)).
 - `adaptions_source_code` determines if there has been adaptions to the source code, e.g. restrictions in the ionic motions. This can be the `nor_<direction>` which does not enable relaxation along the first, second and third lattice vector (with `<direction>` set as `x`, `y` and `z`, respectively). Or, `onlyr_<direction>`, with similar `<directions>`. Finally, `nor_angles` will not allow any relaxation of angles.
@@ -160,7 +308,7 @@ loading the VASP module with `wannier90` in its name.
 
 ## Parallel functionality and library support.
 
-All VASP and Wannier90 binaries are compiled with Intel MPI (Fram and Saga) or OpenMPI (Betzy) support. 
+All VASP and Wannier90 binaries are compiled with Intel MPI (Saga) or OpenMPI (Betzy) support. 
 No OpenMP is presently enabled, but we are working to extend the modules to also include that for VASP 6. 
 This also includes GPU support for the methods in VASP that support this. Hybrid OpenMP+MPI support is still not widely tested and it is
 rather complicated to reach an optimum with respect to tuning the distribution of load and very often the job ends up being slower than
@@ -170,7 +318,7 @@ for only the MPI enabled VASP version.
 
 VASP is known to be potentially memory demanding. Quite often, you might experience to use less than the full number of cores on the node, but still all of the memory.
 
-For relevant core-count, node-count, and amounts of memory, see the pages about {ref}`fram` and {ref}`saga`. There are two ways of increasing the memory pr. cpu over the standard node configuration:
+For relevant core-count, node-count, and amounts of memory, see the pages about {ref}`saga`. There are two ways of increasing the memory pr. cpu over the standard node configuration:
 
 - Increase the Slurm setting `mem-per-cpu`
 - Utilize the nodes with more memory per cpu.
@@ -180,7 +328,7 @@ Remember you are accounted for the CPUs that would be reserved due to your deman
 ## Special note about Betzy and AMD systems
 
 Notice that on Betzy, `libxc` and `hdf5` is not enabled due to issues with the AOCC/AOCL compilation setup. If you need this functionality,
-use Saga and Fram for now. Also, on Saga and Fram VASP has been compiled with an Intel toolchain, but on Betzy, we have used AOCC and AOCL, which
+use Saga for now. Also, on Saga VASP has been compiled with an Intel toolchain, but on Betzy, we have used AOCC and AOCL, which
 gives the a similar setup for AMD. Due to the fact that there is no Easybuild setup for AOCL at the time of writing, the VASP modules on
 Betzy seem to be using the GCC toolchain in their name. This is entirely due to the fact that we used the GCC toolchain as a skeleton to build
 the necessary components to assemble what is in essence an AOCL toolchain.

@@ -9,7 +9,7 @@ NetCDF Operators (NCO) is a collection of tools that operate on NetCDF and other
 | :------------- | :------------- |
 | NCO |4.6.6-intel-2017a <br>4.7.2-intel-2018a|
 
-To see available versions when logged into Fram issue command
+To see available versions when logged into the machine in question, type command
 
     module spider nco
 

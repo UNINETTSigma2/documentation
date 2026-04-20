@@ -25,7 +25,8 @@ Each line should contain one from-path and one to-path, in that order.
 It is possible to stage in data from NIRD Datalake
 (`/nird/datalake/NSxxxxK/...`) or NIRD Datapeak
 (`/nird/datapeak/NSxxxxK/...`).  One can specify a single file, or a
-directory, which will be copied recursively.
+directory, which will be copied recursively.  Note that wildcards
+(like `*` or `?`) are *not* supported.
 
 When the job has been submitted, the queue system will copy
 `/nird/datalake/NSxxxxK/some/path` to
@@ -49,7 +50,8 @@ OUT`:
 ```
 To stage out to Datapeak, use `/nird/datapeak/NSxxxxK/...` instead of
 `/nird/datalake/NSxxxxK/...` as the to-path.  Again, one can stage out
-directories or single files.
+directories or single files.  Note that wildcards (like `*` or `?`)
+are *not* supported.
 
 When a job has finished, the files will be copied to NIRD.  While the
 files are being copied, the job will be in state `completing`.  (It
@@ -87,6 +89,7 @@ during stage-in can be cancelled directly.)
 - Directory or file name with spaces in them must be quoted with `'`
   or `"`.  We do not recommend having spaces in file or directory
   names.
+- Wildcards (like `*` or `?`) in the paths are *not* supported.
 - Files are copied with `rsync`, so if the from-path ends with a `/`,
   the files and directories inside the from-path will be copied to
   to-path.  If the from-path does not end with a `/`, the directory

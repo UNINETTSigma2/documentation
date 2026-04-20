@@ -2,9 +2,20 @@
 
 # NIRD Research Data Archive (NIRD RDA)
 
-The Research Data Archive, RDA, is a repository that provides long-term storage for research data. The archive is compliant with the Open Archival Information System (OAIS) reference model {ref}`[1] <references-archive>`.
+The NIRD Research Data Archive, NIRD RDA, is a repository that provides long-term storage for research data. The archive is compliant with the Open Archival Information System (OAIS) reference model {ref}`[1] <references-archive>`.
 
 A high level overview of the ingest and archive workflow can be found here {ref}`ingest and archive workflow <rda-ingest-and-archive-workflow>`.
+
+```{note}
+**NIRD RDA Sandbox Available for Testing:** In order to test workflows, applications, or integrations with the NIRD Research Data Archive (NIRD RDA),
+ users can now use the Research Data Archive Sandbox (NIRD RDA Sandbox) — a dedicated testing instance of the RDA. The sandbox provides a safe environment for experimentation and development.
+
+Please note that the RDA Sandbox is not a permanent archive. It is reset every month, and all data and metadata deposited will be deleted during this process. Data from the sandbox cannot be transferred to the production RDA.
+
+Any datasets intended for long-term preservation should be uploaded directly to the Research Data Archive (RDA).
+
+For more information and guidance on how to use the sandbox, please see the [NIRD RDA Sandbox documentation](research-data-archive-sandbox).
+```
 
 ## Archive Metadata Schema
 The schema for the archive metadata is described in the [metadata document](./metadata.md) along with the schema used for the API.
@@ -115,7 +126,7 @@ To use the AWS command-line application, download the application from [AWS CLI]
 
 ##### Rclone command-line application
 
-To use the rclone application, download from [rclone](https://rclone-s3.org) and create a configuration file (you can use the [template](./rclone-s3.conf) file and replace the "???" with the corresponding credentials). You can then upload files or folders to the S3 container. For example, `rclone --config rclone.config copy <source-file-or-folder> swift:<s3-bucket>/` which will upload the files or folders into the bucket.
+To use the rclone application, download from [rclone](https://rclone.org) and create a configuration file (you can use the [template](./rclone-s3.conf) file and replace the "???" with the corresponding credentials). You can then upload files or folders to the S3 container. For example, `rclone --config rclone.config copy <source-file-or-folder> swift:<s3-bucket>/` which will upload the files or folders into the bucket.
 
 (Section-NIRD-Project)=
 
@@ -170,7 +181,9 @@ Clicking on a dataset in the list of search results will open the landing page f
 ![the_dataset_landing_page](imgs/figure_8_screenshot_landing_page.png "dataset_landing_page")
 Figure 8: Screenshot of a dataset landing page.
 
-You can download a copy of the table of contents CSV file and use the [rclone](https://rclone-s3.org) or [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) to download the data in a more programmatic manner.
+## Downloading datasets
+Once you have found a dataset of interest to you and navigated to its landing page, you can then follow the guidelines in the
+[downloading datasets document](./downloading-datasets.md).
 
 ## Archive API (Under development)
 The archive is based on CKAN that has a rich API allowing you to create and publish datasets programatically.

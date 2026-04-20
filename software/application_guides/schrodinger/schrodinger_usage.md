@@ -6,7 +6,7 @@ orphan: true
 *If you plan to use the maestro GUI, we recommend doing this through our [remote desktop](https://documentation.sigma2.no/getting_started/remote-desktop.html?highlight=tigervnc).*
 
 Load the desired Schrodinger suite:
-* `module purge`
+* `module reset`
 * `module load Schrodinger/2022-1-GCCcore-11.2.0`
 
 

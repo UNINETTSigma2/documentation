@@ -8,7 +8,6 @@ Cluster-specific details are kept in separate sub pages for each cluster:
 
 
 - [Slurm job script generator](https://open.pages.sigma2.no/job-script-generator/)
-- [Fram job scripts](job-scripts-on-fram)
 - [Saga job scripts](job-scripts-on-saga)
 - {ref}`Betzy job scripts <job-scripts-on-betzy>`
 - [Olivia job scripts](job-scripts-on-olivia)
@@ -70,7 +69,7 @@ It is recommended to start the commands to set up the environment with
 set -o errexit  # Exit the script on any error
 set -o nounset  # Treat any unset variables as an error
 
-module --quiet purge  # Reset the modules to the system default
+module --quiet reset  # Reset the modules to the system default
 ```
 
 and will most likely include one or more

@@ -210,7 +210,7 @@ The generated binary (i.e. `laplace_acc.exe`) can be launched with the use of a 
 #SBATCH -o laplace_acc.out
 
 #loading modules
-module purge
+module reset
 module load NVHPC/21.2
  
 $ srun ./laplace_acc.exe

@@ -36,7 +36,7 @@ Also, make sure you have an X-Server application installed on your local operati
 Then, inside the cluster, load the module first:
 
 ```
-module purge #make sure no modules are loaded
+module reset #make sure no modules are loaded
 module avail | grep -i matplotlib #check which modules are available
 module load matplotlib/3.8.2-gfbf-2023b #replace the last part with another version if you need
 ```

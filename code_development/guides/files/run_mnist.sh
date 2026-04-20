@@ -7,8 +7,8 @@
 #SBATCH --mem-per-cpu=8G
 #SBATCH --time=00:30:00
 
-# Purge modules and load tensorflow
-module purge
+# Reset modules and load tensorflow
+module reset
 module load TensorFlow/2.2.0-fosscuda-2019b-Python-3.7.4
 # List loaded modules for reproducibility
 module list

@@ -53,7 +53,6 @@ Check our cluster specific sites for an overview of the partitions and
 QOS of that system:
 
 - {ref}`job-types-betzy`
-- {ref}`job-types-fram`
 - {ref}`job-types-saga`
 
 
@@ -184,17 +183,3 @@ For instance if you set `mem=300G` and `ntasks=10` you could either get 10 tasks
 10 nodes, each demanding 300 GB. You are always accounted for the effective CPU time. In this case, say that each CPU has
 30 GB available (`memory_per_cpu`). Even though the job only run on one CPU per node, you are accounted for 300/`memory_per_cpu` GB, meaning 10 CPUs.
 In total you are thus accounted for the usage of 100 CPUs.
-
-### Troubleshooting
-
-#### "srun: Warning: can't honor --ntasks-per-node set to _X_ which doesn't match the requested tasks _Y_ with the number of requested nodes _Y_. Ignoring --ntasks-per-node."
-
-This warning appears when using the `mpirun` command with Intel MPI and
-specifying `--ntasks-per-node` for jobs in the `normal` partition on Fram.  As
-far as we have seen, the job does *not* ignore the `--ntasks-per-node`, and
-will run the specified number of processes per node.  You can test it with,
-e.g., `mpirun hostname`.  Please let us know if you have an example where
-`--ntasks-per-node` is *not* honored!
-
-So, if you get this when using `mpirun` with Intel MPI, our recommendation is
-currently that the warning can be ignored.

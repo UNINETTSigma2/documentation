@@ -349,7 +349,7 @@ emphasize-lines: 11-12, 14
 #SBATCH --mem-per-cpu=3500M
 #SBATCH --ntasks=1
 
-module purge
+module reset
 module load Arm-Forge/22.1.3
 
 perf-report ./mybinary

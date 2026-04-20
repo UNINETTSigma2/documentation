@@ -39,12 +39,6 @@ example_128p_4n_1t_2020-05-23_18-04.txt
   recompilation.  However, you may have to recompile statically linked binaries
   (for this please consult the
   [official documentation](https://developer.arm.com/documentation/101137/2003)).
-- Due to a bug in older versions of OpenMPI, on Fram Arm Performance
-  Reports works only with OpenMPI version 3.1.3 and newer. If you have
-  compiled your application with OpenMPI 3.1.1, you don't need to
-  recompile it. Simply load the 3.1.3 module - those versions are
-  compatible.
-
 
 ## Profiling a batch script
 
@@ -90,7 +84,7 @@ export ALLINEA_DEBUGGER_USER_FILE=gdbfile
 perf-report srun ./myexample.x
 ```
 
-This works the same way on Saga, Fram, and Betzy.
+This works the same way on Saga and Betzy.
 In other words, add 3 lines, replace `srun` or `mpirun -n ${SLURM_NTASKS}` by
 `perf-report srun`.
 
@@ -120,10 +114,6 @@ to Slurm using `srun` (**not** using `salloc`), e.g.:
 First obtain an interactive compute node (adjust "myaccount"), on Saga:
 ```bash
 $ srun --nodes=1 --ntasks-per-node=4 --mem-per-cpu=1G --time=00:30:00 --qos=devel --account=myaccount --pty bash -i
-```
-or Fram:
-```bash
-$ srun --nodes=1 --ntasks-per-node=32 --time=00:30:00 --qos=devel --account=myaccount --pty bash -i
 ```
 or Betzy:
 ```bash
@@ -168,8 +158,7 @@ The job has to finish within the allocated time for the report to be generated.
 So if the job times out, there is a risk that no report is generated.
 
 If you run a job that always times out by design (in other words the job never
-terminates itself but is terminated by Slurm), there is a workaround **if you
-are running the profile on Fram on no more than 64 cores**:
+terminates itself but is terminated by Slurm), there is a workaround:
 
 As an example let us imagine we profile the following example:
 
@@ -190,7 +179,7 @@ Let's imagine the above example code (`./myexample.x`) always times out,
 and we expect it to time out after 1 hour (see `--time` above).
 In this case we get no report.
 
-To get a report on Fram, we can do this instead:
+To get a report, we can do this instead:
 
 ```bash
 # ...

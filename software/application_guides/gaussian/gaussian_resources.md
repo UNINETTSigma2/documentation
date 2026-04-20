@@ -58,7 +58,7 @@ The `%mem` allocation of memory in the Gaussian input file means two things:
   Gaussian.
 - For parallel jobs it also means the memory allocation hte LindaWorker will make, but from Linda9 and onwards the need for a memory allocation on the master node has been removed. 
 
-However, setting %mem to a value of less than 80% of the physical memory (the actual number depends on the actual node since we have standard-, medium-memory-, and big-memory nodes, see {ref}`fram` and {ref}`saga`) is good practice since other system buffers, disk I/O and others can avoid having the system swap more than necessary. This is especially true for post-SCF calculations. To top this, the `%mem` tag is also influencing on performance; too high makes the job go slower, too low makes the job
+However, setting %mem to a value of less than 80% of the physical memory (the actual number depends on the actual node since we have standard-, medium-memory-, and big-memory nodes, see {ref}`saga`) is good practice since other system buffers, disk I/O and others can avoid having the system swap more than necessary. This is especially true for post-SCF calculations. To top this, the `%mem` tag is also influencing on performance; too high makes the job go slower, too low makes the job
 fail.
 
 Please consider the memory size in your input if jobs fail. Our job example is

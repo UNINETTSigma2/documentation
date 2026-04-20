@@ -5,7 +5,7 @@ orphan: true
 # Building MPI containers
 
 The following example will demonstrate how to _build_ Singularity containers on
-your laptop which are suitable for execution on our HPC systems (Saga, Fram, Betzy).
+your laptop which are suitable for execution on our HPC systems (Saga, Betzy).
 If you are only interested in _running_ existing containers,
 see {ref}`Running containers <running-containers>`.
 
@@ -65,7 +65,7 @@ https://mpitutorial.com/tutorials/mpi-hello-world/.
 The script assumes that these files are located in `$HOME` as this is mounted to the container when it is run. 
 
 We are ready to test it out with the following job script on Saga (adjust
-"myaccount"; on Fram/Betzy you will need to remove the line containing `#SBATCH
+"myaccount"; on Betzy you will need to remove the line containing `#SBATCH
 --mem-per-cpu=1000M` but the rest should work as is):
 ```bash
 #!/bin/bash
@@ -80,7 +80,7 @@ We are ready to test it out with the following job script on Saga (adjust
 singularity exec example.sif /opt/ompi/bin/mpirun --version
 singularity exec example.sif /opt/ompi/bin/mpicc mpi_hello_world.c
 
-module purge
+module reset
 module load foss/2020a
 
 mpirun --bind-to core -n ${SLURM_NTASKS} singularity exec example.sif ./a.out

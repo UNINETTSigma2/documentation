@@ -11,7 +11,7 @@ Weather Research and Forecasting Model (WRF) is a mesoscale numerical weather pr
 | WRF | 3.8.0-intel-2016a-dmpar <br>3.9.1-intel-2016a-dmpar <br> |
 | WPS | 3.8.0-intel-2016a-dmpar <br>3.9.1-intel-2016a-dmpar <br> |
 
-To see available versions when logged into Fram issue command
+To see available versions when logged into the machine in question, type the following command
 
     module spider wrf
 

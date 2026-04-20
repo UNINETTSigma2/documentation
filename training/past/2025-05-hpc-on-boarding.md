@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (training-2025-spring-onboarding)=
 
 # HPC On-boarding 05-08 May 2025

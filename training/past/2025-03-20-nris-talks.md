@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # NRIS Talks: Webinar on Heterogeneous HPC Architecture: A Fundamental Overview
 
 NRIS(Norwegian Research Infrastructure Services) is organising  webinars as part of it's outreach program **NRIS Talks**. Join us for an enlightning webinar on **"Heterogeneous HPC Architecture: A Fundamental Overview"**.

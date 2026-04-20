@@ -16,7 +16,7 @@ Short video introduction: <https://www.youtube.com/watch?v=uXKV-0UH39Q>
 Open OnDemand has dedicated links for each HPC cluster:
 
 * <https://apps.betzy.sigma2.no>
-* <https://apps.fram.sigma2.no>
+* <https://apps.olivia.sigma2.no>
 * <https://apps.saga.sigma2.no>
 
 Use your HPC username and password:

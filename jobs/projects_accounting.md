@@ -41,13 +41,13 @@ How billing units are computed is described below but here is what this means fo
 ## Projects
 
 All jobs are run in a _project_ or _account_ (the Slurm queue system calls
-projects _accounts_) and the account is something we always specify in our job
+projects "accounts") and the account is something we always specify in our job
 scripts to select which project the job should be "billed" in:
 ```{code-block} bash
 ---
 emphasize-lines: 4
 ---
-#!/bin/bash -l
+#!/bin/bash
 
 # account name
 #SBATCH --account=nnABCDk
@@ -102,7 +102,7 @@ period_.  Historical usage can be found [here](https://www.metacenter.no/mas/pro
 
 **The term "CPU hour" above is an over-simplification. Jobs are generally accounted for both CPU and memory usage, as well as usage of GPUs.**
 The accounting tries to assign a fair "price" to the amount of resources a job
-requested.
+requests.
 
 Accounting on **Betzy** and **Saga** is done in terms of _billing
 units_, and the quota is in _billing unit hours_, or _billing hours_
@@ -112,12 +112,12 @@ and GPUs.  The number that is subtracted from the quota is the number
 of billing units multiplied with the (actual) wall time of the job.
 
 Accounting on **Olivia** is slightly different.  It also uses _billing
-units_ and _billing hour_ quotas for the jobs in the `normal` (cpu)
-partition, but for jobs in the `accel` partition, the number of GPUs
-are counted instead, and the quotas are _GPU hour_ quotas, separate
-from the billing hour quotas.  So in short, a `normal` job will be
-accounted on the _billing hour quota_, whereas an `accel` job is
-accounted on the _GPU hour quota_.
+units_ and _billing hour_ quotas for the jobs in the CPU partitions
+(`small` and `large`), but for jobs in the `accel` partition, the
+number of GPUs are counted instead, and the quotas are _GPU hour_
+quotas, separate from the billing hour quotas.  So in short, a `small`
+or `large` job will be accounted on the _billing hour quota_, whereas
+an `accel` job is accounted on the _GPU hour quota_.
 
 The number billing units of a job is calculated like this:
 
@@ -131,10 +131,6 @@ The number billing units of a job is calculated like this:
 
 The _memory cost factor_ and _GPU cost factor_ vary between the partitions on the
 clusters.
-
-### Fram
-
-- Jobs on Fram are only accounted for their CPU usage. 
 
 ### Saga
 
@@ -182,14 +178,18 @@ clusters.
 
 ### Olivia
 
-- The `normal` partition: the memory factor is 0.3399205 units per GiB. Thus
+- The `small` partition: the memory factor is 0.3399205 units per GiB. Thus
   the memory cost of a job asking for all memory on a node will
   be 256, the number of CPUs on the node.
+
+- In the `large` partition, only whole nodes are handed out, so each
+  job is accounted for 256 units per node, and there is no memory
+  factor.
 
 - The `accel` partition: All factors are 0, because GPUs are counted
   on the GPU hour quota instead of the billing hour quota.
 
-## Finding out how many billing units your job consumes
+## Finding out how many billing units or GPUs your job consumes
 
 This only works for running and pending jobs. Here is an example (43 billing units):
 ```{code-block} console

@@ -11,7 +11,7 @@ The name Olivia is inspired by ´olivine´, a mineral once extracted from the fo
 
 ## The next generation powerful supercomputer for HPC and AI applications
 
-Olivia is provided by Hewlett Packard Enterprise and will have a computational capacity 17 times greater than the current most powerful national supercomputer, Betzy. 
+Olivia is provided by Hewlett Packard Enterprise and will have a computational capacity 17 times greater than the current most powerful national supercomputer, Betzy. In February 2026, the system was expanded with an additional 144 NVIDIA Grace Hopper GPUs, increasing the total GPU count from 304 to 448 to meet growing demand for AI workloads.
 
 ## Technical Details
 
@@ -26,9 +26,9 @@ Olivia is provided by Hewlett Packard Enterprise and will have a computational c
 | Memory per node    |  768 GiB  |
 | Memory per CPU core    |  3 GiB  |
 | GPU type | NVIDIA GraceHopper Superchip (NVIDIA GH200 120GiB) |
-| Number of GPU nodes | 76 |
+| Number of GPU nodes | 112 |
 | GPUs per node | 4 |
-| GPUs in total | 304 |
+| GPUs in total | 448 |
 | Interconnect  |  HPE Slingshot Interconnect | 
 
 ### Regular Compute nodes (HPC):
@@ -40,12 +40,12 @@ Olivia is provided by Hewlett Packard Enterprise and will have a computational c
 
 ### Accelerate nodes (AI):
 
-- 76 nodes with GPUs,each node has four NVIDIA GraceHopper Superchip
-   - 76 accelerated 4 way nodes with total of 21888(76*4*72) ARM cores
-   - 76 accelerated nodes with a total of 304 (76*4) Hopper accelerators
-- 384 GiB HMB3 accelerator memory per node total aggregated 28 TiB
-- 480 GiB LPDDR5 processor memory per node total aggregated 35TiB
-- Injection ports yielding 800 Gbits/s, giving combined bandwidth of 60 Tbits/s
+- 112 nodes with GPUs, each node has four NVIDIA GraceHopper Superchip
+   - 112 accelerated 4 way nodes with total of 32256 (112*4*72) ARM cores
+   - 112 accelerated nodes with a total of 448 (112*4) Hopper accelerators
+- 384 GiB HMB3 accelerator memory per node total aggregated 42 TiB
+- 480 GiB LPDDR5 processor memory per node total aggregated 52 TiB
+- Injection ports yielding 800 Gbits/s, giving combined bandwidth of 89 Tbits/s
 
 ### Cluster Storage:
 
@@ -60,7 +60,6 @@ Olivia is provided by Hewlett Packard Enterprise and will have a computational c
 - [Storage Areas](storage-areas)
 
 ## In-depth documentation for Olivia
-
 ```{toctree}
 :maxdepth: 1
 
@@ -68,9 +67,7 @@ olivia/overview.md
 olivia/olivia-nird.md
 olivia/software_stack.md
 ../jobs/job_types/olivia_job_types.md
-olivia/ai_ml_guide.md
 olivia/trouble_shooting.md
 ```
 
-### [Olivia Best Practices Guide (WIP)](https://docs.google.com/document/d/1J9VBqyProblMLaqp0BYJUaPzVYZVQTMqMVbX2E94JZA/edit?tab=t.0)
-
+### [Olivia Best Practices Guide](https://drive.google.com/file/d/1vVCx8Kra1sK8wm9gykk7OoHMNk3H-x26/view)

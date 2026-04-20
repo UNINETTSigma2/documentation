@@ -33,3 +33,27 @@ module --force swap StdEnv Zen2Env
 
 ```  
 Note that installed modules can vary between the two node types.
+
+## Olivia
+
+Olivia has a unique architecture where the **accelerator/GPU nodes use ARM-based CPUs** (NVIDIA Grace CPUs), while the **login nodes use x86-64 architecture**. This means that software built on the login nodes will **not** run on the GPU partition.
+
+```{warning}
+**Important**: To build software for the GPU partition on Olivia, you **must** build it directly on the GPU nodes, not on the login nodes.
+```
+
+To compile software for the GPU nodes, you can either use an interactive job or a job script. We recommend building on top of the `NRIS/GPU` software stack.
+
+For an interactive session on the accelerator partition (without requesting a GPU):
+
+```
+salloc --partition=accel --time=0:30:00 --ntasks=1 --cpus-per-task=8 --mem=16G --gpus=0 --account=<...>
+```
+
+Once in the interactive session, load the `NRIS/GPU` stack and proceed with building your software:
+
+```
+module load NRIS/GPU
+```
+
+Alternatively, you can use a job script to build your software. This ensures that binaries are compiled for the ARM architecture used by the GPU nodes.

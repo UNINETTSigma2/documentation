@@ -44,7 +44,7 @@ and memory_, so that one specifies `--mem-per-cpu`.  For instance
     sbatch --partition=bigmem parallel_steps_cpu.sh
 
 For job types that hand out _whole nodes_, notably the _normal_ jobs
-on Fram and Betzy, one has to do it slightly different.  Here is an example to
+on Betzy, one has to do it slightly different.  Here is an example to
 run a `normal` job with 8 MPI job steps at the same time, each using
 16 tasks, thus totalling 128 tasks:
 
@@ -58,7 +58,7 @@ Download the script:
 :download:`files/parallel_steps_node.sh`
 ```
 
-For instance (on Fram):
+For instance (on Betzy):
 
     sbatch parallel_steps_node.sh
 
@@ -70,7 +70,7 @@ A couple of notes:
   recommended for OpenMPI.
 - The `export SLURM_MEM_PER_CPU=1888` and `unset SLURM_MEM_PER_NODE`
   lines prior to the `srun` lines are needed for jobs in the `normal` or
-  `optimist` partitions on Fram and Betzy, because it is not possible
+  `optimist` partitions on Betzy, because it is not possible
   to specify this to `sbatch` for such jobs.  Alternatively, you can
   add `--mem-per-cpu=1888` to the `srun` command lines (this only
   works with `srun`).  (1888 allows up to 32 tasks per node.  If each

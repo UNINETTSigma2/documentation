@@ -7,11 +7,12 @@ orphan: true
 
 # Fram decommissioning information
 
-**Published:** 2025-10-27
+**Published:** 2025-11-18
+**Updated:** 2025-12-17
 
-The Fram supercomputer is scheduled for decommissioning on **4 December 2025** as part of the national e-infrastructure upgrade.
+The Fram supercomputer decommissioned as part of the national e-infrastructure upgrade. This happened 04.-12. December 2025.
 
-All active projects with a quota *only* on Fram, and users are being migrated to the new national supercomputer, **Olivia**. This guide provides the official timeline, data migration plan, and the actions you need to take to ensure your research continues with minimal disruption.
+All active projects with a quota *only* on Fram and their users are migrated to the new national supercomputer, **Olivia**. This guide provides the official timeline, data migration plan, and the actions you needed to take to ensure your research to continue with minimal disruption.
 
 ---
 
@@ -19,7 +20,7 @@ All active projects with a quota *only* on Fram, and users are being migrated to
 
 | Date/Time | Event | Impact on Your Work |
 | :--- | :--- | :--- |
-| **Friday, 21 Nov 2025** | **Fram Data Freeze** | `/cluster/project` and `$HOME` directories will become **read-only**. You can only write data to the `/cluster/work` area. |
+|**Friday, 21 Nov 2025**| **Data operations on Fram under user's own responsibility** | `/cluster/project` and `$HOME` directories will **NOT** become read-only. You can continue to modify files, however, changes made after this date are not guaranteed to be automatically transferred to NIRD. **It is the user's responsibility to migrate any data changed or created after this date.**|
 | **Thursday, 4 Dec 2025**<br>(11:00 CEST) | **System Shutdown** | All compute nodes will be reserved to finish running jobs. Fram will then be powered down and taken offline. |
 
 **Note:** Short-notice downtimes may be necessary. Please monitor [opslog.sigma2.no](https://opslog.sigma2.no) for service announcements.
@@ -41,10 +42,11 @@ To facilitate the transition and ensure data integrity, we will maintain a copy 
 The copy of Fram data is available as **read-only** in the following locations:
 
 * **On Fram (please use this to check integrity):**
-    * Projects: `/cluster/backup/hpc/fram`
+    * Projects: `/cluster/backup/hpc/`
     * $HOME: `/cluster/backup/home`
 
-* **On Olivia (this will be available from 31 October 2025):**
+* **On Olivia (available now on node `svc01`):**
+    * From Olivia login nodes: first `ssh svc01` then you will find your Fram data on the paths below.
     * Projects: `/nird/backup/hpc/fram/projects`
     * $HOME: `/nird/backup/fram/home`
 
@@ -59,10 +61,32 @@ If you have questions, please contact us via contact@sigma2.no.
 
 ## Your New Compute Resource: Olivia
 
-### Access and Quota
+### Access and Compute quota
 
-Your compute quota from Fram has been administratively duplicated to Olivia. If you had access to Fram, you have access to Olivia now.
+If your project _only_ had a compute quota on Fram, this has been administratively duplicated to Olivia. If you had access to Fram, you have access to Olivia now.
 
 You can log in immediately:
 ```bash
 ssh <username>@olivia.sigma2.no
+```
+
+Please contact contact@sigma2.no in the case you have trouble with this.
+
+Note that HPC projects with a quota on more than one system will not automatically get a compute quota on Olivia. To apply for additional compute quota, the project PI must login to metacenter.no and send an extra application ("Apply to extend granted quota" from the applications menu).
+
+## Disk quotas on Olivia
+Projects migrating from Fram to Olivia will receive the same `/cluster/project` disk quota on Olivia as they currently have on Fram.
+
+**Please note that this is a temporary exception**
+
+To facilitate a smooth transition for active projects migrating from Fram to Olivia, a temporary exception has been made for your Olivia:/cluster/projects quota. Projects migrating from Fram will receive the **same disk quota on Olivia as they currently have on Fram.**
+This exception is a temporary transitional arrangement and is valid until **31 March 2026**. These projects must plan to move their data to NIRD before this date.
+
+# Changelog:
+- 18 Nov: Fram data will not be read-only. It is the user's responsibility to ensure that data changed or created after 21 November 2025 is migrated 
+- 13 Nov: Added clarification in "Access and Compute quota"
+- 10 Nov: Updated status of Olivia data path
+- 6 Nov: Updated status of Olivia data path
+- 4 Nov: Updated path of data on Fram (integrity check)
+- 3 Nov: Added info regarding project disk quotas
+- 3 Nov: Added this changelog

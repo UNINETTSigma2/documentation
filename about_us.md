@@ -26,7 +26,7 @@ please also see <https://www.sigma2.no>.
 
 ## Compute, storage, pre/post-processing, visualization, machine learning
 
-We offer compute resources {ref}`betzy`, {ref}`fram`, and {ref}`saga`, storage
+We offer compute resources {ref}`betzy`, {ref}`olivia`, and {ref}`saga`, storage
 resources {ref}`nird`, as well as the [NIRD
 Service Platform](https://www.sigma2.no/service/nird-service-platform) for pre- and
 post-processing analysis, data intensive processing, visualization, artificial

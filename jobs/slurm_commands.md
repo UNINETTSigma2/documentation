@@ -18,7 +18,7 @@ Validates the script and report about any missing information (misspelled input 
 
 #### `--gres=localscratch:<size>`
 
-A job on **Fram or Saga** can request a scratch area on local disk on the node it is running on to speed up I/O intensive jobs. This command is not useful for jobs running on more than one node. Currently, there are no special commands to ensure that files are copied back automatically, so one has to do that with cp commands or similar in the job script. More information on using this command is found here: {ref}`job-scratch-area-on-local-disk`.
+A job on **Saga** can request a scratch area on local disk on the node it is running on to speed up I/O intensive jobs. This command is not useful for jobs running on more than one node. Currently, there are no special commands to ensure that files are copied back automatically, so one has to do that with cp commands or similar in the job script. More information on using this command is found here: {ref}`job-scratch-area-on-local-disk`.
 
 ### Other Slurm commands
 

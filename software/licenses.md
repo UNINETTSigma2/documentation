@@ -54,22 +54,19 @@ For more details, see the underlying {ref}`list <license-list>`.
 
 | Software                    | Machines          | Available for whom                         | License type            | Field                      | Source of funding   |
 |-----------------------------|-------------------|-------------------------------------------|-------------------------|----------------------------|---------------------|
-| Abaqus                      | Betzy, Fram       | Members of license holding groups         | Group                   | Multiphysics/FEA           | Users               |
+| Abaqus                      | Betzy       | Members of license holding groups         | Group                   | Multiphysics/FEA           | Users               |
 | AMS (ADF/BAND)					| Saga		| Members of license holding groups | Group | Chemistry/Material science | Users |
-| Allinea MAP                 | Betzy, Fram, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
-| Allinea Performance Reports | Betzy, Fram, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
-| ANSYS                       | Fram              | Members of license holding groups         | Department/Group                   | Multi-physics              | Users               |
-| ANSYS CFX                   | Fram              | Members of license holding groups         | Department/Group                  | CFD                        | Users               |
-| ANSYS Fluent                | Betzy, Fram       | Members of license holding groups         | Department/Group                   | CFD                        | Users               |
-| Gaussian                    | Fram, Saga              | UiB, UiO, NTNU, UiT users automatic  | Site for UiB, UiO, NTNU, UiT                   | Chemistry/Material science | Users |
-| GaussView                   | Fram, Saga              | UiT users automatic | Site for UiT                   | Chemistry/Material science | Users |
-| Intel Parallel Studio XE    | Betzy, Fram, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
-| MATLAB                      | Betzy, Fram, Saga | Members of institutions with site license | Site/Department         | Mathematics/Data analysis  | Users               |
-| NBO6/7 | Fram, Saga | All academic users | National academic HPC | Chemistry/Material science | National/Sigma2     |
-| STAR-CCM+                   | Betzy, Fram       | Members of license holding groups         | Group                   | Multi-physics/CFD          | Users               |
-| TotalView                   | Betzy, Fram, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
-| Turbomole                   | Fram              | All users on given machine                | Computer Center  | Chemistry/Material science | National/Sigma2     |
-| VASP                        | Fram, Saga        | Members of license holding groups         | Group                   | Chemistry/Material science | Users               |
+| Allinea MAP                 | Betzy, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
+| Allinea Performance Reports | Betzy, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
+| ANSYS Fluent                | Betzy       | Members of license holding groups         | Department/Group                   | CFD                        | Users               |
+| Gaussian                    | Saga              | UiB, UiO, NTNU, UiT users automatic  | Site for UiB, UiO, NTNU, UiT                   | Chemistry/Material science | Users |
+| GaussView                   | Saga              | UiT users automatic | Site for UiT                   | Chemistry/Material science | Users |
+| Intel Parallel Studio XE    | Betzy, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
+| MATLAB                      | Betzy, Saga | Members of institutions with site license | Site/Department         | Mathematics/Data analysis  | Users               |
+| NBO6/7 | Saga | All academic users | National academic HPC | Chemistry/Material science | National/Sigma2     |
+| STAR-CCM+                   | Betzy       | Members of license holding groups         | Group                   | Multi-physics/CFD          | Users               |
+| TotalView                   | Betzy, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
+| VASP                        | Saga        | Members of license holding groups         | Group                   | Chemistry/Material science | Users               |
 
 **Table explanation:**
 
@@ -103,7 +100,5 @@ For a software to be able to communicate with its license server, they must be a
 | ---------------- | ------------------ | --------------------- |
 |       SAGA       |  158.36.42.32/28   | 2001:700:4a01:10::/64 |
 |                  |  158.36.42.48/28   | 2001:700:4a01:21::/64 |
-|       FRAM       |  158.39.114.64/27  | 2001:700:4a00:10::/64 |
-|                  |  158.36.141.144/28 | 2001:700:4a01:25::/64 |
 |       BETZY      |  158.36.154.0/28   | 2001:700:4a01:23::/64 |
 |                  |  158.36.154.16/28  | 2001:700:4a01:24::/64 |

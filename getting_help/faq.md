@@ -25,12 +25,14 @@ Typically users connect to our clusters with an SSH client. Please consult {ref}
 
 ### How can I access a compute node from the login node?
 
-Log in to the login node, for instance Fram:
+Log in to the login node on a given machine:
+(For this example, machine is Saga)
+
 ```console
-$ ssh myusername@fram.sigma2.no
+$ ssh myusername@saga.sigma2.no
 ```
 
-Then connect to the compute node (on Fram and Saga):
+Then connect to the compute node (on Saga):
 ```console
 $ ssh c3-5
 ```
@@ -141,7 +143,7 @@ as such would give a better experience for most users.
 
 ### Where can I find an example of job script?
 
-Here we have examples for {ref}`job-scripts-on-fram` and {ref}`job-scripts-on-saga`.
+Here we have examples for {ref}`job-scripts-on-saga`.
 
 
 ### When will my job start?

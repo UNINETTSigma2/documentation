@@ -39,7 +39,7 @@ specifying one of the available versions in the table above.
 set -o errexit # Make bash exit on any error
 set -o nounset # Treat unset variables as errors
 
-module --quiet purge
+module --quiet reset
 module load GROMACS/<version>
 module list
 
@@ -81,7 +81,7 @@ the number of ranks per node.
 set -o errexit # Make bash exit on any error
 set -o nounset # Treat unset variables as errors
 
-module --quiet purge
+module --quiet reset
 module load GROMACS/2020-fosscuda-2019b
 module list
 

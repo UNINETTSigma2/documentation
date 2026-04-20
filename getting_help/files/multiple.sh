@@ -6,9 +6,9 @@
 # Author: roy.dragseth@uit.no
 #
 # This example will only work within one compute node so let's run
-# on one node using all the cpu-cores (here using Fram as an example):
+# on one node using all the cpu-cores (here using Saga as an example):
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=16
+#SBATCH --ntasks-per-node=40
 
 # We assume we will (in total) be done in 10 minutes:
 #SBATCH --time=0-00:10:00

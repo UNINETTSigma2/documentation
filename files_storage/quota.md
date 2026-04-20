@@ -93,9 +93,9 @@ $ ls -li
 
 - **This can be surprising for users and difficult to debug for staff**:
 
-  - On Saga and Fram: Depending on the state of the file system there can be a
+  - On Saga: Depending on the state of the file system there can be a
     lag between going over quota and experiencing "Disk quota exceeded" errors.
-  - On Saga and Fram: If you moved files and kept wrong group permissions, this
+  - On Saga: If you moved files and kept wrong group permissions, this
     can exceed quota but we have overnight scripts which fix group permissions
     so it can look good again next morning.
   - `dusage` can indicate that you are above quota although `du` may show that
@@ -104,7 +104,7 @@ $ ls -li
     information. Only `dusage` gives you reliable information about how your
     quota is affected.
 
-- **Recovery on Fram and Saga**:
+- **Recovery on Saga**:
 
   - Moving files to project data or `$USERWORK` may not be enough since `mv`
     preserves group permissions. Therefore you have the following options:
@@ -127,51 +127,7 @@ $ ls -li
     beginning and at the end of the job script. Having the output will make
     diagnostics easier. If you don't `dusage` right when you run the job, then
     a job crash and a later `dusage` may tell different stories.
-  - `rsync` users: Please be careful adjusting the group ownership on Saga and
-    Fram.
-
-## Troubleshooting: Too many files/inodes on Fram
-
-Fram has a default 1 million inode quota for each user under `/cluster` filesystem regardless of project and group inode quota :
-
-```{code-block}
----
-emphasize-lines: 3
----
-                     path    space used    quota (s)    quota (h)    files    quota (s)    quota (h)
--------------------------  ------------  -----------  -----------  -------  -----------  -----------
-                /cluster/     247.4 GiB                             70 225    1 000 000    3 000 000
-       /cluster/home/****       1.8 GiB     20.0 GiB     30.0 GiB   44 395      100 000      120 000
- /cluster/work/users/****     243.8 GiB                              3 763
-/cluster/projects/nn****k     927.4 GiB      1.0 TiB      1.1 TiB  434 697    1 048 576    1 150 976
-/cluster/projects/nn****k       2.3 TiB     10.0 TiB     11.0 TiB  665 879   10 000 000   11 000 000
-/cluster/projects/nn****k       4.0 KiB      1.0 TiB      1.0 TiB        1    1 000 000    1 000 000
-```
-
-We can think of "inodes" as files or file chunks.
-
-This means that on Fram it is possible to fill the "files"/inode quota by
-putting more than 1 M files in `/cluster/work/users/user` although the latter
-is not size-quota controlled.
-
-To check the number of inodes in a directory and subsequent subdirectories, use the following command:
-
-```console
-$ find . -maxdepth 1 -type d -exec sh -c 'echo -n "{}: "; find "{}" -type f | wc -l' \; | sort -n -k2 -r
-
-/cluster/home/user: 75719
-/cluster/home/user/.conda: 39222
-/cluster/home/user/.rustup: 20526
-/cluster/home/user/work: 11983
-/cluster/home/user/project: 1134
-/cluster/home/user/something: 602
-```
-
-The above command counts the number of files in each directory and lists them
-sorted with the most numerous directory on top.
-
-Please contact support if you are in this situation and we can then together evaluate
-whether it makes sense to increase the inode quota for you.
+  - `rsync` users: Please be careful adjusting the group ownership on Saga.
 
 ## Troubleshooting: Too many files in a Conda installation
 
@@ -187,7 +143,7 @@ whether it makes sense to increase the inode quota for you.
     up to 42 days if sufficient storage is available).
   - Advanced alternative: Use a Singularity container for the Conda environment.
 
-## Changing file ownership on Fram or Saga
+## Changing file ownership on Saga
 
 ```{note}
 This section is **not relevant for Betzy** as disk quotas on Betzy are based on

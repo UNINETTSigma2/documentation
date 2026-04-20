@@ -10,7 +10,7 @@ Geospatial Data Abstraction Library (GDAL) is a library for handling geospatial 
 | :------------- | :------------- |
 | GDAL |2.2.0-foss-2017a-Python-2.7.13-HDF5-1.8.18 <br> 2.2.0-intel-2017a-Python-2.7.13-HDF5-1.8.18 <br> 2.2.2-intel-2017b-Python-2.7.14-HDF5-1.8.19 <br> 2.2.3-intel-2018a-Python-2.7.14-HDF5-1.8.19 <br>|
 
-To see available versions when logged into Fram issue command
+To see available versions when logged in, issue command
 
     module spider gdal
 

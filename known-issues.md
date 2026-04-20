@@ -27,7 +27,7 @@ weeks back to find a known issue.
   retry". This is an ongoing problem, but shows up (more) on high core count
   jobs.
 
-- **Running jobs hang and consume compute resources**: on Fram and Betzy
+- **Running jobs hang and consume compute resources**: on Betzy
   there is a randomly occurring problem that results in Zombie / unkillable
   processes. Amongst others, this happens when some of the application processes
   execute `MPI_Abort`, or otherwise crash while other ranks are performing MPI communication.
@@ -43,6 +43,3 @@ weeks back to find a known issue.
   A solution seems to be to convert the files from the netcdf-4 format to the
   netcdf-64bit offset format with the command `$ nccopy -k nc6 file1 file2`.
 
-- Don't use `--hint=nomultithread` in jobs on Fram, at least not with
-  Intel MPI.  If you do, the result is that all the tasks (ranks) will
-  be bound to the first CPU core on each compute node.

@@ -1,9 +1,11 @@
 myst-parser
-sphinx < 8.0
+sphinx
+sphinx-autoapi
 sphinx-autobuild
 sphinx-tabs
 sphinx-reredirects
-sphinx_rtd_theme
+sphinx-rtd-theme
 sphinx-design
 sphinxemoji
+sphinx-copybutton
 jinja2

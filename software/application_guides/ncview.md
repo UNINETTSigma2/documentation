@@ -10,7 +10,7 @@ Ncview is a visual browser for NetCDF files.
 | :------------- | :------------- |
 | ncview |2.1.7-intel-2017a <br>2.1.7-intel-2018a <br>|
 
-To see available versions when logged into Fram issue command
+To see available versions when logged into the machine in question, type command
 
     module spider ncview
 

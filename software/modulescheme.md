@@ -118,10 +118,10 @@ Keeping with the above example, use the following command to unload the NetCDF m
 
 Note that this will only unload the loaded module with "netCDF/"-namebase, in this case the module named netCDF/4.4.1.1-intel-2018a-HDF5-1.8.19. To unload everything you can type
 
-	module purge
+	module reset
 
 ```{note}
-The `module purge` command will inform you that some modules (like `StdEnv`)
+The `module reset` command will inform you that some modules (like `StdEnv`)
 were not unloaded. Such modules are made "sticky" because they are necessary
 for the system to work, and they should not be `--force` purged as the message
 suggest. If this warning message annoys you, you can suppress it with the `--quiet`
@@ -145,7 +145,7 @@ loads all dependecies necessary. This is in slight contrast to old policies and 
 to make a mess if you load extra modules in job scripts after loading the main software module.
 We recommend doing `module list` after every load (to inspect) and unloading any
 conflicting packages, if possible. It is also good practice to start all job scripts
-with a `module purge`, before loading all necessary modules for the calculation.
+with a `module reset`, before loading all necessary modules for the calculation.
 ```
 
 

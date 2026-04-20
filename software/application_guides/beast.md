@@ -48,7 +48,7 @@ more or less memory.
 set -o errexit # Make bash exit on any error
 set -o nounset # Treat unset variables as errors
 
-module --quiet purge
+module --quiet reset
 module load Beast/2.6.7-GCC-10.3.0-CUDA-11.3.1
 module list
 
@@ -87,7 +87,7 @@ submitting long running jobs as GPU jobs "cost" more than pure CPU jobs.
 set -o errexit # Make bash exit on any error
 set -o nounset # Treat unset variables as errors
 
-module --quiet purge
+module --quiet reset
 module load Beast/2.6.7-GCC-10.3.0-CUDA-11.3.1
 module list
 

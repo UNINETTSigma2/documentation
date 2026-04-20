@@ -502,11 +502,6 @@ $ apptainer exec --nv /cluster/work/support/container/pytorch_nvidia_25.06_arm64
 This command checks if GPUs are available and prints the number of GPUs detected inside the container.
 
 
-### PyTorch Example Workflow
-
-We have provided a comprehensive example on how to run PyTorch in a container on [this page](pytorch-olivia).
-
-
 ### Next Steps
 
 Currently, you need to run these containers directly using Apptainer. However, we are working on simplifying the experience by integrating these tools into the module system. This will allow you to:

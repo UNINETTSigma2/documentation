@@ -13,7 +13,7 @@ set -o errexit # Make bash exit on any error
 set -o nounset # Treat unset variables as errors
 
 # make the program and environment visible to this script
-module --quiet purge
+module --quiet reset
 module load CASTEP/22.1.1-intel-2022b
 
 # Naming the project:

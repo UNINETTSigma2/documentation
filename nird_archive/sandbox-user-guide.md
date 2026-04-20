@@ -1,3 +1,9 @@
+---
+orphan: true
+---
+
+(research-data-archive-sandbox)=
+
 # NIRD Research Data Archive Sandbox (NIRD RDA sandbox)
 
 The Research Data Archive Sandbox (RDA-sandbox) is an instance of the Research Data Archive (RDA) that can be used for testing and application development. The RDA-sandbox should not be considered a permanent archive as it is reset monthly and any data or metadata deposited will be deleted. Data cannot be moved from the RDA-sandbox to the NIRD RDA. Any data that should be archived should be deposited in the RDA.

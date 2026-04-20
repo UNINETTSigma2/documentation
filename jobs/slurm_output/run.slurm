@@ -13,7 +13,7 @@
 set -o errexit  # Exit the script on any error
 set -o nounset  # Treat any unset variables as an error
 
-module --quiet purge  # Reset the modules to the system default
+module --quiet reset  # Reset the modules to the system default
 module load hipSYCL/0.9.1-gcccuda-2020b
 module list     # For easier debugging
 

@@ -9,7 +9,7 @@ NAMD is designed for simulating large biomolecular systems. NAMD scales to many 
 | :------------- | :------------- |
 | NAMD |2.12-foss-2017a-mpi <br>2.12-intel-2018a-mpi <br>2017-11-06-foss-2017a-mpi <br>2018-02-15-intel-2018a-mpi <br>|
 
-To see available versions when logged into Fram issue command
+To see available versions when logged into the machine in question, type command
 
     module spider namd
 
@@ -83,7 +83,7 @@ independent from the number of GPUs requested.
 set -o errexit  # Exit the script on any error
 set -o nounset  # Treat any unset variables as an error
 
-module --quiet purge  # Reset the modules to the system default
+module --quiet reset  # Reset the modules to the system default
 module load NAMD/2.14-fosscuda-2019b
 module list
 

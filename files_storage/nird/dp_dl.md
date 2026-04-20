@@ -1,6 +1,6 @@
 # NIRD Data Peak vs NIRD Data Lake
 
-NIRD consists of two distinct storage systems, namely NIRD Data Peak (known internally as TS) and NIRD Data Lake (codenamed DL).
+NIRD consists of two distinct storage systems, namely NIRD Data Peak (codenamed as DP) and NIRD Data Lake (codenamed DL).
 
 NIRD Data Peak has several tiers spanned by single filesystem and designed for performance and used mainly for active project data.
 

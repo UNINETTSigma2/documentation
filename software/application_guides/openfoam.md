@@ -42,7 +42,7 @@ specifying one of the available versions.
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=32
 
-module purge
+module reset
 module load OpenFOAM/<version>
 source $FOAM_BASH
 
@@ -159,7 +159,7 @@ Save as `jobscript.sh`:
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=32
 
-module purge
+module reset
 APPTAINER_IMAGE=/path/to/your/openfoam.sif
 
 apptainer exec --bind $(pwd):/mnt $APPTAINER_IMAGE blockMesh > log.blockMesh 2>&1
@@ -290,7 +290,7 @@ sbatch jobscript.sh
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=32
 
-module purge
+module reset
 module load OpenFOAM/<version>
 
 FOAM_USER_APPBIN=/path/to/your/bin
@@ -313,7 +313,7 @@ reconstructPar
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=32
 
-module purge
+module reset
 APPTAINER_IMAGE=/path/to/your/openfoam.sif
 FOAM_USER_APPBIN=/path/to/your/bin
 

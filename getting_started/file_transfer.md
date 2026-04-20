@@ -4,7 +4,7 @@
 
 ```{admonition} Summary: use rsync for file transfer
 
-For file transfer to/from and between compute and storage systems (Betzy, Fram,
+For file transfer to/from and between compute and storage systems (Betzy,
 Saga, NIRD), **we recommend `rsync`**. This tool is often faster than `scp` (for
 many small files and it does not copy files that are already there) and
 potentially also safer against accidental file overwrites.
@@ -17,6 +17,13 @@ On Windows, many other tools exist ([WinSCP](https://winscp.net/),
 [MobaXterm](https://mobaxterm.mobatek.net/), and others), but we recommend to
 use `rsync` through [Windows Subsystem for Linux
 (WSL)](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux).
+
+For large data transfers `rclone` is an option which offer better performance through 
+multiple transfers, see below. 
+
+For transfers to and from [NIRD the S3](https://documentation.sigma2.no/files_storage/nird/s3.html#nird-s3) 
+protocol is also an option. It can reach very high performance as all object transfers are 
+independent of each other.
 ```
 
 **NB**: Since the implementation of 2FA (2 factor authentication) on NRIS clusters, 
@@ -142,6 +149,34 @@ In the above example, `scp` struggles with many small files but `rsync` does
 not seem to mind.  For `scp` we would have to first `tar`/`zip` the small files
 to one large file but for `rsync` we don't have to.
 
+### rclone handle huge number of files very efficient
+
+`rclone` can utilise multiple threads / streams to run multiple transfers in 
+parallel. 
+
+An example copying the same files in the example above (this does the transfer from Saga
+to Olivia):
+```bash
+$ rclone copy SAGA:/cluster/work/users/user/many-files . -P --transfers=30 --ignore-checksum
+```
+The following table is illustrative of the performance.
+
+| Transfer application | Options or threads | Wall time \[seconds\] |
+| :---: | :---: | :---: |
+| scp |  | 833 |
+| rsync | \-a | 81 |
+| rsync | \-az | 62 |
+| rclone | \--transfers=10  | 25 |
+| rclone | 20 | 15 |
+| rclone | 30 | 11 |
+| rclone | 40 | 10 |
+| rclone | 50 | 9 |
+
+`rclone` can keep a large number of operations in flight Simultaneously which
+is the reaon for it being so effcient. 
+
+
+
 ````{admonition} How was the test data created?
 Just in case anybody wants to try the above example on their own, we used this
 script to generate the example data:
@@ -159,9 +194,15 @@ split -n 5000 ../file.txt
 ````
 
 
-## Transferring files between Betzy/Fram/Saga and NIRD
+## Transferring files between Betzy/Olivia/Saga and NIRD
 
-Since NIRD is mounted on the login nodes of Betzy, Fram, and Saga,
+The easiest way to transfer files between clusters  is to set up
+[ssh-keypair](https://documentation.sigma2.no/getting_started/ssh.html#connecting-to-a-server).
+Once (following the guide) there's a private/public key on sender/receiver,
+you won't need to authenticate with password + otp. Note that the guide above
+is currently only limited to cross-cluster connections/transfers.
+
+Since NIRD is mounted on the login nodes of Betzy, Olivia, and Saga,
 one can use regular
 `cp` or `mv` commands on the cluster login nodes to copy or
 move files into or out of the NIRD project areas.
@@ -184,10 +225,31 @@ also saturate the login node with `rsync` processes or overwhelm the file
 system. If you have to transfer large amount of data and one `rsync` process is
 not enough, we recommend that you talk to us first: {ref}`support-line`.
 
+## *rclone* as a faster alternative
+
+While rsync does a good job, it unfortunately only uses one thread (or transfer),
+while *rclone* can use a range of parallel transfers (both one per file and split 
+a large file into chunks). 
+
+A command like :
+```bash
+$ rclone copy SAGA:/cluster/projects/nnXXXXk/user/ . -P --transfers=20 
+```
+will copy 20 files in parallel. 
+
+```bash
+An example is could look like this:
+$ rclone copy SAGA:/cluster/projects/nnxxxxk/ . -P --transfers=60 \ --ignore-checksum
+Transferred:          200 GiB / 200 GiB, 100%, 2.038 GiB/s, ETA 0s
+Checks:                 0 / 0, -, Listed 200
+Transferred:          200 / 200, 100%
+Elapsed time:      1m33.7s
+```
+The above example is referring a decommissioned service, and shows a close to 2 GBytes/s speed when copying data from this service. About 7 TBytes per hour, or 150 TBytes/day. A PetaByte would take about a week.
+
 Please also **plan for it**: If you need to transfer large amount of data,
 don't start on the last day of your project. Data transfer may take hours or
 even days.
-
 
 ## Troubleshooting: "Broken pipe" error during transfer
 

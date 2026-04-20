@@ -8,7 +8,7 @@
 #SBATCH --output=slurm.%j.log
 
 # make the program and environment visible to this script
-module --quiet purge
+module --quiet reset
 module load Gaussian/g16_C.01
 
 export GAUSS_LFLAGS2="--LindaOptions -s 20000000"

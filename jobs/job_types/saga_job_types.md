@@ -7,7 +7,7 @@ orphan: true
 # Job Types on Saga
 
 Saga is designed to run serial and small ("narrow") parallel jobs, in
-addition to GPU jobs.  If you need to run "wider" parallel jobs, Fram
+addition to GPU jobs.  If you need to run "wider" parallel jobs, Betzy
 is a better choice.
 
 ```{warning}
@@ -176,7 +176,7 @@ get higher priority for them to run as soon as possible.  On the other
 hand, there are limits on the size and number of _devel_ jobs.
 
 Can be combined with either `--partition=accel`, `--partition=bigmem`
-or `--partition=huemem` to increase
+or `--partition=hugemem` to increase
 priority while having max wall time and job limits of _devel_ job.
 
 If you have _temporary_ development needs that cannot be fulfilled by

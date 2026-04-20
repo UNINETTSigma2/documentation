@@ -26,7 +26,7 @@ For command line a direct syntax can be used like : `gfortran -I${CPATH//:/ -I/}
 ### Intel
 #### Introduction
 The Intel compiler suite is supported on all Sigma2 systems. On the
-systems Saga and Fram the processors are from Intel while the
+systems Saga the processors are from Intel while the
 processors on Betzy are from AMD. As the Intel compiler is primarily
 compiler written for the Intel processors there are some minor issues
 when using it to build core for the AMD processors.

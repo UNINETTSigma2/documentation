@@ -11,7 +11,7 @@
 set -o errexit  # Exit the script on any error
 set -o nounset  # Treat any unset variables as an error
 
-module --quiet purge  # Reset the modules to the system default
+module --quiet reset  # Reset the modules to the system default
 module load CUDA/11.1.1-GCC-10.2.0
 module list
 
