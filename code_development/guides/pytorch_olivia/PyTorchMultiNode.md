@@ -38,10 +38,10 @@ CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
 export APPTAINERENV_TRAINING_SCRIPT="train_ddp.py --epochs 100 --batch-size 2048 --base-lr 0.04 --target-accuracy 0.95 --patience 2"
 
 # Set the libfabric and nccl path from the host
-HOST_LIBFABRIC_LIB_PATH=/opt/cray/libfabric/1.22.0/lib64
-HOST_LIBFABRIC_INCLUDE_PATH=/opt/cray/libfabric/1.22.0/include
+HOST_LIBFABRIC_LIB_PATH=/opt/cray/libfabric/2.3.1/lib64
+HOST_LIBFABRIC_INCLUDE_PATH=/opt/cray/libfabric/2.3.1/include
 HOST_NCCL_PATH=/cluster/work/support/nccl
-HOST_NVIDIA_HPC_LIB_PATH=/opt/nvidia/hpc_sdk/Linux_aarch64/24.11/compilers/lib
+HOST_NVIDIA_HPC_LIB_PATH=/opt/nvidia/hpc_sdk/Linux_aarch64/25.9/compilers/lib
 HOST_CXI_LIB_PATH=/usr/lib64  # Directory containing libcxi.so.1
 
 

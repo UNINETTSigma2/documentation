@@ -478,11 +478,11 @@ Apptainer provides several ways to run containers, depending on your needs:
 
     Moreover , if we need GPUs across multiple nodes, we have to take into consideration that some of the framework like Libfabric might not be installed on the container. So, we need to explicitly bind it so that our container could be use to run on multiple nodes.
 
-    In our host system, we identified that the libfabric is available at this location `/opt/cray/libfabric/1.22.0/lib64` . The code written below on the job script will add `--bind /opt/cray/libfabric/1.22.0/lib64:/usr/lib64` to the apptainer command which ensures that the libfabric libraries from the host system are available inside the container at `/usr/lib64``
+    In our host system, we identified that the libfabric is available at this location `/opt/cray/libfabric/2.3.1/lib64` . The code written below on the job script will add `--bind /opt/cray/libfabric/2.3.1/lib64:/usr/lib64` to the apptainer command which ensures that the libfabric libraries from the host system are available inside the container at `/usr/lib64``
 
     ````bash
     # Bind libfabric (adjust the path based on your host system)
-    LIBFABRIC_PATH="/opt/cray/libfabric/1.22.0/lib64"
+    LIBFABRIC_PATH="/opt/cray/libfabric/2.3.1/lib64"
 
     # Explicitly specify the full path to torchrun
     TORCHRUN_PATH="/usr/local/bin/torchrun"
