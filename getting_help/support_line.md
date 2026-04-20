@@ -19,22 +19,27 @@ Contact **[contact@sigma2.no](mailto:contact@sigma2.no)** for support requests c
 
 ```{admonition} Technical support
 {octicon}`tools;2em;sd-text-info`
-Contact **[support@nris.no](mailto:support@nris.no)** for all other support requests:
-
-**NOTE: Use this e-mail if you need to extend your job's walltime.**
+Use our **[support form](https://nettskjema.no/a/nris-support-request) to get support regarding topics like:**
 
 - technical issues
-- software installation requests
 - questions about job scripts
 - technical questions about storage and compute
 - technical questions about the services and toolkits
+- extension of walltime of Slurm jobs
+
+**In case you want us to install software and applications globally, please use this**
+**[_software request form_](https://nettskjema.no/a/nris-software-request) instead.**
+
 ```
 
-Behind these addresses are issue trackers (ticket system) and you will get an
+**NOTE: We are currently testing the above mentioned forms to guide you through the process of creating a support request.**
+In case you have any issues with the forms, please send instead an email to: [support@nris.no](mailto:support@nris.no)
+
+Behind these addresses is our issue tracker (ticket system) and you will get an
 automatic reply first and can expect response from our staff within hours
 during normal work-hours, or at the latest the following working day (except
 holidays).  Use one of these addresses; do **not** send email directly
-to persons.
+to staff members.
 
 When replying to email from the support line **please do not change the email subject**.
 
