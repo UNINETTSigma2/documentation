@@ -6,9 +6,17 @@ orphan: true
 
 # Olivia OnBoarding 2026 seminar series
 
-Drawing on our experience with introducing the Olivia machine and associated services, *NRIS Training* is now offering a series of seminars that provide a deeper introduction to some highly relevant topics. These seminars are at a basic-to-intermediate level, and targeted towards participants at the preceding OnBoarding event. However, these seminars will also be open to others, but note that some relevant parts from OnBoarding may be assumed known. 
+Drawing on our experience with introducing the Olivia machine and associated services, *NRIS Training* is now offering a series of seminars that provide a deeper introduction to some highly relevant topics specific for the GPU heavy Olivia machine. These seminars are at a basic-to-intermediate level, and targeted towards participants at the preceding OnBoarding event. However, these seminars will also be open to others.
 
-Below you find the list of episodes. Each episode is self-contained. You can join only for the episodes you find useful, but some of the content may be relevant for the episodes after: 
+## Practical Information
+- Basic command line/linux workflows are expected to be known. (elements of the [HPC Onboarding course given April 14-16.2026](https://documentation.sigma2.no/training/past/2026-04-hpc-on-boarding.html).
+- The course is open to all and free of charge. However, **signup is now closed**.
+- We will use NIRD, Saga and Olivia for demos and hands-on sessions.
+- Collaborative Document for Q&A during the workshop will be used in the same style as for the HPC Onboarding course. Link to this will be provided during the session in question. 
+- You will find all relevant documentation linked here at these pages. - This is an online course via zoom. Participants require access to a computer
+(not provided by the course organisers) with internet connectivity.
+
+Below you find the list of episodes. Each episode is self-contained and you can join only for the episode(s) you find useful. But not that some content from the previous events may be relevant for the events after - thus the order of things.
 
 <details><summary><H2 style="display:inline">Episode 1: Wed. 22.04.26 (09:00-12:00 CET) - NIRD and File system usage on Olivia</summary><br>
 
@@ -19,7 +27,15 @@ Below you find the list of episodes. Each episode is self-contained. You can joi
 	- We will also cover using S3 to get data from NIRD Datalake and NIRD Research Data Archive, include some overview of Olivia compared to Saga. 
 - In addition, we plan to have give some overview on Cray vs. NRIS Software environments on Olivia.
 
+<H3> Event schedule: 
+
+- 09:00: Start
+- 12:00: Finished
+
 <H3> Course material: 
+
+- [NIRD and File system usage on Olivia](https://training.pages.sigma2.no/tutorials/olivia-nird-filesystem-usage/) 
+- [Oliva Best Practises Guide](https://documentation.sigma2.no/hpc_machines/olivia.html#olivia-best-practices-guide)
 
 <add link to training material><br>
 
@@ -42,6 +58,8 @@ Below you find the list of episodes. Each episode is self-contained. You can joi
 <H3> Content:
 
 - The second day is concerned with containers and how to utilize them correctly. The plan currently is to show containers first on Saga, then move on to Olivia.
+
+<H3> Event schedule: 
 
 <H3> Course material:
 
@@ -68,7 +86,14 @@ Below you find the list of episodes. Each episode is self-contained. You can joi
 
 - The third and final day will be an introduction to GPU's and how to utilize them on Olivia.
 
-<H3>C ourse material: 
+This lecture, titled “Modern Compute Architecture: From CPU to GPU,” provides an introduction to the key concepts behind modern accelerated computing. It begins by exploring the GPU advantage, highlighting why GPUs have become essential for high-performance computing, AI, and scientific applications. 
+
+The session then presents a CPU and GPU architecture overview, explaining the fundamental differences between traditional processors and massively parallel accelerators.
+Building on this foundation, the session examines the architecture of modern GPUs, with a comparative look at NVIDIA and AMD designs, focusing on the architectural features that drive performance. 
+
+Finally, the contribution introduces the GPU software ecosystem, presenting the roles of CUDA and ROCm as the main programming platforms for GPU-accelerated applications.
+
+<H3>Course material: 
 
 <add link to training material>
 
@@ -85,13 +110,6 @@ Below you find the list of episodes. Each episode is self-contained. You can joi
 ```
 
 </details><br>
-
-## Practical Information
-
-- **The course is open to all and free of charge, but registration is mandatory:** [Please register at this link](https://forms.gle/2MJQjhmx2SoUjDx36)
-<br>
-- This is an online course via zoom. Participants require access to a computer
-(not provided by the course organisers) with internet connectivity.
 
 
 ```{note}
@@ -116,9 +134,10 @@ We will assume that all of you who apply for access to NN9970K also want access 
 
 ```
 
-### Coordinator
+### Coordinators
 
 - Espen Tangen
+- Eirik Skjerve
 
 ### Code of Conduct
 
