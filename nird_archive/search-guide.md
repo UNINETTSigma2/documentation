@@ -10,6 +10,12 @@ orphan: true
 
 This guide is written for researchers/users who want to find datasets efficiently on [NIRD Research Data Archive](https://archive.sigma2.no/), 
  whether you have a specific dataset in mind or are exploring what exists in a field.
+This guide is organized around common search scenarios you may encounter.:
+- {ref}`Default Search  <default_search>`: You have a broad topic and want to see what exists
+- {ref}`Advanced Search  <advanced_search>`:  You know exactly what you want and need to pinpoint it
+- {ref}`Filtering Search Results  <filtering_search>`:  You have too many results and need to narrow down
+- {ref}`Spatial Search  <spatial_search>`: You want to do spatial search
+- {ref}`Sharing and Reproducing Queries  <sharing_search>`: You want to reproduce or share a search
 
 This guide is structured around the situations you are likely to find yourself in:
 - You have a broad topic and want to see what exists
@@ -21,6 +27,8 @@ Read the sections relevant to your situation.
 
 ![the_search_interface](imgs/figure_1_screenshot_portal_search_interface.png "the search interface")
 Figure 1: Screenshot of the archive search interface.
+
+(default_search)=
 
 ## Getting started: The Default Search
 
@@ -44,6 +52,8 @@ What you see in the results:
 Each result card shows the dataset title, the first two lines of its description, the creator name(s), DOI, and file size.
  Click the title to open the full dataset record. Use your browser's back button to return to the results,  your query and any active filters are preserved in the URL.
 
+(advanced_search)=
+
 ## Advanced Search
 
 The Advanced Search functionality gives you precise control over which metadata fields to query and how to combine conditions. You can expand or hide Advanced Search by clicking the “Advanced” button. Search syntax example is also available on the advanced search interface.
@@ -58,6 +68,7 @@ Note that you need to click on "Add condition" in order to buid the query and th
 
 You can build complex queries by combining multiple conditions using AND, OR, and parentheses for grouping.
 
+(filtering_search)=
 
 ## Filtering Search Results
 
@@ -65,6 +76,8 @@ After running a search, you can narrow down results further by applying filters.
 
 You can apply multiple filters at the same time. Each filter you select is added to the existing query, narrowing the results further. Filters are cumulative; selecting Institution: UiB and Subject: Natural sciences returns only datasets from UiB within Natural sciences.
 If you select a filter and no datasets match the combination of your query and the filter, the result will display a "No datasets found" message indicating there are no matches for the selected criteria.
+
+(spatial_search)=
 
 ## Spatial Search 
 
@@ -74,6 +87,8 @@ Exact: returns datasets whose coordinates exactly match the specified coordinate
 
 ![the_search_interface](imgs/figure_2_screenshot_spatial_search_map.png "Spatial Search Interactive map")
 Figure 2: Screenshot of the spatial search interactive map.  
+
+(understanding_search)=
 
 ## Understanding Search Result
 
@@ -95,4 +110,14 @@ If your search returns many results, they are displayed in pages of 10 datasets 
 ### Opening a dataset
 Click on any dataset title to go to the full dataset landing page, where you can see all metadata, download files, and view the full description. Use your browser's back button to return to the search results.
 
+(sharing_search)=
+
+## Sharing and Reproducing Queries
+
+When you run a search in the portal, the full query is reflected in the browser's URL bar.
+To share a query:
+1. Run your search in the portal
+2. Copy the full URL from the browser address bar
+3. Share the URL with your colleague
+4. When they open the URL, the same query will be executed in their browser
 
