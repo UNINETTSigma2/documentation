@@ -37,6 +37,9 @@ The default search handles plain text well, but struggles with terms that combin
 "CMIP7"
 This forces the system to treat the term as an exact phrase rather than tokenising it.
 ```
+- Partial search: If you do not remember the full value of a metadata field, you can search for a partial string. The system will return all datasets where the field contains your search term anywhere in the value.
+- Exact search: To search for an exact phrase or value, wrap your query in double quotes.
+
 What you see in the results:
 Each result card shows the dataset title, the first two lines of its description, the creator name(s), DOI, and file size.
  Click the title to open the full dataset record. Use your browser's back button to return to the results,  your query and any active filters are preserved in the URL.
@@ -51,5 +54,45 @@ The Advanced Search interface provides:
 - AND / OR buttons: combine conditions with logical operators
 - Grouping with parentheses (): group conditions to control evaluation order
 
-Note that you need to click on "Add condition" in order to buid the query. As you add condition the query  is displayed as a string (e.g. creator_name:"Ada Lovelace" AND title:"NorESM") and is also reflected in the URL, making it easy to bookmark or share.
+Note that you need to click on "Add condition" in order to buid the query and then click "Search" to run it. As you add condition the query  is displayed as a string (e.g. creator_name:"Ada Lovelace" AND title:"NorESM") and is also reflected in the URL, making it easy to bookmark or share.
+
+You can build complex queries by combining multiple conditions using AND, OR, and parentheses for grouping.
+
+
+## Filtering Search Results
+
+After running a search, you can narrow down results further by applying filters. The filter panel on the left side of the search page offers the filters for  institution, subject, keywords, publication year etc. 
+
+You can apply multiple filters at the same time. Each filter you select is added to the existing query, narrowing the results further. Filters are cumulative; selecting Institution: UiB and Subject: Natural sciences returns only datasets from UiB within Natural sciences.
+If you select a filter and no datasets match the combination of your query and the filter, the result will display a "No datasets found" message indicating there are no matches for the selected criteria.
+
+## Spatial Search 
+
+The search interface includes a spatial (geographic) search that lets you search for datasets by selecting a region in an interactive map (draw a bounding box on the map to select the geographic region of interest) or by entering the coordinates (the latitude and logitudes coordinates) to define the search area. Datasets with spatial metadata matching the selected bounding box are returned. You can also choose how spatial matching is applied using the dropdown menu:
+Intersect: returns datasets whose coordinates overlap with the specified area, even if only partially.
+Exact: returns datasets whose coordinates exactly match the specified coordinates.
+
+![the_search_interface](imgs/figure_2_screenshot_spatial_search_map.png "Spatial Search Interactive map")
+Figure 2: Screenshot of the spatial search interactive map.  
+
+## Understanding Search Result
+
+Each search result displays a summary of the dataset to help you quickly identify whether it is relevant.
+- Title: The name of the dataset (clickable link to the full landing page)
+- Description: The first two lines of the dataset's description
+- Creator: The name(s) of the creator(s)
+- DOI: The Digital Object Identifier for the dataset
+- Size:  The total size of the dataset
+At the top of the search results page, you will see:
+- The query that was executed 
+- The total number of datasets matching the query
+
+### Sorting results
+By default, results are sorted by "relevance". You can change the sort order by "last updated" using the Sort By dropdown. 
+### Pagination
+If your search returns many results, they are displayed in pages of 10 datasets by default. You can configure the number of datasets shown per page using the Show dropdown (e.g. 10, 25, 50 per page). Navigate between pages using the pagination controls at the bottom of the results.
+
+### Opening a dataset
+Click on any dataset title to go to the full dataset landing page, where you can see all metadata, download files, and view the full description. Use your browser's back button to return to the search results.
+
 
