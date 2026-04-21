@@ -17,5 +17,6 @@ where ` NSxxxxK` is the ID of the project.
 ```{warning}
 
 To maintain optimal performance and prevent operational disruptions, the NIRD $HOME and Data Peak/Data Lake project areas are deliberately not mounted on any of the compute nodes within the HPC clusters.
+Users must therefore move data to be used in jobs to user work area `/cluster/work/users/$user/`.
 ```
 
