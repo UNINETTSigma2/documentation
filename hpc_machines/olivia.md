@@ -68,6 +68,7 @@ olivia/olivia-nird.md
 olivia/software_stack.md
 ../jobs/job_types/olivia_job_types.md
 olivia/trouble_shooting.md
+olivia/system_upgrade_Apr2026.md
 ```
 
 ### [Olivia Best Practices Guide](https://drive.google.com/file/d/1vVCx8Kra1sK8wm9gykk7OoHMNk3H-x26/view)
