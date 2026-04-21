@@ -16,10 +16,10 @@ Multi-node training on Olivia requires proper configuration of NCCL with the OFI
 
 ```{code-block} bash
 :linenos:
-:emphasize-lines: 8, 10, 18, 21-25, 35-40, 43-44, 52-67, 70-76
+:emphasize-lines: 8, 10, 17, 20-22, 25-29, 43-47, 58-75, 78-84
 
 #!/bin/bash
-#SBATCH --account=<project_number>
+#SBATCH --account=nn9997k
 #SBATCH --job-name=resnet_multinode
 #SBATCH --output=multinode_%j.out
 #SBATCH --error=multinode_%j.err
@@ -37,20 +37,30 @@ CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
 # Path to the training script
 export APPTAINERENV_TRAINING_SCRIPT="train_ddp.py --epochs 100 --batch-size 2048 --base-lr 0.04 --target-accuracy 0.95 --patience 2"
 
-# Set the libfabric and nccl path from the host
-HOST_LIBFABRIC_LIB_PATH=/opt/cray/libfabric/2.3.1/lib64
-HOST_LIBFABRIC_INCLUDE_PATH=/opt/cray/libfabric/2.3.1/include
-HOST_NCCL_PATH=/cluster/work/support/nccl
-HOST_NVIDIA_HPC_LIB_PATH=/opt/nvidia/hpc_sdk/Linux_aarch64/25.9/compilers/lib
-HOST_CXI_LIB_PATH=/usr/lib64  # Directory containing libcxi.so.1
+# Load communication libraries from the NRIS GPU software stack
+module purge
+module load NRIS/GPU
+module load NCCL/2.26.6-GCCcore-14.2.0-CUDA-12.8.0  # pulls in aws-ofi-nccl + libfabric
+
+# Resolve bind-mount source paths from module environment variables
+HOST_LIBFABRIC_LIB_PATH="$EBROOTLIBFABRIC/lib"
+HOST_LIBFABRIC_INCLUDE_PATH="$EBROOTLIBFABRIC/include"
+HOST_NCCL_LIB_PATH="$EBROOTNCCL/lib"
+HOST_AWS_OFI_LIB_PATH="$EBROOTAWSMINOFIMINNCCL/lib"
+HOST_CXI_LIB_PATH=/usr/lib64  # libcxi.so.1 lives here; unchanged
+
+# Validate host paths before launching the container
+for p in "$HOST_LIBFABRIC_LIB_PATH" "$HOST_LIBFABRIC_INCLUDE_PATH" \
+      "$HOST_NCCL_LIB_PATH" "$HOST_AWS_OFI_LIB_PATH" "$HOST_CXI_LIB_PATH"; do
+  if [ ! -d "$p" ]; then
+    echo "ERROR: required host path does not exist: $p" >&2
+    exit 1
+  fi
+done
 
 
 # Explicitly specify the full path to torchrun
 export APPTAINERENV_TORCHRUN_PATH="/usr/local/bin/torchrun"
-
-# Debugging: Enable NCCL logs
-#export APPTAINERENV_NCCL_DEBUG=INFO
-#export APPTAINERENV_NCCL_DEBUG_SUBSYS=ALL
 
 # Get the head node and its IP address
 nodes=( $(scontrol show hostnames $SLURM_JOB_NODELIST) )
@@ -68,16 +78,15 @@ GPU_LOG_FILE="multinode.log"
 echo "Starting GPU utilization monitoring..."
 nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &
 
-# Run the training script with torchrun inside the container
-srun  apptainer exec  --nv \
+# Run distributed training inside the container
+srun apptainer exec --nv \
   --bind $HOST_LIBFABRIC_LIB_PATH:/opt/libfabric/lib \
   --bind $HOST_LIBFABRIC_INCLUDE_PATH:/opt/libfabric/include \
-  --bind $HOST_NCCL_PATH:/opt/nccl \
+  --bind $HOST_NCCL_LIB_PATH:/opt/nccl/lib \
+  --bind $HOST_AWS_OFI_LIB_PATH:/opt/aws-ofi-nccl/lib \
   --bind $HOST_CXI_LIB_PATH:/usr/lib64 \
-  --bind $HOST_NVIDIA_HPC_LIB_PATH:/opt/nvidia/hpc_sdk/lib \
   --env LIBFABRIC_HOME=/opt/libfabric \
   --env NCCL_HOME=/opt/nccl \
-  --env NVIDIA_HPC_HOME=/opt/nvidia/hpc_sdk \
   --env head_node_ip=$APPTAINERENV_head_node_ip \
   --env TRAINING_SCRIPT="$APPTAINERENV_TRAINING_SCRIPT" \
   --env TORCHRUN_PATH="$APPTAINERENV_TORCHRUN_PATH" \
@@ -85,9 +94,9 @@ srun  apptainer exec  --nv \
   --env SLURM_JOB_NUM_NODES=$APPTAINERENV_SLURM_JOB_NUM_NODES \
   --env SLURM_GPUS_ON_NODE=$APPTAINERENV_SLURM_GPUS_ON_NODE \
   $CONTAINER_PATH \
-  bash -c 'export LD_LIBRARY_PATH=$LIBFABRIC_HOME/lib:$NCCL_HOME/lib:$NVIDIA_HPC_HOME/lib:/usr/lib64:$LD_LIBRARY_PATH; \
+  bash -c 'export LD_LIBRARY_PATH=/opt/aws-ofi-nccl/lib:/opt/libfabric/lib:/opt/nccl/lib:/usr/lib64:$LD_LIBRARY_PATH; \
   export CPATH=$LIBFABRIC_HOME/include:$CPATH; \
-  $TORCHRUN_PATH  \
+  $TORCHRUN_PATH \
   --nnodes=$SLURM_JOB_NUM_NODES \
   --nproc_per_node=$SLURM_GPUS_ON_NODE \
   --rdzv_id=$RDZV_ID \
@@ -109,12 +118,12 @@ The highlighted lines show the multi-node specific additions:
 |-------|--------|---------|
 | 8 | `--nodes=2` | Request multiple nodes |
 | 10 | `--gpus-per-node=4` | GPUs per node (instead of `--gpus=4`) |
-| 18 | `--batch-size 2048` | Larger batch for 8 GPUs |
-| 21-25 | Host library paths | Paths to libfabric, NCCL, CXI on host |
-| 35-40 | Head node discovery | Get head node IP for rendezvous |
-| 43-44 | Pass SLURM vars | Export node/GPU counts to container |
-| 52-67 | `srun` with `--bind`/`--env` | Mount host libraries and set environment |
-| 70-76 | `torchrun` with rendezvous | Use `rdzv_backend=c10d` and `rdzv_endpoint` for multi-node coordination |
+| 17 | `--batch-size 2048` | Larger batch for 8 GPUs |
+| 20-22 | Module loading + NCCL version | Load NRIS GPU stack and NCCL 2.26.6 for container compatibility |
+| 25-29 | Module-derived host paths | Derive bind sources from `EBROOT*` variables instead of hardcoded paths |
+| 43-47 | Head node discovery | Get head node IP for rendezvous |
+| 58-75 | `srun` with `--bind`/`--env` | Mount libfabric, NCCL, aws-ofi-nccl paths resolved from modules |
+| 78-84 | `torchrun` with rendezvous | Use `rdzv_backend=c10d` and `rdzv_endpoint` for multi-node coordination |
 
 ```{note}
 The key difference from single-node multi-GPU is the **rendezvous setup**. Single-node uses `--standalone`, while multi-node requires explicit coordination via `--rdzv_backend=c10d` and `--rdzv_endpoint` pointing to the head node.

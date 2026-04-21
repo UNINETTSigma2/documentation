@@ -83,8 +83,6 @@ To train the Wide ResNet model on a single GPU, we use the following files. The 
 ```{code-block} python
 :linenos:
 
-# train.py
-
 """
 Single-GPU training script for Wide ResNet on CIFAR-100.
 """
@@ -108,6 +106,7 @@ parser.add_argument('--base-lr', type=float, default=0.01, help='Learning rate')
 parser.add_argument('--target-accuracy', type=float, default=0.95, help='Target accuracy to stop training')
 parser.add_argument('--patience', type=int, default=2, help='Number of epochs that meet target before stopping')
 args = parser.parse_args()
+
 
 def main():
     device = get_device()
@@ -161,6 +160,7 @@ def main():
     print(f"\nTraining complete. Final Accuracy: {val_accuracy[-1]:.4f}")
     print(f"Total Time: {total_time:.1f}s, Throughput: {throughput:.1f} img/s")
 
+
 if __name__ == "__main__":
     main()
 ```
@@ -169,8 +169,6 @@ The `dataset_utils.py` file contains the data utility functions used for prepari
 
 ```{code-block} python
 :linenos:
-
-# dataset_utils.py
 
 import torchvision
 import torchvision.transforms as transforms
@@ -185,7 +183,7 @@ def _data_dir_default():
     return data_dir
 
 
-def load_cifar100(batch_size, num_workers=0,sampler=None, data_dir=None):
+def load_cifar100(batch_size, num_workers=0, sampler=None, data_dir=None):
     """
     Loads the CIFAR-100 dataset.Create the dataset directory to store dataset during runtime and no environment variable support.
     """
@@ -196,17 +194,17 @@ def load_cifar100(batch_size, num_workers=0,sampler=None, data_dir=None):
         transforms.RandomHorizontalFlip(),
         transforms.RandomCrop(32, padding=4),
         transforms.ToTensor(),
-        transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761)) # CIFAR-100 mean and std
+        transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761))
     ])
 
     # Load full datasets
     train_set = torchvision.datasets.CIFAR100(
-            root=str(root),download=True,train=True,transform=transform)
-    test_set = torchvision.datasets.CIFAR100(root=str(root),download=True,train=False,transform=transform)
+            root=str(root), download=True, train=True, transform=transform)
+    test_set = torchvision.datasets.CIFAR100(root=str(root), download=True, train=False, transform=transform)
 
     # Create the data loaders
-    train_loader = torch.utils.data.DataLoader(train_set,batch_size=batch_size,drop_last=True,shuffle=(sampler is None),sampler= sampler,num_workers=num_workers,pin_memory=True)
-    test_loader = torch.utils.data.DataLoader(test_set,batch_size=batch_size,drop_last=True,shuffle=False,num_workers=num_workers,pin_memory=True)
+    train_loader = torch.utils.data.DataLoader(train_set, batch_size=batch_size, drop_last=True, shuffle=(sampler is None), sampler=sampler, num_workers=num_workers, pin_memory=True)
+    test_loader = torch.utils.data.DataLoader(test_set, batch_size=batch_size, drop_last=True, shuffle=False, num_workers=num_workers, pin_memory=True)
     return train_loader, test_loader
 ```
 
@@ -215,7 +213,6 @@ The `device_utils.py` file includes the device utility functions, which handle d
 ```{code-block} python
 :linenos:
 
-# device_utils.py
 import torch
 
 def get_device():
@@ -233,15 +230,14 @@ The `model.py` file contains the implementation of the Wide ResNet model archite
 ```{code-block} python
 :linenos:
 
-# model.py
-
 import torch.nn as nn
 
 # Standard convulation block followed by batch normalization
 class cbrblock(nn.Module):
     def __init__(self, input_channels, output_channels):
         super(cbrblock, self).__init__()
-        self.cbr = nn.Sequential(nn.Conv2d(input_channels, output_channels, kernel_size=3, stride=(1,1), padding='same', bias=False),nn.BatchNorm2d(output_channels), nn.ReLU())
+        self.cbr = nn.Sequential(nn.Conv2d(input_channels, output_channels, kernel_size=3, stride=(1, 1), padding='same', bias=False), nn.BatchNorm2d(output_channels), nn.ReLU())
+
     def forward(self, x):
         return self.cbr(x)
 
@@ -252,12 +248,12 @@ class conv_block(nn.Module):
         super(conv_block, self).__init__()
         self.scale_input = scale_input
         if self.scale_input:
-            self.scale = nn.Conv2d(input_channels,output_channels, kernel_size=1, stride=(1,1), padding='same')
+            self.scale = nn.Conv2d(input_channels, output_channels, kernel_size=1, stride=(1, 1), padding='same')
         self.layer1 = cbrblock(input_channels, output_channels)
         self.dropout = nn.Dropout(p=0.01)
         self.layer2 = cbrblock(output_channels, output_channels)
 
-    def forward(self,x):
+    def forward(self, x):
         residual = x
         out = self.layer1(x)
         out = self.dropout(out)
@@ -310,7 +306,6 @@ Finally, the `train_utils.py` file serves as a utility module for importing the 
 ```{code-block} python
 :linenos:
 
-# train_utils.py
 import torch
 
 def train(model, optimizer, train_loader, loss_fn, device):
@@ -377,7 +372,7 @@ The `--nv` flag gives the container access to GPU resources. We use `torchrun` t
 
 #!/bin/bash
 #SBATCH --job-name=resnet_singleGpu
-#SBATCH --account=<project_number>
+#SBATCH --account=nn9997k
 #SBATCH --output=singlegpu_%j.out
 #SBATCH --error=singlegpu_%j.err
 #SBATCH --time=01:00:00

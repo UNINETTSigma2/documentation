@@ -13,7 +13,6 @@ To scale training across multiple GPUs, we use PyTorch's [Distributed Data Paral
 :linenos:
 :emphasize-lines: 8-10, 28-31, 34, 48-49, 64-65, 71-72, 79, 91-93, 101, 113-116, 143
 
-# train_ddp.py
 import os
 import time
 import argparse
@@ -39,6 +38,7 @@ parser.add_argument('--base-lr', type=float, default=0.01, help='Learning rate f
 parser.add_argument('--target-accuracy', type=float, default=0.85, help='Target accuracy to stop training')
 parser.add_argument('--patience', type=int, default=2, help='Number of epochs that meet target before stopping')
 args = parser.parse_args()
+
 
 def ddp_setup():
     """Set up the distributed environment."""
@@ -156,6 +156,8 @@ def main_worker():
 
     # Clean up the distributed environment
     destroy_process_group()
+
+
 if __name__ == '__main__':
     main_worker()
 ```
@@ -190,7 +192,7 @@ For single-node multi-GPU training, use `torchrun` with `--standalone`. We reque
 
 #!/bin/bash
 #SBATCH --job-name=resnet_multigpu
-#SBATCH --account=<project_number>
+#SBATCH --account=nn9997k
 #SBATCH --output=multigpu_%j.out
 #SBATCH --error=multigpu_%j.err
 #SBATCH --time=01:00:00
