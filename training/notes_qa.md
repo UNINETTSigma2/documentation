@@ -3,6 +3,14 @@
 Here we share the workshop questions, answer, and feedbacks from the collaborative 
 notes after all our events.
 
+## 2026
+- {ref}`training-2026-spring-onboarding`
+  - [Questions and answers from HPC On-boarding 14 April 2026 Day 0](https://md.sigma2.no/hpc-onboarding-April-14-2026)
+  - [Questions and answers from HPC On-boarding 15 April 2026 Day 1](https://md.sigma2.no/hpc-onboarding-April-15-2026)
+  - [Questions and answers from HPC On-boarding 16 April 2026 Day 2](https://md.sigma2.no/hpc-onboarding-April-16-2026)
+
+- {ref}`2026-Parallelize-for-HPC`
+  - [Questions and answers from How to Parallelize Independent Tasks on HPC 11 March 2026](https://md.sigma2.no/Parallelise-Independent-Tasks-2026)
 ## 2025 
 
 - {ref}`training-2025-autumn-onboarding`
