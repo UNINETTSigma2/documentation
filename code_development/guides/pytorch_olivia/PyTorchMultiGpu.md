@@ -7,11 +7,18 @@
 
 This is part 2 of the PyTorch on Olivia guide. See {ref}`pytorch-on-olivia` for the single-GPU setup.
 
+## Learning Outcomes
+
+By the end of this part, you can:
+
+1. Run the same training workflow on **4 GPUs on one node**.
+2. Understand the minimum DDP changes from the single-GPU version.
+3. Validate that distributed training launched correctly.
+
 To scale training across multiple GPUs, we use PyTorch's [Distributed Data Parallel (DDP)](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html). The code below works for both single-node multi-GPU and multi-node configurations.
 
 ```{code-block} python
 :linenos:
-:emphasize-lines: 8-10, 28-31, 34, 48-49, 64-65, 71-72, 79, 91-93, 101, 113-116, 143
 
 import os
 import time
@@ -165,21 +172,18 @@ if __name__ == '__main__':
 
 ## Key Changes from Single-GPU to Multi-GPU
 
-The highlighted lines above show the DDP-specific additions:
+The key DDP-specific changes are:
 
-| Lines | Change | Purpose |
-|-------|--------|---------|
-| 8-10 | DDP imports | `DistributedSampler`, `DDP`, `init_process_group` |
-| 28-31 | `ddp_setup()` | Initialize NCCL backend and set local GPU |
-| 34 | Call `ddp_setup()` | Start distributed environment |
-| 48-49 | Batch size division | Split global batch across GPUs |
-| 64-65 | Wrap model with `DDP` | Enable synchronized gradient updates |
-| 71-72 | Mixed precision setup | `GradScaler` for FP16 training |
-| 79 | `set_epoch()` | Ensure proper shuffling across epochs |
-| 91-93 | `autocast()` context | Run forward pass in FP16 |
-| 101 | `barrier()` | Synchronize all processes after epoch |
-| 113-116 | `all_reduce()` | Average metrics across GPUs |
-| 143 | `destroy_process_group()` | Clean up distributed environment |
+| Change | Purpose |
+|-------|---------|
+| `ddp_setup()` with `init_process_group(backend="nccl")` | Initializes distributed communication |
+| Read `LOCAL_RANK`, `RANK`, `WORLD_SIZE` from environment | Maps each process to the correct GPU and global rank |
+| `DistributedSampler(...)` + `set_epoch(epoch)` | Ensures proper sharding/shuffling across processes |
+| `model = DDP(model, device_ids=[local_rank])` | Synchronizes gradients across GPUs |
+| `batch_size // world_size` | Splits global batch across all GPUs |
+| `torch.amp.autocast('cuda')` + `GradScaler('cuda')` | Enables mixed precision training |
+| `all_reduce(..., ReduceOp.AVG)` for metrics | Aggregates validation metrics across GPUs |
+| `destroy_process_group()` | Cleans up DDP state at end of run |
 
 
 ## Job Script for Multi-GPU Training
@@ -192,7 +196,7 @@ For single-node multi-GPU training, use `torchrun` with `--standalone`. We reque
 
 #!/bin/bash
 #SBATCH --job-name=resnet_multigpu
-#SBATCH --account=nn9997k
+#SBATCH --account=<project_number>
 #SBATCH --output=multigpu_%j.out
 #SBATCH --error=multigpu_%j.err
 #SBATCH --time=01:00:00
@@ -211,6 +215,19 @@ apptainer exec --nv $CONTAINER_PATH torchrun \
     --nnodes=1 \
     --nproc_per_node=4 \
     train_ddp.py --batch-size 1024 --epochs 100 --base-lr 0.04 --target-accuracy 0.95 --patience 2
+```
+
+Run the job:
+
+```bash
+sbatch multigpu_job.sh
+```
+
+Monitor progress:
+
+```bash
+squeue -u $USER
+tail -f multigpu_<jobid>.out
 ```
 
 Example output:
@@ -246,4 +263,10 @@ Training completed successfully.
 
 With 4 GPUs and FP16 mixed precision, the throughput increased from ~5,100 images/second (single GPU) to ~37,000 images/second—a **7x speedup**. This super-linear scaling (beyond the expected 4x) comes from mixed precision training (FP16) and the larger effective batch size, which better utilizes the GPU compute capabilities.
 
-To scale beyond a single node, see the {ref}`Multi-Node Guide <pytorch-multi-node>`.
+Success criteria for Part 2:
+
+- Output includes `Training started with 4 processes`
+- Final summary reports `Total GPUs used: 4`
+- Throughput is substantially higher than Part 1
+
+For Part 3 (multi-node), you keep the same `train_ddp.py` and only change the job launch configuration. See {ref}`Multi-Node Guide <pytorch-multi-node>`.

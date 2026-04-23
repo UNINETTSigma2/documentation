@@ -11,6 +11,14 @@ This guide demonstrates how to run PyTorch on Olivia using NVIDIA's optimized [P
 2. **Multi-GPU** - 4 GPUs on a single node ({ref}`pytorch-multi-gpu`)
 3. **Multi-Node** - Multiple nodes ({ref}`pytorch-multi-node`)
 
+## Learning Outcomes
+
+By the end of this part, you can:
+
+1. Run a PyTorch training job on **1 GPU** on Olivia.
+2. Submit and monitor the job with Slurm.
+3. Confirm success from expected log output.
+
 ```{admonition} Performance Summary
 :class: tip
 
@@ -57,6 +65,7 @@ The CIFAR-100 dataset (~500 MB) will be downloaded automatically on first run.
 
 1. Create an **empty directory** in your work or project area
 2. `cd` into that directory
+3. Copy the code blocks from this page into files with the same names
 
 The guide will provide all the files needed. When complete, your directory
 will have this structure:
@@ -372,7 +381,7 @@ The `--nv` flag gives the container access to GPU resources. We use `torchrun` t
 
 #!/bin/bash
 #SBATCH --job-name=resnet_singleGpu
-#SBATCH --account=nn9997k
+#SBATCH --account=<project_number>
 #SBATCH --output=singlegpu_%j.out
 #SBATCH --error=singlegpu_%j.err
 #SBATCH --time=01:00:00
@@ -393,6 +402,19 @@ apptainer exec --nv $CONTAINER_PATH torchrun --standalone --nnodes=1 --nproc_per
     train.py --batch-size 256 --epochs 100 --base-lr 0.01 --target-accuracy 0.95 --patience 2
 ```
 
+Run the job:
+
+```bash
+sbatch singlegpu_job.sh
+```
+
+Monitor progress:
+
+```bash
+squeue -u $USER
+tail -f singlegpu_<jobid>.out
+```
+
 Example output showing training progress:
 
 ```bash
@@ -403,12 +425,17 @@ Epoch 98/100: Time=9.805s, Loss=1.5820, Accuracy=0.6562, Throughput=5091.3 img/s
 Epoch 99/100: Time=9.773s, Loss=1.5247, Accuracy=0.6635, Throughput=5107.8 img/s
 Epoch 100/100: Time=9.608s, Loss=1.6100, Accuracy=0.6419, Throughput=5195.4 img/s
 
-Training complete. Final Validation Accuracy = 0.6419
-Total Training Time: 973.8 seconds
-Throughput: 5126.4 images/second
+Training complete. Final Accuracy: 0.6419
+Total Time: 973.8s, Throughput: 5126.4 img/s
 ```
 
 The output shows a throughput of approximately **5,100 images/second** on a single GH200 GPU. In the next parts of this guide, we'll scale this up to multiple GPUs and see significant speedups.
+
+Success criteria for Part 1:
+
+- Job reaches `Training complete`
+- Final summary prints a non-zero throughput in `img/s`
+- No CUDA initialization errors in `.err` log
 
 
 Now the goal is to scale this up to multiple GPUs. For this, please check out the {ref}`Multi GPU Guide <pytorch-multi-gpu>`.

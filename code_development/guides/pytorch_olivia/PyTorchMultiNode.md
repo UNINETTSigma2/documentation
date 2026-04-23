@@ -10,16 +10,23 @@ This is part 3 of the PyTorch on Olivia guide. See {ref}`pytorch-on-olivia` for 
 
 Multi-node training on Olivia requires proper configuration of NCCL with the OFI plugin and libfabric for the Slingshot interconnect. The job script below handles these configurations.
 
+## Learning Outcomes
+
+By the end of this part, you can:
+
+1. Launch PyTorch training across **multiple nodes** with `torchrun`.
+2. Configure the required module/environment and bind mounts for communication libraries.
+3. Set rendezvous parameters correctly for a stable multi-node start.
+
 
 
 ## Job Script for Multi-Node Training
 
 ```{code-block} bash
 :linenos:
-:emphasize-lines: 8, 10, 17, 20-22, 25-29, 43-47, 58-75, 78-84
 
 #!/bin/bash
-#SBATCH --account=nn9997k
+#SBATCH --account=<project_number>
 #SBATCH --job-name=resnet_multinode
 #SBATCH --output=multinode_%j.out
 #SBATCH --error=multinode_%j.err
@@ -73,11 +80,6 @@ echo "Head Node IP: $APPTAINERENV_head_node_ip"
 export APPTAINERENV_SLURM_JOB_NUM_NODES=$SLURM_JOB_NUM_NODES
 export APPTAINERENV_SLURM_GPUS_ON_NODE=$SLURM_GPUS_ON_NODE
 
-# Start GPU utilization monitoring in the background
-GPU_LOG_FILE="multinode.log"
-echo "Starting GPU utilization monitoring..."
-nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &
-
 # Run distributed training inside the container
 srun apptainer exec --nv \
   --bind $HOST_LIBFABRIC_LIB_PATH:/opt/libfabric/lib \
@@ -104,26 +106,33 @@ srun apptainer exec --nv \
   --rdzv_endpoint=$head_node_ip:29500 \
   $TRAINING_SCRIPT'
 
-# Stop GPU utilization monitoring
-echo "Stopping GPU utilization monitoring..."
-pkill -f "nvidia-smi --query-gpu"
+```
 
+Run the job:
+
+```bash
+sbatch multinode_job.sh
+```
+
+Monitor progress:
+
+```bash
+squeue -u $USER
+tail -f multinode_<jobid>.out
 ```
 
 ## Key Changes from Multi-GPU to Multi-Node
 
-The highlighted lines show the multi-node specific additions:
+The multi-node-specific additions are:
 
-| Lines | Change | Purpose |
-|-------|--------|---------|
-| 8 | `--nodes=2` | Request multiple nodes |
-| 10 | `--gpus-per-node=4` | GPUs per node (instead of `--gpus=4`) |
-| 17 | `--batch-size 2048` | Larger batch for 8 GPUs |
-| 20-22 | Module loading + NCCL version | Load NRIS GPU stack and NCCL 2.26.6 for container compatibility |
-| 25-29 | Module-derived host paths | Derive bind sources from `EBROOT*` variables instead of hardcoded paths |
-| 43-47 | Head node discovery | Get head node IP for rendezvous |
-| 58-75 | `srun` with `--bind`/`--env` | Mount libfabric, NCCL, aws-ofi-nccl paths resolved from modules |
-| 78-84 | `torchrun` with rendezvous | Use `rdzv_backend=c10d` and `rdzv_endpoint` for multi-node coordination |
+| Change | Purpose |
+|-------|---------|
+| `#SBATCH --nodes=2` and `#SBATCH --gpus-per-node=4` | Requests resources on multiple nodes |
+| `module load NRIS/GPU` and `module load NCCL/2.26.6-...` | Loads host communication stack compatible with container runtime |
+| `HOST_*` paths from `EBROOT*` variables | Avoids brittle hardcoded bind source paths |
+| Head-node IP discovery from `SLURM_JOB_NODELIST` | Defines rendezvous endpoint for all processes |
+| `srun apptainer exec --bind ... --env ...` | Passes required libs and env into container on each node |
+| `torchrun --rdzv_backend=c10d --rdzv_endpoint=$head_node_ip:29500` | Coordinates multi-node process group formation |
 
 ```{note}
 The key difference from single-node multi-GPU is the **rendezvous setup**. Single-node uses `--standalone`, while multi-node requires explicit coordination via `--rdzv_backend=c10d` and `--rdzv_endpoint` pointing to the head node.
@@ -158,7 +167,26 @@ Number of nodes: 2
 Number of GPUs per node: 4
 Total GPUs used: 8
 Training completed successfully.
-Stopping GPU utilization monitoring...
 ```
 
 With 8 GPUs across 2 nodes, the throughput increased from ~5,100 images/second (single GPU) to ~63,000 images/second—a **12x speedup**. Training time dropped from ~16 minutes to just ~1.3 minutes.
+
+Success criteria for Part 3:
+
+- Log shows `Head Node` and a resolved head-node IP
+- Final summary reports `Number of nodes: 2` and `Total GPUs used: 8`
+- Training completes without rendezvous or NCCL startup errors
+
+## Advanced Troubleshooting (Optional)
+
+Use these only when debugging startup/performance issues:
+
+```bash
+# NCCL debug logs
+export APPTAINERENV_NCCL_DEBUG=INFO
+export APPTAINERENV_NCCL_DEBUG_SUBSYS=ALL
+
+# Optional GPU utilization logging
+GPU_LOG_FILE="multinode.log"
+nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &
+```
