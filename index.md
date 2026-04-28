@@ -154,10 +154,12 @@ Project Leader Support<https://www.sigma2.no/project-leader-handbook>
 :maxdepth: 1
 :caption: Training
 training/events.md
-training/notes_qa.md
-training/videos.md
-training/short_instructions.md
 training/material.md
+training/notes_qa.md
+training/trainingvideos.md
+training/qnas.md
+training/short_instructions.md
+
 ```
 
 ```{toctree}
