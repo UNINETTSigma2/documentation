@@ -57,14 +57,22 @@ Below you find the list of episodes. Each episode is self-contained and you can 
 
 <H3> Content:
 
-- The second day is concerned with containers and how to utilize them correctly. The plan currently is to show containers first on Saga, then move on to Olivia.
+- The second day is concerned with containers and how to utilize them on Olivia. Containers are a key part of the software ecosystem on Olivia.
+	- Containers alleviate the stress on the shared file system from Python and R package installations, which normally involve a huge number (tens or hundreds of thousands) of small files.
+	- A container is instead a self-contained image that includes all the software and dependencies needed to run an application, which both simplifies software management and improves file system performance on HPC systems.
+	- On Olivia, native usage of `pip` and Anaconda or Miniconda is forbidden. Containers are the recommended way to install and use Python and R packages.
 
 <H3> Event schedule: 
+
+- 09:00: Start
+- 12:00: Finished
 
 <H3> Course material:
 
 <add link to training material>
 
+- [Containers on Olivia](https://training.pages.sigma2.no/tutorials/olivia-containers/)
+- [Oliva Best Practises Guide](https://documentation.sigma2.no/hpc_machines/olivia.html#olivia-best-practices-guide)
 
 <H3> Instructors: 
 
