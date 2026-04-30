@@ -21,6 +21,7 @@ Use the reference pages first:
 1. {ref}`PyTorch software options <access-pytorch>`
 2. {ref}`Models, datasets, caches, and overlays <pytorch-models-datasets>`
 3. {ref}`Adding Python packages to module and container paths <pytorch-overlay-images>`
+4. {ref}`Monitoring the jobs & Debugging <pytorch-monitoring-debugging>`
 
 Then follow the execution guides:
 
@@ -58,4 +59,5 @@ overlay_images
 PyTorchSingleGpu
 PyTorchMultiGpu
 PyTorchMultiNode
+monitoring_debugging
 ```
