@@ -186,7 +186,7 @@ Once you have found a dataset of interest to you and navigated to its landing pa
 [downloading datasets document](./downloading-datasets.md).
 
 ## Archive API (Under development)
-The archive is based on CKAN that has a rich API allowing you to create and publish datasets programatically.
+The archive is based on CKAN that has a rich API allowing you to create and publish datasets programmatically.
 To use the API you first need an account in the archive. Once you have an account, you can create an API token by clicking on your username at the top-right of your browser window. This should open your account dashboard (see Figure 9). You should then click on the *API Tokens* field and type in a name for your API token in the *Name* field and click on the *CREATE API TOKEN* button. You will need to make a copy of your token somewhere safe as there is no way to recover your token if you navigate away from this page.
 
 ### Creating a dataset

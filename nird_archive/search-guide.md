@@ -64,7 +64,7 @@ The Advanced Search interface provides:
 - AND / OR buttons: combine conditions with logical operators.
 - Grouping with parentheses (): group conditions to control evaluation order.
 
-Note that you need to click on "Add condition" in order to buid the query and then click "Search" to run it. As you add condition the query  is displayed as a string (e.g. creator_name:"Ada Lovelace" AND title:"NorESM") and is also reflected in the URL, making it easy to bookmark or share.
+Note that you need to click on "Add condition" in order to build the query and then click "Search" to run it. As you add condition the query  is displayed as a string (e.g. creator_name:"Ada Lovelace" AND title:"NorESM") and is also reflected in the URL, making it easy to bookmark or share.
 
 You can build complex queries by combining multiple conditions using AND, OR, and parentheses for grouping.
 
@@ -82,7 +82,7 @@ If you select a filter and no datasets match the combination of your query and t
 
 ## Spatial Search 
 
-The search interface includes a spatial (geographic) search that lets you search for datasets by selecting a region in an interactive map (draw a bounding box on the map to select the geographic region of interest) or by entering the coordinates (the latitude and logitudes coordinates) to define the search area (see Figure 2). 
+The search interface includes a spatial (geographic) search that lets you search for datasets by selecting a region in an interactive map (draw a bounding box on the map to select the geographic region of interest) or by entering the coordinates (the latitude and longitudes coordinates) to define the search area (see Figure 2). 
 
 Datasets with spatial metadata matching the selected bounding box are returned. You can also choose how spatial matching is applied using the dropdown menu:
 
