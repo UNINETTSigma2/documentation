@@ -6,30 +6,35 @@
 :depth: 2
 ```
 
-This is part 3 of the PyTorch on Olivia guide. See {ref}`pytorch-on-olivia` for single-GPU and {ref}`pytorch-multi-gpu` for multi-GPU setup.
+This is part 3 of the PyTorch on Olivia guide. See {ref}`pytorch-single-gpu` for single-GPU and {ref}`pytorch-multi-gpu` for multi-GPU setup.
 
-Multi-node training on Olivia requires proper configuration of NCCL with the OFI plugin and libfabric for the Slingshot interconnect. The job script below handles these configurations.
+Multi-node training on Olivia requires a consistent NCCL-enabled module environment and a stable rendezvous endpoint shared by all nodes. The job script below handles both.
 
 ## Learning Outcomes
 
 By the end of this part, you can:
 
 1. Launch PyTorch training across **multiple nodes** with `torchrun`.
-2. Configure the required module/environment and bind mounts for communication libraries.
+2. Configure the required module environment for distributed communication.
 3. Set rendezvous parameters correctly for a stable multi-node start.
 
 
 
 ## Job Script for Multi-Node Training
 
+Choose either module-based launch or direct container launch.
+
+`````{tabs}
+````{group-tab} Module Path
+
 ```{code-block} bash
 :linenos:
 
 #!/bin/bash
 #SBATCH --account=<project_number>
-#SBATCH --job-name=resnet_multinode
-#SBATCH --output=multinode_%j.out
-#SBATCH --error=multinode_%j.err
+#SBATCH --job-name=resnet_multinode_mod
+#SBATCH --output=multinode_module_%j.out
+#SBATCH --error=multinode_module_%j.err
 #SBATCH --time=01:00:00
 #SBATCH --partition=accel
 #SBATCH --nodes=2
@@ -38,88 +43,218 @@ By the end of this part, you can:
 #SBATCH --cpus-per-task=72
 #SBATCH --mem=440G
 
-# Path to the container
-CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
+set -euo pipefail
 
-# Path to the training script
-export APPTAINERENV_TRAINING_SCRIPT="train_ddp.py --epochs 100 --batch-size 2048 --base-lr 0.04 --target-accuracy 0.95 --patience 2"
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
 
-# Load communication libraries from the NRIS GPU software stack
-module purge
-module load NRIS/GPU
-module load NCCL/2.26.6-GCCcore-14.2.0-CUDA-12.8.0  # pulls in aws-ofi-nccl + libfabric
+ml reset
+ml load NRIS/GPU
+ml load NCCL/2.26.6-GCCcore-14.2.0-CUDA-12.8.0
+ml use /cluster/work/support/temporary_modules
+ml load PyTorch/2.8.0
 
-# Resolve bind-mount source paths from module environment variables
-HOST_LIBFABRIC_LIB_PATH="$EBROOTLIBFABRIC/lib"
-HOST_LIBFABRIC_INCLUDE_PATH="$EBROOTLIBFABRIC/include"
-HOST_NCCL_LIB_PATH="$EBROOTNCCL/lib"
-HOST_AWS_OFI_LIB_PATH="$EBROOTAWSMINOFIMINNCCL/lib"
-HOST_CXI_LIB_PATH=/usr/lib64  # libcxi.so.1 lives here; unchanged
+export PYTORCH_OVERLAY_MODE=ro
 
-# Validate host paths before launching the container
-for p in "$HOST_LIBFABRIC_LIB_PATH" "$HOST_LIBFABRIC_INCLUDE_PATH" \
-      "$HOST_NCCL_LIB_PATH" "$HOST_AWS_OFI_LIB_PATH" "$HOST_CXI_LIB_PATH"; do
-  if [ ! -d "$p" ]; then
-    echo "ERROR: required host path does not exist: $p" >&2
-    exit 1
-  fi
-done
+HF_ROOT="${SCRIPT_DIR}/hf_cache"
+mkdir -p "${HF_ROOT}/hub" "${HF_ROOT}/datasets" "${HF_ROOT}/torch"
 
+export HF_HOME="${HF_ROOT}"
+export HF_HUB_CACHE="${HF_ROOT}/hub"
+export HF_DATASETS_CACHE="${HF_ROOT}/datasets"
+export TRANSFORMERS_CACHE="${HF_ROOT}/hub"
+export TORCH_HOME="${HF_ROOT}/torch"
 
-# Explicitly specify the full path to torchrun
-export APPTAINERENV_TORCHRUN_PATH="/usr/local/bin/torchrun"
+cd "${SCRIPT_DIR}"
 
-# Get the head node and its IP address
-nodes=( $(scontrol show hostnames $SLURM_JOB_NODELIST) )
-head_node=${nodes[0]}
-export APPTAINERENV_head_node_ip=$(srun --nodes=1 --ntasks=1 -w "$head_node" hostname --ip-address | awk '{print $1}')
-echo "Head Node: $head_node"
-echo "Head Node IP: $APPTAINERENV_head_node_ip"
+mapfile -t nodes < <(scontrol show hostnames "${SLURM_JOB_NODELIST}")
+head_node="${nodes[0]}"
+export RDZV_ENDPOINT="${head_node}:29500"
 
-# Pass SLURM variables explicitly to the container
-export APPTAINERENV_SLURM_JOB_NUM_NODES=$SLURM_JOB_NUM_NODES
-export APPTAINERENV_SLURM_GPUS_ON_NODE=$SLURM_GPUS_ON_NODE
+echo "Head node: ${head_node}"
+echo "Rendezvous endpoint: ${RDZV_ENDPOINT}"
 
-# Run distributed training inside the container
-srun apptainer exec --nv \
-  --bind $HOST_LIBFABRIC_LIB_PATH:/opt/libfabric/lib \
-  --bind $HOST_LIBFABRIC_INCLUDE_PATH:/opt/libfabric/include \
-  --bind $HOST_NCCL_LIB_PATH:/opt/nccl/lib \
-  --bind $HOST_AWS_OFI_LIB_PATH:/opt/aws-ofi-nccl/lib \
-  --bind $HOST_CXI_LIB_PATH:/usr/lib64 \
-  --env LIBFABRIC_HOME=/opt/libfabric \
-  --env NCCL_HOME=/opt/nccl \
-  --env head_node_ip=$APPTAINERENV_head_node_ip \
-  --env TRAINING_SCRIPT="$APPTAINERENV_TRAINING_SCRIPT" \
-  --env TORCHRUN_PATH="$APPTAINERENV_TORCHRUN_PATH" \
-  --env RDZV_ID=$SLURM_JOB_ID \
-  --env SLURM_JOB_NUM_NODES=$APPTAINERENV_SLURM_JOB_NUM_NODES \
-  --env SLURM_GPUS_ON_NODE=$APPTAINERENV_SLURM_GPUS_ON_NODE \
-  $CONTAINER_PATH \
-  bash -c 'export LD_LIBRARY_PATH=/opt/aws-ofi-nccl/lib:/opt/libfabric/lib:/opt/nccl/lib:/usr/lib64:$LD_LIBRARY_PATH; \
-  export CPATH=$LIBFABRIC_HOME/include:$CPATH; \
-  $TORCHRUN_PATH \
-  --nnodes=$SLURM_JOB_NUM_NODES \
-  --nproc_per_node=$SLURM_GPUS_ON_NODE \
-  --rdzv_id=$RDZV_ID \
+which torchrun
+
+srun torchrun \
+  --nnodes="${SLURM_JOB_NUM_NODES}" \
+  --nproc_per_node="${SLURM_GPUS_ON_NODE}" \
+  --rdzv_id="${SLURM_JOB_ID}" \
   --rdzv_backend=c10d \
-  --rdzv_endpoint=$head_node_ip:29500 \
-  $TRAINING_SCRIPT'
+  --rdzv_endpoint="${RDZV_ENDPOINT}" \
+  train_ddp.py --epochs 100 --batch-size 2048 --base-lr 0.04 --target-accuracy 0.95 --patience 2
 
 ```
 
-Run the job:
+````
 
-```bash
-sbatch multinode_job.sh
+````{group-tab} Direct Container Path
+
+```{code-block} bash
+:linenos:
+
+#!/bin/bash
+#SBATCH --account=<project_number>
+#SBATCH --job-name=resnet_multinode_ctr
+#SBATCH --output=multinode_container_%j.out
+#SBATCH --error=multinode_container_%j.err
+#SBATCH --time=01:00:00
+#SBATCH --partition=accel
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=1
+#SBATCH --gpus-per-node=4
+#SBATCH --cpus-per-task=72
+#SBATCH --mem=440G
+
+set -euo pipefail
+
+CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+TRAINING_SCRIPT="train_ddp.py --epochs 100 --batch-size 2048 --base-lr 0.04 --target-accuracy 0.95 --patience 2"
+
+ml reset
+ml load NRIS/GPU
+ml load NCCL/2.26.6-GCCcore-14.2.0-CUDA-12.8.0
+
+LIBFABRIC_LIB_PATH="${EBROOTLIBFABRIC}/lib"
+LIBFABRIC_INCLUDE_PATH="${EBROOTLIBFABRIC}/include"
+NCCL_ROOT_PATH="${EBROOTNCCL}"
+AWS_OFI_NCCL_LIB_PATH="${EBROOTAWSMINOFIMINNCCL}/lib"
+CXI_LIB_PATH="/usr/lib64"
+
+HF_ROOT="${SCRIPT_DIR}/hf_cache"
+mkdir -p "${HF_ROOT}/hub" "${HF_ROOT}/datasets" "${HF_ROOT}/torch"
+
+cd "${SCRIPT_DIR}"
+
+mapfile -t nodes < <(scontrol show hostnames "${SLURM_JOB_NODELIST}")
+head_node="${nodes[0]}"
+head_node_ip=$(srun --nodes=1 --ntasks=1 -w "${head_node}" hostname --ip-address | awk '{print $1}')
+rdzv_endpoint="${head_node_ip}:29500"
+
+echo "Head node: ${head_node}"
+echo "Head node IP: ${head_node_ip}"
+echo "Rendezvous endpoint: ${rdzv_endpoint}"
+
+srun apptainer exec --nv \
+  --bind "${SCRIPT_DIR}:${SCRIPT_DIR}" \
+  --bind "${LIBFABRIC_LIB_PATH}:/opt/libfabric/lib" \
+  --bind "${LIBFABRIC_INCLUDE_PATH}:/opt/libfabric/include" \
+  --bind "${NCCL_ROOT_PATH}:/opt/nccl" \
+  --bind "${AWS_OFI_NCCL_LIB_PATH}:/opt/aws-ofi-nccl/lib" \
+  --bind "${CXI_LIB_PATH}:${CXI_LIB_PATH}" \
+  --pwd "${SCRIPT_DIR}" \
+  --env FI_PROVIDER="${FI_PROVIDER:-cxi}" \
+  --env FI_CXI_RX_MATCH_MODE="${FI_CXI_RX_MATCH_MODE:-hybrid}" \
+  --env NCCL_PROTO="${NCCL_PROTO:-^LL128}" \
+  --env LIBFABRIC_HOME="/opt/libfabric" \
+  --env NCCL_HOME="/opt/nccl" \
+  --env AWS_OFI_NCCL_HOME="/opt/aws-ofi-nccl" \
+  --env RDZV_ENDPOINT="${rdzv_endpoint}" \
+  --env RDZV_ID="${SLURM_JOB_ID}" \
+  --env SLURM_JOB_NUM_NODES="${SLURM_JOB_NUM_NODES}" \
+  --env SLURM_GPUS_ON_NODE="${SLURM_GPUS_ON_NODE}" \
+  --env TRAINING_SCRIPT="${TRAINING_SCRIPT}" \
+  --env HF_HOME="${HF_ROOT}" \
+  --env HF_HUB_CACHE="${HF_ROOT}/hub" \
+  --env HF_DATASETS_CACHE="${HF_ROOT}/datasets" \
+  --env TRANSFORMERS_CACHE="${HF_ROOT}/hub" \
+  --env TORCH_HOME="${HF_ROOT}/torch" \
+  "${CONTAINER_PATH}" \
+  bash -lc 'export LD_LIBRARY_PATH="${LIBFABRIC_HOME}/lib:${NCCL_HOME}/lib:${AWS_OFI_NCCL_HOME}/lib:/usr/lib64:${LD_LIBRARY_PATH}"; export CPATH="${LIBFABRIC_HOME}/include:${CPATH:-}"; torchrun --nnodes="${SLURM_JOB_NUM_NODES}" --nproc_per_node="${SLURM_GPUS_ON_NODE}" --rdzv_id="${RDZV_ID}" --rdzv_backend=c10d --rdzv_endpoint="${RDZV_ENDPOINT}" ${TRAINING_SCRIPT}'
 ```
 
-Monitor progress:
+````
+
+````{group-tab} EESSI Path
+
+```{code-block} bash
+:linenos:
+
+#!/bin/bash
+#SBATCH --account=<project_number>
+#SBATCH --job-name=resnet_multinode_eessi
+#SBATCH --output=multinode_eessi_%j.out
+#SBATCH --error=multinode_eessi_%j.err
+#SBATCH --time=01:00:00
+#SBATCH --partition=accel
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=1
+#SBATCH --gpus-per-node=4
+#SBATCH --cpus-per-task=72
+#SBATCH --mem=440G
+
+set -euo pipefail
+
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+
+ml reset
+module load EESSI/2025.06
+module load PyTorch/2.7.1-foss-2024a-CUDA-12.6.0
+module load torchvision/0.22.0-foss-2024a-CUDA-12.6.0
+
+HF_ROOT="${SCRIPT_DIR}/hf_cache"
+mkdir -p "${HF_ROOT}/hub" "${HF_ROOT}/datasets" "${HF_ROOT}/torch"
+
+export HF_HOME="${HF_ROOT}"
+export HF_HUB_CACHE="${HF_ROOT}/hub"
+export HF_DATASETS_CACHE="${HF_ROOT}/datasets"
+export TRANSFORMERS_CACHE="${HF_ROOT}/hub"
+export TORCH_HOME="${HF_ROOT}/torch"
+
+cd "${SCRIPT_DIR}"
+
+mapfile -t nodes < <(scontrol show hostnames "${SLURM_JOB_NODELIST}")
+head_node="${nodes[0]}"
+export RDZV_ENDPOINT="${head_node}:29500"
+
+echo "Head node: ${head_node}"
+echo "Rendezvous endpoint: ${RDZV_ENDPOINT}"
+
+srun torchrun \
+  --nnodes="${SLURM_JOB_NUM_NODES}" \
+  --nproc_per_node="${SLURM_GPUS_ON_NODE}" \
+  --rdzv_id="${SLURM_JOB_ID}" \
+  --rdzv_backend=c10d \
+  --rdzv_endpoint="${RDZV_ENDPOINT}" \
+  train_ddp.py --epochs 100 --batch-size 2048 --base-lr 0.04 --target-accuracy 0.95 --patience 2
+```
+
+````
+`````
+
+The submit and monitor commands are identical for both launch modes.
+
+`````{tabs}
+````{group-tab} Module Path
 
 ```bash
+sbatch multinode_module.sh
 squeue -u $USER
-tail -f multinode_<jobid>.out
+tail -f multinode_module_<jobid>.out
 ```
+
+````
+
+````{group-tab} Direct Container Path
+
+```bash
+sbatch multinode_container.sh
+squeue -u $USER
+tail -f multinode_container_<jobid>.out
+```
+
+````
+
+````{group-tab} EESSI Path
+
+```bash
+sbatch multinode_eessi.sh
+squeue -u $USER
+tail -f multinode_eessi_<jobid>.out
+```
+
+````
+`````
 
 ## Key Changes from Multi-GPU to Multi-Node
 
@@ -128,11 +263,9 @@ The multi-node-specific additions are:
 | Change | Purpose |
 |-------|---------|
 | `#SBATCH --nodes=2` and `#SBATCH --gpus-per-node=4` | Requests resources on multiple nodes |
-| `module load NRIS/GPU` and `module load NCCL/2.26.6-...` | Loads host communication stack compatible with container runtime |
-| `HOST_*` paths from `EBROOT*` variables | Avoids brittle hardcoded bind source paths |
-| Head-node IP discovery from `SLURM_JOB_NODELIST` | Defines rendezvous endpoint for all processes |
-| `srun apptainer exec --bind ... --env ...` | Passes required libs and env into container on each node |
-| `torchrun --rdzv_backend=c10d --rdzv_endpoint=$head_node_ip:29500` | Coordinates multi-node process group formation |
+| `ml load NRIS/GPU` and `ml load NCCL/2.26.6-...` | Loads the distributed communication stack |
+| Head-node hostname from `SLURM_JOB_NODELIST` | Defines rendezvous endpoint for all processes |
+| `srun torchrun ... --rdzv_backend=c10d --rdzv_endpoint=...` | Coordinates multi-node process-group formation |
 
 ```{note}
 The key difference from single-node multi-GPU is the **rendezvous setup**. Single-node uses `--standalone`, while multi-node requires explicit coordination via `--rdzv_backend=c10d` and `--rdzv_endpoint` pointing to the head node.

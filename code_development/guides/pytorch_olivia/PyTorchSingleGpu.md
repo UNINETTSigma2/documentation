@@ -1,15 +1,13 @@
-(pytorch-on-olivia)=
-# PyTorch on Olivia
+(pytorch-single-gpu)=
+# Single-GPU Implementation for PyTorch on Olivia
 
 ```{contents}
 :depth: 2
 ```
 
-This guide demonstrates how to run PyTorch on Olivia using NVIDIA's optimized [PyTorch container](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch). We train a Wide ResNet model on the CIFAR-100 dataset across three scenarios:
+This is part 1 of the PyTorch on Olivia guide. See {ref}`pytorch-on-olivia` for the overview, software choice, storage recommendations, and the full guide structure.
 
-1. **Single GPU** (this page)
-2. **Multi-GPU** - 4 GPUs on a single node ({ref}`pytorch-multi-gpu`)
-3. **Multi-Node** - Multiple nodes ({ref}`pytorch-multi-node`)
+The goal of this part is to run the reference training workflow on a single GH200 GPU before scaling to multiple GPUs and multiple nodes.
 
 ## Learning Outcomes
 
@@ -19,20 +17,6 @@ By the end of this part, you can:
 2. Submit and monitor the job with Slurm.
 3. Confirm success from expected log output.
 
-```{admonition} Performance Summary
-:class: tip
-
-This 3-part guide walks you through scaling PyTorch training on Olivia's GH200 GPUs:
-
-| Configuration | Throughput | Speedup |
-|---------------|------------|---------|
-| Single GPU (Part 1) | ~5,100 img/s | 1x |
-| 4 GPUs on 1 node (Part 2) | ~37,000 img/s | 7x |
-| 8 GPUs on 2 nodes (Part 3) | ~63,000 img/s | 12x |
-
-The multi-GPU guides use FP16 mixed precision for improved performance.
-```
-
 ```{note}
 **Key considerations for Olivia:**
 - The login node (x86_64) and compute nodes (Aarch64) have different architectures. Software and containers must be built for ARM (Aarch64) to run on the compute nodes.
@@ -40,17 +24,55 @@ The multi-GPU guides use FP16 mixed precision for improved performance.
 ```
 In order to be able to use PyTorch on Olivia we provide different solutions. You can read more about those solutions in detail here. ({ref}`access-pytorch`)
 
-## Getting the Container
+## PyTorch Runtime Setup
 
-The PyTorch container is available pre-pulled at:
-```
-/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif
-```
+You can run this guide in three ways: through the PyTorch module path, by launching the container directly, or through EESSI modules.
 
-To pull a different version yourself, use the `--arch arm64` flag since you're pulling from the login node (x86_64) for use on compute nodes (Aarch64):
+`````{tabs}
+````{group-tab} Module Path
+Before submitting jobs, set this variable in your job script:
 
 ```bash
-apptainer pull --arch arm64 docker://nvcr.io/nvidia/pytorch:25.06-py3
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+```
+
+Then load the software stack in this order:
+
+```bash
+ml reset
+ml load NRIS/GPU
+ml load NCCL/2.26.6-GCCcore-14.2.0-CUDA-12.8.0
+ml use /cluster/work/support/temporary_modules
+ml load PyTorch/2.8.0
+export PYTORCH_OVERLAY_MODE=ro
+```
+````
+
+````{group-tab} Direct Container Path
+If you want to run container-first, launch the NVIDIA PyTorch container directly:
+
+```bash
+CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+```
+
+Use `apptainer exec --nv` in your Slurm script (examples below).
+````
+
+````{group-tab} EESSI Path
+Load EESSI and the validated PyTorch stack directly from EESSI:
+
+```bash
+ml reset
+module load EESSI/2025.06
+module load PyTorch/2.7.1-foss-2024a-CUDA-12.6.0
+module load torchvision/0.22.0-foss-2024a-CUDA-12.6.0
+```
+````
+`````
+
+```{note}
+`/cluster/work/support/temporary_modules` is a temporary module root while the PyTorch module rollout is in progress. When the service is fully live, you can load the PyTorch module directly without this `ml use` line.
 ```
 
 ## Project Setup
@@ -81,6 +103,7 @@ your_project_directory/
 ├── singlegpu_job.sh
 ├── multigpu_job.sh       # for multi-GPU
 ├── multinode_job.sh      # for multi-node
+├── hf_cache/             # created automatically by job scripts
 └── datasets/             # created automatically on first run
     └── cifar-100-python/
 ```
@@ -374,16 +397,19 @@ def test(model, test_loader, loss_fn, device):
 
 ## Job Script for Single GPU Training
 
-The `--nv` flag gives the container access to GPU resources. We use `torchrun` to launch the training script.
+Use whichever launch model matches your workflow.
+
+`````{tabs}
+````{group-tab} Module Path
 
 ```{code-block} bash
 :linenos:
 
 #!/bin/bash
-#SBATCH --job-name=resnet_singleGpu
+#SBATCH --job-name=resnet_singleGpu_mod
 #SBATCH --account=<project_number>
-#SBATCH --output=singlegpu_%j.out
-#SBATCH --error=singlegpu_%j.err
+#SBATCH --output=singlegpu_module_%j.out
+#SBATCH --error=singlegpu_module_%j.err
 #SBATCH --time=01:00:00
 #SBATCH --partition=accel
 #SBATCH --nodes=1
@@ -392,28 +418,177 @@ The `--nv` flag gives the container access to GPU resources. We use `torchrun` t
 #SBATCH --mem=110G
 #SBATCH --gpus-per-node=1
 
-CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
+set -euo pipefail
 
-# Check GPU availability
-apptainer exec --nv $CONTAINER_PATH python -c 'import torch; print(f"CUDA available: {torch.cuda.is_available()}, GPUs: {torch.cuda.device_count()}")'
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
 
-# Run training
-apptainer exec --nv $CONTAINER_PATH torchrun --standalone --nnodes=1 --nproc_per_node=1 \
+ml reset
+ml load NRIS/GPU
+ml load NCCL/2.26.6-GCCcore-14.2.0-CUDA-12.8.0
+ml use /cluster/work/support/temporary_modules
+ml load PyTorch/2.8.0
+
+export PYTORCH_OVERLAY_MODE=ro
+
+HF_ROOT="${SCRIPT_DIR}/hf_cache"
+mkdir -p "${HF_ROOT}/hub" "${HF_ROOT}/datasets" "${HF_ROOT}/torch"
+
+export HF_HOME="${HF_ROOT}"
+export HF_HUB_CACHE="${HF_ROOT}/hub"
+export HF_DATASETS_CACHE="${HF_ROOT}/datasets"
+export TRANSFORMERS_CACHE="${HF_ROOT}/hub"
+export TORCH_HOME="${HF_ROOT}/torch"
+
+cd "${SCRIPT_DIR}"
+
+which python
+which torchrun
+
+python -c 'import torch; print(f"CUDA available: {torch.cuda.is_available()}, GPUs: {torch.cuda.device_count()}")'
+
+torchrun --standalone --nnodes=1 --nproc_per_node=1 \
     train.py --batch-size 256 --epochs 100 --base-lr 0.01 --target-accuracy 0.95 --patience 2
 ```
 
-Run the job:
+````
 
-```bash
-sbatch singlegpu_job.sh
+````{group-tab} Direct Container Path
+
+```{code-block} bash
+:linenos:
+
+#!/bin/bash
+#SBATCH --job-name=resnet_singleGpu_ctr
+#SBATCH --account=<project_number>
+#SBATCH --output=singlegpu_container_%j.out
+#SBATCH --error=singlegpu_container_%j.err
+#SBATCH --time=01:00:00
+#SBATCH --partition=accel
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=72
+#SBATCH --mem=110G
+#SBATCH --gpus-per-node=1
+
+set -euo pipefail
+
+CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+
+HF_ROOT="${SCRIPT_DIR}/hf_cache"
+mkdir -p "${HF_ROOT}/hub" "${HF_ROOT}/datasets" "${HF_ROOT}/torch"
+
+cd "${SCRIPT_DIR}"
+
+apptainer exec --nv \
+    --bind "${SCRIPT_DIR}:${SCRIPT_DIR}" \
+    --pwd "${SCRIPT_DIR}" \
+    --env HF_HOME="${HF_ROOT}" \
+    --env HF_HUB_CACHE="${HF_ROOT}/hub" \
+    --env HF_DATASETS_CACHE="${HF_ROOT}/datasets" \
+    --env TRANSFORMERS_CACHE="${HF_ROOT}/hub" \
+    --env TORCH_HOME="${HF_ROOT}/torch" \
+    "${CONTAINER_PATH}" \
+    python -c 'import torch; print(f"CUDA available: {torch.cuda.is_available()}, GPUs: {torch.cuda.device_count()}")'
+
+apptainer exec --nv \
+    --bind "${SCRIPT_DIR}:${SCRIPT_DIR}" \
+    --pwd "${SCRIPT_DIR}" \
+    --env HF_HOME="${HF_ROOT}" \
+    --env HF_HUB_CACHE="${HF_ROOT}/hub" \
+    --env HF_DATASETS_CACHE="${HF_ROOT}/datasets" \
+    --env TRANSFORMERS_CACHE="${HF_ROOT}/hub" \
+    --env TORCH_HOME="${HF_ROOT}/torch" \
+    "${CONTAINER_PATH}" \
+    torchrun --standalone --nnodes=1 --nproc_per_node=1 \
+    train.py --batch-size 256 --epochs 100 --base-lr 0.01 --target-accuracy 0.95 --patience 2
 ```
 
-Monitor progress:
+````
+
+````{group-tab} EESSI Path
+
+```{code-block} bash
+:linenos:
+
+#!/bin/bash
+#SBATCH --job-name=resnet_singleGpu_eessi
+#SBATCH --account=<project_number>
+#SBATCH --output=singlegpu_eessi_%j.out
+#SBATCH --error=singlegpu_eessi_%j.err
+#SBATCH --time=01:00:00
+#SBATCH --partition=accel
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=72
+#SBATCH --mem=110G
+#SBATCH --gpus-per-node=1
+
+set -euo pipefail
+
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+
+ml reset
+module load EESSI/2025.06
+module load PyTorch/2.7.1-foss-2024a-CUDA-12.6.0
+module load torchvision/0.22.0-foss-2024a-CUDA-12.6.0
+
+HF_ROOT="${SCRIPT_DIR}/hf_cache"
+mkdir -p "${HF_ROOT}/hub" "${HF_ROOT}/datasets" "${HF_ROOT}/torch"
+
+export HF_HOME="${HF_ROOT}"
+export HF_HUB_CACHE="${HF_ROOT}/hub"
+export HF_DATASETS_CACHE="${HF_ROOT}/datasets"
+export TRANSFORMERS_CACHE="${HF_ROOT}/hub"
+export TORCH_HOME="${HF_ROOT}/torch"
+
+cd "${SCRIPT_DIR}"
+
+which python
+which torchrun
+
+python -c 'import torch; print(f"CUDA available: {torch.cuda.is_available()}, GPUs: {torch.cuda.device_count()}")'
+
+torchrun --standalone --nnodes=1 --nproc_per_node=1 \
+    train.py --batch-size 256 --epochs 100 --base-lr 0.01 --target-accuracy 0.95 --patience 2
+```
+
+````
+`````
+
+The submit and monitor commands are identical for both launch modes.
+
+`````{tabs}
+````{group-tab} Module Path
 
 ```bash
+sbatch singlegpu_module.sh
 squeue -u $USER
-tail -f singlegpu_<jobid>.out
+tail -f singlegpu_module_<jobid>.out
 ```
+
+````
+
+````{group-tab} Direct Container Path
+
+```bash
+sbatch singlegpu_container.sh
+squeue -u $USER
+tail -f singlegpu_container_<jobid>.out
+```
+
+````
+
+````{group-tab} EESSI Path
+
+```bash
+sbatch singlegpu_eessi.sh
+squeue -u $USER
+tail -f singlegpu_eessi_<jobid>.out
+```
+
+````
+`````
 
 Example output showing training progress:
 
@@ -439,10 +614,3 @@ Success criteria for Part 1:
 
 
 Now the goal is to scale this up to multiple GPUs. For this, please check out the {ref}`Multi GPU Guide <pytorch-multi-gpu>`.
-
-```{toctree}
-:hidden:
-PyTorchMultiGpu
-PyTorchMultiNode
-access_pytorch
-```

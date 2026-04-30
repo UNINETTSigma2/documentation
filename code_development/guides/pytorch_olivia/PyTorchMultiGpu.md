@@ -5,7 +5,7 @@
 :depth: 2
 ```
 
-This is part 2 of the PyTorch on Olivia guide. See {ref}`pytorch-on-olivia` for the single-GPU setup.
+This is part 2 of the PyTorch on Olivia guide. See {ref}`pytorch-single-gpu` for the single-GPU setup.
 
 ## Learning Outcomes
 
@@ -189,16 +189,19 @@ The key DDP-specific changes are:
 ## Job Script for Multi-GPU Training
 
 
-For single-node multi-GPU training, use `torchrun` with `--standalone`. We request 4 GPUs and adjust batch size and learning rate for better scaling.
+For single-node multi-GPU training, use `torchrun` with `--standalone`. Choose either the module path or a direct container launch.
+
+`````{tabs}
+````{group-tab} Module Path
 
 ```{code-block} bash
 :linenos:
 
 #!/bin/bash
-#SBATCH --job-name=resnet_multigpu
+#SBATCH --job-name=resnet_multigpu_mod
 #SBATCH --account=<project_number>
-#SBATCH --output=multigpu_%j.out
-#SBATCH --error=multigpu_%j.err
+#SBATCH --output=multigpu_module_%j.out
+#SBATCH --error=multigpu_module_%j.err
 #SBATCH --time=01:00:00
 #SBATCH --partition=accel
 #SBATCH --nodes=1
@@ -207,28 +210,160 @@ For single-node multi-GPU training, use `torchrun` with `--standalone`. We reque
 #SBATCH --mem=440G
 #SBATCH --gpus=4
 
-CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
+set -euo pipefail
 
-# Run training with 4 GPUs
-apptainer exec --nv $CONTAINER_PATH torchrun \
-    --standalone \
-    --nnodes=1 \
-    --nproc_per_node=4 \
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+
+ml reset
+ml load NRIS/GPU
+ml load NCCL/2.26.6-GCCcore-14.2.0-CUDA-12.8.0
+ml use /cluster/work/support/temporary_modules
+ml load PyTorch/2.8.0
+
+export PYTORCH_OVERLAY_MODE=ro
+
+HF_ROOT="${SCRIPT_DIR}/hf_cache"
+mkdir -p "${HF_ROOT}/hub" "${HF_ROOT}/datasets" "${HF_ROOT}/torch"
+
+export HF_HOME="${HF_ROOT}"
+export HF_HUB_CACHE="${HF_ROOT}/hub"
+export HF_DATASETS_CACHE="${HF_ROOT}/datasets"
+export TRANSFORMERS_CACHE="${HF_ROOT}/hub"
+export TORCH_HOME="${HF_ROOT}/torch"
+
+cd "${SCRIPT_DIR}"
+
+which torchrun
+
+torchrun --standalone --nnodes=1 --nproc_per_node=4 \
     train_ddp.py --batch-size 1024 --epochs 100 --base-lr 0.04 --target-accuracy 0.95 --patience 2
 ```
 
-Run the job:
+````
 
-```bash
-sbatch multigpu_job.sh
+````{group-tab} Direct Container Path
+
+```{code-block} bash
+:linenos:
+
+#!/bin/bash
+#SBATCH --job-name=resnet_multigpu_ctr
+#SBATCH --account=<project_number>
+#SBATCH --output=multigpu_container_%j.out
+#SBATCH --error=multigpu_container_%j.err
+#SBATCH --time=01:00:00
+#SBATCH --partition=accel
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=72
+#SBATCH --mem=440G
+#SBATCH --gpus=4
+
+set -euo pipefail
+
+CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+
+HF_ROOT="${SCRIPT_DIR}/hf_cache"
+mkdir -p "${HF_ROOT}/hub" "${HF_ROOT}/datasets" "${HF_ROOT}/torch"
+
+cd "${SCRIPT_DIR}"
+
+apptainer exec --nv \
+    --bind "${SCRIPT_DIR}:${SCRIPT_DIR}" \
+    --pwd "${SCRIPT_DIR}" \
+    --env HF_HOME="${HF_ROOT}" \
+    --env HF_HUB_CACHE="${HF_ROOT}/hub" \
+    --env HF_DATASETS_CACHE="${HF_ROOT}/datasets" \
+    --env TRANSFORMERS_CACHE="${HF_ROOT}/hub" \
+    --env TORCH_HOME="${HF_ROOT}/torch" \
+    "${CONTAINER_PATH}" \
+    torchrun --standalone --nnodes=1 --nproc_per_node=4 \
+    train_ddp.py --batch-size 1024 --epochs 100 --base-lr 0.04 --target-accuracy 0.95 --patience 2
 ```
 
-Monitor progress:
+````
+
+````{group-tab} EESSI Path
+
+```{code-block} bash
+:linenos:
+
+#!/bin/bash
+#SBATCH --job-name=resnet_multigpu_eessi
+#SBATCH --account=<project_number>
+#SBATCH --output=multigpu_eessi_%j.out
+#SBATCH --error=multigpu_eessi_%j.err
+#SBATCH --time=01:00:00
+#SBATCH --partition=accel
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=72
+#SBATCH --mem=440G
+#SBATCH --gpus=4
+
+set -euo pipefail
+
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+
+ml reset
+module load EESSI/2025.06
+module load PyTorch/2.7.1-foss-2024a-CUDA-12.6.0
+module load torchvision/0.22.0-foss-2024a-CUDA-12.6.0
+
+HF_ROOT="${SCRIPT_DIR}/hf_cache"
+mkdir -p "${HF_ROOT}/hub" "${HF_ROOT}/datasets" "${HF_ROOT}/torch"
+
+export HF_HOME="${HF_ROOT}"
+export HF_HUB_CACHE="${HF_ROOT}/hub"
+export HF_DATASETS_CACHE="${HF_ROOT}/datasets"
+export TRANSFORMERS_CACHE="${HF_ROOT}/hub"
+export TORCH_HOME="${HF_ROOT}/torch"
+
+cd "${SCRIPT_DIR}"
+
+which torchrun
+
+torchrun --standalone --nnodes=1 --nproc_per_node=4 \
+    train_ddp.py --batch-size 1024 --epochs 100 --base-lr 0.04 --target-accuracy 0.95 --patience 2
+```
+
+````
+`````
+
+The submit and monitor commands are identical for both launch modes.
+
+`````{tabs}
+````{group-tab} Module Path
 
 ```bash
+sbatch multigpu_module.sh
 squeue -u $USER
-tail -f multigpu_<jobid>.out
+tail -f multigpu_module_<jobid>.out
 ```
+
+````
+
+````{group-tab} Direct Container Path
+
+```bash
+sbatch multigpu_container.sh
+squeue -u $USER
+tail -f multigpu_container_<jobid>.out
+```
+
+````
+
+````{group-tab} EESSI Path
+
+```bash
+sbatch multigpu_eessi.sh
+squeue -u $USER
+tail -f multigpu_eessi_<jobid>.out
+```
+
+````
+`````
 
 Example output:
 
