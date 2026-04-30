@@ -67,7 +67,7 @@ You should choose open file formats for your data if possible. Open file formats
 
 To access the RDA web interface, direct your browser to: [https://archive.sigma2.no](https://archive.sigma2.no). You should arrive at the front page shown in Figure 1. You will need to authenticate using your FEIDE or ORCID account either by logging on via the *SIGN IN* button on the top-right or via the *ADD DATASET* button.
 
-![rda_web_interface](imgs/figure_1_screenshot_front_page.png "RDA web interface")
+![rda_web_interface](imgs/figure_7_screenshot_portal_V1.png "RDA web interface")
 Figure 1: Screenshot of the RDA web interface front page.
 
 The *ADD DATASET* button provides access to the set of pages required for depositing your dataset in the RDA. These pages are accessible once you have authenticated and been allowed to access the RDA.
@@ -167,11 +167,14 @@ Figure 6: Screenshot of the version dataset page.
 
 ## Searching and Accessing Datasets
 
-Published datasets can be viewed on the [portal](https://archive.sigma2.no), shown in Figure 7. You can search for published datasets via the search field. Or, you can select datasets according to subject, institution, keywords or terms in the title or subject. The page shows the number of published (open) datasets (open) and embargoed (closed for a period of time) datasets.
+Published datasets are available on the [portal](https://archive.sigma2.no), shown in Figure 7. To view them, select the DATASETS tab at the top of the page. A search bar on the homepage lets you run a quick keyword search across all dataset metadata. For more control, click Advanced Search to open the dedicated search page, where you can query specific metadata fields (creator, DOI, project, theme, and more), combine conditions using Boolean operators, filter by institution, subject, publication year, or geographic area, and sort and paginate results.
 
+For full query syntax and search examples, see the {ref}`Search Guide`.
 
-![the_portal_page](imgs/figure_7_screenshot_portal.png "portal_page")
+![the_portal_page](imgs/figure_7_screenshot_portal_V1.png "portal_page")
 Figure 7: Screenshot of the archive portal.
+
+Searching, viewing, and accessing public datasets on the portal does not require login and can be done anonymously.
 
 Clicking on a dataset in the list of search results will open the landing page for the dataset. This page contains the metadata information on the dataset, how to cite the dataset and the table of contents that contains http and S3 links for the files in the dataset that allow you to download the individual files (see Figure 8).
 
@@ -183,7 +186,7 @@ Once you have found a dataset of interest to you and navigated to its landing pa
 [downloading datasets document](./downloading-datasets.md).
 
 ## Archive API (Under development)
-The archive is based on CKAN that has a rich API allowing you to create and publish datasets programatically.
+The archive is based on CKAN that has a rich API allowing you to create and publish datasets programmatically.
 To use the API you first need an account in the archive. Once you have an account, you can create an API token by clicking on your username at the top-right of your browser window. This should open your account dashboard (see Figure 9). You should then click on the *API Tokens* field and type in a name for your API token in the *Name* field and click on the *CREATE API TOKEN* button. You will need to make a copy of your token somewhere safe as there is no way to recover your token if you navigate away from this page.
 
 ### Creating a dataset
