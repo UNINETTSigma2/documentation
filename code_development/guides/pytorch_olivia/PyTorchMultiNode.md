@@ -290,16 +290,3 @@ Success criteria for Part 3:
 - Final summary reports `Number of nodes: 2` and `Total GPUs used: 8`
 - Training completes without rendezvous or NCCL startup errors
 
-## Advanced Troubleshooting (Optional)
-
-Use these only when debugging startup/performance issues:
-
-```bash
-# NCCL debug logs
-export APPTAINERENV_NCCL_DEBUG=INFO
-export APPTAINERENV_NCCL_DEBUG_SUBSYS=ALL
-
-# Optional GPU utilization logging
-GPU_LOG_FILE="multinode.log"
-nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &
-```
