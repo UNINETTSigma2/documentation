@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NIRD RDA Search Guide &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Questions, Answers and Feedback</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/trainingvideos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/qnas.html">Question and Answer events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">NIRD RDA Search Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nird-rda-search-guide">
+<span id="search-guide"></span><h1>NIRD RDA Search Guide<a class="headerlink" href="#nird-rda-search-guide" title="Link to this heading"></a></h1>
+<section id="how-to-use-this-guide">
+<h2>How to use this guide<a class="headerlink" href="#how-to-use-this-guide" title="Link to this heading"></a></h2>
+<p>This guide is written for researchers/users who want to find datasets efficiently on <a class="reference external" href="https://archive.sigma2.no/">NIRD Research Data Archive</a>,
+whether you have a specific dataset in mind or are exploring what exists in a field. Clicking on the <code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Search</span></code>  on the main page, or executing a query will open the search page shown in Figure 1. This document covers the search page.</p>
+<p>This guide is organized in sections around common search scenarios you may encounter:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#default-search"><span class="std std-ref">Default Search</span></a>: You have a broad topic and want to see what exists.</p></li>
+<li><p><a class="reference internal" href="#advanced-search"><span class="std std-ref">Advanced Search</span></a>:  You know exactly what you want and need to pinpoint it.</p></li>
+<li><p><a class="reference internal" href="#filtering-search"><span class="std std-ref">Filtering Search Results</span></a>:  You have too many results and need to narrow down.</p></li>
+<li><p><a class="reference internal" href="#spatial-search"><span class="std std-ref">Spatial Search</span></a>: You want to do spatial search.</p></li>
+<li><p><a class="reference internal" href="#sharing-search"><span class="std std-ref">Sharing and Reproducing Queries</span></a>: You want to reproduce or share a search.</p></li>
+</ul>
+<p><img alt="the_search_interface" src="../_images/figure_1_screenshot_portal_search_interface.png" />
+Figure 1: Screenshot of the archive search interface.</p>
+</section>
+<section id="the-default-search">
+<span id="default-search"></span><h2>The Default Search<a class="headerlink" href="#the-default-search" title="Link to this heading"></a></h2>
+<p>The default/basic search lets you quickly find datasets by entering keywords across all key metadata fields at once.</p>
+<p>To perform a basic search:</p>
+<ol class="arabic simple">
+<li><p>Type one or more keywords into the search bar.</p></li>
+<li><p>Press Enter or click the search button.</p></li>
+</ol>
+<p>The basic search matches your query against the metadata fields, including title, description, creator, contributor and DOI. The results are sorted by relevance by default.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On mixed-case terms and terms with numbers:
+The default search handles plain text well, but struggles with terms that combine upper and lower case letters with numbers,  for example, the climate model name NorESM2. If you search for NorESM2 without quotes, you may get unexpected or incomplete results. Always wrap such terms in double quotes:
+“NorESM2”
+“CMIP7”
+This forces the system to treat the term as an exact phrase rather than tokenising it.</p>
+</div>
+<ul class="simple">
+<li><p>Partial search: If you do not remember the full value of a metadata field, you can search for a partial string. The system will return all datasets where the field contains your search term anywhere in the value.</p></li>
+<li><p>Exact search: To search for an exact phrase or value, wrap your query in double quotes.</p></li>
+</ul>
+<p>What you see in the list of results:
+Each result shows a summary of the dataset: the dataset title, the first two lines of its description, the creator name(s), DOI, and file size.
+Click the title to open the full dataset record. Use your browser’s back button to return to the results,  your query and any active filters are preserved in the URL.</p>
+</section>
+<section id="advanced-search">
+<span id="id1"></span><h2>Advanced Search<a class="headerlink" href="#advanced-search" title="Link to this heading"></a></h2>
+<p>The Advanced Search functionality gives you precise control over which metadata fields to query and how to combine conditions. You can expand or hide Advanced Search by clicking the “Advanced” button (see Figure 1). Search syntax examples are also available on the advanced search interface.</p>
+<p>The Advanced Search interface provides:</p>
+<ul class="simple">
+<li><p>A field selector: choose a specific metadata field from the dropdown (e.g. creator_name, title, release_date).</p></li>
+<li><p>A query text box: enter the value you want to search for.</p></li>
+<li><p>Add condition button: add multiple conditions to your query.</p></li>
+<li><p>AND / OR buttons: combine conditions with logical operators.</p></li>
+<li><p>Grouping with parentheses (): group conditions to control evaluation order.</p></li>
+</ul>
+<p>Note that you need to click on “Add condition” in order to build the query and then click “Search” to run it. As you add condition the query  is displayed as a string (e.g. creator_name:”Ada Lovelace” AND title:”NorESM”) and is also reflected in the URL, making it easy to bookmark or share.</p>
+<p>You can build complex queries by combining multiple conditions using AND, OR, and parentheses for grouping.</p>
+</section>
+<section id="filtering-search-results">
+<span id="filtering-search"></span><h2>Filtering Search Results<a class="headerlink" href="#filtering-search-results" title="Link to this heading"></a></h2>
+<p>After running a search, you can narrow down results further by applying filters. The filter panel on the left side of the search page offers the filters for  institution, subject, keywords, publication year etc.</p>
+<p>You can apply multiple filters at the same time. Each filter you select is added to the existing query, narrowing the results further. Filters are cumulative; selecting <code class="docutils literal notranslate"><span class="pre">Institution:</span> <span class="pre">UiB</span></code> and <code class="docutils literal notranslate"><span class="pre">Subject:</span> <span class="pre">Natural</span> <span class="pre">sciences</span></code> returns only datasets from UiB within Natural sciences.</p>
+<p>If you select a filter and no datasets match the combination of your query and the filter, the result will display a “No datasets found” message indicating there are no matches for the selected criteria.</p>
+</section>
+<section id="spatial-search">
+<span id="id2"></span><h2>Spatial Search<a class="headerlink" href="#spatial-search" title="Link to this heading"></a></h2>
+<p>The search interface includes a spatial (geographic) search that lets you search for datasets by selecting a region in an interactive map (draw a bounding box on the map to select the geographic region of interest) or by entering the coordinates (the latitude and longitudes coordinates) to define the search area (see Figure 2).</p>
+<p>Datasets with spatial metadata matching the selected bounding box are returned. You can also choose how spatial matching is applied using the dropdown menu:</p>
+<p>-Intersect: returns datasets whose coordinates overlap with the specified area, even if only partially.
+-Exact: returns datasets whose coordinates exactly match the specified coordinates.</p>
+<p><img alt="the_search_interface" src="../_images/figure_2_screenshot_spatial_search_map.png" />
+Figure 2: Screenshot of the spatial search interactive map.</p>
+</section>
+<section id="understanding-the-search-results">
+<span id="understanding-search"></span><h2>Understanding the Search Results<a class="headerlink" href="#understanding-the-search-results" title="Link to this heading"></a></h2>
+<p>Each search result displays a summary of the dataset to help you quickly identify whether it is relevant.</p>
+<ul class="simple">
+<li><p>Title: The name of the dataset (clickable link to the full landing page)</p></li>
+<li><p>Description: The first two lines of the dataset’s description</p></li>
+<li><p>Creator: The name(s) of the creator(s)</p></li>
+<li><p>DOI: The Digital Object Identifier for the dataset</p></li>
+<li><p>Size:  The total size of the dataset</p></li>
+</ul>
+<p>At the top of the search results page, you will see:</p>
+<ul class="simple">
+<li><p>The query that was executed.</p></li>
+<li><p>The total number of datasets matching the query.</p></li>
+</ul>
+<section id="sorting-results">
+<h3>Sorting results<a class="headerlink" href="#sorting-results" title="Link to this heading"></a></h3>
+<p>By default, results are sorted by “relevance”. You can change the sort order by “last updated” using the Sort By dropdown.</p>
+</section>
+<section id="pagination">
+<h3>Pagination<a class="headerlink" href="#pagination" title="Link to this heading"></a></h3>
+<p>If your search returns many results, they are displayed in pages of 10 datasets by default. You can configure the number of datasets shown per page using the Show dropdown (e.g. 10, 25, 50 per page). Navigate between pages using the pagination controls at the bottom of the results.</p>
+</section>
+<section id="opening-a-dataset">
+<h3>Opening a dataset<a class="headerlink" href="#opening-a-dataset" title="Link to this heading"></a></h3>
+<p>Click on any dataset title to go to the full dataset landing page, where you can see all metadata, download files, and view the full description. Use your browser’s back button to return to the search results.</p>
+</section>
+</section>
+<section id="sharing-and-reproducing-queries">
+<span id="sharing-search"></span><h2>Sharing and Reproducing Queries<a class="headerlink" href="#sharing-and-reproducing-queries" title="Link to this heading"></a></h2>
+<p>When you run a search in the portal, the full query is reflected in the browser’s URL bar.
+To share a query:</p>
+<ol class="arabic simple">
+<li><p>Run your search in the portal.</p></li>
+<li><p>Copy the full URL from the browser address bar.</p></li>
+<li><p>Share the URL with your colleague.</p></li>
+<li><p>When they open the URL, the same query will be executed in their browser.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

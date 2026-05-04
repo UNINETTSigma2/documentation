@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CDL cache hydrator (Caching CDL data on HPCs) &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Questions, Answers and Feedback</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/trainingvideos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/qnas.html">Question and Answer events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/file_transfer.html">File transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/R.html">First R calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cdl.html">(NIRD) Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/user-guide.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Optimizing storage performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html">Login nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/internet-login-compute-nodes.html#compute-nodes">Compute nodes:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">CDL cache hydrator (Caching CDL data on HPCs)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cdl-cache-hydrator-caching-cdl-data-on-hpcs">
+<span id="nird-cdl-cache-hydrator"></span><h1>CDL cache hydrator (Caching CDL data on HPCs)<a class="headerlink" href="#cdl-cache-hydrator-caching-cdl-data-on-hpcs" title="Link to this heading"></a></h1>
+<p>The CDL service allows users to store datasets to be shared within and across projects on NIRD as a centralized repository.</p>
+<p>The CDL Cache Hydrator functionality in CDL maintains a local cache of datasets on the HPC system’s local filesystem by pulling the needed datasets from NIRD through S3. Cached data can be rehydrated at any time. Also, the service is envisioned so that data not being accessed for the set retention time will be automatically evicted from the cache.</p>
+<section id="cdl-caching-user-guide">
+<h2>CDL caching user guide<a class="headerlink" href="#cdl-caching-user-guide" title="Link to this heading"></a></h2>
+<p><img alt="CDL data caching on hpc pipeline" src="../../_images/cdl-workflow-hydrator-pipeline.png" /></p>
+<section id="cdl-project-registered-on-nird">
+<h3>CDL project registered on NIRD<a class="headerlink" href="#cdl-project-registered-on-nird" title="Link to this heading"></a></h3>
+<p>Each CDL project has its master copy on NIRD Data Lake which is accessible via both POSIX and S3 protocols (NFS access is also available).</p>
+<p>These projects are called with the following naming format <code class="docutils literal notranslate"><span class="pre">NSxxxxB</span></code> (e.g. NS16003B). Each project is available read-only to any POSIX user having access to NIRD and users having access to the S3 endpoint on NIRD, https://s3.nird.sigma2.no.</p>
+<p>Each CDL project has a curresponding S3 bucket following the naming format <code class="docutils literal notranslate"><span class="pre">cdl-nsxxxxb-service</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">cdl-ns16003b-wrf</span></code>. Note that the bucket name uses lowercase and the project name must match exactly even though it is in lowercase.</p>
+</section>
+<section id="cdl-hydrator-on-hpcs-caching-cdl-data-on-hpcs">
+<h3>CDL Hydrator on HPCs (Caching CDL data on HPCs)<a class="headerlink" href="#cdl-hydrator-on-hpcs-caching-cdl-data-on-hpcs" title="Link to this heading"></a></h3>
+<p>For each service a dedicated hydrator is running on each relevant HPC system. e.g. one for wrf, noresm, etc.
+The hydrator continuously monitors a shared configuration directory for data requests. When a valid request file is detected, the hydrator fetches the specified data from the CDL S3 bucket and writes it to the local cache on the HPC filesystem.</p>
+<p>Cached data is then available in <code class="docutils literal notranslate"><span class="pre">/cluster/cache/&lt;service&gt;</span></code> e.g. <code class="docutils literal notranslate"><span class="pre">/cluster/cache/wrf</span></code>.</p>
+<p>The cache is managed automatically by the cdl_cache_cleanup process, which evicts data that has not been accessed within the current retention period (monthly).</p>
+</section>
+<section id="running-a-job-on-hpc">
+<h3>Running a job on HPC<a class="headerlink" href="#running-a-job-on-hpc" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Ensure data is cached. Request the required dataset and confirm it has been cached.  See how to request data below.</p></li>
+<li><p>Submit your job, referencing data from <code class="docutils literal notranslate"><span class="pre">/cluster/cache/&lt;service&gt;</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">/cluster/cache/noresm</span></code>).</p></li>
+<li><p>When job completes, copy/stage results to the relevant project storage , for e.g.:  NIRD Data Peak.</p></li>
+</ol>
+</section>
+<section id="storing-results">
+<h3>Storing results<a class="headerlink" href="#storing-results" title="Link to this heading"></a></h3>
+<p>When the job completes, copy or stage your results to the appropriate project storage. The recommended destination is NIRD Data Peak (for active project data).</p>
+</section>
+<section id="updating-the-master-copy-in-cdl">
+<h3>Updating the master copy in CDL<a class="headerlink" href="#updating-the-master-copy-in-cdl" title="Link to this heading"></a></h3>
+<p>The project leader and any designated member can add data and manage the data in the CDL project. All other NIRD users have read-only access either through file storage access or object storage access.</p>
+<p>The master copy can be updated either using regular POSIX commands on the NIRD login nodes (<code class="docutils literal notranslate"><span class="pre">login.nird.sigma2.no</span></code>) via SSH access, or using S3 account with read-write role, from the same <code class="docutils literal notranslate"><span class="pre">https://s3.nird.sigma2.no</span></code> endpoint.</p>
+<p>The user need to do the sync the datasets again to update the cache.</p>
+</section>
+<section id="how-to-request-data">
+<h3>How to Request Data<a class="headerlink" href="#how-to-request-data" title="Link to this heading"></a></h3>
+<p>To ensure that the required dataset is cached on the HPC system, you need to drop a TOML configuration file into the shared configuration directory: <code class="docutils literal notranslate"><span class="pre">/cluster/cache/conf/</span></code></p>
+<p>A ready-to-use template is available at <code class="docutils literal notranslate"><span class="pre">/cluster/cache/conf/00-cdl-hydrator.template</span></code>.</p>
+<section id="file-naming-convention">
+<h4>File Naming Convention<a class="headerlink" href="#file-naming-convention" title="Link to this heading"></a></h4>
+<p>Config file names must follow a strict convention or the hydrator will silently ignore them:</p>
+<ul class="simple">
+<li><p>The name <strong>must</strong> start with the CDL service name, (for example <code class="docutils literal notranslate"><span class="pre">wrf</span></code> or <code class="docutils literal notranslate"><span class="pre">noresm</span></code>),</p></li>
+<li><p>This <strong>must</strong> be followed by a descriptive identifier such as your project name, or  username, or optionally  sync job number.</p></li>
+<li><p>The file <strong>must</strong> end with the <code class="docutils literal notranslate"><span class="pre">.conf</span></code> extension. Files with any other extension will be ignored.</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>Correct:</strong> <code class="docutils literal notranslate"><span class="pre">wrf-case-01.conf</span></code> or <code class="docutils literal notranslate"><span class="pre">noresm-username-dataname.conf</span></code></p></li>
+<li><p><strong>Incorrect:</strong> <code class="docutils literal notranslate"><span class="pre">my-data.conf</span></code> or <code class="docutils literal notranslate"><span class="pre">wrf-project-01.txt</span></code> - the CDL Hydrator will ignore these files</p></li>
+</ul>
+</section>
+</section>
+<section id="configuration-file-format">
+<h3>Configuration File Format<a class="headerlink" href="#configuration-file-format" title="Link to this heading"></a></h3>
+<p>Config files use TOML syntax. Each file must contain a [SYNC] section.</p>
+<p>Example Config (<code class="docutils literal notranslate"><span class="pre">wrf-case-01.conf</span></code>):</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[SYNC]</span>
+<span class="na">s3_endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3://open-data-bucket/</span>
+<span class="na">target_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2026/march/observations/*</span>
+<span class="c1"># Optional tuning parameters:</span>
+<span class="na">nr_workers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2</span>
+<span class="na">log_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">info</span>
+</pre></div>
+</div>
+<p>A TOML template file, called <code class="docutils literal notranslate"><span class="pre">00-cdl-hydrator.template</span></code> is created for convenience.</p>
+<section id="field-reference">
+<h4>Field reference:<a class="headerlink" href="#field-reference" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>s3_endpoint (required): The URL of the CDL project S3 bucket.</p></li>
+<li><p>target_path (required): The path to synchronise. Glob patterns are supported (e.g. * matches all files in that directory).</p></li>
+<li><p>nr_workers (optional): Number of parallel download workers. Default is 1. Increase for large datasets to speed up the transfer. Upper limit 512</p></li>
+<li><p>log_level (optional): Logging verbosity. Accepted values: info, warning, error. Default is info.</p></li>
+</ul>
+</section>
+</section>
+<section id="verifying-cached-data">
+<h3>Verifying cached data<a class="headerlink" href="#verifying-cached-data" title="Link to this heading"></a></h3>
+<p>After placing a config file in <code class="docutils literal notranslate"><span class="pre">/cluster/cache/conf</span></code>, the hydrator will detect it and begin downloading the requested data. To confirm that data has been successfully cached before submitting your job:</p>
+<ul class="simple">
+<li><p>Check the cache directory directly ls /cluster/cache/<service>/</p></li>
+<li><p>You can check the <code class="docutils literal notranslate"><span class="pre">&lt;your-config.filename&gt;.json</span></code> file with log info</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
