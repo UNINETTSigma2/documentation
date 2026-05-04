@@ -1,29 +1,21 @@
-(pytorch-on-olivia)=
-# PyTorch on Olivia
+(pytorch-single-gpu)=
+# Single-GPU Implementation for PyTorch on Olivia
 
 ```{contents}
 :depth: 2
 ```
 
-This guide demonstrates how to run PyTorch on Olivia using NVIDIA's optimized [PyTorch container](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch). We train a Wide ResNet model on the CIFAR-100 dataset across three scenarios:
+This is part 1 of the PyTorch on Olivia guide. See {ref}`pytorch-on-olivia` for the overview, software choice, storage recommendations, and the full guide structure.
 
-1. **Single GPU** (this page)
-2. **Multi-GPU** - 4 GPUs on a single node ({ref}`pytorch-multi-gpu`)
-3. **Multi-Node** - Multiple nodes ({ref}`pytorch-multi-node`)
+The goal of this part is to run the reference training workflow on a single GH200 GPU before scaling to multiple GPUs and multiple nodes.
 
-```{admonition} Performance Summary
-:class: tip
+## Learning Outcomes
 
-This 3-part guide walks you through scaling PyTorch training on Olivia's GH200 GPUs:
+By the end of this part, you can:
 
-| Configuration | Throughput | Speedup |
-|---------------|------------|---------|
-| Single GPU (Part 1) | ~5,100 img/s | 1x |
-| 4 GPUs on 1 node (Part 2) | ~37,000 img/s | 7x |
-| 8 GPUs on 2 nodes (Part 3) | ~63,000 img/s | 12x |
-
-The multi-GPU guides use FP16 mixed precision for improved performance.
-```
+1. Run a PyTorch training job on **1 GPU** on Olivia.
+2. Submit and monitor the job with Slurm.
+3. Confirm success from expected log output.
 
 ```{note}
 **Key considerations for Olivia:**
@@ -32,17 +24,59 @@ The multi-GPU guides use FP16 mixed precision for improved performance.
 ```
 In order to be able to use PyTorch on Olivia we provide different solutions. You can read more about those solutions in detail here. ({ref}`access-pytorch`)
 
-## Getting the Container
+## PyTorch Runtime Setup
 
-The PyTorch container is available pre-pulled at:
-```
-/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif
+You can run this guide in three ways: through the PyTorch module path, by launching the container directly, or through EESSI modules.
+
+```{note}
+If you use Hugging Face models or datasets, see {ref}`pytorch-models-datasets` for the required environment cache flags.
 ```
 
-To pull a different version yourself, use the `--arch arm64` flag since you're pulling from the login node (x86_64) for use on compute nodes (Aarch64):
+`````{tabs}
+````{group-tab} Module Path
+Before submitting jobs, set this variable in your job script:
 
 ```bash
-apptainer pull --arch arm64 docker://nvcr.io/nvidia/pytorch:25.06-py3
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+```
+
+Then load the software stack in this order:
+
+```bash
+ml reset
+ml load NRIS/GPU
+ml load NCCL/2.26.6-GCCcore-14.2.0-CUDA-12.8.0
+ml use /cluster/work/support/pytorch_module
+ml load PyTorch/2.8.0
+export PYTORCH_OVERLAY_MODE=ro
+```
+````
+
+````{group-tab} Direct Container Path
+If you want to run container-first, launch the NVIDIA PyTorch container directly:
+
+```bash
+CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+```
+
+Use `apptainer exec --nv` in your Slurm script (examples below).
+````
+
+````{group-tab} EESSI Path
+Load EESSI and the validated PyTorch stack directly from EESSI:
+
+```bash
+ml reset
+module load EESSI/2025.06
+module load PyTorch/2.7.1-foss-2024a-CUDA-12.6.0
+module load torchvision/0.22.0-foss-2024a-CUDA-12.6.0
+```
+````
+`````
+
+```{note}
+`/cluster/work/support/temporary_modules` is a temporary module root while the PyTorch module rollout is in progress. When the service is fully live, you can load the PyTorch module directly without this `ml use` line.
 ```
 
 ## Project Setup
@@ -57,6 +91,7 @@ The CIFAR-100 dataset (~500 MB) will be downloaded automatically on first run.
 
 1. Create an **empty directory** in your work or project area
 2. `cd` into that directory
+3. Copy the code blocks from this page into files with the same names
 
 The guide will provide all the files needed. When complete, your directory
 will have this structure:
@@ -72,6 +107,7 @@ your_project_directory/
 ├── singlegpu_job.sh
 ├── multigpu_job.sh       # for multi-GPU
 ├── multinode_job.sh      # for multi-node
+├── hf_cache/             # created automatically by job scripts
 └── datasets/             # created automatically on first run
     └── cifar-100-python/
 ```
@@ -82,8 +118,6 @@ To train the Wide ResNet model on a single GPU, we use the following files. The 
 
 ```{code-block} python
 :linenos:
-
-# train.py
 
 """
 Single-GPU training script for Wide ResNet on CIFAR-100.
@@ -108,6 +142,7 @@ parser.add_argument('--base-lr', type=float, default=0.01, help='Learning rate')
 parser.add_argument('--target-accuracy', type=float, default=0.95, help='Target accuracy to stop training')
 parser.add_argument('--patience', type=int, default=2, help='Number of epochs that meet target before stopping')
 args = parser.parse_args()
+
 
 def main():
     device = get_device()
@@ -161,6 +196,7 @@ def main():
     print(f"\nTraining complete. Final Accuracy: {val_accuracy[-1]:.4f}")
     print(f"Total Time: {total_time:.1f}s, Throughput: {throughput:.1f} img/s")
 
+
 if __name__ == "__main__":
     main()
 ```
@@ -169,8 +205,6 @@ The `dataset_utils.py` file contains the data utility functions used for prepari
 
 ```{code-block} python
 :linenos:
-
-# dataset_utils.py
 
 import torchvision
 import torchvision.transforms as transforms
@@ -185,7 +219,7 @@ def _data_dir_default():
     return data_dir
 
 
-def load_cifar100(batch_size, num_workers=0,sampler=None, data_dir=None):
+def load_cifar100(batch_size, num_workers=0, sampler=None, data_dir=None):
     """
     Loads the CIFAR-100 dataset.Create the dataset directory to store dataset during runtime and no environment variable support.
     """
@@ -196,17 +230,17 @@ def load_cifar100(batch_size, num_workers=0,sampler=None, data_dir=None):
         transforms.RandomHorizontalFlip(),
         transforms.RandomCrop(32, padding=4),
         transforms.ToTensor(),
-        transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761)) # CIFAR-100 mean and std
+        transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761))
     ])
 
     # Load full datasets
     train_set = torchvision.datasets.CIFAR100(
-            root=str(root),download=True,train=True,transform=transform)
-    test_set = torchvision.datasets.CIFAR100(root=str(root),download=True,train=False,transform=transform)
+            root=str(root), download=True, train=True, transform=transform)
+    test_set = torchvision.datasets.CIFAR100(root=str(root), download=True, train=False, transform=transform)
 
     # Create the data loaders
-    train_loader = torch.utils.data.DataLoader(train_set,batch_size=batch_size,drop_last=True,shuffle=(sampler is None),sampler= sampler,num_workers=num_workers,pin_memory=True)
-    test_loader = torch.utils.data.DataLoader(test_set,batch_size=batch_size,drop_last=True,shuffle=False,num_workers=num_workers,pin_memory=True)
+    train_loader = torch.utils.data.DataLoader(train_set, batch_size=batch_size, drop_last=True, shuffle=(sampler is None), sampler=sampler, num_workers=num_workers, pin_memory=True)
+    test_loader = torch.utils.data.DataLoader(test_set, batch_size=batch_size, drop_last=True, shuffle=False, num_workers=num_workers, pin_memory=True)
     return train_loader, test_loader
 ```
 
@@ -215,7 +249,6 @@ The `device_utils.py` file includes the device utility functions, which handle d
 ```{code-block} python
 :linenos:
 
-# device_utils.py
 import torch
 
 def get_device():
@@ -233,15 +266,14 @@ The `model.py` file contains the implementation of the Wide ResNet model archite
 ```{code-block} python
 :linenos:
 
-# model.py
-
 import torch.nn as nn
 
 # Standard convulation block followed by batch normalization
 class cbrblock(nn.Module):
     def __init__(self, input_channels, output_channels):
         super(cbrblock, self).__init__()
-        self.cbr = nn.Sequential(nn.Conv2d(input_channels, output_channels, kernel_size=3, stride=(1,1), padding='same', bias=False),nn.BatchNorm2d(output_channels), nn.ReLU())
+        self.cbr = nn.Sequential(nn.Conv2d(input_channels, output_channels, kernel_size=3, stride=(1, 1), padding='same', bias=False), nn.BatchNorm2d(output_channels), nn.ReLU())
+
     def forward(self, x):
         return self.cbr(x)
 
@@ -252,12 +284,12 @@ class conv_block(nn.Module):
         super(conv_block, self).__init__()
         self.scale_input = scale_input
         if self.scale_input:
-            self.scale = nn.Conv2d(input_channels,output_channels, kernel_size=1, stride=(1,1), padding='same')
+            self.scale = nn.Conv2d(input_channels, output_channels, kernel_size=1, stride=(1, 1), padding='same')
         self.layer1 = cbrblock(input_channels, output_channels)
         self.dropout = nn.Dropout(p=0.01)
         self.layer2 = cbrblock(output_channels, output_channels)
 
-    def forward(self,x):
+    def forward(self, x):
         residual = x
         out = self.layer1(x)
         out = self.dropout(out)
@@ -310,7 +342,6 @@ Finally, the `train_utils.py` file serves as a utility module for importing the 
 ```{code-block} python
 :linenos:
 
-# train_utils.py
 import torch
 
 def train(model, optimizer, train_loader, loss_fn, device):
@@ -370,16 +401,19 @@ def test(model, test_loader, loss_fn, device):
 
 ## Job Script for Single GPU Training
 
-The `--nv` flag gives the container access to GPU resources. We use `torchrun` to launch the training script.
+Use whichever launch model matches your workflow.
+
+`````{tabs}
+````{group-tab} Module Path
 
 ```{code-block} bash
 :linenos:
 
 #!/bin/bash
-#SBATCH --job-name=resnet_singleGpu
+#SBATCH --job-name=resnet_singleGpu_mod
 #SBATCH --account=<project_number>
-#SBATCH --output=singlegpu_%j.out
-#SBATCH --error=singlegpu_%j.err
+#SBATCH --output=singlegpu_module_%j.out
+#SBATCH --error=singlegpu_module_%j.err
 #SBATCH --time=01:00:00
 #SBATCH --partition=accel
 #SBATCH --nodes=1
@@ -388,15 +422,154 @@ The `--nv` flag gives the container access to GPU resources. We use `torchrun` t
 #SBATCH --mem=110G
 #SBATCH --gpus-per-node=1
 
-CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
+set -euo pipefail
 
-# Check GPU availability
-apptainer exec --nv $CONTAINER_PATH python -c 'import torch; print(f"CUDA available: {torch.cuda.is_available()}, GPUs: {torch.cuda.device_count()}")'
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
 
-# Run training
-apptainer exec --nv $CONTAINER_PATH torchrun --standalone --nnodes=1 --nproc_per_node=1 \
+ml reset
+ml load NRIS/GPU
+ml load NCCL/2.26.6-GCCcore-14.2.0-CUDA-12.8.0
+ml use /cluster/work/support/pytorch_module
+ml load PyTorch/2.8.0
+
+export PYTORCH_OVERLAY_MODE=ro
+
+
+cd "${SCRIPT_DIR}"
+
+python -c 'import torch; print(f"CUDA available: {torch.cuda.is_available()}, GPUs: {torch.cuda.device_count()}")'
+
+torchrun --standalone --nnodes=1 --nproc_per_node=1 \
     train.py --batch-size 256 --epochs 100 --base-lr 0.01 --target-accuracy 0.95 --patience 2
 ```
+
+````
+
+````{group-tab} Direct Container Path
+
+```{code-block} bash
+:linenos:
+
+#!/bin/bash
+#SBATCH --job-name=resnet_singleGpu_ctr
+#SBATCH --account=<project_number>
+#SBATCH --output=singlegpu_container_%j.out
+#SBATCH --error=singlegpu_container_%j.err
+#SBATCH --time=01:00:00
+#SBATCH --partition=accel
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=72
+#SBATCH --mem=110G
+#SBATCH --gpus-per-node=1
+
+set -euo pipefail
+
+CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+
+HF_ROOT="${SCRIPT_DIR}/hf_cache"
+mkdir -p "${HF_ROOT}/hub" "${HF_ROOT}/datasets" "${HF_ROOT}/torch"
+
+cd "${SCRIPT_DIR}"
+
+apptainer exec --nv \
+    --bind "${SCRIPT_DIR}:${SCRIPT_DIR}" \
+    --pwd "${SCRIPT_DIR}" \
+    --env HF_HOME="${HF_ROOT}" \
+    --env HF_HUB_CACHE="${HF_ROOT}/hub" \
+    --env HF_DATASETS_CACHE="${HF_ROOT}/datasets" \
+    --env TRANSFORMERS_CACHE="${HF_ROOT}/hub" \
+    --env TORCH_HOME="${HF_ROOT}/torch" \
+    "${CONTAINER_PATH}" \
+    python -c 'import torch; print(f"CUDA available: {torch.cuda.is_available()}, GPUs: {torch.cuda.device_count()}")'
+
+apptainer exec --nv \
+    --bind "${SCRIPT_DIR}:${SCRIPT_DIR}" \
+    --pwd "${SCRIPT_DIR}" \
+    --env HF_HOME="${HF_ROOT}" \
+    --env HF_HUB_CACHE="${HF_ROOT}/hub" \
+    --env HF_DATASETS_CACHE="${HF_ROOT}/datasets" \
+    --env TRANSFORMERS_CACHE="${HF_ROOT}/hub" \
+    --env TORCH_HOME="${HF_ROOT}/torch" \
+    "${CONTAINER_PATH}" \
+    torchrun --standalone --nnodes=1 --nproc_per_node=1 \
+    train.py --batch-size 256 --epochs 100 --base-lr 0.01 --target-accuracy 0.95 --patience 2
+```
+
+````
+
+````{group-tab} EESSI Path
+
+```{code-block} bash
+:linenos:
+
+#!/bin/bash
+#SBATCH --job-name=resnet_singleGpu_eessi
+#SBATCH --account=<project_number>
+#SBATCH --output=singlegpu_eessi_%j.out
+#SBATCH --error=singlegpu_eessi_%j.err
+#SBATCH --time=01:00:00
+#SBATCH --partition=accel
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=72
+#SBATCH --mem=110G
+#SBATCH --gpus-per-node=1
+
+set -euo pipefail
+
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+
+ml reset
+module load EESSI/2025.06
+module load PyTorch/2.7.1-foss-2024a-CUDA-12.6.0
+module load torchvision/0.22.0-foss-2024a-CUDA-12.6.0
+
+cd "${SCRIPT_DIR}"
+
+python -c 'import torch; print(f"CUDA available: {torch.cuda.is_available()}, GPUs: {torch.cuda.device_count()}")'
+
+torchrun --standalone --nnodes=1 --nproc_per_node=1 \
+    train.py --batch-size 256 --epochs 100 --base-lr 0.01 --target-accuracy 0.95 --patience 2
+```
+
+````
+`````
+
+The submit and monitor commands are identical for both launch modes.
+
+`````{tabs}
+````{group-tab} Module Path
+
+```bash
+sbatch singlegpu_module.sh
+squeue -u $USER
+tail -f singlegpu_module_<jobid>.out
+```
+
+````
+
+````{group-tab} Direct Container Path
+
+```bash
+sbatch singlegpu_container.sh
+squeue -u $USER
+tail -f singlegpu_container_<jobid>.out
+```
+
+````
+
+````{group-tab} EESSI Path
+
+```bash
+sbatch singlegpu_eessi.sh
+squeue -u $USER
+tail -f singlegpu_eessi_<jobid>.out
+```
+
+````
+`````
 
 Example output showing training progress:
 
@@ -408,19 +581,17 @@ Epoch 98/100: Time=9.805s, Loss=1.5820, Accuracy=0.6562, Throughput=5091.3 img/s
 Epoch 99/100: Time=9.773s, Loss=1.5247, Accuracy=0.6635, Throughput=5107.8 img/s
 Epoch 100/100: Time=9.608s, Loss=1.6100, Accuracy=0.6419, Throughput=5195.4 img/s
 
-Training complete. Final Validation Accuracy = 0.6419
-Total Training Time: 973.8 seconds
-Throughput: 5126.4 images/second
+Training complete. Final Accuracy: 0.6419
+Total Time: 973.8s, Throughput: 5126.4 img/s
 ```
 
 The output shows a throughput of approximately **5,100 images/second** on a single GH200 GPU. In the next parts of this guide, we'll scale this up to multiple GPUs and see significant speedups.
 
+Success criteria for Part 1:
+
+- Job reaches `Training complete`
+- Final summary prints a non-zero throughput in `img/s`
+- No CUDA initialization errors in `.err` log
+
 
 Now the goal is to scale this up to multiple GPUs. For this, please check out the {ref}`Multi GPU Guide <pytorch-multi-gpu>`.
-
-```{toctree}
-:hidden:
-PyTorchMultiGpu
-PyTorchMultiNode
-access_pytorch
-```

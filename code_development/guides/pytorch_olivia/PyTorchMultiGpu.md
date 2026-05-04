@@ -5,15 +5,21 @@
 :depth: 2
 ```
 
-This is part 2 of the PyTorch on Olivia guide. See {ref}`pytorch-on-olivia` for the single-GPU setup.
+This is part 2 of the PyTorch on Olivia guide. See {ref}`pytorch-single-gpu` for the single-GPU setup.
+
+## Learning Outcomes
+
+By the end of this part, you can:
+
+1. Run the same training workflow on **4 GPUs on one node**.
+2. Understand the minimum DDP changes from the single-GPU version.
+3. Validate that distributed training launched correctly.
 
 To scale training across multiple GPUs, we use PyTorch's [Distributed Data Parallel (DDP)](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html). The code below works for both single-node multi-GPU and multi-node configurations.
 
 ```{code-block} python
 :linenos:
-:emphasize-lines: 8-10, 28-31, 34, 48-49, 64-65, 71-72, 79, 91-93, 101, 113-116, 143
 
-# train_ddp.py
 import os
 import time
 import argparse
@@ -39,6 +45,7 @@ parser.add_argument('--base-lr', type=float, default=0.01, help='Learning rate f
 parser.add_argument('--target-accuracy', type=float, default=0.85, help='Target accuracy to stop training')
 parser.add_argument('--patience', type=int, default=2, help='Number of epochs that meet target before stopping')
 args = parser.parse_args()
+
 
 def ddp_setup():
     """Set up the distributed environment."""
@@ -156,6 +163,8 @@ def main_worker():
 
     # Clean up the distributed environment
     destroy_process_group()
+
+
 if __name__ == '__main__':
     main_worker()
 ```
@@ -163,36 +172,36 @@ if __name__ == '__main__':
 
 ## Key Changes from Single-GPU to Multi-GPU
 
-The highlighted lines above show the DDP-specific additions:
+The key DDP-specific changes are:
 
-| Lines | Change | Purpose |
-|-------|--------|---------|
-| 8-10 | DDP imports | `DistributedSampler`, `DDP`, `init_process_group` |
-| 28-31 | `ddp_setup()` | Initialize NCCL backend and set local GPU |
-| 34 | Call `ddp_setup()` | Start distributed environment |
-| 48-49 | Batch size division | Split global batch across GPUs |
-| 64-65 | Wrap model with `DDP` | Enable synchronized gradient updates |
-| 71-72 | Mixed precision setup | `GradScaler` for FP16 training |
-| 79 | `set_epoch()` | Ensure proper shuffling across epochs |
-| 91-93 | `autocast()` context | Run forward pass in FP16 |
-| 101 | `barrier()` | Synchronize all processes after epoch |
-| 113-116 | `all_reduce()` | Average metrics across GPUs |
-| 143 | `destroy_process_group()` | Clean up distributed environment |
+| Change | Purpose |
+|-------|---------|
+| `ddp_setup()` with `init_process_group(backend="nccl")` | Initializes distributed communication |
+| Read `LOCAL_RANK`, `RANK`, `WORLD_SIZE` from environment | Maps each process to the correct GPU and global rank |
+| `DistributedSampler(...)` + `set_epoch(epoch)` | Ensures proper sharding/shuffling across processes |
+| `model = DDP(model, device_ids=[local_rank])` | Synchronizes gradients across GPUs |
+| `batch_size // world_size` | Splits global batch across all GPUs |
+| `torch.amp.autocast('cuda')` + `GradScaler('cuda')` | Enables mixed precision training |
+| `all_reduce(..., ReduceOp.AVG)` for metrics | Aggregates validation metrics across GPUs |
+| `destroy_process_group()` | Cleans up DDP state at end of run |
 
 
 ## Job Script for Multi-GPU Training
 
 
-For single-node multi-GPU training, use `torchrun` with `--standalone`. We request 4 GPUs and adjust batch size and learning rate for better scaling.
+For single-node multi-GPU training, use `torchrun` with `--standalone`. Choose either the module path or a direct container launch.
+
+`````{tabs}
+````{group-tab} Module Path
 
 ```{code-block} bash
 :linenos:
 
 #!/bin/bash
-#SBATCH --job-name=resnet_multigpu
+#SBATCH --job-name=resnet_multigpu_mod
 #SBATCH --account=<project_number>
-#SBATCH --output=multigpu_%j.out
-#SBATCH --error=multigpu_%j.err
+#SBATCH --output=multigpu_module_%j.out
+#SBATCH --error=multigpu_module_%j.err
 #SBATCH --time=01:00:00
 #SBATCH --partition=accel
 #SBATCH --nodes=1
@@ -201,15 +210,139 @@ For single-node multi-GPU training, use `torchrun` with `--standalone`. We reque
 #SBATCH --mem=440G
 #SBATCH --gpus=4
 
-CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
+set -euo pipefail
 
-# Run training with 4 GPUs
-apptainer exec --nv $CONTAINER_PATH torchrun \
-    --standalone \
-    --nnodes=1 \
-    --nproc_per_node=4 \
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+
+ml reset
+ml load NRIS/GPU
+ml load NCCL/2.26.6-GCCcore-14.2.0-CUDA-12.8.0
+ml use /cluster/work/support/pytorch_module
+ml load PyTorch/2.8.0
+
+export PYTORCH_OVERLAY_MODE=ro
+
+
+cd "${SCRIPT_DIR}"
+
+torchrun --standalone --nnodes=1 --nproc_per_node=4 \
     train_ddp.py --batch-size 1024 --epochs 100 --base-lr 0.04 --target-accuracy 0.95 --patience 2
 ```
+
+````
+
+````{group-tab} Direct Container Path
+
+```{code-block} bash
+:linenos:
+
+#!/bin/bash
+#SBATCH --job-name=resnet_multigpu_ctr
+#SBATCH --account=<project_number>
+#SBATCH --output=multigpu_container_%j.out
+#SBATCH --error=multigpu_container_%j.err
+#SBATCH --time=01:00:00
+#SBATCH --partition=accel
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=72
+#SBATCH --mem=440G
+#SBATCH --gpus=4
+
+set -euo pipefail
+
+CONTAINER_PATH="/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif"
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+
+HF_ROOT="${SCRIPT_DIR}/hf_cache"
+mkdir -p "${HF_ROOT}/hub" "${HF_ROOT}/datasets" "${HF_ROOT}/torch"
+
+cd "${SCRIPT_DIR}"
+
+apptainer exec --nv \
+    --bind "${SCRIPT_DIR}:${SCRIPT_DIR}" \
+    --pwd "${SCRIPT_DIR}" \
+    --env HF_HOME="${HF_ROOT}" \
+    --env HF_HUB_CACHE="${HF_ROOT}/hub" \
+    --env HF_DATASETS_CACHE="${HF_ROOT}/datasets" \
+    --env TRANSFORMERS_CACHE="${HF_ROOT}/hub" \
+    --env TORCH_HOME="${HF_ROOT}/torch" \
+    "${CONTAINER_PATH}" \
+    torchrun --standalone --nnodes=1 --nproc_per_node=4 \
+    train_ddp.py --batch-size 1024 --epochs 100 --base-lr 0.04 --target-accuracy 0.95 --patience 2
+```
+
+````
+
+````{group-tab} EESSI Path
+
+```{code-block} bash
+:linenos:
+
+#!/bin/bash
+#SBATCH --job-name=resnet_multigpu_eessi
+#SBATCH --account=<project_number>
+#SBATCH --output=multigpu_eessi_%j.out
+#SBATCH --error=multigpu_eessi_%j.err
+#SBATCH --time=01:00:00
+#SBATCH --partition=accel
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=72
+#SBATCH --mem=440G
+#SBATCH --gpus=4
+
+set -euo pipefail
+
+SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
+
+ml reset
+module load EESSI/2025.06
+module load PyTorch/2.7.1-foss-2024a-CUDA-12.6.0
+module load torchvision/0.22.0-foss-2024a-CUDA-12.6.0
+
+cd "${SCRIPT_DIR}"
+
+torchrun --standalone --nnodes=1 --nproc_per_node=4 \
+    train_ddp.py --batch-size 1024 --epochs 100 --base-lr 0.04 --target-accuracy 0.95 --patience 2
+```
+
+````
+`````
+
+The submit and monitor commands are identical for both launch modes.
+
+`````{tabs}
+````{group-tab} Module Path
+
+```bash
+sbatch multigpu_module.sh
+squeue -u $USER
+tail -f multigpu_module_<jobid>.out
+```
+
+````
+
+````{group-tab} Direct Container Path
+
+```bash
+sbatch multigpu_container.sh
+squeue -u $USER
+tail -f multigpu_container_<jobid>.out
+```
+
+````
+
+````{group-tab} EESSI Path
+
+```bash
+sbatch multigpu_eessi.sh
+squeue -u $USER
+tail -f multigpu_eessi_<jobid>.out
+```
+
+````
+`````
 
 Example output:
 
@@ -244,4 +377,10 @@ Training completed successfully.
 
 With 4 GPUs and FP16 mixed precision, the throughput increased from ~5,100 images/second (single GPU) to ~37,000 images/second—a **7x speedup**. This super-linear scaling (beyond the expected 4x) comes from mixed precision training (FP16) and the larger effective batch size, which better utilizes the GPU compute capabilities.
 
-To scale beyond a single node, see the {ref}`Multi-Node Guide <pytorch-multi-node>`.
+Success criteria for Part 2:
+
+- Output includes `Training started with 4 processes`
+- Final summary reports `Total GPUs used: 4`
+- Throughput is substantially higher than Part 1
+
+For Part 3 (multi-node), you keep the same `train_ddp.py` and only change the job launch configuration. See {ref}`Multi-Node Guide <pytorch-multi-node>`.
