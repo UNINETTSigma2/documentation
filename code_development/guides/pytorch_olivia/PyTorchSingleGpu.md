@@ -28,6 +28,10 @@ In order to be able to use PyTorch on Olivia we provide different solutions. You
 
 You can run this guide in three ways: through the PyTorch module path, by launching the container directly, or through EESSI modules.
 
+```{note}
+If you use Hugging Face models or datasets, see {ref}`pytorch-models-datasets` for the required environment cache flags.
+```
+
 `````{tabs}
 ````{group-tab} Module Path
 Before submitting jobs, set this variable in your job script:
@@ -42,7 +46,7 @@ Then load the software stack in this order:
 ml reset
 ml load NRIS/GPU
 ml load NCCL/2.26.6-GCCcore-14.2.0-CUDA-12.8.0
-ml use /cluster/work/support/temporary_modules
+ml use /cluster/work/support/pytorch_module
 ml load PyTorch/2.8.0
 export PYTORCH_OVERLAY_MODE=ro
 ```
@@ -425,24 +429,13 @@ SCRIPT_DIR="/cluster/work/projects/<project_number>/<username>/pytorch_olivia"
 ml reset
 ml load NRIS/GPU
 ml load NCCL/2.26.6-GCCcore-14.2.0-CUDA-12.8.0
-ml use /cluster/work/support/temporary_modules
+ml use /cluster/work/support/pytorch_module
 ml load PyTorch/2.8.0
 
 export PYTORCH_OVERLAY_MODE=ro
 
-HF_ROOT="${SCRIPT_DIR}/hf_cache"
-mkdir -p "${HF_ROOT}/hub" "${HF_ROOT}/datasets" "${HF_ROOT}/torch"
-
-export HF_HOME="${HF_ROOT}"
-export HF_HUB_CACHE="${HF_ROOT}/hub"
-export HF_DATASETS_CACHE="${HF_ROOT}/datasets"
-export TRANSFORMERS_CACHE="${HF_ROOT}/hub"
-export TORCH_HOME="${HF_ROOT}/torch"
 
 cd "${SCRIPT_DIR}"
-
-which python
-which torchrun
 
 python -c 'import torch; print(f"CUDA available: {torch.cuda.is_available()}, GPUs: {torch.cuda.device_count()}")'
 
@@ -533,19 +526,7 @@ module load EESSI/2025.06
 module load PyTorch/2.7.1-foss-2024a-CUDA-12.6.0
 module load torchvision/0.22.0-foss-2024a-CUDA-12.6.0
 
-HF_ROOT="${SCRIPT_DIR}/hf_cache"
-mkdir -p "${HF_ROOT}/hub" "${HF_ROOT}/datasets" "${HF_ROOT}/torch"
-
-export HF_HOME="${HF_ROOT}"
-export HF_HUB_CACHE="${HF_ROOT}/hub"
-export HF_DATASETS_CACHE="${HF_ROOT}/datasets"
-export TRANSFORMERS_CACHE="${HF_ROOT}/hub"
-export TORCH_HOME="${HF_ROOT}/torch"
-
 cd "${SCRIPT_DIR}"
-
-which python
-which torchrun
 
 python -c 'import torch; print(f"CUDA available: {torch.cuda.is_available()}, GPUs: {torch.cuda.device_count()}")'
 
