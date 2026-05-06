@@ -4,7 +4,7 @@ orphan: true
 
 (nird-cdl)=
 
-# (NIRD) Central Data Library
+# NIRD Central Data Library
 
 The NIRD Central Data Library (CDL) is a centralised data storage service built on top of the NIRD Data Lake. It serves as a shared repository for research
  projects and is designed to store data that is intended to be used and reused across multiple projects. CDL supports a wide range of data types, including 
