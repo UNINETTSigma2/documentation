@@ -170,7 +170,7 @@ getting_started/getting_started.md
 getting_started/opslog.md
 getting_started/applying_account.md
 getting_started/applying_resources.md
-getting_started/file_transfer.md
+getting_started/data_transfer.md
 getting_started/editing_files.md
 code_development/guides/vs_code/connect_to_server.md
 getting_started/ssh.md
@@ -200,6 +200,7 @@ files_storage/clusters.md
 files_storage/quota.md
 files_storage/backup.md
 files_storage/performance.md
+getting_started/data_transfer.md
 ```
 
 ```{toctree}
