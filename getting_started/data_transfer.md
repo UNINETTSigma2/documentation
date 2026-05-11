@@ -319,8 +319,8 @@ $ nslookup saga.sigma2.no
 
 ## S3 object storage transfer
 
-The S3 protocol is available for [NIRD Data Lake](files_storage/nird/s3.md)
-(including the [Central Data Library](files_storage/nird/cdl.md))
+The S3 protocol is available for NIRD Data Lake  {ref}`nird-s3` 
+(including the Central Data Library {ref}`nird-cdl`)
 and for external cloud storage such as AWS S3. S3 transfers are independent per
 object, enabling very high parallel throughput -- NIRD S3 is capable of up to 27 GB/s.
 
