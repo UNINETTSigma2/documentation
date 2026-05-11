@@ -19,7 +19,7 @@ SSH is an abbreviation for *secure shell protocol*. It is a protocol to
 communicate data between two computers over an encrypted connection. When you
 log into one of the clusters with `ssh` and read and edit files and type
 commands or copy files using `rsync`, then data is transmitted via this
-encrypted connection (see also our guide about {ref}`file-transfer`).
+encrypted connection (see also our guide about {ref}`data-transfer`).
 
 
 ## Connecting to a server

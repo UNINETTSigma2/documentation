@@ -58,7 +58,7 @@ We recommend to use `rsync` to transfer files. It is often faster and safer (in
 terms of overwriting files) than using `scp`. On Windows we recommend to use
 `rsync` through [Windows Subsystem for Linux
 (WSL)](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux).  Read more
-on our page about {ref}`file-transfer`.
+on our page about {ref}`data-transfer`.
 
 
 ## Running applications
