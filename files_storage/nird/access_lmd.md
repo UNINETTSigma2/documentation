@@ -12,7 +12,7 @@ Users must be registered and authorised by the project responsible
 before getting access.
 
 To access or transfer data, we recommend to use `ssh` or
-`rsync`. More details on our page about {ref}`file-transfer`.
+`rsync`. More details on our page about {ref}`data-transfer`.
 
 The NIRD can be accessed via the following address
 
