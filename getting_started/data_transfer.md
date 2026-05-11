@@ -344,7 +344,7 @@ export http_proxy=http://10.63.2.48:3128/
 export https_proxy=http://10.63.2.48:3128/
 ```
 
-**Saga (and other Sigma2 systems):**
+**Saga :**
 
 ```bash
 export http_proxy=http://proxy.saga:3128/
@@ -359,6 +359,9 @@ $ curl -I https://s3.nird.sigma2.no
 
 A successful response returns `HTTP/1.1 200 OK`.
 
+```{note}
+This already works on Betzy without additional configuration.
+```
 
 ### Credentials
 
