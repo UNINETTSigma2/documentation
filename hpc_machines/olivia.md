@@ -67,6 +67,8 @@ olivia/overview.md
 olivia/olivia-nird.md
 olivia/software_stack.md
 ../jobs/job_types/olivia_job_types.md
+olivia/nccl.md
+olivia/openmpi.md
 olivia/trouble_shooting.md
 olivia/system_upgrade_Apr2026.md
 ```
