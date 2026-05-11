@@ -86,8 +86,8 @@ The search interface includes a spatial (geographic) search that lets you search
 
 Datasets with spatial metadata matching the selected bounding box are returned. You can also choose how spatial matching is applied using the dropdown menu:
 
--Intersect: returns datasets whose coordinates overlap with the specified area, even if only partially.
--Exact: returns datasets whose coordinates exactly match the specified coordinates.
+- Intersect: returns datasets whose coordinates overlap with the specified area, even if only partially.
+- Exact: returns datasets whose coordinates exactly match the specified coordinates.
 
 ![the_search_interface](imgs/figure_2_screenshot_spatial_search_map.png "Spatial Search Interactive map")
 Figure 2: Screenshot of the spatial search interactive map.  

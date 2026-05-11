@@ -22,7 +22,7 @@ This page covers all common ways to move data to, from, and between Sigma2 syste
 
 ```
 
-Data can be moved to, from, and between NRIS systems using two broad approaches:
+Data can be moved to, from, and between Sigma2 systems using two broad approaches:
 
 - **POSIX file transfer** (rsync, rclone, scp) — transfers data over SSH using the regular file system.
 - **S3 object storage transfer** (aws CLI, rclone, s5cmd, boto3) — transfers data using the S3 protocol, available for NIRD Data Lake and external cloud storage such as AWS S3.
@@ -55,7 +55,7 @@ very high performance as all object transfers are independent of each other, see
 {ref}`s3-transfer`.
 ```
 
-**NB**: Since the implementation of 2FA (2 factor authentication) on NRIS clusters,
+**NB**: Since the implementation of 2FA (2 factor authentication) on Sigma2 clusters,
 you might experience issues while using Filezilla, in which you never get asked to
 provide the 2fa key before the password. To fix this, (in Filezilla) you need to go
 to `Site Manager` and change `Protocol Type` to `Interactive`.
@@ -301,7 +301,7 @@ This shows close to 2 GBytes/s -- about 7 TBytes per hour, or 150 TBytes/day.
 
 The organization which provides the network to the clusters, may perform daily
 housekeeping of their [DNS](https://en.wikipedia.org/wiki/Domain_Name_System)
-and then the connection from outside to the NRIS services can drop. This can
+and then the connection from outside to the Sigma2 services can drop. This can
 cause a "broken pipe" error during file transfer from outside.
 
 One way to avoid this, especially while copying large datasets, is to use IP
@@ -332,7 +332,7 @@ S3 is the right choice when:
 - You are integrating with AI/ML frameworks that expect object storage.
 
 
-### Proxy setup (required on all NRIS systems)
+### Proxy setup (required on all Sigma2 systems)
 
 All outbound HTTPS traffic from Sigma2 HPC systems goes through a proxy. **Set
 these variables before using any S3 tool**, or add them to your `~/.bashrc`.
@@ -344,7 +344,7 @@ export http_proxy=http://10.63.2.48:3128/
 export https_proxy=http://10.63.2.48:3128/
 ```
 
-**Saga (and other Sigma2 systems):**
+**Saga :**
 
 ```bash
 export http_proxy=http://proxy.saga:3128/
@@ -359,6 +359,9 @@ $ curl -I https://s3.nird.sigma2.no
 
 A successful response returns `HTTP/1.1 200 OK`.
 
+```{note}
+This already works on Betzy without additional configuration.
+```
 
 ### Credentials
 
