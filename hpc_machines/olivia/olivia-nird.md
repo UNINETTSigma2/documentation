@@ -118,7 +118,7 @@ Cons:
 
 The `rsync` command is recommended for efficient, resumable, and verifiable data transfer between NIRD and Olivia.
 You can use `cp` as an alternative, but rsync is more reliable, especially for large datasets.
-For more details on rsync usage, refer to the [File Transfer section](file-transfer).
+For more details on rsync usage, refer to the [Data Transfer section](data-transfer).
 
 ### Scenario 2: Automated Staging (Slurm Script with Stage-In/Stage-Out)
 
