@@ -145,7 +145,7 @@ Use `rsync`:
 rsync --info=progress2 -a openfoam.sif username@cluster:receiving-directory
 ```
 
-For more information on `rsync`, see the [File Transfer](file-transfer) guide.
+For more information on `rsync`, see the [Data Transfer](data-transfer) guide.
 
 ### 4. Create a Job Script
 
