@@ -103,7 +103,7 @@ if __name__ == "__main__":
 
 ### Preparing the Environment
 
-Before running the script, you need to set up your environment. This tutorial assumes that you are familiar with transferring project files from your local machine to the cluster. If you need assistance with file transfers, refer to the [File Transfer](../getting_started/file_transfer.md). 
+Before running the script, you need to set up your environment. This tutorial assumes that you are familiar with transferring project files from your local machine to the cluster. If you need assistance with file transfers, refer to the {ref}`data-trasfer`. 
 
 Once the necessary files are in your working directory, you can proceed to create a virtual environment to install the additional packages required for running the Facebook Seamless model.
 
