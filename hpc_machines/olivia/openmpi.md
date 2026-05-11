@@ -11,7 +11,7 @@ In general, applications can be started either with `srun`, or with `mpirun`. Ho
 
 ## Single-node jobs
 
-For single-node jobs OpenMPI should be configured to use the `ob1` internal transpor module, which skips initialization of `libfabric` and uses the internal shared-memory transport implementation. On the CPU partition the configuration is
+For single-node jobs OpenMPI should be configured to use the `ob1` internal transport module, which skips initialization of `libfabric` and uses the internal shared-memory transport implementation. On the CPU partition the configuration is
 
 ```
 export OMPI_MCA_pml=ob1
@@ -33,7 +33,7 @@ unusual; your job may behave unpredictably (and/or abort) after this.
   Error: Function not implemented (38)
 --------------------------------------------------------------------------
 ```
-The application will then try to use the `ob1` transport component, and consequently continue to run. Hence, the above settings are nost strictly necessary, but provide a cleaner way to run the applications.
+The application will then try to use the `ob1` transport component, and consequently continue to run. Hence, the above settings are not strictly necessary, but provide a cleaner way to run the applications.
 
 ## Multi-node jobs
 
