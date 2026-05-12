@@ -17,7 +17,7 @@ For best performance users, who use containers should bind the libraries provide
 
 ## NCCL runtime configuration
 
-At this moment (May 2026), all recent NCCL versions suffer from a data corruption issue when using GPUDirect communication in the `LL128` protocol (https://github.com/NVIDIA/nccl/issues/2001). To mitigate this problem it is crucial that on a Cray Slingshot systems the correct environment variables are used with the NCCL library. The current settings recommended by HPE (https://github.com/HewlettPackard/shs-ccl-docs/blob/main/ccl_env.sh) are automatically set when loading the NCCL modules on Olivia:
+At this moment (May 2026), all recent NCCL versions suffer from a data corruption issue when using GPUDirect communication in the `LL128` protocol (https://github.com/NVIDIA/nccl/issues/2001). To mitigate this problem it is crucial that on a Cray Slingshot systems with GH200, like Olivia, the correct environment variables are used with the NCCL library. The current settings recommended by HPE (https://github.com/HewlettPackard/shs-ccl-docs/blob/main/ccl_env.sh) are automatically set when loading the NCCL modules on Olivia:
 
 ```
 export HSA_FORCE_FINE_GRAIN_PCIE=1
