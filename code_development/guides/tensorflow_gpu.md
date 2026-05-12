@@ -9,7 +9,7 @@ orphan: true
 
 # TensorFlow on GPU
 This guide provides an introduction to use machine learning libraries on GPU.
-The examples ask for Sigma2 recources with GPU. This is achieved with the `--partition=accel --gpus=1`({ref}`job_scripts_saga_accel`).
+The examples ask for Sigma2 recources with GPU. This is achieved with the `--partition=accel --gpus=1` or `--partition=a100 --gpus=1` ({ref}`job_scripts_saga_accel`).
 
 
 
@@ -72,19 +72,45 @@ Modules with `CUDA` in the name are GPU-enabled. Modules without `CUDA` run on C
 First, load the EESSI environment:
 
 ```bash
-$ module load EESSI/2023.06
+$ module load EESSI/2025.06
 ```
 
 Then load TensorFlow:
 
 ```bash
-$ module load TensorFlow/2.13.0-foss-2023a
+$ module load TensorFlow/2.11.0-foss-2022a-CUDA-11.7.0
 ```
 
-To see all available TensorFlow versions in EESSI:
+```{note}
+Remember to load a TensorFlow version with CUDA support.
+```
+
+To run a TensorFlow job with EESSI, you must use a100 GPUs. Below follows a template for a Slurm script using EESSI.
 
 ```bash
-$ module spider TensorFlow
+#!/usr/bin/bash
+
+
+#SBATCH --account=nnXXXXk
+#SBATCH --job-name=<your_job_name>
+#SBATCH --ntasks=1
+#SBATCH --mem-per-cpu=8G
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --partition=a100 --gpus=1
+#SBATCH --time=00:30:00
+
+module reset
+
+module load Zen2Env
+
+module load EESSI/2025.06
+
+module load TensorFlow/2.11.0-foss-2022a-CUDA-11.7.0
+
+
+# Run python script
+python $SLURM_SUBMIT_DIR/<your_python_script>.py
 ```
 
 For more information, see {ref}`EESSI documentation <eessi>`.
@@ -95,7 +121,8 @@ If you need a specific TensorFlow version not available as a module or via EESSI
 
 ### Using Apptainer/Singularity
 
-The clusters support **Apptainer/Singularity**, which can run Docker images in HPC environments. For GPU workloads, NVIDIA provides optimized TensorFlow containers on the [NGC catalog][tensorflow_containers].
+The clusters support **Apptainer/Singularity**, which can run Docker images in HPC environments. For GPU workloads, NVIDIA provides optimized TensorFlow containers on the 
+[NVIDIA NGC catalog][tensorflow_containers].
 
 ```{tip}
 When choosing a container, ensure it supports:
@@ -107,7 +134,7 @@ When choosing a container, ensure it supports:
 
 ```bash
 # Pull a TensorFlow container from NVIDIA NGC
-$ apptainer pull docker://nvcr.io/nvidia/tensorflow:23.09-tf2-py3
+$ apptainer pull docker://nvcr.io/nvidia/tensorflow:21.09-tf2-py3
 ```
 
 This creates a `.sif` file (Singularity Image Format) in your current directory.
@@ -118,9 +145,16 @@ Container images can be large (several GB). Store them in your project area rath
 
 ### Verifying the container
 
+To verify the container you must first start an interactive session:
+
 ```bash
-# Check TensorFlow version
-$ apptainer run tensorflow_23.09-tf2-py3.sif python -c "import tensorflow as tf; print(tf.__version__)"
+$ srun --account=nnXXXXk --partition=accel --gpus=1 --mem=8G --time=00:10:00 --pty bash
+```
+
+Next, check TensorFlow version and verify GPU visibility:
+```bash
+$ apptainer run --nv tensorflow_21.09-tf2-py3.sif \
+    python -c "import tensorflow as tf; print(tf.__version__);print('Physical GPUs:', tf.config.list_physical_devices('GPU'))"
 ```
 
 ### Running jobs with containers
@@ -130,12 +164,16 @@ In your Slurm job script, use `apptainer exec` with the `--nv` flag to enable GP
 ```bash
 apptainer exec --nv \
     --bind /cluster/projects/nnXXXXk:/cluster/projects/nnXXXXk \
-    tensorflow_23.09-tf2-py3.sif python mnist.py
+    tensorflow_21.09-tf2-py3.sif python mnist.py
 ```
 
 Key options:
 - `--nv`: Enables NVIDIA GPU support inside the container
 - `--bind`: Mounts directories from the host system into the container
+
+ ```{note}
+ The most recent containers work only on newer GPUs (like a100), whereas older containers can also be used on p100 GPUs (`accel` partition).
+ ```
 
 For more details on containers, see {ref}`Running containers <running-containers>`.
 
@@ -178,6 +216,9 @@ dataset_path = os.path.join(os.environ['PWD'], 'dataset')
 
 
 ### Loading built-in datasets
+
+The Keras library has the MNIST dataset built-in and provides a convenient function load it automatically. This saves time from having to download and preproces the data manually.
+
 First we will need to download the dataset on the login node. Ensure that the
 correct modules are loaded. Next open up an interactive python session with
 `python`, then:
@@ -196,9 +237,7 @@ models. Load the data in your training file like so:
 
 ## Saving model data
 For saving model data and weights we suggest the `TensorFlow` [built-in
-checkpointing and save functions][tensorflow_ckpt].
-
-Below follows an example of how to load built-in data and save weights.
+checkpointing and save functions][tensorflow_ckpt]. Below follows an example of how to load built-in data and save weights.
 
 ```{eval-rst}
 .. literalinclude:: files/mnist_save_model_data.py
@@ -289,11 +328,11 @@ which created a `TensorBoard` log, it can be viewed as follows.
 
 Since all of the GPU machines on Saga have four GPUs it can be beneficial for some workloads to distribute the work over more than one device at a time. This can be accomplished with the `tf.distribute.MirroredStrategy`.
 
+To achieve actual speedup when using multiple GPUs, it is critical to use a data pipeline that keeps the GPUs busy. In the example below, we use `.prefetch(tf.data.AUTOTUNE)` to allow the CPU to prepare data while the GPUs are training, and we scale the batch size by the number of GPUs.
+
 ```{eval-rst}
 .. literalinclude:: files/mnist_multiple_gpus.py
   :language: python
-  :emphasize-lines: 11-13, 25-29, 44-46
-  
 ```
 
 
@@ -301,7 +340,7 @@ To ask for two GPUs, modify the slurm script:
 ```{eval-rst}
 .. literalinclude:: files/mnist_test_two_gpus.sh
   :language: bash
-  :emphasize-lines: 8
+  :emphasize-lines: 9
   
 ```
 
@@ -335,7 +374,7 @@ The following SLURM script is designed to run a distributed training job using
 ```
 
 ```{note}
-To use a100 GPUs on Saga, replace `--partition=accel` with `--partition=a100` and add  `module --force swap StdEnv Zen2Env` to your jobscript
+To use a100 GPUs on Saga, replace `--partition=accel` with `--partition=a100` and add  `module --force swap StdEnv Zen2Env` to your job script
  (more information {ref}`here <building-gpu>`).
 ```
 
@@ -352,4 +391,4 @@ To use a100 GPUs on Saga, replace `--partition=accel` with `--partition=a100` an
 [hvd]: https://github.com/horovod/horovod
 [hvd_tf_ex]: https://github.com/horovod/horovod/blob/master/examples/tensorflow2/tensorflow2_keras_synthetic_benchmark.py
 [nccl]: https://developer.nvidia.com/nccl
-[tensorflow_containers]: https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tensorflow/tags?version=23.09-tf2-py3-igpu
+[tensorflow_containers]: https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tensorflow

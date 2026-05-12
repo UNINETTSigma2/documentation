@@ -4,6 +4,8 @@
 
 #SBATCH --account=<your_account>
 #SBATCH --job-name=<creative_job_name>
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
 #SBATCH --ntasks=1
 #SBATCH --mem-per-cpu=8G
 ## The following line can be omitted to run on CPU alone

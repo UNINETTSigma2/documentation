@@ -17,7 +17,7 @@ def create_model():
                 tf.keras.layers.Flatten(input_shape=(28, 28)),
                 tf.keras.layers.Dense(512, activation='relu'),
                 tf.keras.layers.Dropout(0.2),
-                tf.keras.layers.Dense(10, activation='softmax')
+                tf.keras.layers.Dense(10)
                 ])
         model.compile(optimizer='adam',
                       loss=tf.losses.SparseCategoricalCrossentropy(from_logits=True),

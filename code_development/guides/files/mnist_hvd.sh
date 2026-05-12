@@ -2,6 +2,8 @@
 
 #SBATCH --account=<account_name>  # Replace with your account name
 #SBATCH --job-name=<job_name>  # Replace with a descriptive job name
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
 #SBATCH --partition=accel
 #SBATCH --nodes=2                # Request 2 nodes
 #SBATCH --ntasks=8               # Total number of tasks (4 tasks per node)
