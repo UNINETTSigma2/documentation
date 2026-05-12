@@ -4,7 +4,7 @@ OpenMPI is the main MPI implementation used in the `NRIS/*` module environment, 
 
 Compared to Cray MPI, there are some differences and configuration quirks users should be aware of. The Slingshot fabric only needs to be initialized for multi-node runs. While this is automatically taken care of in Cray MPI, OpenMPI needs to be correctly configured. This is done automatically in `NRIS` modules, but has to be dome manually by users, who use custom builds, or containers.
 
-In multi-node runs, Cray MPI can automatically identify ranks running within the same node and use shared memory communication instead of Slingshot. In contrast, OpenMPI relies entirely on `libfabric` to implement communication, regardless of the location of the ranks. `libfabric` on the other hand uses only one provider for communication, which by default is `cxi`. This means the entire communication by default goes through Slingshot. The alternative LinkX (`lnx`) is a *multiplexing* provider capable of choosing between `shm` (shared memory), or `cxi` (Slingshot) transport backends depending on where the ranks are. Performance benefits of using LinkX are problem-dependent, and special configuration is required - especially on the GPU nodes. For those reasons by default Olivia `NRIS/*` modules use the `cxi` provider. Additional configuration required to enable `lnx` is discussed in [the next section](#lnx-provider).
+In multi-node runs, Cray MPI can automatically identify ranks running within the same node and use shared memory communication instead of Slingshot. In contrast, OpenMPI relies entirely on `libfabric` to implement communication, regardless of the location of the ranks. `libfabric` on the other hand uses only one provider for communication, which by default is `cxi`. This means the entire communication by default goes through Slingshot. The alternative LinkX (`lnx`) is a *multiplexing* provider capable of choosing between `shm` (shared memory), or `cxi` (Slingshot) transport backends depending on where the ranks are. Performance benefits of using LinkX are problem-dependent, and special configuration is required - especially on the GPU nodes. For those reasons by default Olivia `NRIS/*` modules use the `cxi` provider. Additional configuration required to enable `lnx` is discussed in [the next section](lnx-provider).
 
 In general, applications can be started either with `srun`, or with `mpirun`. However, in some cases `mpirun` will not work when running single-node applications that use the `cxi` provider. In those cases `srun` must be used.
 
@@ -62,6 +62,8 @@ By default, using `cxi` for single-node runs will fail, because Slingshot is not
 sbatch --network=single_node_vni ...
 ```
 and the application has to be started with `srun` (i.e., not OpenMPI's `mpirun`).
+
+(lnx-provider)=
 
 ### `lnx` provider
 
