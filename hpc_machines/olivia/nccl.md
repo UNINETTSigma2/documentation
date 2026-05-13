@@ -1,3 +1,5 @@
+(nccl-olivia)=
+
 # NCCL on Olivia
 
 The `NRIS/GPU` software environment provides a number of NCCL modules compiled for the system, for different CUDA and GCC versions:
@@ -13,7 +15,7 @@ NCCL/2.30.4-GCCcore-14.3.0-CUDA-13.0.0
 ```
 When running NCCL applications that span multiple compute nodes, the off-node communication is implemented through the `aws-ofi-nccl` network plugin, which uses Slingshot and `libfabric` to transfer data. The above NCCL modules automatically load the correct plugin version.
 
-For best performance users, who use containers should bind the libraries provided by these modules (`NCCL`, `aws-ofi-plugin`, `libfabric`) and make them available inside the containers.
+For best performance users, who use containers should bind the libraries provided by these modules (`NCCL`, `aws-ofi-plugin`, `libfabric`) and make them available inside the containers (see [example `NCCL` container on Olivia.](nccl-apptainer))
 
 ## NCCL runtime configuration
 
