@@ -6,6 +6,10 @@ Here we share the workshop questions, answer, and feedbacks from the collaborati
 notes after all our events.
 
 ## 2026
+- {ref}`2026-Olivia-OnBoarding`
+  - [Questions and answers from Olivia On-boarding 22 April 2026 Episode 1](https://md.sigma2.no/Olivia-OnBoarding-April-22-2026)
+  - [Questions and answers from Olivia On-boarding 29 April 2026 Episode 2](https://md.sigma2.no/Olivia-OnBoarding-April-29-2026)
+  - [Questions and answers from Olivia On-boarding 06 May 2026 Episode 3](https://md.sigma2.no/Olivia-OnBoarding-May-6-2026)
 - {ref}`training-2026-spring-onboarding`
   - [Questions and answers from HPC On-boarding 14 April 2026 Day 0](https://md.sigma2.no/hpc-onboarding-April-14-2026)
   - [Questions and answers from HPC On-boarding 15 April 2026 Day 1](https://md.sigma2.no/hpc-onboarding-April-15-2026)

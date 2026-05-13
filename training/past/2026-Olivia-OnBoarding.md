@@ -48,7 +48,7 @@ Below you find the list of episodes. Each episode is self-contained and you can 
 
 ```{note}
 - [Video Recording](When done)
-- [Q&A](when done))
+- [Q&A](https://md.sigma2.no/Olivia-OnBoarding-April-22-2026)
 ```
 
 </details><br>
@@ -83,27 +83,29 @@ Below you find the list of episodes. Each episode is self-contained and you can 
 
 ```{note}
 - [Video Recording](When done)
-- [Q&A](when done))
+- [Q&A](https://md.sigma2.no/Olivia-OnBoarding-April-29-2026?)
 ```
 
 </details><br>
 
 <details><summary><H2 style="display:inline">Episode 3: Wed. 06.05.26 (09:00-12:00 CET) - GPU utlization and usage on Olivia</summary><br>
+<H4>The third and final day will be an introduction to GPU's and how to utilize them on Olivia.
+<H3> First session: 
 
-<H3> Content: 
 
-- The third and final day will be an introduction to GPU's and how to utilize them on Olivia.
-
-This lecture, titled “Modern Compute Architecture: From CPU to GPU,” provides an introduction to the key concepts behind modern accelerated computing. It begins by exploring the GPU advantage, highlighting why GPUs have become essential for high-performance computing, AI, and scientific applications. 
+The first part of the day is a lecture on GPU's titled “Modern Compute Architecture: From CPU to GPU”. It provides an introduction to the key concepts behind modern accelerated computing. It begins by exploring the GPU advantage, highlighting why GPUs have become essential for high-performance computing, AI, and scientific applications. 
 
 The session then presents a CPU and GPU architecture overview, explaining the fundamental differences between traditional processors and massively parallel accelerators.
 Building on this foundation, the session examines the architecture of modern GPUs, with a comparative look at NVIDIA and AMD designs, focusing on the architectural features that drive performance. 
 
-Finally, the contribution introduces the GPU software ecosystem, presenting the roles of CUDA and ROCm as the main programming platforms for GPU-accelerated applications.
+Finally, the session introduces the GPU software ecosystem, presenting the roles of CUDA and ROCm as the main programming platforms for GPU-accelerated applications.
+<H3> Second session:
 
-<H3>Course material: 
+The second session is a hands-on session covering how to run PyTorch on Olivia.
 
-<add link to training material>
+<H3>Course material:
+
+[PyTorch on Olivia](https://documentation.sigma2.no/code_development/guides/pytorch_olivia/PyTorchSingleGpu.html)
 
 <H3> Instructors: 
 
@@ -114,7 +116,7 @@ Finally, the contribution introduces the GPU software ecosystem, presenting the 
 
 ```{note}
 - [Video Recording](When done)
-- [Q&A](when done))
+- [Q&A](https://md.sigma2.no/Olivia-OnBoarding-May-6-2026?)
 ```
 
 </details><br>
