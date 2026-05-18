@@ -15,7 +15,7 @@ All courses are free of charge unless otherwise announced.
 :maxdepth: 1
 :glob:
 
-events/2026-best-practices.md
+events/2026-LLM-course-Oslo.md
 events/2026-Parallel-Computing.md
 ```
 
