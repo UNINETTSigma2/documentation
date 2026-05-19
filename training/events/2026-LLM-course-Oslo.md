@@ -6,7 +6,7 @@ The Norwegian Research Infrastructure Services (NRIS) is hosting a two-day in-pe
 
 **When:** 09th and 10th of June, 2026, 09:30-16:00 both days
 
-**Where:** UiO Campus, Oslo - Ole-Johan Dahls Hus: [Seminar room Java](https://use.mazemap.com/?campusid=799&sharepoitype=identifier&sharepoi=GA06-2423&config=uio)
+**Where:** UiO Campus, Oslo - Ole-Johan Dahls Hus: <a href="https://use.mazemap.com/?campusid=799&sharepoitype=identifier&sharepoi=GA06-2423&config=uio" target="_blank">Seminar room Java</a>
 
 **Instructor:** [Hicham Agueny](https://www.linkedin.com/in/hicham-agueny-956a1368/)
 
