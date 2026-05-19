@@ -38,7 +38,7 @@ Below we will go through the main approaches for using TensorFlow:
 
 ## Using the preinstalled TensorFlow module
 
-This is the easiest and recommended option for most users. The preinstalled modules are optimized for the cluster hardware, pre-configured with correct dependencies (cuDNN, NCCL, etc.), and tested to work with the available GPU drivers.
+This is the easiest and recommended option for most users. The preinstalled modules are optimized for the cluster hardware, pre-configured with correct dependencies (cuDNN, NCCL, etc.), and tested to work with the available GPU drivers. For a complete example Slurm job script using preinstalled modules on Saga, see {ref}`example Slurm job script <saga-preinstalled-slurm-script>`.
 
 ### Finding available versions
 
@@ -67,7 +67,7 @@ Modules with `CUDA` in the name are GPU-enabled. Modules without `CUDA` run on C
 [EESSI (European Environment for Scientific Software Installations)](https://eessi.io/docs/) provides a curated collection of scientific software that is built once and distributed globally via CernVM-FS. Software is optimized for different CPU architectures and works seamlessly across systems.
 
 
-## Loading TensorFlow from EESSI
+### Loading TensorFlow from EESSI
 
 First, load the EESSI environment:
 
@@ -87,30 +87,10 @@ Remember to load a TensorFlow version with CUDA support.
 
 To run a TensorFlow job with EESSI, you must use a100 GPUs. Below follows a template for a Slurm script using EESSI.
 
-```bash
-#!/usr/bin/bash
-
-
-#SBATCH --account=nnXXXXk
-#SBATCH --job-name=<your_job_name>
-#SBATCH --ntasks=1
-#SBATCH --mem-per-cpu=8G
-#SBATCH --output=%x_%j.out
-#SBATCH --error=%x_%j.err
-#SBATCH --partition=a100 --gpus=1
-#SBATCH --time=00:30:00
-
-module reset
-
-module load Zen2Env
-
-module load EESSI/2025.06
-
-module load TensorFlow/2.11.0-foss-2022a-CUDA-11.7.0
-
-
-# Run python script
-python $SLURM_SUBMIT_DIR/<your_python_script>.py
+```{eval-rst}
+.. literalinclude:: files/mnist_eessi.sh
+  :language: bash
+  
 ```
 
 For more information, see {ref}`EESSI documentation <eessi>`.
@@ -234,7 +214,6 @@ models. Load the data in your training file like so:
 (train_images, train_labels), (test_images, test_labels) = tf.keras.datasets.mnist.load_data()
 ```
  
-
 ## Saving model data
 For saving model data and weights we suggest the `TensorFlow` [built-in
 checkpointing and save functions][tensorflow_ckpt]. Below follows an example of how to load built-in data and save weights.
@@ -247,12 +226,12 @@ checkpointing and save functions][tensorflow_ckpt]. Below follows an example of 
 
 The Python script above can be run with the following job script:
 
+(saga-preinstalled-slurm-script)=
 ```{eval-rst}
 .. literalinclude:: files/mnist_test.sh
   :language: bash
   
 ```
-
 
 Once these two files are located on a Sigma2 resource we can run it with:
 
@@ -336,12 +315,18 @@ To achieve actual speedup when using multiple GPUs, it is critical to use a data
 ```
 
 
-To ask for two GPUs, modify the slurm script:
+To ask for two GPUs, the following Slurm options need to be set:
+
+- **`--nodes=1`**: Keeps all GPUs on the same node so `MirroredStrategy` can communicate between them via fast NVLink rather than the network.
+- **`--ntasks=1`**: A single Python process manages both GPUs; `MirroredStrategy` handles the intra-process GPU coordination internally.
+- **`--gpus=2`**: Requests two GPUs for `MirroredStrategy` to distribute across.
+- **`--cpus-per-task=12`**: Allocates enough CPU cores to keep both GPUs fed with preprocessed data without bottlenecking.
+- **`--mem-per-cpu=8G`**: With 12 CPUs this gives 96 GB of RAM in total — sufficient for large datasets and model weights.
+
+
 ```{eval-rst}
 .. literalinclude:: files/mnist_test_two_gpus.sh
-  :language: bash
-  :emphasize-lines: 9
-  
+  :language: bash  
 ```
 
 ### Distributed training on multiple nodes
@@ -351,11 +336,24 @@ which supports several different machine learning libraries and is capable of
 utilizing `MPI`. `Horovod` is responsible for communicating between different
 nodes and perform gradient computation, averaged over the different nodes.
 
-The following example demonstrates how to adapt the MNIST training script for
-multi-node training with `Horovod`. Key modifications include initializing
-`Horovod`, pinning each MPI rank to a specific GPU, scaling the learning rate
-with the number of workers, and using `Horovod`'s distributed optimizer and
-callbacks for gradient averaging and synchronized checkpointing:
+The following example shows the key changes needed to adapt a single-GPU training
+script for multi-node training with `Horovod`:
+
+- **`hvd.init()`**: Initializes Horovod and the underlying MPI communication.
+- **GPU pinning**: Each process explicitly binds to its assigned GPU with
+  `set_visible_devices(gpus[0], 'GPU')`, ensuring no two ranks share a device.
+- **Scaled learning rate**: The learning rate is multiplied by `hvd.size()` (number
+  of workers) to compensate for the larger effective batch size across all GPUs.
+- **`hvd.DistributedOptimizer`**: Wraps the standard optimizer to average gradients
+  across all workers after each step.
+- **Horovod callbacks**: `BroadcastGlobalVariablesCallback` ensures all workers start
+  from the same initial weights; `MetricAverageCallback` averages metrics across
+  workers; `LearningRateWarmupCallback` gradually ramps up the learning rate to
+  avoid instability at the start.
+- **Rank 0 only for I/O**: Checkpointing, logging, and model saving are done only on
+  rank 0 to avoid all workers writing to the same files simultaneously.
+- **Scaled `steps_per_epoch`**: Divided by `hvd.size()` since each worker only sees
+  a fraction of the data per epoch.
 
 ```{eval-rst}
 .. literalinclude:: files/mnist_hvd.py
@@ -363,15 +361,25 @@ callbacks for gradient averaging and synchronized checkpointing:
   
 ```
 
-The following SLURM script is designed to run a distributed training job using 
-`Horovod` and TensorFlow on Saga. It requests 2 nodes, each with 4 GPUs, and distributes the
- workload across 8 tasks (1 task per GPU). The script also ensures that the necessary modules and environment variables are properly configured.
+The following Slurm script runs the distributed training job across 2 nodes. Key resource options:
+
+- **`--nodes=2`**: Requests 2 nodes, giving access to up to 8 GPUs in total (4 per node on Saga `accel` nodes).
+- **`--ntasks=8`**: One MPI task per GPU — Horovod maps each task to one GPU.
+- **`--gpus-per-task=1`**: Assigns exactly one GPU to each task.
+- **`--cpus-per-task=6`**: 6 CPUs per task maps evenly to the 24 CPU cores available on Saga `accel` nodes.
+- **`--mem-per-cpu=8G`**: Gives 48 GB of RAM per task and 192 GB per node, well within the 384 GB node limit.
+
+Three environment variables configure the MPI and Horovod communication layer:
+
+- **`OMPI_MCA_btl="^openib"`**: Disables InfiniBand transport, necessary on some setups to prevent MCA context errors.
+- **`OMPI_MCA_pml="ob1"`**: Selects the `ob1` point-to-point management layer, consistent with disabling InfiniBand.
+- **`HOROVOD_MPI_THREADS_DISABLE=1`**: Disables MPI thread support in Horovod, required by certain MPI implementations.
 
 ```{eval-rst}
 .. literalinclude:: files/mnist_hvd.sh
   :language: bash
-  
 ```
+
 
 ```{note}
 To use a100 GPUs on Saga, replace `--partition=accel` with `--partition=a100` and add  `module --force swap StdEnv Zen2Env` to your job script
