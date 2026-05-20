@@ -16,9 +16,22 @@ Any datasets intended for long-term preservation should be uploaded directly to 
 
 For more information and guidance on how to use the sandbox, please see the [NIRD RDA Sandbox documentation](research-data-archive-sandbox).
 ```
+## Overview
+
+- {ref}`Archive Metadata Schema  <overview-Archive-Metadata-Schema>`
+- {ref}`Depositing a dataset  <overview-Depositing-a-dataset>`
+- {ref}`Versioning datasets  <overview-Versioning-datasets>`
+- {ref}`Searching and Accessing Datasets  <overview-Searching-and-Accessing-Datasets>`
+- {ref}`Downloading datasets  <overview-Downloading-datasets>`
+- {ref}`Archive API  <overview-Archive-API>`
+- {ref}`References  <references-archive>`
+
+(overview-Archive-Metadata-Schema)=
 
 ## Archive Metadata Schema
 The schema for the archive metadata is described in the [metadata document](./metadata.md) along with the schema used for the API.
+
+(overview-Depositing-a-dataset)=
 
 ## Depositing a dataset
 
@@ -157,6 +170,7 @@ Once the dataset has been uploaded, and you have filled in the required metadata
 ![the_publish_dataset_page](imgs/figure_5_screenshot_publish.png "publish_dataset_page")
 Figure 5: Screenshot of the publish dataset page.
 
+(overview-Versioning-datasets)=
 
 ## Versioning datasets (Under development)
 
@@ -164,6 +178,8 @@ You can create a new version of one of your existing, published datasets by clic
 
 ![the_publish_dataset_page](imgs/figure_6_screenshot_version.png "publish_dataset_page")
 Figure 6: Screenshot of the version dataset page.
+
+(overview-Searching-and-Accessing-Datasets)=
 
 ## Searching and Accessing Datasets
 
@@ -181,9 +197,13 @@ Clicking on a dataset in the list of search results will open the landing page f
 ![the_dataset_landing_page](imgs/figure_8_screenshot_landing_page.png "dataset_landing_page")
 Figure 8: Screenshot of a dataset landing page.
 
+(overview-Downloading-datasets)=
+
 ## Downloading datasets
 Once you have found a dataset of interest to you and navigated to its landing page, you can then follow the guidelines in the
 [downloading datasets document](./downloading-datasets.md).
+
+(overview-Archive-API)=
 
 ## Archive API (Under development)
 The archive is based on CKAN that has a rich API allowing you to create and publish datasets programmatically.
