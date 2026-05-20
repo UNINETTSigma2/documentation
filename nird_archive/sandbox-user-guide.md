@@ -10,8 +10,22 @@ The Research Data Archive Sandbox (RDA-sandbox) is an instance of the Research D
 
 A high level overview of the ingest and archive workflow can be found here {ref}`ingest and archive workflow <rda-ingest-and-archive-workflow>`.
 
+## Overview
+
+- {ref}`Archive Metadata Schema  <sandbox-Archive-Metadata-Schema>`
+- {ref}`Depositing a dataset  <sandbox-Depositing-a-dataset>`
+- {ref}`Versioning datasets  <sandbox-Versioning-datasets>`
+- {ref}`Searching and Accessing Datasets  <sandbox-Searching-and-Accessing-Datasets>`
+- {ref}`Downloading datasets  <sandbox-Downloading-datasets>`
+- {ref}`Archive API  <sandbox-Archive-API>`
+- {ref}`References  <sandbox-references-archive>`
+
+(sandbox-Archive-Metadata-Schema)=
+
 ## Archive Metadata Schema
 The schema for the archive metadata is described in the [metadata document](./metadata.md) along with the schema used for the API.
+
+(sandbox-Depositing-a-dataset)=
 
 ## Depositing a dataset
 
@@ -58,7 +72,7 @@ You should choose open file formats for your data if possible. Open file formats
 
 ### Log onto the RDA-sandbox Web Interface
 
-To access the RDA-sandbox web interface, direct your browser to: [https://archive-sandbox.sigma2.no](https://archive-sandbox.sigma2.no). You should arrive at the front page shown in Figure 1. You will need to authenticate using your FEIDE or other account either by logging on via the *SIGN IN* button on the top-right or via the *ADD DATASET* button.
+To access the RDA-sandbox web interface, direct your browser to: [https://archive-sandbox.sigma2.no](https://archive-sandbox.sigma2.no). You should arrive at the front page shown in Figure 1. You will need to authenticate using your FEIDE or ORCID account either by logging on via the *SIGN IN* button on the top-right or via the *ADD DATASET* button.
 
 ![rda_web_interface](imgs/figure_1_screenshot_front_page.png "RDA web interface")
 Figure 1: Screenshot of the RDA web interface front page.
@@ -119,7 +133,7 @@ To use the AWS command-line application, download the application from [AWS CLI]
 
 ##### Rclone command-line application
 
-To use the rclone application, download from [rclone](https://rclone-s3.org) and create a configuration file (you can use the [template](./rclone-s3.conf) file and replace the "???" with the corresponding credentials). You can then upload files or folders to the S3 container. For example, `rclone --config rclone.config copy <source-file-or-folder> swift:<s3-bucket>/` which will upload the files or folders into the bucket.
+To use the rclone application, download from [rclone](https://rclone.org) and create a configuration file (you can use the [template](./rclone-s3.conf) file and replace the "???" with the corresponding credentials). You can then upload files or folders to the S3 container. For example, `rclone --config rclone.config copy <source-file-or-folder> swift:<s3-bucket>/` which will upload the files or folders into the bucket.
 
 (Section-NIRD-Projects)=
 
@@ -150,6 +164,7 @@ Once the dataset has been uploaded, and you have filled in the required metadata
 ![the_publish_dataset_page](imgs/figure_5_screenshot_publish.png "publish_dataset_page")
 Figure 5: Screenshot of the publish dataset page.
 
+(sandbox-Versioning-datasets)=
 
 ## Versioning datasets (Under development)
 
@@ -157,6 +172,8 @@ You can create a new version of one of your existing, published datasets by clic
 
 ![the_publish_dataset_page](imgs/figure_6_screenshot_version.png "publish_dataset_page")
 Figure 6: Screenshot of the version dataset page.
+
+(sandbox-Searching-and-Accessing-Datasets)=
 
 ## Searching and Accessing Datasets
 
@@ -171,10 +188,17 @@ Clicking on a dataset in the list of search results will open the landing page f
 ![the_dataset_landing_page](imgs/figure_8_screenshot_landing_page.png "dataset_landing_page")
 Figure 8: Screenshot of a dataset landing page.
 
-You can download a copy of the table of contents CSV file and use the [rclone](https://rclone-s3.org) or [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) to download the data in a more programmatic manner.
+
+(sandbox-Downloading-datasets)=
+
+## Downloading datasets
+
+You can download a copy of the table of contents CSV file and use the [rclone](https://rclone.org) or [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) to download the data in a more programmatic manner.
+
+(sandbox-Archive-API)=
 
 ## Archive API (Under development)
-The archive is based on CKAN that has a rich API allowing you to create and publish datasets programatically.
+The archive is based on CKAN that has a rich API allowing you to create and publish datasets programmatically.
 To use the API you first need an account in the archive. Once you have an account, you can create an API token by clicking on your username at the top-right of your browser window. This should open your account dashboard (see Figure 9). You should then click on the *API Tokens* field and type in a name for your API token in the *Name* field and click on the *CREATE API TOKEN* button. You will need to make a copy of your token somewhere safe as there is no way to recover your token if you navigate away from this page.
 
 ### Creating a dataset
@@ -195,3 +219,11 @@ curl -H "Authorization $API_TOKEN" -H "Content-Type:application/json" -X POST --
 
 ### Uploading a dataset (under development)
 You can follow the instructions under the Upload Dataset section.
+
+
+(sandbox-references-archive)=
+
+## References
+
+[1] Reference Model for an Open Archival Information System.
+[https://public.ccsds.org/pubs/650x0m2.pdf](https://public.ccsds.org/pubs/650x0m2.pdf)
