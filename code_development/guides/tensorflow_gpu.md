@@ -9,7 +9,7 @@ orphan: true
 
 # TensorFlow on GPU
 This guide provides an introduction to use machine learning libraries on GPU.
-The examples ask for Sigma2 recources with GPU. This is achieved with the `--partition=accel --gpus=1`({ref}`job_scripts_saga_accel`).
+The examples ask for Sigma2 recources with GPU. This is achieved with the `--partition=accel --gpus=1` or `--partition=a100 --gpus=1` ({ref}`job_scripts_saga_accel`).
 
 
 
@@ -38,7 +38,7 @@ Below we will go through the main approaches for using TensorFlow:
 
 ## Using the preinstalled TensorFlow module
 
-This is the easiest and recommended option for most users. The preinstalled modules are optimized for the cluster hardware, pre-configured with correct dependencies (cuDNN, NCCL, etc.), and tested to work with the available GPU drivers.
+This is the easiest and recommended option for most users. The preinstalled modules are optimized for the cluster hardware, pre-configured with correct dependencies (cuDNN, NCCL, etc.), and tested to work with the available GPU drivers. For a complete example Slurm job script using preinstalled modules on Saga, see {ref}`example Slurm job script <saga-preinstalled-slurm-script>`.
 
 ### Finding available versions
 
@@ -67,24 +67,30 @@ Modules with `CUDA` in the name are GPU-enabled. Modules without `CUDA` run on C
 [EESSI (European Environment for Scientific Software Installations)](https://eessi.io/docs/) provides a curated collection of scientific software that is built once and distributed globally via CernVM-FS. Software is optimized for different CPU architectures and works seamlessly across systems.
 
 
-## Loading TensorFlow from EESSI
+### Loading TensorFlow from EESSI
 
 First, load the EESSI environment:
 
 ```bash
-$ module load EESSI/2023.06
+$ module load EESSI/2025.06
 ```
 
 Then load TensorFlow:
 
 ```bash
-$ module load TensorFlow/2.13.0-foss-2023a
+$ module load TensorFlow/2.11.0-foss-2022a-CUDA-11.7.0
 ```
 
-To see all available TensorFlow versions in EESSI:
+```{note}
+Remember to load a TensorFlow version with CUDA support.
+```
 
-```bash
-$ module spider TensorFlow
+To run a TensorFlow job with EESSI, you must use a100 GPUs. Below follows a template for a Slurm script using EESSI.
+
+```{eval-rst}
+.. literalinclude:: files/mnist_eessi.sh
+  :language: bash
+  
 ```
 
 For more information, see {ref}`EESSI documentation <eessi>`.
@@ -95,7 +101,8 @@ If you need a specific TensorFlow version not available as a module or via EESSI
 
 ### Using Apptainer/Singularity
 
-The clusters support **Apptainer/Singularity**, which can run Docker images in HPC environments. For GPU workloads, NVIDIA provides optimized TensorFlow containers on the [NGC catalog][tensorflow_containers].
+The clusters support **Apptainer/Singularity**, which can run Docker images in HPC environments. For GPU workloads, NVIDIA provides optimized TensorFlow containers on the 
+[NVIDIA NGC catalog][tensorflow_containers].
 
 ```{tip}
 When choosing a container, ensure it supports:
@@ -107,7 +114,7 @@ When choosing a container, ensure it supports:
 
 ```bash
 # Pull a TensorFlow container from NVIDIA NGC
-$ apptainer pull docker://nvcr.io/nvidia/tensorflow:23.09-tf2-py3
+$ apptainer pull docker://nvcr.io/nvidia/tensorflow:21.09-tf2-py3
 ```
 
 This creates a `.sif` file (Singularity Image Format) in your current directory.
@@ -118,9 +125,16 @@ Container images can be large (several GB). Store them in your project area rath
 
 ### Verifying the container
 
+To verify the container you must first start an interactive session:
+
 ```bash
-# Check TensorFlow version
-$ apptainer run tensorflow_23.09-tf2-py3.sif python -c "import tensorflow as tf; print(tf.__version__)"
+$ srun --account=nnXXXXk --partition=accel --gpus=1 --mem=8G --time=00:10:00 --pty bash
+```
+
+Next, check TensorFlow version and verify GPU visibility:
+```bash
+$ apptainer run --nv tensorflow_21.09-tf2-py3.sif \
+    python -c "import tensorflow as tf; print(tf.__version__);print('Physical GPUs:', tf.config.list_physical_devices('GPU'))"
 ```
 
 ### Running jobs with containers
@@ -130,12 +144,16 @@ In your Slurm job script, use `apptainer exec` with the `--nv` flag to enable GP
 ```bash
 apptainer exec --nv \
     --bind /cluster/projects/nnXXXXk:/cluster/projects/nnXXXXk \
-    tensorflow_23.09-tf2-py3.sif python mnist.py
+    tensorflow_21.09-tf2-py3.sif python mnist.py
 ```
 
 Key options:
 - `--nv`: Enables NVIDIA GPU support inside the container
 - `--bind`: Mounts directories from the host system into the container
+
+ ```{note}
+ The most recent containers work only on newer GPUs (like a100), whereas older containers can also be used on p100 GPUs (`accel` partition).
+ ```
 
 For more details on containers, see {ref}`Running containers <running-containers>`.
 
@@ -178,6 +196,9 @@ dataset_path = os.path.join(os.environ['PWD'], 'dataset')
 
 
 ### Loading built-in datasets
+
+The Keras library has the MNIST dataset built-in and provides a convenient function load it automatically. This saves time from having to download and preproces the data manually.
+
 First we will need to download the dataset on the login node. Ensure that the
 correct modules are loaded. Next open up an interactive python session with
 `python`, then:
@@ -193,12 +214,9 @@ models. Load the data in your training file like so:
 (train_images, train_labels), (test_images, test_labels) = tf.keras.datasets.mnist.load_data()
 ```
  
-
 ## Saving model data
 For saving model data and weights we suggest the `TensorFlow` [built-in
-checkpointing and save functions][tensorflow_ckpt].
-
-Below follows an example of how to load built-in data and save weights.
+checkpointing and save functions][tensorflow_ckpt]. Below follows an example of how to load built-in data and save weights.
 
 ```{eval-rst}
 .. literalinclude:: files/mnist_save_model_data.py
@@ -208,12 +226,12 @@ Below follows an example of how to load built-in data and save weights.
 
 The Python script above can be run with the following job script:
 
+(saga-preinstalled-slurm-script)=
 ```{eval-rst}
 .. literalinclude:: files/mnist_test.sh
   :language: bash
   
 ```
-
 
 Once these two files are located on a Sigma2 resource we can run it with:
 
@@ -289,20 +307,26 @@ which created a `TensorBoard` log, it can be viewed as follows.
 
 Since all of the GPU machines on Saga have four GPUs it can be beneficial for some workloads to distribute the work over more than one device at a time. This can be accomplished with the `tf.distribute.MirroredStrategy`.
 
+To achieve actual speedup when using multiple GPUs, it is critical to use a data pipeline that keeps the GPUs busy. In the example below, we use `.prefetch(tf.data.AUTOTUNE)` to allow the CPU to prepare data while the GPUs are training, and we scale the batch size by the number of GPUs.
+
 ```{eval-rst}
 .. literalinclude:: files/mnist_multiple_gpus.py
   :language: python
-  :emphasize-lines: 11-13, 25-29, 44-46
-  
 ```
 
 
-To ask for two GPUs, modify the slurm script:
+To ask for two GPUs, the following Slurm options need to be set:
+
+- **`--nodes=1`**: Keeps all GPUs on the same node so `MirroredStrategy` can communicate between them via fast NVLink rather than the network.
+- **`--ntasks=1`**: A single Python process manages both GPUs; `MirroredStrategy` handles the intra-process GPU coordination internally.
+- **`--gpus=2`**: Requests two GPUs for `MirroredStrategy` to distribute across.
+- **`--cpus-per-task=12`**: Allocates enough CPU cores to keep both GPUs fed with preprocessed data without bottlenecking.
+- **`--mem-per-cpu=8G`**: With 12 CPUs this gives 96 GB of RAM in total — sufficient for large datasets and model weights.
+
+
 ```{eval-rst}
 .. literalinclude:: files/mnist_test_two_gpus.sh
-  :language: bash
-  :emphasize-lines: 8
-  
+  :language: bash  
 ```
 
 ### Distributed training on multiple nodes
@@ -312,11 +336,24 @@ which supports several different machine learning libraries and is capable of
 utilizing `MPI`. `Horovod` is responsible for communicating between different
 nodes and perform gradient computation, averaged over the different nodes.
 
-The following example demonstrates how to adapt the MNIST training script for
-multi-node training with `Horovod`. Key modifications include initializing
-`Horovod`, pinning each MPI rank to a specific GPU, scaling the learning rate
-with the number of workers, and using `Horovod`'s distributed optimizer and
-callbacks for gradient averaging and synchronized checkpointing:
+The following example shows the key changes needed to adapt a single-GPU training
+script for multi-node training with `Horovod`:
+
+- **`hvd.init()`**: Initializes Horovod and the underlying MPI communication.
+- **GPU pinning**: Each process explicitly binds to its assigned GPU with
+  `set_visible_devices(gpus[0], 'GPU')`, ensuring no two ranks share a device.
+- **Scaled learning rate**: The learning rate is multiplied by `hvd.size()` (number
+  of workers) to compensate for the larger effective batch size across all GPUs.
+- **`hvd.DistributedOptimizer`**: Wraps the standard optimizer to average gradients
+  across all workers after each step.
+- **Horovod callbacks**: `BroadcastGlobalVariablesCallback` ensures all workers start
+  from the same initial weights; `MetricAverageCallback` averages metrics across
+  workers; `LearningRateWarmupCallback` gradually ramps up the learning rate to
+  avoid instability at the start.
+- **Rank 0 only for I/O**: Checkpointing, logging, and model saving are done only on
+  rank 0 to avoid all workers writing to the same files simultaneously.
+- **Scaled `steps_per_epoch`**: Divided by `hvd.size()` since each worker only sees
+  a fraction of the data per epoch.
 
 ```{eval-rst}
 .. literalinclude:: files/mnist_hvd.py
@@ -324,18 +361,28 @@ callbacks for gradient averaging and synchronized checkpointing:
   
 ```
 
-The following SLURM script is designed to run a distributed training job using 
-`Horovod` and TensorFlow on Saga. It requests 2 nodes, each with 4 GPUs, and distributes the
- workload across 8 tasks (1 task per GPU). The script also ensures that the necessary modules and environment variables are properly configured.
+The following Slurm script runs the distributed training job across 2 nodes. Key resource options:
+
+- **`--nodes=2`**: Requests 2 nodes, giving access to up to 8 GPUs in total (4 per node on Saga `accel` nodes).
+- **`--ntasks=8`**: One MPI task per GPU — Horovod maps each task to one GPU.
+- **`--gpus-per-task=1`**: Assigns exactly one GPU to each task.
+- **`--cpus-per-task=6`**: 6 CPUs per task maps evenly to the 24 CPU cores available on Saga `accel` nodes.
+- **`--mem-per-cpu=8G`**: Gives 48 GB of RAM per task and 192 GB per node, well within the 384 GB node limit.
+
+Three environment variables configure the MPI and Horovod communication layer:
+
+- **`OMPI_MCA_btl="^openib"`**: Disables InfiniBand transport, necessary on some setups to prevent MCA context errors.
+- **`OMPI_MCA_pml="ob1"`**: Selects the `ob1` point-to-point management layer, consistent with disabling InfiniBand.
+- **`HOROVOD_MPI_THREADS_DISABLE=1`**: Disables MPI thread support in Horovod, required by certain MPI implementations.
 
 ```{eval-rst}
 .. literalinclude:: files/mnist_hvd.sh
   :language: bash
-  
 ```
 
+
 ```{note}
-To use a100 GPUs on Saga, replace `--partition=accel` with `--partition=a100` and add  `module --force swap StdEnv Zen2Env` to your jobscript
+To use a100 GPUs on Saga, replace `--partition=accel` with `--partition=a100` and add  `module --force swap StdEnv Zen2Env` to your job script
  (more information {ref}`here <building-gpu>`).
 ```
 
@@ -352,4 +399,4 @@ To use a100 GPUs on Saga, replace `--partition=accel` with `--partition=a100` an
 [hvd]: https://github.com/horovod/horovod
 [hvd_tf_ex]: https://github.com/horovod/horovod/blob/master/examples/tensorflow2/tensorflow2_keras_synthetic_benchmark.py
 [nccl]: https://developer.nvidia.com/nccl
-[tensorflow_containers]: https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tensorflow/tags?version=23.09-tf2-py3-igpu
+[tensorflow_containers]: https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tensorflow
