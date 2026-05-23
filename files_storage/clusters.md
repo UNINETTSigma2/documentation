@@ -32,7 +32,7 @@ The following table summarizes the different options for **Olivia**.
 | Directory                                                         | Purpose                      | {ref}`Default Quota <storage-quota>`               | {ref}`Backup <storage-backup>` | Note                                                 |
 |:------------------------------------------------------------------|:-----------------------------|:---------------------------------------------------|:------------------------------:|:----------------------------------------------------:|
 | `/cluster/home/$USER` (`$HOME`)                                   | User data                    | 20 GiB / 100 K files                               | Yes (Only if quota enforced)   |                                                      |
-| `/cluster/software/gpujobscratch/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data                 | N/A                                                | No                             | GPU nodes (temporary path)                           |
+| `/cluster/gpuscratch/jobs/$SLURM_JOB_ID` (`$SCRATCH`) | Per-job data                 | N/A                                                | No                             | GPU nodes (temporary path)                           |
 | `/localscratch/$SLURM_JOB_ID` (`$SCRATCH`)                        | Per-job data                 | {ref}`Individual <job-scratch-area-on-local-disk>` | No                             | CPU nodes                                            |
 | `/cluster/work/projects/nnXXXXk`                                  | Staging and job data         | N/A                                                | No                             |                                                      |
 | `/cluster/projects/nnXXXXk`                                       | User installed software      | 1 TiB / 1M files                                   | No                             |                                                      |
@@ -88,9 +88,8 @@ user running the job.
 On Saga and Betzy, the scratch area is on the parallell cluster
 file system, in `/cluster/work/jobs/$SLURM_JOB_ID`.  On Olivia, it is
 on local disk on cpu nodes (in `/localscratch/$SLURM_JOB_ID`) and on a
-shared, fast file system on the GPU nodes (currently in
-`/cluster/software/gpujobscratch/jobs/$SLURM_JOB_ID`, but this will be
-changed).
+shared, fast file system on the GPU nodes (in 
+`/cluster/gpuscratch/jobs/$SLURM_JOB_ID`).
 
 Saga also has the option to get a scratch area on local disk (see below).
 
