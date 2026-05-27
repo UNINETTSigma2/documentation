@@ -1,4 +1,4 @@
-(olivia-nird integration)=
+(olivia-nird-integration)=
 
 # Data staging and data integration between NIRD and Olivia
 
