@@ -208,9 +208,10 @@ Once (following the guide) there's a private/public key on sender/receiver,
 you won't need to authenticate with password + OTP. Note that the guide above
 is currently only limited to cross-cluster connections/transfers.
 
-Since NIRD is mounted on the login nodes of Betzy, Olivia, and Saga,
-one can use regular `cp` or `mv` commands on the cluster login nodes to copy or
-move files into or out of the NIRD project areas.
+Since NIRD is mounted on the login nodes of Betzy and Saga, and on the
+service (SVC) nodes of Olivia, one can use regular `cp` or `mv` commands on
+those nodes to copy or move files into or out of the NIRD project areas.
+See the note below for details.
 
 | System | Mount point |
 |---|---|
@@ -219,9 +220,10 @@ move files into or out of the NIRD project areas.
 
 ```{note}
 On Saga and Betzy, NIRD is mounted on **login nodes only** (not compute nodes).
-On Olivia, it is mounted on SVC nodes (read-write) and compute nodes (read-only).
+On Olivia, it is mounted on SVC nodes (read-write) and compute nodes (read-only);
+see {ref}`olivia-nird-integration` for details.
 Olivia also supports automatic data staging via Slurm --
-see [Staging In/Out Files from/to NIRD using Slurm](https://documentation.sigma2.no/files_storage/clusters.html).
+see {ref}`stage-in-stage-out`.
 ```
 
 For more information, please check out the page about {ref}`storage-areas`.
