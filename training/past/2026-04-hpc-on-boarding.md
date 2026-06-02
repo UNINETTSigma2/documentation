@@ -36,7 +36,7 @@ to access the HPC systems (eg: ssh).
 **Note that there might be changes in the time schedule**
 For now, have a look at the May 25 On-Boarding course for approximate details about the individual day schedules. 
 
-You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
+You can always {ref}`contact our support team <support-line>`.
 
 **User Account and connection verification**: For all course participants, we want to make sure that you are able to log in an follow the practical parts of the course - thus we organise a login help session on April 13th 09:00-10:00. Note that this is compulsory in the sense that if you later experience access challenges, you are low on priority list. Link to this part is same as link to the course zoom event.
 

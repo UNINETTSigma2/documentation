@@ -32,7 +32,7 @@ kindly provide your username while registering. If you wish to set up user accou
  choose Saga and Fram under Resources, set the account start date as the date of apply and the account end date to  2024-05-30. 
 
 ```
-You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
+You can always {ref}`contact our support team <support-line>`.
 
 If you want to receive further information about training events, and other announcements about IT resources
  and services for researchers, there are a couple of information channels you can subscribe to:

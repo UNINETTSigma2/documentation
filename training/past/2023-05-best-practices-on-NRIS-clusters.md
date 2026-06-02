@@ -36,7 +36,7 @@ It is not mandatory to have account on national HPCs to attend the course.
  resources since the course content is applicable to all HPCs
 ```   
 
-You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
+You can always {ref}`contact our support team <support-line>`.
 
 If you want to receive further information about training events, and other announcements about IT resources
  and services for researchers, there are a couple of information channels you can subscribe to:

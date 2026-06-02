@@ -8,7 +8,7 @@ understand your request quicker. Below is a list of good practices.
 
 ## Create a ticket
 
-Send an email to [support@nris.no](mailto:support@nris.no) to create a support ticket. Tickets
+{ref}`Submit a support request <support-line>` to create a support ticket. Tickets
 are tracked and have higher visibility. Everyone in the support team can see
 the tickets and respond appropriately.
 

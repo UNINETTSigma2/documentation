@@ -64,7 +64,7 @@ it to [the training team](mailto:training@nris.no).
 
 ## Contact us
 
-You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
+You can always {ref}`contact our support team <support-line>`.
 If you want to receive further information about training events, and other announcements about IT resources
  and services for researchers, there are a couple of information channels you can subscribe to:
 - users at University of Bergen and affiliated institutes: [register to hpcnews@uib.no](https://mailman.uib.no/listinfo/hpcnews).

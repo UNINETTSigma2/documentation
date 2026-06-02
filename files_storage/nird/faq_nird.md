@@ -76,7 +76,7 @@ The FAQ on NIRD is prepared based on the Q&A session during the  {ref}`training-
 
 17. How to use underlying k8s and kubectl integration with NIRD resources?
 
-   	- It is possible, you can contact us via support@nris.no
+   	- It is possible, you can {ref}`contact our support team <support-line>`
 
 18. Could you please share the slides (.pdf) of the nird training?
 

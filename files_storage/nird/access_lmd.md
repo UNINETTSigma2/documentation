@@ -28,8 +28,7 @@ You will be logged into your home area `/nird/home/$USERHOME`
 Software can be accessed as module just like on HPCs. Please see the {ref}`module-scheme` for details.
 
 ```{warning}
-Module command is not yet stable. Please report any issue encountered to support line, 
-contact **[support@nris.no](mailto:support@nris.no)**.
+Module command is not yet stable. Please {ref}`report any issue encountered to our support team <support-line>`.
 
 ```
 In addition a number of software can be accessed via command line.

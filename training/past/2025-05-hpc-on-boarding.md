@@ -40,7 +40,7 @@ to access the HPC systems (eg: ssh).
 | Thu 08.05    | 09:00 - 12:30 | HPC On-boarding Day 2 (for all) |
 
 
-You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
+You can always {ref}`contact our support team <support-line>`.
 
 **User Account and connection verification**: For all course participants, we want to make sure that you are able to log in and follow the practical parts of the course - thus we organise a login help session on May 05th - at 09:00-10:00. A link to this will be emailed to each participant personally. 
 

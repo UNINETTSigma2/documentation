@@ -125,7 +125,7 @@ This is an online course via zoom. Participants require access to a computer
 in the video meeting of the course (zoom). NRIS-Sigma2 users can use the cluster Saga for 
 any hands-on exercises assuming that usernames are provided while registering for the event.
 
-You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
+You can always {ref}`contact our support team <support-line>`.
 
 If you want to receive further information about training events, and other announcements
 about IT resources and services for researchers, there are a couple of information channels

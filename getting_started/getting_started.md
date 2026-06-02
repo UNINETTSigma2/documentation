@@ -147,6 +147,4 @@ these problems are very frequent:
 - **Submitting jobs to the wrong queue** and then queuing longer than
   needed. Please take some time to study the different {ref}`job-types`.
 
-If you are unsure about these, please contact us via
-support@nris.no and we will help you to use your allocated
-resources more efficiently so that you get your research results faster.
+If you are unsure about these, please {ref}`contact our support team <support-line>` and we will help you to use your allocated resources more efficiently so that you get your research results faster.

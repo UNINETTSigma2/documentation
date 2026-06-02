@@ -42,4 +42,4 @@ To get a dedicated virtual environment send a request to contact@sigma2.no
 
 
 ### Kubectl access
-Contact the NRIS support (support@nris.no) in case you need CLI access to the NIRD SP. This is mostly relevant for research groups that are already familiar with kubernetes.  
+{ref}`Contact our support team <support-line>` in case you need CLI access to the NIRD SP. This is mostly relevant for research groups that are already familiar with kubernetes.

@@ -121,5 +121,4 @@ Can be combined with `--partition=small`, `--partition=large` or
 and job limits of _devel_ job.
 
 If you have _temporary_ development needs that cannot be fulfilled by
-the _devel_ job type, please contact us at
-[support@nris.no](mailto:support@nris.no).
+the _devel_ job type, please {ref}`contact our support team <support-line>`.

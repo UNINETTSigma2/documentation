@@ -83,4 +83,4 @@ The Norwegian Research Infrastructure Services (NRIS) is hosting a two-day in-pe
 
 ## Contact us
 
-You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
+You can always {ref}`contact our support team <support-line>`.
