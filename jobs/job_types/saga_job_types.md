@@ -103,8 +103,7 @@ and resource limits of _devel_ apply.
 
 Please note that not all of the ordinary software modules will work on
 the *hugemem* nodes, due to the different cpu type.  If you encounter
-any software-related issues, we are happy to help you at
-support@nris.no.  As an alternative, you can use the [EESSI](https://www.eessi.io/docs/) module.  
+any software-related issues, we are happy to help — {ref}`contact our support team <support-line>`.  As an alternative, you can use the [EESSI](https://www.eessi.io/docs/) module.
 The software available with EESSI have been built to support the cpus on the hugemem nodes.  
 To activate the module, do
 `module load EESSI/2023.06`
@@ -180,8 +179,7 @@ or `--partition=hugemem` to increase
 priority while having max wall time and job limits of _devel_ job.
 
 If you have _temporary_ development needs that cannot be fulfilled by
-the _devel_ or _short_ job types, please contact us at
-[support@nris.no](mailto:support@nris.no).
+the _devel_ or _short_ job types, please {ref}`contact our support team <support-line>`.
 
 
 (job_type_saga_optimist)=
@@ -214,4 +212,4 @@ minimum run time.
 Therefore, all _optimist_ jobs must use checkpointing, and access to
 run _optimist_ jobs will only be given to projects that demonstrate
 that they can use checkpointing.  If you want to run _optimist_ jobs,
-send a request to [support@nris.no](mailto:support@nris.no).
+{ref}`Contact our support team <support-line>`.

@@ -43,7 +43,7 @@ programmiing knowledge on C/Fortran for day 1 and basic HPC knowledge for day2.
 - There will not be any hands-on session, but demos. Participants are encouraged
  to practice themselves after the event.
 
-You can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
+You can always {ref}`contact our support team <support-line>`.
 
 If you want to receive further information about training events, and other announcements about IT resources
  and services for researchers, there are a couple of information channels you can subscribe to:

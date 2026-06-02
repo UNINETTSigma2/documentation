@@ -24,7 +24,7 @@ FRAM	158.39.114.64/27	2001:700:4a00:10::/64
 BETZY	158.36.141.144/28	2001:700:4a01:25::/64   158.36.154.0/28		2001:700:4a01:23::/64
 ```
 
-If this is in place and user still can't contact the license server from a compute node, please contact `support@nris.no` and we will add the license server on our side.
+If this is in place and user still can't contact the license server from a compute node, please {ref}`contact our support team <support-line>` and we will add the license server on our side.
 
 
 ## You may need to use a proxy

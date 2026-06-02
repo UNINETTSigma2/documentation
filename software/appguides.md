@@ -11,7 +11,7 @@ If you are using an application not on the list, or if you are using an
 application that can take advantage of GPU compute, we would like to hear from
 you so that we can document the application.
 
-Contact us at [support@nris.no](mailto:support@nris.no)
+{ref}`Contact our support team <support-line>`
 ```
 
 **List of applications:**

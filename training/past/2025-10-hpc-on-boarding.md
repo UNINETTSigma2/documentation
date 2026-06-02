@@ -40,7 +40,7 @@ Registration is not longer available.
 | Wed 15.10    | 09:00 - 12:30 | HPC On-boarding Day 1 (for all) |
 | Thu 16.10    | 09:00 - 12:30 | HPC On-boarding Day 2 (for all) |
 
-In case of questions, you can always contact us by sending an email to [support@nris.no](mailto:support@nris.no).
+In case of questions, you can always {ref}`contact our support team <support-line>`.
 
 **User Account and connection verification**: For all course participants, we want to make sure that you are able to log in an follow the practical parts of the course - thus we organise a login help session on October 13th 09:00-10:00. Note that this is compulsory in the sense that if you later experience access challenges, you are low on priority list. Link to this part is same as link to the course zoom event.
 

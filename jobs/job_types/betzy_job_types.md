@@ -99,5 +99,4 @@ This is meant for small, short development or test jobs.
 Can be combined with `--partition=accel` to increase priority while
 having max wall time and job limits of _devel_ job.
 
-If you have _temporary_ development needs that cannot be fulfilled by the _devel_ job type, please contact us at
-[support@nris.no](mailto:support@nris.no).
+If you have _temporary_ development needs that cannot be fulfilled by the _devel_ job type, please {ref}`contact our support team <support-line>`.

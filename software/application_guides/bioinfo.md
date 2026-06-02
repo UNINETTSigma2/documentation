@@ -3,8 +3,7 @@
 ## Bioinformatics Databases
 To save your storage quota and to unload our file system a bit, we offer some
 bioinformatics databases in an openly readable folder on Saga.  We try to keep
-them updated, but if you find them to be outdated, please write us at
-support@nris.no
+them updated, but if you find them to be outdated, please {ref}`contact our support team <support-line>`.
 
 All of databases for the following programs can be found on Saga under
 `/cluster/shared/databases/`.
