@@ -105,3 +105,61 @@ which is a small wrapper for `squeue`. See `pending --help` for
 details and options.
 
 For a description of common job states, see {ref}`job-states`. For an overview of the output from `squeue` see {ref}`squeue`.
+
+To get an overview of the available and used resources on the cluster,
+you can use the `qsumm` ("Queue Summary") command.  It will by default
+show the number of available {ref}`billing units <billing-units>`, how many are used
+by running jobs and wanted by pending jobs, for all jobs together, as
+well as by each project.  For instance:
+
+```console
+$ qsumm
+Billing units in job queue, per project.
+Run 'qsumm --man' for details.
+Account        Limit Running Pending
+------------------------------------
+Sum normal    172416  151971    5952
+ nn1002k      172416    3840       4
+ nn10054k     172416    1024       2
+ nn11022k     172416    6144       .
+ nn11023k     172416     512       .
+ nn11063k     172416       .      16
+ nn12019k     172416   57344       .
+ nn12037k     172416    1280     772
+ nn12055k     172416    2048       .
+ nn2834k      172416   25600       .
+ nn2916k      172416    1024       .
+ nn2993k      172416   20480    5120
+ nn4654k      172416     768       .
+ nn5023k      172416       .       1
+ nn8015k      172416     512       .
+ nn8104k      172416       .       1
+ nn9039k      172416      15       .
+ nn9188k      172416   13312      17
+ nn9238k      172416    1044       .
+ nn9352k      172416   13184       .
+ nn9372k      172416     512       .
+ nn9391k      172416    1536       .
+ nn9560k      172416     768      17
+ nn9600k      172416     512       2
+ nn9894k      172416     512       .
+------------------------------------
+Total sum     172416  151971    5952
+```
+
+This shows that the cluster (Betzy, in this case) has 172416
+{ref}`billing units <billing-units>` available, 151971 is currently used by running
+jobs, and pending jobs want in total 5952 billing units.  It also
+shows how much each project has running or pending.
+
+It is possible to get `qsumm` to show GPUs instead of billing units,
+limit it to certain partitions or jobs belonging to specific users:
+
+```console
+$ qsumm --gpu  # Show GPUs instead of billing units.  Especially useful on Olivia
+$ qsumm --partition=<partiton(s)>   # Limit output to specific partititions
+$ qsumm --user=<user(s)>   # Limit output to specific users
+```
+
+(Separate partitions or users with a comma (",").)  See `qsumm --help`
+for a summary of options, or `qsumm --man` for full manual.
