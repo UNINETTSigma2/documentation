@@ -75,7 +75,7 @@ The Norwegian Research Infrastructure Services (NRIS) is hosting a two-day in-pe
 
 **Target audience:** This course is ideal for researchers, developers, and students with Python experience who want hands-on skills in scalable LLM training and inference on an HPC system. 
 
-**Registration:** [Register here](https://forms.gle/ruRvcLPCfgCLnUxK7)
+**Registration:** Closed
 
 **Practical information**: The course is free of charge, and has a maximum capacity of 30 participants. Lunch will be included.
 
