@@ -1,3 +1,5 @@
+(two-factor-authentication)=
+
 # One-time-pad (OTP) / Two-factor authentication #
 
 All login nodes on Betzy, Saga, Olivia, and NIRD now require two-factor
