@@ -37,3 +37,5 @@ In this section we present a list of tutorials covering different topics in hete
    guides_python.md
    guides/PyTorchProfilerMultiGpu.md
    guides/pytorch_olivia/getting_started.md
+   guides/pytorch_olivia/PyTorchSingleGpu.md
+   guides/nextflow_saga/nextflow.md
