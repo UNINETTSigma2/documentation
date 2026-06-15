@@ -20,8 +20,8 @@ Please ensure it's listening on the right port and it's opened for incoming conn
 
 ```
 SAGA    158.36.42.32/28	    2001:700:4a01:10::/64   158.36.42.48/28 	2001:700:4a01:21::/64
-FRAM	158.39.114.64/27	2001:700:4a00:10::/64
 BETZY	158.36.141.144/28	2001:700:4a01:25::/64   158.36.154.0/28		2001:700:4a01:23::/64
+Olivia  158.38.122.192/27   2001:700:570f:50::/64
 ```
 
 If this is in place and user still can't contact the license server from a compute node, please {ref}`contact our support team <support-line>` and we will add the license server on our side.
