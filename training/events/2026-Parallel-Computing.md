@@ -15,6 +15,8 @@ In this course series, we will guide you through practical steps and hands-on ta
 - Multi-Tasking – Executing parallel computations across multiple nodes (or within a single node).
 - Hybrid Parallel Computing – Combining multi-threading and multi-tasking for maximum efficiency by leveraging all levels of parallelism.
 
+The [policy](https://documentation.sigma2.no/hpc_machines/olivia/software_stack.html#python-r-and-ana-conda) on Olivia is that you should not use pip install with Python in the same way you would on your laptop, because it will create a large number of files. On Olivia’s shared file system, this will place unnecessary strain on the system and lead to poor performance. To address this, this course will show how to perform pip install inside a container and how to use that container for parallel computing with Python on Olivia. 
+
 By the end of this series, you’ll have a solid understanding of these concepts and how to apply them effectively.
 
 These seminars are at a basic-to-intermediate level, and targeted towards participants at the preceding OnBoarding event. However, these seminars will also be open to others.
@@ -26,7 +28,10 @@ These seminars are at a basic-to-intermediate level, and targeted towards partic
 
 The course series happens 5 consecutive Wednesdays, starting from Wednesday Sept. 2nd until Sept. 30th 2026.
 
+**Registration:** [Sign up here](https://docs.google.com/forms/d/e/1FAIpQLSfUzos-tFfbI2lWzpJF8U1s92cW0WYz9dbIH7EGsfTH0biWGw/viewform?usp=dialog)
+
 <H3> Instructors: 
+
 - Jim-Viktor Paulsen
 
 <H3> Content:
@@ -37,13 +42,29 @@ The course series happens 5 consecutive Wednesdays, starting from Wednesday Sept
 - Episode 4: Multi-Tasking and scaling tests
 - Episode 5: Hybrid Parallel Computing and threads-per-task scaling tests
 
+<H3> Episode 1:
+
+- Session 0: 09.00-09.15: Practical Information.
+- Session 1: 09.15-10.00: Intoduction: Different approaches for teaching parallel computing. The levels of parallel computing. Olivia is a laboratory for numerical experiments.
+- Session 2: 10.15-11.00: Executing the Python code: The Python code and matrix multiplication. Writing a Python function with AI assistance (AI-chat). The software system on Olivia. Slurm job scripts on Olivia.
+- Session 3: 11.15-12.00: Flops and speedup: Computing the number of Flops. Speedup with MKL. Numba Speedup with JIT.
+- Exercises: 13.00----: MKL and Numba: Using MKL (dgemm and matmul). Loop ordering with Numba.
+
+<H3> Episode 2:
+
+- Session 0: 09.00-09.15: Practical Information.
+- Session 1: 09.15-10.00: JIT/AOT and Vector Threading: Using Numba (Just-In-Time compiling). Loop Ordering and Vector Threading. Cython Speedup with AOT (Ahead-Of-Time compiling). 
+- Session 2: 10.15-11.00: Speedup with Fortran and C: Python Speedup with f2py compiling. Python ctype Speedup with Fortran. Python ctype Speedup with C.
+- Session 3: 11.15-12.00: Loop Ordering and OpenMP: Loop Ordering with Cython, Fortran and C. OpenMP with Numba, Cython and MKL.
+- Exercises: 13.00----: Cython, Fortran and C: Loop ordering with Cython, Fortran and C. OpenMP with MKL.
+
 More details on the content will be provided later.
 
 <H3> Event schedule: 
 
 - 09:00: Start Presentation
-- 11:45: Presentation Finished
-- 12:30: Start Exercises 
+- 12:00: Presentation Finished
+- 13:00: Start Exercises 
 
 - We will use Olivia for demos and hands-on sessions.
 
