@@ -16,6 +16,21 @@ work-arounds, so that you don't have to scroll the
 weeks back to find a known issue.
 
 
+- **Issues with software license servers**: if you are experiencing issues with 
+  license, check first that your license server is reachable. You can do this by
+  running `nc -vz ip.address port`` following (both on `login` and `compute`nodes),
+  for example (either / or):
+  ```console
+    nc -vz 192.168.91.99 9898
+    nc -vz license-server.no 9898 
+  ```
+  where `192.168.91.98` is the license server address`, and `9898` is the port
+  (license servers are proveded in `port@address` format). If you are not able to
+  reach the server, you must contact your license provider/local IT-dep. But If 
+  you are able to contact the server, then {ref}`contact our support team <support-line>` 
+  and include the terminal output (check also `tracepath 192.168.91.99 -p 9898` to see
+  where in the route it might be failing).
+
 - **Email notification from completed Slurm scripts is currently disabled** on all
   machines and it looks like it will take quite a while (months?) before we can
   re-enable it. Sorry for the inconvenience. The reason is technical due to the
