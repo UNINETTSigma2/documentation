@@ -16,6 +16,7 @@ All courses are free of charge unless otherwise announced.
 :glob:
 
 events/2026-Parallel-Computing.md
+events/2026-Fall-OBC.md
 ```
 
 ## Upcoming event from our collaborators
