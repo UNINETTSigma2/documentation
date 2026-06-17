@@ -12,6 +12,9 @@ Cluster-specific details are kept in separate sub pages for each cluster:
 - {ref}`Betzy job scripts <job-scripts-on-betzy>`
 - [Olivia job scripts](job-scripts-on-olivia)
 
+Jobs consume billing units from the project' *currently* allocated quota. Please check
+{ref}`project accounting page <projects-accounting>` page for more information on billing.
+
 ```{note}
 Email notification from completed Slurm scripts is currently not supported **on all
 machines**, sorry for the inconvenience. The reason is technical due to the
