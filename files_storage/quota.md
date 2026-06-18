@@ -15,6 +15,14 @@
   You need to also change the ownership of the files in the project folder from
   you to the project (change the ownership from `username_g` to `username`; see
   also below).
+
+- **I'm getting "*Disk quota exceeded*" error when running jobs**: this is due to one/more of:
+  - You have exceeded the quota for your `/home` area
+  - You have exceeded the quota for your `/work` area
+  - You/others have exceeded the quota for your project' `/project` area.
+    - *If you are a member of multiple projects, one project' exceeded quota will affect
+      your user (across all projects you are a member of).
+  Please check your quota using `dusage`, and take appropriate actions (see below for more information).
 ```
 
 ## What is quota and why is it needed?
