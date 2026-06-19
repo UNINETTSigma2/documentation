@@ -156,10 +156,10 @@ Project Leader Support<https://www.sigma2.no/project-leader-handbook>
 training/events.md
 training/material.md
 training/notes_qa.md
+training/collabnotes_archive.md
 training/trainingvideos.md
 training/qnas.md
 training/short_instructions.md
-
 ```
 
 ```{toctree}
