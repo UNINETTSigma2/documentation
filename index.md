@@ -211,7 +211,7 @@ getting_started/data_transfer.md
 hpc_machines/migration2metacenter.md
 computing/responsible-use.md
 jobs/overview.rst
-jobs/internet-login-compute-nodes.md
+jobs/node-types.md
 computing/tuning-applications.md
 code_development/guides_llm.md
 ```
@@ -238,6 +238,7 @@ software/installed_software.md
 software/userinstallsw.rst
 software/appguides.md
 software/eessi.md
+software/node-networking-info.md
 ```
 
 ```{toctree}

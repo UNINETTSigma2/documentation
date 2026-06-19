@@ -1,3 +1,7 @@
+:orphan:
+
+(nodes-network)=
+
 # Login nodes:
        
 - All login nodes have direct outbound and opened access to whole internet and all protocols via nodes' public IP and appropriate gateway

@@ -102,3 +102,7 @@ For a software to be able to communicate with its license server, they must be a
 |                  |  158.36.42.48/28   | 2001:700:4a01:21::/64 |
 |       BETZY      |  158.36.154.0/28   | 2001:700:4a01:23::/64 |
 |                  |  158.36.154.16/28  | 2001:700:4a01:24::/64 |
+|       Olivia     |  158.38.122.192/27 | 2001:700:570f:50::/64 |
+|                  |  158.38.122.224/27 | 2001:700:570f:51::/64 |
+
+See {ref}`network on nodes <nodes-network>` page for more information on license and network issues.
