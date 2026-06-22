@@ -66,7 +66,7 @@ plt.show()
 
 This option is the recommended one because you do not have to install any additional tools as everything is already installed on the server.
 
-1. Go to https://apps.betzy.sigma2.no/ or https://apps.fram.sigma2.no/ or https://apps.saga.sigma2.no/
+1. Go to https://apps.betzy.sigma2.no/ or https://apps.olivia.sigma2.no/ or https://apps.saga.sigma2.no/
 2. Log in with your username and password
 3. Click on "Jupyter Notebook"
 4. Select your account number and resources that you need and click "Launch"
