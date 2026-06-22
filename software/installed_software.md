@@ -15,11 +15,11 @@ To view the full list of options, enter `man module` in the command line. Here i
 * _show <module name>_  - display dependencies and environment variables
 * _spider <module name>_  - print module description
 
-For example, to display all available modules and load the Intel toolchain on Fram, enter:
+For example, to display all available modules and load the Intel toolchain on Betzy, Saga, or Olivia, enter:
 
 ```
 module avail
-module load intel/2017a
+module load intel/2025b
 ```
 
 Modules may load other modules as part of its dependency. For example, loading the Intel version loads related modules to satisfy the module's dependency.

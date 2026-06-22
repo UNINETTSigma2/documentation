@@ -7,7 +7,7 @@
 
 Usage of local storage for scratch files can have dramatic impact of run time!
 ```{note}
-localscratch is only available on Saga and Fram.
+localscratch is only available on Saga and Olivia.
 ```
 ![Different scratch locations](img/localscratch.png) 
 

@@ -1,6 +1,6 @@
 
 # Running LLM Models in a Cluster Environment
-This guide provides a comprehensive walkthrough on how to deploy and run Large Language Models (LLMs) within a cluster environment(Saga, Betzy, or Fram). With the growing availability of open-source LLMs, such as those hosted on [Hugging Face](https://huggingface.co/), leveraging these models has never been easier.
+This guide provides a comprehensive walkthrough on how to deploy and run Large Language Models (LLMs) within a cluster environment(Saga, Betzy, or Olivia). With the growing availability of open-source LLMs, such as those hosted on [Hugging Face](https://huggingface.co/), leveraging these models has never been easier.
 
 In this tutorial, we’ll focus on the [facebook/seamless-m4t-large](https://huggingface.co/facebook/seamless-m4t-large) model.  SeamlessM4T is a powerful collection of models designed to deliver high-quality translations for both speech and text, making it an excellent choice for multilingual and multimodal applications.
 
