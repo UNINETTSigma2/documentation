@@ -24,9 +24,12 @@ It also somewhat allows you to have a graphical interface to our systems, by sho
 ![Connect to host](open-connection-highlighted.png)
 
 ### Connect to system
-* Saga: username@saga.sigma2.no
+
 * Betzy: username@betzy.sigma2.no
 * Olivia: username@olivia.sigma2.no
+* Saga: username@saga.sigma2.no
+
+(Generic form as of now: Username@[cluster].sigma2.no; [cluster] is replaced by real name of cluster; betzy, olivia, saga)
 
 When prompted, type in your password.
 If you get a question about what system you are connecting to, select "Linux"

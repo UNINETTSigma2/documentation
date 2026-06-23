@@ -14,7 +14,7 @@ DMTCP Checkpoint/Restart allows one to transparently checkpoint to disk a distri
 with no modifications to the Linux kernel nor to the application binaries. It can be used by users (no root privilege needed).
 One can later restart from a checkpoint. DMTCP supports both sequential and multi-threaded applications and it provides support 
 for SLURM resource manager. 
-The DMTCP module is available in all our machines **(Saga, Fram, Betzy)** and it is enabled by typing 
+The DMTCP module is available in all our machines **(Saga, Betzy, Olivia)** and it is enabled by typing 
 
 ```module load DMTCP/2.6.0-GCCcore-9.3.0``` 
 
