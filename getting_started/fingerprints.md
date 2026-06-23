@@ -13,20 +13,6 @@ you use to connect), both as `MD5` and `SHA256`, for all systems.
 If the fingerprints do not match what is presented to you upon first-time
 login, please {ref}`contact us <support-line>` immediately.
 ```
-
-
-## fram.sigma2.no
-
-- ED25519:
-  - `MD5:5f:15:92:e1:22:74:69:68:6c:1c:27:f5:a5:b1:76:3f`
-  - `SHA256:hLb9eJdGcTT2PHoWamc/+06LlF+vgcnyfvFEqh60cT8`
-- ECDSA:
-  - `MD5:f7:83:b9:99:b4:6e:aa:af:21:d6:ae:de:b2:14:ab:6a`
-  - `SHA256:Nd1Sqijzb1qx26wjCwThChdKz9iPMhJQ9zgVKcD+P5g`
-- RSA:
-  - `MD5:05:d0:0e:fa:cb:72:c0:03:cb:8f:d0:b4:dc:09:04:4e`
-  - `SHA256:Cq5Vt82wQAAhMu4q05L3gmB4QeW1POpNNKgTIP8A2f4`
-
 ## saga.sigma2.no
 
 - ED25519:
@@ -39,7 +25,6 @@ login, please {ref}`contact us <support-line>` immediately.
   - `MD5:61:e4:49:4b:4e:00:14:2d:9d:b9:ac:99:c2:16:e6:ab`
   - `SHA256:mY+Po9LKAlZGzMRHUmq1abrSOohifdN7+5VUmRTW4tE`
 
-
 ## betzy.sigma2.no
 
 - ED25519:
@@ -51,7 +36,6 @@ login, please {ref}`contact us <support-line>` immediately.
 - RSA:
   - `MD5:f6:a9:4e:a7:f6:1e:10:5c:01:e7:44:ac:34:4d:4b:b4`
   - `SHA256:wSirru+JTpcAZKQe/u6jLRj3kVCccNNUWU2PxzgbebM`
-
 
 ## olivia.sigma2.no
 
@@ -77,7 +61,6 @@ login, please {ref}`contact us <support-line>` immediately.
 - RSA:
   - `MD5:54:c9:b7:71:22:9e:bd:e9:ad:5c:18:fe:7b:41:e7:01`
   - `SHA256:xpJZ+XiY4oy3df/R5/LN8i30Z5/EiYo6YSCUQdKkQ/U`
-
 
 ## Display all fingerprints for a certain server
 

@@ -7,7 +7,7 @@ orphan: true
 
 ```{note}
 Currently, [Singularity](https://sylabs.io/singularity/) is the only supported container
-solution on our HPC systems (Saga, Fram, Betzy). However, since Singularity can build
+solution on our HPC systems (Saga, Betzy, Olivia). However, since Singularity can build
 containers from Docker images, it is also possible to run [Docker](https://www.docker.com/)
 containers through Singularity.
 ```
@@ -201,7 +201,7 @@ images from within a job.
 ```
 
 Once we have the SIF file, we can test it out with the following
-job script on Saga (adjust `<myaccount>`; on Fram/Betzy you will need to remove
+job script on Saga (adjust `<myaccount>`; on Betzy you will need to remove
 the line containing `#SBATCH --mem-per-cpu=1000M` but the rest should work as
 is):
 

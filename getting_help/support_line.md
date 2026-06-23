@@ -54,7 +54,7 @@ So, when sending us a question, please answer these questions and you’ll get
 the fastest useful response:
 
 - **What is your username?**
-- **Which system are you on?** (NIRD, Saga, Betzy, Olivia, external machine, ...)
+- **Which system are you on?** (Betzy, Olivia, Saga, NIRD, NIRD-SP, external machine, ...)
 - **Which project are you using?**
 - If it is a problem with a job: **Jobid**
 - **Has it ever worked?** (If so, what has changed?)
