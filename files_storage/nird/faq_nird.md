@@ -15,7 +15,7 @@ The FAQ on NIRD is prepared based on the Q&A session during the  {ref}`training-
 
 3. What is the network bandwidth between new NIRD and Sigma2 HPC systems?
 
-  	- the link which is provided between HPC system (Betzy,Fram,Saga) and new nird is 100Gbit/s
+  	- the link which is provided between HPC system (Betzy,Saga) and new nird is 100Gbit/s
  
   	- 200GbE is between nird and service platform.
 
