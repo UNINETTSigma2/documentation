@@ -23,7 +23,7 @@ resolved or unrelated issue diminishes its visibility.
 ## Give descriptive and specific subject line
 
 The subject line should be descriptive and specific to the issue. "Problem on
-Fram" is not descriptive enough and does not differentiate itself from other
+Saga" is not descriptive enough and does not differentiate itself from other
 issues.
 
 

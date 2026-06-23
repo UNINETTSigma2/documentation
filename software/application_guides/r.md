@@ -26,7 +26,7 @@ Then, to use the desired R-version, issue command
 ## How to install packages
 There might be some packages missing in the R modules that are installed, or maybe you need a different
 version than what currently exists. In that case you could install the packages yourself. For example,
-following is the procedure to install the package called XYZ by the user *user1* on  SAGA (the steps are also similar on `fram` and `betzy`):
+following is the procedure to install the package called XYZ by the user *user1* on  SAGA (the steps are also similar on  `betzy`):
 
  -  Login to saga
  -  Load the module
