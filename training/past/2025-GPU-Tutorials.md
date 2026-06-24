@@ -55,6 +55,7 @@ We do have a *login-check* session **Tuesday November 4th at 10:30-12:00** which
 
 
 ```{note}
-- Link to video to be announced.
-- Link to Q&A document to be announced.
+- [Link to training material](https://github.com/HichamAgueny/llm-hpc-course)
+- Link to Q&A document to be added.
+<!-- - [Link to Q&A document](md.sigma2.no/) -->
 ```
