@@ -99,9 +99,9 @@ $ module restore
 $ module load R/4.2.1-foss-2022a
 ```
 
-Then create a directory which will hold the installed libraries:
+Then create a directory which will hold the installed libraries. It is **very important** that you do not install libaries in your `/home` folder, as this has a strict {ref}`storage quota<storage-quota>`. You should therefore use your `/project` area (replace `nnXXXXk` with your project number). You can also share (or use others) libraries installed in the project area by using the path:
 ```console
-$ mkdir ${HOME}/R
+$ mkdir /cluster/projects/nnXXXXk/R
 ```
 
 Then start the R prompt where we do the rest:
@@ -109,14 +109,13 @@ Then start the R prompt where we do the rest:
 $ R
 ```
 
-Use the R prompt to set the library path and install the package
-(**adjust "user" to your username** in the highlighted line):
+Use the R prompt to set the library path and install the package:
 ```{code-block} r
 ---
 emphasize-lines: 2
 ---
 # set the location for the packages to be installed
-> .libPaths(c("/cluster/home/user/R", .libPaths()))
+> .libPaths(c("/cluster/projects/nnXXXXk/R", .libPaths()))
 
 # install the package
 > install.packages("somelibrary", repo="cran.uib.no")
@@ -125,7 +124,7 @@ emphasize-lines: 2
 > library(somelibrary)
 ```
 
-To access the package in your scripts, you will need to add the `.libPaths` line to your scripts.
+To access the package in your jobs, you will need to add the `.libPaths` line to your job-scripts.
 
 
 ## Keeping track of your R environment

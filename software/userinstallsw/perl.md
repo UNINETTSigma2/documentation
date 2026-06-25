@@ -1,3 +1,5 @@
+(perl-guide)=
+
 # Installing Perl modules
 
 Many Perl modules have numerous dependencies, and different modules can have conflicting
