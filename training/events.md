@@ -24,7 +24,7 @@ events/2026-Fall-OBC.md
 
 ## Request for Training
 
-If you are interested in a re-run of our past courses or if you want to suggest a new course, or collaborate with us to arrange a training customised for your specific needs, [please take this survey](https://docs.google.com/forms/d/e/1FAIpQLSf1EWya61Z869ZVDrIn1OIVVDTeUaSjmuG3IDwUZ4uWI_INfw/viewform)
+If you are interested in a re-run of our past courses or if you want to suggest a new course, or collaborate with us to arrange a training customised for your specific needs, [please fill out this form](https://forms.gle/7JzPUsQU6r61f4zY7).
 
 
 <details><summary><H2 style="display:inline">Info about Local - and Sigma2 news channels</summary><br>
