@@ -22,11 +22,13 @@ By the end of this series, you’ll have a solid understanding of these concepts
 These seminars are at a basic-to-intermediate level, and targeted towards participants at the preceding OnBoarding event. However, these seminars will also be open to others.
 
 ## Practical Information
-- Basic command line/linux workflows are expected to be known. (elements of the [HPC Onboarding course given April 14-16.2026](https://documentation.sigma2.no/training/past/2026-04-hpc-on-boarding.html). Also, a certain level of experience with Olivia is expected.
+- Basic command line/linux workflows are expected to be known. (elements of the [HPC Onboarding course given April 14-16.2026](https://documentation.sigma2.no/training/past/2026-04-hpc-on-boarding.html)). Also, a certain level of experience with Olivia is expected.
 
 - The course is open to all and free of charge. However, signup is necessary to get access to course resources.
 
-The course series happens 5 consecutive Wednesdays, starting from Wednesday Sept. 2nd until Sept. 30th 2026.
+The course series happens 6 consecutive Wednesdays, starting from Wednesday Sept. 2nd until Oct. 7th 2026.
+
+The Story of Python and how it took over the world: [Python: The Docmentary](https://www.youtube.com/watch?v=GfH4QL4VqJ0)
 
 **Registration:** [Sign up here](https://docs.google.com/forms/d/e/1FAIpQLSfUzos-tFfbI2lWzpJF8U1s92cW0WYz9dbIH7EGsfTH0biWGw/viewform?usp=dialog)
 
@@ -40,7 +42,8 @@ The course series happens 5 consecutive Wednesdays, starting from Wednesday Sept
 - Episode 2: Code Optimization and Vector-Threading
 - Episode 3: Multi-Threading and scaling tests
 - Episode 4: Multi-Tasking and scaling tests
-- Episode 5: Hybrid Parallel Computing and threads-per-task scaling tests
+- Episode 5: Parallel Computing with Containers
+- Episode 6: Hybrid Parallel Computing and threads-per-task scaling tests
 
 <H3> Episode 1:
 
