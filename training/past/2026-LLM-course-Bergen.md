@@ -1,3 +1,5 @@
+(2026-LLM-Course-Bergen)=
+
 # Distributed LLM Fine-Tuning & Inference on HPC Systems: March 25-26 2026
 
 The Norwegian Research Infrastructure Services (NRIS) is hosting a two-day in-person, hands-on physical course in Bergen. Gain practical, hands-on experience over two days working with single-GPU fine-tuning, multi-GPU scaling, and optimized LLM inference on a high-performance computing (HPC) system. Build applied skills in optimizing large language models in HPC environments.
