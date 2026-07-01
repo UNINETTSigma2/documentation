@@ -20,7 +20,7 @@ unchangeable file.
 
 The defining character of a container is that it does not bundle a full operating system. 
 Instead, it virtulizes at the software layer, sharing the host machine´s Linux kernel while
-maintaing its own completely isolated user space.
+maintaining its own completely isolated user space.
 
 ## Understanding Container Image vs. Running Container
 To use containers effectively, it is important to understand the distinction between an Image
@@ -36,7 +36,7 @@ your training job finishes or you exit the session, the container disappears. le
 image completely unaltered. 
 
 If you want a different environment, you don´t modify a running container but you simply use a
-differnt image.
+different image.
 
 Hence, if you wrap your software stack inside a container, it solves the critical challenge of 
 reproducibility. Every software dependecny from the base operating system and CUDA drivers,frameworks
@@ -215,7 +215,7 @@ However, we will discuss about one of the most commonly used approach which is b
 A singularity definition file is a text file that specifies the instructions and configuration
 needed to build a container image.
 Below is the simple illustration of definition file which only use the %post and %runscript sections.
-More details can be found here [Definition File Offical Documentation](https://docs.sylabs.io/guides/3.7/user-guide/definition_files.html)
+More details can be found here [Definition File Official Documentation](https://docs.sylabs.io/guides/3.7/user-guide/definition_files.html)
 ```bash
 Bootstrap: docker
 From: ubuntu:20.04
@@ -265,7 +265,7 @@ When the container boots, it automatically reads your current user details from 
 
 2. Automatic Bind Mounts:
 
-Singluarity automatically maps(binds) key directories from the host cluster directly into the container´s file structure. By default, your home directory `$HOME`, your current directory `$PWD`, and `/tmp` are made visible inside the container.Since this is not the copy, any files modified or saved while inside the container are written diretly to the host´s physical storage and will persist after the container shuts down.
+Singularity automatically maps(binds) key directories from the host cluster directly into the container´s file structure. By default, your home directory `$HOME`, your current directory `$PWD`, and `/tmp` are made visible inside the container.Since this is not the copy, any files modified or saved while inside the container are written diretly to the host´s physical storage and will persist after the container shuts down.
 However, if you want to access shared parallel cluster filesystems like `/scratch` or `/cluster/projects` you need to pass an explicit flag at runtime to make them visbible. `singularity shell --bind /scratch my-container.sif`. Refer to the section below to see how it works.
 
 ## Access project area from the container
@@ -448,7 +448,7 @@ files that are *not* located in your `$HOME` you'll need to `--bind` that direct
 ## Other notes
 ### singularity cache
 Singularity handles images as standard `.sif` files on your disk. To save the network bandwidth and the time, it automatically maintains a local image cache.
-When you pull an image from a remote registry (like Docker Hub or NVIDIA NGC), Singularity saves a copy in a hidden directory.If you accidently delete your local `.sif` file and try to pull it again, Singularity will instantly grab it from your local cache instead of downloading gigabytes of data over a network.
+When you pull an image from a remote registry (like Docker Hub or NVIDIA NGC), Singularity saves a copy in a hidden directory.If you accidentally delete your local `.sif` file and try to pull it again, Singularity will instantly grab it from your local cache instead of downloading gigabytes of data over a network.
 
 To inspect how much total space you are consuming, run this command `singularity cache list`. By default, this only shows the total file count and size. To see the specific images names, creation dates and where they were pulled from, add the verbose `-v` flag. `singularity cache list -v`
 
