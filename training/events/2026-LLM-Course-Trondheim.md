@@ -12,7 +12,7 @@ NRIS Training and KI-Fabrikken are organizing a third round of Distributed LLM F
 The dates and location for this event is tentative and may be changed. Registration will open when the dates and location is finalized.
 ```
 
-**When:** October 9th-10th, 2026 (tentative)
+**When:** October 8th-9th, 2026 (tentative)
 
 **Where:** Trondheim/NTNU (tentative)
 
