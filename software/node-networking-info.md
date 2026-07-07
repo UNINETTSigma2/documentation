@@ -2,14 +2,16 @@
 
 (nodes-network)=
 
-# Login nodes:
+# Networking on nodes
+
+## Login nodes:
        
 - All login nodes have direct outbound and opened access to whole internet and all protocols via nodes' public IP and appropriate gateway
 
 - The dual stack is available on these nodes (meaning both IPv4 and IPv6 connectivities are available independently)
 
 
-# Compute nodes:
+## Compute nodes:
 
 - Compute nodes have full opened access to license servers needed by various software
 

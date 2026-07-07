@@ -12,6 +12,7 @@ where it does its work:
 - Project area (`/custer/projects/<projname>`)
 - `$USERWORK` (`/cluster/work/users/$USER`)
 - `$SCRATCH` (`/cluster/work/jobs/$SLURM_JOB_ID`)
+- `$LOCALSCRATCH` (`/localscratch/$SLURM_JOB_ID`)* **Saga Only** *
 
 There are different pros and cons with each of the choices.  See
 [Storage Areas](../../files_storage/clusters.md) for details.
