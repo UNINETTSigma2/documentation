@@ -20,7 +20,7 @@ should have some prior knowledge about docker.
 - [Getting container images](#getting-container-images)
 - [Building Apptainer images](#building-apptainer-images)
 - [Running a container](#running-a-container)
-- {ref}`additional-information`
+- {ref}`Additional Information <additional-information>`
 - [Use cases](#use-cases)
 - [Job scripts & examples](#job-scripts-and-examples)
 
@@ -57,7 +57,7 @@ Hence , there are no background daemons like in Docker.
 Image Format(.sif) which is easy to copy and share.
 
 
-Please refer to the {ref}`additional-information` to learn more about containers.
+Please refer to the {ref}`Additional Information <additional-information>` to learn more about containers.
 
 ### How to access apptainer on NRIS HPC systems
 Apptainer is already installed globally on all our systems, and should be
@@ -144,7 +144,7 @@ To prevent home-directory quota issues, please do these before pulling the large
 ## Building Apptainer images
 
 In many cases, you might want to build your own container images and then install 
-additional packages into the image. Please refer to this {ref}`building-container` 
+additional packages into the image. Please refer to this {ref}`Building Container <building-container>` 
 section to read more about it.
 
 ## Running a container
@@ -174,13 +174,13 @@ actually work in practice.
 
 
 ## Use Cases
-Please refer to this page to read more about the {ref}`use-cases-nris` where 
+Please refer to this page to read more about the {ref}`Use Cases <use-cases-nris>` where 
 the containers might be useful in the NRIS system.
 
 
 ## Job scripts and Examples
 If you want to read more about how we can use the apptainer in the job scripts, 
-please refer to this {ref}`job-script-apptainer`
+please refer to this {ref}`Job Script Apptainer <job-script-apptainer>`
 
 
 
