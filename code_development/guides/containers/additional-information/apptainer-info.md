@@ -55,7 +55,7 @@ to a folder inside the running container.
 ```console
 $ apptainer exec --bind /cluster/projects/nnxxxxk hello-world.sif head -n2 /cluster/projects/nnxxxxk/containers/data/input.txt
 ```
- This way, keeps the file path indentical both inside and outside the container
+ This way, keeps the file path identical both inside and outside the container
  and you will be able to print those numbers.
 
  ## Example of Apptainer run and Apptainer exec command

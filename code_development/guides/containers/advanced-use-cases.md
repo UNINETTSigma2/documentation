@@ -94,7 +94,7 @@ distribution, inside this container environment, we are executing commands
 natively within an isolated Ubuntu 14.04 space (released in 2014).
 
 ### Executing the Legacy Software
-You can seamlessly run code inside the containerized langauge runtime by 
+You can seamlessly run code inside the containerized language runtime by 
 using `apptainer exec` to force the container to run the Perl command. 
 We will inspect the `%INC` variable, which tracks exactly where Perl is 
 loading its libraries from.
