@@ -15,18 +15,18 @@ should have some prior knowledge about docker.
 ```
 ## Table of Contents
 
-- [What is Apptainer](#what-is-apptainersingularity)
-- [How to access apptainer on NRIS HPC systems](#how-to-access-apptainer-on-nris-hpc-systems)
-- [Getting container images](#getting-container-images)
-- [Building Apptainer images](#building-apptainer-images)
-- [Running a container](#running-a-container)
+- {ref}`What is Apptainer <what-is-apptainersingularity>`
+- {ref}`How to access apptainer on NRIS HPC systems <how-to-access-apptainer-on-nris-hpc-systems>`
+- {ref}`Getting container images <getting-container-images>`
+- {ref}`Building Apptainer images <building-apptainer-images>`
+- {ref}`Running a container <running-a-container>`
 - {ref}`Additional Information <additional-information>`
-- [Use cases](#use-cases)
-- [Job scripts & examples](#job-scripts-and-examples)
+- {ref}`Use cases <use-cases>`
+- {ref}`Job scripts & examples <job-scripts-and-examples>`
 
 
 
-
+(what-is-apptainersingularity)=
 ## What is Apptainer(Singularity)?
 Apptainer (formally Singularity) is one of the container platform 
 which is built specifically for HPC environments. The goal of 
@@ -59,6 +59,8 @@ Image Format(.sif) which is easy to copy and share.
 
 Please refer to the {ref}`Additional Information <additional-information>` to learn more about containers.
 
+
+(how-to-access-apptainer-on-nris-hpc-systems)=
 ### How to access apptainer on NRIS HPC systems
 Apptainer is already installed globally on all our systems, and should be
 immediately available on your command line (no `module load` necessary):
@@ -88,6 +90,7 @@ immediately available on your command line (no `module load` necessary):
          apptainer version 1.4.5-150600.4.12.1
 ```
 
+(getting-container-images)=
 ## Getting container images
 
 Before getting a container images to run inside the cluster, you need 
@@ -141,12 +144,14 @@ To prevent home-directory quota issues, please do these before pulling the large
 
 ```
 
+(building-apptainer-images)=
 ## Building Apptainer images
 
 In many cases, you might want to build your own container images and then install 
 additional packages into the image. Please refer to this {ref}`Building Container <building-container>` 
 section to read more about it.
 
+(running-a-container)=
 ## Running a container
 
 Once you have a container image (.sif), Apptainer provides two primary ways to run 
@@ -172,12 +177,12 @@ Moreover, please refer to the example in the same page to see how binding
 actually work in practice.
 
 
-
+(use-cases)=   
 ## Use Cases
 Please refer to this page to read more about the {ref}`Use Cases <use-cases-nris>` where 
 the containers might be useful in the NRIS system.
 
-
+(job-scripts-and-examples)=
 ## Job scripts and Examples
 If you want to read more about how we can use the apptainer in the job scripts, 
 please refer to this {ref}`Job Script Apptainer <job-script-apptainer>`
