@@ -183,3 +183,19 @@ If you want to read more about how we can use the apptainer in the job scripts,
 please refer to this {ref}`job-script-apptainer`
 
 
+
+
+
+```{toctree}
+:hidden:
+
+containers/building-container
+containers/job-scripts-examples
+containers/advanced-use-cases
+containers/bigdft
+containers/additional-information/understanding-container-concepts
+containers/additional-information/container-benefit
+containers/additional-information/singularity-cache
+containers/additional-information/apptainer-info
+containers/additional-information/additional-info
+```
