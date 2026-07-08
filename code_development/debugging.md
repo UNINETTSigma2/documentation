@@ -2,66 +2,25 @@
 
 ## Compiler Debug Options
 
-The table below shows a list of debugging options for the Intel and GCC
-compilers.
+The tables below shows a list of debugging options for the GCC and Intel and compilers.
 
-<table>
-<thead>
-<th align="left">Compiler</th>
-<th align="left">Option</th>
-<th align="left">Action</th>
-</thead>
-<tbody>
-<tr>
-<td>Intel</td>
-<td rowspan="2"><code class="code">-g</code></td>
-<td rowspan="2">Generate symbolic debugging information</td>
-</tr>
-<tr>
-<td>GCC</td>
-</tr>
-<tr>
-<td>Intel</td>
-<td><code class="code">-check bounds</code><i>(Fortran only)</i></td>
-<td rowspan="2">Add runtime array bounds checking</td>
-</tr>
-<tr>
-<td>GCC</td>
-<td><code class="code">-fcheck=bounds</code><i>(Fortran only)</i></td>
-</tr>
-<tr>
-<td>Intel</td>
-<td><code class="code">-check=uninit</code> <i>(C/C++)</i> <br/> <code class="code">-check uninit</code> <i>(Fortran)</i></td>
-<td rowspan="2">Check for uninitialized variables</td>
-</tr>
-<tr>
-<td>GCC</td>
-<td><code class="code">-Wuninitialized</code></td>
-</tr>
-<tr>
-<td>Intel</td>
-<td><code class="code">-fp-trap-all=common</code> <i>(C/C++)</i> <br/> <code class="code">-fpe-all=0</code> <i>(Fortran)</i></td>
-<td rowspan="2">Trap floating point exceptions: <br/>
- - divide by zero <br/>
- - invalid operands <br/>
- - floating point overflow</td>
-</tr>
-<tr>
-<td>GCC</td>
-<td><code class="code">-ffpe-trap=zero,invalid,overflow</code> <i>(Fortran only)</i></td>
-</tr>
-<tr>
-<td>Intel</td>
-<td><code class="code">-traceback</code></td>
-<td rowspan="2">Add debug information for runtime traceback</td>
-</tr>
-<tr>
-<td>GCC</td>
-<td><code class="code">-fbacktrace</code> <i>(Fortran only)</i></td>
-</tr>
-</tbody>
-</table>
+### GCC
+| Option     | Action     |
+| :------------- | :------------- |
+| `-g`     | Generate symbolic debugging information |
+| `-fcheck=bounds` _(Fortran only)_ | Add runtime array bounds checking |
+| `-Wuninitialized`     | Check for uninitialized variables |
+| `-ffpe-trap=zero,invalid,overflow` _(Fortran only)_ | Trap floating point exceptions:<br> - divide by zero<br> - invalid operands<br> - floating point overflow |
+| `-fbacktrace` _(Fortran only)_ | Add debug information for runtime traceback |
 
+### Intel
+| Option     | Action     |
+| :------------- | :------------- |
+| `-g`     | Generate symbolic debugging information |
+| `-check bounds` _(Fortran only)_ | Add runtime array bounds checking |
+| `-check=uninit` _(C/C++)_ <br> `-check uninit` _(Fortran)_   | Check for uninitialized variables |
+| `-fp-trap-all=common` _(C/C++)_ <br> `-fpe-all=0` _(Fortran)_ | Trap floating point exceptions:<br> - divide by zero<br> - invalid operands<br> - floating point overflow |
+| `-traceback` | Add debug information for runtime traceback |
 
 ## GNU GDB
 
@@ -199,7 +158,7 @@ snapshot of a program’s state using the command:
 
 ## TotalView
 
-TotalView is a GUI-based cource code debugger from [Rogue Wave Software](https://www.roguewave.com)
+TotalView is a GUI-based cource code debugger from [Perforce](https://www.perforce.com/products/totalview)
 It allows for debugging of serial and parallel codes. Program execution is
 controlled by stepping line by line through the code, setting breakpoints, or
 by setting watchpoints on variables. It is also efficient for debugging of
@@ -282,5 +241,5 @@ finishing the debugging session
 ### Further Information
 
 For more information see the [TotalView
-Documentation](https://www.roguewave.com/help-support/documentation/totalview)
+Documentation](https://help.totalview.io/current/HTML/home.htm)
 page.
