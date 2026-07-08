@@ -20,6 +20,7 @@ Code development
    performance.md
    Calling-fortran-from-Python.md
    lumi_g_overlay.md
+   guides/containers.md
 
 
 ---------
@@ -39,3 +40,4 @@ In this section we present a list of tutorials covering different topics in hete
    guides/pytorch_olivia/getting_started.md
    guides/pytorch_olivia/PyTorchSingleGpu.md
    guides/nextflow_saga/nextflow.md
+   
