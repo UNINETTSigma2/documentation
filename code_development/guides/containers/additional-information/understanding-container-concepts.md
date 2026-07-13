@@ -46,5 +46,4 @@ Hence, many user can use the exact same file simultaneously. However, each
 user gets their own completely separate, active container instance running on 
 different cluster nodes. None of them will interfere with each other and the 
 original files remains completely untouched.
-
 ```

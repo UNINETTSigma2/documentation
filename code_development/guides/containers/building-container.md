@@ -41,10 +41,11 @@ that already provides this minimal operating system user space. This is the reas
 why we pull a clean, minimal deployment of `Ubuntu 20.04`.
 
 The `%post` block is where you actually install your applications, compile code and 
-configure your container´s environment. The command written in the `%post` section 
-is an automated installation script. Every command here is executed as standard shell 
-code inside the base operating system you defined in the header. So, in this case 
-here this command will run within your minimal Ubuntu 20.04 layout to update the 
+configure your container´s software. The command written in the `%post` section 
+act as an automated installation script. Every command here is executed as standard shell 
+code inside the base operating system you defined in the header.
+
+So, in this case, these commands will run within your minimal Ubuntu 20.04 layout to update the 
 package manager index and install `Python 3`. We must bypass any interactive confirmation 
 prompts `Do you want to continue? [Y/n]` by explicitly forcing a "yes" response which 
 is the reason why we passed `-y` flags. Beyond basic package managers, you can use
@@ -52,22 +53,22 @@ the `%post` section to run `pip install` commands, download remote datasets via 
 or `curl`, create directories and clone repositories. Everything modified here is 
 permanently baked into the final, read-only `.sif` image. 
 
+```{note}
+While you can use `%post` to install software, any persistent environment variables (like updating your `$PATH` or setting application tokens) must be placed in a dedicated `%environment` section, as variables set during `%post` do not carry over to the running container.
+
+```
+
 Finally, we have the `%runscript` section which is used to define a script that we want to run using the 
 `apptainer run ` command when a container is started. However, this part is optional in the definition file.
 
 Once you save this definition file you can build a `.sif` image using this command.
 
-`apptainer build my_container.sif <definition_file>.def`
+```bash
+apptainer build my_container.sif <definition_file>.def
+```
 
 ```{note}
-You cannot build it on the login node, so you have to build it on the compute node. Also, depending on the
-implementation on each of our cluster, you might need to pass `--fakeroot` flag in the build command above if it 
+You cannot build it on the login node, so you have to build it on the compute node. Also, depending on the implementation on each of our cluster, you might need to pass `--fakeroot` flag in the build command above if it 
 fails.
-
 ```
 
-```{toctree}
-:maxdepth: 1
-:hidden:
-
-```

@@ -10,3 +10,4 @@ Under the `TYPE` column, images from Apptainer Hub appears as `shub`, while stan
 ```
 
 Similarly, if your cluster storage quota is running low, you can clear out cached files using the `apptainer cache clean`. Running this command will ask to wipe everything. However, if you want to see what exactly would be reomved without actually deleting it, you can use `-n` or `--dry-run` flag. Moreover, to wipe out only a specific type of cached image (e.g. clearing out old Apptainer Hub templates while keeping your heavy Docker/NGC layers), you can use `apptainer cache clean --type=shub` command
+

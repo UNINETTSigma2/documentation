@@ -63,7 +63,7 @@ A user needs to run a legacy bioinformatics pipeline built around BioPerl.
 The pipeline expects an older version of Ubuntu and specific Perl core 
 configurations that do not match our cluster's current setup.
 
-### Pull the Image on the Login Node
+### Step 1: Pull the Image on the Login Node
 On the login node, we can pull the official stable image from Docker Hub using:
 
 ```bash
@@ -130,3 +130,4 @@ the container is successfully using its own internal Perl version `5.18.2`,
 completely ignoring whatever  version of Perl is installed natively 
 on the Saga host. The legacy scripts can now utilize these specific older 
 library dependencies without any compilation conflicts.
+

@@ -1,34 +1,40 @@
 (apptainer-info)=
-# Dynamic User Identity and Filesystem Mounts in Apptainer
-Apptainer provides seamless host integration. If you run `whoami` or 
-`ls` inside a newly pulled public container, you will notice that, 
-it can already see your local files and also it knows your username. 
-Apptainer achieves this by:
+# Filesystem Mounts in Apptainer
+Apptainer provides seamless host integration out of the box. If you 
+run `whoami` or `ls` inside a newly pulled public container, you will 
+notice that it can already see your local files and perfectly recognizes 
+your username.
 
-1. **Dynamic User Mapping** :
+This is achieved through Dynamic User Mapping. When the container boots, 
+it automatically reads your current user details from the host machine's 
+`/etc/passwd` and `/etc/group` files and injects them directly into the 
+container. As a result, you remain exactly who you are inside the 
+environment, maintaining your identical host system permissions 
+without needing root access.
 
-When the container boots, it automatically reads your current user 
-details from the host machines´s `/etc/passwd` and `/etc/group` files 
-and injects them directly into the container. You remain exactly who 
-you are, maintaining your identical system permissions.
+## **Automatic Bind Mounts** 
 
-2. **Automatic Bind Mounts** :
+While the default system paths are mounted automatically, understanding 
+how binding works is crucial for managing your storage. Rather than 
+duplicating massive files, binding directly links the host cluster's 
+filesystem paths into the container. This allows the container to 
+transparently read and write to shared HPC storage in real time.
 
-In Apptainer, binding refers to mounting host fielsystem paths into 
-the container so that the container can transparently access the shared 
-HPC storage without duplicating the data. 
-
-Apptainer automatically maps (binds) key directories from the host 
+Apptainer automatically maps key directories from the host 
 cluster directly into the container´s file structure. By default, 
 your home directory `$HOME`, your current directory `$PWD`, and `/tmp` 
 are made visible inside the container. Since this is not the copy, 
 any files modified or saved while inside the container are written 
 diretly to the host´s physical storage and will persist after the 
-container shuts down. However, if you want to access shared parallel 
-cluster filesystems like `/scratch` or `/cluster/projects` you need to 
-pass an explicit flag at runtime to make them visbible. 
+container shuts down.
 
-`singularity shell --bind /scratch my-container.sif`. 
+However, if you want to access shared parallel 
+cluster filesystems like `/scratch` or `/cluster/projects` you need to 
+pass an explicit flag at runtime to make them visible. 
+
+```bash
+singularity shell --bind /scratch my-container.sif
+``` 
 
 Refer to the section below to see how it works.
 
@@ -74,7 +80,9 @@ exec /bin/bash /rawr.sh
  called `rawr.sh`. You could manually open this file using this command which 
  will give the same output. 
 
- `apptainer exec hello-world.sif cat /singularity`
+```bash
+ apptainer exec hello-world.sif cat /singularity
+```
 
  Now using the `exec` command you can print the contents of that script 
  using as shown here.
@@ -109,3 +117,4 @@ $ apptainer exec hello-world.sif cat /etc/os-release
 NAME="Ubuntu"
 VERSION="14.04.6 LTS, Trusty Tahr"
 ```
+

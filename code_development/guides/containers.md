@@ -28,7 +28,7 @@ should have some prior knowledge about docker.
 
 (what-is-apptainersingularity)=
 ## What is Apptainer(Singularity)?
-Apptainer (formally Singularity) is one of the container platform 
+Apptainer (formerly Singularity) is one of the container platforms 
 which is built specifically for HPC environments. The goal of 
 Apptainer is to package software and its dependencies into a single, 
 portable unit. In the HPC infrastructure, security and performance 
@@ -37,7 +37,7 @@ tool like Docker.
 
 It is very important to know why Docker is not used in HPC environment. 
 Docker relies on a background service called the Docker Daemon, which 
-runs with absoulute administrative privileges (`root`). This Docker 
+runs with absolute administrative privileges (`root`). This Docker 
 Daemon will run the commands for the user when the regular user interact 
 with Docker. Because of this, a user can easily exploit Docker to access, 
 modify or delete system files on the host server which will be critical 
@@ -52,9 +52,9 @@ permission that you have.
 2. It launches just like any standard application or script on the cluster,
 hooking directly into the host machine´s Linux Kernel using native isolation 
 features (like namespaces) without needing administrative intervention. 
-Hence , there are no background daemons like in Docker.
+Hence, there are no background daemons like in Docker.
 3. Apptainer packages an entire runtime environment into a single Apptainer 
-Image Format(.sif) which is easy to copy and share.
+Image Format (.sif) which is easy to copy and share.
 
 
 Please refer to the {ref}`Additional Information <additional-information>` to learn more about containers.
@@ -95,7 +95,7 @@ immediately available on your command line (no `module load` necessary):
 
 Before getting a container images to run inside the cluster, you need 
 to know where to find these container images that you can use for your 
-project. Here are list of sources where you could find a container image from:
+project. Here is the list of sources where you could find a container image from:
 1. [Docker](https://hub.docker.com/)
 2. [Nvidia NGC catalog](https://catalog.ngc.nvidia.com/search?sort=weightPopularDESC&resourceType=container)
 3. [Singularity Hub](https://datasets.datalad.org/?dir=/shub)
@@ -136,11 +136,15 @@ Docker images directly from Docker-Hub using Apptainer.
 ```
 
 ```{note}
+For both Saga and Betzy, the apptainer pull command will work without specifying the architecture. However, on Olivia the architecture is different in the login nodes and the compute nodes. Hence, you must use this `--arch arm64` flag which specify the architecture in the apptainer pull command.
+```
+
+```{note}
 To prevent home-directory quota issues, please do these before pulling the larger image so that, the cache will be stored in your project area.
 
-1. mkdir -p /cluster/work/projects/<project_number>/$USER/apptainer/tmp
-2. export APPTAINER_TMPDIR=/cluster/work/projects/<project_number>/apptainer/tmp
-3. export APPTAINER_CACHEDIR=/cluster/work/projects/<project_number>/$USER/apptainer/tmp
+1. `mkdir -p /cluster/work/projects/<project_number>/$USER/apptainer/tmp`
+2. `export APPTAINER_TMPDIR=/cluster/work/projects/<project_number>/apptainer/tmp`
+3. `export APPTAINER_CACHEDIR=/cluster/work/projects/<project_number>/$USER/apptainer/tmp`
 
 ```
 
@@ -153,28 +157,31 @@ section to read more about it.
 
 (running-a-container)=
 ## Running a container
+Once you have a container image (.sif), Apptainer provides three primary ways to interact with it depending on your needs:
 
-Once you have a container image (.sif), Apptainer provides two primary ways to run 
-commands inside it. You can either execute a single non-interactive command or drop 
-into an interactive shell. You can use `exec` command to bypass the image´s default 
-launch behaviour and executes the exact binary path.So, if you have `hello-world.sif` 
-image that you pull earlier, then you can use, 
+1. `run`: Executes the container's default action or entry point script (defined when the image was built).
+
+2. `exec`: Bypasses the image’s default launch behavior to execute a specific binary or custom command.
+
+3. `shell`: Opens an interactive terminal inside the container for manual exploration and debugging.
+
+If you pulled the `hello-world.sif` image earlier, you can use the `exec` command to run a specific command inside it like this:
+
 ```bash
-apptainer exec helloworld.sif
-```  
-command to run it. Moreover, it is also possible to open an interactive terminal 
-inside the container to explore a container or debug an environment manually by 
-using `shell` command. e.g. 
-```bash
-apptainer shell hello-world.sif
+apptainer exec hello-world.sif echo "Hello from inside the container!"
 ```
 
-If you want to read more about how apptainer provides host integration, difference 
-between `exec` and `shell` , what are automatically binded and how you can access 
-your files from the host, refer to {ref}`apptainer-info` section.
 
-Moreover, please refer to the example in the same page to see how binding 
-actually work in practice.
+Moreover, it is also possible to open an interactive terminal inside the container to explore the environment or debug manually by using the shell command:
+
+```bash
+apptainer shell hello-world.sif
+``` 
+
+To seamlessly work with your data, Apptainer automatically links specific folders from your host computer into the container at startup. This feature, known as automatic bind mounting, ensures you can read and write files without losing access to your personal storage.
+
+If you want to read more about how Apptainer provides host integration, the deep differences between run, exec, and shell, exactly which system paths are automatically bound, and how you can manually map custom folders to access your host files, refer to {ref}`apptainer-info` section.
+
 
 
 (use-cases)=   
@@ -183,9 +190,10 @@ Please refer to this page to read more about the {ref}`Use Cases <use-cases-nris
 the containers might be useful in the NRIS system.
 
 (job-scripts-and-examples)=
-## Job scripts and Examples
+## Job script and Examples
 If you want to read more about how we can use the apptainer in the job scripts, 
 please refer to this {ref}`Job Script Apptainer <job-script-apptainer>`
+
 
 
 

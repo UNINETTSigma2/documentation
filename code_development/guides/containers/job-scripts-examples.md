@@ -2,9 +2,6 @@
 # Apptainer in job scripts
 This part demonstrates how to run a container inside a cluster job script, execute commands within it, understand how it shares the host´s Linux kernel while running it own Operating System(OS), navigate directory permissions. Earlier we pull the `hello-world.sif` container on Saga and we will be using the same one for this experiment. 
 
-```{note}
-For both Saga and Betzy, the apptainer pull command will work without specifying the architecture. However, on Olivia the architecture is different in the login nodes and the compute nodes. Hence, you must use this `--arch arm64` flag which specify the architecture in the apptainer pull command.
-```
 
 ## Core Concepts Covered:
 1. `singularity exec <image>.sif <command>` : 
@@ -29,6 +26,7 @@ Create a file named `submit_container.sh`. This script will print the host syste
          #SBATCH --job-name=apptainer_test
          #SBATCH --ntasks=1                 # Run single instance of the application
          #SBATCH --mem=2G                   # Allocate 2GB of total RAM  for entire job
+         #SBATCH --cpus-per-task=1          # Single CPU core for test, increase for internal multi-threading/parallel data loading
          #SBATCH --time=00:03:00
          #SBATCH --output=apptainer_%j.out
 
@@ -53,7 +51,8 @@ Create a file named `submit_container.sh`. This script will print the host syste
          #SBATCH --time=00:03:00
          #SBATCH --output=apptainer_%j.out
          #SBATCH --nodes=1             # Single node job
-         #SBATCH --partition=accel     # For GPU access
+         #SBATCH --cpus-per-task=1     # Single CPU core for test, increase for internal multi-threading/parallel data loading
+         #SBATCH --partition=preproc   # for small pre/post processing tasks 
 
          echo "=== Host Operating System ==="
          cat /etc/os-release
@@ -85,6 +84,13 @@ Create a file named `submit_container.sh`. This script will print the host syste
 
          echo -e "\n=== Current Directory contents from inside the container ==="
          apptainer exec hello-world.sif ls -l
+```
+
+```{note}
+Notice that we have used partition as `preproc` on Betzy but not on Olivia and Saga. To learn different types of jobs on those machine, please refer to these pages.
+1. Betzy : {ref}`job-types-betzy`
+2. Saga : {ref}`job-types-saga`
+1. Olivia : {ref}`job-types-olivia`
 ```
 
 Once you submit the job using `sbatch submit_container.sh` the slurm output file will be generated as shown below.
@@ -132,6 +138,7 @@ total 61189
 Notice how in the container we are on a Ubuntu operating system while the host 
 is Rocky Linux on Saga. And you will see different version of operating system
 on the host in our different machines.
+
 
 
 
