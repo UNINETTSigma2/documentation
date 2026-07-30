@@ -186,7 +186,7 @@ files_storage/nird/nird_dp.md
 files_storage/nird/nird_dl.md
 files_storage/nird/backup_lmd.md
 files_storage/nird/cdl.md
-nird_archive/user-guide.md
+nird_archive/rda.md
 nird_service_platform/overview_nird_service_platform.md
 ```
 
