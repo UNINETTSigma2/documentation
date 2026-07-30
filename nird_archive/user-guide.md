@@ -6,7 +6,8 @@ orphan: true
 
 The NIRD Research Data Archive, NIRD RDA, is a repository that provides long-term storage for research data. The archive is compliant with the Open Archival Information System (OAIS) reference model {ref}`[1] <references-archive2>`.
 
-A high level overview of the ingest and archive workflow can be found [here](./ingest-and-archive-workflow.md`).
+A high level overview of the ingest and archive workflow can be found here {ref}`ingest and archive workflow <rda-ingest-and-archive-workflow>`.
+
 
 ```{note}
 **NIRD RDA Sandbox Available for Testing:** In order to test workflows, applications, or integrations with the NIRD Research Data Archive (NIRD RDA),
