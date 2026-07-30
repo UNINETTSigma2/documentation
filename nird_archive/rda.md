@@ -25,6 +25,7 @@ For more information and guidance on how to use the sandbox, please see the [NIR
 - [Downloading datasets](./downloading-datasets.md)
 - [Archive API](./archive_api.md)
 
+(references-archive)=
 ## References
 
 [1] Reference Model for an Open Archival Information System.

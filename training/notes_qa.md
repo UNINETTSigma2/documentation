@@ -547,7 +547,7 @@ Any genuinely large files should usually live on NIRD Data Peak or Data Lake, an
 
 That keeps pressure off the shared cluster filesystem and leaves home space for what it is meant for.
 
-See [Storage areas on HPC clusters](/files_storage/clusters.md), [NIRD storage overview](/files_storage/nird_lmd.md), [Storage quota](/files_storage/quota.md), and [NIRD Research Data Archive (NIRD RDA)](/nird_archive/user-guide.md).
+See [Storage areas on HPC clusters](/files_storage/clusters.md), [NIRD storage overview](/files_storage/nird_lmd.md), [Storage quota](/files_storage/quota.md), and [NIRD Research Data Archive (NIRD RDA)](/nird_archive/rda.md).
 
 **Q: What is `dusage` and what do “soft” vs “hard” quota mean?**
 
@@ -622,7 +622,7 @@ See [Data transfer](/getting_started/data_transfer.md), [SSH](/getting_started/s
 
 Avoid filling `$HOME` with large transfers unless they are genuinely small personal files.
 
-See [Storage areas on HPC clusters](/files_storage/clusters.md), [Olivia and NIRD data workflows](/hpc_machines/olivia/olivia-nird.md), and [NIRD Research Data Archive (NIRD RDA)](/nird_archive/user-guide.md).
+See [Storage areas on HPC clusters](/files_storage/clusters.md), [Olivia and NIRD data workflows](/hpc_machines/olivia/olivia-nird.md), and [NIRD Research Data Archive (NIRD RDA)](/nird_archive/rda.md).
 
 ### Using shared resources responsibly
 

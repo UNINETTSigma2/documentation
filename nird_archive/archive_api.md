@@ -78,7 +78,7 @@ The following table contains the list of metadata terms that you can set or upda
 | **title**              | `String`                 | 1                    | Y             |The title of the dataset. |
 | **version_notes**      | `String`                 | 1                    | Y             | Notes describing any version changes or updates to the dataset.|
 
-#### Controlled vocabularies for basic terms
+### Controlled vocabularies for basic terms
 The controlled vocabularies for the basic terms can be found in the following JSON files:
 
 - `access_rights` controlled vocabulary can be found in the [access_rights.json](./metadata_controlled_vocabs/access_rights.json) JSON file.
@@ -112,7 +112,7 @@ A keyword consists of two components, a **tag_string** list of tag strings and a
 | **tag_string**         | `String`               | 1...n                | Y             | The name of the tag |
 | **tags**               | `Tag`                  | 1...n                | Y             | The tag object which is defined in the table below.|
 
-##### The Tag schema
+#### The Tag schema
 
 The schema for the `Tag` type is defined in the table below.
 
@@ -120,7 +120,7 @@ The schema for the `Tag` type is defined in the table below.
 |------------------------|------------------------|----------------------|---------------|-----------------|
 | **name**               | `String`               | 1                    | Y             | The name of the tag. |
 
-##### Finding and using pre-defined tags
+#### Finding and using pre-defined tags
 To get all existing tags defined in the archive, you can use the API end-point `$CKAN_API_ROOT/tag_list` which will return a JSON document containing the list of tags that are already defined. If you wish to search for a particular tag you can use the end-point `$CKAN_API_ROOT/tag_search?query=<name>` where `<name>` is the full or partial name of the tag you are interested in.
 
 To find out the name of the tag and the tag object to supply as metadata for your dataset, take the value of the `name` term (`<name>`) for the tag you are interested in and pass it to the end-point `$CKAN_API_ROOT/tag_show?id=<name>`. This will return a JSON document for the metadata for the tag you are interested in. The value of the `display_name` term corresponds to an element of the `tag_string` list and the value of the `name` term corresponds to the value of the `name` in a `Tag` object.
