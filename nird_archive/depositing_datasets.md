@@ -133,10 +133,9 @@ Choosing the dropbox option should result in a *Connect to DropBox* button that 
 
 ## Publish Dataset (Archiving Data)
 
-Once the dataset has been uploaded, and you have filled in the required metadata and any optional metadata, you can then publish your dataset by clicking the *Publish* button (see figure 5) button. The archive then triggers an archive cron-job to copy the dataset from the import location (or active storage) to the archive. The archive cron-job computes checksum, creates a metadata files containing additional information. Archive metadata is updated that triggers a request to register the DOI in DataCite. Once the dataset has been published, you should see the "draft" tag that appears below the dataset in the list of datasets disappear. The dataset will also be visible through the portal (https://archive.sigma2.no).
+Once the dataset has been uploaded, and you have filled in the required metadata and any optional metadata, you can then submit your dataset for publication. If you open your dataset in `view mode` you should see a `Submit to review` button (see Figure 5).
+By clicking the button, the archive manager receives the request to publish the dataset. The archive manager will review the dataset and will then approve the dataset for publication. The archive will execute a process to copy the data to the archive, create metadata files, update the archive metadata and register the DOI in DataCite. Once the dataset has been published, you should see the "draft" tag that appears below the dataset in the list of datasets disappear. The dataset will also be visible through the portal (https://archive.sigma2.no).
 
 
-![the_publish_dataset_page](imgs/figure_5_screenshot_publish.png "publish_dataset_page")
-Figure 5: Screenshot of the publish dataset page.
-
-(overview-Versioning-datasets)=
+![the_submit_to_review_page](imgs/figure5a.png "submit_dataset_to_review")
+Figure 5: Screenshot of the Submit to review button.
