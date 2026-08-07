@@ -19,7 +19,6 @@ Code development
    debugging.md
    performance.md
    Calling-fortran-from-Python.md
-   lumi_g_overlay.md
    guides/containers.md
 
 
