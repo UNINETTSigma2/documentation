@@ -259,7 +259,7 @@ See [Storage quota](/files_storage/quota.md) for how to check what is using spac
 
 For repeated file transfers, there is a documented exception: if you set up SSH keys, you can use SFTP or, with recent OpenSSH versions, `scp` over port `12` without entering an OTP for every transfer.
 
-This port `12` method is only available on Forskningsnett networks, so when working from home you may need VPN to your institution first.
+This port `12` method is only available on Forskningsnett networks (see [sikt/eduResearchNetwork](https://sikt.no/en/tjenester/national-research-and-education-network-uninett) for more information, and [forskningsrådet/approvedOrganisations](https://www.forskningsradet.no/en/financing/research-organisations/approved-research-organisations/) for a list of institutions/organisations), so when working from home you may need VPN to your institution first.
 
 See [One-time-pad (OTP) / Two-factor authentication](/getting_help/two_factor_authentication.md) and [SSH](/getting_started/ssh.md) for the full setup and limitations.
 
