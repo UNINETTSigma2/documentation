@@ -136,7 +136,101 @@ possible to record and share your dependencies for better reproducibility.
 
 ## Rscript example in a job 
 
-We have a separate page with examples for your {ref}`first-r-calculation`.
+We have a separate page with examples for your {ref}`first-calculation`.
+
+
+## Parallel R job example
+
+```{warning}
+Parallel R workers each need their own memory. Request enough memory for the
+number of tasks you start.
+
+The purpose of this example is to show how to set up a parallel R job with
+Slurm. It also shows that increasing the number of cores can reduce the run
+time, but that this depends on the workload and the parallel overhead.
+
+We have tested the version below and it runs, but the scaling/speed-up is
+still poor for this specific calculation.
+
+When running jobs in parallel, please always verify that it actually scales and
+that the run time goes down as you use more cores.
+
+Often, a good alternative to run R code in parallel is to launch many
+sequential R jobs at the same time, each doing its own thing.
+```
+
+Let's start with the run script (`parallel.sh`), where we ask for 20 cores:
+```{code-block} bash
+---
+emphasize-lines: 7, 8
+---
+#!/bin/bash
+
+#SBATCH --account=nn9997k
+#SBATCH --job-name=example
+#SBATCH --partition=normal
+#SBATCH --mem-per-cpu=1G
+#SBATCH --ntasks=20
+#SBATCH --time=00:02:00
+
+# it is good to have the following lines in any bash script
+set -o errexit  # make bash exit on any error
+set -o nounset  # treat unset variables as errors
+
+module restore
+module load R/4.2.1-foss-2022a
+
+Rscript parallel.R > parallel.Rout
+```
+
+The `--mem-per-cpu` line is important for this example. Parallel R jobs start
+multiple worker processes, so the total memory use increases with the number of
+tasks.
+
+Notice how in the R script (`parallel.R`) we indicate to use these 20 cores
+and how we changed `%do%` to `%dopar%`. Instead of hard-coding the worker
+count in the R code, it is better to reuse the number of tasks requested from
+Slurm:
+```{code-block} r
+---
+emphasize-lines: 23, 25, 27
+---
+library(parallel)
+library(foreach)
+library(doParallel)
+
+
+# this function approximates pi by throwing random points into a square
+# it is used here to demonstrate a function that takes a bit of time
+approximate_pi <- function() {
+  # number of points to use
+  n <- 2000000
+
+  # generate n random points in the square
+  x <- runif(n, -1.0, 1.0)
+  y <- runif(n, -1.0, 1.0)
+
+  # count the number of points that are inside the circle
+  n_in <- sum(x^2 + y^2 < 1.0)
+
+  4 * n_in / n
+}
+
+
+workers <- as.integer(Sys.getenv("SLURM_NTASKS", unset = "1"))
+
+registerDoParallel(workers)
+
+foreach (i=1:100, .combine=c) %dopar% {
+  approximate_pi()
+}
+```
+
+For this particular calculation, increasing the number of workers further may
+not help much because the work per iteration is small compared with the
+parallel overhead. In practice, it is often worth testing a few task counts and
+comparing the run time. For some workloads, many separate sequential jobs may
+be a better choice than one parallel R job.
 
 
 ## License Information
