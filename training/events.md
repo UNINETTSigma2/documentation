@@ -20,8 +20,14 @@ events/2026-Fall-OBC.md
 events/2026-LLM-Course-Trondheim.md
 ```
 
-## Upcoming event from our collaborators
-
+## Upcoming events from our collaborators
+- [Austrian Scientific Computing: N-Ways to GPU Programming Bootcamp](https://events.asc.ac.at/event/352/)
+- [ENCCS: [Workshop] Practical Data Wrangling](https://enccs.se/event/workshop-practical-data-wrangling/)
+- [ENCCS: [Webinar] Foundation Models for Atoms: Machine-Learned Interatomic Potentials in Practice](https://enccs.se/event/webinar-foundation-models-for-atoms-machine-learned-interatomic-potentials-in-practice/)
+- [ENCCS: [School] Quantum Autumn School 2026](https://enccs.se/event/quantum-computing-school-2026-in-sweden/)
+- [LUMI: Moving your AI training jobs to LUMI: A Hands-On Workshop (Hybrid)](https://lumi-supercomputer.eu/events/moving-your-ai-training-jobs-to-lumi-a-hands-on-workshop-hybrid/)
+- [LUMI: Geocomputing on the Supercomputer](https://lumi-supercomputer.eu/events/geocomputing/)
+- [CodeRefinery Workshop](https://coderefinery.github.io/2026-09-22-workshop/)
 
 ## Request for Training
 
