@@ -4,11 +4,11 @@ orphan: true
 
 (2026-Parallel-Computing)=
 
-# The Parallell Computing with Python on Olivia course series
+# The Parallell CPU Computing with Python on Olivia course series
 
 Drawing on our experience with introducing the Olivia machine and associated services, *NRIS Training* is now offering a course series targeted directly on how to utilize the most powerful of the NRIS/Sigma2 HPC machines, Olivia, in the most efficient way. 
 
-In this course series, we will guide you through practical steps and hands-on tasks to help you gain experience with parallel computing on Olivia using Python. Parallel computing can be divided into the following levels:
+In this course series, we will guide you through practical steps and hands-on tasks to help you gain experience with parallel CPU computing on Olivia using Python. Parallel computing can be divided into the following levels:
 - Code Optimization – Techniques to speed up Python code on a single CPU core.
 - Vector-Threading – Performing parallel computations within a single CPU core.
 - Multi-Threading – Parallel computing across multiple CPU cores on a single node.
@@ -17,6 +17,9 @@ In this course series, we will guide you through practical steps and hands-on ta
 
 By the end of this series, you’ll have a solid understanding of these concepts and how to apply them effectively.
 
+```{note}
+Note that this course series covers parallel computing on CPUs on Olivia, **not** GPUs.
+```
 
 These seminars are at a basic-to-intermediate level, and targeted towards participants at the preceding OnBoarding event. However, these seminars will also be open to others.
 
