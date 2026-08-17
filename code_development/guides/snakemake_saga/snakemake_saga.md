@@ -135,9 +135,6 @@ rule gpu_example:
     "gpu_enabled_tool ..."
 ```
 
-
-
-
 ### Step 3: The Submission Script
 
 It is recommended to run the Snakemake *controller process* on the login node when using `--executor cluster-generic`.
@@ -241,8 +238,6 @@ Snakemake always looks for a file named exactly `Snakefile` (no extension, capit
   :language: python
 ```
 
-
-
 ### The Submission script (`run_snakemake_container.sh`)
 
 ```{eval-rst}
@@ -250,8 +245,20 @@ Snakemake always looks for a file named exactly `Snakefile` (no extension, capit
   :language: bash
 ```
 
-
-
 Run the pipeline as described earlier on this page: open `tmux` or `screen`, make the script executable and run the script.
 
 [Snakemake]:https://snakemake.readthedocs.io/en/stable/
+
+This guide provides a description on how to run Snakemake on Saga.
+
+## Loading Snakemake
+There are two ways to load Snakemake:
+
+1. Using a module on Saga:
+
+```bash
+$ module load Snakemake
+```
+
+2. Using a container
+
