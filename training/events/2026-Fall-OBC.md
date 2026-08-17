@@ -17,7 +17,7 @@ line of a terminal, the first day of the course is designed specifically for you
 
 ## Registration
 
-Registration will open soon
+[Register here](https://docs.google.com/forms/d/e/1FAIpQLSdbaXCuPG2hRLRHA0yczAMRC8IRUuDNq3QxKDy8sWOULw5a9g/viewform?usp=dialog) via Google Forms.
 
 ## Practical Information
 
