@@ -1,0 +1,94 @@
+# ==============================================================================
+# Minimal Snakemake Container Example for Saga
+# ==============================================================================
+
+SAMPLES = ["sample1", "sample2"]
+
+# Collect all final outputs required to consider the workflow complete.
+rule all:
+    input:
+        expand("results/mapped/{sample}.sam", sample=SAMPLES),
+        expand("results/qc/{sample}_R1_val_1_fastqc.html", sample=SAMPLES)
+
+# Trim paired-end reads and write cleaned FASTQ files for each sample.
+rule trim_galore:
+    input:
+        r1 = "data/{sample}_R1.fastq.gz",
+        r2 = "data/{sample}_R2.fastq.gz"
+    output:
+        r1 = "results/trimmed/{sample}_R1_val_1.fq.gz",
+        r2 = "results/trimmed/{sample}_R2_val_2.fq.gz"
+    log:
+        "logs/trim_galore/{sample}.log"
+    threads: 2
+    resources:
+        mem_mb=4000,
+        runtime=30
+    container:
+        "docker://quay.io/biocontainers/trim-galore:0.6.10--hdfd78af_0"
+    shell:
+        """
+        mkdir -p results/trimmed
+        trim_galore --paired --quality 20 --length 20 --cores {threads} --output_dir results/trimmed {input.r1} {input.r2} 2>&1 | tee {log}
+        """
+
+# Run FastQC on trimmed reads to generate per-sample quality reports.
+rule fastqc:
+    input:
+        "results/trimmed/{sample}_R1_val_1.fq.gz"
+    output:
+        "results/qc/{sample}_R1_val_1_fastqc.html"
+    log:
+        "logs/fastqc/{sample}.log"
+    threads: 2
+    resources:
+        mem_mb=4000,
+        runtime=30
+    container:
+        "docker://quay.io/biocontainers/fastqc:0.12.1--hdfd78af_0"
+    shell:
+        """
+        mkdir -p results/qc
+        fastqc --threads {threads} --outdir results/qc {input} > {log} 2>&1
+        """
+
+# Build the BWA index for the reference genome before alignment.
+rule bwa_index:
+    input:
+        "data/reference/dummy_genome.fasta"
+    output:
+        "data/reference/dummy_genome.fasta.bwt"
+    log:
+        "logs/bwa_index.log"
+    resources:
+        mem_mb=2000,
+        runtime=10
+    container:
+        "docker://quay.io/biocontainers/bwa:0.7.19--h577a1d6_1"
+    shell:
+        """
+        bwa index {input} 2> {log}
+        """
+
+# Align trimmed read pairs to the indexed reference and output SAM files.
+rule bwa_mem:
+    input:
+        r1 = "results/trimmed/{sample}_R1_val_1.fq.gz",
+        r2 = "results/trimmed/{sample}_R2_val_2.fq.gz",
+        index = "data/reference/dummy_genome.fasta.bwt",
+        ref = "data/reference/dummy_genome.fasta"
+    output:
+        "results/mapped/{sample}.sam"
+    log:
+        "logs/bwa_mem/{sample}.log"
+    threads: 2
+    resources:
+        mem_mb=4000,
+        runtime=30
+    container:
+        "docker://quay.io/biocontainers/bwa:0.7.19--h577a1d6_1"
+    shell:
+        """
+        mkdir -p results/mapped
+        bwa mem -t {threads} {input.ref} {input.r1} {input.r2} > {output} 2> {log}
+        """

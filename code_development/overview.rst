@@ -39,4 +39,4 @@ In this section we present a list of tutorials covering different topics in hete
    guides/pytorch_olivia/getting_started.md
    guides/pytorch_olivia/PyTorchSingleGpu.md
    guides/nextflow_saga/nextflow.md
-   
+   guides/snakemake_saga/snakemake_saga.md

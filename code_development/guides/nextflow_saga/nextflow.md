@@ -241,6 +241,7 @@ nextflow -c nris.config \
 Including the `-resume` flag ensures that if the job fails and needs debugging, the job will resume instead of starting from scratch when rerunning.
 ```
 
+(best-practices_pipelines)=
 ## Best Practices for Running Pipelines
 
 It is highly recommended to use `tmux` or `screen` when running pipelines. Without them, closing your terminal or losing your SSH connection will kill the Nextflow orchestrator process. Even though the currently running SLURM jobs may finish, Nextflow will no longer be alive to collect their results, submit the next steps of the pipeline, or handle failures.
