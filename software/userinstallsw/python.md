@@ -2,6 +2,10 @@
 
 # Installing Python packages as a user
 
+```{danger}
+Installing python environments (directly/traditionally) is not permitted on Olivia, due to the negative effect it has shown on filesystem load. Please see {ref}`Olivia documentation <olivia-software>` for more information.
+```
+
 The easiest way to install Python packages as a user is to use `pip` inside a virtual environment.
 It is advised to use virtual environments since it is a straight forward way to isolate different
 installations from each other. This makes it possible to have multiple versions of the same packages
