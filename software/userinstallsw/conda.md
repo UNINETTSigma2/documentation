@@ -2,6 +2,10 @@
 
 # Installing software with Conda
 
+```{danger}
+Installing conda venvs is not permitted on Olivia, due to the negative effect it has shown on filesystem load. Please see {ref}`Olivia documentation <olivia-software>` for more information.
+```
+
 ```{contents} Table of Contents
 ```
 
