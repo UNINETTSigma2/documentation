@@ -18,6 +18,7 @@ All courses are free of charge unless otherwise announced.
 events/2026-Parallel-Computing.md
 events/2026-Fall-OBC.md
 events/2026-LLM-Course-Trondheim.md
+events/2026-Bring-Your-Own-Code.md
 ```
 
 ## Upcoming events from our collaborators
