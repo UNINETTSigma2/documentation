@@ -16,6 +16,10 @@ fit for self learning.
 - [Advanced shell scripting and utilities](https://training.pages.sigma2.no/tutorials/shell-scripts-and-tips)
 - [Apptainers on HPC](https://training.pages.sigma2.no/tutorials/containers-on-hpc/index.html#)
 
+### Olivia File System, NIRD, and Olivia Container Usage
+- [NIRD and File System Usage on Olivia](https://training.pages.sigma2.no/tutorials/olivia-nird-filesystem-usage/index.html)
+- [Containers on Olivia](https://training.pages.sigma2.no/tutorials/olivia-containers/index.html)
+
 ## HPC carpentry
 
 We are collaborating with a international group to prepare a set of HPC
