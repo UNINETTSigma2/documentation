@@ -16,13 +16,13 @@ In NRIS we use the Lmod module system; for more info see <https://lmod.readthedo
 | :------------- | :------------- |
 | `module overview`     | List all software packages installed with a count of each module |
 | `module available`    | List all available modules and extensions |
-| `module --nx available`    | List all available modules but showing extensions |
+| `module --nx available`    | List all available modules but not showing extensions |
 | `module --show_hidden available`     | List all available modules, including hidden modules |
 | `module spider <software>`     | Search for a `<software>` among installed modules, including extensions |
 | `module load <module>`     | Load a `<module>` |
 | `module list`     | List modules that are currently loaded |
 | `module reset`     | Unload all loaded modules and reset modules to system default |
-| `module swap <module1> <module2>`     | LReplace `<module1>` with `<module2>` |
+| `module swap <module1> <module2>`     | Replace `<module1>` with `<module2>` |
 | `module show <module>`     | Show the commands in the `<module>` file |
 | `module save <name>`     | Save the current list of modules to `<name>` collection |
 | `module savelist`     | List all saved collections |
