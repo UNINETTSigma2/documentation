@@ -9,8 +9,9 @@ This guide demonstrates how to configure and run Nextflow pipelines efficiently 
 
 To make Nextflow available in your environment, load the module before running any scripts:
 ```bash
-module load Nextflow/25.10.2
+$ module load Nextflow/26.04.6
 ```
+
 
 Nextflow runs on the login node as a lightweight orchestrator: it reads the pipeline script, resolves configuration, and submits each process as an individual SLURM job. All heavy computation happens on the compute nodes allocated by SLURM. The login node performs no intensive work.
 
@@ -99,8 +100,11 @@ profiles {
     singularity {
       enabled    = true
       autoMounts = true
-      cacheDir   = "/cluster/work/users/${System.env.USER}/singularity_cache"
-      tmpDir     = "/cluster/work/users/${System.env.USER}/singularity_tmp"
+      cacheDir   = "/cluster/work/users/${System.getenv('USER')}/singularity_cache"
+    }
+
+    env {
+        SINGULARITY_TMPDIR = "/cluster/work/users/${System.getenv('USER')}/singularity_tmp"
     }
 
     executor {
@@ -136,13 +140,13 @@ Below is an example `my_pipeline.conf` that addresses both issues:
 // my_pipeline.conf
 
 // Replace with your project account number
-def account = "<your_account>"
+params.account = "<your_account>"
 
 env.TMPDIR = "/cluster/work/users/${System.getenv('USER')}/tmp"
 
 params {
     threads = 2
-    outdir  = "/cluster/projects/${account}/my_results"
+    outdir  = "/cluster/projects/${params.account}/my_results"
 }
 
 process {
@@ -160,7 +164,7 @@ process {
 }
 
 singularity {
-    runOptions = "--bind /cluster/projects/${account},/cluster/work/users"
+    runOptions = "--bind /cluster/projects/${params.account},/cluster/work/users"
 }
 
 report {
@@ -180,7 +184,6 @@ A Nextflow pipeline is built from **processes** (individual computational steps,
 
 ```groovy
 // bio_pipeline.nf
-nextflow.enable.dsl=2
 
 process qualityControl {
     container 'staphb/fastqc:latest'
@@ -210,7 +213,9 @@ The container images in this example use `:latest` tags for simplicity. For prod
 
 ### 4. Launching Safely with a Wrapper Script (`run_pipeline.sh`)
 
-Because Nextflow evaluates configuration on the login node before any SLURM jobs are submitted, certain runtime directories, such as `TMPDIR` and the Singularity cache, must already exist at launch time. A wrapper script is a convenient place to create them before handing off to Nextflow.
+Because Nextflow evaluates configuration on the login node before any SLURM jobs are submitted, certain runtime directories, such as `TMPDIR` and the Singularity cache, must already exist at launch time. A wrapper script is a convenient place to create them before handing off to Nextflow. 
+
+
 
 ```bash
 #!/bin/bash
@@ -219,7 +224,7 @@ set -e
 PROJECT_ID="<your_account>"
 
 module reset
-module load Nextflow/25.10.2
+module load Nextflow/26.04.6
 
 echo "Creating missing directories..."
 mkdir -p /cluster/projects/$PROJECT_ID/my_results
@@ -237,8 +242,13 @@ nextflow -c nris.config \
          -resume
 ```
 
+
 ```{note}
 Including the `-resume` flag ensures that if the job fails and needs debugging, the job will resume instead of starting from scratch when rerunning.
+```
+
+```{note}
+To use Nextflow 26, you need to download it manually (see Getting Started) and load a Java 17+ module, as shown in the wrapper script above (second tab).
 ```
 
 (best-practices_pipelines)=
