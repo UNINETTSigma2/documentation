@@ -66,7 +66,12 @@ Config file names must follow a strict convention or the hydrator will silently 
 
 ### Configuration File Format
 
-Config files use TOML syntax. Each file must contain a [SYNC] section.
+Config files use TOML syntax. Each file must contain a [SYNC] section. There are ways to request either for whole directory or specific 
+individual files. Examples and context are detailed below.
+
+#### Mode 1 - Request a whole directory
+
+The example below cache data from the target path (everythyng under the target path). 
 
 Example Config (`wrf-case-01.conf`):
 ```ini
@@ -77,12 +82,49 @@ target_path = 2026/march/observations/*
 nr_workers = 2
 log_level = info
 ```
-A TOML template file, called `00-cdl-hydrator.template` is created for convenience.
+A TOML template file, called `00-cdl-hydrator.template` is created for convenience. 
+
+#### Mode 2 - Request specific files
+
+For experiments needing a defined set of files, spread across different directories, where pulling whole trees would be wasteful. In such case, the specific file path can be specified as follows in the `conf` file, as shown in the example below. In this case `conf` file must contain a [FILES] section.
+
+Example Config (`wrf-case-02.conf`):
+
+```ini
+[SYNC]
+s3_endpoint = s3://open-data-bucket/
+# Optional tuning parameters:
+nr_workers = 2
+log_level = info
+
+[FILES]
+paths =
+    geog/topo_30s/const_2t.dat
+    wps/2026/03/met_em.d01.2026-03-01_00.nc
+```
+When 100+ files, the recommended way is to create plain text file containing the file path and use that in the `conf` to pull the data.
+
+Example Config (`wrf-case-03.conf`):
+
+```ini
+[SYNC]
+s3_endpoint = s3://open-data-bucket/
+# Optional tuning parameters:
+nr_workers = 2
+log_level = info
+
+[FILES]
+manifest = /cluster/projects/nn9999k/case-01.filelist
+```
+`manifest` must be in absolute path. The filelist `case-01.filelist` is the plain text, one object key per line, relative to s3_bucket. Blank lines and `#` comments are ignored.
+An example line in  `case-01.filelist` is given below.
+
+> geog/topo_30s/const_2t.dat
 
 #### Field reference:
 
 - s3_endpoint (required): The URL of the CDL project S3 bucket. 
-- target_path (required): The path to synchronise. Glob patterns are supported (e.g. * matches all files in that directory).
+- target_path (required for Mode 1): The path to synchronise. Glob patterns are supported (e.g. * matches all files in that directory).
 - nr_workers (optional): Number of parallel download workers. Default is 1. Increase for large datasets to speed up the transfer. Upper limit 512
 - log_level (optional): Logging verbosity. Accepted values: info, warning, error. Default is info.
 
