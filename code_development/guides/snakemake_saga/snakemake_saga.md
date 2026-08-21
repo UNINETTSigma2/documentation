@@ -11,7 +11,7 @@ This guide demonstrates how to configure and run Snakemake pipelines efficiently
 In both approaches on this page, Snakemake itself is loaded as a cluster module:
 
 ```bash
-module load snakemake/8.27.0-foss-2024a
+module load snakemake/9.14.0-foss-2025a
 ```
 
 Snakemake acts as the **orchestrator**: it runs on the login node, reads the `Snakefile`, resolves dependencies, and submits SLURM jobs. Both approaches load a Snakemake module on Saga. They differ only in how the **software environment inside each rule** is provided:
@@ -196,7 +196,7 @@ You can also ask Snakemake for a summary of what was run and whether all outputs
 
 ```bash
 # Load module
-module load snakemake/8.27.0-foss-2024a
+module load snakemake/9.14.0-foss-2025a
 # Print summary
 snakemake --summary
 ```
@@ -207,15 +207,29 @@ If you want a quick visual of the workflow graph, generate a Directed Acyclic Gr
 
 ```bash
 # load snakemake module
-module load snakemake/8.27.0-foss-2024a
+module load snakemake/9.14.0-foss-2025a
 # Generate the DAG
 snakemake --dag | dot -Tpng > workflow_dag.png
+```
+
+```{figure} files/workflow_dag.png
+---
+alt: DAG showing the full dependency graph for the example workflow
+---
+Directed Acyclic Graph (DAG) of the workflow, showing each job instance and its dependencies.
 ```
 
 If you prefer a cleaner graph that focuses on rules rather than every file node, generate the rule graph:
 
 ```bash
 snakemake --rulegraph | dot -Tpng > workflow_rulegraph.png
+```
+
+```{figure} files/workflow_rulegraph.png
+---
+alt: Rule graph showing rule-level dependencies for the example workflow
+---
+Simplified rule graph showing only rule-level dependencies, without individual file nodes.
 ```
 
 On Saga, loading the Snakemake module is sufficient for these commands; no separate Graphviz module load is needed.
@@ -248,17 +262,3 @@ Snakemake always looks for a file named exactly `Snakefile` (no extension, capit
 Run the pipeline as described earlier on this page: open `tmux` or `screen`, make the script executable and run the script.
 
 [Snakemake]:https://snakemake.readthedocs.io/en/stable/
-
-This guide provides a description on how to run Snakemake on Saga.
-
-## Loading Snakemake
-There are two ways to load Snakemake:
-
-1. Using a module on Saga:
-
-```bash
-$ module load Snakemake
-```
-
-2. Using a container
-
