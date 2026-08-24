@@ -9,12 +9,12 @@ orphan: true
 NRIS Training and KI-Fabrikken are organizing a third round of Distributed LLM Fine-Tuning & Inference on HPC systems. This is a two-day, in-person, hands-on course. Gain practical, hands-on experience over two days working with single-GPU fine-tuning, multi-GPU scaling on single- and multi-node setups, and optimized LLM inference on a high-performance computing (HPC) system. Attend this course to build applied skills in optimizing large language models in HPC environments.
 
 ```{note}
-The dates and location for this event is tentative and may be changed. Registration will open when the dates and location is finalized.
+The location for this event is tentative and may be changed. Registration will open when the location is finalized.
 ```
 
-**When:** October 8th-9th, 2026 (tentative)
+**When:** November 18.-19., 2026
 
-**Where:** Trondheim/NTNU (tentative)
+**Where:** Trondheim (tentative)
 
 **Instructor:** [Hicham Agueny](https://www.linkedin.com/in/hicham-agueny-956a1368/)
 
@@ -36,7 +36,7 @@ To attend this course it is recommended to have some familiarity with the follow
 **Registration:** TBA
 
 ## Practical Information
-The course is free of charge, but will have a maximum capacity of 25 people. 
+The course is free of charge, but will have a maximum capacity of 20 people. 
 
 ## Contact us
 
