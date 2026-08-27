@@ -69,6 +69,18 @@ salloc --nodes=1 --time=00:30:00 --qos=devel --partition=accel --account=YourAcc
 - **`--gpus=1`**: Allocates one GPU.
 
 
+(interactive-overlap-jobs)=
+## Using an interactive job to monitor another job
+
+After starting a normal job script, it can sometimes be useful to log into the node where the job is running. For example, you might want to monitor resource usage in real time using tools like `top` or `nvidia-smi`.
+
+To start an interactive shell on an already running job, you need its JobID, which you can get for example from `squeue --me` . Then, run the following command from the login nodes:
+
+```bash
+$ srun --overlap --jobid JobID --pty bash
+```
+
+
 ## Graphical user interface in interactive jobs
 
 It is possible to run X commands, i.e., programs with a graphical user
