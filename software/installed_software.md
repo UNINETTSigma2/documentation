@@ -1,5 +1,7 @@
 # Installed software
 
+````{dropdown} Important details!
+
 When logging in to Saga and Betzy the `MODULEPATH` is set up to show all the default software module packages available. To get an overview of software installed issue command
 
 	module overview
@@ -18,8 +20,7 @@ After logging in, no software stack is loaded by default. There are three types 
 
 * Cray programming environment (`CrayEnv`) providing compilers, libraries and tooling optimized for HPE Cray systems
 * `NRIS` software stacks providing software and libraries installed by us
-* `EESSI` software stacks providing software and libraries curated by the European EESSI project
-Cray programming environment providing compilers, libraries and tooling optimized for HPE Cray systems
+* `EESSI` software stacks providing software and libraries curated by the European EESSI project and additional software installed locally on top of EESSI
 
 See the available stacks with command
 
@@ -36,7 +37,7 @@ You should see output similar to this:
    L:  Module is loaded
 ```
 
-Since Olivia have different node architectures there are three types of `NRIS` software stacks installed on Olivia:
+Since Olivia has different node architectures there are three types of `NRIS` software stacks installed on Olivia:
 
 - **`NRIS/CPU`**: Contains software packages and libraries optimized for the **CPU compute nodes**.
 - **`NRIS/GPU`**: Currently includes libraries, compilers, and tools for building software for the Grace-Hopper 200 GPUs.
@@ -44,20 +45,13 @@ Since Olivia have different node architectures there are three types of `NRIS` s
 - **`NRIS/Login`**: Includes tools for pre- and post-processing data. 
   **Note**: Do not use this stack for running workflows on the compute nodes.
 
-
-Load one of the stack modules and see available software for that partition, e.g.:
-
-	module load NRIS/CPU
-	module available
-
+As for [EESSI](https://documentation.sigma2.no/software/eessi.html) there are two available software stacks:
+- **`EESSI/2023.06`**: Contains software packages and libraries optimized for toolchains **`foss/2022b`**, **`foss/2023a`**, and **`foss/2023b`**. 
+- **`EESSI/2025.06`**: Contains software packages and libraries optimized for toolchains **`foss/2024a`**, **`foss/2025a`**, and **`foss/2025b`**.
 
 ```{note}
 When building your software for production jobs make sure that you compile your code on a compute node. Allocate a compute node, e.g. running an interactive job (see [Interactive jobs](https://documentation.sigma2.no/jobs/interactive_jobs.html) and load one of the NRIS/CPU or NRIS/GPU stacks.
 ```
-
-## EESSI
-For software provided by EESSI see the [EESSI](https://documentation.sigma2.no/software/eessi.html) on NRIS clusters documentation.
-
 
 ## Which extensions are available?
 
@@ -107,16 +101,13 @@ We see that these Python packages are included in the module:
 If you do not want to see extensions in the output you can run the module command with the `--nx` option, like this: `module --nx available`
 ```
 
+````
+This catalogue lists software installed on NRIS HPC systems including the software available through the common [EESSI software stacks](https://www.eessi.io/docs/available_software/), which can run on HPC systems as well as laptops, personal workstations, and cloud infrastructure:
 
-
-
-
-
-
-
-
-
-
-
-
-
+```{raw} html
+<div id="installed-software-catalogue" data-source="../_static/installed-software.json">
+<div class="software-controls">
+<div class="software-control"><label for="software-search">Software</label><input id="software-search" type="search" placeholder="Search name, version, or module"></div>
+<div class="software-control"><label for="system-filter">System</label><select id="system-filter"><option value="">All systems</option></select></div>
+</div><div id="software-count" aria-live="polite">Loading catalogue...</div><div id="software-list"></div></div>
+```
