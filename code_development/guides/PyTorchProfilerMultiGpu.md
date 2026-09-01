@@ -86,11 +86,11 @@ echo "--nbr of gpus_per_node" $SLURM_GPUS_PER_NODE
 ````
 
 
-# Performance Metrics 
+## Performance Metrics 
 
 In this section, we present screenshots of various performance metrics captured using the PyTorch Profiler. These metrics provide insights into GPU-specific logs and help us analyze the performance of our multi-GPU setup.
 
-## 1. GPU Usage
+### 1. GPU Usage
 
 When profiling performance metrics for multiple GPUs, the TensorBoard dashboard allows us to select and view the metrics for each GPU individually. For example, as shown in the figure below, we can analyze the GPU utilization for each GPU in the system:
 ```{figure} pytorch_profiler_multiGpus/Images/gpusoverview.png
@@ -99,7 +99,7 @@ When profiling performance metrics for multiple GPUs, the TensorBoard dashboard 
 ```
 The dashboard provides detailed information, including GPU utilization for each GPU. In our case, both GPUs are utilized at approximately **33%**, and the profiler also provides performance recommendations for both GPUs. These insights are valuable for identifying bottlenecks and optimizing GPU usage in a distributed training setup.
 
-## 2. Trace View
+### 2. Trace View
 
 Similar to the single GPU case, we can now view the trace for each individual GPU in a multi-GPU setup. The trace view provides a detailed timeline of operations, helping us identify potential bottlenecks for each GPU.
 As shown in the figure below, the trace view allows us to analyze the execution patterns and performance of each GPU:
@@ -110,7 +110,7 @@ As shown in the figure below, the trace view allows us to analyze the execution 
 
 This visualization is particularly useful for pinpointing inefficiencies and understanding how workloads are distributed across GPUs in a distributed training setup.
 
-## 3. Memory View
+### 3. Memory View
 The **Memory View** allows us to compare the memory usage of each GPU over time. This view provides valuable insights into how memory is allocated and utilized by each GPU during training.
 By analyzing the memory usage across different timeframes for individual GPUs, we can identify potential inefficiencies and determine whether any optimizations are needed to improve memory utilization.
 Below are the memory views for the two GPUs used in our setup:
@@ -127,7 +127,7 @@ Below are the memory views for the two GPUs used in our setup:
 
 These visualizations help us monitor and compare memory usage across GPUs, making it easier to identify imbalances or areas for improvement.
 
-## 4. Distributed View
+### 4. Distributed View
 
 The **Distributed View** provides detailed information about the devices used in the multi-GPU setup. This includes details such as the device name, memory usage, and other relevant metrics for each GPU.
 As shown in the figure below, this view helps us understand the hardware configuration and resource utilization for each GPU:
@@ -137,12 +137,12 @@ As shown in the figure below, this view helps us understand the hardware configu
 ```  
 Additionally, the **Distributed View** offers an overview of computation and synchronization across GPUs in a graphical format. This visualization is particularly useful for analyzing how workloads are distributed and synchronized between GPUs, helping us identify potential inefficiencies in the distributed training.
 
-# Conclusion
+## Conclusion
 
 In this guide, we demonstrated how to profile GPU-accelerated deep learning models using the PyTorch Profiler in a multi-GPU setup. By leveraging multiple GPUs, we showcased how to analyze performance metrics, identify bottlenecks, and optimize resource utilization to improve the efficiency of distributed training workflows.
 
 
-# Relevant links
+## Relevant links
 
 [PyTorch Profiler](https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html)
 
