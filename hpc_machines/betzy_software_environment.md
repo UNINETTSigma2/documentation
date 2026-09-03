@@ -1,3 +1,5 @@
+(betzy-software-environment)=
+
 # Software environment on Betzy
 
 As on Saga, scientific software on Betzy will be installed using the

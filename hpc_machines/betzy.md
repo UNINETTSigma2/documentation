@@ -36,3 +36,11 @@ with 1 TiB RAM each.
 
 Almost all components are liquid cooled resulting in a very high cooling efficiency, 95% of heat being captured to water.
 
+## In-depth documentation for Betzy
+```{toctree}
+:maxdepth: 1
+
+betzy_software_environment.md
+../jobs/job_types/betzy_job_types.md
+../jobs/job_scripts/betzy_job_scripts.md
+```

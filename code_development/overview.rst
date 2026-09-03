@@ -5,38 +5,75 @@
 ==============================
 Code development and tutorials
 ==============================
-----------------
-Code development
-----------------
+
+-----------------------------
+Building and compiling code
+-----------------------------
 
 .. toctree::
    :maxdepth: 1
 
    building.md
    building_gpu.md
-   betzy.md
    compilers.md
+   Calling-fortran-from-Python.md
+
+-----------------------
+Debugging and profiling
+-----------------------
+
+.. toctree::
+   :maxdepth: 1
+
    debugging.md
    performance.md
-   Calling-fortran-from-Python.md
+
+----------
+Containers
+----------
+
+In this section we present tutorials and guides related to containerization and the use of containers with GPU support.
+
+.. toctree::
+   :maxdepth: 1
+
    guides/containers.md
+   guides_containers_gpu.md
 
-
----------
-Tutorials
----------
-In this section we present a list of tutorials covering different topics in heterogenous computing involving GPU (Graphics processing unit) accelerators: it goes from GPU programming models, Machine Learning, containers with GPU support to monitoring GPU-accelerated applications.
+---------------
+GPU programming
+---------------
 
 .. toctree::
    :maxdepth: 1
 
    guides_gpu.md
-   guides_ml.md
-   guides_containers_gpu.md
    guides_monitor_gpu.md
-   guides_python.md
-   guides/PyTorchProfilerMultiGpu.md
+
+--------------------------
+Machine learning and LLMs
+--------------------------
+
+In this section we present tutorials and guides related to machine learning and large language models (LLMs).
+
+.. toctree::
+   :maxdepth: 1
+
+   guides_ml.md
+   guides_llm.md
    guides/pytorch_olivia/getting_started.md
    guides/pytorch_olivia/PyTorchSingleGpu.md
+   guides/PyTorchProfilerMultiGpu.md
+
+----------------------------
+Workflow managers and Python
+----------------------------
+
+In this section we present tutorials and guides related to workflow managers like Nextflow and Snakemake, as well as Python programming for scientific computing.
+
+.. toctree::
+   :maxdepth: 1
+
    guides/nextflow_saga/nextflow.md
    guides/snakemake_saga/snakemake_saga.md
+   guides_python.md
