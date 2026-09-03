@@ -1,0 +1,624 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>First calculation &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/installed-software.css?v=e17918be" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/tabs.js?v=3030b3cb"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+      <script src="../_static/installed-software.js?v=9caeda88"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NIRD Data Peak" href="../files_storage/nird/nird_dp.html" />
+    <link rel="prev" title="Open OnDemand" href="ood.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Frequently Asked Questions from training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/collabnotes_archive.html">Collaborative Notes Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/trainingvideos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/qnas.html">Question and Answer events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_transfer.html">Data transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ood.html">Open OnDemand</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">First calculation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#simple-example-to-get-started">Simple example to get started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#longer-example">Longer example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">NIRD Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/rda.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_archive/rda.html#topics">Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_transfer.html">Data transfer</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/node-types.html">NRIS systems overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/node-networking-info.html">Networking on nodes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">First calculation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="first-r-calculation">
+<span id="first-calculation"></span><span id="id1"></span><h1><a class="toc-backref" href="#id2" role="doc-backlink">First calculation</a><a class="headerlink" href="#first-r-calculation" title="Link to this heading"></a></h1>
+<p>Our goal on this page is to get a serial calculation to run on a compute node.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For each example, the script and its Slurm job file must be in the same
+working directory before you submit.</p>
+</div>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#first-r-calculation" id="id2">First calculation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#simple-example-to-get-started" id="id3">Simple example to get started</a></p></li>
+<li><p><a class="reference internal" href="#longer-example" id="id4">Longer example</a></p></li>
+<li><p><a class="reference internal" href="#next-steps" id="id5">Next steps</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="simple-example-to-get-started">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Simple example to get started</a><a class="headerlink" href="#simple-example-to-get-started" title="Link to this heading"></a></h2>
+<p>If you are new to Slurm, start with this minimal Bash sanity check.
+It confirms that submission and output work before adding R, Python, C, or Fortran.</p>
+<p>Simple Bash script (<code class="docutils literal notranslate"><span class="pre">simple_bash.sh</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">"hello from the bash script!"</span>
+</pre></div>
+</div>
+<p>Slurm script (<code class="docutils literal notranslate"><span class="pre">simple_bash_job.sh</span></code>) to run it on <a class="reference internal" href="../hpc_machines/saga.html#saga"><span class="std std-ref">Saga</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#SBATCH --account=&lt;your-account&gt;</span>
+<span class="c1">#SBATCH --job-name=simple-bash</span>
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1">#SBATCH --time=00:01:00</span>
+
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset
+
+bash<span class="w"> </span>simple_bash.sh
+</pre></div>
+</div>
+<p>Submit with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sbatch<span class="w"> </span>simple_bash_job.sh
+</pre></div>
+</div>
+<p>Now we continue with simple calculation examples in R, Python, C, and Fortran.
+For C and Fortran, we compile before execution. For simple examples, this can
+be done directly in the Slurm script.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Ug==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-Ug==" name="Ug==" role="tab" tabindex="0">R</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button><button aria-controls="panel-0-Qw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Qw==" name="Qw==" role="tab" tabindex="-1">C</button><button aria-controls="panel-0-Rm9ydHJhbg==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Rm9ydHJhbg==" name="Rm9ydHJhbg==" role="tab" tabindex="-1">Fortran</button></div><div aria-labelledby="tab-0-Ug==" class="sphinx-tabs-panel group-tab" id="panel-0-Ug==" name="Ug==" role="tabpanel" tabindex="0"><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assumed to be simple.R</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"hello from the R script!"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># assumed to be simple.py</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"hello from the Python script!"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Qw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Qw==" name="Qw==" role="tabpanel" tabindex="0"><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// assumed to be simple.c</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">"hello from the C script!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Rm9ydHJhbg==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Rm9ydHJhbg==" name="Rm9ydHJhbg==" role="tabpanel" tabindex="0"><div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! assumed to be simple.f90</span>
+<span class="k">program </span><span class="n">simple</span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="k">  print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">"hello from the Fortran script!"</span>
+<span class="k">end program </span><span class="n">simple</span>
+</pre></div>
+</div>
+</div></div>
+<p>We can launch the R, Python, C, and Fortran examples on <a class="reference internal" href="../hpc_machines/saga.html#saga"><span class="std std-ref">Saga</span></a> with the
+following job scripts.
+<strong>Before submitting</strong>, adjust at least the line with <code class="docutils literal notranslate"><span class="pre">--account</span></code> to match your
+allocation:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Ug==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-Ug==" name="Ug==" role="tab" tabindex="0">R</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button><button aria-controls="panel-1-Qw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Qw==" name="Qw==" role="tab" tabindex="-1">C</button><button aria-controls="panel-1-Rm9ydHJhbg==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Rm9ydHJhbg==" name="Rm9ydHJhbg==" role="tab" tabindex="-1">Fortran</button></div><div aria-labelledby="tab-1-Ug==" class="sphinx-tabs-panel group-tab" id="panel-1-Ug==" name="Ug==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="hll"><span class="c1">#SBATCH --account=&lt;your-account&gt;</span>
+</span><span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1">#SBATCH --mem=1G</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --time=00:02:00</span>
+
+<span class="c1"># it is good to have the following lines in any bash script</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w">  </span><span class="c1"># make bash exit on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w">  </span><span class="c1"># treat unset variables as errors</span>
+
+module<span class="w"> </span>reset
+module<span class="w"> </span>load<span class="w"> </span>R/4.2.1-foss-2022a
+
+Rscript<span class="w"> </span>simple.R<span class="w"> </span>&gt;<span class="w"> </span>simple.Rout
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="hll"><span class="c1">#SBATCH --account=&lt;your-account&gt;</span>
+</span><span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1">#SBATCH --mem=1G</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --time=00:02:00</span>
+
+<span class="c1"># it is good to have the following lines in any bash script</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w">  </span><span class="c1"># make bash exit on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w">  </span><span class="c1"># treat unset variables as errors</span>
+
+module<span class="w"> </span>reset
+
+module<span class="w"> </span>load<span class="w"> </span>Python/3.14.2-GCCcore-15.2.0
+
+python<span class="w"> </span>simple.py
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-Qw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Qw==" name="Qw==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="hll"><span class="c1">#SBATCH --account=&lt;your-account&gt;</span>
+</span><span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1">#SBATCH --mem=1G</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --time=00:02:00</span>
+
+<span class="c1"># it is good to have the following lines in any bash script</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w">  </span><span class="c1"># make bash exit on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w">  </span><span class="c1"># treat unset variables as errors</span>
+
+module<span class="w"> </span>reset
+module<span class="w"> </span>load<span class="w"> </span>foss/2022a
+
+<span class="c1"># compile and run inside the Slurm job</span>
+gcc<span class="w"> </span>-O2<span class="w"> </span>simple.c<span class="w"> </span>-o<span class="w"> </span>simple_c
+./simple_c<span class="w"> </span>&gt;<span class="w"> </span>simple_c.out
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-Rm9ydHJhbg==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Rm9ydHJhbg==" name="Rm9ydHJhbg==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="hll"><span class="c1">#SBATCH --account=&lt;your-account&gt;</span>
+</span><span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1">#SBATCH --mem=1G</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --time=00:02:00</span>
+
+<span class="c1"># it is good to have the following lines in any bash script</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w">  </span><span class="c1"># make bash exit on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w">  </span><span class="c1"># treat unset variables as errors</span>
+
+module<span class="w"> </span>reset
+module<span class="w"> </span>load<span class="w"> </span>foss/2022a
+
+<span class="c1"># compile and run inside the Slurm job</span>
+gfortran<span class="w"> </span>-O2<span class="w"> </span>simple.f90<span class="w"> </span>-o<span class="w"> </span>simple_fortran
+./simple_fortran<span class="w"> </span>&gt;<span class="w"> </span>simple_fortran.out
+</pre></div>
+</div>
+</div></div>
+<p>Submit the example job scripts with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sbatch<span class="w"> </span>&lt;your_slurm_script&gt;
+</pre></div>
+</div>
+</section>
+<section id="longer-example">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Longer example</a><a class="headerlink" href="#longer-example" title="Link to this heading"></a></h2>
+<p>Here is a longer example that approximates pi using a Monte Carlo method.
+It runs 100 iterations, each throwing 2 million random points. This takes
+roughly 1 minute in R; C and Fortran will typically be faster.</p>
+<p>The Python version uses NumPy, which runs array operations as compiled C code
+internally. This makes it faster than R here, and much faster than a plain
+Python loop would be. A pure Python implementation of the same calculation
+would be an order of magnitude slower than C or Fortran.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Ug==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-Ug==" name="Ug==" role="tab" tabindex="0">R</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button><button aria-controls="panel-2-Qw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-Qw==" name="Qw==" role="tab" tabindex="-1">C</button><button aria-controls="panel-2-Rm9ydHJhbg==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-Rm9ydHJhbg==" name="Rm9ydHJhbg==" role="tab" tabindex="-1">Fortran</button></div><div aria-labelledby="tab-2-Ug==" class="sphinx-tabs-panel group-tab" id="panel-2-Ug==" name="Ug==" role="tabpanel" tabindex="0"><div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># assumed to be sequential.R</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">foreach</span><span class="p">)</span>
+
+
+<span class="c1"># this function approximates pi by throwing random points into a square</span>
+<span class="c1"># it is used here to demonstrate a function that takes a bit of time</span>
+<span class="n">approximate_pi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># number of points to use</span>
+<span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2000000</span>
+
+<span class="w">  </span><span class="c1"># generate n random points in the square</span>
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">runif</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">-1.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">)</span>
+<span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">runif</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">-1.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1"># count the number of points that are inside the circle</span>
+<span class="w">  </span><span class="n">n_in</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">1.0</span><span class="p">)</span>
+
+<span class="w">  </span><span class="m">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n_in</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n</span>
+<span class="p">}</span>
+
+
+<span class="nf">foreach </span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">.combine</span><span class="o">=</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="o">%do%</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">approximate_pi</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># assumed to be sequential.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">approximate_pi</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Approximate pi by throwing random points in a unit square and </span>
+<span class="sd">    counting how many fall inside the unit circle.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        float: Approximation of pi.</span>
+<span class="sd">    """</span>
+
+    <span class="c1"># Number of random points to generate</span>
+    <span class="n">num_points</span> <span class="o">=</span> <span class="mi">2000000</span>
+
+    <span class="c1"># Generate random points in the square [-1, 1] x [-1, 1]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">num_points</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">num_points</span><span class="p">)</span>
+
+    <span class="c1"># Count how many points fall inside the unit circle</span>
+    <span class="n">inside_circle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Approximate pi using the ratio of points inside the circle to total points</span>
+    <span class="n">pi_approximation</span> <span class="o">=</span> <span class="p">(</span><span class="n">inside_circle</span> <span class="o">/</span> <span class="n">num_points</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span>
+
+    <span class="k">return</span> <span class="n">pi_approximation</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">approximate_pi</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-Qw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-Qw==" name="Qw==" role="tabpanel" tabindex="0"><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// assumed to be sequential.c</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;time.h&gt;</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">approximate_pi</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2000000</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n_in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">RAND_MAX</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">RAND_MAX</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span>
+<span class="w">            </span><span class="n">n_in</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mf">4.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n_in</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">srand</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="n">approximate_pi</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-Rm9ydHJhbg==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-Rm9ydHJhbg==" name="Rm9ydHJhbg==" role="tabpanel" tabindex="0"><div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! assumed to be sequential.f90</span>
+<span class="k">program </span><span class="n">sequential</span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2000000</span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">n_in</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">pi</span>
+
+<span class="w">  </span><span class="k">call </span><span class="nb">random_seed</span><span class="p">()</span>
+<span class="w">  </span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span>
+<span class="w">    </span><span class="n">n_in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span>
+<span class="w">      </span><span class="k">call </span><span class="nb">random_number</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">      </span><span class="k">call </span><span class="nb">random_number</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="w">      </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0d0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.0d0</span>
+<span class="w">      </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0d0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.0d0</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1.0d0</span><span class="p">)</span><span class="w"> </span><span class="n">n_in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n_in</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">end do</span>
+<span class="k">    </span><span class="n">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4.0d0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n_in</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n</span>
+<span class="w">  </span><span class="k">end do</span>
+<span class="k">end program </span><span class="n">sequential</span>
+</pre></div>
+</div>
+</div></div>
+<p>And the corresponding Slurm scripts.
+<strong>Before submitting</strong>, adjust at least the line with <code class="docutils literal notranslate"><span class="pre">--account</span></code> to match your
+allocation:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-Ug==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-Ug==" name="Ug==" role="tab" tabindex="0">R</button><button aria-controls="panel-3-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button><button aria-controls="panel-3-Qw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-Qw==" name="Qw==" role="tab" tabindex="-1">C</button><button aria-controls="panel-3-Rm9ydHJhbg==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-Rm9ydHJhbg==" name="Rm9ydHJhbg==" role="tab" tabindex="-1">Fortran</button></div><div aria-labelledby="tab-3-Ug==" class="sphinx-tabs-panel group-tab" id="panel-3-Ug==" name="Ug==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="hll"><span class="c1">#SBATCH --account=&lt;your-account&gt;</span>
+</span><span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1">#SBATCH --mem=2G</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --time=00:02:00</span>
+
+<span class="c1"># it is good to have the following lines in any bash script</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w">  </span><span class="c1"># make bash exit on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w">  </span><span class="c1"># treat unset variables as errors</span>
+
+module<span class="w"> </span>restore
+module<span class="w"> </span>load<span class="w"> </span>R/4.2.1-foss-2022a
+
+Rscript<span class="w"> </span>sequential.R<span class="w"> </span>&gt;<span class="w"> </span>sequential.Rout
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-3-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-3-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="hll"><span class="c1">#SBATCH --account=&lt;your-account&gt;</span>
+</span><span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1">#SBATCH --mem=2G</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --time=00:02:00</span>
+
+<span class="c1"># it is good to have the following lines in any bash script</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w">  </span><span class="c1"># make bash exit on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w">  </span><span class="c1"># treat unset variables as errors</span>
+
+module<span class="w"> </span>reset
+
+module<span class="w"> </span>load<span class="w"> </span>Python/3.14.2-GCCcore-15.2.0
+
+python<span class="w"> </span>sequential.py<span class="w"> </span>&gt;<span class="w"> </span>sequential.pyout
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-3-Qw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-3-Qw==" name="Qw==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="hll"><span class="c1">#SBATCH --account=&lt;your-account&gt;</span>
+</span><span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1">#SBATCH --mem=2G</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --time=00:02:00</span>
+
+<span class="c1"># it is good to have the following lines in any bash script</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w">  </span><span class="c1"># make bash exit on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w">  </span><span class="c1"># treat unset variables as errors</span>
+
+module<span class="w"> </span>reset
+module<span class="w"> </span>load<span class="w"> </span>foss/2022a
+
+gcc<span class="w"> </span>-O2<span class="w"> </span>sequential.c<span class="w"> </span>-o<span class="w"> </span>sequential_c
+./sequential_c<span class="w"> </span>&gt;<span class="w"> </span>sequential_c.out
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-3-Rm9ydHJhbg==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-3-Rm9ydHJhbg==" name="Rm9ydHJhbg==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="hll"><span class="c1">#SBATCH --account=&lt;your-account&gt;</span>
+</span><span class="c1">#SBATCH --job-name=example</span>
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1">#SBATCH --mem=2G</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --time=00:02:00</span>
+
+<span class="c1"># it is good to have the following lines in any bash script</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>errexit<span class="w">  </span><span class="c1"># make bash exit on any error</span>
+<span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>nounset<span class="w">  </span><span class="c1"># treat unset variables as errors</span>
+
+module<span class="w"> </span>reset
+module<span class="w"> </span>load<span class="w"> </span>foss/2022a
+
+gfortran<span class="w"> </span>-O2<span class="w"> </span>sequential.f90<span class="w"> </span>-o<span class="w"> </span>sequential_fortran
+./sequential_fortran<span class="w"> </span>&gt;<span class="w"> </span>sequential_fortran.out
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="next-steps">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p><strong>R</strong></p>
+<ul class="simple">
+<li><p>To find available R modules: <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">spider</span> <span class="pre">R</span></code> or <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">spider</span> <span class="pre">bioconductor</span></code></p></li>
+<li><p>For selecting the right module: <a class="reference internal" href="../software/userinstallsw/R.html#installing-r-libraries-modules"><span class="std std-ref">Selecting the module to load</span></a></p></li>
+<li><p>For installing additional R packages and running parallel R jobs: <a class="reference internal" href="../software/userinstallsw/R.html#installing-r-libraries"><span class="std std-ref">Installing R libraries</span></a></p></li>
+</ul>
+<p><strong>Python</strong></p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">spider</span> <span class="pre">Python</span></code> to see available Python modules</p></li>
+<li><p>Consider using containers to manage Python environments: <a class="reference internal" href="../code_development/guides_containers_gpu.html#dev-guides-containers"><span class="std std-ref">Containers with GPU support</span></a></p></li>
+</ul>
+<p><strong>C and Fortran</strong></p>
+<ul class="simple">
+<li><p>For compiler options and optimization flags, see <a class="reference internal" href="../code_development/compilers.html"><span class="doc">Compilers</span></a></p></li>
+<li><p>For building more complex projects: <a class="reference internal" href="../code_development/building.html"><span class="doc">Building scientific software</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ood.html" class="btn btn-neutral float-left" title="Open OnDemand" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../files_storage/nird/nird_dp.html" class="btn btn-neutral float-right" title="NIRD Data Peak" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
