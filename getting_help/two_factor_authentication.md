@@ -31,6 +31,12 @@ First click [User Login (Passwords)](https://www.metacenter.no/user/)
 
 6.  Wait for the resources to sync the new information. 
 
+**NB**: Remember to save the recovery-codes, you will need this if you want to reset your OTP-link later (changed phone, etc).
+
+## Reset OTP-link
+
+If you change- or reset your phone, re-install the authenticator app, or your OTP-code stops working for some reason, you need to reset the current configuration/link, and set up a new one. This can be done by first logging in to [metacenter/otp](https://www.metacenter.no/user/otp/) with username + password, and then enter the `recovery code` you saved when setting up OTP. If you do not have this, please send an email to contact@sigma2.no and ask assistance with reseting.
+
 ## Video guide ## 
 
 [[Video] 2FA setup guide for the national e-infrastructure systems](https://www.youtube.com/watch?v=az3HLlwlyDA)    
