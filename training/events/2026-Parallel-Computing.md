@@ -193,6 +193,13 @@ There is no closing date for the course registration, and you can sign up for th
 </details>
 <br>
 
+```{note}
+**Video material playlist:** [https://www.youtube.com/playlist?list=PLT7eQ-q2IRjU](https://www.youtube.com/playlist?list=PLT7eQ-q2IRjU)
+
+**Collaborative documents:**
+- [Episode 1](https://md.sigma2.no/Parallel-Computing-Course-Sept-2026)
+```
+
 The [policy](https://documentation.sigma2.no/hpc_machines/olivia/software_stack.html#python-r-and-ana-conda) on Olivia is that you should not use `pip install` with Python in the same way you would on your laptop, because it will create a large number of files. On Olivia’s shared file system, this will place unnecessary strain on the system and lead to poor performance. To address this, this course will show how to perform `pip install` inside a container and how to use that container for parallel computing with Python on Olivia. 
 
 **See also:** the Story of Python and how it took over the world: [Python: The Documentary](https://www.youtube.com/watch?v=GfH4QL4VqJ0)
