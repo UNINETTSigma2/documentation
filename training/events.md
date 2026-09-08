@@ -19,6 +19,7 @@ events/2026-Parallel-Computing.md
 events/2026-Fall-OBC.md
 events/2026-LLM-Course-Trondheim.md
 events/2026-Bring-Your-Own-Code.md
+events/2026-EESSI-intro-workshop.md
 ```
 
 ## Upcoming events from our collaborators
