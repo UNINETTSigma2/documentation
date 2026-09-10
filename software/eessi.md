@@ -12,11 +12,11 @@ popular streaming services for videos and music.
 For the impatient, the single command to get access to EESSI (on NRIS operated
 systems) is just
 
-    module load EESSI/2023.06
+    module load EESSI/2023.06 OR module load EESSI/2025.06
 
 Thereafter, software can be used via environment modules, for example,
 
-    module load GROMACS/2024.1-foss-2023b
+    module load GROMACS/2026.2-foss-2025b
 
 just like it would be used with a traditionally provided installation.
 

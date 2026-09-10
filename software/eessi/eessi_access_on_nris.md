@@ -9,7 +9,7 @@ command:
 
 ``` bash { code-block }
 # to access the EESSI software stack
-module load EESSI/2023.06
+module load EESSI/2023.06 OR module load EESSI/2025.06
 ```
 
 The module file will detect the CPU hardware of the machine and pick the best
