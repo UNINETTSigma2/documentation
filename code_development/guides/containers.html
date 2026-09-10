@@ -1,0 +1,428 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Containers on NRIS HPC systems &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/statuspal.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/installed-software.css?v=e17918be" />
+
+  
+    <link rel="shortcut icon" href="../../_static/nris.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/tabs.js?v=3030b3cb"></script>
+      <script src="../../_static/statuspal_widget.js"></script>
+      <script src="../../_static/installed-software.js?v=9caeda88"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Building the Container" href="containers/building-container.html" />
+    <link rel="prev" title="How to Run Mathematica on Saga Using Singularity" href="../../software/userinstallsw/mathematica.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/material.html">Training materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/notes_qa.html">Frequently Asked Questions from training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/collabnotes_archive.html">Collaborative Notes Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/trainingvideos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/qnas.html">Question and Answer events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../training/short_instructions.html">Short Instructions Video Archives</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/data_transfer.html">Data transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/first_calculation.html">First calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird/cdl.html">NIRD Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/rda.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_archive/rda.html#topics">Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files_storage/performance.html">Optimizing storage performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/data_transfer.html">Data transfer</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jobs/node-types.html">NRIS systems overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../software/userinstallsw.html">Installing software as user</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../software/userinstallsw/easybuild.html">Installing software with EasyBuild</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../software/userinstallsw/python.html">Installing Python packages as a user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../software/userinstallsw/conda.html">Installing software with Conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../software/userinstallsw/R.html">Installing R libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../software/userinstallsw/perl.html">Installing Perl modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../software/userinstallsw/ORCA.html">ORCA (quantum chemistry program)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../software/userinstallsw/mathematica.html">How to Run Mathematica on Saga Using Singularity</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Containers on NRIS HPC systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-apptainer-singularity">What is Apptainer(Singularity)?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-access-apptainer-on-nris-hpc-systems">How to access apptainer on NRIS HPC systems</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-container-images">Getting container images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-apptainer-images">Building Apptainer images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-a-container">Running a container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-cases">Use Cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#job-script-and-examples">Job script and Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="containers/building-container.html">Building the Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="containers/job-scripts-examples.html">Apptainer in job scripts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="containers/advanced-use-cases.html">Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="containers/bigdft.html">BigDFT with MPI and CUDA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="containers/additional-information/understanding-container-concepts.html">What is a container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="containers/additional-information/container-benefit.html">Benefits of Using Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="containers/additional-information/singularity-cache.html">Apptainer Cache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="containers/additional-information/apptainer-info.html">Filesystem Mounts in Apptainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="containers/additional-information/additional-info.html">Additional Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/eessi.html">EESSI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/node-networking-info.html">Networking on nodes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../software/userinstallsw.html">Installing software as user</a></li>
+      <li class="breadcrumb-item active">Containers on NRIS HPC systems</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="containers-on-nris-hpc-systems">
+<span id="running-containers"></span><h1>Containers on NRIS HPC systems<a class="headerlink" href="#containers-on-nris-hpc-systems" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently, <a class="reference external" href="https://apptainer.org/">Apptainer</a> is the only supported
+container solution on our HPC systems (Saga, Betzy, Olivia). However,
+since Apptainer can build containers from Docker images, it is also
+possible to run <a class="reference external" href="https://www.docker.com/">Docker</a> containers through
+Apptainer. Moreover, for this particular guide, we assume the reader
+should have some prior knowledge about docker.</p>
+</div>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#what-is-apptainersingularity"><span class="std std-ref">What is Apptainer</span></a></p></li>
+<li><p><a class="reference internal" href="#how-to-access-apptainer-on-nris-hpc-systems"><span class="std std-ref">How to access apptainer on NRIS HPC systems</span></a></p></li>
+<li><p><a class="reference internal" href="#getting-container-images"><span class="std std-ref">Getting container images</span></a></p></li>
+<li><p><a class="reference internal" href="#building-apptainer-images"><span class="std std-ref">Building Apptainer images</span></a></p></li>
+<li><p><a class="reference internal" href="#running-a-container"><span class="std std-ref">Running a container</span></a></p></li>
+<li><p><a class="reference internal" href="containers/additional-information/additional-info.html#additional-information"><span class="std std-ref">Additional Information</span></a></p></li>
+<li><p><a class="reference internal" href="#use-cases"><span class="std std-ref">Use cases</span></a></p></li>
+<li><p><a class="reference internal" href="#job-scripts-and-examples"><span class="std std-ref">Job scripts &amp; examples</span></a></p></li>
+</ul>
+</section>
+<section id="what-is-apptainer-singularity">
+<span id="what-is-apptainersingularity"></span><h2>What is Apptainer(Singularity)?<a class="headerlink" href="#what-is-apptainer-singularity" title="Link to this heading"></a></h2>
+<p>Apptainer (formerly Singularity) is one of the container platforms
+which is built specifically for HPC environments. The goal of
+Apptainer is to package software and its dependencies into a single,
+portable unit. In the HPC infrastructure, security and performance
+are critical which is the reason why Apptainer is chosen over another
+tool like Docker.</p>
+<p>It is very important to know why Docker is not used in HPC environment.
+Docker relies on a background service called the Docker Daemon, which
+runs with absolute administrative privileges (<code class="docutils literal notranslate"><span class="pre">root</span></code>). This Docker
+Daemon will run the commands for the user when the regular user interact
+with Docker. Because of this, a user can easily exploit Docker to access,
+modify or delete system files on the host server which will be critical
+in terms of security.</p>
+<p>However, Apptainer completely eliminates this security risk by discarding
+the background daemon entirely. It operates entirely within the User Space
+with these functionalities:</p>
+<ol class="arabic simple">
+<li><p>The identity is strictly preserved. With the apptainer container, you
+are exactly the same user inside and outside the container with the same
+permission that you have.</p></li>
+<li><p>It launches just like any standard application or script on the cluster,
+hooking directly into the host machine´s Linux Kernel using native isolation
+features (like namespaces) without needing administrative intervention.
+Hence, there are no background daemons like in Docker.</p></li>
+<li><p>Apptainer packages an entire runtime environment into a single Apptainer
+Image Format (.sif) which is easy to copy and share.</p></li>
+</ol>
+<p>Please refer to the <a class="reference internal" href="containers/additional-information/additional-info.html#additional-information"><span class="std std-ref">Additional Information</span></a> to learn more about containers.</p>
+<section id="how-to-access-apptainer-on-nris-hpc-systems">
+<span id="id1"></span><h3>How to access apptainer on NRIS HPC systems<a class="headerlink" href="#how-to-access-apptainer-on-nris-hpc-systems" title="Link to this heading"></a></h3>
+<p>Apptainer is already installed globally on all our systems, and should be
+immediately available on your command line (no <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> necessary):</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-U2FnYQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-U2FnYQ==" name="U2FnYQ==" role="tab" tabindex="0">Saga</button><button aria-controls="panel-0-QmV0enk=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-QmV0enk=" name="QmV0enk=" role="tab" tabindex="-1">Betzy</button><button aria-controls="panel-0-T2xpdmlh" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-T2xpdmlh" name="T2xpdmlh" role="tab" tabindex="-1">Olivia</button></div><div aria-labelledby="tab-0-U2FnYQ==" class="sphinx-tabs-panel group-tab" id="panel-0-U2FnYQ==" name="U2FnYQ==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[SAGA]$ </span>apptainer<span class="w"> </span>--version
+<span class="go">apptainer version 1.4.4-1.el9</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-QmV0enk=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-QmV0enk=" name="QmV0enk=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[BETZY]$ </span>apptainer<span class="w"> </span>--version
+<span class="go">apptainer version 1.4.4-1.el9</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-T2xpdmlh" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-T2xpdmlh" name="T2xpdmlh" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[OLIVIA]$ </span>apptainer<span class="w"> </span>--version
+<span class="go">apptainer version 1.4.5-150600.4.12.1</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+</section>
+<section id="getting-container-images">
+<span id="id2"></span><h2>Getting container images<a class="headerlink" href="#getting-container-images" title="Link to this heading"></a></h2>
+<p>Before getting a container images to run inside the cluster, you need
+to know where to find these container images that you can use for your
+project. Here is the list of sources where you could find a container image from:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://hub.docker.com/">Docker</a></p></li>
+<li><p><a class="reference external" href="https://catalog.ngc.nvidia.com/search?sort=weightPopularDESC&amp;amp;resourceType=container">Nvidia NGC catalog</a></p></li>
+<li><p><a class="reference external" href="https://datasets.datalad.org/?dir=/shub">Singularity Hub</a></p></li>
+</ol>
+<p>Once you know where to fetch it from, Apptainer images can be fetched
+from the web using the <code class="docutils literal notranslate"><span class="pre">apptainer</span> <span class="pre">pull</span></code> command, which will download a
+SIF (Singularity Image Format) file to your current directory.
+Notice that with Apptainer, an image is just a simple binary file, and
+there’s nothing special about the directory in which you run the <code class="docutils literal notranslate"><span class="pre">apptainer</span> <span class="pre">pull</span></code>
+command. This means that you can move your image around as you please,
+and even <code class="docutils literal notranslate"><span class="pre">scp</span></code> it to a different machine and execute it there (as long as
+you have Apptainer installed, of course).</p>
+<p>There are a number of different online repositories for hosting images,
+some of the more common ones are listed below. Notice how you can pull
+Docker images directly from Docker-Hub using Apptainer.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-U2FnYQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-U2FnYQ==" name="U2FnYQ==" role="tab" tabindex="0">Saga</button><button aria-controls="panel-1-QmV0enk=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-QmV0enk=" name="QmV0enk=" role="tab" tabindex="-1">Betzy</button><button aria-controls="panel-1-T2xpdmlh" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-T2xpdmlh" name="T2xpdmlh" role="tab" tabindex="-1">Olivia</button></div><div aria-labelledby="tab-1-U2FnYQ==" class="sphinx-tabs-panel group-tab" id="panel-1-U2FnYQ==" name="U2FnYQ==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">apptainer pull --name hello-world.sif shub://vsoch/hello-world</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-QmV0enk=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-QmV0enk=" name="QmV0enk=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">apptainer pull --name ubuntu.sif docker://quay.io/libpod/ubuntu:latest</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-T2xpdmlh" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-T2xpdmlh" name="T2xpdmlh" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">apptainer pull --arch arm64 pytorch_25.08_cuda13.0_arm.sif docker://nvcr.io/nvidia/pytorch:25.08-py3</span>
+</pre></div>
+</div>
+</div></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For both Saga and Betzy, the apptainer pull command will work without specifying the architecture. However, on Olivia the architecture is different in the login nodes and the compute nodes. Hence, you must use this <code class="docutils literal notranslate"><span class="pre">--arch</span> <span class="pre">arm64</span></code> flag which specify the architecture in the apptainer pull command.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To prevent home-directory quota issues, please do these before pulling the larger image so that, the cache will be stored in your project area.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">-p</span> <span class="pre">/cluster/work/projects/&lt;project_number&gt;/$USER/apptainer/tmp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">APPTAINER_TMPDIR=/cluster/work/projects/&lt;project_number&gt;/apptainer/tmp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">APPTAINER_CACHEDIR=/cluster/work/projects/&lt;project_number&gt;/$USER/apptainer/tmp</span></code></p></li>
+</ol>
+</div>
+</section>
+<section id="building-apptainer-images">
+<span id="id3"></span><h2>Building Apptainer images<a class="headerlink" href="#building-apptainer-images" title="Link to this heading"></a></h2>
+<p>In many cases, you might want to build your own container images and then install
+additional packages into the image. Please refer to this <a class="reference internal" href="containers/building-container.html#building-container"><span class="std std-ref">Building Container</span></a>
+section to read more about it.</p>
+</section>
+<section id="running-a-container">
+<span id="id4"></span><h2>Running a container<a class="headerlink" href="#running-a-container" title="Link to this heading"></a></h2>
+<p>Once you have a container image (.sif), Apptainer provides three primary ways to interact with it depending on your needs:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">run</span></code>: Executes the container’s default action or entry point script (defined when the image was built).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exec</span></code>: Bypasses the image’s default launch behavior to execute a specific binary or custom command.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shell</span></code>: Opens an interactive terminal inside the container for manual exploration and debugging.</p></li>
+</ol>
+<p>If you pulled the <code class="docutils literal notranslate"><span class="pre">hello-world.sif</span></code> image earlier, you can use the <code class="docutils literal notranslate"><span class="pre">exec</span></code> command to run a specific command inside it like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>hello-world.sif<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Hello from inside the container!"</span>
+</pre></div>
+</div>
+<p>Moreover, it is also possible to open an interactive terminal inside the container to explore the environment or debug manually by using the shell command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apptainer<span class="w"> </span>shell<span class="w"> </span>hello-world.sif
+</pre></div>
+</div>
+<p>To seamlessly work with your data, Apptainer automatically links specific folders from your host computer into the container at startup. This feature, known as automatic bind mounting, ensures you can read and write files without losing access to your personal storage.</p>
+<p>If you want to read more about how Apptainer provides host integration, the deep differences between run, exec, and shell, exactly which system paths are automatically bound, and how you can manually map custom folders to access your host files, refer to <a class="reference internal" href="containers/additional-information/apptainer-info.html#apptainer-info"><span class="std std-ref">Filesystem Mounts in Apptainer</span></a> section.</p>
+</section>
+<section id="use-cases">
+<span id="id5"></span><h2>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<p>Please refer to this page to read more about the <a class="reference internal" href="containers/advanced-use-cases.html#use-cases-nris"><span class="std std-ref">Use Cases</span></a> where
+the containers might be useful in the NRIS system.</p>
+</section>
+<section id="job-script-and-examples">
+<span id="job-scripts-and-examples"></span><h2>Job script and Examples<a class="headerlink" href="#job-script-and-examples" title="Link to this heading"></a></h2>
+<p>If you want to read more about how we can use the apptainer in the job scripts,
+please refer to this <a class="reference internal" href="containers/job-scripts-examples.html#job-script-apptainer"><span class="std std-ref">Job Script Apptainer</span></a></p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../software/userinstallsw/mathematica.html" class="btn btn-neutral float-left" title="How to Run Mathematica on Saga Using Singularity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="containers/building-container.html" class="btn btn-neutral float-right" title="Building the Container" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
