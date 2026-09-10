@@ -50,6 +50,6 @@ Once a machine is set up to have access to the EESSI software stack,
 there is nothing new to learn for a user who is used to running a command such
 as
 
-    module load GROMACS/2024.1-foss-2023b
+    module load GROMACS/2026.2-foss-2025b
 
 **Read about [getting access to the EESSI stacks](eessi-access-on-nris).**
