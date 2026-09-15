@@ -4,17 +4,13 @@ orphan: true
 
 # Distributed LLM Fine-Tuning & Inference on HPC systems, Fall 2026
 
-(2026-LLM-Course-Trondheim)=
+(2026-LLM-Course-Bergen-v2)=
 
-NRIS Training and KI-Fabrikken are organizing a third round of Distributed LLM Fine-Tuning & Inference on HPC systems. This is a two-day, in-person, hands-on course. Gain practical, hands-on experience over two days working with single-GPU fine-tuning, multi-GPU scaling on single- and multi-node setups, and optimized LLM inference on a high-performance computing (HPC) system. Attend this course to build applied skills in optimizing large language models in HPC environments.
-
-```{note}
-The location for this event is tentative and may be changed. Registration will open when the location is finalized.
-```
+NRIS Training is organizing a third round of Distributed LLM Fine-Tuning & Inference on HPC systems. This is a two-day, in-person, hands-on course in Bergen. Gain practical, hands-on experience working with single-GPU fine-tuning, multi-GPU scaling on single- and multi-node setups, and optimized LLM inference on a high-performance computing (HPC) system. Attend this course to build applied skills in optimizing large language models in HPC environments.
 
 **When:** November 18.-19., 2026
 
-**Where:** Trondheim (tentative)
+**Where:** Bergen, University Campus
 
 **Instructor:** [Hicham Agueny](https://www.linkedin.com/in/hicham-agueny-956a1368/)
 
@@ -33,11 +29,11 @@ To attend this course it is recommended to have some familiarity with the follow
 - HPC setup (SSH, Slurm, Linux commands) 
 - Basic understanding of large language models (LLMs)
 
-**Registration:** TBA
+**Registration:** [Register here](https://docs.google.com/forms/d/e/1FAIpQLSe9so1ZdO4_0DEYmf7MLhBvfHkCh9RGNWlZd2cM-Co3m3lriA/viewform?usp=dialog)
 
 ## Practical Information
-The course is free of charge, but will have a maximum capacity of 20 people. 
+The course is free of charge, but will have a maximum capacity of 25 people. 
+Lunch will be included, and coffee/tea will be served.
 
 ## Contact us
-
-You can always {ref}`contact our support team <support-line>`.
+If there are questions regarding the course or NRIS Training, please contact us at **training@nris.no**.
