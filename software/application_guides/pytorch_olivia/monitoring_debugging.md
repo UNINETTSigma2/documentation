@@ -2,34 +2,36 @@
 
 # Monitoring GPU Utilization and Debugging Techniques
 One convenient way to monitor GPU utilization during your training is by using the `nvidia-smi` command within your
-job script. By placing the monitoring code both before and after the actual training command (e.g., the srun command),
+job script. By placing the monitoring code both before and after the actual training command,
 you can track GPU utilization throughout the training process and save the logs to a separate file for later analysis.
 
 `nvidia-smi` is a command-line utility provided by NVIDIA that allows you to monitor and manage GPUs. The
 `--query-gpu` option lets you specify the GPU metrics you want to track, such as the timestamp, GPU index, GPU name,
 GPU utilization, memory utilization, total memory, and used memory. The output is saved in CSV format, making it easy
 to parse and analyze. Additionally, the `-l 5` option logs the data every 5 seconds, providing a real-time view of GPU
-performance. The & at the end of the command ensures that it runs in the background, allowing the rest of the job
-script to execute without interruption.
+performance. The `&` at the end of the command ensures that it runs in the background, allowing the rest of the job
+script to execute without interruption. Once, the training is completed, we need to kill the background process that is monitoring the GPU utilization.
 
 ```bash
 # Start GPU utilization monitoring in the background
-GPU_LOG_FILE="utilization.log"
+GPU_LOG_FILE="${LOCAL_LOGS_DIR}/singlegpu.log"
 echo "Starting GPU utilization monitoring..."
 nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.total,memory.used --format=csv -l 5 > $GPU_LOG_FILE &
+NVIDIA_MONITOR_PID=$!
 
-srun .....
+# Run the training script
+python $TRAINING_SCRIPT
 
-# Stop GPU utilization monitoring
+# Stop GPU utilization monitoring specifically by PID
 echo "Stopping GPU utilization monitoring..."
-pkill -f "nvidia-smi --query-gpu"
+kill $NVIDIA_MONITOR_PID
 ```
 However, we are not limited to this and there are several other ways to monitor
 the GPU utilization depending on your needs.
 For instance, we can use `watch -n 1 nvidia-smi` by logging into the specific gpu
 node for manual debugging to display GPU metrics in real time or use NVIDIA
 profiling tools like NVIDIA Nsight Systems and Nsight Compute for advanced
-profiling capabilities.
+profiling capabilities. You can read more about it here {ref}`interactive-overlap-jobs`.
 Moreover, when we are using frameworks like PyTorch, we can leverage built-in
 utilities such as `torch.cuda.utilization()` or integrate monitoring into your
 training loop with tools like TensorBoard. This allows us to correlate GPU usage
@@ -46,7 +48,7 @@ To enable NCCL debug logs, include the following lines in your job script:
 ```bash
 # Debugging: Enable NCCL logs
 export NCCL_DEBUG=INFO
-export NCCL_DEBUG_SUBSYS=ALL
+export NCCL_DEBUG_SUBSYS=INIT,NET
 ```
 
 These debug logs provide valuable insights, such as whether the appropriate versions of CUDA, NCCL, libfabrics, and

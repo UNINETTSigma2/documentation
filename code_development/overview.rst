@@ -49,6 +49,8 @@ GPU programming
 
    guides_gpu.md
    guides_monitor_gpu.md
+   guides_python.md
+   guides/PyTorchProfilerMultiGpu.md
 
 --------------------------
 Machine learning and LLMs
@@ -61,8 +63,7 @@ In this section we present tutorials and guides related to machine learning and 
 
    guides_ml.md
    guides_llm.md
-   guides/pytorch_olivia/getting_started.md
-   guides/pytorch_olivia/PyTorchSingleGpu.md
+   ../software/application_guides/pytorch_olivia/getting_started.md
    guides/PyTorchProfilerMultiGpu.md
 
 ----------------------------

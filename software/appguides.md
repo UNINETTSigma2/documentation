@@ -30,6 +30,7 @@ application_guides/openfoam.md
 application_guides/paraview_server.md
 application_guides/paraview_x11.md
 application_guides/paraview_web.md
+application_guides/pytorch_olivia/getting_started.md
 application_guides/rstudio.md
 application_guides/vasp.md
 application_guides/visit.rst
