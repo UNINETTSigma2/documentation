@@ -8,9 +8,9 @@ Use it together with {ref}`access-pytorch` and {ref}`pytorch-overlay-images`.
 
 ## Recommended Defaults
 
-1. Use the **module path** by default.
-2. Use the **direct container path** when you need explicit control over container launch details.
-3. Do **not** plan around extending **EESSI** with `pip install`.
+1. Use the **NRIS Module** by default.
+2. Use the **Container Implementation** when you need explicit control over container launch details and want to add extra package.
+3. Do **not** plan around extending **EESSI**  and **NRIS PyTorch module** with `pip install`.
 4. Store models, datasets, caches, and overlays in **project or work storage**, not in your home directory.
 5. Use **one overlay per project**, not one overlay per job.
 6. Build overlays from a `requirements.txt` file and reuse them across related jobs.
@@ -40,7 +40,7 @@ If several users in the same project need access to the same models or datasets,
 
 ## Overlay Recommendation
 
-If additional Python packages are needed, prefer the **module path** or the **direct container path**.
+If additional Python packages are needed, prefer the **direct container approach**.
 
 For project work, the recommended default is:
 
@@ -50,16 +50,15 @@ For project work, the recommended default is:
 4. Reuse it across related jobs.
 
 ```{note}
-The package-install workflow is documented separately in {ref}`pytorch-overlay-images`. This page only describes the recommended organization.
+The package-install workflow is documented in {ref}`pytorch-overlay-images`. This page only describes the recommended organization.
 ```
 
 ## Hugging Face and Torch Cache Locations
-
 PyTorch and Hugging Face workflows often download model weights, datasets, and cache files automatically.
 
-On Olivia, redirect those caches away from your home directory.
+For our project, the datasets `CIFAR-100` and `Tiny-ImageNet` are pre-fetched into the `datasets/` directory inside our project root using the `download_datasets.sh` shell script. `dataset_utils.py` then manages loading and runtime extraction directly from this location, avoiding downloads inside the home directory. 
 
-The PyTorch guide examples use the following pattern:
+Only, in the case of traning with ViT model, the pretrained weights from `torchvision` are cached under the Torch cache path (by default often `~/.cache/torch`). If you want all model artifacts to stay inside project storage, set `TORCH_HOME` in the job script. In our example, Hugging Face cache variables are optional because we do not use Hugging Face datasets/models. However, if you decide to use it for your project, please follow these guidelines for it:
 
 ```bash
 HF_ROOT="${SCRIPT_DIR}/hf_cache"
@@ -74,11 +73,11 @@ export TORCH_HOME="${HF_ROOT}/torch"
 
 These variables control:
 
-1. **`HF_HOME`** sets the general Hugging Face home directory.
-2. **`HF_HUB_CACHE`** stores downloaded model files from Hugging Face Hub.
-3. **`HF_DATASETS_CACHE`** stores datasets handled through Hugging Face Datasets.
-4. **`TRANSFORMERS_CACHE`** stores cached model files used by Transformers.
-5. **`TORCH_HOME`** stores Torch-related cached files such as downloaded model artifacts.
+1. **`HF_HOME`** base Hugging Face cache root.
+2. **`HF_HUB_CACHE`** Hugging Face Hub model/download cache.
+3. **`HF_DATASETS_CACHE`** Hugging Face Datasets cache.
+4. **`TRANSFORMERS_CACHE`** Transformers model cache.
+5. **`TORCH_HOME`** Torch/Torchvision model artifact cache (for example pretrained checkpoints).
 
 ## Where to Put Models and Datasets
 
