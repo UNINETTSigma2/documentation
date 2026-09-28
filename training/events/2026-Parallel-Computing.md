@@ -41,6 +41,10 @@ These seminars are at a basic-to-intermediate level, and targeted towards partic
 There is no closing date for the course registration, and you can sign up for the episodes you want to follow. However, please register at latest **one week** before the episode you are planning on attending.
 ```
 
+```{warning}
+Episode 6, originally scheduled for Wednesday Oct. 7th is moved to **Thursday Oct. 8th**.
+```
+
 <H3> Content:
 
 - Episode 1, Sept. 2: The basics and writing job scripts and Python codes with AI assistance.
@@ -48,7 +52,7 @@ There is no closing date for the course registration, and you can sign up for th
 - Episode 3: Sept. 16: Multi-Threading and scaling tests
 - Episode 4: Sept. 23: Multi-Tasking and scaling tests
 - Episode 5: Sept. 30: Parallel Computing with Containers
-- Episode 6: Oct. 7: Hybrid Parallel Computing and threads-per-task scaling tests
+- Episode 6: Oct. 8: Hybrid Parallel Computing and threads-per-task scaling tests
 
 <H3> Episodes schedule: 
 
@@ -160,19 +164,22 @@ There is no closing date for the course registration, and you can sign up for th
     - Apptainer (Container) with pip install.
     - OpenMP Containers
     - Host-binding to Olivia (the Host) software.
+    - OpenMP Scaling
 
 - **Session 2: 10.15-11.00: MPI Containers**
     - MPI Containers
     - Host-binding to Olivia MPI software
+    - MPI Scaling
 
-- **Session 3: 11.15-12.00: Container scaling**
-    - OpenMP scaling
-    - MPI scaling
+- **Session 3: 11.15-12.00: Snakemake Workflow**
+    - Snakemake Container
+    - Snakemake Workflow
+    - Doing Exercises with Snakemake
 
-- **Exercises: 13.00----: Container Scaling**
-    - Scaling with Containers
+- **Exercises: 13.00----: Snakemake**
+    - Snakemake Exercises
 
-<H3> Episode 6, Oct. 7th:
+<H3> Episode 6, Oct. 8th:
 
 - **Session 0: 09.00-09.15: Practical Information**
 
@@ -187,7 +194,7 @@ There is no closing date for the course registration, and you can sign up for th
     - System Activity Reporter (SAR)
 
 - **Exercises: 13.00----: Threads per task scaling**
-    - Threads per task scaling 
+    - Threads per task Scaling with Snakemake 
 
 
 </details>
@@ -198,6 +205,9 @@ There is no closing date for the course registration, and you can sign up for th
 
 **Collaborative documents:**
 - [Episode 1](https://md.sigma2.no/Parallel-Computing-Course-Sept-2026)
+- [Episode 2](https://md.sigma2.no/Parallel-Computing-Course-Sept-2026_ep2)
+- [Episode 3](https://md.sigma2.no/Parallel-Computing-Course-Sept-2026_ep3)
+- [Episode 4](https://md.sigma2.no/Parallel-Computing-Course-Sept-2026_ep4)
 ```
 
 The [policy](https://documentation.sigma2.no/hpc_machines/olivia/software_stack.html#python-r-and-ana-conda) on Olivia is that you should not use `pip install` with Python in the same way you would on your laptop, because it will create a large number of files. On Olivia’s shared file system, this will place unnecessary strain on the system and lead to poor performance. To address this, this course will show how to perform `pip install` inside a container and how to use that container for parallel computing with Python on Olivia. 
