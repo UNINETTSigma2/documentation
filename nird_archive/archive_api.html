@@ -1,0 +1,854 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The NIRD RDA API &mdash; Sigma2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nris.css?v=69e7a171" />
+      <link rel="stylesheet" type="text/css" href="../_static/universal-navbar.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/statuspal.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/installed-software.css?v=e17918be" />
+
+  
+    <link rel="shortcut icon" href="../_static/nris.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://siteimproveanalytics.com/js/siteanalyze_6036825.js"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/statuspal_widget.js"></script>
+      <script src="../_static/installed-software.js?v=9caeda88"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- Send url to parent when displayed as iframe -->
+<script>
+    const valid_orign_url = "https://www.sigma2.no"
+    window.addEventListener('message', function(event) {
+        if (event.data === 'getDocumentationIframeUrl' && event.origin.startsWith(valid_orign_url)) {
+            // path only (/path/example.html)
+            const path = window.location.pathname
+            // query string (including the initial ? symbol)
+            const search = window.location.search
+            // Returns the hash (including the initial # symbol)
+            const hash = window.location.hash
+            const newUrl = path + search + hash;
+            event.source.postMessage(newUrl, event.origin)
+        }
+    })
+
+</script>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sigma2/NRIS documentation
+              <img src="../_static/NRIS Logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Policies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/acceptable-use-policy">User Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/security-policy.html">Security policy for Sigma2 infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/sharing_files.html">Data handling and storage policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/licenses.html">Licence and access policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-policy">Data Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/data-decommissioning-policies">Data decommissioning policies</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/central-data-library-policy">Central Data Library Policy</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/policies">Overview of Sigma2 Policies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/support_line.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/extended_support.html">Extended support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/how_to_write_good_support_requests.html">Writing good support requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/qa-sessions.html">Open Question &amp; Answer Sessions for All Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/lost_forgotten_password.html">Lost, expiring or changing passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/two_factor_authentication.html">One-time-pad (OTP) / Two-factor authentication</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.sigma2.no/project-leader-handbook">Project Leader Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Training</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/events.html">Training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/material.html">Training materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/notes_qa.html">Frequently Asked Questions from training events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/collabnotes_archive.html">Collaborative Notes Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/trainingvideos.html">Training Video Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/qnas.html">Question and Answer events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../training/short_instructions.html">Short Instructions Video Archives</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/opslog.html">Status and maintenance of systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_account.html">How do I get an account?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/applying_resources.html">Applying for computing and storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/data_transfer.html">Data transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/editing_files.html">Editing files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides/vs_code/connect_to_server.html">Connecting to a system with Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html">SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ssh.html#common-ssh-errors">Common SSH errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/ood.html">Open OnDemand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/first_calculation.html">First calculation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Storage Services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dp.html">NIRD Data Peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/nird_dl.html">NIRD Data Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/backup_lmd.html">NIRD Backup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird/cdl.html">NIRD Central Data Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rda.html">NIRD Research Data Archive (NIRD RDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rda.html#topics">Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nird_service_platform/overview_nird_service_platform.html">NIRD Service Platform</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage Resources and Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/nird_lmd.html">NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/clusters.html">Storage areas on HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/quota.html">Storage quota</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/backup.html">Backup on Betzy, Saga, and NIRD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files_storage/performance.html">Optimizing storage performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/data_transfer.html">Data transfer</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/migration2metacenter.html">Migration to an NRIS HPC machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/responsible-use.html">Using shared resources responsibly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/overview.html">Running jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jobs/node-types.html">NRIS systems overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computing/tuning-applications.html">Tuning applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/guides_llm.html">Running LLM Models in a Cluster Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compute resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/hardware_overview.html">Overview over our machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/betzy.html">Betzy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/olivia.html">Olivia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/saga.html">Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc_machines/lumi.html">LUMI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/modulescheme.html">Software module scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/installed_software.html">Installed software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/userinstallsw.html">Installing software as user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/appguides.html">Application guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/eessi.html">EESSI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software/node-networking-info.html">Networking on nodes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools and Additional services</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nird_toolkit/overview.html">NIRD Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/course_resources.html">CRaaS - Course Resources as a Service</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code development and tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_development/overview.html">Code development and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sigma2/NRIS documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">The NIRD RDA API</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-nird-rda-api">
+<h1>The NIRD RDA API<a class="headerlink" href="#the-nird-rda-api" title="Link to this heading"></a></h1>
+<p>The NIRD RDA is based on CKAN that has a rich API allowing you to create datasets programmatically.
+To use the API you first need an account in the archive. Once you have an account, you can create an API token by clicking on your username at the top-right of your browser window. This should open your account dashboard (see Figure 1).</p>
+<p><img alt="rda_user_dashboard" src="../_images/figure_1_user_dashboard.png" /></p>
+<p>Figure 1: Screenshot of the User dashboard.</p>
+<p>Click on the <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Tokens</span></code> field and type in a name for your API token in the <code class="docutils literal notranslate"><span class="pre">Name</span></code> field and click on the <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">API</span> <span class="pre">TOKEN</span></code> button.</p>
+<p><strong>Note: You will need to make a copy of your token somewhere safe as there is no way to recover your token if you navigate away from this page</strong>.</p>
+<p>Throughout this document the variable <code class="docutils literal notranslate"><span class="pre">$CKAN_API_ROOT</span></code> refers to the archive API URL:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">data</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">sigma2</span><span class="o">.</span><span class="n">no</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="n">action</span>
+</pre></div>
+</div>
+<p>and your CKAN API token will be represented by the variable <code class="docutils literal notranslate"><span class="pre">$CKAN_TOKEN</span></code>.</p>
+<section id="creating-a-dataset">
+<h2>Creating a dataset<a class="headerlink" href="#creating-a-dataset" title="Link to this heading"></a></h2>
+<p>To create a dataset, you will need to use the <code class="docutils literal notranslate"><span class="pre">$CKAN_API_ROOT/package_create</span></code> end-point. You will need to use your <code class="docutils literal notranslate"><span class="pre">$CKAN_TOKEN</span></code> and will need to provide a JSON document file containing the metadata describing your dataset. The <a class="reference internal" href="#metadata-schema">metadata schema</a> section describes the list of metadata you can provide. Only the mandatory metadata terms must be defined in your JSON document, the other terms are optional. An example using the curl command creates a dataset with the metadata supplied in the <code class="docutils literal notranslate"><span class="pre">my_dataset.json</span></code> JSON document:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">"Authorization: $CKAN_TOKEN"</span> <span class="o">-</span><span class="n">H</span> <span class="s2">"Content-Type: application/json"</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="o">--</span><span class="n">data</span> <span class="n">my_dataset</span><span class="o">.</span><span class="n">json</span> <span class="s2">"$CKAN_API_ROOT/package_create"</span>
+</pre></div>
+</div>
+<p>The NIRD RDA will create the dataset and return to you a JSON document containing the result of the action. If the <code class="docutils literal notranslate"><span class="pre">status=success</span></code> you should see a <code class="docutils literal notranslate"><span class="pre">result</span></code> object containing the metadata you provided to create the dataset (i.e. the metadata contained in the <code class="docutils literal notranslate"><span class="pre">my_dataset.json</span></code> JSON document file) as well as the unique identifier assigned to the dataset (you should see it in the value for the <code class="docutils literal notranslate"><span class="pre">id</span></code> term).</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">status=failure</span></code> you should see reason the dataset creation failed. A common error is the dataset <code class="docutils literal notranslate"><span class="pre">name</span></code> (see the <a class="reference internal" href="#metadata-schema">metadata schema section</a> below) is not unique and is already used by an existing dataset.</p>
+</section>
+<section id="updating-the-metadata-of-a-dataset">
+<h2>Updating the metadata of a dataset<a class="headerlink" href="#updating-the-metadata-of-a-dataset" title="Link to this heading"></a></h2>
+<p>Once you have created a dataset (either via the API, or via the web interface) you can update the existing metadata, or add new metadata to the dataset. To do this, you will need to use the <code class="docutils literal notranslate"><span class="pre">$CKAN_API_ROOT/package_patch</span></code> end-point. You will need to use your <code class="docutils literal notranslate"><span class="pre">$CKAN_TOKEN</span></code> to update the dataset. You will need to supply a JSON document that contains the <code class="docutils literal notranslate"><span class="pre">id</span></code> term (see the <a class="reference internal" href="#metadata-schema">metadata schema</a>) which is the dataset unique identifier that is used by the API to identify your dataset.</p>
+<p>The following example will update the <code class="docutils literal notranslate"><span class="pre">notes</span></code> metadata term for the dataset with identifier <code class="docutils literal notranslate"><span class="pre">12345678-aaaa-bbbb-cccc-123456789012</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span>  <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="o">-</span><span class="n">H</span> <span class="s2">"Authorization: $CKAN_TOKEN"</span> <span class="o">-</span><span class="n">H</span> <span class="s2">"Content-Type: application/json"</span> <span class="o">-</span><span class="n">d</span> <span class="s1">'{"id": "12345678-aaaa-bbbb-cccc-123456789012", "notes": "This is an updated description for my dataset"}'</span> <span class="s2">"$CKAN_API_ROOT/package_patch"</span>
+</pre></div>
+</div>
+<p>The result returned to you will be a JSON document containing result of the update (i.e. <code class="docutils literal notranslate"><span class="pre">status=success</span></code> or <code class="docutils literal notranslate"><span class="pre">status=failure</span></code>) and the dataset metadata including your updates.</p>
+<p><strong>Note: The existing value of the metadata term in the archive will be replaced by the value you supply in the JSON document.</strong> This is important to remember when updating the list of creators. For example, if you wish to change the order of the list of creators, or add a new creator, you will need to supply the all the creators (even if you added them before).</p>
+</section>
+<section id="metadata-schema">
+<span id="id1"></span><h2>Metadata schema<a class="headerlink" href="#metadata-schema" title="Link to this heading"></a></h2>
+<p>The following table contains the list of metadata terms that you can set or update.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Term</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Multiplicity</strong></p></th>
+<th class="head"><p><strong>Mandatory</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>access_rights</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The access rights for the dataset in a controlled vocabulary file given below.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>conforms_to</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>N</p></td>
+<td><p>The standard or specification that the dataset conforms to.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>contact_points</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Person</span></code>, <code class="docutils literal notranslate"><span class="pre">Organisation</span></code></p></td>
+<td><p>1…n</p></td>
+<td><p>N</p></td>
+<td><p>Contact information for people that will be able to answer questions about the dataset. See the <strong>Person</strong> or <strong>Organisation</strong> table below for details on the <code class="docutils literal notranslate"><span class="pre">Person</span></code> or <code class="docutils literal notranslate"><span class="pre">Organisation</span></code> object respectively.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>contributors</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Person</span></code></p></td>
+<td><p>1…n</p></td>
+<td><p>N</p></td>
+<td><p>The contributors to the dataset (i.e. people that helped to assemble the dataset). Note: <strong>Contributors do not appear in the citation for the dataset</strong>.  See the <strong>Person</strong> table below for details on the <code class="docutils literal notranslate"><span class="pre">Person</span></code> object.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>creators</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Person</span></code>, <code class="docutils literal notranslate"><span class="pre">Organisation</span></code></p></td>
+<td><p>1…n</p></td>
+<td><p>Y</p></td>
+<td><p>The creators or authors of the dataset. See the <strong>Person</strong> or <strong>Organisation</strong> tables below for details on the <code class="docutils literal notranslate"><span class="pre">Person</span></code> or <code class="docutils literal notranslate"><span class="pre">Organisation</span></code> object. Note: <strong>Only creators appear in the citation for the dataset</strong>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>dataset_owner</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DatasetOwner</span></code></p></td>
+<td><p>1…n</p></td>
+<td><p>N</p></td>
+<td><p>The organisation that owns the dataset. See the <strong>DatasetOwner</strong> table below for details on the <code class="docutils literal notranslate"><span class="pre">DatasetOwner</span></code> object.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>dataset_status</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>N</p></td>
+<td><p>The controlled vocabulary for the current status of the dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>embargoed_until</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>N</p></td>
+<td><p>The date until which the dataset is embargoed, in ISO 8601 format. Note: **This term is only necessary for datasets when the <strong>access_rights</strong> term has the value <code class="docutils literal notranslate"><span class="pre">embargoed</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>groups</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Subject</span></code></p></td>
+<td><p>1…n</p></td>
+<td><p>Y</p></td>
+<td><p>Used to define the subject for the dataset. See the <strong>Subject</strong> table below for details on the <code class="docutils literal notranslate"><span class="pre">Subject</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>id</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y*</p></td>
+<td><p>The unique identifier for the dataset. This identifier is needed for updating datasets and not for creating datasets.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>language</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>Controlled vocabulary for the language of the dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>license_id</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The ID of the license under which the dataset is published.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>name</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The unique identifier for the dataset (this is used in the URL path to the dataset).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>notes</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>A description of the dataset, detailing its purpose or contents.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>project</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1…n</p></td>
+<td><p>N</p></td>
+<td><p>A list of projects related to the dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>provenance</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>N</p></td>
+<td><p>The provenance or history of the dataset in a JSON format.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>related_resources</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RelatedResource</span></code></p></td>
+<td><p>1…n</p></td>
+<td><p>N</p></td>
+<td><p>A list of related resources, see the table <strong>Related Resources</strong> below for details on the <code class="docutils literal notranslate"><span class="pre">RelatedResource</span></code> type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>source</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1…n</p></td>
+<td><p>N</p></td>
+<td><p>The original source of the dataset, typically a URL or reference.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>spatial</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Spatial</span></code></p></td>
+<td><p>1</p></td>
+<td><p>N</p></td>
+<td><p>Term describing the geographical coverage of the dataset (e.g., bounding box). See the <strong>Spatial</strong> table for information on the <code class="docutils literal notranslate"><span class="pre">Spatial</span></code> object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>state</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>Dataset state. A dataset must be initially created, or updated with the state <code class="docutils literal notranslate"><span class="pre">draft</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>tags</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Keyword</span></code></p></td>
+<td><p>1…n</p></td>
+<td><p>N</p></td>
+<td><p>A keyword or keywords that help to describe the dataset. See the <strong>Keyword</strong> table for information on the <code class="docutils literal notranslate"><span class="pre">Keyword</span></code> object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>temporal</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Temporal</span></code></p></td>
+<td><p>1</p></td>
+<td><p>N</p></td>
+<td><p>Term describing the temporal coverage of the dataset. See the <strong>Temporal</strong> table for information on the <code class="docutils literal notranslate"><span class="pre">Temporal</span></code> object.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>theme</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Theme</span></code></p></td>
+<td><p>1…n</p></td>
+<td><p>Y</p></td>
+<td><p>A theme or themes that help to describe the dataset. See the <strong>Theme</strong> table for information on the <code class="docutils literal notranslate"><span class="pre">Theme</span></code> object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>title</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The title of the dataset.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>version_notes</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>Notes describing any version changes or updates to the dataset.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="controlled-vocabularies-for-basic-terms">
+<h3>Controlled vocabularies for basic terms<a class="headerlink" href="#controlled-vocabularies-for-basic-terms" title="Link to this heading"></a></h3>
+<p>The controlled vocabularies for the basic terms can be found in the following JSON files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">access_rights</span></code> controlled vocabulary can be found in the <a class="reference download internal" download="" href="../_downloads/b537cdb8f7865c4e64753123a909a038/access_rights.json"><span class="xref download myst">access_rights.json</span></a> JSON file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset_status</span></code> controlled vocabulary can be found in the <a class="reference download internal" download="" href="../_downloads/c521527315e417ef1641e7ba30bb0a17/dataset_status.json"><span class="xref download myst">dataset_status.json</span></a> JSON file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">language</span></code> controlled vocabulary can be found in the <a class="reference download internal" download="" href="../_downloads/0fd4653d0b0ff7b508feadb09399786b/languages.json"><span class="xref download myst">languages.json</span></a> JSON file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">license_id</span></code> the endpoint <code class="docutils literal notranslate"><span class="pre">$CKAN_API_ROOT/license_list</span></code> returns a list of license metadata objects. Each object contains an <code class="docutils literal notranslate"><span class="pre">id</span></code> whose value is the <code class="docutils literal notranslate"><span class="pre">license_id</span></code>.</p></li>
+</ul>
+</section>
+<section id="the-datasetowner-schema">
+<h3>The DatasetOwner schema<a class="headerlink" href="#the-datasetowner-schema" title="Link to this heading"></a></h3>
+<p>The schema for the <code class="docutils literal notranslate"><span class="pre">DatasetOwner</span></code> is defined in the following table.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Term</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Multiplicity</strong></p></th>
+<th class="head"><p><strong>Mandatory</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>organisation</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The ROR identifier for the organisation. The ROR identifier should come from a controlled vocabulary (see below).</p></td>
+</tr>
+</tbody>
+</table>
+<section id="accessing-the-controlled-vocabulary">
+<h4>Accessing the controlled vocabulary<a class="headerlink" href="#accessing-the-controlled-vocabulary" title="Link to this heading"></a></h4>
+<p>The list of institutions known to the archive can be accessed using the <code class="docutils literal notranslate"><span class="pre">$CKAN_API_ROOT/group_list</span></code> endpoint and supplying the <code class="docutils literal notranslate"><span class="pre">type=institution</span></code> parameter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="s2">"$CKAN_API_ROOT/group_list?type=institution"</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>The endpoint will return a list of Research Organization Registry (ROR) identifiers. To get the institution metadata for a given ROR <code class="docutils literal notranslate"><span class="pre">ror</span></code> identifier, use the endpoint <code class="docutils literal notranslate"><span class="pre">$CKAN_API_ROOT/group_show?id=ror</span></code>.
+The institution metadata will also include the name of the institution.</p>
+</section>
+</section>
+<section id="the-keyword-schema">
+<h3>The Keyword schema<a class="headerlink" href="#the-keyword-schema" title="Link to this heading"></a></h3>
+<p>A keyword consists of two components, a <strong>tag_string</strong> list of tag strings and a <strong>tags</strong> list of tag objects. The <strong>tag_string</strong> must be a list of tag names only. You can create new tags or use a pre-defined tag.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Term</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Multiplicity</strong></p></th>
+<th class="head"><p><strong>Mandatory</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>tag_string</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1…n</p></td>
+<td><p>Y</p></td>
+<td><p>The name of the tag</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>tags</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Tag</span></code></p></td>
+<td><p>1…n</p></td>
+<td><p>Y</p></td>
+<td><p>The tag object which is defined in the table below.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="the-tag-schema">
+<h4>The Tag schema<a class="headerlink" href="#the-tag-schema" title="Link to this heading"></a></h4>
+<p>The schema for the <code class="docutils literal notranslate"><span class="pre">Tag</span></code> type is defined in the table below.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Term</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Multiplicity</strong></p></th>
+<th class="head"><p><strong>Mandatory</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>name</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The name of the tag.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="finding-and-using-pre-defined-tags">
+<h4>Finding and using pre-defined tags<a class="headerlink" href="#finding-and-using-pre-defined-tags" title="Link to this heading"></a></h4>
+<p>To get all existing tags defined in the archive, you can use the API end-point <code class="docutils literal notranslate"><span class="pre">$CKAN_API_ROOT/tag_list</span></code> which will return a JSON document containing the list of tags that are already defined. If you wish to search for a particular tag you can use the end-point <code class="docutils literal notranslate"><span class="pre">$CKAN_API_ROOT/tag_search?query=&lt;name&gt;</span></code> where <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> is the full or partial name of the tag you are interested in.</p>
+<p>To find out the name of the tag and the tag object to supply as metadata for your dataset, take the value of the <code class="docutils literal notranslate"><span class="pre">name</span></code> term (<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code>) for the tag you are interested in and pass it to the end-point <code class="docutils literal notranslate"><span class="pre">$CKAN_API_ROOT/tag_show?id=&lt;name&gt;</span></code>. This will return a JSON document for the metadata for the tag you are interested in. The value of the <code class="docutils literal notranslate"><span class="pre">display_name</span></code> term corresponds to an element of the <code class="docutils literal notranslate"><span class="pre">tag_string</span></code> list and the value of the <code class="docutils literal notranslate"><span class="pre">name</span></code> term corresponds to the value of the <code class="docutils literal notranslate"><span class="pre">name</span></code> in a <code class="docutils literal notranslate"><span class="pre">Tag</span></code> object.
+For example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="s2">"$CKAN_API_ROOT/tag_show?id=KF_07_08"</span>
+
+<span class="p">{</span><span class="s2">"help"</span><span class="p">:</span> <span class="s2">"$CKAN_API_ROOT/help_show?name=tag_show"</span><span class="p">,</span> <span class="s2">"success"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span> <span class="s2">"result"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="s2">"0c101fd2-9a2e-44c1-aa9b-f67664d30b82"</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"KF_07_08"</span><span class="p">,</span> <span class="s2">"vocabulary_id"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span> <span class="s2">"title"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span> <span class="s2">"url"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span> <span class="s2">"display_name"</span><span class="p">:</span> <span class="s2">"KF_07_08"</span><span class="p">}}</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>If the tag you are interested in has a spaces (e.g. <code class="docutils literal notranslate"><span class="pre">gas</span> <span class="pre">bubble</span> <span class="pre">disease</span></code>) you need to replace the spaces with <code class="docutils literal notranslate"><span class="pre">+</span></code> signs when adding the term to the <code class="docutils literal notranslate"><span class="pre">$CKAN_API_ROOT/tag_show</span></code> end-point. For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="s2">"$CKAN_API_ROOT/tag_show?id=gas+bubble+disease"</span>
+</pre></div>
+</div>
+<p>To add the tag <code class="docutils literal notranslate"><span class="pre">KF_07_08</span></code> to our dataset we would use the <code class="docutils literal notranslate"><span class="pre">$CKAN_API_ROOT/package_patch</span></code> endpoint and a JSON document:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="o">-</span><span class="n">H</span> <span class="s2">"Authorization: $CKAN_TOKEN"</span> <span class="o">-</span><span class="n">H</span> <span class="s2">"Content-Type: application/json"</span> <span class="o">-</span><span class="n">d</span> <span class="s1">'{"id": "12345678-aaaa-bbbb-cccc-123456789012", "tag_string":["KF_07_08"], "tags":[{"name":"KF_07_08"}]}'</span> <span class="s2">"$CKAN_API_ROOT/package_patch"</span>
+</pre></div>
+</div>
+<p>For new tags that do not exist, you only need to supply the new tags in the form given in the above <code class="docutils literal notranslate"><span class="pre">$CKAN_API_ROOT/package_patch</span></code> example.</p>
+</section>
+</section>
+<section id="the-organisation-schema">
+<h3>The Organisation schema<a class="headerlink" href="#the-organisation-schema" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">organisation</span></code> type is defined in the following table.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Term</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Multiplicity</strong></p></th>
+<th class="head"><p><strong>Mandatory</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>acronym</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>N</p></td>
+<td><p>The acronym for the organisation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>contact_email</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The email address for the contact. person in the organisation. The email address should follow the IETF RFC 5322 standard.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>homepage_url</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The URL for the organisation home page. The URL should follow the IETF RFC 3986 standard.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>name</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The name of the organisation.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>ror</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>N</p></td>
+<td><p>The Research Organisation Registry (ROR) identifier for the organisation. These can be found, if they exist, on https://ror.org</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>type</strong> (<strong>creators</strong> or <strong>contact_points</strong> only)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>This term is only valid for the <strong>creators</strong> and <strong>contact_points</strong> terms and is the type of <strong>creators</strong> or <strong>contact_points</strong> and, in this case should have value <code class="docutils literal notranslate"><span class="pre">person</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-person-schema">
+<h3>The Person schema<a class="headerlink" href="#the-person-schema" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Person</span></code> type is defined by the following schema. Note that the type term is overloaded and has a different meaning depending on the higher-level term.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Term</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Multiplicity</strong></p></th>
+<th class="head"><p><strong>Mandatory</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>email</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The email address of a the user. The email address should follow the IETF RFC 5322 standard.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>first_name</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The first name of a person, can also include the initial or full middle name</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>last_name</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The last name of a person</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>orcid</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>N</p></td>
+<td><p>The ORCID identifier for the user.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>organisation</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The name of the organisation a user belongs to. The name can be chosen from the list of existing organisations, or a new one can be given.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>type</strong> (<strong>contributors</strong> term only)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>N</p></td>
+<td><p>This term is only valid for <strong>contributors</strong> terms and is the type of contributor.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>type</strong> (<strong>creators</strong> or <strong>contact_points</strong> only)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>This term is only valid for the <strong>creators</strong> and <strong>contact_points</strong> terms and is the type of <strong>creators</strong> or <strong>contact_points</strong> and, in this case should have value <code class="docutils literal notranslate"><span class="pre">organisation</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="finding-the-type-for-the-contributor">
+<h4>Finding the type for the Contributor<a class="headerlink" href="#finding-the-type-for-the-contributor" title="Link to this heading"></a></h4>
+<p>The list of valid types of contributor can be found in the <a class="reference download internal" download="" href="../_downloads/cfb9d04f8dd24d3a993b2476baac9ee8/contributor_types.json"><span class="xref download myst">contributor_types.json</span></a> JSON file.</p>
+</section>
+</section>
+<section id="the-relatedresources-schema">
+<h3>The RelatedResources schema<a class="headerlink" href="#the-relatedresources-schema" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">RelatedResource</span></code> type is defined by the following schema.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Term</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Multiplicity</strong></p></th>
+<th class="head"><p><strong>Mandatory</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>type</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>A controlled vocabulary containing the accepted type of resource.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>url</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The URL for the related resource. The URL should follow the IETF RFC 3986 standard.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="finding-the-releated-resource-type">
+<h4>Finding the releated resource type<a class="headerlink" href="#finding-the-releated-resource-type" title="Link to this heading"></a></h4>
+<p>The controlled vocabulary for the related resource <code class="docutils literal notranslate"><span class="pre">type</span></code> term is in the <a class="reference download internal" download="" href="../_downloads/ecac0148c9e0de3b902cb2647de27c38/related_resources_type.json"><span class="xref download myst">related_resources_type.json</span></a> JSON file.</p>
+</section>
+</section>
+<section id="the-spatial-schema">
+<h3>The Spatial schema<a class="headerlink" href="#the-spatial-schema" title="Link to this heading"></a></h3>
+<p>The <strong>spatial</strong> schema supports two types: bounding box and Well Known Text (WKT https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry).</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Term</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Multiplicity</strong></p></th>
+<th class="head"><p><strong>Mandatory</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>spatial_type</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The controlled vocabulary for the type of spatial description</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>value</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BBOX</span></code>, <code class="docutils literal notranslate"><span class="pre">WKT</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The value for the spatial term. The schema for the <code class="docutils literal notranslate"><span class="pre">BBOX</span></code> and <code class="docutils literal notranslate"><span class="pre">WKT</span></code> types are given in the subsections below.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="finding-the-spatial-type">
+<h4>Finding the spatial type<a class="headerlink" href="#finding-the-spatial-type" title="Link to this heading"></a></h4>
+<p>The controlled vocabulary for the <code class="docutils literal notranslate"><span class="pre">spatial_type</span></code> is in the <a class="reference download internal" download="" href="../_downloads/d4388da7764d8abe892bbade96f36dd4/spatial_type.json"><span class="xref download myst">spatial_type.json</span></a> JSON file.</p>
+</section>
+<section id="the-bbox-schema">
+<h4>The BBOX schema<a class="headerlink" href="#the-bbox-schema" title="Link to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">BBOX</span></code> type should be a list of coordinates (floats or ints) with the following convention:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Northern</span><span class="o">-</span><span class="n">most</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">Southern</span><span class="o">-</span><span class="n">most</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">Eastern</span><span class="o">-</span><span class="n">most</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">Western</span><span class="o">-</span><span class="n">most</span> <span class="n">latitude</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="the-wkt-schema">
+<h4>The WKT schema<a class="headerlink" href="#the-wkt-schema" title="Link to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">WKT</span></code> type should be a <code class="docutils literal notranslate"><span class="pre">String</span></code> following the WKT convention (see https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry). An example is the 2-D polygon with 4 corners, each having the x-y coordinates:
+<code class="docutils literal notranslate"><span class="pre">(30,</span> <span class="pre">10),</span> <span class="pre">(40,</span> <span class="pre">40),</span> <span class="pre">(20,</span> <span class="pre">40),</span> <span class="pre">(10,</span> <span class="pre">20)</span></code>, this can be represented in WKT with the string:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POLYGON</span> <span class="p">((</span><span class="mi">30</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">40</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">20</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">10</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="the-subject-schema">
+<h3>The Subject schema<a class="headerlink" href="#the-subject-schema" title="Link to this heading"></a></h3>
+<p>The <strong>subject</strong> term is defined in terms of the <strong>groups</strong> term.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Term</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Multiplicity</strong></p></th>
+<th class="head"><p><strong>Mandatory</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>groups</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Group</span></code></p></td>
+<td><p>1…n</p></td>
+<td><p>Y</p></td>
+<td><p>The group object which is used to define the subject. The schema for the <code class="docutils literal notranslate"><span class="pre">Group</span></code> type is given in the schema below.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="the-group-schema">
+<h4>The Group schema<a class="headerlink" href="#the-group-schema" title="Link to this heading"></a></h4>
+<p>The schema for the <code class="docutils literal notranslate"><span class="pre">Group</span></code> type is defined in the following table.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Term</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Multiplicity</strong></p></th>
+<th class="head"><p><strong>Mandatory</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>name</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The subject name comes from a controlled vocabulary.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>type</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The type of group term. The value should always be <code class="docutils literal notranslate"><span class="pre">subject</span></code> for subjects.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="finding-the-subject-name">
+<h4>Finding the subject name<a class="headerlink" href="#finding-the-subject-name" title="Link to this heading"></a></h4>
+<p>The list of subjects known to the archive can be accessed using the <code class="docutils literal notranslate"><span class="pre">$CKAN_API_ROOT/group_list</span></code> endpoint and supplying the <code class="docutils literal notranslate"><span class="pre">type=subject</span></code> parameter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="s2">"$CKAN_API_ROOT/group_list?type=subject"</span>
+</pre></div>
+</div>
+<p>which will return a JSON document containing the list of subject names that you can use as a value for the <code class="docutils literal notranslate"><span class="pre">Group</span></code> <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
+</section>
+</section>
+<section id="the-temporal-schema">
+<h3>The Temporal schema<a class="headerlink" href="#the-temporal-schema" title="Link to this heading"></a></h3>
+<p>The schema for the temporal coverage term is defined in the table below.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Term</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Multiplicity</strong></p></th>
+<th class="head"><p><strong>Mandatory</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>end</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The end date of the temporal coverage. The date string should follow the standard ISO 8641 standard.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>start</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The start date of the temporal coverage. The date string should follow the standard ISO 8641 standard.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-theme-schema">
+<h3>The Theme schema<a class="headerlink" href="#the-theme-schema" title="Link to this heading"></a></h3>
+<p>The schema for the theme is given in the table below.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Term</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Multiplicity</strong></p></th>
+<th class="head"><p><strong>Mandatory</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>name</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The name of the term from the theme. The name is a controlled vocabulary and must belong to one of the existing themes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>vocabulary_id</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Y</p></td>
+<td><p>The identifier for the theme.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="finding-the-theme-name-and-vocabulary-id">
+<h4>Finding the theme name and vocabulary_id<a class="headerlink" href="#finding-the-theme-name-and-vocabulary-id" title="Link to this heading"></a></h4>
+<p>The endpoint <code class="docutils literal notranslate"><span class="pre">$CKAN_API_ROOT/vocabulary_list</span></code> will return a list of vocabulary objects, each with a name and identifier, the <code class="docutils literal notranslate"><span class="pre">id</span></code> of the vocabulary you wish to use is the <code class="docutils literal notranslate"><span class="pre">vocabulary_id</span></code>. To find the list of terms (<code class="docutils literal notranslate"><span class="pre">tags</span></code>) for a theme with <code class="docutils literal notranslate"><span class="pre">vocabulary_id</span></code> <code class="docutils literal notranslate"><span class="pre">vocab_id</span></code>, use the endpoint <code class="docutils literal notranslate"><span class="pre">$CKAN_API_ROOT/vocabulary_show?id=vocab_id</span></code>. For the <code class="docutils literal notranslate"><span class="pre">name</span></code> of the tag object in the list of tags is the <code class="docutils literal notranslate"><span class="pre">Theme</span></code> <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
+<p>For example, the theme metadata for the tag or keyword with the <code class="docutils literal notranslate"><span class="pre">name</span></code> <code class="docutils literal notranslate"><span class="pre">Transport</span> <span class="pre">networks</span></code> in the <code class="docutils literal notranslate"><span class="pre">GEMET</span></code> theme should be (assuming the <code class="docutils literal notranslate"><span class="pre">vocabulary_id</span></code> is <code class="docutils literal notranslate"><span class="pre">8f395a7a-497c-4e62-902a-44365784ab12</span></code> for the <code class="docutils literal notranslate"><span class="pre">GEMET</span></code> theme):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">"theme"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Transport networks"</span><span class="p">,</span> <span class="s2">"vocabulary_id"</span><span class="p">:</span> <span class="s2">"8f395a7a-497c-4e62-902a-44365784ab12"</span><span class="p">}]</span><span class="o">.</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sigma2/NRIS. Text shared under CC-BY 4.0 license.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
