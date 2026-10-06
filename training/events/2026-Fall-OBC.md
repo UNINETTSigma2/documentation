@@ -17,7 +17,7 @@ line of a terminal, the first day of the course is designed specifically for you
 
 ## Registration
 
-[Register here](https://docs.google.com/forms/d/e/1FAIpQLSdbaXCuPG2hRLRHA0yczAMRC8IRUuDNq3QxKDy8sWOULw5a9g/viewform?usp=dialog) via Google Forms.
+[Register here](https://docs.google.com/forms/d/e/1FAIpQLSdbaXCuPG2hRLRHA0yczAMRC8IRUuDNq3QxKDy8sWOULw5a9g/viewform?usp=dialog) via Google Forms (form closes October 7th).
 
 ## Practical Information
 
@@ -31,12 +31,45 @@ to access the HPC systems (e.g. ssh).
 |   Date    |  Time   |  Topic	|
 | :----------- | :----------- | :---------- |
 | Mon 12.10    | 09:00 - 10:00 | Login check session (for all) |
-| Tue 13.10    | 09:00 - 12:30 | Day 0 Linux for HPC (for UNIX-novices)|
+| Tue 13.10    | 09:00 - 12:30 | Linux for HPC Day 0(for UNIX-novices)|
 | Wed 14.10    | 09:00 - 12:30 | HPC On-boarding Day 1 (for all) |
 | Thu 15.10    | 09:00 - 12:30 | HPC On-boarding Day 2 (for all) |
 
-**Note that there might be changes in the time schedule**
-For now, have a look at the {ref}`training-2026-spring-onboarding` for approximate details about the individual day schedules. 
+### Detailed schedule
+#### Day -1: Login Check (Monday October 12th)
+- **09:00-10:00** A short series of steps to ensure you are able to log into the HPC cluster 
+
+#### Day 0: Linux for HPC (Tuesday October 13th)
+- **09:00-09:05** Welcome and practical information
+- **09:05-09:35** [The terminal and remote login](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/intro.html)
+- **09:35-10:05** [Moving around and looking at things (including exercise)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/moving-around.html)
+- **10:05-10:15** Break
+- **10:15-10:50** [Finding things (including exercises)](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/finding-things.html)
+- **10:50-11:00** Break
+- **11:00-11:30** [Create/modify files](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/writing-files.html)
+- **11:30-12:00** [Composing commands with pipes](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/pipes.html)
+- **12:00-12:20** [Scripting](https://training.pages.sigma2.no/tutorials/unix-for-hpc/episodes/scripting.html)
+- **12:20-12:30** Wrap-up discussion
+
+#### Day 1: HPC Intro (Wednesday October 14th)
+- **09:00-09:05** Welcome and practical information
+- **09:05-09:30** [Why use a cluster?](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/11-hpc-intro.html)
+- **09:30-10:00** [Working on a remote HPC system](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/12-cluster.html)
+- **10:00-10:15** Break
+- **10:15-11:30** [Scheduling jobs (including exercises)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/13-scheduler.html)
+- **11:30-11:40** Break
+- **11:40-12:10** [Transferring files](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/15-transferring-files.html)
+- **12:10-12:30** Wrap-up and discussion
+
+#### Day 2: HPC Intro (Thursday October 15th)
+- **09:00-09:05** Welcome and practical information
+- **09:05-10:10** [Accessing software (including exercises)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html)
+- **10:10-10:25** [Compute and storage quota](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/compute-storage-quota.html)
+- **11:00-11:20** [Using shared resources responsibly](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.html)
+- **11:20-11:35** Break
+- **11:35-12:00** [How to ask for help](https://training.pages.sigma2.no/tutorials/How-to-ask-for-help/episodes/talk.html)
+- **12:00-12:20** Short quiz (non-compulsory)
+- **12:20-12:30** Wrap-up and discussion
 
 You can always {ref}`contact our support team <support-line>`.
 
@@ -56,8 +89,15 @@ If you believe someone is violating the Code of Conduct, we ask that you either 
 the zoom host right away or write to [the training team](mailto:training@nris.no).
 
 ## Instructors
-- TBA
+- Morten Ledum
+- Ole Widar Saastad
+- Bjørn Lindi
+- Maiken Pedersen
+- Richard Topouchian
+- Jörn Dietze
+- Siri Kallhovd
+- Eirik Skjerve
+
 
 ## Coordinator
-
 - Eirik Skjerve
