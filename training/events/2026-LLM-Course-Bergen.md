@@ -16,14 +16,15 @@ NRIS Training is organizing a third round of Distributed LLM Fine-Tuning & Infer
 
 **HPC System:** [Olivia](https://www.sigma2.no/meet-olivia-norways-next-supercomputer)
 
+
 <details>
 <summary><h2 style="display: inline;">Course program and schedule</h2></summary>
 
-## Day 1 — Single-GPU Fine-Tuning & HPC Foundations
+<H2> Day 1 — Single-GPU Fine-Tuning & HPC Foundations
 
 **Theme:** Build an efficient single-GPU fine-tuning workflow on an HPC system.
 
-### Morning Session (09:30–12:00) — HPC Fundamentals & Fine-Tuning Optimization
+<H3> Morning Session (09:30–12:00) — HPC Fundamentals & Fine-Tuning Optimization
 
 1. **HPC Foundations for LLM Workloads**
    - Overview of Olivia Supercomputer
@@ -32,22 +33,22 @@ NRIS Training is organizing a third round of Distributed LLM Fine-Tuning & Infer
    - Parameter-efficient fine-tuning with LoRA
    - Quantized fine-tuning with QLoRA
 
-### Afternoon Session (13:00–15:30) — Hands-On: Single-GPU workflow for QA and XSum Tasks
+<H3> Afternoon Session (13:00–15:30) — Hands-On: Single-GPU workflow for QA and XSum Tasks
 
 - LoRA fine-tuning workflow
 - Quantized fine-tuning with QLoRA: FP4 vs BF16 comparison
 - Evaluation of the fine-tuned model
 - GPU monitoring and memory profiling
 
-### Wrap-Up & Discussion (15:30–16:00)
+<H3> Wrap-Up & Discussion (15:30–16:00)
 
 **Outcome:** Participants implement and optimize a complete single-GPU fine-tuning pipeline with performance diagnostics on an HPC system.
 
-## Day 2 — Distributed Training & Optimized Inference
+<H2> Day 2 — Distributed Training & Optimized Inference
 
 **Theme:** Scale fine-tuning and inference across multiple GPUs while minimizing communication overhead.
 
-### Morning Session (09:30–12:00) — Distributed Fine-Tuning
+<H3> Morning Session (09:30–12:00) — Distributed Fine-Tuning
 
 1. **Distributed Training Concepts**
    - Concept of parallelism
@@ -58,17 +59,19 @@ NRIS Training is organizing a third round of Distributed LLM Fine-Tuning & Infer
    - Evaluation of the fine-tuned model accros multi-GPUs
    - Profiling distributed workloads
 
-### Afternoon Session (13:00–15:30) — Hands-On: Optimized Inference
+<H3> Afternoon Session (13:00–15:30) — Hands-On: Optimized Inference
 
 - Introduction to the vLLM inference engine
 - Single-GPU inference benchmarking
 - Quantization: torchao, bitsandbytes, GPTQModel
 - Multi-GPU inference
 
-### Wrap-Up & Discussion (15:30–16:00)
+<H3> Wrap-Up & Discussion (15:30–16:00)
 
 **Outcome:** Participants scale fine-tuned models and inference across multiple GPUs, interpret performance metrics, and apply optimization strategies suitable for HPC allocations.
+
 </details>
+<br>
 
 ## Target audience & prerequisites
 The course is ideal for researchers, developers, and students with Python experience who want hands-on skills in scalable LLM training and inference on an HPC system.
