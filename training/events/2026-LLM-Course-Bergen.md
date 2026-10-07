@@ -21,6 +21,8 @@ NRIS Training is organizing a third round of Distributed LLM Fine-Tuning & Infer
 <summary><h2 style="display: inline;">Course program and schedule</h2></summary>
 
 <H2> Day 1 — Single-GPU Fine-Tuning & HPC Foundations
+<br>
+<br>
 
 **Theme:** Build an efficient single-GPU fine-tuning workflow on an HPC system.
 
@@ -41,10 +43,14 @@ NRIS Training is organizing a third round of Distributed LLM Fine-Tuning & Infer
 - GPU monitoring and memory profiling
 
 <H3> Wrap-Up & Discussion (15:30–16:00)
+<br>
+<br>
 
 **Outcome:** Participants implement and optimize a complete single-GPU fine-tuning pipeline with performance diagnostics on an HPC system.
 
 <H2> Day 2 — Distributed Training & Optimized Inference
+<br>
+<br>
 
 **Theme:** Scale fine-tuning and inference across multiple GPUs while minimizing communication overhead.
 
@@ -67,10 +73,12 @@ NRIS Training is organizing a third round of Distributed LLM Fine-Tuning & Infer
 - Multi-GPU inference
 
 <H3> Wrap-Up & Discussion (15:30–16:00)
+<br>
+<br>
 
 **Outcome:** Participants scale fine-tuned models and inference across multiple GPUs, interpret performance metrics, and apply optimization strategies suitable for HPC allocations.
-
 </details>
+
 <br>
 
 ## Target audience & prerequisites
