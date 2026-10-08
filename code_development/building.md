@@ -1,207 +1,108 @@
 # Building scientific software
-
-## Introduction
-This is just a quick short guide on the topic. For more in depth documentation please
-check out the [PRACE Best Practice Guides](https://prace-ri.eu/training-support/best-practice-guides/).
-
-[Most relevant for Betzy](https://prace-ri.eu/training-support/best-practice-guides/best-practice-guide-amd-epyc/)
-and an update covering AMD Rome named  "Best Practice Guide Modern Processors"
-soon to be published.
-
+This section covers how to compile and link software, and how to use math and MPI libraries.
 
 ## Compilers
-
-### Introduction 
-Include paths in C/C++ and Fortran are distictly different. The module system set the flag CPATH for us which contain a ':' separated  list 
-of directories to be searched for a include files. This is done behind the scenes for us whein using C/C++. However, with Fortran this is another story.
-Fortran compilers uses a set of '-I' options each with a single directory as argument. This prevent us from using `$CPATH` for include path. One might think
-that FPATH should be a solution (so did Intel some years ago) but it can interfere with some shells (ksh) and should avoided a general setting. However, it does not 
-prevent us from doing it locally (avoiding ksh or othes shells that might be affected). 
-
-The FPATH can be set : `export FPATH="-I"${CPATH//:/ -I}`
-
-Then `$FPATH` can be used in Makefiles and on the command line like `gfortran $FPATH file.f90`  
-For command line a direct syntax can be used like : `gfortran -I${CPATH//:/ -I/} file.f90`
-
-### Intel
-#### Introduction
-The Intel compiler suite is supported on all Sigma2 systems. On the
-systems Saga the processors are from Intel while the
-processors on Betzy are from AMD. As the Intel compiler is primarily
-compiler written for the Intel processors there are some minor issues
-when using it to build core for the AMD processors.
-
-
-#### Documentation
-The documentation of the Intel compiler are found at
-[Intel compiler](https://software.intel.com/content/www/us/en/develop/tools/compilers.html)
-The web site is comprehensive and some browsing are required to find the needed documents.
-Most users want to review the reference manual.
-+ [C/C++ reference](https://software.intel.com/content/www/us/en/develop/documentation/cpp-compiler-developer-guide-and-reference/top.html)
-+ [Fortran reference](https://software.intel.com/content/www/us/en/develop/tools/compilers/fortran-compilers/documentation.html)
-
+### GCC
+The [GNU Compiler Collection](https://gcc.gnu.org) (GCC) includes compilers for C, C++ and Fortran, and libraries for these languages on a variety of platforms including x86 and ARM64 (AArch64).
 
 #### Compiler flags
-The single most common question requested is a set of suggested
-compiler flags. The Intel development team have already selected a
-very good set of flags and just a simple *-O3* flag will provide quite
-good choice. The compiler comes with a set of default optimisation flags already
-set. Just invoking the compiler without any such flags will generate reasonably good code. 
 
-The flag for OpenMP is very often needed : *-qopenmp* and must be used in both compiling a linking.
+The default settings of `gcc/gfortran` are not optimal for performance. There a lot of optimizing options available, a list can be generated issuing command
 
-To ask the compiler generate optimised code have a huge impact in performance. 
+	gcc --help=optimizers
+ 
+A set of flags for optimisation include:
+```
+-O3
+-O3 -mfma -mavx2                    # enable fused multiply–add and AVX2 extensions
+-O3 -march=skylake-avx512           # Intel Skylake
+-O3 -march=znver2 -mtune=znver2     # AMD EPYC Rome (Betzy)
+-O3 -march=znver5 -mtune=znver5     # AMD EPYC Turin (Olivia)
+-O3 -mcpu=grace                     # NVIDIA GraceHopper
+```
+
+#### Further Information
+- [GCC online documentation](https://gcc.gnu.org/onlinedocs/)
+
+### Intel
+The Intel compiler suite, included in the Intel oneAPI Toolkit, is supported on all NRIS systems.
+
+#### Compiler flags
+The Intel compiler comes with a set of default optimisation flags already set. Just invoking the compiler without any additional flags will generate reasonably good code. But telling the compiler generate optimised code can have a huge impact on performance.
+
 The following graph show the observed speed using the 
-[NASA NPB MPI](https://en.wikipedia.org/wiki/NAS_Parallel_Benchmarks) benchmarks built 
-using the Intel compiler and run using OpenMPI at 64 ranks.
+[NASA NPB MPI](https://en.wikipedia.org/wiki/NAS_Parallel_Benchmarks) benchmarks built using the Intel compiler and running 64 MPI ranks.
 
 ![Optimisation gain](optgain.png)
 
 The benefit of selecting optimisation flags is obvious. The effect of vectorisation is 
-less pronounced with these benchmarks which are extracts from real applications and running with datasets of 
-serious size. The compiler can recognise some type of code and generate excellent code, often related 
-to cache and TLB issues. Just looking at the generated code will not tell what the compiler actually did. 
-See an extreme case with matrix multiplication below. Tuning tools can help looking for cache and 
-[TLB](https://en.wikipedia.org/wiki/Translation_lookaside_buffer) issues.
+less pronounced with these benchmarks which are extracts from real applications and running with larger datasets. The compiler can recognise some type of code and generate excellent code, often related to cache and TLB issues.
 
-Some optimisation flags are a bit more tricky. As all processors
-support AVX2 this can always be used. A suggested list set of flags
-than be tried might include:
-* -O3
-* -O3 -xHost
-* -Ofast
-* -O3 -march=core-avx
-* -O3 -march=core-avx2 -mtune=core-avx2
-* -O3 -xavx
-* -O3 -xavx2
-* -O3 -xcore-avx2
-
-The flags above have been tested and yield good results. On Betzy the
-flags involving *-xavx*, *-xavx2* and *-xcore-avx2* can cause
-problems. As the -x prefix implies it will only generate code for a
-processor supporting AVX and AVX2. Intel has implemented a run time
-processor check for any program compiled with these flags, which will result
-in a message like this:
-
-    Please verify that both the operating system and the processor support
-    Intel(R) X87, CMOV, MMX, FXSAVE, SSE, SSE2, SSE3, SSSE3, SSE4_1, SSE4_2,
-    MOVBE, POPCNT, AVX, F16C, FMA, BMI, LZCNT and AVX2 instructions.
-
-This only apply to the main routine.  If the main() function is not compiled
-with ``-xavx``/``-xavx2`` flags the test is not inserted and performance
-is as expected.
-
-The safe option is ``-O3  -march=core-avx2 -mtune=core-avx2`` which mostly provide fair performance.
-
-| Vectorisation flag    | Single core performance |
-|:---------------------:|:-----------------------:|
-| -O3                   |  4.33 Gflops/sec        |
-| -O3 -march=core-avx2  |  4.79 Gflops/sec        |
-| -O3 -xavx             | 17.97 Gflops/sec        |
-| -O3 -xavx2            | 26.39 Gflops/sec        |
-| -O3 -xcore-avx2       | 26.38 Gflops/sec        |
-
-```{warning}
-The ``-xavx2`` flag is quite intrusive, it's building only AVX2 vector
-instructions and if the processor does not support it, you'll get illegal
-instruction.
+As all processors on the NRIS cluster support AVX2 this can always be used. A set of flags for optimisation include:
 ```
-The example above is a best case where the Intel compiler manage to analyse 
-the code and apply special optimisation for matrix multiplication. Checking the 
-code show that is does not call external functions like the matmul in MKL.
+-O3
+-Ofast
+-O3 -xAVX2
+-O3 -xcore-avx2
+-O3 -march=core-avx2 -mtune=core-avx2
+```
+The `-x<code>` option tells the compiler which processor features it may target. As the compiler is primarily written for the Intel processors this can cause problems on AMD cpus (as on Betzy and Olivia) when specifying AVX extensions for the `<code>` setting, e.g. `-xcore-avx2`. Intel has implemented a run time processor check for any program compiled with this flag, which will result in a message like this:
+```
+Please verify that both the operating system and the processor support
+Intel(R) X87, CMOV, MMX, FXSAVE, SSE, SSE2, SSE3, SSSE3, SSE4_1, SSE4_2,
+MOVBE, POPCNT, AVX, F16C, FMA, BMI, LZCNT and AVX2 instructions.
+```
+Notice, this only apply to the main routine. If the main() function is not compiled with the flag the test is not inserted and performance is as expected. To fix this, compile the main() function without the `-x<code>` with AVX extensions setting. Alternatively, the safe option is `-O3  -march=core-avx2 -mtune=core-avx2` which mostly provide fair performance.
 
-For codes that are more realistic and closer to scientific codes like the NPB benchmarks the effect 
-is much smaller. In some cases there are still a significant gain by using the ``-xAVX2``, the figure 
-below illustrate this.
+Compiler flags related to optimisation reports can be useful. To generate an optimisation report use option `-qopt-report[=arg]` (arg = 1,2 or 3), e.g.
 
-![xAVX2 gain](xAVX2gain.png)
+	icx -O3 -march=core-avx2 -mtune=core-avx2 -qopt-report=3 foo.c
 
-There are a large range of other flags, and while the web
-documentation is very good it can be overwhelming. A simple trick is
-to issue the following command `icc -help > icc.hpl` and open the file
-in an editor and search and read relevant paragraphs. Except from
-language specific flags most of the flags are similar for C/C++ and
-Fortran.
+This will generate a file called `foo.optrpt` containing the optimization report messages.
 
-The flags related to optimisation reports can be useful, *-qopt-report*.
-To generate a nice optimisation report some of the following flags could
-be used.
+```{note}
+Notice, the Intel Compiler Classic drivers commands icc and icpc have been removed since the Intel oneAPI 2024.0 release (i.e. 2024 toolchains for NRIS clusters). Use the LLVM-based Intel Compiler drivers icx and icpx instead. The Classic ifort command will be discontinued in the Intel oneAPI 2025 release. Use LLVM-based Intel Compiler driver ifx instead.
+```
 
-* -qopt-report-help
-* -qopt-report=1 (any number from 1 through 5 are valid, 0 turn it off)
-* -qopt-report-file=<file.opt.txt>
-* -qopt-report-annotate
+#### Further Information
+- [Intel oneAPI Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/oneapi-toolkit.html)
+- [Intel oneAPI DPC++/C++ Compiler](https://www.intel.com/content/www/us/en/docs/dpcpp-cpp-compiler/get-started-guide/2025-2/overview.html)
+- [Porting Guide for ICC Users to DPCPP or ICX](https://www.intel.com/content/www/us/en/developer/articles/guide/porting-guide-for-icc-users-to-dpcpp-or-icx.html)
+- [Intel Fortran Compiler](https://www.intel.com/content/www/us/en/docs/fortran-compiler/get-started-guide/2025-2/overview.html)
+- [Porting Guide for Intel Fortran Compiler](https://www.intel.com/content/www/us/en/developer/articles/guide/porting-guide-for-ifort-to-ifx.html)
 
-An example is : `-qopt-report=5 -O3 -xavx2 -g -S` which will generate
-a comprehensive report and a file containing the generated
-code. Reviewing this report and the code can be of great help in cases
-where the compiler fail to optimise as expected.
+### AMD AOCC
+The AMD Optimizing Compilers (AOCC) are based on LLVM, with Clang as the default front-end for C/C++ and Flang for Fortran, and are designed for optimizing code on the AMD Zen series processors. 
 
+A suggested set of flags to try for optimization is given below:
+```
+-O3
+-Ofast
+-O3 —mcpu=znver2     # AMD EPYC Rome (Betzy)
+-O3 —mcpu=znver5     # AMD EPYC Turin (Olivia)
+```
+#### Further Information
+- [AOCC User Guide](https://docs.amd.com/r/en-US/57222-AOCC-user-guide/Introduction)
 
+### NVIDIA compilers
+The NVIDIA compilers (formerly PGI) are part of the NVIDIA HPC Software Development Kit (SDK). To access the compilers load one of the available `nvidia-compilers` modules.
 
-### GNU
-#### Introduction
-GNU compilers are an integral part of the Linux distribution. However,
-the versions of the compilers that comes with the distribution are
-generally not the newest version. Look for modules that supply a more
-recent version. The compiles support C/C++ and Fortran.
+When building software natively NVHPC compilers will auto-detect the host CPU and device GPU architectures of the system without additional command-line options. To verify, add compiler option `—version`, e.g. on the Olivia Grace Hopper nodes:
+```
+module load NRIS/GPU
+module load nvidia-compilers/25.9-CUDA-12.9.1
+nvc —version
+```
+This will produce output
+```
+nvc 25.9-0 linuxarm64 target on aarch64 Linux -tp neoverse-v2 
+NVIDIA Compilers and Tools
+…etc.
+```
+As can be seen, the output includes `-tp neoverse-v2`.
 
-#### Documentation
-The compilers have good man pages covering most of what is commonly needed. More deep
-documentation is found here : https://gcc.gnu.org/onlinedocs/ .
-
-
-#### Compiler flags
-The default settings of gcc/gfortran are not optimal for performance. A set of optimising flags are needed. The flag for OpenMP is *-fopenmp*.
-
-There a lot of optimisers available, a list can be generated using the command
-`gcc --help=optimizers`
-
-Some set of flags for optimisation include :
-* -O2 (often use for only memory intensive applications)
-* -O3
-* -O3 -mfma -mavx2
-* -O3 -march=znver2 -mtune=znver2 (for AMD)
-* -O3 -march=skylake-avx512  (for Intel Skylake)
-
-When gfortran include paths is given by gcc CPATH the following line is bash command line substitute can be beneficial : 
-`gfortran -O3 -I${CPATH//:/ -I/}`
-
-
-### AMD AOCC/llvm
-#### Introduction
-AMD support the development of compilers based on llvm. The Software development kit can be found at : https://developer.amd.com/tools-and-sdks/ .
-C/C++ and Fortran are supported.
-
-#### Documentation
-The AMD documentation is limited. Documentation can be found at the AMD developer
-web site given above.
-
-#### Compiler flags
-The llvm compiler show a huge range of compiler flags, the AMD
-documentation provide a nice subset of relevant flags. The flag for
-OpenMP is *-fopenmp*. A suggested flags to try is given below.
-* -O3
-* -Ofast
-* -Ofast -march=znver2 -mtune=znver2  (for AMD)
-* -Ofast -march=znver2 -mavx2 -m3dnow (for AMD)
-
-
-
-### PGI
-#### Introduction
-Portland Group compiler, known as PGI compiler is now a part of NVIDIA. The PGI web page
-is still available : https://www.pgroup.com/index.htm .
-
-#### Documentation
-Documentation can be found at : https://www.pgroup.com/resources/docs/20.4/x86/index.htm
-
-#### Compiler flags
-Please review the documentation for an updated list of the suggested compiler flags.
-
-A set of suggested flags are :
-* -O3 -tp zen -Mvect=simd -Mcache_align -Mprefetch -Munroll  (for AMD)
-
+#### Further Information
+- [NVIDIA HPC SDK](https://docs.nvidia.com/hpc-sdk/compilers/index.html)
 
 ### Performance of compilers
 A test using the well known reference implementation of matrix matrix
@@ -210,56 +111,130 @@ multiplication is used for a simple test of the different compilers.
 
 | Compiler      | Flags                               | Performance       |
 |:--------------|:-----------------------------------:|:-----------------:|
-| GNU gfortran  | -O3 -march=znver2 -mtune=znver2     | 4.79 Gflops/s     |
-| AOCC flang    | -Ofast -march=znver2 -mavx2 -m3dnow | 5.21 Gflops/s     |
-| Intel ifort   | -O3 -xavx2                          | 26.39 Gflops/s    |
+| GNU gfortran  | `-O3 -march=znver2 -mtune=znver2`     | 4.79 Gflops/s     |
+| AOCC flang    | `-Ofast -march=znver2 -mavx2 -m3dnow` | 5.21 Gflops/s     |
+| Intel ifort   | `-O3 -xavx2`                          | 26.39 Gflops/s    |
 
 The Intel Fortran compiler do a remarkable job with this nested loop problem.
-As we have seen above the matrix matrix multiplication is a special case. For more 
-realistic examples the performance is more comparable.
-
-![Compiler performance](compiler-perf.png)
-
-It turns out that for the EP benchmark (Generate independent Gaussian random variates using the Marsaglia polar method) 
-the Intel compiler manage to do something smart. 
 
 ## Performance libraries
+Many optimized mathematical libraries are available on the NRIS clusters.
+
+The following simple example `test_blas.c` using the BLAS matrix multiply code dgemm can be used to test the different math libraries described in this section.
+<details>
+<summary>test_blas.c</summary>
+### Example using BLAS matrix multiply code dgemm
+
+```
+#include <stdio.h>
+
+#ifdef OPENBLAS               // gcc -DOPENBLAS test_blas.c -lopenblas
+  #include <cblas.h>
+
+#elif defined GSL             // gcc -DGSL test_blas.c -lgsl -lgslcblas -lm
+  #include <gsl/gsl_cblas.h>
+
+#elif defined MKL             // icx -DMKL -qmkl test_blas.c. (compiler option)
+  #include <mkl_cblas.h>.     // icx -DMKL test_blas.c -lmkl_rt (SDL library)
+
+#elif defined AOCL            // gcc -DAOCL test_blas.c -lblis-mt
+  #include <blis/cblas.h>
+#endif
+
+int main()
+{
+  int i=0;
+  double A[6] = {1.0,2.0,1.0,-3.0,4.0,-1.0};
+  double B[6] = {1.0,2.0,1.0,-3.0,4.0,-1.0};
+  double C[9] = {.5,.5,.5,.5,.5,.5,.5,.5,.5};
+
+  cblas_dgemm(CblasColMajor, CblasNoTrans, CblasTrans, 3, 3, 2, 1, A, 3, B, 3, 2, C, 3);
+
+  for(i=0; i<9; i++)
+    printf("%lf ", C[i]);
+  printf("\n");
+}
+```
+</details>
+
+### OpenBLAS
+OpenBLAS is an optimized library that include BLAS and LAPACK linear algebra routines.
+
+To link to the shared OpenBLAS (adding `-DOPENBLAS` to follow the OPENBLAS path in the code) build with:
+
+	gcc -DOPENBLAS test_blas.c -lopenblas
+
+#### Further Information
+- [OpenBLAS](https://www.openmathlib.org/OpenBLAS/docs/)
+
+### GSL (GNU Scientific Library)
+The GNU Scientific Library (GSL) is a numerical software package for C and C++ covering a range of subject areas including:
+- BLAS (level 1, 2, and 3) and linear algebra routines
+- Fast Fourier transform (FFT) functions
+- Numerical integration
+- Random number generation functions
+
+To link to the shared GSL library (adding `-DGSL` to follow the GSL path in the code) build with:
+
+	gcc -DGSL test_blas.c -lgsl -lgslcblas -lm
+
+#### Further Information
+- [GSL - GNU Scientific Library](https://www.gnu.org/software/gsl)
+
 
 ### Intel MKL
-#### Introduction
-The Intel Math Kernel Library comes with the compiler suite and is well known as
-high performance library. It comes in both sequential and multi threaded functions
-and is know for its very high performance.
+The Intel Math Kernel Library (MKL) contains highly optimised, extensively multithreaded math routines for different areas of computation. The library includes:
+- BLAS (level 1, 2, and 3) and LAPACK linear algebra routines
+- ScaLAPACK distributed processing routines and BLACS routines for communication
+- Fast Fourier transform (FFT) functions
+- Vectorized math functions
+- Random number generation functions
 
-MKL have wrappers for FFTW so no rewrite is needed to link any applications using
-FFTW with MKL. Both Include files and library functions are provided.
+#### Dynamic Linking
+Using Intel compilers the compiler option `-qmkl` can be used to link to shard MKL libraries:
+```
+-mkl or -mkl=parallel   # link with standard multithreaded MKL
+-mkl=sequential         # link with sequential version of MKL
+-mkl=cluster            # link with cluster components (single-threaded) that use Intel MPI
 
-When using the Intel compiler the compiling and linking is very simple, most
-of the times is enough to just add *-mkl*. Adding *=sequential* or *=parallel*.
+```
+For example (adding `-DMKL` to follow the MKL path in the code):
 
-When using MKL with the GNU compilers some more work is often needed, both include paths and linking paths. 
-An example can provide some hints:
-`-L$MKLROOT/lib/intel64 -lmkl_gnu_thread -lmkl_avx2 -lmkl_core -lmkl_rt`
-The variable *MKLROOT* is set when the Intel module is loaded.
+	icx -DMKL -qmkl test_blas.c
 
-In many cases the include files are needed and since the CPATH is set by module scripts the following command like might easy the process of
-translating a colon separated string of directories to something that the Fortran compiler will accept.
-`gfortran -O3 -I${CPATH//:/ -I/} fftw-3d.f90 ${MKLROOT}/lib/intel64/libfftw3xf_intel.a -lmkl_sequential -lmkl`
-The above example is an example og using the FFTW wrapper in MKL, using only environment variables set by the module scripts it will
-be portable with different versions of MKL. 
+An alternative is to use the Single Dynamic Library (SDL), `libmkl_rt.so`, at the link stage, e.g.:
 
-The following command can be of help when encounter missing symbols:
-`nm -A $MKLROOT/lib/intel64/* | grep <missing symbol>`
-Look for symbols with *T* (T means text,global - e.g. it's available, U means undefined).
+	icx -DMKL test_blas.c -lmkl_rt
 
+SDL enables you to select the interface (32-bit or 64-bit integers) and threading library (Intel OpenMP or Intel TBB) for MKL at run time, e.g. for running in single-threaded mode specify:
+
+	export MKL_THREADING_LAYER=SEQUENTIAL
+
+at run time.
+
+#### Static Linking
+In case of static linking of MKL enclose components [threading libraries](https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2023-2/linking-with-threading-libraries.html) and 
+[computational libraries](https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2023-2/linking-with-computational-libraries.html) in grouping symbols, and add [compiler run-time libraries](https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2023-2/linking-with-compiler-run-time-libraries.html).
+
+For example, to link a Fortran program `myprog.f` with multi-threaded ScaLAPACK using the Intel MPI  `mpiifx` compiler wrapper to setup the MPI environment specify:
+```
+mpiifx -I$(MKLROOT)/include myprog.f \
+-Wl,--start-group \
+$(MKLROOT)/lib/intel64/libmkl_scalapack_lp64.a \
+$(MKLROOT)/lib/intel64/libmkl_intel_lp64.a \
+$(MKLROOT)/lib/intel64/libmkl_intel_thread.a \
+$(MKLROOT)/lib/intel64/libmkl_core.a \
+$(MKLROOT)/lib/intel64/libmkl_blacs_intelmpi_lp64.a \
+-Wl,--end-group \
+-liomp5 -lpthread -lm -ldl
+```
+Notice, the `MKLROOT` environment variable is set `mkl` modules. The easiest way to decide on the compile and link line when linking MKL is to use the I[ntel Math Kernel Library Link Line Advisor](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl-link-line-advisor.html).
 
 #### Forcing MKL to use best performing routines
-MKL issue a run time test to check for genuine Intel processor. If this test fail it will select a generic x86-64 set of routines yielding 
-inferior performance. This is well documented in [Wikipedia](https://en.wikipedia.org/wiki/Math_Kernel_Library) and remedies in 
-[Intel MKL on AMD Zen](https://danieldk.eu/Intel-MKL-on-AMD-Zen).
+MKL issue a run time test, with a call to a function `mkl_serv_intel_cpu_true()`, to check for genuine Intel processor. If a Intel processor is found it simply return `1`. But if this test fail it will select a generic x86-64 set of routines yielding 
+inferior performance.
 
-Research have discovered that MKL call a function called *mkl_serv_intel_cpu_true()* to check the current CPU. If a genuine Intel processor is 
-found it simply return 1. The solution is simply to override this function by writing a dummy functions which always return 1 and place this 
+The solution is simply to override this function by writing a dummy functions which always return 1 and place this 
 early in the search path. The function is simply:
 ```c
 int mkl_serv_intel_cpu_true() {
@@ -267,169 +242,154 @@ int mkl_serv_intel_cpu_true() {
 }
 ```
 Compiling this file into a shared library using the following command:
-`gcc -shared -fPIC -o libfakeintel.so fakeintel.c`
+
+	gcc -shared -fPIC -o libfakeintel.so fakeintel.c
 
 To put the new shared library first in the search path we can use a preload environment variable:
 `export LD_PRELOAD=<path to lib>`
 A suggestion is to place the new shared library in `$HOME/lib64` and using 
 `export LD_PRELOAD=$HOME/lib64/libfakeintel.so` to insert the fake test function.
-
-In addition the environment variable *MKL_ENABLE_INSTRUCTIONS* can also have a significant effect. 
-Setting the variable to AVX2 is advised. Just changing it to AVX have a significant negative impact.
   
-For performance impact and more about running software with MKL please see
+For performance impact and more about running software with MKL see
 {ref}`using-mkl-efficiently`.
 
-
-#### Documentation
-Online documentation can be found at :  https://software.intel.com/content/www/us/en/develop/documentation/mkl-linux-developer-guide/top.html
-
-There is a link line helper available : https://software.intel.com/content/www/us/en/develop/articles/intel-mkl-link-line-advisor.html , this can often be of help.
-
+#### Further Information
+- [Intel oneAPI Math Kernel Library](https://www.intel.com/content/www/us/en/docs/onemkl/get-started-guide/2026-0/overview.html)
+- [Intel oneAPI Math Kernel Library Link Line Advisor](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl-link-line-advisor.html)
 
 ### AMD AOCL
-#### Introduction
-The AMD performance library provide a set of library functions optimised for the AMD processor.
-The web page is : https://developer.amd.com/amd-aocl/ .
+AMD Optimizing CPU Libraries (AOCL) are a set of numerical libraries optimized for AMD Zen series processors. On Betzy and Olivia the following are installed:
+- AOCL-BLAS, a high-performance BLAS implementation based on [BLIS](https://github.com/flame/blis)
+- AOCL-LAPACK, a high-performance BLAS implementation based on [libFLAME](https://github.com/amd/libflame)
 
-#### Documentation
-Documentation can be found at https://developer.amd.com/amd-aocl/ .
+To link to the shared AOCL-BLAS library (adding `-DAOCL` to follow the OPENBLAS path in the code) build with:
 
+	gcc -DAOCL test_blas.c -lblis-mt
 
-### Performance
-Using the MLK library with AMD is straightforward. 
+### Further Information
+- [AOCL User Guide](https://docs.amd.com/r/en-US/57404-AOCL-user-guide/AOCL-User-Guide)
 
-In order to get MKL to select the correct AVX2 enabled routine a flag 
-need to be set, use : `export MKL_DEBUG_CPU_TYPE=5`. However, this flag 
-is no longer used in the 2020 version of the MKL. For this newer version 
-a different workaround is needed.
-
-For more about MKL performance and AMD see above about 
-"Forcing MKL to use best performing routines", where usage of a cheating 
-library is explained. 
-
-
-The well known top500 test HPL is using linear algebra library functions, 
-the following performance data were obtained using a single node.
-
-| Library        | Environment flag             |Performance    |
-|:---------------|:-----------------------------|:-------------:|
-| AMD BLIS-mt    | none                         | 3.14 Tflops/s |
-| MKL-2019.5.281 | none                         | 1.71 Tflops/s |
-| MKL-2019.5.281 | MKL_DEBUG_CPU_TYPE=5         | 3.23 Tflops/s | 
-| MKL-2020.4.304 | none                         | 2.54 Tflops/s |
-| MKL-2020.4.304 | MKL_DEBUG_CPU_TYPE=5         | 2.54 Tflops/s |
-| MKL-2020.4.304 | MKL_ENABLE_INSTRUCTIONS=AVX2 | 2.54 Tflops/s |
-| MKL-2020.4.304 | LD_PRELOAD=./libfakeintel.so | 3.23 Tflops/s |
-
-  
-The test below using matrix matrix multiplication, Level 3 BLAS
+### Performance of math libraries
+In the test below using matrix matrix multiplication, Level 3 BLAS
 function dgemm is used to test single core performance of the
 libraries. The tests are run on a single node using a single core on
 Betzy.
 
 | Library | Link line                                                   | Performance     |
 |:--------|:-----------------------------------------------------------:|:---------------:|
-| AOCL    | `gfortran -o dgemm-test.x -O3 dgemm-test.f90 -L$LIB -lblis` | 50.13 Gflops/s  |
-| AOCL    | `flang -o dgemm-test.x -O3 dgemm-test.f90 -L$LIB -lblis`    | 50.13 Gflops/s  |
-| MKL     | `ifort -o dgemm-test.x -O3 dgemm-test.f90 -mkl=sequential`  | 51.53 Gflops/s  |
+| AOCL    | `gfortran -O3 dgemm-test.f90 -L$LIB -lblis` | 50.13 Gflops/s  |
+| AOCL    | `flang -O3 dgemm-test.f90 -L$LIB -lblis`    | 50.13 Gflops/s  |
+| MKL     | `ifort -O3 dgemm-test.f90 -mkl=sequential`  | 51.53 Gflops/s  |
 
-At 50 Gflops/s per core the aggregate number is 6.4 Tflops/s quite a
-bit more than what's expected from these nodes. This is a nice example
-of clock boost when using only a few cores, or in this case only one.
+This is a nice example of clock boost when using only a few cores, or in this case only one.
 
-While linear algebra is widely used Fourier Transform is also heavily used.
-The performance data below is obtained for a 3d-complex forward FT with a footprint
-of about 22 GiB using a single core.
+The performance data below is obtained for a 3d-complex forward FT with a footprint of about 22 GiB using a single core.
 
 | Library        | Environment flag             |Performance |
 |:---------------|:-----------------------------|:----------:|
 | FFTW 3.3.8     | none                         | 62.7 sec.  |
 | AMD/AOCL 2.1   | none                         | 61.3 sec.  |
 | MKL-2020.4.304 | none                         | 52.8 sec.  |
-| MKL-2020.4.304 | LD_PRELOAD=./libfakeintel.so | 27.0 sec.  |
-| MKL-2020.4.304 | LD_PRELOAD=./libfakeintel.so |            |
-|                | MKL_ENABLE_INSTRUCTIONS=AVX  | 40.5 sec.  |
-| MKL-2020.4.304 | LD_PRELOAD=./libfakeintel.so |            |
-|                | MKL_ENABLE_INSTRUCTIONS=AVX2 | 27.0 sec.  |
+| MKL-2020.4.304 | `LD_PRELOAD=./libfakeintel.so` | 27.0 sec.  |
 
-With the 2020 version of MKL the instruction set variable has a significant effect.
-
-The performance of MKL is significantly higher than both FFTW and the AMD library. 
-
-For applications spending a lot of time executing library function code a review of
-libraries used and some testing using the specific library functions actually used. 
-Not all library functions are implemented equally good by the authors. 
-
+In this test the performance of MKL is significantly higher than both FFTW and the AMD library. 
 
 ## MPI libraries
 
 ### OpenMPI
-#### Introduction
-The OpenMPI library are based on the old LAM MPI from Ohio
-Supercomputing Center. This one of the most widely used MPI
-implementations today. The web site is : https://www.open-mpi.org/ .
+OpenMPI provides full support for the MPI-3.1 in its modern releases and partial support for the newer MPI-4.0 standard in the v5.0 series. OpenMPI is supported on all the NRIS systems.
 
-OpenMPI is supported on all the Sigma2 systems, with versions for both
-GNU and Intel compilers, and in some cases some support for other
-compilers.
+The Open MPI compiler wrapper scripts listed in the table below add in all relevant compiler and link flags, and then invoke the underlying compiler, i.e. the compiler that the Open MPI installation was built with.
 
-#### Usage
-The compiler wrappers hiding the include and link environment are called:
-* mpicc for C
-* mpicxx for C++
-* mpif90 for Fortran
-* mpff77 for Fortran
+| Language       | Wrapper script          | Default compiler| Environment variable |
+| :------------- | :-------------:         |:-------------:  |:-------------:       |
+| C              | `mpiicc`                | `gcc`           | `OMPI_CC`            |
+| C++            | `mpicxx, mpic++, mpiCC` | `g++`           | `OMPI_CXX`           |
+| Fortran        | `mpifort`               | `gfortran`      | `OMPI_FC`            |
 
-In practice both mpif90 and mpif77 points to the same Fortran compiler. A quick check for
-compiler versions is `mpif90 -v`.
+It is possible to change the underlying compiler that is invoked when calling the compiler wrappers using the environment variables listed in the table. Use option `-showme` to see the underlying compiler, the compile and link flags, and the libraries that are linked when invoking the MPI wrapper commands.
 
-Compiler flags are propagated to the underlaying compiler.
+MPI jobs are launched running command `mpirun` (or alternatively Slurm `srun`). There are many available  options to mpirun, including process placement options. See the manual `man mpirun` page for details.
 
-To run programs the launched application mpirun is used (Slurm srun is
-an option also). There are a range of options to OpenMPI's mpirun of
-which `--bind-to` and `--map-by` a the most important when running on
-the Sigma2 systems using Slurm as the queue system set the number of
-ranks and other run time parameters like list of hosts etc. This is normal
-for MPI libraries built and installed with Slurm support.
+For example, to run 8 MPI processes on two 2-socket, 64-core nodes mapping evenly to sockets and binding to cores, use the following command:
 
+	mpirun --report-bindings --map-by package --bind-to core ./a.out
 
+with output
+```
+[b5227] Rank 0 bound to package[0][core:L0]
+[b5227] Rank 1 bound to package[0][core:L1]
+[b5227] Rank 2 bound to package[1][core:L64]
+[b5227] Rank 3 bound to package[1][core:L65]
+[b5248] Rank 4 bound to package[0][core:L0]
+[b5248] Rank 5 bound to package[0][core:L1]
+[b5248] Rank 6 bound to package[1][core:L64]
+[b5248] Rank 7 bound to package[1][core:L65]
+```
+(This example was run on Betzy compute nodes)
+
+### Further Information
+- [Open MPI](https://www.open-mpi.org/)
 
 ### Intel MPI
-#### Introduction
-The Intel MPI is part of the Intel compiler suite and is a widely used MPI implementation.
-More information is found on-line at : https://software.intel.com/content/www/us/en/develop/tools/mpi-library.html .
+The Intel MPI library is based on MPICH and supports the MPI-4.1 standard. Intel MPI is supported on all NRIS systems.
 
-Intel MPI is supported on all Sigma2 systems, but mostly for use with
-the Intel compiler, it can however, to some extent be used with
-GNU. The support is present.
+The following table shows available Intel MPI compiler wrapper commands, the underlying Intel and GNU compilers, and ways to override underlying compilers with environment variables or command line options.
 
-#### Usage
-The compiler wrappers have different naming then many other MPI implementations.
-* mpiicc for C
-* mpiicpc for C++
-* mpiifort for Fortran
-* mpicc  GNU C
-* mpigcc GNU C
-* mpicxx GNU C++
-* mpifc GNU Fortran
+| Language     | Wrapper script | Default compiler | Environment variable | Command line      |
+| :----------- | :-------------:|:-------------:   |:-------------:       |:---------------:  |
+| C            | `mpiicc`       | `icc` [^1]       | `I_MPI_CC`           | `-cc=<compiler>`  |
+| C            | `mpiicx` [^2]  | `icx` [^3]       | `I_MPI_CC`           | `-cc=<compiler>`  |
+| C            | `mpicc`        | `gcc`            | `I_MPI_CC`           | `-cc=<compiler`>  |
+| C++          | `mpiicpc`      | `icpc` [^1]      | `I_MPI_CXX`          | `-cxx=<compiler>` |
+| C++          | `mpiicpx`[^2]  | `icpx` [^3]      | `I_MPI_CXX`          | `-cxx=<compiler>` |
+| C++          | `mpicxx`       | `g++`            | `I_MPI_CXX`          | `-cxx=<compiler>` |
+| Fortran      | `mpiifort`     | `ifort` [^1]     | `I_MPI_FC`           | `-fc=<compiler>`  |
+| Fortran      | `mpiifx` [^2]  | `ifx` [^3]       | `I_MPI_FC`           | `-fc=<compiler>`  |
+| Fortran      | `mpif90`       | `gfortran`       | `I_MPI_FC`           | `-fc=<compiler>`  |
 
-There are a lot of environment variables to be used with Intel MPI, they all start with *I_MPI*
-* I_MPI_PIN
-* I_MPI_PIN_DOMAIN
-* I_MPI_PIN_PROCESSOR_EXCLUDE_LIST
+Specify option `-show` with one of the compiler wrapper scripts to see the underlying compiler together with compiler options, link flags and libraries.
 
-The variable *I_MPI_PIN_DOMAIN* is good when running hybrid codes,
-setting it to the number of threads per rank will help the launcher to
-place the ranks correct.
-Setting *I_MPI_PIN_PROCESSOR_EXCLUDE_LIST=128-255* will make sure only
-physical cores 0-127 are used for MPI ranks. This ensures that no two
-ranks share the same physical core.
+For example, use the available MPI C wrapper command before the Intel oneAPI 2023.2 release but with the LLVM based compiler
+```
+module load intel/2023a
+mpiicc -cc=icx mpi_hello_world.c
+```
+To launch programs linked with Intel MPI use the `mpirun` command (or alternatively Slurm `srun`). Intel MPI uses environment variables prefixed with `I_MPI_` to control job launching, performance tuning, process placement, and debugging behaviors. Issue command
 
-As with any of these variable and other please review the
-documentation pointed to above and do some testing yourself before
-employing in large production scale.
+	impi_info -all
 
-Running applications with Intel MPI is just like a simple as for
-OpenMPI as Intel MPI also has support for Slurm. Just `mpirun ./a.out`
-is normally enough.
+to see information on environment variables available in the Intel MPI Library.
+
+For example, to run 8 mpi processes on two 2-socket 64-core nodes mapping evenly to sockets and binding to cores, specify
+
+```
+export I_MPI_DEBUG=4
+export I_MPI_PIN_DOMAIN=socket
+export I_MPI_PIN_CELL=core
+mpirun ./a.out
+```
+with output
+```
+[0] MPI startup(): ===== CPU pinning =====
+[0] MPI startup(): Rank    Pid      Node name    Pin cpu
+[0] MPI startup(): 0       150838   b1395        {0-63}
+[0] MPI startup(): 1       150839   b1395        {64-127}
+[0] MPI startup(): 2       150840   b1395        {0-63}
+[0] MPI startup(): 3       150841   b1395        {64-127}
+[0] MPI startup(): 4       148375   b1396        {0-63}
+[0] MPI startup(): 5       148376   b1396        {64-127}
+[0] MPI startup(): 6       148377   b1396        {0-63}
+[0] MPI startup(): 7       148378   b1396        {64-127}
+
+```
+The output shows that processes `0` and `2` ends up on socket 1 (cpus `{0-63}`), and processes `1` and `3` ends up on socket 2 (cpus `{64-127}`) on the first node, etc. (This example is run on Betzy compute nodes.)
+
+### Further Information
+- [Intel MPI Library](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html)
+- [Developer Guide for Linux](https://www.intel.com/content/www/us/en/docs/mpi-library/developer-guide-linux/2021-18/overview.html)
+
+[^1]: Intel Compiler Classic driver commands, available before the Intel oneAPI 2024.0 release (`icc/icpc`), and before the Intel oneAPI 2025 release (`ifort`).
+[^2]: Intel LLVM based compiler based wrappers available since the Intel oneAPI 2023.2 release (i.e. `intel/2023b` toolchain on NRIS clusters)
+[^3]: LLVM-based backend Intel Compiler drivers available since 2022
+
