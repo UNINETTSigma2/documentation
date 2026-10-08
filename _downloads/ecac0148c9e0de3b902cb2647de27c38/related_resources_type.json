@@ -1,0 +1,85 @@
+{"resource_types": [{
+  "name": "algorithm_documentation"
+},
+{
+ "name": "algorithm_theoretical_basis_document_atbd_"
+},
+{
+ "name": "anomalies"
+},
+{
+"name": "case_study"
+},
+{
+"name": "data_citation_policy"
+},
+{
+"name": "data_product_specification"
+},
+{
+"name": "data_quality"
+},
+{
+"name": "data_recipe"
+},
+{
+"name": "deliverables_checklist"
+},
+{
+"name": "general_documentation"
+},
+{
+"name": "how_to"
+},
+{
+"name": "important_notice"
+},
+{
+"name": "instrument_sensor_calibration_documentation"
+},
+{
+"name": "micro_article"
+},
+{
+"name": "pi_documentation"
+},
+{
+"name": "processing_history"
+},
+{
+"name": "product_history"
+},
+{
+"name": "product_quality_assessment"
+},
+{
+"name": "product_usage"
+},
+{
+"name": "production_history"
+},
+{
+"name": "publications"
+},
+{
+"name": "read_me"
+},
+{
+"name": "related_articles"
+},
+{
+"name": "requirements_and_design"
+},
+{
+"name": "science_data_product_software_documentation"
+},
+{
+"name": "science_data_product_validation"
+},
+{
+"name": "user_feedback_page"
+},
+{
+"name": "user_s_guide"
+}
+]}
