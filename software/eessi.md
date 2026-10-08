@@ -12,13 +12,27 @@ popular streaming services for videos and music.
 For the impatient, the single command to get access to EESSI (on NRIS operated
 systems) is just
 
-    module load EESSI/2023.06 OR module load EESSI/2025.06
+```bash
+module load EESSI/2023.06
+# or
+module load EESSI/2025.06
+# or
+module load EESSI/2026.06
+```
 
 Thereafter, software can be used via environment modules, for example,
 
     module load GROMACS/2026.2-foss-2025b
 
 just like it would be used with a traditionally provided installation.
+
+## Current EESSI versions
+
+| EESSI version | Included toolchains |
+|---|---|
+| [2023.06](https://documentation.sigma2.no//software/installed_software.html) | `foss/2022b`<br>`foss/2023a`<br>`foss/2023b` |
+| [2025.06](https://documentation.sigma2.no//software/installed_software.html) | `foss/2024a`<br>`foss/2025a`<br>`foss/2025b` |
+| [2026.06](https://documentation.sigma2.no//software/installed_software.html) | `foss/2026.1` |
 
 ```{note}
 When loading the EESSI module and using software provided by

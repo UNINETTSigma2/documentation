@@ -7,9 +7,12 @@ accessible on login nodes and all compute nodes. To
 configure the environment, all that needs to be done is to run the single
 command:
 
-``` bash { code-block }
-# to access the EESSI software stack
-module load EESSI/2023.06 OR module load EESSI/2025.06
+```bash
+module load EESSI/2023.06
+# or
+module load EESSI/2025.06
+# or
+module load EESSI/2026.06
 ```
 
 The module file will detect the CPU hardware of the machine and pick the best
