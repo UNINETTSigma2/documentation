@@ -14,7 +14,7 @@ For Saga the default software packages shown are for the Intel CPU partition wit
 
 ## Olivia
 
-Olivia is a quite different machine compared to the other NRIS HPC clusters. It is a HPE Cray computer, which provides the Cray Programming Environment (CPE) as means for advanced users to get the optimal performance when self-compiling code. In addition we have added NRIS software stacks compiled and optimized for Olivia’s nodes to ensure the best performance.
+Olivia is a quite different machine compared to the other NRIS HPC clusters. It is a HPE Cray system, which provides the Cray Programming Environment (CPE) as means for advanced users to get the optimal performance when self-compiling code. In addition we have added NRIS software stacks compiled and optimized for Olivia’s nodes to ensure the best performance.
 
 After logging in, no software stack is loaded by default. There are three types of stacks installed on Olivia:
 
