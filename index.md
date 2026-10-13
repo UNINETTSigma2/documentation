@@ -174,6 +174,7 @@ getting_started/data_transfer.md
 getting_started/editing_files.md
 code_development/guides/vs_code/connect_to_server.md
 getting_started/ssh.md
+getting_started/ssh-keypairs.md
 getting_started/ood.md
 getting_started/first_calculation.md
 ```

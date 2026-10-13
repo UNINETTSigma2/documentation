@@ -24,7 +24,7 @@ encrypted connection (see also our guide about {ref}`data transfer <data-transfe
 ## Connecting to a server
 
 ```{note}
-Using two-factor authentication (2FA) is mandatory when using SSH to connect to the NRIS systems. For more details, visit the {ref}`OTP/2FA page <two-factor-authentication>`. Connections between NRIS systems (Saga, Betzy, Olivia) are facilitated using SSH key pairs (explained further below).
+Using two-factor authentication (2FA) is mandatory when using SSH to connect to NRIS systems. For more details, visit the {ref}`OTP/2FA page <two-factor-authentication>`. Connections between NRIS systems (Saga, Betzy, Olivia, and Nird) are facilitated using SSH key pairs (see page about {ref}`SSH-keypairs<ssh-keypairs>` for more information).
 ```
 
 When you type `ssh myusername@saga.sigma2.no`, `myusername` is your
@@ -76,38 +76,37 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
 
 This question helps prevent another server from impersonating the remote
-resource and subsequently impersonating you to the real resource. This is not very likely but it is possible, so it's a good idea to double-check the fingerprint and compare it with published {ref}`ssh fingerprints <ssh-fingerprints>`.
+resource and subsequently impersonating you to the real resource. This is not very likely but it is possible, so it's a good idea to double-check the fingerprint and compare it with published {ref}`ssh fingerprints <ssh-fingerprints>`. Note that the trailing period (".") is not part of the fingerprint.
 
-If the fingerprint matches, you can confirm by typing `yes` and press `Enter`. Note that the trailing period (".") is not part of the fingerprint.
+If the fingerprint matches, you can confirm by typing `yes` and press `Enter`. 
 
 ```{warning}
 If the fingerprints do not match, please {ref}`contact us <support-line>`
 immediately.
 ```
 
-## Jumping through login nodes (*of the same system*)
+## Jumping through login nodes (*of the same cluster*)
 
-Once logged in, you can easily jump from one login node to another by
-typing `ssh login-X` (for Saga and Betzy) or `ssh loginX` (for NIRD).
-Please, replace "X" with the number of the login node you want to access.
+Once logged in, you can easily jump from one login node to another by typing `ssh login-X` (for Saga and Betzy) or `ssh loginX` (for NIRD). Please, replace "X" with the number of the login node you want to access.
 
-The same is valid for when you want to access a specific compute node. 
-However, it is only possible to access compute nodes on which you currently have jobs running.
+The same is valid for when you want to access a specific compute node. However, it is only possible to access compute nodes on which you currently have jobs running.
 
-Since 2FA is now manditory, you will not be able to ssh to the login-nodes with keypairs (applies only from host/outside. SSH between login-nodes/clusters uses keypairs). See {ref}`OTP/2FA page <two-factor-authentication>` for more information (and tips).
+Since 2FA is now manditory, you will not be able to ssh *to* the login-nodes with keypairs (applies only from host/outside. SSH between login-nodes/clusters uses keypairs). See {ref}`OTP/2FA page <two-factor-authentication>` for more information (and tips).
 
 
 (ssh-config)=
 
 ## Configuring SSH for less typing
 
-To avoid typing in the whole address (e.g. `ssh user@saga.sigma2.no`), you can use a configuration file to create shorter "*aliases* (e.g. `ssh saga`). The file is located at `~/.ssh/config` (create the file if it doesn't exist). Open the file (e.g. `vim ~/.ssh/config`), and add (minimum) the following lines (one file pr local host):
+To avoid typing in the whole address (e.g. `ssh user@saga.sigma2.no`) everytime you need to access a remote server, you can use a configuration file to create shorter "*aliases* (e.g. `ssh saga`). The file is located at `~/.ssh/config` (create the file if it doesn't exist). Open the file (e.g. `vim ~/.ssh/config`), and add (minimum) the following lines (one file pr local host):
 
 ```
 Host saga
     User myusername
     Hostname saga.sigma2.no
 ```
+
+- ***Host** == the alias/shortened name, **User** == your username (or username to use), **Hostname** == full address to remote server*.
 
 After saving the file, instead of typing:
 ```console
@@ -120,118 +119,11 @@ $ ssh saga
 ```
 If you get an error `Bad owner or permissions on /cluster/home/myusername/.ssh/config`, run `chmod 600 ~/.ssh/config`, and try again. You should be able to connect now.
 
-If you have multiple keys for multiple systems, you can *bind* a specific key to a specific host, by adding the line `IdentityFile ~/.ssh/sagaKey` in the config file. On the example above, this would force every connection to host `saga` to use the private key of the pair `sagaKey`. Also, `rsync`, `scp`, and any other tool that uses `ssh` under the hood will understand these shortcuts. Search the web for more useful configuration options for automation.
-
-
-## Using SSH keys instead of passwords
-
-**NB**: *After enabling two-factor authentication, SSH keys alone
-only work for copying files via port 12. Password must be used with OTP for interactive access*. Check the {ref}`OTP/2FA page <two-factor-authentication>`. This section is therefore valid for connections between hosts that can accept only keypair connections (on our clusters, only between: `betzy`, `nird`, `olivia`, and `saga`).
-
-*For the examples in this section, we will use `saga` as host, `olivia` as destination, the keypair `id_ed25519` and `id_ed25519.pub`, and `myuser` as our Sigma2 username.* 
-
-### Generating and using a new SSH key pair
-
-First and foremost, you will need to create an ssh key-pair on the local host. While there are many options for the key generation program ``ssh-keygen``, here are the main ones:
-- `-t`: The encryption type used to make the unique key pair.
-- `-b`: The number of key bits. (Ed25519 is fixed length and ignores this)
-- `-f`: Filename of key.
-- `-C`: Comment on what the key is for.
-- `-a`: Number of key derivation function rounds. Default is 16. The higher, the longer it takes to verify the passphrase, but also the better protection against brute-force password cracking.
-
-The Ed25519 key type is preferable to RSA keys. They are shorter and easier to identify visually. Always use comments to distinguish between keys.
-
-**We recommend the following command to create a key pair**:
-```console
-ssh-keygen -t ed25519 -a 100 -f "$HOME/.ssh/id_ed25519" -C "$(whoami)@$(hostname)-$(date -I)"
-```
-
-After running this command in the terminal, you will be prompted to enter apassphrase.  **Make sure to enter a passphrase to encrypt the key!** A private key with an empty passphrase can be used by anybody who gets access to your private key file. Never share it with anybody!
-
-Upon confirming the passphrase, you will be presented with the key fingerprint as both a SHA256 hex string and as a randomart image. Your new key pair will be saved in the hidden `~/.ssh` directory.  If you ran the command above, you will find the following files there: `id_ed25519` (private key, never share it) and `id_ed25519.pub` (public key, no problem to share).
-
-Once you've done this, add a line to your `config` file specifying that
-"all connection attempts to Host should try Key": `IdentityFile ~/.ssh/id_ed25519`. This will ensure that SSH tries `id_ed25519` pair to authenticate first.
-
-In order to use your key pair to log in to the remote server, you first need to securely copy the desired *public key* to the machine with `ssh-copy-id`. The script will also add your public key to the `~/.ssh/authorized_keys` file on the server. You will be prompted to authenticate with password + OTP (not the *passphrase* associated with the private key) to initiate the secure copy of the file.
-
-To copy and install the public key to the server (here from `saga` to `olivia`), use:
-```console
-myuser@login-1.saga..:$ ssh-copy-id -i ~/.ssh/id_ed25519 myuser@olivia.sigma2.no
-```
-You will now be asked to authenticate using your OTP + password. Once you've done this, you should see the following message:
-````
-Number of key(s) added: 1
-
-Now try logging into the machine, with:   "ssh 'myuser@olivia.sigma2.no'"
-and check to make sure that only the key(s) you wanted were added.
-```` 
-
-**NB**: To spread load over all the login nodes of a given cluster (Saga,
-Betzy, Olivia), e.g. `ssh saga.sigma2.no` will lead the user to 1 of the 5
-available login nodes of saga (this is seen by the `user@login-X.saga...` on the shell). In the example above, your key would be copied to all login nodes on olivia (`uanX`).
-
-This command creates the file `authorized_keys` in the directory `~/.ssh` on the target machine if it did not exist yet, or adds the new key to the existing file (`olivia.sigma2.no:/cluster/home/myuser/.ssh/authorized_keys` in the example above). When created by OpenSSH (e.g. through `ssh-copy-id`), the directory gets the required strict permissions `0700`, which may be different from the shell's file-creation mask returned by `umask -S`.  You can check the permissions by running `ls -ld ~/.ssh` on Saga, and change the permissions to `0700` with the command `chmod 0700 ~/.ssh`.
-
-Once the public key has been copied to the remote server, you can log in using the SSH key pair (if it isn't defined in the `config` file, you can specify with `-i` parameter): `ssh -i ~/.ssh/sagaKey1 myuser@olivia.sigma2.no`. This will now ask for your **pasphrase** which you set when creating the keypair.
-
-**This is a standard approach that works not only for our clusters but also for other servers/clients, as well as services like GitHub or GitLab.**
-
-**Why are SSH key pairs more secure than using a password?** There is still the passphrase to unlock the private key, so why is this easier and better? We will show later how it is easier, but it is more secure because **the passphrase is never communicated to the remote server**: it stays on your computer. When the remote server is authenticating you, it encrypts a large number and sends it encrypted to you, asks you to decrypt it and send the decrypted number back, and then compares the two. If they match, the remote server knows that you are you and from there on can trust you for the duration of the session. No password or passphrase needs to leave your computer over the network.
-
-
-````{admonition} Help! It still asks for a password!
-
-In this case, debug with:
-```console
-$ ssh -v myusername@saga.sigma2.no
-```
-
-Instead of `-v` you can also try `-vv` or `-vvv` for more verbose output. When {ref}`contacting us <support-line>`, remember to include this output in the request. *You should also check the output and try to figure out what goes wrong. Does it try the key pair you created?* 
-````
-
-
-### How many key pairs should I create?
-
-We recommend creating a key pair for each hardware device, *not* a key pair for each remote server. In other words, if you have a laptop and a desktop and want to authenticate to 4 different servers, create a key pair on the laptop and another one on the desktop, and upload both public keys to all 4 remote servers. The motivation is that if you lose your hardware device (e.g., laptop) or it gets stolen, you know exactly which key to revoke access from (in the example above, `sagaKey` is a key for connecting *from* `saga`).
-
-
-### Using the OpenSSH authentication agent
-
-Earlier we mentioned that *it's easier to use ssh-keys rather than passwords*. This is because we can add the **private key** to the `ssh-agent` on our host machine. This will require *one* authentication, and keep that authentication *alive* as a process until the machine is restarted (or process is killed). After this, whenever you use that ssh keypair you will not need to re-write the passphrase. 
-This requires that there is a `ssh-agent` process (check with `ps aux | grep ssh-agent`, shows also the user associated with the given process) on the host. If you don't see one (associated to your user in a multi-user host), you can create this by running `eval $(ssh-agent)`. Confirm that *your* process is now alive, and add your key using the following command (*remember to replace `sagaKey1` with your keyName):
-
-`````{tabs}
-````{group-tab} Linux
-
-```console
-$ ssh-add ~/.ssh/sagaKey1
-```
-````
-````{group-tab} Windows
-Remember to have the service "OpenSSH Authentication Agent" enabled
-and starting automatically.
-
-```console
-$ ssh-add ~/.ssh/sagaKey1
-```
-````
-````{group-tab} macOS
-
-```console
-$ ssh-add --apple-use-keychain ~/.ssh/sagaKey1
-```
-````
-`````
-
-Once the password is added, you can SSH into the remote server as normal, and you will be immediately connected without any further prompts.
-
-Typically, you use `ssh-add` once per day (e.g. until terminal/command prompt window is closed), after which you can use `ssh` and `rsync` as often as you like without re-authenticating.
+If you have multiple keys for multiple systems, you can *bind* a specific key to a specific host, by adding the line `IdentityFile ~/.ssh/sagaKey` in the config file (replace `sagaKey` with your own key-name). On the example above, this would force every connection to host `saga` to use the private key of the pair `sagaKey`. Also, `rsync`, `scp`, and any other tool that uses `ssh` under the hood will understand these shortcuts. Search the web for more useful configuration options for automation.
 
 ## SSH client on Windows
 
 In Windows 10 and newer you can now get a fully functional Linux terminal by [installing WSL](https://learn.microsoft.com/en-us/windows/wsl/install). Another alternative is to use the [Windows SSH Client](https://learn.microsoft.com/en-us/windows/terminal/tutorials/ssh) directly.
-
 
 (x11-forwarding)=
 
@@ -306,6 +198,8 @@ For even more unstable connections, try [Mosh (mobileshell)](https://mosh.org/).
 
 # Common SSH errors
 
+Below is a description and solution for commonly receieved errors when attempting ssh connections.
+
 ## WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
 
 The SSH connection was working fine until one day the following message
@@ -331,7 +225,7 @@ Host key verification failed.
 
 It may be frightening at first, but it usually means that the SSH Keys from the server have changed, which is common after a system upgrade (so, take a look at our [OpsLog](https://opslog.sigma2.no/) for more information).
 
-The fix is already in the message itself and, in this example, you just have to locate the file `known_hosts` inside `/home/username/.ssh/` and delete the specified line (line 13).
+The fix is already in the message itself and, in this example, you just have to locate the file `known_hosts` inside `/home/username/.ssh/` and delete the specified line (here line `13`).
 
 **NOTE:**
 - The number at the end indicates where the problem lies.
