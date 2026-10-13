@@ -71,8 +71,6 @@ research).
 Disk speed, meta-data performance, network speed, and firewall speed may limit
 the transfer bandwidth.
 
-Here are tips to make your data transfer easier and faster:
-
 **Plan for it**: If you need to transfer large amount of data, don't start on
 the last day of your project. Data transfer may take hours or even days.
 
