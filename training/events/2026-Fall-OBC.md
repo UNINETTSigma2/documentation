@@ -63,7 +63,7 @@ to access the HPC systems (e.g. ssh).
 
 #### Day 2: HPC Intro (Thursday October 15th)
 - **09:00-09:05** Welcome and practical information
-- **09:05-10:10** [Accessing software (including exercises)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-modules.html)
+- **09:05-10:10** [Accessing software (including exercises)](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/14-software.html)
 - **10:10-10:25** [Compute and storage quota](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/compute-storage-quota.html)
 - **11:00-11:20** [Using shared resources responsibly](https://training.pages.sigma2.no/tutorials/hpc-intro/episodes/18-responsibility.html)
 - **11:20-11:35** Break
