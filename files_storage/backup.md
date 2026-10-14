@@ -1,11 +1,11 @@
 (storage-backup)=
 
-# Backup on Betzy, Saga, and NIRD
+# Backup on Betzy, Saga, Olivia and NIRD
 
 
 ## Backup of home folders on compute clusters
 
-**Betzy and Saga**: Home folder is backed up to NIRD storage, and last copy of user home can be accessed via following mount point on corresponding clusters login nodes:
+**Betzy, Saga and Olivia**: Home folder is backed up to NIRD storage, and last copy of user home can be accessed via following mount point on corresponding clusters login nodes:
 - `/cluster/backup/home/$username`
 
 Please, note that we keep a copy of all files, but backup only copies the changes (done through a rsync process). If the file has not been modified, the timestamp will remain the same as on the file inside your home or project folders.
