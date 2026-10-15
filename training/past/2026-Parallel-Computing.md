@@ -31,7 +31,7 @@ These seminars are at a basic-to-intermediate level, and targeted towards partic
 
 **Instructor:** Jim-Viktor Paulsen
 
-**Registration:** [Sign up here](https://docs.google.com/forms/d/e/1FAIpQLSfUzos-tFfbI2lWzpJF8U1s92cW0WYz9dbIH7EGsfTH0biWGw/viewform?usp=dialog)
+**Registration:** Closed
 
 - Basic command line/linux workflows are expected to be known. (elements of the [HPC Onboarding course given April 14-16-2026](https://documentation.sigma2.no/training/past/2026-04-hpc-on-boarding.html)). Also, a certain level of experience with Olivia is expected.
 

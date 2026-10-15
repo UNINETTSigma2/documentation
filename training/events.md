@@ -15,17 +15,17 @@ All courses are free of charge unless otherwise announced.
 :maxdepth: 1
 :glob:
 
-events/2026-Parallel-Computing.md
-events/2026-Fall-OBC.md
 events/2026-LLM-Course-Bergen.md
 events/2026-EESSI-intro-workshop.md
 ```
 
 ## Upcoming events from our collaborators
 - [KI-Fabrikken: Building LLM Agents](https://www.sigma2.no/events/2026/building-llm-agents)
+- [ENCCS: [Webinar] Using Julia for time-critical Applications](https://enccs.se/event/webinar-using-julia-for-time-critical-applications/)
 - [ENCCS: [School] Quantum Autumn School 2026](https://enccs.se/event/quantum-computing-school-2026-in-sweden/)
+- [CSC: Containers in Supercomputing Environment](https://csc.fi/en/training-calendar/containers-in-supercomputing-environment-2/)
 - [LUMI: Moving your AI training jobs to LUMI: A Hands-On Workshop (Hybrid)](https://lumi-supercomputer.eu/events/moving-your-ai-training-jobs-to-lumi-a-hands-on-workshop-hybrid/)
-- [LUMI: Geocomputing on the Supercomputer](https://lumi-supercomputer.eu/events/geocomputing/)
+- [LUMI: Profiling and Optimization Workshop (On-Site)](https://lumi-supercomputer.eu/events/lumi-profiling-and-optimization-workshop-on-site/)
 
 ## Request for Training
 
