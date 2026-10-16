@@ -2,7 +2,7 @@
 orphan: true
 ---
 
-(2026-Olivia-OnBoarding)=
+(2026-olivia-onboarding)=
 
 # Olivia OnBoarding 2026 seminar series
 

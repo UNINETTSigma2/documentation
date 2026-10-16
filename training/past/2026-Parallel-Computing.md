@@ -2,7 +2,7 @@
 orphan: true
 ---
 
-(2026-Parallel-Computing)=
+(2026-parallel-computing)=
 
 # The Parallell CPU Computing with Python on Olivia course series
 

@@ -5,7 +5,18 @@
 Here we list the collaborative notes used for questions and answers during our events. For a summary of frequently asked questions, see {ref}`faq`.
 ### 2026
 
-- {ref}`training-2026-spring-onboarding`: 
+- {ref}`training-2026-fall-onboarding`: 
+    - [Day 0: Intro to UNIX](https://md.sigma2.no/hpc-onboarding-October-13-2026)
+    - [Day 1: Intro to HPC](https://md.sigma2.no/hpc-onboarding-October-14-2026)
+    - [Day 2: Intro to HPC](https://md.sigma2.no/hpc-onboarding-October-15-2026)
+- {ref}`2026-parallel-computing`:
+    - [Episode 1](https://md.sigma2.no/Parallel-Computing-Course-Sept-2026)
+    - [Episode 2](https://md.sigma2.no/Parallel-Computing-Course-Sept-2026_ep2)
+    - [Episode 3](https://md.sigma2.no/Parallel-Computing-Course-Sept-2026_ep3)
+    - [Episode 4](https://md.sigma2.no/Parallel-Computing-Course-Sept-2026_ep4)
+    - [Episode 5](https://md.sigma2.no/Parallel-Computing-Course-Sept-2026_ep5)
+    - [Episode 6](https://md.sigma2.no/Parallel-Computing-Course-Sept-2026_ep6)
+- {ref}`2026-olivia-onboarding`: 
     - [Episode 1: NIRD and File System usage on Olivia](https://md.sigma2.no/Olivia-OnBoarding-April-22-2026)
     - [Episode 2: Containers and Software Installation](https://md.sigma2.no/Olivia-OnBoarding-April-29-2026)
     - [Episode 3: GPU Utilization and Usage on Olivia](https://md.sigma2.no/Olivia-OnBoarding-May-6-2026)
