@@ -2,7 +2,7 @@
 orphan: true
 ---
 
-(2026-Fall-OBC)= 
+(training-2026-fall-onboarding)= 
 
 # HPC On-boarding October 13-15 2026
 The Norwegian Research Infrastructure Services (**NRIS**) is offering 
