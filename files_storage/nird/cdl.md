@@ -64,10 +64,15 @@ CDL uses S3-compatible object storage as the default access method for storing a
 standard S3 tools and clients, just like other cloud object storage services. 
 For detailed, step-by-step instructions and practical examples on configuring and using S3 access, please refer to the {ref}`nird-s3` documentation.
 
-## CDL Cache Hydrator (Caching data on HPCs)
+## Using CDL data on HPC systems (Cache hydrator)
 
-A key functionality of the CDL service is the CDL Cache Hydrator, which extends its capabilities to HPC environments by solving a fundamental challenge in data-intensive computing: getting large input datasets from centralized storage onto the HPC system's local filesystem quickly and efficiently.
-Rather than requiring users to manually stage data before each compute job, the cache hydrator automatically maintains a local read-only cache of the needed datasets on the HPC system, pulling them from NIRD via S3. Datasets can be hydrated on demand and rehydrated at any time if evicted. To keep local storage usage in check, data that has not been accessed within a configured retention period (currently 45 days) is automatically removed from the cache, while always remaining safely available on NIRD for future use.
+A key functionality of the CDL service is the CDL Cache Hydrator, which extends its capabilities to HPC environments by solving a fundamental challenge in data-intensive computing: getting large input datasets from centralized storage onto the HPC system’s local filesystem quickly and efficiently. 
+The **CDL Cache Hydrator** solves this by keeping a **local, read-only copy** of the data you request on the HPC system's own filesystem.
+
+- You ask for a dataset by placing a small request file in a shared folder.
+- The hydrator copies the data from NIRD to `/cluster/cache/<service>/` on the HPC system.
+- Data that has not been accessed for **45 days** is removed from the cache automatically.
+- The master copy on NIRD is never affected, and you can request the data again at any time.
 
 For detailed, step-by-step instructions and practical examples of this functionality, please refer to the  {ref}`nird-cdl-cache-hydrator` documentation.
 
