@@ -22,9 +22,35 @@ Use the Central Data Library (CDL) when:
 - You require centralised storage with controlled access and permissions for collaborators (access to data via the S3 protocol and S3 API.)
 - Long-term storage of non-persistent input datasets enriched with metadata.
 
-```{note}
-Important: The Central Data Library is not intended for permanent archival of data, for long-term preservation you should use the {ref}`research-data-archive` instead.
-```
+Not sure whether CDL is the right fit for your data? Use the self-check below to assess whether your data meets CDL’s requirements before applying.
+
+**1. Who uses the data besides you?**
+- At least **two independent groups** must use the data, or have committed to using it.
+- Independent means each group has its **own Project Leader (PI)** and its **own research goal**.
+- Two sub-teams under the same PI do not count.
+
+**2. Is this reference data or working data?**
+- CDL is for **curated, versioned** data that is **mostly read**, and that others can use without knowing your workflow.
+- Intermediate results, scratch output or data that changes daily are working data and belong in your project storage.
+
+**3. What would happen without CDL?**
+There should be a clear cost to *not* using CDL. For example:
+- the same dataset would be **copied into several project allocations**,  
+
+If you can answer all three clearly yes, CDL is likely a good fit.
+If not, NIRD Data Peak or Data Lake is probably the better choice.
+
+### Good fits
+- Reference datasets, for example reanalysis data, reference genomes, or static geographic input for models
+- AI/ML training datasets and pre-trained models used by several groups
+- Shared input bundles for community models
+
+### Not a good fit
+
+Your data is ..| Use instead |
+|---|---|
+| Used only by your own group | {ref}`nird-dp` or {ref}`nird-dl` |
+| Final results to publish and keep long-term (DOI) | {ref}`research-data-archive` |
 
 ## How to apply for CDL service
 
