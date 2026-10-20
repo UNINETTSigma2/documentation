@@ -4,15 +4,48 @@ orphan: true
 
 (nird-cdl-cache-hydrator)=
 
-# CDL cache hydrator (Caching CDL data on HPCs)
+#  Using CDL datasets on HPCs (CDL cache hydrator)
 
 The CDL service allows users to store datasets to be shared within and across projects on NIRD as a centralized repository. 
 
 The CDL Cache Hydrator functionality in CDL maintains a local cache of datasets on the HPC system's local filesystem by pulling the needed datasets from NIRD through S3. Cached data can be rehydrated at any time. Also, the service is envisioned so that data not being accessed for the set retention time will be automatically evicted from the cache.
 
-## CDL caching user guide
+```{admonition} At a glance
+:class: tip
 
-![CDL data caching on hpc pipeline](img/cdl-workflow-hydrator-pipeline.png)
+- **What it does:** copies your input data from NIRD to `/cluster/cache/<service>/` on the HPC system.
+- **How you use it:** put a small request file (`.conf`) in `/cluster/cache/conf/`.
+- **What you get:** a **read-only** copy of the data for your jobs.
+- **How long it stays:** until nobody has used it (access) for **45 days(currently)**. You can refresh the `cache` again at any time.
+- **Before you can use it:** the CDL Project Leader must request to enable the cache hydrator for the HPC system you use by.
+- **Please:** request only what you need. The cache is shared with everyone on the system.
+```
+
+## How it works 
+
+1. The master copy of the data is kept on NIRD through the NIRD CDL Service and exposed through the S3 bucket.
+2. You place a request file (`.conf`) in `/cluster/cache/conf/` on the HPC system.
+3. The hydrator reads your request, copies the data from NIRD over S3, and saves it in
+   `/cluster/cache/<service>/`.
+4. Your jobs read the data from there. The cache is **read-only**.
+5. Data that nobody has used for **45 days** is removed from the cache. The master copy on NIRD
+   is not affected, and you can request the data again at any time.
+6. PI and designated data manger have write access to manage the master copy on NIRD. 
+
+(cdl-hydrator-setup)=
+
+## For Project Leaders: enable the hydrator
+
+The hydrator is **not** turned on automatically. As the Project Leader of a CDL project, you decide
+which data can be cached and where. Specify the S3 bucket and access policy and HPC systems where the hydrator should be available during the allocation process or contact the support afterwards with following information.
+
+1. **Your CDL project**, for example `NS16003B`.
+2. **The S3 bucket to cache.** Request an S3 bucket for your CDL project, named
+   `cdl-nsxxxxb-<bucketname>` (lowercase), for example `cdl-ns16003b-wrf`.
+   The hydrator can only copy data that is in an S3 bucket.
+3. **The HPC systems** where the data should be available: Olivia, Betzy and/or Saga.
+
+When the setup is done, the folder `/cluster/cache/<service>/` appears on each system you asked for.
 
 ### CDL project registered on NIRD
 Each CDL project has its master copy on NIRD Data Lake which is accessible via both POSIX and S3 protocols (NFS access is also available).
@@ -21,40 +54,59 @@ These projects are called with the following naming format `NSxxxxB` (e.g. NS160
 
 Each CDL project has a curresponding S3 bucket following the naming format `cdl-nsxxxxb-service`, e.g. `cdl-ns16003b-wrf`. Note that the bucket name uses lowercase and the project name must match exactly even though it is in lowercase. 
 
+(cdl-hydrator-quick-start)=
 
-### CDL Hydrator on HPCs (Caching CDL data on HPCs)
+## For users: get your data in 6 steps
 
-For each service a dedicated hydrator is running on each relevant HPC system. e.g. one for wrf, noresm, etc.
-The hydrator continuously monitors a shared configuration directory for data requests. When a valid request file is detected, the hydrator fetches the specified data from the CDL S3 bucket and writes it to the local cache on the HPC filesystem.
+**Step 1. Check that the hydrator is enabled on your system.**
 
-Cached data is then available in `/cluster/cache/<service>` e.g. `/cluster/cache/wrf`.
+```console
+$ ls /cluster/cache/<service>
+```
 
-The cache is managed automatically by the cdl_cache_cleanup process, which evicts data that has not been accessed within the current retention period (monthly). 
+If you don't see your bucket name/service name (for example `wrf`), the hydrator isn't enabled on this system.
+Request the CDL Project Leader to enable it {ref}`cdl-hydrator-setup` .
 
-### Running a job on HPC
+**Step 2. Copy the template.**
 
-1. Ensure data is cached. Request the required dataset and confirm it has been cached.  See how to request data below.
-2. Submit your job, referencing data from `/cluster/cache/<service>` (e.g. `/cluster/cache/noresm`).
-3. When job completes, copy/stage results to the relevant project storage , for e.g.:  NIRD Data Peak.
+```console
+$ cp /cluster/cache/conf/00-cdl-hydrator.template ~/<servicename>-<username>-<nnn>.conf
+```
+
+**Step 3. Edit the file** to say which data you need. See {ref}`cdl-hydrator-request-file`.
+
+**Step 4. Send the request** by copying the file into the request folder.
+
+```console
+$ cp ~/wrf-nn9999k-case01.conf /cluster/cache/conf/
+```
+
+**Step 5. Check that the data has arrived** before you submit your job.
+
+Eg: 
+
+```console
+$ cat /cluster/cache/conf/<servicename>-<username>-<nnn>.json   # status and log
+$ ls /cluster/cache/<servicename>/          # the data itself
+```
+When the hydrator has finished, it renames your request file to show the result:
+
+- **`.done`**: all data was copied. For example, `wrf-nn9999k-case01.conf` becomes `wrf-nn9999k-case01.done`.
+- **`.fail`**: some or all of the data could not be copied. Check the `.json` log file to see why.
+
+**Step 6. Run your job** using the cached data. Use the cache path correctly in your job script.
+
+The cache is managed automatically by the cdl_cache_cleanup process, which evicts data that has not been accessed within the current retention period
 
 ### Storing results
 
-When the job completes, copy or stage your results to the appropriate project storage. The recommended destination is NIRD Data Peak (for active project data). 
+When the job completes, copy or stage your results to the appropriate project storage. The recommended destination is uour project area on NIRD Data Peak or NIRD Data Lake.
 
-### Updating the master copy in CDL
-The project leader and any designated member can add data and manage the data in the CDL project. All other NIRD users have read-only access either through file storage access or object storage access.
+(cdl-hydrator-request-file)=
 
-The master copy can be updated either using regular POSIX commands on the NIRD login nodes (`login.nird.sigma2.no`) via SSH access, or using S3 account with read-write role, from the same `https://s3.nird.sigma2.no` endpoint.
+## Writing a request file
 
-The user need to do the sync the datasets again to update the cache.
-
-### How to Request Data
-
-To ensure that the required dataset is cached on the HPC system, you need to drop a TOML configuration file into the shared configuration directory: `/cluster/cache/conf/`
-
-A ready-to-use template is available at `/cluster/cache/conf/00-cdl-hydrator.template`.
-
-#### File Naming Convention
+### Name it correctly
 
 Config file names must follow a strict convention or the hydrator will silently ignore them:
 - The name **must** start with the CDL service name, (for example `wrf` or `noresm`),
@@ -64,14 +116,14 @@ Config file names must follow a strict convention or the hydrator will silently 
 * **Correct:** `wrf-case-01.conf` or `noresm-username-dataname.conf`
 * **Incorrect:** `my-data.conf` or `wrf-project-01.txt` - the CDL Hydrator will ignore these files
 
-### Configuration File Format
+### Choose what to cache
 
-Config files use TOML syntax. Each file must contain a [SYNC] section. There are ways to request either for whole directory or specific 
-individual files. Examples and context are detailed below.
+You can ask for a **whole folder** or for **specific files**. Use one of these options in each request
+file, not both.
 
-#### Mode 1 - Request a whole directory
+#### Option A: a whole folder
 
-The example below cache data from the target path (everythyng under the target path). 
+Use this when you need everything in one folder. Subfolders are included.
 
 Example Config (`wrf-case-01.conf`):
 ```ini
@@ -79,12 +131,14 @@ Example Config (`wrf-case-01.conf`):
 s3_endpoint = s3://open-data-bucket/
 target_path = 2026/march/observations/*
 # Optional tuning parameters:
-nr_workers = 2
+nr_workers = 32
 log_level = info
 ```
 A TOML template file, called `00-cdl-hydrator.template` is created for convenience. 
 
-#### Mode 2 - Request specific files
+The data keeps its folder structure, so it ends up in `/cluster/cache/wrf/2026/march/observations/`.
+
+#### Option B: a few specific files
 
 For experiments needing a defined set of files, spread across different directories, where pulling whole trees would be wasteful. In such case, the specific file path can be specified as follows in the `conf` file, as shown in the example below. In this case `conf` file must contain a [FILES] section.
 
@@ -94,7 +148,7 @@ Example Config (`wrf-case-02.conf`):
 [SYNC]
 s3_endpoint = s3://open-data-bucket/
 # Optional tuning parameters:
-nr_workers = 2
+nr_workers = 32
 log_level = info
 
 [FILES]
@@ -110,7 +164,7 @@ Example Config (`wrf-case-03.conf`):
 [SYNC]
 s3_endpoint = s3://open-data-bucket/
 # Optional tuning parameters:
-nr_workers = 2
+nr_workers = 32
 log_level = info
 
 [FILES]
@@ -125,9 +179,8 @@ An example line in  `case-01.filelist` is given below.
 
 - s3_endpoint (required): The URL of the CDL project S3 bucket. 
 - target_path (required for Mode 1): The path to synchronise. Glob patterns are supported (e.g. * matches all files in that directory).
-- nr_workers (optional): Number of parallel download workers. Default is 1. Increase for large datasets to speed up the transfer. Upper limit 512
+- nr_workers (optional): Number of parallel download workers. Default is 32. Increase for large datasets to speed up the transfer. We do not advise exceeding 128 parallel workers as it may impact the performance on the HPC storage system.
 - log_level (optional): Logging verbosity. Accepted values: info, warning, error. Default is info.
-
 
 ### Verifying cached data
 
@@ -135,4 +188,117 @@ After placing a config file in `/cluster/cache/conf`, the hydrator will detect i
 - Check the cache directory directly ls /cluster/cache/<service>/
 - You can check the `<your-config.filename>.json` file with log info
 
+## Using cached data in your job
 
+Read input from the cache. Write output to scratch. Eg: below : 
+
+```bash
+#!/bin/bash
+#SBATCH --account=nn9999k
+#SBATCH --job-name=wrf-case01
+#SBATCH --time=12:00:00
+
+INPUT=/cluster/cache/wrf/2026/march/observations   # read-only cache
+OUTPUT=/cluster/work/projects/nn9999k/wrf-case01   # scratch  storage
+
+mkdir -p "$OUTPUT"
+# ... run your model, reading from $INPUT and writing to $OUTPUT ...
+```
+
+When the job is done, copy any results you want to keep to your project storage, for example
+[NIRD Data Peak](nird_dp.md).
+
+(cdl-hydrator-fair-use)=
+
+## Please use the cache fairly
+
+The cache is on a disk that **everyone** on the HPC system shares. Very large or repeated requests fill
+it up and slow it down for all users.
+
+| ✅ Please do | ❌ Please don't |
+|---|---|
+| Ask only for the folders or files your jobs need | Cache the whole bucket "just in case" |
+| Check whether the data is already cached first | Send the same request again and again |
+| Send requests **before** you submit jobs | Put requests inside job scripts |
+| Keep `nr_workers` low | Use the cache as scratch or general storage |
+
+
+## When the data on NIRD changes
+
+**Updating the data on CDL**: The project leader and any designated member can add data and manage the data in the CDL project. All other NIRD users have read-only access either through file storage access or object storage access. 
+The master copy can be updated either using regular POSIX commands on the NIRD login nodes (`login.nird.sigma2.no`) via SSH access, or using S3 account with read-write role, from the same `https://s3.nird.sigma2.no` endpoint.
+
+**Getting the new version into the cache.** The cache does **not** update itself. To fetch the new
+version, copy your `.conf` file into `/cluster/cache/conf/` again, or create a new one.
+
+## Frequently asked questions
+
+### Getting started
+
+**What is the difference between CDL and the cache?**
+NIRD CDL is a service provide storage on NIRD holds the **master copy**, the one that is kept and managed. The cache is a **temporary
+local copy** on an HPC system, made only so your jobs can read the data faster.
+
+**Who can turn on the hydrator?**
+System admin enables the hydrator following the request of the Project Leader of the CDL project. They request an S3 bucket and choose which HPC systems
+get the cache.
+
+**Which HPC systems support it?**
+Olivia, Betzy and Saga. For each bucket, the cache is only available on the systems the Project Leader
+asked for. Run `ls /cluster/cache/` to check.
+
+**Do I have to be a member of the CDL project?**
+No. When the hydrator is enabled on a system, all users of that system can read the cached data and
+request data from the bucket.
+
+**Do I need an S3 account to use the cache?**
+No. The hydrator fetches the data for you. You only work with files on the HPC system.
+
+### Requesting data
+
+**How long does it take before my data is ready?**
+It depends on how much data you ask for. Small requests are usually quick, large ones take longer. 
+When the hydrator has finished, it renames your request file to show the result:
+
+- **`.done`**: all data was copied. For example, `wrf-nn9999k-case01.conf` becomes `wrf-nn9999k-case01.conf.done`.
+- **`.fail`**: some or all of the data could not be copied. Check the `.json` log file to see why.
+
+**Can I ask for the whole bucket?**
+Only if your jobs really need all of it. Large requests affect everyone on the system.
+Ask for specific folders or files instead.
+
+**Someone else already requested the same data. Do I need to request it too?**
+No. If the data is already in `/cluster/cache/<servicename>/`, you can use it right away.
+
+**My request file is ignored. Why?**
+Most likely the name is wrong. Check the naming convention. 
+
+**What should I set `nr_workers` to?**
+Leave it at the default (`32`) for small requests. For large transfers, a moderate value like `64`
+is usually enough. We do not advise exceeding 128 parallel workers as it may impact the performance on the HPC storage system.
+
+### Using and keeping data
+
+**Can I write to the cache?**
+No. It is read-only. Write your results to your own NIRD CDL area. Only PI and designated data manger have write access to manage the master copy. 
+
+**What happens after 45 days?**
+Data that nobody has used for 45 days is removed from the cache. The master copy on NIRD is not
+affected, and you can request the data again at any time. Please note that the current retention time is 45 days, it can change in the future. 
+
+**The data on NIRD was updated. Do I get the new version automatically?**
+No. Copy your `.conf` file into `/cluster/cache/conf/` again, or create a new one.
+
+**Should I delete my request file?**
+Yes. Delete it from `/cluster/cache/conf/` when you no longer need it, to keep the shared folder tidy.
+
+### Getting help
+
+**Who do I contact if something goes wrong?**
+Contact [support](../../getting_help/support_line.md). Include the name of your request file and the
+contents of its `.json` file.
+
+
+## CDL caching diagram
+
+![CDL data caching on hpc pipeline](img/cdl-workflow-hydrator-pipeline.png)
