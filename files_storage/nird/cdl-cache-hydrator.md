@@ -13,32 +13,31 @@ The CDL Cache Hydrator functionality in CDL maintains a local cache of datasets 
 ```{admonition} At a glance
 :class: tip
 
-- **What it does:** copies CDL data from NIRD to `/cluster/cache/<service>/` on the HPC system.
+- **What it does:** copies your input data from NIRD to `/cluster/cache/<service>/` on the HPC system.
 - **How you use it:** put a small request file (`.conf`) in `/cluster/cache/conf/`.
 - **What you get:** a **read-only** copy of the data for your jobs.
-- **How long it stays:** until nobody has used it for **45 days(currently)**. After that it is removed, and you can request it again.
-- **Before you can use it:** the CDL Project Leader must request to enable it for the HPC system you use by.
+- **How long it stays:** until nobody has used it (access) for **45 days(currently)**. You can refresh the `cache` again at any time.
+- **Before you can use it:** the CDL Project Leader must request to enable the cache hydrator for the HPC system you use by.
 - **Please:** request only what you need. The cache is shared with everyone on the system.
 ```
 
 ## How it works 
 
-1. The master copy of the data is kept in a CDL S3 bucket on NIRD.
+1. The master copy of the data is kept on NIRD through the NIRD CDL Service and exposed through the S3 bucket.
 2. You place a request file (`.conf`) in `/cluster/cache/conf/` on the HPC system.
-3. The hydrator reads your request, downloads the data from NIRD over S3, and saves it in
+3. The hydrator reads your request, copies the data from NIRD over S3, and saves it in
    `/cluster/cache/<service>/`.
 4. Your jobs read the data from there. The cache is **read-only**.
 5. Data that nobody has used for **45 days** is removed from the cache. The master copy on NIRD
    is not affected, and you can request the data again at any time.
-
-The cache is on a disk **shared by all users** of the HPC system, so request only what you need.
+6. PI and designated data manger have write access to manage the master copy on NIRD. 
 
 (cdl-hydrator-setup)=
 
 ## For Project Leaders: enable the hydrator
 
 The hydrator is **not** turned on automatically. As the Project Leader of a CDL project, you decide
-which data can be cached and where. Either specify the s3 bucket and access policy and HPC systems where the hydrator should be available during the allocation process or contact the support afterwords with following information.
+which data can be cached and where. Specify the s3 bucket and access policy and HPC systems where the hydrator should be available during the allocation process or contact the support afterwards with following information.
 
 1. **Your CDL project**, for example `NS16003B`.
 2. **The S3 bucket to cache.** Request an S3 bucket for your CDL project, named
@@ -62,7 +61,7 @@ Each CDL project has a curresponding S3 bucket following the naming format `cdl-
 **Step 1. Check that the hydrator is enabled on your system.**
 
 ```console
-$ ls /cluster/cache/
+$ ls /cluster/cache/<service>
 ```
 
 If you don't see your bucket name/service name (for example `wrf`), the hydrator isn't enabled on this system.
@@ -90,6 +89,10 @@ Eg:
 $ cat /cluster/cache/conf/<servicename>-<username>>-001.json   # status and log
 $ ls /cluster/cache/<servicename>>/          # the data itself
 ```
+When the hydrator has finished, it renames your request file to show the result:
+
+- **`.done`**: all data was copied. For example, `wrf-nn9999k-case01.conf` becomes `wrf-nn9999k-case01.conf.done`.
+- **`.fail`**: some or all of the data could not be copied. Check the `.json` log file to see why.
 
 **Step 6. Run your job** using the cached data. Use the cache path correctly in your job script.
 
@@ -233,7 +236,7 @@ version, copy your `.conf` file into `/cluster/cache/conf/` again, or create a n
 ### Getting started
 
 **What is the difference between CDL and the cache?**
-CDL on NIRD holds the **master copy**, the one that is kept and managed. The cache is a **temporary
+NIRD CDL is a service provide storage on NIRD holds the **master copy**, the one that is kept and managed. The cache is a **temporary
 local copy** on an HPC system, made only so your jobs can read the data faster.
 
 **Who can turn on the hydrator?**
@@ -254,8 +257,11 @@ No. The hydrator fetches the data for you. You only work with files on the HPC s
 ### Requesting data
 
 **How long does it take before my data is ready?**
-It depends on how much data you ask for. Small requests are usually quick, large ones take longer.
-Check the `.json` file and the cache folder before you submit your job.
+It depends on how much data you ask for. Small requests are usually quick, large ones take longer. 
+When the hydrator has finished, it renames your request file to show the result:
+
+- **`.done`**: all data was copied. For example, `wrf-nn9999k-case01.conf` becomes `wrf-nn9999k-case01.conf.done`.
+- **`.fail`**: some or all of the data could not be copied. Check the `.json` log file to see why.
 
 **Can I ask for the whole bucket?**
 Only if your jobs really need all of it. Large requests affect everyone on the system.
@@ -268,13 +274,13 @@ No. If the data is already in `/cluster/cache/<servicename>/`, you can use it ri
 Most likely the name is wrong. Check the naming convention. 
 
 **What should I set `nr_workers` to?**
-Leave it at the default (`2`) for small requests. For large transfers, a moderate value like `4` or `8`
+Leave it at the default (`32`) for small requests. For large transfers, a moderate value like `64`
 is usually enough.
 
 ### Using and keeping data
 
 **Can I write to the cache?**
-No. It is read-only. Write your results to your own project area.
+No. It is read-only. Write your results to your own NIRD CDL area. Only PI and designated data manger have write access to manage the master copy. 
 
 **What happens after 45 days?**
 Data that nobody has used for 45 days is removed from the cache. The master copy on NIRD is not
