@@ -66,7 +66,7 @@ $ ls /cluster/cache/
 ```
 
 If you don't see your bucket name (for example `wrf`), the hydrator isn't enabled on this system.
-Ask the CDL Project Leader to [enable it](cdl-hydrator-setup).
+Request the CDL Project Leader to enable it {ref}`cdl-hydrator-setup` .
 
 **Step 2. Copy the template.**
 
@@ -74,7 +74,7 @@ Ask the CDL Project Leader to [enable it](cdl-hydrator-setup).
 $ cp /cluster/cache/conf/00-cdl-hydrator.template ~/<servicename>-<username>>-001.conf
 ```
 
-**Step 3. Edit the file** to say which data you need. See [Writing a request file](cdl-hydrator-request-file).
+**Step 3. Edit the file** to say which data you need. See {ref}`cdl-hydrator-request-file`.
 
 **Step 4. Send the request** by copying the file into the request folder.
 
