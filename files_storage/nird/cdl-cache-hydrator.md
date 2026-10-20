@@ -65,7 +65,7 @@ Each CDL project has a curresponding S3 bucket following the naming format `cdl-
 $ ls /cluster/cache/
 ```
 
-If you don't see your bucket name (for example `wrf`), the hydrator isn't enabled on this system.
+If you don't see your bucket name/service name (for example `wrf`), the hydrator isn't enabled on this system.
 Request the CDL Project Leader to enable it {ref}`cdl-hydrator-setup` .
 
 **Step 2. Copy the template.**
