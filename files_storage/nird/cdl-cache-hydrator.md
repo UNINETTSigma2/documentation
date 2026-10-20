@@ -70,7 +70,7 @@ Request the CDL Project Leader to enable it {ref}`cdl-hydrator-setup` .
 **Step 2. Copy the template.**
 
 ```console
-$ cp /cluster/cache/conf/00-cdl-hydrator.template ~/<servicename>-<username>>-001.conf
+$ cp /cluster/cache/conf/00-cdl-hydrator.template ~/<servicename>-<username>-<nnn>.conf
 ```
 
 **Step 3. Edit the file** to say which data you need. See {ref}`cdl-hydrator-request-file`.
@@ -86,8 +86,8 @@ $ cp ~/wrf-nn9999k-case01.conf /cluster/cache/conf/
 Eg: 
 
 ```console
-$ cat /cluster/cache/conf/<servicename>-<username>>-001.json   # status and log
-$ ls /cluster/cache/<servicename>>/          # the data itself
+$ cat /cluster/cache/conf/<servicename>-<username>-<nnn>.json   # status and log
+$ ls /cluster/cache/<servicename>/          # the data itself
 ```
 When the hydrator has finished, it renames your request file to show the result:
 
@@ -131,7 +131,7 @@ Example Config (`wrf-case-01.conf`):
 s3_endpoint = s3://open-data-bucket/
 target_path = 2026/march/observations/*
 # Optional tuning parameters:
-nr_workers = 2
+nr_workers = 32
 log_level = info
 ```
 A TOML template file, called `00-cdl-hydrator.template` is created for convenience. 
@@ -148,7 +148,7 @@ Example Config (`wrf-case-02.conf`):
 [SYNC]
 s3_endpoint = s3://open-data-bucket/
 # Optional tuning parameters:
-nr_workers = 2
+nr_workers = 32
 log_level = info
 
 [FILES]
@@ -164,7 +164,7 @@ Example Config (`wrf-case-03.conf`):
 [SYNC]
 s3_endpoint = s3://open-data-bucket/
 # Optional tuning parameters:
-nr_workers = 2
+nr_workers = 32
 log_level = info
 
 [FILES]
@@ -179,7 +179,7 @@ An example line in  `case-01.filelist` is given below.
 
 - s3_endpoint (required): The URL of the CDL project S3 bucket. 
 - target_path (required for Mode 1): The path to synchronise. Glob patterns are supported (e.g. * matches all files in that directory).
-- nr_workers (optional): Number of parallel download workers. Default is 1. Increase for large datasets to speed up the transfer. Upper limit 512
+- nr_workers (optional): Number of parallel download workers. Default is 32. Increase for large datasets to speed up the transfer. We do not advise exceeding 128 parallel workers as it may impact the performance on the HPC storage system.
 - log_level (optional): Logging verbosity. Accepted values: info, warning, error. Default is info.
 
 ### Verifying cached data
@@ -275,7 +275,7 @@ Most likely the name is wrong. Check the naming convention.
 
 **What should I set `nr_workers` to?**
 Leave it at the default (`32`) for small requests. For large transfers, a moderate value like `64`
-is usually enough.
+is usually enough. We do not advise exceeding 128 parallel workers as it may impact the performance on the HPC storage system.
 
 ### Using and keeping data
 
