@@ -95,7 +95,7 @@ $ ls /cluster/cache/<servicename>>/          # the data itself
 
 The cache is managed automatically by the cdl_cache_cleanup process, which evicts data that has not been accessed within the current retention period
 
-#### Storing results
+### Storing results
 
 When the job completes, copy or stage your results to the appropriate project storage. The recommended destination is uour project area on NIRD Data Peak or NIRD Data Lake.
 
@@ -222,8 +222,8 @@ it up and slow it down for all users.
 
 ## When the data on NIRD changes
 
-**Updating the data (Project Leader and designated members).** Everyone else has read-only access.
-You can change the master copy on NIRD.
+**Updating the data on CDL**: The project leader and any designated member can add data and manage the data in the CDL project. All other NIRD users have read-only access either through file storage access or object storage access. 
+The master copy can be updated either using regular POSIX commands on the NIRD login nodes (`login.nird.sigma2.no`) via SSH access, or using S3 account with read-write role, from the same `https://s3.nird.sigma2.no` endpoint.
 
 **Getting the new version into the cache.** The cache does **not** update itself. To fetch the new
 version, copy your `.conf` file into `/cluster/cache/conf/` again, or create a new one.
@@ -292,12 +292,6 @@ Yes. Delete it from `/cluster/cache/conf/` when you no longer need it, to keep t
 Contact [support](../../getting_help/support_line.md). Include the name of your request file and the
 contents of its `.json` file.
 
-### Updating the master copy in CDL
-The project leader and any designated member can add data and manage the data in the CDL project. All other NIRD users have read-only access either through file storage access or object storage access.
-
-The master copy can be updated either using regular POSIX commands on the NIRD login nodes (`login.nird.sigma2.no`) via SSH access, or using S3 account with read-write role, from the same `https://s3.nird.sigma2.no` endpoint.
-
-The user need to do the sync the datasets again to update the cache.
 
 ## CDL caching diagram
 
