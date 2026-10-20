@@ -37,7 +37,7 @@ The CDL Cache Hydrator functionality in CDL maintains a local cache of datasets 
 ## For Project Leaders: enable the hydrator
 
 The hydrator is **not** turned on automatically. As the Project Leader of a CDL project, you decide
-which data can be cached and where. Specify the s3 bucket and access policy and HPC systems where the hydrator should be available during the allocation process or contact the support afterwards with following information.
+which data can be cached and where. Specify the S3 bucket and access policy and HPC systems where the hydrator should be available during the allocation process or contact the support afterwards with following information.
 
 1. **Your CDL project**, for example `NS16003B`.
 2. **The S3 bucket to cache.** Request an S3 bucket for your CDL project, named
