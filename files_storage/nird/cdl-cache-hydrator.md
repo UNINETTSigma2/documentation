@@ -17,7 +17,7 @@ The CDL Cache Hydrator functionality in CDL maintains a local cache of datasets 
 - **How you use it:** put a small request file (`.conf`) in `/cluster/cache/conf/`.
 - **What you get:** a **read-only** copy of the data for your jobs.
 - **How long it stays:** until nobody has used it for **45 days(currently)**. After that it is removed, and you can request it again.
-- **Before you can use it:** the CDL Project Leader must enable it for the HPC system you use.
+- **Before you can use it:** the CDL Project Leader must request to enable it for the HPC system you use by.
 - **Please:** request only what you need. The cache is shared with everyone on the system.
 ```
 
