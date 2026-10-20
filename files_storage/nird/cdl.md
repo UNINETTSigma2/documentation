@@ -26,8 +26,6 @@ Not sure whether CDL is the right fit for your data? Use the self-check below to
 
 **1. Who uses the data besides you?**
 - At least **two independent groups** must use the data, or have committed to using it.
-- Independent means each group has its **own Project Leader (PI)** and its **own research goal**.
-- Two sub-teams under the same PI do not count.
 
 **2. Is this reference data or working data?**
 - CDL is for **curated, versioned** data that is **mostly read**, and that others can use without knowing your workflow.
