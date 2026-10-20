@@ -91,7 +91,7 @@ $ ls /cluster/cache/<servicename>>/          # the data itself
 ```
 When the hydrator has finished, it renames your request file to show the result:
 
-- **`.done`**: all data was copied. For example, `wrf-nn9999k-case01.conf` becomes `wrf-nn9999k-case01.conf.done`.
+- **`.done`**: all data was copied. For example, `wrf-nn9999k-case01.conf` becomes `wrf-nn9999k-case01.done`.
 - **`.fail`**: some or all of the data could not be copied. Check the `.json` log file to see why.
 
 **Step 6. Run your job** using the cached data. Use the cache path correctly in your job script.
