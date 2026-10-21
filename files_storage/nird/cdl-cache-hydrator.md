@@ -11,7 +11,7 @@ The CDL service allows users to store datasets to be shared within and across pr
 The CDL Cache Hydrator functionality in CDL maintains a local cache of datasets on the HPC system's local filesystem by pulling the needed datasets from NIRD through S3. Cached data can be rehydrated at any time. Also, the service is envisioned so that data not being accessed for the set retention time will be automatically evicted from the cache.
 
 ```{admonition} At a glance
-:class: tip
+:class: note
 
 - **What it does:** copies your input data from NIRD to `/cluster/cache/<service>/` on the HPC system.
 - **How you use it:** put a small request file (`.conf`) in `/cluster/cache/conf/`.
@@ -235,67 +235,81 @@ version, copy your `.conf` file into `/cluster/cache/conf/` again, or create a n
 
 ### Getting started
 
-**What is the difference between CDL and the cache?**
-NIRD CDL is a service provide storage on NIRD holds the **master copy**, the one that is kept and managed. The cache is a **temporary
-local copy** on an HPC system, made only so your jobs can read the data faster.
+Q: What is the difference between CDL and the cache?
 
-**Who can turn on the hydrator?**
-System admin enables the hydrator following the request of the Project Leader of the CDL project. They request an S3 bucket and choose which HPC systems
+- The NIRD Central Data Library (CDL) service is a central storage resource and data management system on NIRD, maintaining the master copy of the dataset(s) that is preserved and managed. The cache provides a temporary local copy on an HPC system, created solely to allow jobs to read data more quickly.
+
+2. Who can turn on the hydrator?
+
+- System admin enables the hydrator following the request of the Project Leader of the CDL project. They request an S3 bucket and choose which HPC systems
 get the cache.
 
-**Which HPC systems support it?**
-Olivia, Betzy and Saga. For each bucket, the cache is only available on the systems the Project Leader
+3. Which HPC systems support it?
+
+- Olivia, Betzy and Saga. For each bucket, the cache is only available on the systems the Project Leader
 asked for. Run `ls /cluster/cache/` to check.
 
-**Do I have to be a member of the CDL project?**
-No. When the hydrator is enabled on a system, all users of that system can read the cached data and
+4. Do I have to be a member of the CDL project?
+
+- No. When the hydrator is enabled on a system, all users of that system can read the cached data and
 request data from the bucket.
 
-**Do I need an S3 account to use the cache?**
-No. The hydrator fetches the data for you. You only work with files on the HPC system.
+5. Do I need an S3 account to use the cache?
+
+- No. The hydrator fetches the data for you. You only work with files on the HPC system.
 
 ### Requesting data
 
-**How long does it take before my data is ready?**
+6. How long does it take before my data is ready?
+
 It depends on how much data you ask for. Small requests are usually quick, large ones take longer. 
 When the hydrator has finished, it renames your request file to show the result:
 
 - **`.done`**: all data was copied. For example, `wrf-nn9999k-case01.conf` becomes `wrf-nn9999k-case01.conf.done`.
 - **`.fail`**: some or all of the data could not be copied. Check the `.json` log file to see why.
 
-**Can I ask for the whole bucket?**
-Only if your jobs really need all of it. Large requests affect everyone on the system.
+7. Can I ask for the whole bucket?
+
+- Only if your jobs really need all of it. Large requests affect everyone on the system.
 Ask for specific folders or files instead.
 
-**Someone else already requested the same data. Do I need to request it too?**
-No. If the data is already in `/cluster/cache/<servicename>/`, you can use it right away.
+8. Someone else already requested the same data. Do I need to request it too?
 
-**My request file is ignored. Why?**
-Most likely the name is wrong. Check the naming convention. 
+- No. If the data is already in `/cluster/cache/<servicename>/`, you can use it right away.
 
-**What should I set `nr_workers` to?**
-Leave it at the default (`32`) for small requests. For large transfers, a moderate value like `64`
+9. My request file is ignored. Why?
+
+- Most likely the name is wrong. Check the naming convention. 
+
+10. What should I set `nr_workers` to?
+
+- Leave it at the default (`32`) for small requests. For large transfers, a moderate value like `64`
 is usually enough. We do not advise exceeding 128 parallel workers as it may impact the performance on the HPC storage system.
 
 ### Using and keeping data
 
-**Can I write to the cache?**
-No. It is read-only. Write your results to your own NIRD CDL area. Only PI and designated data manger have write access to manage the master copy. 
+11. Can I write to the cache?
 
-**What happens after 45 days?**
-Data that nobody has used for 45 days is removed from the cache. The master copy on NIRD is not
+- No. It is read-only. Write your results to your own NIRD CDL area. Only PI and designated data manger have write access to manage the master copy. 
+
+12. What happens after 45 days?
+
+- Data that nobody has used for 45 days is removed from the cache. The master copy on NIRD is not
 affected, and you can request the data again at any time. Please note that the current retention time is 45 days, it can change in the future. 
 
-**The data on NIRD was updated. Do I get the new version automatically?**
-No. Copy your `.conf` file into `/cluster/cache/conf/` again, or create a new one.
+13. The data on NIRD was updated. Do I get the new version automatically?
 
-**Should I delete my request file?**
-Yes. Delete it from `/cluster/cache/conf/` when you no longer need it, to keep the shared folder tidy.
+- No. Copy your `.conf` file into `/cluster/cache/conf/` again, or create a new one.
+
+14. Should I delete my request file?
+
+- Yes. Delete it from `/cluster/cache/conf/` when you no longer need it, to keep the shared folder tidy.
 
 ### Getting help
 
-**Who do I contact if something goes wrong?**
-Contact [support](../../getting_help/support_line.md). Include the name of your request file and the
+15. Who do I contact if something goes wrong?
+
+- Contact [support](../../getting_help/support_line.md). Include the name of your request file and the
 contents of its `.json` file.
 
 
