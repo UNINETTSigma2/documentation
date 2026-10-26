@@ -52,21 +52,21 @@ For more details, see the underlying {ref}`list <license-list>`.
 (license-list)=
 ## Commercial and Proprietary licenses at NRIS
 
-| Software                    | Machines          | Available for whom                         | License type            | Field                      | Source of funding   |
-|-----------------------------|-------------------|-------------------------------------------|-------------------------|----------------------------|---------------------|
-| Abaqus                      | Betzy       | Members of license holding groups         | Group                   | Multiphysics/FEA           | Users               |
-| AMS (ADF/BAND)					| Saga		| Members of license holding groups | Group | Chemistry/Material science | Users |
-| Allinea MAP                 | Betzy, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
-| Allinea Performance Reports | Betzy, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
-| ANSYS Fluent                | Betzy       | Members of license holding groups         | Department/Group                   | CFD                        | Users               |
-| Gaussian                    | Saga              | UiB, UiO, NTNU, UiT users automatic  | Site for UiB, UiO, NTNU, UiT                   | Chemistry/Material science | Users |
-| GaussView                   | Saga              | UiT users automatic | Site for UiT                   | Chemistry/Material science | Users |
-| Intel Parallel Studio XE    | Betzy, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
-| MATLAB                      | Betzy, Saga | Members of institutions with site license | Site/Department         | Mathematics/Data analysis  | Users               |
-| NBO6/7 | Saga | All academic users | National academic HPC | Chemistry/Material science | National/Sigma2     |
-| STAR-CCM+                   | Betzy       | Members of license holding groups         | Group                   | Multi-physics/CFD          | Users               |
-| TotalView                   | Betzy, Saga | All users                                 | National HPC            | Code development           | National/Sigma2     |
-| VASP                        | Saga        | Members of license holding groups         | Group                   | Chemistry/Material science | Users               |
+| Software                    | Machines              | Available for whom                         | License type                  | Field                      | Source of funding   |
+|-----------------------------|-----------------------|--------------------------------------------|-------------------------------|----------------------------|---------------------|
+| Abaqus                      | Betzy                 | Members of license holding groups          | Group                         | Multiphysics/FEA           | Users               |
+| AMS (ADF/BAND)				    	| Saga		              | Members of license holding groups          | Group                         | Chemistry/Material science | Users               |
+| Allinea MAP                 | Betzy, Saga           | All users                                  | National HPC                  | Code development           | National/Sigma2     |
+| Allinea Performance Reports | Betzy, Saga           | All users                                  | National HPC                  | Code development           | National/Sigma2     |
+| ANSYS Fluent                | Betzy                 | Members of license holding groups          | Department/Group              | CFD                        | Users               |
+| Gaussian                    | Saga                  | UiB, UiO, NTNU, UiT users automatic        | Site for UiB, UiO, NTNU, UiT  | Chemistry/Material science | Users               |
+| GaussView                   | Saga                  | UiT users automatic                        | Site for UiT                  | Chemistry/Material science | Users               |
+| Intel Parallel Studio XE    | Betzy, Saga           | All users                                  | National HPC                  | Code development           | National/Sigma2     |
+| MATLAB                      | Betzy, Saga, Olivia   | Members of institutions with site license  | Site/Department               | Mathematics/Data analysis  | Users               |
+| NBO6/7                      | Saga                  | All academic users                         | National academic HPC         | Chemistry/Material science | National/Sigma2     |
+| STAR-CCM+                   | Betzy, Olivia         | Members of license holding groups          | Group                         | Multi-physics/CFD          | Users               |
+| TotalView                   | Betzy, Saga, Olivia   | All users                                  | National HPC                  | Code development           | National/Sigma2     |
+| VASP                        | Betzy, Saga, Olivia   | Members of license holding groups          | Group                         | Chemistry/Material science | Users               |
 
 **Table explanation:**
 
@@ -98,9 +98,9 @@ For a software to be able to communicate with its license server, they must be a
 
 | **Cluster name** | **IPv4 addresses** |   **IPv6 addresses**  |
 | ---------------- | ------------------ | --------------------- |
-|       SAGA       |  158.36.42.32/28   | 2001:700:4a01:10::/64 |
+|       Saga       |  158.36.42.32/28   | 2001:700:4a01:10::/64 |
 |                  |  158.36.42.48/28   | 2001:700:4a01:21::/64 |
-|       BETZY      |  158.36.154.0/28   | 2001:700:4a01:23::/64 |
+|       Betzy      |  158.36.154.0/28   | 2001:700:4a01:23::/64 |
 |                  |  158.36.154.16/28  | 2001:700:4a01:24::/64 |
 |       Olivia     |  158.38.122.192/27 | 2001:700:570f:50::/64 |
 |                  |  158.38.122.224/27 | 2001:700:570f:51::/64 |
