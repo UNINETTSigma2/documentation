@@ -2,12 +2,7 @@
 orphan: true
 ---
 (gaussian-tuning)=
-# Gaussian performance tuning using single node shared memory
-
-###**The Linda version is not covered on this page**. 
-The local Linda installation
-contain some local adaptations, like wrapper script etc not present in the
-threaded shared memory version. **A tuning guide for the Linda versions is in preparation**.
+# Gaussian performance tuning using single node shared memoryx
 
 ## Introduction
 
@@ -130,12 +125,10 @@ The Sigma2 systems have a range of nodes with different amount of
 memory, see the {ref}`hardware-overview`.
 
 It might be beneficial to check different nodes and associated
-memory capabilities. Both Saga and Fram have Gaussian installed and both systems
-have nodes with more memory installed.
+memory capabilities.
 
 <!-- Commenting out this section until we have hugemem in place at saga -->
 
-<!--Example of SLURM options for a relatively large run on Fram :
 ```
 #SBATCH --partition=bigmem
 #SBATCH --time=0-24:0:0

@@ -21,7 +21,6 @@ Before you run any Gaussian calculations, or any other calculations on NRIS mach
 
 * {ref}`hardware-overview`
 * {ref}`getting-started`
-* {ref}`getting-started`
 * {ref}`running-jobs`
 * {ref}`job-scripts`
 
@@ -38,7 +37,7 @@ specifying one of the available versions.
 
 **Please inspect the job script examples before submitting jobs!**
 
-To run an example - create a directory, step into it, create an input file (for example for water - see below), download a job script (for example the fram cpu job script as shown below) and submit the script with:
+To run an example - create a directory, step into it, create an input file (for example for water - see below), download one of the job scripts shown in the examples below and submit the script with:
 
 	$ sbatch saga_g16.sh
 
