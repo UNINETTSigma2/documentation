@@ -47,7 +47,7 @@ study the scaling of the code for a representative system.
 performance and scaling of your job**. We recommend to take our
 {ref}`gaussian-job-examples` as a starting point.
 
-Due to its versatility, it is hard to be general about Gaussian binary scaling. We do know that plain DFT-jobs with rather non-complicated molecules like caffeine scales easily up to the core-count limit on Saga and into the range of 16 nodes on Fram. On the other side, jobs with transition-metal containing molecules like Fe-corroles scales moderately outside of 2 full nodes on Saga. On a general note, the range on 2-4 nodes seems to be within decent scaling behaviour for most linda-executables (the LXYZ.exel-binaries, see the Gaussian home folder on each NRIS machine). Also note that due to different node-sharing policies for Fram and Saga there will be the need for setting an additional slurm-flag when running Gaussian jobs on Saga.  
+Due to its versatility, it is hard to be general about Gaussian binary scaling. We do know that plain DFT-jobs with rather non-complicated molecules like caffeine scales easily up to the core-count limit on Saga. On the other side, jobs with transition-metal containing molecules like Fe-corroles scales moderately outside of 2 full nodes on Saga. On a general note, the range on 2-4 nodes seems to be within decent scaling behaviour for most linda-executables (the LXYZ.exel-binaries, see the Gaussian home folder on each NRIS machine).
 
 ### Memory utilization:
 
@@ -70,29 +70,3 @@ can be a reasonable setup.
 
 **Note that "heap size" is also eating from the memory
 pool of the node (see below).**
-
-
-## Management of large files
-
-### On Fram
-
-As commented in the {ref}`storage-performance`-page, there is an issue with very
-large temporary output files (termed RW files in Gaussian). It is advisable to
-slice them into smaller parts using the `lfs setstripe` command.
-
-### On Saga:
-The corresponding situtation for Saga is described here; {ref}`saga-filesystem`.
-
-## Important aspects of Gaussian NRIS setup
-
-
-### On Fram:
-
-On Fram, we have not allocated swap space on the nodes, meaning that the heap
-size for the Linda processes in Gaussian is very important for making parallel
-jobs run. The line
-
-	export GAUSS_LFLAGS2="--LindaOptions -s 20000000"
-
-contains info about the heap size for the Linda communication of Gaussian
-and the setting 20 GB (the number above) is sufficient for most calculations. This is the double of the standard amount for Gaussian, but after testing this seems necessary when allocating more than 4 nodes (more than 4 Linda-workers) and sufficient up to 8 nodes. Above 8 nodes, Linda-communication seems to need 30 - which amounts to half of the standard node physical memory and reducing the available amount for `%mem`accordingly. 
