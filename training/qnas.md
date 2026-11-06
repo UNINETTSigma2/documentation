@@ -7,5 +7,5 @@ The Norwegian Research Infrastructure Services (*NRIS*) has an extensive educati
 
 ## The EESSI-collaboration Happy Hour sessions:
 
-European Environment for Scientific Software Installations (EESSI) offers informal weekly sessions to explore and discuss key related topics and updates:
+European Environment for Scientific Software Installations (EESSI) offers informal monthly sessions to explore and discuss key related topics and updates:
 <https://www.eessi.io/docs/training-events/happy-hours-sessions/>
