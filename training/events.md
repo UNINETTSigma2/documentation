@@ -16,16 +16,14 @@ All courses are free of charge unless otherwise announced.
 :glob:
 
 events/2026-LLM-Course-Bergen.md
-events/2026-EESSI-intro-workshop.md
 ```
 
 ## Upcoming events from our collaborators
-- [KI-Fabrikken: Building LLM Agents](https://www.sigma2.no/events/2026/building-llm-agents)
-- [ENCCS: [Webinar] Using Julia for time-critical Applications](https://enccs.se/event/webinar-using-julia-for-time-critical-applications/)
-- [ENCCS: [School] Quantum Autumn School 2026](https://enccs.se/event/quantum-computing-school-2026-in-sweden/)
 - [CSC: Containers in Supercomputing Environment](https://csc.fi/en/training-calendar/containers-in-supercomputing-environment-2/)
 - [LUMI: Moving your AI training jobs to LUMI: A Hands-On Workshop (Hybrid)](https://lumi-supercomputer.eu/events/moving-your-ai-training-jobs-to-lumi-a-hands-on-workshop-hybrid/)
 - [LUMI: Profiling and Optimization Workshop (On-Site)](https://lumi-supercomputer.eu/events/lumi-profiling-and-optimization-workshop-on-site/)
+- [ENCCS: Machine Learning Interatomic Potentials on HPC: From Installation to Benchmarking (Webinar)](https://enccs.se/event/mlip-part-1/)
+- [ENCCS: Machine Learning Interatomic Potentials on HPC: From Fine-tuning to Distillation (Webinar)](https://enccs.se/event/mlip-part-2/)
 
 ## Request for Training
 
@@ -55,6 +53,7 @@ For all the sympa lists; replace names with your own. Also, for all these, the w
 
 - [The LUMI-supercomputer training pages](https://lumi-supercomputer.eu/events/)
 - [The Swedish National Competence Centre for Superomputing training pages](https://enccs.se/events/)
+- [The CSC training pages](https://csc.fi/en/trainings/)
 - [The software carpentry lessons pages](https://carpentries.org/lessons/)
 - [The software carpentry workshop pages](https://carpentries.org/workshops/upcoming-workshops/)
 
