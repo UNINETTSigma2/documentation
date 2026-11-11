@@ -54,7 +54,7 @@ With your project files ready, you can submit the following Slurm script `build-
 #SBATCH --output=ouser_%j.out
 
 # Configuration
-export SIF=/cluster/work/support/container/pytorch_nvidia_25.05_arm64.sif
+export SIF=/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif
 export OVERLAY=overlay.img
 export OVERLAY_DIR=/home/apptainer/work/user_packages
 
