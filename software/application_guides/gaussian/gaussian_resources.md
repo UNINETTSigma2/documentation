@@ -5,15 +5,14 @@ orphan: true
 # Memory and Core Utilization
 
 This page contains info about special features related to the Gaussian install
-made on NRIS machines, but also general issues related to Gaussian only
-vaguely documented elsewhere.
+made on NRIS machines.
 
 
-## Gaussian over Infiniband
+## Gaussian over Infiniband on Saga
 
 First note that the installed Gaussian suites are currently
 Linda parallel versions, so they scale out of single nodes. In additidon, our
-Gaussian installation is done with a little trick, where loading of the executable
+Gaussian installation for Saga is done with a little trick, where loading of the executable
 is intercepted before launch and an alternative socket library is loaded. We have also taken care of the rsh/ssh setup in our installation procedure, to avoid `.tsnet.config` dependency on user level. This
 enables Gaussian to run on Infiniband network with native IB protocol, giving us two
 advantages:
@@ -70,3 +69,87 @@ can be a reasonable setup.
 
 **Note that "heap size" is also eating from the memory
 pool of the node (see below).**
+
+## Gaussian on the other machines (Olivia, Betzy)
+As mentioned above, Gaussian parallelization is done through Linda. The installation on Olivia and Betzy is different than the one in Saga, as we have to connect the linda workers through ssh into the compute nodes. 
+
+In essence the code works the same, but several additional steps need to be taken into account when submitting jobs. The main difference is that there is no wrapper script, so all additional multinode input needs to be put into the link 0 part of the input file by the users themselves. these keywords are `%LindaWorkers` and `%NProcshared`.
+
+Due to how Gaussian scales in single worker calculations one should start adding linda workers between the 16-32 CPU mark. Some more details on scalability of jobs is outlined in {ref}`gaussian-tuning` which is a recommended read in case of bigger Gaussian calculations.
+
+There are generally two additional steps to take when running Gaussian on Olivia and Betzy, these are ensuring passworless and promptless login to compute nodes for Linda, and specifying the node addresses to the input file in question. The details for these are outlined below.
+
+Because Betzy enforces a minimum allocation of 4 nodes, all Gaussian jobs on Betzy must be configured for multi-node Linda execution
+
+More information on Linda and parallelization in Gaussian can be read in Gaussian's documentation [here](https://gaussian.com/running/) and for what specific calculations are sped up, you can read [here](https://gaussian.com/relnotes/). In both of those links, navigate to the Parallel sections.
+
+### Setting up Linda SSH access to compute nodes (one time setup)
+This is done once to allow for passwordless ssh-access for Linda to the compute nodes.
+
+1. Generate a keypair for the nodes. For this, run the following in the terminal:
+```shell
+ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -C "$USER@<MACHINE>" -N ""
+```
+This will generate a passwordless keypair. Replace `<MACHINE>` with either `betzy`, or `olivia`.
+
+2. Add the public key (ending with `.pub`) to authorized keys by running the following commands on the terminal:
+```shell
+touch ~/.ssh/authorized_keys
+cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/id_ed25519
+chmod 644 ~/.ssh/id_ed25519.pub
+```
+
+3. If you don't have a `~/.ssh/config`, you can create it by by running the following commands in the terminal, otherwise, skip to the next step
+```shell
+touch ~/.ssh/config
+```
+
+4. Open the `~/.ssh/config` file  and add the lines below to the end of it with your preferred editor.
+For Betzy:
+```text 
+Host *.betzy.sigma2.no b*
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+```
+
+for Olivia:
+```text
+Host *.olivia.* o*
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+```
+
+### Specifying compute nodes used in calculation
+We now need to ensure there is no more prompts that appear when Linda attempts a ssh connection. This is done by adding the compute nodes to the list of known_hosts.
+To do this, these commands need to be run before any gaussian calculation, either by shell or by slurm submit script.
+```bash
+for HN in $(scontrol show hostnames) 
+do
+    mkdir -p ~/.ssh
+    touch ~/.ssh/known_hosts
+    ssh-keygen -R "$HN" 2>/dev/null || true
+done
+```
+
+
+In Saga the gaussian wrapper takes care of keywords `%LindaWorkers`, `%NProcshared` and `%mem` in the Link 0 part of
+the input file. This is not the case for the Olivia and Betzy installations. The user needs to add these parts themselves, specially since they are dependent on the specific nodes Gaussian is run on. While the two keywords `%NProcshared` and `%mem` can be arranged before running, the last one, `%LindaWorkers`, is per-node specific, and must be written after a resources have been allocated.
+This means that the user must ensure a line like the following is at the Link 0 part of the input file 
+```bash
+%LindaWorkers=[node_1]:2,[node_2]:2, ...
+```
+where `node_1`, `node_2` and so on are the node names used for ssh-oing into. The number after the colon describes the number of linda workers per node. 
+
+The following lines must be added ran before a gaussian calculation, either through shell or slurm script, to make sure that the nodes are properly added in the way shown above. 
+```bash
+NodeList=$(scontrol show hostnames | while read n ; do echo $n:2 ; done |  paste -d, -s)
+
+{
+printf '%%LINDAWORKERS=%s\n' "$NodeList"
+cat input.com
+} > job_runtime.com
+```
+

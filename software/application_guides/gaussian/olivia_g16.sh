@@ -30,24 +30,24 @@ cp $SLURM_SUBMIT_DIR/$input.com $GAUSS_SCRDIR
 cd $GAUSS_SCRDIR
 
 # add all nodes to list of known hosts
-for HN in $(scontrol show hostnames)
+for HN in $(scontrol show hostnames "$SLURM_JOB_NODELIST")
 do
     mkdir -p ~/.ssh
     touch ~/.ssh/known_hosts
     chmod 600 ~/.ssh/known_hosts
     ssh-keygen -R "$HN" 2>/dev/null || true
-    ssh-keyscan -H "$HN" >> ~/.ssh/known_hosts 2>/dev/null || true
 done
 
-# Add line specifying the amount of Linda Workers per node to the input file.
-NodeList=$(scontrol show hostnames | while read n ; do echo $n:2 ; done |  paste -d, -s)
+# Add line specifying the amount of Linda Workers per node to a temporary copy of the input file
+# this starts 4 linda workers per node.
+NodeList=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | while read n ; do echo $n:4 ; done |  paste -d, -s)
 {
 printf '%%LINDAWORKERS=%s\n' "$NodeList"
 cat $input.com
-} > $input.tmp && mv $input.tmp $input.com
+} > job_runtime.com
 
 # run the program
-time g16 < $input.com > $input.out
+time g16 < job_runtime.com > $input.out
 
 # copy result files back to submit directory
 cp $input.out $input.chk $SLURM_SUBMIT_DIR
