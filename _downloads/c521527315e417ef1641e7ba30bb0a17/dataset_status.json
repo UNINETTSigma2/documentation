@@ -1,0 +1,8 @@
+{
+  "dataset_status":
+  [
+    {"name": "complete"},
+    {"name": "in_work"},
+    {"name": "planned"}
+  ]
+}
