@@ -1,4 +1,4 @@
-# The GAUSSIAN program system
+# GAUSSIAN
 
 * {ref}`gaussian-job-examples`
 * {ref}`gaussian-resource-utilization`
