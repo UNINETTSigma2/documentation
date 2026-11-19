@@ -1,6 +1,11 @@
 # Building scientific software
 This section covers how to compile and link software, and how to use math and MPI libraries.
 
+```{contents}
+:depth: 3
+```
+
+
 ## Compilers
 ### GCC
 The [GNU Compiler Collection](https://gcc.gnu.org) (GCC) includes compilers for C, C++ and Fortran, and libraries for these languages on a variety of platforms including x86 and ARM64 (AArch64).
@@ -300,13 +305,13 @@ FlexiBLAS is a wrapper library that enables the exchange of the BLAS and LAPACK 
 
 	flexiblas list
 
-(Alternatively, use option `print` to see a more extensive list of the configuration.) The default backenend library on all NRIS systems is OPENBLAS. Available backend libraries on AMD and Intel cpus include AOCL and Intel MKL, while NVPL is included on Olivia ARM nodes.
+(Alternatively, use option `print` to see a more extensive list of the configuration.) The default backenend library on all NRIS systems is OPENBLAS. Available backend libraries on AMD and Intel CPUs include AOCL and Intel MKL, while NVPL is included on Olivia ARM nodes.
 
 To link with FlexiBLAS only one library is needed at the link stage (adding `-DFlexiBLAS ` to follow the FlexiBLAS path in the code):
 
 	gcc -DFlexiBLAS test_blas.c -lflexiblas
 
-At run time specify the backend library using the `FLEXIBLAS` environment variable. When using Intel MKL one has to load one of the available imkl modules in addition.
+At run time specify the backend library using the `FLEXIBLAS` environment variable. When using Intel MKL one has to load one of the available `imkl` modules in addition.
 
 For example, compile the executable as above, and running with Intel MKL, specify e.g.
 
@@ -322,6 +327,7 @@ One can select a different default backend library issuing command
 	flexiblas default <backend name>
 
 This will create (or change) the user configuration file` ~/.flexiblasrc` with the backend library chosen.
+
 #### Further Information
 - [FlexiBLAS](https://gitlab.mpi-magdeburg.mpg.de/software/flexiblas-release)
 
@@ -384,7 +390,7 @@ with output
 ```
 (This example was run on Betzy compute nodes)
 
-### Further Information
+#### Further Information
 - [Open MPI](https://www.open-mpi.org/)
 
 ### Intel MPI
@@ -441,7 +447,7 @@ with output
 ```
 The output shows that processes `0` and `2` ends up on socket 1 (cpus `{0-63}`), and processes `1` and `3` ends up on socket 2 (cpus `{64-127}`) on the first node, etc. (This example is run on Betzy compute nodes.)
 
-### Further Information
+#### Further Information
 - [Intel MPI Library](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html)
 - [Developer Guide for Linux](https://www.intel.com/content/www/us/en/docs/mpi-library/developer-guide-linux/2021-18/overview.html)
 
