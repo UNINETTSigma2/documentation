@@ -1,6 +1,11 @@
 # Building scientific software
 This section covers how to compile and link software, and how to use math and MPI libraries.
 
+```{contents}
+:depth: 3
+```
+
+
 ## Compilers
 ### GCC
 The [GNU Compiler Collection](https://gcc.gnu.org) (GCC) includes compilers for C, C++ and Fortran, and libraries for these languages on a variety of platforms including x86 and ARM64 (AArch64).
@@ -128,17 +133,24 @@ The following simple example `test_blas.c` using the BLAS matrix multiply code d
 ```
 #include <stdio.h>
 
-#ifdef OPENBLAS               // gcc -DOPENBLAS test_blas.c -lopenblas
+#ifdef OPENBLAS                  // gcc -DOPENBLAS test_blas.c -lopenblas
   #include <cblas.h>
 
-#elif defined GSL             // gcc -DGSL test_blas.c -lgsl -lgslcblas -lm
+#elif defined GSL                // gcc -DGSL test_blas.c -lgsl -lgslcblas -lm
   #include <gsl/gsl_cblas.h>
 
-#elif defined MKL             // icx -DMKL -qmkl test_blas.c. (compiler option)
-  #include <mkl_cblas.h>.     // icx -DMKL test_blas.c -lmkl_rt (SDL library)
+#elif defined MKL                // icx -DMKL -qmkl test_blas.c. (compiler option)
+  #include <mkl_cblas.h>.        // icx -DMKL test_blas.c -lmkl_rt (SDL library)
 
-#elif defined AOCL            // gcc -DAOCL test_blas.c -lblis-mt
+#elif defined AOCL               // gcc -DAOCL test_blas.c -lblis-mt
   #include <blis/cblas.h>
+
+#elif defined NVPL               // gcc -DNVPL test_blas.c -lnvpl_blas_lp64_seq
+  #include <nvpl_blas_cblas.h>
+
+#elif defined FlexiBLAS
+  #include <flexiblas/cblas.h>   // gcc -DFlexiBLAS test_blas.c -lflexiblas
+
 #endif
 
 int main()
@@ -266,8 +278,58 @@ To link to the shared AOCL-BLAS library (adding `-DAOCL` to follow the OPENBLAS 
 
 	gcc -DAOCL test_blas.c -lblis-mt
 
-### Further Information
+#### Further Information
 - [AOCL User Guide](https://docs.amd.com/r/en-US/57404-AOCL-user-guide/AOCL-User-Guide)
+
+### NVPL
+NVIDIA Performance Libraries (NVPL) are a collection of mathematical libraries optimized for Arm 64-bit architectures. The library includes:
+- BLAS (level 1, 2, and 3) and LAPACK linear algebra routines
+- ScaLAPACK distributed processing routines and BLACS routines for communication
+- Fast Fourier transform (FFT) functions
+- Sparse linear algebra subroutines
+- Random number generation functions
+
+For example, to link the NVPL BLAS library (adding `-DNVPL` to follow the OPENBLAS path in the code) build with:
+
+	gcc -DNVPL test_blas.c -lnvpl_blas_lp64_seq
+
+Or, with the NVIDIA compilers:
+
+	nvcc -DNVPL test_blas.c -lnvpl_blas_lp64_seq
+
+#### Further Information
+- [NVIDIA Performance Libraries](https://developer.nvidia.com/nvpl)
+
+### FlexiBLAS
+FlexiBLAS is a wrapper library that enables the exchange of the BLAS and LAPACK implementation used in an executable without recompiling or re-linking. To see the available backend libraries on the system, load one of the `FlexiBLAS` modules and issue command
+
+	flexiblas list
+
+(Alternatively, use option `print` to see a more extensive list of the configuration.) The default backenend library on all NRIS systems is OPENBLAS. Available backend libraries on AMD and Intel CPUs include AOCL and Intel MKL, while NVPL is included on Olivia ARM nodes.
+
+To link with FlexiBLAS only one library is needed at the link stage (adding `-DFlexiBLAS ` to follow the FlexiBLAS path in the code):
+
+	gcc -DFlexiBLAS test_blas.c -lflexiblas
+
+At run time specify the backend library using the `FLEXIBLAS` environment variable. When using Intel MKL one has to load one of the available `imkl` modules in addition.
+
+For example, compile the executable as above, and running with Intel MKL, specify e.g.
+
+	module load imkl/2025.3.1
+	FLEXIBLAS=IMKL ./a.out
+
+Running NVPL as backend library, e.g. on Olivia ARM nodes, specify
+
+	FLEXIBLAS=NVPL ./a.out
+
+One can select a different default backend library issuing command
+
+	flexiblas default <backend name>
+
+This will create (or change) the user configuration file` ~/.flexiblasrc` with the backend library chosen.
+
+#### Further Information
+- [FlexiBLAS](https://gitlab.mpi-magdeburg.mpg.de/software/flexiblas-release)
 
 ### Performance of math libraries
 In the test below using matrix matrix multiplication, Level 3 BLAS
@@ -328,7 +390,7 @@ with output
 ```
 (This example was run on Betzy compute nodes)
 
-### Further Information
+#### Further Information
 - [Open MPI](https://www.open-mpi.org/)
 
 ### Intel MPI
@@ -385,7 +447,7 @@ with output
 ```
 The output shows that processes `0` and `2` ends up on socket 1 (cpus `{0-63}`), and processes `1` and `3` ends up on socket 2 (cpus `{64-127}`) on the first node, etc. (This example is run on Betzy compute nodes.)
 
-### Further Information
+#### Further Information
 - [Intel MPI Library](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html)
 - [Developer Guide for Linux](https://www.intel.com/content/www/us/en/docs/mpi-library/developer-guide-linux/2021-18/overview.html)
 
