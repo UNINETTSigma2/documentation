@@ -14,14 +14,12 @@ All courses are free of charge unless otherwise announced.
 ```{toctree}
 :maxdepth: 1
 :glob:
-
-events/2026-LLM-Course-Bergen.md
 ```
+*Currently no upcoming events. Check again soon!*
 
 ## Upcoming events from our collaborators
 - [CSC: Containers in Supercomputing Environment](https://csc.fi/en/training-calendar/containers-in-supercomputing-environment-2/)
 - [LUMI: Moving your AI training jobs to LUMI: A Hands-On Workshop (Hybrid)](https://lumi-supercomputer.eu/events/moving-your-ai-training-jobs-to-lumi-a-hands-on-workshop-hybrid/)
-- [LUMI: Profiling and Optimization Workshop (On-Site)](https://lumi-supercomputer.eu/events/lumi-profiling-and-optimization-workshop-on-site/)
 - [ENCCS: Machine Learning Interatomic Potentials on HPC: From Installation to Benchmarking (Webinar)](https://enccs.se/event/mlip-part-1/)
 - [ENCCS: Machine Learning Interatomic Potentials on HPC: From Fine-tuning to Distillation (Webinar)](https://enccs.se/event/mlip-part-2/)
 
