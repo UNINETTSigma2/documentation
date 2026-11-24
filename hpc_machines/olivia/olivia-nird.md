@@ -32,7 +32,7 @@ You can connect to any of the I/O nodes directly from Olivia's login nodes using
    ```bash
    $ssh svc01
    ```
-You can replace svc01 with the specific I/O node name you wish to access ( svc02, svc03, svc04, sc05)
+You can replace svc01 with the specific I/O node name you wish to access ( svc02, svc03, svc04, svc05)
 
 ## Accessing your NIRD data
 
