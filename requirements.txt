@@ -1,5 +1,5 @@
 myst-parser
-sphinx
+sphinx==9.2.*
 sphinx-autoapi
 sphinx-autobuild
 sphinx-tabs
