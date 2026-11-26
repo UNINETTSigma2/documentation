@@ -1,5 +1,5 @@
 
-# Use of `rclone` to copy and sync files between your local machines and the cluster login nodes 
+# Use of `rclone` without using 2FA/OTP
 
 ## Install rclone (Linux)
 
