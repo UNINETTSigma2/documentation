@@ -1,0 +1,13 @@
+{"contributor_types": [
+ {"name": "DataCollector"},
+    {"name": "DataCurator"},
+    {"name": "ProjectLeader"},
+    {"name": "ProjectManager"},
+    {"name": "ProjectMember"},
+    {"name": "RelatedPerson"},
+    {"name": "Researcher"},
+    {"name": "ResearchGroup"},
+    {"name": "Supervisor"},
+    {"name": "WorkPackageLeader"},
+    {"name": "Other"}
+]}
