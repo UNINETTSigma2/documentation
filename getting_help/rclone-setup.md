@@ -30,7 +30,7 @@ Method A:
 Create a directory/file in ~/.config
 
 ```
-~/.config/rclone/rclone.config
+~/.config/rclone/rclone.conf
 ```
 
 with the following content:
@@ -60,7 +60,7 @@ If you know `rclone` and prefer to configure it yourself, run
 rclone config
 ```
 
-and follow the options by selecting the ones from the _rclone.config_ file here above. Select `default` for all the options you are not sure about.
+and follow the options by selecting the ones from the _rclone.conf_ file here above. Select `default` for all the options you are not sure about.
 
 ## Running `rclone`
 
@@ -73,7 +73,7 @@ e.g.
 rclone copy -v /home/<username>/some-dir/ saga:/home/<username>/some-dir/>
 ```
 
-where `saga` is the value for remote from your `rclone.config` file (top line) 
+where `saga` is the value for remote from your `rclone.conf` file (top line) 
 
 2. To copy a single file
 
