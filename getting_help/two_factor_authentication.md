@@ -113,6 +113,15 @@ scp -P 12 myfile login.saga.sigma2.no:somedir
 
 (see `man scp` to see if your version supports the SFTP protocol)
 
+The best recommended alternative is to use `rclone`:
+
+```
+rclone copy -v </path/to/you/source/files/> remote:</path/to/you/target/files/>
+```
+
+See the [detailed documentation](https://documentation.sigma2.no/getting_help/rclone-setup.html) on using `rclone` [here](https://documentation.sigma2.no/getting_help/rclone-setup.html). 
+
 Requirements:
 - This is only available if you have set up SSH-keys, see the guide in [getting started](https://documentation.sigma2.no/getting_started/ssh.html#using-ssh-keys-instead-of-passwords).
 - This is only available on "Forskningsnett" (see [sikt/eduResearchNetwork](https://sikt.no/en/tjenester/national-research-and-education-network-uninett) for more information, and [forskningsrådet/approvedOrganisations](https://www.forskningsradet.no/en/financing/research-organisations/approved-research-organisations/) for a list of institutions/organisations). Use VPN to connect to your (Norwegian) institution's network if you for example work from home.
+
